@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF9019B752
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 22:56:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9959D19B75E
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 23:01:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 529C689DA9;
-	Wed,  1 Apr 2020 20:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8BAF6E9A0;
+	Wed,  1 Apr 2020 21:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9AA9E89D3E;
- Wed,  1 Apr 2020 20:56:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 95A92A0099;
- Wed,  1 Apr 2020 20:56:43 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95AC86E9A0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 21:01:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20769869-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Apr 2020 22:01:03 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Apr 2020 22:01:02 +0100
+Message-Id: <20200401210104.15907-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Apr 2020 20:56:43 -0000
-Message-ID: <158577460359.25628.3168047566135252934@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200401185834.20595-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200401185834.20595-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Try_allocating_va_from_free_space_=28rev3=29?=
+Subject: [Intel-gfx] [CI 1/3] drm/i915/gt: Only wait for GPU activity before
+ unbinding a GGTT fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,101 +37,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Only GPU activity via the GGTT fence is asynchronous, we know that we
+control the CPU access directly, so we only need to wait for the GPU to
+stop using the fence before we relinquish it.
 
-Series: drm/i915/gem: Try allocating va from free space (rev3)
-URL   : https://patchwork.freedesktop.org/series/74748/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 25 ++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h |  3 +++
+ drivers/gpu/drm/i915/i915_vma.c              |  4 ++++
+ 3 files changed, 28 insertions(+), 4 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+index 225970f4a4ef..d527b11ddfb7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+@@ -223,6 +223,11 @@ static void fence_write(struct i915_fence_reg *fence,
+ 	fence->dirty = false;
+ }
+ 
++static bool gpu_uses_fence_registers(struct i915_fence_reg *fence)
++{
++	return INTEL_GEN(fence_to_i915(fence)) < 4;
++}
++
+ static int fence_update(struct i915_fence_reg *fence,
+ 			struct i915_vma *vma)
+ {
+@@ -239,15 +244,18 @@ static int fence_update(struct i915_fence_reg *fence,
+ 		if (!i915_vma_is_map_and_fenceable(vma))
+ 			return -EINVAL;
+ 
+-		ret = i915_vma_sync(vma);
+-		if (ret)
+-			return ret;
++		if (gpu_uses_fence_registers(fence)) {
++			/* implicit 'unfenced' GPU blits */
++			ret = i915_vma_sync(vma);
++			if (ret)
++				return ret;
++		}
+ 	}
+ 
+ 	old = xchg(&fence->vma, NULL);
+ 	if (old) {
+ 		/* XXX Ideally we would move the waiting to outside the mutex */
+-		ret = i915_vma_sync(old);
++		ret = i915_active_wait(&fence->active);
+ 		if (ret) {
+ 			fence->vma = old;
+ 			return ret;
+@@ -869,6 +877,7 @@ void intel_ggtt_init_fences(struct i915_ggtt *ggtt)
+ 	for (i = 0; i < num_fences; i++) {
+ 		struct i915_fence_reg *fence = &ggtt->fence_regs[i];
+ 
++		i915_active_init(&fence->active, NULL, NULL);
+ 		fence->ggtt = ggtt;
+ 		fence->id = i;
+ 		list_add_tail(&fence->link, &ggtt->fence_list);
+@@ -880,6 +889,14 @@ void intel_ggtt_init_fences(struct i915_ggtt *ggtt)
+ 
+ void intel_ggtt_fini_fences(struct i915_ggtt *ggtt)
+ {
++	int i;
++
++	for (i = 0; i < ggtt->num_fences; i++) {
++		struct i915_fence_reg *fence = &ggtt->fence_regs[i];
++
++		i915_active_fini(&fence->active);
++	}
++
+ 	kfree(ggtt->fence_regs);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
+index 9850f6a85d2a..08c6bb667581 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
+@@ -28,6 +28,8 @@
+ #include <linux/list.h>
+ #include <linux/types.h>
+ 
++#include "i915_active.h"
++
+ struct drm_i915_gem_object;
+ struct i915_ggtt;
+ struct i915_vma;
+@@ -41,6 +43,7 @@ struct i915_fence_reg {
+ 	struct i915_ggtt *ggtt;
+ 	struct i915_vma *vma;
+ 	atomic_t pin_count;
++	struct i915_active active;
+ 	int id;
+ 	/**
+ 	 * Whether the tiling parameters for the currently
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 18069df2a9e5..616ca5a7c875 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1232,6 +1232,10 @@ int i915_vma_move_to_active(struct i915_vma *vma,
+ 		dma_resv_add_shared_fence(vma->resv, &rq->fence);
+ 		obj->write_domain = 0;
+ 	}
++
++	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
++		i915_active_add_request(&vma->fence->active, rq);
++
+ 	obj->read_domains |= I915_GEM_GPU_DOMAINS;
+ 	obj->mm.dirty = true;
+ 
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8233 -> Patchwork_17171
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17171 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8233/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_busy@basic@modeset:
-    - fi-kbl-x1275:       [PASS][3] -> [DMESG-FAIL][4] ([i915#62])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8233/fi-kbl-x1275/igt@kms_busy@basic@modeset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/fi-kbl-x1275/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([IGT#4])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8233/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [PASS][7] -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +21 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8233/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [PASS][9] -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +9 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8233/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 36)
-------------------------------
-
-  Additional (2): fi-bdw-gvtdvm fi-gdg-551 
-  Missing    (13): fi-tgl-dsi fi-bsw-n3050 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-kbl-7500u fi-ctg-p8600 fi-elk-e7500 fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-skl-6700k2 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8233 -> Patchwork_17171
-
-  CI-20190529: 20190529
-  CI_DRM_8233: 0862243a5514a9da625520bd4f554f8348077594 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5553: 60475d9b41c58b7d256e83c7d53eaf7c2f1f8ecc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17171: ea63499c8e784ef283f7ee9ce0a1e103b07c1174 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ea63499c8e78 drm/i915/gem: Try allocating va from free space
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17171/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
