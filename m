@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2E9119AEEB
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 17:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9580819AF20
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 17:53:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44FAB6E955;
-	Wed,  1 Apr 2020 15:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2060A890D5;
+	Wed,  1 Apr 2020 15:53:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C1C366E951;
- Wed,  1 Apr 2020 15:40:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BAB11A00C7;
- Wed,  1 Apr 2020 15:40:09 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 914FC8916D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 15:53:34 +0000 (UTC)
+IronPort-SDR: EuL1aYZd7+4haUxMpa1t2TehNQ5sov/Q0N3znbPUL/dBZHsnIB4hvrYtKzjDQxZ9iy1zBcP9AP
+ q42FOPbybJvQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2020 08:53:33 -0700
+IronPort-SDR: vlgBcudcxDm7xwiIm24ixelGQjFrrcw4G1N6fTX03zHkYanwdVWnlDv40QF2QcnVomdfzlUITG
+ K+Bf2ADubXXQ==
+X-IronPort-AV: E=Sophos;i="5.72,332,1580803200"; d="scan'208";a="422768930"
+Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.251.79.241])
+ ([10.251.79.241])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2020 08:53:31 -0700
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200331113735.5452-1-anshuman.gupta@intel.com>
+ <20200331113735.5452-3-anshuman.gupta@intel.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <ee1ef6ff-9e1f-b1c1-5ce8-a1a2a1dac2c4@intel.com>
+Date: Wed, 1 Apr 2020 21:23:28 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Wed, 01 Apr 2020 15:40:09 -0000
-Message-ID: <158575560973.25627.2987101441450335527@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200331135403.16906-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20200331135403.16906-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Report_all_failed_registers_for_ctx_isolation_=28rev2?=
- =?utf-8?q?=29?=
+In-Reply-To: <20200331113735.5452-3-anshuman.gupta@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915: Add i915_lpsp_info debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,313 +50,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Report all failed registers for ctx isolation (rev2)
-URL   : https://patchwork.freedesktop.org/series/75318/
-State : success
+On 31-03-2020 17:07, Anshuman Gupta wrote:
+> New i915_pm_lpsp igt solution approach relies on connector specific
+> debugfs attribute i915_lpsp_info, it exposes whether an output is
+> capable of driving lpsp and exposes lpsp enablement info.
+>
+> v2:
+> - CI fixup.
+> v3:
+> - register i915_lpsp_info only for supported connector. [Jani]
+> - use intel_display_power_well_is_enabled() instead of looking
+>    inside power_well count. [Jani]
+> - fixes the lpsp capable conditional logic. [Jani]
+> - combined the lpsp capable and enable info. [Jani]
+>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>   .../drm/i915/display/intel_display_debugfs.c  | 124 ++++++++++++++++++
+>   .../drm/i915/display/intel_display_power.h    |   2 +
+>   2 files changed, 126 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 424f4e52f783..b185c4617468 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -9,6 +9,7 @@
+>   #include "i915_debugfs.h"
+>   #include "intel_csr.h"
+>   #include "intel_display_debugfs.h"
+> +#include "intel_display_power.h"
+>   #include "intel_display_types.h"
+>   #include "intel_dp.h"
+>   #include "intel_fbc.h"
+> @@ -611,6 +612,98 @@ static void intel_hdcp_info(struct seq_file *m,
+>   	seq_puts(m, "\n");
+>   }
+>   
+> +#define LPSP_CAPABLE(COND) (COND ? seq_puts(m, "LPSP capable\n") : seq_puts(m, "LPSP incapable\n"))
+> +#define LPSP_ENABLE(COND) (COND ? seq_puts(m, "LPSP enabled\n") : seq_puts(m, "LPSP disabled\n"))
+> +
+> +/* LVDS also an embedded panel but we are not interested in it */
+> +static bool intel_have_embedded_panel(struct drm_connector *connector)
+> +{
+> +	return connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+> +		connector->connector_type == DRM_MODE_CONNECTOR_eDP;
+> +}
+> +
+> +static bool intel_have_gen9_lpsp_panel(struct drm_connector *connector)
+> +{
+> +	return intel_have_embedded_panel(connector) ||
+> +		connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort;
+> +}
+> +
+> +static bool intel_have_lpsp_supported_panel(struct drm_connector *connector)
+> +{
+> +	return intel_have_gen9_lpsp_panel(connector) ||
+> +		connector->connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+> +		connector->connector_type == DRM_MODE_CONNECTOR_HDMIB;
+> +}
 
-== Summary ==
+This function will pass for every platform for almost all (EDP/MIPI/DP/HDMI) connector type even if not supported ...rt?
+Apart from that I did not understand the purpose of above functions.
+Can we have a single function to check the connector is supported lpsp or not.
 
-CI Bug Log - changes from CI_DRM_8228_full -> Patchwork_17159_full
-====================================================
+static bool is_lpsp_supported(struct drm_connector *connector)
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
+In function definition we can check for platform first, then check connector_type and return true/false.
   
 
-Possible new issues
--------------------
+> +
+> +static bool
+> +intel_lpsp_power_well_enabled(struct drm_i915_private *dev_priv,
+> +			      enum i915_power_well_id power_well_id)
+> +{
+> +	intel_wakeref_t wakeref;
+> +	bool is_enabled;
+> +
+> +	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+> +	is_enabled = intel_display_power_well_is_enabled(dev_priv,
+> +							 power_well_id);
+> +	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+> +
+> +	return is_enabled;
+> +}
+> +
+> +static void
+> +intel_lpsp_gen12_helper(struct seq_file *m, struct drm_connector *connector)
+> +{
+> +	struct intel_encoder *encoder =
+> +			intel_attached_encoder(to_intel_connector(connector));
+> +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> +	bool lpsp_capable = false;
+> +
+> +	if (IS_TIGERLAKE(dev_priv))
+> +		lpsp_capable = encoder->port <= PORT_C;
+> +
+> +	LPSP_CAPABLE(lpsp_capable);
 
-  Here are the unknown changes that may have been introduced in Patchwork_17159_full:
+is_supported and capable looks similar to me, what is the difference?
 
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb}:
-    - shard-glk:          NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk3/igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb.html
-    - shard-skl:          NOTRUN -> [FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8228_full and Patchwork_17159_full:
-
-### New IGT tests (1) ###
-
-  * igt@gem_exec_capture@capture:
-    - Statuses :
-    - Exec time: [None] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17159_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_schedule@implicit-both-bsd1:
-    - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#109276] / [i915#677]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb2/igt@gem_exec_schedule@implicit-both-bsd1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb7/igt@gem_exec_schedule@implicit-both-bsd1.html
-
-  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
-    - shard-iclb:         [PASS][5] -> [SKIP][6] ([i915#677]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb8/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb4/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-
-  * igt@gem_exec_schedule@preempt-contexts-bsd2:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276]) +15 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb4/igt@gem_exec_schedule@preempt-contexts-bsd2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb3/igt@gem_exec_schedule@preempt-contexts-bsd2.html
-
-  * igt@gem_exec_schedule@reorder-wide-bsd:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#112146]) +6 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb8/igt@gem_exec_schedule@reorder-wide-bsd.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb4/igt@gem_exec_schedule@reorder-wide-bsd.html
-
-  * igt@i915_pm_rps@min-max-config-loaded:
-    - shard-glk:          [PASS][11] -> [FAIL][12] ([i915#39])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk3/igt@i915_pm_rps@min-max-config-loaded.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk8/igt@i915_pm_rps@min-max-config-loaded.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-alpha-transparent:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#54])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl8/igt@kms_cursor_crc@pipe-a-cursor-alpha-transparent.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-alpha-transparent.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-kbl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +4 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-kbl7/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-
-  * igt@kms_dp_dsc@basic-dsc-enable-edp:
-    - shard-iclb:         [PASS][17] -> [SKIP][18] ([fdo#109349])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb8/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [PASS][19] -> [DMESG-WARN][20] ([i915#180] / [i915#93] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-kbl6/igt@kms_fbcon_fbt@fbc-suspend.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-kbl3/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_flip@dpms-vs-vblank-race-interruptible:
-    - shard-glk:          [PASS][21] -> [FAIL][22] ([i915#407])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk6/igt@kms_flip@dpms-vs-vblank-race-interruptible.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk9/igt@kms_flip@dpms-vs-vblank-race-interruptible.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [PASS][23] -> [FAIL][24] ([i915#79])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl1/igt@kms_flip@flip-vs-expired-vblank.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl5/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_flip@plain-flip-ts-check-interruptible:
-    - shard-skl:          [PASS][25] -> [FAIL][26] ([i915#34])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl2/igt@kms_flip@plain-flip-ts-check-interruptible.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl10/igt@kms_flip@plain-flip-ts-check-interruptible.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
-    - shard-skl:          [PASS][27] -> [INCOMPLETE][28] ([i915#69]) +1 similar issue
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [PASS][29] -> [FAIL][30] ([fdo#108145])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl1/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-
-  * igt@kms_plane_lowres@pipe-a-tiling-x:
-    - shard-glk:          [PASS][31] -> [FAIL][32] ([i915#899])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk3/igt@kms_plane_lowres@pipe-a-tiling-x.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk8/igt@kms_plane_lowres@pipe-a-tiling-x.html
-
-  * igt@kms_psr@psr2_sprite_mmap_cpu:
-    - shard-iclb:         [PASS][33] -> [SKIP][34] ([fdo#109441]) +1 similar issue
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_cpu.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb8/igt@kms_psr@psr2_sprite_mmap_cpu.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-apl:          [PASS][35] -> [DMESG-WARN][36] ([i915#180]) +6 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-apl3/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-apl8/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  * igt@perf_pmu@busy-vcs1:
-    - shard-iclb:         [PASS][37] -> [SKIP][38] ([fdo#112080]) +6 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb4/igt@perf_pmu@busy-vcs1.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb3/igt@perf_pmu@busy-vcs1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_persistence@legacy-engines-mixed-process@blt:
-    - shard-skl:          [FAIL][39] ([i915#1528]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl10/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl1/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
-
-  * igt@gem_exec_schedule@preempt-other-chain-bsd:
-    - shard-iclb:         [SKIP][41] ([fdo#112146]) -> [PASS][42] +1 similar issue
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb1/igt@gem_exec_schedule@preempt-other-chain-bsd.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb6/igt@gem_exec_schedule@preempt-other-chain-bsd.html
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-apl:          [DMESG-WARN][43] ([i915#180]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-apl1/igt@gem_workarounds@suspend-resume-context.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-apl7/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-skl:          [DMESG-WARN][45] -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-skl8/igt@gen9_exec_parse@allowed-all.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-skl3/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_selftest@live@execlists:
-    - shard-apl:          [INCOMPLETE][47] ([i915#656]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-apl8/igt@i915_selftest@live@execlists.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-apl1/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - shard-tglb:         [INCOMPLETE][49] ([i915#1531]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-tglb8/igt@i915_selftest@live@requests.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-tglb5/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][51] ([i915#180]) -> [PASS][52] +3 similar issues
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge:
-    - shard-glk:          [FAIL][53] ([i915#118] / [i915#70] / [i915#95]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk8/igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk6/igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge.html
-
-  * igt@kms_draw_crc@draw-method-rgb565-render-untiled:
-    - shard-glk:          [FAIL][55] ([i915#52] / [i915#54]) -> [PASS][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk5/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk5/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
-
-  * igt@kms_flip@plain-flip-ts-check:
-    - shard-glk:          [FAIL][57] ([i915#34]) -> [PASS][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-glk5/igt@kms_flip@plain-flip-ts-check.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-glk5/igt@kms_flip@plain-flip-ts-check.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][59] ([fdo#109441]) -> [PASS][60] +2 similar issues
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb5/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  * igt@perf_pmu@busy-check-all-vcs1:
-    - shard-iclb:         [SKIP][61] ([fdo#112080]) -> [PASS][62] +7 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb7/igt@perf_pmu@busy-check-all-vcs1.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb1/igt@perf_pmu@busy-check-all-vcs1.html
-
-  * igt@prime_vgem@fence-wait-bsd2:
-    - shard-iclb:         [SKIP][63] ([fdo#109276]) -> [PASS][64] +17 similar issues
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-iclb3/igt@prime_vgem@fence-wait-bsd2.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-iclb1/igt@prime_vgem@fence-wait-bsd2.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-tglb:         [FAIL][65] ([i915#454]) -> [SKIP][66] ([i915#468])
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-tglb6/igt@i915_pm_dc@dc6-psr.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@i915_pm_rpm@pm-caching:
-    - shard-snb:          [SKIP][67] ([fdo#109271]) -> [INCOMPLETE][68] ([i915#82])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-snb6/igt@i915_pm_rpm@pm-caching.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-snb6/igt@i915_pm_rpm@pm-caching.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-kbl:          [DMESG-WARN][69] ([i915#165] / [i915#180]) -> [DMESG-WARN][70] ([i915#180])
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-kbl2/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-kbl2/igt@kms_flip@flip-vs-suspend-interruptible.html
-
-  * igt@runner@aborted:
-    - shard-apl:          ([FAIL][71], [FAIL][72]) ([i915#1423] / [i915#529]) -> [FAIL][73] ([i915#1423])
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-apl8/igt@runner@aborted.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/shard-apl1/igt@runner@aborted.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/shard-apl7/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1423]: https://gitlab.freedesktop.org/drm/intel/issues/1423
-  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
-  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#39]: https://gitlab.freedesktop.org/drm/intel/issues/39
-  [i915#407]: https://gitlab.freedesktop.org/drm/intel/issues/407
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#70]: https://gitlab.freedesktop.org/drm/intel/issues/70
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): pig-skl-6260u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8228 -> Patchwork_17159
-
-  CI-20190529: 20190529
-  CI_DRM_8228: 1f33fcd4f840355af75a61ce7204f39bafc52018 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5548: d9e70dc1b35633b7d5c81cbfa165e331189eb260 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17159: 7881a7d0a88a1d5e4ec9133ae2fe53fe0ce09bd9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17159/index.html
+> +	LPSP_ENABLE(!intel_lpsp_power_well_enabled(dev_priv, ICL_DISP_PW_3));
+> +}
+> +
+> +static void
+> +intel_lpsp_gen11_helper(struct seq_file *m, struct drm_connector *connector)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> +
+> +	LPSP_CAPABLE(intel_have_embedded_panel(connector));
+> +	LPSP_ENABLE(!intel_lpsp_power_well_enabled(dev_priv, ICL_DISP_PW_3));
+> +}
+> +
+> +static void
+> +intel_lpsp_gen9_helper(struct seq_file *m, struct drm_connector *connector)
+> +{
+> +	struct intel_encoder *encoder =
+> +			intel_attached_encoder(to_intel_connector(connector));
+> +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> +
+> +	LPSP_CAPABLE(encoder->port == PORT_A &&
+> +		     intel_have_gen9_lpsp_panel(connector));
+> +	LPSP_ENABLE(!intel_lpsp_power_well_enabled(dev_priv, SKL_DISP_PW_2));
+> +}
+> +
+> +static void
+> +intel_lpsp_legacy_gen_helper(struct seq_file *m,
+> +			     struct drm_connector *connector)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> +
+> +	/*
+> +	 * Apart from HASWELL/BROADWELL other legacy platform doesn't
+> +	 * support lpsp.
+> +	 */
+> +	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> +		LPSP_CAPABLE(connector->connector_type == DRM_MODE_CONNECTOR_eDP);
+> +		LPSP_ENABLE(!intel_lpsp_power_well_enabled(dev_priv, HSW_DISP_PW_GLOBAL));
+> +	} else {
+> +		seq_puts(m, "LPSP not supported\n");
+> +	}
+> +}
+> +
+>   static void intel_dp_info(struct seq_file *m,
+>   			  struct intel_connector *intel_connector)
+>   {
+> @@ -1987,6 +2080,33 @@ static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
+>   }
+>   DEFINE_SHOW_ATTRIBUTE(i915_hdcp_sink_capability);
+>   
+> +static int i915_lpsp_info_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_connector *connector = m->private;
+> +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> +
+> +	if (connector->status != connector_status_connected)
+> +		return -ENODEV;
+> +
+> +	switch (INTEL_GEN(dev_priv)) {
+> +	case 12:
+> +		intel_lpsp_gen12_helper(m, connector);
+> +		break;
+> +	case 11:
+> +		intel_lpsp_gen11_helper(m, connector);
+> +		break;
+> +	case 10:
+> +	case 9:
+> +		intel_lpsp_gen9_helper(m, connector);
+> +		break;
+> +	default:
+> +		intel_lpsp_legacy_gen_helper(m, connector);
+> +	}
+> +
+> +	return 0;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(i915_lpsp_info);
+> +
+>   static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
+>   {
+>   	struct drm_connector *connector = m->private;
+> @@ -2130,5 +2250,9 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+>   		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
+>   				    connector, &i915_dsc_fec_support_fops);
+>   
+> +	if (intel_have_lpsp_supported_panel(connector))
+> +		debugfs_create_file("i915_lpsp_info", 0444, root,
+> +				    connector, &i915_lpsp_info_fops);
+> +
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index 56cbae6327b7..14c5ad20287f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -266,6 +266,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain);
+>   
+>   bool intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
+>   				    enum intel_display_power_domain domain);
+> +bool intel_display_power_well_is_enabled(struct drm_i915_private *dev_priv,
+> +					 enum i915_power_well_id power_well_id);
+>   bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
+>   				      enum intel_display_power_domain domain);
+>   intel_wakeref_t intel_display_power_get(struct drm_i915_private *dev_priv,
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
