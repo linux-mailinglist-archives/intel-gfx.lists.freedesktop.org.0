@@ -2,41 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B752C19B5D8
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 20:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A8319B60B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 20:55:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 139FF6E983;
-	Wed,  1 Apr 2020 18:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C985B6E989;
+	Wed,  1 Apr 2020 18:55:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B466F6E983
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 18:43:43 +0000 (UTC)
-IronPort-SDR: Zl2xYbCbesct3lHhK/6uhrJaWRlpNk665CiuA2rZwWRShboe8un+CkPJQ/lo7YA2URfrqkjhjB
- TQ7ZRGnsMBIA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2020 11:43:43 -0700
-IronPort-SDR: eQulqKhiArmgELdpeBi9AdDRQb2NVQUhnk1FEZU8pzg/EAJFIMQ9iem8Q8TIgyqS44t4Q/JUU0
- NNbSOCxg0J3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,332,1580803200"; d="scan'208";a="242305539"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by fmsmga008.fm.intel.com with ESMTP; 01 Apr 2020 11:43:43 -0700
-Date: Wed, 1 Apr 2020 11:43:42 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200401184342.GA4430@orsosgc001.amr.corp.intel.com>
-References: <20200331114646.81793-1-lionel.g.landwerlin@intel.com>
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A18836E989
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 18:55:40 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id t24so550755pgj.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Apr 2020 11:55:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9hemvv8ilIhbbLRd25pKUvPStc4U/3QKc5ivIJi4HRA=;
+ b=n614lTw5mDhq0rJJ5Qkm++Dc935J46Yts8uOqtE0iNiUQW3XJNQwP7UirxH/4uGUNV
+ DT5LxfmwJaXLLEpkYErYJz57fgZj+bTKrtw3wdMZ+qeUkk1Jec/+5exMLpffOVZvr8Ny
+ Y2TWk0QSL25WrWlVXWxyQTNgNfIchtF9MpFn9FXQ5i7YNdnoHQKYa96nJbiOVwq09Bqj
+ PZ9ULi45UWlVnbPU58K3Y6WQii/7wFFVJ+fSpSHMgjjRqWJzQUpIHFX22JkAFRYZdQeg
+ XFqj/JoogUB+ZRvnc/MpRfpNtqRTGFzAdoluTT2r5gv40dJ7kBTKhLXOH9CjLdEL9ugq
+ 06AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9hemvv8ilIhbbLRd25pKUvPStc4U/3QKc5ivIJi4HRA=;
+ b=WiSfNVJc2wc8Rc/C3ogNwiXWNbYuFWErA3Ql3FCdw5vcM/MOd/aiSQWRuWbGl5O90B
+ gAkDPT4YUc5Y7oF2evsAAF0zAba6zTsVt8VChknKL5QnRD85XGSf5x6J5lx+qLSnnUhL
+ BwVir1+kiFgpxgxn0LWypSMKmQ8Q2eWhJOmogehLjNw612hzagxRvjm0r3LsI08oxeTb
+ lE1ABNG2uFxAwURn7ShrwIak4Bd7J07k6oEqrF6pjyLkyFtXVGH21jLZNQgbsId1TbrV
+ KezXdNtpwCzm26IKCMf7Z+KH1rTqVonF/AMxsNyb7vkggrgLMDIgX2Ygz4SsT+hFRr6e
+ TjhA==
+X-Gm-Message-State: ANhLgQ3ebrEvLAxn04gk+HBI/5Ak8oSe2l/EQVKdGjzLO+o8BwSXVCwl
+ 6lh5VwkoiOS+hdO1F8DuK3MBvXsOUw0pO5ej0P0Rog==
+X-Google-Smtp-Source: ADFU+vvsFJnT8kjFl/KG8VWPvA45dXfEgXXLnaQHp9MXwEENw0A476H3f0bglx8vgaa6Hn15usmd/+4Y1ULutcZI7AY=
+X-Received: by 2002:a05:6a00:42:: with SMTP id
+ i2mr24338854pfk.108.1585767339836; 
+ Wed, 01 Apr 2020 11:55:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200331114646.81793-1-lionel.g.landwerlin@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Enable application triggered
- OA reports
+References: <20200331104209.432176-2-maarten.lankhorst@linux.intel.com>
+ <202004011452.AyhP9ZdC%lkp@intel.com>
+In-Reply-To: <202004011452.AyhP9ZdC%lkp@intel.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Wed, 1 Apr 2020 11:55:28 -0700
+Message-ID: <CAKwvOdniUVifJ9b1y9bhHPkdGkLasf=mkx7XwAK_ZTEk2Q+BKg@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Philip Li <philip.li@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/23] perf/core: Only copy-to-user after
+ completely unlocking all locks.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,159 +64,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: clang-built-linux <clang-built-linux@googlegroups.com>,
+ intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 31, 2020 at 02:46:46PM +0300, Lionel Landwerlin wrote:
->Gen12 brought an important redesign of the OA unit, splitting it in 2
->with a per context part (OAR) and a global part (OAG).
+On Tue, Mar 31, 2020 at 11:50 PM kbuild test robot <lkp@intel.com> wrote:
 >
->OAR deals with per context counters and implements the
->MI_REPORT_PERF_COUNT command.
+> Hi Maarten,
 >
->OAG deals with global counters and the OA buffer.
+> I love your patch! Perhaps something to improve:
 >
->Unfortunately some of the counters available in OAG are not available
->in OAR, for instance counters that would report global caches
->utilization.
+> [auto build test WARNING on drm-tip/drm-tip]
+> [also build test WARNING on next-20200331]
+> [cannot apply to drm-intel/for-linux-next tip/perf/core v5.6]
+> [if your patch is applied to the wrong git tree, please drop us a note to help
+> improve the system. BTW, we also suggest to use '--base' option to specify the
+> base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 >
->Since applications making use of this want to access those additional
->OAG counters we can enable them to generate a report from their
->command buffer into the OA buffer. This is somewhat equivalent to
->having them doing their own MI_REPORT_PERF_COUNT. The application then
->parse the OA buffer as they were doing previously, only looking for a
->begin/end OA report with the appropriate reason field in the OA buffer
->instead of using MI_REPORT_PERF_COUNT generated reports for begin/end.
+> url:    https://github.com/0day-ci/linux/commits/Maarten-Lankhorst/Revert-drm-i915-gem-Drop-relocation-slowpath/20200401-005710
+> base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+> config: x86_64-randconfig-d003-20200331 (attached as .config)
+> compiler: clang version 11.0.0 (https://github.com/llvm/llvm-project 5227fa0c72ce55927cf4849160acb00442489937)
+> reproduce:
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # save the attached .config to linux build tree
+>         COMPILER=clang make.cross ARCH=x86_64
 >
->Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->---
-> drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 ++++++++++++++++++
-> drivers/gpu/drm/i915/i915_perf.c            | 10 +++++++---
-> drivers/gpu/drm/i915/i915_reg.h             |  2 ++
-> 3 files changed, 27 insertions(+), 3 deletions(-)
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
 >
->diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->index e96cc7fa0936..552eadaa6f9a 100644
->--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->@@ -1127,6 +1127,10 @@ static void gen9_whitelist_build(struct i915_wa_list *w)
+> All warnings (new ones prefixed by >>):
 >
-> 	/* WaSendPushConstantsFromMMIO:skl,bxt */
-> 	whitelist_reg(w, COMMON_SLICE_CHICKEN2);
->+
->+	/* Allow userspace trigger OA report generation in OA buffer. */
->+	whitelist_reg(w, OAREPORTTRIG2);
->+	whitelist_reg(w, OAREPORTTRIG6);
-> }
->
-> static void skl_whitelist_build(struct intel_engine_cs *engine)
->@@ -1208,6 +1212,10 @@ static void cnl_whitelist_build(struct intel_engine_cs *engine)
->
-> 	/* WaEnablePreemptionGranularityControlByUMD:cnl */
-> 	whitelist_reg(w, GEN8_CS_CHICKEN1);
->+
->+	/* Allow userspace trigger OA report generation in OA buffer. */
->+	whitelist_reg(w, OAREPORTTRIG2);
->+	whitelist_reg(w, OAREPORTTRIG6);
-> }
->
-> static void icl_whitelist_build(struct intel_engine_cs *engine)
->@@ -1237,6 +1245,12 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
-> 		whitelist_reg_ext(w, PS_INVOCATION_COUNT,
-> 				  RING_FORCE_TO_NONPRIV_ACCESS_RD |
-> 				  RING_FORCE_TO_NONPRIV_RANGE_4);
->+
->+		/*
->+		 * Allow userspace trigger OA report generation in OA buffer.
->+		 */
->+		whitelist_reg(w, OAREPORTTRIG2);
->+		whitelist_reg(w, OAREPORTTRIG6);
-> 		break;
->
-> 	case VIDEO_DECODE_CLASS:
->@@ -1281,6 +1295,10 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
->
-> 		/* Wa_1806527549:tgl */
-> 		whitelist_reg(w, HIZ_CHICKEN);
->+
->+		/* Allow userspace trigger OA report generation in OA buffer. */
->+		whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
->+		whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
-> 		break;
-> 	default:
-> 		break;
->diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->index 28e3d76fa2e6..ae935b1b1ae3 100644
->--- a/drivers/gpu/drm/i915/i915_perf.c
->+++ b/drivers/gpu/drm/i915/i915_perf.c
->@@ -1450,7 +1450,8 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
-> 	 *  bit."
-> 	 */
-> 	intel_uncore_write(uncore, GEN8_OABUFFER, gtt_offset |
->-		   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
->+		   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
->+		   GEN8_OABUFFER_EDGE_TRIGGER);
-> 	intel_uncore_write(uncore, GEN8_OATAILPTR, gtt_offset & GEN8_OATAILPTR_MASK);
->
-> 	/* Mark that we need updated tail pointers to read from... */
->@@ -1503,7 +1504,8 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
-> 	 *  bit."
-> 	 */
-> 	intel_uncore_write(uncore, GEN12_OAG_OABUFFER, gtt_offset |
->-			   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
->+			   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
->+			   GEN12_OAG_OABUFFER_EDGE_TRIGGER);
-> 	intel_uncore_write(uncore, GEN12_OAG_OATAILPTR,
-> 			   gtt_offset & GEN12_OAG_OATAILPTR_MASK);
->
->@@ -4481,8 +4483,10 @@ int i915_perf_ioctl_version(void)
-> 	 *
-> 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
-> 	 *    interval for the hrtimer used to check for OA data.
->+	 *
->+	 * 6. Add edge trigger report generation support.
-> 	 */
->-	return 5;
->+	return 6;
+> >> kernel/events/core.o: warning: objtool: perf_read()+0x306: stack state mismatch: reg1[3]=-2-56 reg2[3]=-1+0
 
-Do you think we should be adding a comment in uapi for revision 6?
+Apologies Maarten, this objtool warning looks like maybe a compiler
+bug for us to fix.
 
-If not, this patch looks good and is:
-
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-
+Philip, I tried to reproduce by cloning
+git://anongit.freedesktop.org/drm/drm-tip, but I don't understand the
+URL in the report.  Were Maarten's patches on top of drm-tip?  Is
+there a tree you found them from (rather than me fetching the 0day
+branch on github)? (Or maybe this is what a report looks like for a
+series posted to the list?)  Apologies for the naivete, but I plan to
+triage as many of these reports on the Clang side as I can in my free
+time, so I want to make sure I understand precisely what failure is
+occurring where and how.
+-- 
 Thanks,
-Umesh
-
-> }
->
-> #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->index 17484345cb80..813ae77ffeb7 100644
->--- a/drivers/gpu/drm/i915/i915_reg.h
->+++ b/drivers/gpu/drm/i915/i915_reg.h
->@@ -661,6 +661,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->
-> #define GEN8_OABUFFER_UDW _MMIO(0x23b4)
-> #define GEN8_OABUFFER _MMIO(0x2b14)
->+#define  GEN8_OABUFFER_EDGE_TRIGGER         (1 << 2)
-> #define  GEN8_OABUFFER_MEM_SELECT_GGTT      (1 << 0)  /* 0: PPGTT, 1: GGTT */
->
-> #define GEN7_OASTATUS1 _MMIO(0x2364)
->@@ -712,6 +713,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
-> #define GEN12_OAG_OABUFFER  _MMIO(0xdb08)
-> #define  GEN12_OAG_OABUFFER_BUFFER_SIZE_MASK  (0x7)
-> #define  GEN12_OAG_OABUFFER_BUFFER_SIZE_SHIFT (3)
->+#define  GEN12_OAG_OABUFFER_EDGE_TRIGGER      (1 << 2)
-> #define  GEN12_OAG_OABUFFER_MEMORY_SELECT     (1 << 0) /* 0: PPGTT, 1: GGTT */
->
-> #define GEN12_OAG_OAGLBCTXCTRL _MMIO(0x2b28)
->-- 
->2.26.0
->
+~Nick Desaulniers
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
