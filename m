@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E2C819A346
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 03:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D4519A34E
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 03:31:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 886896E8BF;
-	Wed,  1 Apr 2020 01:27:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 024596E8C1;
+	Wed,  1 Apr 2020 01:31:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 68CCC6E8BF;
- Wed,  1 Apr 2020 01:27:09 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A92E6E8C0;
+ Wed,  1 Apr 2020 01:31:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 60DCCA47DA;
- Wed,  1 Apr 2020 01:27:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39770A00C7;
+ Wed,  1 Apr 2020 01:31:11 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Wed, 01 Apr 2020 01:27:09 -0000
-Message-ID: <158570442939.25628.4825958551448045699@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 01 Apr 2020 01:31:11 -0000
+Message-ID: <158570467120.25626.1824498294758682619@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200331231432.2850-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20200331231432.2850-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Do_not_clear_pollin_for_small_user_read_buffers_?=
- =?utf-8?b?KHJldjYp?=
+References: <20200401004120.408586-1-jose.souza@intel.com>
+In-Reply-To: <20200401004120.408586-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/6=5D_drm/i915/display=3A_Move_out?=
+ =?utf-8?q?_code_to_return_the_digital=5Fport_of_the_aux_ch?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,72 +48,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/perf: Do not clear pollin for small user read buffers (rev6)
-URL   : https://patchwork.freedesktop.org/series/75085/
-State : success
+Series: series starting with [1/6] drm/i915/display: Move out code to return the digital_port of the aux ch
+URL   : https://patchwork.freedesktop.org/series/75345/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8230 -> Patchwork_17166
-====================================================
+$ dim checkpatch origin/drm-tip
+30bd6120eb62 drm/i915/display: Move out code to return the digital_port of the aux ch
+a7b982777f87 drm/i915/tc: Export tc_port_live_status_mask()
+f5268c854061 drm/i915/display: Add intel_aux_ch_to_power_domain()
+353532a4fb43 drm/i915/display: Split hsw_power_well_enable() into two
+98804eb04a10 drm/i915/tc/icl: Implement TC cold sequences
+-:150: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#150: FILE: drivers/gpu/drm/i915/display/intel_tc.c:608:
++		msleep(1);
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 127 lines checked
+a4d30b0caff3 drm/i915/tc/tgl: Implement TC cold sequences
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17166/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17166 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-n3050:       [PASS][1] -> [INCOMPLETE][2] ([i915#1382])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8230/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17166/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1382]: https://gitlab.freedesktop.org/drm/intel/issues/1382
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-
-
-Participating hosts (40 -> 36)
-------------------------------
-
-  Additional (8): fi-byt-j1900 fi-skl-guc fi-ilk-650 fi-kbl-7500u fi-hsw-4770 fi-bsw-kefka fi-bsw-nick fi-skl-6700k2 
-  Missing    (12): fi-kbl-soraka fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-byt-n2820 fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8230 -> Patchwork_17166
-
-  CI-20190529: 20190529
-  CI_DRM_8230: fa9f8453ffb88a4fc4e36d68b84a7ff9bf90f769 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5550: 98927dfde17aecaecfe67bb9853ceca326ca2b23 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17166: db60a6358595b602a7eaae13fb3c579af95f8da6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-db60a6358595 drm/i915/perf: Do not clear pollin for small user read buffers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17166/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
