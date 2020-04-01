@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BD1419ACDB
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 15:28:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F8519AD80
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 16:13:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3990B6E93F;
-	Wed,  1 Apr 2020 13:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5326E0A8;
+	Wed,  1 Apr 2020 14:13:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C5F0A6E93E;
- Wed,  1 Apr 2020 13:28:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFEC8A00FD;
- Wed,  1 Apr 2020 13:28:19 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98C426E0A8;
+ Wed,  1 Apr 2020 14:13:03 +0000 (UTC)
+IronPort-SDR: Uo95q7j2EtqOPYdqGrlAJS5oRvnre3AOA94a8qZcPqqi2MhHjEs4+D4AcQ8SuLVh4LQP0R7id7
+ wuj2M9GfXApA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2020 07:13:02 -0700
+IronPort-SDR: jqpDw5EbCTg/8Xf2vdR7w3AklWMLZXZ9Se6Qbzcimzk3+O9wurhlQz/lC7DBkduYZG2Fvnxzi5
+ y12Anr698nsA==
+X-IronPort-AV: E=Sophos;i="5.72,331,1580803200"; d="scan'208";a="450570548"
+Received: from yzucker-mobl1.ger.corp.intel.com (HELO [10.251.184.138])
+ ([10.251.184.138])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2020 07:13:00 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200331103623.859601-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <6575932f-0ca5-f620-fbb1-c0c61ba471a7@linux.intel.com>
+Date: Wed, 1 Apr 2020 15:12:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Apr 2020 13:28:19 -0000
-Message-ID: <158574769975.25625.14059395487567840338@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200401111554.6279-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200401111554.6279-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Align_engine_dump_active/pending?=
+In-Reply-To: <20200331103623.859601-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Check for
+ bonding support before exercising
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,95 +51,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/gt: Align engine dump active/pending
-URL   : https://patchwork.freedesktop.org/series/75363/
-State : success
+On 31/03/2020 11:36, Chris Wilson wrote:
+> Don't bother trying and failing to test bonding if the kernel doesn't
+> even support it.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> ---
+>   tests/i915/gem_exec_balancer.c | 34 +++++++++++++++++++++++++++-------
+>   1 file changed, 27 insertions(+), 7 deletions(-)
+> 
+> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+> index da8aff6de..9930e394d 100644
+> --- a/tests/i915/gem_exec_balancer.c
+> +++ b/tests/i915/gem_exec_balancer.c
+> @@ -1936,6 +1936,22 @@ static bool has_load_balancer(int i915)
+>   	return err == 0;
+>   }
+>   
+> +static bool has_bonding(int i915)
+> +{
+> +	I915_DEFINE_CONTEXT_ENGINES_BOND(bonds, 0) = {
+> +		.base.name = I915_CONTEXT_ENGINES_EXT_BOND,
+> +	};
 
-== Summary ==
+Doh why do we allow zero bonds.. to make for an easier probe of course! :))
 
-CI Bug Log - changes from CI_DRM_8232 -> Patchwork_17169
-====================================================
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Summary
--------
+Regards,
 
-  **SUCCESS**
+Tvrtko
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17169 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [DMESG-WARN][1] ([i915#203]) -> [PASS][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8232/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/fi-skl-6770hq/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6770hq:      [SKIP][3] ([fdo#109271]) -> [PASS][4] +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8232/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-icl-guc:         [INCOMPLETE][5] ([i915#1505] / [i915#1581]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8232/fi-icl-guc/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/fi-icl-guc/igt@i915_selftest@live@requests.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-skl-6770hq:      [DMESG-FAIL][7] ([i915#165]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8232/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
-  [i915#1581]: https://gitlab.freedesktop.org/drm/intel/issues/1581
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-
-
-Participating hosts (49 -> 36)
-------------------------------
-
-  Missing    (13): fi-ilk-m540 fi-bsw-n3050 fi-hsw-4200u fi-hsw-peppy fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-kbl-7500u fi-ctg-p8600 fi-gdg-551 fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8232 -> Patchwork_17169
-
-  CI-20190529: 20190529
-  CI_DRM_8232: cade363a69762c57ffb58f91b47670df7ca520bf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5553: 60475d9b41c58b7d256e83c7d53eaf7c2f1f8ecc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17169: a8418e5a61084fde9a451c49a9351ef9df9039fa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a8418e5a6108 drm/i915/gt: Align engine dump active/pending
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17169/index.html
+> +	struct i915_engine_class_instance ci = {};
+> +	uint32_t ctx;
+> +	int err;
+> +
+> +	ctx = gem_context_create(i915);
+> +	err = __set_load_balancer(i915, ctx, &ci, 1, &bonds);
+> +	gem_context_destroy(i915, ctx);
+> +
+> +	return err == 0;
+> +}
+> +
+>   igt_main
+>   {
+>   	int i915 = -1;
+> @@ -1992,11 +2008,18 @@ igt_main
+>   	igt_subtest("smoke")
+>   		smoketest(i915, 20);
+>   
+> -	igt_subtest("bonded-imm")
+> -		bonded(i915, 0);
+> +	igt_subtest_group {
+> +		igt_fixture igt_require(has_bonding(i915));
+> +
+> +		igt_subtest("bonded-imm")
+> +			bonded(i915, 0);
+> +
+> +		igt_subtest("bonded-cork")
+> +			bonded(i915, CORK);
+>   
+> -	igt_subtest("bonded-cork")
+> -		bonded(i915, CORK);
+> +		igt_subtest("bonded-early")
+> +			bonded_early(i915);
+> +	}
+>   
+>   	igt_subtest("bonded-slice")
+>   		bonded_slice(i915);
+> @@ -2007,9 +2030,6 @@ igt_main
+>   	igt_subtest("bonded-semaphore")
+>   		bonded_semaphore(i915);
+>   
+> -	igt_subtest("bonded-early")
+> -		bonded_early(i915);
+> -
+>   	igt_fixture {
+>   		igt_stop_hang_detector();
+>   	}
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
