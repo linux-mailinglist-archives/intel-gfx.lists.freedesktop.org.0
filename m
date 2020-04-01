@@ -2,43 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286C919AC5A
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 15:03:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E6019AC7B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 15:15:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15C526E937;
-	Wed,  1 Apr 2020 13:03:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE796E09F;
+	Wed,  1 Apr 2020 13:15:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182B76E095
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 13:03:50 +0000 (UTC)
-IronPort-SDR: a3+jmY0y3Nr33gpOAi3zPw74nbVYLnl8Rhxs+CvStIu2j1Tt8jVewasm61wG9XKoZUos/S5ngN
- L+SSt7HGHwLQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2020 06:03:49 -0700
-IronPort-SDR: vdCmouR7bb0o5MGGXLr95Ji9YrhyNXFuDQietmY0FSCM0JtzJ91jA9xLACLMfGtohtwV7qKY61
- n1mpx/yzmZiA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,331,1580803200"; d="scan'208";a="240506150"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 01 Apr 2020 06:03:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Apr 2020 16:03:46 +0300
-Date: Wed, 1 Apr 2020 16:03:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jeevan B <jeevan.b@intel.com>
-Message-ID: <20200401130346.GT13686@intel.com>
-References: <1585743148-31205-1-git-send-email-jeevan.b@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33BE06E09F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 13:15:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20764586-1500050 
+ for multiple; Wed, 01 Apr 2020 14:15:34 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Apr 2020 14:15:34 +0100
+Message-Id: <20200401131534.1682823-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1585743148-31205-1-git-send-email-jeevan.b@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm: report dp downstream port type as
- a subconnector property
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_schedule: Dynamic engine
+ tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,381 +37,1011 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 01, 2020 at 05:42:24PM +0530, Jeevan B wrote:
-> Currently, downstream port type is only reported in debugfs. This
-> information should be considered important since it reflects the actual
-> physical connector type. Some userspace (e.g. window compositors)
-> may want to show this info to a user.
-> =
+Use igt_subtest_with_dynamic for the flexible approach to engine
+dependent test discovery.
 
-> The 'subconnector' property is already utilized for DVI-I and TV-out for
-> reporting connector subtype.
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ lib/i915/gem_engine_topology.h |   6 +-
+ tests/i915/gem_exec_schedule.c | 432 ++++++++++++++++-----------------
+ 2 files changed, 207 insertions(+), 231 deletions(-)
 
-> The initial motivation for this feature came from i2c test [1].
-> It is supposed to be skipped on VGA connectors, but it cannot
-> detect VGA over DP and fails instead.
-> =
+diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
+index 9588f74d4..f5edcb5d1 100644
+--- a/lib/i915/gem_engine_topology.h
++++ b/lib/i915/gem_engine_topology.h
+@@ -68,9 +68,9 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags);
+ 
+ /* needs to replace "for_each_physical_engine" when conflicts are fixed */
+ #define ____for_each_physical_engine(fd__, ctx__, e__) \
+-	for (struct intel_engine_data i__ = intel_init_engine_list(fd__, ctx__); \
+-	     ((e__) = intel_get_current_physical_engine(&i__)); \
+-	     intel_next_engine(&i__))
++	for (struct intel_engine_data i__##e__ = intel_init_engine_list(fd__, ctx__); \
++	     ((e__) = intel_get_current_physical_engine(&i__##e__)); \
++	     intel_next_engine(&i__##e__))
+ 
+ #define __for_each_physical_engine(fd__, e__) \
+ 	____for_each_physical_engine(fd__, 0, e__)
+diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+index 2a74f13dc..7274ffbf3 100644
+--- a/tests/i915/gem_exec_schedule.c
++++ b/tests/i915/gem_exec_schedule.c
+@@ -49,15 +49,9 @@
+ #define MAX_PRIO LOCAL_I915_CONTEXT_MAX_USER_PRIORITY
+ #define MIN_PRIO LOCAL_I915_CONTEXT_MIN_USER_PRIORITY
+ 
+-#define MAX_ELSP_QLEN 16
+-
+-#define MAX_ENGINES 16
+-
+ #define MAX_CONTEXTS 1024
+-
+-#define LOCAL_I915_EXEC_BSD_SHIFT      (13)
+-#define LOCAL_I915_EXEC_BSD_MASK       (3 << LOCAL_I915_EXEC_BSD_SHIFT)
+-#define ENGINE_MASK  (I915_EXEC_RING_MASK | LOCAL_I915_EXEC_BSD_MASK)
++#define MAX_ELSP_QLEN 16
++#define MAX_ENGINES (I915_EXEC_RING_MASK + 1)
+ 
+ #define MI_SEMAPHORE_WAIT		(0x1c << 23)
+ #define   MI_SEMAPHORE_POLL             (1 << 15)
+@@ -179,7 +173,7 @@ static void store_dword_fenced(int fd, uint32_t ctx, unsigned ring,
+ 
+ static uint32_t create_highest_priority(int fd)
+ {
+-	uint32_t ctx = gem_context_create(fd);
++	uint32_t ctx = gem_context_clone_with_engines(fd, 0);
+ 
+ 	/*
+ 	 * If there is no priority support, all contexts will have equal
+@@ -248,6 +242,7 @@ enum implicit_dir {
+ 
+ static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
+ {
++	const struct intel_execution_engine2 *e;
+ 	IGT_CORK_FENCE(cork);
+ 	unsigned int count;
+ 	uint32_t scratch;
+@@ -255,8 +250,8 @@ static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
+ 	int fence;
+ 
+ 	count = 0;
+-	for_each_physical_engine(other, i915) {
+-		if (eb_ring(other) == ring)
++	__for_each_physical_engine(i915, e) {
++		if (e->flags == ring)
+ 			continue;
+ 
+ 		count++;
+@@ -268,15 +263,15 @@ static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
+ 
+ 	if (dir & WRITE_READ)
+ 		store_dword_fenced(i915, 0,
+-				   ring, scratch, 0, -ring,
++				   ring, scratch, 0, ~ring,
+ 				   fence, I915_GEM_DOMAIN_RENDER);
+ 
+-	for_each_physical_engine(other, i915) {
+-		if (eb_ring(other) == ring)
++	__for_each_physical_engine(i915, e) {
++		if (e->flags == ring)
+ 			continue;
+ 
+ 		store_dword_fenced(i915, 0,
+-				   eb_ring(other), scratch, 0, eb_ring(other),
++				   e->flags, scratch, 0, e->flags,
+ 				   fence, 0);
+ 	}
+ 
+@@ -292,21 +287,20 @@ static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
+ 	gem_close(i915, scratch);
+ 
+ 	if (dir & WRITE_READ)
+-		igt_assert_neq_u32(result, -ring);
++		igt_assert_neq_u32(result, ~ring);
+ 	if (dir & READ_WRITE)
+ 		igt_assert_eq_u32(result, ring);
+ }
+ 
+ static void independent(int fd, unsigned int engine)
+ {
++	const struct intel_execution_engine2 *e;
+ 	IGT_CORK_FENCE(cork);
+ 	igt_spin_t *spin = NULL;
+ 	uint32_t scratch, batch;
+ 	uint32_t *ptr;
+ 	int fence;
+ 
+-	igt_require(engine != 0);
+-
+ 	scratch = gem_create(fd, 4096);
+ 	ptr = gem_mmap__device_coherent(fd, scratch, 0, 4096, PROT_READ);
+ 	igt_assert_eq(ptr[0], 0);
+@@ -314,25 +308,25 @@ static void independent(int fd, unsigned int engine)
+ 	fence = igt_cork_plug(&cork, fd);
+ 
+ 	/* Check that we can submit to engine while all others are blocked */
+-	for_each_physical_engine(e, fd) {
+-		if (eb_ring(e) == engine)
++	__for_each_physical_engine(fd, e) {
++		if (e->flags == engine)
+ 			continue;
+ 
+-		if (!gem_can_store_dword(fd, eb_ring(e)))
++		if (!gem_class_can_store_dword(fd, e->class))
+ 			continue;
+ 
+ 		if (spin == NULL) {
+-			spin = __igt_spin_new(fd, .engine = eb_ring(e));
++			spin = __igt_spin_new(fd, .engine = e->flags);
+ 		} else {
+ 			struct drm_i915_gem_execbuffer2 eb = {
+ 				.buffer_count = 1,
+ 				.buffers_ptr = to_user_pointer(&spin->obj[IGT_SPIN_BATCH]),
+-				.flags = eb_ring(e),
++				.flags = e->flags,
+ 			};
+ 			gem_execbuf(fd, &eb);
+ 		}
+ 
+-		store_dword_fenced(fd, 0, eb_ring(e), scratch, 0, eb_ring(e), fence, 0);
++		store_dword_fenced(fd, 0, e->flags, scratch, 0, e->flags, fence, 0);
+ 	}
+ 	igt_require(spin);
+ 
+@@ -365,6 +359,7 @@ static void independent(int fd, unsigned int engine)
+ static void smoketest(int fd, unsigned ring, unsigned timeout)
+ {
+ 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
++	const struct intel_execution_engine2 *e;
+ 	unsigned engines[MAX_ENGINES];
+ 	unsigned nengine;
+ 	unsigned engine;
+@@ -373,12 +368,11 @@ static void smoketest(int fd, unsigned ring, unsigned timeout)
+ 
+ 	nengine = 0;
+ 	if (ring == ALL_ENGINES) {
+-		for_each_physical_engine(e, fd)
+-			if (gem_can_store_dword(fd, eb_ring(e)))
+-				engines[nengine++] = eb_ring(e);
++		__for_each_physical_engine(fd, e)
++			if (gem_class_can_store_dword(fd, e->class))
++				engines[nengine++] = e->flags;
+ 	} else {
+-		if (gem_can_store_dword(fd, ring))
+-			engines[nengine++] = ring;
++		engines[nengine++] = ring;
+ 	}
+ 	igt_require(nengine);
+ 
+@@ -389,7 +383,7 @@ static void smoketest(int fd, unsigned ring, unsigned timeout)
+ 
+ 		hars_petruska_f54_1_random_perturb(child);
+ 
+-		ctx = gem_context_create(fd);
++		ctx = gem_context_clone_with_engines(fd, 0);
+ 		igt_until_timeout(timeout) {
+ 			int prio;
+ 
+@@ -442,6 +436,7 @@ static uint32_t batch_create(int i915)
+ 
+ static void semaphore_userlock(int i915)
+ {
++	const struct intel_execution_engine2 *e;
+ 	struct drm_i915_gem_exec_object2 obj = {
+ 		.handle = batch_create(i915),
+ 	};
+@@ -458,16 +453,16 @@ static void semaphore_userlock(int i915)
+ 	 */
+ 
+ 	scratch = gem_create(i915, 4096);
+-	for_each_physical_engine(e, i915) {
++	__for_each_physical_engine(i915, e) {
+ 		if (!spin) {
+ 			spin = igt_spin_new(i915,
+ 					    .dependency = scratch,
+-					    .engine = eb_ring(e));
++					    .engine = e->flags);
+ 		} else {
+ 			uint64_t saved = spin->execbuf.flags;
+ 
+-			spin->execbuf.flags &= ~ENGINE_MASK;
+-			spin->execbuf.flags |= eb_ring(e);
++			spin->execbuf.flags &= ~I915_EXEC_RING_MASK;
++			spin->execbuf.flags |= e->flags;
+ 
+ 			gem_execbuf(i915, &spin->execbuf);
+ 
+@@ -482,16 +477,16 @@ static void semaphore_userlock(int i915)
+ 	 * on a HW semaphore) but it should not prevent any real work from
+ 	 * taking precedence.
+ 	 */
+-	scratch = gem_context_create(i915);
+-	for_each_physical_engine(e, i915) {
++	scratch = gem_context_clone_with_engines(i915, 0);
++	__for_each_physical_engine(i915, e) {
+ 		struct drm_i915_gem_execbuffer2 execbuf = {
+ 			.buffers_ptr = to_user_pointer(&obj),
+ 			.buffer_count = 1,
+-			.flags = eb_ring(e),
++			.flags = e->flags,
+ 			.rsvd1 = scratch,
+ 		};
+ 
+-		if (eb_ring(e) == (spin->execbuf.flags & ENGINE_MASK))
++		if (e->flags == (spin->execbuf.flags & I915_EXEC_RING_MASK))
+ 			continue;
+ 
+ 		gem_execbuf(i915, &execbuf);
+@@ -505,6 +500,7 @@ static void semaphore_userlock(int i915)
+ 
+ static void semaphore_codependency(int i915)
+ {
++	const struct intel_execution_engine2 *e;
+ 	struct {
+ 		igt_spin_t *xcs, *rcs;
+ 	} task[2];
+@@ -521,21 +517,21 @@ static void semaphore_codependency(int i915)
+ 	 */
+ 
+ 	i = 0;
+-	for_each_physical_engine(e, i915) {
++	__for_each_physical_engine(i915, e) {
+ 		uint32_t ctx;
+ 
+-		if (eb_ring(e) == I915_EXEC_RENDER)
++		if (!gem_class_can_store_dword(i915, e->class))
+ 			continue;
+ 
+-		if (!gem_can_store_dword(i915, eb_ring(e)))
++		if (!e->flags)
+ 			continue;
+ 
+-		ctx = gem_context_create(i915);
++		ctx = gem_context_clone_with_engines(i915, 0);
+ 
+ 		task[i].xcs =
+ 			__igt_spin_new(i915,
+ 				       .ctx = ctx,
+-				       .engine = eb_ring(e),
++				       .engine = e->flags,
+ 				       .flags = IGT_SPIN_POLL_RUN);
+ 		igt_spin_busywait_until_started(task[i].xcs);
+ 
+@@ -543,7 +539,7 @@ static void semaphore_codependency(int i915)
+ 		task[i].rcs =
+ 			__igt_spin_new(i915,
+ 				       .ctx = ctx,
+-				       .engine = I915_EXEC_RENDER,
++				       .engine = 0,
+ 				       .dependency = task[i].xcs->handle);
+ 
+ 		gem_context_destroy(i915, ctx);
+@@ -571,6 +567,7 @@ static unsigned int offset_in_page(void *addr)
+ 
+ static void semaphore_resolve(int i915)
+ {
++	const struct intel_execution_engine2 *e;
+ 	const uint32_t SEMAPHORE_ADDR = 64 << 10;
+ 	uint32_t semaphore, outer, inner, *sema;
+ 
+@@ -586,13 +583,13 @@ static void semaphore_resolve(int i915)
+ 	igt_require(gem_scheduler_has_preemption(i915));
+ 	igt_require(intel_get_drm_devid(i915) >= 8); /* for MI_SEMAPHORE_WAIT */
+ 
+-	outer = gem_context_create(i915);
+-	inner = gem_context_create(i915);
++	outer = gem_context_clone_with_engines(i915, 0);
++	inner = gem_context_clone_with_engines(i915, 0);
+ 
+ 	semaphore = gem_create(i915, 4096);
+ 	sema = gem_mmap__wc(i915, semaphore, 0, 4096, PROT_WRITE);
+ 
+-	for_each_physical_engine(e, i915) {
++	__for_each_physical_engine(i915, e) {
+ 		struct drm_i915_gem_exec_object2 obj[3];
+ 		struct drm_i915_gem_execbuffer2 eb;
+ 		uint32_t handle, cancel;
+@@ -600,10 +597,10 @@ static void semaphore_resolve(int i915)
+ 		igt_spin_t *spin;
+ 		int64_t poke = 1;
+ 
+-		if (!gem_can_store_dword(i915, eb_ring(e)))
++		if (!gem_class_can_store_dword(i915, e->class))
+ 			continue;
+ 
+-		spin = __igt_spin_new(i915, .engine = eb_ring(e));
++		spin = __igt_spin_new(i915, .engine = e->flags);
+ 		igt_spin_end(spin); /* we just want its address for later */
+ 		gem_sync(i915, spin->handle);
+ 		igt_spin_reset(spin);
+@@ -700,26 +697,27 @@ static void semaphore_resolve(int i915)
+ static void semaphore_noskip(int i915)
+ {
+ 	const int gen = intel_gen(intel_get_drm_devid(i915));
++	const struct intel_execution_engine2 *outer, *inner;
+ 	uint32_t ctx;
+ 
+ 	igt_require(gen >= 6); /* MI_STORE_DWORD_IMM convenience */
+ 
+-	ctx = gem_context_create(i915);
++	ctx = gem_context_clone_with_engines(i915, 0);
+ 
+-	for_each_physical_engine(outer, i915) {
+-	for_each_physical_engine(inner, i915) {
++	__for_each_physical_engine(i915, outer) {
++	__for_each_physical_engine(i915, inner) {
+ 		struct drm_i915_gem_exec_object2 obj[3];
+ 		struct drm_i915_gem_execbuffer2 eb;
+ 		uint32_t handle, *cs, *map;
+ 		igt_spin_t *chain, *spin;
+ 
+-		if (eb_ring(inner) == eb_ring(outer) ||
+-		    !gem_can_store_dword(i915, eb_ring(inner)))
++		if (inner->flags == outer->flags ||
++		    !gem_class_can_store_dword(i915, inner->class))
+ 			continue;
+ 
+-		chain = __igt_spin_new(i915, .engine = eb_ring(outer));
++		chain = __igt_spin_new(i915, .engine = outer->flags);
+ 
+-		spin = __igt_spin_new(i915, .engine = eb_ring(inner));
++		spin = __igt_spin_new(i915, .engine = inner->flags);
+ 		igt_spin_end(spin); /* we just want its address for later */
+ 		gem_sync(i915, spin->handle);
+ 		igt_spin_reset(spin);
+@@ -753,7 +751,7 @@ static void semaphore_noskip(int i915)
+ 		eb.buffer_count = 3;
+ 		eb.buffers_ptr = to_user_pointer(obj);
+ 		eb.rsvd1 = ctx;
+-		eb.flags = eb_ring(inner);
++		eb.flags = inner->flags;
+ 		gem_execbuf(i915, &eb);
+ 
+ 		/* port1: dependency chain from port0 */
+@@ -764,7 +762,7 @@ static void semaphore_noskip(int i915)
+ 		memset(&eb, 0, sizeof(eb));
+ 		eb.buffer_count = 2;
+ 		eb.buffers_ptr = to_user_pointer(obj);
+-		eb.flags = eb_ring(inner);
++		eb.flags = inner->flags;
+ 		gem_execbuf(i915, &eb);
+ 
+ 		igt_spin_set_timeout(chain, NSEC_PER_SEC / 100);
+@@ -788,10 +786,10 @@ static void reorder(int fd, unsigned ring, unsigned flags)
+ 	uint32_t ctx[2];
+ 	int fence;
+ 
+-	ctx[LO] = gem_context_create(fd);
++	ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 
+-	ctx[HI] = gem_context_create(fd);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[HI], flags & EQUAL ? MIN_PRIO : 0);
+ 
+ 	scratch = gem_create(fd, 4096);
+@@ -826,13 +824,13 @@ static void promotion(int fd, unsigned ring)
+ 	uint32_t ctx[3];
+ 	int fence;
+ 
+-	ctx[LO] = gem_context_create(fd);
++	ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 
+-	ctx[HI] = gem_context_create(fd);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[HI], 0);
+ 
+-	ctx[NOISE] = gem_context_create(fd);
++	ctx[NOISE] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[NOISE], MIN_PRIO/2);
+ 
+ 	result = gem_create(fd, 4096);
+@@ -881,10 +879,10 @@ static void preempt(int fd, unsigned ring, unsigned flags)
+ 	uint32_t ctx[2];
+ 	igt_hang_t hang;
+ 
+-	ctx[LO] = gem_context_create(fd);
++	ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 
+-	ctx[HI] = gem_context_create(fd);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[HI], MAX_PRIO);
+ 
+ 	if (flags & HANG_LP)
+@@ -893,7 +891,7 @@ static void preempt(int fd, unsigned ring, unsigned flags)
+ 	for (int n = 0; n < ARRAY_SIZE(spin); n++) {
+ 		if (flags & NEW_CTX) {
+ 			gem_context_destroy(fd, ctx[LO]);
+-			ctx[LO] = gem_context_create(fd);
++			ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 			gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 		}
+ 		spin[n] = __igt_spin_new(fd,
+@@ -925,19 +923,21 @@ static void preempt(int fd, unsigned ring, unsigned flags)
+ 
+ static igt_spin_t *__noise(int fd, uint32_t ctx, int prio, igt_spin_t *spin)
+ {
++	const struct intel_execution_engine2 *e;
++
+ 	gem_context_set_priority(fd, ctx, prio);
+ 
+-	for_each_physical_engine(e, fd) {
++	__for_each_physical_engine(fd, e) {
+ 		if (spin == NULL) {
+ 			spin = __igt_spin_new(fd,
+ 					      .ctx = ctx,
+-					      .engine = eb_ring(e));
++					      .engine = e->flags);
+ 		} else {
+ 			struct drm_i915_gem_execbuffer2 eb = {
+ 				.buffer_count = 1,
+ 				.buffers_ptr = to_user_pointer(&spin->obj[IGT_SPIN_BATCH]),
+ 				.rsvd1 = ctx,
+-				.flags = eb_ring(e),
++				.flags = e->flags,
+ 			};
+ 			gem_execbuf(fd, &eb);
+ 		}
+@@ -951,6 +951,7 @@ static void __preempt_other(int fd,
+ 			    unsigned int target, unsigned int primary,
+ 			    unsigned flags)
+ {
++	const struct intel_execution_engine2 *e;
+ 	uint32_t result = gem_create(fd, 4096);
+ 	uint32_t result_read[4096 / sizeof(uint32_t)];
+ 	unsigned int n, i;
+@@ -962,8 +963,8 @@ static void __preempt_other(int fd,
+ 	n++;
+ 
+ 	if (flags & CHAIN) {
+-		for_each_physical_engine(e, fd) {
+-			store_dword(fd, ctx[LO], eb_ring(e),
++		__for_each_physical_engine(fd, e) {
++			store_dword(fd, ctx[LO], e->flags,
+ 				    result, (n + 1)*sizeof(uint32_t), n + 1,
+ 				    I915_GEM_DOMAIN_RENDER);
+ 			n++;
+@@ -988,6 +989,7 @@ static void __preempt_other(int fd,
+ 
+ static void preempt_other(int fd, unsigned ring, unsigned int flags)
+ {
++	const struct intel_execution_engine2 *e;
+ 	igt_spin_t *spin = NULL;
+ 	uint32_t ctx[3];
+ 
+@@ -1001,18 +1003,18 @@ static void preempt_other(int fd, unsigned ring, unsigned int flags)
+ 	 * can cross engines.
+ 	 */
+ 
+-	ctx[LO] = gem_context_create(fd);
++	ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 
+-	ctx[NOISE] = gem_context_create(fd);
++	ctx[NOISE] = gem_context_clone_with_engines(fd, 0);
+ 	spin = __noise(fd, ctx[NOISE], 0, NULL);
+ 
+-	ctx[HI] = gem_context_create(fd);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[HI], MAX_PRIO);
+ 
+-	for_each_physical_engine(e, fd) {
++	__for_each_physical_engine(fd, e) {
+ 		igt_debug("Primary engine: %s\n", e->name);
+-		__preempt_other(fd, ctx, ring, eb_ring(e), flags);
++		__preempt_other(fd, ctx, ring, e->flags, flags);
+ 
+ 	}
+ 
+@@ -1028,13 +1030,14 @@ static void __preempt_queue(int fd,
+ 			    unsigned target, unsigned primary,
+ 			    unsigned depth, unsigned flags)
+ {
++	const struct intel_execution_engine2 *e;
+ 	uint32_t result = gem_create(fd, 4096);
+ 	uint32_t result_read[4096 / sizeof(uint32_t)];
+ 	igt_spin_t *above = NULL, *below = NULL;
+ 	uint32_t ctx[3] = {
+-		gem_context_create(fd),
+-		gem_context_create(fd),
+-		gem_context_create(fd),
++		gem_context_clone_with_engines(fd, 0),
++		gem_context_clone_with_engines(fd, 0),
++		gem_context_clone_with_engines(fd, 0),
+ 	};
+ 	int prio = MAX_PRIO;
+ 	unsigned int n, i;
+@@ -1042,7 +1045,7 @@ static void __preempt_queue(int fd,
+ 	for (n = 0; n < depth; n++) {
+ 		if (flags & CONTEXTS) {
+ 			gem_context_destroy(fd, ctx[NOISE]);
+-			ctx[NOISE] = gem_context_create(fd);
++			ctx[NOISE] = gem_context_clone_with_engines(fd, 0);
+ 		}
+ 		above = __noise(fd, ctx[NOISE], prio--, above);
+ 	}
+@@ -1052,7 +1055,7 @@ static void __preempt_queue(int fd,
+ 	for (; n < MAX_ELSP_QLEN; n++) {
+ 		if (flags & CONTEXTS) {
+ 			gem_context_destroy(fd, ctx[NOISE]);
+-			ctx[NOISE] = gem_context_create(fd);
++			ctx[NOISE] = gem_context_clone_with_engines(fd, 0);
+ 		}
+ 		below = __noise(fd, ctx[NOISE], prio--, below);
+ 	}
+@@ -1066,8 +1069,8 @@ static void __preempt_queue(int fd,
+ 	n++;
+ 
+ 	if (flags & CHAIN) {
+-		for_each_physical_engine(e, fd) {
+-			store_dword(fd, ctx[LO], eb_ring(e),
++		__for_each_physical_engine(fd, e) {
++			store_dword(fd, ctx[LO], e->flags,
+ 				    result, (n + 1)*sizeof(uint32_t), n + 1,
+ 				    I915_GEM_DOMAIN_RENDER);
+ 			n++;
+@@ -1107,14 +1110,17 @@ static void __preempt_queue(int fd,
+ 
+ static void preempt_queue(int fd, unsigned ring, unsigned int flags)
+ {
+-	for_each_physical_engine(e, fd) {
++	const struct intel_execution_engine2 *e;
++
++	__for_each_physical_engine(fd, e) {
+ 		for (unsigned depth = 0; depth <= MAX_ELSP_QLEN; depth++)
+-			__preempt_queue(fd, ring, eb_ring(e), depth, flags);
++			__preempt_queue(fd, ring, e->flags, depth, flags);
+ 	}
+ }
+ 
+ static void preempt_self(int fd, unsigned ring)
+ {
++	const struct intel_execution_engine2 *e;
+ 	uint32_t result = gem_create(fd, 4096);
+ 	uint32_t result_read[4096 / sizeof(uint32_t)];
+ 	igt_spin_t *spin[MAX_ELSP_QLEN];
+@@ -1129,17 +1135,16 @@ static void preempt_self(int fd, unsigned ring)
+ 	 * preempt its own lower priority task on any engine.
+ 	 */
+ 
+-	ctx[NOISE] = gem_context_create(fd);
+-
+-	ctx[HI] = gem_context_create(fd);
++	ctx[NOISE] = gem_context_clone_with_engines(fd, 0);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 
+ 	n = 0;
+ 	gem_context_set_priority(fd, ctx[HI], MIN_PRIO);
+-	for_each_physical_engine(e, fd) {
++	__for_each_physical_engine(fd, e) {
+ 		spin[n] = __igt_spin_new(fd,
+ 					 .ctx = ctx[NOISE],
+-					 .engine = eb_ring(e));
+-		store_dword(fd, ctx[HI], eb_ring(e),
++					 .engine = e->flags);
++		store_dword(fd, ctx[HI], e->flags,
+ 			    result, (n + 1)*sizeof(uint32_t), n + 1,
+ 			    I915_GEM_DOMAIN_RENDER);
+ 		n++;
+@@ -1174,11 +1179,11 @@ static void preemptive_hang(int fd, unsigned ring)
+ 	igt_hang_t hang;
+ 	uint32_t ctx[2];
+ 
+-	ctx[HI] = gem_context_create(fd);
++	ctx[HI] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[HI], MAX_PRIO);
+ 
+ 	for (int n = 0; n < ARRAY_SIZE(spin); n++) {
+-		ctx[LO] = gem_context_create(fd);
++		ctx[LO] = gem_context_clone_with_engines(fd, 0);
+ 		gem_context_set_priority(fd, ctx[LO], MIN_PRIO);
+ 
+ 		spin[n] = __igt_spin_new(fd,
+@@ -1219,11 +1224,9 @@ static void deep(int fd, unsigned ring)
+ 	int dep_nreq;
+ 	int n;
+ 
+-	igt_require(gem_can_store_dword(fd, ring));
+-
+ 	ctx = malloc(sizeof(*ctx) * MAX_CONTEXTS);
+ 	for (n = 0; n < MAX_CONTEXTS; n++) {
+-		ctx[n] = gem_context_create(fd);
++		ctx[n] = gem_context_clone_with_engines(fd, 0);
+ 	}
+ 
+ 	nreq = gem_measure_ring_inflight(fd, ring, 0) / (4 * XS) * MAX_CONTEXTS;
+@@ -1383,7 +1386,7 @@ static void wide(int fd, unsigned ring)
+ 
+ 	ctx = malloc(sizeof(*ctx)*MAX_CONTEXTS);
+ 	for (int n = 0; n < MAX_CONTEXTS; n++)
+-		ctx[n] = gem_context_create(fd);
++		ctx[n] = gem_context_clone_with_engines(fd, 0);
+ 
+ 	result = gem_create(fd, 4*MAX_CONTEXTS);
+ 
+@@ -1462,7 +1465,7 @@ static void reorder_wide(int fd, unsigned ring)
+ 		unsigned int sz = ALIGN(ring_size * 64, 4096);
+ 		uint32_t *batch;
+ 
+-		execbuf.rsvd1 = gem_context_create(fd);
++		execbuf.rsvd1 = gem_context_clone_with_engines(fd, 0);
+ 		gem_context_set_priority(fd, execbuf.rsvd1, n);
+ 
+ 		obj[1].handle = gem_create(fd, sz);
+@@ -1577,13 +1580,13 @@ static void test_pi_ringfull(int fd, unsigned int engine, unsigned int flags)
+ 	execbuf.flags = engine;
+ 
+ 	/* Warm up both (hi/lo) contexts */
+-	execbuf.rsvd1 = gem_context_create(fd);
++	execbuf.rsvd1 = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, execbuf.rsvd1, MAX_PRIO);
+ 	gem_execbuf(fd, &execbuf);
+ 	gem_sync(fd, obj[1].handle);
+ 	vip = execbuf.rsvd1;
+ 
+-	execbuf.rsvd1 = gem_context_create(fd);
++	execbuf.rsvd1 = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, execbuf.rsvd1, MIN_PRIO);
+ 	gem_execbuf(fd, &execbuf);
+ 	gem_sync(fd, obj[1].handle);
+@@ -1726,7 +1729,7 @@ static void *ufd_thread(void *arg)
+ 		.buffers_ptr = to_user_pointer(obj),
+ 		.buffer_count = ARRAY_SIZE(obj),
+ 		.flags = t->engine,
+-		.rsvd1 = gem_context_create(t->i915),
++		.rsvd1 = gem_context_clone_with_engines(t->i915, 0),
+ 	};
+ 	gem_context_set_priority(t->i915, eb.rsvd1, MIN_PRIO);
+ 
+@@ -1808,7 +1811,7 @@ static void test_pi_userfault(int i915, unsigned int engine)
+ 			.buffers_ptr = to_user_pointer(&obj),
+ 			.buffer_count = 1,
+ 			.flags = engine | I915_EXEC_FENCE_OUT,
+-			.rsvd1 = gem_context_create(i915),
++			.rsvd1 = gem_context_clone_with_engines(i915, 0),
+ 		};
+ 		gem_context_set_priority(i915, eb.rsvd1, MAX_PRIO);
+ 		gem_write(i915, obj.handle, 0, &bbe, sizeof(bbe));
+@@ -1843,11 +1846,14 @@ static void test_pi_userfault(int i915, unsigned int engine)
+ 
+ static void *iova_thread(struct ufd_thread *t, int prio)
+ {
+-	uint32_t ctx =
+-		gem_context_clone(t->i915, 0,
+-				  t->flags & SHARED ? I915_CONTEXT_CLONE_VM : 0,
+-				  0);
++	unsigned int clone;
++	uint32_t ctx;
++
++	clone = I915_CONTEXT_CLONE_ENGINES;
++	if (t->flags & SHARED)
++		clone |= I915_CONTEXT_CLONE_VM;
+ 
++	ctx = gem_context_clone(t->i915, 0, clone, 0);
+ 	gem_context_set_priority(t->i915, ctx, prio);
+ 
+ 	store_dword_plug(t->i915, ctx, t->engine,
+@@ -1997,12 +2003,13 @@ static void test_pi_iova(int i915, unsigned int engine, unsigned int flags)
+ 
+ static void measure_semaphore_power(int i915)
+ {
++	const struct intel_execution_engine2 *signaler, *e;
+ 	struct rapl gpu, pkg;
+ 
+ 	igt_require(gpu_power_open(&gpu) == 0);
+ 	pkg_power_open(&pkg);
+ 
+-	for_each_physical_engine(signaler, i915) {
++	__for_each_physical_engine(i915, signaler) {
+ 		struct {
+ 			struct power_sample pkg, gpu;
+ 		} s_spin[2], s_sema[2];
+@@ -2011,7 +2018,7 @@ static void measure_semaphore_power(int i915)
+ 		igt_spin_t *spin;
+ 
+ 		spin = __igt_spin_new(i915,
+-				      .engine = eb_ring(signaler),
++				      .engine = signaler->flags,
+ 				      .flags = IGT_SPIN_POLL_RUN);
+ 		gem_wait(i915, spin->handle, &jiffie); /* waitboost */
+ 		igt_spin_busywait_until_started(spin);
+@@ -2023,14 +2030,14 @@ static void measure_semaphore_power(int i915)
+ 		rapl_read(&pkg, &s_spin[1].pkg);
+ 
+ 		/* Add a waiter to each engine */
+-		for_each_physical_engine(e, i915) {
++		__for_each_physical_engine(i915, e) {
+ 			igt_spin_t *sema;
+ 
+-			if (eb_ring(e) == eb_ring(signaler))
++			if (e->flags == signaler->flags)
+ 				continue;
+ 
+ 			sema = __igt_spin_new(i915,
+-					      .engine = eb_ring(e),
++					      .engine = e->flags,
+ 					      .dependency = spin->handle);
+ 
+ 			igt_spin_free(i915, sema);
+@@ -2067,9 +2074,17 @@ static void measure_semaphore_power(int i915)
+ 	rapl_close(&pkg);
+ }
+ 
++#define test_each_engine(T, i915, e) \
++	igt_subtest_with_dynamic(T) __for_each_physical_engine(i915, e) \
++		igt_dynamic_f("%s", e->name)
++
++#define test_each_engine_store(T, i915, e) \
++	igt_subtest_with_dynamic(T) __for_each_physical_engine(i915, e) \
++		for_each_if(gem_class_can_store_dword(fd, e->class)) \
++		igt_dynamic_f("%s", e->name)
++
+ igt_main
+ {
+-	const struct intel_execution_engine *e;
+ 	int fd = -1;
+ 
+ 	igt_fixture {
+@@ -2087,44 +2102,27 @@ igt_main
+ 	}
+ 
+ 	igt_subtest_group {
+-		for (e = intel_execution_engines; e->name; e++) {
+-			/* default exec-id is purely symbolic */
+-			if (e->exec_id == 0)
+-				continue;
++		const struct intel_execution_engine2 *e;
+ 
+-			igt_subtest_f("fifo-%s", e->name) {
+-				igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-				igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				fifo(fd, eb_ring(e));
+-			}
++		test_each_engine_store("fifo", fd, e)
++			fifo(fd, e->flags);
+ 
+-			igt_subtest_f("implicit-read-write-%s", e->name) {
+-				igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-				igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				implicit_rw(fd, eb_ring(e), READ_WRITE);
+-			}
++		test_each_engine_store("implicit-read-write", fd, e)
++			implicit_rw(fd, e->flags, READ_WRITE);
+ 
+-			igt_subtest_f("implicit-write-read-%s", e->name) {
+-				igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-				igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				implicit_rw(fd, eb_ring(e), WRITE_READ);
+-			}
++		test_each_engine_store("implicit-write-read", fd, e)
++			implicit_rw(fd, e->flags, WRITE_READ);
+ 
+-			igt_subtest_f("implicit-both-%s", e->name) {
+-				igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-				igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				implicit_rw(fd, eb_ring(e), READ_WRITE | WRITE_READ);
+-			}
++		test_each_engine_store("implicit-boths", fd, e)
++			implicit_rw(fd, e->flags, READ_WRITE | WRITE_READ);
+ 
+-			igt_subtest_f("independent-%s", e->name) {
+-				igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-				igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				independent(fd, eb_ring(e));
+-			}
+-		}
++		test_each_engine_store("independent", fd, e)
++			independent(fd, e->flags);
+ 	}
+ 
+ 	igt_subtest_group {
++		const struct intel_execution_engine2 *e;
++
+ 		igt_fixture {
+ 			igt_require(gem_scheduler_enabled(fd));
+ 			igt_require(gem_scheduler_has_ctx_priority(fd));
+@@ -2142,125 +2140,103 @@ igt_main
+ 		igt_subtest("smoketest-all")
+ 			smoketest(fd, ALL_ENGINES, 30);
+ 
+-		for (e = intel_execution_engines; e->name; e++) {
+-			if (e->exec_id == 0)
+-				continue;
+-
+-			igt_subtest_group {
+-				igt_fixture {
+-					igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-					igt_require(gem_can_store_dword(fd, eb_ring(e)));
+-				}
+-
+-				igt_subtest_f("in-order-%s", e->name)
+-					reorder(fd, eb_ring(e), EQUAL);
++		test_each_engine_store("in-order", fd, e)
++			reorder(fd, e->flags, EQUAL);
+ 
+-				igt_subtest_f("out-order-%s", e->name)
+-					reorder(fd, eb_ring(e), 0);
++		test_each_engine_store("out-order", fd, e)
++			reorder(fd, e->flags, 0);
+ 
+-				igt_subtest_f("promotion-%s", e->name)
+-					promotion(fd, eb_ring(e));
++		test_each_engine_store("promotion", fd, e)
++			promotion(fd, e->flags);
+ 
+-				igt_subtest_group {
+-					igt_fixture {
+-						igt_require(gem_scheduler_has_preemption(fd));
+-					}
++		igt_subtest_group {
++			igt_fixture {
++				igt_require(gem_scheduler_has_preemption(fd));
++			}
+ 
+-					igt_subtest_f("preempt-%s", e->name)
+-						preempt(fd, eb_ring(e), 0);
++			test_each_engine_store("preempt", fd, e)
++				preempt(fd, e->flags, 0);
+ 
+-					igt_subtest_f("preempt-contexts-%s", e->name)
+-						preempt(fd, eb_ring(e), NEW_CTX);
++			test_each_engine_store("preempt-contexts", fd, e)
++				preempt(fd, e->flags, NEW_CTX);
+ 
+-					igt_subtest_f("preempt-self-%s", e->name)
+-						preempt_self(fd, eb_ring(e));
++			test_each_engine_store("preempt-self", fd, e)
++				preempt_self(fd, e->flags);
+ 
+-					igt_subtest_f("preempt-other-%s", e->name)
+-						preempt_other(fd, eb_ring(e), 0);
++			test_each_engine_store("preempt-other", fd, e)
++				preempt_other(fd, e->flags, 0);
+ 
+-					igt_subtest_f("preempt-other-chain-%s", e->name)
+-						preempt_other(fd, eb_ring(e), CHAIN);
++			test_each_engine_store("preempt-other-chain", fd, e)
++				preempt_other(fd, e->flags, CHAIN);
+ 
+-					igt_subtest_f("preempt-queue-%s", e->name)
+-						preempt_queue(fd, eb_ring(e), 0);
++			test_each_engine_store("preempt-queue", fd, e)
++				preempt_queue(fd, e->flags, 0);
+ 
+-					igt_subtest_f("preempt-queue-chain-%s", e->name)
+-						preempt_queue(fd, eb_ring(e), CHAIN);
+-					igt_subtest_f("preempt-queue-contexts-%s", e->name)
+-						preempt_queue(fd, eb_ring(e), CONTEXTS);
++			test_each_engine_store("preempt-queue-chain", fd, e)
++				preempt_queue(fd, e->flags, CHAIN);
++			test_each_engine_store("preempt-queue-contexts", fd, e)
++				preempt_queue(fd, e->flags, CONTEXTS);
+ 
+-					igt_subtest_f("preempt-queue-contexts-chain-%s", e->name)
+-						preempt_queue(fd, eb_ring(e), CONTEXTS | CHAIN);
++			test_each_engine_store("preempt-queue-contexts-chain", fd, e)
++				preempt_queue(fd, e->flags, CONTEXTS | CHAIN);
+ 
+-					igt_subtest_group {
+-						igt_hang_t hang;
++			igt_subtest_group {
++				igt_hang_t hang;
+ 
+-						igt_fixture {
+-							igt_stop_hang_detector();
+-							hang = igt_allow_hang(fd, 0, 0);
+-						}
++				igt_fixture {
++					igt_stop_hang_detector();
++					hang = igt_allow_hang(fd, 0, 0);
++				}
+ 
+-						igt_subtest_f("preempt-hang-%s", e->name) {
+-							preempt(fd, eb_ring(e), NEW_CTX | HANG_LP);
+-						}
++				test_each_engine_store("preempt-hang", fd, e)
++					preempt(fd, e->flags, NEW_CTX | HANG_LP);
+ 
+-						igt_subtest_f("preemptive-hang-%s", e->name)
+-							preemptive_hang(fd, eb_ring(e));
++				test_each_engine_store("preemptive-hang", fd, e)
++					preemptive_hang(fd, e->flags);
+ 
+-						igt_fixture {
+-							igt_disallow_hang(fd, hang);
+-							igt_fork_hang_detector(fd);
+-						}
+-					}
++				igt_fixture {
++					igt_disallow_hang(fd, hang);
++					igt_fork_hang_detector(fd);
+ 				}
++			}
++		}
+ 
+-				igt_subtest_f("deep-%s", e->name)
+-					deep(fd, eb_ring(e));
++		test_each_engine_store("deep", fd, e)
++			deep(fd, e->flags);
+ 
+-				igt_subtest_f("wide-%s", e->name)
+-					wide(fd, eb_ring(e));
++		test_each_engine_store("wide", fd, e)
++			wide(fd, e->flags);
+ 
+-				igt_subtest_f("reorder-wide-%s", e->name)
+-					reorder_wide(fd, eb_ring(e));
++		test_each_engine_store("reorder-wide", fd, e)
++			reorder_wide(fd, e->flags);
+ 
+-				igt_subtest_f("smoketest-%s", e->name)
+-					smoketest(fd, eb_ring(e), 5);
+-			}
+-		}
++		test_each_engine_store("smoketest", fd, e)
++			smoketest(fd, e->flags, 5);
+ 	}
+ 
+ 	igt_subtest_group {
++		const struct intel_execution_engine2 *e;
++
+ 		igt_fixture {
+ 			igt_require(gem_scheduler_enabled(fd));
+ 			igt_require(gem_scheduler_has_ctx_priority(fd));
++			igt_require(gem_scheduler_has_preemption(fd));
+ 		}
+ 
+-		for (e = intel_execution_engines; e->name; e++) {
+-			if (e->exec_id == 0)
+-				continue;
++		test_each_engine("pi-ringfull", fd, e)
++			test_pi_ringfull(fd, e->flags, 0);
+ 
+-			igt_subtest_group {
+-				igt_fixture {
+-					igt_require(gem_ring_has_physical_engine(fd, eb_ring(e)));
+-					igt_require(gem_scheduler_has_preemption(fd));
+-				}
+-
+-				igt_subtest_f("pi-ringfull-%s", e->name)
+-					test_pi_ringfull(fd, eb_ring(e), 0);
+-
+-				igt_subtest_f("pi-common-%s", e->name)
+-					test_pi_ringfull(fd, eb_ring(e), SHARED);
++		test_each_engine("pi-common", fd, e)
++			test_pi_ringfull(fd, e->flags, SHARED);
+ 
+-				igt_subtest_f("pi-userfault-%s", e->name)
+-					test_pi_userfault(fd, eb_ring(e));
++		test_each_engine("pi-userfault", fd, e)
++			test_pi_userfault(fd, e->flags);
+ 
+-				igt_subtest_f("pi-distinct-iova-%s", e->name)
+-					test_pi_iova(fd, eb_ring(e), 0);
++		test_each_engine("pi-distinct-iova", fd, e)
++			test_pi_iova(fd, e->flags, 0);
+ 
+-				igt_subtest_f("pi-shared-iova-%s", e->name)
+-					test_pi_iova(fd, eb_ring(e), SHARED);
+-			}
+-		}
++		test_each_engine("pi-shared-iova", fd, e)
++			test_pi_iova(fd, e->flags, SHARED);
+ 	}
+ 
+ 	igt_subtest_group {
+-- 
+2.26.0
 
-> v2:
->  - Ville: utilized drm_dp_is_branch()
->  - Ville: implement DP 1.0 downstream type info
->  - Replaced create_dp_properties with add_dp_subconnector_property
->  - Added dp_set_subconnector_property helper
-> =
-
-> v4:
->  - Ville: add DP1.0 best assumption about subconnector
->  - Ville: assume DVI is DVI-D
->  - Ville: reuse Writeback enum value for Virtual subconnector
->  - Renamed #defines: HDMI -> HDMIA, DP -> DisplayPort
-> =
-
-> [1]: https://bugs.freedesktop.org/show_bug.cgi?id=3D104097
-> =
-
-> Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
-> Signed-off-by: Oleg Vasilev <oleg.vasilev@intel.com>
-
-Is this Oleg's patch? If so why did you change the patch author to be
-yourself?
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Signed-off-by: Jeevan B <jeevan.b@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20190829114854.1539-3=
--oleg.vasilev@intel.com
-> ---
->  drivers/gpu/drm/drm_connector.c | 49 ++++++++++++++++++++++++--
->  drivers/gpu/drm/drm_dp_helper.c | 77 +++++++++++++++++++++++++++++++++++=
-++++++
->  include/drm/drm_connector.h     |  3 ++
->  include/drm/drm_dp_helper.h     |  8 +++++
->  include/drm/drm_mode_config.h   |  6 ++++
->  include/uapi/drm/drm_mode.h     | 21 ++++++-----
->  6 files changed, 154 insertions(+), 10 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
-tor.c
-> index b1099e1..b6972d1 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -844,7 +844,7 @@ static const struct drm_prop_enum_list drm_dvi_i_sele=
-ct_enum_list[] =3D {
->  DRM_ENUM_NAME_FN(drm_get_dvi_i_select_name, drm_dvi_i_select_enum_list)
->  =
-
->  static const struct drm_prop_enum_list drm_dvi_i_subconnector_enum_list[=
-] =3D {
-> -	{ DRM_MODE_SUBCONNECTOR_Unknown,   "Unknown"   }, /* DVI-I and TV-out */
-> +	{ DRM_MODE_SUBCONNECTOR_Unknown,   "Unknown"   }, /* DVI-I, TV-out and =
-DP */
->  	{ DRM_MODE_SUBCONNECTOR_DVID,      "DVI-D"     }, /* DVI-I  */
->  	{ DRM_MODE_SUBCONNECTOR_DVIA,      "DVI-A"     }, /* DVI-I  */
->  };
-> @@ -861,7 +861,7 @@ static const struct drm_prop_enum_list drm_tv_select_=
-enum_list[] =3D {
->  DRM_ENUM_NAME_FN(drm_get_tv_select_name, drm_tv_select_enum_list)
->  =
-
->  static const struct drm_prop_enum_list drm_tv_subconnector_enum_list[] =
-=3D {
-> -	{ DRM_MODE_SUBCONNECTOR_Unknown,   "Unknown"   }, /* DVI-I and TV-out */
-> +	{ DRM_MODE_SUBCONNECTOR_Unknown,   "Unknown"   }, /* DVI-I, TV-out and =
-DP */
->  	{ DRM_MODE_SUBCONNECTOR_Composite, "Composite" }, /* TV-out */
->  	{ DRM_MODE_SUBCONNECTOR_SVIDEO,    "SVIDEO"    }, /* TV-out */
->  	{ DRM_MODE_SUBCONNECTOR_Component, "Component" }, /* TV-out */
-> @@ -870,6 +870,19 @@ static const struct drm_prop_enum_list drm_tv_subcon=
-nector_enum_list[] =3D {
->  DRM_ENUM_NAME_FN(drm_get_tv_subconnector_name,
->  		 drm_tv_subconnector_enum_list)
->  =
-
-> +static const struct drm_prop_enum_list drm_dp_subconnector_enum_list[] =
-=3D {
-> +	{ DRM_MODE_SUBCONNECTOR_Unknown,     "Unknown"   }, /* DVI-I, TV-out an=
-d DP */
-> +	{ DRM_MODE_SUBCONNECTOR_VGA,	     "VGA"       }, /* DP */
-> +	{ DRM_MODE_SUBCONNECTOR_DVID,	     "DVI-D"     }, /* DP */
-> +	{ DRM_MODE_SUBCONNECTOR_HDMIA,	     "HDMI"      }, /* DP */
-> +	{ DRM_MODE_SUBCONNECTOR_DisplayPort, "DP"        }, /* DP */
-> +	{ DRM_MODE_SUBCONNECTOR_Wireless,    "Wireless"  }, /* DP */
-> +	{ DRM_MODE_SUBCONNECTOR_Native,	     "Native"    }, /* DP */
-> +};
-> +
-> +DRM_ENUM_NAME_FN(drm_get_dp_subconnector_name,
-> +		 drm_dp_subconnector_enum_list)
-> +
->  static const struct drm_prop_enum_list hdmi_colorspaces[] =3D {
->  	/* For Default case, driver will set the colorspace */
->  	{ DRM_MODE_COLORIMETRY_DEFAULT, "Default" },
-> @@ -1186,6 +1199,14 @@ static const struct drm_prop_enum_list dp_colorspa=
-ces[] =3D {
->   *	can also expose this property to external outputs, in which case they
->   *	must support "None", which should be the default (since external scre=
-ens
->   *	have a built-in scaler).
-> + *
-> + * subconnector:
-> + *	This property is used by DVI-I, TVout and DisplayPort to indicate dif=
-ferent
-> + *	connector subtypes. Enum values more or less match with those from ma=
-in
-> + *	connector types.
-> + *	For DVI-I and TVout there is also a matching property "select subconn=
-ector"
-> + *	allowing to switch between signal types.
-> + *	DP subconnector corresponds to a downstream port.
->   */
->  =
-
->  int drm_connector_create_standard_properties(struct drm_device *dev)
-> @@ -1275,6 +1296,30 @@ int drm_mode_create_dvi_i_properties(struct drm_de=
-vice *dev)
->  EXPORT_SYMBOL(drm_mode_create_dvi_i_properties);
->  =
-
->  /**
-> + * drm_mode_add_dp_subconnector_property - create subconnector property =
-for DP
-> + * @connector: drm_connector to attach property
-> + *
-> + * Called by a driver when DP connector is created.
-> + */
-> +void drm_mode_add_dp_subconnector_property(struct drm_connector *connect=
-or)
-> +{
-> +	struct drm_mode_config *mode_config =3D &connector->dev->mode_config;
-> +
-> +	if (!mode_config->dp_subconnector_property)
-> +		mode_config->dp_subconnector_property =3D
-> +			drm_property_create_enum(connector->dev,
-> +				DRM_MODE_PROP_IMMUTABLE,
-> +				"subconnector",
-> +				drm_dp_subconnector_enum_list,
-> +				ARRAY_SIZE(drm_dp_subconnector_enum_list));
-> +
-> +	drm_object_attach_property(&connector->base,
-> +				   mode_config->dp_subconnector_property,
-> +				   DRM_MODE_SUBCONNECTOR_Unknown);
-> +}
-> +EXPORT_SYMBOL(drm_mode_add_dp_subconnector_property);
-> +
-> +/**
->   * DOC: HDMI connector properties
->   *
->   * content type (HDMI specific):
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
-per.c
-> index 8ba4531..5d5b50f 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -594,6 +594,83 @@ void drm_dp_downstream_debug(struct seq_file *m,
->  }
->  EXPORT_SYMBOL(drm_dp_downstream_debug);
->  =
-
-> +/**
-> + * drm_dp_subconnector_type() - get DP branch device type
-> + * @dpcd: DisplayPort configuration data
-> + * @port_cap: port capabilities
-> + *
-> + */
-> +enum drm_mode_subconnector
-> +drm_dp_subconnector_type(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +			 const u8 port_cap[4])
-> +{
-> +	int type;
-> +	if (!drm_dp_is_branch(dpcd))
-> +		return DRM_MODE_SUBCONNECTOR_Native;
-> +	/* DP 1.0 approach */
-> +	if (dpcd[DP_DPCD_REV] =3D=3D DP_DPCD_REV_10) {
-> +		type =3D dpcd[DP_DOWNSTREAMPORT_PRESENT] &
-> +		       DP_DWN_STRM_PORT_TYPE_MASK;
-> +
-> +		switch (type) {
-> +		case DP_DWN_STRM_PORT_TYPE_TMDS:
-> +			/* Can be HDMI or DVI-D, DVI-D is a safer option */
-> +			return DRM_MODE_SUBCONNECTOR_DVID;
-> +		case DP_DWN_STRM_PORT_TYPE_ANALOG:
-> +			/* Can be VGA or DVI-A, VGA is more popular */
-> +			return DRM_MODE_SUBCONNECTOR_VGA;
-> +		case DP_DWN_STRM_PORT_TYPE_DP:
-> +			return DRM_MODE_SUBCONNECTOR_DisplayPort;
-> +		case DP_DWN_STRM_PORT_TYPE_OTHER:
-> +		default:
-> +			return DRM_MODE_SUBCONNECTOR_Unknown;
-> +		}
-> +	}
-> +	type =3D port_cap[0] & DP_DS_PORT_TYPE_MASK;
-> +
-> +	switch (type) {
-> +	case DP_DS_PORT_TYPE_DP:
-> +	case DP_DS_PORT_TYPE_DP_DUALMODE:
-> +		return DRM_MODE_SUBCONNECTOR_DisplayPort;
-> +	case DP_DS_PORT_TYPE_VGA:
-> +		return DRM_MODE_SUBCONNECTOR_VGA;
-> +	case DP_DS_PORT_TYPE_DVI:
-> +		return DRM_MODE_SUBCONNECTOR_DVID;
-> +	case DP_DS_PORT_TYPE_HDMI:
-> +		return DRM_MODE_SUBCONNECTOR_HDMIA;
-> +	case DP_DS_PORT_TYPE_WIRELESS:
-> +		return DRM_MODE_SUBCONNECTOR_Wireless;
-> +	case DP_DS_PORT_TYPE_NON_EDID:
-> +	default:
-> +		return DRM_MODE_SUBCONNECTOR_Unknown;
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_dp_subconnector_type);
-> +
-> +/**
-> + * drm_mode_set_dp_subconnector_property - set subconnector for DP conne=
-ctor
-> + * @connector: dp connector to attach property
-> + * @status: connector status which is about to be set
-> + * @dpcd: DisplayPort configuration data
-> + * @port_cap: port capabilities
-> + *
-> + * Called by a driver on every detect event.
-> + */
-> +void drm_dp_set_subconnector_property(struct drm_connector *connector,
-> +				      enum drm_connector_status status,
-> +				      const u8 *dpcd,
-> +				      const u8 port_cap[4])
-> +{
-> +	enum drm_mode_subconnector subconnector =3D DRM_MODE_SUBCONNECTOR_Unkno=
-wn;
-> +
-> +	if (status =3D=3D connector_status_connected)
-> +		subconnector =3D drm_dp_subconnector_type(dpcd, port_cap);
-> +	drm_object_property_set_value(&connector->base,
-> +			connector->dev->mode_config.dp_subconnector_property,
-> +			subconnector);
-> +}
-> +EXPORT_SYMBOL(drm_dp_set_subconnector_property);
-> +
->  /*
->   * I2C-over-AUX implementation
->   */
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index fd543d1..82797c8 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -1556,10 +1556,13 @@ const char *drm_get_dvi_i_subconnector_name(int v=
-al);
->  const char *drm_get_dvi_i_select_name(int val);
->  const char *drm_get_tv_subconnector_name(int val);
->  const char *drm_get_tv_select_name(int val);
-> +const char *drm_get_dp_subconnector_name(int val);
->  const char *drm_get_content_protection_name(int val);
->  const char *drm_get_hdcp_content_type_name(int val);
->  =
-
->  int drm_mode_create_dvi_i_properties(struct drm_device *dev);
-> +void drm_mode_add_dp_subconnector_property(struct drm_connector *connect=
-or);
-> +
->  int drm_mode_create_tv_margin_properties(struct drm_device *dev);
->  int drm_mode_create_tv_properties(struct drm_device *dev,
->  				  unsigned int num_modes,
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 305533d..6408b31 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -26,6 +26,7 @@
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/types.h>
-> +#include <drm/drm_connector.h>
->  =
-
->  /*
->   * Unless otherwise noted, all values are from the DP 1.1a spec.  Note t=
-hat
-> @@ -1599,6 +1600,13 @@ int drm_dp_downstream_max_bpc(const u8 dpcd[DP_REC=
-EIVER_CAP_SIZE],
->  int drm_dp_downstream_id(struct drm_dp_aux *aux, char id[6]);
->  void drm_dp_downstream_debug(struct seq_file *m, const u8 dpcd[DP_RECEIV=
-ER_CAP_SIZE],
->  			     const u8 port_cap[4], struct drm_dp_aux *aux);
-> +enum drm_mode_subconnector
-> +drm_dp_subconnector_type(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +			 const u8 port_cap[4]);
-> +void drm_dp_set_subconnector_property(struct drm_connector *connector,
-> +				      enum drm_connector_status status,
-> +				      const u8 *dpcd,
-> +				      const u8 port_cap[4]);
->  =
-
->  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
->  void drm_dp_aux_init(struct drm_dp_aux *aux);
-> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-> index 6c3ef49..085fb00 100644
-> --- a/include/drm/drm_mode_config.h
-> +++ b/include/drm/drm_mode_config.h
-> @@ -681,6 +681,12 @@ struct drm_mode_config {
->  	struct drm_property *dvi_i_select_subconnector_property;
->  =
-
->  	/**
-> +	 * @dp_subconnector_property: Optional DP property to differentiate
-> +	 * between different DP downstream port types.
-> +	 */
-> +	struct drm_property *dp_subconnector_property;
-> +
-> +	/**
->  	 * @tv_subconnector_property: Optional TV property to differentiate
->  	 * between different TV connector types.
->  	 */
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 735c8cf..3358c6b 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -332,14 +332,19 @@ struct drm_mode_get_encoder {
->  /* This is for connectors with multiple signal types. */
->  /* Try to match DRM_MODE_CONNECTOR_X as closely as possible. */
->  enum drm_mode_subconnector {
-> -	DRM_MODE_SUBCONNECTOR_Automatic =3D 0,
-> -	DRM_MODE_SUBCONNECTOR_Unknown =3D 0,
-> -	DRM_MODE_SUBCONNECTOR_DVID =3D 3,
-> -	DRM_MODE_SUBCONNECTOR_DVIA =3D 4,
-> -	DRM_MODE_SUBCONNECTOR_Composite =3D 5,
-> -	DRM_MODE_SUBCONNECTOR_SVIDEO =3D 6,
-> -	DRM_MODE_SUBCONNECTOR_Component =3D 8,
-> -	DRM_MODE_SUBCONNECTOR_SCART =3D 9,
-> +	DRM_MODE_SUBCONNECTOR_Automatic   =3D 0,  /* DVI-I, TV     */
-> +	DRM_MODE_SUBCONNECTOR_Unknown     =3D 0,  /* DVI-I, TV, DP */
-> +	DRM_MODE_SUBCONNECTOR_VGA	  =3D 1,  /*            DP */
-> +	DRM_MODE_SUBCONNECTOR_DVID	  =3D 3,  /* DVI-I      DP */
-> +	DRM_MODE_SUBCONNECTOR_DVIA	  =3D 4,  /* DVI-I         */
-> +	DRM_MODE_SUBCONNECTOR_Composite   =3D 5,  /*        TV     */
-> +	DRM_MODE_SUBCONNECTOR_SVIDEO	  =3D 6,  /*        TV     */
-> +	DRM_MODE_SUBCONNECTOR_Component   =3D 8,  /*        TV     */
-> +	DRM_MODE_SUBCONNECTOR_SCART	  =3D 9,  /*        TV     */
-> +	DRM_MODE_SUBCONNECTOR_DisplayPort =3D 10, /*            DP */
-> +	DRM_MODE_SUBCONNECTOR_HDMIA       =3D 11, /*            DP */
-> +	DRM_MODE_SUBCONNECTOR_Native      =3D 15, /*            DP */
-> +	DRM_MODE_SUBCONNECTOR_Wireless    =3D 18, /*            DP */
->  };
->  =
-
->  #define DRM_MODE_CONNECTOR_Unknown	0
-> -- =
-
-> 2.7.4
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
