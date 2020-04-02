@@ -1,26 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDD819C43F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:31:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE4519C4E6
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:53:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C176EAAF;
-	Thu,  2 Apr 2020 14:31:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 839D36E10C;
+	Thu,  2 Apr 2020 14:53:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 394036EA9F
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 14:31:16 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 16:31:09 +0200
-Message-Id: <20200402143109.1801605-23-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
-References: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
+Received: from poserver.naic.edu (poserver.naic.edu [192.65.176.209])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2BB46E10C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 14:53:46 +0000 (UTC)
+Received: from mailserver.naic.edu (mailserver.naic.edu [192.65.176.45])
+ by poserver.naic.edu (8.14.4/8.14.4/Debian-8+deb8u2) with ESMTP id
+ 032Erb2v021311; Thu, 2 Apr 2020 14:53:37 GMT
+Received: from monopoli.naic.edu (monopoli [192.65.176.208])
+ by mailserver.naic.edu (8.12.8/8.12.8) with ESMTP id 032Eraik026816;
+ Thu, 2 Apr 2020 10:53:36 -0400
+Received: by monopoli.naic.edu (Postfix, from userid 205)
+ id 4BD348533D3A; Thu,  2 Apr 2020 10:53:36 -0400 (AST)
+Date: Thu, 2 Apr 2020 10:53:36 -0400
+From: Giacomo Comes <comes@naic.edu>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200402145336.GA19483@monopoli.naic.edu>
+References: <20200401225317.GA13834@monopoli.naic.edu>
+ <20200402135203.GV13686@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 23/23] drm/i915: Ensure we hold the pin mutex
+Content-Disposition: inline
+In-Reply-To: <20200402135203.GV13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Spam-Score: undef - 192.65.176.45 is allowed always.
+X-CanIt-Geo: ip=192.65.176.45; country=PR; latitude=18.2500; longitude=-66.5000;
+ http://maps.google.com/maps?q=18.2500,-66.5000&z=6
+X-CanItPRO-Stream: default
+X-Canit-Stats-ID: Bayes signature not available
+Received-SPF: neutral (poserver.naic.edu: 192.65.176.45 is neither permitted
+ nor denied by domain comes@naic.edu)
+ receiver=poserver.naic.edu; client-ip=192.65.176.45;
+ envelope-from=<comes@naic.edu>; helo=mailserver.naic.edu;
+ identity=mailfrom
+X-Scanned-By: CanIt (www . roaringpenguin . com) on 192.65.176.209
+Subject: Re: [Intel-gfx] kernel 5.6: baytrail hdmi audio not working
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,74 +54,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_renderstate.c | 2 +-
- drivers/gpu/drm/i915/i915_vma.c             | 9 ++++++++-
- drivers/gpu/drm/i915/i915_vma.h             | 1 +
- 3 files changed, 10 insertions(+), 2 deletions(-)
+On Thu, Apr 02, 2020 at 04:52:03PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Wed, Apr 01, 2020 at 06:53:17PM -0400, Giacomo Comes wrote:
+> > Hi,
+> > on my Intel Compute Stick STCK1 (baytrail hdmi audio) =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index c39d73142950..df42ba06711a 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -207,7 +207,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
- 	if (err)
- 		goto err_context;
- 
--	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_vma_pin_ww(so->vma, &so->ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
- 		goto err_context;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index a74f9605f334..030fafa763b0 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -868,6 +868,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- #ifdef CONFIG_PROVE_LOCKING
- 	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
- 		WARN_ON(!ww);
-+	if (debug_locks && ww && vma->resv)
-+		assert_vma_held(vma);
- #endif
- 
- 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
-@@ -1008,8 +1010,13 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 
-+	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
-+
- 	do {
--		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		if (ww)
-+			err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		else
-+			err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
- 		if (err != -ENOSPC) {
- 			if (!err) {
- 				err = i915_vma_wait_for_bind(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 2e3779a8a437..d937ce950481 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -242,6 +242,7 @@ i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- static inline int __must_check
- i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
-+	WARN_ON_ONCE(vma->resv && dma_resv_held(vma->resv));
- 	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
- }
- 
--- 
-2.25.1
+> > sound is not working with the kernel 5.6
+> > =
 
+> > I have bisected the kernel and I found the commit that introduced the i=
+ssue:
+> > =
+
+> > commit 58d124ea2739e1440ddd743d46c470fe724aca9a
+> > Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Date:   Thu Oct 31 12:26:04 2019 +0100
+> > =
+
+> >     drm/i915: Complete crtc hw/uapi split, v6.
+> >     =
+
+> >     Now that we separated everything into uapi and hw, it's
+> >     time to make the split definitive. Remove the union and
+> >     make a copy of the hw state on modeset and fastset.
+> >     =
+
+> >     Color blobs are copied in crtc atomic_check(), right
+> >     before color management is checked.
+> > =
+
+> > If more information is required please let me know.
+> =
+
+> Should hopefully be fixed with
+> commit 2bdd4c28baff ("drm/i915/display: Fix mode private_flags
+> comparison at atomic_check")
+> =
+
+> Stable folks, please pick that up for 5.6.x stable releases.
+
+I can confirm that the commit indeed solves the problem I have.
+It should go in the stable 5.6.x release ASAP.
+
+Thanks.
+Giacomo
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
