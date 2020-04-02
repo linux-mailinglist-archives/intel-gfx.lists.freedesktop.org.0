@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D4E19C148
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 14:41:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA29319C14E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 14:42:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2025A89FC8;
-	Thu,  2 Apr 2020 12:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5EB6EA7D;
+	Thu,  2 Apr 2020 12:42:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C55E189138;
- Thu,  2 Apr 2020 12:41:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3098A41FB;
- Thu,  2 Apr 2020 12:41:15 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4954F6EA7D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 12:42:28 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20776150-1500050 
+ for multiple; Thu, 02 Apr 2020 13:42:18 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Apr 2020 13:42:18 +0100
+Message-Id: <20200402124218.6375-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 02 Apr 2020 12:41:15 -0000
-Message-ID: <158583127579.24295.4002285797535619394@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200402114819.17232-1-jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/17=5D_drm/i915/audio=3A_use_struct_drm?=
- =?utf-8?q?=5Fdevice_based_logging?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Utilize rcu iteration of context
+ engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,133 +37,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Now that we can peek at GEM->engines[] and obtain a reference to them
+using RCU, do so for instances where we can safely iterate the
+potentially old copy of the engines. For setting, we can do this when we
+know the engine properties are copied over before swapping, so we know
+the new engines already have the global property and we update the old
+before they are discarded. For reading, we only need to be safe; as we
+do so on behalf of the user, their races are their own problem.
 
-Series: series starting with [01/17] drm/i915/audio: use struct drm_device based logging
-URL   : https://patchwork.freedesktop.org/series/75414/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 59 +++++++++++----------
+ 1 file changed, 31 insertions(+), 28 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 50e7580f9337..2b6dd08de6f1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -757,21 +757,46 @@ __create_context(struct drm_i915_private *i915)
+ 	return ERR_PTR(err);
+ }
+ 
++static inline struct i915_gem_engines *
++__context_engines_await(const struct i915_gem_context *ctx)
++{
++	struct i915_gem_engines *engines;
++
++	rcu_read_lock();
++	do {
++		engines = rcu_dereference(ctx->engines);
++		GEM_BUG_ON(!engines);
++
++		if (unlikely(!i915_sw_fence_await(&engines->fence)))
++			continue;
++
++		if (likely(engines == rcu_access_pointer(ctx->engines)))
++			break;
++
++		i915_sw_fence_complete(&engines->fence);
++	} while (1);
++	rcu_read_unlock();
++
++	return engines;
++}
++
+ static int
+ context_apply_all(struct i915_gem_context *ctx,
+ 		  int (*fn)(struct intel_context *ce, void *data),
+ 		  void *data)
+ {
+ 	struct i915_gem_engines_iter it;
++	struct i915_gem_engines *e;
+ 	struct intel_context *ce;
+ 	int err = 0;
+ 
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
++	e = __context_engines_await(ctx);
++	for_each_gem_engine(ce, e, it) {
+ 		err = fn(ce, data);
+ 		if (err)
+ 			break;
+ 	}
+-	i915_gem_context_unlock_engines(ctx);
++	i915_sw_fence_complete(&e->fence);
+ 
+ 	return err;
+ }
+@@ -786,11 +811,13 @@ static int __apply_ppgtt(struct intel_context *ce, void *vm)
+ static struct i915_address_space *
+ __set_ppgtt(struct i915_gem_context *ctx, struct i915_address_space *vm)
+ {
+-	struct i915_address_space *old = i915_gem_context_vm(ctx);
++	struct i915_address_space *old;
+ 
++	old = rcu_replace_pointer(ctx->vm,
++				  i915_vm_open(vm),
++				  lockdep_is_held(&ctx->mutex));
+ 	GEM_BUG_ON(old && i915_vm_is_4lvl(vm) != i915_vm_is_4lvl(old));
+ 
+-	rcu_assign_pointer(ctx->vm, i915_vm_open(vm));
+ 	context_apply_all(ctx, __apply_ppgtt, vm);
+ 
+ 	return old;
+@@ -1069,30 +1096,6 @@ static void cb_retire(struct i915_active *base)
+ 	kfree(cb);
+ }
+ 
+-static inline struct i915_gem_engines *
+-__context_engines_await(const struct i915_gem_context *ctx)
+-{
+-	struct i915_gem_engines *engines;
+-
+-	rcu_read_lock();
+-	do {
+-		engines = rcu_dereference(ctx->engines);
+-		if (unlikely(!engines))
+-			break;
+-
+-		if (unlikely(!i915_sw_fence_await(&engines->fence)))
+-			continue;
+-
+-		if (likely(engines == rcu_access_pointer(ctx->engines)))
+-			break;
+-
+-		i915_sw_fence_complete(&engines->fence);
+-	} while (1);
+-	rcu_read_unlock();
+-
+-	return engines;
+-}
+-
+ I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
+ static int context_barrier_task(struct i915_gem_context *ctx,
+ 				intel_engine_mask_t engines,
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8237 -> Patchwork_17179
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17179 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          [DMESG-WARN][3] ([i915#289]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-icl-u2/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-icl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][5] ([i915#62]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#1382]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-icl-u2:          [INCOMPLETE][9] ([i915#1505] / [i915#1581]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-icl-u2/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-icl-u2/igt@i915_selftest@live@requests.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12] +9 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [PASS][14] +21 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8237/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [i915#1382]: https://gitlab.freedesktop.org/drm/intel/issues/1382
-  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
-  [i915#1581]: https://gitlab.freedesktop.org/drm/intel/issues/1581
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 45)
-------------------------------
-
-  Additional (6): fi-skl-guc fi-snb-2520m fi-kbl-7500u fi-ivb-3770 fi-skl-6600u fi-snb-2600 
-  Missing    (3): fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8237 -> Patchwork_17179
-
-  CI-20190529: 20190529
-  CI_DRM_8237: a9a502feaca70cf6ae0259977095244a0a33c138 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5558: 3b55a816300d80bc5e0b995cd41ee8c8649a1ea2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17179: a2696b2a35a3236787b5ad5eda97670bad71a7de @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a2696b2a35a3 drm/i915/uc: prefer struct drm_device based logging
-8488b70421b5 drm/i915/gt: prefer struct drm_device based logging
-e8205d33d8cb drm/i915/stolen: prefer struct drm_device based logging
-4177202ed569 drm/i915/uncore: prefer struct drm_device based logging
-a6b82b4321ac drm/i915/dram: prefer struct drm_device based logging
-75a3dc9d0164 drm/i915/pmu: prefer struct drm_device based logging
-b6bdc53eb65d drm/i915/error: prefer struct drm_device based logging
-16ebe7bc1db8 drm/i915/uc: prefer struct drm_device based logging
-d94202a534f7 drm/i915/switcheroo: use struct drm_device based logging
-7c27937f4177 drm/i915/state: use struct drm_device based logging
-0ea9315752c2 drm/i915/bw: use struct drm_device based logging
-3bd7e63ad124 drm/i915/debugfs: use struct drm_device based logging
-242083a5ecc1 drm/i915/crt: use struct drm_device based logging
-33d44f72afab drm/i915/dp: use struct drm_device based logging
-bdfa59ff420a drm/i915/tc: use struct drm_device based logging
-555310b4127d drm/i915/panel: use struct drm_device based logging
-e596492dfa04 drm/i915/audio: use struct drm_device based logging
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17179/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
