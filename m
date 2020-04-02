@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA5D19C8EB
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 20:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3CFA19C8EF
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 20:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0941C6E141;
-	Thu,  2 Apr 2020 18:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015FA6E151;
+	Thu,  2 Apr 2020 18:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3C86E141
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 18:39:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8859B6E151
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 18:40:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20780435-1500050 
- for multiple; Thu, 02 Apr 2020 19:38:36 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20780458-1500050 
+ for multiple; Thu, 02 Apr 2020 19:40:37 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 19:38:36 +0100
-Message-Id: <20200402183836.21508-1-chris@chris-wilson.co.uk>
+Date: Thu,  2 Apr 2020 19:40:37 +0100
+Message-Id: <20200402184037.21630-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200402183836.21508-1-chris@chris-wilson.co.uk>
+References: <20200402183836.21508-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Keep a per-engine request pools
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -46,6 +48,11 @@ Add a tiny per-engine request mempool so that we should always have a
 request available for powermanagement allocations from tricky
 contexts. This reserve is expected to be only used for kernel
 contexts when barriers must be emitted [almost] without fail.
+
+The main consumer for this reserved request is expected to be engine-pm,
+for which we know that there will always be at least the previous pm
+request that we can reuse under mempressure (so there should always be
+a spare request for engine_park()).
 
 This is an alternative to using a comparatively bulky mempool, which
 requires custom handling for both our reserved allocation requirement
