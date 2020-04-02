@@ -2,29 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1524F19CC27
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 22:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B3219CC5E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 23:30:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED3546E16B;
-	Thu,  2 Apr 2020 20:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5F56E170;
+	Thu,  2 Apr 2020 21:30:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0086E16B
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 20:58:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20781599-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 21:58:38 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 21:58:39 +0100
-Message-Id: <20200402205839.25065-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 377406E170;
+ Thu,  2 Apr 2020 21:30:28 +0000 (UTC)
+IronPort-SDR: jQSc1t4sm7ve7ZjCmiUS5+4ADZRThSfRnkBvIZYaINnP1NCmbi1yojEvk2+GARcR5fn+oSfrv0
+ jFu1yzSuZpkA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 14:30:27 -0700
+IronPort-SDR: vpxKDKfEKGXTLqPtSdBSPetnqcAJsgdjbGzd1VOHRyG4yokHFC2O+2j8cgGcfRVzvzufXECEjT
+ y1zgpvJ1nLAg==
+X-IronPort-AV: E=Sophos;i="5.72,337,1580803200"; d="scan'208";a="253150797"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 14:30:27 -0700
+Date: Thu, 2 Apr 2020 14:30:26 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200402213026.GA1141017@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/selftests: Check for has-reset before
- testing hostile contexts
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,39 +45,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to kill off a hostile context, we need to be able to reset the
-GPU. So check that is supported prior to beginning the test.
+Hi Dave and Daniel,
 
-Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Here goes drm-intel-next-fixes-2020-04-02:
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index f3ba58842120..985d4041d929 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -2046,6 +2046,9 @@ static int __cancel_hostile(struct live_preempt_cancel *arg)
- 	if (!IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT))
- 		return 0;
- 
-+	if (!intel_has_reset_engine(arg->engine->gt))
-+		return 0;
-+
- 	GEM_TRACE("%s(%s)\n", __func__, arg->engine->name);
- 	rq = spinner_create_request(&arg->a.spin,
- 				    arg->a.ctx, arg->engine,
--- 
-2.20.1
+Only gvt fixes on this round:
 
+- Fix non-privilege access warning (Tina)
+- Fix display port type (Tina)
+- BDW cmd parser missed SWTESS_BASE_ADDRESS (Yan)
+- Bypass length check of LRI (Yan)
+- Fix one klocwork warning (Tina)
+
+Thanks,
+Rodrigo.
+
+The following changes since commit 2bdd4c28baff29163808677a70942de2b45f17dc:
+
+  drm/i915/display: Fix mode private_flags comparison at atomic_check (2020-03-26 10:21:30 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2020-04-02
+
+for you to fetch changes up to 17d0c1062a0c60e17c96538adf4a84c208930d9d:
+
+  Merge tag 'gvt-next-fixes-2020-03-31' of https://github.com/intel/gvt-linux into drm-intel-next-fixes (2020-03-31 09:25:15 -0700)
+
+----------------------------------------------------------------
+Only gvt fixes on this round:
+
+- Fix non-privilege access warning (Tina)
+- Fix display port type (Tina)
+- BDW cmd parser missed SWTESS_BASE_ADDRESS (Yan)
+- Bypass length check of LRI (Yan)
+- Fix one klocwork warning (Tina)
+
+----------------------------------------------------------------
+Rodrigo Vivi (1):
+      Merge tag 'gvt-next-fixes-2020-03-31' of https://github.com/intel/gvt-linux into drm-intel-next-fixes
+
+Tina Zhang (3):
+      drm/i915/gvt: Add some regs to force-to-nonpriv whitelist
+      drm/i915/gvt: Fix display port type issue
+      drm/i915/gvt: Fix klocwork issues about data size
+
+Yan Zhao (2):
+      drm/i915/gvt: add support to command SWTESS_BASE_ADDRESS
+      drm/i915/gvt: do not check len & max_len for lri
+
+ drivers/gpu/drm/i915/gvt/cmd_parser.c | 16 ++++------------
+ drivers/gpu/drm/i915/gvt/display.c    |  6 +++---
+ drivers/gpu/drm/i915/gvt/handlers.c   |  8 ++++++--
+ drivers/gpu/drm/i915/gvt/scheduler.c  |  4 ++--
+ 4 files changed, 15 insertions(+), 19 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
