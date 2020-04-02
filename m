@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE51919C9F9
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 21:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7217319CAEA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 22:18:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155D66EADB;
-	Thu,  2 Apr 2020 19:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56B0C6E059;
+	Thu,  2 Apr 2020 20:18:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9AC166E152;
- Thu,  2 Apr 2020 19:24:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 929E3A47E6;
- Thu,  2 Apr 2020 19:24:06 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA1E26E059
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 20:18:33 +0000 (UTC)
+IronPort-SDR: WhmcZNB2pcMnlG+KqDnjmYfj+wEa+jnzAS0zr+iPsoIXvQWutez5Qk03RlgpFT8OftDKxucgw8
+ +iQVlWkJmHdA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 13:18:33 -0700
+IronPort-SDR: CGy6gW2Cpx5lt5tWtmJGcZD3/Pd01+xnQksKgPES8fFXMqERdu8ylnszRBLcTTI5/8so0eIjxe
+ 28AUK4nIh9cA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,336,1580803200"; d="scan'208";a="253131393"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga006.jf.intel.com with ESMTP; 02 Apr 2020 13:18:31 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 63F955C1EF4; Thu,  2 Apr 2020 23:16:52 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200401110435.30389-1-chris@chris-wilson.co.uk>
+References: <20200401110435.30389-1-chris@chris-wilson.co.uk>
+Date: Thu, 02 Apr 2020 23:16:52 +0300
+Message-ID: <87369lprrf.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 02 Apr 2020 19:24:06 -0000
-Message-ID: <158585544657.24296.12352727544766832239@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200402183836.21508-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200402183836.21508-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Keep_a_per-engine_request_pools_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/execlists: Peek at the next
+ submission for error interrupts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,65 +48,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915: Keep a per-engine request pools (rev2)
-URL   : https://patchwork.freedesktop.org/series/75427/
-State : success
+> If we receive the error interrupt before the CS interrupt, we may find
+> ourselves without an active request to reset, skipping the GPU reset.
+> All because the attempt to reset was too early.
+>
 
-== Summary ==
+With the tracing, we will see the the out of sync situations
+so
 
-CI Bug Log - changes from CI_DRM_8238 -> Patchwork_17189
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/index.html
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
 
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (50 -> 39)
-------------------------------
-
-  Missing    (11): fi-ilk-m540 fi-tgl-u fi-tgl-dsi fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8238 -> Patchwork_17189
-
-  CI-20190529: 20190529
-  CI_DRM_8238: 840f70602a47208a2f1e444ba276f412f10e38df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5558: 3b55a816300d80bc5e0b995cd41ee8c8649a1ea2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17189: 14acbca51678ae918b24e847596b290f7b15a608 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-14acbca51678 drm/i915: Keep a per-engine request pools
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/index.html
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 41 ++++++++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 3479cda37fdc..f028114714cd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2804,6 +2804,45 @@ static struct execlists_capture *capture_regs(struct intel_engine_cs *engine)
+>  	return NULL;
+>  }
+>  
+> +static struct i915_request *
+> +active_context(struct intel_engine_cs *engine, u32 ccid)
+> +{
+> +	const struct intel_engine_execlists * const el = &engine->execlists;
+> +	struct i915_request * const *port, *rq;
+> +
+> +	/*
+> +	 * Use the most recent result from process_csb(), but just in case
+> +	 * we trigger an error (via interrupt) before the first CS event has
+> +	 * been written, peek at the next submission.
+> +	 */
+> +
+> +	for (port = el->active; (rq = *port); port++) {
+> +		if (upper_32_bits(rq->context->lrc_desc) == ccid) {
+> +			ENGINE_TRACE(engine,
+> +				     "ccid found at active:%zd\n",
+> +				     port - el->active);
+> +			return rq;
+> +		}
+> +	}
+> +
+> +	for (port = el->pending; (rq = *port); port++) {
+> +		if (upper_32_bits(rq->context->lrc_desc) == ccid) {
+> +			ENGINE_TRACE(engine,
+> +				     "ccid found at pending:%zd\n",
+> +				     port - el->pending);
+> +			return rq;
+> +		}
+> +	}
+> +
+> +	ENGINE_TRACE(engine, "ccid:%x not found\n", ccid);
+> +	return NULL;
+> +}
+> +
+> +static u32 active_ccid(struct intel_engine_cs *engine)
+> +{
+> +	return ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI);
+> +}
+> +
+>  static bool execlists_capture(struct intel_engine_cs *engine)
+>  {
+>  	struct execlists_capture *cap;
+> @@ -2821,7 +2860,7 @@ static bool execlists_capture(struct intel_engine_cs *engine)
+>  		return true;
+>  
+>  	spin_lock_irq(&engine->active.lock);
+> -	cap->rq = execlists_active(&engine->execlists);
+> +	cap->rq = active_context(engine, active_ccid(engine));
+>  	if (cap->rq) {
+>  		cap->rq = active_request(cap->rq->context->timeline, cap->rq);
+>  		cap->rq = i915_request_get_rcu(cap->rq);
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
