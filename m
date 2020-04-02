@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A39A19BB9F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 08:23:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528DA19BC21
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 09:01:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242146E9CC;
-	Thu,  2 Apr 2020 06:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB6D89DEC;
+	Thu,  2 Apr 2020 07:01:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFD966E9CC;
- Thu,  2 Apr 2020 06:23:00 +0000 (UTC)
-IronPort-SDR: gN8vTjAzCR8UEWaF1FmhIGup0/u7w7Os0nCmbkZaRxCZOCr5sj52MRczgMluSW7vANZ23GWsY9
- OPhFcCrPZZdg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2020 23:23:00 -0700
-IronPort-SDR: DI6DiN59afXJOQdeeeio2X1mqaU9SMmCGJiqa/IzeOdmfRemwiMyz4oaabOb6nX3ykye1cwGEU
- ylsO/190MSdA==
-X-IronPort-AV: E=Sophos;i="5.72,334,1580803200"; d="scan'208";a="423011944"
-Received: from assenmac-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.35.117])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2020 23:22:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>
-In-Reply-To: <20200402055241.24789-1-pankaj.laxminarayan.bharadiya@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200402055241.24789-1-pankaj.laxminarayan.bharadiya@intel.com>
-Date: Thu, 02 Apr 2020 09:22:47 +0300
-Message-ID: <87lfnemmo8.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8D03989DEC;
+ Thu,  2 Apr 2020 07:01:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86792A41FB;
+ Thu,  2 Apr 2020 07:01:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove WARN_ON and WARN_ON_ONCE
- overrides.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Thu, 02 Apr 2020 07:01:39 -0000
+Message-ID: <158581089952.24295.11905365527003746111@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200402055241.24789-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200402055241.24789-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Remove_WARN=5FON_and_WARN=5FON=5FONCE_overrides=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,66 +38,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> Now we have new struct drm_device based drm_WARN* macros. These are
-> preferred over the regular WARN* macros.
->
-> Remove WARN_ON and WARN_ON_ONCE overriedes to avoid any temptations to
-> use them in the future.
+== Series Details ==
 
-Well, since they are overrides of macros in bug.h, the users are still
-there. There are still 100+ users in i915. You just don't get as much
-information with them after this patch.
+Series: drm/i915: Remove WARN_ON and WARN_ON_ONCE overrides.
+URL   : https://patchwork.freedesktop.org/series/75390/
+State : success
 
-I'm not opposed to this patch, but at the same time I'd like to see more
-converted to the drm_WARN* alternatives.
+== Summary ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+CI Bug Log - changes from CI_DRM_8236 -> Patchwork_17174
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17174/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17174 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][1] -> [FAIL][2] ([i915#262])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17174/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][3] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][4] ([i915#62] / [i915#92]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17174/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][5] ([i915#62] / [i915#92]) -> [DMESG-WARN][6] ([i915#62] / [i915#92] / [i915#95]) +7 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17174/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-BR,
-Jani.
+Participating hosts (47 -> 38)
+------------------------------
 
->
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_utils.h | 15 ---------------
->  1 file changed, 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 03a73d2bd50d..c666a64375d9 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -36,21 +36,6 @@ struct timer_list;
->  
->  #define FDO_BUG_URL "https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs"
->  
-> -#undef WARN_ON
-> -/* Many gcc seem to no see through this and fall over :( */
-> -#if 0
-> -#define WARN_ON(x) ({ \
-> -	bool __i915_warn_cond = (x); \
-> -	if (__builtin_constant_p(__i915_warn_cond)) \
-> -		BUILD_BUG_ON(__i915_warn_cond); \
-> -	WARN(__i915_warn_cond, "WARN_ON(" #x ")"); })
-> -#else
-> -#define WARN_ON(x) WARN((x), "%s", "WARN_ON(" __stringify(x) ")")
-> -#endif
-> -
-> -#undef WARN_ON_ONCE
-> -#define WARN_ON_ONCE(x) WARN_ONCE((x), "%s", "WARN_ON_ONCE(" __stringify(x) ")")
-> -
->  #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
->  			     __stringify(x), (long)(x))
+  Additional (2): fi-hsw-peppy fi-elk-e7500 
+  Missing    (11): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-snb-2520m fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8236 -> Patchwork_17174
+
+  CI-20190529: 20190529
+  CI_DRM_8236: 698ce59acca37b93bfcdee6899504be3eb113097 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5556: 311cb1b360b7ae00fab80b822cd34fd512f08ce9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17174: 2328c1f4d826c1ee018403f89587d61bbad177e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2328c1f4d826 drm/i915: Remove WARN_ON and WARN_ON_ONCE overrides.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17174/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
