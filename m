@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2617119C34C
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 15:55:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC92E19C35E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 15:58:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8666F6EA91;
-	Thu,  2 Apr 2020 13:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ECDA6E0B9;
+	Thu,  2 Apr 2020 13:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6EE66EA91
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 13:55:47 +0000 (UTC)
-IronPort-SDR: 8TCqlV5n318BdCdEZgd/lCgQNvmmbN+MwbteljYO4my7gyzDtB3txAGsCcui7XDfvpXtso6Q/r
- uU2zPcRonhkw==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21DDF6E0B9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 13:58:03 +0000 (UTC)
+IronPort-SDR: 8+56LFeT1vaNXkpfEObtBOrjspFbLrSzDlFqV/6aH0t0Mk2k0XGPnpaLRikWqXgxwYja7UGyAl
+ THaoL0C3rBRw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2020 06:55:47 -0700
-IronPort-SDR: QpRiOmXF7M4p95M5VJ5oKWI7rAnmH/bS+zGN7dIRMX6+QYDK2STssBg59MrJ4r3YYZfPHqj3nT
- 7iFb2iNM30Bw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,335,1580803200"; d="scan'208";a="253000420"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 02 Apr 2020 06:55:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 02 Apr 2020 16:55:44 +0300
-Date: Thu, 2 Apr 2020 16:55:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200402135543.GX13686@intel.com>
-References: <20200212161738.28141-1-ville.syrjala@linux.intel.com>
- <20200212161738.28141-2-ville.syrjala@linux.intel.com>
- <87lfp7vgyw.fsf@intel.com> <20200401224825.GA14274@intel.com>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 06:58:02 -0700
+IronPort-SDR: 6+qYCi2ICZJPNwG6AKh36e4sIwIqmrmZWmcuQJlZlN1u+rnD6i6+3EgysMCSKi6aLKSkxdUnEj
+ QnbBgZDPLFXA==
+X-IronPort-AV: E=Sophos;i="5.72,335,1580803200"; d="scan'208";a="273566419"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 06:58:01 -0700
+Message-ID: <acbfa2623c918adb712d20fd1cf98a388813c6a9.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Date: Thu, 02 Apr 2020 15:57:59 +0200
+In-Reply-To: <20200402121616.29629-1-chris@chris-wilson.co.uk>
+References: <20200402115908.24532-1-chris@chris-wilson.co.uk>
+ <20200402121616.29629-1-chris@chris-wilson.co.uk>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200401224825.GA14274@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915: Parametrize PFIT_PIPE
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Use per-engine request pools
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,93 +49,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 01, 2020 at 03:48:26PM -0700, Manasi Navare wrote:
-> On Wed, Feb 12, 2020 at 07:43:51PM +0200, Jani Nikula wrote:
-> > On Wed, 12 Feb 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wrot=
-e:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > >
-> > > Make the PFIT_PIPE stuff less ugly via parametrization.
-> > >
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_panel.c | 3 +--
-> > >  drivers/gpu/drm/i915/i915_reg.h            | 1 +
-> > >  2 files changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu=
-/drm/i915/display/intel_panel.c
-> > > index cba2f1c2557f..8b0730f4c442 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> > > @@ -434,8 +434,7 @@ void intel_gmch_panel_fitting(struct intel_crtc *=
-intel_crtc,
-> > >  	/* 965+ wants fuzzy fitting */
-> > >  	/* FIXME: handle multiple panels by failing gracefully */
-> > >  	if (INTEL_GEN(dev_priv) >=3D 4)
-> > > -		pfit_control |=3D ((intel_crtc->pipe << PFIT_PIPE_SHIFT) |
-> > > -				 PFIT_FILTER_FUZZY);
-> > > +		pfit_control |=3D PFIT_PIPE(intel_crtc->pipe) | PFIT_FILTER_FUZZY;
-> > >  =
+On Thu, 2020-04-02 at 13:16 +0100, Chris Wilson wrote:
+> Add a per-engine request mempool so that we should always have a couple
+> of requests available for powermanagement allocations from tricky
+> contexts. These reserves are expected to be only used for kernel
+> contexts when barriers must be emitted [almost] without fail.
+> 
+> When using the mempool, requests are first allocated from the global
+> slab cache (utilising all the per-cpu lockless freelists and caches) and
+> only if that is empty and cannot be filled under the gfp_t do we
+> fallback to using the per-engine cache of recently freed requests. For
+> our use cases, this will never be empty for long as there will always be
+> at least the previous powermanagent request to reuse.
+> 
+> The downside is that this is quite a bulky addition and abstraction to
+> use, but it will ensure that we never fail to park the engine due to
+> oom.
+> 
+> v2: Only use the mempool for nonblocking allocations which are not
+> expected to fail.
 
-> > >  out:
-> > >  	if ((pfit_control & PFIT_ENABLE) =3D=3D 0) {
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i=
-915_reg.h
-> > > index b09c1d6dc0aa..faf8945a51b0 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -4928,6 +4928,7 @@ enum {
-> > >  #define   PFIT_ENABLE		(1 << 31)
-> > >  #define   PFIT_PIPE_MASK	(3 << 29)
-> > >  #define   PFIT_PIPE_SHIFT	29
-> > > +#define   PFIT_PIPE(pipe)	((pipe) << 29)
-> > =
+LGTM.  Thanks for addressing the issue.
 
-> > This is fine, but might have as well defined this in terms of
-> > REG_FIELD_PREP. I especially like it for parametrized stuff because it
-> > ensures we don't flood the value outside the field.
-> > =
+Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> =
+Thanks,
+Janusz
 
-> Was just reviewing this series and noticed that Jani had suggested using
-> REG_FIELD_PREP stuff here, are you going to change that Ville?
 
-IIRC I already pushed this.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine.h       |  3 +++
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 14 ++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 ++++
+>  drivers/gpu/drm/i915/gt/intel_lrc.c          |  3 +++
+>  drivers/gpu/drm/i915/i915_request.c          | 20 +++++++++++++-------
+>  drivers/gpu/drm/i915/i915_request.h          |  2 ++
+>  6 files changed, 39 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index b469de0dd9b6..c1159bd17989 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -324,6 +324,9 @@ void intel_engine_init_active(struct intel_engine_cs *engine,
+>  #define ENGINE_MOCK	1
+>  #define ENGINE_VIRTUAL	2
+>  
+> +void intel_engine_init_request_pool(struct intel_engine_cs *engine);
+> +void intel_engine_fini_request_pool(struct intel_engine_cs *engine);
+> +
+>  static inline bool
+>  intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+>  {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 843cb6f2f696..16bbd9174937 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -602,6 +602,18 @@ static int init_status_page(struct intel_engine_cs *engine)
+>  	return ret;
+>  }
+>  
+> +void intel_engine_init_request_pool(struct intel_engine_cs *engine)
+> +{
+> +	mempool_init_slab_pool(&engine->request_pool,
+> +			       INTEL_ENGINE_REQUEST_POOL_RESERVED,
+> +			       i915_request_slab_cache());
+> +}
+> +
+> +void intel_engine_fini_request_pool(struct intel_engine_cs *engine)
+> +{
+> +	mempool_exit(&engine->request_pool);
+> +}
+> +
+>  static int engine_setup_common(struct intel_engine_cs *engine)
+>  {
+>  	int err;
+> @@ -617,6 +629,7 @@ static int engine_setup_common(struct intel_engine_cs *engine)
+>  	intel_engine_init_execlists(engine);
+>  	intel_engine_init_cmd_parser(engine);
+>  	intel_engine_init__pm(engine);
+> +	intel_engine_init_request_pool(engine);
+>  	intel_engine_init_retire(engine);
+>  
+>  	intel_engine_pool_init(&engine->pool);
+> @@ -817,6 +830,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+>  	cleanup_status_page(engine);
+>  
+>  	intel_engine_fini_retire(engine);
+> +	intel_engine_fini_request_pool(engine);
+>  	intel_engine_pool_fini(&engine->pool);
+>  	intel_engine_fini_breadcrumbs(engine);
+>  	intel_engine_cleanup_cmd_parser(engine);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 80cdde712842..0db03215127b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -13,6 +13,7 @@
+>  #include <linux/kref.h>
+>  #include <linux/list.h>
+>  #include <linux/llist.h>
+> +#include <linux/mempool.h>
+>  #include <linux/rbtree.h>
+>  #include <linux/timer.h>
+>  #include <linux/types.h>
+> @@ -308,6 +309,9 @@ struct intel_engine_cs {
+>  		struct list_head hold; /* ready requests, but on hold */
+>  	} active;
+>  
+> +	mempool_t request_pool; /* keep some in reserve for powermanagement */
+> +#define INTEL_ENGINE_REQUEST_POOL_RESERVED 2
+> +
+>  	struct llist_head barrier_tasks;
+>  
+>  	struct intel_context *kernel_context; /* pinned */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 3479cda37fdc..afc9107e5d04 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -4892,6 +4892,8 @@ static void virtual_context_destroy(struct kref *kref)
+>  		__execlists_context_fini(&ve->context);
+>  	intel_context_fini(&ve->context);
+>  
+> +	intel_engine_fini_request_pool(&ve->base);
+> +
+>  	kfree(ve->bonds);
+>  	kfree(ve);
+>  }
+> @@ -5203,6 +5205,7 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+>  	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+>  	intel_engine_init_breadcrumbs(&ve->base);
+>  	intel_engine_init_execlists(&ve->base);
+> +	intel_engine_init_request_pool(&ve->base);
+>  
+>  	ve->base.cops = &virtual_context_ops;
+>  	ve->base.request_alloc = execlists_request_alloc;
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 3388c5b610c5..0bdc33b4ecdc 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -54,6 +54,11 @@ static struct i915_global_request {
+>  	struct kmem_cache *slab_execute_cbs;
+>  } global;
+>  
+> +struct kmem_cache *i915_request_slab_cache(void)
+> +{
+> +	return global.slab_requests;
+> +}
+> +
+>  static const char *i915_fence_get_driver_name(struct dma_fence *fence)
+>  {
+>  	return dev_name(to_request(fence)->i915->drm.dev);
+> @@ -115,7 +120,7 @@ static void i915_fence_release(struct dma_fence *fence)
+>  	i915_sw_fence_fini(&rq->submit);
+>  	i915_sw_fence_fini(&rq->semaphore);
+>  
+> -	kmem_cache_free(global.slab_requests, rq);
+> +	mempool_free(rq, &rq->engine->request_pool);
+>  }
+>  
+>  const struct dma_fence_ops i915_fence_ops = {
+> @@ -629,14 +634,15 @@ static void retire_requests(struct intel_timeline *tl)
+>  }
+>  
+>  static noinline struct i915_request *
+> -request_alloc_slow(struct intel_timeline *tl, gfp_t gfp)
+> +request_alloc_slow(struct intel_timeline *tl, mempool_t *pool, gfp_t gfp)
+>  {
+>  	struct i915_request *rq;
+>  
+> -	if (list_empty(&tl->requests))
+> -		goto out;
+> -
+> +	/* If we cannot wait, dip into our reserves */
+>  	if (!gfpflags_allow_blocking(gfp))
+> +		return mempool_alloc(pool, gfp);
+> +
+> +	if (list_empty(&tl->requests))
+>  		goto out;
+>  
+>  	/* Move our oldest request to the slab-cache (if not in use!) */
+> @@ -721,7 +727,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+>  	rq = kmem_cache_alloc(global.slab_requests,
+>  			      gfp | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+>  	if (unlikely(!rq)) {
+> -		rq = request_alloc_slow(tl, gfp);
+> +		rq = request_alloc_slow(tl, &ce->engine->request_pool, gfp);
+>  		if (!rq) {
+>  			ret = -ENOMEM;
+>  			goto err_unreserve;
+> @@ -807,7 +813,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+>  	GEM_BUG_ON(!list_empty(&rq->sched.waiters_list));
+>  
+>  err_free:
+> -	kmem_cache_free(global.slab_requests, rq);
+> +	mempool_free(rq, &ce->engine->request_pool);
+>  err_unreserve:
+>  	intel_context_unpin(ce);
+>  	return ERR_PTR(ret);
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 3c552bfea67a..d8ce908e1346 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -300,6 +300,8 @@ static inline bool dma_fence_is_i915(const struct dma_fence *fence)
+>  	return fence->ops == &i915_fence_ops;
+>  }
+>  
+> +struct kmem_cache *i915_request_slab_cache(void);
+> +
+>  struct i915_request * __must_check
+>  __i915_request_create(struct intel_context *ce, gfp_t gfp);
+>  struct i915_request * __must_check
 
-> =
-
-> Looks good otherwise
-> =
-
-> Manasi
-> > =
-
-> > >  #define   VERT_INTERP_DISABLE	(0 << 10)
-> > >  #define   VERT_INTERP_BILINEAR	(1 << 10)
-> > >  #define   VERT_INTERP_MASK	(3 << 10)
-> > =
-
-> > -- =
-
-> > Jani Nikula, Intel Open Source Graphics Center
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
