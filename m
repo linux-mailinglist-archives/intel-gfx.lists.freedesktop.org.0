@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0C119C77F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D53B19C7C9
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:20:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B224389E69;
-	Thu,  2 Apr 2020 17:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C5D6EACF;
+	Thu,  2 Apr 2020 17:20:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26B89E69
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:01:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6486EACD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:20:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20779403-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 18:01:00 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20779651-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 18:20:10 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 18:01:01 +0100
-Message-Id: <20200402170101.26992-1-chris@chris-wilson.co.uk>
+Date: Thu,  2 Apr 2020 18:20:11 +0100
+Message-Id: <20200402172011.27307-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200402152856.25407-1-chris@chris-wilson.co.uk>
 References: <20200402152856.25407-1-chris@chris-wilson.co.uk>
@@ -59,6 +59,11 @@ The downside is that this is quite a bulky addition and abstraction to
 use, but it will ensure that we never fail to park the engine due to
 oom.
 
+An alternative to using the mempool would be to opencode a single
+reserved slot (with xchg for the management in emergency alloc and
+free), so long as we are confident in our design that we only need the
+single reserve request.
+
 v2: Only use the mempool for nonblocking allocations which are not
 expected to fail.
 
@@ -75,13 +80,13 @@ Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> #v2
 ---
  drivers/gpu/drm/i915/gt/intel_engine.h       |  3 ++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 38 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 37 ++++++++++++++++++++
  drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 +++
  drivers/gpu/drm/i915/gt/intel_lrc.c          |  5 +++
  drivers/gpu/drm/i915/gt/mock_engine.c        |  5 +++
  drivers/gpu/drm/i915/i915_request.c          | 20 +++++++----
  drivers/gpu/drm/i915/i915_request.h          |  2 ++
- 7 files changed, 70 insertions(+), 7 deletions(-)
+ 7 files changed, 69 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
 index b469de0dd9b6..23747996a1ed 100644
@@ -98,15 +103,14 @@ index b469de0dd9b6..23747996a1ed 100644
  intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
  {
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 843cb6f2f696..e0db65807f2a 100644
+index 843cb6f2f696..5ade585c29e8 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -431,7 +431,14 @@ void intel_engines_free(struct intel_gt *gt)
+@@ -431,7 +431,13 @@ void intel_engines_free(struct intel_gt *gt)
  	struct intel_engine_cs *engine;
  	enum intel_engine_id id;
  
 +	/* Free the requests! dma-resv keeps fences around for an eternity */
-+	i915_gem_drain_freed_objects(gt->i915);
 +	rcu_barrier();
 +
  	for_each_engine(engine, gt, id) {
@@ -116,7 +120,7 @@ index 843cb6f2f696..e0db65807f2a 100644
  		kfree(engine);
  		gt->engine[id] = NULL;
  	}
-@@ -602,6 +609,30 @@ static int init_status_page(struct intel_engine_cs *engine)
+@@ -602,6 +608,30 @@ static int init_status_page(struct intel_engine_cs *engine)
  	return ret;
  }
  
@@ -147,7 +151,7 @@ index 843cb6f2f696..e0db65807f2a 100644
  static int engine_setup_common(struct intel_engine_cs *engine)
  {
  	int err;
-@@ -612,6 +643,9 @@ static int engine_setup_common(struct intel_engine_cs *engine)
+@@ -612,6 +642,9 @@ static int engine_setup_common(struct intel_engine_cs *engine)
  	if (err)
  		return err;
  
@@ -157,7 +161,7 @@ index 843cb6f2f696..e0db65807f2a 100644
  	intel_engine_init_active(engine, ENGINE_PHYSICAL);
  	intel_engine_init_breadcrumbs(engine);
  	intel_engine_init_execlists(engine);
-@@ -630,6 +664,10 @@ static int engine_setup_common(struct intel_engine_cs *engine)
+@@ -630,6 +663,10 @@ static int engine_setup_common(struct intel_engine_cs *engine)
  	intel_engine_init_ctx_wa(engine);
  
  	return 0;
