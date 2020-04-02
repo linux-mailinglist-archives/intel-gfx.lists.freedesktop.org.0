@@ -2,26 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09D819C434
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 291E819C42B
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:31:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C2776EAA2;
-	Thu,  2 Apr 2020 14:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 124C76E07F;
+	Thu,  2 Apr 2020 14:31:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCA5F6EA9E
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECC506EAA6
  for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 14:31:14 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 16:30:58 +0200
-Message-Id: <20200402143109.1801605-12-maarten.lankhorst@linux.intel.com>
+Date: Thu,  2 Apr 2020 16:30:59 +0200
+Message-Id: <20200402143109.1801605-13-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
 References: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/23] drm/i915: Rework intel_context pinning to
- do everything outside of pin_mutex
+Subject: [Intel-gfx] [PATCH 13/23] drm/i915: Make sure execbuffer always
+ passes ww state to i915_vma_pin.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,509 +40,1034 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of doing everything inside of pin_mutex, we move all pinning
-outside. Because i915_active has its own reference counting and
-pinning is also having the same issues vs mutexes, we make sure
-everything is pinned first, so the pinning in i915_active only needs
-to bump refcounts. This allows us to take pin refcounts correctly
-all the time.
+As a preparation step for full object locking and wait/wound handling
+during pin and object mapping, ensure that we always pass the ww context
+in i915_gem_execbuffer.c to i915_vma_pin, use lockdep to ensure this
+happens.
+
+This also requires changing the order of eb_parse slightly, to ensure
+we pass ww at a point where we could still handle -EDEADLK safely.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       | 233 +++++++++++-------
- drivers/gpu/drm/i915/gt/intel_context_types.h |   4 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  34 ++-
- drivers/gpu/drm/i915/gt/intel_renderstate.c   |   1 -
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  13 +-
- drivers/gpu/drm/i915/gt/mock_engine.c         |  13 +-
- 6 files changed, 191 insertions(+), 107 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 136 ++++++++++--------
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |  65 +++++----
+ drivers/gpu/drm/i915/gt/intel_context.h       |  13 ++
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c          |  10 +-
+ drivers/gpu/drm/i915/gt/intel_ring.h          |   3 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  15 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.c      |  12 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.h      |   3 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |   3 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |   4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  13 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  11 +-
+ drivers/gpu/drm/i915/i915_vma.c               |  13 +-
+ drivers/gpu/drm/i915/i915_vma.h               |  13 +-
+ 24 files changed, 213 insertions(+), 131 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index e4aece20bc80..bc0ed268ccb8 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -93,79 +93,6 @@ static void intel_context_active_release(struct intel_context *ce)
- 	i915_active_release(&ce->active);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2e2e5ce82dc2..a429e90956f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3441,7 +3441,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 	if (IS_ERR(vma))
+ 		goto err_obj;
+ 
+-	if (i915_ggtt_pin(vma, 0, PIN_MAPPABLE | PIN_OFFSET_FIXED | base))
++	if (i915_ggtt_pin(vma, NULL, 0, PIN_MAPPABLE | PIN_OFFSET_FIXED | base))
+ 		goto err_obj;
+ 
+ 	if (i915_gem_object_is_tiled(obj) &&
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 062848951095..f5b01e70eb61 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1145,7 +1145,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 
+ 		i915_gem_ww_ctx_init(&ww, true);
+ retry:
+-		err = intel_context_pin(ce);
++		err = intel_context_pin_ww(ce, &ww);
+ 		if (err)
+ 			goto err;
+ 
+@@ -1238,7 +1238,7 @@ static int pin_ppgtt_update(struct intel_context *ce, struct i915_gem_ww_ctx *ww
+ 
+ 	if (!HAS_LOGICAL_RING_CONTEXTS(vm->i915))
+ 		/* ppGTT is not part of the legacy context image */
+-		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm));
++		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm), ww);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index ed111af8f264..d7bf96e9986a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -421,16 +421,17 @@ eb_pin_vma(struct i915_execbuffer *eb,
+ 		pin_flags |= PIN_GLOBAL;
+ 
+ 	/* Attempt to reuse the current location if available */
+-	if (unlikely(i915_vma_pin(vma, 0, 0, pin_flags))) {
++	/* TODO: Add -EDEADLK handling here */
++	if (unlikely(i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags))) {
+ 		if (entry->flags & EXEC_OBJECT_PINNED)
+ 			return false;
+ 
+ 		/* Failing that pick any _free_ space if suitable */
+-		if (unlikely(i915_vma_pin(vma,
+-					  entry->pad_to_size,
+-					  entry->alignment,
+-					  eb_pin_flags(entry, ev->flags) |
+-					  PIN_USER | PIN_NOEVICT)))
++		if (unlikely(i915_vma_pin_ww(vma, &eb->ww,
++					     entry->pad_to_size,
++					     entry->alignment,
++					     eb_pin_flags(entry, ev->flags) |
++					     PIN_USER | PIN_NOEVICT)))
+ 			return false;
+ 	}
+ 
+@@ -572,7 +573,7 @@ static inline int use_cpu_reloc(const struct reloc_cache *cache,
+ 		obj->cache_level != I915_CACHE_NONE);
  }
  
--int __intel_context_do_pin(struct intel_context *ce)
--{
--	int err;
--
--	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
--		err = intel_context_alloc_state(ce);
--		if (err)
--			return err;
--	}
--
--	err = i915_active_acquire(&ce->active);
--	if (err)
--		return err;
--
--	if (mutex_lock_interruptible(&ce->pin_mutex)) {
--		err = -EINTR;
--		goto out_release;
--	}
--
--	if (unlikely(intel_context_is_closed(ce))) {
--		err = -ENOENT;
--		goto out_unlock;
--	}
--
--	if (likely(!atomic_add_unless(&ce->pin_count, 1, 0))) {
--		err = intel_context_active_acquire(ce);
--		if (unlikely(err))
--			goto out_unlock;
--
--		err = ce->ops->pin(ce);
--		if (unlikely(err))
--			goto err_active;
--
--		CE_TRACE(ce, "pin ring:{start:%08x, head:%04x, tail:%04x}\n",
--			 i915_ggtt_offset(ce->ring->vma),
--			 ce->ring->head, ce->ring->tail);
--
--		smp_mb__before_atomic(); /* flush pin before it is visible */
--		atomic_inc(&ce->pin_count);
--	}
--
--	GEM_BUG_ON(!intel_context_is_pinned(ce)); /* no overflow! */
--	GEM_BUG_ON(i915_active_is_idle(&ce->active));
--	goto out_unlock;
--
--err_active:
--	intel_context_active_release(ce);
--out_unlock:
--	mutex_unlock(&ce->pin_mutex);
--out_release:
--	i915_active_release(&ce->active);
--	return err;
--}
--
--void intel_context_unpin(struct intel_context *ce)
--{
--	if (!atomic_dec_and_test(&ce->pin_count))
--		return;
--
--	CE_TRACE(ce, "unpin\n");
--	ce->ops->unpin(ce);
--
--	/*
--	 * Once released, we may asynchronously drop the active reference.
--	 * As that may be the only reference keeping the context alive,
--	 * take an extra now so that it is not freed before we finish
--	 * dereferencing it.
--	 */
--	intel_context_get(ce);
--	intel_context_active_release(ce);
--	intel_context_put(ce);
--}
--
- static int __context_pin_state(struct i915_vma *vma)
+-static int eb_reserve_vma(const struct i915_execbuffer *eb,
++static int eb_reserve_vma(struct i915_execbuffer *eb,
+ 			  struct eb_vma *ev,
+ 			  u64 pin_flags)
  {
- 	unsigned int bias = i915_ggtt_pin_bias(vma) | PIN_OFFSET_BIAS;
-@@ -225,6 +152,138 @@ static void __ring_retire(struct intel_ring *ring)
- 	i915_active_release(&ring->vma->active);
+@@ -587,7 +588,7 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+ 			return err;
+ 	}
+ 
+-	err = i915_vma_pin(vma,
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
+ 			   eb_pin_flags(entry, ev->flags) | pin_flags);
+ 	if (err)
+@@ -1078,9 +1079,10 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
  }
  
-+static int intel_context_pre_pin(struct intel_context *ce)
+ static void *reloc_iomap(struct drm_i915_gem_object *obj,
+-			 struct reloc_cache *cache,
++			 struct i915_execbuffer *eb,
+ 			 unsigned long page)
+ {
++	struct reloc_cache *cache = &eb->reloc_cache;
+ 	struct i915_ggtt *ggtt = cache_to_ggtt(cache);
+ 	unsigned long offset;
+ 	void *vaddr;
+@@ -1102,10 +1104,13 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
+ 		if (err)
+ 			return ERR_PTR(err);
+ 
+-		vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
+-					       PIN_MAPPABLE |
+-					       PIN_NONBLOCK /* NOWARN */ |
+-					       PIN_NOEVICT);
++		vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
++						  PIN_MAPPABLE |
++						  PIN_NONBLOCK /* NOWARN */ |
++						  PIN_NOEVICT);
++		if (vma == ERR_PTR(-EDEADLK))
++			return vma;
++
+ 		if (IS_ERR(vma)) {
+ 			memset(&cache->node, 0, sizeof(cache->node));
+ 			mutex_lock(&ggtt->vm.mutex);
+@@ -1141,9 +1146,10 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
+ }
+ 
+ static void *reloc_vaddr(struct drm_i915_gem_object *obj,
+-			 struct reloc_cache *cache,
++			 struct i915_execbuffer *eb,
+ 			 unsigned long page)
+ {
++	struct reloc_cache *cache = &eb->reloc_cache;
+ 	void *vaddr;
+ 
+ 	if (cache->page == page) {
+@@ -1151,7 +1157,7 @@ static void *reloc_vaddr(struct drm_i915_gem_object *obj,
+ 	} else {
+ 		vaddr = NULL;
+ 		if ((cache->vaddr & KMAP) == 0)
+-			vaddr = reloc_iomap(obj, cache, page);
++			vaddr = reloc_iomap(obj, eb, page);
+ 		if (!vaddr)
+ 			vaddr = reloc_kmap(obj, cache, page);
+ 	}
+@@ -1234,7 +1240,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 		goto err_unmap;
+ 	}
+ 
+-	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
++	err = i915_vma_pin_ww(batch, &eb->ww, 0, 0, PIN_USER | PIN_NONBLOCK);
+ 	if (err)
+ 		goto err_unmap;
+ 
+@@ -1388,7 +1394,7 @@ relocate_entry(struct i915_vma *vma,
+ 	}
+ 
+ repeat:
+-	vaddr = reloc_vaddr(vma->obj, &eb->reloc_cache, offset >> PAGE_SHIFT);
++	vaddr = reloc_vaddr(vma->obj, eb, offset >> PAGE_SHIFT);
+ 	if (IS_ERR(vaddr))
+ 		return PTR_ERR(vaddr);
+ 
+@@ -1804,6 +1810,7 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
+ 	rq = eb_pin_engine(eb, false);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
++		rq = NULL;
+ 		goto err;
+ 	}
+ 
+@@ -2073,7 +2080,8 @@ static int i915_reset_gen7_sol_offsets(struct i915_request *rq)
+ }
+ 
+ static struct i915_vma *
+-shadow_batch_pin(struct drm_i915_gem_object *obj,
++shadow_batch_pin(struct i915_execbuffer *eb,
++		 struct drm_i915_gem_object *obj,
+ 		 struct i915_address_space *vm,
+ 		 unsigned int flags)
+ {
+@@ -2084,7 +2092,7 @@ shadow_batch_pin(struct drm_i915_gem_object *obj,
+ 	if (IS_ERR(vma))
+ 		return vma;
+ 
+-	err = i915_vma_pin(vma, 0, 0, flags);
++	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, flags);
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
+@@ -2196,16 +2204,33 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	return err;
+ }
+ 
++static struct i915_vma *eb_dispatch_secure(struct i915_execbuffer *eb, struct i915_vma *vma)
 +{
-+	int err;
-+
-+	CE_TRACE(ce, "active\n");
-+
-+	err = __ring_active(ce->ring);
-+	if (err)
-+		return err;
-+
-+	err = intel_timeline_pin(ce->timeline);
-+	if (err)
-+		goto err_ring;
-+
-+	if (!ce->state)
-+		return 0;
-+
-+	err = __context_pin_state(ce->state);
-+	if (err)
-+		goto err_timeline;
-+
-+
-+	return 0;
-+
-+err_timeline:
-+	intel_timeline_unpin(ce->timeline);
-+err_ring:
-+	__ring_retire(ce->ring);
-+	return err;
-+}
-+
-+static void intel_context_post_unpin(struct intel_context *ce)
-+{
-+	if (ce->state)
-+		__context_unpin_state(ce->state);
-+
-+	intel_timeline_unpin(ce->timeline);
-+	__ring_retire(ce->ring);
-+}
-+
-+int __intel_context_do_pin(struct intel_context *ce)
-+{
-+	bool handoff = false;
-+	void *vaddr;
-+	int err = 0;
-+
-+	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
-+		err = intel_context_alloc_state(ce);
-+		if (err)
-+			return err;
-+	}
-+
 +	/*
-+	 * We always pin the context/ring/timeline here, to ensure a pin
-+	 * refcount for __intel_context_active(), which prevent a lock
-+	 * inversion of ce->pin_mutex vs dma_resv_lock().
-+	 */
-+	err = intel_context_pre_pin(ce);
-+	if (err)
-+		return err;
++	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
++	 * batch" bit. Hence we need to pin secure batches into the global gtt.
++	 * hsw should have this fixed, but bdw mucks it up again. */
++	if (eb->batch_flags & I915_DISPATCH_SECURE)
++		return i915_gem_object_ggtt_pin_ww(vma->obj, &eb->ww, NULL, 0, 0, 0);
 +
-+	err = i915_active_acquire(&ce->active);
-+	if (err)
-+		goto err_ctx_unpin;
-+
-+	err = ce->ops->pre_pin(ce, &vaddr);
-+	if (err)
-+		goto err_release;
-+
-+	err = mutex_lock_interruptible(&ce->pin_mutex);
-+	if (err)
-+		goto err_post_unpin;
-+
-+	if (unlikely(intel_context_is_closed(ce))) {
-+		err = -ENOENT;
-+		goto err_unlock;
-+	}
-+
-+	if (likely(!atomic_add_unless(&ce->pin_count, 1, 0))) {
-+		err = intel_context_active_acquire(ce);
-+		if (unlikely(err))
-+			goto err_unlock;
-+
-+		err = ce->ops->pin(ce, vaddr);
-+		if (err) {
-+			intel_context_active_release(ce);
-+			goto err_unlock;
-+		}
-+
-+		CE_TRACE(ce, "pin ring:{start:%08x, head:%04x, tail:%04x}\n",
-+			 i915_ggtt_offset(ce->ring->vma),
-+			 ce->ring->head, ce->ring->tail);
-+
-+		handoff = true;
-+		smp_mb__before_atomic(); /* flush pin before it is visible */
-+		atomic_inc(&ce->pin_count);
-+	}
-+
-+	GEM_BUG_ON(!intel_context_is_pinned(ce)); /* no overflow! */
-+
-+err_unlock:
-+	mutex_unlock(&ce->pin_mutex);
-+err_post_unpin:
-+	if (!handoff)
-+		ce->ops->post_unpin(ce);
-+err_release:
-+	i915_active_release(&ce->active);
-+err_ctx_unpin:
-+	intel_context_post_unpin(ce);
-+	return err;
++	return NULL;
 +}
 +
-+void intel_context_unpin(struct intel_context *ce)
-+{
-+	if (!atomic_dec_and_test(&ce->pin_count))
-+		return;
-+
-+	CE_TRACE(ce, "unpin\n");
-+	ce->ops->unpin(ce);
-+	ce->ops->post_unpin(ce);
-+
-+	/*
-+	 * Once released, we may asynchronously drop the active reference.
-+	 * As that may be the only reference keeping the context alive,
-+	 * take an extra now so that it is not freed before we finish
-+	 * dereferencing it.
-+	 */
-+	intel_context_get(ce);
-+	intel_context_active_release(ce);
-+	intel_context_put(ce);
-+}
-+
- __i915_active_call
- static void __intel_context_retire(struct i915_active *active)
+ static int eb_parse(struct i915_execbuffer *eb)
  {
-@@ -235,43 +294,35 @@ static void __intel_context_retire(struct i915_active *active)
- 		 intel_context_get_avg_runtime_ns(ce));
- 
- 	set_bit(CONTEXT_VALID_BIT, &ce->flags);
--	if (ce->state)
--		__context_unpin_state(ce->state);
--
--	intel_timeline_unpin(ce->timeline);
--	__ring_retire(ce->ring);
--
-+	intel_context_post_unpin(ce);
- 	intel_context_put(ce);
- }
- 
-+__i915_active_call
- static int __intel_context_active(struct i915_active *active)
- {
- 	struct intel_context *ce = container_of(active, typeof(*ce), active);
+ 	struct drm_i915_private *i915 = eb->i915;
+ 	struct intel_engine_pool_node *pool;
+-	struct i915_vma *shadow, *trampoline;
++	struct i915_vma *shadow, *trampoline, *batch;
+ 	unsigned int len;
  	int err;
  
--	CE_TRACE(ce, "active\n");
--
- 	intel_context_get(ce);
- 
-+	/* everything should already be activated by intel_context_pre_pin() */
- 	err = __ring_active(ce->ring);
--	if (err)
-+	if (GEM_WARN_ON(err))
- 		goto err_put;
- 
- 	err = intel_timeline_pin(ce->timeline);
--	if (err)
-+	if (GEM_WARN_ON(err))
- 		goto err_ring;
- 
--	if (!ce->state)
+-	if (!eb_use_cmdparser(eb))
 -		return 0;
--
--	err = __context_pin_state(ce->state);
--	if (err)
--		goto err_timeline;
-+	if (ce->state) {
-+		GEM_WARN_ON(!i915_active_acquire_if_busy(&ce->state->active));
-+		__i915_vma_pin(ce->state);
-+		i915_vma_make_unshrinkable(ce->state);
++	if (!eb_use_cmdparser(eb)) {
++		batch = eb_dispatch_secure(eb, eb->batch->vma);
++		if (IS_ERR(batch))
++			return PTR_ERR(batch);
++
++		goto secure_batch;
 +	}
  
- 	return 0;
+ 	len = eb->batch_len;
+ 	if (!CMDPARSER_USES_GGTT(eb->i915)) {
+@@ -2230,7 +2255,7 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 	if (err)
+ 		goto err;
  
--err_timeline:
--	intel_timeline_unpin(ce->timeline);
- err_ring:
- 	__ring_retire(ce->ring);
- err_put:
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 07cb83a0d017..395af0476a4e 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -30,8 +30,10 @@ struct intel_ring;
- struct intel_context_ops {
- 	int (*alloc)(struct intel_context *ce);
+-	shadow = shadow_batch_pin(pool->obj, eb->context->vm, PIN_USER);
++	shadow = shadow_batch_pin(eb, pool->obj, eb->context->vm, PIN_USER);
+ 	if (IS_ERR(shadow)) {
+ 		err = PTR_ERR(shadow);
+ 		goto err;
+@@ -2241,7 +2266,7 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 	if (CMDPARSER_USES_GGTT(eb->i915)) {
+ 		trampoline = shadow;
  
--	int (*pin)(struct intel_context *ce);
-+	int (*pre_pin)(struct intel_context *ce, void **vaddr);
-+	int (*pin)(struct intel_context *ce, void *vaddr);
- 	void (*unpin)(struct intel_context *ce);
-+	void (*post_unpin)(struct intel_context *ce);
+-		shadow = shadow_batch_pin(pool->obj,
++		shadow = shadow_batch_pin(eb, pool->obj,
+ 					  &eb->engine->gt->ggtt->vm,
+ 					  PIN_GLOBAL);
+ 		if (IS_ERR(shadow)) {
+@@ -2253,20 +2278,36 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 		eb->batch_flags |= I915_DISPATCH_SECURE;
+ 	}
  
- 	void (*enter)(struct intel_context *ce);
- 	void (*exit)(struct intel_context *ce);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3479cda37fdc..8f77b5bff001 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3071,7 +3071,10 @@ static void execlists_context_unpin(struct intel_context *ce)
- {
- 	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_PN * PAGE_SIZE,
- 		      ce->engine);
-+}
- 
-+static void execlists_context_post_unpin(struct intel_context *ce)
-+{
- 	i915_gem_object_unpin_map(ce->state->obj);
- }
- 
-@@ -3101,20 +3104,23 @@ __execlists_update_reg_state(const struct intel_context *ce,
- }
- 
- static int
--__execlists_context_pin(struct intel_context *ce,
--			struct intel_engine_cs *engine)
-+execlists_context_pre_pin(struct intel_context *ce, void **vaddr)
- {
--	void *vaddr;
--
- 	GEM_BUG_ON(!ce->state);
- 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
- 
--	vaddr = i915_gem_object_pin_map(ce->state->obj,
--					i915_coherent_map_type(engine->i915) |
-+	*vaddr = i915_gem_object_pin_map(ce->state->obj,
-+					i915_coherent_map_type(ce->engine->i915) |
- 					I915_MAP_OVERRIDE);
--	if (IS_ERR(vaddr))
--		return PTR_ERR(vaddr);
- 
-+	return PTR_ERR_OR_ZERO(*vaddr);
-+}
++	batch = eb_dispatch_secure(eb, shadow);
++	if (IS_ERR(batch)) {
++		err = PTR_ERR(batch);
++		goto err_trampoline;
++	}
 +
-+static int
-+__execlists_context_pin(struct intel_context *ce,
-+			struct intel_engine_cs *engine,
-+			void *vaddr)
-+{
- 	ce->lrc_desc = lrc_descriptor(ce, engine) | CTX_DESC_FORCE_RESTORE;
- 	ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
- 	__execlists_update_reg_state(ce, engine, ce->ring->tail);
-@@ -3122,9 +3128,9 @@ __execlists_context_pin(struct intel_context *ce,
+ 	err = eb_parse_pipeline(eb, shadow, trampoline);
+ 	if (err)
+-		goto err_trampoline;
++		goto err_unpin_batch;
+ 
+-	eb->vma[eb->buffer_count].vma = i915_vma_get(shadow);
+-	eb->vma[eb->buffer_count].flags = __EXEC_OBJECT_HAS_PIN;
+ 	eb->batch = &eb->vma[eb->buffer_count++];
++	eb->batch->vma = i915_vma_get(shadow);
++	eb->batch->flags = __EXEC_OBJECT_HAS_PIN;
+ 
+ 	eb->trampoline = trampoline;
+ 	eb->batch_start_offset = 0;
+ 
+ 	shadow->private = pool;
++
++secure_batch:
++	if (batch) {
++		eb->batch = &eb->vma[eb->buffer_count++];
++		eb->batch->flags = __EXEC_OBJECT_HAS_PIN;
++		eb->batch->vma = batch;
++	}
  	return 0;
- }
  
--static int execlists_context_pin(struct intel_context *ce)
-+static int execlists_context_pin(struct intel_context *ce, void *vaddr)
- {
--	return __execlists_context_pin(ce, ce->engine);
-+	return __execlists_context_pin(ce, ce->engine, vaddr);
- }
++err_unpin_batch:
++	if (batch)
++		i915_vma_unpin(batch);
+ err_trampoline:
+ 	if (trampoline)
+ 		i915_vma_unpin(trampoline);
+@@ -2422,7 +2463,7 @@ static struct i915_request *eb_pin_engine(struct i915_execbuffer *eb, bool throt
+ 	 * GGTT space, so do this first before we reserve a seqno for
+ 	 * ourselves.
+ 	 */
+-	err = intel_context_pin(ce);
++	err = intel_context_pin_ww(ce, &eb->ww);
+ 	if (err)
+ 		return ERR_PTR(err);
  
- static int execlists_context_alloc(struct intel_context *ce)
-@@ -3150,8 +3156,10 @@ static void execlists_context_reset(struct intel_context *ce)
- static const struct intel_context_ops execlists_context_ops = {
- 	.alloc = execlists_context_alloc,
+@@ -2867,33 +2908,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
  
-+	.pre_pin = execlists_context_pre_pin,
- 	.pin = execlists_context_pin,
- 	.unpin = execlists_context_unpin,
-+	.post_unpin = execlists_context_post_unpin,
+ 	ww_acquire_done(&eb.ww.ctx);
  
- 	.enter = intel_context_enter_engine,
- 	.exit = intel_context_exit_engine,
-@@ -4930,13 +4938,13 @@ static int virtual_context_alloc(struct intel_context *ce)
- 	return __execlists_context_alloc(ce, ve->siblings[0]);
- }
+-	/*
+-	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
+-	 * batch" bit. Hence we need to pin secure batches into the global gtt.
+-	 * hsw should have this fixed, but bdw mucks it up again. */
+-	if (eb.batch_flags & I915_DISPATCH_SECURE) {
+-		struct i915_vma *vma;
+-
+-		/*
+-		 * So on first glance it looks freaky that we pin the batch here
+-		 * outside of the reservation loop. But:
+-		 * - The batch is already pinned into the relevant ppgtt, so we
+-		 *   already have the backing storage fully allocated.
+-		 * - No other BO uses the global gtt (well contexts, but meh),
+-		 *   so we don't really have issues with multiple objects not
+-		 *   fitting due to fragmentation.
+-		 * So this is actually safe.
+-		 */
+-		vma = i915_gem_object_ggtt_pin(eb.batch->vma->obj, NULL, 0, 0, 0);
+-		if (IS_ERR(vma)) {
+-			err = PTR_ERR(vma);
+-			goto err_parse;
+-		}
+-
+-		batch = vma;
+-	} else {
+-		batch = eb.batch->vma;
+-	}
++	batch = eb.batch->vma;
  
--static int virtual_context_pin(struct intel_context *ce)
-+static int virtual_context_pin(struct intel_context *ce, void *vaddr)
- {
- 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
- 	int err;
+ 	/* All GPU relocation batches must be submitted prior to the user rq */
+ 	GEM_BUG_ON(eb.reloc_cache.rq);
+@@ -2966,9 +2981,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	i915_request_put(eb.request);
  
- 	/* Note: we must use a real engine class for setting up reg state */
--	err = __execlists_context_pin(ce, ve->siblings[0]);
-+	err = __execlists_context_pin(ce, ve->siblings[0], vaddr);
+ err_batch_unpin:
+-	if (eb.batch_flags & I915_DISPATCH_SECURE)
+-		i915_vma_unpin(batch);
+-err_parse:
+ 	if (batch->private)
+ 		intel_engine_pool_put(batch->private);
+ err_vma:
+@@ -3051,7 +3063,9 @@ i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
+ 	/* Copy in the exec list from userland */
+ 	exec_list = kvmalloc_array(count, sizeof(*exec_list),
+ 				   __GFP_NOWARN | GFP_KERNEL);
+-	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
++
++	/* Allocate extra slots for use by the command parser */
++	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
+ 				    __GFP_NOWARN | GFP_KERNEL);
+ 	if (exec_list == NULL || exec2_list == NULL) {
+ 		drm_dbg(&i915->drm,
+@@ -3129,8 +3143,8 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
  	if (err)
  		return err;
  
-@@ -4969,8 +4977,10 @@ static void virtual_context_exit(struct intel_context *ce)
- static const struct intel_context_ops virtual_context_ops = {
- 	.alloc = virtual_context_alloc,
+-	/* Allocate an extra slot for use by the command parser */
+-	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
++	/* Allocate extra slots for use by the command parser */
++	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
+ 				    __GFP_NOWARN | GFP_KERNEL);
+ 	if (exec2_list == NULL) {
+ 		drm_dbg(&i915->drm, "Failed to allocate exec list for %zd buffers\n",
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+index f4fec7eb4064..8248efa9229f 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+@@ -376,7 +376,7 @@ static struct i915_vma *pd_vma_create(struct gen6_ppgtt *ppgtt, int size)
+ 	return vma;
+ }
  
-+	.pre_pin = execlists_context_pre_pin,
- 	.pin = virtual_context_pin,
- 	.unpin = execlists_context_unpin,
-+	.post_unpin = execlists_context_post_unpin,
+-int gen6_ppgtt_pin(struct i915_ppgtt *base)
++int gen6_ppgtt_pin(struct i915_ppgtt *base, struct i915_gem_ww_ctx *ww)
+ {
+ 	struct gen6_ppgtt *ppgtt = to_gen6_ppgtt(base);
+ 	int err;
+@@ -402,7 +402,7 @@ int gen6_ppgtt_pin(struct i915_ppgtt *base)
+ 	 */
+ 	err = 0;
+ 	if (!atomic_read(&ppgtt->pin_count))
+-		err = i915_ggtt_pin(ppgtt->vma, GEN6_PD_ALIGN, PIN_HIGH);
++		err = i915_ggtt_pin(ppgtt->vma, ww, GEN6_PD_ALIGN, PIN_HIGH);
+ 	if (!err)
+ 		atomic_inc(&ppgtt->pin_count);
+ 	mutex_unlock(&ppgtt->pin_mutex);
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+index 72e481806c96..00032a931bae 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+@@ -8,6 +8,8 @@
  
- 	.enter = virtual_context_enter,
- 	.exit = virtual_context_exit,
+ #include "intel_gtt.h"
+ 
++struct i915_gem_ww_ctx;
++
+ struct gen6_ppgtt {
+ 	struct i915_ppgtt base;
+ 
+@@ -66,7 +68,7 @@ static inline struct gen6_ppgtt *to_gen6_ppgtt(struct i915_ppgtt *base)
+ 		     (pt = i915_pt_entry(pd, iter), true);		\
+ 	     ++iter)
+ 
+-int gen6_ppgtt_pin(struct i915_ppgtt *base);
++int gen6_ppgtt_pin(struct i915_ppgtt *base, struct i915_gem_ww_ctx *ww);
+ void gen6_ppgtt_unpin(struct i915_ppgtt *base);
+ void gen6_ppgtt_unpin_all(struct i915_ppgtt *base);
+ void gen6_ppgtt_enable(struct intel_gt *gt);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index bc0ed268ccb8..113d0bda1bcf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -93,12 +93,12 @@ static void intel_context_active_release(struct intel_context *ce)
+ 	i915_active_release(&ce->active);
+ }
+ 
+-static int __context_pin_state(struct i915_vma *vma)
++static int __context_pin_state(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
+ {
+ 	unsigned int bias = i915_ggtt_pin_bias(vma) | PIN_OFFSET_BIAS;
+ 	int err;
+ 
+-	err = i915_ggtt_pin(vma, 0, bias | PIN_HIGH);
++	err = i915_ggtt_pin(vma, ww, 0, bias | PIN_HIGH);
+ 	if (err)
+ 		return err;
+ 
+@@ -127,7 +127,8 @@ static void __context_unpin_state(struct i915_vma *vma)
+ 	__i915_vma_unpin(vma);
+ }
+ 
+-static int __ring_active(struct intel_ring *ring)
++static int __ring_active(struct intel_ring *ring,
++			 struct i915_gem_ww_ctx *ww)
+ {
+ 	int err;
+ 
+@@ -135,7 +136,7 @@ static int __ring_active(struct intel_ring *ring)
+ 	if (err)
+ 		return err;
+ 
+-	err = intel_ring_pin(ring);
++	err = intel_ring_pin(ring, ww);
+ 	if (err)
+ 		goto err_active;
+ 
+@@ -152,24 +153,25 @@ static void __ring_retire(struct intel_ring *ring)
+ 	i915_active_release(&ring->vma->active);
+ }
+ 
+-static int intel_context_pre_pin(struct intel_context *ce)
++static int intel_context_pre_pin(struct intel_context *ce,
++				 struct i915_gem_ww_ctx *ww)
+ {
+ 	int err;
+ 
+ 	CE_TRACE(ce, "active\n");
+ 
+-	err = __ring_active(ce->ring);
++	err = __ring_active(ce->ring, ww);
+ 	if (err)
+ 		return err;
+ 
+-	err = intel_timeline_pin(ce->timeline);
++	err = intel_timeline_pin(ce->timeline, ww);
+ 	if (err)
+ 		goto err_ring;
+ 
+ 	if (!ce->state)
+ 		return 0;
+ 
+-	err = __context_pin_state(ce->state);
++	err = __context_pin_state(ce->state, ww);
+ 	if (err)
+ 		goto err_timeline;
+ 
+@@ -192,7 +194,8 @@ static void intel_context_post_unpin(struct intel_context *ce)
+ 	__ring_retire(ce->ring);
+ }
+ 
+-int __intel_context_do_pin(struct intel_context *ce)
++int __intel_context_do_pin_ww(struct intel_context *ce,
++			      struct i915_gem_ww_ctx *ww)
+ {
+ 	bool handoff = false;
+ 	void *vaddr;
+@@ -209,7 +212,14 @@ int __intel_context_do_pin(struct intel_context *ce)
+ 	 * refcount for __intel_context_active(), which prevent a lock
+ 	 * inversion of ce->pin_mutex vs dma_resv_lock().
+ 	 */
+-	err = intel_context_pre_pin(ce);
++
++	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
++	if (!err && ce->ring->vma->obj)
++		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
++	if (!err && ce->state)
++		err = i915_gem_object_lock(ce->state->obj, ww);
++	if (!err)
++		err = intel_context_pre_pin(ce, ww);
+ 	if (err)
+ 		return err;
+ 
+@@ -217,7 +227,7 @@ int __intel_context_do_pin(struct intel_context *ce)
+ 	if (err)
+ 		goto err_ctx_unpin;
+ 
+-	err = ce->ops->pre_pin(ce, &vaddr);
++	err = ce->ops->pre_pin(ce, ww, &vaddr);
+ 	if (err)
+ 		goto err_release;
+ 
+@@ -264,6 +274,23 @@ int __intel_context_do_pin(struct intel_context *ce)
+ 	return err;
+ }
+ 
++int __intel_context_do_pin(struct intel_context *ce)
++{
++	struct i915_gem_ww_ctx ww;
++	int err;
++
++	i915_gem_ww_ctx_init(&ww, true);
++retry:
++	err = __intel_context_do_pin_ww(ce, &ww);
++	if (err == -EDEADLK) {
++		err = i915_gem_ww_ctx_backoff(&ww);
++		if (!err)
++			goto retry;
++	}
++	i915_gem_ww_ctx_fini(&ww);
++	return err;
++}
++
+ void intel_context_unpin(struct intel_context *ce)
+ {
+ 	if (!atomic_dec_and_test(&ce->pin_count))
+@@ -302,18 +329,14 @@ __i915_active_call
+ static int __intel_context_active(struct i915_active *active)
+ {
+ 	struct intel_context *ce = container_of(active, typeof(*ce), active);
+-	int err;
+ 
+ 	intel_context_get(ce);
+ 
+ 	/* everything should already be activated by intel_context_pre_pin() */
+-	err = __ring_active(ce->ring);
+-	if (GEM_WARN_ON(err))
+-		goto err_put;
++	GEM_WARN_ON(!i915_active_acquire_if_busy(&ce->ring->vma->active));
++	__intel_ring_pin(ce->ring);
+ 
+-	err = intel_timeline_pin(ce->timeline);
+-	if (GEM_WARN_ON(err))
+-		goto err_ring;
++	__intel_timeline_pin(ce->timeline);
+ 
+ 	if (ce->state) {
+ 		GEM_WARN_ON(!i915_active_acquire_if_busy(&ce->state->active));
+@@ -322,12 +345,6 @@ static int __intel_context_active(struct i915_active *active)
+ 	}
+ 
+ 	return 0;
+-
+-err_ring:
+-	__ring_retire(ce->ring);
+-err_put:
+-	intel_context_put(ce);
+-	return err;
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 07be021882cc..fda2eba81e22 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -25,6 +25,8 @@
+ 		     ##__VA_ARGS__);					\
+ } while (0)
+ 
++struct i915_gem_ww_ctx;
++
+ void intel_context_init(struct intel_context *ce,
+ 			struct intel_engine_cs *engine);
+ void intel_context_fini(struct intel_context *ce);
+@@ -81,6 +83,8 @@ static inline void intel_context_unlock_pinned(struct intel_context *ce)
+ }
+ 
+ int __intel_context_do_pin(struct intel_context *ce);
++int __intel_context_do_pin_ww(struct intel_context *ce,
++			      struct i915_gem_ww_ctx *ww);
+ 
+ static inline bool intel_context_pin_if_active(struct intel_context *ce)
+ {
+@@ -95,6 +99,15 @@ static inline int intel_context_pin(struct intel_context *ce)
+ 	return __intel_context_do_pin(ce);
+ }
+ 
++static inline int intel_context_pin_ww(struct intel_context *ce,
++				       struct i915_gem_ww_ctx *ww)
++{
++	if (likely(intel_context_pin_if_active(ce)))
++		return 0;
++
++	return __intel_context_do_pin_ww(ce, ww);
++}
++
+ static inline void __intel_context_pin(struct intel_context *ce)
+ {
+ 	GEM_BUG_ON(!intel_context_is_pinned(ce));
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 395af0476a4e..2347fe787158 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -23,6 +23,7 @@
+ DECLARE_EWMA(runtime, 3, 8);
+ 
+ struct i915_gem_context;
++struct i915_gem_ww_ctx;
+ struct i915_vma;
+ struct intel_context;
+ struct intel_ring;
+@@ -30,7 +31,7 @@ struct intel_ring;
+ struct intel_context_ops {
+ 	int (*alloc)(struct intel_context *ce);
+ 
+-	int (*pre_pin)(struct intel_context *ce, void **vaddr);
++	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
+ 	int (*pin)(struct intel_context *ce, void *vaddr);
+ 	void (*unpin)(struct intel_context *ce);
+ 	void (*post_unpin)(struct intel_context *ce);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 843cb6f2f696..8931e6dd0715 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -546,7 +546,7 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
+ 	else
+ 		flags = PIN_HIGH;
+ 
+-	return i915_ggtt_pin(vma, 0, flags);
++	return i915_ggtt_pin(vma, NULL, 0, flags);
+ }
+ 
+ static int init_status_page(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index c11e89472ad8..c7c33d87b400 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -344,7 +344,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
+ 		goto err_unref;
+ 	}
+ 
+-	ret = i915_ggtt_pin(vma, 0, PIN_HIGH);
++	ret = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
+ 	if (ret)
+ 		goto err_unref;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 8f77b5bff001..fda08a9784e4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3104,7 +3104,8 @@ __execlists_update_reg_state(const struct intel_context *ce,
+ }
+ 
+ static int
+-execlists_context_pre_pin(struct intel_context *ce, void **vaddr)
++execlists_context_pre_pin(struct intel_context *ce,
++			  struct i915_gem_ww_ctx *ww, void **vaddr)
+ {
+ 	GEM_BUG_ON(!ce->state);
+ 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+@@ -3466,7 +3467,7 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
+ 		goto err;
+ 	}
+ 
+-	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
++	err = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
+ 	if (err)
+ 		goto err;
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index c65554c431f8..7714de594f5a 100644
+index 7714de594f5a..c39d73142950 100644
 --- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
 +++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -270,7 +270,6 @@ void intel_renderstate_fini(struct intel_renderstate *so,
- 			    struct intel_context *ce)
- {
- 	i915_vma_unpin_and_release(&so->vma, 0);
--
- 	intel_context_unpin(ce);
- 	i915_gem_ww_ctx_fini(&so->ww);
+@@ -195,7 +195,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
+ 
+ 	i915_gem_ww_ctx_init(&so->ww, true);
+ retry:
+-	err = intel_context_pin(ce);
++	err = intel_context_pin_ww(ce, &so->ww);
+ 	if (err)
+ 		goto err_fini;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 8cda1b7e17ba..71b404973ce1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -21,7 +21,13 @@ unsigned int intel_ring_update_space(struct intel_ring *ring)
+ 	return space;
  }
+ 
+-int intel_ring_pin(struct intel_ring *ring)
++void __intel_ring_pin(struct intel_ring *ring)
++{
++	GEM_BUG_ON(!atomic_read(&ring->pin_count));
++	atomic_inc(&ring->pin_count);
++}
++
++int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
+ {
+ 	struct i915_vma *vma = ring->vma;
+ 	unsigned int flags;
+@@ -39,7 +45,7 @@ int intel_ring_pin(struct intel_ring *ring)
+ 	else
+ 		flags |= PIN_HIGH;
+ 
+-	ret = i915_ggtt_pin(vma, 0, flags);
++	ret = i915_ggtt_pin(vma, ww, 0, flags);
+ 	if (unlikely(ret))
+ 		goto err_unpin;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.h b/drivers/gpu/drm/i915/gt/intel_ring.h
+index 5bdce24994aa..48a2c327efb3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.h
++++ b/drivers/gpu/drm/i915/gt/intel_ring.h
+@@ -21,7 +21,8 @@ int intel_ring_cacheline_align(struct i915_request *rq);
+ 
+ unsigned int intel_ring_update_space(struct intel_ring *ring);
+ 
+-int intel_ring_pin(struct intel_ring *ring);
++void __intel_ring_pin(struct intel_ring *ring);
++int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww);
+ void intel_ring_unpin(struct intel_ring *ring);
+ void intel_ring_reset(struct intel_ring *ring, u32 tail);
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index d015f7b8b28e..d89475b8cfd6 100644
+index d89475b8cfd6..be60e96b5d1b 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1206,6 +1206,10 @@ static void __context_unpin_ppgtt(struct intel_context *ce)
+@@ -1184,14 +1184,16 @@ static void ring_context_destroy(struct kref *ref)
+ 	intel_context_free(ce);
  }
  
- static void ring_context_unpin(struct intel_context *ce)
-+{
-+}
-+
-+static void ring_context_post_unpin(struct intel_context *ce)
+-static int __context_pin_ppgtt(struct intel_context *ce)
++static int ring_context_pre_pin(struct intel_context *ce,
++				struct i915_gem_ww_ctx *ww,
++				void **unused)
  {
- 	__context_unpin_ppgtt(ce);
+ 	struct i915_address_space *vm;
+ 	int err = 0;
+ 
+ 	vm = vm_alias(ce->vm);
+ 	if (vm)
+-		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)));
++		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)), ww);
+ 
+ 	return err;
  }
-@@ -1303,11 +1307,16 @@ static int ring_context_alloc(struct intel_context *ce)
+@@ -1307,11 +1309,6 @@ static int ring_context_alloc(struct intel_context *ce)
  	return 0;
  }
  
--static int ring_context_pin(struct intel_context *ce)
-+static int ring_context_pre_pin(struct intel_context *ce, void **unused)
+-static int ring_context_pre_pin(struct intel_context *ce, void **unused)
+-{
+-	return __context_pin_ppgtt(ce);
+-}
+-
+ static int ring_context_pin(struct intel_context *ce, void *unused)
  {
- 	return __context_pin_ppgtt(ce);
+ 	return 0;
+@@ -2082,7 +2079,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 	}
+ 	GEM_BUG_ON(timeline->has_initial_breadcrumb);
+ 
+-	err = intel_timeline_pin(timeline);
++	err = intel_timeline_pin(timeline, NULL);
+ 	if (err)
+ 		goto err_timeline;
+ 
+@@ -2092,7 +2089,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 		goto err_timeline_unpin;
+ 	}
+ 
+-	err = intel_ring_pin(ring);
++	err = intel_ring_pin(ring, NULL);
+ 	if (err)
+ 		goto err_ring;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 3779c2ae0d65..0ba4affb9fc6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -313,14 +313,20 @@ intel_timeline_create(struct intel_gt *gt, struct i915_vma *global_hwsp)
+ 	return timeline;
  }
  
-+static int ring_context_pin(struct intel_context *ce, void *unused)
+-int intel_timeline_pin(struct intel_timeline *tl)
++void __intel_timeline_pin(struct intel_timeline *tl)
 +{
-+	return 0;
++	GEM_BUG_ON(!atomic_read(&tl->pin_count));
++	atomic_inc(&tl->pin_count);
 +}
 +
- static void ring_context_reset(struct intel_context *ce)
++int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
  {
- 	intel_ring_reset(ce->ring, ce->ring->emit);
-@@ -1316,8 +1325,10 @@ static void ring_context_reset(struct intel_context *ce)
- static const struct intel_context_ops ring_context_ops = {
- 	.alloc = ring_context_alloc,
+ 	int err;
  
-+	.pre_pin = ring_context_pre_pin,
- 	.pin = ring_context_pin,
- 	.unpin = ring_context_unpin,
-+	.post_unpin = ring_context_post_unpin,
+ 	if (atomic_add_unless(&tl->pin_count, 1, 0))
+ 		return 0;
  
- 	.enter = intel_context_enter_engine,
- 	.exit = intel_context_exit_engine,
+-	err = i915_ggtt_pin(tl->hwsp_ggtt, 0, PIN_HIGH);
++	err = i915_ggtt_pin(tl->hwsp_ggtt, ww, 0, PIN_HIGH);
+ 	if (err)
+ 		return err;
+ 
+@@ -445,7 +451,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 		goto err_rollback;
+ 	}
+ 
+-	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
++	err = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
+ 	if (err) {
+ 		__idle_hwsp_free(vma->private, cacheline);
+ 		goto err_rollback;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index f5b7eade3809..39dd897ad057 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -76,7 +76,8 @@ static inline bool intel_timeline_sync_is_later(struct intel_timeline *tl,
+ 	return __intel_timeline_sync_is_later(tl, fence->context, fence->seqno);
+ }
+ 
+-int intel_timeline_pin(struct intel_timeline *tl);
++void __intel_timeline_pin(struct intel_timeline *tl);
++int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww);
+ void intel_timeline_enter(struct intel_timeline *tl);
+ int intel_timeline_get_seqno(struct intel_timeline *tl,
+ 			     struct i915_request *rq,
 diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index 4a53ded7c2dd..9ec42769e46e 100644
+index 9ec42769e46e..e986cc15081d 100644
 --- a/drivers/gpu/drm/i915/gt/mock_engine.c
 +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -132,6 +132,10 @@ static void mock_context_unpin(struct intel_context *ce)
- {
- }
- 
-+static void mock_context_post_unpin(struct intel_context *ce)
-+{
-+}
-+
- static void mock_context_destroy(struct kref *ref)
- {
- 	struct intel_context *ce = container_of(ref, typeof(*ce), ref);
-@@ -165,7 +169,12 @@ static int mock_context_alloc(struct intel_context *ce)
+@@ -169,7 +169,8 @@ static int mock_context_alloc(struct intel_context *ce)
  	return 0;
  }
  
--static int mock_context_pin(struct intel_context *ce)
-+static int mock_context_pre_pin(struct intel_context *ce, void **unused)
-+{
-+	return 0;
-+}
-+
-+static int mock_context_pin(struct intel_context *ce, void *unused)
+-static int mock_context_pre_pin(struct intel_context *ce, void **unused)
++static int mock_context_pre_pin(struct intel_context *ce,
++				struct i915_gem_ww_ctx *ww, void **unused)
  {
  	return 0;
  }
-@@ -177,8 +186,10 @@ static void mock_context_reset(struct intel_context *ce)
- static const struct intel_context_ops mock_context_ops = {
- 	.alloc = mock_context_alloc,
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index c2578a0f2f14..00801549871a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -454,7 +454,7 @@ tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
+ 	struct i915_request *rq;
+ 	int err;
  
-+	.pre_pin = mock_context_pre_pin,
- 	.pin = mock_context_pin,
- 	.unpin = mock_context_unpin,
-+	.post_unpin = mock_context_post_unpin,
+-	err = intel_timeline_pin(tl);
++	err = intel_timeline_pin(tl, NULL);
+ 	if (err) {
+ 		rq = ERR_PTR(err);
+ 		goto out;
+@@ -664,7 +664,7 @@ static int live_hwsp_wrap(void *arg)
+ 	if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
+ 		goto out_free;
  
- 	.enter = intel_context_enter_engine,
- 	.exit = intel_context_exit_engine,
+-	err = intel_timeline_pin(tl);
++	err = intel_timeline_pin(tl, NULL);
+ 	if (err)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 861657897c0f..942c7c187adb 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -677,7 +677,7 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
+ 		goto err;
+ 
+ 	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
+-	ret = i915_ggtt_pin(vma, 0, flags);
++	ret = i915_ggtt_pin(vma, NULL, 0, flags);
+ 	if (ret) {
+ 		vma = ERR_PTR(ret);
+ 		goto err;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index f490e385a583..68ff07f732c7 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1729,11 +1729,18 @@ static inline void i915_gem_drain_workqueue(struct drm_i915_private *i915)
+ }
+ 
+ struct i915_vma * __must_check
++i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
++			    struct i915_gem_ww_ctx *ww,
++			    const struct i915_ggtt_view *view,
++			    u64 size, u64 alignment, u64 flags);
++
++static inline struct i915_vma * __must_check
+ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+ 			 const struct i915_ggtt_view *view,
+-			 u64 size,
+-			 u64 alignment,
+-			 u64 flags);
++			 u64 size, u64 alignment, u64 flags)
++{
++	return i915_gem_object_ggtt_pin_ww(obj, NULL, view, size, alignment, flags);
++}
+ 
+ int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
+ 			   unsigned long flags);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 6846241f9079..f7173aa1c41b 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -950,11 +950,10 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
+ }
+ 
+ struct i915_vma *
+-i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+-			 const struct i915_ggtt_view *view,
+-			 u64 size,
+-			 u64 alignment,
+-			 u64 flags)
++i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
++			    struct i915_gem_ww_ctx *ww,
++			    const struct i915_ggtt_view *view,
++			    u64 size, u64 alignment, u64 flags)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct i915_ggtt *ggtt = &i915->ggtt;
+@@ -1014,7 +1013,7 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+ 			return ERR_PTR(ret);
+ 	}
+ 
+-	ret = i915_vma_pin(vma, size, alignment, flags | PIN_GLOBAL);
++	ret = i915_vma_pin_ww(vma, ww, size, alignment, flags | PIN_GLOBAL);
+ 	if (ret)
+ 		return ERR_PTR(ret);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 4cdd883f9d66..a74f9605f334 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -857,13 +857,19 @@ static void vma_unbind_pages(struct i915_vma *vma)
+ 	__vma_put_pages(vma, count | count << I915_VMA_PAGES_BIAS);
+ }
+ 
+-int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
++int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
++		    u64 size, u64 alignment, u64 flags)
+ {
+ 	struct i915_vma_work *work = NULL;
+ 	intel_wakeref_t wakeref = 0;
+ 	unsigned int bound;
+ 	int err;
+ 
++#ifdef CONFIG_PROVE_LOCKING
++	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
++		WARN_ON(!ww);
++#endif
++
+ 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
+ 	BUILD_BUG_ON(PIN_USER != I915_VMA_LOCAL_BIND);
+ 
+@@ -994,7 +1000,8 @@ static void flush_idle_contexts(struct intel_gt *gt)
+ 	intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
+ }
+ 
+-int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
++int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
++		  u32 align, unsigned int flags)
+ {
+ 	struct i915_address_space *vm = vma->vm;
+ 	int err;
+@@ -1002,7 +1009,7 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
+ 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
+ 
+ 	do {
+-		err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
++		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
+ 		if (err != -ENOSPC) {
+ 			if (!err) {
+ 				err = i915_vma_wait_for_bind(vma);
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 8ad1daabcd58..2e3779a8a437 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -236,8 +236,17 @@ static inline void i915_vma_unlock(struct i915_vma *vma)
+ }
+ 
+ int __must_check
+-i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags);
+-int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags);
++i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
++		u64 size, u64 alignment, u64 flags);
++
++static inline int __must_check
++i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
++{
++	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
++}
++
++int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
++		  u32 align, unsigned int flags);
+ 
+ static inline int i915_vma_pin_count(const struct i915_vma *vma)
+ {
 -- 
 2.25.1
 
