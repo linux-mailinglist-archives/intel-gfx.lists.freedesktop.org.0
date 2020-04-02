@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0551B19C939
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 20:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5F919C950
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 21:00:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 685196EAD9;
-	Thu,  2 Apr 2020 18:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 033926EADC;
+	Thu,  2 Apr 2020 19:00:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 658D06EAD9
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 18:55:05 +0000 (UTC)
-IronPort-SDR: 7y0CbS8Cv2C3BQLW4xq2Ta581R3YG3d0RbGtZQQm59YmYVLcMJ+gwtuhwYPFzaEx+aeQrG3+Mk
- q01cCtuUODcQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2020 11:55:04 -0700
-IronPort-SDR: OwPG3y03tNzEYENk2iObEl4z2HBUa0rIhbNBJleGDlaTeDaPS5zwufwAn+stS9aWqWV6t0nYol
- HtEAXOCg1whA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,336,1580803200"; d="scan'208";a="449743814"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga005.fm.intel.com with ESMTP; 02 Apr 2020 11:55:04 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id BF6435C1EF4; Thu,  2 Apr 2020 21:53:24 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200330212254.18236-1-chris@chris-wilson.co.uk>
-References: <20200330212254.18236-1-chris@chris-wilson.co.uk>
-Date: Thu, 02 Apr 2020 21:53:24 +0300
-Message-ID: <875zehpvmj.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC4FE6EADA;
+ Thu,  2 Apr 2020 19:00:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B41C4A00E7;
+ Thu,  2 Apr 2020 19:00:49 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uc: Cleanup kerneldoc warnings
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Thu, 02 Apr 2020 19:00:49 -0000
+Message-ID: <158585404971.24294.13901116836324395148@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200402174417.83739-1-andi@etezian.org>
+In-Reply-To: <20200402174417.83739-1-andi@etezian.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_=28rev3?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,64 +39,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:205: warning: Excess function parameter 'supported' description in 'intel_uc_fw_init_early'
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:205: warning: Excess function parameter 'platform' description in 'intel_uc_fw_init_early'
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:205: warning: Excess function parameter 'rev' description in 'intel_uc_fw_init_early'
->
-> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c:696: warning: Function parameter or member 'log' not described in 'intel_guc_log_info'
-> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c:696: warning: Excess function parameter 'guc' description in 'intel_guc_log_info'
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Series: drm/i915/gt: move remaining debugfs interfaces into gt (rev3)
+URL   : https://patchwork.freedesktop.org/series/75333/
+State : success
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c   | 3 ---
->  2 files changed, 1 insertion(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index 5b11a6d8e27f..fb10f3597ea5 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -687,7 +687,7 @@ stringify_guc_log_type(enum guc_log_buffer_type type)
->  
->  /**
->   * intel_guc_log_info - dump information about GuC log relay
-> - * @guc: the GuC
-> + * @log: the GuC log
->   * @p: the &drm_printer
->   *
->   * Pretty printer for GuC log info
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index fa893dd1823c..1f5d25f15340 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -193,9 +193,6 @@ static void __uc_fw_user_override(struct intel_uc_fw *uc_fw)
->   * intel_uc_fw_init_early - initialize the uC object and select the firmware
->   * @uc_fw: uC firmware
->   * @type: type of uC
-> - * @supported: is uC support possible
-> - * @platform: platform identifier
-> - * @rev: hardware revision
->   *
->   * Initialize the state of our uC object and relevant tracking and select the
->   * firmware to fetch and load.
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_8238 -> Patchwork_17188
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17188/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17188:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@gem_wait@busy@all}:
+    - fi-gdg-551:         [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/fi-gdg-551/igt@gem_wait@busy@all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17188/fi-gdg-551/igt@gem_wait@busy@all.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17188 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17188/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (50 -> 37)
+------------------------------
+
+  Missing    (13): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ivb-3770 fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8238 -> Patchwork_17188
+
+  CI-20190529: 20190529
+  CI_DRM_8238: 840f70602a47208a2f1e444ba276f412f10e38df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5558: 3b55a816300d80bc5e0b995cd41ee8c8649a1ea2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17188: db515ae2c79c34e64b3c0909064d21358cbf1170 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+db515ae2c79c drm/i915/gt: move remaining debugfs interfaces into gt
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17188/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
