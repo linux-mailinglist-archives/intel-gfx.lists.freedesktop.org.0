@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3603319C864
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B48C19C8C1
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 20:26:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64B9C6E12C;
-	Thu,  2 Apr 2020 17:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A886EAD5;
+	Thu,  2 Apr 2020 18:26:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A633C6E12C
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:54:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20779948-1500050 for multiple; Thu, 02 Apr 2020 18:54:16 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 854EF897DC;
+ Thu,  2 Apr 2020 18:26:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7EE7FA0091;
+ Thu,  2 Apr 2020 18:26:18 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200402174417.83739-1-andi@etezian.org>
-References: <20200402174417.83739-1-andi@etezian.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
-Message-ID: <158585005660.5852.12532618393857541862@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 02 Apr 2020 18:54:16 +0100
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: move remaining debugfs
- interfaces into gt
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 02 Apr 2020 18:26:18 -0000
+Message-ID: <158585197851.24295.18270403020632626922@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200402152856.25407-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200402152856.25407-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Use_per-engine_request_pools_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-04-02 18:44:17)
->  static const struct drm_info_list i915_debugfs_list[] = {
->         {"i915_capabilities", i915_capabilities, 0},
->         {"i915_gem_objects", i915_gem_object_info, 0},
-> @@ -1862,10 +1484,8 @@ static const struct drm_info_list i915_debugfs_list[] = {
->         {"i915_llc", i915_llc, 0},
->         {"i915_runtime_pm_status", i915_runtime_pm_status, 0},
->         {"i915_engine_info", i915_engine_info, 0},
-> -       {"i915_rcs_topology", i915_rcs_topology, 0},
->         {"i915_shrinker_info", i915_shrinker_info, 0},
->         {"i915_wa_registers", i915_wa_registers, 0},
-> -       {"i915_sseu_status", i915_sseu_status, 0},
->         {"i915_rps_boost_info", i915_rps_boost_info, 0},
+== Series Details ==
 
-Future passes:
-i915_gem_fence_regs
-i915_frequency_info [or subsume]
-i915_ring_freq_table
-i915_swizzle_info
-i915_llc
-i915_wa_registers?
-i915_rps_boost_info
+Series: drm/i915: Use per-engine request pools (rev8)
+URL   : https://patchwork.freedesktop.org/series/75415/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8238 -> Patchwork_17187
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17187/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17187 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17187/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+
+
+Participating hosts (50 -> 35)
+------------------------------
+
+  Missing    (15): fi-ilk-m540 fi-bdw-5557u fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-gdg-551 fi-icl-y fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8238 -> Patchwork_17187
+
+  CI-20190529: 20190529
+  CI_DRM_8238: 840f70602a47208a2f1e444ba276f412f10e38df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5558: 3b55a816300d80bc5e0b995cd41ee8c8649a1ea2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17187: 148b3f6831c2f10608b2ea796adbfb08f452371e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+148b3f6831c2 drm/i915: Use per-engine request pools
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17187/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
