@@ -1,28 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733E219C43D
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:31:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0776C19C437
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:31:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD8F36EAAC;
-	Thu,  2 Apr 2020 14:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A59D6EAA7;
+	Thu,  2 Apr 2020 14:31:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl
  [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEEB68979D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC9DE89708
  for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 14:31:15 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 16:31:02 +0200
-Message-Id: <20200402143109.1801605-16-maarten.lankhorst@linux.intel.com>
+Date: Thu,  2 Apr 2020 16:31:03 +0200
+Message-Id: <20200402143109.1801605-17-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
 References: <20200402143109.1801605-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/23] drm/i915: Convert i915_perf to ww locking
- as well
+Subject: [Intel-gfx] [PATCH 17/23] drm/i915: Dirty hack to fix selftests
+ locking inversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +40,39 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We have the ordering of timeline->mutex vs resv_lock wrong,
-convert the i915_pin_vma and intel_context_pin as well to
-future-proof this.
-
-We may need to do future changes to do this more transaction-like,
-and only get down to a single i915_gem_ww_ctx, but for now this
-should work.
+Some i915 selftests still use i915_vma_lock() as inner lock, and
+intel_context_create_request() intel_timeline->mutex as outer lock.
+Fortunately for selftests this is not an issue, they should be fixed
+but we can move ahead and cleanify lockdep now.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 57 +++++++++++++++++++++++---------
- 1 file changed, 42 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 28e3d76fa2e6..b4de6a3469bc 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1195,24 +1195,39 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
- 	struct i915_gem_engines_iter it;
- 	struct i915_gem_context *ctx = stream->ctx;
- 	struct intel_context *ce;
--	int err;
-+	struct i915_gem_ww_ctx ww;
-+	int err = -ENODEV;
- 
- 	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
- 		if (ce->engine != stream->engine) /* first match! */
- 			continue;
- 
--		/*
--		 * As the ID is the gtt offset of the context's vma we
--		 * pin the vma to ensure the ID remains fixed.
--		 */
--		err = intel_context_pin(ce);
--		if (err == 0) {
--			stream->pinned_ctx = ce;
--			break;
--		}
-+		err = 0;
-+		break;
- 	}
- 	i915_gem_context_unlock_engines(ctx);
- 
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	/*
-+	 * As the ID is the gtt offset of the context's vma we
-+	 * pin the vma to ensure the ID remains fixed.
-+	 */
-+	err = intel_context_pin_ww(ce, &ww);
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
-+
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	stream->pinned_ctx = ce;
- 	return stream->pinned_ctx;
- }
- 
-@@ -1927,15 +1942,22 @@ emit_oa_config(struct i915_perf_stream *stream,
- {
- 	struct i915_request *rq;
- 	struct i915_vma *vma;
-+	struct i915_gem_ww_ctx ww;
- 	int err;
- 
- 	vma = get_oa_vma(stream, oa_config);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	err = i915_gem_object_lock(vma->obj, &ww);
-+	if (err)
-+		goto err;
-+
-+	err = i915_vma_pin_ww(vma, &ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
--		goto err_vma_put;
-+		goto err;
- 
- 	intel_engine_pm_get(ce->engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 113d0bda1bcf..5c7acddf9651 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -460,6 +460,18 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
  	rq = i915_request_create(ce);
-@@ -1957,11 +1979,9 @@ emit_oa_config(struct i915_perf_stream *stream,
- 			goto err_add_request;
- 	}
+ 	intel_context_unpin(ce);
  
--	i915_vma_lock(vma);
- 	err = i915_request_await_object(rq, vma->obj, 0);
- 	if (!err)
- 		err = i915_vma_move_to_active(vma, rq, 0);
--	i915_vma_unlock(vma);
- 	if (err)
- 		goto err_add_request;
- 
-@@ -1975,7 +1995,14 @@ emit_oa_config(struct i915_perf_stream *stream,
- 	i915_request_add(rq);
- err_vma_unpin:
- 	i915_vma_unpin(vma);
--err_vma_put:
-+err:
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
++	if (IS_ERR(rq))
++		return rq;
 +
-+	i915_gem_ww_ctx_fini(&ww);
- 	i915_vma_put(vma);
- 	return err;
++	/*
++	 * timeline->mutex should be the inner lock, but is used as outer lock.
++	 * Hack around this to shut up lockdep in selftests..
++	 */
++	lockdep_unpin_lock(&ce->timeline->mutex, rq->cookie);
++	mutex_release(&ce->timeline->mutex.dep_map, _RET_IP_);
++	mutex_acquire(&ce->timeline->mutex.dep_map, SINGLE_DEPTH_NESTING, 0, _RET_IP_);
++	rq->cookie = lockdep_pin_lock(&ce->timeline->mutex);
++
+ 	return rq;
  }
+ 
 -- 
 2.25.1
 
