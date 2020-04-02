@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83FC119C76F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 18:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E0C119C77F
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:01:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8145F6EAC9;
-	Thu,  2 Apr 2020 16:55:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B224389E69;
+	Thu,  2 Apr 2020 17:01:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94C376EAC9
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 16:55:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26B89E69
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:01:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20779355-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 17:55:41 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20779403-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 18:01:00 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Apr 2020 17:55:42 +0100
-Message-Id: <20200402165542.26844-1-chris@chris-wilson.co.uk>
+Date: Thu,  2 Apr 2020 18:01:01 +0100
+Message-Id: <20200402170101.26992-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200402152856.25407-1-chris@chris-wilson.co.uk>
 References: <20200402152856.25407-1-chris@chris-wilson.co.uk>
@@ -98,7 +98,7 @@ index b469de0dd9b6..23747996a1ed 100644
  intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
  {
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 843cb6f2f696..301fb33b4cf5 100644
+index 843cb6f2f696..e0db65807f2a 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 @@ -431,7 +431,14 @@ void intel_engines_free(struct intel_gt *gt)
@@ -106,7 +106,7 @@ index 843cb6f2f696..301fb33b4cf5 100644
  	enum intel_engine_id id;
  
 +	/* Free the requests! dma-resv keeps fences around for an eternity */
-+	i915_gem_drain_freed_objects(engine->i915);
++	i915_gem_drain_freed_objects(gt->i915);
 +	rcu_barrier();
 +
  	for_each_engine(engine, gt, id) {
