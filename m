@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E517E19C7FC
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:27:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F8219C801
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 19:30:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1AF6EACD;
-	Thu,  2 Apr 2020 17:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501426EACE;
+	Thu,  2 Apr 2020 17:30:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC77B6EACD
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:27:55 +0000 (UTC)
-IronPort-SDR: aIvhxu9d6QGlRZqNy5ip9oUuyncqZoH7ImuTtdzsF7aZWUQ3F0zWLeBv/fdImmgngwGh69gPKY
- fulbKi/BwYrQ==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED7756EACE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 17:30:33 +0000 (UTC)
+IronPort-SDR: HoTfEN1OJjK/yMmi3Wcc0AOsbE/DIojl86Gqbmw8B0pDejrF0UZL/ZhXAn6ZSMWNExwlfkdtqA
+ J9uVBC3ElBuw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2020 10:27:54 -0700
-IronPort-SDR: 4qVdLlJZkwFw+ADS/wWLg+JDx3x3kIOGIJeO0BCFEO+85D/fNalc7izYR/i8NN2U9a17dmFjUS
- SMQ0gkctZstA==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 10:30:33 -0700
+IronPort-SDR: CY5NCIU73s419cIPXLt1QKsN4Wykg2QNLw4tCinurIyzepd/US6t/NNQSt66VY/v1C1+8jchya
+ 3hTttv/lmB8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,336,1580803200"; d="scan'208";a="284852612"
+X-IronPort-AV: E=Sophos;i="5.72,336,1580803200"; d="scan'208";a="328893980"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 02 Apr 2020 10:27:51 -0700
+ by orsmga001.jf.intel.com with SMTP; 02 Apr 2020 10:30:29 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 02 Apr 2020 20:27:50 +0300
-Date: Thu, 2 Apr 2020 20:27:50 +0300
+ Thu, 02 Apr 2020 20:30:29 +0300
+Date: Thu, 2 Apr 2020 20:30:29 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200402172750.GE13686@intel.com>
+Message-ID: <20200402173029.GF13686@intel.com>
 References: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
- <20200326181005.11775-8-stanislav.lisovskiy@intel.com>
+ <20200326181005.11775-9-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200326181005.11775-8-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200326181005.11775-9-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v20 07/10] drm/i915: Added required new
- PCode commands
+Subject: Re: [Intel-gfx] [PATCH v20 08/10] drm/i915: Rename bw_state to
+ new_bw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,72 +58,93 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 26, 2020 at 08:10:02PM +0200, Stanislav Lisovskiy wrote:
-> We need a new PCode request commands and reply codes
-> to be added as a prepartion patch for QGV points
-> restricting for new SAGV support.
-> =
-
-> v2: - Extracted those changes into separate patch
->       (Ville Syrj=E4l=E4)
+On Thu, Mar 26, 2020 at 08:10:03PM +0200, Stanislav Lisovskiy wrote:
+> That is a preparation patch before next one where we
+> introduce old_bw_state and a bunch of other changes
+> as well.
+> In a review comment it was suggested to split out
+> at least that renaming into a separate patch, what
+> is done here.
 > =
 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_reg.h       | 4 ++++
->  drivers/gpu/drm/i915/intel_sideband.c | 2 ++
->  2 files changed, 6 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 9c53fe918be6..1a61db746c7e 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8994,6 +8994,7 @@ enum {
->  #define     GEN7_PCODE_ILLEGAL_DATA		0x3
->  #define     GEN11_PCODE_ILLEGAL_SUBCOMMAND	0x4
->  #define     GEN11_PCODE_LOCKED			0x6
-> +#define     GEN11_PCODE_REJECTED		0x11
->  #define     GEN7_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE 0x10
->  #define   GEN6_PCODE_WRITE_RC6VIDS		0x4
->  #define   GEN6_PCODE_READ_RC6VIDS		0x5
-> @@ -9015,6 +9016,7 @@ enum {
->  #define   ICL_PCODE_MEM_SUBSYSYSTEM_INFO	0xd
->  #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
->  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16)=
- | (0x1 << 8))
-> +#define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
->  #define   GEN6_PCODE_READ_D_COMP		0x10
->  #define   GEN6_PCODE_WRITE_D_COMP		0x11
->  #define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
-> @@ -9027,6 +9029,8 @@ enum {
->  #define     GEN9_SAGV_IS_DISABLED		0x1
->  #define     GEN9_SAGV_ENABLE			0x3
->  #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
-> +#define GEN11_PCODE_POINTS_RESTRICTED		0x0
-> +#define GEN11_PCODE_POINTS_RESTRICTED_MASK	0x1
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
+15/display/intel_bw.c
+> index a8b2038db4d2..d16771dd2b10 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -418,7 +418,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *=
+state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>  	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> -	struct intel_bw_state *bw_state =3D NULL;
+> +	struct intel_bw_state *new_bw_state =3D NULL;
+>  	unsigned int data_rate, max_data_rate;
+>  	unsigned int num_active_planes;
+>  	struct intel_crtc *crtc;
+> @@ -447,29 +447,29 @@ int intel_bw_atomic_check(struct intel_atomic_state=
+ *state)
+>  		    old_active_planes =3D=3D new_active_planes)
+>  			continue;
+>  =
 
-What are these? The indentation makes me thingk they are new commands,
-but the placement totally disagrees with that.
+> -		bw_state  =3D intel_atomic_get_bw_state(state);
+> -		if (IS_ERR(bw_state))
+> -			return PTR_ERR(bw_state);
+> +		new_bw_state  =3D intel_atomic_get_bw_state(state);
+                            ^
 
->  #define GEN6_PCODE_DATA				_MMIO(0x138128)
->  #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
->  #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
-> diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915=
-/intel_sideband.c
-> index 1447e7516cb7..1e7dd6b6f103 100644
-> --- a/drivers/gpu/drm/i915/intel_sideband.c
-> +++ b/drivers/gpu/drm/i915/intel_sideband.c
-> @@ -370,6 +370,8 @@ static inline int gen7_check_mailbox_status(u32 mbox)
->  		return -ENXIO;
->  	case GEN11_PCODE_LOCKED:
->  		return -EBUSY;
-> +	case GEN11_PCODE_REJECTED:
-> +		return -EACCES;
->  	case GEN7_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE:
->  		return -EOVERFLOW;
->  	default:
+Pls remove the spurious space while at it.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +		if (IS_ERR(new_bw_state))
+> +			return PTR_ERR(new_bw_state);
+>  =
+
+> -		bw_state->data_rate[crtc->pipe] =3D new_data_rate;
+> -		bw_state->num_active_planes[crtc->pipe] =3D new_active_planes;
+> +		new_bw_state->data_rate[crtc->pipe] =3D new_data_rate;
+> +		new_bw_state->num_active_planes[crtc->pipe] =3D new_active_planes;
+>  =
+
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "pipe %c data rate %u num active planes %u\n",
+>  			    pipe_name(crtc->pipe),
+> -			    bw_state->data_rate[crtc->pipe],
+> -			    bw_state->num_active_planes[crtc->pipe]);
+> +			    new_bw_state->data_rate[crtc->pipe],
+> +			    new_bw_state->num_active_planes[crtc->pipe]);
+>  	}
+>  =
+
+> -	if (!bw_state)
+> +	if (!new_bw_state)
+>  		return 0;
+>  =
+
+> -	ret =3D intel_atomic_lock_global_state(&bw_state->base);
+> +	ret =3D intel_atomic_lock_global_state(&new_bw_state->base);
+>  	if (ret)
+>  		return ret;
+>  =
+
+> -	data_rate =3D intel_bw_data_rate(dev_priv, bw_state);
+> -	num_active_planes =3D intel_bw_num_active_planes(dev_priv, bw_state);
+> +	data_rate =3D intel_bw_data_rate(dev_priv, new_bw_state);
+> +	num_active_planes =3D intel_bw_num_active_planes(dev_priv, new_bw_state=
+);
+>  =
+
+>  	max_data_rate =3D intel_max_data_rate(dev_priv, num_active_planes);
+>  =
+
 > -- =
 
 > 2.24.1.485.gad05a3d8e5
