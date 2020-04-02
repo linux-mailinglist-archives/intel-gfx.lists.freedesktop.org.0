@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150AE19BEAE
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 11:30:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F5F19BEBF
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 11:37:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DBFD6EA2A;
-	Thu,  2 Apr 2020 09:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 738A76EA2F;
+	Thu,  2 Apr 2020 09:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA0D36EA29;
- Thu,  2 Apr 2020 09:30:52 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 993186EA2F;
+ Thu,  2 Apr 2020 09:37:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A0288A0071;
- Thu,  2 Apr 2020 09:30:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 92C15A011B;
+ Thu,  2 Apr 2020 09:37:13 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 02 Apr 2020 09:30:52 -0000
-Message-ID: <158581985262.24296.7530712710206216680@emeril.freedesktop.org>
+To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
+Date: Thu, 02 Apr 2020 09:37:13 -0000
+Message-ID: <158582023357.24294.3968039612242462126@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200402080805.20292-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200402080805.20292-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/gt=3A_Add_one_more_rcu=5Fbarrier=28=29_after_draining_t?=
- =?utf-8?q?he_ppGTT_freelist?=
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_CAP=5FPERFMON_to_secure_system_performance_monito?=
+ =?utf-8?q?ring_and_observability_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,32 +41,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Q6IEFkZCBvbmUgbW9yZSBy
-Y3VfYmFycmllcigpIGFmdGVyIGRyYWluaW5nIHRoZSBwcEdUVCBmcmVlbGlzdApVUkwgICA6IGh0
-dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNzU0MDIvClN0YXRlIDogZmFp
-bHVyZQoKPT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBD
-QUxMICAgIHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EICBvYmp0b29s
-CiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQubwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
-bF9nZ3R0LmM6IEluIGZ1bmN0aW9uIOKAmGdndHRfY2xlYW51cF9od+KAmToKZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvaW50ZWxfZ2d0dC5jOjY4ODoxMTogZXJyb3I6IHZvaWQgdmFsdWUgbm90IGln
-bm9yZWQgYXMgaXQgb3VnaHQgdG8gYmUKICB9IHdoaWxlIChmbHVzaF93b3JrcXVldWUoZ2d0dC0+
-dm0uaTkxNS0+d3EpKTsKICAgICAgICAgICBefn5+fn5+fn5+fn5+fn4Kc2NyaXB0cy9NYWtlZmls
-ZS5idWlsZDoyNjc6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
-bnRlbF9nZ3R0Lm8nIGZhaWxlZAptYWtlWzRdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX2dndHQub10gRXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUwNTogcmVjaXBl
-IGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtk
-cml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUwNTog
-cmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBb
-ZHJpdmVycy9ncHUvZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTA1OiByZWNp
-cGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMv
-Z3B1XSBFcnJvciAyCk1ha2VmaWxlOjE2ODM6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBm
-YWlsZWQKbWFrZTogKioqIFtkcml2ZXJzXSBFcnJvciAyCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev5)
+URL   : https://patchwork.freedesktop.org/series/72273/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+c027b79d90c7 capabilities: introduce CAP_PERFMON to kernel and user space
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+72d47d8219d3 perf/core: open access to the core for CAP_PERFMON privileged process
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+CAP_PERFMON capability singly, without the rest of CAP_SYS_ADMIN credentials,
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+330862f4c392 perf/core: open access to probes for CAP_PERFMON privileged process
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#18: 
+monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+d6069cbc260a perf tool: extend Perf tool with CAP_PERFMON capability support
+faa4cad37f3f drm/i915/perf: open access for CAP_PERFMON privileged process
+b18034c782e2 trace/bpf_trace: open access for CAP_PERFMON privileged process
+27bbababcb71 powerpc/perf: open access for CAP_PERFMON privileged process
+-:24: WARNING:BAD_SIGN_OFF: email address 'Anju T Sudhakar<anju@linux.vnet.ibm.com>' might be better as 'Anju T Sudhakar <anju@linux.vnet.ibm.com>'
+#24: 
+Acked-by: Anju T Sudhakar<anju@linux.vnet.ibm.com>
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+06a7ab2ee66f parisc/perf: open access for CAP_PERFMON privileged process
+c6b6bc12a6fa drivers/perf: open access for CAP_PERFMON privileged process
+f43a46c59baa drivers/oprofile: open access for CAP_PERFMON privileged process
+00b49a09c154 doc/admin-guide: update perf-security.rst with CAP_PERFMON information
+6f9e4a45e370 doc/admin-guide: update kernel.rst with CAP_PERFMON information
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
