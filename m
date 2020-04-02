@@ -2,55 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC71019BEE9
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 11:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED65C19BF05
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 12:02:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DF46EA35;
-	Thu,  2 Apr 2020 09:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA5C6EA33;
+	Thu,  2 Apr 2020 10:02:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
- [IPv6:2607:f8b0:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 574C76EA32
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 09:50:12 +0000 (UTC)
-Received: by mail-ot1-x342.google.com with SMTP id f52so2750980otf.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 02:50:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lJ+Gd7zl++AIB6vBVszZaPVX2japyNbU4sA0+OrePBI=;
- b=bBDY2R8cak/8ek7OacyNwzhuQwvfjeh/35KuH0gXZjbZna0w3p5SxXtaFzoBRsqSr7
- NwqNjLlbd70wptaH4Dwkf9ArL+E+Z0dgAs0mOC1BkNGKy9EhcejtG3tMePzo3vKK8HUz
- azPrOixJQ7lQjJ2LWsTbFj2ygZEdgIVeBSrp8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lJ+Gd7zl++AIB6vBVszZaPVX2japyNbU4sA0+OrePBI=;
- b=JYFk1KFMsbPchbzgW9UiMQpeKAgamKKm2MUnkTwNjwDwz2DQv4uW+jMpchbElYYOzl
- kPa63/jl1NOth2tE4u0aoDZkTMWX86KWag6vTExaQ6RSIWwxENUZECKEaecYO2aazkE4
- nztFVf4/tTq3CU9fTph4ZhVeTgMryxY/yv1vHJ5voAuSiGD2+vPiODun7JlGR6wH/Mbv
- KQP4/0tge6M3x1AhDq+zHQy3N58MA5yTt6KKIrwu5PDZzYIfDLgac48OLcqhgP5vPUSV
- jUdu5f+PLWJT4NFi6OWszlOqE7Uj5iERjrQlRfFzbBljpIDDjVXoD9g5GSD2qXjavXi7
- +vow==
-X-Gm-Message-State: AGi0Pua6V4SAK2pySNWwaTjKy0qZWSso7mFHHkhxlmoybIOypf/q9/lH
- cP6i0qWOdSrfVSK7Ob1BAhSolBmD5Niv8F5/w91MPg==
-X-Google-Smtp-Source: APiQypKU6BkcGaf89tzW7fP1bFinCHE1e+HZazBqvXPg2x0Mpo/dEjgvHuHcKxI8P2/Uu5Phw7SsPaXevXTj2OI4j3c=
-X-Received: by 2002:a05:6830:15d4:: with SMTP id
- j20mr1648690otr.303.1585821011449; 
- Thu, 02 Apr 2020 02:50:11 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4F7726EA33;
+ Thu,  2 Apr 2020 10:02:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 49349A47DA;
+ Thu,  2 Apr 2020 10:02:03 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
- <20200323144950.3018436-20-daniel.vetter@ffwll.ch>
- <20200402005008.GA18964@pendragon.ideasonboard.com>
- <CAKMK7uGqNEdaxLcpeW9sp-NM_OfOyL-duNzp_XN1WOHdOS3HfQ@mail.gmail.com>
- <20200402093950.GA4745@pendragon.ideasonboard.com>
-In-Reply-To: <20200402093950.GA4745@pendragon.ideasonboard.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 2 Apr 2020 11:50:00 +0200
-Message-ID: <CAKMK7uEDRW5u2Uceb2-ytDdkSjXmszcBufqW1YOMyKPjdNnf9w@mail.gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [Intel-gfx] [PATCH 19/51] drm: Cleanups after
- drmm_add_final_kfree rollout
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
+Date: Thu, 02 Apr 2020 10:02:03 -0000
+Message-ID: <158582172329.24295.16762964086640796266@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
+ =?utf-8?q?roduce_CAP=5FPERFMON_to_secure_system_performance_monitoring_an?=
+ =?utf-8?q?d_observability_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,193 +39,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Dan Carpenter <dan.carpenter@oracle.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 2, 2020 at 11:39 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Daniel,
->
-> On Thu, Apr 02, 2020 at 07:17:40AM +0200, Daniel Vetter wrote:
-> > On Thu, Apr 2, 2020 at 2:50 AM Laurent Pinchart wrote:
-> > > On Mon, Mar 23, 2020 at 03:49:18PM +0100, Daniel Vetter wrote:
-> > > > A few things:
-> > > > - Update the example driver in the documentation.
-> > > > - We can drop the old kfree in drm_dev_release.
-> > > > - Add a WARN_ON check in drm_dev_register to make sure everyone calls
-> > > >   drmm_add_final_kfree and there's no leaks.
-> > > >
-> > > > v2: Restore the full cleanup, I accidentally left some moved code
-> > > > behind when fixing the bisectability of the series.
-> > > >
-> > > > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > > > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> > > > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > > > Cc: Dan Carpenter <dan.carpenter@oracle.com>
-> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_drv.c | 12 +++++-------
-> > > >  1 file changed, 5 insertions(+), 7 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > > > index 877ded348b6e..7f9d7ea543a0 100644
-> > > > --- a/drivers/gpu/drm/drm_drv.c
-> > > > +++ b/drivers/gpu/drm/drm_drv.c
-> > > > @@ -297,8 +297,6 @@ void drm_minor_release(struct drm_minor *minor)
-> > > >   *
-> > > >   *           drm_mode_config_cleanup(drm);
-> > > >   *           drm_dev_fini(drm);
-> > > > - *           kfree(priv->userspace_facing);
-> > > > - *           kfree(priv);
-> > > >   *   }
-> > > >   *
-> > > >   *   static struct drm_driver driver_drm_driver = {
-> > > > @@ -326,10 +324,11 @@ void drm_minor_release(struct drm_minor *minor)
-> > > >   *                   kfree(drm);
-> > > >   *                   return ret;
-> > > >   *           }
-> > > > + *           drmm_add_final_kfree(drm, priv);
-> > > >   *
-> > > >   *           drm_mode_config_init(drm);
-> > > >   *
-> > > > - *           priv->userspace_facing = kzalloc(..., GFP_KERNEL);
-> > > > + *           priv->userspace_facing = drmm_kzalloc(..., GFP_KERNEL);
-> > > >   *           if (!priv->userspace_facing)
-> > > >   *                   return -ENOMEM;
-> > > >   *
-> > > > @@ -837,10 +836,7 @@ static void drm_dev_release(struct kref *ref)
-> > > >
-> > > >       drm_managed_release(dev);
-> > > >
-> > > > -     if (!dev->driver->release && !dev->managed.final_kfree) {
-> > > > -             WARN_ON(!list_empty(&dev->managed.resources));
-> > > > -             kfree(dev);
-> > > > -     } else if (dev->managed.final_kfree)
-> > > > +     if (dev->managed.final_kfree)
-> > > >               kfree(dev->managed.final_kfree);
-> > > >  }
-> > > >
-> > > > @@ -961,6 +957,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
-> > > >       if (!driver->load)
-> > > >               drm_mode_config_validate(dev);
-> > > >
-> > > > +     WARN_ON(!dev->managed.final_kfree);
-> > >
-> > > That's too aggressive. Driver freeing their private object in .release()
-> > > isn't wrong. I'd even go as far as saying that it should be the norm,
-> > > until we manage to find a better way to handle that (which this series
-> > > doesn't achieve). Many drivers need to allocate resources at probe time
-> > > before they get a chance to init the drm device. Those resources must be
-> > > released in the error handling paths of probe. By requiring
-> > > drmm_add_final_kfree(), you're making that much more complex. I can't
-> > > release those resources in the error path anymore after calling
-> > > drmm_add_final_kfree(), or they will be released twice. And I can't rely
-> > > on drmm_* to release them in all cases, as the error path may be hit
-> > > before touching anything drm-related.
-> > >
-> > > Until we figure out a good way forward and test it on a significant
-> > > number of drivers, let's not add WARN_ON() that will be hit with the
-> > > majority of drivers, forcing them to be converted to something that is
-> > > clearly half-baked.
-> >
-> > Hm, is this conjecture, or did you actually hit this WARN_ON with a
-> > driver? Because I did audit them all, none should hit this, all are
-> > fixed up.
->
-> I'm sorry, I should have been clear about that. I hit the issue
-> yesterday after rebasing the Xilinx ZynqMP DPSUB driver. I took Sam's
-> suggestion to embed struct drm_device instead of allocating it
-> dynamically, and then hit the WARN_ON. You're of course not responsible
-> for a driver that is still out-of-tree. I then looked at how to convert
-> other drivers I work on in a similar way (rcar-du and omapdrm in
-> particular), and realized it could actually make cleanup more complex to
-> always enforce usage of managed memory for everything.
->
-> I apologize for the harsh tone of the previous e-mail, you certainly
-> didn't deserve that (even more so as I've only reviewed the initial
-> version of the series).
->
-> > Also, I'm now actually going through all the places where I've added
-> > the drmm_add_final_kfree and remove it again, they are _all_ about 5
-> > lines after the kzalloc that allocates the driver structure which has
-> > drm_device embedded.
-> >
-> > So I'd like to understand where you get your seemingly rather sure
-> > convinction from that this is a horrible mistake here ...
->
-> Overall this features simplifies lots of drivers, and, even more
-> importantly, remove lots of actual or potential bugs, so it's far from
-> horrible. My words were too harsh, and I apologize for that again.
->
-> I however still think that before enforcing a model where everything has
-> to be managed, we need to try and deploy it to more drivers, especially
-> ones that initialize the drm_device fairly late in the probe process.
-> That's where it gets painful, as the unwind-style cleanup path needs to
-> handle memory free, but as soon as drmm_add_final_kfree() is called,
-> some of the code right at the bottom of the unwind stack suddenly needs
-> to be skipped. In some cases we can rearrange the code to initialize the
-> drm_device earlier, before doing much other initialization that would
-> need a cleanup unwind, but it's not always possible. I'm thinking in
-> particular about drivers that would expose multiple interfaces and want
-> to embed the data structures that correspond to all of them, or about
-> drivers based on the component framework (or similar systems). For these
-> drivers a manual .release() is needed, and while the current
-> implementation of the managed helpers doesn't prevent that, it forbits
-> embedding drm_device in situations where there nothing to final_kfree.
+== Series Details ==
 
-I'd need to look in detail at your code, but a few things I've seen
-from all other drivers:
-- The unroll code shouldn't ever get more complicated. Before you call
-drm_dev_init you have to explicitly kfree() your own allocation that
-contains drm_device. After that call you have to use drm_dev_put. The
-addition of drmm_add_final_kfree has changed nothing of that. Whether
-using drmm_add_final_kfree, or having an explicit kfree in your
-drm_driver->release callback doesn't change that, in both cases this
-kfree will happen when the final drm_dev_put() is called.
+Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev5)
+URL   : https://patchwork.freedesktop.org/series/72273/
+State : success
 
-- Wrt why is this mandatory? If you unload your driver with KASAN
-enabled and have not set the final_kfree pointer, but instead free the
-drm_device at the least step in your drm_driver->release hook, you'll
-splat. That's why my patch series was so tedious and had to change
-everything in a multi-step process, and why I didn't want to blow it
-up to 100 patches to also include the removal of drmm_add_final_kfree.
-I'm working on that right now, it's somewhere between 40-50 patches on
-top (ok so not quite all of them are required, I've done a handful of
-drive-by cleanups in some drivers too). So yeah hopefully real soon
-the drmm_add_final_kfree should be gone again.
+== Summary ==
 
-Hope this explains a bit what's going on here, I'm happy to look at
-your driver code specifically and come up with ideas how to structure
-it. Thus far (I think about 25 drivers in with my devm_drm_dev_alloc
-roll-out, which will clean this all up for good) I've not encountered
-any surprises.
--Daniel
+CI Bug Log - changes from CI_DRM_8236 -> Patchwork_17177
+====================================================
 
->
-> > > > +
-> > > >       if (drm_dev_needs_global_mutex(dev))
-> > > >               mutex_lock(&drm_global_mutex);
-> > > >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17177/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17177 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-kbl-x1275:       [DMESG-WARN][1] ([i915#62] / [i915#92]) -> [DMESG-WARN][2] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17177/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][3] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][4] ([i915#62] / [i915#92]) +4 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17177/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1314]: https://gitlab.freedesktop.org/drm/intel/issues/1314
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
+Participating hosts (47 -> 43)
+------------------------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+  Additional (4): fi-hsw-peppy fi-skl-6770hq fi-skl-6600u fi-elk-e7500 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8236 -> Patchwork_17177
+
+  CI-20190529: 20190529
+  CI_DRM_8236: 698ce59acca37b93bfcdee6899504be3eb113097 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5556: 311cb1b360b7ae00fab80b822cd34fd512f08ce9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17177: 6f9e4a45e370aafb38de338cb9d03bf46a825f18 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6f9e4a45e370 doc/admin-guide: update kernel.rst with CAP_PERFMON information
+00b49a09c154 doc/admin-guide: update perf-security.rst with CAP_PERFMON information
+f43a46c59baa drivers/oprofile: open access for CAP_PERFMON privileged process
+c6b6bc12a6fa drivers/perf: open access for CAP_PERFMON privileged process
+06a7ab2ee66f parisc/perf: open access for CAP_PERFMON privileged process
+27bbababcb71 powerpc/perf: open access for CAP_PERFMON privileged process
+b18034c782e2 trace/bpf_trace: open access for CAP_PERFMON privileged process
+faa4cad37f3f drm/i915/perf: open access for CAP_PERFMON privileged process
+d6069cbc260a perf tool: extend Perf tool with CAP_PERFMON capability support
+330862f4c392 perf/core: open access to probes for CAP_PERFMON privileged process
+72d47d8219d3 perf/core: open access to the core for CAP_PERFMON privileged process
+c027b79d90c7 capabilities: introduce CAP_PERFMON to kernel and user space
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17177/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
