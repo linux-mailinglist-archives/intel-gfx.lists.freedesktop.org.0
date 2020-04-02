@@ -1,52 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED82C19BCAB
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 09:28:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5333C19BD0F
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 09:51:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A6A56E9F5;
-	Thu,  2 Apr 2020 07:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169CD6E9FD;
+	Thu,  2 Apr 2020 07:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
- [IPv6:2607:f8b0:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A6B56E9DD
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 07:28:03 +0000 (UTC)
-Received: by mail-ot1-x343.google.com with SMTP id a49so2392876otc.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 00:28:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Nh2/p6fUAxKaJ1Ltz77AWYdswpCaQyvdRwG+WzsEHX8=;
- b=VxAsiOebDofd9Ku6rj8mMZ0wbl3D0ASz3L8t8rWn99BW8teZFf/rRpW+GZ7irNtPte
- CfPw0dc/C6neGVg7g891xjz8G8+a5hkhAzCdjMSO6CqoyvDFzy+LftpZq75ol76K5iQ5
- iRojZC3Ya/oDHOm17QHlUD2s5G5fJwGIF3XdA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Nh2/p6fUAxKaJ1Ltz77AWYdswpCaQyvdRwG+WzsEHX8=;
- b=oOAaCSE3FgiORKk/QFuNBOIYkDCL03p1cwNSluz3kcLVQgNu31l+nc255OYT0tAd/L
- Idei211paOR0rLd9pdjoyoMxQaSdDFoUZIU0zOjMNJ61qOYh8739/UnJVsbCHeyNzNOu
- QadKcRw2fM7c93469gVFYl3n0vjKx1uCXAVSNwcD79qioTGXPAD1q5T8Knxgxiuxf0J3
- imAQXIopQr2qNza+1H8alyR7vCJo8G8xXtPg/rtifAb+DtJmWBGC5u06CQ2U3UNgmTaB
- BAFVR/GqAO02y7seB30eyomxT0nbyJFx6tQAcLCAv+m0hlcnlBjq5fl8jCHGS+qmfE8u
- McdA==
-X-Gm-Message-State: AGi0PuZnu9FzfbhDiiHiMxs9jlL7MAVqw9t98JPtyt8zP8eCh0hAUNq6
- QdsIg6UduiPVqLZwaRZUz3fI+6VFClUS4aYbCKIQnA==
-X-Google-Smtp-Source: APiQypJ4WDw3WPB5OXC2icH1n0CzFVxePNP/x0BANzWu+exI2az4Vb9xmxxoV6BKSWLfZhfW36rFjhVr0sg0loX3ucw=
-X-Received: by 2002:a9d:6e8f:: with SMTP id a15mr1420396otr.188.1585812482518; 
- Thu, 02 Apr 2020 00:28:02 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2070D6E9FD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 07:51:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20772548-1500050 
+ for multiple; Thu, 02 Apr 2020 08:50:57 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Apr 2020 08:50:56 +0100
+Message-Id: <20200402075057.19794-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200402055241.24789-1-pankaj.laxminarayan.bharadiya@intel.com>
- <87lfnemmo8.fsf@intel.com>
-In-Reply-To: <87lfnemmo8.fsf@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 2 Apr 2020 09:27:51 +0200
-Message-ID: <CAKMK7uHNEXffFOdoD5W=KVCCP-1Gi-epp77FoPswPWUvPSNDXA@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove WARN_ON and WARN_ON_ONCE
- overrides.
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Utilize rcu iteration of
+ context engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,85 +37,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 2, 2020 at 8:23 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Thu, 02 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> > Now we have new struct drm_device based drm_WARN* macros. These are
-> > preferred over the regular WARN* macros.
-> >
-> > Remove WARN_ON and WARN_ON_ONCE overriedes to avoid any temptations to
-> > use them in the future.
->
-> Well, since they are overrides of macros in bug.h, the users are still
-> there. There are still 100+ users in i915. You just don't get as much
-> information with them after this patch.
->
-> I'm not opposed to this patch, but at the same time I'd like to see more
-> converted to the drm_WARN* alternatives.
+Now that we can peek at GEM->engines[] and obtain a reference to them
+using RCU, do so for instances where we can safely iterate the
+potentially old copy of the engines. For setting, we can do this when we
+know the engine properties are copied over before swapping, so we know
+the new engines already have the global property and we update the old
+before they are discarded. For reading, we only need to be safe; as we
+do so on behalf of the user, their races are their own problem.
 
-Yeah our overrides are super useful, I think better to try to move
-them to the core version. So many times when I didn't know which
-warning was hit in a bug report (warnings in drm core already have
-this problem), and the additional output here would have helped. I'd
-at least keep this for now.
--Daniel
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 56 ++++++++++-----------
+ 1 file changed, 27 insertions(+), 29 deletions(-)
 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->
->
-> BR,
-> Jani.
->
-> >
-> > Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_utils.h | 15 ---------------
-> >  1 file changed, 15 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> > index 03a73d2bd50d..c666a64375d9 100644
-> > --- a/drivers/gpu/drm/i915/i915_utils.h
-> > +++ b/drivers/gpu/drm/i915/i915_utils.h
-> > @@ -36,21 +36,6 @@ struct timer_list;
-> >
-> >  #define FDO_BUG_URL "https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs"
-> >
-> > -#undef WARN_ON
-> > -/* Many gcc seem to no see through this and fall over :( */
-> > -#if 0
-> > -#define WARN_ON(x) ({ \
-> > -     bool __i915_warn_cond = (x); \
-> > -     if (__builtin_constant_p(__i915_warn_cond)) \
-> > -             BUILD_BUG_ON(__i915_warn_cond); \
-> > -     WARN(__i915_warn_cond, "WARN_ON(" #x ")"); })
-> > -#else
-> > -#define WARN_ON(x) WARN((x), "%s", "WARN_ON(" __stringify(x) ")")
-> > -#endif
-> > -
-> > -#undef WARN_ON_ONCE
-> > -#define WARN_ON_ONCE(x) WARN_ONCE((x), "%s", "WARN_ON_ONCE(" __stringify(x) ")")
-> > -
-> >  #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
-> >                            __stringify(x), (long)(x))
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-
-
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 50e7580f9337..a8780ddc07c0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -757,21 +757,46 @@ __create_context(struct drm_i915_private *i915)
+ 	return ERR_PTR(err);
+ }
+ 
++static inline struct i915_gem_engines *
++__context_engines_await(const struct i915_gem_context *ctx)
++{
++	struct i915_gem_engines *engines;
++
++	rcu_read_lock();
++	do {
++		engines = rcu_dereference(ctx->engines);
++		GEM_BUG_ON(!engines);
++
++		if (unlikely(!i915_sw_fence_await(&engines->fence)))
++			continue;
++
++		if (likely(engines == rcu_access_pointer(ctx->engines)))
++			break;
++
++		i915_sw_fence_complete(&engines->fence);
++	} while (1);
++	rcu_read_unlock();
++
++	return engines;
++}
++
+ static int
+ context_apply_all(struct i915_gem_context *ctx,
+ 		  int (*fn)(struct intel_context *ce, void *data),
+ 		  void *data)
+ {
+ 	struct i915_gem_engines_iter it;
++	struct i915_gem_engines *e;
+ 	struct intel_context *ce;
+ 	int err = 0;
+ 
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
++	e = __context_engines_await(ctx);
++	for_each_gem_engine(ce, e, it) {
+ 		err = fn(ce, data);
+ 		if (err)
+ 			break;
+ 	}
+-	i915_gem_context_unlock_engines(ctx);
++	i915_sw_fence_complete(&e->fence);
+ 
+ 	return err;
+ }
+@@ -858,10 +883,7 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ 			return ERR_CAST(ppgtt);
+ 		}
+ 
+-		mutex_lock(&ctx->mutex);
+ 		__assign_ppgtt(ctx, &ppgtt->vm);
+-		mutex_unlock(&ctx->mutex);
+-
+ 		i915_vm_put(&ppgtt->vm);
+ 	}
+ 
+@@ -1069,30 +1091,6 @@ static void cb_retire(struct i915_active *base)
+ 	kfree(cb);
+ }
+ 
+-static inline struct i915_gem_engines *
+-__context_engines_await(const struct i915_gem_context *ctx)
+-{
+-	struct i915_gem_engines *engines;
+-
+-	rcu_read_lock();
+-	do {
+-		engines = rcu_dereference(ctx->engines);
+-		if (unlikely(!engines))
+-			break;
+-
+-		if (unlikely(!i915_sw_fence_await(&engines->fence)))
+-			continue;
+-
+-		if (likely(engines == rcu_access_pointer(ctx->engines)))
+-			break;
+-
+-		i915_sw_fence_complete(&engines->fence);
+-	} while (1);
+-	rcu_read_unlock();
+-
+-	return engines;
+-}
+-
+ I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
+ static int context_barrier_task(struct i915_gem_context *ctx,
+ 				intel_engine_mask_t engines,
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
