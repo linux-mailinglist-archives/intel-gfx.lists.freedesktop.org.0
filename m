@@ -1,32 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D8B19BDB9
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 10:44:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663EA19BDC1
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 10:45:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CBF36EA0A;
-	Thu,  2 Apr 2020 08:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C035A6EA0C;
+	Thu,  2 Apr 2020 08:45:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BC4F56EA09;
- Thu,  2 Apr 2020 08:44:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B6252A00C7;
- Thu,  2 Apr 2020 08:44:42 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB02F6EA0C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 08:45:38 +0000 (UTC)
+IronPort-SDR: lV6/5A368dCrwzcwOnIx1P1BuC1CYc9cQrLK1JjOKqmF4sLnHJw8FluhCQck5AWmP5QcNpd3yV
+ cgqdXY1AsJAA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 01:45:37 -0700
+IronPort-SDR: MymKeAEXMtI4cGrvDtyJS3oy7l5fgtIwtPVceurrcTJQfIe14IJglDtbi1hu9SdYJ8Ydhw1Oq7
+ mxOEqdNgJ4Fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,335,1580803200"; d="scan'208";a="242464844"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga008.fm.intel.com with ESMTP; 02 Apr 2020 01:45:37 -0700
+Received: from [10.249.226.252] (abudanko-mobl.ccr.corp.intel.com
+ [10.249.226.252])
+ by linux.intel.com (Postfix) with ESMTP id 4C361580781;
+ Thu,  2 Apr 2020 01:45:32 -0700 (PDT)
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Alexei Starovoitov <ast@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ James Morris <jmorris@namei.org>, Namhyung Kim <namhyung@kernel.org>
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <5590d543-82c6-490a-6544-08e6a5517db0@linux.intel.com>
+Date: Thu, 2 Apr 2020 11:45:31 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 02 Apr 2020 08:44:42 -0000
-Message-ID: <158581708272.24293.2883623490079392953@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200402075057.19794-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200402075057.19794-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gem=3A_Utilize_rcu_iterati?=
- =?utf-8?q?on_of_context_engines?=
+In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+Content-Language: en-US
+Subject: [Intel-gfx] [PATCH v8 01/12] capabilities: introduce CAP_PERFMON to
+ kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,213 +57,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
+ Andi Kleen <ak@linux.intel.com>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/2] drm/i915/gem: Utilize rcu iteration of context engines
-URL   : https://patchwork.freedesktop.org/series/75401/
-State : failure
+Introduce CAP_PERFMON capability designed to secure system performance
+monitoring and observability operations so that CAP_PERFMON would assist
+CAP_SYS_ADMIN capability in its governing role for performance monitoring
+and observability subsystems.
 
-== Summary ==
+CAP_PERFMON hardens system security and integrity during performance
+monitoring and observability operations by decreasing attack surface that
+is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
+to system performance monitoring and observability operations under CAP_PERFMON
+capability singly, without the rest of CAP_SYS_ADMIN credentials, excludes
+chances to misuse the credentials and makes the operation more secure.
+Thus, CAP_PERFMON implements the principal of least privilege for performance
+monitoring and observability operations (POSIX IEEE 1003.1e: 2.2.2.39 principle
+of least privilege: A security design principle that states that a process
+or program be granted only those privileges (e.g., capabilities) necessary
+to accomplish its legitimate function, and only for the time that such
+privileges are actually required)
 
-CI Bug Log - changes from CI_DRM_8236 -> Patchwork_17175
-====================================================
+CAP_PERFMON meets the demand to secure system performance monitoring and
+observability operations for adoption in security sensitive, restricted,
+multiuser production environments (e.g. HPC clusters, cloud and virtual compute
+environments), where root or CAP_SYS_ADMIN credentials are not available to
+mass users of a system, and securely unblocks applicability and scalability
+of system performance monitoring and observability operations beyond root
+and CAP_SYS_ADMIN use cases.
 
-Summary
--------
+CAP_PERFMON takes over CAP_SYS_ADMIN credentials related to system performance
+monitoring and observability operations and balances amount of CAP_SYS_ADMIN
+credentials following the recommendations in the capabilities man page [1]
+for CAP_SYS_ADMIN: "Note: this capability is overloaded; see Notes to kernel
+developers, below." For backward compatibility reasons access to system
+performance monitoring and observability subsystems of the kernel remains
+open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN capability
+usage for secure system performance monitoring and observability operations
+is discouraged with respect to the designed CAP_PERFMON capability.
 
-  **FAILURE**
+Although the software running under CAP_PERFMON can not ensure avoidance
+of related hardware issues, the software can still mitigate these issues
+following the official hardware issues mitigation procedure [2]. The bugs
+in the software itself can be fixed following the standard kernel development
+process [3] to maintain and harden security of system performance monitoring
+and observability operations.
 
-  Serious unknown changes coming with Patchwork_17175 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17175, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+[1] http://man7.org/linux/man-pages/man7/capabilities.7.html
+[2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
+[3] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/index.html
+Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+Acked-by: Song Liu <songliubraving@fb.com>
+Acked-by: Stephen Smalley <sds@tycho.nsa.gov>
+Acked-by: James Morris <jamorris@linux.microsoft.com>
+Acked-by: Serge E. Hallyn <serge@hallyn.com>
+---
+ include/linux/capability.h          | 4 ++++
+ include/uapi/linux/capability.h     | 8 +++++++-
+ security/selinux/include/classmap.h | 4 ++--
+ 3 files changed, 13 insertions(+), 3 deletions(-)
 
-Possible new issues
--------------------
+diff --git a/include/linux/capability.h b/include/linux/capability.h
+index ecce0f43c73a..027d7e4a853b 100644
+--- a/include/linux/capability.h
++++ b/include/linux/capability.h
+@@ -251,6 +251,10 @@ extern bool privileged_wrt_inode_uidgid(struct user_namespace *ns, const struct
+ extern bool capable_wrt_inode_uidgid(const struct inode *inode, int cap);
+ extern bool file_ns_capable(const struct file *file, struct user_namespace *ns, int cap);
+ extern bool ptracer_capable(struct task_struct *tsk, struct user_namespace *ns);
++static inline bool perfmon_capable(void)
++{
++	return capable(CAP_PERFMON) || capable(CAP_SYS_ADMIN);
++}
+ 
+ /* audit system wants to get cap info from files as well */
+ extern int get_vfs_caps_from_disk(const struct dentry *dentry, struct cpu_vfs_cap_data *cpu_caps);
+diff --git a/include/uapi/linux/capability.h b/include/uapi/linux/capability.h
+index 272dc69fa080..e58c9636741b 100644
+--- a/include/uapi/linux/capability.h
++++ b/include/uapi/linux/capability.h
+@@ -367,8 +367,14 @@ struct vfs_ns_cap_data {
+ 
+ #define CAP_AUDIT_READ		37
+ 
++/*
++ * Allow system performance and observability privileged operations
++ * using perf_events, i915_perf and other kernel subsystems
++ */
++
++#define CAP_PERFMON		38
+ 
+-#define CAP_LAST_CAP         CAP_AUDIT_READ
++#define CAP_LAST_CAP         CAP_PERFMON
+ 
+ #define cap_valid(x) ((x) >= 0 && (x) <= CAP_LAST_CAP)
+ 
+diff --git a/security/selinux/include/classmap.h b/security/selinux/include/classmap.h
+index 986f3ac14282..d233ab3f1533 100644
+--- a/security/selinux/include/classmap.h
++++ b/security/selinux/include/classmap.h
+@@ -27,9 +27,9 @@
+ 	    "audit_control", "setfcap"
+ 
+ #define COMMON_CAP2_PERMS  "mac_override", "mac_admin", "syslog", \
+-		"wake_alarm", "block_suspend", "audit_read"
++		"wake_alarm", "block_suspend", "audit_read", "perfmon"
+ 
+-#if CAP_LAST_CAP > CAP_AUDIT_READ
++#if CAP_LAST_CAP > CAP_PERFMON
+ #error New capability defined, please update COMMON_CAP2_PERMS.
+ #endif
+ 
+-- 
+2.24.1
 
-  Here are the unknown changes that may have been introduced in Patchwork_17175:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-8809g:       [PASS][1] -> [DMESG-WARN][2] +13 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-8809g/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-8809g/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-8109u:       [PASS][3] -> [DMESG-WARN][4] +12 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-    - fi-skl-6600u:       NOTRUN -> [DMESG-WARN][5] +12 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
-    - fi-cfl-8700k:       [PASS][6] -> [DMESG-WARN][7] +12 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
-    - fi-icl-dsi:         [PASS][8] -> [DMESG-WARN][9] +12 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-r:           [PASS][10] -> [DMESG-WARN][11] +12 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-r/igt@i915_selftest@live@execlists.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-r/igt@i915_selftest@live@execlists.html
-    - fi-apl-guc:         [PASS][12] -> [DMESG-WARN][13] +12 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-apl-guc/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-apl-guc/igt@i915_selftest@live@execlists.html
-    - fi-skl-lmem:        [PASS][14] -> [DMESG-WARN][15] +13 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-    - fi-glk-dsi:         [PASS][16] -> [DMESG-WARN][17] +12 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-    - fi-kbl-x1275:       [PASS][18] -> [DMESG-WARN][19] +10 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gem:
-    - fi-cml-s:           [PASS][20] -> [DMESG-WARN][21] +12 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cml-s/igt@i915_selftest@live@gem.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-cml-s/igt@i915_selftest@live@gem.html
-    - fi-kbl-guc:         [PASS][22] -> [DMESG-WARN][23] +12 similar issues
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-guc/igt@i915_selftest@live@gem.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-guc/igt@i915_selftest@live@gem.html
-    - fi-kbl-7500u:       [PASS][24] -> [DMESG-WARN][25] +12 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-7500u/igt@i915_selftest@live@gem.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-7500u/igt@i915_selftest@live@gem.html
-
-  * igt@i915_selftest@live@gtt:
-    - fi-skl-guc:         [PASS][26] -> [DMESG-WARN][27] +12 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-skl-guc/igt@i915_selftest@live@gtt.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-skl-guc/igt@i915_selftest@live@gtt.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-cml-u2:          [PASS][28] -> [DMESG-WARN][29] +12 similar issues
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
-    - fi-icl-guc:         [PASS][30] -> [DMESG-WARN][31] +12 similar issues
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-    - fi-icl-u2:          [PASS][32] -> [DMESG-WARN][33] +10 similar issues
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-bdw-5557u:       [PASS][34] -> [DMESG-WARN][35] +12 similar issues
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-cfl-guc:         [PASS][36] -> [DMESG-WARN][37] +12 similar issues
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-cfl-guc/igt@i915_selftest@live@requests.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-cfl-guc/igt@i915_selftest@live@requests.html
-    - fi-kbl-soraka:      [PASS][38] -> [DMESG-WARN][39] +12 similar issues
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-soraka/igt@i915_selftest@live@requests.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-soraka/igt@i915_selftest@live@requests.html
-    - fi-bxt-dsi:         [PASS][40] -> [DMESG-WARN][41] +12 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-bxt-dsi/igt@i915_selftest@live@requests.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-bxt-dsi/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-skl-6700k2:      [PASS][42] -> [DMESG-WARN][43] +12 similar issues
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html
-    - fi-icl-y:           [PASS][44] -> [DMESG-WARN][45] +12 similar issues
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-icl-y/igt@i915_selftest@live@workarounds.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-icl-y/igt@i915_selftest@live@workarounds.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [PASS][46] -> [DMESG-WARN][47] +12 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-tgl-dsi/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@mman:
-    - {fi-ehl-1}:         [PASS][48] -> [DMESG-WARN][49] +12 similar issues
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-ehl-1/igt@i915_selftest@live@mman.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-ehl-1/igt@i915_selftest@live@mman.html
-
-  * igt@i915_selftest@live@requests:
-    - {fi-kbl-7560u}:     [PASS][50] -> [DMESG-WARN][51] +12 similar issues
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-7560u/igt@i915_selftest@live@requests.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-7560u/igt@i915_selftest@live@requests.html
-    - {fi-tgl-u}:         [PASS][52] -> [DMESG-WARN][53] +12 similar issues
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-tgl-u/igt@i915_selftest@live@requests.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-tgl-u/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17175 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][54] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][55] ([i915#62] / [i915#92]) +2 similar issues
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][56] ([i915#62] / [i915#92]) -> [DMESG-WARN][57] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8236/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 44)
-------------------------------
-
-  Additional (3): fi-hsw-peppy fi-skl-6600u fi-elk-e7500 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8236 -> Patchwork_17175
-
-  CI-20190529: 20190529
-  CI_DRM_8236: 698ce59acca37b93bfcdee6899504be3eb113097 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5556: 311cb1b360b7ae00fab80b822cd34fd512f08ce9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17175: 455595cb0eefdf990cdc9f3633e1f582e5b0e5dd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-455595cb0eef drm/i915/gem: Prevent switching of active GEM context VM
-796658ca1855 drm/i915/gem: Utilize rcu iteration of context engines
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17175/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
