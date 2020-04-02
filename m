@@ -2,46 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE4519C4E6
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2508A19C535
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 16:59:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 839D36E10C;
-	Thu,  2 Apr 2020 14:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C93D16EAB0;
+	Thu,  2 Apr 2020 14:59:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from poserver.naic.edu (poserver.naic.edu [192.65.176.209])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2BB46E10C
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 14:53:46 +0000 (UTC)
-Received: from mailserver.naic.edu (mailserver.naic.edu [192.65.176.45])
- by poserver.naic.edu (8.14.4/8.14.4/Debian-8+deb8u2) with ESMTP id
- 032Erb2v021311; Thu, 2 Apr 2020 14:53:37 GMT
-Received: from monopoli.naic.edu (monopoli [192.65.176.208])
- by mailserver.naic.edu (8.12.8/8.12.8) with ESMTP id 032Eraik026816;
- Thu, 2 Apr 2020 10:53:36 -0400
-Received: by monopoli.naic.edu (Postfix, from userid 205)
- id 4BD348533D3A; Thu,  2 Apr 2020 10:53:36 -0400 (AST)
-Date: Thu, 2 Apr 2020 10:53:36 -0400
-From: Giacomo Comes <comes@naic.edu>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200402145336.GA19483@monopoli.naic.edu>
-References: <20200401225317.GA13834@monopoli.naic.edu>
- <20200402135203.GV13686@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E27506EAB0;
+ Thu,  2 Apr 2020 14:59:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DB2C6A00FD;
+ Thu,  2 Apr 2020 14:59:19 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200402135203.GV13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Spam-Score: undef - 192.65.176.45 is allowed always.
-X-CanIt-Geo: ip=192.65.176.45; country=PR; latitude=18.2500; longitude=-66.5000;
- http://maps.google.com/maps?q=18.2500,-66.5000&z=6
-X-CanItPRO-Stream: default
-X-Canit-Stats-ID: Bayes signature not available
-Received-SPF: neutral (poserver.naic.edu: 192.65.176.45 is neither permitted
- nor denied by domain comes@naic.edu)
- receiver=poserver.naic.edu; client-ip=192.65.176.45;
- envelope-from=<comes@naic.edu>; helo=mailserver.naic.edu;
- identity=mailfrom
-X-Scanned-By: CanIt (www . roaringpenguin . com) on 192.65.176.209
-Subject: Re: [Intel-gfx] kernel 5.6: baytrail hdmi audio not working
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Thu, 02 Apr 2020 14:59:19 -0000
+Message-ID: <158583955986.24293.12492598785129188827@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200402142406.1801227-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200402142406.1801227-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_perf/core=3A_Only_copy-to-user_after_completely_unlocking_a?=
+ =?utf-8?q?ll_locks=2C_v2=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,56 +39,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 02, 2020 at 04:52:03PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Apr 01, 2020 at 06:53:17PM -0400, Giacomo Comes wrote:
-> > Hi,
-> > on my Intel Compute Stick STCK1 (baytrail hdmi audio) =
+== Series Details ==
 
-> > sound is not working with the kernel 5.6
-> > =
+Series: perf/core: Only copy-to-user after completely unlocking all locks, v2.
+URL   : https://patchwork.freedesktop.org/series/75422/
+State : warning
 
-> > I have bisected the kernel and I found the commit that introduced the i=
-ssue:
-> > =
+== Summary ==
 
-> > commit 58d124ea2739e1440ddd743d46c470fe724aca9a
-> > Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Date:   Thu Oct 31 12:26:04 2019 +0100
-> > =
+$ dim checkpatch origin/drm-tip
+edcfb0ee5b6f perf/core: Only copy-to-user after completely unlocking all locks, v2.
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
 
-> >     drm/i915: Complete crtc hw/uapi split, v6.
-> >     =
+-:200: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#200: FILE: kernel/events/core.c:5008:
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 **values)
 
-> >     Now that we separated everything into uapi and hw, it's
-> >     time to make the split definitive. Remove the union and
-> >     make a copy of the hw state on modeset and fastset.
-> >     =
+total: 0 errors, 1 warnings, 1 checks, 129 lines checked
 
-> >     Color blobs are copied in crtc atomic_check(), right
-> >     before color management is checked.
-> > =
-
-> > If more information is required please let me know.
-> =
-
-> Should hopefully be fixed with
-> commit 2bdd4c28baff ("drm/i915/display: Fix mode private_flags
-> comparison at atomic_check")
-> =
-
-> Stable folks, please pick that up for 5.6.x stable releases.
-
-I can confirm that the commit indeed solves the problem I have.
-It should go in the stable 5.6.x release ASAP.
-
-Thanks.
-Giacomo
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
