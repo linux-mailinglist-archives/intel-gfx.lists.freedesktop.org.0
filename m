@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460C819D01A
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 08:15:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF3519D023
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 08:18:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A48556EAED;
-	Fri,  3 Apr 2020 06:15:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 255E66EAEE;
+	Fri,  3 Apr 2020 06:18:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720746EAED
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 06:15:12 +0000 (UTC)
-IronPort-SDR: 0a8lu58LjmK8op2gw5HQ3AFb4n6ZEITLcrdG/d/rKyL3jRSW7txjV2X825x/8RjeEdDM4nRgz1
- 68qKTh9iVJsA==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFED6EAEE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 06:18:48 +0000 (UTC)
+IronPort-SDR: dWy3Pz5rqZx/u6YwTvwIP1zHchYoUT+dFaXCZERRCKlkf0HIKmKlIZmY9nolE7vdNZ82IBvT2+
+ Ymzfew+NkaMw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2020 23:15:12 -0700
-IronPort-SDR: VxCadwy/a6sPGfcl2xHRkBgCkwVb4Vc7Z2kCW5tIdOGjuBd5+nVESLoxXJfecpgO/pYEUHxiYx
- 2lLmq4uN+yEA==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 23:18:47 -0700
+IronPort-SDR: Qd836SGxwRqDm8C1qBa2Nfbtb9KCuCQ1v8d2oMAwnZ2EV/blp40OOwFvzwk12Z7iIIhzsVCe8n
+ vGdDcSAARFTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,338,1580803200"; d="scan'208";a="285021627"
+X-IronPort-AV: E=Sophos;i="5.72,338,1580803200"; d="scan'208";a="241038886"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by fmsmga002.fm.intel.com with ESMTP; 02 Apr 2020 23:15:10 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 02 Apr 2020 23:18:45 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 09:11:34 +0300
-Message-Id: <20200403061134.10492-1-stanislav.lisovskiy@intel.com>
+Date: Fri,  3 Apr 2020 09:15:09 +0300
+Message-Id: <20200403061509.11105-1-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200326181005.11775-5-stanislav.lisovskiy@intel.com>
 References: <20200326181005.11775-5-stanislav.lisovskiy@intel.com>
@@ -63,18 +63,19 @@ v3: - Changed new functions naming to use convention proposed
 v4: - Change function naming back to intel_atomic* pattern,
       was decided to rename in a separate patch series.
 v5: - Fix function naming to match existing practices(Ville)
+v6: - Removed spurious whitespace
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 29 ++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bw.c | 28 ++++++++++++++++++++++++-
  drivers/gpu/drm/i915/display/intel_bw.h |  9 ++++++++
- 2 files changed, 37 insertions(+), 1 deletion(-)
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 58b264bc318d..49794f36dbe7 100644
+index 58b264bc318d..d5f5c2f49af2 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -374,7 +374,34 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+@@ -374,7 +374,33 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
  	return data_rate;
  }
  
@@ -99,7 +100,6 @@ index 58b264bc318d..49794f36dbe7 100644
 +	struct intel_global_state *bw_state;
 +
 +	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
-+
 +	if (!bw_state)
 +		return NULL;
 +
