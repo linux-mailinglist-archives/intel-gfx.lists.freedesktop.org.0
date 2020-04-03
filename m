@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6865019D873
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 16:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F5AC19D876
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 16:00:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B70026EC00;
-	Fri,  3 Apr 2020 13:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6A56EC08;
+	Fri,  3 Apr 2020 13:59:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A46226EBFA
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:59:24 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id i19so7849362wmb.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:59:24 -0700 (PDT)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F26A86EBF9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:59:25 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id m17so8611773wrw.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:59:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=DDjYN5F4pqljQeTjrzaM9vKPOIexc9jxnHCDJfkzYeg=;
- b=bUWIlnw4Zdbs4HeUiyORh8sSzWY7FLeX1iZYYjw3xl3T0mQ/t0+pyQTHWRJxbeQ9cQ
- OcdJMPUFQ4sH5mTNA3MTwaJGyLS+iA+hjirfA6AevWJA5YvIPRW4g9oAQ2gvepwgry8X
- k6CkGmOkIHXeSNWMGhOP7JaIpB2A3b12Btrro=
+ bh=dBbU/1DUmgoM/eSyEXqxtgd6PSIU46nzMH7G+4o78Rk=;
+ b=EKncV+XCHFFf8DQmkpH3BityYd28F9pNuoqalNY5C0YkGQ7/VGmSoh1DMQPF+7sNot
+ FnhUqfAnEfs1Da499YBiixbtuaeJci6oWec2MjPFP3IFM38WHQUDWEWOzz99Msw5TxRv
+ oD8BN51suQq+HIYylrWHPYtaLjxD+gxyYR1C8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=DDjYN5F4pqljQeTjrzaM9vKPOIexc9jxnHCDJfkzYeg=;
- b=UH6yBnVkgvRkDb/PX88QcJkwgux/RJ9XMwPdxEFE7/5lVQmhJJHuQ6K4QWRfOQMfZJ
- 9YO+Y1ZOj7sRJjqmljybYbTNQrKBmrJBXogsQMmqcp+oCYqB4GQjBBJLTrgHFQwxkBH/
- uHGioEAXbfWBc6QWPxduumf0zhQBoAOADJXmx9TYHbic3nswdBALuiAEmxZCEyY7RgSx
- AD3ymW8L15JPZoLOWVtiKTGyCB6PdmmyED506FPjyra4XvD0WDKrMzYNmg8ws7h8Yv1M
- ooR8it2ECHFpUmFCuu7ScP4AhdHH5zcrg9S8u1+8Tepet7TMr/MC85s5357SSnYNxw61
- ud9Q==
-X-Gm-Message-State: AGi0PuZmOnufIUvOHNZKcQksC8aeQhac5mWr9eNkE9y8CTyWCk61hwi7
- u4vRUF8HrAOj6UwuXebsmwpt4T5xR+bl+A==
-X-Google-Smtp-Source: APiQypIX3Fz8QBGCHucX1RVHc6MjTaN3ByRB0MlduLVSd27+W4Q7xON+Lhjwwc9Axgv6Q60q1UpiRg==
-X-Received: by 2002:a1c:7e11:: with SMTP id z17mr9258744wmc.151.1585922363363; 
- Fri, 03 Apr 2020 06:59:23 -0700 (PDT)
+ bh=dBbU/1DUmgoM/eSyEXqxtgd6PSIU46nzMH7G+4o78Rk=;
+ b=mvmey/p1D+ARmMbOfS1Ev/EhdzT4V+ODSAzFXcUmKWaxAa9/Jf9Eo+t4oc8QRilSdv
+ 52rlPcao9hqA/7Vsneg000p3pR12WR2En+mz25EopW53KC/vc3cDUKEXY0D0SyTwD/Oe
+ jqYMIFffhPxeZxBbv+wrU0Xal3wVyb/11SqFiC6YPztTRDnBJYYNDcKvONDj2hP9bW98
+ Mm9fa8ALsEnm0qYKRHun6fjOEi06SxAkAW0bQDd2eaJVRdZCP28/AIuvOENBdfnkJC+e
+ BWpsRufwnQggeaQZKnDeVNXuRAJ3ZkIWrBBsNI2HGHK+/DXZxOWWRfXAsQAy/PAgw6Zt
+ hKGw==
+X-Gm-Message-State: AGi0PuZaJ+TEd/FeYc20hXNFQUjDi/rQdeWse0pyPf8JTUb59DxdghYP
+ KwkwWIT65MfLWTK2xv/jcOrc0w==
+X-Google-Smtp-Source: APiQypILF9QC0H+EFGQbO0BGyFKGRea3UNGoE4JB5AM4A9nYt5nFYqWGmjfO4ezyWq9GJ5fiJYobyQ==
+X-Received: by 2002:adf:fcc8:: with SMTP id f8mr9692998wrs.132.1585922364410; 
+ Fri, 03 Apr 2020 06:59:24 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.59.22
+ by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.59.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Apr 2020 06:59:22 -0700 (PDT)
+ Fri, 03 Apr 2020 06:59:23 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  3 Apr 2020 15:58:27 +0200
-Message-Id: <20200403135828.2542770-44-daniel.vetter@ffwll.ch>
+Date: Fri,  3 Apr 2020 15:58:28 +0200
+Message-Id: <20200403135828.2542770-45-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 43/44] drm/i915/selftests: align more to real
- device lifetimes
+Subject: [Intel-gfx] [PATCH 44/44] drm/managed: Cleanup of unused functions
+ and polishing docs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +72,334 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The big change is device_add so that device_del can auto-cleanup
-devres resources. This allows us to use devm_drm_dev_alloc, which
-removes the last user of drm_dev_init.
+Following functions are only used internally, not by drivers:
+- drm_dev_init
+- devm_drm_dev_init
+- drmm_add_final_kfree
+
+Also, now that we have a very slick and polished way to allocate a
+drm_device with devm_drm_dev_alloc, update all the docs to reflect the
+new reality. Mostly this consists of deleting old and misleading
+hints. Two main ones:
+
+- it is no longer required that the drm_device base class is first in
+  the structure. devm_drm_dev_alloc can cope with it being anywhere
+
+- obviously embedded no needs devm_drm_dev_alloc
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 ---
- .../gpu/drm/i915/selftests/mock_gem_device.c  | 31 +++++++++----------
- .../gpu/drm/i915/selftests/mock_gem_device.h  |  2 +-
- 2 files changed, 16 insertions(+), 17 deletions(-)
+ .../driver-api/driver-model/devres.rst        |   2 +-
+ drivers/gpu/drm/drm_drv.c                     | 119 ++++--------------
+ drivers/gpu/drm/drm_internal.h                |   1 +
+ drivers/gpu/drm/drm_managed.c                 |  15 +--
+ include/drm/drm_device.h                      |   2 +-
+ include/drm/drm_drv.h                         |  20 +--
+ 6 files changed, 34 insertions(+), 125 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 03607647cdeb..ea73d1f7cf12 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -123,12 +123,6 @@ struct drm_i915_private *mock_gem_device(void)
- 	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
- 	if (!pdev)
- 		return NULL;
--	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
--	if (!i915) {
--		kfree(pdev);
--		return NULL;
--	}
--
- 	device_initialize(&pdev->dev);
- 	pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
- 	pdev->dev.release = release_dev;
-@@ -139,8 +133,23 @@ struct drm_i915_private *mock_gem_device(void)
- 	/* hack to disable iommu for the fake device; force identity mapping */
- 	pdev->dev.archdata.iommu = (void *)-1;
- #endif
-+	err = device_add(&pdev->dev);
-+	if (err) {
-+		kfree(pdev);
-+		return NULL;
-+	}
-+
-+	i915 = devm_drm_dev_alloc(&pdev->dev, &mock_driver,
-+				  struct drm_i915_private, drm);
-+	if (err) {
-+		pr_err("Failed to allocate mock GEM device: err=%d\n", err);
-+		put_device(&pdev->dev);
-+
-+		return NULL;
-+	}
+diff --git a/Documentation/driver-api/driver-model/devres.rst b/Documentation/driver-api/driver-model/devres.rst
+index 46c13780994c..74a4a3fa8c52 100644
+--- a/Documentation/driver-api/driver-model/devres.rst
++++ b/Documentation/driver-api/driver-model/devres.rst
+@@ -263,7 +263,7 @@ DMA
+   dmam_pool_destroy()
  
- 	pci_set_drvdata(pdev, i915);
-+	i915->drm.pdev = pdev;
+ DRM
+-  devm_drm_dev_init()
++  devm_drm_dev_alloc()
  
- 	dev_pm_domain_set(&pdev->dev, &pm_domain);
- 	pm_runtime_enable(&pdev->dev);
-@@ -148,16 +157,6 @@ struct drm_i915_private *mock_gem_device(void)
- 	if (pm_runtime_enabled(&pdev->dev))
- 		WARN_ON(pm_runtime_get_sync(&pdev->dev));
- 
--	err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
--	if (err) {
--		pr_err("Failed to initialise mock GEM device: err=%d\n", err);
--		put_device(&pdev->dev);
--		kfree(i915);
--
--		return NULL;
--	}
--	i915->drm.pdev = pdev;
--	drmm_add_final_kfree(&i915->drm, i915);
- 
- 	intel_runtime_pm_init_early(&i915->runtime_pm);
- 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.h b/drivers/gpu/drm/i915/selftests/mock_gem_device.h
-index 2e3c7585a7bb..4f309a05c85a 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.h
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.h
-@@ -9,7 +9,7 @@ void mock_device_flush(struct drm_i915_private *i915);
- 
- static inline void mock_destroy_device(struct drm_i915_private *i915)
- {
--	drm_dev_put(&i915->drm);
-+	device_del(i915->drm.dev);
+ GPIO
+   devm_gpiod_get()
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 9e60b784b3ac..64e20c630aa7 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -240,13 +240,13 @@ void drm_minor_release(struct drm_minor *minor)
+  * DOC: driver instance overview
+  *
+  * A device instance for a drm driver is represented by &struct drm_device. This
+- * is initialized with drm_dev_init(), usually from bus-specific ->probe()
+- * callbacks implemented by the driver. The driver then needs to initialize all
+- * the various subsystems for the drm device like memory management, vblank
+- * handling, modesetting support and intial output configuration plus obviously
+- * initialize all the corresponding hardware bits. Finally when everything is up
+- * and running and ready for userspace the device instance can be published
+- * using drm_dev_register().
++ * is allocated and initialized with devm_drm_dev_alloc(), usually from
++ * bus-specific ->probe() callbacks implemented by the driver. The driver then
++ * needs to initialize all the various subsystems for the drm device like memory
++ * management, vblank handling, modesetting support and intial output
++ * configuration plus obviously initialize all the corresponding hardware bits.
++ * Finally when everything is up and running and ready for userspace the device
++ * instance can be published using drm_dev_register().
+  *
+  * There is also deprecated support for initalizing device instances using
+  * bus-specific helpers and the &drm_driver.load callback. But due to
+@@ -274,7 +274,7 @@ void drm_minor_release(struct drm_minor *minor)
+  *
+  * The following example shows a typical structure of a DRM display driver.
+  * The example focus on the probe() function and the other functions that is
+- * almost always present and serves as a demonstration of devm_drm_dev_init().
++ * almost always present and serves as a demonstration of devm_drm_dev_alloc().
+  *
+  * .. code-block:: c
+  *
+@@ -294,22 +294,12 @@ void drm_minor_release(struct drm_minor *minor)
+  *		struct drm_device *drm;
+  *		int ret;
+  *
+- *		// devm_kzalloc() can't be used here because the drm_device '
+- *		// lifetime can exceed the device lifetime if driver unbind
+- *		// happens when userspace still has open file descriptors.
+- *		priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+- *		if (!priv)
+- *			return -ENOMEM;
+- *
++ *		priv = devm_drm_dev_alloc(&pdev->dev, &driver_drm_driver,
++ *					  struct driver_device, drm);
++ *		if (IS_ERR(priv))
++ *			return PTR_ERR(priv);
+  *		drm = &priv->drm;
+  *
+- *		ret = devm_drm_dev_init(&pdev->dev, drm, &driver_drm_driver);
+- *		if (ret) {
+- *			kfree(priv);
+- *			return ret;
+- *		}
+- *		drmm_add_final_kfree(drm, priv);
+- *
+  *		ret = drmm_mode_config_init(drm);
+  *		if (ret)
+  *			return ret;
+@@ -550,9 +540,9 @@ static void drm_fs_inode_free(struct inode *inode)
+  * following guidelines apply:
+  *
+  *  - The entire device initialization procedure should be run from the
+- *    &component_master_ops.master_bind callback, starting with drm_dev_init(),
+- *    then binding all components with component_bind_all() and finishing with
+- *    drm_dev_register().
++ *    &component_master_ops.master_bind callback, starting with
++ *    devm_drm_dev_alloc(), then binding all components with
++ *    component_bind_all() and finishing with drm_dev_register().
+  *
+  *  - The opaque pointer passed to all components through component_bind_all()
+  *    should point at &struct drm_device of the device instance, not some driver
+@@ -583,43 +573,9 @@ static void drm_dev_init_release(struct drm_device *dev, void *res)
+ 	drm_legacy_destroy_members(dev);
  }
  
- #endif /* !__MOCK_GEM_DEVICE_H__ */
+-/**
+- * drm_dev_init - Initialise new DRM device
+- * @dev: DRM device
+- * @driver: DRM driver
+- * @parent: Parent device object
+- *
+- * Initialize a new DRM device. No device registration is done.
+- * Call drm_dev_register() to advertice the device to user space and register it
+- * with other core subsystems. This should be done last in the device
+- * initialization sequence to make sure userspace can't access an inconsistent
+- * state.
+- *
+- * The initial ref-count of the object is 1. Use drm_dev_get() and
+- * drm_dev_put() to take and drop further ref-counts.
+- *
+- * It is recommended that drivers embed &struct drm_device into their own device
+- * structure.
+- *
+- * Drivers that do not want to allocate their own device struct
+- * embedding &struct drm_device can call drm_dev_alloc() instead. For drivers
+- * that do embed &struct drm_device it must be placed first in the overall
+- * structure, and the overall structure must be allocated using kmalloc(): The
+- * drm core's release function unconditionally calls kfree() on the @dev pointer
+- * when the final reference is released. To override this behaviour, and so
+- * allow embedding of the drm_device inside the driver's device struct at an
+- * arbitrary offset, you must supply a &drm_driver.release callback and control
+- * the finalization explicitly.
+- *
+- * Note that drivers must call drmm_add_final_kfree() after this function has
+- * completed successfully.
+- *
+- * RETURNS:
+- * 0 on success, or error code on failure.
+- */
+-int drm_dev_init(struct drm_device *dev,
+-		 struct drm_driver *driver,
+-		 struct device *parent)
++static int drm_dev_init(struct drm_device *dev,
++			struct drm_driver *driver,
++			struct device *parent)
+ {
+ 	int ret;
+ 
+@@ -699,31 +655,15 @@ int drm_dev_init(struct drm_device *dev,
+ 
+ 	return ret;
+ }
+-EXPORT_SYMBOL(drm_dev_init);
+ 
+ static void devm_drm_dev_init_release(void *data)
+ {
+ 	drm_dev_put(data);
+ }
+ 
+-/**
+- * devm_drm_dev_init - Resource managed drm_dev_init()
+- * @parent: Parent device object
+- * @dev: DRM device
+- * @driver: DRM driver
+- *
+- * Managed drm_dev_init(). The DRM device initialized with this function is
+- * automatically put on driver detach using drm_dev_put().
+- *
+- * Note that drivers must call drmm_add_final_kfree() after this function has
+- * completed successfully.
+- *
+- * RETURNS:
+- * 0 on success, or error code on failure.
+- */
+-int devm_drm_dev_init(struct device *parent,
+-		      struct drm_device *dev,
+-		      struct drm_driver *driver)
++static int devm_drm_dev_init(struct device *parent,
++			     struct drm_device *dev,
++			     struct drm_driver *driver)
+ {
+ 	int ret;
+ 
+@@ -737,7 +677,6 @@ int devm_drm_dev_init(struct device *parent,
+ 
+ 	return ret;
+ }
+-EXPORT_SYMBOL(devm_drm_dev_init);
+ 
+ void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
+ 			   size_t size, size_t offset)
+@@ -767,19 +706,9 @@ EXPORT_SYMBOL(__devm_drm_dev_alloc);
+  * @driver: DRM driver to allocate device for
+  * @parent: Parent device object
+  *
+- * Allocate and initialize a new DRM device. No device registration is done.
+- * Call drm_dev_register() to advertice the device to user space and register it
+- * with other core subsystems. This should be done last in the device
+- * initialization sequence to make sure userspace can't access an inconsistent
+- * state.
+- *
+- * The initial ref-count of the object is 1. Use drm_dev_get() and
+- * drm_dev_put() to take and drop further ref-counts.
+- *
+- * Note that for purely virtual devices @parent can be NULL.
+- *
+- * Drivers that wish to subclass or embed &struct drm_device into their
+- * own struct should look at using drm_dev_init() instead.
++ * This is the deprecated version of devm_drm_dev_alloc(), which doesn not support
++ * subclassing through embedding the struct &drm_device in a driver private
++ * structure, and which does not support automatic cleanup through devres.
+  *
+  * RETURNS:
+  * Pointer to new DRM device, or ERR_PTR on failure.
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index 2470a352730b..79f11d3c525e 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -91,6 +91,7 @@ void drm_minor_release(struct drm_minor *minor);
+ 
+ /* drm_managed.c */
+ void drm_managed_release(struct drm_device *dev);
++void drmm_add_final_kfree(struct drm_device *dev, void *container);
+ 
+ /* drm_vblank.c */
+ void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe);
+diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+index 9cebfe370a65..a2a0c5b7ab78 100644
+--- a/drivers/gpu/drm/drm_managed.c
++++ b/drivers/gpu/drm/drm_managed.c
+@@ -25,7 +25,7 @@
+  * be done directly with drmm_kmalloc() and the related functions. Everything
+  * will be released on the final drm_dev_put() in reverse order of how the
+  * release actions have been added and memory has been allocated since driver
+- * loading started with drm_dev_init().
++ * loading started with devm_drm_dev_alloc().
+  *
+  * Note that release actions and managed memory can also be added and removed
+  * during the lifetime of the driver, all the functions are fully concurrent
+@@ -123,18 +123,6 @@ static void add_dr(struct drm_device *dev, struct drmres *dr)
+ 		       dr, dr->node.name, (unsigned long) dr->node.size);
+ }
+ 
+-/**
+- * drmm_add_final_kfree - add release action for the final kfree()
+- * @dev: DRM device
+- * @container: pointer to the kmalloc allocation containing @dev
+- *
+- * Since the allocation containing the struct &drm_device must be allocated
+- * before it can be initialized with drm_dev_init() there's no way to allocate
+- * that memory with drmm_kmalloc(). To side-step this chicken-egg problem the
+- * pointer for this final kfree() must be specified by calling this function. It
+- * will be released in the final drm_dev_put() for @dev, after all other release
+- * actions installed through drmm_add_action() have been processed.
+- */
+ void drmm_add_final_kfree(struct drm_device *dev, void *container)
+ {
+ 	WARN_ON(dev->managed.final_kfree);
+@@ -142,7 +130,6 @@ void drmm_add_final_kfree(struct drm_device *dev, void *container)
+ 	WARN_ON(dev + 1 > (struct drm_device *) (container + ksize(container)));
+ 	dev->managed.final_kfree = container;
+ }
+-EXPORT_SYMBOL(drmm_add_final_kfree);
+ 
+ int __drmm_add_action(struct drm_device *dev,
+ 		      drmres_release_t action,
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index a55874db9dd4..ee9e20ce9b85 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -92,7 +92,7 @@ struct drm_device {
+ 	 * NULL.
+ 	 *
+ 	 * Instead of using this pointer it is recommended that drivers use
+-	 * drm_dev_init() and embed struct &drm_device in their larger
++	 * devm_drm_dev_alloc() and embed struct &drm_device in their larger
+ 	 * per-device structure.
+ 	 */
+ 	void *dev_private;
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index 26776be5a21e..2806cc5eae3a 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -163,13 +163,12 @@ struct drm_driver {
+ 	/**
+ 	 * @load:
+ 	 *
+-	 * Backward-compatible driver callback to complete
+-	 * initialization steps after the driver is registered.  For
+-	 * this reason, may suffer from race conditions and its use is
+-	 * deprecated for new drivers.  It is therefore only supported
+-	 * for existing drivers not yet converted to the new scheme.
+-	 * See drm_dev_init() and drm_dev_register() for proper and
+-	 * race-free way to set up a &struct drm_device.
++	 * Backward-compatible driver callback to complete initialization steps
++	 * after the driver is registered.  For this reason, may suffer from
++	 * race conditions and its use is deprecated for new drivers.  It is
++	 * therefore only supported for existing drivers not yet converted to
++	 * the new scheme.  See devm_drm_dev_alloc() and drm_dev_register() for
++	 * proper and race-free way to set up a &struct drm_device.
+ 	 *
+ 	 * This is deprecated, do not use!
+ 	 *
+@@ -619,13 +618,6 @@ struct drm_driver {
+ 	int dev_priv_size;
+ };
+ 
+-int drm_dev_init(struct drm_device *dev,
+-		 struct drm_driver *driver,
+-		 struct device *parent);
+-int devm_drm_dev_init(struct device *parent,
+-		      struct drm_device *dev,
+-		      struct drm_driver *driver);
+-
+ void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
+ 			   size_t size, size_t offset);
+ 
 -- 
 2.25.1
 
