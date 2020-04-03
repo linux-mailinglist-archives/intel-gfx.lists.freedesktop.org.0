@@ -1,35 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A719F19D357
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:17:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 582BC19D3A5
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:28:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 193856EB40;
-	Fri,  3 Apr 2020 09:16:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6946EB4A;
+	Fri,  3 Apr 2020 09:28:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCCB46EB40
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:16:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20785495-1500050 for multiple; Fri, 03 Apr 2020 10:16:45 +0100
+X-Greylist: delayed 595 seconds by postgrey-1.36 at gabe;
+ Fri, 03 Apr 2020 09:28:15 UTC
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
+ [64.147.123.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 464116EB4C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:28:15 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailout.west.internal (Postfix) with ESMTP id 9E43364E;
+ Fri,  3 Apr 2020 05:18:19 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Fri, 03 Apr 2020 05:18:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=O
+ 7cqg0kFt1j+JAzxb2BuwvOOt9xAuYfjQutzNyUEm7U=; b=Y+HArtjqYmoUhqvXg
+ E+LO/2J6pEpjvym3yLFY+d/HR08M2j0n5xglMlnbVkvP/xlrqU9a1GyJf0y7xJ5g
+ RzsCLrczsSlWfACgUrPberk2Gjv5gA6R8qqGLYAC2tXjpLgU94p0vYS+qLBLPG/F
+ 08SzSe/gs0Gqy1mw7/70BXXEdfiTe8yq7eCDl4KBrUlbTxUggqhEjpzJWypMs4mI
+ GiPmDK7QfyTzaAjEzZQLNyMHohnnd0qLMXNTvWJTkMcFGsq/TOW8l/88s0aLMSfX
+ 8tYyl00z10+afDUlPId77kCmaOgZ52gATxXi1B6NZ86dvbcSNg7pe5AowYKTOnu8
+ YPuDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm2; bh=O7cqg0kFt1j+JAzxb2BuwvOOt9xAuYfjQutzNyUEm
+ 7U=; b=gm+lAvT5mN2L1FTfxeWmslGbUMgJOokW/NTcTX+VADwr6gX6hRA6Vip9E
+ FtGGkAm1jH83w64ggyiMnhhOxSXYSrhGf/vkUrr5O7v4EftOb0fKBTBrlAwiVbLt
+ HIuvRPJAf1Y0sJi9qinbYn9/t+yODK8lJXlkqHJ12Df1hoPV0jrShKGM5E+DwA0N
+ GHZOWKEAZnp72jUGV+oz6N2GqdKrCE/y9JnQaLk8bwYdga8EzItHHjsiGATSflP4
+ sfC7/N5LcPMJjhDos8x9c4bC73YsEl6W7R5XCcC+UiWj5sZWa34Hpsklr+OG5Z3w
+ ANQAmQxcthmrgctCMRYgyvcMuGwQg==
+X-ME-Sender: <xms:Wf-GXsIU6cwZBBeVL4We5RvWZJnzA4BnBpQ0mMFyJl3GmLr1eun_Yg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrtdeigddugecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggugfgjsehtkeertddttddunecuhfhrohhmpefirhgvghcu
+ mffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucfkphepkeefrdekiedrkeelrddutd
+ ejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhr
+ vghgsehkrhhorghhrdgtohhm
+X-ME-Proxy: <xmx:Wf-GXgYY4adXz3v_tBSiPVIh2aMu53G-l5zNIyv850O1dppq5SjnlA>
+ <xmx:Wf-GXnuLn9GHD-TS8RnK1TNRtpLK4QdNWcERPutB-6ghx8VjyHI5_Q>
+ <xmx:Wf-GXtvuoebC9awjSlZF9Fzoj4qAG7sh9p74IMrJWjNVrtx4K3bp2g>
+ <xmx:W_-GXpaRoTLC6Y01KaLwbuBdWTfiq6jvMeBRUm6ua2zfSD8JDrLZIQ>
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 87BE6306CF47;
+ Fri,  3 Apr 2020 05:18:17 -0400 (EDT)
+Date: Fri, 3 Apr 2020 11:18:16 +0200
+From: Greg KH <greg@kroah.com>
+To: Giacomo Comes <comes@naic.edu>
+Message-ID: <20200403091816.GD3740897@kroah.com>
+References: <20200401225317.GA13834@monopoli.naic.edu>
+ <20200402135203.GV13686@intel.com>
+ <20200402145336.GA19483@monopoli.naic.edu>
 MIME-Version: 1.0
-In-Reply-To: <20200403091430.GA3845@duo.ucw.cz>
-References: <20200402213253.GA2691@duo.ucw.cz>
- <20200402213506.GA2767@duo.ucw.cz> <20200403073720.GA23229@duo.ucw.cz>
- <20200403091430.GA3845@duo.ucw.cz>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Pavel Machek <pavel@ucw.cz>, intel-gfx@lists.freedesktop.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- kernel list <linux-kernel@vger.kernel.org>, rodrigo.vivi@intel.com
-Message-ID: <158590540341.5852.3933814252282882685@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 03 Apr 2020 10:16:43 +0100
-Subject: Re: [Intel-gfx] 5.7-rc0: hangs while attempting to run X
+Content-Disposition: inline
+In-Reply-To: <20200402145336.GA19483@monopoli.naic.edu>
+Subject: Re: [Intel-gfx] kernel 5.6: baytrail hdmi audio not working
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,60 +80,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Pavel Machek (2020-04-03 10:14:30)
-> Hi!
-> 
-> > > > Hardware is thinkpad x220. I had this crash few days ago. And today I
-> > > > have similar-looking one, with slightly newer kernel. (Will post
-> > > > as a follow-up).
-> > 
-> > As part of quest for working system, I tried 5.7-rc0, based on
-> > 
-> > Merge: 50a5de895dbe b4d8ddf8356d
-> > Author: Linus Torvalds <torvalds@linux-foundation.org>
-> > Date:   Wed Apr 1 18:18:18 2020 -0700
-> > 
-> > It hangs in userspace, at a time when X should be starting, and I'm
-> > looking at blinking cursor.
-> > 
-> > 5.6-rcs worked, I'll test 5.6-final.
-> 
-> 5.6-final works.
-> 
-> Hmm...
-> 
-> commit f365ab31efacb70bed1e821f7435626e0b2528a6
-> Merge: 4646de87d325 59e7a8cc2dcf
-> Author: Linus Torvalds <torvalds@linux-foundation.org>
-> Date:   Wed Apr 1 15:24:20 2020 -0700
-> 
->     Merge tag 'drm-next-2020-04-01' of git://anongit.freedesktop.org/drm/drm
-> 
-> Let me test 4646de87d32526ee87b46c2e0130413367fb5362...that one works.
-> 
-> Ok, so obviously... I should
-> test... f365ab31efacb70bed1e821f7435626e0b2528a6
-> 
-> Now, this is anti-social:
-> 
-> Busywait for request completion limit (ns)
-> (DRM_I915_MAX_REQUEST_BUSYWAIT) [8000] (NEW)
-> 
-> How should I know what to answer here (or the others)
-> 
-> Interval between heartbeat pulses (ms) (DRM_I915_HEARTBEAT_INTERVAL) [2500] 2500
-> Preempt timeout (ms, jiffy granularity) (DRM_I915_PREEMPT_TIMEOUT) [640] 640
-> 
-> I just took the defaults.. but... 
+On Thu, Apr 02, 2020 at 10:53:36AM -0400, Giacomo Comes wrote:
+> On Thu, Apr 02, 2020 at 04:52:03PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Apr 01, 2020 at 06:53:17PM -0400, Giacomo Comes wrote:
+> > > Hi,
+> > > on my Intel Compute Stick STCK1 (baytrail hdmi audio) =
 
-It is _deep_ under EXPERT.
--Chris
+> > > sound is not working with the kernel 5.6
+> > > =
+
+> > > I have bisected the kernel and I found the commit that introduced the=
+ issue:
+> > > =
+
+> > > commit 58d124ea2739e1440ddd743d46c470fe724aca9a
+> > > Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Date:   Thu Oct 31 12:26:04 2019 +0100
+> > > =
+
+> > >     drm/i915: Complete crtc hw/uapi split, v6.
+> > >     =
+
+> > >     Now that we separated everything into uapi and hw, it's
+> > >     time to make the split definitive. Remove the union and
+> > >     make a copy of the hw state on modeset and fastset.
+> > >     =
+
+> > >     Color blobs are copied in crtc atomic_check(), right
+> > >     before color management is checked.
+> > > =
+
+> > > If more information is required please let me know.
+> > =
+
+> > Should hopefully be fixed with
+> > commit 2bdd4c28baff ("drm/i915/display: Fix mode private_flags
+> > comparison at atomic_check")
+> > =
+
+> > Stable folks, please pick that up for 5.6.x stable releases.
+> =
+
+> I can confirm that the commit indeed solves the problem I have.
+> It should go in the stable 5.6.x release ASAP.
+
+Now queued up, thanks.
+
+greg k-h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
