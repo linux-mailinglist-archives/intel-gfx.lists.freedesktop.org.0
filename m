@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F9619D346
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B55AC19D340
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:13:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB72F6EB45;
-	Fri,  3 Apr 2020 09:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C446EB37;
+	Fri,  3 Apr 2020 09:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38376EB37
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30676EB36
  for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:13:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20785434-1500050 
- for multiple; Fri, 03 Apr 2020 10:13:03 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20785435-1500050 
+ for multiple; Fri, 03 Apr 2020 10:13:04 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 10:12:59 +0100
-Message-Id: <20200403091300.14734-9-chris@chris-wilson.co.uk>
+Date: Fri,  3 Apr 2020 10:13:00 +0100
+Message-Id: <20200403091300.14734-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200403091300.14734-1-chris@chris-wilson.co.uk>
 References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/10] drm/i915/gem: Allow combining
- submit-fences with syncobj
+Subject: [Intel-gfx] [PATCH 10/10] drm/i915/gt: Declare when we enabled
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,73 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Kenneth Graunke <kenneth@whitecape.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fixes: a88b6e4cbafd ("drm/i915: Allow specification of parallel execbuf")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 10 +++++++---
- include/uapi/drm/i915_drm.h                    |  7 ++++---
- 2 files changed, 11 insertions(+), 6 deletions(-)
+Let userspace know if they can trust timeslicing by including it as part
+of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index bf1b5399ffa3..5c1c5a9eced4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2299,7 +2299,7 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
- 		BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
- 			     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
+v2: Only declare timeslicing if we can safely preempt userspace.
+
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h      | 3 ++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c | 5 +++++
+ include/uapi/drm/i915_drm.h                 | 1 +
+ 3 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index b469de0dd9b6..424672ee7874 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -339,7 +339,8 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+ 	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+ 		return false;
  
--		fences[n] = ptr_pack_bits(syncobj, fence.flags, 2);
-+		fences[n] = ptr_pack_bits(syncobj, fence.flags, 3);
+-	return intel_engine_has_semaphores(engine);
++	return (intel_engine_has_semaphores(engine) &&
++		intel_engine_has_preemption(engine));
+ }
+ 
+ #endif /* _INTEL_RINGBUFFER_H_ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 848decee9066..b84fdd722781 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -121,6 +121,11 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+ 			else
+ 				disabled |= BIT(map[i].sched);
+ 		}
++
++		if (intel_engine_has_timeslices(engine))
++			enabled |= I915_SCHEDULER_CAP_TIMESLICING;
++		else
++			disabled |= I915_SCHEDULER_CAP_TIMESLICING;
  	}
  
- 	return fences;
-@@ -2330,7 +2330,7 @@ await_fence_array(struct i915_execbuffer *eb,
- 		struct dma_fence *fence;
- 		unsigned int flags;
- 
--		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
-+		syncobj = ptr_unpack_bits(fences[n], &flags, 3);
- 		if (!(flags & I915_EXEC_FENCE_WAIT))
- 			continue;
- 
-@@ -2354,7 +2354,11 @@ await_fence_array(struct i915_execbuffer *eb,
- 			spin_unlock(&syncobj->lock);
- 		}
- 
--		err = i915_request_await_dma_fence(eb->request, fence);
-+		if (flags & I915_EXEC_FENCE_WAIT_SUBMIT)
-+			err = i915_request_await_execution(eb->request, fence,
-+							   eb->engine->bond_execute);
-+		else
-+			err = i915_request_await_dma_fence(eb->request, fence);
- 		dma_fence_put(fence);
- 		if (err < 0)
- 			return err;
+ 	i915->caps.scheduler = enabled & ~disabled;
 diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd6b54b..704dd0e3bc1d 100644
+index 704dd0e3bc1d..1ee227b5131a 100644
 --- a/include/uapi/drm/i915_drm.h
 +++ b/include/uapi/drm/i915_drm.h
-@@ -1040,9 +1040,10 @@ struct drm_i915_gem_exec_fence {
- 	 */
- 	__u32 handle;
+@@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
+ #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+ #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+ #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
++#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
  
--#define I915_EXEC_FENCE_WAIT            (1<<0)
--#define I915_EXEC_FENCE_SIGNAL          (1<<1)
--#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
-+#define I915_EXEC_FENCE_WAIT            (1u << 0)
-+#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
-+#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
-+#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
- 	__u32 flags;
- };
+ #define I915_PARAM_HUC_STATUS		 42
  
 -- 
 2.20.1
