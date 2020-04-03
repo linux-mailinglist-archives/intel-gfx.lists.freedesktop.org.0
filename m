@@ -2,72 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582BC19D3A5
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE1719D3A8
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:29:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6946EB4A;
-	Fri,  3 Apr 2020 09:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2997A6EB4B;
+	Fri,  3 Apr 2020 09:29:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 595 seconds by postgrey-1.36 at gabe;
- Fri, 03 Apr 2020 09:28:15 UTC
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
- [64.147.123.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 464116EB4C
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:28:15 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailout.west.internal (Postfix) with ESMTP id 9E43364E;
- Fri,  3 Apr 2020 05:18:19 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Fri, 03 Apr 2020 05:18:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=O
- 7cqg0kFt1j+JAzxb2BuwvOOt9xAuYfjQutzNyUEm7U=; b=Y+HArtjqYmoUhqvXg
- E+LO/2J6pEpjvym3yLFY+d/HR08M2j0n5xglMlnbVkvP/xlrqU9a1GyJf0y7xJ5g
- RzsCLrczsSlWfACgUrPberk2Gjv5gA6R8qqGLYAC2tXjpLgU94p0vYS+qLBLPG/F
- 08SzSe/gs0Gqy1mw7/70BXXEdfiTe8yq7eCDl4KBrUlbTxUggqhEjpzJWypMs4mI
- GiPmDK7QfyTzaAjEzZQLNyMHohnnd0qLMXNTvWJTkMcFGsq/TOW8l/88s0aLMSfX
- 8tYyl00z10+afDUlPId77kCmaOgZ52gATxXi1B6NZ86dvbcSNg7pe5AowYKTOnu8
- YPuDw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :date:from:in-reply-to:message-id:mime-version:references
- :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm2; bh=O7cqg0kFt1j+JAzxb2BuwvOOt9xAuYfjQutzNyUEm
- 7U=; b=gm+lAvT5mN2L1FTfxeWmslGbUMgJOokW/NTcTX+VADwr6gX6hRA6Vip9E
- FtGGkAm1jH83w64ggyiMnhhOxSXYSrhGf/vkUrr5O7v4EftOb0fKBTBrlAwiVbLt
- HIuvRPJAf1Y0sJi9qinbYn9/t+yODK8lJXlkqHJ12Df1hoPV0jrShKGM5E+DwA0N
- GHZOWKEAZnp72jUGV+oz6N2GqdKrCE/y9JnQaLk8bwYdga8EzItHHjsiGATSflP4
- sfC7/N5LcPMJjhDos8x9c4bC73YsEl6W7R5XCcC+UiWj5sZWa34Hpsklr+OG5Z3w
- ANQAmQxcthmrgctCMRYgyvcMuGwQg==
-X-ME-Sender: <xms:Wf-GXsIU6cwZBBeVL4We5RvWZJnzA4BnBpQ0mMFyJl3GmLr1eun_Yg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrtdeigddugecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggugfgjsehtkeertddttddunecuhfhrohhmpefirhgvghcu
- mffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucfkphepkeefrdekiedrkeelrddutd
- ejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhr
- vghgsehkrhhorghhrdgtohhm
-X-ME-Proxy: <xmx:Wf-GXgYY4adXz3v_tBSiPVIh2aMu53G-l5zNIyv850O1dppq5SjnlA>
- <xmx:Wf-GXnuLn9GHD-TS8RnK1TNRtpLK4QdNWcERPutB-6ghx8VjyHI5_Q>
- <xmx:Wf-GXtvuoebC9awjSlZF9Fzoj4qAG7sh9p74IMrJWjNVrtx4K3bp2g>
- <xmx:W_-GXpaRoTLC6Y01KaLwbuBdWTfiq6jvMeBRUm6ua2zfSD8JDrLZIQ>
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- by mail.messagingengine.com (Postfix) with ESMTPA id 87BE6306CF47;
- Fri,  3 Apr 2020 05:18:17 -0400 (EDT)
-Date: Fri, 3 Apr 2020 11:18:16 +0200
-From: Greg KH <greg@kroah.com>
-To: Giacomo Comes <comes@naic.edu>
-Message-ID: <20200403091816.GD3740897@kroah.com>
-References: <20200401225317.GA13834@monopoli.naic.edu>
- <20200402135203.GV13686@intel.com>
- <20200402145336.GA19483@monopoli.naic.edu>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A2A946EB42;
+ Fri,  3 Apr 2020 09:29:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B5F8A47E8;
+ Fri,  3 Apr 2020 09:29:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200402145336.GA19483@monopoli.naic.edu>
-Subject: Re: [Intel-gfx] kernel 5.6: baytrail hdmi audio not working
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 03 Apr 2020 09:29:12 -0000
+Message-ID: <158590615263.13350.3589535356082409562@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200403084459.14150-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200403084459.14150-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Check_current_i915=5Fvma=2Epin=5Fcount_status_first_on?=
+ =?utf-8?q?_unbind_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,59 +39,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 02, 2020 at 10:53:36AM -0400, Giacomo Comes wrote:
-> On Thu, Apr 02, 2020 at 04:52:03PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Apr 01, 2020 at 06:53:17PM -0400, Giacomo Comes wrote:
-> > > Hi,
-> > > on my Intel Compute Stick STCK1 (baytrail hdmi audio) =
+== Series Details ==
 
-> > > sound is not working with the kernel 5.6
-> > > =
+Series: drm/i915: Check current i915_vma.pin_count status first on unbind (rev4)
+URL   : https://patchwork.freedesktop.org/series/72529/
+State : failure
 
-> > > I have bisected the kernel and I found the commit that introduced the=
- issue:
-> > > =
+== Summary ==
 
-> > > commit 58d124ea2739e1440ddd743d46c470fe724aca9a
-> > > Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Date:   Thu Oct 31 12:26:04 2019 +0100
-> > > =
+CI Bug Log - changes from CI_DRM_8243 -> Patchwork_17196
+====================================================
 
-> > >     drm/i915: Complete crtc hw/uapi split, v6.
-> > >     =
+Summary
+-------
 
-> > >     Now that we separated everything into uapi and hw, it's
-> > >     time to make the split definitive. Remove the union and
-> > >     make a copy of the hw state on modeset and fastset.
-> > >     =
+  **FAILURE**
 
-> > >     Color blobs are copied in crtc atomic_check(), right
-> > >     before color management is checked.
-> > > =
+  Serious unknown changes coming with Patchwork_17196 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17196, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > > If more information is required please let me know.
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/index.html
 
-> > Should hopefully be fixed with
-> > commit 2bdd4c28baff ("drm/i915/display: Fix mode private_flags
-> > comparison at atomic_check")
-> > =
+Possible new issues
+-------------------
 
-> > Stable folks, please pick that up for 5.6.x stable releases.
-> =
+  Here are the unknown changes that may have been introduced in Patchwork_17196:
 
-> I can confirm that the commit indeed solves the problem I have.
-> It should go in the stable 5.6.x release ASAP.
+### IGT changes ###
 
-Now queued up, thanks.
+#### Possible regressions ####
 
-greg k-h
+  * igt@i915_selftest@live@gt_mocs:
+    - fi-ivb-3770:        NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-ivb-3770/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-ilk-650:         [PASS][2] -> [INCOMPLETE][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-ilk-650/igt@i915_selftest@live@gtt.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-ilk-650/igt@i915_selftest@live@gtt.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@runner@aborted:
+    - fi-ilk-650:         NOTRUN -> [FAIL][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-ilk-650/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17196 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-dsi:         [INCOMPLETE][7] ([i915#189]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][9] ([i915#656]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (41 -> 44)
+------------------------------
+
+  Additional (8): fi-skl-6770hq fi-snb-2520m fi-ivb-3770 fi-cfl-8109u fi-skl-lmem fi-kbl-7560u fi-byt-n2820 fi-skl-6600u 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8243 -> Patchwork_17196
+
+  CI-20190529: 20190529
+  CI_DRM_8243: 45ccb1b8606b6ba1a5d4f8a8b4dda27bd8dbb04c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17196: e6a263b61da901a7c10aca793f55d0d3e1d897e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e6a263b61da9 drm/i915: Check current i915_vma.pin_count status first on unbind
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17196/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
