@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BFA19DE4F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 21:02:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA5619DEBF
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 21:50:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1516D6EC6D;
-	Fri,  3 Apr 2020 19:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C247E6EC72;
+	Fri,  3 Apr 2020 19:50:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E6346EC6D
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 19:02:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20793220-1500050 
- for multiple; Fri, 03 Apr 2020 20:02:11 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 20:02:09 +0100
-Message-Id: <20200403190209.21818-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B28A6E97A;
+ Fri,  3 Apr 2020 19:50:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 71B1FA41FB;
+ Fri,  3 Apr 2020 19:50:01 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Wait until we start
- timeslicing after a submit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Fri, 03 Apr 2020 19:50:01 -0000
+Message-ID: <158594340143.13349.8678521266167795213@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200403183837.99554-1-andi@etezian.org>
+In-Reply-To: <20200403183837.99554-1-andi@etezian.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_?=
+ =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,41 +39,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we submit, we do not start timeslicnig until we process the CS event
-that marks the start of the context running on HW. So in the selftest,
-be sure to wait until we have processed the pending events before
-asserting that timeslicing has begun.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Series: drm/i915/gt: move remaining debugfs interfaces into gt (rev4)
+URL   : https://patchwork.freedesktop.org/series/75333/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 985d4041d929..9e02917695b1 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1244,7 +1244,11 @@ static int live_timeslice_queue(void *arg)
- 		if (err)
- 			goto err_rq;
- 
--		intel_engine_flush_submission(engine);
-+		/* Wait until we ack the release_queue and start timeslicing */
-+		do {
-+			intel_engine_flush_submission(engine);
-+		} while (READ_ONCE(engine->execlists.pending[0]));
-+
- 		if (!READ_ONCE(engine->execlists.timer.expires) &&
- 		    !i915_request_completed(rq)) {
- 			struct drm_printer p =
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+88806913668d drm/i915/gt: move remaining debugfs interfaces into gt
+-:119: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#119: 
+new file mode 100644
+
+-:443: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#443: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:74:
++		eu_reg[2 * s + 1] = intel_uncore_read(uncore,
++						  GEN10_SS23_EU_PGCTL_ACK(s));
+
+-:493: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#493: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:124:
++		eu_reg[2*s] = intel_uncore_read(uncore,
+ 		        ^
+
+-:495: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#495: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:126:
++		eu_reg[2*s + 1] = intel_uncore_read(uncore,
+ 		        ^
+
+-:533: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#533: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:164:
++			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
+ 			                               ^
+
+-:533: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#533: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:164:
++			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
+ 			                                      ^
+
+-:534: CHECK:SPACING: spaces preferred around that '%' (ctx:VxV)
+#534: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:165:
++					       eu_mask[ss%2]);
+ 					                 ^
+
+total: 0 errors, 1 warnings, 6 checks, 1062 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
