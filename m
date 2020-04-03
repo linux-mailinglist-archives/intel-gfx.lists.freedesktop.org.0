@@ -2,30 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CCC19D102
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 09:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E18E19DB6D
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:22:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2386EB13;
-	Fri,  3 Apr 2020 07:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03C066E1B5;
+	Fri,  3 Apr 2020 16:22:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40AC06EB13;
- Fri,  3 Apr 2020 07:16:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 389B4A47DA;
- Fri,  3 Apr 2020 07:16:55 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 03 Apr 2020 07:16:55 -0000
-Message-ID: <158589821522.13351.16090815760351365511@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev10=29?=
+Received: from pegase1.c-s.fr (pegase1.c-s.fr [93.17.236.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8D26EB20
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 07:50:49 +0000 (UTC)
+Received: from localhost (mailhub1-int [192.168.12.234])
+ by localhost (Postfix) with ESMTP id 48trv657qcz9tvql;
+ Fri,  3 Apr 2020 09:20:50 +0200 (CEST)
+Authentication-Results: localhost; dkim=pass
+ reason="1024-bit key; insecure key"
+ header.d=c-s.fr header.i=@c-s.fr header.b=HYEqwDJP; dkim-adsp=pass;
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+ by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+ with ESMTP id DSySj9k_iDCl; Fri,  3 Apr 2020 09:20:50 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+ by pegase1.c-s.fr (Postfix) with ESMTP id 48trv62kb0z9tvqN;
+ Fri,  3 Apr 2020 09:20:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
+ t=1585898450; bh=BZGJ5lVxmRqDhQrXM2sVvZ1tiVXP/OZYoFckJ7hz26w=;
+ h=From:Subject:To:Cc:Date:From;
+ b=HYEqwDJPd7pLuLcru8tvGKy02G4omKmTEBy2HWkNdcMwjpWMTsKY8Os7kGmqSyYz1
+ DtiG+ll6jKULsdFcCzPljIy8bB2J/pRH2BabZc+R54EPfIMJAA4IitiwVuaxC2ViUw
+ 8xN2lqiBArzBSR2Flyb0A8ffbZ+BnajNKY9XIC3E=
+Received: from localhost (localhost [127.0.0.1])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 0A7B98B943;
+ Fri,  3 Apr 2020 09:20:51 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+ by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+ with ESMTP id hL4GD4U_URSX; Fri,  3 Apr 2020 09:20:50 +0200 (CEST)
+Received: from pc16570vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id AC8D28B75B;
+ Fri,  3 Apr 2020 09:20:50 +0200 (CEST)
+Received: by pc16570vm.idsi0.si.c-s.fr (Postfix, from userid 0)
+ id 548C665700; Fri,  3 Apr 2020 07:20:50 +0000 (UTC)
+Message-Id: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
+From: Christophe Leroy <christophe.leroy@c-s.fr>
+To: Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+ airlied@linux.ie, daniel@ffwll.ch, torvalds@linux-foundation.org,
+ viro@zeniv.linux.org.uk, akpm@linux-foundation.org, keescook@chromium.org,
+ hpa@zytor.com
+Date: Fri,  3 Apr 2020 07:20:50 +0000 (UTC)
+X-Mailman-Approved-At: Fri, 03 Apr 2020 16:22:03 +0000
+Subject: [Intel-gfx] [PATCH v2 1/5] uaccess: Add user_read_access_begin/end
+ and user_write_access_begin/end
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,122 +67,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-arch@vger.kernel.org, linux-mm@kvack.org,
+ intel-gfx@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Some architectures like powerpc64 have the capability to separate
+read access and write access protection.
+For get_user() and copy_from_user(), powerpc64 only open read access.
+For put_user() and copy_to_user(), powerpc64 only open write access.
+But when using unsafe_get_user() or unsafe_put_user(),
+user_access_begin open both read and write.
 
-Series: SAGV support for Gen12+ (rev10)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : success
+Other architectures like powerpc book3s 32 bits only allow write
+access protection. And on this architecture protection is an heavy
+operation as it requires locking/unlocking per segment of 256Mbytes.
+On those architecture it is therefore desirable to do the unlocking
+only for write access. (Note that book3s/32 ranges from very old
+powermac from the 90's with powerpc 601 processor, till modern
+ADSL boxes with PowerQuicc II processors for instance so it
+is still worth considering.)
 
-== Summary ==
+In order to avoid any risk based of hacking some variable parameters
+passed to user_access_begin/end that would allow hacking and
+leaving user access open or opening too much, it is preferable to
+use dedicated static functions that can't be overridden.
 
-CI Bug Log - changes from CI_DRM_8243 -> Patchwork_17194
-====================================================
+Add a user_read_access_begin and user_read_access_end to only open
+read access.
 
-Summary
--------
+Add a user_write_access_begin and user_write_access_end to only open
+write access.
 
-  **SUCCESS**
+By default, when undefined, those new access helpers default on the
+existing user_access_begin and user_access_end.
 
-  No regressions found.
+Signed-off-by: Christophe Leroy <christophe.leroy@c-s.fr>
+Reviewed-by: Kees Cook <keescook@chromium.org>
+---
+v2: no change in this patch. See each patch for related changes.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/index.html
+v1 at https://patchwork.ozlabs.org/project/linuxppc-dev/list/?series=168174
 
-Possible new issues
--------------------
+This series is based on the discussion we had in January, see
+https://patchwork.ozlabs.org/patch/1227926/ . I tried to
+take into account all remarks, especially @hpa 's remark to use
+a fixed API on not base the relocking on a magic id returned at
+unlocking.
 
-  Here are the unknown changes that may have been introduced in Patchwork_17194:
+This series is awaited for implementing selective lkdtm test to
+test powerpc64 independant read and write protection, see
+https://patchwork.ozlabs.org/patch/1231765/
 
-### IGT changes ###
+Signed-off-by: Christophe Leroy <christophe.leroy@c-s.fr>
+---
+ include/linux/uaccess.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-#### Suppressed ####
+diff --git a/include/linux/uaccess.h b/include/linux/uaccess.h
+index 67f016010aad..9861c89f93be 100644
+--- a/include/linux/uaccess.h
++++ b/include/linux/uaccess.h
+@@ -378,6 +378,14 @@ extern long strnlen_unsafe_user(const void __user *unsafe_addr, long count);
+ static inline unsigned long user_access_save(void) { return 0UL; }
+ static inline void user_access_restore(unsigned long flags) { }
+ #endif
++#ifndef user_write_access_begin
++#define user_write_access_begin user_access_begin
++#define user_write_access_end user_access_end
++#endif
++#ifndef user_read_access_begin
++#define user_read_access_begin user_access_begin
++#define user_read_access_end user_access_end
++#endif
+ 
+ #ifdef CONFIG_HARDENED_USERCOPY
+ void usercopy_warn(const char *name, const char *detail, bool to_user,
+-- 
+2.25.0
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@gem_wait@busy@all}:
-    - fi-gdg-551:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-gdg-551/igt@gem_wait@busy@all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/fi-gdg-551/igt@gem_wait@busy@all.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17194 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [PASS][3] -> [FAIL][4] ([i915#262])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [INCOMPLETE][5] ([i915#189]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [INCOMPLETE][7] ([i915#656]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Additional (4): fi-cfl-8109u fi-byt-n2820 fi-bwr-2160 fi-snb-2520m 
-  Missing    (7): fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8243 -> Patchwork_17194
-
-  CI-20190529: 20190529
-  CI_DRM_8243: 45ccb1b8606b6ba1a5d4f8a8b4dda27bd8dbb04c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17194: 1ba579e5a9a2d41717a5666c74ed5444f2c6b73f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1ba579e5a9a2 drm/i915: Enable SAGV support for Gen12
-9e821cd38de0 drm/i915: Restrict qgv points which don't have enough bandwidth.
-ff752f1ff8c0 drm/i915: Rename bw_state to new_bw_state
-239a48d2167c drm/i915: Added required new PCode commands
-0e0085943e7f drm/i915: Add proper SAGV support for TGL+
-cd2178aba4dc drm/i915: Extract gen specific functions from intel_can_enable_sagv
-5fc52d157ac3 drm/i915: Add intel_atomic_get_bw_*_state helpers
-94034283d7ed drm/i915: Introduce skl_plane_wm_level accessor.
-a35112134535 drm/i915: Eliminate magic numbers "0" and "1" from color plane
-39ffd9923dd5 drm/i915: Start passing latency as parameter
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17194/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
