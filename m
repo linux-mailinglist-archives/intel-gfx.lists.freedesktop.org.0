@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACAE019CE51
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 03:47:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A8C19CED3
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 05:18:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B52FA6EAE5;
-	Fri,  3 Apr 2020 01:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07FE46E1A8;
+	Fri,  3 Apr 2020 03:18:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2721F6EAE4;
- Fri,  3 Apr 2020 01:47:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F3425A47DF;
- Fri,  3 Apr 2020 01:47:33 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA776E1A8;
+ Fri,  3 Apr 2020 03:18:27 +0000 (UTC)
+IronPort-SDR: fEicXeUKhGvC8mdPqk5iHY4rFOy4yX5CcKzCUteorm36G58pXMekU+z41RHofTl8Luqgne186z
+ RUuvpaU2Q3wQ==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 20:18:26 -0700
+IronPort-SDR: Abd3dkrg/XcK7LVMHXIvRKW+6hMciwJ2YBZXsEmkw8SABJ6TBM1MLpRCozAxl5b+TUNTB3Xj6S
+ 6LnALmnfCr8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,338,1580803200"; 
+ d="asc'?scan'208";a="273805556"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga004.fm.intel.com with ESMTP; 02 Apr 2020 20:18:24 -0700
+Date: Fri, 3 Apr 2020 11:05:07 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200403030507.GQ16629@zhen-hp.sh.intel.com>
+References: <20200331070025.GB16629@zhen-hp.sh.intel.com>
+ <20200331162644.GA3779315@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Fri, 03 Apr 2020 01:47:33 -0000
-Message-ID: <158587845396.13350.16117959594965124638@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200403010120.3067-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20200403010120.3067-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Do_not_clear_pollin_for_small_user_read_buffers_?=
- =?utf-8?b?KHJldjcp?=
+In-Reply-To: <20200331162644.GA3779315@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +49,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: "Zhao, Yan Y" <yan.y.zhao@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0917455015=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/perf: Do not clear pollin for small user read buffers (rev7)
-URL   : https://patchwork.freedesktop.org/series/75085/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8242 -> Patchwork_17191
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17191/index.html
+--===============0917455015==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="bJ3jXuwtxrXxD2iT"
+Content-Disposition: inline
 
 
-Changes
--------
+--bJ3jXuwtxrXxD2iT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  No changes found
+On 2020.03.31 09:26:44 -0700, Rodrigo Vivi wrote:
+> On Tue, Mar 31, 2020 at 03:00:25PM +0800, Zhenyu Wang wrote:
+> >=20
+> > Hi,
+> >=20
+> > Here's more queued gvt fixes for 5.7. Please see details below.
+> >=20
+> > Thanks
+> > --
+> > The following changes since commit a61ac1e75105a077ec1efd6923ae3c619f86=
+2304:
+> >=20
+> >   drm/i915/gvt: Wean gvt off using dev_priv (2020-03-06 10:08:10 +0800)
+> >=20
+> > are available in the Git repository at:
+> >=20
+> >   https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2020-03-31
+> >=20
+> > for you to fetch changes up to eb0ff8074e0baecba2cd0c7813f6cfa99bafc430:
+> >=20
+> >   drm/i915/gvt: Fix klocwork issues about data size (2020-03-27 15:37:5=
+8 +0800)
+>=20
+> pulled, thanks
 
+I forgot to mention one thing for 5.7. We've fixed to change guest mem r/w
+=66rom KVM to use new VFIO dma r/w instead in this series: https://patchwor=
+k.freedesktop.org/series/72038/
 
-Participating hosts (47 -> 37)
-------------------------------
+As this depends on VFIO tree and looks VFIO pull for 5.7 is not settled down
+yet, we'd need to backmerge and send pull against vfio merge for 5.7.
 
-  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bwr-2160 fi-gdg-551 fi-cfl-8109u fi-kbl-7560u fi-bdw-samus fi-snb-2600 
+thanks
 
+>=20
+> >=20
+> > ----------------------------------------------------------------
+> > gvt-next-fixes-2020-03-31
+> >=20
+> > - Fix non-privilege access warning (Tina)
+> > - Fix display port type (Tina)
+> > - BDW cmd parser missed SWTESS_BASE_ADDRESS (Yan)
+> > - Bypass length check of LRI (Yan)
+> > - Fix one klocwork warning (Tina)
+> >=20
+> > ----------------------------------------------------------------
+> > Tina Zhang (3):
+> >       drm/i915/gvt: Add some regs to force-to-nonpriv whitelist
+> >       drm/i915/gvt: Fix display port type issue
+> >       drm/i915/gvt: Fix klocwork issues about data size
+> >=20
+> > Yan Zhao (2):
+> >       drm/i915/gvt: add support to command SWTESS_BASE_ADDRESS
+> >       drm/i915/gvt: do not check len & max_len for lri
+> >=20
+> >  drivers/gpu/drm/i915/gvt/cmd_parser.c | 16 ++++------------
+> >  drivers/gpu/drm/i915/gvt/display.c    |  6 +++---
+> >  drivers/gpu/drm/i915/gvt/handlers.c   |  8 ++++++--
+> >  drivers/gpu/drm/i915/gvt/scheduler.c  |  4 ++--
+> >  4 files changed, 15 insertions(+), 19 deletions(-)
+> >=20
+> > --=20
+> > Open Source Technology Center, Intel ltd.
+> >=20
+> > $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+>=20
+>=20
+> _______________________________________________
+> intel-gvt-dev mailing list
+> intel-gvt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
 
-Build changes
--------------
+--=20
+Open Source Technology Center, Intel ltd.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8242 -> Patchwork_17191
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
-  CI-20190529: 20190529
-  CI_DRM_8242: 07d20020ec328dc9858680651366425afa51cd59 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17191: 474c470267ad8965e4f82037aa367c5c025e88b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+--bJ3jXuwtxrXxD2iT
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-== Linux commits ==
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXoan4wAKCRCxBBozTXgY
+J6cEAJ9vtKzx0Qx4FsRzFvgVEWNDnW3+fQCeL2GVWZWydL7Y5OGg3irSAvBOJSo=
+=5Kii
+-----END PGP SIGNATURE-----
 
-474c470267ad drm/i915/perf: Do not clear pollin for small user read buffers
+--bJ3jXuwtxrXxD2iT--
 
-== Logs ==
+--===============0917455015==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17191/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0917455015==--
