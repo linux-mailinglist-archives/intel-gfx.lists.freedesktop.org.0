@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B84E19D838
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E12DF19D83A
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2626EBB7;
-	Fri,  3 Apr 2020 13:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863336EBB8;
+	Fri,  3 Apr 2020 13:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9236EBA0
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:58:55 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id c7so8633821wrx.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:58:55 -0700 (PDT)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FAC86EBA0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:58:56 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id t128so7285746wma.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:58:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=s4VX5I6X+uZVUlJuKR+AONRlO82TNh/fnBSCBR/BltQ=;
- b=V7nPU8Rr1Oy3J6cM1QQbpA/TuzkOxwm1/pmfC5SdaNvf4na95rIgFOKFU/vmAEZjpI
- tRdSZUSGGAIyoD6dX7xI5uEeB7aPEECqkcamJeFLmL91DzsWH0RSiueOVA9Wt9TiMEqE
- So0JjShbylLWaFExvRYPBWvT8mmaejLEaJ8kw=
+ bh=wiXHaDwX9ULZkgf3yiFkDSinIGkByr+O07um+whjJ5E=;
+ b=PvmDWXqUoZEYUHoal7y11Os7Yb6Xkrf3bH/LaN7US/nwLS2lkxmnquBnNJwQeWwY+3
+ 9AVGNXg+JGJohxGQymHZ7NKlhzZZ5DbW4J682Pa5EbMgbKzOC0hX5YviKY9vH7tDCBWa
+ +y/e+iDqnae1KhZ6pzG5aY7bI8Izzq9ddXTUM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=s4VX5I6X+uZVUlJuKR+AONRlO82TNh/fnBSCBR/BltQ=;
- b=rA/RKXg+lVZ76x00XMva1HZpdcU/xixbSk63nHxif9BjBkitSaizQngWQFTHBvedqX
- TqoKSGixU4V99V1BJWRBtgW0nb2tfQxExJcXGeJQSgtwNRidJl8cRZShkMXqNgSguKwn
- G1R/cyhVc+WGGD1H8UWBl+ubiahJnOyEnr5sRYAnP1xS7HEfG57UFNmL8OSizsioDETV
- VY+rWi0ip/s8MdZx3x1LsvZl2YEKMlxvsrKEEUaQmiNi4olXrpaksmZLDjX3h5K/kEtA
- hKzP/lSpX1i6iQbhSX9vVmExP66UTVI6YePWa0X8PDa7yBIIku4CVYiSgPOAxiwkVeSJ
- 8rHQ==
-X-Gm-Message-State: AGi0PuaNRFmGiqjY8zS8VzIBeLIFZP/I4UsWVnjn+cR47dQnQI6ZBfH5
- RZYF9ROgc6hHBPzaFX9rViqGXw==
-X-Google-Smtp-Source: APiQypKo446Blc+AM8gmq7cRYtMl/38+RGYHCMXEU4/lNnQ58RnHlqNGA7NgZM6EuGac7p4auDwabw==
-X-Received: by 2002:adf:fa51:: with SMTP id y17mr2451937wrr.358.1585922333919; 
- Fri, 03 Apr 2020 06:58:53 -0700 (PDT)
+ bh=wiXHaDwX9ULZkgf3yiFkDSinIGkByr+O07um+whjJ5E=;
+ b=sD0ldRcdBGBeg1qmy3urIwJF+Oqg33NaL5OvmvwWde9roHYRkPmxt+TzVvyOwrjTKH
+ RdrgcOLEp9h6DgBVNe7//KfbbFZEDjEcmUmY/VzsVj7XRYzMh1pDDQb3N/mNMk5tIvPL
+ VT165l5RS6METpAo7k5wAHieTtJhyNkeo8st3e0eCnE1lUKT1XweRWlaDQyf2gofTx6l
+ kWkaiYtVDOATtZAjHY2k2gEzPGfoNjF0S3YbI4qoJt1of+OdjDVjZVZgF5UoQZM6o2Qc
+ +TDG7bbl/TdMrHJ6ek80Qku+/q9DbvrB8utrYjxzNX9l4y9leg+8IAy00zTOT2rwQN3E
+ Y6Yw==
+X-Gm-Message-State: AGi0PubcDsejldfkhSbN7Inl8YvMuOH7zZSeP5SN5L6h2YZGfJj5QFiG
+ H7asW78sPlhfFd310BKS/Om7vF2WndOs4A==
+X-Google-Smtp-Source: APiQypKWyOXGmLdSt0YXK7tUS4jrnXxXR+2CBfyiUkuyKi+B0wmSKfn4OeIPOuaDxKBAylc+DRrowg==
+X-Received: by 2002:a1c:7919:: with SMTP id l25mr9278758wme.12.1585922334822; 
+ Fri, 03 Apr 2020 06:58:54 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.58.52
+ by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.58.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Apr 2020 06:58:53 -0700 (PDT)
+ Fri, 03 Apr 2020 06:58:54 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  3 Apr 2020 15:58:00 +0200
-Message-Id: <20200403135828.2542770-17-daniel.vetter@ffwll.ch>
+Date: Fri,  3 Apr 2020 15:58:01 +0200
+Message-Id: <20200403135828.2542770-18-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/44] drm/udl: don't set drm_device->dev_private
+Subject: [Intel-gfx] [PATCH 17/44] drm/st7735r: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,80 +63,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Alexios Zavras <alexios.zavras@intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Allison Randal <allison@lohutok.net>,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ David Lechner <david@lechnology.com>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UncmUgbW9zdGx5IHRoZXJlIGFscmVhZHksIGp1c3QgYSBoYW5kZnVsIG9mIHBsYWNlcyB0aGF0
-IGRpZG4ndCB1c2UKdGhlIHRvX3VkbCBjb250YWluZXJfb2YgY2FzdC4gVG8gbWFrZSBzdXJlIG5v
-IG5ldyBhcHBlYXIsIGRvbid0IHNldAotPmRldl9wcml2YXRlLgoKU2lnbmVkLW9mZi1ieTogRGFu
-aWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkNjOiBEYXZlIEFpcmxpZSA8YWly
-bGllZEByZWRoYXQuY29tPgpDYzogU2VhbiBQYXVsIDxzZWFuQHBvb3JseS5ydW4+CkNjOiBFbWls
-IFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4KQ2M6IFRob21hcyBaaW1tZXJtYW5u
-IDx0emltbWVybWFubkBzdXNlLmRlPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBm
-ZndsbC5jaD4KQ2M6IEFsZXhpb3MgWmF2cmFzIDxhbGV4aW9zLnphdnJhc0BpbnRlbC5jb20+CkNj
-OiBMYXVyZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+CkNj
-OiBUaG9tYXMgR2xlaXhuZXIgPHRnbHhAbGludXRyb25peC5kZT4KQ2M6ICJKb3PDqSBSb2JlcnRv
-IGRlIFNvdXphIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+CkNjOiBTYW0gUmF2bmJvcmcgPHNhbUBy
-YXZuYm9yZy5vcmc+CkNjOiBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4KQ2M6IEFs
-bGlzb24gUmFuZGFsIDxhbGxpc29uQGxvaHV0b2submV0PgotLS0KIGRyaXZlcnMvZ3B1L2RybS91
-ZGwvdWRsX2Nvbm5lY3Rvci5jIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYu
-YyAgICAgICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfbW9kZXNldC5jICAgfCA2ICsr
-Ky0tLQogMyBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfY29ubmVjdG9yLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vdWRsL3VkbF9jb25uZWN0b3IuYwppbmRleCAwYWZkZmIwZDFmZTEuLmNkYzFjNDJl
-MTY2OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfY29ubmVjdG9yLmMKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfY29ubmVjdG9yLmMKQEAgLTU5LDcgKzU5LDcgQEAg
-c3RhdGljIGludCB1ZGxfZ2V0X21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
-CiBzdGF0aWMgZW51bSBkcm1fbW9kZV9zdGF0dXMgdWRsX21vZGVfdmFsaWQoc3RydWN0IGRybV9j
-b25uZWN0b3IgKmNvbm5lY3RvciwKIAkJCSAgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUp
-CiB7Ci0Jc3RydWN0IHVkbF9kZXZpY2UgKnVkbCA9IGNvbm5lY3Rvci0+ZGV2LT5kZXZfcHJpdmF0
-ZTsKKwlzdHJ1Y3QgdWRsX2RldmljZSAqdWRsID0gdG9fdWRsKGNvbm5lY3Rvci0+ZGV2KTsKIAlp
-ZiAoIXVkbC0+c2t1X3BpeGVsX2xpbWl0KQogCQlyZXR1cm4gMDsKIApAQCAtNzIsNyArNzIsNyBA
-QCBzdGF0aWMgZW51bSBkcm1fbW9kZV9zdGF0dXMgdWRsX21vZGVfdmFsaWQoc3RydWN0IGRybV9j
-b25uZWN0b3IgKmNvbm5lY3RvciwKIHN0YXRpYyBlbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzCiB1
-ZGxfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIGJvb2wgZm9yY2UpCiB7
-Ci0Jc3RydWN0IHVkbF9kZXZpY2UgKnVkbCA9IGNvbm5lY3Rvci0+ZGV2LT5kZXZfcHJpdmF0ZTsK
-KwlzdHJ1Y3QgdWRsX2RldmljZSAqdWRsID0gdG9fdWRsKGNvbm5lY3Rvci0+ZGV2KTsKIAlzdHJ1
-Y3QgdWRsX2RybV9jb25uZWN0b3IgKnVkbF9jb25uZWN0b3IgPQogCQkJCQljb250YWluZXJfb2Yo
-Y29ubmVjdG9yLAogCQkJCQlzdHJ1Y3QgdWRsX2RybV9jb25uZWN0b3IsCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX2Ry
-di5jCmluZGV4IDRiYTUxNDlmZGQ1Ny4uMTI2NTQ1NDI4ODk1IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vdWRsL3VkbF9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYu
-YwpAQCAtNjMsNyArNjMsNiBAQCBzdGF0aWMgc3RydWN0IHVkbF9kZXZpY2UgKnVkbF9kcml2ZXJf
-Y3JlYXRlKHN0cnVjdCB1c2JfaW50ZXJmYWNlICppbnRlcmZhY2UpCiAJCXJldHVybiB1ZGw7CiAK
-IAl1ZGwtPnVkZXYgPSB1ZGV2OwotCXVkbC0+ZHJtLmRldl9wcml2YXRlID0gdWRsOwogCiAJciA9
-IHVkbF9pbml0KHVkbCk7CiAJaWYgKHIpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdWRs
-L3VkbF9tb2Rlc2V0LmMgYi9kcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9tb2Rlc2V0LmMKaW5kZXgg
-OGNhZDAxZjNkMTYzLi45OTUxOGE4MjY0MzUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS91
-ZGwvdWRsX21vZGVzZXQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9tb2Rlc2V0LmMK
-QEAgLTIxNSw3ICsyMTUsNyBAQCBzdGF0aWMgY2hhciAqdWRsX2R1bW15X3JlbmRlcihjaGFyICp3
-cnB0cikKIHN0YXRpYyBpbnQgdWRsX2NydGNfd3JpdGVfbW9kZV90b19odyhzdHJ1Y3QgZHJtX2Ny
-dGMgKmNydGMpCiB7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNydGMtPmRldjsKLQlzdHJ1
-Y3QgdWRsX2RldmljZSAqdWRsID0gZGV2LT5kZXZfcHJpdmF0ZTsKKwlzdHJ1Y3QgdWRsX2Rldmlj
-ZSAqdWRsID0gdG9fdWRsKGRldik7CiAJc3RydWN0IHVyYiAqdXJiOwogCWNoYXIgKmJ1ZjsKIAlp
-bnQgcmV0dmFsOwpAQCAtMzY5LDcgKzM2OSw3IEBAIHVkbF9zaW1wbGVfZGlzcGxheV9waXBlX2Vu
-YWJsZShzdHJ1Y3QgZHJtX3NpbXBsZV9kaXNwbGF5X3BpcGUgKnBpcGUsCiAJc3RydWN0IGRybV9j
-cnRjICpjcnRjID0gJnBpcGUtPmNydGM7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNydGMt
-PmRldjsKIAlzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiA9IHBsYW5lX3N0YXRlLT5mYjsKLQlz
-dHJ1Y3QgdWRsX2RldmljZSAqdWRsID0gZGV2LT5kZXZfcHJpdmF0ZTsKKwlzdHJ1Y3QgdWRsX2Rl
-dmljZSAqdWRsID0gdG9fdWRsKGRldik7CiAJc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUg
-PSAmY3J0Y19zdGF0ZS0+bW9kZTsKIAljaGFyICpidWY7CiAJY2hhciAqd3JwdHI7CkBAIC00NjQs
-NyArNDY0LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fbW9kZV9jb25maWdfZnVuY3MgdWRs
-X21vZGVfZnVuY3MgPSB7CiBpbnQgdWRsX21vZGVzZXRfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2KQogewogCXNpemVfdCBmb3JtYXRfY291bnQgPSBBUlJBWV9TSVpFKHVkbF9zaW1wbGVfZGlz
-cGxheV9waXBlX2Zvcm1hdHMpOwotCXN0cnVjdCB1ZGxfZGV2aWNlICp1ZGwgPSBkZXYtPmRldl9w
-cml2YXRlOworCXN0cnVjdCB1ZGxfZGV2aWNlICp1ZGwgPSB0b191ZGwoZGV2KTsKIAlzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yOwogCWludCByZXQ7CiAKLS0gCjIuMjUuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Already using devm_drm_dev_init, so very simple replacment.
+
+Aside: There was an oddity in the old code, we allocated priv but in
+the error path we've freed priv->dbidev ...
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: David Lechner <david@lechnology.com>
+---
+ drivers/gpu/drm/tiny/st7735r.c | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735r.c
+index 631801c36f46..ccbf49a53202 100644
+--- a/drivers/gpu/drm/tiny/st7735r.c
++++ b/drivers/gpu/drm/tiny/st7735r.c
+@@ -195,21 +195,16 @@ static int st7735r_probe(struct spi_device *spi)
+ 	if (!cfg)
+ 		cfg = (void *)spi_get_device_id(spi)->driver_data;
+ 
+-	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+-	if (!priv)
+-		return -ENOMEM;
++	priv = devm_drm_dev_alloc(dev, &st7735r_driver,
++				  struct st7735r_priv, dbidev.drm);
++	if (IS_ERR(priv))
++		return PTR_ERR(priv);
+ 
+ 	dbidev = &priv->dbidev;
+ 	priv->cfg = cfg;
+ 
+ 	dbi = &dbidev->dbi;
+ 	drm = &dbidev->drm;
+-	ret = devm_drm_dev_init(dev, drm, &st7735r_driver);
+-	if (ret) {
+-		kfree(dbidev);
+-		return ret;
+-	}
+-	drmm_add_final_kfree(drm, dbidev);
+ 
+ 	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
