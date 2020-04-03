@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B6619D825
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15EBC19D826
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7124E6EBA9;
-	Fri,  3 Apr 2020 13:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 304FB6EBAC;
+	Fri,  3 Apr 2020 13:58:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89FF76EBA5
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:58:47 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id h9so8654752wrc.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:58:47 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 871896EBA5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:58:48 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id t7so8609678wrw.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:58:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=VPlpRsmw85fTY/StivObzsyoZLT+kiXiHykfsxrmGkw=;
- b=ZKGe/jBNwtfokKBDF1Yst6ZDGZdLdnh59WIUCxhS1JV+XyyobK0riWlDncpbHlyUYn
- kSz/ZMNTYcOElfr21IS5w/PcqEaKWWHgYzZtUmbLTgvyLt/exilsMpCzctXR0LY8y7a7
- tfynOXCMVNUGbEBOF4d9KnOZD03NvDd1v1IF0=
+ bh=T0NPd3SzuNReso4uwRwGCbVcCc2DoA/jfFyOSK8g0uQ=;
+ b=SyctG0RrNPpin6d2cjD+pO6Tau9N10S8YUnDqjhexo1UoRPYqvFyrKQN7h/Q6xFFqX
+ eyKkuq2+O3sqyaLVTylmASLcO2Rw9tnUy9Mhq069FcBEwC6zTNJ0wd9tW4W1aq1x/ZVJ
+ x2gsmX6Q4gaPhT90HVr+6TyrT66XC1ZJ/36l4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=VPlpRsmw85fTY/StivObzsyoZLT+kiXiHykfsxrmGkw=;
- b=dL8HQEed0fDfgyK6JfYs5xKvyw8+TXrcykCf0fUKMlMw+5rmVmgP0AcsXZ2pqOUTLN
- cR6a9Hcv6hdlS13SrIgjg1PwWzabTwsjDfd7pjX7xvlEZ/VWaLt5Ex5Qi3gRJUEwbUNP
- lvr5Rtv9f9C0cK6ko0UgAtsD7ucmcD8e1r2HvgdrCzkVJeY6hi4XKJcYghm0hZHGBGbQ
- S7TeF4BfyBbZYBuZyjVaAYnDRQSZKFJcrrNN/O3YETPkjwdZuozeT5noVToheUZ4VhZh
- ojMaadCEJ6vI04f5w0b8SarntAtH7R1oq9P9nDw1qLT2qYRvR/+KnRCyQzgJGQp0KRrY
- xDDQ==
-X-Gm-Message-State: AGi0PuafIm9unUTEv1gKRYYgTQ93WAjHLsGxQmxR6u0OfkmyRDYBwFMq
- YdG3URnjr3gvO8UviK5BLIKbvg==
-X-Google-Smtp-Source: APiQypK5nBxHoZUceuv5hVGwzpTPMQynC9KjjDzHIaszjyvK+FnZFYgn2yIdSuyTuf6A9e21+DL4hQ==
-X-Received: by 2002:a05:6000:a:: with SMTP id
- h10mr9747847wrx.226.1585922326181; 
- Fri, 03 Apr 2020 06:58:46 -0700 (PDT)
+ bh=T0NPd3SzuNReso4uwRwGCbVcCc2DoA/jfFyOSK8g0uQ=;
+ b=pRpkiG/FESX9iG9kd/1GUh7WOFxF51bpY5h/2KAtcgVezisS/RsG6dp4szL3aTd3kS
+ Q3JQ/MozLjhpbpnVPWKDLXLN1dJ+ykXJfvveQ/DP4WRWhe8sVIO751zrsld4Mig+9irr
+ S5C0w0Q3p299UDXHOgsPftlVC2dXC0u3NkHEgzV589L800Qbx/wMyQV8I54Y1v+DBkLZ
+ 1o7QqF0iNYqj2IyijO1o8J3FIsAI78DeVSs64tFfozAbp70Anat3UkOQKCf96bX6DZUq
+ nalGF8gTQdkH+yGpP594FEvzcBM+lfvjoLHJQytlYxh6isjGflkEr3Coi3u3HgcpJNwm
+ OW2A==
+X-Gm-Message-State: AGi0PuZGPN48T6FHiTcP4vVUCfXSLX6sb117qlPQWR60D/53CVPp5tme
+ 6p2ZlH0NBJpqBgOntfmr8b+DSg==
+X-Google-Smtp-Source: APiQypKDZU+w3+1PTup549ZefqFINetxcvhTGcvlsul/S/Ar0g1P3Hpvzgkl9oy4CA5OT7DurxzyEA==
+X-Received: by 2002:adf:f58c:: with SMTP id f12mr9751975wro.207.1585922327239; 
+ Fri, 03 Apr 2020 06:58:47 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.58.45
+ by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.58.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Apr 2020 06:58:45 -0700 (PDT)
+ Fri, 03 Apr 2020 06:58:46 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  3 Apr 2020 15:57:53 +0200
-Message-Id: <20200403135828.2542770-10-daniel.vetter@ffwll.ch>
+Date: Fri,  3 Apr 2020 15:57:54 +0200
+Message-Id: <20200403135828.2542770-11-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/44] drm/vboxvidoe: use managed pci functions
+Subject: [Intel-gfx] [PATCH 10/44] drm/vboxvideo: Use devm_gen_pool_create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,80 +71,78 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allows us to drop the cleanup code on the floor.
+Aside from deleting all the cleanup code we're now also setting a name
+for the pool
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/vboxvideo/vbox_drv.c  | 6 ++----
- drivers/gpu/drm/vboxvideo/vbox_main.c | 7 +------
- 2 files changed, 3 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/vboxvideo/vbox_main.c | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-index d34cddd809fd..c80695c2f6c0 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-@@ -55,13 +55,13 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	pci_set_drvdata(pdev, vbox);
- 	mutex_init(&vbox->hw_mutex);
- 
--	ret = pci_enable_device(pdev);
-+	ret = pcim_enable_device(pdev);
- 	if (ret)
- 		return ret;
- 
- 	ret = vbox_hw_init(vbox);
- 	if (ret)
--		goto err_pci_disable;
-+		return ret;
- 
- 	ret = vbox_mm_init(vbox);
- 	if (ret)
-@@ -93,8 +93,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	vbox_mm_fini(vbox);
- err_hw_fini:
- 	vbox_hw_fini(vbox);
--err_pci_disable:
--	pci_disable_device(pdev);
- 	return ret;
- }
- 
 diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
-index 9dcab115a261..1336ab9795fc 100644
+index 1336ab9795fc..d68d9bad7674 100644
 --- a/drivers/gpu/drm/vboxvideo/vbox_main.c
 +++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
-@@ -71,8 +71,6 @@ static void vbox_accel_fini(struct vbox_private *vbox)
+@@ -121,7 +121,8 @@ int vbox_hw_init(struct vbox_private *vbox)
+ 		return -ENOMEM;
  
- 	for (i = 0; i < vbox->num_crtcs; ++i)
- 		vbva_disable(&vbox->vbva_info[i], vbox->guest_pool, i);
--
--	pci_iounmap(vbox->ddev.pdev, vbox->vbva_buffers);
- }
- 
- /* Do we support the 4.3 plus mode hint reporting interface? */
-@@ -125,7 +123,7 @@ int vbox_hw_init(struct vbox_private *vbox)
  	/* Create guest-heap mem-pool use 2^4 = 16 byte chunks */
- 	vbox->guest_pool = gen_pool_create(4, -1);
+-	vbox->guest_pool = gen_pool_create(4, -1);
++	vbox->guest_pool = devm_gen_pool_create(vbox->ddev.dev, 4, -1,
++						"vboxvideo-accel");
  	if (!vbox->guest_pool)
--		goto err_unmap_guest_heap;
+ 		return -ENOMEM;
+ 
+@@ -130,12 +131,12 @@ int vbox_hw_init(struct vbox_private *vbox)
+ 				GUEST_HEAP_OFFSET(vbox),
+ 				GUEST_HEAP_USABLE_SIZE, -1);
+ 	if (ret)
+-		goto err_destroy_guest_pool;
++		return ret;
+ 
+ 	ret = hgsmi_test_query_conf(vbox->guest_pool);
+ 	if (ret) {
+ 		DRM_ERROR("vboxvideo: hgsmi_test_query_conf failed\n");
+-		goto err_destroy_guest_pool;
++		return ret;
+ 	}
+ 
+ 	/* Reduce available VRAM size to reflect the guest heap. */
+@@ -147,30 +148,23 @@ int vbox_hw_init(struct vbox_private *vbox)
+ 
+ 	if (!have_hgsmi_mode_hints(vbox)) {
+ 		ret = -ENOTSUPP;
+-		goto err_destroy_guest_pool;
++		return ret;
+ 	}
+ 
+ 	vbox->last_mode_hints = devm_kcalloc(vbox->ddev.dev, vbox->num_crtcs,
+ 					     sizeof(struct vbva_modehint),
+ 					     GFP_KERNEL);
+-	if (!vbox->last_mode_hints) {
+-		ret = -ENOMEM;
+-		goto err_destroy_guest_pool;
+-	}
++	if (!vbox->last_mode_hints)
 +		return -ENOMEM;
  
- 	ret = gen_pool_add_virt(vbox->guest_pool,
- 				(unsigned long)vbox->guest_heap,
-@@ -168,8 +166,6 @@ int vbox_hw_init(struct vbox_private *vbox)
+ 	ret = vbox_accel_init(vbox);
+ 	if (ret)
+-		goto err_destroy_guest_pool;
++		return ret;
  
- err_destroy_guest_pool:
- 	gen_pool_destroy(vbox->guest_pool);
--err_unmap_guest_heap:
--	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
- 	return ret;
+ 	return 0;
+-
+-err_destroy_guest_pool:
+-	gen_pool_destroy(vbox->guest_pool);
+-	return ret;
  }
  
-@@ -177,5 +173,4 @@ void vbox_hw_fini(struct vbox_private *vbox)
+ void vbox_hw_fini(struct vbox_private *vbox)
  {
  	vbox_accel_fini(vbox);
- 	gen_pool_destroy(vbox->guest_pool);
--	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
+-	gen_pool_destroy(vbox->guest_pool);
  }
 -- 
 2.25.1
