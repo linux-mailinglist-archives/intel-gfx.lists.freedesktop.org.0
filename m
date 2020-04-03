@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA5619DEBF
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 21:50:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A692519DF17
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 22:16:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C247E6EC72;
-	Fri,  3 Apr 2020 19:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C28289259;
+	Fri,  3 Apr 2020 20:16:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B28A6E97A;
- Fri,  3 Apr 2020 19:50:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B71E6EC7A;
+ Fri,  3 Apr 2020 20:16:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 71B1FA41FB;
- Fri,  3 Apr 2020 19:50:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25AB9A47DF;
+ Fri,  3 Apr 2020 20:16:15 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Andi Shyti" <andi@etezian.org>
-Date: Fri, 03 Apr 2020 19:50:01 -0000
-Message-ID: <158594340143.13349.8678521266167795213@emeril.freedesktop.org>
+Date: Fri, 03 Apr 2020 20:16:15 -0000
+Message-ID: <158594497512.13350.741725632362293572@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200403183837.99554-1-andi@etezian.org>
 In-Reply-To: <20200403183837.99554-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_?=
- =?utf-8?b?KHJldjQp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_=28rev4?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,48 +50,107 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915/gt: move remaining debugfs interfaces into gt (rev4)
 URL   : https://patchwork.freedesktop.org/series/75333/
-State : warning
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_8251 -> Patchwork_17205
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17205 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17205, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17205:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8251/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/fi-apl-guc/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17205 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#203]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8251/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/fi-skl-6770hq/igt@i915_module_load@reload.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [PASS][5] -> [SKIP][6] ([fdo#109271]) +5 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8251/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-skl-6770hq:      [PASS][7] -> [DMESG-WARN][8] ([i915#106])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8251/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][9] ([i915#656]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8251/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (50 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8251 -> Patchwork_17205
+
+  CI-20190529: 20190529
+  CI_DRM_8251: 06ddf8dd059d59bc27c24b09a6e500809e619982 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5563: 7ab7807727262b7ed7e12197b78e867287a17ef6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17205: 88806913668da4525869dff6f099152bf63b0178 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 88806913668d drm/i915/gt: move remaining debugfs interfaces into gt
--:119: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#119: 
-new file mode 100644
 
--:443: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#443: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:74:
-+		eu_reg[2 * s + 1] = intel_uncore_read(uncore,
-+						  GEN10_SS23_EU_PGCTL_ACK(s));
+== Logs ==
 
--:493: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#493: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:124:
-+		eu_reg[2*s] = intel_uncore_read(uncore,
- 		        ^
-
--:495: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#495: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:126:
-+		eu_reg[2*s + 1] = intel_uncore_read(uncore,
- 		        ^
-
--:533: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#533: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:164:
-+			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
- 			                               ^
-
--:533: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#533: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:164:
-+			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
- 			                                      ^
-
--:534: CHECK:SPACING: spaces preferred around that '%' (ctx:VxV)
-#534: FILE: drivers/gpu/drm/i915/gt/debugfs_sseu.c:165:
-+					       eu_mask[ss%2]);
- 					                 ^
-
-total: 0 errors, 1 warnings, 6 checks, 1062 lines checked
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17205/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
