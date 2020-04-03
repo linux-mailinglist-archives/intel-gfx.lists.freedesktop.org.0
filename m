@@ -1,55 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE2C19D9E3
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 17:15:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB31019DA0E
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 17:26:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1CFC6EC10;
-	Fri,  3 Apr 2020 15:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A747D6EC09;
+	Fri,  3 Apr 2020 15:25:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
- [IPv6:2607:f8b0:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687806EC10
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 15:15:33 +0000 (UTC)
-Received: by mail-oi1-x242.google.com with SMTP id d3so6417026oic.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 08:15:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sVVIufrGTctvhTafCZyw2p80HtNhFpaldQ0cSasYnf0=;
- b=kOJiZQRHeweOcSuIG2VHafvaoJEcs9QOkyJnIpR1X7RgpaDmwhuEUqJK9lFLRbKVvZ
- 3MS7iPvf+/q/dSdMV2Kyza5z4CLCWpTM8U+KfEn3+7WZ03LDn1djEEtGUsxQgA0p275n
- wVXxw8FuCtvCii1QxiIydx7DYQHiqViqWcXRw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sVVIufrGTctvhTafCZyw2p80HtNhFpaldQ0cSasYnf0=;
- b=jTfduySs5eTkxjEeBUgjO34Pq+qEM5v/dwITdrkgZ3pYId+7FbNv68l6NWwGkC98z6
- QRmDI6wL21B0xYXl5Hd9rhMnU2ZsE40IJP+l7dKni9x/mmv9OLDFVVcVY6II7AR68Xw4
- kYGP5nwl0STLjLOe8d56se/cpRqhbjjrwBo1usNXnpRIukcAgYPVsCUcwlinG2X/wbev
- bYtkgdObCNmT2z1R2z+lWMlvmxgpRCjOAC+7qLwWHxWBrDHYGUJ/crH7qLEZhxDqlbbk
- FJurPZInez9R+gWfW6+F03RbilOHRR+PFRqMH1FPHQeLumgihltEhCR45XF/W9nzDugl
- o9LA==
-X-Gm-Message-State: AGi0PuZl8oou/HQo5QecYY0jBJZ/dWNl3Y9qufsN8Z1xuwayzSngrODA
- CKvfq02wCNM/UXZ1ewfJ5L2ZAS8J1dfA9W0EIng/kA==
-X-Google-Smtp-Source: APiQypKlTr6/Z6Y3Y2VZ1Q1sDZEtKVX53w+jBSUSJUf6/iLJNzrfS35Khz2u2sW8a967wWmbuaQ5VvN3QC1oIQJ8l9c=
-X-Received: by 2002:aca:aac1:: with SMTP id t184mr3413037oie.14.1585926932344; 
- Fri, 03 Apr 2020 08:15:32 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DD206EC09
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 15:25:58 +0000 (UTC)
+IronPort-SDR: zsLQby888FQP0HXbvaB1DvbqhnGj+EUhjSW6kMLQszliWxRtwv+MDwbPUpmiuF9DIkYzYNfYZq
+ V/Mjz1rgKaPg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2020 08:25:57 -0700
+IronPort-SDR: yKj88O3fqf4DAzmDcgATyFIS7iu84Myc93h7gHXatWTAwWu2DcSy6umzPlVYRRn4ZBNEFfy1o7
+ Y6D0xYvxsuGQ==
+X-IronPort-AV: E=Sophos;i="5.72,340,1580803200"; d="scan'208";a="423560861"
+Received: from melentuc-mobl1.ger.corp.intel.com (HELO [10.249.90.224])
+ ([10.249.90.224])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2020 08:25:56 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200403073657.13427-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8eb7307b-57e7-1082-e92c-49105ce1d10f@linux.intel.com>
+Date: Fri, 3 Apr 2020 16:25:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-2-daniel.vetter@ffwll.ch>
- <20200403141712.GA4088318@kroah.com>
- <CAKMK7uHuzsrMsB=Pnd4MD3VQyRizvjb7Y-RwAdCPF2ZNrfbhvQ@mail.gmail.com>
- <20200403150651.GB4094993@kroah.com>
-In-Reply-To: <20200403150651.GB4094993@kroah.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 3 Apr 2020 17:15:21 +0200
-Message-ID: <CAKMK7uHN0i1iEUTh1x5RewHWp4L6TdeqnDmaFDRpf=V=hNHQcw@mail.gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [Intel-gfx] [PATCH 01/44] drivers/base: Always release devres
- on device_del
+In-Reply-To: <20200403073657.13427-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid setting timer->expires to 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,205 +50,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 3, 2020 at 5:06 PM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Fri, Apr 03, 2020 at 04:47:04PM +0200, Daniel Vetter wrote:
-> > On Fri, Apr 3, 2020 at 4:17 PM Greg Kroah-Hartman
-> > <gregkh@linuxfoundation.org> wrote:
-> > >
-> > > On Fri, Apr 03, 2020 at 03:57:45PM +0200, Daniel Vetter wrote:
-> > > > In drm we've added nice drm_device (the main gpu driver thing, which
-> > > > also represents the userspace interfaces and has everything else
-> > > > dangling off it) init functions using devres, devm_drm_dev_init and
-> > > > soon devm_drm_dev_alloc (this patch series adds that).
-> > > >
-> > > > A slight trouble is that drm_device itself holds a reference on the
-> > > > struct device it's sitting on top (for sysfs links and dmesg debug and
-> > > > lots of other things), so there's a reference loop. For real drivers
-> > > > this is broken at remove/unplug time, where all devres resources are
-> > > > released device_release_driver(), before the final device reference is
-> > > > dropped. So far so good.
-> > > >
-> > > > There's 2 exceptions:
-> > > > - drm/vkms|vgem: Virtual drivers for which we create a fake/virtual
-> > > >   platform device to make them look more like normal devices to
-> > > >   userspace. These aren't drivers in the driver model sense, we simple
-> > > >   create a platform_device and register it.
-> > >
-> > > That's a horrid abuse of platform devices, just use a "virtual" device
-> > > please, create/remove it when you need it, and all should be fine.
-> > >
-> > > > - drm/i915/selftests, where we create minimal mock devices, and again
-> > > >   the selftests aren't proper drivers in the driver model sense.
-> > >
-> > > Again, virtual devices are best to use for this.
-> >
-> > Hm yeah, I guess we should fix that. i915 selftests do use raw struct
-> > device though, and it's not really the problem.
-> >
-> > > > For these two cases the reference loop isn't broken, because devres is
-> > > > only cleaned up when the last device reference is dropped. But that's
-> > > > not happening, because the drm_device holds that last struct device
-> > > > reference.
-> > > >
-> > > > Thus far this wasn't a problem since the above cases simply
-> > > > hand-rolled their cleanup code. But I want to convert all drivers over
-> > > > to the devm_ versions, hence it would be really nice if these
-> > > > virtual/fake/mock uses-cases could also be managed with devres
-> > > > cleanup.
-> > > >
-> > > > I see three possible approaches:
-> > > >
-> > > > - Clean up devres from device_del (or platform_device_unregister) even
-> > > >   when no driver is bound. This seems like the simplest solution, but
-> > > >   also the one with the widest impact, and what this patch implements.
-> > > >   We might want to include more of the cleanup than just
-> > > >   devres_release_all, but this is all I need to get my use case going.
-> > >
-> > > After device_del, you should never be using that structure again anyway.
-> > > So why is there any "resource leak"?  You can't recycle the structure,
-> > > and you can't assign it to anything else, so eventually you have to do
-> > > a final put on the thing, which will free up the resources.
-> >
-> > I guess I should have spent more time explaining this. There's two
-> > references involved:
-> >
-> > - drm_device->dev points at the underlying struct device. The
-> > drm_device holds a reference until it's fully cleaned up, so that we
-> > can do nice stuff like use dev_ versions of printk functions, and you
-> > always know that there's not going to be a use-after free.
-> >
-> > - now the other dependency is that as long as the device exists (not
-> > just in memory, but in the device model, i.e. between device_add() and
-> > device_del()) the drm_device should exist. So what we do in the
-> > bus-specific remove/disconnect callback is that we call
-> > drm_dev_unregister(). This drops the drm_device refcount that the drm
-> > chardev was holding, to make sure that an open() on the chardev can
-> > actually get at the memory without going boom. Then after the
-> > drm_dev_unregister, again in the remove/disconnect callback of th
-> > driver, there's a drm_dev_put(). Which might or might not be the final
-> > drm_dev_put(), since if there's currently some open fd we keep the
-> > refcount elevated, to avoid oopses and fun stuff like that. And
-> > drm_device pointers get shared very widely, thanks to fun stuff like
-> > dma_buf buffer sharing and dma_fence hw syncpt sharing across
-> > processes and drivers.
-> >
-> > Once the final drm_dev_put() is called we also end up calling
-> > put_device() and everything is happy.
-> >
-> > So far so good.
-> >
-> > Now the problem is that refcount is hard, and most drm drivers get it
-> > wrong in some fashion or another, so I'm trying to solve all this with
-> > more magic.
->
-> Wait, no.  Fix the drivers.  Seriously, don't try to "bust" the
-> reference count logic here.
 
-I guess still not clear. What I'm doing is fixing the drivers. But
-because they all get it wrong, I'm trying to hide as much of the
-refcounting as possible behind functions which do the right thing.
+On 03/04/2020 08:36, Chris Wilson wrote:
+> We use timer->expires == 0 to detect if a timer had been cancelled, but
+> it's a valid expiration we could set. Just skip using 0 and set the
+> expiry for the next jiffie.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/i915_utils.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+> index 029854ae65fc..9769d278e800 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.c
+> +++ b/drivers/gpu/drm/i915/i915_utils.c
+> @@ -101,5 +101,5 @@ void set_timer_ms(struct timer_list *t, unsigned long timeout)
+>   	 */
+>   	barrier();
+>   
+> -	mod_timer(t, jiffies + timeout);
+> +	mod_timer(t, jiffies + timeout ?: 1);
+>   }
+> 
 
-Which works great for the epic pile of real hw drivers that we have.
+"Glitch in the matrix" type workaround for timeslicing and preemption 
+timeout, at the moment at least. No big deal given the frequency of the 
+event and low accuracy requirements.
 
-The problem I have is is _only_ with those drm drivers which run on
-fake hw. For those forcing them to use the exact same functions as the
-real hw drivers has some challenges, because they're not really real
-drivers. Now the original patch had 3 ideas for how to make things
-work for those fake drivers too, with one of them implemented in this
-patch (the one that required the least amount of typing on my part).
+But since it is a generic helper I think we need a comment pointing that 
+out. With that:
 
-You harping that I'm getting the refcounting wrong is kinda totally
-missing the point, because that's what I'm doing.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> > Since all drivers need to have a drm_dev_put() at the end of their
-> > driver's remove/disconnect callback we've added a devm_drm_dev_init
-> > function which registers a devres action to do that drm_dev_put() at
-> > device_del time (which might or might not be the final drm_dev_put()).
-> > Nothing has changed thus far.
-> >
-> > Now this works really well because when you have a real driver model
-> > driver attached, then device_del ends up calling devres_release_all(),
-> > which ends up triggering the multi-stage cleanup of drm_devices. But
-> > if you do _not_ have a real driver attached, then device_del does
-> > nothing wrt devres cleanup. Instead this is delayed until the final
-> > put_device().
-> >
-> > Unfortunately that final put_device() will never happen, because
-> > drm_device is still holding a reference to the struct device. And the
-> > final drm_dev_put of that drm_device will never happen, because that
-> > drm_dev_put call is in a devres actions, which wont ever get called.
->
-> True, so fix the logic to do the final put_device() :)
->
-> > This is the only case where this reference loop happens and doesn't
-> > get broken. By calling devres_release_all at device_del time,
-> > irrespective of whether a driver is bound or not, we make both cases
-> > work the same. And at both cases the devres cleanup happens device_del
-> > time, and not when the final put_device is called.
->
-> So what is so odd about these random drivers that the normal process
-> does not work for them?
+Regards,
 
-They're not drivers in the driver model sense.
-
-> Along these lines, you might look into how the v4l developers finally
-> fixed this as they had much the same type of issues that you do with
-> regards to reference counting and resources and userspace file handles.
-
-We have a pile of v4l developers on dri-devel, they've been reviewing
-the stuff we've been doing in drm over the past 2-3 years already ...
-
-> > Aside: The final put_device has another devres_release_all() call,
-> > which given your explanation sounds very wrong - at that point the
-> > physical device is long gone, and cleaning up devres actions at that
-> > point is way too late. I think a good cleanup patch on top of this
-> > would be to remove that call, and replace it with an assert that no
-> > one managed to sneak in a devres_add_action between device_del and the
-> > final put_device().
->
-> The physical device might be gone, but an open handle to the device
-> might still be around, keeping the structure in place and the driver
-> thinking it still has access to it's memory structures.
-
-I understand that. This is not the problem I'm having here, we've
-fixed that problem a while ago (at least in drm core, but the drivers
-have a bit a harder time picking up the correct coding patterns,
-mostly because there's overwhelming code in existing drivers that's
-just plain broken).
-
-> > > And then all should be fine, right?  But, by putting the freeing here,
-> > > you can still have a "live" device that thinks it has resources availble
-> > > that it can access, but yet they are now gone.  Yeah, it's probably not
-> > > ever going to really happen, but the lifecycles of dynamic devices are
-> > > tough to "prove" at times, and I worry that freeing things this early is
-> > > going to cause odd disconnect issues.
-> >
-> > Not exactly sure what you mean here, but trying to fix all the driver
-> > bugs we have in drm is why I'm doing this. We have a massive amount of
-> > gaps still, but we're slowly closing them all off with stuff like
-> > drm_dev_enter/exit, to make sure there's no races possible between
-> > driver hotunplug and concurrent access by userspace.
->
-> Again, look at what v4l did, I think it might work out for you all as
-> well.
-
-I think we're talking past each another quite badly here ...
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
