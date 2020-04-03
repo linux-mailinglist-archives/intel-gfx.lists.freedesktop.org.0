@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118BA19DD27
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 19:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B0819DD4A
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 20:00:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 184046EC52;
-	Fri,  3 Apr 2020 17:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92B926EC2A;
+	Fri,  3 Apr 2020 18:00:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40A426EC55;
- Fri,  3 Apr 2020 17:50:37 +0000 (UTC)
-IronPort-SDR: abwFa6hJEZy51mkaHJuqgtKUijjL/weVTmuuaUmc+0zo5RqILb6WHX8Y0nePzmO7ULTzW1jlxZ
- 6fOhH5O1Q9RQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2020 10:50:36 -0700
-IronPort-SDR: fQ8AOj3EUsvvQsfj01gJpVMeRq62LXcQooTqQhbLRmGmGp+XqWQpT+GCpcSFSrJgwZ85kP4/hG
- JYtFlaNPoYyA==
-X-IronPort-AV: E=Sophos;i="5.72,340,1580803200"; d="scan'208";a="423605727"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2020 10:50:36 -0700
-Date: Fri, 3 Apr 2020 10:50:33 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- "Vetter, Daniel" <daniel.vetter@intel.com>, Dave Airlie <airlied@gmail.com>
-Message-ID: <20200403175033.GA3997092@intel.com>
-References: <20200331070025.GB16629@zhen-hp.sh.intel.com>
- <20200331162644.GA3779315@intel.com>
- <20200403030507.GQ16629@zhen-hp.sh.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7BDD6EC2A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 18:00:06 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20792506-1500050 for multiple; Fri, 03 Apr 2020 18:59:34 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200403030507.GQ16629@zhen-hp.sh.intel.com>
-Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
+In-Reply-To: <87369k5uqi.wl-ashutosh.dixit@intel.com>
+References: <20200403010120.3067-1-ashutosh.dixit@intel.com>
+ <158593063457.5852.4620122096592068466@build.alporthouse.com>
+ <87369k5uqi.wl-ashutosh.dixit@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <158593677241.5852.14693193167315314468@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 03 Apr 2020 18:59:32 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for
+ small user read buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,110 +41,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhao, Yan Y" <yan.y.zhao@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
- Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-+Dave and Daniel,
-
-On Fri, Apr 03, 2020 at 11:05:07AM +0800, Zhenyu Wang wrote:
-> On 2020.03.31 09:26:44 -0700, Rodrigo Vivi wrote:
-> > On Tue, Mar 31, 2020 at 03:00:25PM +0800, Zhenyu Wang wrote:
-> > > 
-> > > Hi,
-> > > 
-> > > Here's more queued gvt fixes for 5.7. Please see details below.
-> > > 
-> > > Thanks
-> > > --
-> > > The following changes since commit a61ac1e75105a077ec1efd6923ae3c619f862304:
-> > > 
-> > >   drm/i915/gvt: Wean gvt off using dev_priv (2020-03-06 10:08:10 +0800)
-> > > 
-> > > are available in the Git repository at:
-> > > 
-> > >   https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2020-03-31
-> > > 
-> > > for you to fetch changes up to eb0ff8074e0baecba2cd0c7813f6cfa99bafc430:
-> > > 
-> > >   drm/i915/gvt: Fix klocwork issues about data size (2020-03-27 15:37:58 +0800)
-> > 
-> > pulled, thanks
+Quoting Dixit, Ashutosh (2020-04-03 18:45:09)
+> On Fri, 03 Apr 2020 09:17:14 -0700, Chris Wilson wrote:
+> >
+> > Quoting Ashutosh Dixit (2020-04-03 02:01:20)
+> > > It is wrong to block the user thread in the next poll when OA data is
+> > > already available which could not fit in the user buffer provided in
+> > > the previous read. In several cases the exact user buffer size is not
+> > > known. Blocking user space in poll can lead to data loss when the
+> > > buffer size used is smaller than the available data.
+> > >
+> > > This change fixes this issue and allows user space to read all OA data
+> > > even when using a buffer size smaller than the available data using
+> > > multiple non-blocking reads rather than staying blocked in poll till
+> > > the next timer interrupt.
+> > >
+> > > v2: Fix ret value for blocking reads (Umesh)
+> > > v3: Mistake during patch send (Ashutosh)
+> > > v4: Remove -EAGAIN from comment (Umesh)
+> > > v5: Improve condition for clearing pollin and return (Lionel)
+> > > v6: Improve blocking read loop and other cleanups (Lionel)
+> > > v7: Added Cc stable
+> > >
+> > > Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > > Cc: <stable@vger.kernel.org>
+> > > Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >
+> > Did you manage to devise a test case? It is nice (some might say
+> > important) to pair a patch for stable with its regression test.
 > 
-> I forgot to mention one thing for 5.7. We've fixed to change guest mem r/w
-> from KVM to use new VFIO dma r/w instead in this series: https://patchwork.freedesktop.org/series/72038/
+> Yes there is a test case here:
 > 
-> As this depends on VFIO tree and looks VFIO pull for 5.7 is not settled down
-> yet, we'd need to backmerge and send pull against vfio merge for 5.7.
-
-I'm not sure if I'm following on which backmerge you are willing
-us to do here. And for me it looks like late for 5.7 already.
-
-Maybe you mean we ack all of this to go through vfio flow
-then once that is settled drm backmerge and then drm-intel backmerge
-and you backmerge...
-
-Is that what you want?
-
+> https://patchwork.freedesktop.org/series/75100/#rev3
 > 
-> thanks
+> Lionel verified that it is fails on stable kernels here:
 > 
-> > 
-> > > 
-> > > ----------------------------------------------------------------
-> > > gvt-next-fixes-2020-03-31
-> > > 
-> > > - Fix non-privilege access warning (Tina)
-> > > - Fix display port type (Tina)
-> > > - BDW cmd parser missed SWTESS_BASE_ADDRESS (Yan)
-> > > - Bypass length check of LRI (Yan)
-> > > - Fix one klocwork warning (Tina)
-> > > 
-> > > ----------------------------------------------------------------
-> > > Tina Zhang (3):
-> > >       drm/i915/gvt: Add some regs to force-to-nonpriv whitelist
-> > >       drm/i915/gvt: Fix display port type issue
-> > >       drm/i915/gvt: Fix klocwork issues about data size
-> > > 
-> > > Yan Zhao (2):
-> > >       drm/i915/gvt: add support to command SWTESS_BASE_ADDRESS
-> > >       drm/i915/gvt: do not check len & max_len for lri
-> > > 
-> > >  drivers/gpu/drm/i915/gvt/cmd_parser.c | 16 ++++------------
-> > >  drivers/gpu/drm/i915/gvt/display.c    |  6 +++---
-> > >  drivers/gpu/drm/i915/gvt/handlers.c   |  8 ++++++--
-> > >  drivers/gpu/drm/i915/gvt/scheduler.c  |  4 ++--
-> > >  4 files changed, 15 insertions(+), 19 deletions(-)
-> > > 
-> > > -- 
-> > > Open Source Technology Center, Intel ltd.
-> > > 
-> > > $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-> > 
-> > 
-> > _______________________________________________
-> > intel-gvt-dev mailing list
-> > intel-gvt-dev@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
-> 
-> -- 
-> Open Source Technology Center, Intel ltd.
-> 
-> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+> https://patchwork.freedesktop.org/patch/358873/?series=75100&rev=1
 
-
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+Ta. Pushed both,
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
