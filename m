@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECF919D851
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2EF019D855
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C616EBCF;
-	Fri,  3 Apr 2020 13:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF286EBD4;
+	Fri,  3 Apr 2020 13:59:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF1626EBC6
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:59:05 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id m17so8610521wrw.11
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:59:05 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 120CC6EBCB
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:59:07 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id w10so8693426wrm.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:59:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zGpFhZaw7sq71BxbA7Oq7CHm/5D5Y/ZUzgT99phwRsU=;
- b=NEoE18t1B2kymF83R9A++jeRMuDFPbGrLI9qR40LXX9wre/abs8eRsUqSKYb2HhXkf
- sFiWC5tCE0ngw12Gxcy+hwfaCBwODEWzxrT3oSeLPQKuxPKHVhOD35w8i+1PjvOLwkA6
- ITCEs9b/O9raL7XwGqXAzesTOaess5pSznNsU=
+ bh=gDlKl6kJndkWy3goQCYnpUpsumPiVmOqbn8UmjDA0X4=;
+ b=VdavmpYHUfog22fqtXC9ocZl3dqh1fSqyI0NqBwusuNnkosbX0GR7MSAvx1fRH9YXd
+ +feHVB7FVQQCIjdmPf8ipwXtkvRRLVDUoaRmzD4M4MsXw7Kz+OLJ4mrFr0AG7ZGqCrUj
+ 31khvdOAeLqJSytDRwY23vbMY4eOt8GVxDt+Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zGpFhZaw7sq71BxbA7Oq7CHm/5D5Y/ZUzgT99phwRsU=;
- b=ogKpQej/bf7czUBobU2Qwz/dCYHLtmgArXfPO2dtSKVLv73Rmr8uDzZUVtr+n7vDCT
- O6fY76b2MfuM8EncrzOxizmKAxrr2q9xCuL2WkN3m5Gd3BzzZG/lwcA+xsbSXUEBjPEE
- 8m34HzFpF05OHR9wOJrsGOtvQGevEJVcG55LlD4FPeE5FnmUKymnGt45c3zfdrOC3tQF
- KyPSJJKeRIIOuBGSpJ5ojaXD4MaDJgMytTA4lAmByMcvzfYQeW3dgVRBlB8itiMze9Jv
- +o+zXdtvIkuRUxrGoWlqfYmN0covCi5LVaDwauImOt0Z5B53lT+QojJs6hbWPgSSDQE7
- //RQ==
-X-Gm-Message-State: AGi0PuaB7AKiAFQ9CIijzaCPDQls+IcIZ9YaKB//O9X9NygSPVnFi7Py
- nyIMeaFiPgAzI/Lpg5KF7XtNkw==
-X-Google-Smtp-Source: APiQypIqNRbq1xht5I0TWYe6vrsrOTAxfAhxxWg/TFWyVYd8Wq8AolO2iMhvxXDNHOTzg/mHHkftJA==
-X-Received: by 2002:a5d:6588:: with SMTP id q8mr6493781wru.189.1585922344474; 
- Fri, 03 Apr 2020 06:59:04 -0700 (PDT)
+ bh=gDlKl6kJndkWy3goQCYnpUpsumPiVmOqbn8UmjDA0X4=;
+ b=YnqieNgfieuKZi+I1ubJS5QF3U99XB/8H27bytGYZ1fY3iiZ5en0Q7Pfe+tTpneQ3y
+ SGhT4XlspIV1c08n+xVPiM1bhurG8NOkcUDsV5U/JZAf7dA0TsIHYb7kDq5VsAl1l438
+ BV9k8V16RMua+gBSzjT9wCU0sEHbvpdsPvWGeOB3BWvPi33L5I/5j40r8KlKn+FrTBeW
+ 6CDefm4V0S3r8vIeowh/oEDp0ymKUONEkzPnUeEwrBOUxyHU7KAJLmraMl4BZZvulWue
+ wfmFZ82xfyZtxRpd+3cDymTGaBQA7OuT4bhfnDeOkVVNxQ4tdI93C3ahWAVONx/kl9zh
+ BmMg==
+X-Gm-Message-State: AGi0Pubqmzccyz6FlON3c0S0zSuzjxAuIgPKX7GF4xgZLX66wC4fHTly
+ kbwAnyVoBrms8t/pyFJDjZMQjg==
+X-Google-Smtp-Source: APiQypI2ifoe0LrGUzL5L+65zmrDJkEjhLnE/KjWbJzh6sOKVZDU2UggIgLlGuo52yIhKZ9jILEzuw==
+X-Received: by 2002:adf:e948:: with SMTP id m8mr9093874wrn.193.1585922345760; 
+ Fri, 03 Apr 2020 06:59:05 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.59.03
+ by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.59.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Apr 2020 06:59:03 -0700 (PDT)
+ Fri, 03 Apr 2020 06:59:05 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  3 Apr 2020 15:58:10 +0200
-Message-Id: <20200403135828.2542770-27-daniel.vetter@ffwll.ch>
+Date: Fri,  3 Apr 2020 15:58:11 +0200
+Message-Id: <20200403135828.2542770-28-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 26/44] drm/gm12u320: Don't use
- drm_device->dev_private
+Subject: [Intel-gfx] [PATCH 27/44] drm/tidss: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,77 +65,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Jyri Sarha <jsarha@ti.com>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Upcasting using a container_of macro is more typesafe, faster and
-easier for the compiler to optimize.
+Already using devm_drm_dev_init, so very simple replacment.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: Jyri Sarha <jsarha@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
 ---
- drivers/gpu/drm/tiny/gm12u320.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/tidss/tidss_drv.c | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/tiny/gm12u320.c b/drivers/gpu/drm/tiny/gm12u320.c
-index 907739a67bf6..cc397671f689 100644
---- a/drivers/gpu/drm/tiny/gm12u320.c
-+++ b/drivers/gpu/drm/tiny/gm12u320.c
-@@ -98,6 +98,8 @@ struct gm12u320_device {
- 	} fb_update;
- };
+diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+index ad449d104306..7d4465d58be8 100644
+--- a/drivers/gpu/drm/tidss/tidss_drv.c
++++ b/drivers/gpu/drm/tidss/tidss_drv.c
+@@ -135,20 +135,13 @@ static int tidss_probe(struct platform_device *pdev)
  
-+#define to_gm12u320(__dev) container_of(__dev, struct gm12u320_device, dev)
-+
- static const char cmd_data[CMD_SIZE] = {
- 	0x55, 0x53, 0x42, 0x43, 0x00, 0x00, 0x00, 0x00,
- 	0x68, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x10, 0xff,
-@@ -408,7 +410,7 @@ static void gm12u320_fb_update_work(struct work_struct *work)
- static void gm12u320_fb_mark_dirty(struct drm_framebuffer *fb,
- 				   struct drm_rect *dirty)
- {
--	struct gm12u320_device *gm12u320 = fb->dev->dev_private;
-+	struct gm12u320_device *gm12u320 = to_gm12u320(fb->dev);
- 	struct drm_framebuffer *old_fb = NULL;
- 	bool wakeup = false;
+ 	dev_dbg(dev, "%s\n", __func__);
  
-@@ -558,7 +560,7 @@ static void gm12u320_pipe_enable(struct drm_simple_display_pipe *pipe,
- 				 struct drm_plane_state *plane_state)
- {
- 	struct drm_rect rect = { 0, 0, GM12U320_USER_WIDTH, GM12U320_HEIGHT };
--	struct gm12u320_device *gm12u320 = pipe->crtc.dev->dev_private;
-+	struct gm12u320_device *gm12u320 = to_gm12u320(pipe->crtc.dev);
+-	/* Can't use devm_* since drm_device's lifetime may exceed dev's */
+-	tidss = kzalloc(sizeof(*tidss), GFP_KERNEL);
+-	if (!tidss)
+-		return -ENOMEM;
++	tidss = devm_drm_dev_alloc(&pdev->dev, &tidss_driver,
++				   struct tidss_device, ddev);
++	if (IS_ERR(tidss))
++		return PTR_ERR(tidss);
  
- 	gm12u320->fb_update.draw_status_timeout = FIRST_FRAME_TIMEOUT;
- 	gm12u320_fb_mark_dirty(plane_state->fb, &rect);
-@@ -566,7 +568,7 @@ static void gm12u320_pipe_enable(struct drm_simple_display_pipe *pipe,
+ 	ddev = &tidss->ddev;
  
- static void gm12u320_pipe_disable(struct drm_simple_display_pipe *pipe)
- {
--	struct gm12u320_device *gm12u320 = pipe->crtc.dev->dev_private;
-+	struct gm12u320_device *gm12u320 = to_gm12u320(pipe->crtc.dev);
- 
- 	gm12u320_stop_fb_update(gm12u320);
- }
-@@ -641,7 +643,6 @@ static int gm12u320_usb_probe(struct usb_interface *interface,
- 	mutex_init(&gm12u320->fb_update.lock);
- 
- 	dev = &gm12u320->dev;
--	dev->dev_private = gm12u320;
- 
- 	ret = drmm_mode_config_init(dev);
- 	if (ret)
-@@ -706,7 +707,7 @@ static __maybe_unused int gm12u320_suspend(struct usb_interface *interface,
- static __maybe_unused int gm12u320_resume(struct usb_interface *interface)
- {
- 	struct drm_device *dev = usb_get_intfdata(interface);
--	struct gm12u320_device *gm12u320 = dev->dev_private;
-+	struct gm12u320_device *gm12u320 = to_gm12u320(dev);
- 
- 	gm12u320_set_ecomode(gm12u320);
+-	ret = devm_drm_dev_init(&pdev->dev, ddev, &tidss_driver);
+-	if (ret) {
+-		kfree(ddev);
+-		return ret;
+-	}
+-	drmm_add_final_kfree(ddev, tidss);
+-
+ 	tidss->dev = dev;
+ 	tidss->feat = of_device_get_match_data(dev);
  
 -- 
 2.25.1
