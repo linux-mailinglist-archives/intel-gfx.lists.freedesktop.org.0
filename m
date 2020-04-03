@@ -2,30 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84F919E10F
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Apr 2020 00:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7575B19E116
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Apr 2020 00:31:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21E9A6ECBD;
-	Fri,  3 Apr 2020 22:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC30E6ECBE;
+	Fri,  3 Apr 2020 22:31:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C81F66ECBD;
- Fri,  3 Apr 2020 22:29:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C02EDA011B;
- Fri,  3 Apr 2020 22:29:28 +0000 (UTC)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 936706ECBE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 22:31:18 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id m17so10326284wrw.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 15:31:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=gLSuh6EO1GzCkk06dek1V3HlZUbR1MfQSKT+7Ct94+A=;
+ b=goDZ6hV+fSgP22ZeB6JYjCk9EAK+3F4vpu1Ghen5aHuUq/2TU6HcqET26u3ecwqNYS
+ +6E01sWbLFJMBwSeUU3s4ljcYJ8tnSQqAImZJ+Tau8RHn0LyYLXtdRY57XW7v6rjUMqq
+ YaWjkW5Pa+y8g2Q5zZAqcM40IP+Rho3fzbClk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=gLSuh6EO1GzCkk06dek1V3HlZUbR1MfQSKT+7Ct94+A=;
+ b=Ba9o5TXV6pWvWNojcAAs7byjQsYmwDj9MT2LeZ7lR3/5z3cAq0v+Afk4RV7RHt9HD+
+ pkXbAb0vU5YkzmQ9/A8XYhU8whuKpNID1CZxUCzEVUr/rwbO43GmfSEqO9WjkowWnqDd
+ 4OrwGFwcS5RNZHz5kNN540b1071p7MzCYlYZj2TWrHGQrQ5szkJOncoL8HXW+5Zwrq42
+ DM/P7kF4ayt3h/DqwPPO2g3iUzAIxuF98w26M5cG1zAe89WF42wqApM4iwOL0cvJCI8l
+ aHc4YISiDMBPbtMOKIdOchGF+yOCbRwBhiZK4gO15ag1jCWTuMK8A3p037391/xD8kSC
+ xF8w==
+X-Gm-Message-State: AGi0PuZO9JU7A0fkUaU4fSpxB9fmUgtU7vBocAGHfHU6TLwmbkecS1uR
+ PXTBfb70971j8CFlWCCJo0v5TA==
+X-Google-Smtp-Source: APiQypLrhqE3tlgsFpo/6o7IAUfkk7i77WoW5L/O31tTDbkr5jFc7y6S/gTz5EzvM/iRz9tGku9V9A==
+X-Received: by 2002:adf:8b8e:: with SMTP id o14mr5629346wra.392.1585953077107; 
+ Fri, 03 Apr 2020 15:31:17 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id k84sm13274215wmk.2.2020.04.03.15.31.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Apr 2020 15:31:16 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Sat,  4 Apr 2020 00:31:11 +0200
+Message-Id: <20200403223111.2729796-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200403135828.2542770-43-daniel.vetter@ffwll.ch>
+References: <20200403135828.2542770-43-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 03 Apr 2020 22:29:28 -0000
-Message-ID: <158595296875.13349.14991764150474779793@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_Put_drm=5Fdisplay=5Fmode_on_diet_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Create mock_destroy_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,101 +63,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Just some prep work before we rework the lifetime handling, which
+requires replacing all the drm_dev_put in selftests by something else.
 
-Series: drm: Put drm_display_mode on diet (rev2)
-URL   : https://patchwork.freedesktop.org/series/73674/
-State : failure
+v2: Don't go with a static inline, upsets the header tests and
+separation.
 
-== Summary ==
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c       | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c  | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c  | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c    | 2 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c           | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_evict.c       | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c         | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c         | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c             | 2 +-
+ drivers/gpu/drm/i915/selftests/intel_memory_region.c  | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c      | 7 ++++++-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.h      | 2 ++
+ 13 files changed, 19 insertions(+), 12 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8252 -> Patchwork_17208
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 2d0fd50c5312..d19bb011fc6b 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1789,7 +1789,7 @@ int i915_gem_huge_page_mock_selftests(void)
+ 	i915_vm_put(&ppgtt->vm);
+ 
+ out_unlock:
+-	drm_dev_put(&dev_priv->drm);
++	mock_destroy_device(dev_priv);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index f4f933240b39..d9d96d23e37e 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1986,7 +1986,7 @@ int i915_gem_context_mock_selftests(void)
+ 
+ 	err = i915_subtests(tests, i915);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+index 2a52b92586b9..0845ce1ae37c 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+@@ -272,7 +272,7 @@ int i915_gem_dmabuf_mock_selftests(void)
+ 
+ 	err = i915_subtests(tests, i915);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
+index 2b6db6f799de..085644edebfc 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
+@@ -85,7 +85,7 @@ int i915_gem_object_mock_selftests(void)
+ 
+ 	err = i915_subtests(tests, i915);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
+index 34932871b3a5..2a9709eb5a42 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
+@@ -73,6 +73,6 @@ int i915_gem_phys_mock_selftests(void)
+ 
+ 	err = i915_subtests(tests, i915);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index c2578a0f2f14..1c0865227714 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -157,7 +157,7 @@ static int mock_hwsp_freelist(void *arg)
+ 		__mock_hwsp_record(&state, na, NULL);
+ 	kfree(state.history);
+ err_put:
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+index 028baae9631f..f88473d396f4 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+@@ -536,7 +536,7 @@ int i915_gem_evict_mock_selftests(void)
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+ 		err = i915_subtests(tests, &i915->gt);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index 5d2a02fcf595..035e4f77f06f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -1714,7 +1714,7 @@ int i915_gem_gtt_mock_selftests(void)
+ 	mock_fini_ggtt(ggtt);
+ 	kfree(ggtt);
+ out_put:
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 1dab0360f76a..6bc6a2fc83ab 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -521,7 +521,7 @@ int i915_request_mock_selftests(void)
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+ 		err = i915_subtests(tests, i915);
+ 
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index 58b5f40a07dd..7d51cc2da36f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -841,7 +841,7 @@ int i915_vma_mock_selftests(void)
+ 	mock_fini_ggtt(ggtt);
+ 	kfree(ggtt);
+ out_put:
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+index 6e80d99048e4..5226767d5384 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+@@ -791,7 +791,7 @@ int intel_memory_region_mock_selftests(void)
+ 
+ 	intel_memory_region_put(mem);
+ out_unref:
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 9b105b811f1f..41afc357f4d0 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -214,7 +214,12 @@ struct drm_i915_private *mock_gem_device(void)
+ 	intel_gt_driver_late_release(&i915->gt);
+ 	intel_memory_regions_driver_release(i915);
+ 	drm_mode_config_cleanup(&i915->drm);
+-	drm_dev_put(&i915->drm);
++	mock_destroy_device(i915);
+ 
+ 	return NULL;
+ }
++
++void mock_destroy_device(struct drm_i915_private *i915)
++{
++	drm_dev_put(&i915->drm);
++}
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.h b/drivers/gpu/drm/i915/selftests/mock_gem_device.h
+index b5dc4e394555..953cfe4fab34 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.h
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.h
+@@ -7,4 +7,6 @@ struct drm_i915_private;
+ struct drm_i915_private *mock_gem_device(void);
+ void mock_device_flush(struct drm_i915_private *i915);
+ 
++void mock_destroy_device(struct drm_i915_private *i915);
++
+ #endif /* !__MOCK_GEM_DEVICE_H__ */
+-- 
+2.25.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17208 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17208, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17208:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/fi-ilk-650/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/fi-snb-2520m/igt@runner@aborted.html
-    - fi-snb-2600:        NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/fi-snb-2600/igt@runner@aborted.html
-    - fi-ivb-3770:        NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/fi-ivb-3770/igt@runner@aborted.html
-
-  
-
-
-Participating hosts (51 -> 42)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8252 -> Patchwork_17208
-
-  CI-20190529: 20190529
-  CI_DRM_8252: 3690abb8ed49d9a066f80de39e4e75792c86ac76 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5563: 7ab7807727262b7ed7e12197b78e867287a17ef6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17208: ace765c38dc55b9864e8b9478cbca5f3bf10cc57 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ace765c38dc5 drm: Replace mode->export_head with a boolean
-5b136e94b7a4 drm: Nuke mode->private_flags
-6e809802b439 drm/gma500: Stop using mode->private_flags
-6c2380cbc283 drm/i915: Replace I915_MODE_FLAG_INHERITED with a boolean
-103e75194d66 drm/i915: Stop using mode->private_flags
-9122853a9574 drm/mcde: Use mode->clock instead of reverse calculating it from the vrefresh
-d3368fb30d7c drm: pahole struct drm_display_mode
-00ab805b0fb4 drm: Shrink mode->private_flags
-8f96019c76dc drm: Flatten drm_mode_vrefresh()
-d6bf22e2b0a3 drm: Shrink drm_display_mode timings
-34c66e3566bb drm: Make mode->flags u32
-4f5ba370e14f drm: Shrink mode->type to u8
-f44cce4a1d9f drm: Shrink {width,height}_mm to u16
-4b303d777e7b drm/msm/dpu: Stop copying around mode->private_flags
-325b0ad221fe drm: Nuke mode->vrefresh
-bb6f7d766981 drm/i915: Introduce some local intel_dp variables
-fa630bba9e2b drm: Nuke mode->hsync
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17208/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
