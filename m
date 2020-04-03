@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234DD19D345
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F9619D346
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:13:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1B026EB46;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB72F6EB45;
 	Fri,  3 Apr 2020 09:13:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B66E26EB32
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:13:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38376EB37
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:13:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20785433-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20785434-1500050 
  for multiple; Fri, 03 Apr 2020 10:13:03 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 10:12:58 +0100
-Message-Id: <20200403091300.14734-8-chris@chris-wilson.co.uk>
+Date: Fri,  3 Apr 2020 10:12:59 +0100
+Message-Id: <20200403091300.14734-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200403091300.14734-1-chris@chris-wilson.co.uk>
 References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/10] drm/i915/gem: Teach execbuf how to wait
- on future syncobj
+Subject: [Intel-gfx] [PATCH 09/10] drm/i915/gem: Allow combining
+ submit-fences with syncobj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,55 +45,68 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a syncobj has not yet been assigned, treat it as a future fence and
-install and wait upon a dma-fence-proxy. The proxy will be replace by
-the real fence later, and that fence will be responsible for signaling
-our waiter.
-
+Fixes: a88b6e4cbafd ("drm/i915: Allow specification of parallel execbuf")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 21 +++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 10 +++++++---
+ include/uapi/drm/i915_drm.h                    |  7 ++++---
+ 2 files changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 9d11bad74e9a..bf1b5399ffa3 100644
+index bf1b5399ffa3..5c1c5a9eced4 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -5,6 +5,7 @@
-  */
+@@ -2299,7 +2299,7 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
+ 		BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
+ 			     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
  
- #include <linux/intel-iommu.h>
-+#include <linux/dma-fence-proxy.h>
- #include <linux/dma-resv.h>
- #include <linux/sync_file.h>
- #include <linux/uaccess.h>
-@@ -2334,8 +2335,24 @@ await_fence_array(struct i915_execbuffer *eb,
+-		fences[n] = ptr_pack_bits(syncobj, fence.flags, 2);
++		fences[n] = ptr_pack_bits(syncobj, fence.flags, 3);
+ 	}
+ 
+ 	return fences;
+@@ -2330,7 +2330,7 @@ await_fence_array(struct i915_execbuffer *eb,
+ 		struct dma_fence *fence;
+ 		unsigned int flags;
+ 
+-		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
++		syncobj = ptr_unpack_bits(fences[n], &flags, 3);
+ 		if (!(flags & I915_EXEC_FENCE_WAIT))
  			continue;
  
- 		fence = drm_syncobj_fence_get(syncobj);
--		if (!fence)
--			return -EINVAL;
-+		if (!fence) {
-+			struct dma_fence *old;
-+
-+			fence = dma_fence_create_proxy();
-+			if (!fence)
-+				return -ENOMEM;
-+
-+			spin_lock(&syncobj->lock);
-+			old = rcu_dereference_protected(syncobj->fence, true);
-+			if (unlikely(old)) {
-+				dma_fence_put(fence);
-+				fence = dma_fence_get(old);
-+			} else {
-+				rcu_assign_pointer(syncobj->fence,
-+						   dma_fence_get(fence));
-+			}
-+			spin_unlock(&syncobj->lock);
-+		}
+@@ -2354,7 +2354,11 @@ await_fence_array(struct i915_execbuffer *eb,
+ 			spin_unlock(&syncobj->lock);
+ 		}
  
- 		err = i915_request_await_dma_fence(eb->request, fence);
+-		err = i915_request_await_dma_fence(eb->request, fence);
++		if (flags & I915_EXEC_FENCE_WAIT_SUBMIT)
++			err = i915_request_await_execution(eb->request, fence,
++							   eb->engine->bond_execute);
++		else
++			err = i915_request_await_dma_fence(eb->request, fence);
  		dma_fence_put(fence);
+ 		if (err < 0)
+ 			return err;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 14b67cd6b54b..704dd0e3bc1d 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1040,9 +1040,10 @@ struct drm_i915_gem_exec_fence {
+ 	 */
+ 	__u32 handle;
+ 
+-#define I915_EXEC_FENCE_WAIT            (1<<0)
+-#define I915_EXEC_FENCE_SIGNAL          (1<<1)
+-#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
++#define I915_EXEC_FENCE_WAIT            (1u << 0)
++#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
++#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
++#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
+ 	__u32 flags;
+ };
+ 
 -- 
 2.20.1
 
