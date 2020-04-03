@@ -1,31 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D5C19E09D
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Apr 2020 00:04:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6189419E108
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Apr 2020 00:23:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437C66ECBB;
-	Fri,  3 Apr 2020 22:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 696AB6ECBC;
+	Fri,  3 Apr 2020 22:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E3C6B6ECBA;
- Fri,  3 Apr 2020 22:04:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DDBE2A0BC6;
- Fri,  3 Apr 2020 22:04:14 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF9606ECBC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 22:23:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1585952582;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=eeGpbZMZxtLmrqNZB2P89d1keB123ujHn4Gr2i5vxGY=;
+ b=fchoumnbmFW4mcFiTjvnMlnn6vNBaPCOIiXptktHMlV1RWEFB+s33rAJZJwNX5+sHvEmn3
+ dk4QNViQ5rIEqYg9wloCRuVMdoCf+ExebRhMEtDjeMwOPbLfACNH4k/zZUXdBiBoriDTUp
+ VH+m12CQPxt8CrRaabEfIxu5wkUT7y0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-27-pEFRls_hPHC28_QihEwNUA-1; Fri, 03 Apr 2020 18:22:58 -0400
+X-MC-Unique: pEFRls_hPHC28_QihEwNUA-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 85D328017CE;
+ Fri,  3 Apr 2020 22:22:55 +0000 (UTC)
+Received: from Ruby.redhat.com (ovpn-117-203.rdu2.redhat.com [10.10.117.203])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D0F0626DE0;
+ Fri,  3 Apr 2020 22:22:52 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri,  3 Apr 2020 18:22:41 -0400
+Message-Id: <20200403222251.937740-1-lyude@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 03 Apr 2020 22:04:14 -0000
-Message-ID: <158595145488.13351.17783778759867595840@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Put_drm=5Fdisplay=5Fmode_on_diet_=28rev2=29?=
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Subject: [Intel-gfx] [PATCH] drm/dp_mst: Remove drm_dp_mst_has_audio()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,53 +55,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Drive-by fix I noticed the other day - drm_dp_mst_has_audio() only ever
+made sense back when we still had to validate ports before accessing
+them in order to (attempt to) avoid NULL dereferences. Since we have
+proper reference counting that guarantees we always can safely access
+the MST port, there's no use in keeping this function around as all it
+does is validate the port pointer before checking the audio status.
 
-Series: drm: Put drm_display_mode on diet (rev2)
-URL   : https://patchwork.freedesktop.org/series/73674/
-State : warning
+Note - drm_dp_mst_port->has_audio is technically protected by
+drm_device->mode_config.connection_mutex, since it's only ever updated
+from drm_dp_mst_get_edid(). Additionally, we change the declaration for
+port in struct intel_connector to be properly typed, so we can directly
+access it.
 
-== Summary ==
+Cc: "Lee, Shawn C" <shawn.c.lee@intel.com>
+Cc: Sean Paul <sean@poorly.run>
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 21 -------------------
+ .../drm/i915/display/intel_display_debugfs.c  | 10 ++-------
+ .../drm/i915/display/intel_display_types.h    |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +--
+ include/drm/drm_dp_mst_helper.h               |  2 --
+ 5 files changed, 4 insertions(+), 34 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-fa630bba9e2b drm: Nuke mode->hsync
-bb6f7d766981 drm/i915: Introduce some local intel_dp variables
-325b0ad221fe drm: Nuke mode->vrefresh
--:1431: WARNING:LONG_LINE: line over 100 characters
-#1431: FILE: drivers/gpu/drm/i915/display/intel_dp.c:7750:
-+					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-
--:1440: WARNING:LONG_LINE: line over 100 characters
-#1440: FILE: drivers/gpu/drm/i915/display/intel_dp.c:7796:
-+					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-
-total: 0 errors, 2 warnings, 0 checks, 2591 lines checked
-4b303d777e7b drm/msm/dpu: Stop copying around mode->private_flags
--:85: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#85: FILE: drivers/gpu/drm/msm/disp/dpu1/dpu_trace.h:330:
-+	TP_PROTO(uint32_t drm_id, unsigned int flags),
-
-total: 0 errors, 0 warnings, 1 checks, 71 lines checked
-f44cce4a1d9f drm: Shrink {width,height}_mm to u16
-4f5ba370e14f drm: Shrink mode->type to u8
-34c66e3566bb drm: Make mode->flags u32
-d6bf22e2b0a3 drm: Shrink drm_display_mode timings
-8f96019c76dc drm: Flatten drm_mode_vrefresh()
-00ab805b0fb4 drm: Shrink mode->private_flags
-d3368fb30d7c drm: pahole struct drm_display_mode
-9122853a9574 drm/mcde: Use mode->clock instead of reverse calculating it from the vrefresh
-103e75194d66 drm/i915: Stop using mode->private_flags
-6c2380cbc283 drm/i915: Replace I915_MODE_FLAG_INHERITED with a boolean
-6e809802b439 drm/gma500: Stop using mode->private_flags
-5b136e94b7a4 drm: Nuke mode->private_flags
-ace765c38dc5 drm: Replace mode->export_head with a boolean
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 1ff49547b2e8..129126091e90 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -4063,27 +4063,6 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
+ }
+ EXPORT_SYMBOL(drm_dp_mst_detect_port);
+ 
+-/**
+- * drm_dp_mst_port_has_audio() - Check whether port has audio capability or not
+- * @mgr: manager for this port
+- * @port: unverified pointer to a port.
+- *
+- * This returns whether the port supports audio or not.
+- */
+-bool drm_dp_mst_port_has_audio(struct drm_dp_mst_topology_mgr *mgr,
+-					struct drm_dp_mst_port *port)
+-{
+-	bool ret = false;
+-
+-	port = drm_dp_mst_topology_get_port_validated(mgr, port);
+-	if (!port)
+-		return ret;
+-	ret = port->has_audio;
+-	drm_dp_mst_topology_put_port(port);
+-	return ret;
+-}
+-EXPORT_SYMBOL(drm_dp_mst_port_has_audio);
+-
+ /**
+  * drm_dp_mst_get_edid() - get EDID for an MST port
+  * @connector: toplevel connector to get EDID for
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 424f4e52f783..9f736420d83f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -631,15 +631,9 @@ static void intel_dp_info(struct seq_file *m,
+ }
+ 
+ static void intel_dp_mst_info(struct seq_file *m,
+-			  struct intel_connector *intel_connector)
++			      struct intel_connector *intel_connector)
+ {
+-	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
+-	struct intel_dp_mst_encoder *intel_mst =
+-		enc_to_mst(intel_encoder);
+-	struct intel_digital_port *intel_dig_port = intel_mst->primary;
+-	struct intel_dp *intel_dp = &intel_dig_port->dp;
+-	bool has_audio = drm_dp_mst_port_has_audio(&intel_dp->mst_mgr,
+-					intel_connector->port);
++	bool has_audio = intel_connector->port->has_audio;
+ 
+ 	seq_printf(m, "\taudio support: %s\n", yesno(has_audio));
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 2bedd626c686..1de7bef0a49b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -436,7 +436,7 @@ struct intel_connector {
+ 	   state of connector->polled in case hotplug storm detection changes it */
+ 	u8 polled;
+ 
+-	void *port; /* store this opaque as its illegal to dereference it */
++	struct drm_dp_mst_port *port;
+ 
+ 	struct intel_dp *mst_port;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 61605eb8c2af..c35efc9e628d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -114,8 +114,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 
+ 	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
+ 		pipe_config->has_audio =
+-			drm_dp_mst_port_has_audio(&intel_dp->mst_mgr,
+-						  connector->port);
++			connector->port->has_audio;
+ 	else
+ 		pipe_config->has_audio =
+ 			intel_conn_state->force_audio == HDMI_AUDIO_ON;
+diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+index 7af51c947b81..2d7c26592c05 100644
+--- a/include/drm/drm_dp_mst_helper.h
++++ b/include/drm/drm_dp_mst_helper.h
+@@ -732,8 +732,6 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
+ 		       struct drm_dp_mst_topology_mgr *mgr,
+ 		       struct drm_dp_mst_port *port);
+ 
+-bool drm_dp_mst_port_has_audio(struct drm_dp_mst_topology_mgr *mgr,
+-					struct drm_dp_mst_port *port);
+ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
+ 
+ 
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
