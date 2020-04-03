@@ -1,56 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC0919CE00
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 02:59:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4156419CE07
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 03:01:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A37BF6E057;
-	Fri,  3 Apr 2020 00:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05806E03F;
+	Fri,  3 Apr 2020 01:01:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D52CD6E03F
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 00:59:25 +0000 (UTC)
-IronPort-SDR: qqCNCcfEQMeXl1ZewBuiQzKf1h009Wagqmetv8+Cs+YEe6YDtPyU2WYetlnGYKoSv1NwUN4lm6
- Iae+u0lK0Pbg==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2C16E03F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 01:01:22 +0000 (UTC)
+IronPort-SDR: 0yFUhh9Tm7Rc+bF/5MkqDJ30W19qxoicBrpkgJ/hvqlBrxdNI207/VJE17XSRlmY9p7M2uDnNZ
+ 3Dn/y8d5+0iw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2020 17:59:25 -0700
-IronPort-SDR: 2Y8/h6qDgu5G2YZQl6J2/RUkf8CKvWjozu3OUqnE4Xv9lnFq0t4x+UwDmt9uoth9xJAITMmN00
- /JWUYAKhYlnw==
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 18:01:21 -0700
+IronPort-SDR: HHLqak0NTG76zaWrha5SKbB3nshIratwn5Qn8En9MOLp2dEzOzWXxo1lHBIJ4t7Yy1Rhlzp6R5
+ tlaVu6HId+Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,337,1580803200"; d="scan'208";a="250011862"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by orsmga003.jf.intel.com with ESMTP; 02 Apr 2020 17:59:24 -0700
-Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 2 Apr 2020 17:59:24 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
- fmsmsx156.amr.corp.intel.com ([169.254.13.253]) with mapi id 14.03.0439.000;
- Thu, 2 Apr 2020 17:59:24 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 13/13] drm/i915: Move the port sync
- DP_TP_CTL stuff to the encoder hook
-Thread-Index: AQHV+Vde+iv4rsZiCU6nbQ8jAUAl6ahnKVMA
-Date: Fri, 3 Apr 2020 00:59:23 +0000
-Message-ID: <a535d404d7436db1af6e675c674256b0f0409b69.camel@intel.com>
-References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
- <20200313164831.5980-14-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200313164831.5980-14-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.212.184.248]
-Content-ID: <887184AD6C6D6C468305AA59D3E103A5@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,337,1580803200"; d="scan'208";a="250012602"
+Received: from adixit-mobl.amr.corp.intel.com (HELO localhost.localdomain)
+ ([10.212.234.39])
+ by orsmga003.jf.intel.com with ESMTP; 02 Apr 2020 18:01:21 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Apr 2020 18:01:20 -0700
+Message-Id: <20200403010120.3067-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 13/13] drm/i915: Move the port sync
- DP_TP_CTL stuff to the encoder hook
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for small
+ user read buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,141 +46,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIwLTAzLTEzIGF0IDE4OjQ4ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gTW92ZSB0aGUgZmluYWwgRFBfVFBfQ1RMIGZyb2JiaW5nIG9mIHBvcnQgc3luYyB0byB0
-aGUgbWFzdGVyDQo+IGVuY29kZXIncyBlbmFibGUgaG9vay4gTm93IG5lYXRseSBvdXQgb2Ygc2ln
-aHQgZnJvbSB0aGUgaGlnaCBsZXZlbA0KPiBtb2Rlc2V0IGNvZGUuDQo+IA0KPiBBbmQgdGh1cyB3
-ZSd2ZSBlbGltaW5hdGVkIGFsbCB0aGUgc3BlY2lhbCBjYXNpbmcgb2YgcG9ydCBzeW5jDQo+IGlu
-IHRoZSBoaWdoIGxldmVsIG1vZGVzZXQgY29kZS4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0N
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgICAgIHwgMzcgKysr
-KysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwg
-OTkgKysrKy0tLS0tLS0tLS0tLQ0KPiAtLS0tDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDUzIGluc2Vy
-dGlvbnMoKyksIDgzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jDQo+IGluZGV4IDk4NDc1YzgxZjFkYS4uODU2YzU2Zjg0ODMzIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAgLTM1
-NDcsNiArMzU0Nyw0MSBAQCB2b2lkIGludGVsX2RkaV9mZGlfcG9zdF9kaXNhYmxlKHN0cnVjdA0K
-PiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCWludGVsX2RlX3dyaXRlKGRldl9wcml2
-LCBGRElfUlhfQ1RMKFBJUEVfQSksIHZhbCk7DQo+ICB9DQo+ICANCj4gK3N0YXRpYyB2b2lkIHRy
-YW5zX3BvcnRfc3luY19zdG9wX2xpbmtfdHJhaW4oc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0
-ZSAqc3RhdGUsDQo+ICsJCQkJCSAgICBzdHJ1Y3QgaW50ZWxfZW5jb2Rlcg0KPiAqZW5jb2RlciwN
-Cj4gKwkJCQkJICAgIGNvbnN0IHN0cnVjdA0KPiBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRl
-KQ0KPiArew0KPiArCWNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRl
-Ow0KPiArCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uOw0KPiArCWludCBpOw0KPiArDQo+ICsJ
-aWYgKCFjcnRjX3N0YXRlLT5zeW5jX21vZGVfc2xhdmVzX21hc2spDQo+ICsJCXJldHVybjsNCj4g
-Kw0KPiArCWZvcl9lYWNoX25ld19jb25uZWN0b3JfaW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25u
-LCBjb25uX3N0YXRlLA0KPiBpKSB7DQo+ICsJCXN0cnVjdCBpbnRlbF9lbmNvZGVyICpzbGF2ZV9l
-bmNvZGVyID0NCj4gKwkJCXRvX2ludGVsX2VuY29kZXIoY29ubl9zdGF0ZS0+YmVzdF9lbmNvZGVy
-KTsNCj4gKwkJc3RydWN0IGludGVsX2NydGMgKnNsYXZlX2NydGMgPQ0KPiB0b19pbnRlbF9jcnRj
-KGNvbm5fc3RhdGUtPmNydGMpOw0KPiArCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-c2xhdmVfY3J0Y19zdGF0ZTsNCj4gKw0KPiArCQlpZiAoIXNsYXZlX2NydGMpDQo+ICsJCQljb250
-aW51ZTsNCj4gKw0KPiArCQlzbGF2ZV9jcnRjX3N0YXRlID0NCj4gKwkJCWludGVsX2F0b21pY19n
-ZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsDQo+IHNsYXZlX2NydGMpOw0KPiArDQo+ICsJCWlmIChz
-bGF2ZV9jcnRjX3N0YXRlLT5tYXN0ZXJfdHJhbnNjb2RlciAhPQ0KPiArCQkgICAgY3J0Y19zdGF0
-ZS0+Y3B1X3RyYW5zY29kZXIpDQo+ICsJCQljb250aW51ZTsNCj4gKw0KPiArCQlpbnRlbF9kcF9z
-dG9wX2xpbmtfdHJhaW4oZW5jX3RvX2ludGVsX2RwKHNsYXZlX2VuY29kZXIpDQo+ICk7DQo+ICsJ
-fQ0KPiArDQo+ICsJdXNsZWVwX3JhbmdlKDIwMCwgNDAwKTsNCj4gKw0KPiArCWludGVsX2RwX3N0
-b3BfbGlua190cmFpbihlbmNfdG9faW50ZWxfZHAoZW5jb2RlcikpOw0KPiArfQ0KPiArDQo+ICBz
-dGF0aWMgdm9pZCBpbnRlbF9lbmFibGVfZGRpX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
-KnN0YXRlLA0KPiAgCQkJCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJCWNv
-bnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlLA0KPiBAQCAtMzU2Nyw2
-ICszNjAyLDggQEAgc3RhdGljIHZvaWQgaW50ZWxfZW5hYmxlX2RkaV9kcChzdHJ1Y3QNCj4gaW50
-ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIA0KPiAgCWlmIChjcnRjX3N0YXRlLT5oYXNfYXVk
-aW8pDQo+ICAJCWludGVsX2F1ZGlvX2NvZGVjX2VuYWJsZShlbmNvZGVyLCBjcnRjX3N0YXRlLA0K
-PiBjb25uX3N0YXRlKTsNCj4gKw0KPiArCXRyYW5zX3BvcnRfc3luY19zdG9wX2xpbmtfdHJhaW4o
-c3RhdGUsIGVuY29kZXIsIGNydGNfc3RhdGUpOw0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgaTkxNV9y
-ZWdfdA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-Yw0KPiBpbmRleCA4NGU1OWY2YWI4ZTQuLmNkYWU3YTY4MGU0YSAxMDA2NDQNCj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTU0NCwxOSArNTQ0
-LDI1IEBAIG5lZWRzX21vZGVzZXQoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKnN0
-YXRlKQ0KPiAgCXJldHVybiBkcm1fYXRvbWljX2NydGNfbmVlZHNfbW9kZXNldCgmc3RhdGUtPnVh
-cGkpOw0KPiAgfQ0KPiAgDQo+IC1ib29sDQo+IC1pc190cmFuc19wb3J0X3N5bmNfbW9kZShjb25z
-dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gLXsNCj4gLQlyZXR1cm4g
-KGNydGNfc3RhdGUtPm1hc3Rlcl90cmFuc2NvZGVyICE9IElOVkFMSURfVFJBTlNDT0RFUiB8fA0K
-PiAtCQljcnRjX3N0YXRlLT5zeW5jX21vZGVfc2xhdmVzX21hc2spOw0KPiAtfQ0KPiAtDQo+ICBz
-dGF0aWMgYm9vbA0KPiAgaXNfdHJhbnNfcG9ydF9zeW5jX3NsYXZlKGNvbnN0IHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiAgew0KPiAgCXJldHVybiBjcnRjX3N0YXRlLT5t
-YXN0ZXJfdHJhbnNjb2RlciAhPSBJTlZBTElEX1RSQU5TQ09ERVI7DQo+ICB9DQo+ICANCj4gK3N0
-YXRpYyBib29sDQo+ICtpc190cmFuc19wb3J0X3N5bmNfbWFzdGVyKGNvbnN0IHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiArew0KPiArCXJldHVybiBjcnRjX3N0YXRlLT5z
-eW5jX21vZGVfc2xhdmVzX21hc2sgIT0gMDsNCj4gK30NCj4gKw0KPiArYm9vbA0KPiAraXNfdHJh
-bnNfcG9ydF9zeW5jX21vZGUoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
-dGUpDQo+ICt7DQo+ICsJcmV0dXJuIGlzX3RyYW5zX3BvcnRfc3luY19tYXN0ZXIoY3J0Y19zdGF0
-ZSkgfHwNCj4gKwkJaXNfdHJhbnNfcG9ydF9zeW5jX3NsYXZlKGNydGNfc3RhdGUpOw0KPiArfQ0K
-PiArDQo+ICAvKg0KPiAgICogUGxhdGZvcm0gc3BlY2lmaWMgaGVscGVycyB0byBjYWxjdWxhdGUg
-dGhlIHBvcnQgUExMIGxvb3BiYWNrLQ0KPiAoY2xvY2subSksDQo+ICAgKiBhbmQgcG9zdC1kaXZp
-ZGVyIChjbG9jay5wKSB2YWx1ZXMsIHByZS0gKGNsb2NrLnZjbykgYW5kIHBvc3QtDQo+IGRpdmlk
-ZWQgZmFzdA0KPiBAQCAtMTUxMDQsNjMgKzE1MTEwLDYgQEAgc3RhdGljIHZvaWQNCj4gaW50ZWxf
-Y29tbWl0X21vZGVzZXRfZW5hYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkN
-Cj4gIAl9DQo+ICB9DQo+ICANCj4gLXN0YXRpYyB2b2lkIGludGVsX3NldF9kcF90cF9jdGxfbm9y
-bWFsKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUNCj4gKnN0YXRlLA0KPiAtCQkJCSAgICAgICBz
-dHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykNCj4gLXsNCj4gLQlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAq
-dW5pbml0aWFsaXplZF92YXIoY29ubik7DQo+IC0Jc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUg
-KmNvbm5fc3RhdGU7DQo+IC0Jc3RydWN0IGludGVsX2RwICppbnRlbF9kcDsNCj4gLQlpbnQgaTsN
-Cj4gLQ0KPiAtCWZvcl9lYWNoX25ld19jb25uZWN0b3JfaW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBj
-b25uLCBjb25uX3N0YXRlLA0KPiBpKSB7DQo+IC0JCWlmIChjb25uX3N0YXRlLT5jcnRjID09ICZj
-cnRjLT5iYXNlKQ0KPiAtCQkJYnJlYWs7DQo+IC0JfQ0KPiAtCWludGVsX2RwID0gaW50ZWxfYXR0
-YWNoZWRfZHAodG9faW50ZWxfY29ubmVjdG9yKGNvbm4pKTsNCj4gLQlpbnRlbF9kcF9zdG9wX2xp
-bmtfdHJhaW4oaW50ZWxfZHApOw0KPiAtfQ0KPiAtDQo+IC1zdGF0aWMgdm9pZCBpbnRlbF91cGRh
-dGVfdHJhbnNfcG9ydF9zeW5jX2NydGNzKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0
-YXRlLA0KPiAtCQkJCQkgICAgICAgc3RydWN0IGludGVsX2NydGMgKmNydGMpDQo+IC17DQo+IC0J
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KHN0YXRlLT5iYXNlLmRldik7
-DQo+IC0JY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19zbGF2ZV9jcnRjX3N0YXRl
-Ow0KPiAtCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsNCj4g
-LQlzdHJ1Y3QgaW50ZWxfY3J0YyAqc2xhdmVfY3J0YzsNCj4gLQlpbnQgaTsNCj4gLQ0KPiAtCWZv
-cl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBzbGF2ZV9jcnRjLA0KPiAtCQkJ
-CQkgbmV3X3NsYXZlX2NydGNfc3RhdGUsIGkpIHsNCj4gLQkJaWYgKG5ld19zbGF2ZV9jcnRjX3N0
-YXRlLT5tYXN0ZXJfdHJhbnNjb2RlciAhPQ0KPiAtCQkgICAgbmV3X2NydGNfc3RhdGUtPmNwdV90
-cmFuc2NvZGVyKQ0KPiAtCQkJY29udGludWU7DQo+IC0NCj4gLQkJZHJtX2RiZ19rbXMoJmk5MTUt
-PmRybSwNCj4gLQkJCSAgICAiVXBkYXRpbmcgdHJhbnNjb2RlciBwb3J0IHN5bmMgc2xhdmUNCj4g
-W0NSVEM6JWQ6JXNdXG4iLA0KPiAtCQkJICAgIHNsYXZlX2NydGMtPmJhc2UuYmFzZS5pZCwgc2xh
-dmVfY3J0Yy0NCj4gPmJhc2UubmFtZSk7DQo+IC0NCj4gLQkJaW50ZWxfZW5hYmxlX2NydGMoc3Rh
-dGUsIHNsYXZlX2NydGMpOw0KPiAtCX0NCj4gLQ0KPiAtCWRybV9kYmdfa21zKCZpOTE1LT5kcm0s
-DQo+IC0JCSAgICAiVXBkYXRpbmcgdHJhbnNjb2RlciBwb3J0IHN5bmMgbWFzdGVyDQo+IFtDUlRD
-OiVkOiVzXVxuIiwNCj4gLQkJICAgIGNydGMtPmJhc2UuYmFzZS5pZCwgY3J0Yy0+YmFzZS5uYW1l
-KTsNCj4gLQ0KPiAtCWludGVsX2VuYWJsZV9jcnRjKHN0YXRlLCBjcnRjKTsNCj4gLQ0KPiAtCWZv
-cl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBzbGF2ZV9jcnRjLA0KPiAtCQkJ
-CQkgbmV3X3NsYXZlX2NydGNfc3RhdGUsIGkpIHsNCj4gLQkJaWYgKG5ld19zbGF2ZV9jcnRjX3N0
-YXRlLT5tYXN0ZXJfdHJhbnNjb2RlciAhPQ0KPiAtCQkgICAgbmV3X2NydGNfc3RhdGUtPmNwdV90
-cmFuc2NvZGVyKQ0KPiAtCQkJY29udGludWU7DQo+IC0NCj4gLQkJaW50ZWxfc2V0X2RwX3RwX2N0
-bF9ub3JtYWwoc3RhdGUsIHNsYXZlX2NydGMpOw0KPiAtCX0NCj4gLQ0KPiAtCXVzbGVlcF9yYW5n
-ZSgyMDAsIDQwMCk7DQo+IC0JaW50ZWxfc2V0X2RwX3RwX2N0bF9ub3JtYWwoc3RhdGUsIGNydGMp
-Ow0KPiAtfQ0KPiAtDQo+ICBzdGF0aWMgdm9pZCBpY2xfZGJ1Zl9zbGljZV9wcmVfdXBkYXRlKHN0
-cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUNCj4gKnN0YXRlKQ0KPiAgew0KPiAgCXN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsNCj4gQEAg
-LTE1MjYxLDMzICsxNTIxMCwxNyBAQCBzdGF0aWMgdm9pZA0KPiBza2xfY29tbWl0X21vZGVzZXRf
-ZW5hYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkNCj4gIAkJCWNvbnRpbnVl
-Ow0KPiAgDQo+ICAJCWlmIChpbnRlbF9kcF9tc3RfaXNfc2xhdmVfdHJhbnMobmV3X2NydGNfc3Rh
-dGUpIHx8DQo+IC0JCSAgICBpc190cmFuc19wb3J0X3N5bmNfc2xhdmUobmV3X2NydGNfc3RhdGUp
-KQ0KPiArCQkgICAgaXNfdHJhbnNfcG9ydF9zeW5jX21hc3RlcihuZXdfY3J0Y19zdGF0ZSkpDQo+
-ICAJCQljb250aW51ZTsNCj4gIA0KPiAgCQltb2Rlc2V0X3BpcGVzICY9IH5CSVQocGlwZSk7DQo+
-ICANCj4gLQkJaWYgKGlzX3RyYW5zX3BvcnRfc3luY19tb2RlKG5ld19jcnRjX3N0YXRlKSkgew0K
-PiAtCQkJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKm5ld19zbGF2ZV9jcnRjX3N0
-YXRlOw0KPiAtCQkJc3RydWN0IGludGVsX2NydGMgKnNsYXZlX2NydGM7DQo+IC0JCQlpbnQgaTsN
-Cj4gLQ0KPiAtCQkJaW50ZWxfdXBkYXRlX3RyYW5zX3BvcnRfc3luY19jcnRjcyhzdGF0ZSwNCj4g
-Y3J0Yyk7DQo+IC0NCj4gLQkJCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRl
-LA0KPiBzbGF2ZV9jcnRjLA0KPiAtCQkJCQkJCSBuZXdfc2xhdmVfY3J0Yw0KPiBfc3RhdGUsIGkp
-IHsNCj4gLQ0KPiAtCQkJCS8qIFRPRE86IHVwZGF0ZSBlbnRyaWVzW10gb2Ygc2xhdmUgKi8NCj4g
-LQkJCQltb2Rlc2V0X3BpcGVzICY9IH5CSVQoc2xhdmVfY3J0Yy0NCj4gPnBpcGUpOw0KPiAtCQkJ
-fQ0KPiAtCQl9IGVsc2Ugew0KPiAtCQkJaW50ZWxfZW5hYmxlX2NydGMoc3RhdGUsIGNydGMpOw0K
-PiAtCQl9DQo+ICsJCWludGVsX2VuYWJsZV9jcnRjKHN0YXRlLCBjcnRjKTsNCj4gIAl9DQo+ICAN
-Cj4gIAkvKg0KPiAgCSAqIFRoZW4gd2UgZW5hYmxlIGFsbCByZW1haW5pbmcgcGlwZXMgdGhhdCBk
-ZXBlbmQgb24gb3RoZXINCj4gLQkgKiBwaXBlcywgcmlnaHQgbm93IGl0IGlzIG9ubHkgTVNUIHNs
-YXZlcyBhcyBib3RoIHBvcnQgc3luYw0KPiAtCSAqIHNsYXZlIGFuZCBtYXN0ZXIgYXJlIGVuYWJs
-ZWQgdG9nZXRoZXINCj4gKwkgKiBwaXBlczogTVNUIHNsYXZlcyBhbmQgcG9ydCBzeW5jIG1hc3Rl
-cnMuDQo+ICAJICovDQo+ICAJZm9yX2VhY2hfbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUs
-IGNydGMsIG5ld19jcnRjX3N0YXRlLA0KPiBpKSB7DQo+ICAJCWVudW0gcGlwZSBwaXBlID0gY3J0
-Yy0+cGlwZTsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+It is wrong to block the user thread in the next poll when OA data is
+already available which could not fit in the user buffer provided in
+the previous read. In several cases the exact user buffer size is not
+known. Blocking user space in poll can lead to data loss when the
+buffer size used is smaller than the available data.
+
+This change fixes this issue and allows user space to read all OA data
+even when using a buffer size smaller than the available data using
+multiple non-blocking reads rather than staying blocked in poll till
+the next timer interrupt.
+
+v2: Fix ret value for blocking reads (Umesh)
+v3: Mistake during patch send (Ashutosh)
+v4: Remove -EAGAIN from comment (Umesh)
+v5: Improve condition for clearing pollin and return (Lionel)
+v6: Improve blocking read loop and other cleanups (Lionel)
+v7: Added Cc stable
+
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <stable@vger.kernel.org>
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 61 ++++++--------------------------
+ 1 file changed, 11 insertions(+), 50 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 28e3d76fa2e6..2f78b147bb2d 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -2963,49 +2963,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+ 		gen8_update_reg_state_unlocked(ce, stream);
+ }
+ 
+-/**
+- * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
+- * @stream: An i915 perf stream
+- * @file: An i915 perf stream file
+- * @buf: destination buffer given by userspace
+- * @count: the number of bytes userspace wants to read
+- * @ppos: (inout) file seek position (unused)
+- *
+- * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
+- * ensure that if we've successfully copied any data then reporting that takes
+- * precedence over any internal error status, so the data isn't lost.
+- *
+- * For example ret will be -ENOSPC whenever there is more buffered data than
+- * can be copied to userspace, but that's only interesting if we weren't able
+- * to copy some data because it implies the userspace buffer is too small to
+- * receive a single record (and we never split records).
+- *
+- * Another case with ret == -EFAULT is more of a grey area since it would seem
+- * like bad form for userspace to ask us to overrun its buffer, but the user
+- * knows best:
+- *
+- *   http://yarchive.net/comp/linux/partial_reads_writes.html
+- *
+- * Returns: The number of bytes copied or a negative error code on failure.
+- */
+-static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
+-				     struct file *file,
+-				     char __user *buf,
+-				     size_t count,
+-				     loff_t *ppos)
+-{
+-	/* Note we keep the offset (aka bytes read) separate from any
+-	 * error status so that the final check for whether we return
+-	 * the bytes read with a higher precedence than any error (see
+-	 * comment below) doesn't need to be handled/duplicated in
+-	 * stream->ops->read() implementations.
+-	 */
+-	size_t offset = 0;
+-	int ret = stream->ops->read(stream, buf, count, &offset);
+-
+-	return offset ?: (ret ?: -EAGAIN);
+-}
+-
+ /**
+  * i915_perf_read - handles read() FOP for i915 perf stream FDs
+  * @file: An i915 perf stream file
+@@ -3031,7 +2988,8 @@ static ssize_t i915_perf_read(struct file *file,
+ {
+ 	struct i915_perf_stream *stream = file->private_data;
+ 	struct i915_perf *perf = stream->perf;
+-	ssize_t ret;
++	size_t offset = 0;
++	int ret;
+ 
+ 	/* To ensure it's handled consistently we simply treat all reads of a
+ 	 * disabled stream as an error. In particular it might otherwise lead
+@@ -3054,13 +3012,12 @@ static ssize_t i915_perf_read(struct file *file,
+ 				return ret;
+ 
+ 			mutex_lock(&perf->lock);
+-			ret = i915_perf_read_locked(stream, file,
+-						    buf, count, ppos);
++			ret = stream->ops->read(stream, buf, count, &offset);
+ 			mutex_unlock(&perf->lock);
+-		} while (ret == -EAGAIN);
++		} while (!offset && !ret);
+ 	} else {
+ 		mutex_lock(&perf->lock);
+-		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
++		ret = stream->ops->read(stream, buf, count, &offset);
+ 		mutex_unlock(&perf->lock);
+ 	}
+ 
+@@ -3071,11 +3028,15 @@ static ssize_t i915_perf_read(struct file *file,
+ 	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
+ 	 * effectively ensures we back off until the next hrtimer callback
+ 	 * before reporting another EPOLLIN event.
++	 * The exception to this is if ops->read() returned -ENOSPC which means
++	 * that more OA data is available than could fit in the user provided
++	 * buffer. In this case we want the next poll() call to not block.
+ 	 */
+-	if (ret >= 0 || ret == -EAGAIN)
++	if (ret != -ENOSPC)
+ 		stream->pollin = false;
+ 
+-	return ret;
++	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, ... */
++	return offset ?: (ret ?: -EAGAIN);
+ }
+ 
+ static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer)
+-- 
+2.25.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
