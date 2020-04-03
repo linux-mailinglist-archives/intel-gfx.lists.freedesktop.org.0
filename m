@@ -2,45 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BC819DCB1
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 19:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 199C419DCC6
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 19:29:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0266EC36;
-	Fri,  3 Apr 2020 17:25:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5316EC3D;
+	Fri,  3 Apr 2020 17:29:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C775C6EC36
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 17:25:47 +0000 (UTC)
-IronPort-SDR: IPdqUxBOEOMUYYiS9kauL0Rndw1Wu9mb5J9h14BuI6Tt84xNF2LRhpPtC/y6AUzfEaPID7HBp/
- DSwNLuC/O9og==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2020 10:25:47 -0700
-IronPort-SDR: 5Y+KcHNRpMqoYYmazTdmvgqI220avKtdJiUhOqJmA4W0w85j82k+4SO4olUzMeKx72dXroxZQ2
- x5q9Fh13jaJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,340,1580803200"; d="scan'208";a="243510783"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 03 Apr 2020 10:25:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 Apr 2020 20:25:44 +0300
-Date: Fri, 3 Apr 2020 20:25:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200403172544.GA6112@intel.com>
-References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
- <20200313164831.5980-11-ville.syrjala@linux.intel.com>
- <506b065f05fc3ecebd95544e6bcb043d525003b1.camel@intel.com>
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
+ [IPv6:2607:f8b0:4864:20::a43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 512A36EC3D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 17:29:53 +0000 (UTC)
+Received: by mail-vk1-xa43.google.com with SMTP id p123so2218643vkg.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 10:29:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Rzyzx1TXNm0F6TVAcN2nkquwDefttdClgpxGgwYnuY4=;
+ b=g318A8eaQO51Pacqw83W63DKkbmfZ/U9xtZ0qSI0rMafD8wuIZlL/M6UPTbuY1EshI
+ kG9OdWbhVsVHIRM6Zq5SUYbJiy2Ge1vGKHsYtOddxcfitDJS46pjy+1O9+tODbSGraVH
+ MBwck+lUtlB/eEyGbs0b9887yessHZKqfkP9LxqG+bFhXgCq2GqNNJ7UyVbQiRr04PkU
+ CPgGj1dcu7TlOqZTsuUVHrRyKocbHBLRg6Oxf9gnua06/+7W1JMZiIYDv7YnLnad7AEl
+ jOmwzS1baBKNPH9e4phzR81L0pEbnUJhrXHrdOMt0pAZe8bQCIRXlgH1+WBGMhu6DZgl
+ N5Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Rzyzx1TXNm0F6TVAcN2nkquwDefttdClgpxGgwYnuY4=;
+ b=Xvt+80HWswxSrrvfMBxbcobHIyBIC8vbGSMRH8jvDkS/K+3zJ3dEjk5pDu1xJ8tMiG
+ 1IIsXPixNXi425HVluvCaS+F6GEI7TU1L7VBWs7pTnA06nRpyJ9s+DWVngTpcXtySKUP
+ MaZJCSMJicHZQ+4a4gt8yOM7Rn+tBtgF/08dMV0b8D9eDWStGWzlXu+KR6rpIf+k3HIP
+ gvNhxwfGpkBvnTDeIEjAu36wQh+sfj5ODcm2qmN4Hd3vgCTVF3EDyKno63xylFjGnR8s
+ Z0lTcJUVXsC/A3XivpSwvL8aLlNT/dwxLMGGPNCXUt11BekPKkFP3Nr7PCYABgjArxos
+ uvBA==
+X-Gm-Message-State: AGi0PuYrC4Go+8LAPi5n1x/A9Km+Ox+CEfOEHKWmlFSWVZjv2fE3cbU6
+ 5seejABBndEP0Z5ch3aEc0ACkjkgaBulZ1kI52u4ypJN0Vc=
+X-Google-Smtp-Source: APiQypJQkCyt3hjoo4nbX3QyMsMhi2y28f76KQjf1m++3YJ2QVnPShZPfr792M2CO37pTJ3YoIsEOffK/dkJjYwxuvU=
+X-Received: by 2002:a1f:93d4:: with SMTP id v203mr7015742vkd.78.1585934992416; 
+ Fri, 03 Apr 2020 10:29:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <506b065f05fc3ecebd95544e6bcb043d525003b1.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 10/13] drm/i915: Fix port sync code to work
- with >2 pipes
+References: <20200403160951.8271-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200403160951.8271-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 3 Apr 2020 18:29:25 +0100
+Message-ID: <CAM0jSHP-85pcsporrWf1n0+nymsF6+dpR=9zPm=Y=8TipsWnzg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Revoke mmap before fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,151 +60,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 12:32:20AM +0000, Souza, Jose wrote:
-> On Fri, 2020-03-13 at 18:48 +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > Don't assume there is just one port sync slave. We might have
-> > several.
-> > =
-
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 98 ++++++++++------
-> > ----
-> >  1 file changed, 49 insertions(+), 49 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index b56a5a49418f..33f38c8a5da4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -15009,18 +15009,6 @@ static void intel_update_crtc(struct
-> > intel_atomic_state *state,
-> >  		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
-> >  }
-> >  =
-
-> > -static struct intel_crtc *intel_get_slave_crtc(const struct
-> > intel_crtc_state *new_crtc_state)
-> > -{
-> > -	struct drm_i915_private *dev_priv =3D to_i915(new_crtc_state-
-> > >uapi.crtc->dev);
-> > -	enum transcoder slave_transcoder;
-> > -
-> > -	drm_WARN_ON(&dev_priv->drm,
-> > -		    !is_power_of_2(new_crtc_state-
-> > >sync_mode_slaves_mask));
-> > -
-> > -	slave_transcoder =3D ffs(new_crtc_state->sync_mode_slaves_mask) -
-> > 1;
-> > -	return intel_get_crtc_for_pipe(dev_priv,
-> > -				       (enum pipe)slave_transcoder);
-> > -}
-> >  =
-
-> >  static void intel_old_crtc_state_disables(struct intel_atomic_state
-> > *state,
-> >  					  struct intel_crtc_state
-> > *old_crtc_state,
-> > @@ -15109,8 +15097,8 @@ static void
-> > intel_commit_modeset_enables(struct intel_atomic_state *state)
-> >  	}
-> >  }
-> >  =
-
-> > -static void intel_set_dp_tp_ctl_normal(struct intel_crtc *crtc,
-> > -				       struct intel_atomic_state
-> > *state)
-> > +static void intel_set_dp_tp_ctl_normal(struct intel_atomic_state
-> > *state,
-> > +				       struct intel_crtc *crtc)
-> >  {
-> >  	struct drm_connector *uninitialized_var(conn);
-> >  	struct drm_connector_state *conn_state;
-> > @@ -15125,45 +15113,55 @@ static void
-> > intel_set_dp_tp_ctl_normal(struct intel_crtc *crtc,
-> >  	intel_dp_stop_link_train(intel_dp);
-> >  }
-> >  =
-
-> > -static void intel_update_trans_port_sync_crtcs(struct intel_crtc
-> > *crtc,
-> > -					       struct
-> > intel_atomic_state *state,
-> > -					       struct intel_crtc_state
-> > *old_crtc_state,
-> > -					       struct intel_crtc_state
-> > *new_crtc_state)
-> > +static void intel_update_trans_port_sync_crtcs(struct
-> > intel_atomic_state *state,
-> > +					       struct intel_crtc *crtc)
-> >  {
-> > -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> > -	struct intel_crtc *slave_crtc =3D
-> > intel_get_slave_crtc(new_crtc_state);
-> > -	struct intel_crtc_state *new_slave_crtc_state =3D
-> > -		intel_atomic_get_new_crtc_state(state, slave_crtc);
-> > -	struct intel_crtc_state *old_slave_crtc_state =3D
-> > -		intel_atomic_get_old_crtc_state(state, slave_crtc);
-> > +	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> > +	const struct intel_crtc_state *new_slave_crtc_state;
-> > +	const struct intel_crtc_state *new_crtc_state;
-> > +	struct intel_crtc *slave_crtc;
-> > +	int i;
-> >  =
-
-> > -	drm_WARN_ON(&i915->drm, !slave_crtc || !new_slave_crtc_state ||
-> > -		    !old_slave_crtc_state);
-> > +	for_each_new_intel_crtc_in_state(state, slave_crtc,
-> > +					 new_slave_crtc_state, i) {
-> > +		if (new_slave_crtc_state->master_transcoder !=3D
-> > +		    new_crtc_state->cpu_transcoder)
-> =
-
-> Missing new_crtc_state initialization.
-
-Whoops. Fixed.
-
-> =
-
-> With that:
-> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+On Fri, 3 Apr 2020 at 17:10, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-<snip>
-> > -			/* TODO: update entries[] of slave */
-> > -			modeset_pipes &=3D ~BIT(slave_crtc->pipe);
-> > +			for_each_new_intel_crtc_in_state(state,
-> > slave_crtc,
-> > +							 new_slave_crtc
-> > _state, i) {
-> >  =
-
-> > +				/* TODO: update entries[] of slave */
-> > +				modeset_pipes &=3D ~BIT(slave_crtc-
-> > >pipe);
-
-Noticed another problem here. Instead of clearing modeset_pipes for
-the slaves of the current crtc we clear it for all crtcs. Fixed to do
-the same master_transcoder check as above.
-
-> > +			}
-> >  		} else {
-> >  			intel_enable_crtc(state, crtc);
-> >  			intel_update_crtc(state, crtc);
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> Make sure we revoke the user's mmaps of this vma to force them to take a
+> pagefault *before* we remove the associated aperture detiling register.
+>
+> Fixes: 0d86ee35097a ("drm/i915/gt: Make fence revocation unequivocal")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
