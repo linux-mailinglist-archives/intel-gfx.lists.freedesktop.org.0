@@ -2,28 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3F919DF6D
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 22:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A30319DF6E
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 22:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99DB689996;
-	Fri,  3 Apr 2020 20:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63D4B89AB2;
+	Fri,  3 Apr 2020 20:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B10A89996
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 20:33:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57FEB89AB2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 20:34:28 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20793904-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 21:33:04 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 21:33:03 +0100
-Message-Id: <20200403203303.10903-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20793911-1500050 for multiple; Fri, 03 Apr 2020 21:34:26 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Free request pool from virtual engines
+In-Reply-To: <14063C7AD467DE4B82DEDB5C278E8663FFFCC3E1@fmsmsx107.amr.corp.intel.com>
+References: <20200403190209.21818-1-chris@chris-wilson.co.uk>
+ <14063C7AD467DE4B82DEDB5C278E8663FFFCC3E1@fmsmsx107.amr.corp.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <158594606463.5852.10172868919470731029@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 03 Apr 2020 21:34:24 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Wait until we start
+ timeslicing after a submit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,77 +46,50 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While extremely unlikely to be populated, we could capture a request on
-the virtual engine which we should free along with the virtual engine.
+Quoting Ruhl, Michael J (2020-04-03 21:31:42)
+> >-----Original Message-----
+> >From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Chris
+> >Wilson
+> >Sent: Friday, April 3, 2020 3:02 PM
+> >To: intel-gfx@lists.freedesktop.org
+> >Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> >Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Wait until we start timeslicing
+> >after a submit
+> >
+> >If we submit, we do not start timeslicnig until we process the CS event
+> 
+> s/timeslicnig/timeslicing/
+> 
+> >that marks the start of the context running on HW. So in the selftest,
+> >be sure to wait until we have processed the pending events before
+> >asserting that timeslicing has begun.
+> >
+> >Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >---
+> > drivers/gpu/drm/i915/gt/selftest_lrc.c | 6 +++++-
+> > 1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> >diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> >b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> >index 985d4041d929..9e02917695b1 100644
+> >--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> >+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> >@@ -1244,7 +1244,11 @@ static int live_timeslice_queue(void *arg)
+> >               if (err)
+> >                       goto err_rq;
+> >
+> >-              intel_engine_flush_submission(engine);
+> >+              /* Wait until we ack the release_queue and start timeslicing
+> >*/
+> >+              do {
+> >+                      intel_engine_flush_submission(engine);
+> >+              } while (READ_ONCE(engine->execlists.pending[0]));
+> 
+> Is this guaranteed to clear?  Or should there be a count to protect against
+> the endless loop?
 
-Fixes: 43acd6516ca9 ("drm/i915: Keep a per-engine request pool")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_engine.h    |  2 ++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++----
- drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 ++
- 3 files changed, 13 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index b469de0dd9b6..d9ee64e2ef79 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -199,6 +199,8 @@ void intel_engine_cleanup(struct intel_engine_cs *engine);
- int intel_engines_init_mmio(struct intel_gt *gt);
- int intel_engines_init(struct intel_gt *gt);
- 
-+void intel_engine_free_request_pool(struct intel_engine_cs *engine);
-+
- void intel_engines_release(struct intel_gt *gt);
- void intel_engines_free(struct intel_gt *gt);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 5f45c8274203..977e23fac5ce 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -426,6 +426,14 @@ void intel_engines_release(struct intel_gt *gt)
- 	}
- }
- 
-+void intel_engine_free_request_pool(struct intel_engine_cs *engine)
-+{
-+	if (!engine->request_pool)
-+		return;
-+
-+	kmem_cache_free(i915_request_slab_cache(), engine->request_pool);
-+}
-+
- void intel_engines_free(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
-@@ -435,10 +443,7 @@ void intel_engines_free(struct intel_gt *gt)
- 	rcu_barrier();
- 
- 	for_each_engine(engine, gt, id) {
--		if (engine->request_pool)
--			kmem_cache_free(i915_request_slab_cache(),
--					engine->request_pool);
--
-+		intel_engine_free_request_pool(engine);
- 		kfree(engine);
- 		gt->engine[id] = NULL;
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index f028114714cd..19ffc7763683 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -4931,6 +4931,8 @@ static void virtual_context_destroy(struct kref *kref)
- 		__execlists_context_fini(&ve->context);
- 	intel_context_fini(&ve->context);
- 
-+	intel_engine_free_request_pool(&ve->base);
-+
- 	kfree(ve->bonds);
- 	kfree(ve);
- }
--- 
-2.20.1
-
+Yes. If the HW stops, we reset it and clear the submission queue.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
