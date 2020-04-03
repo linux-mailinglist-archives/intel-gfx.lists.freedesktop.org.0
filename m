@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7103519D024
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 08:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E1BE19D02A
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 08:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58696EAEF;
-	Fri,  3 Apr 2020 06:19:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2EC6EAF1;
+	Fri,  3 Apr 2020 06:23:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7745D6EAEF;
- Fri,  3 Apr 2020 06:19:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75CA0A00CC;
- Fri,  3 Apr 2020 06:19:00 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 924E36EAF1
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 06:23:41 +0000 (UTC)
+IronPort-SDR: 6s+x56C611lSCYzRiqIS5a5Qd44kvU0yUOTIWuPubTuvgcHgoIkN6YAIUHfN+APdylGyy9KiZ0
+ Ajb1R9OI0OmQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2020 23:23:41 -0700
+IronPort-SDR: JAnHuVtM3SV4rcXtKf/0us+dTywBpa8w+Nv5dXvaQZ238Kry+Z580ZKtW7eW1JmGYYm5lgTbk5
+ INvRcrnpPBnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,338,1580803200"; d="scan'208";a="241039543"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga007.fm.intel.com with ESMTP; 02 Apr 2020 23:23:38 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Apr 2020 09:20:03 +0300
+Message-Id: <20200403062003.11539-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200326181005.11775-6-stanislav.lisovskiy@intel.com>
+References: <20200326181005.11775-6-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 03 Apr 2020 06:19:00 -0000
-Message-ID: <158589474047.13350.11827787731549780776@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
- =?utf-8?q?AGV_support_for_Gen12+_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH v21 05/10] drm/i915: Extract gen specific
+ functions from intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,63 +48,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogU0FHViBzdXBwb3J0IGZvciBHZW4xMisgKHJl
-djQpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy83NTEy
-OS8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxMICAgIHNjcmlwdHMvY2hlY2tz
-eXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9taWMvY2hlY2stYXRvbWljcy5zaAogIERF
-U0NFTkQgIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2NvbXBpbGUuaAogIEND
-IFtNXSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0ubwpkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9wbS5jOiBJbiBmdW5jdGlvbiDigJhpbnRlbF9zYWd2X3ByZV9wbGFuZV91cGRhdGXi
-gJk6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmM6Mzc3NjoxNzogZXJyb3I6IGltcGxp
-Y2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uIOKAmGludGVsX2F0b21pY19nZXRfYndfbmV3X3N0
-YXRl4oCZOyBkaWQgeW91IG1lYW4g4oCYaW50ZWxfYXRvbWljX2dldF9id19zdGF0ZeKAmT8gWy1X
-ZXJyb3I9aW1wbGljaXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dCiAgbmV3X2J3X3N0YXRlID0gaW50
-ZWxfYXRvbWljX2dldF9id19uZXdfc3RhdGUoc3RhdGUpOwogICAgICAgICAgICAgICAgIF5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+CiAgICAgICAgICAgICAgICAgaW50ZWxfYXRvbWljX2dl
-dF9id19zdGF0ZQpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjM3NzY6MTU6IGVycm9y
-OiBhc3NpZ25tZW50IG1ha2VzIHBvaW50ZXIgZnJvbSBpbnRlZ2VyIHdpdGhvdXQgYSBjYXN0IFst
-V2Vycm9yPWludC1jb252ZXJzaW9uXQogIG5ld19id19zdGF0ZSA9IGludGVsX2F0b21pY19nZXRf
-YndfbmV3X3N0YXRlKHN0YXRlKTsKICAgICAgICAgICAgICAgXgpkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9wbS5jOjM3ODc6MTc6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5j
-dGlvbiDigJhpbnRlbF9hdG9taWNfZ2V0X2J3X29sZF9zdGF0ZeKAmTsgZGlkIHlvdSBtZWFuIOKA
-mGludGVsX2F0b21pY19nZXRfYndfc3RhdGXigJk/IFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9u
-LWRlY2xhcmF0aW9uXQogIG9sZF9id19zdGF0ZSA9IGludGVsX2F0b21pY19nZXRfYndfb2xkX3N0
-YXRlKHN0YXRlKTsKICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fgogICAgICAgICAgICAgICAgIGludGVsX2F0b21pY19nZXRfYndfc3RhdGUKZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfcG0uYzozNzg3OjE1OiBlcnJvcjogYXNzaWdubWVudCBtYWtlcyBwb2lu
-dGVyIGZyb20gaW50ZWdlciB3aXRob3V0IGEgY2FzdCBbLVdlcnJvcj1pbnQtY29udmVyc2lvbl0K
-ICBvbGRfYndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X2J3X29sZF9zdGF0ZShzdGF0ZSk7CiAg
-ICAgICAgICAgICAgIF4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzogSW4gZnVuY3Rp
-b24g4oCYaW50ZWxfc2Fndl9wb3N0X3BsYW5lX3VwZGF0ZeKAmToKZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfcG0uYzozODM5OjE1OiBlcnJvcjogYXNzaWdubWVudCBtYWtlcyBwb2ludGVyIGZy
-b20gaW50ZWdlciB3aXRob3V0IGEgY2FzdCBbLVdlcnJvcj1pbnQtY29udmVyc2lvbl0KICBuZXdf
-Yndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X2J3X25ld19zdGF0ZShzdGF0ZSk7CiAgICAgICAg
-ICAgICAgIF4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzozODUwOjE1OiBlcnJvcjog
-YXNzaWdubWVudCBtYWtlcyBwb2ludGVyIGZyb20gaW50ZWdlciB3aXRob3V0IGEgY2FzdCBbLVdl
-cnJvcj1pbnQtY29udmVyc2lvbl0KICBvbGRfYndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X2J3
-X29sZF9zdGF0ZShzdGF0ZSk7CiAgICAgICAgICAgICAgIF4KZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcG0uYzogSW4gZnVuY3Rpb24g4oCYaW50ZWxfY29tcHV0ZV9zYWd2X21hc2vigJk6CmRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmM6Mzk4NDoxNjogZXJyb3I6IGFzc2lnbm1lbnQg
-bWFrZXMgcG9pbnRlciBmcm9tIGludGVnZXIgd2l0aG91dCBhIGNhc3QgWy1XZXJyb3I9aW50LWNv
-bnZlcnNpb25dCiAgIG9sZF9id19zdGF0ZSA9IGludGVsX2F0b21pY19nZXRfYndfb2xkX3N0YXRl
-KHN0YXRlKTsKICAgICAgICAgICAgICAgIF4KY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRl
-ZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNjc6IHJlY2lwZSBmb3IgdGFyZ2V0
-ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5vJyBmYWlsZWQKbWFrZVs0XTogKioqIFtk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUu
-YnVpbGQ6NTA1OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxl
-ZAptYWtlWzNdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFr
-ZWZpbGUuYnVpbGQ6NTA1OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWls
-ZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmls
-ZS5idWlsZDo1MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2Vb
-MV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFrZWZpbGU6MTY4MzogcmVjaXBlIGZvciB0
-YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Addressing one of the comments, recommending to extract platform
+specific code from intel_can_enable_sagv as a preparation, before
+we are going to add support for tgl+.
+
+Current code in intel_can_enable_sagv is valid only for skl,
+so this patch adds also proper support for icl, subsequent
+patches will add support for tgl+, combined with other required
+changes.
+
+v2: - Renamed icl_can_enable_sagv into icl_crtc_can_enable_sagv(Ville)
+    - Removed dev variables(Ville)
+    - Constified crtc/plane_state in icl_crtc_can_enable_sagv
+      function(Ville)
+    - Added hw.active check(Ville)
+    - Refactored if ladder(Ville)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 84 +++++++++++++++++++++------------
+ 1 file changed, 55 insertions(+), 29 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index f8d62d1977ac..27d4d626cb34 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -3757,42 +3757,25 @@ intel_disable_sagv(struct drm_i915_private *dev_priv)
+ 	return 0;
+ }
+ 
+-bool intel_can_enable_sagv(struct intel_atomic_state *state)
++static bool icl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_device *dev = state->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct intel_crtc *crtc;
++	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_plane *plane;
+-	struct intel_crtc_state *crtc_state;
+-	enum pipe pipe;
++	const struct intel_plane_state *plane_state;
+ 	int level, latency;
+ 
+-	if (!intel_has_sagv(dev_priv))
++	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
++		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
++			      pipe_name(crtc->pipe));
+ 		return false;
++	}
+ 
+-	/*
+-	 * If there are no active CRTCs, no additional checks need be performed
+-	 */
+-	if (hweight8(state->active_pipes) == 0)
++	if (!crtc_state->hw.active)
+ 		return true;
+ 
+-	/*
+-	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+-	 * more then one pipe enabled
+-	 */
+-	if (hweight8(state->active_pipes) > 1)
+-		return false;
+-
+-	/* Since we're now guaranteed to only have one active CRTC... */
+-	pipe = ffs(state->active_pipes) - 1;
+-	crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+-	crtc_state = to_intel_crtc_state(crtc->base.state);
+-
+-	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+-		return false;
+-
+-	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+-		struct skl_plane_wm *wm =
++	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, crtc_state) {
++		const struct skl_plane_wm *wm =
+ 			&crtc_state->wm.skl.optimal.planes[plane->id];
+ 
+ 		/* Skip this plane if it's not enabled */
+@@ -3807,7 +3790,7 @@ bool intel_can_enable_sagv(struct intel_atomic_state *state)
+ 		latency = dev_priv->wm.skl_latency[level];
+ 
+ 		if (skl_needs_memory_bw_wa(dev_priv) &&
+-		    plane->base.state->fb->modifier ==
++		    plane_state->uapi.fb->modifier ==
+ 		    I915_FORMAT_MOD_X_TILED)
+ 			latency += 15;
+ 
+@@ -3823,6 +3806,49 @@ bool intel_can_enable_sagv(struct intel_atomic_state *state)
+ 	return true;
+ }
+ 
++static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
++
++	/*
++	 * It has been recommended that for Gen 9 we switch SAGV off when
++	 * multiple pipes are used.
++	 */
++	if (hweight8(state->active_pipes) > 1)
++		return false;
++
++	/*
++	 * Besides active pipe limitation, rest of checks pretty much match ICL
++	 * so no need to duplicate code
++	 */
++	return icl_crtc_can_enable_sagv(crtc_state);
++}
++
++bool intel_can_enable_sagv(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_crtc *crtc;
++	const struct intel_crtc_state *crtc_state;
++	int i;
++
++	if (!intel_has_sagv(dev_priv))
++		return false;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		bool can_sagv;
++
++		if (INTEL_GEN(dev_priv) >= 11)
++			can_sagv = icl_crtc_can_enable_sagv(crtc_state);
++		else
++			can_sagv = skl_crtc_can_enable_sagv(crtc_state);
++
++		if (!can_sagv)
++			return false;
++	}
++
++	return true;
++}
++
+ /*
+  * Calculate initial DBuf slice offset, based on slice size
+  * and mask(i.e if slice size is 1024 and second slice is enabled
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
