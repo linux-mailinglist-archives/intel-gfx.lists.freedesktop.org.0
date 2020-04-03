@@ -1,57 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5AC19D876
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 16:00:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1005A19D83C
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:59:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6A56EC08;
-	Fri,  3 Apr 2020 13:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E00F26EBC4;
+	Fri,  3 Apr 2020 13:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F26A86EBF9
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:59:25 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id m17so8611773wrw.11
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 06:59:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=dBbU/1DUmgoM/eSyEXqxtgd6PSIU46nzMH7G+4o78Rk=;
- b=EKncV+XCHFFf8DQmkpH3BityYd28F9pNuoqalNY5C0YkGQ7/VGmSoh1DMQPF+7sNot
- FnhUqfAnEfs1Da499YBiixbtuaeJci6oWec2MjPFP3IFM38WHQUDWEWOzz99Msw5TxRv
- oD8BN51suQq+HIYylrWHPYtaLjxD+gxyYR1C8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=dBbU/1DUmgoM/eSyEXqxtgd6PSIU46nzMH7G+4o78Rk=;
- b=mvmey/p1D+ARmMbOfS1Ev/EhdzT4V+ODSAzFXcUmKWaxAa9/Jf9Eo+t4oc8QRilSdv
- 52rlPcao9hqA/7Vsneg000p3pR12WR2En+mz25EopW53KC/vc3cDUKEXY0D0SyTwD/Oe
- jqYMIFffhPxeZxBbv+wrU0Xal3wVyb/11SqFiC6YPztTRDnBJYYNDcKvONDj2hP9bW98
- Mm9fa8ALsEnm0qYKRHun6fjOEi06SxAkAW0bQDd2eaJVRdZCP28/AIuvOENBdfnkJC+e
- BWpsRufwnQggeaQZKnDeVNXuRAJ3ZkIWrBBsNI2HGHK+/DXZxOWWRfXAsQAy/PAgw6Zt
- hKGw==
-X-Gm-Message-State: AGi0PuZaJ+TEd/FeYc20hXNFQUjDi/rQdeWse0pyPf8JTUb59DxdghYP
- KwkwWIT65MfLWTK2xv/jcOrc0w==
-X-Google-Smtp-Source: APiQypILF9QC0H+EFGQbO0BGyFKGRea3UNGoE4JB5AM4A9nYt5nFYqWGmjfO4ezyWq9GJ5fiJYobyQ==
-X-Received: by 2002:adf:fcc8:: with SMTP id f8mr9692998wrs.132.1585922364410; 
- Fri, 03 Apr 2020 06:59:24 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm11783919wmf.3.2020.04.03.06.59.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Apr 2020 06:59:23 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  3 Apr 2020 15:58:28 +0200
-Message-Id: <20200403135828.2542770-45-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 800E06EBB8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:58:57 +0000 (UTC)
+IronPort-SDR: AUjmXbXruyDkDr4CQ2pbkPW5S/ElvWIV0bZiTgMvZIEzgjy7nV89TAvJzEnEFjrkAPmDEokEjb
+ 5oUFJrr1bF8A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2020 06:58:50 -0700
+IronPort-SDR: he14udPqtd9OXWjySBiH39gf3XDwhk8/sreRV6NTqsEWM9i8Dsu+acAvEf7HzVHRsw03d6zAfW
+ KFwwqllOsGZA==
+X-IronPort-AV: E=Sophos;i="5.72,339,1580803200"; d="scan'208";a="396744586"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2020 06:58:48 -0700
+Message-ID: <b3ce59260b89a55bb192ba6dfebc32ce9ca131dc.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Date: Fri, 03 Apr 2020 15:58:47 +0200
+In-Reply-To: <20200402184037.21630-1-chris@chris-wilson.co.uk>
+References: <20200402183836.21508-1-chris@chris-wilson.co.uk>
+ <20200402184037.21630-1-chris@chris-wilson.co.uk>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 44/44] drm/managed: Cleanup of unused functions
- and polishing docs
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Keep a per-engine request pools
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,344 +49,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Following functions are only used internally, not by drivers:
-- drm_dev_init
-- devm_drm_dev_init
-- drmm_add_final_kfree
+On Thu, 2020-04-02 at 19:40 +0100, Chris Wilson wrote:
+> Add a tiny per-engine request mempool so that we should always have a
+> request available for powermanagement allocations from tricky
+> contexts. This reserve is expected to be only used for kernel
+> contexts when barriers must be emitted [almost] without fail.
+> 
+> The main consumer for this reserved request is expected to be engine-pm,
+> for which we know that there will always be at least the previous pm
+> request that we can reuse under mempressure (so there should always be
+> a spare request for engine_park()).
+> 
+> This is an alternative to using a comparatively bulky mempool, which
+> requires custom handling for both our reserved allocation requirement
+> and to protect our TYPESAFE_BY_RCU slab cache.
 
-Also, now that we have a very slick and polished way to allocate a
-drm_device with devm_drm_dev_alloc, update all the docs to reflect the
-new reality. Mostly this consists of deleting old and misleading
-hints. Two main ones:
+This change resolves the issue for me, and being more simple than the
+mempool approach, looks still better.
 
-- it is no longer required that the drm_device base class is first in
-  the structure. devm_drm_dev_alloc can cope with it being anywhere
+Reviewed-and-Tested-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-- obviously embedded no needs devm_drm_dev_alloc
+Thanks,
+Janusz
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- .../driver-api/driver-model/devres.rst        |   2 +-
- drivers/gpu/drm/drm_drv.c                     | 119 ++++--------------
- drivers/gpu/drm/drm_internal.h                |   1 +
- drivers/gpu/drm/drm_managed.c                 |  15 +--
- include/drm/drm_device.h                      |   2 +-
- include/drm/drm_drv.h                         |  20 +--
- 6 files changed, 34 insertions(+), 125 deletions(-)
-
-diff --git a/Documentation/driver-api/driver-model/devres.rst b/Documentation/driver-api/driver-model/devres.rst
-index 46c13780994c..74a4a3fa8c52 100644
---- a/Documentation/driver-api/driver-model/devres.rst
-+++ b/Documentation/driver-api/driver-model/devres.rst
-@@ -263,7 +263,7 @@ DMA
-   dmam_pool_destroy()
- 
- DRM
--  devm_drm_dev_init()
-+  devm_drm_dev_alloc()
- 
- GPIO
-   devm_gpiod_get()
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 9e60b784b3ac..64e20c630aa7 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -240,13 +240,13 @@ void drm_minor_release(struct drm_minor *minor)
-  * DOC: driver instance overview
-  *
-  * A device instance for a drm driver is represented by &struct drm_device. This
-- * is initialized with drm_dev_init(), usually from bus-specific ->probe()
-- * callbacks implemented by the driver. The driver then needs to initialize all
-- * the various subsystems for the drm device like memory management, vblank
-- * handling, modesetting support and intial output configuration plus obviously
-- * initialize all the corresponding hardware bits. Finally when everything is up
-- * and running and ready for userspace the device instance can be published
-- * using drm_dev_register().
-+ * is allocated and initialized with devm_drm_dev_alloc(), usually from
-+ * bus-specific ->probe() callbacks implemented by the driver. The driver then
-+ * needs to initialize all the various subsystems for the drm device like memory
-+ * management, vblank handling, modesetting support and intial output
-+ * configuration plus obviously initialize all the corresponding hardware bits.
-+ * Finally when everything is up and running and ready for userspace the device
-+ * instance can be published using drm_dev_register().
-  *
-  * There is also deprecated support for initalizing device instances using
-  * bus-specific helpers and the &drm_driver.load callback. But due to
-@@ -274,7 +274,7 @@ void drm_minor_release(struct drm_minor *minor)
-  *
-  * The following example shows a typical structure of a DRM display driver.
-  * The example focus on the probe() function and the other functions that is
-- * almost always present and serves as a demonstration of devm_drm_dev_init().
-+ * almost always present and serves as a demonstration of devm_drm_dev_alloc().
-  *
-  * .. code-block:: c
-  *
-@@ -294,22 +294,12 @@ void drm_minor_release(struct drm_minor *minor)
-  *		struct drm_device *drm;
-  *		int ret;
-  *
-- *		// devm_kzalloc() can't be used here because the drm_device '
-- *		// lifetime can exceed the device lifetime if driver unbind
-- *		// happens when userspace still has open file descriptors.
-- *		priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-- *		if (!priv)
-- *			return -ENOMEM;
-- *
-+ *		priv = devm_drm_dev_alloc(&pdev->dev, &driver_drm_driver,
-+ *					  struct driver_device, drm);
-+ *		if (IS_ERR(priv))
-+ *			return PTR_ERR(priv);
-  *		drm = &priv->drm;
-  *
-- *		ret = devm_drm_dev_init(&pdev->dev, drm, &driver_drm_driver);
-- *		if (ret) {
-- *			kfree(priv);
-- *			return ret;
-- *		}
-- *		drmm_add_final_kfree(drm, priv);
-- *
-  *		ret = drmm_mode_config_init(drm);
-  *		if (ret)
-  *			return ret;
-@@ -550,9 +540,9 @@ static void drm_fs_inode_free(struct inode *inode)
-  * following guidelines apply:
-  *
-  *  - The entire device initialization procedure should be run from the
-- *    &component_master_ops.master_bind callback, starting with drm_dev_init(),
-- *    then binding all components with component_bind_all() and finishing with
-- *    drm_dev_register().
-+ *    &component_master_ops.master_bind callback, starting with
-+ *    devm_drm_dev_alloc(), then binding all components with
-+ *    component_bind_all() and finishing with drm_dev_register().
-  *
-  *  - The opaque pointer passed to all components through component_bind_all()
-  *    should point at &struct drm_device of the device instance, not some driver
-@@ -583,43 +573,9 @@ static void drm_dev_init_release(struct drm_device *dev, void *res)
- 	drm_legacy_destroy_members(dev);
- }
- 
--/**
-- * drm_dev_init - Initialise new DRM device
-- * @dev: DRM device
-- * @driver: DRM driver
-- * @parent: Parent device object
-- *
-- * Initialize a new DRM device. No device registration is done.
-- * Call drm_dev_register() to advertice the device to user space and register it
-- * with other core subsystems. This should be done last in the device
-- * initialization sequence to make sure userspace can't access an inconsistent
-- * state.
-- *
-- * The initial ref-count of the object is 1. Use drm_dev_get() and
-- * drm_dev_put() to take and drop further ref-counts.
-- *
-- * It is recommended that drivers embed &struct drm_device into their own device
-- * structure.
-- *
-- * Drivers that do not want to allocate their own device struct
-- * embedding &struct drm_device can call drm_dev_alloc() instead. For drivers
-- * that do embed &struct drm_device it must be placed first in the overall
-- * structure, and the overall structure must be allocated using kmalloc(): The
-- * drm core's release function unconditionally calls kfree() on the @dev pointer
-- * when the final reference is released. To override this behaviour, and so
-- * allow embedding of the drm_device inside the driver's device struct at an
-- * arbitrary offset, you must supply a &drm_driver.release callback and control
-- * the finalization explicitly.
-- *
-- * Note that drivers must call drmm_add_final_kfree() after this function has
-- * completed successfully.
-- *
-- * RETURNS:
-- * 0 on success, or error code on failure.
-- */
--int drm_dev_init(struct drm_device *dev,
--		 struct drm_driver *driver,
--		 struct device *parent)
-+static int drm_dev_init(struct drm_device *dev,
-+			struct drm_driver *driver,
-+			struct device *parent)
- {
- 	int ret;
- 
-@@ -699,31 +655,15 @@ int drm_dev_init(struct drm_device *dev,
- 
- 	return ret;
- }
--EXPORT_SYMBOL(drm_dev_init);
- 
- static void devm_drm_dev_init_release(void *data)
- {
- 	drm_dev_put(data);
- }
- 
--/**
-- * devm_drm_dev_init - Resource managed drm_dev_init()
-- * @parent: Parent device object
-- * @dev: DRM device
-- * @driver: DRM driver
-- *
-- * Managed drm_dev_init(). The DRM device initialized with this function is
-- * automatically put on driver detach using drm_dev_put().
-- *
-- * Note that drivers must call drmm_add_final_kfree() after this function has
-- * completed successfully.
-- *
-- * RETURNS:
-- * 0 on success, or error code on failure.
-- */
--int devm_drm_dev_init(struct device *parent,
--		      struct drm_device *dev,
--		      struct drm_driver *driver)
-+static int devm_drm_dev_init(struct device *parent,
-+			     struct drm_device *dev,
-+			     struct drm_driver *driver)
- {
- 	int ret;
- 
-@@ -737,7 +677,6 @@ int devm_drm_dev_init(struct device *parent,
- 
- 	return ret;
- }
--EXPORT_SYMBOL(devm_drm_dev_init);
- 
- void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
- 			   size_t size, size_t offset)
-@@ -767,19 +706,9 @@ EXPORT_SYMBOL(__devm_drm_dev_alloc);
-  * @driver: DRM driver to allocate device for
-  * @parent: Parent device object
-  *
-- * Allocate and initialize a new DRM device. No device registration is done.
-- * Call drm_dev_register() to advertice the device to user space and register it
-- * with other core subsystems. This should be done last in the device
-- * initialization sequence to make sure userspace can't access an inconsistent
-- * state.
-- *
-- * The initial ref-count of the object is 1. Use drm_dev_get() and
-- * drm_dev_put() to take and drop further ref-counts.
-- *
-- * Note that for purely virtual devices @parent can be NULL.
-- *
-- * Drivers that wish to subclass or embed &struct drm_device into their
-- * own struct should look at using drm_dev_init() instead.
-+ * This is the deprecated version of devm_drm_dev_alloc(), which doesn not support
-+ * subclassing through embedding the struct &drm_device in a driver private
-+ * structure, and which does not support automatic cleanup through devres.
-  *
-  * RETURNS:
-  * Pointer to new DRM device, or ERR_PTR on failure.
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 2470a352730b..79f11d3c525e 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -91,6 +91,7 @@ void drm_minor_release(struct drm_minor *minor);
- 
- /* drm_managed.c */
- void drm_managed_release(struct drm_device *dev);
-+void drmm_add_final_kfree(struct drm_device *dev, void *container);
- 
- /* drm_vblank.c */
- void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe);
-diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
-index 9cebfe370a65..a2a0c5b7ab78 100644
---- a/drivers/gpu/drm/drm_managed.c
-+++ b/drivers/gpu/drm/drm_managed.c
-@@ -25,7 +25,7 @@
-  * be done directly with drmm_kmalloc() and the related functions. Everything
-  * will be released on the final drm_dev_put() in reverse order of how the
-  * release actions have been added and memory has been allocated since driver
-- * loading started with drm_dev_init().
-+ * loading started with devm_drm_dev_alloc().
-  *
-  * Note that release actions and managed memory can also be added and removed
-  * during the lifetime of the driver, all the functions are fully concurrent
-@@ -123,18 +123,6 @@ static void add_dr(struct drm_device *dev, struct drmres *dr)
- 		       dr, dr->node.name, (unsigned long) dr->node.size);
- }
- 
--/**
-- * drmm_add_final_kfree - add release action for the final kfree()
-- * @dev: DRM device
-- * @container: pointer to the kmalloc allocation containing @dev
-- *
-- * Since the allocation containing the struct &drm_device must be allocated
-- * before it can be initialized with drm_dev_init() there's no way to allocate
-- * that memory with drmm_kmalloc(). To side-step this chicken-egg problem the
-- * pointer for this final kfree() must be specified by calling this function. It
-- * will be released in the final drm_dev_put() for @dev, after all other release
-- * actions installed through drmm_add_action() have been processed.
-- */
- void drmm_add_final_kfree(struct drm_device *dev, void *container)
- {
- 	WARN_ON(dev->managed.final_kfree);
-@@ -142,7 +130,6 @@ void drmm_add_final_kfree(struct drm_device *dev, void *container)
- 	WARN_ON(dev + 1 > (struct drm_device *) (container + ksize(container)));
- 	dev->managed.final_kfree = container;
- }
--EXPORT_SYMBOL(drmm_add_final_kfree);
- 
- int __drmm_add_action(struct drm_device *dev,
- 		      drmres_release_t action,
-diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-index a55874db9dd4..ee9e20ce9b85 100644
---- a/include/drm/drm_device.h
-+++ b/include/drm/drm_device.h
-@@ -92,7 +92,7 @@ struct drm_device {
- 	 * NULL.
- 	 *
- 	 * Instead of using this pointer it is recommended that drivers use
--	 * drm_dev_init() and embed struct &drm_device in their larger
-+	 * devm_drm_dev_alloc() and embed struct &drm_device in their larger
- 	 * per-device structure.
- 	 */
- 	void *dev_private;
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index 26776be5a21e..2806cc5eae3a 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -163,13 +163,12 @@ struct drm_driver {
- 	/**
- 	 * @load:
- 	 *
--	 * Backward-compatible driver callback to complete
--	 * initialization steps after the driver is registered.  For
--	 * this reason, may suffer from race conditions and its use is
--	 * deprecated for new drivers.  It is therefore only supported
--	 * for existing drivers not yet converted to the new scheme.
--	 * See drm_dev_init() and drm_dev_register() for proper and
--	 * race-free way to set up a &struct drm_device.
-+	 * Backward-compatible driver callback to complete initialization steps
-+	 * after the driver is registered.  For this reason, may suffer from
-+	 * race conditions and its use is deprecated for new drivers.  It is
-+	 * therefore only supported for existing drivers not yet converted to
-+	 * the new scheme.  See devm_drm_dev_alloc() and drm_dev_register() for
-+	 * proper and race-free way to set up a &struct drm_device.
- 	 *
- 	 * This is deprecated, do not use!
- 	 *
-@@ -619,13 +618,6 @@ struct drm_driver {
- 	int dev_priv_size;
- };
- 
--int drm_dev_init(struct drm_device *dev,
--		 struct drm_driver *driver,
--		 struct device *parent);
--int devm_drm_dev_init(struct device *parent,
--		      struct drm_device *dev,
--		      struct drm_driver *driver);
--
- void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
- 			   size_t size, size_t offset);
- 
--- 
-2.25.1
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  7 +++++
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
+>  drivers/gpu/drm/i915/i915_request.c          | 27 ++++++++++++++++----
+>  drivers/gpu/drm/i915/i915_request.h          |  2 ++
+>  4 files changed, 34 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 843cb6f2f696..5f45c8274203 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -431,7 +431,14 @@ void intel_engines_free(struct intel_gt *gt)
+>  	struct intel_engine_cs *engine;
+>  	enum intel_engine_id id;
+>  
+> +	/* Free the requests! dma-resv keeps fences around for an eternity */
+> +	rcu_barrier();
+> +
+>  	for_each_engine(engine, gt, id) {
+> +		if (engine->request_pool)
+> +			kmem_cache_free(i915_request_slab_cache(),
+> +					engine->request_pool);
+> +
+>  		kfree(engine);
+>  		gt->engine[id] = NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 80cdde712842..de8e6edcf999 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -308,6 +308,9 @@ struct intel_engine_cs {
+>  		struct list_head hold; /* ready requests, but on hold */
+>  	} active;
+>  
+> +	/* keep a request in reserve for a [pm] barrier under oom */
+> +	struct i915_request *request_pool;
+> +
+>  	struct llist_head barrier_tasks;
+>  
+>  	struct intel_context *kernel_context; /* pinned */
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 3388c5b610c5..22635bbabf06 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -101,6 +101,11 @@ static signed long i915_fence_wait(struct dma_fence *fence,
+>  				 timeout);
+>  }
+>  
+> +struct kmem_cache *i915_request_slab_cache(void)
+> +{
+> +	return global.slab_requests;
+> +}
+> +
+>  static void i915_fence_release(struct dma_fence *fence)
+>  {
+>  	struct i915_request *rq = to_request(fence);
+> @@ -115,6 +120,10 @@ static void i915_fence_release(struct dma_fence *fence)
+>  	i915_sw_fence_fini(&rq->submit);
+>  	i915_sw_fence_fini(&rq->semaphore);
+>  
+> +	/* Keep one request on each engine for reserved use under mempressure */
+> +	if (!cmpxchg(&rq->engine->request_pool, NULL, rq))
+> +		return;
+> +
+>  	kmem_cache_free(global.slab_requests, rq);
+>  }
+>  
+> @@ -629,14 +638,22 @@ static void retire_requests(struct intel_timeline *tl)
+>  }
+>  
+>  static noinline struct i915_request *
+> -request_alloc_slow(struct intel_timeline *tl, gfp_t gfp)
+> +request_alloc_slow(struct intel_timeline *tl,
+> +		   struct i915_request **rsvd,
+> +		   gfp_t gfp)
+>  {
+>  	struct i915_request *rq;
+>  
+> -	if (list_empty(&tl->requests))
+> -		goto out;
+> +	/* If we cannot wait, dip into our reserves */
+> +	if (!gfpflags_allow_blocking(gfp)) {
+> +		rq = xchg(rsvd, NULL);
+> +		if (!rq) /* Use the normal failure path for one final WARN */
+> +			goto out;
+>  
+> -	if (!gfpflags_allow_blocking(gfp))
+> +		return rq;
+> +	}
+> +
+> +	if (list_empty(&tl->requests))
+>  		goto out;
+>  
+>  	/* Move our oldest request to the slab-cache (if not in use!) */
+> @@ -721,7 +738,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+>  	rq = kmem_cache_alloc(global.slab_requests,
+>  			      gfp | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+>  	if (unlikely(!rq)) {
+> -		rq = request_alloc_slow(tl, gfp);
+> +		rq = request_alloc_slow(tl, &ce->engine->request_pool, gfp);
+>  		if (!rq) {
+>  			ret = -ENOMEM;
+>  			goto err_unreserve;
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 3c552bfea67a..d8ce908e1346 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -300,6 +300,8 @@ static inline bool dma_fence_is_i915(const struct dma_fence *fence)
+>  	return fence->ops == &i915_fence_ops;
+>  }
+>  
+> +struct kmem_cache *i915_request_slab_cache(void);
+> +
+>  struct i915_request * __must_check
+>  __i915_request_create(struct intel_context *ce, gfp_t gfp);
+>  struct i915_request * __must_check
 
 _______________________________________________
 Intel-gfx mailing list
