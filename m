@@ -1,62 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5961A19DB6B
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:22:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D6519D155
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 09:37:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA2C89916;
-	Fri,  3 Apr 2020 16:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 935676EB17;
+	Fri,  3 Apr 2020 07:37:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pegase1.c-s.fr (pegase1.c-s.fr [93.17.236.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E586EB1F
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 07:50:49 +0000 (UTC)
-Received: from localhost (mailhub1-int [192.168.12.234])
- by localhost (Postfix) with ESMTP id 48trvB2YTHz9vBLG;
- Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-Authentication-Results: localhost; dkim=pass
- reason="1024-bit key; insecure key"
- header.d=c-s.fr header.i=@c-s.fr header.b=GMUrKh2o; dkim-adsp=pass;
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
- by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
- with ESMTP id YMD51g-Nr5Lu; Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase1.c-s.fr (Postfix) with ESMTP id 48trvB0d7Pz9vBL8;
- Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
- t=1585898454; bh=1wQkVsA7Zi109u9F0OAxJ5QFzUWbk9wgy/mhAUiF5cc=;
- h=In-Reply-To:References:From:Subject:To:Cc:Date:From;
- b=GMUrKh2oqJNY/r/c7zo6ckS6nC/w1kebTVDqi58KhTQo6228A1mrJ7boPNoFcbnez
- GVSc9bOfWNKoIzZ7GHeBknKgAxehWQYkgBCnv+3ukOVXOqhdlBYPy+gzgQN3NFq70+
- oQuifIUyFAwq3EBkFNOM6QU7cdwCFx3yFUl6fCcE=
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id C8F9B8B944;
- Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id PtNMU07A4GNu; Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-Received: from pc16570vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 757E98B943;
- Fri,  3 Apr 2020 09:20:54 +0200 (CEST)
-Received: by pc16570vm.idsi0.si.c-s.fr (Postfix, from userid 0)
- id 4B84565700; Fri,  3 Apr 2020 07:20:54 +0000 (UTC)
-Message-Id: <42da416106d5c1cf92bda1e058434fe240b35f44.1585898438.git.christophe.leroy@c-s.fr>
-In-Reply-To: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
-References: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
-From: Christophe Leroy <christophe.leroy@c-s.fr>
-To: Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>, 
- airlied@linux.ie, daniel@ffwll.ch, torvalds@linux-foundation.org,
- viro@zeniv.linux.org.uk, akpm@linux-foundation.org, keescook@chromium.org,
- hpa@zytor.com
-Date: Fri,  3 Apr 2020 07:20:54 +0000 (UTC)
-X-Mailman-Approved-At: Fri, 03 Apr 2020 16:22:03 +0000
-Subject: [Intel-gfx] [PATCH v2 5/5] uaccess: Rename user_access_begin/end()
- to user_full_access_begin/end()
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 345376EB17
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 07:37:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20784357-1500050 
+ for multiple; Fri, 03 Apr 2020 08:36:59 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Apr 2020 08:36:57 +0100
+Message-Id: <20200403073657.13427-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915: Avoid setting timer->expires to 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,136 +36,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, linux-mm@kvack.org,
- intel-gfx@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-MIME-Version: 1.0
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now we have user_read_access_begin() and user_write_access_begin()
-in addition to user_access_begin().
+We use timer->expires == 0 to detect if a timer had been cancelled, but
+it's a valid expiration we could set. Just skip using 0 and set the
+expiry for the next jiffie.
 
-Make it explicit that user_access_begin() provides both read and
-write by renaming it user_full_access_begin(). And the same for
-user_access_end() which becomes user_full_access_end().
-
-Done with following command, then hand splitted two too long lines.
-
-sed -i s/user_access_begin/user_full_access_begin/g `git grep -l user_access_begin`
-
-Signed-off-by: Christophe Leroy <christophe.leroy@c-s.fr>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
-v2: New, based on remark from Al Viro.
----
- arch/powerpc/include/asm/uaccess.h | 5 +++--
- arch/x86/include/asm/futex.h       | 4 ++--
- arch/x86/include/asm/uaccess.h     | 7 ++++---
- include/linux/uaccess.h            | 8 ++++----
- 4 files changed, 13 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/i915_utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/powerpc/include/asm/uaccess.h b/arch/powerpc/include/asm/uaccess.h
-index 4427d419eb1d..7fe799e081f2 100644
---- a/arch/powerpc/include/asm/uaccess.h
-+++ b/arch/powerpc/include/asm/uaccess.h
-@@ -456,14 +456,15 @@ extern long __copy_from_user_flushcache(void *dst, const void __user *src,
- extern void memcpy_page_flushcache(char *to, struct page *page, size_t offset,
- 			   size_t len);
+diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+index 029854ae65fc..9769d278e800 100644
+--- a/drivers/gpu/drm/i915/i915_utils.c
++++ b/drivers/gpu/drm/i915/i915_utils.c
+@@ -101,5 +101,5 @@ void set_timer_ms(struct timer_list *t, unsigned long timeout)
+ 	 */
+ 	barrier();
  
--static __must_check inline bool user_access_begin(const void __user *ptr, size_t len)
-+static __must_check inline bool
-+user_full_access_begin(const void __user *ptr, size_t len)
- {
- 	if (unlikely(!access_ok(ptr, len)))
- 		return false;
- 	allow_read_write_user((void __user *)ptr, ptr, len);
- 	return true;
+-	mod_timer(t, jiffies + timeout);
++	mod_timer(t, jiffies + timeout ?: 1);
  }
--#define user_access_begin	user_access_begin
-+#define user_full_access_begin	user_full_access_begin
- #define user_access_end		prevent_current_access_user
- #define user_access_save	prevent_user_access_return
- #define user_access_restore	restore_user_access
-diff --git a/arch/x86/include/asm/futex.h b/arch/x86/include/asm/futex.h
-index f9c00110a69a..9eefea374bd4 100644
---- a/arch/x86/include/asm/futex.h
-+++ b/arch/x86/include/asm/futex.h
-@@ -56,7 +56,7 @@ do {								\
- static __always_inline int arch_futex_atomic_op_inuser(int op, int oparg, int *oval,
- 		u32 __user *uaddr)
- {
--	if (!user_access_begin(uaddr, sizeof(u32)))
-+	if (!user_full_access_begin(uaddr, sizeof(u32)))
- 		return -EFAULT;
- 
- 	switch (op) {
-@@ -92,7 +92,7 @@ static inline int futex_atomic_cmpxchg_inatomic(u32 *uval, u32 __user *uaddr,
- {
- 	int ret = 0;
- 
--	if (!user_access_begin(uaddr, sizeof(u32)))
-+	if (!user_full_access_begin(uaddr, sizeof(u32)))
- 		return -EFAULT;
- 	asm volatile("\n"
- 		"1:\t" LOCK_PREFIX "cmpxchgl %4, %2\n"
-diff --git a/arch/x86/include/asm/uaccess.h b/arch/x86/include/asm/uaccess.h
-index d8f283b9a569..8776e815f215 100644
---- a/arch/x86/include/asm/uaccess.h
-+++ b/arch/x86/include/asm/uaccess.h
-@@ -473,16 +473,17 @@ extern struct movsl_mask {
-  * The "unsafe" user accesses aren't really "unsafe", but the naming
-  * is a big fat warning: you have to not only do the access_ok()
-  * checking before using them, but you have to surround them with the
-- * user_access_begin/end() pair.
-+ * user_full_access_begin/end() pair.
-  */
--static __must_check __always_inline bool user_access_begin(const void __user *ptr, size_t len)
-+static __must_check __always_inline bool
-+user_full_access_begin(const void __user *ptr, size_t len)
- {
- 	if (unlikely(!access_ok(ptr,len)))
- 		return 0;
- 	__uaccess_begin_nospec();
- 	return 1;
- }
--#define user_access_begin(a,b)	user_access_begin(a,b)
-+#define user_full_access_begin(a,b)	user_full_access_begin(a,b)
- #define user_access_end()	__uaccess_end()
- 
- #define user_access_save()	smap_save()
-diff --git a/include/linux/uaccess.h b/include/linux/uaccess.h
-index 9861c89f93be..5be9bc930342 100644
---- a/include/linux/uaccess.h
-+++ b/include/linux/uaccess.h
-@@ -368,8 +368,8 @@ extern long strnlen_unsafe_user(const void __user *unsafe_addr, long count);
- #define probe_kernel_address(addr, retval)		\
- 	probe_kernel_read(&retval, addr, sizeof(retval))
- 
--#ifndef user_access_begin
--#define user_access_begin(ptr,len) access_ok(ptr, len)
-+#ifndef user_full_access_begin
-+#define user_full_access_begin(ptr,len) access_ok(ptr, len)
- #define user_access_end() do { } while (0)
- #define unsafe_op_wrap(op, err) do { if (unlikely(op)) goto err; } while (0)
- #define unsafe_get_user(x,p,e) unsafe_op_wrap(__get_user(x,p),e)
-@@ -379,11 +379,11 @@ static inline unsigned long user_access_save(void) { return 0UL; }
- static inline void user_access_restore(unsigned long flags) { }
- #endif
- #ifndef user_write_access_begin
--#define user_write_access_begin user_access_begin
-+#define user_write_access_begin user_full_access_begin
- #define user_write_access_end user_access_end
- #endif
- #ifndef user_read_access_begin
--#define user_read_access_begin user_access_begin
-+#define user_read_access_begin user_full_access_begin
- #define user_read_access_end user_access_end
- #endif
- 
 -- 
-2.25.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
