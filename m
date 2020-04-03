@@ -1,57 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2DF19DF66
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 22:31:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3F919DF6D
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 22:33:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3358589A7A;
-	Fri,  3 Apr 2020 20:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99DB689996;
+	Fri,  3 Apr 2020 20:33:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A25589996
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 20:31:44 +0000 (UTC)
-IronPort-SDR: igJijU4Tq7x5z+Qq16uwCBB6ExPnM8hoxEGZDIiJYMVjO2stqbTzTiFPMLsO8tgtosje+RVwbZ
- jgma5S2S/SCQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2020 13:31:43 -0700
-IronPort-SDR: TzG2BTBipEl5stCc++W5EGvGCRKv05tZALjRBmPDDsyIgjppcMr9g7HI6ZvmqUl5fZhtQQCoUN
- 5IcpojAlK8PA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,341,1580803200"; d="scan'208";a="274073070"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by fmsmga004.fm.intel.com with ESMTP; 03 Apr 2020 13:31:43 -0700
-Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 3 Apr 2020 13:31:43 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.38]) by
- fmsmsx117.amr.corp.intel.com ([169.254.3.89]) with mapi id 14.03.0439.000;
- Fri, 3 Apr 2020 13:31:43 -0700
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/selftests: Wait until we start
- timeslicing after a submit
-Thread-Index: AQHWCepwD8hZ9Qvt40uxg/8huyHDt6hn2JMw
-Date: Fri, 3 Apr 2020 20:31:42 +0000
-Message-ID: <14063C7AD467DE4B82DEDB5C278E8663FFFCC3E1@fmsmsx107.amr.corp.intel.com>
-References: <20200403190209.21818-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200403190209.21818-1-chris@chris-wilson.co.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.107]
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B10A89996
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 20:33:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20793904-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 21:33:04 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Apr 2020 21:33:03 +0100
+Message-Id: <20200403203303.10903-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Wait until we start
- timeslicing after a submit
+Subject: [Intel-gfx] [CI] drm/i915/gt: Free request pool from virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +36,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogSW50ZWwtZ2Z4IDxpbnRlbC1nZngt
-Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBDaHJpcw0KPldpbHNv
-bg0KPlNlbnQ6IEZyaWRheSwgQXByaWwgMywgMjAyMCAzOjAyIFBNDQo+VG86IGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj5DYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxz
-b24uY28udWs+DQo+U3ViamVjdDogW0ludGVsLWdmeF0gW1BBVENIXSBkcm0vaTkxNS9zZWxmdGVz
-dHM6IFdhaXQgdW50aWwgd2Ugc3RhcnQgdGltZXNsaWNpbmcNCj5hZnRlciBhIHN1Ym1pdA0KPg0K
-PklmIHdlIHN1Ym1pdCwgd2UgZG8gbm90IHN0YXJ0IHRpbWVzbGljbmlnIHVudGlsIHdlIHByb2Nl
-c3MgdGhlIENTIGV2ZW50DQoNCnMvdGltZXNsaWNuaWcvdGltZXNsaWNpbmcvDQoNCj50aGF0IG1h
-cmtzIHRoZSBzdGFydCBvZiB0aGUgY29udGV4dCBydW5uaW5nIG9uIEhXLiBTbyBpbiB0aGUgc2Vs
-ZnRlc3QsDQo+YmUgc3VyZSB0byB3YWl0IHVudGlsIHdlIGhhdmUgcHJvY2Vzc2VkIHRoZSBwZW5k
-aW5nIGV2ZW50cyBiZWZvcmUNCj5hc3NlcnRpbmcgdGhhdCB0aW1lc2xpY2luZyBoYXMgYmVndW4u
-DQo+DQo+U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
-dWs+DQo+LS0tDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2xyYy5jIHwgNiAr
-KysrKy0NCj4gMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0K
-Pg0KPmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9scmMuYw0K
-PmIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbHJjLmMNCj5pbmRleCA5ODVkNDA0
-MWQ5MjkuLjllMDI5MTc2OTViMSAxMDA2NDQNCj4tLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9zZWxmdGVzdF9scmMuYw0KPisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0
-X2xyYy5jDQo+QEAgLTEyNDQsNyArMTI0NCwxMSBAQCBzdGF0aWMgaW50IGxpdmVfdGltZXNsaWNl
-X3F1ZXVlKHZvaWQgKmFyZykNCj4gCQlpZiAoZXJyKQ0KPiAJCQlnb3RvIGVycl9ycTsNCj4NCj4t
-CQlpbnRlbF9lbmdpbmVfZmx1c2hfc3VibWlzc2lvbihlbmdpbmUpOw0KPisJCS8qIFdhaXQgdW50
-aWwgd2UgYWNrIHRoZSByZWxlYXNlX3F1ZXVlIGFuZCBzdGFydCB0aW1lc2xpY2luZw0KPiovDQo+
-KwkJZG8gew0KPisJCQlpbnRlbF9lbmdpbmVfZmx1c2hfc3VibWlzc2lvbihlbmdpbmUpOw0KPisJ
-CX0gd2hpbGUgKFJFQURfT05DRShlbmdpbmUtPmV4ZWNsaXN0cy5wZW5kaW5nWzBdKSk7DQoNCklz
-IHRoaXMgZ3VhcmFudGVlZCB0byBjbGVhcj8gIE9yIHNob3VsZCB0aGVyZSBiZSBhIGNvdW50IHRv
-IHByb3RlY3QgYWdhaW5zdA0KdGhlIGVuZGxlc3MgbG9vcD8NCg0KT3IgYW0gSSB0b28gcGFyYW5v
-aWQ/IPCfmIoNCg0KTQ0KDQo+IAkJaWYgKCFSRUFEX09OQ0UoZW5naW5lLT5leGVjbGlzdHMudGlt
-ZXIuZXhwaXJlcykgJiYNCj4gCQkgICAgIWk5MTVfcmVxdWVzdF9jb21wbGV0ZWQocnEpKSB7DQo+
-IAkJCXN0cnVjdCBkcm1fcHJpbnRlciBwID0NCj4tLQ0KPjIuMjAuMQ0KPg0KPl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+SW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdA0KPkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj5odHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+While extremely unlikely to be populated, we could capture a request on
+the virtual engine which we should free along with the virtual engine.
+
+Fixes: 43acd6516ca9 ("drm/i915: Keep a per-engine request pool")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h    |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++----
+ drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 ++
+ 3 files changed, 13 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index b469de0dd9b6..d9ee64e2ef79 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -199,6 +199,8 @@ void intel_engine_cleanup(struct intel_engine_cs *engine);
+ int intel_engines_init_mmio(struct intel_gt *gt);
+ int intel_engines_init(struct intel_gt *gt);
+ 
++void intel_engine_free_request_pool(struct intel_engine_cs *engine);
++
+ void intel_engines_release(struct intel_gt *gt);
+ void intel_engines_free(struct intel_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 5f45c8274203..977e23fac5ce 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -426,6 +426,14 @@ void intel_engines_release(struct intel_gt *gt)
+ 	}
+ }
+ 
++void intel_engine_free_request_pool(struct intel_engine_cs *engine)
++{
++	if (!engine->request_pool)
++		return;
++
++	kmem_cache_free(i915_request_slab_cache(), engine->request_pool);
++}
++
+ void intel_engines_free(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+@@ -435,10 +443,7 @@ void intel_engines_free(struct intel_gt *gt)
+ 	rcu_barrier();
+ 
+ 	for_each_engine(engine, gt, id) {
+-		if (engine->request_pool)
+-			kmem_cache_free(i915_request_slab_cache(),
+-					engine->request_pool);
+-
++		intel_engine_free_request_pool(engine);
+ 		kfree(engine);
+ 		gt->engine[id] = NULL;
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index f028114714cd..19ffc7763683 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4931,6 +4931,8 @@ static void virtual_context_destroy(struct kref *kref)
+ 		__execlists_context_fini(&ve->context);
+ 	intel_context_fini(&ve->context);
+ 
++	intel_engine_free_request_pool(&ve->base);
++
+ 	kfree(ve->bonds);
+ 	kfree(ve);
+ }
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
