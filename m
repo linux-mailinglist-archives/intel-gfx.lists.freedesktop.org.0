@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D3419D410
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F41019D47E
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 11:58:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8C66EB59;
-	Fri,  3 Apr 2020 09:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D853D6EB5C;
+	Fri,  3 Apr 2020 09:58:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79A496EB59
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 09:41:28 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id AF6AF1C346D; Fri,  3 Apr 2020 11:41:25 +0200 (CEST)
-Date: Fri, 3 Apr 2020 11:41:10 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: kernel list <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- intel-gfx@lists.freedesktop.org, airlied@redhat.com
-Message-ID: <20200403092634.GA3610@duo.ucw.cz>
-References: <20200402213253.GA2691@duo.ucw.cz>
- <20200402213506.GA2767@duo.ucw.cz>
- <20200403073720.GA23229@duo.ucw.cz>
- <20200403091430.GA3845@duo.ucw.cz>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 583616EB4E;
+ Fri,  3 Apr 2020 09:58:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4853EA41FB;
+ Fri,  3 Apr 2020 09:58:51 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200403091430.GA3845@duo.ucw.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] 5.7-rc0: regression caused by drm tree,
- hangs while attempting to run X
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 03 Apr 2020 09:58:51 -0000
+Message-ID: <158590793126.13351.2602433989267715600@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200403091300.14734-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/10=5D_drm/i915/selftests=3A_Add_request?=
+ =?utf-8?q?_throughput_measurement_to_perf?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,102 +39,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com
-Content-Type: multipart/mixed; boundary="===============1819021056=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---===============1819021056==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="VS++wcV0S1rZb1Fb"
-Content-Disposition: inline
+Series: series starting with [01/10] drm/i915/selftests: Add request throughput measurement to perf
+URL   : https://patchwork.freedesktop.org/series/75452/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8243 -> Patchwork_17197
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_8243 and Patchwork_17197:
+
+### New IGT tests (2) ###
+
+  * igt@dmabuf@all@dma_fence_chain:
+    - Statuses : 43 pass(s)
+    - Exec time: [7.43, 32.02] s
+
+  * igt@dmabuf@all@dma_fence_proxy:
+    - Statuses : 43 pass(s)
+    - Exec time: [0.03, 0.12] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17197 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2] ([IGT#4])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][3] -> [FAIL][4] ([i915#976])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-dsi:         [INCOMPLETE][5] ([i915#189]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][7] ([i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
 
 
---VS++wcV0S1rZb1Fb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Participating hosts (41 -> 44)
+------------------------------
 
-Hi!
+  Additional (9): fi-skl-6770hq fi-bwr-2160 fi-snb-2520m fi-ivb-3770 fi-cfl-8109u fi-skl-lmem fi-kbl-7560u fi-byt-n2820 fi-skl-6600u 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-x1275 fi-byt-clapper fi-bdw-samus 
 
-> > > > Hardware is thinkpad x220. I had this crash few days ago. And today=
- I
-> > > > have similar-looking one, with slightly newer kernel. (Will post
-> > > > as a follow-up).
-> >=20
-> > As part of quest for working system, I tried 5.7-rc0, based on
-> >=20
-> > Merge: 50a5de895dbe b4d8ddf8356d
-> > Author: Linus Torvalds <torvalds@linux-foundation.org>
-> > Date:   Wed Apr 1 18:18:18 2020 -0700
-> >=20
-> > It hangs in userspace, at a time when X should be starting, and I'm
-> > looking at blinking cursor.
-> >=20
-> > 5.6-rcs worked, I'll test 5.6-final.
->=20
-> 5.6-final works.
->=20
-> Hmm...
->=20
-> commit f365ab31efacb70bed1e821f7435626e0b2528a6
-> Merge: 4646de87d325 59e7a8cc2dcf
-> Author: Linus Torvalds <torvalds@linux-foundation.org>
-> Date:   Wed Apr 1 15:24:20 2020 -0700
->=20
->     Merge tag 'drm-next-2020-04-01' of git://anongit.freedesktop.org/drm/=
-drm
->=20
-> Let me test 4646de87d32526ee87b46c2e0130413367fb5362...that one works.
->=20
-> Ok, so obviously... I should
-> test... f365ab31efacb70bed1e821f7435626e0b2528a6
 
-f365ab31efacb70bed1e821f7435626e0b2528a6 is broken, and it is the
-first broken merge. next-0403 is also broken.
+Build changes
+-------------
 
-Any ideas, besides the b-word?
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8243 -> Patchwork_17197
 
-Would c0ca be good commit for testing?=20
+  CI-20190529: 20190529
+  CI_DRM_8243: 45ccb1b8606b6ba1a5d4f8a8b4dda27bd8dbb04c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17197: 48a06c080f4b9055f83ac771df1ec5506b72bb9c @ git://anongit.freedesktop.org/gfx-ci/linux
 
-commit 700d6ab987f3b5e28b13b5993e5a9a975c5604e2
-Merge: c0ca5437c509 2bdd4c28baff
-Author: Dave Airlie <airlied@redhat.com>
-Date:   Mon Mar 30 15:56:03 2020 +1000
 
-    Merge tag 'drm-intel-next-fixes-2020-03-27' of git://anongit.freedeskto=
-p.org
-/drm/drm-intel into drm-next
+== Linux commits ==
 
-Best regards,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+48a06c080f4b drm/i915/gt: Declare when we enabled timeslicing
+fa98e5774e0e drm/i915/gem: Allow combining submit-fences with syncobj
+7889ebb21db1 drm/i915/gem: Teach execbuf how to wait on future syncobj
+537c5a3fd9bc drm/syncobj: Allow use of dma-fence-proxy
+ecffda61d51b dma-buf: Proxy fence, an unsignaled fence placeholder
+ae8934bfc404 dma-buf: Exercise dma-fence-chain under selftests
+42c9e1350031 dma-buf: Report signaled links inside dma-fence-chain
+daaaab3b61d6 dma-buf: Prettify typecasts for dma-fence-chain
+1401910d33b8 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+9b51ead71e1a drm/i915/selftests: Add request throughput measurement to perf
 
---VS++wcV0S1rZb1Fb
-Content-Type: application/pgp-signature; name="signature.asc"
+== Logs ==
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXocEtgAKCRAw5/Bqldv6
-8jG5AJ0cQm8gqYJQh8MLB/fR5qx2O5lbMgCfd1NG0flmEpWzpcAJRTG8x3BJl4Q=
-=fz/o
------END PGP SIGNATURE-----
-
---VS++wcV0S1rZb1Fb--
-
---===============1819021056==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17197/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1819021056==--
