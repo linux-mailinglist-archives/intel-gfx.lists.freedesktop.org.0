@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133AC19DBF7
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:45:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46DD319DC38
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:57:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A4F6EC22;
-	Fri,  3 Apr 2020 16:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3F6F6EC25;
+	Fri,  3 Apr 2020 16:57:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5796EC22
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 16:45:10 +0000 (UTC)
-IronPort-SDR: KE2rIEWaRhOSg3bXUJuvh3mE0sv54Q6rtopaxO6AVzbRqycww+rbW2r9hxTJS1NUxqTXHKbyGN
- +DZcpCUPr7kw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2020 09:45:09 -0700
-IronPort-SDR: hzNMXkn8W5H502+Ono/2P9sdLJzDFIvXVJkzeLEr/M0axWCYIo0T4VUu+k5EHT2WKUQtZFtHS/
- 3tEEPi/8N4KA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,340,1580803200"; d="scan'208";a="285174500"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by fmsmga002.fm.intel.com with ESMTP; 03 Apr 2020 09:45:06 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Apr 2020 19:41:32 +0300
-Message-Id: <20200403164132.10713-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20200403063745.12529-1-stanislav.lisovskiy@intel.com>
-References: <20200403063745.12529-1-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B63976EC24;
+ Fri,  3 Apr 2020 16:57:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AE07CA0138;
+ Fri,  3 Apr 2020 16:57:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v21 09/10] drm/i915: Restrict qgv points which
- don't have enough bandwidth.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 03 Apr 2020 16:57:00 -0000
+Message-ID: <158593302068.13351.12614786197703622012@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200403073657.13427-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200403073657.13427-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Avoid_setting_timer-=3Eexpires_to_0?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,352 +38,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWNjb3JkaW5nIHRvIEJTcGVjIDUzOTk4LCB3ZSBzaG91bGQgdHJ5IHRvCnJlc3RyaWN0IHFndiBw
-b2ludHMsIHdoaWNoIGNhbid0IHByb3ZpZGUKZW5vdWdoIGJhbmR3aWR0aCBmb3IgZGVzaXJlZCBk
-aXNwbGF5IGNvbmZpZ3VyYXRpb24uCgpDdXJyZW50bHkgd2UgYXJlIGp1c3QgY29tcGFyaW5nIGFn
-YWluc3QgYWxsIG9mCnRob3NlIGFuZCB0YWtlIG1pbmltdW0od29yc3QgY2FzZSkuCgp2MjogRml4
-ZWQgd3JvbmcgUENvZGUgcmVwbHkgbWFzaywgcmVtb3ZlZCBoYXJkY29kZWQKICAgIHZhbHVlcy4K
-CnYzOiBGb3JiaWQgc2ltdWx0YW5lb3VzIGxlZ2FjeSBTQUdWIFBDb2RlIHJlcXVlc3RzIGFuZAog
-ICAgcmVzdHJpY3RpbmcgcWd2IHBvaW50cy4gUHV0IHRoZSBhY3R1YWwgcmVzdHJpY3Rpb24KICAg
-IHRvIGNvbW1pdCBmdW5jdGlvbiwgYWRkZWQgc2VyaWFsaXphdGlvbih0aGFua3MgdG8gVmlsbGUp
-CiAgICB0byBwcmV2ZW50IGNvbW1pdCBiZWluZyBhcHBsaWVkIG91dCBvZiBvcmRlciBpbiBjYXNl
-IG9mCiAgICBub25ibG9ja2luZyBhbmQvb3Igbm9tb2Rlc2V0IGNvbW1pdHMuCgp2NDoKICAgIC0g
-TWlub3IgY29kZSByZWZhY3RvcmluZywgZml4ZWQgZmV3IHR5cG9zKHRoYW5rcyB0byBKYW1lcyBB
-dXNtdXMpCiAgICAtIENoYW5nZSB0aGUgbmFtaW5nIG9mIHFndiBwb2ludAogICAgICBtYXNraW5n
-L3VubWFza2luZyBmdW5jdGlvbnMoSmFtZXMgQXVzbXVzKS4KICAgIC0gU2ltcGxpZnkgdGhlIG1h
-c2tpbmcvdW5tYXNraW5nIG9wZXJhdGlvbiBpdHNlbGYsCiAgICAgIGFzIHdlIGRvbid0IG5lZWQg
-dG8gbWFzayBvbmx5IHNpbmdsZSBwb2ludCBwZXIgcmVxdWVzdChKYW1lcyBBdXNtdXMpCiAgICAt
-IFJlamVjdCBhbmQgc3RpY2sgdG8gaGlnaGVzdCBiYW5kd2lkdGggcG9pbnQgaWYgU0FHVgogICAg
-ICBjYW4ndCBiZSBlbmFibGVkKEJTcGVjKQoKdjU6CiAgICAtIEFkZCBuZXcgbWFpbGJveCByZXBs
-eSBjb2Rlcywgd2hpY2ggc2VlbXMgdG8gaGFwcGVuIGR1cmluZyBib290CiAgICAgIHRpbWUgZm9y
-IFRHTCBhbmQgaW5kaWNhdGUgdGhhdCBRR1Ygc2V0dGluZyBpcyBub3QgeWV0IGF2YWlsYWJsZS4K
-CnY2OgogICAgLSBJbmNyZWFzZSBudW1iZXIgb2Ygc3VwcG9ydGVkIFFHViBwb2ludHMgdG8gYmUg
-aW4gc3luYyB3aXRoIEJTcGVjLgoKdjc6IC0gUmViYXNlZCBhbmQgcmVzb2x2ZWQgY29uZmxpY3Qg
-dG8gZml4IGJ1aWxkIGZhaWx1cmUuCiAgICAtIEZpeCBOVU1fUUdWX1BPSU5UUyB0byA4IGFuZCBt
-b3ZlZCB0aGF0IHRvIGhlYWRlciBmaWxlKEphbWVzIEF1c211cykKCnY4OiAtIERvbid0IHJlcG9y
-dCBhbiBlcnJvciBpZiB3ZSBjYW4ndCByZXN0cmljdCBxZ3YgcG9pbnRzLCBhcyBTQUdWCiAgICAg
-IGNhbiBiZSBkaXNhYmxlZCBieSBCSU9TLCB3aGljaCBpcyBjb21wbGV0ZWx5IGxlZ2FsLiBTbyBk
-b24ndAogICAgICBtYWtlIENJIHBhbmljLiBJbnN0ZWFkIGlmIHdlIGRldGVjdCB0aGF0IHRoZXJl
-IGlzIG9ubHkgMSBRR1YKICAgICAgcG9pbnQgYWNjZXNzaWJsZSBqdXN0IGFuYWx5emUgaWYgd2Ug
-Y2FuIGZpdCB0aGUgcmVxdWlyZWQgYmFuZHdpZHRoCiAgICAgIHJlcXVpcmVtZW50cywgYnV0IG5v
-IG5lZWQgaW4gcmVzdHJpY3RpbmcuCgp2OTogLSBGaXggd3JvbmcgUUdWIHRyYW5zaXRpb24gaWYg
-d2UgaGF2ZSAwIHBsYW5lcyBhbmQgbm8gU0FHVgogICAgICBzaW11bHRhbmVvdXNseS4KCnYxMDog
-LSBGaXggQ0RDTEsgY29ycnVwdGlvbiwgYmVjYXVzZSBvZiBnbG9iYWwgc3RhdGUgZ2V0dGluZyBz
-ZXJpYWxpemVkCiAgICAgICB3aXRob3V0IG1vZGVzZXQsIHdoaWNoIGNhdXNlZCBjb3B5aW5nIG9m
-IG5vbi1jYWxjdWxhdGVkIGNkY2xrCiAgICAgICB0byBiZSBjb3BpZWQgdG8gZGV2X3ByaXYodGhh
-bmtzIHRvIFZpbGxlIGZvciB0aGUgaGludCkuCgp2MTE6IC0gUmVtb3ZlIHVubmVlZGVkIGhlYWRl
-cnMgYW5kIHNwYWNlcyhNYXR0aGV3IFJvcGVyKQogICAgIC0gUmVtb3ZlIHVubmVlZGVkIGludGVs
-X3Fndl9pbmZvIHFpIHN0cnVjdCBmcm9tIGJ3IGNoZWNrIGFuZCB6ZXJvCiAgICAgICBvdXQgdGhl
-IG5lZWRlZCBvbmUoTWF0dGhldyBSb3BlcikKICAgICAtIENoYW5nZWQgUUdWIGVycm9yIG1lc3Nh
-Z2UgdG8gaGF2ZSBtb3JlIGNsZWFyIG1lYW5pbmcoTWF0dGhldyBSb3BlcikKICAgICAtIFVzZSBz
-dGF0ZS0+bW9kZXNldF9zZXQgaW5zdGVhZCBvZiBhbnlfbXMoTWF0dGhldyBSb3BlcikKICAgICAt
-IE1vdmVkIE5VTV9TQUdWX1BPSU5UUyBmcm9tIGk5MTVfcmVnLmggdG8gaTkxNV9kcnYuaCB3aGVy
-ZSBpdCdzIHVzZWQKICAgICAtIEtlZXAgdXNpbmcgY3J0Y19zdGF0ZS0+aHcuYWN0aXZlIGluc3Rl
-YWQgb2YgLmVuYWJsZShNYXR0aGV3IFJvcGVyKQogICAgIC0gTW92ZWQgdW5yZWxhdGVkIGNoYW5n
-ZXMgdG8gb3RoZXIgcGF0Y2godXNpbmcgbGF0ZW5jeSBhcyBwYXJhbWV0ZXIKICAgICAgIGZvciBw
-bGFuZSB3bSBjYWxjdWxhdGlvbiwgbW92ZWQgdG8gU0FHViByZWZhY3RvcmluZyBwYXRjaCkKCnYx
-MjogLSBGaXggcmViYXNlIGNvbmZsaWN0IHdpdGggb3duIHRlbXBvcmFyeSBTQUdWL1FHViBmaXgu
-CiAgICAgLSBSZW1vdmUgdW5uZWNlc3NhcnkgbWFzayBiZWluZyB6ZXJvIGNoZWNrIHdoZW4gdW5t
-YXNraW5nCiAgICAgICBxZ3YgcG9pbnRzIGFzIHRoaXMgaXMgY29tcGxldGVseSBsZWdhbChNYXR0
-IFJvcGVyKQogICAgIC0gQ2hlY2sgaWYgd2UgYXJlIHNldHRpbmcgdGhlIHNhbWUgbWFzayBhcyBh
-bHJlYWR5IGJlaW5nIHNldAogICAgICAgaW4gaGFyZHdhcmUgdG8gcHJldmVudCBlcnJvciBmcm9t
-IFBDb2RlLgogICAgIC0gRml4IGVycm9yIG1lc3NhZ2Ugd2hlbiByZXN0cmljdGluZy91bnJlc3Ry
-aWN0aW5nIHFndiBwb2ludHMKICAgICAgIHRvICJtYXNrL3VubWFzayIgd2hpY2ggc291bmRzIG1v
-cmUgYWNjdXJhdGUoTWF0dCBSb3BlcikKICAgICAtIE1vdmUgc2FndiBzdGF0dXMgc2V0dGluZyB0
-byBpY2xfZ2V0X2J3X2luZm8gZnJvbSBhdG9taWMgY2hlY2sKICAgICAgIGFzIHRoaXMgc2hvdWxk
-IGJlIGNhbGN1bGF0ZWQgb25seSBvbmNlLihNYXR0IFJvcGVyKQogICAgIC0gRWRpdGVkIGNvbW1l
-bnRzIGZvciB0aGUgY2FzZSB3aGVuIHdlIGNhbid0IGVuYWJsZSBTQUdWIGFuZAogICAgICAgdXNl
-IG9ubHkgMSBRR1YgcG9pbnQgd2l0aCBoaWdoZXN0IGJhbmR3aWR0aCB0byBiZSBtb3JlCiAgICAg
-ICB1bmRlcnN0YW5kYWJsZS4oTWF0dCBSb3BlcikKCnYxMzogLSBNb3ZlZCBtYXhfZGF0YV9yYXRl
-IGluIGJ3IGNoZWNrIHRvIGNsb3NlciBzY29wZShWaWxsZSBTeXJqw6Rsw6QpCiAgICAgLSBDaGFu
-Z2VkIGNvbW1lbnQgZm9yIHplcm8gbmV3X21hc2sgaW4gcWd2IHBvaW50cyBtYXNraW5nIGZ1bmN0
-aW9uCiAgICAgICB0byBiZXR0ZXIgcmVmbGVjdCByZWFsaXR5KFZpbGxlIFN5cmrDpGzDpCkKICAg
-ICAtIFNpbXBsaWZpZWQgYml0IG1hc2sgb3BlcmF0aW9uIGluIHFndiBwb2ludHMgbWFza2luZyBm
-dW5jdGlvbgogICAgICAgKFZpbGxlIFN5cmrDpGzDpCkKICAgICAtIE1vdmVkIGludGVsX3Fndl9w
-b2ludHNfbWFzayBjbG9zZXIgdG8gZ2VuMTEgU0FHViBkaXNhYmxpbmcsCiAgICAgICBob3dldmVy
-IHRoaXMgc3RpbGwgY2FuJ3QgYmUgdW5kZXIgbW9kZXNldCBjb25kaXRpb24oVmlsbGUgU3lyasOk
-bMOkKQogICAgIC0gUGFja2VkIHFndl9wb2ludHNfbWFzayBhcyB1OCBhbmQgbW92ZWQgY2xvc2Vy
-IHRvIHBpcGVfc2Fndl9tYXNrCiAgICAgICAoVmlsbGUgU3lyasOkbMOkKQogICAgIC0gRXh0cmFj
-dGVkIFBDb2RlIGNoYW5nZXMgdG8gc2VwYXJhdGUgcGF0Y2guKFZpbGxlIFN5cmrDpGzDpCkKICAg
-ICAtIE5vdyB0cmVhdCBudW1fcGxhbmVzIDAgc2FtZSBhcyAxIHRvIGF2b2lkIGNvbmZ1c2lvbiBh
-bmQKICAgICAgIHJldHVybmluZyBtYXhfYncgYXMgMCwgd2hpY2ggd291bGQgcHJldmVudCBjaG9v
-c2luZyBRR1YKICAgICAgIHBvaW50IGhhdmluZyBtYXggYmFuZHdpZHRoIGluIGNhc2UgaWYgU0FH
-ViBpcyBub3QgYWxsb3dlZCwKICAgICAgIGFzIHBlciBCU3BlYyhWaWxsZSBTeXJqw6Rsw6QpCiAg
-ICAgLSBEbyB0aGUgYWN0dWFsIHFndl9wb2ludHNfbWFzayBzd2FwIGluIHRoZSBzYW1lIHBsYWNl
-IGFzCiAgICAgICBhbGwgb3RoZXIgZ2xvYmFsIHN0YXRlIHBhcnRzIGxpa2UgY2RjbGsgYXJlIHN3
-YXBwZWQuCiAgICAgICBJbiB0aGUgbmV4dCBwYXRjaCwgdGhpcyBhbGwgd2lsbCBiZSBtb3ZlZCB0
-byBidyBzdGF0ZSBhcwogICAgICAgZ2xvYmFsIHN0YXRlLCBvbmNlIG5ldyBnbG9iYWwgc3RhdGUg
-cGF0Y2ggc2VyaWVzIGZyb20gVmlsbGUKICAgICAgIGxhbmRzCgp2MTQ6IC0gTm93IHVzaW5nIGds
-b2JhbCBzdGF0ZSB0byBzZXJpYWxpemUgYWNjZXNzIHRvIHFndiBwb2ludHMKICAgICAtIEFkZGVk
-IGdsb2JhbCBzdGF0ZSBsb2NraW5nIGJhY2ssIG90aGVyd2lzZSB3ZSBzZWVtIHRvIHJlYWQKICAg
-ICAgIGJ3IHN0YXRlIGluIGEgd3Jvbmcgd2F5LgoKdjE1OiAtIEFkZGVkIFRPRE8gY29tbWVudCBm
-b3IgbmVhciBhdG9taWMgZ2xvYmFsIHN0YXRlIGxvY2tpbmcgaW4KICAgICAgIGJ3IGNvZGUuCgp2
-MTY6IC0gRml4ZWQgaW50ZWxfYXRvbWljX2J3XyogZnVuY3Rpb25zIHRvIGJlIGludGVsX2J3Xyog
-YXMgZGlzY3Vzc2VkCiAgICAgICB3aXRoIEphbmkgTmlrdWxhLgogICAgIC0gVGFrZSBid19zdGF0
-ZV9jaGFuZ2VkIGZsYWcgaW50byB1c2UuCgp2MTc6IC0gTW92ZWQgcWd2IHBvaW50IHJlbGF0ZWQg
-bWFuaXB1bGF0aW9ucyBuZXh0IHRvIFNBR1YgY29kZSwgYXMKICAgICAgIHRob3NlIGFyZSBzZW1h
-bnRpY2FsbHkgcmVsYXRlZChWaWxsZSBTeXJqw6Rsw6QpCiAgICAgLSBSZW5hbWVkIHRob3NlIGlu
-dG8gaW50ZWxfc2Fndl8ocHJlKXwocG9zdClfcGxhbmVfdXBkYXRlCiAgICAgICAoVmlsbGUgU3ly
-asOkbMOkKQoKdjE4OiAtIE1vdmUgc2FndiByZWxhdGVkIGNhbGxzIGZyb20gY29tbWl0IHRhaWwg
-aW50bwogICAgICAgaW50ZWxfc2Fndl8ocHJlKXwocG9zdClfcGxhbmVfdXBkYXRlKFZpbGxlIFN5
-cmrDpGzDpCkKCnYxOTogLSBVc2UgaW50ZWxfYXRvbWljX2dldF9id18ob2xkKXwobmV3KV9zdGF0
-ZSB3aGljaCBpcyBpbnRlbmRlZAogICAgICAgZm9yIGNvbW1pdCB0YWlsIHN0YWdlLgoKdjIwOiAt
-IFJldHVybiBtYXggYmFuZHdpZHRoIGZvciAwIHBsYW5lcyhWaWxsZSkKICAgICAtIENvbnN0aWZ5
-IG9sZF9id19zdGF0ZSBpbiBid19hdG9taWNfY2hlY2soVmlsbGUpCiAgICAgLSBSZW1vdmVkIHNv
-bWUgZGVidWdzKFZpbGxlKQogICAgIC0gQWRkZWQgZGF0YSByYXRlIHRvIGRlYnVnIHByaW50IHdo
-ZW4gbm8gUUdWIHBvaW50cyhWaWxsZSkKICAgICAtIFJlbW92ZWQgc29tZSBjb21tZW50cyhWaWxs
-ZSkKClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNr
-aXlAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGludGVsLmNv
-bT4KQ2M6IEphbWVzIEF1c211cyA8amFtZXMuYXVzbXVzQGludGVsLmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMgICAgICAgfCAxMzkgKysrKysrKysrKysr
-Ky0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmggICAgICAgfCAg
-IDkgKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8ICAy
-NCArLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICAg
-MyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jICAgICAgICAgICAgICAgfCAxMDcg
-KysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmggICAgICAgICAg
-ICAgICB8ICAgMiArCiA2IGZpbGVzIGNoYW5nZWQsIDIyOSBpbnNlcnRpb25zKCspLCA1NSBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2J3LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMKaW5kZXggM2My
-NzllMGFlMWQ3Li4zOWYzZWQ1MTAxMDcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYncuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2J3LmMKQEAgLTgsNiArOCw5IEBACiAjaW5jbHVkZSAiaW50ZWxfYncuaCIKICNpbmNsdWRl
-ICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgiCiAjaW5jbHVkZSAiaW50ZWxfc2lkZWJhbmQuaCIKKyNp
-bmNsdWRlICJpbnRlbF9hdG9taWMuaCIKKyNpbmNsdWRlICJpbnRlbF9wbS5oIgorCiAKIC8qIFBh
-cmFtZXRlcnMgZm9yIFFjbGsgR2V5c2VydmlsbGUgKFFHVikgKi8KIHN0cnVjdCBpbnRlbF9xZ3Zf
-cG9pbnQgewpAQCAtMTEzLDYgKzExNiwyNiBAQCBzdGF0aWMgaW50IGljbF9wY29kZV9yZWFkX3Fn
-dl9wb2ludF9pbmZvKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAlyZXR1cm4g
-MDsKIH0KIAoraW50IGljbF9wY29kZV9yZXN0cmljdF9xZ3ZfcG9pbnRzKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiwKKwkJCQkgIHUzMiBwb2ludHNfbWFzaykKK3sKKwlpbnQgcmV0
-OworCisJLyogYnNwZWMgc2F5cyB0byBrZWVwIHJldHJ5aW5nIGZvciBhdCBsZWFzdCAxIG1zICov
-CisJcmV0ID0gc2tsX3Bjb2RlX3JlcXVlc3QoZGV2X3ByaXYsIElDTF9QQ09ERV9TQUdWX0RFX01F
-TV9TU19DT05GSUcsCisJCQkJcG9pbnRzX21hc2ssCisJCQkJR0VOMTFfUENPREVfUE9JTlRTX1JF
-U1RSSUNURURfTUFTSywKKwkJCQlHRU4xMV9QQ09ERV9QT0lOVFNfUkVTVFJJQ1RFRCwKKwkJCQkx
-KTsKKworCWlmIChyZXQgPCAwKSB7CisJCURSTV9FUlJPUigiRmFpbGVkIHRvIGRpc2FibGUgcWd2
-IHBvaW50cyAoJWQpXG4iLCByZXQpOworCQlyZXR1cm4gcmV0OworCX0KKworCXJldHVybiAwOwor
-fQorCiBzdGF0aWMgaW50IGljbF9nZXRfcWd2X3BvaW50cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYsCiAJCQkgICAgICBzdHJ1Y3QgaW50ZWxfcWd2X2luZm8gKnFpKQogewpAQCAt
-MjQwLDYgKzI2MywxNiBAQCBzdGF0aWMgaW50IGljbF9nZXRfYndfaW5mbyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGNvbnN0IHN0cnVjdCBpbnRlbAogCQkJYnJlYWs7CiAJfQog
-CisJLyoKKwkgKiBJbiBjYXNlIGlmIFNBR1YgaXMgZGlzYWJsZWQgaW4gQklPUywgd2UgYWx3YXlz
-IGdldCAxCisJICogU0FHViBwb2ludCwgYnV0IHdlIGNhbid0IHNlbmQgUENvZGUgY29tbWFuZHMg
-dG8gcmVzdHJpY3QgaXQKKwkgKiBhcyBpdCB3aWxsIGZhaWwgYW5kIHBvaW50bGVzcyBhbnl3YXku
-CisJICovCisJaWYgKHFpLm51bV9wb2ludHMgPT0gMSkKKwkJZGV2X3ByaXYtPnNhZ3Zfc3RhdHVz
-ID0gSTkxNV9TQUdWX05PVF9DT05UUk9MTEVEOworCWVsc2UKKwkJZGV2X3ByaXYtPnNhZ3Zfc3Rh
-dHVzID0gSTkxNV9TQUdWX0VOQUJMRUQ7CisKIAlyZXR1cm4gMDsKIH0KIApAQCAtMjQ4LDYgKzI4
-MSwxMSBAQCBzdGF0aWMgdW5zaWduZWQgaW50IGljbF9tYXhfYncoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2LAogewogCWludCBpOwogCisJLyoKKwkgKiBMZXQncyByZXR1cm4gbWF4
-IGJ3IGZvciAwIHBsYW5lcworCSAqLworCW51bV9wbGFuZXMgPSBtYXgoMSwgbnVtX3BsYW5lcyk7
-CisKIAlmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShkZXZfcHJpdi0+bWF4X2J3KTsgaSsrKSB7
-CiAJCWNvbnN0IHN0cnVjdCBpbnRlbF9id19pbmZvICpiaSA9CiAJCQkmZGV2X3ByaXYtPm1heF9i
-d1tpXTsKQEAgLTI3NywzNCArMzE1LDYgQEAgdm9pZCBpbnRlbF9id19pbml0X2h3KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAkJaWNsX2dldF9id19pbmZvKGRldl9wcml2LCAm
-aWNsX3NhX2luZm8pOwogfQogCi1zdGF0aWMgdW5zaWduZWQgaW50IGludGVsX21heF9kYXRhX3Jh
-dGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAotCQkJCQlpbnQgbnVtX3BsYW5l
-cykKLXsKLQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkgewotCQkvKgotCQkgKiBBbnkg
-YncgZ3JvdXAgaGFzIHNhbWUgYW1vdW50IG9mIFFHViBwb2ludHMKLQkJICovCi0JCWNvbnN0IHN0
-cnVjdCBpbnRlbF9id19pbmZvICpiaSA9Ci0JCQkmZGV2X3ByaXYtPm1heF9id1swXTsKLQkJdW5z
-aWduZWQgaW50IG1pbl9idyA9IFVJTlRfTUFYOwotCQlpbnQgaTsKLQotCQkvKgotCQkgKiBGSVhN
-RSB3aXRoIFNBR1YgZGlzYWJsZWQgbWF5YmUgd2UgY2FuIGFzc3VtZQotCQkgKiBwb2ludCAxIHdp
-bGwgYWx3YXlzIGJlIHVzZWQ/IFNlZW1zIHRvIG1hdGNoCi0JCSAqIHRoZSBiZWhhdmlvdXIgb2Jz
-ZXJ2ZWQgaW4gdGhlIHdpbGQuCi0JCSAqLwotCQlmb3IgKGkgPSAwOyBpIDwgYmktPm51bV9xZ3Zf
-cG9pbnRzOyBpKyspIHsKLQkJCXVuc2lnbmVkIGludCBidyA9IGljbF9tYXhfYncoZGV2X3ByaXYs
-IG51bV9wbGFuZXMsIGkpOwotCi0JCQltaW5fYncgPSBtaW4oYncsIG1pbl9idyk7Ci0JCX0KLQkJ
-cmV0dXJuIG1pbl9idzsKLQl9IGVsc2UgewotCQlyZXR1cm4gVUlOVF9NQVg7Ci0JfQotfQotCiBz
-dGF0aWMgdW5zaWduZWQgaW50IGludGVsX2J3X2NydGNfbnVtX2FjdGl2ZV9wbGFuZXMoY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiB7CiAJLyoKQEAgLTQxOCwxMCAr
-NDI4LDE1IEBAIGludCBpbnRlbF9id19hdG9taWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19z
-dGF0ZSAqc3RhdGUpCiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkx
-NShzdGF0ZS0+YmFzZS5kZXYpOwogCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19z
-dGF0ZSwgKm9sZF9jcnRjX3N0YXRlOwogCXN0cnVjdCBpbnRlbF9id19zdGF0ZSAqbmV3X2J3X3N0
-YXRlID0gTlVMTDsKLQl1bnNpZ25lZCBpbnQgZGF0YV9yYXRlLCBtYXhfZGF0YV9yYXRlOworCWNv
-bnN0IHN0cnVjdCBpbnRlbF9id19zdGF0ZSAqb2xkX2J3X3N0YXRlID0gTlVMTDsKKwl1bnNpZ25l
-ZCBpbnQgZGF0YV9yYXRlOwogCXVuc2lnbmVkIGludCBudW1fYWN0aXZlX3BsYW5lczsKIAlzdHJ1
-Y3QgaW50ZWxfY3J0YyAqY3J0YzsKIAlpbnQgaSwgcmV0OworCXUzMiBhbGxvd2VkX3BvaW50cyA9
-IDA7CisJdW5zaWduZWQgaW50IG1heF9id19wb2ludCA9IDAsIG1heF9idyA9IDA7CisJdW5zaWdu
-ZWQgaW50IG51bV9xZ3ZfcG9pbnRzID0gZGV2X3ByaXYtPm1heF9id1swXS5udW1fcWd2X3BvaW50
-czsKKwl1MzIgbWFzayA9ICgxIDw8IG51bV9xZ3ZfcG9pbnRzKSAtIDE7CiAKIAkvKiBGSVhNRSBl
-YXJsaWVyIGdlbnMgbmVlZCBzb21lIGNoZWNrcyB0b28gKi8KIAlpZiAoSU5URUxfR0VOKGRldl9w
-cml2KSA8IDExKQpAQCAtNDY4LDE5ICs0ODMsNzMgQEAgaW50IGludGVsX2J3X2F0b21pY19jaGVj
-ayhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIAkJcmV0dXJuIHJldDsKIAogCWRh
-dGFfcmF0ZSA9IGludGVsX2J3X2RhdGFfcmF0ZShkZXZfcHJpdiwgbmV3X2J3X3N0YXRlKTsKKwlk
-YXRhX3JhdGUgPSBESVZfUk9VTkRfVVAoZGF0YV9yYXRlLCAxMDAwKTsKKwogCW51bV9hY3RpdmVf
-cGxhbmVzID0gaW50ZWxfYndfbnVtX2FjdGl2ZV9wbGFuZXMoZGV2X3ByaXYsIG5ld19id19zdGF0
-ZSk7CiAKLQltYXhfZGF0YV9yYXRlID0gaW50ZWxfbWF4X2RhdGFfcmF0ZShkZXZfcHJpdiwgbnVt
-X2FjdGl2ZV9wbGFuZXMpOworCWZvciAoaSA9IDA7IGkgPCBudW1fcWd2X3BvaW50czsgaSsrKSB7
-CisJCXVuc2lnbmVkIGludCBtYXhfZGF0YV9yYXRlOwogCi0JZGF0YV9yYXRlID0gRElWX1JPVU5E
-X1VQKGRhdGFfcmF0ZSwgMTAwMCk7CisJCW1heF9kYXRhX3JhdGUgPSBpY2xfbWF4X2J3KGRldl9w
-cml2LCBudW1fYWN0aXZlX3BsYW5lcywgaSk7CisJCS8qCisJCSAqIFdlIG5lZWQgdG8ga25vdyB3
-aGljaCBxZ3YgcG9pbnQgZ2l2ZXMgdXMKKwkJICogbWF4aW11bSBiYW5kd2lkdGggaW4gb3JkZXIg
-dG8gZGlzYWJsZSBTQUdWCisJCSAqIGlmIHdlIGZpbmQgdGhhdCB3ZSBleGNlZWQgU0FHViBibG9j
-ayB0aW1lCisJCSAqIHdpdGggd2F0ZXJtYXJrcy4gQnkgdGhhdCBtb21lbnQgd2UgYWxyZWFkeQor
-CQkgKiBoYXZlIHRob3NlLCBhcyBpdCBpcyBjYWxjdWxhdGVkIGVhcmxpZXIgaW4KKwkJICogaW50
-ZWxfYXRvbWljX2NoZWNrLAorCQkgKi8KKwkJaWYgKG1heF9kYXRhX3JhdGUgPiBtYXhfYncpIHsK
-KwkJCW1heF9id19wb2ludCA9IGk7CisJCQltYXhfYncgPSBtYXhfZGF0YV9yYXRlOworCQl9CisJ
-CWlmIChtYXhfZGF0YV9yYXRlID49IGRhdGFfcmF0ZSkKKwkJCWFsbG93ZWRfcG9pbnRzIHw9IEJJ
-VChpKTsKKwkJRFJNX0RFQlVHX0tNUygiUUdWIHBvaW50ICVkOiBtYXggYncgJWQgcmVxdWlyZWQg
-JWRcbiIsCisJCQkgICAgICBpLCBtYXhfZGF0YV9yYXRlLCBkYXRhX3JhdGUpOworCX0KIAotCWlm
-IChkYXRhX3JhdGUgPiBtYXhfZGF0YV9yYXRlKSB7Ci0JCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+
-ZHJtLAotCQkJICAgICJCYW5kd2lkdGggJXUgTUIvcyBleGNlZWRzIG1heCBhdmFpbGFibGUgJWQg
-TUIvcyAoJWQgYWN0aXZlIHBsYW5lcylcbiIsCi0JCQkgICAgZGF0YV9yYXRlLCBtYXhfZGF0YV9y
-YXRlLCBudW1fYWN0aXZlX3BsYW5lcyk7CisJLyoKKwkgKiBCU3BlYyBzdGF0ZXMgdGhhdCB3ZSBh
-bHdheXMgc2hvdWxkIGhhdmUgYXQgbGVhc3Qgb25lIGFsbG93ZWQgcG9pbnQKKwkgKiBsZWZ0LCBz
-byBpZiB3ZSBjb3VsZG4ndCAtIHNpbXBseSByZWplY3QgdGhlIGNvbmZpZ3VyYXRpb24gZm9yIG9i
-dmlvdXMKKwkgKiByZWFzb25zLgorCSAqLworCWlmIChhbGxvd2VkX3BvaW50cyA9PSAwKSB7CisJ
-CURSTV9ERUJVR19LTVMoIk5vIFFHViBwb2ludHMgcHJvdmlkZSBzdWZmaWNpZW50IG1lbW9yeSIK
-KwkJCSAgICAgICIgYmFuZHdpZHRoICVkIGZvciBkaXNwbGF5IGNvbmZpZ3VyYXRpb24uXG4iLCBk
-YXRhX3JhdGUpOwogCQlyZXR1cm4gLUVJTlZBTDsKIAl9CiAKKwkvKgorCSAqIExlYXZlIG9ubHkg
-c2luZ2xlIHBvaW50IHdpdGggaGlnaGVzdCBiYW5kd2lkdGgsIGlmCisJICogd2UgY2FuJ3QgZW5h
-YmxlIFNBR1YgZHVlIHRvIHRoZSBpbmNyZWFzZWQgbWVtb3J5IGxhdGVuY3kgaXQgbWF5CisJICog
-Y2F1c2UuCisJICovCisJaWYgKCFpbnRlbF9jYW5fZW5hYmxlX3NhZ3YobmV3X2J3X3N0YXRlKSkg
-eworCQlhbGxvd2VkX3BvaW50cyA9IEJJVChtYXhfYndfcG9pbnQpOworCQlEUk1fREVCVUdfS01T
-KCJObyBTQUdWLCB1c2luZyBzaW5nbGUgUUdWIHBvaW50ICVkXG4iLAorCQkJICAgICAgbWF4X2J3
-X3BvaW50KTsKKwl9CisJLyoKKwkgKiBXZSBzdG9yZSB0aGUgb25lcyB3aGljaCBuZWVkIHRvIGJl
-IG1hc2tlZCBhcyB0aGF0IGlzIHdoYXQgUENvZGUKKwkgKiBhY3R1YWxseSBhY2NlcHRzIGFzIGEg
-cGFyYW1ldGVyLgorCSAqLworCW5ld19id19zdGF0ZS0+cWd2X3BvaW50c19tYXNrID0gKH5hbGxv
-d2VkX3BvaW50cykgJiBtYXNrOworCisJb2xkX2J3X3N0YXRlID0gaW50ZWxfYXRvbWljX2dldF9v
-bGRfYndfc3RhdGUoc3RhdGUpOworCWlmICghb2xkX2J3X3N0YXRlKQorCQlyZXR1cm4gLUVJTlZB
-TDsKKworCS8qCisJICogSWYgdGhlIGFjdHVhbCBtYXNrIGhhZCBjaGFuZ2VkIHdlIG5lZWQgdG8g
-bWFrZSBzdXJlIHRoYXQKKwkgKiB0aGUgY29tbWl0cyBhcmUgc2VyaWFsaXplZChpbiBjYXNlIHRo
-aXMgaXMgYSBub21vZGVzZXQsIG5vbmJsb2NraW5nKQorCSAqLworCWlmIChuZXdfYndfc3RhdGUt
-PnFndl9wb2ludHNfbWFzayAhPSBvbGRfYndfc3RhdGUtPnFndl9wb2ludHNfbWFzaykgeworCQly
-ZXQgPSBpbnRlbF9hdG9taWNfc2VyaWFsaXplX2dsb2JhbF9zdGF0ZSgmbmV3X2J3X3N0YXRlLT5i
-YXNlKTsKKwkJaWYgKHJldCkKKwkJCXJldHVybiByZXQ7CisJfQorCiAJcmV0dXJuIDA7CiB9CiAK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuaCBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuaAppbmRleCBkNmRmOTEwNTgyMjMu
-LmVjYzA4NmUxZjMwZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9idy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuaApA
-QCAtMjQsNiArMjQsMTMgQEAgc3RydWN0IGludGVsX2J3X3N0YXRlIHsKIAkgKi8KIAl1OCBwaXBl
-X3NhZ3ZfcmVqZWN0OwogCisJLyoKKwkgKiBDdXJyZW50IFFHViBwb2ludHMgbWFzaywgd2hpY2gg
-cmVzdHJpY3RzCisJICogc29tZSBwYXJ0aWN1bGFyIFNBR1Ygc3RhdGVzLCBub3QgdG8gY29uZnVz
-ZQorCSAqIHdpdGggcGlwZV9zYWd2X21hc2suCisJICovCisJdTggcWd2X3BvaW50c19tYXNrOwor
-CiAJdW5zaWduZWQgaW50IGRhdGFfcmF0ZVtJOTE1X01BWF9QSVBFU107CiAJdTggbnVtX2FjdGl2
-ZV9wbGFuZXNbSTkxNV9NQVhfUElQRVNdOwogfTsKQEAgLTQ0LDUgKzUxLDcgQEAgaW50IGludGVs
-X2J3X2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsKIGludCBpbnRlbF9i
-d19hdG9taWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpOwogdm9pZCBp
-bnRlbF9id19jcnRjX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYndfc3RhdGUgKmJ3X3N0YXRlLAogCQkJ
-ICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CitpbnQgaWNsX3Bj
-b2RlX3Jlc3RyaWN0X3Fndl9wb2ludHMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-LAorCQkJCSAgdTMyIHBvaW50c19tYXNrKTsKIAogI2VuZGlmIC8qIF9fSU5URUxfQldfSF9fICov
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDA0
-ZDQ5YTUxODY1Mi4uMDNlOTY1YjI4Y2Q2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTU0NDksMjIgKzE1NDQ5LDEyIEBAIHN0YXRpYyB2b2lk
-IGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0
-ZSkKIAkJY3J0Yy0+Y29uZmlnID0gbmV3X2NydGNfc3RhdGU7CiAKIAlpZiAoc3RhdGUtPm1vZGVz
-ZXQpIHsKKwkJaW50ZWxfc2Fndl9wcmVfcGxhbmVfdXBkYXRlKHN0YXRlKTsKKwogCQlkcm1fYXRv
-bWljX2hlbHBlcl91cGRhdGVfbGVnYWN5X21vZGVzZXRfc3RhdGUoZGV2LCAmc3RhdGUtPmJhc2Up
-OwogCiAJCWludGVsX3NldF9jZGNsa19wcmVfcGxhbmVfdXBkYXRlKHN0YXRlKTsKIAotCQkvKgot
-CQkgKiBTS0wgd29ya2Fyb3VuZDogYnNwZWMgcmVjb21tZW5kcyB3ZSBkaXNhYmxlIHRoZSBTQUdW
-IHdoZW4gd2UKLQkJICogaGF2ZSBtb3JlIHRoZW4gb25lIHBpcGUgZW5hYmxlZAotCQkgKi8KLQkJ
-aWYgKElOVEVMX0dFTihkZXZfcHJpdikgPCAxMSkgewotCQkJY29uc3Qgc3RydWN0IGludGVsX2J3
-X3N0YXRlICpid19zdGF0ZSA9Ci0JCQkJaW50ZWxfYXRvbWljX2dldF9uZXdfYndfc3RhdGUoc3Rh
-dGUpOwotCi0JCQlpZiAoYndfc3RhdGUgJiYgIWludGVsX2Nhbl9lbmFibGVfc2Fndihid19zdGF0
-ZSkpCi0JCQkJaW50ZWxfZGlzYWJsZV9zYWd2KGRldl9wcml2KTsKLQkJfQotCiAJCWludGVsX21v
-ZGVzZXRfdmVyaWZ5X2Rpc2FibGVkKGRldl9wcml2LCBzdGF0ZSk7CiAJfQogCkBAIC0xNTU2MCwx
-NiArMTU1NTAsMTAgQEAgc3RhdGljIHZvaWQgaW50ZWxfYXRvbWljX2NvbW1pdF90YWlsKHN0cnVj
-dCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQogCWludGVsX2NoZWNrX2NwdV9maWZvX3VuZGVy
-cnVucyhkZXZfcHJpdik7CiAJaW50ZWxfY2hlY2tfcGNoX2ZpZm9fdW5kZXJydW5zKGRldl9wcml2
-KTsKIAotCWlmIChzdGF0ZS0+bW9kZXNldCkKKwlpZiAoc3RhdGUtPm1vZGVzZXQpIHsKIAkJaW50
-ZWxfdmVyaWZ5X3BsYW5lcyhzdGF0ZSk7CiAKLQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA8IDEx
-KSB7Ci0JCXN0cnVjdCBpbnRlbF9id19zdGF0ZSAqYndfc3RhdGU7Ci0KLQkJYndfc3RhdGUgPSBp
-bnRlbF9hdG9taWNfZ2V0X25ld19id19zdGF0ZShzdGF0ZSk7Ci0KLQkJaWYgKGJ3X3N0YXRlICYm
-IHN0YXRlLT5tb2Rlc2V0ICYmIGludGVsX2Nhbl9lbmFibGVfc2Fndihid19zdGF0ZSkpCi0JCQlp
-bnRlbF9lbmFibGVfc2FndihkZXZfcHJpdik7CisJCWludGVsX3NhZ3ZfcG9zdF9wbGFuZV91cGRh
-dGUoc3RhdGUpOwogCX0KIAogCWRybV9hdG9taWNfaGVscGVyX2NvbW1pdF9od19kb25lKCZzdGF0
-ZS0+YmFzZSk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV90eXBlcy5oCmluZGV4IDUxZmE1YTc0NmE1Zi4uODY1NTAzOGJhZmU3IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAorKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaApAQCAt
-Njg5LDYgKzY4OSw5IEBAIGVudW0gY29sb3JfcGxhbmUgewogCUNPTE9SX1BMQU5FX1VWCiB9Owog
-CisvKiBCU3BlYyBwcmVjaXNlbHkgZGVmaW5lcyB0aGlzICovCisjZGVmaW5lIE5VTV9TQUdWX1BP
-SU5UUyA4CisKIHN0cnVjdCBza2xfcGlwZV93bSB7CiAJc3RydWN0IHNrbF9wbGFuZV93bSBwbGFu
-ZXNbSTkxNV9NQVhfUExBTkVTXTsKIAlib29sIGNhbl9zYWd2OwpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bt
-LmMKaW5kZXggMTc3ZDdlY2IwY2RkLi43OWM5OTZhODJjZTcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-cG0uYwpAQCAtMzc1OCw2ICszNzU4LDExMyBAQCBpbnRlbF9kaXNhYmxlX3NhZ3Yoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCXJldHVybiAwOwogfQogCit2b2lkIGludGVsX3Nh
-Z3ZfcHJlX3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKK3sK
-KwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KHN0YXRlLT5iYXNl
-LmRldik7CisJaW50IHJldDsKKwlzdHJ1Y3QgaW50ZWxfYndfc3RhdGUgKm5ld19id19zdGF0ZSA9
-IE5VTEw7CisJc3RydWN0IGludGVsX2J3X3N0YXRlICpvbGRfYndfc3RhdGUgPSBOVUxMOworCXUz
-MiBuZXdfbWFzayA9IDA7CisKKwkvKgorCSAqIEp1c3QgcmV0dXJuIGlmIHdlIGNhbid0IGNvbnRy
-b2wgU0FHViBvciBkb24ndCBoYXZlIGl0LgorCSAqIFRoaXMgaXMgZGlmZmVyZW50IGZyb20gc2l0
-dWF0aW9uIHdoZW4gd2UgaGF2ZSBTQUdWIGJ1dCBqdXN0IGNhbid0CisJICogYWZmb3JkIGl0IGR1
-ZSB0byBEQnVmIGxpbWl0YXRpb24gLSBpbiBjYXNlIGlmIFNBR1YgaXMgY29tcGxldGVseQorCSAq
-IGRpc2FibGVkIGluIGEgQklPUywgd2UgYXJlIG5vdCBldmVuIGFsbG93ZWQgdG8gc2VuZCBhIFBD
-b2RlIHJlcXVlc3QsCisJICogYXMgaXQgd2lsbCB0aHJvdyBhbiBlcnJvci4gU28gaGF2ZSB0byBj
-aGVjayBpdCBoZXJlLgorCSAqLworCWlmICghaW50ZWxfaGFzX3NhZ3YoZGV2X3ByaXYpKQorCQly
-ZXR1cm47CisKKwluZXdfYndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X25ld19id19zdGF0ZShz
-dGF0ZSk7CisJaWYgKCFuZXdfYndfc3RhdGUpCisJCXJldHVybjsKKworCWlmIChJTlRFTF9HRU4o
-ZGV2X3ByaXYpIDwgMTEgJiYgIWludGVsX2Nhbl9lbmFibGVfc2FndihuZXdfYndfc3RhdGUpKSB7
-CisJCWludGVsX2Rpc2FibGVfc2FndihkZXZfcHJpdik7CisJCXJldHVybjsKKwl9CisKKwlvbGRf
-Yndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X29sZF9id19zdGF0ZShzdGF0ZSk7CisJaWYgKCFv
-bGRfYndfc3RhdGUpCisJCXJldHVybjsKKworCS8qCisJICogTm90aGluZyB0byBtYXNrCisJICov
-CisJaWYgKG5ld19id19zdGF0ZS0+cWd2X3BvaW50c19tYXNrID09IG9sZF9id19zdGF0ZS0+cWd2
-X3BvaW50c19tYXNrKQorCQlyZXR1cm47CisKKwluZXdfbWFzayA9IG9sZF9id19zdGF0ZS0+cWd2
-X3BvaW50c19tYXNrIHwgbmV3X2J3X3N0YXRlLT5xZ3ZfcG9pbnRzX21hc2s7CisKKwkvKgorCSAq
-IElmIG5ldyBtYXNrIGlzIHplcm8gLSBtZWFucyB0aGVyZSBpcyBub3RoaW5nIHRvIG1hc2ssCisJ
-ICogd2UgY2FuIG9ubHkgdW5tYXNrLCB3aGljaCBzaG91bGQgYmUgZG9uZSBpbiB1bm1hc2suCisJ
-ICovCisJaWYgKCFuZXdfbWFzaykKKwkJcmV0dXJuOworCisJLyoKKwkgKiBSZXN0cmljdCByZXF1
-aXJlZCBxZ3YgcG9pbnRzIGJlZm9yZSB1cGRhdGluZyB0aGUgY29uZmlndXJhdGlvbi4KKwkgKiBB
-Y2NvcmRpbmcgdG8gQlNwZWMgd2UgY2FuJ3QgbWFzayBhbmQgdW5tYXNrIHFndiBwb2ludHMgYXQg
-dGhlIHNhbWUKKwkgKiB0aW1lLiBBbHNvIG1hc2tpbmcgc2hvdWxkIGJlIGRvbmUgYmVmb3JlIHVw
-ZGF0aW5nIHRoZSBjb25maWd1cmF0aW9uCisJICogYW5kIHVubWFza2luZyBhZnRlcndhcmRzLgor
-CSAqLworCXJldCA9IGljbF9wY29kZV9yZXN0cmljdF9xZ3ZfcG9pbnRzKGRldl9wcml2LCBuZXdf
-bWFzayk7CisJaWYgKHJldCA8IDApCisJCWRybV9lcnIoJmRldl9wcml2LT5kcm0sICJDb3VsZCBu
-b3QgbWFzayByZXF1aXJlZCBxZ3YgcG9pbnRzKCVkKVxuIiwgcmV0KTsKK30KKwordm9pZCBpbnRl
-bF9zYWd2X3Bvc3RfcGxhbmVfdXBkYXRlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
-KQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUt
-PmJhc2UuZGV2KTsKKwlpbnQgcmV0OworCXN0cnVjdCBpbnRlbF9id19zdGF0ZSAqbmV3X2J3X3N0
-YXRlID0gTlVMTDsKKwlzdHJ1Y3QgaW50ZWxfYndfc3RhdGUgKm9sZF9id19zdGF0ZSA9IE5VTEw7
-CisJdTMyIG5ld19tYXNrID0gMDsKKworCS8qCisJICogSnVzdCByZXR1cm4gaWYgd2UgY2FuJ3Qg
-Y29udHJvbCBTQUdWIG9yIGRvbid0IGhhdmUgaXQuCisJICogVGhpcyBpcyBkaWZmZXJlbnQgZnJv
-bSBzaXR1YXRpb24gd2hlbiB3ZSBoYXZlIFNBR1YgYnV0IGp1c3QgY2FuJ3QKKwkgKiBhZmZvcmQg
-aXQgZHVlIHRvIERCdWYgbGltaXRhdGlvbiAtIGluIGNhc2UgaWYgU0FHViBpcyBjb21wbGV0ZWx5
-CisJICogZGlzYWJsZWQgaW4gYSBCSU9TLCB3ZSBhcmUgbm90IGV2ZW4gYWxsb3dlZCB0byBzZW5k
-IGEgUENvZGUgcmVxdWVzdCwKKwkgKiBhcyBpdCB3aWxsIHRocm93IGFuIGVycm9yLiBTbyBoYXZl
-IHRvIGNoZWNrIGl0IGhlcmUuCisJICovCisJaWYgKCFpbnRlbF9oYXNfc2FndihkZXZfcHJpdikp
-CisJCXJldHVybjsKKworCW5ld19id19zdGF0ZSA9IGludGVsX2F0b21pY19nZXRfbmV3X2J3X3N0
-YXRlKHN0YXRlKTsKKwlpZiAoIW5ld19id19zdGF0ZSkKKwkJcmV0dXJuOworCisJaWYgKElOVEVM
-X0dFTihkZXZfcHJpdikgPCAxMSAmJiBpbnRlbF9jYW5fZW5hYmxlX3NhZ3YobmV3X2J3X3N0YXRl
-KSkgeworCQlpbnRlbF9lbmFibGVfc2FndihkZXZfcHJpdik7CisJCXJldHVybjsKKwl9CisKKwlv
-bGRfYndfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X29sZF9id19zdGF0ZShzdGF0ZSk7CisJaWYg
-KCFvbGRfYndfc3RhdGUpCisJCXJldHVybjsKKworCS8qCisJICogTm90aGluZyB0byB1bm1hc2sK
-KwkgKi8KKwlpZiAobmV3X2J3X3N0YXRlLT5xZ3ZfcG9pbnRzX21hc2sgPT0gb2xkX2J3X3N0YXRl
-LT5xZ3ZfcG9pbnRzX21hc2spCisJCXJldHVybjsKKworCW5ld19tYXNrID0gbmV3X2J3X3N0YXRl
-LT5xZ3ZfcG9pbnRzX21hc2s7CisKKwkvKgorCSAqIEFsbG93IHJlcXVpcmVkIHFndiBwb2ludHMg
-YWZ0ZXIgdXBkYXRpbmcgdGhlIGNvbmZpZ3VyYXRpb24uCisJICogQWNjb3JkaW5nIHRvIEJTcGVj
-IHdlIGNhbid0IG1hc2sgYW5kIHVubWFzayBxZ3YgcG9pbnRzIGF0IHRoZSBzYW1lCisJICogdGlt
-ZS4gQWxzbyBtYXNraW5nIHNob3VsZCBiZSBkb25lIGJlZm9yZSB1cGRhdGluZyB0aGUgY29uZmln
-dXJhdGlvbgorCSAqIGFuZCB1bm1hc2tpbmcgYWZ0ZXJ3YXJkcy4KKwkgKi8KKwlyZXQgPSBpY2xf
-cGNvZGVfcmVzdHJpY3RfcWd2X3BvaW50cyhkZXZfcHJpdiwgbmV3X21hc2spOworCWlmIChyZXQg
-PCAwKQorCQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAiQ291bGQgbm90IHVubWFzayByZXF1aXJl
-ZCBxZ3YgcG9pbnRzKCVkKVxuIiwgcmV0KTsKK30KKwogc3RhdGljIGJvb2wgaWNsX2NydGNfY2Fu
-X2VuYWJsZV9zYWd2KGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQog
-ewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Y19zdGF0
-ZS0+dWFwaS5jcnRjLT5kZXYpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
-ZWxfcG0uaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmgKaW5kZXggZTQxNjM3YjNh
-MDVkLi5lYmViMjg4NzlkNzggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X3BtLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uaApAQCAtNDIsNiArNDIs
-OCBAQCB2b2lkIHNrbF9waXBlX3dtX2dldF9od19zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
-YywKIAkJCSAgICAgIHN0cnVjdCBza2xfcGlwZV93bSAqb3V0KTsKIHZvaWQgZzR4X3dtX3Nhbml0
-aXplKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7CiB2b2lkIHZsdl93bV9zYW5p
-dGl6ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOwordm9pZCBpbnRlbF9zYWd2
-X3ByZV9wbGFuZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpOwordm9p
-ZCBpbnRlbF9zYWd2X3Bvc3RfcGxhbmVfdXBkYXRlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
-KnN0YXRlKTsKIGJvb2wgaW50ZWxfaGFzX3NhZ3Yoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KTsKIGJvb2wgaW50ZWxfY2FuX2VuYWJsZV9zYWd2KGNvbnN0IHN0cnVjdCBpbnRlbF9i
-d19zdGF0ZSAqYndfc3RhdGUpOwogaW50IGludGVsX2VuYWJsZV9zYWd2KHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdik7Ci0tIAoyLjI0LjEuNDg1LmdhZDA1YTNkOGU1CgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915: Avoid setting timer->expires to 0
+URL   : https://patchwork.freedesktop.org/series/75447/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8243_full -> Patchwork_17195_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17195_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17195_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17195_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_tiled_swapping@non-threaded:
+    - shard-iclb:         [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb1/igt@gem_tiled_swapping@non-threaded.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb5/igt@gem_tiled_swapping@non-threaded.html
+    - shard-glk:          [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-glk7/igt@gem_tiled_swapping@non-threaded.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-glk4/igt@gem_tiled_swapping@non-threaded.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@gem_wait@write-busy@vcs0}:
+    - shard-glk:          [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-glk9/igt@gem_wait@write-busy@vcs0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-glk9/igt@gem_wait@write-busy@vcs0.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17195_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#110854])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb4/igt@gem_exec_balancer@smoke.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb6/igt@gem_exec_balancer@smoke.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-apl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-apl3/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-hsw:          [PASS][11] -> [INCOMPLETE][12] ([i915#61])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-hsw6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-hsw2/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-untiled:
+    - shard-apl:          [PASS][13] -> [FAIL][14] ([i915#52] / [i915#54] / [i915#95])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-apl4/igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-untiled.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-apl4/igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-untiled.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#1188])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl8/igt@kms_hdr@bpc-switch-dpms.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - shard-kbl:          [PASS][17] -> [DMESG-WARN][18] ([i915#180]) +5 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
+    - shard-skl:          [PASS][19] -> [FAIL][20] ([fdo#108145] / [i915#265]) +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl1/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+
+  * igt@kms_psr@psr2_sprite_blt:
+    - shard-iclb:         [PASS][21] -> [SKIP][22] ([fdo#109441]) +1 similar issue
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb6/igt@kms_psr@psr2_sprite_blt.html
+
+  * igt@prime_busy@after-bsd2:
+    - shard-iclb:         [PASS][23] -> [SKIP][24] ([fdo#109276]) +4 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb4/igt@prime_busy@after-bsd2.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb3/igt@prime_busy@after-bsd2.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@vecs0:
+    - shard-skl:          [FAIL][25] ([i915#1528]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl5/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl6/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
+
+  * igt@gem_ctx_persistence@legacy-engines-mixed-process@blt:
+    - shard-apl:          [FAIL][27] ([i915#1528]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-apl6/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-apl4/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
+
+  * igt@gem_mmap_gtt@cpuset-basic-small-copy-odd:
+    - shard-skl:          [FAIL][29] -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl5/igt@gem_mmap_gtt@cpuset-basic-small-copy-odd.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl6/igt@gem_mmap_gtt@cpuset-basic-small-copy-odd.html
+
+  * igt@gem_tiled_swapping@non-threaded:
+    - shard-hsw:          [FAIL][31] -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-hsw4/igt@gem_tiled_swapping@non-threaded.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-hsw6/igt@gem_tiled_swapping@non-threaded.html
+    - shard-tglb:         [FAIL][33] -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-tglb2/igt@gem_tiled_swapping@non-threaded.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-tglb1/igt@gem_tiled_swapping@non-threaded.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-iclb:         [FAIL][35] ([i915#454]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb8/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle:
+    - shard-hsw:          [FAIL][37] ([i915#1066]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-hsw6/igt@i915_pm_rc6_residency@rc6-idle.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-hsw2/igt@i915_pm_rc6_residency@rc6-idle.html
+
+  * igt@i915_suspend@forcewake:
+    - shard-kbl:          [DMESG-WARN][39] ([i915#180]) -> [PASS][40] +1 similar issue
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-kbl4/igt@i915_suspend@forcewake.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-kbl1/igt@i915_suspend@forcewake.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen:
+    - shard-apl:          [FAIL][41] ([i915#54] / [i915#95]) -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-apl8/igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-apl2/igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
+    - shard-skl:          [FAIL][43] ([IGT#5]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl9/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-hsw:          [INCOMPLETE][45] ([i915#61]) -> [PASS][46] +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-hsw6/igt@kms_flip@flip-vs-suspend.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-hsw1/igt@kms_flip@flip-vs-suspend.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [FAIL][47] ([i915#1188]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl5/igt@kms_hdr@bpc-switch-suspend.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl4/igt@kms_hdr@bpc-switch-suspend.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
+    - shard-apl:          [DMESG-WARN][49] ([i915#180]) -> [PASS][50] +1 similar issue
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+    - shard-skl:          [FAIL][51] ([fdo#108145] / [i915#265]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+
+  * igt@kms_psr@psr2_sprite_mmap_gtt:
+    - shard-iclb:         [SKIP][53] ([fdo#109441]) -> [PASS][54] +1 similar issue
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb5/igt@kms_psr@psr2_sprite_mmap_gtt.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
+
+  * igt@kms_psr@suspend:
+    - shard-skl:          [INCOMPLETE][55] ([i915#198]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl6/igt@kms_psr@suspend.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl7/igt@kms_psr@suspend.html
+
+  * igt@kms_setmode@basic:
+    - shard-skl:          [FAIL][57] ([i915#31]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-skl3/igt@kms_setmode@basic.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-skl8/igt@kms_setmode@basic.html
+
+  * igt@prime_busy@hang-bsd2:
+    - shard-iclb:         [SKIP][59] ([fdo#109276]) -> [PASS][60] +3 similar issues
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8243/shard-iclb6/igt@prime_busy@hang-bsd2.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/shard-iclb4/igt@prime_busy@hang-bsd2.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
+  [i915#1066]: https://gitlab.freedesktop.org/drm/intel/issues/1066
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#61]: https://gitlab.freedesktop.org/drm/intel/issues/61
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8243 -> Patchwork_17195
+
+  CI-20190529: 20190529
+  CI_DRM_8243: 45ccb1b8606b6ba1a5d4f8a8b4dda27bd8dbb04c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17195: 9001132185073e70b7bcdfee5689aeb8d519a79a @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17195/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
