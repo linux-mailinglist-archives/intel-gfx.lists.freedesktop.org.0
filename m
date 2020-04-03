@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8019119DB41
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D90C619DBB3
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 18:30:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF7C66EC19;
-	Fri,  3 Apr 2020 16:17:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8D106EC20;
+	Fri,  3 Apr 2020 16:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A966EC19
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 16:17:18 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20791312-1500050 for multiple; Fri, 03 Apr 2020 17:17:16 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E9BFA6EC21;
+ Fri,  3 Apr 2020 16:29:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E303FA00FD;
+ Fri,  3 Apr 2020 16:29:58 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200403010120.3067-1-ashutosh.dixit@intel.com>
-References: <20200403010120.3067-1-ashutosh.dixit@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <158593063457.5852.4620122096592068466@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 03 Apr 2020 17:17:14 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for
- small user read buffers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Fri, 03 Apr 2020 16:29:58 -0000
+Message-ID: <158593139890.13351.5305678022797040626@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
+ =?utf-8?q?AGV_support_for_Gen12+_=28rev12=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +38,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ashutosh Dixit (2020-04-03 02:01:20)
-> It is wrong to block the user thread in the next poll when OA data is
-> already available which could not fit in the user buffer provided in
-> the previous read. In several cases the exact user buffer size is not
-> known. Blocking user space in poll can lead to data loss when the
-> buffer size used is smaller than the available data.
-> 
-> This change fixes this issue and allows user space to read all OA data
-> even when using a buffer size smaller than the available data using
-> multiple non-blocking reads rather than staying blocked in poll till
-> the next timer interrupt.
-> 
-> v2: Fix ret value for blocking reads (Umesh)
-> v3: Mistake during patch send (Ashutosh)
-> v4: Remove -EAGAIN from comment (Umesh)
-> v5: Improve condition for clearing pollin and return (Lionel)
-> v6: Improve blocking read loop and other cleanups (Lionel)
-> v7: Added Cc stable
-> 
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Cc: <stable@vger.kernel.org>
-> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+== Series Details ==
 
-Did you manage to devise a test case? It is nice (some might say
-important) to pair a patch for stable with its regression test.
--Chris
+Series: SAGV support for Gen12+ (rev12)
+URL   : https://patchwork.freedesktop.org/series/75129/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915: Start passing latency as parameter
+Applying: drm/i915: Eliminate magic numbers "0" and "1" from color plane
+Applying: drm/i915: Introduce skl_plane_wm_level accessor.
+Applying: drm/i915: Add intel_atomic_get_bw_*_state helpers
+Applying: drm/i915: Extract gen specific functions from intel_can_enable_sagv
+Applying: drm/i915: Add proper SAGV support for TGL+
+Applying: drm/i915: Added required new PCode commands
+Applying: drm/i915: Rename bw_state to new_bw_state
+Applying: drm/i915: Restrict qgv points which don't have enough bandwidth.
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0009 drm/i915: Restrict qgv points which don't have enough bandwidth.
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
