@@ -2,31 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69EE19D721
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2333719D740
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 15:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4F276EB81;
-	Fri,  3 Apr 2020 13:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27ACF6EB79;
+	Fri,  3 Apr 2020 13:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BE9C6EB7F;
- Fri,  3 Apr 2020 13:05:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0B737A47DF;
- Fri,  3 Apr 2020 13:05:48 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F39136EB79
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 13:08:24 +0000 (UTC)
+IronPort-SDR: oJOZieTewC+dMmPEMoQ8d2T/TBNfY+cBUFER/t1amfrO85+nD5+XJixLgFJrEjVobCAN/KH2FP
+ PevEdxWuArIg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2020 06:08:24 -0700
+IronPort-SDR: eRbNnU/rrDVFmfPF1paXBtVE7T+boFiNmimnvsynFAx7AqUKmKsq45Gu0Hyf0/gNHc14/OXMM+
+ ZhahdNoYwqYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,339,1580803200"; d="scan'208";a="273943090"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga004.fm.intel.com with ESMTP; 03 Apr 2020 06:08:23 -0700
+Received: from [10.249.254.224] (abudanko-mobl.ccr.corp.intel.com
+ [10.249.254.224])
+ by linux.intel.com (Postfix) with ESMTP id 3E6E958077B;
+ Fri,  3 Apr 2020 06:08:17 -0700 (PDT)
+To: Jiri Olsa <jolsa@redhat.com>
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+ <a66d5648-2b8e-577e-e1f2-1d56c017ab5e@linux.intel.com>
+ <20200403110828.GL2784502@krava>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <56648455-3650-1fa2-6364-659d92d5dc14@linux.intel.com>
+Date: Fri, 3 Apr 2020 16:08:16 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 03 Apr 2020 13:05:48 -0000
-Message-ID: <158591914804.13350.17204893399191385424@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200403120150.17091-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200403120150.17091-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Check_current_i915=5Fvma=2Epin=5Fcount_status_first_on?=
- =?utf-8?q?_unbind_=28rev6=29?=
+In-Reply-To: <20200403110828.GL2784502@krava>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v8 04/12] perf tool: extend Perf tool with
+ CAP_PERFMON capability support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,93 +56,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
+ Andi Kleen <ak@linux.intel.com>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, James Morris <jmorris@namei.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Stephane Eranian <eranian@google.com>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Serge Hallyn <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Check current i915_vma.pin_count status first on unbind (rev6)
-URL   : https://patchwork.freedesktop.org/series/72529/
-State : success
+On 03.04.2020 14:08, Jiri Olsa wrote:
+> On Thu, Apr 02, 2020 at 11:47:35AM +0300, Alexey Budankov wrote:
+>>
+>> Extend error messages to mention CAP_PERFMON capability as an option
+>> to substitute CAP_SYS_ADMIN capability for secure system performance
+>> monitoring and observability operations. Make perf_event_paranoid_check()
+>> and __cmd_ftrace() to be aware of CAP_PERFMON capability.
+>>
+>> CAP_PERFMON implements the principal of least privilege for performance
+>> monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39
+>> principle of least privilege: A security design principle that states
+>> that a process or program be granted only those privileges (e.g.,
+>> capabilities) necessary to accomplish its legitimate function, and only
+>> for the time that such privileges are actually required)
+>>
+>> For backward compatibility reasons access to perf_events subsystem remains
+>> open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for
+>> secure perf_events monitoring is discouraged with respect to CAP_PERFMON
+>> capability.
+>>
+>> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+>> Reviewed-by: James Morris <jamorris@linux.microsoft.com>
+> 
+> Acked-by: Jiri Olsa <jolsa@redhat.com>
 
-== Summary ==
+Thanks! I appreciate you support.
 
-CI Bug Log - changes from CI_DRM_8244 -> Patchwork_17199
-====================================================
+~Alexey
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17199/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17199 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-cml-u2:          [DMESG-WARN][1] ([IGT#4]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8244/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17199/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [FAIL][3] ([i915#262]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8244/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17199/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-cml-u2:          [FAIL][5] ([fdo#103375]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8244/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17199/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (2): fi-kbl-7560u fi-bwr-2160 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bsw-kefka fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8244 -> Patchwork_17199
-
-  CI-20190529: 20190529
-  CI_DRM_8244: 55348aac86bd6f0c4ce4d3d8a0e227f6a20a72f9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5560: 213062c7dcf0cbc8069cbb5f91acbc494def33fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17199: 959059739471c0b4afb54f2bc9ddba88a9d7da12 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-959059739471 drm/i915: Check current i915_vma.pin_count status first on unbind
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17199/index.html
+> 
+> thanks,
+> jirka
+> 
+>> ---
+>>  tools/perf/builtin-ftrace.c |  5 +++--
+>>  tools/perf/design.txt       |  3 ++-
+>>  tools/perf/util/cap.h       |  4 ++++
+>>  tools/perf/util/evsel.c     | 10 +++++-----
+>>  tools/perf/util/util.c      |  1 +
+>>  5 files changed, 15 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/tools/perf/builtin-ftrace.c b/tools/perf/builtin-ftrace.c
+>> index d5adc417a4ca..55eda54240fb 100644
+>> --- a/tools/perf/builtin-ftrace.c
+>> +++ b/tools/perf/builtin-ftrace.c
+>> @@ -284,10 +284,11 @@ static int __cmd_ftrace(struct perf_ftrace *ftrace, int argc, const char **argv)
+>>  		.events = POLLIN,
+>>  	};
+>>  
+>> -	if (!perf_cap__capable(CAP_SYS_ADMIN)) {
+>> +	if (!(perf_cap__capable(CAP_PERFMON) ||
+>> +	      perf_cap__capable(CAP_SYS_ADMIN))) {
+>>  		pr_err("ftrace only works for %s!\n",
+>>  #ifdef HAVE_LIBCAP_SUPPORT
+>> -		"users with the SYS_ADMIN capability"
+>> +		"users with the CAP_PERFMON or CAP_SYS_ADMIN capability"
+>>  #else
+>>  		"root"
+>>  #endif
+>> diff --git a/tools/perf/design.txt b/tools/perf/design.txt
+>> index 0453ba26cdbd..a42fab308ff6 100644
+>> --- a/tools/perf/design.txt
+>> +++ b/tools/perf/design.txt
+>> @@ -258,7 +258,8 @@ gets schedule to. Per task counters can be created by any user, for
+>>  their own tasks.
+>>  
+>>  A 'pid == -1' and 'cpu == x' counter is a per CPU counter that counts
+>> -all events on CPU-x. Per CPU counters need CAP_SYS_ADMIN privilege.
+>> +all events on CPU-x. Per CPU counters need CAP_PERFMON or CAP_SYS_ADMIN
+>> +privilege.
+>>  
+>>  The 'flags' parameter is currently unused and must be zero.
+>>  
+>> diff --git a/tools/perf/util/cap.h b/tools/perf/util/cap.h
+>> index 051dc590ceee..ae52878c0b2e 100644
+>> --- a/tools/perf/util/cap.h
+>> +++ b/tools/perf/util/cap.h
+>> @@ -29,4 +29,8 @@ static inline bool perf_cap__capable(int cap __maybe_unused)
+>>  #define CAP_SYSLOG	34
+>>  #endif
+>>  
+>> +#ifndef CAP_PERFMON
+>> +#define CAP_PERFMON	38
+>> +#endif
+>> +
+>>  #endif /* __PERF_CAP_H */
+>> diff --git a/tools/perf/util/evsel.c b/tools/perf/util/evsel.c
+>> index 816d930d774e..2696922f06bc 100644
+>> --- a/tools/perf/util/evsel.c
+>> +++ b/tools/perf/util/evsel.c
+>> @@ -2507,14 +2507,14 @@ int perf_evsel__open_strerror(struct evsel *evsel, struct target *target,
+>>  		 "You may not have permission to collect %sstats.\n\n"
+>>  		 "Consider tweaking /proc/sys/kernel/perf_event_paranoid,\n"
+>>  		 "which controls use of the performance events system by\n"
+>> -		 "unprivileged users (without CAP_SYS_ADMIN).\n\n"
+>> +		 "unprivileged users (without CAP_PERFMON or CAP_SYS_ADMIN).\n\n"
+>>  		 "The current value is %d:\n\n"
+>>  		 "  -1: Allow use of (almost) all events by all users\n"
+>>  		 "      Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK\n"
+>> -		 ">= 0: Disallow ftrace function tracepoint by users without CAP_SYS_ADMIN\n"
+>> -		 "      Disallow raw tracepoint access by users without CAP_SYS_ADMIN\n"
+>> -		 ">= 1: Disallow CPU event access by users without CAP_SYS_ADMIN\n"
+>> -		 ">= 2: Disallow kernel profiling by users without CAP_SYS_ADMIN\n\n"
+>> +		 ">= 0: Disallow ftrace function tracepoint by users without CAP_PERFMON or CAP_SYS_ADMIN\n"
+>> +		 "      Disallow raw tracepoint access by users without CAP_SYS_PERFMON or CAP_SYS_ADMIN\n"
+>> +		 ">= 1: Disallow CPU event access by users without CAP_PERFMON or CAP_SYS_ADMIN\n"
+>> +		 ">= 2: Disallow kernel profiling by users without CAP_PERFMON or CAP_SYS_ADMIN\n\n"
+>>  		 "To make this setting permanent, edit /etc/sysctl.conf too, e.g.:\n\n"
+>>  		 "	kernel.perf_event_paranoid = -1\n" ,
+>>  				 target->system_wide ? "system-wide " : "",
+>> diff --git a/tools/perf/util/util.c b/tools/perf/util/util.c
+>> index d707c9624dd9..37a9492edb3e 100644
+>> --- a/tools/perf/util/util.c
+>> +++ b/tools/perf/util/util.c
+>> @@ -290,6 +290,7 @@ int perf_event_paranoid(void)
+>>  bool perf_event_paranoid_check(int max_level)
+>>  {
+>>  	return perf_cap__capable(CAP_SYS_ADMIN) ||
+>> +			perf_cap__capable(CAP_PERFMON) ||
+>>  			perf_event_paranoid() <= max_level;
+>>  }
+>>  
+>> -- 
+>> 2.24.1
+>>
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
