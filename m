@@ -2,30 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF0E19D8D2
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 16:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF0219D96C
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Apr 2020 16:47:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C7B6EBE3;
-	Fri,  3 Apr 2020 14:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0450889FD1;
+	Fri,  3 Apr 2020 14:47:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 918166EBD9;
- Fri,  3 Apr 2020 14:17:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8B060A0091;
- Fri,  3 Apr 2020 14:17:58 +0000 (UTC)
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1558C89FD1
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 14:47:17 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id k9so6275446oia.8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 07:47:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=q494EeIqu794MuQ3IIt/myofSWXEMItS949n7jGyw/0=;
+ b=WJ3QNPl0ZdMv5shmCIBImV3rhoBDUFynePlbMsKagaJdM3iFYsLkVCRTRkRwSxJBeS
+ iWkr1YRCA/5k+DmEuzRCauuLu+2UMxBWKe8Gz8LjO+Qq9Zum40KV+IoKvR9Jxx6S/JLK
+ GzLRba1l2IafBnF3G/yk95UtsZYGHtBt6vD+0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=q494EeIqu794MuQ3IIt/myofSWXEMItS949n7jGyw/0=;
+ b=cZF9MtI2EClORLjwXV+/BLY0WKrpljLq+6YbPwfC+7djMn32QoN6/FXyrOrDxXJFxa
+ qTpmnl2aTSKLM5QerKPlKUPaU1kgVPX4qQOPzVVuu8MyAKNo17u9iAAcW1ttiLWPXgYq
+ Bi52/1KymkqNWnbxflCmJaRy7lT2FLmyICWqlzrKEaPduHYk9+plzobh0PuTho3XiJsM
+ 6DDaSftthhwMmEQ8pkojjewRyPzwAupC0X6i/n1B82swWxoiRRkGvQQGNGK/nUZp2Glr
+ v3u8WCP0orv7D7lXGGJgvVy3SBAc/AhFrEINlGOGlDesUPl5bFFf3rN4bLCKznpXVr9B
+ zRNw==
+X-Gm-Message-State: AGi0PuZQJ3vc978fWs8g5tgy9UbpH7wZSjDpKrnWJx3rbGxrVTqXNoSX
+ EPtzP4AqrSPpFZ2XgI3V5HgsJldXFd4Z08DDppw/7R9V
+X-Google-Smtp-Source: APiQypIV3l7JhRoBsme7mjfH/hr2XzxnNQ4CbrulcFzdNFHM5a9dHEEjgKldE+JHHebZlBm41L85hhJbWnUvgedf1lQ=
+X-Received: by 2002:aca:c45:: with SMTP id i5mr3018742oiy.101.1585925236102;
+ Fri, 03 Apr 2020 07:47:16 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 03 Apr 2020 14:17:58 -0000
-Message-ID: <158592347856.13351.1548059086365467165@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200402183836.21508-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200402183836.21508-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Keep_a_per-engine_request_pools_=28rev2=29?=
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-2-daniel.vetter@ffwll.ch>
+ <20200403141712.GA4088318@kroah.com>
+In-Reply-To: <20200403141712.GA4088318@kroah.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Fri, 3 Apr 2020 16:47:04 +0200
+Message-ID: <CAKMK7uHuzsrMsB=Pnd4MD3VQyRizvjb7Y-RwAdCPF2ZNrfbhvQ@mail.gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [Intel-gfx] [PATCH 01/44] drivers/base: Always release devres
+ on device_del
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,262 +60,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Apr 3, 2020 at 4:17 PM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Fri, Apr 03, 2020 at 03:57:45PM +0200, Daniel Vetter wrote:
+> > In drm we've added nice drm_device (the main gpu driver thing, which
+> > also represents the userspace interfaces and has everything else
+> > dangling off it) init functions using devres, devm_drm_dev_init and
+> > soon devm_drm_dev_alloc (this patch series adds that).
+> >
+> > A slight trouble is that drm_device itself holds a reference on the
+> > struct device it's sitting on top (for sysfs links and dmesg debug and
+> > lots of other things), so there's a reference loop. For real drivers
+> > this is broken at remove/unplug time, where all devres resources are
+> > released device_release_driver(), before the final device reference is
+> > dropped. So far so good.
+> >
+> > There's 2 exceptions:
+> > - drm/vkms|vgem: Virtual drivers for which we create a fake/virtual
+> >   platform device to make them look more like normal devices to
+> >   userspace. These aren't drivers in the driver model sense, we simple
+> >   create a platform_device and register it.
+>
+> That's a horrid abuse of platform devices, just use a "virtual" device
+> please, create/remove it when you need it, and all should be fine.
+>
+> > - drm/i915/selftests, where we create minimal mock devices, and again
+> >   the selftests aren't proper drivers in the driver model sense.
+>
+> Again, virtual devices are best to use for this.
 
-Series: drm/i915: Keep a per-engine request pools (rev2)
-URL   : https://patchwork.freedesktop.org/series/75427/
-State : failure
+Hm yeah, I guess we should fix that. i915 selftests do use raw struct
+device though, and it's not really the problem.
 
-== Summary ==
+> > For these two cases the reference loop isn't broken, because devres is
+> > only cleaned up when the last device reference is dropped. But that's
+> > not happening, because the drm_device holds that last struct device
+> > reference.
+> >
+> > Thus far this wasn't a problem since the above cases simply
+> > hand-rolled their cleanup code. But I want to convert all drivers over
+> > to the devm_ versions, hence it would be really nice if these
+> > virtual/fake/mock uses-cases could also be managed with devres
+> > cleanup.
+> >
+> > I see three possible approaches:
+> >
+> > - Clean up devres from device_del (or platform_device_unregister) even
+> >   when no driver is bound. This seems like the simplest solution, but
+> >   also the one with the widest impact, and what this patch implements.
+> >   We might want to include more of the cleanup than just
+> >   devres_release_all, but this is all I need to get my use case going.
+>
+> After device_del, you should never be using that structure again anyway.
+> So why is there any "resource leak"?  You can't recycle the structure,
+> and you can't assign it to anything else, so eventually you have to do
+> a final put on the thing, which will free up the resources.
 
-CI Bug Log - changes from CI_DRM_8238_full -> Patchwork_17189_full
-====================================================
+I guess I should have spent more time explaining this. There's two
+references involved:
 
-Summary
--------
+- drm_device->dev points at the underlying struct device. The
+drm_device holds a reference until it's fully cleaned up, so that we
+can do nice stuff like use dev_ versions of printk functions, and you
+always know that there's not going to be a use-after free.
 
-  **FAILURE**
+- now the other dependency is that as long as the device exists (not
+just in memory, but in the device model, i.e. between device_add() and
+device_del()) the drm_device should exist. So what we do in the
+bus-specific remove/disconnect callback is that we call
+drm_dev_unregister(). This drops the drm_device refcount that the drm
+chardev was holding, to make sure that an open() on the chardev can
+actually get at the memory without going boom. Then after the
+drm_dev_unregister, again in the remove/disconnect callback of th
+driver, there's a drm_dev_put(). Which might or might not be the final
+drm_dev_put(), since if there's currently some open fd we keep the
+refcount elevated, to avoid oopses and fun stuff like that. And
+drm_device pointers get shared very widely, thanks to fun stuff like
+dma_buf buffer sharing and dma_fence hw syncpt sharing across
+processes and drivers.
 
-  Serious unknown changes coming with Patchwork_17189_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17189_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Once the final drm_dev_put() is called we also end up calling
+put_device() and everything is happy.
 
-  
+So far so good.
 
-Possible new issues
--------------------
+Now the problem is that refcount is hard, and most drm drivers get it
+wrong in some fashion or another, so I'm trying to solve all this with
+more magic.
 
-  Here are the unknown changes that may have been introduced in Patchwork_17189_full:
+Since all drivers need to have a drm_dev_put() at the end of their
+driver's remove/disconnect callback we've added a devm_drm_dev_init
+function which registers a devres action to do that drm_dev_put() at
+device_del time (which might or might not be the final drm_dev_put()).
+Nothing has changed thus far.
 
-### IGT changes ###
+Now this works really well because when you have a real driver model
+driver attached, then device_del ends up calling devres_release_all(),
+which ends up triggering the multi-stage cleanup of drm_devices. But
+if you do _not_ have a real driver attached, then device_del does
+nothing wrt devres cleanup. Instead this is delayed until the final
+put_device().
 
-#### Possible regressions ####
+Unfortunately that final put_device() will never happen, because
+drm_device is still holding a reference to the struct device. And the
+final drm_dev_put of that drm_device will never happen, because that
+drm_dev_put call is in a devres actions, which wont ever get called.
 
-  * igt@gem_mmap_gtt@cpuset-basic-small-copy-xy:
-    - shard-skl:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-skl2/igt@gem_mmap_gtt@cpuset-basic-small-copy-xy.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-skl7/igt@gem_mmap_gtt@cpuset-basic-small-copy-xy.html
+This is the only case where this reference loop happens and doesn't
+get broken. By calling devres_release_all at device_del time,
+irrespective of whether a driver is bound or not, we make both cases
+work the same. And at both cases the devres cleanup happens device_del
+time, and not when the final put_device is called.
 
-  * igt@gem_mmap_gtt@hang:
-    - shard-iclb:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb1/igt@gem_mmap_gtt@hang.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb2/igt@gem_mmap_gtt@hang.html
+Aside: The final put_device has another devres_release_all() call,
+which given your explanation sounds very wrong - at that point the
+physical device is long gone, and cleaning up devres actions at that
+point is way too late. I think a good cleanup patch on top of this
+would be to remove that call, and replace it with an assert that no
+one managed to sneak in a devres_add_action between device_del and the
+final put_device().
 
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-snb:          [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-snb6/igt@i915_pm_rc6_residency@rc6-idle.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-snb5/igt@i915_pm_rc6_residency@rc6-idle.html
+> And then all should be fine, right?  But, by putting the freeing here,
+> you can still have a "live" device that thinks it has resources availble
+> that it can access, but yet they are now gone.  Yeah, it's probably not
+> ever going to really happen, but the lifecycles of dynamic devices are
+> tough to "prove" at times, and I worry that freeing things this early is
+> going to cause odd disconnect issues.
 
-  
-Known issues
-------------
+Not exactly sure what you mean here, but trying to fix all the driver
+bugs we have in drm is why I'm doing this. We have a massive amount of
+gaps still, but we're slowly closing them all off with stuff like
+drm_dev_enter/exit, to make sure there's no races possible between
+driver hotunplug and concurrent access by userspace.
 
-  Here are the changes found in Patchwork_17189_full that come from known issues:
+The additional trouble is that users are really pissed when we crash
+their compositor just because they unplugged an usb display dongle or
+an usb projector thing. So the failure mode we're aiming for in drm
+for hotunplug is to be very graceful to userspace - experience says
+that userspace is even less likely to handle this correctly than the
+kernel. That's why we're refcounting drm_device and everything hanging
+off it, so that it sticks around and we can pretend to userspace that
+it's all still there (but disconnected from hw and the driver). Until
+userspace has gone around and managed to process the udev events and
+closed all open fds.
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - shard-apl:          [PASS][7] -> [INCOMPLETE][8] ([i915#656])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl8/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl6/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-kbl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-apl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180] / [i915#95])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl1/igt@kms_fbcon_fbt@fbc-suspend.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl1/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#1188])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane_cursor@pipe-a-overlay-size-128:
-    - shard-kbl:          [PASS][17] -> [FAIL][18] ([i915#1559] / [i915#93] / [i915#95])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-kbl7/igt@kms_plane_cursor@pipe-a-overlay-size-128.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-kbl3/igt@kms_plane_cursor@pipe-a-overlay-size-128.html
-    - shard-apl:          [PASS][19] -> [FAIL][20] ([i915#1559] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl2/igt@kms_plane_cursor@pipe-a-overlay-size-128.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl8/igt@kms_plane_cursor@pipe-a-overlay-size-128.html
-
-  * igt@kms_plane_lowres@pipe-a-tiling-x:
-    - shard-glk:          [PASS][21] -> [FAIL][22] ([i915#899])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-glk8/igt@kms_plane_lowres@pipe-a-tiling-x.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-glk7/igt@kms_plane_lowres@pipe-a-tiling-x.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][23] -> [SKIP][24] ([fdo#109441]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb5/igt@kms_psr@psr2_cursor_render.html
-
-  * igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend:
-    - shard-skl:          [PASS][25] -> [INCOMPLETE][26] ([i915#69])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-skl5/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-skl4/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_balancer@smoke:
-    - shard-iclb:         [SKIP][27] ([fdo#110854]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb3/igt@gem_exec_balancer@smoke.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb1/igt@gem_exec_balancer@smoke.html
-
-  * igt@gem_mmap_gtt@cpuset-big-copy-odd:
-    - shard-hsw:          [FAIL][29] -> [PASS][30] +1 similar issue
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-hsw2/igt@gem_mmap_gtt@cpuset-big-copy-odd.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-hsw4/igt@gem_mmap_gtt@cpuset-big-copy-odd.html
-
-  * igt@gem_tiled_swapping@non-threaded:
-    - shard-apl:          [FAIL][31] -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl1/igt@gem_tiled_swapping@non-threaded.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl4/igt@gem_tiled_swapping@non-threaded.html
-
-  * {igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy@gtt}:
-    - shard-snb:          [DMESG-WARN][33] ([i915#478]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-snb6/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy@gtt.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-snb2/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy@gtt.html
-    - shard-hsw:          [DMESG-WARN][35] ([i915#478]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-hsw4/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy@gtt.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-hsw1/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy@gtt.html
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-apl:          [DMESG-WARN][37] ([i915#180]) -> [PASS][38] +1 similar issue
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl4/igt@gem_workarounds@suspend-resume-context.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl7/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
-    - shard-glk:          [FAIL][39] ([i915#79]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-glk9/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-glk8/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_flip@2x-plain-flip-ts-check-interruptible:
-    - shard-glk:          [FAIL][41] ([i915#34]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-glk7/igt@kms_flip@2x-plain-flip-ts-check-interruptible.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-glk4/igt@kms_flip@2x-plain-flip-ts-check-interruptible.html
-
-  * igt@kms_flip@flip-vs-suspend:
-    - shard-skl:          [INCOMPLETE][43] ([i915#221]) -> [PASS][44] +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-skl1/igt@kms_flip@flip-vs-suspend.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-skl2/igt@kms_flip@flip-vs-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [DMESG-WARN][45] ([i915#180]) -> [PASS][46] +3 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-kbl4/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane@plane-panning-top-left-pipe-a-planes:
-    - shard-skl:          [FAIL][47] ([i915#1036]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-skl3/igt@kms_plane@plane-panning-top-left-pipe-a-planes.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-skl8/igt@kms_plane@plane-panning-top-left-pipe-a-planes.html
-
-  * igt@kms_psr@psr2_sprite_mmap_gtt:
-    - shard-iclb:         [SKIP][49] ([fdo#109441]) -> [PASS][50] +2 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb1/igt@kms_psr@psr2_sprite_mmap_gtt.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
-
-  * igt@prime_busy@after-bsd2:
-    - shard-iclb:         [SKIP][51] ([fdo#109276]) -> [PASS][52] +3 similar issues
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb3/igt@prime_busy@after-bsd2.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb1/igt@prime_busy@after-bsd2.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:
-    - shard-iclb:         [SKIP][53] ([i915#1316]) -> [SKIP][54] ([i915#1316] / [i915#579]) +1 similar issue
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb4/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb1/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-
-  * igt@i915_pm_rpm@dpms-non-lpsp:
-    - shard-snb:          [INCOMPLETE][55] ([i915#82]) -> [SKIP][56] ([fdo#109271])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-snb4/igt@i915_pm_rpm@dpms-non-lpsp.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-snb6/igt@i915_pm_rpm@dpms-non-lpsp.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [SKIP][57] ([fdo#109642] / [fdo#111068]) -> [FAIL][58] ([i915#608])
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-iclb1/igt@kms_psr2_su@page_flip.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-iclb2/igt@kms_psr2_su@page_flip.html
-
-  * igt@runner@aborted:
-    - shard-apl:          [FAIL][59] ([i915#1423]) -> ([FAIL][60], [FAIL][61]) ([i915#1423] / [i915#529])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8238/shard-apl7/igt@runner@aborted.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl8/igt@runner@aborted.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/shard-apl6/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1036]: https://gitlab.freedesktop.org/drm/intel/issues/1036
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1316]: https://gitlab.freedesktop.org/drm/intel/issues/1316
-  [i915#1423]: https://gitlab.freedesktop.org/drm/intel/issues/1423
-  [i915#1559]: https://gitlab.freedesktop.org/drm/intel/issues/1559
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#478]: https://gitlab.freedesktop.org/drm/intel/issues/478
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8238 -> Patchwork_17189
-
-  CI-20190529: 20190529
-  CI_DRM_8238: 840f70602a47208a2f1e444ba276f412f10e38df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5558: 3b55a816300d80bc5e0b995cd41ee8c8649a1ea2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17189: 14acbca51678ae918b24e847596b290f7b15a608 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17189/index.html
+Cheers, Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
