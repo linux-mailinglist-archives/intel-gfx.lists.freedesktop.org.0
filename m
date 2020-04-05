@@ -1,67 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF4C19F8DC
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:29:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F4519F8D8
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:29:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 071F46E42A;
-	Mon,  6 Apr 2020 15:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE1706E2DE;
+	Mon,  6 Apr 2020 15:29:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 640186E227
- for <intel-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 14:07:37 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id b62so13378361qkf.6
- for <intel-gfx@lists.freedesktop.org>; Sun, 05 Apr 2020 07:07:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=JAlxBkJ/vAYnzcuSmMxnXNOPR31DMZ9670oXNnXnY44=;
- b=L4G2Eo0BzZMIQC0DUvis8QpbRiKn+ActwetzoChQVxWewYfAYfvYyijcQP7MH8eDHY
- XbUAoy9iNtUDV3izmxb/eLsrKO3H6WVWzoN7ymePKhANm5/ZN3BJY2ZDDLCH+pJ3xOZH
- uoT5ZqonyZKk6lppcETBLnCMX3/ELOYCTr4ce58D5DJE2E9I0aHWDQ3742T/mO0uMtAe
- BQuIIuqP1difLg32bk2Ul2v4nvFeTKnvfMcWu6VeGPM2u9W0dJXrHvUmUqYr8wKn4ASX
- 3eSh7G7oDqsGa4f5nZLwa/6lUEtakTVnNjmle2A9e+sMQioWnAYjCBk81AURfbX6h8gx
- N5Jw==
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE04C6E249
+ for <intel-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 14:10:34 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id b10so4973373qtt.9
+ for <intel-gfx@lists.freedesktop.org>; Sun, 05 Apr 2020 07:10:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Fj5IkYeTwvEQJU3mrvn13eBZKNJ+9tUvL96085xGJxE=;
+ b=PUXZHGoaZxdIN6d3dLITTVmOMYMyzD1WzUovhblIhnH0+gX1MNWpAzLXCQgk2kjb4r
+ MlJo8+N8G03Sa1hMX0SzavAQvly8jLAQ+hbQperFpamXKFXDtOKZO1KBx7z3QF7jU4DN
+ v2O2rih9I491tXxgjaiA8y75O5NeuTOBTrBD5lyOIL+4LBqVTqjlPgB8IOP+vdkio7Ne
+ OF0/t3wAwc/c/4fhcxK0mgit6koSfOKh3e8xFvAUuaInvIs+DvGpC7Qx4f3FaJ6/exvW
+ RQ5WEGhuuoq8VdPrvO9ejeK2M4qtHC7mPdoXm5yO6XzAi2YIMIwcRWsAHg60RLTYDgVS
+ MEwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=JAlxBkJ/vAYnzcuSmMxnXNOPR31DMZ9670oXNnXnY44=;
- b=e93v/tQ7oXE4MUbE4qDPcmqVTMcJW02fmdzj/GaiPFeowoClC88eR6dpsWf+8Rz6hu
- 6kbAmLKF48MpNUEa3yfd8S+ymWoU+ZFwpzvcCypkT7gdkacK7rIyb1rxqtujiscCZmQ3
- /SNpE0ynMZ7+Wyyl6v1tA6Lrcg6bH9XzNsq1INJ0b6Dc2+BvcMbDOaARn1aJD6l58Gmt
- nYeZjH3w+jSEoZwP1HvADIeo/tlR4B9kvQpz7jcLdNixLpEGyyw23H1AjvDVoBybqwtb
- +Qg+Egh48XG46bGhG4AMDcytX1NylP3ePTlnp6YxNPlFgamiANIg+p1z3olB+x/3l78i
- GSTA==
-X-Gm-Message-State: AGi0Puai9DpmgskRTKhZ1WsubOGlPnfBMzLshm+c1Ay9UVH8tClYfudQ
- 0MuDo30rDBkDzSqb4SCnmyUeuw==
-X-Google-Smtp-Source: APiQypL5OQi4HwK2apJUg1MSYnYnY80MBkwhlljXjCapRjxdDGWYAr+ZampBXEZHAZs/gbu3WdNFJQ==
-X-Received: by 2002:a37:8044:: with SMTP id b65mr17213319qkd.238.1586095655449; 
- Sun, 05 Apr 2020 07:07:35 -0700 (PDT)
-Received: from skullcanyon ([192.222.193.21])
- by smtp.gmail.com with ESMTPSA id e17sm10180034qtw.1.2020.04.05.07.07.34
+ h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Fj5IkYeTwvEQJU3mrvn13eBZKNJ+9tUvL96085xGJxE=;
+ b=Djlj4Rm4jtAogOnyHgw9zHPBvYC88ZmcKoBVRzfYpto2ay9QtWWInB3ewcBnsQiuYG
+ ZxaSC9VtbRczUvEIgG3D+kgw9YMxDYpOJ4uQsJzyvncaxPsivM092WsgKJhIYmTLBk0r
+ UUVvkg6tfW2D2mJ+J3lUAiESjRj87wfXtRkopp+vhykv00B8gMihdLry4GN5tNiE+Ajb
+ bh/ZiZXtfjYEOAE8I/OEd7Ky01g7zuZOsvErbtuczNAlZ1/lsA2DE1vIgif3aw4/9hZV
+ Oy8j7H3Ag6uFDPYPDfd/06BFJIjI55lT/YSSIvzE+i52/4+cZPI8PgzQ9+BGh4J4JzLE
+ 3P1w==
+X-Gm-Message-State: AGi0PubediZawhvg5iUDG6v4psG6DJ0QMu4Tz0xrpjSiVH1wFpBULLzO
+ /PujS+90Y56a/fzimaoRf5M=
+X-Google-Smtp-Source: APiQypJu0uvODNR9YrN0sb4Kh6DQPLH6AalqUaYQK8KEpypo5wVQtssYkV/vcueHnh7R58TbWcdGhg==
+X-Received: by 2002:aed:2435:: with SMTP id r50mr16393370qtc.314.1586095833851; 
+ Sun, 05 Apr 2020 07:10:33 -0700 (PDT)
+Received: from quaco.ghostprotocols.net ([179.97.37.151])
+ by smtp.gmail.com with ESMTPSA id 6sm9452806qkr.25.2020.04.05.07.10.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 05 Apr 2020 07:07:34 -0700 (PDT)
-Message-ID: <5846e62945aac802d5a08931fd153eb8927c70b5.camel@ndufresne.ca>
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Andreas Bergmeier <abergmeier@gmx.net>, Eric Anholt <eric@anholt.net>
-Date: Sun, 05 Apr 2020 10:07:33 -0400
-In-Reply-To: <CABfF9mMwcTL3qx=F_Ep0X0Zh-pb_ZKxrhEwWP-wc3jkVHDaAMg@mail.gmail.com>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
- <CAPM=9txN-RKGwinzsSPrmT_xFjS2J_XUhXVsRQ2pSSe529wpEA@mail.gmail.com>
- <CADaigPUjYZ-Mqd91eyR3Luo=PxLHratUhvodJmCJHf__MnPozA@mail.gmail.com>
- <CABfF9mMwcTL3qx=F_Ep0X0Zh-pb_ZKxrhEwWP-wc3jkVHDaAMg@mail.gmail.com>
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+ Sun, 05 Apr 2020 07:10:32 -0700 (PDT)
+From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
+X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
+Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
+ id AE02E409A3; Sun,  5 Apr 2020 11:10:29 -0300 (-03)
+Date: Sun, 5 Apr 2020 11:10:29 -0300
+To: Alexey Budankov <alexey.budankov@linux.intel.com>
+Message-ID: <20200405141029.GA16896@kernel.org>
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+ <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
+X-Url: http://acmel.wordpress.com
 X-Mailman-Approved-At: Mon, 06 Apr 2020 15:29:14 +0000
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+Subject: Re: [Intel-gfx] [PATCH v8 12/12] doc/admin-guide: update kernel.rst
+ with CAP_PERFMON information
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,125 +73,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
+ Andi Kleen <ak@linux.intel.com>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGUgc2FtZWRpIDA0IGF2cmlsIDIwMjAgw6AgMTU6NTUgKzAyMDAsIEFuZHJlYXMgQmVyZ21laWVy
-IGEgw6ljcml0IDoKPiBUaGUgcHJvYmxlbSBvZiBkYXRhIHRyYW5zZmVyIGNvc3RzIGlzIG5vdCBu
-ZXcgaW4gQ2xvdWQgZW52aXJvbm1lbnRzLiBBdCB3b3JrIHdlIHVzdWFsbHkganVzdCBvcHQgZm9y
-IHBheWluZyBmb3IgaXQgc2luY2UgZGV2IHRpbWUgaXMgc2NhcnNlci4gRm9yIHByaXZhdGUgcHJv
-amVjdHMgdGhvdWdoLCBJIG9wdCBmb3IgYWdncmVzc2l2ZSAocmVtb3RlKSBjYWNoaW5nLgo+IFNv
-IHlvdSBjYW4gc2V0dXAgYSBnbG9iYWwgY2FjaGUgaW4gR29vZ2xlIENsb3VkIFN0b3JhZ2UgYW5k
-IG1vcmUgbG9jYWwgY2FjaGVzIHdoZXJldmVyIHlvdXIgZXhlY3V0b3JzIGFyZSAocmVkdWNlcyBl
-Z3Jlc3MgYXMgbXVjaCBhcyBwb3NzaWJsZSkuCj4gVGhpcyBzZXR1cCB3b3JrcyBncmVhdCB3aXRo
-IEJhemVsIGFuZCBQYW50cyBhbW9uZyBvdGhlcnMuIE5vdGUgdGhhdCB0aGVzZSBzeXN0ZW1zIGFy
-ZSBwcmV0dHkgaGVybWV0aWMgaW4gY29udHJhc3QgdG8gTWVzb24uCj4gSUlSQyBFcmljIGJ5IG5v
-dyB3b3JrcyBhdCBHb29nbGUuIFRoZXkgaW50ZXJuYWxseSB1c2UgQmxhemUgd2hpY2ggQUZBSUsg
-ZG9lcyBhZ2dyZXNzaXZlIGNhY2hpbmcsIHRvby4KPiBTbyBtYXliZSB1c2luZyBhbnkgb2YgdGhl
-c2Ugc3lzdGVtcyB3b3VsZCBiZSBhIHdheSBvZiBub3QgaGF2aW5nIHRvIHNhY3JpZmljZSBhbnkg
-b2YgdGhlIGN1cnJlbnQgZnVuY3Rpb25hbGl0eS4KPiBEb3duc2lkZSBpcyB0aGF0IHlvdSBoYXZl
-IGxvd2VyIGEgYml0IG9mIGRldiBwcm9kdWN0aXZpdHkgc2luY2UgeW91IGNhbm5vdCBleWViYWxs
-IHlvdXIgYnVpbGQgZGVmaW5pdGlvbnMgYW55bW9yZS4KPiAKRGlkIHlvdSBtZWFuIEJhemVsIFsw
-XSA/IEknbSBub3Qgc3VyZSBJIGZvbGxvdyB5b3VyIHJlZmxlY3Rpb24sIHdoeSBpcwpNZXNvbiB2
-cyBCYXplbCByZWxhdGVkIHRvIHRoaXMgaXNzdWUgPwoKTmljb2xhcwoKWzBdIGh0dHBzOi8vYmF6
-ZWwuYnVpbGQvCgo+IHltMmMKPiAKPiAKPiBPbiBGcmksIDI4IEZlYiAyMDIwIGF0IDIwOjM0LCBF
-cmljIEFuaG9sdCA8ZXJpY0BhbmhvbHQubmV0PiB3cm90ZToKPiA+IE9uIEZyaSwgRmViIDI4LCAy
-MDIwIGF0IDEyOjQ4IEFNIERhdmUgQWlybGllIDxhaXJsaWVkQGdtYWlsLmNvbT4gd3JvdGU6Cj4g
-PiA+Cj4gPiA+IE9uIEZyaSwgMjggRmViIDIwMjAgYXQgMTg6MTgsIERhbmllbCBTdG9uZSA8ZGFu
-aWVsQGZvb2lzaGJhci5vcmc+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gT24gRnJpLCAyOCBGZWIg
-MjAyMCBhdCAwMzozOCwgRGF2ZSBBaXJsaWUgPGFpcmxpZWRAZ21haWwuY29tPiB3cm90ZToKPiA+
-ID4gPiA+IGIpIHdlIHByb2JhYmx5IG5lZWQgdG8gdGFrZSBhIGxhcmdlIHN0ZXAgYmFjayBoZXJl
-Lgo+ID4gPiA+ID4KPiA+ID4gPiA+IExvb2sgYXQgdGhpcyBmcm9tIGEgc3BvbnNvciBQT1YsIHdo
-eSB3b3VsZCBJIGdpdmUgWC5vcmcvZmQubwo+ID4gPiA+ID4gc3BvbnNvcnNoaXAgbW9uZXkgdGhh
-dCB0aGV5IGFyZSBqdXN0IGdpdmluZyBzdHJhaWdodCB0byBnb29nbGUgdG8gcGF5Cj4gPiA+ID4g
-PiBmb3IgaG9zdGluZyBjcmVkaXRzPyBHb29nbGUgYXJlIHByb2ZpdGluZyBpbiBzb21lIG1pbm9y
-IHdheSBmcm9tIHRoZXNlCj4gPiA+ID4gPiBob3N0aW5nIGNyZWRpdHMgYmVpbmcgYm91Z2h0IGJ5
-IHVzLCBhbmQgSSBhc3N1bWUgd2UgYXJlbid0IGdldHRpbmcgYW55Cj4gPiA+ID4gPiBzb3J0IG9m
-IGRpc2NvdW50cyBoZXJlLiBIYXZpbmcgZ29vZ2xlIHNwb25zb3IgdGhlIGNyZWRpdHMgY29zdHMg
-Z29vZ2xlCj4gPiA+ID4gPiBzdWJzdGFudGlhbGx5IGxlc3MgdGhhbiBoYXZpbmcgYW55IG90aGVy
-IGNvbXBhbnkgZ2l2ZSB1cyBtb25leSB0byBkbwo+ID4gPiA+ID4gaXQuCj4gPiA+ID4KPiA+ID4g
-PiBUaGUgbGFzdCBJIGxvb2tlZCwgR29vZ2xlIEdDUCAvIEFtYXpvbiBBV1MgLyBBenVyZSB3ZXJl
-IGFsbCBwcmV0dHkKPiA+ID4gPiBjb21wYXJhYmxlIGluIHRlcm1zIG9mIHdoYXQgeW91IGdldCBh
-bmQgd2hhdCB5b3UgcGF5IGZvciB0aGVtLgo+ID4gPiA+IE9idmlvdXNseSBwcm92aWRlcnMgbGlr
-ZSBQYWNrZXQgYW5kIERpZ2l0YWwgT2NlYW4gd2hvIG9mZmVyIGJhcmUtbWV0YWwKPiA+ID4gPiBz
-ZXJ2aWNlcyBhcmUgY2hlYXBlciwgYnV0IHRoZW4geW91IG5lZWQgdG8gZmluZCBzb21lb25lIHdo
-byBpcyBnb2luZwo+ID4gPiA+IHRvIHByb3Blcmx5IGFkbWluaXN0ZXIgdGhlIHZhcmlvdXMgbWFj
-aGluZXMsIGluc3RhbGwgZGVjZW50Cj4gPiA+ID4gbW9uaXRvcmluZywgbWFrZSBzdXJlIHRoYXQg
-bW9yZSBzdG9yYWdlIGlzIHByb3Zpc2lvbmVkIHdoZW4gd2UgbmVlZAo+ID4gPiA+IG1vcmUgc3Rv
-cmFnZSAod2hpY2ggaXMgYmFzaWNhbGx5IGFsbCB0aGUgdGltZSksIG1ha2Ugc3VyZSB0aGF0IHRo
-ZQo+ID4gPiA+IGhhcmR3YXJlIGlzIG1haW50YWluZWQgaW4gZGVjZW50IHNoYXBlIChwcmV0dHkg
-c3VyZSBvbmUgb2YgdGhlIGZkLm8KPiA+ID4gPiBtYWNoaW5lcyBoYXMgaGFkIGEgZHJpdmUgaW4g
-aW1taW5lbnQtZmFpbHVyZSBzdGF0ZSBmb3IgdGhlIGxhc3QgZmV3Cj4gPiA+ID4gbW9udGhzKSwg
-ZXRjLgo+ID4gPiA+Cj4gPiA+ID4gR2l2ZW4gdGhlIHNpemUgb2Ygb3VyIHNlcnZpY2UsIHRoYXQn
-cyBhIG11Y2ggYmV0dGVyIHBsYW4gKElNTykgdGhhbgo+ID4gPiA+IHJlbHlpbmcgb24gc29tZW9u
-ZSB3aG8gYSkgaXNuJ3QgYW4gYWRtaW4gYnkgdHJhZGUsIGIpIGhhcyBhIG1pbGxpb24KPiA+ID4g
-PiBvdGhlciB0aGluZ3MgdG8gZG8sIGFuZCBjKSBoYXNuJ3Qgd2FudGVkIHRvIGRvIGl0IGZvciB0
-aGUgcGFzdCBzZXZlcmFsCj4gPiA+ID4geWVhcnMuIEJ1dCBhcyBsb25nIGFzIHRoYXQncyB0aGUg
-cmVzb3VyY2VzIHdlIGhhdmUsIHRoZW4gd2UncmUgcGF5aW5nCj4gPiA+ID4gdGhlIGNsb3VkIHRy
-YWRlb2ZmLCB3aGVyZSB3ZSBwYXkgbW9yZSBtb25leSBpbiBleGNoYW5nZSBmb3IgZmV3ZXIKPiA+
-ID4gPiBwcm9ibGVtcy4KPiA+ID4KPiA+ID4gQWRtaW4gZm9yIGdpdGxhYiBhbmQgQ0kgaXMgYSBm
-dWxsIHRpbWUgcm9sZSBhbnl3YXlzLiBUaGUgc3lzdGVtIGlzCj4gPiA+IGRlZmluaXRlbHkgbm90
-IHNlbGYgc3VzdGFpbmluZyB3aXRob3V0IHRpbWUgYmVpbmcgcHV0IGluIGJ5IHlvdSBhbmQKPiA+
-ID4gYW5ob2x0IHN0aWxsLiBJZiB3ZSBoYXZlICQ3NWsgdG8gYnVybiBvbiBjcmVkaXRzLCBhbmQg
-aXQgd2FzIGRpdmVydGVkCj4gPiA+IHRvIGp1c3QgcGF5IGFuIGFkbWluIHRvIGFkbWluIHRoZSBy
-ZWFsIGh3ICsgZ2l0bGFiL0NJIHdvdWxkIHRoYXQgbm90Cj4gPiA+IGJlIGEgYmV0dGVyIHVzZSBv
-ZiB0aGUgbW9uZXk/IEkgZGlkbid0IGtub3cgaWYgd2UgY2FuIGFmZm9yZCAkNzVrIGZvcgo+ID4g
-PiBhbiBhZG1pbiwgYnV0IHN1ZGRlbmx5IHdlIGNhbiBhZmZvcmQgaXQgZm9yIGdpdGxhYiBjcmVk
-aXRzPwo+ID4gCj4gPiBBcyBJIHRoaW5rIGFib3V0IHRoZSB0aW1lIHRoYXQgSSd2ZSBzcGVudCBh
-dCBnb29nbGUgaW4gbGVzcyB0aGFuIGEKPiA+IHllYXIgb24gdHJ5aW5nIHRvIGtlZXAgdGhlIGxp
-Z2h0cyBvbiBmb3IgQ0kgYW5kIG9wdGltaXplIG91cgo+ID4gaW5mcmFzdHJ1Y3R1cmUgaW4gdGhl
-IGN1cnJlbnQgY2xvdWQgZW52aXJvbm1lbnQsIHRoYXQncyBtb3JlIHRoYW4gdGhlCj4gPiBlbnRp
-cmUgeWVhcmx5IGJ1ZGdldCB5b3UncmUgdGFsa2luZyBhYm91dCBoZXJlLiAgU2F5aW5nICJsZXQn
-cyBqdXN0Cj4gPiBwYXkgZm9yIHBlb3BsZSB0byBkbyBtb3JlIHdvcmsgaW5zdGVhZCBvZiBwYXlp
-bmcgZm9yIGZ1bGwtc2VydmljZQo+ID4gY2xvdWQiIGlzIG5vdCBhIGNvc3Qgb3B0aW1pemF0aW9u
-Lgo+ID4gCj4gPiAKPiA+ID4gPiBZZXMsIHdlIGNvdWxkIGZlZGVyYXRlIGV2ZXJ5dGhpbmcgYmFj
-ayBvdXQgc28gZXZlcnlvbmUgcnVucyB0aGVpciBvd24KPiA+ID4gPiBidWlsZHMgYW5kIGV4ZWN1
-dGVzIHRob3NlLiBUaW5kZXJib3ggZGlkIHNvbWV0aGluZyByZWFsbHkgc2ltaWxhciB0bwo+ID4g
-PiA+IHRoYXQgSUlSQzsgbm90IHN1cmUgaWYgQnVpbGRib3QgZG9lcyBhcyB3ZWxsLiBQcm9iYWJs
-eSBydWxlcyBvdXQKPiA+ID4gPiBwcmUtbWVyZ2UgdGVzdGluZywgbWluZC4KPiA+ID4KPiA+ID4g
-V2h5PyBkb2VzIGdpdGxhYiBub3Qgc3VwcG9ydCB0aGUgbW9kZWw/IGhhdmluZyBidWlsZHMgZG9u
-ZSBpbiBwYXJhbGxlbAo+ID4gPiBvbiBydW5uZXJzIGNsb3NlciB0byB0aGUgdGVzdCBydW5uZXJz
-IHNlZW1zIGxpa2UgaXQgc2hvdWxkIGJlIGEgdGhpbmcuCj4gPiA+IEkgZ3Vlc3MgYXJ0aWZhY3Qg
-dHJhbnNmZXIgd291bGQgY29zdCBsZXNzIHRoZW4gYXMgYSByZXN1bHQuCj4gPiAKPiA+IExldCdz
-IGRvIHNvbWUgbmFwa2luIG1hdGguICBUaGUgYmlnZ2VzdCBhcnRpZmFjdHMgY29zdCB3ZSBoYXZl
-IGluIE1lc2EKPiA+IGlzIHByb2JhYmx5IG1lc29uLWFybTY0L21lc29uLWFybSAoNjBNQiB6aXBw
-ZWQgZnJvbSBtZXNvbi1hcm02NCwKPiA+IGRvd25sb2FkZWQgYnkgNCBmcmVlZHJlbm8gYW5kIDZp
-c2ggbGF2YSwgYWJvdXQgMTAwIHBpcGVsaW5lcy9kYXksCj4gPiBtYWtlcyB+MS44VEIvbW9udGgg
-KCQxODAgb3Igc28pLiAgV2UgY291bGQgYnVpbGQgYSBsb2NhbCBzdG9yYWdlIG5leHQKPiA+IHRv
-IHRoZSBsYXZhIGRpc3BhdGNoZXIgc28gdGhhdCB0aGUgYXJ0aWZhY3RzIGRpZG4ndCBoYXZlIHRv
-IGNvbnRhaW4KPiA+IHRoZSByb290ZnMgdGhhdCBjYW1lIGZyb20gdGhlIGNvbnRhaW5lciAofjIv
-MyBvZiB0aGUgaW5zaWRlcyBvZiB0aGUKPiA+IHppcCBmaWxlKSwgYnV0IHRoYXQncyBhbm90aGVy
-IHNlcnZpY2UgdG8gYnVpbGQgYW5kIG1haW50YWluLiAgQnVpbGRpbmcKPiA+IHRoZSBkcml2ZXJz
-IG9uY2UgbG9jYWxseSBhbmQgc3RvcmluZyBpdCB3b3VsZCBzYXZlIGRvd25sb2FkaW5nIHRoZQo+
-ID4gb3RoZXIgfjEvMyBvZiB0aGUgaW5zaWRlIG9mIHRoZSB6aXAgZmlsZSwgYnV0IHRoYXQgcmVx
-dWlyZXMgYSBiaWcKPiA+IGVub3VnaCBzeXN0ZW0gdG8gZG8gYnVpbGRzIGluIHRpbWUuCj4gPiAK
-PiA+IEknbSBwbGFubmluZyBvbiBkb2luZyBhIGxvY2FsIGZpbGVzdG9yZSBmb3IgZ29vZ2xlJ3Mg
-bGF2YSBsYWIsIHNpbmNlIEkKPiA+IG5lZWQgdG8gYmUgYWJsZSB0byBtb3ZlIG91ciB4bWwgZmls
-ZXMgb2ZmIG9mIHRoZSBsYXZhIERVVHMgdG8gZ2V0IHRoZQo+ID4geG1sIHJlc3VsdHMgd2UndmUg
-YmVjb21lIGFjY3VzdG9tZWQgdG8sIGJ1dCB0aGlzIHdvdWxkIG5vdCBidWJibGUgdXAKPiA+IHRv
-IGJlaW5nIGEgcHJpb3JpdHkgZm9yIG15IHRpbWUgaWYgSSB3YXNuJ3QgZG9pbmcgaXQgYW55d2F5
-LiAgSWYgaXQKPiA+IHRha2VzIG1lIGEgc2luZ2xlIGRheSB0byBzZXQgYWxsIHRoaXMgdXAgKEkg
-ZXN0aW1hdGUgYSBjb3VwbGUgb2YKPiA+IHdlZWtzKSwgdGhhdCBjb3N0cyBteSBlbXBsb3llciBh
-IGxvdCBtb3JlIHRoYW4gc3BvbnNvcmluZyB0aGUgY29zdHMgb2YKPiA+IHRoZSBpbmVmZmljaWVu
-Y2llcyBvZiB0aGUgc3lzdGVtIHRoYXQgaGFzIGFjY3VtdWxhdGVkLgo+ID4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IG1lc2EtZGV2IG1haWxpbmcg
-bGlzdAo+ID4gbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cj4gCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBtZW1iZXJzQGZvdW5kYXRp
-b24ueC5vcmc6IFguT3JnIEZvdW5kYXRpb24gTWVtYmVycwo+IEFyY2hpdmVzOiBodHRwczovL2Zv
-dW5kYXRpb24ueC5vcmcvY2dpLWJpbi9tYWlsbWFuL3ByaXZhdGUvbWVtYmVycwo+IEluZm86IGh0
-dHBzOi8vZm91bmRhdGlvbi54Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWVtYmVycwoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Em Thu, Apr 02, 2020 at 11:54:39AM +0300, Alexey Budankov escreveu:
+> 
+> Update kernel.rst documentation file with the information
+> related to usage of CAP_PERFMON capability to secure performance
+> monitoring and observability operations in system.
+
+This one is failing in my perf/core branch, please take a look. I'm
+pushing my perf/core branch with this series applied, please check that
+everything is ok, I'll do some testing now, but it all seems ok.
+
+Thanks,
+
+- Arnaldo
+ 
+> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+> ---
+>  Documentation/admin-guide/sysctl/kernel.rst | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/admin-guide/sysctl/kernel.rst b/Documentation/admin-guide/sysctl/kernel.rst
+> index def074807cee..b06ae9389809 100644
+> --- a/Documentation/admin-guide/sysctl/kernel.rst
+> +++ b/Documentation/admin-guide/sysctl/kernel.rst
+> @@ -720,20 +720,26 @@ perf_event_paranoid:
+>  ====================
+>  
+>  Controls use of the performance events system by unprivileged
+> -users (without CAP_SYS_ADMIN).  The default value is 2.
+> +users (without CAP_PERFMON). The default value is 2.
+> +
+> +For backward compatibility reasons access to system performance
+> +monitoring and observability remains open for CAP_SYS_ADMIN
+> +privileged processes but CAP_SYS_ADMIN usage for secure system
+> +performance monitoring and observability operations is discouraged
+> +with respect to CAP_PERFMON use cases.
+>  
+>  ===  ==================================================================
+>   -1  Allow use of (almost) all events by all users
+>  
+>       Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
+>  
+> ->=0  Disallow ftrace function tracepoint by users without CAP_SYS_ADMIN
+> +>=0  Disallow ftrace function tracepoint by users without CAP_PERFMON
+>  
+> -     Disallow raw tracepoint access by users without CAP_SYS_ADMIN
+> +     Disallow raw tracepoint access by users without CAP_PERFMON
+>  
+> ->=1  Disallow CPU event access by users without CAP_SYS_ADMIN
+> +>=1  Disallow CPU event access by users without CAP_PERFMON
+>  
+> ->=2  Disallow kernel profiling by users without CAP_SYS_ADMIN
+> +>=2  Disallow kernel profiling by users without CAP_PERFMON
+>  ===  ==================================================================
+>  
+>  
+> -- 
+> 2.24.1
+> 
+
+-- 
+
+- Arnaldo
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
