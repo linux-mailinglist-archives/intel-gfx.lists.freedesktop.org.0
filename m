@@ -1,64 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F4519F8D8
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:29:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6445419EC12
+	for <lists+intel-gfx@lfdr.de>; Sun,  5 Apr 2020 16:41:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1706E2DE;
-	Mon,  6 Apr 2020 15:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C18FC6E0EE;
+	Sun,  5 Apr 2020 14:41:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE04C6E249
- for <intel-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 14:10:34 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id b10so4973373qtt.9
- for <intel-gfx@lists.freedesktop.org>; Sun, 05 Apr 2020 07:10:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Fj5IkYeTwvEQJU3mrvn13eBZKNJ+9tUvL96085xGJxE=;
- b=PUXZHGoaZxdIN6d3dLITTVmOMYMyzD1WzUovhblIhnH0+gX1MNWpAzLXCQgk2kjb4r
- MlJo8+N8G03Sa1hMX0SzavAQvly8jLAQ+hbQperFpamXKFXDtOKZO1KBx7z3QF7jU4DN
- v2O2rih9I491tXxgjaiA8y75O5NeuTOBTrBD5lyOIL+4LBqVTqjlPgB8IOP+vdkio7Ne
- OF0/t3wAwc/c/4fhcxK0mgit6koSfOKh3e8xFvAUuaInvIs+DvGpC7Qx4f3FaJ6/exvW
- RQ5WEGhuuoq8VdPrvO9ejeK2M4qtHC7mPdoXm5yO6XzAi2YIMIwcRWsAHg60RLTYDgVS
- MEwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Fj5IkYeTwvEQJU3mrvn13eBZKNJ+9tUvL96085xGJxE=;
- b=Djlj4Rm4jtAogOnyHgw9zHPBvYC88ZmcKoBVRzfYpto2ay9QtWWInB3ewcBnsQiuYG
- ZxaSC9VtbRczUvEIgG3D+kgw9YMxDYpOJ4uQsJzyvncaxPsivM092WsgKJhIYmTLBk0r
- UUVvkg6tfW2D2mJ+J3lUAiESjRj87wfXtRkopp+vhykv00B8gMihdLry4GN5tNiE+Ajb
- bh/ZiZXtfjYEOAE8I/OEd7Ky01g7zuZOsvErbtuczNAlZ1/lsA2DE1vIgif3aw4/9hZV
- Oy8j7H3Ag6uFDPYPDfd/06BFJIjI55lT/YSSIvzE+i52/4+cZPI8PgzQ9+BGh4J4JzLE
- 3P1w==
-X-Gm-Message-State: AGi0PubediZawhvg5iUDG6v4psG6DJ0QMu4Tz0xrpjSiVH1wFpBULLzO
- /PujS+90Y56a/fzimaoRf5M=
-X-Google-Smtp-Source: APiQypJu0uvODNR9YrN0sb4Kh6DQPLH6AalqUaYQK8KEpypo5wVQtssYkV/vcueHnh7R58TbWcdGhg==
-X-Received: by 2002:aed:2435:: with SMTP id r50mr16393370qtc.314.1586095833851; 
- Sun, 05 Apr 2020 07:10:33 -0700 (PDT)
-Received: from quaco.ghostprotocols.net ([179.97.37.151])
- by smtp.gmail.com with ESMTPSA id 6sm9452806qkr.25.2020.04.05.07.10.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 05 Apr 2020 07:10:32 -0700 (PDT)
-From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
-X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
-Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
- id AE02E409A3; Sun,  5 Apr 2020 11:10:29 -0300 (-03)
-Date: Sun, 5 Apr 2020 11:10:29 -0300
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200405141029.GA16896@kernel.org>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A80E96E0EE
+ for <intel-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 14:41:54 +0000 (UTC)
+IronPort-SDR: Qk/JhPaz2m2hoDU04vkxHjSPgCg+QwW0OlipPzsF9zs2mg8s+OB6uWJn2XD2+tctCZlNgBjATI
+ EkUp/p1BIqqQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2020 07:41:53 -0700
+IronPort-SDR: V9TTnqMqeP8/mt/DnG2oD1FLvKhWCmWRQBS8RDGukSKATPDRkrkgsVQd86I7vpAYDNMB3ztthq
+ YPmkBeqaY/pQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,348,1580803200"; d="scan'208";a="243901790"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga008.jf.intel.com with ESMTP; 05 Apr 2020 07:41:53 -0700
+Received: from [10.249.231.111] (abudanko-mobl.ccr.corp.intel.com
+ [10.249.231.111])
+ by linux.intel.com (Postfix) with ESMTP id 653B058033E;
+ Sun,  5 Apr 2020 07:41:49 -0700 (PDT)
+To: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
 References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
  <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
+ <20200405141029.GA16896@kernel.org>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <eb7fd0bd-4043-b51c-9b19-ee0a1d1849e9@linux.intel.com>
+Date: Sun, 5 Apr 2020 17:41:48 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
-X-Url: http://acmel.wordpress.com
-X-Mailman-Approved-At: Mon, 06 Apr 2020 15:29:14 +0000
+In-Reply-To: <20200405141029.GA16896@kernel.org>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH v8 12/12] doc/admin-guide: update kernel.rst
  with CAP_PERFMON information
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -91,68 +74,74 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Thu, Apr 02, 2020 at 11:54:39AM +0300, Alexey Budankov escreveu:
-> 
-> Update kernel.rst documentation file with the information
-> related to usage of CAP_PERFMON capability to secure performance
-> monitoring and observability operations in system.
 
-This one is failing in my perf/core branch, please take a look. I'm
-pushing my perf/core branch with this series applied, please check that
-everything is ok, I'll do some testing now, but it all seems ok.
+On 05.04.2020 17:10, Arnaldo Carvalho de Melo wrote:
+> Em Thu, Apr 02, 2020 at 11:54:39AM +0300, Alexey Budankov escreveu:
+>>
+>> Update kernel.rst documentation file with the information
+>> related to usage of CAP_PERFMON capability to secure performance
+>> monitoring and observability operations in system.
+> 
+> This one is failing in my perf/core branch, please take a look. I'm
+
+Trying to reproduce right now. What kind of failure do you see?
+Please share some specifics so I could follow up properly.
 
 Thanks,
+Alexey
 
-- Arnaldo
- 
-> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
-> ---
->  Documentation/admin-guide/sysctl/kernel.rst | 16 +++++++++++-----
->  1 file changed, 11 insertions(+), 5 deletions(-)
+> pushing my perf/core branch with this series applied, please check that
+> everything is ok, I'll do some testing now, but it all seems ok.
 > 
-> diff --git a/Documentation/admin-guide/sysctl/kernel.rst b/Documentation/admin-guide/sysctl/kernel.rst
-> index def074807cee..b06ae9389809 100644
-> --- a/Documentation/admin-guide/sysctl/kernel.rst
-> +++ b/Documentation/admin-guide/sysctl/kernel.rst
-> @@ -720,20 +720,26 @@ perf_event_paranoid:
->  ====================
->  
->  Controls use of the performance events system by unprivileged
-> -users (without CAP_SYS_ADMIN).  The default value is 2.
-> +users (without CAP_PERFMON). The default value is 2.
-> +
-> +For backward compatibility reasons access to system performance
-> +monitoring and observability remains open for CAP_SYS_ADMIN
-> +privileged processes but CAP_SYS_ADMIN usage for secure system
-> +performance monitoring and observability operations is discouraged
-> +with respect to CAP_PERFMON use cases.
->  
->  ===  ==================================================================
->   -1  Allow use of (almost) all events by all users
->  
->       Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
->  
-> ->=0  Disallow ftrace function tracepoint by users without CAP_SYS_ADMIN
-> +>=0  Disallow ftrace function tracepoint by users without CAP_PERFMON
->  
-> -     Disallow raw tracepoint access by users without CAP_SYS_ADMIN
-> +     Disallow raw tracepoint access by users without CAP_PERFMON
->  
-> ->=1  Disallow CPU event access by users without CAP_SYS_ADMIN
-> +>=1  Disallow CPU event access by users without CAP_PERFMON
->  
-> ->=2  Disallow kernel profiling by users without CAP_SYS_ADMIN
-> +>=2  Disallow kernel profiling by users without CAP_PERFMON
->  ===  ==================================================================
->  
->  
-> -- 
-> 2.24.1
+> Thanks,
 > 
-
--- 
-
-- Arnaldo
+> - Arnaldo
+>  
+>> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+>> ---
+>>  Documentation/admin-guide/sysctl/kernel.rst | 16 +++++++++++-----
+>>  1 file changed, 11 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/admin-guide/sysctl/kernel.rst b/Documentation/admin-guide/sysctl/kernel.rst
+>> index def074807cee..b06ae9389809 100644
+>> --- a/Documentation/admin-guide/sysctl/kernel.rst
+>> +++ b/Documentation/admin-guide/sysctl/kernel.rst
+>> @@ -720,20 +720,26 @@ perf_event_paranoid:
+>>  ====================
+>>  
+>>  Controls use of the performance events system by unprivileged
+>> -users (without CAP_SYS_ADMIN).  The default value is 2.
+>> +users (without CAP_PERFMON). The default value is 2.
+>> +
+>> +For backward compatibility reasons access to system performance
+>> +monitoring and observability remains open for CAP_SYS_ADMIN
+>> +privileged processes but CAP_SYS_ADMIN usage for secure system
+>> +performance monitoring and observability operations is discouraged
+>> +with respect to CAP_PERFMON use cases.
+>>  
+>>  ===  ==================================================================
+>>   -1  Allow use of (almost) all events by all users
+>>  
+>>       Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
+>>  
+>> ->=0  Disallow ftrace function tracepoint by users without CAP_SYS_ADMIN
+>> +>=0  Disallow ftrace function tracepoint by users without CAP_PERFMON
+>>  
+>> -     Disallow raw tracepoint access by users without CAP_SYS_ADMIN
+>> +     Disallow raw tracepoint access by users without CAP_PERFMON
+>>  
+>> ->=1  Disallow CPU event access by users without CAP_SYS_ADMIN
+>> +>=1  Disallow CPU event access by users without CAP_PERFMON
+>>  
+>> ->=2  Disallow kernel profiling by users without CAP_SYS_ADMIN
+>> +>=2  Disallow kernel profiling by users without CAP_PERFMON
+>>  ===  ==================================================================
+>>  
+>>  
+>> -- 
+>> 2.24.1
+>>
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
