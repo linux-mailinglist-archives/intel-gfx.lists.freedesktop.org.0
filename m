@@ -1,53 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2314619F5B5
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:18:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C5519F5C4
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:28:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 059AD6E392;
-	Mon,  6 Apr 2020 12:18:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A716E3A0;
+	Mon,  6 Apr 2020 12:28:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
- [IPv6:2607:f8b0:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8466E392
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:18:32 +0000 (UTC)
-Received: by mail-ot1-x342.google.com with SMTP id l23so15067789otf.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Apr 2020 05:18:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YjxaXowJ/bOAfCu1lJtQ2FROrqjb9Vwq/99atWSwEIA=;
- b=FbXBFjASanq2/TC30a5GANvrDTBXRnf6lTL2cx32XurrjbQ16+Tsbqvrvyd3Xockzy
- xFF+lYH14+XQ/E3pm+vjZ/SsOY7F2l0J749kXD9JvJ/DIlivg1stcIO3k4u9D+VPOuuU
- YSPemnQxonLlMVp3f9ve+0WG4VnzNxZywv2gc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YjxaXowJ/bOAfCu1lJtQ2FROrqjb9Vwq/99atWSwEIA=;
- b=SaNi4Md/SbwA7EauxHvn9j0XC3ejgDpuDFISZDxIvg42miG8hFirh0ysgv/BnBUC9i
- j/rCSjYp3rQEm5QM3MXwv5Nzr5zkVvrgAf/RDpx3u30P1uXbjEKtvfBYXgkeXNz7042S
- dda9bd66rfCPmhj0YSWrKdqsf74ipuvY45LEohJQ2rDPV9mb/RxYUBZB9SYic1L5iLmt
- tvGzSg9pOqRfK/WNBXAhO/wFQbH8ELVVClSVKRcbBDKu8nFn0L/BMR4BM73D4nfzrMpZ
- PFOXerwlYuh5wS23ousnyODSoBhVqvYLavr+ymiZM0SdR6s43QYSitlNqJLikDQdo6OD
- fTVA==
-X-Gm-Message-State: AGi0PuY1Oi16AdouVjzU1uv0/F3LhAz8XYMq89aJaB35GQaOz9EQtdR4
- +AC2wZdb/HzgIxQqXSIN/tYrYjSH6b6aQcts82oiQg==
-X-Google-Smtp-Source: APiQypLqMqPZakYn3TZSTWX0Jb2FEiG99l1+8NCFP+ahJYJmMEMO5sZirMqF9ZzfEqGdY5vgASYG5lRhTc9QfQHqCMw=
-X-Received: by 2002:a05:6830:15d4:: with SMTP id
- j20mr17021369otr.303.1586175511204; 
- Mon, 06 Apr 2020 05:18:31 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B5DE66E3A0;
+ Mon,  6 Apr 2020 12:28:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AEF1AA00FD;
+ Mon,  6 Apr 2020 12:28:13 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-3-daniel.vetter@ffwll.ch>
- <20200406120049.GI4757@pendragon.ideasonboard.com>
-In-Reply-To: <20200406120049.GI4757@pendragon.ideasonboard.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Mon, 6 Apr 2020 14:18:19 +0200
-Message-ID: <CAKMK7uFO+uB-1TWBJuyv_5wi48b0b8UqfJYiBJCayUYc_yOOuQ@mail.gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [Intel-gfx] [PATCH 02/44] drm: Add devm_drm_dev_alloc macro
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Mon, 06 Apr 2020 12:28:13 -0000
+Message-ID: <158617609368.4194.12101634326550151449@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUHJl?=
+ =?utf-8?q?fer_drm=5FWARN*_over_WARN*?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,189 +38,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 6, 2020 at 2:01 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Daniel,
->
-> Thank you for the patch.
->
-> On Fri, Apr 03, 2020 at 03:57:46PM +0200, Daniel Vetter wrote:
-> > The kerneldoc is only added for this new function. Existing kerneldoc
-> > and examples will be udated at the very end, since once all drivers
-> > are converted over to devm_drm_dev_alloc we can unexport a lot of
-> > interim functions and make the documentation for driver authors a lot
-> > cleaner and less confusing. There will be only one true way to
-> > initialize a drm_device at the end of this, which is going to be
-> > devm_drm_dev_alloc.
->
-> How about drivers that expose another interface towards userspace ? If
-> the other related subsystem also required allocation of the driver
-> private structure through its corresponding API, we'd be stuck. As
-> stated before, I want this API to be optional.
+== Series Details ==
 
-So maybe we need to import a little bit more of our epic irc
-discussion here, because this is leaving out all the context. There's
-a few more things:
+Series: Prefer drm_WARN* over WARN*
+URL   : https://patchwork.freedesktop.org/series/75543/
+State : failure
 
-- Since the merging of the previous patch series this is already
-mandatory, because the kfree(drm_device.managed.final_kfree) is the
-last thing that will run. So I already killed your use-case (and it
-seems to work just fine for all the drivers in-tree, and we have a
-lot).
+== Summary ==
 
-- As part of doing all these patches here and in the previous series
-and in a next one I've seen that drivers just get this wrong. I'm
-extremely hesitant to give that rope back to drivers, so I really
-don't want to merge anything until we're ready to merge a driver that
-needs it. I've set myself a goal to fix up all 40 odd drivers still
-using drm_dev_alloc(), and that's itself already pretty stupid idea.
-It's definitely not going to work if new drivers keep adding bad usage
-patterns.
+CI Bug Log - changes from CI_DRM_8259 -> Patchwork_17216
+====================================================
 
-- Now I'm not opposed to allowing this, if/when we actually need it. I
-think a very clean long-term solution would be to have a struct
-kref_res, which augments a kref with automatic resource cleanup. We'd
-probably need to fully demidlayer that, i.e. if you supply your own
-->release hook then it's your job to call kref_release_all() at the
-right point in there. With that we could then do a devm_drm_dev_init()
-again, which would take that kref_res structure and the drm_device,
-both embedded somewhere in your overall driver struture, and use your
-drivers kref_res to attach all drm related auto-cleanup. In that case
-it would then also be that kref_res' responsibility to do the final
-kfree, hence drm wouldn't insist on doing that either. Prototype would
-be something like:
+Summary
+-------
 
-devm_drm_dev_init(struct device *dev, struct drm_device *drm,
-    struct drm_driver *driver, struct kref_res *kref);
+  **FAILURE**
 
-The trouble with the above idea is that it assumes I have endless
-amounts of time and that I can convince Greg KH that I understand
-driver unload lifetime issues. The former is atm the more realistic
-looking one of these two, so interim solution would be to add some
-hack or another meanwhile to do this within drm only. Or as an
-alternative solution, easy to convert over to an eventual kref_res
-world:
+  Serious unknown changes coming with Patchwork_17216 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17216, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-#define kref_res_get() drm_dev_get()
-#define kref_res_put() drm_dev_put()
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/index.html
 
-With suitable amounts of casting to make this work out correctly like
-the real kref_res solution.
+Possible new issues
+-------------------
 
-Until we do have such drivers though I really don't want to open the
-barn door again to all the bugs that'll bring, while I'm trying to get
-the other barn doors closed down and fixed meanwhile.
--Daniel
+  Here are the unknown changes that may have been introduced in Patchwork_17216:
 
->
-> > Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c | 23 +++++++++++++++++++++++
-> >  include/drm/drm_drv.h     | 33 +++++++++++++++++++++++++++++++++
-> >  2 files changed, 56 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 1bb4f636b83c..9e60b784b3ac 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -739,6 +739,29 @@ int devm_drm_dev_init(struct device *parent,
-> >  }
-> >  EXPORT_SYMBOL(devm_drm_dev_init);
-> >
-> > +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
-> > +                        size_t size, size_t offset)
-> > +{
-> > +     void *container;
-> > +     struct drm_device *drm;
-> > +     int ret;
-> > +
-> > +     container = kzalloc(size, GFP_KERNEL);
-> > +     if (!container)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     drm = container + offset;
-> > +     ret = devm_drm_dev_init(parent, drm, driver);
-> > +     if (ret) {
-> > +             kfree(container);
-> > +             return ERR_PTR(ret);
-> > +     }
-> > +     drmm_add_final_kfree(drm, container);
-> > +
-> > +     return container;
-> > +}
-> > +EXPORT_SYMBOL(__devm_drm_dev_alloc);
-> > +
-> >  /**
-> >   * drm_dev_alloc - Allocate new DRM device
-> >   * @driver: DRM driver to allocate device for
-> > diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> > index e7c6ea261ed1..26776be5a21e 100644
-> > --- a/include/drm/drm_drv.h
-> > +++ b/include/drm/drm_drv.h
-> > @@ -626,6 +626,39 @@ int devm_drm_dev_init(struct device *parent,
-> >                     struct drm_device *dev,
-> >                     struct drm_driver *driver);
-> >
-> > +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
-> > +                        size_t size, size_t offset);
-> > +
-> > +/**
-> > + * devm_drm_dev_alloc - Resource managed allocation of a &drm_device instance
-> > + * @parent: Parent device object
-> > + * @driver: DRM driver
-> > + * @type: the type of the struct which contains struct &drm_device
-> > + * @member: the name of the &drm_device within @type.
-> > + *
-> > + * This allocates and initialize a new DRM device. No device registration is done.
-> > + * Call drm_dev_register() to advertice the device to user space and register it
-> > + * with other core subsystems. This should be done last in the device
-> > + * initialization sequence to make sure userspace can't access an inconsistent
-> > + * state.
-> > + *
-> > + * The initial ref-count of the object is 1. Use drm_dev_get() and
-> > + * drm_dev_put() to take and drop further ref-counts.
-> > + *
-> > + * It is recommended that drivers embed &struct drm_device into their own device
-> > + * structure.
-> > + *
-> > + * Note that this manages the lifetime of the resulting &drm_device
-> > + * automatically using devres. The DRM device initialized with this function is
-> > + * automatically put on driver detach using drm_dev_put().
-> > + *
-> > + * RETURNS:
-> > + * Pointer to new DRM device, or ERR_PTR on failure.
-> > + */
-> > +#define devm_drm_dev_alloc(parent, driver, type, member) \
-> > +     ((type *) __devm_drm_dev_alloc(parent, driver, sizeof(type), \
-> > +                                    offsetof(type, member)))
-> > +
-> >  struct drm_device *drm_dev_alloc(struct drm_driver *driver,
-> >                                struct device *parent);
-> >  int drm_dev_register(struct drm_device *dev, unsigned long flags);
->
-> --
-> Regards,
->
-> Laurent Pinchart
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-bsw-nick/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17216 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3] ([i915#1250])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][4] -> [FAIL][5] ([i915#1158])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [PASS][6] -> [INCOMPLETE][7] ([i915#1580])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][8] -> [FAIL][9] ([i915#976])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-skl-6770hq:      [PASS][10] -> [SKIP][11] ([fdo#109271]) +24 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
+  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
+  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
 
 
+Participating hosts (53 -> 47)
+------------------------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8259 -> Patchwork_17216
+
+  CI-20190529: 20190529
+  CI_DRM_8259: 450fc86b62651336f9b5fde79c068df7b4c95aa4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5571: da79d5fa2ebed237f0561a54b4b63bae6f21503a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17216: 4c4c2b16486bf668030b6be413ec16ed24ff0ed9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4c4c2b16486b drm/i915/runtime_pm: Prefer drm_WARN* over WARN*
+db552aba6881 drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
+0af155c5b3f1 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
+d9387cef2125 drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
+a09caf119a41 drm/i915/gem: Prefer drm_WARN* over WARN*
+63fc326a1fca drm/i915/display/vlv_dsi: Prefer drm_WARN_ON over WARN_ON
+ccea1b50c254 drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
+a17137b9ca74 drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
+e61a3429efb8 drm/i915/display/overlay: Prefer drm_WARN_ON over WARN_ON
+31d144a0fd99 drm/i915/display/global_state: Prefer drm_WARN* over WARN*
+9343391f6779 drm/i915/display/frontbuffer: Prefer drm_WARN_ON over WARN_ON
+3a60829da48b drm/i915/display/dpll_mgr: Prefer drm_WARN_ON over WARN_ON
+462c17ba380f drm/i915/display/dp: Prefer drm_WARN* over WARN*
+0aae019835f6 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
+cbddf2425b98 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
+9db54cf5c0c1 drm/i915/display/ddi: Prefer drm_WARN* over WARN*
+ce36d1d4c808 drm/i915/display/atomic_plane: Prefer drm_WARN_ON over WARN_ON
+2b3269120530 drm/i915/display/icl_dsi: Prefer drm_WARN_ON over WARN_ON
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17216/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
