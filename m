@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E541519F833
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B61419F86D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:02:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E08B6E3EE;
-	Mon,  6 Apr 2020 14:47:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CBF36E0B6;
+	Mon,  6 Apr 2020 15:02:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 35AFE6E3EE;
- Mon,  6 Apr 2020 14:47:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2D667A47EE;
- Mon,  6 Apr 2020 14:47:27 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5C46E0B6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 15:02:13 +0000 (UTC)
+IronPort-SDR: RRAFpwna9qYMvRnzhIlx0ZYfMZFtx1WZESjyvXeY1ytAHgrpek2bEMkvvJLBNwHE/ojARSoU+Z
+ xS7Bo8ojGMcA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 08:02:12 -0700
+IronPort-SDR: CScdzvtfVSzE61UOufF1rtU0k2A2wKrVTqzFOu0kG0uDsznivpwgJS2D13oZXqxYeSTtaSiSMO
+ OHIqeILDIhKQ==
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="424388468"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 08:02:10 -0700
+Date: Mon, 6 Apr 2020 18:02:00 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200406150200.GF1299@ideak-desk.fi.intel.com>
+References: <20200330095425.29113-1-imre.deak@intel.com>
+ <20200330095425.29113-2-imre.deak@intel.com>
+ <83e56b113c075360f474ad1aed6acd6e6bac0925.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Mon, 06 Apr 2020 14:47:27 -0000
-Message-ID: <158618444715.4193.13860998630567781723@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Prefer_drm=5FWARN*_over_WARN*_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <83e56b113c075360f474ad1aed6acd6e6bac0925.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Extend hotplug detect retry
+ on TypeC connectors to 5 seconds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,75 +51,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 30, 2020 at 10:13:02PM +0300, Souza, Jose wrote:
+> On Mon, 2020-03-30 at 12:54 +0300, Imre Deak wrote:
+> > On TypeC ports if a sink deasserts/reasserts its HPD signal,
+> > generating
+> > a hotplug interrupt without the sink getting unplugged/replugged from
+> > the connector, there can be an up to 3 seconds delay until the AUX
+> > channel gets functional. To avoid detection failures this delay
+> > causes
+> > retry the detection for 5 seconds.
+> =
 
-Series: Prefer drm_WARN* over WARN* (rev2)
-URL   : https://patchwork.freedesktop.org/series/75543/
-State : warning
+> 5 seconds? would it be 5 tries?
 
-== Summary ==
+Yes, 5 tries with a 1 second delay in-between them.
 
-$ dim checkpatch origin/drm-tip
-fd886b340869 drm/i915/display/icl_dsi: Prefer drm_WARN_ON over WARN_ON
-5a021e68d20b drm/i915/display/atomic_plane: Prefer drm_WARN_ON over WARN_ON
-04cffffd23fe drm/i915/display/ddi: Prefer drm_WARN* over WARN*
-7154962ac9f6 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
-1703f9a2f458 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, power_domains);
+Thanks for the review, patchset pushed to -dinq.
 
-total: 0 errors, 1 warnings, 0 checks, 71 lines checked
-81a6c4600fea drm/i915/display/dp: Prefer drm_WARN* over WARN*
-22c03725bfb6 drm/i915/display/dpll_mgr: Prefer drm_WARN_ON over WARN_ON
-8ec55548bc42 drm/i915/display/frontbuffer: Prefer drm_WARN_ON over WARN_ON
-e5fb265bcdfc drm/i915/display/global_state: Prefer drm_WARN* over WARN*
-da0de795981b drm/i915/display/overlay: Prefer drm_WARN_ON over WARN_ON
-b9632947474b drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
-0856fae10111 drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
-cd2d48c2fb37 drm/i915/display/vlv_dsi: Prefer drm_WARN_ON over WARN_ON
-ae80b0409828 drm/i915/gem: Prefer drm_WARN* over WARN*
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1444:
-+			if (drm_WARN_ONCE(&i915->drm, err,
- 				      "Unexpected failure to bind target VMA!"))
+> Other than that both patches looks good.
+> =
 
--:50: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!obj->userptr.mm"
-#50: FILE: drivers/gpu/drm/i915/gem/i915_gem_userptr.c:238:
-+	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
 
-total: 0 errors, 0 warnings, 2 checks, 25 lines checked
-3b4763bebc0e drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) \
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> > =
 
--:22: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'dev_priv' may be better as '(dev_priv)' to avoid precedence issues
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) \
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> > I noticed this on ICL/TGL RVPs and a DELL XPS 13 7390 ICL laptop.
+> > =
 
--:23: WARNING:LONG_LINE: line over 100 characters
-#23: FILE: drivers/gpu/drm/i915/i915_drv.h:1651:
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> > References: https://gitlab.freedesktop.org/drm/intel/issues/1067
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 12 +++++++++++-
+> >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > =
 
-total: 0 errors, 1 warnings, 2 checks, 9 lines checked
-7de0dff58893 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
-5597bb572e9b drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
-0fd60ba24842 drm/i915/runtime_pm: Prefer drm_WARN* over WARN*
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, runtime_pm);
-
-total: 0 errors, 1 warnings, 0 checks, 89 lines checked
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 4f508bf70f3b..2d947ff83488 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -4371,7 +4371,10 @@ static enum intel_hotplug_state
+> >  intel_ddi_hotplug(struct intel_encoder *encoder,
+> >  		  struct intel_connector *connector)
+> >  {
+> > +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > +	enum phy phy =3D intel_port_to_phy(i915, encoder->port);
+> > +	bool is_tc =3D intel_phy_is_tc(i915, phy);
+> >  	struct drm_modeset_acquire_ctx ctx;
+> >  	enum intel_hotplug_state state;
+> >  	int ret;
+> > @@ -4414,8 +4417,15 @@ intel_ddi_hotplug(struct intel_encoder
+> > *encoder,
+> >  	 * valid EDID. To solve this schedule another detection cycle
+> > if this
+> >  	 * time around we didn't detect any change in the sink's
+> > connection
+> >  	 * status.
+> > +	 *
+> > +	 * Type-c connectors which get their HPD signal deasserted then
+> > +	 * reasserted, without unplugging/replugging the sink from the
+> > +	 * connector, introduce a delay until the AUX channel
+> > communication
+> > +	 * becomes functional. Retry the detection for 5 seconds on
+> > type-c
+> > +	 * connectors to account for this delay.
+> >  	 */
+> > -	if (state =3D=3D INTEL_HOTPLUG_UNCHANGED && !connector-
+> > >hotplug_retries &&
+> > +	if (state =3D=3D INTEL_HOTPLUG_UNCHANGED &&
+> > +	    connector->hotplug_retries < (is_tc ? 5 : 1) &&
+> >  	    !dig_port->dp.is_mst)
+> >  		state =3D INTEL_HOTPLUG_RETRY;
+> >  =
 
 _______________________________________________
 Intel-gfx mailing list
