@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3ED19F223
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:11:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A39D19F22F
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:13:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD30089E32;
-	Mon,  6 Apr 2020 09:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC1486E2FF;
+	Mon,  6 Apr 2020 09:13:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73EF989BB2;
- Mon,  6 Apr 2020 09:11:40 +0000 (UTC)
-IronPort-SDR: m0rdf1h397I0SFc6KKq3iMu3DbrQ3Q2GzthhAPAlURfxXYDDQrqSXoFTF/CtWT7gJx50YihASL
- j6NG/duO812Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 02:11:39 -0700
-IronPort-SDR: U/7yDPrLtYunTdbwKyXMOoY4ReiX8XnjIuq37cKWO9ZNo/NOrYfPnk8zA/9ubT3ezfozmivQ8/
- +9xpwGaATDCQ==
-X-IronPort-AV: E=Sophos;i="5.72,350,1580803200"; d="scan'208";a="397440298"
-Received: from maytarsh-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.38.121])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 02:11:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: abhinavk@codeaurora.org, Ville Syrjala <ville.syrjala@linux.intel.com>
-In-Reply-To: <7cd8b081a383125732dbddd32116e46e@codeaurora.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-17-ville.syrjala@linux.intel.com>
- <7cd8b081a383125732dbddd32116e46e@codeaurora.org>
-Date: Mon, 06 Apr 2020 12:11:32 +0300
-Message-ID: <87r1x1kmgr.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 993CA89C07
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 09:13:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20812398-1500050 
+ for multiple; Mon, 06 Apr 2020 10:12:54 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Apr 2020 10:12:50 +0100
+Message-Id: <20200406091254.17675-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 16/17] drm: Nuke mode->private_flags
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915: Make exclusive awaits on
+ i915_active optional
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,74 +37,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>, jeykumar@quicinc.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, nganji@quicinc.com, pdhaval@quicinc.com,
- aravindh@quicinc.com
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Apr 2020, abhinavk@codeaurora.org wrote:
-> Hi Ville
->
-> Thanks for the patch.
->
-> Our understanding of private_flags was that we can use it within our 
-> drivers to handle vendor specific features.
-> Hence we do have several features in our downstream drivers as well as 
-> some planned work based on this.
->
-> This was the only method to pass around and consume the driver only 
-> information which we have been using.
->
-> In the current qualcomm upstream display drivers, the only usage of the 
-> mode->private_flags is what you have removed in 
-> https://patchwork.kernel.org/patch/11473497/.
->
-> However, for other projects which do not use upstream drivers yet, we 
-> have several features already which are using the mode->private_flags.
->
-> We do have a plan to remove the usage of mode->private_flags for those 
-> drivers as well but its not ready yet.
->
-> These downstream drivers still use the upstream drm files for 
-> compilation.
->
-> So how it works is we use all the headers under include/drm and also the 
-> files under drivers/gpu/drm as-it-is from upstream but maintain our 
-> drivers on top of this.
->
-> Removing this will result in compilation failures for us in the near 
-> term.
->
-> Can we keep this one as-it-is and when our changes are ready to post it 
-> upstream we shall remove private_flags from the drm_modes.h
+Later use will require asynchronous waits on the active timelines, but
+will not utilize an async wait on the exclusive channel. Make the await
+on the exclusive fence explicit in the selection flags.
 
-If your driver were upstream, Ville would have fixed it in the process
-of removing private_flags. It would be part of this patch series. That
-is the only guarantee you get for kernel internal APIs, and you only get
-that guarantee for drivers in the upstream kernel. Otherwise, all bets
-are off.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_active.c | 7 ++++---
+ drivers/gpu/drm/i915/i915_active.h | 3 ++-
+ drivers/gpu/drm/i915/i915_perf.c   | 2 +-
+ drivers/gpu/drm/i915/i915_vma.c    | 3 ++-
+ 4 files changed, 9 insertions(+), 6 deletions(-)
 
-Taking all the upstream considerations into account is complicated
-enough. It is simply not reasonable to hold back internal kernel changes
-due to out-of-tree or downstream drivers. I know it is painful, but
-that's the cost of maintaining a driver out-of-tree.
-
-Sorry, but no. Further reading [1].
-
-
-BR,
-Jani.
-
-
-[1] https://www.kernel.org/doc/html/latest/process/stable-api-nonsense.html
-
-
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 5df7704369fd..d5e24be759f7 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -549,14 +549,15 @@ static int await_active(struct i915_active *ref,
+ {
+ 	int err = 0;
+ 
+-	/* We must always wait for the exclusive fence! */
+-	if (rcu_access_pointer(ref->excl.fence)) {
++	if (flags & I915_ACTIVE_AWAIT_EXCL &&
++	    rcu_access_pointer(ref->excl.fence)) {
+ 		err = __await_active(&ref->excl, fn, arg);
+ 		if (err)
+ 			return err;
+ 	}
+ 
+-	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
++	if (flags & I915_ACTIVE_AWAIT_ACTIVE &&
++	    i915_active_acquire_if_busy(ref)) {
+ 		struct active_node *it, *n;
+ 
+ 		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+index b526d310a585..ffafaa78c494 100644
+--- a/drivers/gpu/drm/i915/i915_active.h
++++ b/drivers/gpu/drm/i915/i915_active.h
+@@ -193,7 +193,8 @@ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
+ int i915_request_await_active(struct i915_request *rq,
+ 			      struct i915_active *ref,
+ 			      unsigned int flags);
+-#define I915_ACTIVE_AWAIT_ALL BIT(0)
++#define I915_ACTIVE_AWAIT_EXCL BIT(0)
++#define I915_ACTIVE_AWAIT_ACTIVE BIT(1)
+ 
+ int i915_active_acquire(struct i915_active *ref);
+ bool i915_active_acquire_if_busy(struct i915_active *ref);
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 2f78b147bb2d..5cde3e4e7be6 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1948,7 +1948,7 @@ emit_oa_config(struct i915_perf_stream *stream,
+ 	if (!IS_ERR_OR_NULL(active)) {
+ 		/* After all individual context modifications */
+ 		err = i915_request_await_active(rq, active,
+-						I915_ACTIVE_AWAIT_ALL);
++						I915_ACTIVE_AWAIT_ACTIVE);
+ 		if (err)
+ 			goto err_add_request;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 6cc2d9c44015..f0383a68c981 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1167,7 +1167,8 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
+ 	GEM_BUG_ON(!i915_vma_is_pinned(vma));
+ 
+ 	/* Wait for the vma to be bound before we start! */
+-	err = i915_request_await_active(rq, &vma->active, 0);
++	err = i915_request_await_active(rq, &vma->active,
++					I915_ACTIVE_AWAIT_EXCL);
+ 	if (err)
+ 		return err;
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
