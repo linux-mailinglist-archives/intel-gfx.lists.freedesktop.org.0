@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEE119F231
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E0219F258
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:20:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0E9D6E301;
-	Mon,  6 Apr 2020 09:13:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDEBE6E313;
+	Mon,  6 Apr 2020 09:20:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E04889BB2
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 09:13:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6540F6E313;
+ Mon,  6 Apr 2020 09:20:36 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20812402-1500050 
- for multiple; Mon, 06 Apr 2020 10:12:55 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20812624-1500050 
+ for multiple; Mon, 06 Apr 2020 10:20:24 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Apr 2020 10:12:54 +0100
-Message-Id: <20200406091254.17675-5-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200406091254.17675-1-chris@chris-wilson.co.uk>
-References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
+To: igt-dev@lists.freedesktop.org
+Date: Mon,  6 Apr 2020 10:20:24 +0100
+Message-Id: <20200406092024.1640627-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Export a preallocate variant of
- i915_active_acquire()
+Subject: [Intel-gfx] [PATCH i-g-t] i915/suspend: Suspend once before taking
+ forcewake to confirm suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,220 +37,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sometimes we have to be very careful not to allocate underneath a mutex
-(or spinlock) and yet still want to track activity. Enter
-i915_active_acquire_for_context(). This raises the activity counter on
-i915_active prior to use and ensures that the fence-tree contains a slot
-for the context.
+If we take the user-forcewake and then exit, we find outselves in a
+deadlock as the atexit handlers wait for our own forcewake to be
+released. We could either not use the automatically attached exit
+handler (__drm_open_driver), more carefully unwind the exit handler, or
+simply avoid doing late requirement checks. This patch does the later by
+testing for working suspend prior to taking the user-forcewake.
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1637
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_active.c | 107 ++++++++++++++++++++++++++---
- drivers/gpu/drm/i915/i915_active.h |   5 ++
- 2 files changed, 103 insertions(+), 9 deletions(-)
+ tests/i915/i915_suspend.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 048ab9edd2c2..be33b049b5ea 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -217,11 +217,10 @@ excl_retire(struct dma_fence *fence, struct dma_fence_cb *cb)
- }
- 
- static struct i915_active_fence *
--active_instance(struct i915_active *ref, struct intel_timeline *tl)
-+active_instance(struct i915_active *ref, u64 idx)
+diff --git a/tests/i915/i915_suspend.c b/tests/i915/i915_suspend.c
+index 47e134b12..83a4fa546 100644
+--- a/tests/i915/i915_suspend.c
++++ b/tests/i915/i915_suspend.c
+@@ -186,17 +186,16 @@ test_shrink(int fd, unsigned int mode)
+ static void
+ test_forcewake(int fd, bool hibernate)
  {
- 	struct active_node *node, *prealloc;
- 	struct rb_node **p, *parent;
--	u64 idx = tl->fence_context;
++	int suspend = hibernate ? SUSPEND_STATE_DISK : SUSPEND_STATE_MEM;
+ 	int fw_fd;
  
- 	/*
- 	 * We track the most recently used timeline to skip a rbtree search
-@@ -367,7 +366,7 @@ int i915_active_ref(struct i915_active *ref,
- 	if (err)
- 		return err;
++	/* Once before to verify we can suspend */
++	igt_system_suspend_autoresume(suspend, SUSPEND_TEST_NONE);
++
+ 	fw_fd = igt_open_forcewake_handle(fd);
+ 	igt_assert_lte(0, fw_fd);
  
--	active = active_instance(ref, tl);
-+	active = active_instance(ref, tl->fence_context);
- 	if (!active) {
- 		err = -ENOMEM;
- 		goto out;
-@@ -384,32 +383,104 @@ int i915_active_ref(struct i915_active *ref,
- 		atomic_dec(&ref->count);
- 	}
- 	if (!__i915_active_fence_set(active, fence))
--		atomic_inc(&ref->count);
-+		__i915_active_acquire(ref);
+-	if (hibernate)
+-		igt_system_suspend_autoresume(SUSPEND_STATE_DISK,
+-					      SUSPEND_TEST_NONE);
+-	else
+-		igt_system_suspend_autoresume(SUSPEND_STATE_MEM,
+-					      SUSPEND_TEST_NONE);
++	igt_system_suspend_autoresume(suspend, SUSPEND_TEST_NONE);
  
- out:
- 	i915_active_release(ref);
- 	return err;
+ 	close (fw_fd);
  }
- 
--struct dma_fence *
--i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
-+static struct dma_fence *
-+__i915_active_set_fence(struct i915_active *ref,
-+			struct i915_active_fence *active,
-+			struct dma_fence *fence)
- {
- 	struct dma_fence *prev;
- 
- 	/* We expect the caller to manage the exclusive timeline ordering */
- 	GEM_BUG_ON(i915_active_is_idle(ref));
- 
-+	if (is_barrier(active)) { /* proto-node used by our idle barrier */
-+		/*
-+		 * This request is on the kernel_context timeline, and so
-+		 * we can use it to substitute for the pending idle-barrer
-+		 * request that we want to emit on the kernel_context.
-+		 */
-+		__active_del_barrier(ref, node_from_active(active));
-+		RCU_INIT_POINTER(active->fence, NULL);
-+		atomic_dec(&ref->count);
-+	}
-+
- 	rcu_read_lock();
--	prev = __i915_active_fence_set(&ref->excl, f);
-+	prev = __i915_active_fence_set(active, fence);
- 	if (prev)
- 		prev = dma_fence_get_rcu(prev);
- 	else
--		atomic_inc(&ref->count);
-+		__i915_active_acquire(ref);
- 	rcu_read_unlock();
- 
- 	return prev;
- }
- 
-+static struct i915_active_fence *
-+__active_lookup(struct i915_active *ref, u64 idx)
-+{
-+	struct active_node *node;
-+	struct rb_node *p;
-+
-+	/* Like active_instance() but with no malloc */
-+
-+	node = READ_ONCE(ref->cache);
-+	if (node && node->timeline == idx)
-+		return &node->base;
-+
-+	spin_lock_irq(&ref->tree_lock);
-+	GEM_BUG_ON(i915_active_is_idle(ref));
-+
-+	p = ref->tree.rb_node;
-+	while (p) {
-+		node = rb_entry(p, struct active_node, node);
-+		if (node->timeline == idx) {
-+			ref->cache = node;
-+			spin_unlock_irq(&ref->tree_lock);
-+			return &node->base;
-+		}
-+
-+		if (node->timeline < idx)
-+			p = p->rb_right;
-+		else
-+			p = p->rb_left;
-+	}
-+
-+	spin_unlock_irq(&ref->tree_lock);
-+
-+	return NULL;
-+}
-+
-+struct dma_fence *
-+__i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence)
-+{
-+	struct dma_fence *prev = ERR_PTR(-ENOENT);
-+	struct i915_active_fence *active;
-+
-+	if (!i915_active_acquire_if_busy(ref))
-+		return ERR_PTR(-EINVAL);
-+
-+	active = __active_lookup(ref, idx);
-+	if (active)
-+		prev = __i915_active_set_fence(ref, active, fence);
-+
-+	i915_active_release(ref);
-+	return prev;
-+}
-+
-+struct dma_fence *
-+i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
-+{
-+	/* We expect the caller to manage the exclusive timeline ordering */
-+	return __i915_active_set_fence(ref, &ref->excl, f);
-+}
-+
- bool i915_active_acquire_if_busy(struct i915_active *ref)
- {
- 	debug_active_assert(ref);
-@@ -443,6 +514,24 @@ int i915_active_acquire(struct i915_active *ref)
- 	return err;
- }
- 
-+int i915_active_acquire_for_context(struct i915_active *ref, u64 idx)
-+{
-+	struct i915_active_fence *active;
-+	int err;
-+
-+	err = i915_active_acquire(ref);
-+	if (err)
-+		return err;
-+
-+	active = active_instance(ref, idx);
-+	if (!active) {
-+		i915_active_release(ref);
-+		return -ENOMEM;
-+	}
-+
-+	return 0; /* return with active ref */
-+}
-+
- void i915_active_release(struct i915_active *ref)
- {
- 	debug_active_assert(ref);
-@@ -811,7 +900,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 			 */
- 			RCU_INIT_POINTER(node->base.fence, ERR_PTR(-EAGAIN));
- 			node->base.cb.node.prev = (void *)engine;
--			atomic_inc(&ref->count);
-+			__i915_active_acquire(ref);
- 		}
- 		GEM_BUG_ON(rcu_access_pointer(node->base.fence) != ERR_PTR(-EAGAIN));
- 
-diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-index cf4058150966..042502abefe5 100644
---- a/drivers/gpu/drm/i915/i915_active.h
-+++ b/drivers/gpu/drm/i915/i915_active.h
-@@ -163,6 +163,9 @@ void __i915_active_init(struct i915_active *ref,
- 	__i915_active_init(ref, active, retire, &__mkey, &__wkey);	\
- } while (0)
- 
-+struct dma_fence *
-+__i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence);
-+
- int i915_active_ref(struct i915_active *ref,
- 		    struct intel_timeline *tl,
- 		    struct dma_fence *fence);
-@@ -198,7 +201,9 @@ int i915_request_await_active(struct i915_request *rq,
- #define I915_ACTIVE_AWAIT_BARRIER BIT(2)
- 
- int i915_active_acquire(struct i915_active *ref);
-+int i915_active_acquire_for_context(struct i915_active *ref, u64 idx);
- bool i915_active_acquire_if_busy(struct i915_active *ref);
-+
- void i915_active_release(struct i915_active *ref);
- 
- static inline void __i915_active_acquire(struct i915_active *ref)
 -- 
-2.20.1
+2.26.0
 
 _______________________________________________
 Intel-gfx mailing list
