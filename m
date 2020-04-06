@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67A319F58A
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:06:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F82619F58E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:07:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32F616E167;
-	Mon,  6 Apr 2020 12:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F826E394;
+	Mon,  6 Apr 2020 12:07:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6046E167
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:06:08 +0000 (UTC)
-IronPort-SDR: nC9YxITgVVqFQpVfc2bRPFHKlUcJm3wbhELA3jMqn/NYloiHeqk2nmtJS3uJgVdvrx46e8X8vU
- BrZwSYcLK5SA==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43036E394
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:07:09 +0000 (UTC)
+IronPort-SDR: 8ZrMlbodwHP0QS0h7iNGfClPQSNzxER3ZaDIFtDZ5yMa/0ROUrCB7Cn2W/5h72yaK2rwREFXil
+ pZcUMKNxDxOw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 05:06:07 -0700
-IronPort-SDR: E6O2c0rFLK0QB0pFc1o4Fyp5layhRjCC16Ufyx6F3buG4SaJgxwmE9sRuoAWr5tYMytRtM/h9W
- zoQEOfULx6GA==
-X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285864879"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 05:07:09 -0700
+IronPort-SDR: DJ0X5qIaTo4nrBNUs7HJ/3ywfeWbE5+OVWeCaP0w1DTrRgRdaPeMiGBqzcHk4vCYszq9AttXxy
+ dXUBVqQbiL/w==
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285865069"
 Received: from nlevi-mobl.ger.corp.intel.com (HELO [10.251.172.194])
  ([10.251.172.194])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 05:06:06 -0700
+ 06 Apr 2020 05:07:08 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
- <20200406091254.17675-2-chris@chris-wilson.co.uk>
+ <20200406091254.17675-3-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <ea4ee702-3384-6978-cac4-870c85a88a21@linux.intel.com>
-Date: Mon, 6 Apr 2020 13:06:03 +0100
+Message-ID: <88760bf9-7f57-f74a-d44a-733d48fdecd5@linux.intel.com>
+Date: Mon, 6 Apr 2020 13:07:06 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200406091254.17675-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200406091254.17675-3-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Allow asynchronous waits on
- the i915_active barriers
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/gem: Wait until the context is
+ finally retired before releasing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,124 +59,58 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 06/04/2020 10:12, Chris Wilson wrote:
-> Allow the caller to also wait upon the barriers stored in i915_active.
+> If we want to percolate information back from the HW, up through the GEM
+> context, we need to wait until the intel_context is scheduled out for
+> the last time. This is handled by the retirement of the intel_context's
+> barrier, i.e. by listening to the pulse after the notional unpin. So
+> wait until the intel_context is finally retired before releasing the
+> engine, so that we can inspect the final context state and pass it on.
 > 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_active.c | 60 ++++++++++++++++++++++++++++++
->   drivers/gpu/drm/i915/i915_active.h |  1 +
->   2 files changed, 61 insertions(+)
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 16 ++++++----------
+>   1 file changed, 6 insertions(+), 10 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index d5e24be759f7..048ab9edd2c2 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -542,6 +542,55 @@ static int __await_active(struct i915_active_fence *active,
->   	return 0;
->   }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 2b6dd08de6f1..11d9135cf21a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -570,23 +570,19 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+>   	engines->ctx = i915_gem_context_get(ctx);
 >   
-> +struct wait_barrier {
-> +	struct wait_queue_entry base;
-> +	struct i915_active *ref;
-> +};
-> +
-> +static int
-> +barrier_wake(wait_queue_entry_t *wq, unsigned int mode, int flags, void *key)
-> +{
-> +	struct wait_barrier *wb = container_of(wq, typeof(*wb), base);
-> +
-> +	if (i915_active_is_idle(wb->ref)) { /* shared waitqueue, must check! */
-
-Who shares it?
-
-> +		list_del(&wq->entry);
-> +		i915_sw_fence_complete(wq->private);
-> +		kfree(wq);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int __await_barrier(struct i915_active *ref, struct i915_sw_fence *fence)
-> +{
-> +	struct wait_barrier *wb;
-> +
-> +	wb = kmalloc(sizeof(*wb), GFP_KERNEL);
-> +	if (unlikely(!wb))
-> +		return -ENOMEM;
-> +
-> +	if (!i915_active_acquire_if_busy(ref)) {
-> +		kfree(wb);
-> +		return 0;
-> +	}
-> +
-> +	if (!i915_sw_fence_await(fence)) {
-> +		kfree(wb);
-> +		i915_active_release(ref);
-> +		return -EINVAL;
-> +	}
-> +
-> +	wb->base.flags = 0;
-> +	wb->base.func = barrier_wake;
-> +	wb->base.private = fence;
-> +	wb->ref = ref;
-> +
-> +	add_wait_queue(__var_waitqueue(ref), &wb->base);
-> +
-> +	i915_active_release(ref);
-> +	return 0;
-> +}
-> +
->   static int await_active(struct i915_active *ref,
->   			unsigned int flags,
->   			int (*fn)(void *arg, struct dma_fence *fence),
-> @@ -570,6 +619,16 @@ static int await_active(struct i915_active *ref,
->   			return err;
+>   	for_each_gem_engine(ce, engines, it) {
+> -		struct dma_fence *fence;
+> -		int err = 0;
+> +		int err;
+>   
+>   		/* serialises with execbuf */
+>   		set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
+>   		if (!intel_context_pin_if_active(ce))
+>   			continue;
+>   
+> -		fence = i915_active_fence_get(&ce->timeline->last_request);
+> -		if (fence) {
+> -			err = i915_sw_fence_await_dma_fence(&engines->fence,
+> -							    fence, 0,
+> -							    GFP_KERNEL);
+> -			dma_fence_put(fence);
+> -		}
+> +		/* Wait until context is finally scheduled out and retired */
+> +		err = i915_sw_fence_await_active(&engines->fence,
+> +						 &ce->active,
+> +						 I915_ACTIVE_AWAIT_BARRIER);
+>   		intel_context_unpin(ce);
+> -		if (err < 0)
+> +		if (err)
+>   			goto kill;
 >   	}
 >   
-> +	if (flags & I915_ACTIVE_AWAIT_BARRIER) {
-> +		err = flush_lazy_signals(ref);
-> +		if (err)
-> +			return err;
-> +
-> +		err = __await_barrier(ref, arg);
-> +		if (err)
-> +			return err;
->
-
-Could have a single set of active_acquire_if_busy/release over the 
-previous and this new block. Not sure if that would help with any 
-atomicity concerns, or if there are such.
-
-  +	}
-> +
->   	return 0;
->   }
->   
-> @@ -582,6 +641,7 @@ int i915_request_await_active(struct i915_request *rq,
->   			      struct i915_active *ref,
->   			      unsigned int flags)
->   {
-> +	GEM_BUG_ON(flags & I915_ACTIVE_AWAIT_BARRIER);
-
-Why is this an error?
-
->   	return await_active(ref, flags, rq_await_fence, rq);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> index ffafaa78c494..cf4058150966 100644
-> --- a/drivers/gpu/drm/i915/i915_active.h
-> +++ b/drivers/gpu/drm/i915/i915_active.h
-> @@ -195,6 +195,7 @@ int i915_request_await_active(struct i915_request *rq,
->   			      unsigned int flags);
->   #define I915_ACTIVE_AWAIT_EXCL BIT(0)
->   #define I915_ACTIVE_AWAIT_ACTIVE BIT(1)
-> +#define I915_ACTIVE_AWAIT_BARRIER BIT(2)
->   
->   int i915_active_acquire(struct i915_active *ref);
->   bool i915_active_acquire_if_busy(struct i915_active *ref);
 > 
+
+This one is fine once I figure out the previous one. :)
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
