@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D6519F1FA
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3ED19F223
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:11:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB77A6E2F2;
-	Mon,  6 Apr 2020 09:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD30089E32;
+	Mon,  6 Apr 2020 09:11:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24C376E2F2;
- Mon,  6 Apr 2020 09:01:56 +0000 (UTC)
-IronPort-SDR: Laqd8WFA6eew0WKYc+pZE6OfcZH5psYbm6qgQIkDHj9mNtIsLItFr9Q/26wmcAZizCdNjMdmDj
- XHMQ4QKCrjFg==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73EF989BB2;
+ Mon,  6 Apr 2020 09:11:40 +0000 (UTC)
+IronPort-SDR: m0rdf1h397I0SFc6KKq3iMu3DbrQ3Q2GzthhAPAlURfxXYDDQrqSXoFTF/CtWT7gJx50YihASL
+ j6NG/duO812Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 02:01:51 -0700
-IronPort-SDR: sKzZKKfqJ8HITpZgplb398OnuLv/4VEaGZZLDWyllSjtScZAc+hnzp9dNdiPSdlX+yOw4mNX/B
- onRAm6N7xFQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,350,1580803200"; d="scan'208";a="285829058"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by fmsmga002.fm.intel.com with ESMTP; 06 Apr 2020 02:01:50 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1jLNdd-0001j3-Ts; Mon, 06 Apr 2020 12:01:49 +0300
-Date: Mon, 6 Apr 2020 12:01:49 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200406090149.GK9497@platvala-desk.ger.corp.intel.com>
-References: <20200406085309.1585743-1-chris@chris-wilson.co.uk>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 02:11:39 -0700
+IronPort-SDR: U/7yDPrLtYunTdbwKyXMOoY4ReiX8XnjIuq37cKWO9ZNo/NOrYfPnk8zA/9ubT3ezfozmivQ8/
+ +9xpwGaATDCQ==
+X-IronPort-AV: E=Sophos;i="5.72,350,1580803200"; d="scan'208";a="397440298"
+Received: from maytarsh-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.121])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 02:11:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: abhinavk@codeaurora.org, Ville Syrjala <ville.syrjala@linux.intel.com>
+In-Reply-To: <7cd8b081a383125732dbddd32116e46e@codeaurora.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-17-ville.syrjala@linux.intel.com>
+ <7cd8b081a383125732dbddd32116e46e@codeaurora.org>
+Date: Mon, 06 Apr 2020 12:11:32 +0300
+Message-ID: <87r1x1kmgr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200406085309.1585743-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/perf_pmu: Add the missing
- igt_dynamic to dynamic rcs* test selection
+Subject: Re: [Intel-gfx] [PATCH v2 16/17] drm: Nuke mode->private_flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,40 +49,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Sam Ravnborg <sam@ravnborg.org>, jeykumar@quicinc.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, nganji@quicinc.com, pdhaval@quicinc.com,
+ aravindh@quicinc.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2020 at 09:53:09AM +0100, Chris Wilson wrote:
-> An important ingredient to using igt_subtest_with_dynamic is to include
-> an igt_dynamic at some point.
-> 
-> Reported-by: Petri Latvala <petri.latvala@intel.com>
-> Fixes: 311cb1b360b7 ("i915/perf_pmu: Dynamic active engine tests")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Petri Latvala <petri.latvala@intel.com>
+On Fri, 03 Apr 2020, abhinavk@codeaurora.org wrote:
+> Hi Ville
+>
+> Thanks for the patch.
+>
+> Our understanding of private_flags was that we can use it within our 
+> drivers to handle vendor specific features.
+> Hence we do have several features in our downstream drivers as well as 
+> some planned work based on this.
+>
+> This was the only method to pass around and consume the driver only 
+> information which we have been using.
+>
+> In the current qualcomm upstream display drivers, the only usage of the 
+> mode->private_flags is what you have removed in 
+> https://patchwork.kernel.org/patch/11473497/.
+>
+> However, for other projects which do not use upstream drivers yet, we 
+> have several features already which are using the mode->private_flags.
+>
+> We do have a plan to remove the usage of mode->private_flags for those 
+> drivers as well but its not ready yet.
+>
+> These downstream drivers still use the upstream drm files for 
+> compilation.
+>
+> So how it works is we use all the headers under include/drm and also the 
+> files under drivers/gpu/drm as-it-is from upstream but maintain our 
+> drivers on top of this.
+>
+> Removing this will result in compilation failures for us in the near 
+> term.
+>
+> Can we keep this one as-it-is and when our changes are ready to post it 
+> upstream we shall remove private_flags from the drm_modes.h
 
-Thanks,
+If your driver were upstream, Ville would have fixed it in the process
+of removing private_flags. It would be part of this patch series. That
+is the only guarantee you get for kernel internal APIs, and you only get
+that guarantee for drivers in the upstream kernel. Otherwise, all bets
+are off.
 
-Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+Taking all the upstream considerations into account is complicated
+enough. It is simply not reasonable to hold back internal kernel changes
+due to out-of-tree or downstream drivers. I know it is painful, but
+that's the cost of maintaining a driver out-of-tree.
 
-
-If someone (tm) is feeling like there's not enough to do, perf_pmu
-could use a refactoring with the dynamic subtests to do
-
-
-igt_subtest_with_dynamic() {
-  igt_require(system-wide things);
-
-  igt_dynamic_f() { igt_require(engine-specific thing); }
-}
-
-so that skips happen for a whole subtest at a time for things like gen
-checks.
+Sorry, but no. Further reading [1].
 
 
+BR,
+Jani.
+
+
+[1] https://www.kernel.org/doc/html/latest/process/stable-api-nonsense.html
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
