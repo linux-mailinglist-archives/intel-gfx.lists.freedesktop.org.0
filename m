@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055A919F317
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 11:58:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 854D319F409
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 13:03:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D196E317;
-	Mon,  6 Apr 2020 09:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A18396E320;
+	Mon,  6 Apr 2020 11:03:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CABDC6E2EC;
- Mon,  6 Apr 2020 09:58:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3DEDA47E0;
- Mon,  6 Apr 2020 09:58:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E92C6E326
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 11:03:03 +0000 (UTC)
+IronPort-SDR: vGrmwevlOZbOCnziAUAO6ZL/0MQuVXaiezCIM+PPqMTONSWkwcGrQARSRGyRT5Y9rbf8gXEbn5
+ k1nSlWraZaZA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 04:03:02 -0700
+IronPort-SDR: djlFMai/4Tlhw8ZNCPPrM3mZKmdez7e2iN39nA6fLDeXMUc/d8bQQfUgNGw7kGeDQ0kDqbKXZr
+ UOz0Uqq8/7tA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,350,1580803200"; d="scan'208";a="397463382"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by orsmga004.jf.intel.com with ESMTP; 06 Apr 2020 04:02:59 -0700
+Date: Mon, 6 Apr 2020 16:24:01 +0530
+From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200406105401.GA16300@plaxmina-desktop.iind.intel.com>
+References: <20200402114819.17232-1-jani.nikula@intel.com>
+ <20200402114819.17232-2-jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 06 Apr 2020 09:58:53 -0000
-Message-ID: <158616713379.4194.17995239363652840162@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200406091254.17675-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Make_exclusive_awaits_o?=
- =?utf-8?q?n_i915=5Factive_optional?=
+Content-Disposition: inline
+In-Reply-To: <20200402114819.17232-2-jani.nikula@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 02/17] drm/i915/panel: use struct drm_device
+ based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,86 +49,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Apr 02, 2020 at 02:48:04PM +0300, Jani Nikula wrote:
+> Convert all the DRM_* logging macros to the struct drm_device based
+> macros to provide device specific logging.
+> 
+> No functional changes.
+> 
+> Generated using the following semantic patch, originally written by
+> Wambui Karuga <wambui.karugax@gmail.com>, with manual fixups on top:
+> 
+> @@
+> identifier fn, T;
+> @@
+> 
+> fn(...,struct drm_i915_private *T,...) {
+> <+...
+> (
+> -DRM_INFO(
+> +drm_info(&T->drm,
+> ...)
+> |
+> -DRM_NOTE(
+> +drm_notice(&T->drm,
+> ...)
+> |
+> -DRM_ERROR(
+> +drm_err(&T->drm,
+> ...)
+> |
+> -DRM_WARN(
+> +drm_warn(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_DRIVER(
+> +drm_dbg(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_KMS(
+> +drm_dbg_kms(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_ATOMIC(
+> +drm_dbg_atomic(&T->drm,
+> ...)
+> )
+> ...+>
+> }
+> 
+> @@
+> identifier fn, T;
+> @@
+> 
+> fn(...) {
+> ...
+> struct drm_i915_private *T = ...;
+> <+...
+> (
+> -DRM_INFO(
+> +drm_info(&T->drm,
+> ...)
+> |
+> -DRM_NOTE(
+> +drm_notice(&T->drm,
+> ...)
+> |
+> -DRM_ERROR(
+> +drm_err(&T->drm,
+> ...)
+> |
+> -DRM_WARN(
+> +drm_warn(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_DRIVER(
+> +drm_dbg(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_KMS(
+> +drm_dbg_kms(&T->drm,
+> ...)
+> |
+> -DRM_DEBUG_ATOMIC(
+> +drm_dbg_atomic(&T->drm,
+> ...)
+> )
+> ...+>
+> }
+> 
+> Cc: Wambui Karuga <wambui.karugax@gmail.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_panel.c | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 276f43870802..a080a623bed6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -684,9 +684,10 @@ static void
+>  intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+>  {
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
 
-Series: series starting with [1/5] drm/i915: Make exclusive awaits on i915_active optional
-URL   : https://patchwork.freedesktop.org/series/75535/
-State : success
+This addition does not match with the cocci script mentioned in the
+commit description.
+Are you sure same script is used to generate this patch?
 
-== Summary ==
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	DRM_DEBUG_DRIVER("set backlight PWM = %d\n", level);
+> +	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", level);
+>  
+>  	level = intel_panel_compute_brightness(connector, level);
+>  	panel->backlight.set(conn_state, level);
+> @@ -867,8 +868,8 @@ void intel_panel_disable_backlight(const struct drm_connector_state *old_conn_st
+>  	 * another client is not activated.
+>  	 */
+>  	if (dev_priv->drm.switch_power_state == DRM_SWITCH_POWER_CHANGING) {
+> -		drm_dbg(&dev_priv->drm,
+> -			"Skipping backlight disable on vga switch\n");
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Skipping backlight disable on vga switch\n");
+>  		return;
+>  	}
+>  
+> @@ -1244,7 +1245,7 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+>  
+>  	mutex_unlock(&dev_priv->backlight_lock);
+>  
+> -	drm_dbg(&dev_priv->drm, "get backlight PWM = %d\n", val);
+> +	drm_dbg_kms(&dev_priv->drm, "get backlight PWM = %d\n", val);
+>  	return val;
+>  }
+>  
+> @@ -1335,6 +1336,7 @@ static const struct backlight_ops intel_backlight_device_ops = {
+>  
+>  int intel_backlight_device_register(struct intel_connector *connector)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
 
-CI Bug Log - changes from CI_DRM_8259 -> Patchwork_17215
-====================================================
+Same as above.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17215/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17215 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([i915#1158])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17215/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4] ([i915#1314])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17215/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
-  [i915#1314]: https://gitlab.freedesktop.org/drm/intel/issues/1314
-
-
-Participating hosts (53 -> 46)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8259 -> Patchwork_17215
-
-  CI-20190529: 20190529
-  CI_DRM_8259: 450fc86b62651336f9b5fde79c068df7b4c95aa4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5571: da79d5fa2ebed237f0561a54b4b63bae6f21503a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17215: ebe467224a3cead105b9218f06a161f63fc1366f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ebe467224a3c drm/i915: Export a preallocate variant of i915_active_acquire()
-3c0c51b26d9a drm/i915/gem: Assign context id for async work
-ef34c6868559 drm/i915/gem: Wait until the context is finally retired before releasing engines
-4751f168f68b drm/i915: Allow asynchronous waits on the i915_active barriers
-c4feadaf04b6 drm/i915: Make exclusive awaits on i915_active optional
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17215/index.html
+>  	struct intel_panel *panel = &connector->panel;
+>  	struct backlight_properties props;
+>  
+> @@ -1374,14 +1376,15 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  					  &intel_backlight_device_ops, &props);
+>  
+>  	if (IS_ERR(panel->backlight.device)) {
+> -		DRM_ERROR("Failed to register backlight: %ld\n",
+> -			  PTR_ERR(panel->backlight.device));
+> +		drm_err(&i915->drm, "Failed to register backlight: %ld\n",
+> +			PTR_ERR(panel->backlight.device));
+>  		panel->backlight.device = NULL;
+>  		return -ENODEV;
+>  	}
+>  
+> -	DRM_DEBUG_KMS("Connector %s backlight sysfs interface registered\n",
+> -		      connector->base.name);
+> +	drm_dbg_kms(&i915->drm,
+> +		    "Connector %s backlight sysfs interface registered\n",
+> +		    connector->base.name);
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
