@@ -1,58 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0332419F07F
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 08:55:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7B719F19E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 10:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 436B66E2B2;
-	Mon,  6 Apr 2020 06:55:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F4489F4A;
+	Mon,  6 Apr 2020 08:32:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BBFC6E2B2
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 06:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1586156128;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=P/XcXsoqCt6s7oC1pXCOG7v5CVgUMYpAhxT/EUbI5X4=;
- b=NisjFbiEF41KxXpyFSRf6LWTln/WElY+nucWSFzAmPZ2mUbaFodXuBbE+ETwvgrx0DIMr3
- a+tLpGYM54JgZAx4LZq/cuxvcmzKaq6lGwUvqYc+Ge7zoZx9ianjzjnLzxDopgqXTjKc+9
- iVWeSOuTtrB9Hf2T+JV4WwyukEiDKWE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-71-0dmzAn_mPAKouxlVuZ8OJw-1; Mon, 06 Apr 2020 02:55:21 -0400
-X-MC-Unique: 0dmzAn_mPAKouxlVuZ8OJw-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9AD931005509;
- Mon,  6 Apr 2020 06:55:20 +0000 (UTC)
-Received: from sirius.home.kraxel.org (ovpn-113-60.ams2.redhat.com
- [10.36.113.60])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4C94C90CE0;
- Mon,  6 Apr 2020 06:55:20 +0000 (UTC)
-Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
- id 99F881750C; Mon,  6 Apr 2020 08:55:19 +0200 (CEST)
-Date: Mon, 6 Apr 2020 08:55:19 +0200
-From: Gerd Hoffmann <kraxel@redhat.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200406065519.b6xj6gbn7y3sjr5h@sirius.home.kraxel.org>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-32-daniel.vetter@ffwll.ch>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE0489F4A;
+ Mon,  6 Apr 2020 08:32:51 +0000 (UTC)
+IronPort-SDR: 3EG8xOP8uM9tTUmMb965V7IJ/csY4lQlJ5l79Y2bjI4vaqL+W2njONvLkKoNhYwlfQlU/7BkQD
+ p2NUw371ySgw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 01:32:51 -0700
+IronPort-SDR: xU6jgijA9eoJCsmfR0qbFbTkab9P66OIRSvk1kwD3zEsucMmbumlsuKGXaJsmIsTqjTTeslfCL
+ 1akuhsVMbVwA==
+X-IronPort-AV: E=Sophos;i="5.72,350,1580803200"; d="scan'208";a="424285937"
+Received: from maytarsh-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.121])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 01:32:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: abhinavk@codeaurora.org, Ville Syrjala <ville.syrjala@linux.intel.com>
+In-Reply-To: <5d677ff317089267407609a1faa64b13@codeaurora.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-4-ville.syrjala@linux.intel.com>
+ <5d677ff317089267407609a1faa64b13@codeaurora.org>
+Date: Mon, 06 Apr 2020 11:32:38 +0300
+Message-ID: <87tv1xko9l.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200403135828.2542770-32-daniel.vetter@ffwll.ch>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-Subject: Re: [Intel-gfx] [PATCH 31/44] drm/qxl: Don't use
- drm_device->dev_private
+Subject: Re: [Intel-gfx] [PATCH v2 03/17] drm: Nuke mode->vrefresh
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,28 +49,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org,
+ Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Sam Ravnborg <sam@ravnborg.org>, aravindh@quicinc.com,
+ Emil Velikov <emil.velikov@collabora.com>,
+ Thomas Hellstrom <thellstrom@vmware.com>,
+ Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>,
+ Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>,
+ pdhaval@quicinc.com, Ben Skeggs <bskeggs@redhat.com>,
+ Jonas Karlman <jonas@kwiboo.se>, intel-gfx@lists.freedesktop.org,
+ nganji@quicinc.com, linux-amlogic@lists.infradead.org,
+ Vincent Abriou <vincent.abriou@st.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Purism Kernel Team <kernel@puri.sm>,
+ jeykumar@quicinc.com, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, Icenowy Zheng <icenowy@aosc.io>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 03:58:15PM +0200, Daniel Vetter wrote:
-> Upcasting using a container_of macro is more typesafe, faster and
-> easier for the compiler to optimize.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: virtualization@lists.linux-foundation.org
-> Cc: spice-devel@lists.freedesktop.org
+On Fri, 03 Apr 2020, abhinavk@codeaurora.org wrote:
+> On 2020-04-03 13:39, Ville Syrjala wrote:
+>> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+>> index fec1c33b3045..e3d5f011f7bd 100644
+>> --- a/drivers/gpu/drm/drm_modes.c
+>> +++ b/drivers/gpu/drm/drm_modes.c
+>> @@ -759,9 +759,7 @@ int drm_mode_vrefresh(const struct drm_display_mode 
+>> *mode)
+>>  {
+>>  	int refresh = 0;
+>> 
+>> -	if (mode->vrefresh > 0)
+>> -		refresh = mode->vrefresh;
+>
+> The mode->vrefresh has been replaced with calling this API in all its 
+> usages.
+> However in this API, the above if statement was returning the vrefresh 
+> if it was already
+> set. mode->clock is holding the pixel clock . So this will not cause any 
+> issues in non-compressed cases.
+> In case of compression like DSC, the pixel
+> clock will be different based on the compression ratio hence the 
+> mode->clock will change but fps will not.
+> So we did have usages in our downstream driver where we would use this 
+> API and the refresh rate
+> returned will be the mode->vrefresh which did not change but after this 
+> change for those cases it will end up returning the refresh rate 
+> calculated using mode->clock which will result in a different value now.
+> So is the recommendation that even in the case of compression 
+> mode->clock should always hold
+> uncompressed pixel clock value because with this part of the change we 
+> will now get a different value when we call this API.
 
-Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+Yes. The mode remains the same regardless of compression, and
+compression is just an implementation detail of the transport.
 
+You may need to maintain separate "physical port clock" and "logical
+port clock" for DSC, where the latter is a function of the former and
+the DSC parameters. And then you can see if your logical port clock
+provides enough bandwidth for your mode. But this is up to your driver
+and encoder implementation.
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
