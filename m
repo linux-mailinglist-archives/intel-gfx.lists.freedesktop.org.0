@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985AE19F7C9
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:19:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A504019F7EB
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:27:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34CCD6E3D6;
-	Mon,  6 Apr 2020 14:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 043926E3E3;
+	Mon,  6 Apr 2020 14:27:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BC116E3D6;
- Mon,  6 Apr 2020 14:19:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 135DFA3C0D;
- Mon,  6 Apr 2020 14:19:34 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90676E3E1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 14:27:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20817131-1500050 for multiple; Mon, 06 Apr 2020 15:27:39 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Mon, 06 Apr 2020 14:19:34 -0000
-Message-ID: <158618277404.4193.10622186842619827587@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/perf=3A_break_OA_co?=
- =?utf-8?q?nfig_buffer_object_in_2?=
+In-Reply-To: <ed57ddbf-c064-c26c-7fd4-44432f6ee90e@intel.com>
+References: <20200331114821.81957-1-lionel.g.landwerlin@intel.com>
+ <20200331114821.81957-3-lionel.g.landwerlin@intel.com>
+ <158567812981.5852.12449950625595064091@build.alporthouse.com>
+ <5bdf47bd-91f5-9f84-fb3b-05a1d5350605@intel.com>
+ <158618154668.6356.9721928351250010796@build.alporthouse.com>
+ <ed57ddbf-c064-c26c-7fd4-44432f6ee90e@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158618325988.6356.1956600450264682241@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 06 Apr 2020 15:27:39 +0100
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/perf: enable filtering on
+ multiple contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +45,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Lionel Landwerlin (2020-04-06 15:07:30)
+> On 06/04/2020 16:59, Chris Wilson wrote:
+> > Quoting Lionel Landwerlin (2020-04-06 14:54:38)
+> >> On 31/03/2020 21:08, Chris Wilson wrote:
+> >>> Quoting Lionel Landwerlin (2020-03-31 12:48:21)
+> >>>> Add 2 new properties to the i915-perf open ioctl to specify an array
+> >>>> of GEM context handles as well as the length of the array.
+> >>> Hmm. The other thought is ctx->engine[] where one context may have more
+> >>> than one logical context instance that OA could track. The extension to
+> >>> track multiple pinned contexts should equally work for multiple engines.
+> >>>
+> >>>        I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 64) = {};
+> >>>        struct drm_i915_gem_context_param p = {
+> >>>                .ctx_id = gem_context_create(i915),
+> >>>                .param = I915_CONTEXT_PARAM_ENGINES,
+> >>>                .value = to_user_pointer(&engines),
+> >>>                .size = sizeof(struct i915_context_param_engines),
+> >>>        };
+> >>>        gem_context_set_param(i915, &p);
+> >>>
+> >>> would do the trick in creating one context with 64 rcs0 that they may
+> >>> want to track. And that also opens the door to virtual engines over top.
+> >>> -Chris
+> >>
+> >> I rather punt this away for now :)
+> >>
+> >> I can't see use cases for Iris/Vulkan.
+> > There's immediate use cases for iris, since it uses 2 contexts instead
+> > of 2 logical instances within one GL/GEM context.
+> 
+> 
+> I don't understand this. Are you saying Iris could use the stuff from 
+> above and still select what logical context to dispatch to?
 
-Series: series starting with [1/3] drm/i915/perf: break OA config buffer object in 2
-URL   : https://patchwork.freedesktop.org/series/75550/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-d78a933fe510 drm/i915/perf: break OA config buffer object in 2
--:27: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#27: FILE: drivers/gpu/drm/i915/i915_perf.c:375:
-+	uint32_t per_context_offset;
-
-total: 0 errors, 0 warnings, 1 checks, 325 lines checked
-122d52d6d979 drm/i915/perf: prepare driver to receive multiple ctx handles
--:53: CHECK:SPACING: No space is necessary after a cast
-#53: FILE: drivers/gpu/drm/i915/i915_perf.c:633:
-+	return *((int *) elem) - *((int *) key);
-
--:108: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#108: FILE: drivers/gpu/drm/i915/i915_perf.c:814:
-+			    reason & OAREPORT_REASON_CTX_SWITCH) {
-+
-
--:903: WARNING:LONG_LINE: line over 100 characters
-#903: FILE: drivers/gpu/drm/i915/i915_perf.c:3715:
-+			props->ctx_handles = kmalloc_array(1, sizeof(*props->ctx_handles), GFP_KERNEL);
-
-total: 0 errors, 1 warnings, 2 checks, 1007 lines checked
-18728c0bc637 drm/i915/perf: enable filtering on multiple contexts
-
+Yes. And can be done so only by changing the context setup to create one
+context with two independent rcs engines (different logical GPU state,
+and rings, *only* sharing the same vm). And since legacy EXEC_DEFAULT[0]
+and EXEC_RENDER[1] alias to the same engine, very little code needs to be
+changed to support (1 ctx, 2 engines) vs (2 ctx, 1 engine).
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
