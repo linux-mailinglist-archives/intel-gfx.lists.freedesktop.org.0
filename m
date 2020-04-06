@@ -1,70 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439E819FA2D
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 18:34:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B4519FA4C
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 18:39:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC2C6E438;
-	Mon,  6 Apr 2020 16:34:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B876E433;
+	Mon,  6 Apr 2020 16:39:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA0006E436;
- Mon,  6 Apr 2020 16:34:16 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id m12so213251edl.12;
- Mon, 06 Apr 2020 09:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=TnA8Rk8wwqcheP60jcz2928dl0ycXm9Stb7I95Ppam0=;
- b=qJQXDntKajQ9aUJb6B8NaA6ANsEQ2bY8Pd+kDwCS7yz8tbD0a5bfC6UYaU7vxCK35R
- Ew+Zbher9NacqM3abuh2cSG9iQDSksEyzoBFiE8E+F3lzET0EJepP5GNIbeH6jLj0k1I
- f6D6eRszMCmYxeAXj1B/cWWKxkOgHUqAsNDag4puxIe4fcHBgVlj1doNj6Kp75EvLxym
- EUtJ41/pVIBz4xJSeTT1iOCDGKjepWVYkMbpcrafMqqYpUbILIYdpjoVfYFcL6eJ7UNg
- SlCFBpE7OUVm3NwskEhV5KtC65iNda2xqDIXyxOOcevjHwr8kIWfAnAZ1iTokgFsdojq
- 6PrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=TnA8Rk8wwqcheP60jcz2928dl0ycXm9Stb7I95Ppam0=;
- b=QWOs4vSEjgC/1hXKPtyXqofPL/UHSGtyAxGjfleXpJKmhtYMGlAxZR555hyKH6GhDP
- GF14y0j9FEwjK1uJxuH1ouh6hq3LZgXOEmfcsgyxLDnOrrL0bXZoMHl0fs2iSJVpu9Dx
- N1/PWmg6fbshwurNodD0kwxlYKaxHAerWmqGByk8HECa8/8yOBuL/8uOKDwuiz1sHkFD
- 4rH09wei0wA0sYL2oe5TkTmXvifRbs9cmMm65BkJ/8QryDS1j1uXOgoxmg4zzsRQ9bSj
- xu+Edcci6V6Rqwvv2VkuxYO/Mwmw0dBnF58rsibHcPVvb75fKSsIOb4I6OZTUzi9+PtF
- dz8Q==
-X-Gm-Message-State: AGi0PubpYKdla/37EHAxo4X/9Ee0VFG+tGnn4YuEK9T4hakUG3IsyJtg
- IfFSGJAgBFQn4ry5ddTSUM/b/lFSXXrjouZ8570=
-X-Google-Smtp-Source: APiQypI0HpHTiW/l9sVL/Pqetal/Dr+wgJ/U6WAKjCm0zcULQpr2QBfSPLfAisM7AgESMo/ktOmYM1jc32Kd4m9/i3A=
-X-Received: by 2002:a17:906:eddb:: with SMTP id
- sb27mr316213ejb.207.1586190855228; 
- Mon, 06 Apr 2020 09:34:15 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 992B96E433
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 16:39:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20818680-1500050 
+ for multiple; Mon, 06 Apr 2020 17:39:31 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Apr 2020 17:39:31 +0100
+Message-Id: <20200406163931.6979-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
- <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
- <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
- <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
- <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
- <d9dca12759fd6a549dc4cd71b5f210a4dced01cd.camel@gmail.com>
- <CAOFGe96WqRTagf=Lhp6j9aMnB6hxwog7t93t=4r6QE_4f+HpeQ@mail.gmail.com>
- <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
- <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
- <3cddf1aa-5072-af7c-c51e-c16039176f6c@daenzer.net>
- <CAF6AEGuNTtHfNm_nRhPFX5wPRmKkjnFEKqTdTSBDjpLkaiN8Fw@mail.gmail.com>
- <f4d856925111b77012cabb255d6a880ae5637b41.camel@redhat.com>
-In-Reply-To: <f4d856925111b77012cabb255d6a880ae5637b41.camel@redhat.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 6 Apr 2020 09:34:15 -0700
-Message-ID: <CAF6AEGtnxmCCakT65zJ7BY=11E_+DgttamBggD10SahtsXuxEQ@mail.gmail.com>
-To: Adam Jackson <ajax@redhat.com>
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Apply more mb() around clflush
+ relocation paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,60 +37,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- "X.Org development" <xorg-devel@lists.x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, dri-devel <dri-devel@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Discussion of the development of and with GStreamer
- <gstreamer-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBBcHIgNiwgMjAyMCBhdCA4OjQzIEFNIEFkYW0gSmFja3NvbiA8YWpheEByZWRoYXQu
-Y29tPiB3cm90ZToKPgo+IE9uIFNhdCwgMjAyMC0wNC0wNCBhdCAwODoxMSAtMDcwMCwgUm9iIENs
-YXJrIHdyb3RlOgo+ID4gT24gRnJpLCBBcHIgMywgMjAyMCBhdCA3OjEyIEFNIE1pY2hlbCBEw6Ru
-emVyIDxtaWNoZWxAZGFlbnplci5uZXQ+IHdyb3RlOgo+ID4gPiBPbiAyMDIwLTAzLTAxIDY6NDYg
-YS5tLiwgTWFyZWsgT2zFocOhayB3cm90ZToKPiA+ID4gPiBGb3IgTWVzYSwgd2UgY291bGQgcnVu
-IENJIG9ubHkgd2hlbiBNYXJnZSBwdXNoZXMsIHNvIHRoYXQgaXQncyBhIHN0cmljdGx5Cj4gPiA+
-ID4gcHJlLW1lcmdlIENJLgo+ID4gPgo+ID4gPiBUaGFua3MgZm9yIHRoZSBzdWdnZXN0aW9uISBJ
-IGltcGxlbWVudGVkIHNvbWV0aGluZyBsaWtlIHRoaXMgZm9yIE1lc2E6Cj4gPiA+Cj4gPiA+IGh0
-dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9tZXNhL21lc2EvLS9tZXJnZV9yZXF1ZXN0cy80
-NDMyCj4gPgo+ID4gSSB3b3VsZG4ndCBtaW5kIG1hbnVhbGx5IHRyaWdnZXJpbmcgcGlwZWxpbmVz
-LCBidXQgdW5sZXNzIHRoZXJlIGlzCj4gPiBzb21lIHRyaWNrIEknbSBub3QgcmVhbGl6aW5nLCBp
-dCBpcyBzdXBlciBjdW1iZXJzb21lLiAgSWUuIHlvdSBoYXZlIHRvCj4gPiBjbGljayBmaXJzdCB0
-aGUgY29udGFpbmVyIGpvYnMuLiB0aGVuIHdhaXQuLiB0aGVuIHRoZSBidWlsZCBqb2JzLi4KPiA+
-IHRoZW4gd2FpdCBzb21lIG1vcmUuLiBhbmQgdGhlbiBmaW5hbGx5IHRoZSBhY3R1YWwgcnVubmVy
-cy4gIFRoYXQgd291bGQKPiA+IGJlIGEgcmVhbCBzdGVwIGJhY2sgaW4gdGVybXMgb2YgdXNlZnVs
-bmVzcyBvZiBDSS4uIG9uZSBtaWdodCBjYWxsIGl0IGEKPiA+IHJlZ3Jlc3Npb24gOi0oCj4KPiBJ
-IHRoaW5rIHRoYXQncyBtb3N0bHkgYSBjb21wbGFpbnQgYWJvdXQgdGhlIGNvbmRpdGlvbmFscyB3
-ZSd2ZSB3cml0dGVuCj4gc28gZmFyLCB0YmguIEFzIEkgY29tbWVudGVkIG9uIHRoZSBidWcsIHdo
-ZW4gSSBjbGlja2VkIHRoZSBjb250YWluZXIKPiBqb2IgKHdoaWNoIHRoZSBydWxlcyBoYXBwZW4g
-dG8gaGF2ZSBldmFsdWF0ZWQgdG8gYmVpbmcgIm1hbnVhbCIpLCBldmVyeQo+IGpvYiAocmVjdXJz
-aXZlbHkpIGRvd25zdHJlYW0gb2YgaXQgZ290IGVucXVldWVkLCB3aGljaCBpc24ndCB3aGF0Cj4g
-eW91J3JlIGRlc2NyaWJpbmcuIFNvIEkgdGhpbmsgaWYgeW91IGNhbiBkZXNjcmliZSB0aGUgVVgg
-eW91J2QgbGlrZSB3ZQo+IGNhbiB3cml0ZSBydWxlcyB0byBtYWtlIHRoYXQgcmVhbGl0eS4KCk9r
-LCBJIHdhcyBmZWFyaW5nIHRoYXQgd2UnZCBoYXZlIHRvIG1hbnVhbGx5IHRyaWdnZXIgZWFjaCBz
-dGFnZSBvZgpkZXBlbmRlbmNpZXMgaW4gdGhlIHBpcGVsaW5lLiAgV2hpY2ggd291bGRuJ3QgYmUg
-c28gYmFkIGV4Y2VwdCB0aGF0CmdpdGxhYiBtYWtlcyB5b3Ugd2FpdCBmb3IgdGhlIHByZXZpb3Vz
-IHN0YWdlIHRvIGNvbXBsZXRlIGJlZm9yZQp0cmlnZ2VyaW5nIHRoZSBuZXh0IG9uZS4KClRoZSBp
-ZGVhbCB0aGluZyB3b3VsZCBiZSB0byBiZSBhYmxlIHRvIGNsaWNrIGFueSBqb2JzIHRoYXQgd2Ug
-d2FudCB0bwpydW4sIHNheSAiYXJtNjRfYTYzMF9nbGVzMzEiLCBhbmQgZm9yIGdpdGxhYiB0byBy
-ZWFsaXplIHRoYXQgaXQgbmVlZHMKdG8gYXV0b21hdGljYWxseSB0cmlnZ2VyIGRlcGVuZGVuY2ll
-cyBvZiB0aGF0IGpvYiAobWVzb24tYXJtNjQsIGFuZAphcm1fYnVpbGQrYXJtX3Rlc3QpLiAgQnV0
-IG5vdCBzdXJlIGlmIHRoYXQgaXMgYSB0aGluZyBnaXRsYWIgY2FuIGRvLgoKVHJpZ2dlcmluZyBq
-dXN0IHRoZSBmaXJzdCBjb250YWluZXIgam9icyBhbmQgaGF2aW5nIGV2ZXJ5dGhpbmcgZnJvbQp0
-aGVyZSBydW4gYXV0b21hdGljYWxseSB3b3VsZCBiZSBvayBpZiB0aGUgY3VycmVudCBydWxlcyB0
-byBmaWx0ZXIgb3V0CnVubmVlZGVkIGpvYnMgc3RpbGwgYXBwbHksIGllLiBhIHBhbmZyb3N0IGNo
-YW5nZSBpc24ndCB0cmlnZ2VyaW5nCmZyZWVkcmVubyBDSSBqb2JzIGFuZCB2aXNhIHZlcnNhLiAg
-QnV0IHRiaCBJIGRvbid0IHVuZGVyc3RhbmQgZW5vdWdoCm9mIHdoYXQgdGhhdCBNUiBpcyBkb2lu
-ZyB0byB1bmRlcnN0YW5kIGlmIHRoYXQgaXMgd2hhdCBpdCBkb2VzLiAgKEl0CndhcyBzdWdnZXN0
-ZWQgb24gSVJDIHRoYXQgdGhpcyBpcyBwcm9iYWJseSB3aGF0IGl0IGRvZXMuKQoKQlIsCi1SCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Having spent some time with DBG_FORCE_RELOC == FORCE_CPU_RELOC, it
+appears that our memory barriers around the clflush are lackluster for
+our more seldom used paths. Seldom used does not mean never, so apply
+the memory barriers or else we may randomly see incorrect relocation
+addresses inside batches.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 230ba1aee355..d9ab517bbce9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1037,6 +1037,8 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
+ 	void *vaddr;
+ 
+ 	if (cache->vaddr) {
++		if (cache->vaddr & CLFLUSH_AFTER)
++			mb();
+ 		kunmap_atomic(unmask_page(cache->vaddr));
+ 	} else {
+ 		unsigned int flushes;
+@@ -1051,14 +1053,15 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
+ 
+ 		cache->vaddr = flushes | KMAP;
+ 		cache->node.mm = (void *)obj;
+-		if (flushes)
+-			mb();
+ 	}
+ 
+ 	vaddr = kmap_atomic(i915_gem_object_get_dirty_page(obj, page));
+ 	cache->vaddr = unmask_flags(cache->vaddr) | (unsigned long)vaddr;
+ 	cache->page = page;
+ 
++	if (cache->vaddr & CLFLUSH_BEFORE)
++		mb();
++
+ 	return vaddr;
+ }
+ 
+@@ -1163,8 +1166,10 @@ static void clflush_write32(u32 *addr, u32 value, unsigned int flushes)
+ 		 * mb barriers at the start and end of the relocation phase
+ 		 * to ensure ordering of clflush wrt to the system.
+ 		 */
+-		if (flushes & CLFLUSH_AFTER)
++		if (flushes & CLFLUSH_AFTER) {
++			mb();
+ 			clflushopt(addr);
++		}
+ 	} else
+ 		*addr = value;
+ }
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
