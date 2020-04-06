@@ -1,54 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB12B19F828
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:44:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E541519F833
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:47:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291AF6E3E5;
-	Mon,  6 Apr 2020 14:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E08B6E3EE;
+	Mon,  6 Apr 2020 14:47:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
- [IPv6:2607:f8b0:4864:20::944])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49EAF6E3E5
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 14:44:43 +0000 (UTC)
-Received: by mail-ua1-x944.google.com with SMTP id y17so5522501uap.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Apr 2020 07:44:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SEUBFiEFvv7OAhcEQZ8rj/n8NBPUKhpD7wYAlYK6ifU=;
- b=F5F9ZebSDqO5bp0xk/cyql8ase2IX/sIy+1j2vJdduJ91RvH07z/c2oHC0rZouWx2q
- vdlP+gKtLgnr7SO8nrwUFB8uuwN9j/nXhVqwaZ9NyOvMNtf+uB5Ic2PzU9P5iRtawl74
- 8z0kXKk/ze4g345kdOfEJflLg6ALG30swhwkMWyKTOl9qVyMUOhbuksl14w3OePhnTW6
- IuG+45gR0ZBs2SZxz7pbLYvzKYaw31qgppU+nckuxdhW6GfHFKi7nq0o9RwzgwuwVJGO
- q5rqIj5oCBflTOz/Ak81xHCY/U6QtE1tBsl8P0oMY36aDWwRzQpX1nILmUOkR0SCXxlP
- jDsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SEUBFiEFvv7OAhcEQZ8rj/n8NBPUKhpD7wYAlYK6ifU=;
- b=hRAK8+TIf4LC2aiDWpLGP+MDaqqiUbMJFPwng3ueb51xukck1nsSPRuQL238VPSCGK
- 9S0hUKePl3xYV/yRqtQG+DbO9aeIMvvi6IpKOdqk7J8r9A0sK/0ptcX1bizJ71SshiYd
- paZjENmj9X5zW3qTQxgyLX6pILQaWiFO/c6iZdbxj0JA5uRPVURBhsR7FOC902pdDgjI
- q3GbQO99xYLcFMqJ/vqAOUQhYnBuld4Q+DNyygm/nUE3Hf0XW9zpijsLH3kFYFmsMNzG
- EDuiguRGTF2yThCNWVgHmx4HvihoeuijSSAf/f+Lcivdzf1tR/1dC6wDjUaJdv0/C8Bg
- Bi8w==
-X-Gm-Message-State: AGi0PuaOtVUg1w/cqdhSokrFRhdQd+Xdrk8pIydKZwzL5u+CbyZB2dgU
- kq8WjhoLClb//aRqocZ7V9CizQRlCXtbkiOH8Zg=
-X-Google-Smtp-Source: APiQypI+IcUjAZXbWNtbh3sFRpXw3n+1YJb79eeGorxBqr65dDj5mQPC4/mAmh32llE8+Jle9EBD2XshYK53yrjtfrA=
-X-Received: by 2002:ab0:7556:: with SMTP id k22mr53255uaq.104.1586184281413;
- Mon, 06 Apr 2020 07:44:41 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 35AFE6E3EE;
+ Mon,  6 Apr 2020 14:47:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D667A47EE;
+ Mon,  6 Apr 2020 14:47:27 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200406123616.7334-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200406123616.7334-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 6 Apr 2020 15:44:13 +0100
-Message-ID: <CAM0jSHMH+ZByvZQnOXvVwFafgafQYozCdPQiKprVb9CF2o5HPQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Take DBG_FORCE_RELOC into
- account prior to using reloc_gpu
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Mon, 06 Apr 2020 14:47:27 -0000
+Message-ID: <158618444715.4193.13860998630567781723@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Prefer_drm=5FWARN*_over_WARN*_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,19 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 6 Apr 2020 at 13:36, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> If we set the debug flag to force ourselves not to relocate via the gpu,
-> do not relocate via the gpu.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: Prefer drm_WARN* over WARN* (rev2)
+URL   : https://patchwork.freedesktop.org/series/75543/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+fd886b340869 drm/i915/display/icl_dsi: Prefer drm_WARN_ON over WARN_ON
+5a021e68d20b drm/i915/display/atomic_plane: Prefer drm_WARN_ON over WARN_ON
+04cffffd23fe drm/i915/display/ddi: Prefer drm_WARN* over WARN*
+7154962ac9f6 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
+1703f9a2f458 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#18: 
++ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, power_domains);
+
+total: 0 errors, 1 warnings, 0 checks, 71 lines checked
+81a6c4600fea drm/i915/display/dp: Prefer drm_WARN* over WARN*
+22c03725bfb6 drm/i915/display/dpll_mgr: Prefer drm_WARN_ON over WARN_ON
+8ec55548bc42 drm/i915/display/frontbuffer: Prefer drm_WARN_ON over WARN_ON
+e5fb265bcdfc drm/i915/display/global_state: Prefer drm_WARN* over WARN*
+da0de795981b drm/i915/display/overlay: Prefer drm_WARN_ON over WARN_ON
+b9632947474b drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
+0856fae10111 drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
+cd2d48c2fb37 drm/i915/display/vlv_dsi: Prefer drm_WARN_ON over WARN_ON
+ae80b0409828 drm/i915/gem: Prefer drm_WARN* over WARN*
+-:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#24: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1444:
++			if (drm_WARN_ONCE(&i915->drm, err,
+ 				      "Unexpected failure to bind target VMA!"))
+
+-:50: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!obj->userptr.mm"
+#50: FILE: drivers/gpu/drm/i915/gem/i915_gem_userptr.c:238:
++	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+
+total: 0 errors, 0 warnings, 2 checks, 25 lines checked
+3b4763bebc0e drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
++#define INTEL_DISPLAY_ENABLED(dev_priv) \
++		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+
+-:22: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'dev_priv' may be better as '(dev_priv)' to avoid precedence issues
+#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
++#define INTEL_DISPLAY_ENABLED(dev_priv) \
++		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+
+-:23: WARNING:LONG_LINE: line over 100 characters
+#23: FILE: drivers/gpu/drm/i915/i915_drv.h:1651:
++		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+
+total: 0 errors, 1 warnings, 2 checks, 9 lines checked
+7de0dff58893 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
+5597bb572e9b drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
+0fd60ba24842 drm/i915/runtime_pm: Prefer drm_WARN* over WARN*
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
++ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, runtime_pm);
+
+total: 0 errors, 1 warnings, 0 checks, 89 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
