@@ -1,42 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BAF919F71D
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 15:38:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95E819F744
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 15:54:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CDD6E3BC;
-	Mon,  6 Apr 2020 13:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11F3B6E3C6;
+	Mon,  6 Apr 2020 13:54:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C4D6E095;
- Mon,  6 Apr 2020 13:38:39 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2D4CA23356;
- Mon,  6 Apr 2020 13:38:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586180319;
- bh=CPlJ6V3ATvMiy7si9/NG3B9JHpu8lzufixuIa/M7hdQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WRrwp38bcuvOSfVYPnOEwOVQ5zQcH/oQPW2fE+wwFQ5w/egh7ALFdzOlAb4EPg2Nk
- gDbaccrnYXpo2VNc2yb5EoiNroMos+Z+lLsuNcjgf790J+dfyboUYHqhkE3bgWyshY
- hqgt+LYFrQ9zIRoWMBfw3XzH0q3Qx1oUvlp4odss=
-Date: Mon, 6 Apr 2020 15:38:35 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200406133835.GA24355@kroah.com>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-2-daniel.vetter@ffwll.ch>
- <CAKMK7uEEi8NMCopSd+7LqmhaqW0U4ZMif7YLgYQZ58fD7jRfzA@mail.gmail.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 992936E3C6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 13:54:40 +0000 (UTC)
+IronPort-SDR: 1zAUKQxLq5/2AssZ1UoZvqFy6Cb+hyIo34Q2Gt9o/vGYztCp2xy+Xn5ihaTNcDN0rmyIgbVDeZ
+ NqUsOD/sWAYw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 06:54:40 -0700
+IronPort-SDR: jZunp+CBr/QwjgXNFrYb5htQTLwVLsceZK6f3s2xJuldHBHORGODsG/HXCe+Qm3OTTNjHTliFw
+ L5VcVaCLIW9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285894330"
+Received: from unknown (HELO [10.252.48.224]) ([10.252.48.224])
+ by fmsmga002.fm.intel.com with ESMTP; 06 Apr 2020 06:54:39 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200331114821.81957-1-lionel.g.landwerlin@intel.com>
+ <20200331114821.81957-3-lionel.g.landwerlin@intel.com>
+ <158567812981.5852.12449950625595064091@build.alporthouse.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <5bdf47bd-91f5-9f84-fb3b-05a1d5350605@intel.com>
+Date: Mon, 6 Apr 2020 16:54:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uEEi8NMCopSd+7LqmhaqW0U4ZMif7YLgYQZ58fD7jRfzA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 01/44] drivers/base: Always release devres
- on device_del
+In-Reply-To: <158567812981.5852.12449950625595064091@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/perf: enable filtering on
+ multiple contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,85 +53,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2020 at 02:32:51PM +0200, Daniel Vetter wrote:
-> On Fri, Apr 3, 2020 at 3:58 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> >
-> > In drm we've added nice drm_device (the main gpu driver thing, which
-> > also represents the userspace interfaces and has everything else
-> > dangling off it) init functions using devres, devm_drm_dev_init and
-> > soon devm_drm_dev_alloc (this patch series adds that).
-> >
-> > A slight trouble is that drm_device itself holds a reference on the
-> > struct device it's sitting on top (for sysfs links and dmesg debug and
-> > lots of other things), so there's a reference loop. For real drivers
-> > this is broken at remove/unplug time, where all devres resources are
-> > released device_release_driver(), before the final device reference is
-> > dropped. So far so good.
-> >
-> > There's 2 exceptions:
-> > - drm/vkms|vgem: Virtual drivers for which we create a fake/virtual
-> >   platform device to make them look more like normal devices to
-> >   userspace. These aren't drivers in the driver model sense, we simple
-> >   create a platform_device and register it.
-> >
-> > - drm/i915/selftests, where we create minimal mock devices, and again
-> >   the selftests aren't proper drivers in the driver model sense.
-> >
-> > For these two cases the reference loop isn't broken, because devres is
-> > only cleaned up when the last device reference is dropped. But that's
-> > not happening, because the drm_device holds that last struct device
-> > reference.
-> >
-> > Thus far this wasn't a problem since the above cases simply
-> > hand-rolled their cleanup code. But I want to convert all drivers over
-> > to the devm_ versions, hence it would be really nice if these
-> > virtual/fake/mock uses-cases could also be managed with devres
-> > cleanup.
-> >
-> > I see three possible approaches:
-> 
-> Restarting this at the top level, because the discussion thus far just
-> ended in a long "you're doing it wrong", despite that I think we're
-> doing what v4l is doing (plus/minus that we can't do an exact matching
-> handling in drm because our uapi has a lot more warts, which we can't
-> change because no breaking userspace).
-> 
-> So which one of the three below is the right approach?
-> 
-> Aside, looking at the v4l solution I think there's also a confusion
-> about struct device representing a char device (which v4l directly
-> uses as its userspace interface refcounted thing, and which drm does
-> _not_ directly). And a struct device embedded into something like
-> platform_device or a virtual device, where a driver can bind to. My
-> question here is about the former, I don't care how cdev struct device
-> are cleaned up one bit. Now if other subsystems relies on the devres
-> cleanup behaviour we currently have because of such cdev usage, then
-> yeah first approach doesn't work (and I have a big surprised that use
-> case, but hey would actually learn something).
-> 
-> End of aside, since again I want to figure out which of the tree
-> approaches it the right one. Not about how wrong one of them is,
-> ignoring the other three I laid out. And maybe there's even more
-> options for this.
+On 31/03/2020 21:08, Chris Wilson wrote:
+> Quoting Lionel Landwerlin (2020-03-31 12:48:21)
+>> Add 2 new properties to the i915-perf open ioctl to specify an array
+>> of GEM context handles as well as the length of the array.
+> Hmm. The other thought is ctx->engine[] where one context may have more
+> than one logical context instance that OA could track. The extension to
+> track multiple pinned contexts should equally work for multiple engines.
+>
+> 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 64) = {};
+> 	struct drm_i915_gem_context_param p = {
+> 		.ctx_id = gem_context_create(i915),
+> 		.param = I915_CONTEXT_PARAM_ENGINES,
+> 		.value = to_user_pointer(&engines),
+> 		.size = sizeof(struct i915_context_param_engines),
+> 	};
+> 	gem_context_set_param(i915, &p);
+>
+> would do the trick in creating one context with 64 rcs0 that they may
+> want to track. And that also opens the door to virtual engines over top.
+> -Chris
 
-Sorry, been swamped with other things, give me a few days to get back to
-this, I need to dig into how you all are dealing with the virtual
-drivers.
 
-Doing this in the middle of the merge window is a bit rough :)
+I rather punt this away for now :)
 
-thanks,
+I can't see use cases for Iris/Vulkan.
 
-greg k-h
+This seems more of a media thing where we have multiple engines already.
+
+And media doesn't do much perf queries because much of the available 
+counters are 3D/compute and queries are not available on media engines.
+
+
+We can always bump the perf revision later once we've figured how this 
+would be used.
+
+
+-Lionel
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
