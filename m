@@ -2,84 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1529D19F911
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A8D19F91D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 17:44:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 282C06E42B;
-	Mon,  6 Apr 2020 15:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E10DF6E42C;
+	Mon,  6 Apr 2020 15:44:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF01F6E424
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 15:43:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1586187783;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2oMrM2mDIQhAJG19GAm5tBSf0P9gXDshIKsrEuaQRh0=;
- b=b+pLbp/3gIkCzCFGhqmRdWiqSiIDRWnZrjLgBWBr33Zcms4IhjmF11wZw+Ad5/e6zrSsRw
- GX+MAeuiDYIm4aP9k73B+waMuglVPirEbigGHHlxknNgiAUVZMihmn6jcbvT2SIQ6DsgUy
- 0Nn+GYgMFh60oW8p5JIMgpHlszDz3Is=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-188-2nZzwMMDPReISvf4oCZuwQ-1; Mon, 06 Apr 2020 11:42:57 -0400
-X-MC-Unique: 2nZzwMMDPReISvf4oCZuwQ-1
-Received: by mail-qk1-f199.google.com with SMTP id h186so128317qkc.22
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Apr 2020 08:42:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=mTQ6SwoE2yqMXLBx7O92dtojONPG9oy9eYg6hBnMWSo=;
- b=XYZvysaTcrdbGdcTKQA3cJjYwf+9DOfBgcLYB0dnRoNqUJvITm1jG3E4SA3PXVbErG
- LVMMU6nXOpSc1JeL+2M1ARE7UtKMLsKAim1SrzCYYODsUiAE+bdWAVaQZJp9GG9id7B6
- VDVhklkwjh4YcADKjCQcPN7Hr6Fj0Qzv8YvYnEqMnx6MZoPgbx5SITRw1uTv9luLiA8t
- wtdvDdGVdW14zlXD2UjBO0M4j5onfPoIQPVozyyc8UXUoz8Av7pYCXkIoCZV6UD+qBRi
- JewDRWyVF3RuY80+m7UYFWsQBpLKff9mftRWHcm7YJXzWukGfir7bqDyqb0BEPOJnMDt
- TAWw==
-X-Gm-Message-State: AGi0PuZMupCpeBFMcJWptdmhcRAJeMp3bCrZFN33Gz9//8gOnyKH7cZ8
- HpC89a6rKdolrpzCxWOnl9cqmyeQXj8IAtczwdTr1AGT0cfXd9mcZF1H69u+wxBpQsQCqTmw5YJ
- 7F3ySjn4iIq3ZfjYKZgS6BpcmJ1D9
-X-Received: by 2002:ae9:dd83:: with SMTP id
- r125mr22560634qkf.105.1586187777116; 
- Mon, 06 Apr 2020 08:42:57 -0700 (PDT)
-X-Google-Smtp-Source: APiQypIEO6+HnV6CFGNQSI2NC/499K8UEKT2zxcX+nyu1TLx6uyjv4PjMIjCN8mPbiPqNeTMeT6gdw==
-X-Received: by 2002:ae9:dd83:: with SMTP id
- r125mr22560614qkf.105.1586187776797; 
- Mon, 06 Apr 2020 08:42:56 -0700 (PDT)
-Received: from desoxy (c-24-61-245-152.hsd1.ma.comcast.net. [24.61.245.152])
- by smtp.gmail.com with ESMTPSA id h10sm8207966qtp.93.2020.04.06.08.42.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Apr 2020 08:42:56 -0700 (PDT)
-Message-ID: <f4d856925111b77012cabb255d6a880ae5637b41.camel@redhat.com>
-From: Adam Jackson <ajax@redhat.com>
-To: Rob Clark <robdclark@gmail.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel@daenzer.net>
-Date: Mon, 06 Apr 2020 11:42:54 -0400
-In-Reply-To: <CAF6AEGuNTtHfNm_nRhPFX5wPRmKkjnFEKqTdTSBDjpLkaiN8Fw@mail.gmail.com>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
- <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
- <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
- <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
- <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
- <d9dca12759fd6a549dc4cd71b5f210a4dced01cd.camel@gmail.com>
- <CAOFGe96WqRTagf=Lhp6j9aMnB6hxwog7t93t=4r6QE_4f+HpeQ@mail.gmail.com>
- <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
- <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
- <3cddf1aa-5072-af7c-c51e-c16039176f6c@daenzer.net>
- <CAF6AEGuNTtHfNm_nRhPFX5wPRmKkjnFEKqTdTSBDjpLkaiN8Fw@mail.gmail.com>
-User-Agent: Evolution 3.34.0 (3.34.0-1.fc31)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 496C56E42C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 15:44:39 +0000 (UTC)
+IronPort-SDR: sdgzsJZ4rsHTHqlzUG9CgygzspDl7V3zREPvCQyGNDKGQivROwHTKhsksHjRUAUPSJszdAOszP
+ jGrWjWtOBlfQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 08:44:38 -0700
+IronPort-SDR: HlaZ3EYLCX/Wq9cvb0m6r3/FD3Iuac+3NJ65FCA1FEW/Y//nx/hoG2/riY/o3QJxV+muTD9Fr4
+ +mg61AeyJW1g==
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285927408"
+Received: from nlevi-mobl.ger.corp.intel.com (HELO [10.251.172.194])
+ ([10.251.172.194])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 08:44:37 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200406091254.17675-2-chris@chris-wilson.co.uk>
+ <20200406132140.2128-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <f43407ba-2abf-723b-04ae-a8b69b3dcf68@linux.intel.com>
+Date: Mon, 6 Apr 2020 16:44:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+In-Reply-To: <20200406132140.2128-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Allow asynchronous waits on
+ the i915_active barriers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,46 +52,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, dri-devel <dri-devel@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- Discussion of the development of and with GStreamer
- <gstreamer-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU2F0LCAyMDIwLTA0LTA0IGF0IDA4OjExIC0wNzAwLCBSb2IgQ2xhcmsgd3JvdGU6Cj4gT24g
-RnJpLCBBcHIgMywgMjAyMCBhdCA3OjEyIEFNIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnpl
-ci5uZXQ+IHdyb3RlOgo+ID4gT24gMjAyMC0wMy0wMSA2OjQ2IGEubS4sIE1hcmVrIE9sxaHDoWsg
-d3JvdGU6Cj4gPiA+IEZvciBNZXNhLCB3ZSBjb3VsZCBydW4gQ0kgb25seSB3aGVuIE1hcmdlIHB1
-c2hlcywgc28gdGhhdCBpdCdzIGEgc3RyaWN0bHkKPiA+ID4gcHJlLW1lcmdlIENJLgo+ID4gCj4g
-PiBUaGFua3MgZm9yIHRoZSBzdWdnZXN0aW9uISBJIGltcGxlbWVudGVkIHNvbWV0aGluZyBsaWtl
-IHRoaXMgZm9yIE1lc2E6Cj4gPiAKPiA+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9t
-ZXNhL21lc2EvLS9tZXJnZV9yZXF1ZXN0cy80NDMyCj4gCj4gSSB3b3VsZG4ndCBtaW5kIG1hbnVh
-bGx5IHRyaWdnZXJpbmcgcGlwZWxpbmVzLCBidXQgdW5sZXNzIHRoZXJlIGlzCj4gc29tZSB0cmlj
-ayBJJ20gbm90IHJlYWxpemluZywgaXQgaXMgc3VwZXIgY3VtYmVyc29tZS4gIEllLiB5b3UgaGF2
-ZSB0bwo+IGNsaWNrIGZpcnN0IHRoZSBjb250YWluZXIgam9icy4uIHRoZW4gd2FpdC4uIHRoZW4g
-dGhlIGJ1aWxkIGpvYnMuLgo+IHRoZW4gd2FpdCBzb21lIG1vcmUuLiBhbmQgdGhlbiBmaW5hbGx5
-IHRoZSBhY3R1YWwgcnVubmVycy4gIFRoYXQgd291bGQKPiBiZSBhIHJlYWwgc3RlcCBiYWNrIGlu
-IHRlcm1zIG9mIHVzZWZ1bG5lc3Mgb2YgQ0kuLiBvbmUgbWlnaHQgY2FsbCBpdCBhCj4gcmVncmVz
-c2lvbiA6LSgKCkkgdGhpbmsgdGhhdCdzIG1vc3RseSBhIGNvbXBsYWludCBhYm91dCB0aGUgY29u
-ZGl0aW9uYWxzIHdlJ3ZlIHdyaXR0ZW4Kc28gZmFyLCB0YmguIEFzIEkgY29tbWVudGVkIG9uIHRo
-ZSBidWcsIHdoZW4gSSBjbGlja2VkIHRoZSBjb250YWluZXIKam9iICh3aGljaCB0aGUgcnVsZXMg
-aGFwcGVuIHRvIGhhdmUgZXZhbHVhdGVkIHRvIGJlaW5nICJtYW51YWwiKSwgZXZlcnkKam9iIChy
-ZWN1cnNpdmVseSkgZG93bnN0cmVhbSBvZiBpdCBnb3QgZW5xdWV1ZWQsIHdoaWNoIGlzbid0IHdo
-YXQKeW91J3JlIGRlc2NyaWJpbmcuIFNvIEkgdGhpbmsgaWYgeW91IGNhbiBkZXNjcmliZSB0aGUg
-VVggeW91J2QgbGlrZSB3ZQpjYW4gd3JpdGUgcnVsZXMgdG8gbWFrZSB0aGF0IHJlYWxpdHkuCgpC
-dXQgSSBkb24ndCByZWFsbHkga25vdyB3aGljaCBqb2JzIGFyZSBtb3N0IGV4cGVuc2l2ZSBpbiB0
-ZXJtcyBvZgpiYW5kd2lkdGgsIG9yIHN0b3JhZ2UsIG9yIENQVXMsIGFuZCBldmVuIGlmIEkga25l
-dyB0aG9zZSBJIGRvbid0IGtub3cKaG93IHRvIG1hcCB0aG9zZSB0byBjdXJyZW5jeS4gU28gSSdt
-IG5vdCBzdXJlIGlmIHRoZSBVSSB3ZSdkIGxpa2Ugd291bGQKbWluaW1pemUgdGhlIGNvc3QgdGhl
-IHdheSB3ZSdkIGxpa2UuCgotIGFqYXgKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+
+On 06/04/2020 14:21, Chris Wilson wrote:
+> Allow the caller to also wait upon the barriers stored in i915_active.
+> 
+> v2: Hook up i915_request_await_active(I915_ACTIVE_AWAIT_BARRIER) as well
+> for completeness, and avoid the lazy GEM_BUG_ON()!
+> 
+> v3: Pull flush_lazy_signals() under the active-ref protection as it too
+> walks the rbtree and so we must be careful that we do not free it as we
+> iterate.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_active.c | 73 ++++++++++++++++++++++++++----
+>   drivers/gpu/drm/i915/i915_active.h |  1 +
+>   2 files changed, 64 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index d5e24be759f7..d960d0be5bd2 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -542,35 +542,88 @@ static int __await_active(struct i915_active_fence *active,
+>   	return 0;
+>   }
+>   
+> +struct wait_barrier {
+> +	struct wait_queue_entry base;
+> +	struct i915_active *ref;
+> +};
+> +
+> +static int
+> +barrier_wake(wait_queue_entry_t *wq, unsigned int mode, int flags, void *key)
+> +{
+> +	struct wait_barrier *wb = container_of(wq, typeof(*wb), base);
+> +
+> +	if (i915_active_is_idle(wb->ref)) {
+> +		list_del(&wq->entry);
+> +		i915_sw_fence_complete(wq->private);
+> +		kfree(wq);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __await_barrier(struct i915_active *ref, struct i915_sw_fence *fence)
+> +{
+> +	struct wait_barrier *wb;
+> +
+> +	wb = kmalloc(sizeof(*wb), GFP_KERNEL);
+> +	if (unlikely(!wb))
+> +		return -ENOMEM;
+> +
+> +	GEM_BUG_ON(i915_active_is_idle(ref));
+> +	if (!i915_sw_fence_await(fence)) {
+> +		kfree(wb);
+> +		return -EINVAL;
+> +	}
+> +
+> +	wb->base.flags = 0;
+> +	wb->base.func = barrier_wake;
+> +	wb->base.private = fence;
+> +	wb->ref = ref;
+> +
+> +	add_wait_queue(__var_waitqueue(ref), &wb->base);
+> +	return 0;
+> +}
+> +
+>   static int await_active(struct i915_active *ref,
+>   			unsigned int flags,
+>   			int (*fn)(void *arg, struct dma_fence *fence),
+> -			void *arg)
+> +			void *arg, struct i915_sw_fence *barrier)
+>   {
+>   	int err = 0;
+>   
+> +	if (!i915_active_acquire_if_busy(ref))
+> +		return 0;
+> +
+>   	if (flags & I915_ACTIVE_AWAIT_EXCL &&
+>   	    rcu_access_pointer(ref->excl.fence)) {
+>   		err = __await_active(&ref->excl, fn, arg);
+>   		if (err)
+> -			return err;
+> +			goto out;
+>   	}
+>   
+> -	if (flags & I915_ACTIVE_AWAIT_ACTIVE &&
+> -	    i915_active_acquire_if_busy(ref)) {
+> +	if (flags & I915_ACTIVE_AWAIT_ACTIVE) {
+>   		struct active_node *it, *n;
+>   
+>   		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+>   			err = __await_active(&it->base, fn, arg);
+>   			if (err)
+> -				break;
+> +				goto out;
+>   		}
+> -		i915_active_release(ref);
+> +	}
+> +
+> +	if (flags & I915_ACTIVE_AWAIT_BARRIER) {
+> +		err = flush_lazy_signals(ref);
+>   		if (err)
+> -			return err;
+> +			goto out;
+> +
+> +		err = __await_barrier(ref, barrier);
+> +		if (err)
+> +			goto out;
+>   	}
+>   
+> -	return 0;
+> +out:
+> +	i915_active_release(ref);
+> +	return err;
+>   }
+>   
+>   static int rq_await_fence(void *arg, struct dma_fence *fence)
+> @@ -582,7 +635,7 @@ int i915_request_await_active(struct i915_request *rq,
+>   			      struct i915_active *ref,
+>   			      unsigned int flags)
+>   {
+> -	return await_active(ref, flags, rq_await_fence, rq);
+> +	return await_active(ref, flags, rq_await_fence, rq, &rq->submit);
+>   }
+>   
+>   static int sw_await_fence(void *arg, struct dma_fence *fence)
+> @@ -595,7 +648,7 @@ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
+>   			       struct i915_active *ref,
+>   			       unsigned int flags)
+>   {
+> -	return await_active(ref, flags, sw_await_fence, fence);
+> +	return await_active(ref, flags, sw_await_fence, fence, fence);
+>   }
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index ffafaa78c494..cf4058150966 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -195,6 +195,7 @@ int i915_request_await_active(struct i915_request *rq,
+>   			      unsigned int flags);
+>   #define I915_ACTIVE_AWAIT_EXCL BIT(0)
+>   #define I915_ACTIVE_AWAIT_ACTIVE BIT(1)
+> +#define I915_ACTIVE_AWAIT_BARRIER BIT(2)
+>   
+>   int i915_active_acquire(struct i915_active *ref);
+>   bool i915_active_acquire_if_busy(struct i915_active *ref);
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
