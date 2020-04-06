@@ -1,60 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD42919FB79
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 19:27:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D67A319F58A
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:06:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 093F46E455;
-	Mon,  6 Apr 2020 17:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32F616E167;
+	Mon,  6 Apr 2020 12:06:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3316E455;
- Mon,  6 Apr 2020 17:27:51 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id A0DC8BED5;
- Mon,  6 Apr 2020 17:27:48 +0000 (UTC)
-To: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-16-daniel.vetter@ffwll.ch>
- <3e3f7726-f1d2-c29f-4fc8-c42002e7da13@tronnes.org>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <e9a9e984-c541-eddf-8ef6-e9575120b6ca@suse.de>
-Date: Mon, 6 Apr 2020 14:05:42 +0200
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6046E167
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:06:08 +0000 (UTC)
+IronPort-SDR: nC9YxITgVVqFQpVfc2bRPFHKlUcJm3wbhELA3jMqn/NYloiHeqk2nmtJS3uJgVdvrx46e8X8vU
+ BrZwSYcLK5SA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 05:06:07 -0700
+IronPort-SDR: E6O2c0rFLK0QB0pFc1o4Fyp5layhRjCC16Ufyx6F3buG4SaJgxwmE9sRuoAWr5tYMytRtM/h9W
+ zoQEOfULx6GA==
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285864879"
+Received: from nlevi-mobl.ger.corp.intel.com (HELO [10.251.172.194])
+ ([10.251.172.194])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 05:06:06 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
+ <20200406091254.17675-2-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <ea4ee702-3384-6978-cac4-870c85a88a21@linux.intel.com>
+Date: Mon, 6 Apr 2020 13:06:03 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <3e3f7726-f1d2-c29f-4fc8-c42002e7da13@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH 15/44] drm/udl: Use demv_drm_dev_alloc
+In-Reply-To: <20200406091254.17675-2-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Allow asynchronous waits on
+ the i915_active barriers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,211 +52,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>
-Content-Type: multipart/mixed; boundary="===============2058288113=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============2058288113==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="oMowpIf7WANBBkFomtHQEL57xeCDQGgOT"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---oMowpIf7WANBBkFomtHQEL57xeCDQGgOT
-Content-Type: multipart/mixed; boundary="9pWDUWAxuExrVDH1thoo98bb9arbCcMGr";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Sean Paul <sean@poorly.run>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <e9a9e984-c541-eddf-8ef6-e9575120b6ca@suse.de>
-Subject: Re: [PATCH 15/44] drm/udl: Use demv_drm_dev_alloc
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-16-daniel.vetter@ffwll.ch>
- <3e3f7726-f1d2-c29f-4fc8-c42002e7da13@tronnes.org>
-In-Reply-To: <3e3f7726-f1d2-c29f-4fc8-c42002e7da13@tronnes.org>
+On 06/04/2020 10:12, Chris Wilson wrote:
+> Allow the caller to also wait upon the barriers stored in i915_active.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/i915_active.c | 60 ++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_active.h |  1 +
+>   2 files changed, 61 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index d5e24be759f7..048ab9edd2c2 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -542,6 +542,55 @@ static int __await_active(struct i915_active_fence *active,
+>   	return 0;
+>   }
+>   
+> +struct wait_barrier {
+> +	struct wait_queue_entry base;
+> +	struct i915_active *ref;
+> +};
+> +
+> +static int
+> +barrier_wake(wait_queue_entry_t *wq, unsigned int mode, int flags, void *key)
+> +{
+> +	struct wait_barrier *wb = container_of(wq, typeof(*wb), base);
+> +
+> +	if (i915_active_is_idle(wb->ref)) { /* shared waitqueue, must check! */
 
---9pWDUWAxuExrVDH1thoo98bb9arbCcMGr
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Who shares it?
 
+> +		list_del(&wq->entry);
+> +		i915_sw_fence_complete(wq->private);
+> +		kfree(wq);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __await_barrier(struct i915_active *ref, struct i915_sw_fence *fence)
+> +{
+> +	struct wait_barrier *wb;
+> +
+> +	wb = kmalloc(sizeof(*wb), GFP_KERNEL);
+> +	if (unlikely(!wb))
+> +		return -ENOMEM;
+> +
+> +	if (!i915_active_acquire_if_busy(ref)) {
+> +		kfree(wb);
+> +		return 0;
+> +	}
+> +
+> +	if (!i915_sw_fence_await(fence)) {
+> +		kfree(wb);
+> +		i915_active_release(ref);
+> +		return -EINVAL;
+> +	}
+> +
+> +	wb->base.flags = 0;
+> +	wb->base.func = barrier_wake;
+> +	wb->base.private = fence;
+> +	wb->ref = ref;
+> +
+> +	add_wait_queue(__var_waitqueue(ref), &wb->base);
+> +
+> +	i915_active_release(ref);
+> +	return 0;
+> +}
+> +
+>   static int await_active(struct i915_active *ref,
+>   			unsigned int flags,
+>   			int (*fn)(void *arg, struct dma_fence *fence),
+> @@ -570,6 +619,16 @@ static int await_active(struct i915_active *ref,
+>   			return err;
+>   	}
+>   
+> +	if (flags & I915_ACTIVE_AWAIT_BARRIER) {
+> +		err = flush_lazy_signals(ref);
+> +		if (err)
+> +			return err;
+> +
+> +		err = __await_barrier(ref, arg);
+> +		if (err)
+> +			return err;
+>
 
+Could have a single set of active_acquire_if_busy/release over the 
+previous and this new block. Not sure if that would help with any 
+atomicity concerns, or if there are such.
 
-Am 05.04.20 um 12:18 schrieb Noralf Tr=C3=B8nnes:
->=20
->=20
-> Den 03.04.2020 15.57, skrev Daniel Vetter:
->> Also init the fbdev emulation before we register the device, that way
->> we can rely on the auto-cleanup and simplify the probe error code even=
+  +	}
+> +
+>   	return 0;
+>   }
+>   
+> @@ -582,6 +641,7 @@ int i915_request_await_active(struct i915_request *rq,
+>   			      struct i915_active *ref,
+>   			      unsigned int flags)
+>   {
+> +	GEM_BUG_ON(flags & I915_ACTIVE_AWAIT_BARRIER);
 
->> more.
->>
->> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->> Cc: Dave Airlie <airlied@redhat.com>
->> Cc: Sean Paul <sean@poorly.run>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->> Cc: Emil Velikov <emil.l.velikov@gmail.com>
->> Cc: Sam Ravnborg <sam@ravnborg.org>
->> Cc: Thomas Gleixner <tglx@linutronix.de>
->> ---
->>  drivers/gpu/drm/udl/udl_drv.c | 36 +++++++++++-----------------------=
--
->>  1 file changed, 11 insertions(+), 25 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_d=
-rv.c
->> index 1ce2d865c36d..4ba5149fdd57 100644
->> --- a/drivers/gpu/drm/udl/udl_drv.c
->> +++ b/drivers/gpu/drm/udl/udl_drv.c
->> @@ -57,27 +57,20 @@ static struct udl_device *udl_driver_create(struct=
- usb_interface *interface)
->>  	struct udl_device *udl;
->>  	int r;
->> =20
->> -	udl =3D kzalloc(sizeof(*udl), GFP_KERNEL);
->> -	if (!udl)
->> -		return ERR_PTR(-ENOMEM);
->> -
->> -	r =3D drm_dev_init(&udl->drm, &driver, &interface->dev);
->> -	if (r) {
->> -		kfree(udl);
->> -		return ERR_PTR(r);
->> -	}
->> +	udl =3D devm_drm_dev_alloc(&interface->dev, &driver,
->> +				 struct udl_device, drm);
->> +	if (IS_ERR(udl))
->> +		return udl;
->> =20
->>  	udl->udev =3D udev;
->>  	udl->drm.dev_private =3D udl;
->> -	drmm_add_final_kfree(&udl->drm, udl);
->> =20
->>  	r =3D udl_init(udl);
->> -	if (r) {
->> -		drm_dev_put(&udl->drm);
->> +	if (r)
->>  		return ERR_PTR(r);
->> -	}
->> =20
->>  	usb_set_intfdata(interface, udl);
->> +
->>  	return udl;
->>  }
->> =20
->> @@ -91,23 +84,17 @@ static int udl_usb_probe(struct usb_interface *int=
-erface,
->>  	if (IS_ERR(udl))
->>  		return PTR_ERR(udl);
->> =20
->> +	r =3D drm_fbdev_generic_setup(&udl->drm, 0);
->=20
-> It doesn't feel right to have a client open the device before the DRM
-> device itself is registered. I would prefer to keep it where it is but
+Why is this an error?
 
-Agreed. IMHO we should also go through drivers and make the fbdev setup
-the final step everywhere.
+>   	return await_active(ref, flags, rq_await_fence, rq);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index ffafaa78c494..cf4058150966 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -195,6 +195,7 @@ int i915_request_await_active(struct i915_request *rq,
+>   			      unsigned int flags);
+>   #define I915_ACTIVE_AWAIT_EXCL BIT(0)
+>   #define I915_ACTIVE_AWAIT_ACTIVE BIT(1)
+> +#define I915_ACTIVE_AWAIT_BARRIER BIT(2)
+>   
+>   int i915_active_acquire(struct i915_active *ref);
+>   bool i915_active_acquire_if_busy(struct i915_active *ref);
+> 
 
-Best regards
-Thomas
+Regards,
 
-> ignore any errors. A failing client shouldn't prevent the driver from
-> probing. drm_fbdev_generic_setup() do print errors if it fails. So yeah=
-,
-> in hindsight I should have made drm_fbdev_generic_setup() return void.
->=20
-> Noralf.
->=20
->> +	if (r)
->> +		return r;
->> +
->>  	r =3D drm_dev_register(&udl->drm, 0);
->>  	if (r)
->> -		goto err_free;
->> +		return r;
->> =20
->>  	DRM_INFO("Initialized udl on minor %d\n", udl->drm.primary->index);
->> =20
->> -	r =3D drm_fbdev_generic_setup(&udl->drm, 0);
->> -	if (r)
->> -		goto err_drm_dev_unregister;
->> -
->>  	return 0;
->> -
->> -err_drm_dev_unregister:
->> -	drm_dev_unregister(&udl->drm);
->> -err_free:
->> -	drm_dev_put(&udl->drm);
->> -	return r;
->>  }
->> =20
->>  static void udl_usb_disconnect(struct usb_interface *interface)
->> @@ -117,7 +104,6 @@ static void udl_usb_disconnect(struct usb_interfac=
-e *interface)
->>  	drm_kms_helper_poll_fini(dev);
->>  	udl_drop_usb(dev);
->>  	drm_dev_unplug(dev);
->> -	drm_dev_put(dev);
->>  }
->> =20
->>  /*
->>
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---9pWDUWAxuExrVDH1thoo98bb9arbCcMGr--
-
---oMowpIf7WANBBkFomtHQEL57xeCDQGgOT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl6LGxYACgkQaA3BHVML
-eiN3LAgAhPSGBUF1WcrgNbxcYtA7Nn0d/FPQoEI4JJhk6z1v8hzLntGJOzLrRiBs
-aTV5lFUg+tuzRBQCCGbv611M3TeFKdZAqziMAi/kcQxSvLD+7yzc0f7PR78J4puY
-fxL3brjMoCeMQLG4SM0scolgtS4aB/TZTBLdTJNoPyf8rjekQvGJDgRSntIq03/7
-xXepIpAq9N+SDf7m2vlM82tiXeK9zeeLbpzS17OA5+wvjN5djMsV5F9cVp48v4jU
-YVWfLlvKDm/b+yCooK1S/ghEDE0FjGUdnUPlZFFf9y72rZs+yc+fiuK/MATCg6oA
-cYozV/P5oveWRmaQKeoAos0MsrBN4g==
-=DSyX
------END PGP SIGNATURE-----
-
---oMowpIf7WANBBkFomtHQEL57xeCDQGgOT--
-
---===============2058288113==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2058288113==--
