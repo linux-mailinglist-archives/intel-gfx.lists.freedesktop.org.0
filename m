@@ -1,45 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F82619F58E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:07:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E7919FB8D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 19:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F826E394;
-	Mon,  6 Apr 2020 12:07:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDF2C6E45E;
+	Mon,  6 Apr 2020 17:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B43036E394
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:07:09 +0000 (UTC)
-IronPort-SDR: 8ZrMlbodwHP0QS0h7iNGfClPQSNzxER3ZaDIFtDZ5yMa/0ROUrCB7Cn2W/5h72yaK2rwREFXil
- pZcUMKNxDxOw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 05:07:09 -0700
-IronPort-SDR: DJ0X5qIaTo4nrBNUs7HJ/3ywfeWbE5+OVWeCaP0w1DTrRgRdaPeMiGBqzcHk4vCYszq9AttXxy
- dXUBVqQbiL/w==
-X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="285865069"
-Received: from nlevi-mobl.ger.corp.intel.com (HELO [10.251.172.194])
- ([10.251.172.194])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 05:07:08 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
- <20200406091254.17675-3-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <88760bf9-7f57-f74a-d44a-733d48fdecd5@linux.intel.com>
-Date: Mon, 6 Apr 2020 13:07:06 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E08216E45E;
+ Mon,  6 Apr 2020 17:29:39 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 26AD5B1FC1;
+ Mon,  6 Apr 2020 17:29:37 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-31-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <f85e0d74-2d1a-03ce-3eef-8c21b90845d4@suse.de>
+Date: Mon, 6 Apr 2020 14:11:09 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <20200406091254.17675-3-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/gem: Wait until the context is
- finally retired before releasing engines
+In-Reply-To: <20200403135828.2542770-31-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 30/44] drm/qxl: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,70 +65,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Dave Airlie <airlied@redhat.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
+ spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============1625703035=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1625703035==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="U47qTCGnlx1wJpHiO8OcTjEHNNfTq4eiS"
 
-On 06/04/2020 10:12, Chris Wilson wrote:
-> If we want to percolate information back from the HW, up through the GEM
-> context, we need to wait until the intel_context is scheduled out for
-> the last time. This is handled by the retirement of the intel_context's
-> barrier, i.e. by listening to the pulse after the notional unpin. So
-> wait until the intel_context is finally retired before releasing the
-> engine, so that we can inspect the final context state and pass it on.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--U47qTCGnlx1wJpHiO8OcTjEHNNfTq4eiS
+Content-Type: multipart/mixed; boundary="6kv8mAox5GvUraJWEerWSr8Z7ZNmjb3HG";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: spice-devel@lists.freedesktop.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann
+ <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Dave Airlie <airlied@redhat.com>
+Message-ID: <f85e0d74-2d1a-03ce-3eef-8c21b90845d4@suse.de>
+Subject: Re: [PATCH 30/44] drm/qxl: Use devm_drm_dev_alloc
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-31-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200403135828.2542770-31-daniel.vetter@ffwll.ch>
+
+--6kv8mAox5GvUraJWEerWSr8Z7ZNmjb3HG
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+
+
+Am 03.04.20 um 15:58 schrieb Daniel Vetter:
+> Also need to remove the drm_dev_put from the remove hook.
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: virtualization@lists.linux-foundation.org
+> Cc: spice-devel@lists.freedesktop.org
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.c | 16 ++++++----------
->   1 file changed, 6 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 2b6dd08de6f1..11d9135cf21a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -570,23 +570,19 @@ static void engines_idle_release(struct i915_gem_context *ctx,
->   	engines->ctx = i915_gem_context_get(ctx);
->   
->   	for_each_gem_engine(ce, engines, it) {
-> -		struct dma_fence *fence;
-> -		int err = 0;
-> +		int err;
->   
->   		/* serialises with execbuf */
->   		set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
->   		if (!intel_context_pin_if_active(ce))
->   			continue;
->   
-> -		fence = i915_active_fence_get(&ce->timeline->last_request);
-> -		if (fence) {
-> -			err = i915_sw_fence_await_dma_fence(&engines->fence,
-> -							    fence, 0,
-> -							    GFP_KERNEL);
-> -			dma_fence_put(fence);
-> -		}
-> +		/* Wait until context is finally scheduled out and retired */
-> +		err = i915_sw_fence_await_active(&engines->fence,
-> +						 &ce->active,
-> +						 I915_ACTIVE_AWAIT_BARRIER);
->   		intel_context_unpin(ce);
-> -		if (err < 0)
-> +		if (err)
->   			goto kill;
->   	}
->   
-> 
+>  drivers/gpu/drm/qxl/qxl_drv.c | 15 ++++++++-------
+>  drivers/gpu/drm/qxl/qxl_drv.h |  3 +--
+>  drivers/gpu/drm/qxl/qxl_kms.c | 12 +-----------
+>  3 files changed, 10 insertions(+), 20 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_dr=
+v.c
+> index 09102e2efabc..6b4ae4c5fb76 100644
+> --- a/drivers/gpu/drm/qxl/qxl_drv.c
+> +++ b/drivers/gpu/drm/qxl/qxl_drv.c
+> @@ -81,13 +81,16 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pc=
+i_device_id *ent)
+>  		return -EINVAL; /* TODO: ENODEV ? */
+>  	}
+> =20
+> -	qdev =3D kzalloc(sizeof(struct qxl_device), GFP_KERNEL);
+> -	if (!qdev)
+> +	qdev =3D devm_drm_dev_alloc(&pdev->dev, &qxl_driver,
+> +				  struct qxl_device, ddev);
+> +	if (IS_ERR(qdev)) {
+> +		pr_err("Unable to init drm dev");
+>  		return -ENOMEM;
+> +	}
 
-This one is fine once I figure out the previous one. :)
+My feeling is that it is too early to allocate. Wouldn't it be better to
+first do the pdev and conflicting-fb stuff and allocate right before
+qxl_device_init() ?
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Best regards
+Thomas
 
-Regards,
+> =20
+>  	ret =3D pci_enable_device(pdev);
+>  	if (ret)
+> -		goto free_dev;
+> +		return ret;
+> =20
+>  	ret =3D drm_fb_helper_remove_conflicting_pci_framebuffers(pdev, "qxl"=
+);
+>  	if (ret)
+> @@ -101,7 +104,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pc=
+i_device_id *ent)
+>  		}
+>  	}
+> =20
+> -	ret =3D qxl_device_init(qdev, &qxl_driver, pdev);
+> +	ret =3D qxl_device_init(qdev, pdev);
+>  	if (ret)
+>  		goto put_vga;
+> =20
+> @@ -128,8 +131,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pc=
+i_device_id *ent)
+>  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
+>  disable_pci:
+>  	pci_disable_device(pdev);
+> -free_dev:
+> -	kfree(qdev);
+> +
+>  	return ret;
+>  }
+> =20
+> @@ -155,7 +157,6 @@ qxl_pci_remove(struct pci_dev *pdev)
+>  	drm_atomic_helper_shutdown(dev);
+>  	if (is_vga(pdev))
+>  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> -	drm_dev_put(dev);
+>  }
+> =20
+>  DEFINE_DRM_GEM_FOPS(qxl_fops);
+> diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_dr=
+v.h
+> index 435126facc9b..86ac191d9205 100644
+> --- a/drivers/gpu/drm/qxl/qxl_drv.h
+> +++ b/drivers/gpu/drm/qxl/qxl_drv.h
+> @@ -276,8 +276,7 @@ struct qxl_device {
+>  extern const struct drm_ioctl_desc qxl_ioctls[];
+>  extern int qxl_max_ioctl;
+> =20
+> -int qxl_device_init(struct qxl_device *qdev, struct drm_driver *drv,
+> -		    struct pci_dev *pdev);
+> +int qxl_device_init(struct qxl_device *qdev, struct pci_dev *pdev);
+>  void qxl_device_fini(struct qxl_device *qdev);
+> =20
+>  int qxl_modeset_init(struct qxl_device *qdev);
+> diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_km=
+s.c
+> index 9eed1a375f24..91a34dd835d7 100644
+> --- a/drivers/gpu/drm/qxl/qxl_kms.c
+> +++ b/drivers/gpu/drm/qxl/qxl_kms.c
+> @@ -108,21 +108,13 @@ static void qxl_gc_work(struct work_struct *work)=
 
-Tvrtko
+>  }
+> =20
+>  int qxl_device_init(struct qxl_device *qdev,
+> -		    struct drm_driver *drv,
+>  		    struct pci_dev *pdev)
+>  {
+>  	int r, sb;
+> =20
+> -	r =3D drm_dev_init(&qdev->ddev, drv, &pdev->dev);
+> -	if (r) {
+> -		pr_err("Unable to init drm dev");
+> -		goto error;
+> -	}
+> -
+>  	qdev->ddev.pdev =3D pdev;
+>  	pci_set_drvdata(pdev, &qdev->ddev);
+>  	qdev->ddev.dev_private =3D qdev;
+> -	drmm_add_final_kfree(&qdev->ddev, qdev);
+> =20
+>  	mutex_init(&qdev->gem.mutex);
+>  	mutex_init(&qdev->update_area_mutex);
+> @@ -138,8 +130,7 @@ int qxl_device_init(struct qxl_device *qdev,
+>  	qdev->vram_mapping =3D io_mapping_create_wc(qdev->vram_base, pci_reso=
+urce_len(pdev, 0));
+>  	if (!qdev->vram_mapping) {
+>  		pr_err("Unable to create vram_mapping");
+> -		r =3D -ENOMEM;
+> -		goto error;
+> +		return -ENOMEM;
+>  	}
+> =20
+>  	if (pci_resource_len(pdev, 4) > 0) {
+> @@ -293,7 +284,6 @@ int qxl_device_init(struct qxl_device *qdev,
+>  	io_mapping_free(qdev->surface_mapping);
+>  vram_mapping_free:
+>  	io_mapping_free(qdev->vram_mapping);
+> -error:
+>  	return r;
+>  }
+> =20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--6kv8mAox5GvUraJWEerWSr8Z7ZNmjb3HG--
+
+--U47qTCGnlx1wJpHiO8OcTjEHNNfTq4eiS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl6LHF0ACgkQaA3BHVML
+eiN5oAgAiGX1c+294XzOEnNtdftBXz6wvc9tUg7FAMoBixHQK3BrcgYD9CIZ5RkA
+EMKoRH7GkgVruL7ABjv6Pw2h/Gb3ywxUui1pNONAmqj5mk59l7ZpNxHHgtArTvV1
++puo9VV2l7UklAoH+w8xf9obXFKSwfwyRX+bIuemq1pJGwRbIQ0/XxkTe4fK6CVu
+g8+b9arcUfykEiZXH6MUWOZwUkj2nvC/oVVdc3+sFThfbKhkAd2j+Zbfa2OOXWJ6
+Rf1no3zjvXrwawkGBd6k/WpwHBziIM5C6LHeAOR4OVckgLFI+cLjEiix7VyYcwYR
+kiWzBaGT9GfEkX90fAqhSFia/0GXQA==
+=mZNW
+-----END PGP SIGNATURE-----
+
+--U47qTCGnlx1wJpHiO8OcTjEHNNfTq4eiS--
+
+--===============1625703035==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1625703035==--
