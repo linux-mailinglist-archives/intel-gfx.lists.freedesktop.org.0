@@ -1,36 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9A419F6AD
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 15:18:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D8019F6BC
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 15:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFAD16E3B7;
-	Mon,  6 Apr 2020 13:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C75E6E3BB;
+	Mon,  6 Apr 2020 13:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7554D6E3B7
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 13:18:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20816129-1500050 for multiple; Mon, 06 Apr 2020 14:18:06 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 02E8B6E3B8;
+ Mon,  6 Apr 2020 13:19:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F00F5A00C7;
+ Mon,  6 Apr 2020 13:19:29 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <158617858419.6356.8153787916305532205@build.alporthouse.com>
-References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
- <20200406091254.17675-2-chris@chris-wilson.co.uk>
- <ea4ee702-3384-6978-cac4-870c85a88a21@linux.intel.com>
- <158617858419.6356.8153787916305532205@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158617908659.6356.1575618684344079179@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 06 Apr 2020 14:18:06 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Allow asynchronous waits on
- the i915_active barriers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 06 Apr 2020 13:19:29 -0000
+Message-ID: <158617916997.4192.5264506597432983823@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200406123616.7334-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200406123616.7334-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Take_DBG=5FFORCE=5FRELOC_into_account_prior_to_usi?=
+ =?utf-8?q?ng_reloc=5Fgpu?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,70 +39,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-04-06 14:09:44)
-> Quoting Tvrtko Ursulin (2020-04-06 13:06:03)
-> > 
-> > On 06/04/2020 10:12, Chris Wilson wrote:
-> > > Allow the caller to also wait upon the barriers stored in i915_active.
-> > > 
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > ---
-> > >   drivers/gpu/drm/i915/i915_active.c | 60 ++++++++++++++++++++++++++++++
-> > >   drivers/gpu/drm/i915/i915_active.h |  1 +
-> > >   2 files changed, 61 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> > > index d5e24be759f7..048ab9edd2c2 100644
-> > > --- a/drivers/gpu/drm/i915/i915_active.c
-> > > +++ b/drivers/gpu/drm/i915/i915_active.c
-> > > @@ -542,6 +542,55 @@ static int __await_active(struct i915_active_fence *active,
-> > >       return 0;
-> > >   }
-> > >   
-> > > +struct wait_barrier {
-> > > +     struct wait_queue_entry base;
-> > > +     struct i915_active *ref;
-> > > +};
-> > > +
-> > > +static int
-> > > +barrier_wake(wait_queue_entry_t *wq, unsigned int mode, int flags, void *key)
-> > > +{
-> > > +     struct wait_barrier *wb = container_of(wq, typeof(*wb), base);
-> > > +
-> > > +     if (i915_active_is_idle(wb->ref)) { /* shared waitqueue, must check! */
-> > 
-> > Who shares it?
-> 
-> __var_waitqueue(ref) => uses a one of a set of global workqueues based
-> off hash(ref)
-> 
-> Or we add a wait_queue_head_t to active, but we would still need to
-> recheck as it may be reused as we are signaled.
-> 
-> > > +     if (flags & I915_ACTIVE_AWAIT_BARRIER) {
-> > > +             err = flush_lazy_signals(ref);
-> > > +             if (err)
-> > > +                     return err;
-> > > +
-> > > +             err = __await_barrier(ref, arg);
-> > > +             if (err)
-> > > +                     return err;
-> > >
-> > 
-> > Could have a single set of active_acquire_if_busy/release over the 
-> > previous and this new block. Not sure if that would help with any 
-> > atomicity concerns, or if there are such.
-> 
-> It would not affect correctness, it will just depend on taste.
+== Series Details ==
 
-Actually, flush_lazy_signals needs to be inside the active-ref, so we
-should rearrange the acquires.
--Chris
+Series: drm/i915/gem: Take DBG_FORCE_RELOC into account prior to using reloc_gpu
+URL   : https://patchwork.freedesktop.org/series/75546/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8259 -> Patchwork_17218
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17218/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17218 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_tiled_fence_blits@basic:
+    - fi-blb-e6850:       [PASS][1] -> [DMESG-WARN][2] ([i915#1612])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17218/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][3] -> [FAIL][4] ([i915#976])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17218/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-skl-6770hq:      [PASS][5] -> [SKIP][6] ([fdo#109271]) +24 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17218/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1612]: https://gitlab.freedesktop.org/drm/intel/issues/1612
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (53 -> 46)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8259 -> Patchwork_17218
+
+  CI-20190529: 20190529
+  CI_DRM_8259: 450fc86b62651336f9b5fde79c068df7b4c95aa4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5571: da79d5fa2ebed237f0561a54b4b63bae6f21503a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17218: ba343fe4ed968ea92207838b69dd79c8e09f9b53 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ba343fe4ed96 drm/i915/gem: Take DBG_FORCE_RELOC into account prior to using reloc_gpu
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17218/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
