@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9DC19F630
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A220F19F637
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:57:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760FA6E3AC;
-	Mon,  6 Apr 2020 12:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFB46E237;
+	Mon,  6 Apr 2020 12:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6FFFF89F99;
- Mon,  6 Apr 2020 12:55:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A3B5A0138;
- Mon,  6 Apr 2020 12:55:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBCB36E237
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 12:57:42 +0000 (UTC)
+IronPort-SDR: Y2PTo6fKcp2CGrexpKmyjapM4wdihQH7hhCn4n9g55vYGnsHWeGR5WSQRVWZgMMXHsAQkT6NzH
+ /hG7XVFAvQWw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 05:57:42 -0700
+IronPort-SDR: 9k1KVKjg1qrFt0cAcsCe0kkwBSnqsr4Nh0xgUHjftwJbLxXaqnaknU1ngmroZwYUEF1kTBLTCX
+ tfSMu5Vv/p5w==
+X-IronPort-AV: E=Sophos;i="5.72,351,1580803200"; d="scan'208";a="424348486"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 05:57:41 -0700
+Date: Mon, 6 Apr 2020 15:57:31 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200406125731.GA1299@ideak-desk.fi.intel.com>
+References: <20200401004120.408586-1-jose.souza@intel.com>
+ <20200401004120.408586-5-jose.souza@intel.com>
+ <20200401124342.GD24964@ideak-desk.fi.intel.com>
+ <9d8f488592ada0014d3906a12ceefe1a0013a1be.camel@intel.com>
+ <20200402010243.GA28963@ideak-desk.fi.intel.com>
+ <90f5ef9bc48895c34fe374886aaab93ed0835df0.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 06 Apr 2020 12:55:36 -0000
-Message-ID: <158617773640.4193.11851084976512476681@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406114821.10949-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200406114821.10949-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Flush_all_the_reloc=5Fgpu_batch?=
+Content-Disposition: inline
+In-Reply-To: <90f5ef9bc48895c34fe374886aaab93ed0835df0.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/tc/icl: Implement TC cold
+ sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,124 +53,437 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Apr 03, 2020 at 04:18:54AM +0300, Souza, Jose wrote:
+> Hi Imre
+> =
 
-Series: drm/i915/gem: Flush all the reloc_gpu batch
-URL   : https://patchwork.freedesktop.org/series/75544/
-State : failure
+> I guess I did all the requested changes but trybot got some
+> warnings that I will need more time to understand and fix it.
+> =
 
-== Summary ==
+> If you have time please check if is this way that you are asking:
+> https://github.com/zehortigoza/linux/tree/tccold-v3
 
-CI Bug Log - changes from CI_DRM_8259 -> Patchwork_17217
-====================================================
+Yes looks ok overall, I added a few comments on the trybot patches.
 
-Summary
--------
+> Trybot warnings: =
 
-  **FAILURE**
+> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_5784/bat-all.html
 
-  Serious unknown changes coming with Patchwork_17217 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17217, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+I see here
+<3> [428.836598] [drm:tc_port_live_status_mask [i915]] *ERROR* Port D/TC#2:=
+ live status 00000004 mismatches the legacy port flag, fix flag
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/index.html
+which is a known buggy VBT issue and
 
-Possible new issues
--------------------
+i915 0000:00:02.0: drm_WARN_ON(!power_well->desc->hsw.is_tc_tbt || !(((&(de=
+v_priv)->__info)->gen) =3D=3D 11 && dig_port->tc_legacy_port))
 
-  Here are the unknown changes that may have been introduced in Patchwork_17217:
+which is just a typo.
 
-### IGT changes ###
+> Thanks
+> =
 
-#### Possible regressions ####
+> On Thu, 2020-04-02 at 04:02 +0300, Imre Deak wrote:
+> > On Thu, Apr 02, 2020 at 01:35:30AM +0300, Souza, Jose wrote:
+> > > On Wed, 2020-04-01 at 15:43 +0300, Imre Deak wrote:
+> > > > On Tue, Mar 31, 2020 at 05:41:19PM -0700, Jos=E9 Roberto de Souza
+> > > > wrote:
+> > > > > This is required for legacy/static TC ports as IOM is not aware
+> > > > > of
+> > > > > the connection and will not trigger the TC cold exit.
+> > > > > =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> > > > > Just request PCODE to exit TCCOLD is not enough as it could
+> > > > > enter
+> > > > > again be driver makes use of the port, to prevent it BSpec
+> > > > > states
+> > > > > that
+> > > > > aux powerwell should be held.
+> > > > > =
 
-  
-Known issues
-------------
+> > > > > So here embedding the TC cold exit sequence into ICL aux
+> > > > > enable,
+> > > > > it will enable aux, request tc cold exit and depending in the
+> > > > > TC
+> > > > > live
+> > > > > state continue with the regular aux enable sequence.
+> > > > > =
 
-  Here are the changes found in Patchwork_17217 that come from known issues:
+> > > > > And then turning on aux power well during tc lock and turning
+> > > > > off
+> > > > > during unlock both depending into the TC port refcount.
+> > > > > =
 
-### IGT changes ###
+> > > > > BSpec: 21750
+> > > > > Fixes: https://gitlab.freedesktop.org/drm/intel/issues/1296
+> > > > > Cc: Imre Deak <imre.deak@intel.com>
+> > > > > Cc: Cooper Chiou <cooper.chiou@intel.com>
+> > > > > Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > > > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > > ---
+> > > > > =
 
-#### Issues hit ####
+> > > > > Will run some tests in the office with TBT dockstation to check
+> > > > > if
+> > > > > it will be a issue keep both aux enabled. Otherwise more
+> > > > > changes
+> > > > > will
+> > > > > be required here.
+> > > > > =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#203]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+> > > > >  .../drm/i915/display/intel_display_power.c    | 12 ++++-
+> > > > >  .../drm/i915/display/intel_display_types.h    |  1 +
+> > > > >  drivers/gpu/drm/i915/display/intel_tc.c       | 47
+> > > > > ++++++++++++++++++-
+> > > > >  drivers/gpu/drm/i915/display/intel_tc.h       |  2 +
+> > > > >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
+> > > > >  5 files changed, 59 insertions(+), 4 deletions(-)
+> > > > > =
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-u2:          [PASS][5] -> [INCOMPLETE][6] ([i915#1580])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > > index dbd61517ba63..1ccd57d645c7 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > > @@ -592,9 +592,17 @@ icl_tc_phy_aux_power_well_enable(struct
+> > > > > drm_i915_private *dev_priv,
+> > > > >  =
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [PASS][7] -> [SKIP][8] ([fdo#109271]) +5 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+> > > > >  	_hsw_power_well_enable(dev_priv, power_well);
+> > > > >  =
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [PASS][9] -> [DMESG-WARN][10] ([i915#106])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+> > > > > -	/* TODO ICL TC cold handling */
+> > > > > +	if (INTEL_GEN(dev_priv) =3D=3D 11)
+> > > > =
 
-  
-#### Warnings ####
+> > > > Should be if (ICL && dig_port->tc_legacy_port)
+> > > =
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][11] ([fdo#109271]) -> [FAIL][12] ([i915#579])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8259/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+> > > Makes sence.
+> > > Oh so we could use it on __intel_tc_port_lock() too and
+> > > don't do this stuff for non legacy ports. Until we get a report of
+> > > a
+> > > system with a wrong VBT :P
+> > =
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+> > Yes, it's a loss of the vendor shipping a corrupt VBT. But we'll
+> > print
+> > an error and fix up the flag.
+> > =
 
+> > > > > +		intel_tc_icl_tc_cold_exit(dev_priv);
+> > > > >  =
 
-Participating hosts (53 -> 47)
-------------------------------
+> > > > > -	_hsw_power_well_continue_enable(dev_priv, power_well);
+> > > > > +	/*
+> > > > > +	 * To avoid power well enable timeouts when
+> > > > > disconnected or in
+> > > > > TBT mode
+> > > > > +	 * when doing the TC cold exit sequence for GEN11
+> > > > > +	 */
+> > > > > +	if (INTEL_GEN(dev_priv) !=3D 11 ||
+> > > > > +	    (intel_tc_port_live_status_mask(dig_port) &
+> > > > > +	     (TC_PORT_LEGACY | TC_PORT_DP_ALT)))
+> > > > > +		_hsw_power_well_continue_enable(dev_priv,
+> > > > > power_well);
+> > > > =
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+> > > > Why can't we call this unconditionally?
+> > > =
 
+> > > Because we are requesting aux power of regular TC ports as part of
+> > > tc
+> > > cold exit sequence, if the port is disconnected it will timeout in
+> > > hsw_wait_for_power_well_enable().
+> > > =
 
-Build changes
--------------
+> > > Anyways it is wrong as it is not
+> > > taking care of TBT ports, so changing to: if (INTEL_GEN(dev_priv)
+> > > !=3D 11
+> > > > > !dig_port->tc_legacy_port || intel_tc_port_live_status_mask())
+> > =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8259 -> Patchwork_17217
+> > What I thought is that the legacy AUX power request will ack after
+> > the
+> > PCODE request completes, regardless of whether the sink is connected
+> > or
+> > not. If that is not the case then let's just suppress the timeout for
+> > legacy AUX power wells the same way we do that for TBT AUX. I don't
+> > like
+> > to make the above call conditional on the live status flag, as that
+> > can
+> > change at any moment. So in either case let's make the above call
+> > unconditional.
+> > =
 
-  CI-20190529: 20190529
-  CI_DRM_8259: 450fc86b62651336f9b5fde79c068df7b4c95aa4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5571: da79d5fa2ebed237f0561a54b4b63bae6f21503a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17217: a2c2dd9e46431486ec4ad306fed2f250f5bfb2fb @ git://anongit.freedesktop.org/gfx-ci/linux
+> > > > >  =
 
+> > > > >  	if (INTEL_GEN(dev_priv) >=3D 12 && !power_well->desc-
+> > > > > > hsw.is_tc_tbt) {
+> > =
 
-== Linux commits ==
+> > Could you check your email client, so that it doesn't wrap lines?
+> > =
 
-a2c2dd9e4643 drm/i915/gem: Flush all the reloc_gpu batch
+> > > > >  		enum tc_port tc_port;
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > index 176ab5f1e867..a9a4a3c1b4d7 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > @@ -1391,6 +1391,7 @@ struct intel_digital_port {
+> > > > >  	enum intel_display_power_domain ddi_io_power_domain;
+> > > > >  	struct mutex tc_lock;	/* protects the TypeC port mode
+> > > > > */
+> > > > >  	intel_wakeref_t tc_lock_wakeref;
+> > > > > +	intel_wakeref_t tc_cold_wakeref;
+> > > > >  	int tc_link_refcount;
+> > > > >  	bool tc_legacy_port:1;
+> > > > >  	char tc_port_name[8];
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > b/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > index d944be935423..b6d67f069ef7 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > > > > @@ -7,6 +7,7 @@
+> > > > >  #include "intel_display.h"
+> > > > >  #include "intel_display_types.h"
+> > > > >  #include "intel_dp_mst.h"
+> > > > > +#include "intel_sideband.h"
+> > > > >  #include "intel_tc.h"
+> > > > >  =
 
-== Logs ==
+> > > > >  static const char *tc_port_mode_name(enum tc_port_mode mode)
+> > > > > @@ -506,6 +507,13 @@ static void __intel_tc_port_lock(struct
+> > > > > intel_digital_port *dig_port,
+> > > > >  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17217/index.html
+> > > > >  	mutex_lock(&dig_port->tc_lock);
+> > > > >  =
+
+> > > > > +	if (INTEL_GEN(i915) =3D=3D 11 && dig_port->tc_link_refcount =
+
+> > > > > =3D=3D 0) {
+> > > > > +		enum intel_display_power_domain aux_domain;
+> > > > > +
+> > > > > +		aux_domain =3D
+> > > > > intel_aux_ch_to_power_domain(dig_port-
+> > > > > > aux_ch);
+> > > > > +		dig_port->tc_cold_wakeref =3D
+> > > > > intel_display_power_get(i915, aux_domain);
+> > > > > +	}
+> > > > > +
+> > > > =
+
+> > > > It would be enough to hold this ref only for the time we access
+> > > > FIA
+> > > > regs. Anything else later will hold its own AUX reference, which
+> > > > takes
+> > > > care of blocking tc-cold. So here something like:
+> > > > =
+
+> > > =
+
+> > > According to BSpec we need to keep TC cold blocked while accessing
+> > > TC
+> > > PHY registers too.
+> > =
+
+> > Yes, hence blocking it here whenever accessing the HW and elsewhere
+> > (AUX
+> > transfers, modeset) whenever holding an AUX reference. See my comment
+> > below about the other two functions in intel_tc that needs the
+> > block/unblock.
+> > =
+
+> > > > 	tc_cold_wakeref =3D block_tc_cold(dig_port);
+> > > > =
+
+> > > > where block_tc_cold() would return a non-NULL wakeref only for
+> > > > ICL/dig_port->tc_legacy_port and TGL.
+> > > > =
+
+> > > > >  	if (!dig_port->tc_link_refcount &&
+> > > > >  	    intel_tc_port_needs_reset(dig_port))
+> > > > >  		intel_tc_port_reset_mode(dig_port,
+> > > > > required_lanes);
+> > > > =
+
+> > > > 	unblock_tc_cold(tc_cold_wakeref);
+> > > > =
+
+> > > > We need to call block/unblock_tc_cold() also in
+> > > > intel_tc_port_sanitize() and intel_tc_port_connected().
+> > > > =
+
+> > > > > @@ -519,15 +527,30 @@ void intel_tc_port_lock(struct
+> > > > > intel_digital_port *dig_port)
+> > > > >  	__intel_tc_port_lock(dig_port, 1);
+> > > > >  }
+> > > > >  =
+
+> > > > > +static void icl_tc_cold_unblock(struct intel_digital_port
+> > > > > *dig_port)
+> > > > > +{
+> > > > > +	struct drm_i915_private *i915 =3D to_i915(dig_port-
+> > > > > > base.base.dev);
+> > > > > +	enum intel_display_power_domain aux_domain;
+> > > > > +	intel_wakeref_t tc_cold_wakeref;
+> > > > > +
+> > > > > +	if (INTEL_GEN(i915) !=3D 11 || dig_port->tc_link_refcount =
+
+> > > > > > 0)
+> > > > > +		return;
+> > > > > +
+> > > > > +	tc_cold_wakeref =3D fetch_and_zero(&dig_port-
+> > > > > >tc_cold_wakeref);
+> > > > > +	aux_domain =3D intel_aux_ch_to_power_domain(dig_port-
+> > > > > >aux_ch);
+> > > > > +	intel_display_power_put_async(i915, aux_domain,
+> > > > > tc_cold_wakeref);
+> > > > > +}
+> > > > > +
+> > > > >  void intel_tc_port_unlock(struct intel_digital_port *dig_port)
+> > > > >  {
+> > > > >  	struct drm_i915_private *i915 =3D to_i915(dig_port-
+> > > > > > base.base.dev);
+> > > > >  	intel_wakeref_t wakeref =3D fetch_and_zero(&dig_port-
+> > > > > > tc_lock_wakeref);
+> > > > >  =
+
+> > > > > +	icl_tc_cold_unblock(dig_port);
+> > > > > +
+> > > > >  	mutex_unlock(&dig_port->tc_lock);
+> > > > >  =
+
+> > > > > -	intel_display_power_put_async(i915,
+> > > > > POWER_DOMAIN_DISPLAY_CORE,
+> > > > > -				      wakeref);
+> > > > > +	intel_display_power_put_async(i915,
+> > > > > POWER_DOMAIN_DISPLAY_CORE,
+> > > > > wakeref);
+> > > > >  }
+> > > > >  =
+
+> > > > >  bool intel_tc_port_ref_held(struct intel_digital_port
+> > > > > *dig_port)
+> > > > > @@ -548,6 +571,7 @@ void intel_tc_port_put_link(struct
+> > > > > intel_digital_port *dig_port)
+> > > > >  {
+> > > > >  	mutex_lock(&dig_port->tc_lock);
+> > > > >  	dig_port->tc_link_refcount--;
+> > > > > +	icl_tc_cold_unblock(dig_port);
+> > > > >  	mutex_unlock(&dig_port->tc_lock);
+> > > > >  }
+> > > > >  =
+
+> > > > > @@ -568,3 +592,22 @@ void intel_tc_port_init(struct
+> > > > > intel_digital_port *dig_port, bool is_legacy)
+> > > > >  	dig_port->tc_link_refcount =3D 0;
+> > > > >  	tc_port_load_fia_params(i915, dig_port);
+> > > > >  }
+> > > > > +
+> > > > > +void intel_tc_icl_tc_cold_exit(struct drm_i915_private *i915)
+> > > > =
+
+> > > > This could be in intel_display_power.c now, so we don't need to
+> > > > export
+> > > > it.
+> > > =
+
+> > > Okay.
+> > > =
+
+> > > > > +{
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	do {
+> > > > > +		ret =3D sandybridge_pcode_write_timeout(i915,
+> > > > > +						      ICL_PCODE
+> > > > > _EXIT_TC
+> > > > > COLD,
+> > > > > +						      0, 250,
+> > > > > 1);
+> > > > > +
+> > > > > +	} while (ret =3D=3D -EAGAIN);
+> > > > > +
+> > > > > +	if (!ret)
+> > > > > +		msleep(1);
+> > > > =
+
+> > > > Could you add a comment explaining that we need the sleep, since
+> > > > according to BSpec the above request may not have completed even
+> > > > though
+> > > > it returned success?
+> > > =
+
+> > > Sure
+> > > =
+
+> > > > > +
+> > > > > +	if (ret)
+> > > > > +		drm_dbg_kms(&i915->drm, "TC cold block %s\n",
+> > > > > +			    (ret =3D=3D 0 ? "succeeded" :
+> > > > > "failed"));
+> > > > > +}
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.h
+> > > > > b/drivers/gpu/drm/i915/display/intel_tc.h
+> > > > > index a1afcee48818..168d8896fcfd 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_tc.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_tc.h
+> > > > > @@ -9,6 +9,7 @@
+> > > > >  #include <linux/mutex.h>
+> > > > >  #include <linux/types.h>
+> > > > >  =
+
+> > > > > +struct drm_i915_private;
+> > > > >  struct intel_digital_port;
+> > > > >  =
+
+> > > > >  bool intel_tc_port_connected(struct intel_digital_port
+> > > > > *dig_port);
+> > > > > @@ -29,5 +30,6 @@ bool intel_tc_port_ref_held(struct
+> > > > > intel_digital_port *dig_port);
+> > > > >  void intel_tc_port_init(struct intel_digital_port *dig_port,
+> > > > > bool
+> > > > > is_legacy);
+> > > > >  =
+
+> > > > >  u32 intel_tc_port_live_status_mask(struct intel_digital_port
+> > > > > *dig_port);
+> > > > > +void intel_tc_icl_tc_cold_exit(struct drm_i915_private *i915);
+> > > > >  =
+
+> > > > >  #endif /* __INTEL_TC_H__ */
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > > > > b/drivers/gpu/drm/i915/i915_reg.h
+> > > > > index 17484345cb80..b111815d6596 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > > > @@ -9107,6 +9107,7 @@ enum {
+> > > > >  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	=
+
+> > > > > (((poin
+> > > > > t) << 16) | (0x1 << 8))
+> > > > >  #define   GEN6_PCODE_READ_D_COMP		0x10
+> > > > >  #define   GEN6_PCODE_WRITE_D_COMP		0x11
+> > > > > +#define   ICL_PCODE_EXIT_TCCOLD			0x12
+> > > > >  #define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
+> > > > >  #define   DISPLAY_IPS_CONTROL			0x19
+> > > > >              /* See also IPS_CTL */
+> > > > > -- =
+
+> > > > > 2.26.0
+> > > > > =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
