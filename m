@@ -2,50 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38FB19FEC0
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 22:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F14AB19FEBC
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 22:07:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2686E4CF;
-	Mon,  6 Apr 2020 20:07:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3736E4CA;
+	Mon,  6 Apr 2020 20:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08F106E4C4
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 20:07:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1586203632;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jQKxuqrjVuHJtGH+sCPXmBiaDbPaY/tOH+9DlgGPE98=;
- b=RE/yzkKGzpqM3u+Izit4+v60ViXK0JGdlMZDyegZEsq/j7loK+GAx4Rk/vAS/tX6bptLhf
- Y4HO3nePZG+ZPItWQJkLk4ku2ChaeRAYv+9NgQnmJu32F88g7/piMPCOUdNbehEIsy/zgn
- EmvlQfauInR6xQG7EEF3c95QZhD6yWU=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-186-3BULVlrANSCd6rg4Ub9CMA-1; Mon, 06 Apr 2020 16:07:08 -0400
-X-MC-Unique: 3BULVlrANSCd6rg4Ub9CMA-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 866F28017CE;
- Mon,  6 Apr 2020 20:07:05 +0000 (UTC)
-Received: from Ruby.redhat.com (ovpn-117-12.rdu2.redhat.com [10.10.117.12])
- by smtp.corp.redhat.com (Postfix) with ESMTP id F0DAD6EF97;
- Mon,  6 Apr 2020 20:07:02 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon,  6 Apr 2020 16:06:42 -0400
-Message-Id: <20200406200646.1263435-2-lyude@redhat.com>
-In-Reply-To: <20200406200646.1263435-1-lyude@redhat.com>
-References: <20200406200646.1263435-1-lyude@redhat.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA9446E4C4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 20:07:11 +0000 (UTC)
+IronPort-SDR: OnLngU7RuocWEPVoyRtH68VpaTZtNMsXwwi3YNwcKRiOBRpcC++8wIwk1/VY9Fr5fasTQIkEun
+ ZO5MUQGL636g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 13:07:11 -0700
+IronPort-SDR: GNIPoYNZN+KsRe/Zc9ybyeNwN6wLC5H5wLLsmh9EH3g+vKdzG5AIo+SQgUFPVJGHncQB6QaBsU
+ wo7eDfkW2YrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,352,1580803200"; d="scan'208";a="424481985"
+Received: from linux.fm.intel.com ([10.1.27.42])
+ by orsmga005.jf.intel.com with ESMTP; 06 Apr 2020 13:07:10 -0700
+From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Apr 2020 13:07:08 -0700
+Message-Id: <20200406200710.2056-1-venkata.s.dhanalakota@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a983
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/dp_mst: Remove drm_dp_mst_has_audio()
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: introduce a mechanism to extend
+ execbuf2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,125 +45,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, David Airlie <airlied@linux.ie>,
- linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Wambui Karuga <wambui.karugax@gmail.com>
+Cc: chris.p.wilson@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drive-by fix I noticed the other day - drm_dp_mst_has_audio() only ever
-made sense back when we still had to validate ports before accessing
-them in order to (attempt to) avoid NULL dereferences. Since we have
-proper reference counting that guarantees we always can safely access
-the MST port, there's no use in keeping this function around as all it
-does is validate the port pointer before checking the audio status.
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
-Note - drm_dp_mst_port->has_audio is technically protected by
-drm_device->mode_config.connection_mutex, since it's only ever updated
-from drm_dp_mst_get_edid(). Additionally, we change the declaration for
-port in struct intel_connector to be properly typed, so we can directly
-access it.
+We're planning to use this for a couple of new feature where we need
+to provide additional parameters to execbuf.
 
-Changes since v1:
-* Change type of intel_connector->port in a separate patch - Sean Paul
+v2: Check for invalid flags in execbuffer2 (Lionel)
 
-Cc: "Lee, Shawn C" <shawn.c.lee@intel.com>
-Reviewed-by: Sean Paul <sean@poorly.run>
-Signed-off-by: Lyude Paul <lyude@redhat.com>
+v3: Rename I915_EXEC_EXT -> I915_EXEC_USE_EXTENSIONS (Chris)
+
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk> (v1)
 ---
- drivers/gpu/drm/drm_dp_mst_topology.c         | 21 -------------------
- .../drm/i915/display/intel_display_debugfs.c  | 10 ++-------
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +--
- include/drm/drm_dp_mst_helper.h               |  2 --
- 4 files changed, 3 insertions(+), 33 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 39 ++++++++++++++++++-
+ include/uapi/drm/i915_drm.h                   | 26 +++++++++++--
+ 2 files changed, 61 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 5b205aea58d4..8289d59b62da 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -4063,27 +4063,6 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
- }
- EXPORT_SYMBOL(drm_dp_mst_detect_port);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 9d11bad74e9a..16831f715daa 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -26,6 +26,7 @@
+ #include "i915_gem_ioctls.h"
+ #include "i915_sw_fence_work.h"
+ #include "i915_trace.h"
++#include "i915_user_extensions.h"
  
--/**
-- * drm_dp_mst_port_has_audio() - Check whether port has audio capability or not
-- * @mgr: manager for this port
-- * @port: unverified pointer to a port.
-- *
-- * This returns whether the port supports audio or not.
-- */
--bool drm_dp_mst_port_has_audio(struct drm_dp_mst_topology_mgr *mgr,
--					struct drm_dp_mst_port *port)
--{
--	bool ret = false;
--
--	port = drm_dp_mst_topology_get_port_validated(mgr, port);
--	if (!port)
--		return ret;
--	ret = port->has_audio;
--	drm_dp_mst_topology_put_port(port);
--	return ret;
--}
--EXPORT_SYMBOL(drm_dp_mst_port_has_audio);
--
- /**
-  * drm_dp_mst_get_edid() - get EDID for an MST port
-  * @connector: toplevel connector to get EDID for
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 424f4e52f783..9f736420d83f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -631,15 +631,9 @@ static void intel_dp_info(struct seq_file *m,
+ struct eb_vma {
+ 	struct i915_vma *vma;
+@@ -288,6 +289,10 @@ struct i915_execbuffer {
+ 	int lut_size;
+ 	struct hlist_head *buckets; /** ht for relocation handles */
+ 	struct eb_vma_array *array;
++
++	struct {
++		u64 flags; /** Available extensions parameters */
++	} extensions;
+ };
+ 
+ static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
+@@ -1698,7 +1703,8 @@ static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
+ 		return -EINVAL;
+ 
+ 	/* Kernel clipping was a DRI1 misfeature */
+-	if (!(exec->flags & I915_EXEC_FENCE_ARRAY)) {
++	if (!(exec->flags & (I915_EXEC_FENCE_ARRAY |
++			     I915_EXEC_USE_EXTENSIONS))) {
+ 		if (exec->num_cliprects || exec->cliprects_ptr)
+ 			return -EINVAL;
+ 	}
+@@ -2431,6 +2437,33 @@ static void eb_request_add(struct i915_execbuffer *eb)
+ 	mutex_unlock(&tl->mutex);
  }
  
- static void intel_dp_mst_info(struct seq_file *m,
--			  struct intel_connector *intel_connector)
-+			      struct intel_connector *intel_connector)
- {
--	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
--	struct intel_dp_mst_encoder *intel_mst =
--		enc_to_mst(intel_encoder);
--	struct intel_digital_port *intel_dig_port = intel_mst->primary;
--	struct intel_dp *intel_dp = &intel_dig_port->dp;
--	bool has_audio = drm_dp_mst_port_has_audio(&intel_dp->mst_mgr,
--					intel_connector->port);
-+	bool has_audio = intel_connector->port->has_audio;
++static const i915_user_extension_fn execbuf_extensions[] = {
++};
++
++static int
++parse_execbuf2_extensions(struct drm_i915_gem_execbuffer2 *args,
++			  struct i915_execbuffer *eb)
++{
++	eb->extensions.flags = 0;
++
++	if (!(args->flags & I915_EXEC_USE_EXTENSIONS))
++		return 0;
++
++	/* The execbuf2 extension mechanism reuses cliprects_ptr. So we cannot
++	 * have another flag also using it at the same time.
++	 */
++	if (eb->args->flags & I915_EXEC_FENCE_ARRAY)
++		return -EINVAL;
++
++	if (args->num_cliprects != 0)
++		return -EINVAL;
++
++	return i915_user_extensions(u64_to_user_ptr(args->cliprects_ptr),
++				    execbuf_extensions,
++				    ARRAY_SIZE(execbuf_extensions),
++				    eb);
++}
++
+ static int
+ i915_gem_do_execbuffer(struct drm_device *dev,
+ 		       struct drm_file *file,
+@@ -2484,6 +2517,10 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	if (args->flags & I915_EXEC_IS_PINNED)
+ 		eb.batch_flags |= I915_DISPATCH_PINNED;
  
- 	seq_printf(m, "\taudio support: %s\n", yesno(has_audio));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 61605eb8c2af..c35efc9e628d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -114,8 +114,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
++	err = parse_execbuf2_extensions(args, &eb);
++	if (err)
++		return err;
++
+ 	if (args->flags & I915_EXEC_FENCE_IN) {
+ 		in_fence = sync_file_get_fence(lower_32_bits(args->rsvd2));
+ 		if (!in_fence)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 14b67cd6b54b..7ea38aa6502c 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1046,6 +1046,10 @@ struct drm_i915_gem_exec_fence {
+ 	__u32 flags;
+ };
  
- 	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
- 		pipe_config->has_audio =
--			drm_dp_mst_port_has_audio(&intel_dp->mst_mgr,
--						  connector->port);
-+			connector->port->has_audio;
- 	else
- 		pipe_config->has_audio =
- 			intel_conn_state->force_audio == HDMI_AUDIO_ON;
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index 7af51c947b81..2d7c26592c05 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -732,8 +732,6 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
- 		       struct drm_dp_mst_topology_mgr *mgr,
- 		       struct drm_dp_mst_port *port);
++enum drm_i915_gem_execbuffer_ext {
++	DRM_I915_GEM_EXECBUFFER_EXT_MAX /* non-ABI */
++};
++
+ struct drm_i915_gem_execbuffer2 {
+ 	/**
+ 	 * List of gem_exec_object2 structs
+@@ -1062,8 +1066,15 @@ struct drm_i915_gem_execbuffer2 {
+ 	__u32 num_cliprects;
+ 	/**
+ 	 * This is a struct drm_clip_rect *cliprects if I915_EXEC_FENCE_ARRAY
+-	 * is not set.  If I915_EXEC_FENCE_ARRAY is set, then this is a
+-	 * struct drm_i915_gem_exec_fence *fences.
++	 * & I915_EXEC_USE_EXTENSIONS are not set.
++	 *
++	 * If I915_EXEC_FENCE_ARRAY is set, then this is a pointer to an array
++	 * of struct drm_i915_gem_exec_fence and num_cliprects is the length
++	 * of the array.
++	 *
++	 * If I915_EXEC_USE_EXTENSIONS is set, then this is a pointer to a
++	 * single struct drm_i915_gem_base_execbuffer_ext and num_cliprects is
++	 * 0.
+ 	 */
+ 	__u64 cliprects_ptr;
+ #define I915_EXEC_RING_MASK              (0x3f)
+@@ -1181,7 +1192,16 @@ struct drm_i915_gem_execbuffer2 {
+  */
+ #define I915_EXEC_FENCE_SUBMIT		(1 << 20)
  
--bool drm_dp_mst_port_has_audio(struct drm_dp_mst_topology_mgr *mgr,
--					struct drm_dp_mst_port *port);
- struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
+-#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SUBMIT << 1))
++/*
++ * Setting I915_EXEC_USE_EXTENSIONS implies that
++ * drm_i915_gem_execbuffer2.cliprects_ptr is treated as a pointer to an linked
++ * list of i915_user_extension. Each i915_user_extension node is the base of a
++ * larger structure. The list of supported structures are listed in the
++ * drm_i915_gem_execbuffer_ext enum.
++ */
++#define I915_EXEC_USE_EXTENSIONS	(1 << 21)
++
++#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS<<1))
  
- 
+ #define I915_EXEC_CONTEXT_ID_MASK	(0xffffffff)
+ #define i915_execbuffer2_set_context_id(eb2, context) \
 -- 
-2.25.1
+2.21.0.5.gaeb582a983
 
 _______________________________________________
 Intel-gfx mailing list
