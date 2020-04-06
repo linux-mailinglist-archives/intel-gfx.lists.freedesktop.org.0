@@ -2,31 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA67F19F825
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB12B19F828
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:44:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D8696E0A8;
-	Mon,  6 Apr 2020 14:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291AF6E3E5;
+	Mon,  6 Apr 2020 14:44:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E79596E0A8;
- Mon,  6 Apr 2020 14:43:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E150CA00C7;
- Mon,  6 Apr 2020 14:43:38 +0000 (UTC)
+Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
+ [IPv6:2607:f8b0:4864:20::944])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49EAF6E3E5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Apr 2020 14:44:43 +0000 (UTC)
+Received: by mail-ua1-x944.google.com with SMTP id y17so5522501uap.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 06 Apr 2020 07:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SEUBFiEFvv7OAhcEQZ8rj/n8NBPUKhpD7wYAlYK6ifU=;
+ b=F5F9ZebSDqO5bp0xk/cyql8ase2IX/sIy+1j2vJdduJ91RvH07z/c2oHC0rZouWx2q
+ vdlP+gKtLgnr7SO8nrwUFB8uuwN9j/nXhVqwaZ9NyOvMNtf+uB5Ic2PzU9P5iRtawl74
+ 8z0kXKk/ze4g345kdOfEJflLg6ALG30swhwkMWyKTOl9qVyMUOhbuksl14w3OePhnTW6
+ IuG+45gR0ZBs2SZxz7pbLYvzKYaw31qgppU+nckuxdhW6GfHFKi7nq0o9RwzgwuwVJGO
+ q5rqIj5oCBflTOz/Ak81xHCY/U6QtE1tBsl8P0oMY36aDWwRzQpX1nILmUOkR0SCXxlP
+ jDsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SEUBFiEFvv7OAhcEQZ8rj/n8NBPUKhpD7wYAlYK6ifU=;
+ b=hRAK8+TIf4LC2aiDWpLGP+MDaqqiUbMJFPwng3ueb51xukck1nsSPRuQL238VPSCGK
+ 9S0hUKePl3xYV/yRqtQG+DbO9aeIMvvi6IpKOdqk7J8r9A0sK/0ptcX1bizJ71SshiYd
+ paZjENmj9X5zW3qTQxgyLX6pILQaWiFO/c6iZdbxj0JA5uRPVURBhsR7FOC902pdDgjI
+ q3GbQO99xYLcFMqJ/vqAOUQhYnBuld4Q+DNyygm/nUE3Hf0XW9zpijsLH3kFYFmsMNzG
+ EDuiguRGTF2yThCNWVgHmx4HvihoeuijSSAf/f+Lcivdzf1tR/1dC6wDjUaJdv0/C8Bg
+ Bi8w==
+X-Gm-Message-State: AGi0PuaOtVUg1w/cqdhSokrFRhdQd+Xdrk8pIydKZwzL5u+CbyZB2dgU
+ kq8WjhoLClb//aRqocZ7V9CizQRlCXtbkiOH8Zg=
+X-Google-Smtp-Source: APiQypI+IcUjAZXbWNtbh3sFRpXw3n+1YJb79eeGorxBqr65dDj5mQPC4/mAmh32llE8+Jle9EBD2XshYK53yrjtfrA=
+X-Received: by 2002:ab0:7556:: with SMTP id k22mr53255uaq.104.1586184281413;
+ Mon, 06 Apr 2020 07:44:41 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Mon, 06 Apr 2020 14:43:38 -0000
-Message-ID: <158618421889.4193.15183210202299794727@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/perf=3A_break_OA_config_bu?=
- =?utf-8?q?ffer_object_in_2?=
+References: <20200406123616.7334-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200406123616.7334-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 6 Apr 2020 15:44:13 +0100
+Message-ID: <CAM0jSHMH+ZByvZQnOXvVwFafgafQYozCdPQiKprVb9CF2o5HPQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Take DBG_FORCE_RELOC into
+ account prior to using reloc_gpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,90 +61,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/3] drm/i915/perf: break OA config buffer object in 2
-URL   : https://patchwork.freedesktop.org/series/75550/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8260 -> Patchwork_17220
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17220/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17220 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [PASS][1] -> [DMESG-WARN][2] ([i915#203]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8260/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17220/fi-skl-6770hq/igt@i915_module_load@reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [PASS][3] -> [SKIP][4] ([fdo#109271]) +5 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8260/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17220/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [PASS][5] -> [DMESG-WARN][6] ([i915#106])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8260/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17220/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-
-
-Participating hosts (53 -> 46)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8260 -> Patchwork_17220
-
-  CI-20190529: 20190529
-  CI_DRM_8260: fa5519e01f097b7f69259be38606ff5f1bc3cc6c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5572: 6c124b5c8501d900966c033ac86c3dc55c16a2da @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17220: 18728c0bc637aab4293092615a268bbd3e9f83a5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-18728c0bc637 drm/i915/perf: enable filtering on multiple contexts
-122d52d6d979 drm/i915/perf: prepare driver to receive multiple ctx handles
-d78a933fe510 drm/i915/perf: break OA config buffer object in 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17220/index.html
+On Mon, 6 Apr 2020 at 13:36, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> If we set the debug flag to force ourselves not to relocate via the gpu,
+> do not relocate via the gpu.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
