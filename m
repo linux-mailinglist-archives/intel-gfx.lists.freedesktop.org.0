@@ -1,31 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB7819F54E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 13:59:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4195419F552
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 14:01:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2069089C54;
-	Mon,  6 Apr 2020 11:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0506E084;
+	Mon,  6 Apr 2020 12:01:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3307789C54;
- Mon,  6 Apr 2020 11:59:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2CFA5A47EE;
- Mon,  6 Apr 2020 11:59:34 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F04B96E084;
+ Mon,  6 Apr 2020 12:01:00 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
+ [81.175.216.236])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0E6CE80E;
+ Mon,  6 Apr 2020 14:00:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1586174459;
+ bh=mUDkQ2Z4TkjaIOHhIGG0wRnBEGWCUll95N0r5FxF/TI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=MROn78KzwNlRIJLcqRzegz/J1hAbyjh11fdsM8Tr5ncVGB6OAPCsjCjsp630uscXD
+ SvyE7T4uiAOHIs8FrS/yR4R0pKr+VEZfYj3LmyArzPQ1Caz8Vh/cpz6d6kBjkDd2k8
+ IPDK8w18FG4CtHocN+4sFmnMv2aToM75PSibefSQ=
+Date: Mon, 6 Apr 2020 15:00:49 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200406120049.GI4757@pendragon.ideasonboard.com>
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-3-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Mon, 06 Apr 2020 11:59:34 -0000
-Message-ID: <158617437415.4193.7868464366667651303@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Prefer_drm=5FWARN*_over_WARN*?=
+Content-Disposition: inline
+In-Reply-To: <20200403135828.2542770-3-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 02/44] drm: Add devm_drm_dev_alloc macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +46,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel,
 
-Series: Prefer drm_WARN* over WARN*
-URL   : https://patchwork.freedesktop.org/series/75543/
-State : warning
+Thank you for the patch.
 
-== Summary ==
+On Fri, Apr 03, 2020 at 03:57:46PM +0200, Daniel Vetter wrote:
+> The kerneldoc is only added for this new function. Existing kerneldoc
+> and examples will be udated at the very end, since once all drivers
+> are converted over to devm_drm_dev_alloc we can unexport a lot of
+> interim functions and make the documentation for driver authors a lot
+> cleaner and less confusing. There will be only one true way to
+> initialize a drm_device at the end of this, which is going to be
+> devm_drm_dev_alloc.
 
-$ dim checkpatch origin/drm-tip
-2b3269120530 drm/i915/display/icl_dsi: Prefer drm_WARN_ON over WARN_ON
-ce36d1d4c808 drm/i915/display/atomic_plane: Prefer drm_WARN_ON over WARN_ON
-9db54cf5c0c1 drm/i915/display/ddi: Prefer drm_WARN* over WARN*
-cbddf2425b98 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
-0aae019835f6 drm/i915/display/display: Prefer drm_WARN_ON over WARN_ON
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, power_domains);
+How about drivers that expose another interface towards userspace ? If
+the other related subsystem also required allocation of the driver
+private structure through its corresponding API, we'd be stuck. As
+stated before, I want this API to be optional.
 
-total: 0 errors, 1 warnings, 0 checks, 71 lines checked
-462c17ba380f drm/i915/display/dp: Prefer drm_WARN* over WARN*
-3a60829da48b drm/i915/display/dpll_mgr: Prefer drm_WARN_ON over WARN_ON
-9343391f6779 drm/i915/display/frontbuffer: Prefer drm_WARN_ON over WARN_ON
-31d144a0fd99 drm/i915/display/global_state: Prefer drm_WARN* over WARN*
-e61a3429efb8 drm/i915/display/overlay: Prefer drm_WARN_ON over WARN_ON
-a17137b9ca74 drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
-ccea1b50c254 drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
-63fc326a1fca drm/i915/display/vlv_dsi: Prefer drm_WARN_ON over WARN_ON
-a09caf119a41 drm/i915/gem: Prefer drm_WARN* over WARN*
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1444:
-+			if (drm_WARN_ONCE(&i915->drm, err,
- 				      "Unexpected failure to bind target VMA!"))
+> Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_drv.c | 23 +++++++++++++++++++++++
+>  include/drm/drm_drv.h     | 33 +++++++++++++++++++++++++++++++++
+>  2 files changed, 56 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 1bb4f636b83c..9e60b784b3ac 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -739,6 +739,29 @@ int devm_drm_dev_init(struct device *parent,
+>  }
+>  EXPORT_SYMBOL(devm_drm_dev_init);
+>  
+> +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
+> +			   size_t size, size_t offset)
+> +{
+> +	void *container;
+> +	struct drm_device *drm;
+> +	int ret;
+> +
+> +	container = kzalloc(size, GFP_KERNEL);
+> +	if (!container)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	drm = container + offset;
+> +	ret = devm_drm_dev_init(parent, drm, driver);
+> +	if (ret) {
+> +		kfree(container);
+> +		return ERR_PTR(ret);
+> +	}
+> +	drmm_add_final_kfree(drm, container);
+> +
+> +	return container;
+> +}
+> +EXPORT_SYMBOL(__devm_drm_dev_alloc);
+> +
+>  /**
+>   * drm_dev_alloc - Allocate new DRM device
+>   * @driver: DRM driver to allocate device for
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index e7c6ea261ed1..26776be5a21e 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -626,6 +626,39 @@ int devm_drm_dev_init(struct device *parent,
+>  		      struct drm_device *dev,
+>  		      struct drm_driver *driver);
+>  
+> +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
+> +			   size_t size, size_t offset);
+> +
+> +/**
+> + * devm_drm_dev_alloc - Resource managed allocation of a &drm_device instance
+> + * @parent: Parent device object
+> + * @driver: DRM driver
+> + * @type: the type of the struct which contains struct &drm_device
+> + * @member: the name of the &drm_device within @type.
+> + *
+> + * This allocates and initialize a new DRM device. No device registration is done.
+> + * Call drm_dev_register() to advertice the device to user space and register it
+> + * with other core subsystems. This should be done last in the device
+> + * initialization sequence to make sure userspace can't access an inconsistent
+> + * state.
+> + *
+> + * The initial ref-count of the object is 1. Use drm_dev_get() and
+> + * drm_dev_put() to take and drop further ref-counts.
+> + *
+> + * It is recommended that drivers embed &struct drm_device into their own device
+> + * structure.
+> + *
+> + * Note that this manages the lifetime of the resulting &drm_device
+> + * automatically using devres. The DRM device initialized with this function is
+> + * automatically put on driver detach using drm_dev_put().
+> + *
+> + * RETURNS:
+> + * Pointer to new DRM device, or ERR_PTR on failure.
+> + */
+> +#define devm_drm_dev_alloc(parent, driver, type, member) \
+> +	((type *) __devm_drm_dev_alloc(parent, driver, sizeof(type), \
+> +				       offsetof(type, member)))
+> +
+>  struct drm_device *drm_dev_alloc(struct drm_driver *driver,
+>  				 struct device *parent);
+>  int drm_dev_register(struct drm_device *dev, unsigned long flags);
 
--:50: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!obj->userptr.mm"
-#50: FILE: drivers/gpu/drm/i915/gem/i915_gem_userptr.c:238:
-+	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+-- 
+Regards,
 
-total: 0 errors, 0 warnings, 2 checks, 25 lines checked
-d9387cef2125 drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) \
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
-
--:22: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'dev_priv' may be better as '(dev_priv)' to avoid precedence issues
-#22: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) \
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
-
--:23: WARNING:LONG_LINE: line over 100 characters
-#23: FILE: drivers/gpu/drm/i915/i915_drv.h:1651:
-+		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
-
-total: 0 errors, 1 warnings, 2 checks, 9 lines checked
-0af155c5b3f1 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
-db552aba6881 drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
-4c4c2b16486b drm/i915/runtime_pm: Prefer drm_WARN* over WARN*
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, runtime_pm);
-
-total: 0 errors, 1 warnings, 0 checks, 89 lines checked
-
+Laurent Pinchart
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
