@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFEE919F7BA
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:16:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 985AE19F7C9
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Apr 2020 16:19:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9136E09F;
-	Mon,  6 Apr 2020 14:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34CCD6E3D6;
+	Mon,  6 Apr 2020 14:19:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB4D489CD9;
- Mon,  6 Apr 2020 14:16:01 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1BC116E3D6;
+ Mon,  6 Apr 2020 14:19:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8180BA3C0D;
- Mon,  6 Apr 2020 14:16:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 135DFA3C0D;
+ Mon,  6 Apr 2020 14:19:34 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 06 Apr 2020 14:16:01 -0000
-Message-ID: <158618256149.4191.15659045452257234970@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 06 Apr 2020 14:19:34 -0000
+Message-ID: <158618277404.4193.10622186842619827587@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200406091254.17675-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200406091254.17675-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Make_exclusive_awaits_o?=
- =?utf-8?q?n_i915=5Factive_optional_=28rev2=29?=
+References: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200406135514.569205-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/perf=3A_break_OA_co?=
+ =?utf-8?q?nfig_buffer_object_in_2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,71 +48,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/5] drm/i915: Make exclusive awaits on i915_active optional (rev2)
-URL   : https://patchwork.freedesktop.org/series/75535/
-State : success
+Series: series starting with [1/3] drm/i915/perf: break OA config buffer object in 2
+URL   : https://patchwork.freedesktop.org/series/75550/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8260 -> Patchwork_17219
-====================================================
+$ dim checkpatch origin/drm-tip
+d78a933fe510 drm/i915/perf: break OA config buffer object in 2
+-:27: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#27: FILE: drivers/gpu/drm/i915/i915_perf.c:375:
++	uint32_t per_context_offset;
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 325 lines checked
+122d52d6d979 drm/i915/perf: prepare driver to receive multiple ctx handles
+-:53: CHECK:SPACING: No space is necessary after a cast
+#53: FILE: drivers/gpu/drm/i915/i915_perf.c:633:
++	return *((int *) elem) - *((int *) key);
 
-  **SUCCESS**
+-:108: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#108: FILE: drivers/gpu/drm/i915/i915_perf.c:814:
++			    reason & OAREPORT_REASON_CTX_SWITCH) {
++
 
-  No regressions found.
+-:903: WARNING:LONG_LINE: line over 100 characters
+#903: FILE: drivers/gpu/drm/i915/i915_perf.c:3715:
++			props->ctx_handles = kmalloc_array(1, sizeof(*props->ctx_handles), GFP_KERNEL);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17219/index.html
+total: 0 errors, 1 warnings, 2 checks, 1007 lines checked
+18728c0bc637 drm/i915/perf: enable filtering on multiple contexts
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17219 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_tiled_fence_blits@basic:
-    - fi-blb-e6850:       [DMESG-WARN][1] ([i915#1612]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8260/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17219/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
-
-  
-  [i915#1612]: https://gitlab.freedesktop.org/drm/intel/issues/1612
-
-
-Participating hosts (53 -> 46)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8260 -> Patchwork_17219
-
-  CI-20190529: 20190529
-  CI_DRM_8260: fa5519e01f097b7f69259be38606ff5f1bc3cc6c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5572: 6c124b5c8501d900966c033ac86c3dc55c16a2da @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17219: 47ca27b829202de5f44ed84bdb09f553f29bbfc4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-47ca27b82920 drm/i915: Export a preallocate variant of i915_active_acquire()
-9695695f7772 drm/i915/gem: Assign context id for async work
-00ee83ecf4d3 drm/i915/gem: Wait until the context is finally retired before releasing engines
-971c702dddb6 drm/i915: Allow asynchronous waits on the i915_active barriers
-5915d0bf6f0a drm/i915: Make exclusive awaits on i915_active optional
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17219/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
