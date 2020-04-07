@@ -2,41 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8711A0DEC
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69FFE1A0DF3
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:48:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4212B6E867;
-	Tue,  7 Apr 2020 12:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6276E869;
+	Tue,  7 Apr 2020 12:48:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58BFB6E867
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:44:09 +0000 (UTC)
-IronPort-SDR: qw99J6eY+J6o9ajOi55cERm/AA4YWzxLC6v6WqifXJym5QhRMeXHJcipCddGvVb4BsvaWgR6WW
- i4S6+1YoXvWw==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 030946E869
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:48:30 +0000 (UTC)
+IronPort-SDR: kt1Skeg2RKNFrxkEFzgK7zsffPj7b/XFxlGK498qROxVip8F4FOIxRStgbfCxiib/iFMwzMgN6
+ HfLEosu78vJA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:44:08 -0700
-IronPort-SDR: kHZYBpAfEXLJG9sWZz72Ay0bnaYo7MRHEVzO6SyfGyQVEaxEQdXRYa9ykcS7inUZbl5ys/ByrV
- aKYiIGjI+7Rg==
-X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="397843827"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:48:30 -0700
+IronPort-SDR: uibc/nIRQTqLp2l2R9LMbRAVbUFlqBPGHEtvKz1wwDxAQz5yy/4+edYGvpga47jZVuo8aeWutw
+ zVknn6X4eIuQ==
+X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="424736171"
 Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.249.40.153])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:44:07 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:48:28 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vipin Anand <vipin.anand@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200327052357.22269-2-vipin.anand@intel.com>
+To: "Shankar\, Uma" <uma.shankar@intel.com>, "Anand\,
+ Vipin" <vipin.anand@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F8243D514@BGSMSX104.gar.corp.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200327052357.22269-1-vipin.anand@intel.com>
- <20200327052357.22269-2-vipin.anand@intel.com>
-Date: Tue, 07 Apr 2020 15:44:04 +0300
-Message-ID: <87369fjwiz.fsf@intel.com>
+References: <20200327073140.11568-1-vipin.anand@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8243D514@BGSMSX104.gar.corp.intel.com>
+Date: Tue, 07 Apr 2020 15:48:25 +0300
+Message-ID: <87zhbnihra.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/display: Add HDR Capability
- detection for LSPCON
+Subject: Re: [Intel-gfx] [PATCH v3 0/7] Enable HDR on Gen9 devices with
+ lspcon hdr capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,101 +56,73 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
-> From: Uma Shankar <uma.shankar@intel.com>
+On Fri, 27 Mar 2020, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Vipin Anand
+>> Sent: Friday, March 27, 2020 1:02 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Subject: [Intel-gfx] [PATCH v3 0/7] Enable HDR on Gen9 devices with lspcon hdr
+>> capability
 >
-> LSPCON firmware exposes HDR capability through LPCON_CAPABILITIES
-> DPCD register. LSPCON implementations capable of supporting
-> HDR set HDR_CAPABILITY bit in LSPCON_CAPABILITIES to 1. This patch
-> reads the same, detects the HDR capability and adds this to
-> intel_lspcon struct.
->
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_lspcon.c   | 32 +++++++++++++++++++
->  2 files changed, 33 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 888ea8a170d1..2f281da6d253 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1333,6 +1333,7 @@ struct intel_lspcon {
->  	bool active;
->  	enum drm_lspcon_mode mode;
->  	enum lspcon_vendor vendor;
-> +	bool hdr_supported;
->  };
->  
->  struct intel_digital_port {
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> index d807c5648c87..2e41ae483a23 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -35,6 +35,8 @@
->  #define LSPCON_VENDOR_PARADE_OUI 0x001CF8
->  #define LSPCON_VENDOR_MCA_OUI 0x0060AD
->  
-> +#define DPCD_MCA_LSPCON_HDR_STATUS	0x70003
-> +
->  /* AUX addresses to write MCA AVI IF */
->  #define LSPCON_MCA_AVI_IF_WRITE_OFFSET 0x5C0
->  #define LSPCON_MCA_AVI_IF_CTRL 0x5DF
-> @@ -104,6 +106,31 @@ static bool lspcon_detect_vendor(struct intel_lspcon *lspcon)
->  	return true;
->  }
->  
-> +static bool lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
-> +{
-> +	struct intel_dp *dp = lspcon_to_intel_dp(lspcon);
-> +	u8 hdr_caps;
-> +	int ret;
-> +
-> +	/* Enable HDR for MCA based LSPCON devices */
-> +	if (lspcon->vendor == LSPCON_VENDOR_MCA)
-> +		ret = drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
-> +				       &hdr_caps, 1);
-> +	else
-> +		return false;
-> +
-> +	if (ret < 0) {
-> +		DRM_DEBUG_KMS("hdr capability detection failed\n");
+> There is the series https://patchwork.freedesktop.org/series/68081/
+> already there on list.
 
-Debugs etc. should use drm_dbg_kms, errors drm_err, throughout the
-series.
+Ugh, confusing.
 
-> +		lspcon->hdr_supported = false;
-> +		return false;
-> +	} else if (hdr_caps & 0x1) {
-> +		DRM_DEBUG_KMS("lspcon capable of HDR\n");
-> +		lspcon->hdr_supported = true;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->  static enum drm_lspcon_mode lspcon_get_current_mode(struct intel_lspcon *lspcon)
->  {
->  	enum drm_lspcon_mode current_mode;
-> @@ -581,6 +608,11 @@ bool lspcon_init(struct intel_digital_port *intel_dig_port)
->  		return false;
->  	}
->  
-> +	if (!lspcon_detect_hdr_capability(lspcon)) {
-> +		DRM_ERROR("LSPCON hdr detection failed\n");
-> +		return false;
+>  We are waiting for DP state checker patches to get merge. That series
+> is almost ready, once that is merge will rebase and resend the
+> series. Lets track that one only for future development instead of
+> spawning a new one.
 
-Err what? Breaks all non-MCA LSPCON devices right there. And even if the
-detection fails for MCA, no need to prevent non-HDR usage.
+I ended up replying to the series at [1], which has a bunch of your
+patches as well. Please incorporate the feedback when you respin.
 
 BR,
 Jani.
 
-> +	}
-> +
->  	connector->ycbcr_420_allowed = true;
->  	lspcon->active = true;
->  	DRM_DEBUG_KMS("Success: LSPCON init\n");
+
+[1] http://lore.kernel.org/r/20200327052357.22269-1-vipin.anand@intel.com
+
+
+
+>
+> Regards,
+> Uma Shankar
+>
+>> Added missing signoff
+>> 
+>> Uma Shankar (6):
+>>   drm/i915/display: Add HDR Capability detection for LSPCON
+>>   drm/i915/display: Enable HDR on gen9 devices with MCA Lspcon
+>>   drm/i915/display: Attach HDR property for capable Gen9 devices
+>>   drm/i915/display: Set HDR Infoframe for HDR capable LSPCON devices
+>>   drm/i915/display: Enable BT2020 for HDR on LSPCON devices
+>>   drm/i915/display: Reduce blanking to support 4k60@10bpp for LSPCON
+>> 
+>> Vipin Anand (1):
+>>   drm:i915:display: add checks for Gen9 devices with hdr capability
+>> 
+>>  drivers/gpu/drm/drm_atomic_state_helper.c     |  1 +
+>>  drivers/gpu/drm/drm_atomic_uapi.c             |  1 +
+>>  .../drm/i915/display/intel_display_types.h    |  1 +
+>>  drivers/gpu/drm/i915/display/intel_dp.c       | 16 ++++
+>>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 27 +++++-
+>>  drivers/gpu/drm/i915/display/intel_lspcon.c   | 95 +++++++++++++++++--
+>>  drivers/gpu/drm/i915/display/intel_lspcon.h   |  4 +
+>>  include/drm/drm_connector.h                   |  1 +
+>>  8 files changed, 132 insertions(+), 14 deletions(-)
+>> 
+>> --
+>> 2.26.0
+>> 
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
