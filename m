@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32B91A114D
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F841A115D
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:30:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEF376E124;
-	Tue,  7 Apr 2020 16:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DDFA6E8A2;
+	Tue,  7 Apr 2020 16:30:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18A1B6E124
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 16:27:00 +0000 (UTC)
-IronPort-SDR: XzMSBWLOhdduqiRN6Sa5UfDelBQn5V9ggrlx/SMNamShIePFtW0cwjRNigJWVTk7aNAXdHGoVd
- 7iX9kBuMeC+Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 09:26:59 -0700
-IronPort-SDR: OhKBNT1UJCqJixJXD/zLYDFCCzJSJ/fKDxUaHkiXNAZsSpOeznBGU0UNhuh8E5rXHTqHkKFD1l
- g32xSjCfyD/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="240004867"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 07 Apr 2020 09:26:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Apr 2020 19:26:55 +0300
-Date: Tue, 7 Apr 2020 19:26:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200407162655.GG6112@intel.com>
-References: <20200330122354.24752-1-stanislav.lisovskiy@intel.com>
- <20200330122354.24752-5-stanislav.lisovskiy@intel.com>
- <20200330170731.GO13686@intel.com>
- <20200330181649.GA26073@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AC54A6E3F0;
+ Tue,  7 Apr 2020 16:30:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A53ACA00CC;
+ Tue,  7 Apr 2020 16:30:38 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200330181649.GA26073@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 4/5] drm/i915: Adjust CDCLK accordingly
- to our DBuf bw needs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 07 Apr 2020 16:30:38 -0000
+Message-ID: <158627703867.26325.4459568455847101173@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200407085930.19421-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200407085930.19421-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Promote_=27remain=27_to_unsigned_long?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,574 +38,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 30, 2020 at 09:16:49PM +0300, Lisovskiy, Stanislav wrote:
-> On Mon, Mar 30, 2020 at 08:07:31PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Mar 30, 2020 at 03:23:53PM +0300, Stanislav Lisovskiy wrote:
-> > > According to BSpec max BW per slice is calculated using formula
-> > > Max BW =3D CDCLK * 64. Currently when calculating min CDCLK we
-> > > account only per plane requirements, however in order to avoid
-> > > FIFO underruns we need to estimate accumulated BW consumed by
-> > > all planes(ddb entries basically) residing on that particular
-> > > DBuf slice. This will allow us to put CDCLK lower and save power
-> > > when we don't need that much bandwidth or gain additional
-> > > performance once plane consumption grows.
-> > > =
-
-> > > v2: - Fix long line warning
-> > >     - Limited new DBuf bw checks to only gens >=3D 11
-> > > =
-
-> > > v3: - Lets track used Dbuf bw per slice and per crtc in bw state
-> > >       (or may be in DBuf state in future), that way we don't need
-> > >       to have all crtcs in state and those only if we detect if
-> > >       are actually going to change cdclk, just same way as we
-> > >       do with other stuff, i.e intel_atomic_serialize_global_state
-> > >       and co. Just as per Ville's paradigm.
-> > >     - Made dbuf bw calculation procedure look nicer by introducing
-> > >       for_each_dbuf_slice_in_mask - we often will now need to iterate
-> > >       slices using mask.
-> > >     - According to experimental results CDCLK * 64 accounts for
-> > >       overall bandwidth across all dbufs, not per dbuf.
-> > > =
-
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_bw.c       | 61 +++++++++++++++++=
-+-
-> > >  drivers/gpu/drm/i915/display/intel_bw.h       |  8 +++
-> > >  drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 ++++++++
-> > >  drivers/gpu/drm/i915/display/intel_display.c  |  8 +++
-> > >  .../drm/i915/display/intel_display_power.h    |  2 +
-> > >  drivers/gpu/drm/i915/intel_pm.c               | 34 ++++++++++-
-> > >  drivers/gpu/drm/i915/intel_pm.h               |  3 +
-> > >  7 files changed, 138 insertions(+), 3 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/dr=
-m/i915/display/intel_bw.c
-> > > index 573a1c206b60..e9d65820fb76 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > @@ -6,6 +6,7 @@
-> > >  #include <drm/drm_atomic_state_helper.h>
-> > >  =
-
-> > >  #include "intel_bw.h"
-> > > +#include "intel_pm.h"
-> > >  #include "intel_display_types.h"
-> > >  #include "intel_sideband.h"
-> > >  #include "intel_atomic.h"
-> > > @@ -338,7 +339,6 @@ static unsigned int intel_bw_crtc_data_rate(const=
- struct intel_crtc_state *crtc_
-> > >  =
-
-> > >  	return data_rate;
-> > >  }
-> > > -
-> > >  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
-> > >  			  const struct intel_crtc_state *crtc_state)
-> > >  {
-> > > @@ -419,6 +419,65 @@ intel_atomic_bw_get_state(struct intel_atomic_st=
-ate *state)
-> > >  	return to_intel_bw_state(bw_state);
-> > >  }
-> > >  =
-
-> > > +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > +	int i =3D 0;
-> > > +	enum plane_id plane_id;
-> > > +	struct intel_crtc_state *crtc_state;
-> > =
-
-> > const
-> =
-
-> Why? There are lots of places where we use it that way.
-
-Always make it const if you don't have to change it. Makes life a lot
-easier when you immediately see that it can't mutate when you're not
-looking. Which is also why pure functions are preferrable to those
-with side effects.
-
-> Even in intel_compute_min_cdclk:
-> =
-
-> struct intel_crtc_state *crtc_state;
-> int min_cdclk, i;
-> enum pipe pipe;
-> =
-
-> for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> =
-
-> Also I grepped - almost every place in intel_display.c
-> which has for_each_new_intel_crtc_in_state uses crtc_state as non-const.
-> =
-
-> It is called that way intel_calc_active_pipes, intel_atomic_check_crtcs,.=
-..
-> almost everywhere in intel_display.c
-> =
-
-> So can you please explain what do you mean?..
-> =
-
-> > =
-
-> > > +	struct intel_crtc *crtc;
-> > > +	int max_bw =3D 0;
-> > > +	int min_cdclk;
-> > > +	enum pipe pipe;
-> > > +	struct intel_bw_state *bw_state;
-> > > +	int slice_id =3D 0;
-> > =
+== Series Details ==
 
-> > Bunch of needless intiialization, needlessly wide scope, etc.
-> =
+Series: drm/i915/gem: Promote 'remain' to unsigned long
+URL   : https://patchwork.freedesktop.org/series/75600/
+State : failure
 
-> max_bw needs to be accumulated so I guess it should be init to 0.
-> =
+== Summary ==
 
-> Agree regarding slice_id - just a leftover after I started to =
+CI Bug Log - changes from CI_DRM_8264_full -> Patchwork_17231_full
+====================================================
 
-> use for_each_dbuf_slice macro.
-> =
+Summary
+-------
 
-> > =
+  **FAILURE**
 
-> > > +
-> > > +	bw_state =3D intel_atomic_bw_get_state(state);
-> > > +
-> > =
+  Serious unknown changes coming with Patchwork_17231_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17231_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > Spurious whitespace.
-> > =
+  
 
-> > > +	if (IS_ERR(bw_state))
-> > > +		return PTR_ERR(bw_state);
-> > > +
-> > > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> > > +		struct intel_crtc_bw *crtc_bw =3D &bw_state->dbuf_bw_used[crtc->pi=
-pe];
-> > > +
-> > > +		memset(&crtc_bw->dbuf_bw, 0, sizeof(crtc_bw->dbuf_bw));
-> > > +
-> > > +		for_each_plane_id_on_crtc(crtc, plane_id) {
-> > > +			struct skl_ddb_entry *plane_alloc =3D
-> > > +				&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > > +			struct skl_ddb_entry *uv_plane_alloc =3D
-> > > +				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
-> > =
-
-> > const
-> > =
-
-> > > +			unsigned int data_rate =3D crtc_state->data_rate[plane_id];
-> > > +
-> > =
-
-> > more strange whitespace
-> > =
-
-> > > +			unsigned int dbuf_mask =3D skl_ddb_dbuf_slice_mask(dev_priv, plan=
-e_alloc);
-> > > +
-> > > +			dbuf_mask |=3D skl_ddb_dbuf_slice_mask(dev_priv, uv_plane_alloc);
-> > =
-
-> > Looks bad when you initialize part of it in declaration and the rest
-> > later.
-> =
-
-> Didn't want to have a long time here, will have to make a separate functi=
-on then.
-
-Not sure why you want a separate function.
-
-foo =3D a | b ?
-
-> =
-
-> > =
-
-> > > +
-> > > +			DRM_DEBUG_KMS("Got dbuf mask %x for pipe %c ddb %d-%d plane %d da=
-ta rate %d\n",
-> > > +				      dbuf_mask, pipe_name(crtc->pipe), plane_alloc->start,
-> > > +				      plane_alloc->end, plane_id, data_rate);
-> > > +
-> > > +			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
-> > > +				crtc_bw->dbuf_bw[slice_id] +=3D data_rate;
-> > =
-
-> > This doesn't feel quite right for planar formats.
-> > =
-
-> > For pre-icl it works by accident since we only have the one slice so
-> > we don't end up accounting for the full bandwidth from both color planes
-> > to multiple slices. If we had multiple slices and chroma and luma had
-> > been allocated to different slices we'd count the same thing multiple
-> > times.
-> > =
-
-> > For icl+ we seem to assign the full data rate to the UV plane's slice(s)
-> > since only the UV plane has data_rate[] !=3D 0.
-> =
-
-> This sounds interesting, so do you mean that we need something like data_=
-rate =
-
-> and data_rate_uv? =
-
-
-Perhaps. Or maybe we just start tracking the data rate separately
-for the master and slave planes on icl+. No real issue on pre-icl so
-that would actually work AFAICS.
-
-> My logic here is that we just get a set of slices used by uv and y planes
-> in total and then account for data_rate for those. =
-
-> We probably then need another patch to split data rate then.
-> =
-
-> I was aware of that actually but anyway being pessimistic here is better.
-> Also same about if plane would be sitting on 2 slices at the same time.
-> =
-
-> > =
-
-> > > +		}
-> > > +	}
-> > > +
-> > > +	for_each_dbuf_slice(slice_id) {
-> > > +		int total_bw_per_slice =3D 0;
-> > > +
-> > > +		for_each_pipe(dev_priv, pipe) {
-> > > +			struct intel_crtc_bw *crtc_bw =3D &bw_state->dbuf_bw_used[pipe];
-> > > +
-> > > +			total_bw_per_slice +=3D crtc_bw->dbuf_bw[slice_id];
-> > > +		}
-> > > +		max_bw +=3D total_bw_per_slice;
-> > =
-
-> > So we're aggregating all the bw instead of per-slice? Is this based on
-> > the other mail you sent? Deserves a comment explaining why we do such
-> > odd things.
-> =
-
-> Agree need to add a comment. Currently it seems the only way to make it
-> work without either having underruns or 8K not usable with bumped CDCLK.
-> =
-
-> > =
-
-> > > +	}
-> > > +
-> > > +	min_cdclk =3D max_bw / 64;
-> > > +
-> > > +	return min_cdclk;
-> > > +}
-> > > +
-> > >  int intel_bw_atomic_check(struct intel_atomic_state *state)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/dr=
-m/i915/display/intel_bw.h
-> > > index 9a5627be6876..d2b5f32b0791 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> > > @@ -10,11 +10,16 @@
-> > >  =
-
-> > >  #include "intel_display.h"
-> > >  #include "intel_global_state.h"
-> > > +#include "intel_display_power.h"
-> > >  =
-
-> > >  struct drm_i915_private;
-> > >  struct intel_atomic_state;
-> > >  struct intel_crtc_state;
-> > >  =
-
-> > > +struct intel_crtc_bw {
-> > > +	int dbuf_bw[I915_MAX_DBUF_SLICES];
-> > > +};
-> > > +
-> > >  struct intel_bw_state {
-> > >  	struct intel_global_state base;
-> > >  =
-
-> > > @@ -31,6 +36,8 @@ struct intel_bw_state {
-> > >  	 */
-> > >  	u8 qgv_points_mask;
-> > >  =
-
-> > > +	struct intel_crtc_bw dbuf_bw_used[I915_MAX_PIPES];
-> > =
-
-> > The name of the struct isn't very good if it just contains the
-> > dbuf bw numbers.
-> > =
-
-> > > +
-> > >  	unsigned int data_rate[I915_MAX_PIPES];
-> > >  	u8 num_active_planes[I915_MAX_PIPES];
-> > =
-
-> > Maybe collect all this to the per-crtc struct?
-> > =
-
-> > >  };
-> > > @@ -53,5 +60,6 @@ void intel_bw_crtc_update(struct intel_bw_state *bw=
-_state,
-> > >  			  const struct intel_crtc_state *crtc_state);
-> > >  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
-> > >  				  u32 points_mask);
-> > > +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state);
-> > >  =
-
-> > >  #endif /* __INTEL_BW_H__ */
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu=
-/drm/i915/display/intel_cdclk.c
-> > > index 979a0241fdcb..036774e7f3ec 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > @@ -25,6 +25,7 @@
-> > >  #include "intel_cdclk.h"
-> > >  #include "intel_display_types.h"
-> > >  #include "intel_sideband.h"
-> > > +#include "intel_bw.h"
-> > >  =
-
-> > >  /**
-> > >   * DOC: CDCLK / RAWCLK
-> > > @@ -2001,11 +2002,19 @@ int intel_crtc_compute_min_cdclk(const struct=
- intel_crtc_state *crtc_state)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv =3D
-> > >  		to_i915(crtc_state->uapi.crtc->dev);
-> > > +	struct intel_atomic_state *state =3D NULL;
-> > >  	int min_cdclk;
-> > >  =
-
-> > >  	if (!crtc_state->hw.enable)
-> > >  		return 0;
-> > >  =
-
-> > > +	/*
-> > > +	 * FIXME: Unfortunately when this gets called from intel_modeset_se=
-tup_hw_state
-> > > +	 * there is no intel_atomic_state at all. So lets not then use it.
-> > > +	 */
-> > > +	if (crtc_state->uapi.state)
-> > > +		state =3D to_intel_atomic_state(crtc_state->uapi.state);
-> > =
-
-> > This still indicates that either this isn't the right place to call this
-> > or we have the state stored in the wrong place.
-> > =
-
-> > I think I'd just move the thing into intel_compute_min_cdclk() as a sta=
-rt.
-> =
-
-> Was thinking about this, why I didn't put it here is because just wanted
-> to keep all cdclk regulating logic in this function, because intel_comput=
-e_min_cdclk
-> is kind of higher level already which is supposed to call that one per cr=
-tc_state.
-> Otherwise CDCLK regulating logic will be kind of spread across those two.
-
-This is not a per-crtc limit so having it in the per-crtc function seems
-wrong anyway to me.
-
-> =
-
-> > =
-
-> > > +
-> > >  	min_cdclk =3D intel_pixel_rate_to_cdclk(crtc_state);
-> > >  =
-
-> > >  	/* pixel rate mustn't exceed 95% of cdclk with IPS on BDW */
-> > > @@ -2080,6 +2089,22 @@ int intel_crtc_compute_min_cdclk(const struct =
-intel_crtc_state *crtc_state)
-> > >  	if (IS_TIGERLAKE(dev_priv))
-> > >  		min_cdclk =3D max(min_cdclk, (int)crtc_state->pixel_rate);
-> > >  =
-
-> > > +	/*
-> > > +	 * Similar story as with skl_write_plane_wm and intel_enable_sagv
-> > > +	 * - in some certain driver parts, we don't have any guarantee that
-> > > +	 * parent exists. So we might be having a crtc_state without
-> > > +	 * parent state.
-> > > +	 */
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11) {
-> > > +		if (state) {
-> > > +			int dbuf_bw_cdclk =3D intel_bw_calc_min_cdclk(state);
-> > > +
-> > > +			DRM_DEBUG_KMS("DBuf bw min cdclk %d current min_cdclk %d\n",
-> > > +				      dbuf_bw_cdclk, min_cdclk);
-> > > +			min_cdclk =3D max(min_cdclk, dbuf_bw_cdclk);
-> > > +		}
-> > > +	}
-> > > +
-> > >  	if (min_cdclk > dev_priv->max_cdclk_freq) {
-> > >  		drm_dbg_kms(&dev_priv->drm,
-> > >  			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 9fd32d61ebfe..fa2870c0d7fd 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -14678,6 +14678,14 @@ static int intel_atomic_check_planes(struct =
-intel_atomic_state *state,
-> > >  		if (old_active_planes =3D=3D new_active_planes)
-> > >  			continue;
-> > >  =
-
-> > > +		/*
-> > > +		 * active_planes bitmask has been updated, whenever amount
-> > > +		 * of active planes had changed we need to recalculate CDCLK
-> > > +		 * as it depends on total bandwidth now, not only min_cdclk
-> > > +		 * per plane.
-> > > +		 */
-> > > +		*need_cdclk_calc =3D true;
-> > > +
-> > >  		ret =3D intel_crtc_add_planes_to_state(state, crtc, new_active_pla=
-nes);
-> > >  		if (ret)
-> > >  			return ret;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/dri=
-vers/gpu/drm/i915/display/intel_display_power.h
-> > > index 468e8fb0203a..9e33fb90422f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > @@ -308,6 +308,8 @@ intel_display_power_put_async(struct drm_i915_pri=
-vate *i915,
-> > >  }
-> > >  #endif
-> > >  =
-
-> > > +#define I915_MAX_DBUF_SLICES 2
-> > > +
-> > >  enum dbuf_slice {
-> > >  	DBUF_S1,
-> > >  	DBUF_S2,
-> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/i=
-ntel_pm.c
-> > > index 551933e3f7da..5dcd1cd09ad7 100644
-> > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > @@ -4055,10 +4055,9 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice=
-_mask,
-> > >  	return offset;
-> > >  }
-> > >  =
-
-> > > -static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
-> > > +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
-> > >  {
-> > >  	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
-> > > -
-> > >  	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
-> > >  =
-
-> > >  	if (INTEL_GEN(dev_priv) < 11)
-> > > @@ -4067,6 +4066,37 @@ static u16 intel_get_ddb_size(struct drm_i915_=
-private *dev_priv)
-> > >  	return ddb_size;
-> > >  }
-> > >  =
-
-> > > +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
-> > > +			    const struct skl_ddb_entry *entry)
-> > > +{
-> > > +	u32 slice_mask =3D 0;
-> > > +	u16 ddb_size =3D intel_get_ddb_size(dev_priv);
-> > > +	u16 num_supported_slices =3D INTEL_INFO(dev_priv)->num_supported_db=
-uf_slices;
-> > > +	u16 slice_size =3D ddb_size / num_supported_slices;
-> > > +	u16 start_slice;
-> > > +	u16 end_slice;
-> > > +
-> > > +	if (!skl_ddb_entry_size(entry))
-> > > +		return 0;
-> > > +
-> > > +	start_slice =3D entry->start / slice_size;
-> > > +	end_slice =3D (entry->end - 1) / slice_size;
-> > > +
-> > > +	DRM_DEBUG_KMS("ddb size %d slices %d slice size %d start slice %d e=
-nd slice %d\n",
-> > > +		      ddb_size, num_supported_slices, slice_size, start_slice, end=
-_slice);
-> > > +
-> > > +	/*
-> > > +	 * Per plane DDB entry can in a really worst case be on multiple sl=
-ices
-> > > +	 * but single entry is anyway contigious.
-> > > +	 */
-> > > +	while (start_slice <=3D end_slice) {
-> > > +		slice_mask |=3D 1 << start_slice;
-> > > +		start_slice++;
-> > > +	}
-> > =
-
-> > GENMASK() or somehting?
-> =
-
-> Will fix, thanks for proposal.
-> =
-
-> > =
-
-> > > +
-> > > +	return slice_mask;
-> > > +}
-> > > +
-> > >  static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crt=
-c_state,
-> > >  				  u8 active_pipes);
-> > >  =
-
-> > > diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/i=
-ntel_pm.h
-> > > index 069515f04170..41c61ad71ce6 100644
-> > > --- a/drivers/gpu/drm/i915/intel_pm.h
-> > > +++ b/drivers/gpu/drm/i915/intel_pm.h
-> > > @@ -37,6 +37,9 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *c=
-rtc,
-> > >  			       struct skl_ddb_entry *ddb_y,
-> > >  			       struct skl_ddb_entry *ddb_uv);
-> > >  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
-> > > +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
-> > > +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
-> > > +			    const struct skl_ddb_entry *entry);
-> > >  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
-> > >  			      struct skl_pipe_wm *out);
-> > >  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
-> > > -- =
-
-> > > 2.24.1.485.gad05a3d8e5
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17231_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@rcs0:
+    - shard-tglb:         [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-tglb5/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-tglb8/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17231_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl4/igt@gem_exec_suspend@basic-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_pm_backlight@fade_with_suspend:
+    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#69]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl3/igt@i915_pm_backlight@fade_with_suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl10/igt@i915_pm_backlight@fade_with_suspend.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-sliding:
+    - shard-kbl:          [PASS][7] -> [FAIL][8] ([i915#54] / [i915#93] / [i915#95])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl2/igt@kms_cursor_crc@pipe-a-cursor-256x256-sliding.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-256x256-sliding.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - shard-skl:          [PASS][9] -> [INCOMPLETE][10] ([i915#300]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-sliding:
+    - shard-apl:          [PASS][11] -> [FAIL][12] ([i915#54])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-apl7/igt@kms_cursor_crc@pipe-c-cursor-128x42-sliding.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-apl1/igt@kms_cursor_crc@pipe-c-cursor-128x42-sliding.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-skl:          [PASS][13] -> [INCOMPLETE][14] ([i915#221])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl9/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl3/igt@kms_flip@flip-vs-suspend-interruptible.html
+
+  * igt@kms_flip@plain-flip-fb-recreate-interruptible:
+    - shard-glk:          [PASS][15] -> [FAIL][16] ([i915#1487])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-glk1/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-glk7/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
+    - shard-apl:          [PASS][17] -> [DMESG-WARN][18] ([i915#180]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-apl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][19] -> [FAIL][20] ([fdo#108145] / [i915#265]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@no_drrs:
+    - shard-iclb:         [PASS][21] -> [FAIL][22] ([i915#173])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-iclb8/igt@kms_psr@no_drrs.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-iclb1/igt@kms_psr@no_drrs.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [PASS][23] -> [SKIP][24] ([fdo#109441]) +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-iclb8/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  
+#### Possible fixes ####
+
+  * {igt@gem_ctx_isolation@preservation-s3@rcs0}:
+    - shard-apl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +2 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-apl6/igt@gem_ctx_isolation@preservation-s3@rcs0.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-apl2/igt@gem_ctx_isolation@preservation-s3@rcs0.html
+
+  * igt@gem_exec_balancer@hang:
+    - shard-tglb:         [FAIL][27] ([i915#1277]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-tglb6/igt@gem_exec_balancer@hang.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-tglb1/igt@gem_exec_balancer@hang.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - shard-skl:          [FAIL][29] ([i915#138]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl5/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl9/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@blt:
+    - shard-snb:          [DMESG-FAIL][31] ([i915#1409]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-snb4/igt@i915_selftest@live@blt.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-snb2/igt@i915_selftest@live@blt.html
+
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [SKIP][33] ([fdo#109349]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+
+  * igt@kms_fbcon_fbt@fbc-suspend:
+    - shard-kbl:          [DMESG-WARN][35] ([i915#180] / [i915#93] / [i915#95]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html
+
+  * igt@kms_flip@2x-plain-flip-ts-check:
+    - shard-glk:          [FAIL][37] ([i915#34]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-glk5/igt@kms_flip@2x-plain-flip-ts-check.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-glk4/igt@kms_flip@2x-plain-flip-ts-check.html
+
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-apl:          [FAIL][39] ([i915#79]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-apl4/igt@kms_flip@flip-vs-expired-vblank.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-apl4/igt@kms_flip@flip-vs-expired-vblank.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-kbl:          [DMESG-WARN][41] ([i915#180]) -> [PASS][42] +2 similar issues
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl3/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible.html
+
+  * igt@kms_hdr@bpc-switch:
+    - shard-skl:          [FAIL][43] ([i915#1188]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl3/igt@kms_hdr@bpc-switch.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl10/igt@kms_hdr@bpc-switch.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
+    - shard-snb:          [DMESG-WARN][45] ([i915#42]) -> [PASS][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-snb6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-snb7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
+    - shard-skl:          [FAIL][47] ([fdo#108145] / [i915#265]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl10/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl5/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-none:
+    - shard-kbl:          [DMESG-WARN][49] ([i915#165] / [i915#78]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl2/igt@kms_plane_lowres@pipe-a-tiling-none.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl6/igt@kms_plane_lowres@pipe-a-tiling-none.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [SKIP][51] ([fdo#109441]) -> [PASS][52] +2 similar issues
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-iclb7/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_setmode@basic:
+    - shard-skl:          [FAIL][53] ([i915#31]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-skl3/igt@kms_setmode@basic.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-skl2/igt@kms_setmode@basic.html
+    - shard-kbl:          [FAIL][55] ([i915#31]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-kbl4/igt@kms_setmode@basic.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-kbl2/igt@kms_setmode@basic.html
+
+  * {igt@perf@blocking-parameterized}:
+    - shard-iclb:         [FAIL][57] ([i915#1542]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-iclb8/igt@perf@blocking-parameterized.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-iclb1/igt@perf@blocking-parameterized.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@system-suspend-devices:
+    - shard-snb:          [SKIP][59] ([fdo#109271]) -> [INCOMPLETE][60] ([i915#82]) +1 similar issue
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-snb4/igt@i915_pm_rpm@system-suspend-devices.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-snb5/igt@i915_pm_rpm@system-suspend-devices.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-alpha-opaque-fb:
+    - shard-apl:          [FAIL][61] ([fdo#108145] / [i915#265]) -> [FAIL][62] ([fdo#108145] / [i915#265] / [i915#95])
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/shard-apl3/igt@kms_plane_alpha_blend@pipe-b-alpha-opaque-fb.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/shard-apl7/igt@kms_plane_alpha_blend@pipe-b-alpha-opaque-fb.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1277]: https://gitlab.freedesktop.org/drm/intel/issues/1277
+  [i915#138]: https://gitlab.freedesktop.org/drm/intel/issues/138
+  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
+  [i915#1487]: https://gitlab.freedesktop.org/drm/intel/issues/1487
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#42]: https://gitlab.freedesktop.org/drm/intel/issues/42
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#78]: https://gitlab.freedesktop.org/drm/intel/issues/78
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8264 -> Patchwork_17231
+
+  CI-20190529: 20190529
+  CI_DRM_8264: e0104585f880a64d4a9b40803cf4fb51ab499f7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5573: 9c582425d6b4fc1de9fc2ffc8015cc6f0a0d3e98 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17231: 19e4a486e221d78b813f329cb88c4688fc4a5002 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17231/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
