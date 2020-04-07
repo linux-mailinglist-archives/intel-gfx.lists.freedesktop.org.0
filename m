@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74D71A0C04
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 12:36:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E5A1A0C05
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 12:36:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 568076E822;
-	Tue,  7 Apr 2020 10:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 874436E823;
+	Tue,  7 Apr 2020 10:36:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCFF6E823
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 10:35:57 +0000 (UTC)
-IronPort-SDR: Bj0xLnkXizV4/zfss/zOdLwOB7BLD3biyfiDea60q+FtepvI8/B/Uzo5nX1cnCrEoP2DQ5T0e3
- a0xytyA+xWFw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28F7F6E822
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 10:35:59 +0000 (UTC)
+IronPort-SDR: Qo3ibwaCwR9ZyknCVPP6WBH4q6BFuSUHVO3LhZVqbZdcW81bPwFauzOhKZbIeBN8AB5beK3uOb
+ lpIiP4/VQA8Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 03:35:56 -0700
-IronPort-SDR: isH2qkGiDW3GuZ2Tl8nIxaziJEYgG3iVVNqhHxA+wb/1YG6rDqx4osvi1V10D/GhEvus0zwbA+
- 5wQdmiQYVrgg==
+ 07 Apr 2020 03:35:58 -0700
+IronPort-SDR: FcXDK38AkYgqAZfSB6A4fsN1QJq+PJhzAhNSZM9yk3tMW2jHLdKgDS0GkIaNbjFsF7rjjLgGZV
+ e2PbcQP+jWAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="254416543"
+X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="254416551"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by orsmga006.jf.intel.com with ESMTP; 07 Apr 2020 03:35:55 -0700
+ by orsmga006.jf.intel.com with ESMTP; 07 Apr 2020 03:35:57 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Apr 2020 13:32:18 +0300
-Message-Id: <20200407103222.15629-2-stanislav.lisovskiy@intel.com>
+Date: Tue,  7 Apr 2020 13:32:19 +0300
+Message-Id: <20200407103222.15629-3-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
 References: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 1/5] drm/i915: Decouple cdclk calculation
- from modeset checks
+Subject: [Intel-gfx] [PATCH v5 2/5] drm/i915: Force recalculate min_cdclk if
+ planes config changed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,53 +48,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgbmVlZCB0byBjYWxjdWxhdGUgY2RjbGsgYWZ0ZXIgd2F0ZXJtYXJrcy9kZGIgaGFzIGJlZW4g
-Y2FsY3VsYXRlZAphcyB3aXRoIHJlY2VudCBodyBDRENMSyBuZWVkcyB0byBiZSBhZGp1c3RlZCBh
-Y2NvcmRpbmdseSB0byBEQnVmCnJlcXVpcmVtZW50cywgd2hpY2ggaXMgbm90IHBvc3NpYmxlIHdp
-dGggY3VycmVudCBjb2RlIG9yZ2FuaXphdGlvbi4KClNldHRpbmcgQ0RDTEsgYWNjb3JkaW5nIHRv
-IERCdWYgQlcgcmVxdWlyZW1lbnRzIGFuZCBub3QganVzdCByZWplY3RpbmcKaWYgaXQgZG9lc24n
-dCBzYXRpc2Z5IEJXIHJlcXVpcmVtZW50cywgd2lsbCBhbGxvdyB1cyB0byBzYXZlIHBvd2VyIHdo
-ZW4KaXQgaXMgcG9zc2libGUgYW5kIGdhaW4gYWRkaXRpb25hbCBiYW5kd2lkdGggd2hlbiBpdCdz
-IG5lZWRlZCAtIGkuZQpib29zdGluZyBib3RoIG91ciBwb3dlciBtYW5hZ2VtZW50IGFuZCBwZXJm
-b21hbmNlIGNhcGFiaWxpdGllcy4KClRoaXMgcGF0Y2ggaXMgcHJlcGFyYXRpb24gZm9yIHRoYXQs
-IGZpcnN0IHdlIG5vdyBleHRyYWN0IG1vZGVzZXQKY2FsY3VsYXRpb24gZnJvbSBtb2Rlc2V0IGNo
-ZWNrcywgaW4gb3JkZXIgdG8gY2FsbCBpdCBhZnRlciB3bS9kZGIKaGFzIGJlZW4gY2FsY3VsYXRl
-ZC4KCnYyOiAtIEV4dHJhY3Qgb25seSBpbnRlbF9tb2Rlc2V0X2NhbGNfY2RjbGsgZnJvbSBpbnRl
-bF9tb2Rlc2V0X2NoZWNrcwogICAgICAoVmlsbGUgU3lyasOkbMOkKQoKdjM6IC0gQ2xlYXIgcGxs
-cyBhZnRlciBpbnRlbF9tb2Rlc2V0X2NhbGNfY2RjbGsKCnY0OiAtIEFkZGVkIHItYiBmcm9tIHBy
-ZXZpb3VzIHJldmlzaW9uIHRvIGNvbW1pdCBtZXNzYWdlCgpSZXZpZXdlZC1ieTogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogU3Rh
-bmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAyMiArKysrKysrKysr
-Ky0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5k
-ZXggNzBlYzMwMWZlNmUzLi5jNzcwODhlMWQwMzMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNDQ2NCwxMiArMTQ0NjQsNiBAQCBzdGF0aWMg
-aW50IGludGVsX21vZGVzZXRfY2hlY2tzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
-KQogCQkJcmV0dXJuIHJldDsKIAl9CiAKLQlyZXQgPSBpbnRlbF9tb2Rlc2V0X2NhbGNfY2RjbGso
-c3RhdGUpOwotCWlmIChyZXQpCi0JCXJldHVybiByZXQ7Ci0KLQlpbnRlbF9tb2Rlc2V0X2NsZWFy
-X3BsbHMoc3RhdGUpOwotCiAJaWYgKElTX0hBU1dFTEwoZGV2X3ByaXYpKQogCQlyZXR1cm4gaHN3
-X21vZGVfc2V0X3BsYW5lc193b3JrYXJvdW5kKHN0YXRlKTsKIApAQCAtMTQ4MDEsMTAgKzE0Nzk1
-LDYgQEAgc3RhdGljIGludCBpbnRlbF9hdG9taWNfY2hlY2soc3RydWN0IGRybV9kZXZpY2UgKmRl
-diwKIAkJCWdvdG8gZmFpbDsKIAl9CiAKLQlyZXQgPSBpbnRlbF9hdG9taWNfY2hlY2tfY3J0Y3Mo
-c3RhdGUpOwotCWlmIChyZXQpCi0JCWdvdG8gZmFpbDsKLQogCWludGVsX2ZiY19jaG9vc2VfY3J0
-YyhkZXZfcHJpdiwgc3RhdGUpOwogCXJldCA9IGNhbGNfd2F0ZXJtYXJrX2RhdGEoc3RhdGUpOwog
-CWlmIChyZXQpCkBAIC0xNDgxNCw2ICsxNDgwNCwxOCBAQCBzdGF0aWMgaW50IGludGVsX2F0b21p
-Y19jaGVjayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCWlmIChyZXQpCiAJCWdvdG8gZmFpbDsK
-IAorCWlmIChhbnlfbXMpIHsKKwkJcmV0ID0gaW50ZWxfbW9kZXNldF9jYWxjX2NkY2xrKHN0YXRl
-KTsKKwkJaWYgKHJldCkKKwkJCXJldHVybiByZXQ7CisKKwkJaW50ZWxfbW9kZXNldF9jbGVhcl9w
-bGxzKHN0YXRlKTsKKwl9CisKKwlyZXQgPSBpbnRlbF9hdG9taWNfY2hlY2tfY3J0Y3Moc3RhdGUp
-OworCWlmIChyZXQpCisJCWdvdG8gZmFpbDsKKwogCWZvcl9lYWNoX29sZG5ld19pbnRlbF9jcnRj
-X2luX3N0YXRlKHN0YXRlLCBjcnRjLCBvbGRfY3J0Y19zdGF0ZSwKIAkJCQkJICAgIG5ld19jcnRj
-X3N0YXRlLCBpKSB7CiAJCWlmICghbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkgJiYKLS0g
-CjIuMjQuMS40ODUuZ2FkMDVhM2Q4ZTUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+In Gen11+ whenever we might exceed DBuf bandwidth we might need to
+recalculate CDCLK which DBuf bandwidth is scaled with.
+Total Dbuf bw used might change based on particular plane needs.
+
+In intel_atomic_check_planes we try to filter out the cases when
+we definitely don't need to recalculate required bandwidth/CDCLK.
+In current code we compare amount of planes and skip recalculating
+if those are equal.
+This seems being too relaxed requirement and might be even wrong
+because plane combination might become different despite amount
+of planes is same - that requires recalculating min cdclk and
+consumed bandwidth.
+
+v2: - Changed commit message to properly reflect the need why,
+      we might want to change from hamming weight comparison
+      to actual plane combination checking.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c77088e1d033..307636b23ac9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14540,7 +14540,7 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
+ 	/* See {hsw,vlv,ivb}_plane_ratio() */
+ 	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
+ 		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+-		IS_IVYBRIDGE(dev_priv);
++		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >= 11);
+ }
+ 
+ static int intel_atomic_check_planes(struct intel_atomic_state *state,
+@@ -14586,7 +14586,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state,
+ 		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+ 		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+ 
+-		if (hweight8(old_active_planes) == hweight8(new_active_planes))
++		/*
++		 * Not only the number of planes, but if the plane configuration had
++		 * changed might already mean we need to recompute min CDCLK,
++		 * because different planes might consume different amount of Dbuf bandwidth
++		 * according to formula: Bw per plane = Pixel rate * bpp * pipe/plane scale factor
++		 */
++		if (old_active_planes == new_active_planes)
+ 			continue;
+ 
+ 		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
