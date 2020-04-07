@@ -1,68 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465291A17C6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 00:09:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B88B1A1283
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 19:17:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 755BB6E919;
-	Tue,  7 Apr 2020 22:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 724616E126;
+	Tue,  7 Apr 2020 17:17:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
- [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9AB96E126
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 17:02:54 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id f20so3236626qtq.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 10:02:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=lubV0uwS0PhaWFReAExDn03E2JRmyIjYgI8tq8wZYAQ=;
- b=JCYoQl/UYv0xHlgxUuvhhP4MOXQA+ieQOLJF3zFXnBOpzmA1+M7u5cEq/4SXoVlKHA
- vG7Vnff6kUfGNwU8ABUNHSlWWr8xinfhLsY9xN2bEhodwCk+ntG6LWZ2im/W4qpeC/Y2
- Goqf3F/GVrC29eZKjFNZa4QH40w4+TICPssQUEdH+rah3tVRnVGLdGzQojywsg3Rg4Rp
- BSEtqINsTmi1269DWkTqWCJh27IH2s3C9EtbSSDbfQ99Uyqcuitw8b/YgkVK78gOfPJm
- m3bnsqVxqhU3kGpsafXZ8+ntdH/PCCyhX+QAyV1+MIAPspwP6+cjgCLryU9wGt6n3F4F
- Y7FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=lubV0uwS0PhaWFReAExDn03E2JRmyIjYgI8tq8wZYAQ=;
- b=F+l7nYdjK5nkBgefCsR7V5v2QKOhBRPqyF7x8GB5/LPIQO2CqZj4dH0JhmlsQyaz2Z
- 5MQK6GetgNtm6h7K5oBD150ddT11x7B388qPK49rINAl7b6F5kRtyz3EgWtWCJkFHDak
- QrOD4snLZxGGOFsd+cMVv75mLEDegSuHw7YjMr5SnW113ru0P+jwLcQtj00WGxKkUrDl
- sMcSvOORQDCCKAtAwRINlxKTgkSUxsqQLE0E32VWgz8Tk3JBqnmYVy3l4jK5jaltaPF6
- HiPkRryuhovfwZgA8q4v/4rGXqrn7x32Kezg/yHdcGdiMlXGns/z2Q+U3nRRsq+nl+6/
- NhAA==
-X-Gm-Message-State: AGi0PuYsq2lwCasJTNr3498Rp+t7gmGe9bISyt2UAOVIdMoeFIXqRtS3
- pRMhbHFjqRgVJ9jcns+QRMg=
-X-Google-Smtp-Source: APiQypIjHnuzXuojSCppJsD78fxYKavB67p37aAGYyRBiBhjYwH4oUBe/V7etaIxr/j9xhiuNfUR5w==
-X-Received: by 2002:ac8:23af:: with SMTP id q44mr3292106qtq.54.1586278973911; 
- Tue, 07 Apr 2020 10:02:53 -0700 (PDT)
-Received: from quaco.ghostprotocols.net ([179.97.37.151])
- by smtp.gmail.com with ESMTPSA id r40sm18041660qtc.39.2020.04.07.10.02.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Apr 2020 10:02:53 -0700 (PDT)
-From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
-X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
-Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
- id 2B1C8409A3; Tue,  7 Apr 2020 14:02:51 -0300 (-03)
-Date: Tue, 7 Apr 2020 14:02:51 -0300
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200407170251.GE12003@kernel.org>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18FD36E126
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 17:17:21 +0000 (UTC)
+IronPort-SDR: UJgqH/hKf/MrtoY2+ARKPA+n25pgUGEwyyBl+z/QR0GJ+Ct8gpKa8s2U9heO86AnkCRGIbiNix
+ YPHsx2ri4txQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 10:17:20 -0700
+IronPort-SDR: f+e98gTz84KNvlgovAVPTfEQ+3pXzSPnYUp+lSC72IsBa7QeERvkKZhPGBNFVKUHaEv9jQD1dA
+ 7/YiU7dClaRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="286288039"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Apr 2020 10:17:20 -0700
+Received: from [10.249.224.62] (abudanko-mobl.ccr.corp.intel.com
+ [10.249.224.62])
+ by linux.intel.com (Postfix) with ESMTP id D9F375802BC;
+ Tue,  7 Apr 2020 10:17:15 -0700 (PDT)
+To: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
 References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
- <20200407143014.GD11186@kernel.org>
- <20200407143551.GF11186@kernel.org>
+ <20200407143014.GD11186@kernel.org> <20200407143551.GF11186@kernel.org>
  <10cc74ee-8587-8cdb-f85f-5724b370a2ce@linux.intel.com>
- <20200407163654.GB12003@kernel.org>
- <85da1e42-2cf2-98ca-1e0c-2cf3469b7d30@linux.intel.com>
+ <20200407163654.GB12003@kernel.org> <20200407164050.GC12003@kernel.org>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <ca8dc2ac-5a1d-d1a6-ca04-a4b5d9e9cbef@linux.intel.com>
+Date: Tue, 7 Apr 2020 20:17:14 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <85da1e42-2cf2-98ca-1e0c-2cf3469b7d30@linux.intel.com>
-X-Url: http://acmel.wordpress.com
-X-Mailman-Approved-At: Tue, 07 Apr 2020 22:08:57 +0000
+In-Reply-To: <20200407164050.GC12003@kernel.org>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
  system performance monitoring and observability
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -78,14 +58,13 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
- Andi Kleen <ak@linux.intel.com>, Alexei Starovoitov <ast@kernel.org>,
+ Andi Kleen <ak@linux.intel.com>,
  "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
  Peter Zijlstra <peterz@infradead.org>,
  linux-kernel <linux-kernel@vger.kernel.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Igor Lubashev <ilubashe@akamai.com>, James Morris <jmorris@namei.org>,
- Stephane Eranian <eranian@google.com>,
- Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
  "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
  "linux-security-module@vger.kernel.org"
  <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
@@ -96,54 +75,100 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Tue, Apr 07, 2020 at 07:52:56PM +0300, Alexey Budankov escreveu:
+
+On 07.04.2020 19:40, Arnaldo Carvalho de Melo wrote:
+> Em Tue, Apr 07, 2020 at 01:36:54PM -0300, Arnaldo Carvalho de Melo escreveu:
+>> Em Tue, Apr 07, 2020 at 05:54:27PM +0300, Alexey Budankov escreveu:
+>>> On 07.04.2020 17:35, Arnaldo Carvalho de Melo wrote:
+>>>> Em Tue, Apr 07, 2020 at 11:30:14AM -0300, Arnaldo Carvalho de Melo escreveu:
+>>>>> [perf@five ~]$ type perf
+>>>>> perf is hashed (/home/perf/bin/perf)
+>>>>> [perf@five ~]$ getcap /home/perf/bin/perf
+>>>>> /home/perf/bin/perf = cap_sys_ptrace,cap_syslog,38+ep
+>>>>> [perf@five ~]$ groups
+>>>>> perf perf_users
+>>>>> [perf@five ~]$ id
+>>>>> uid=1002(perf) gid=1002(perf) groups=1002(perf),1003(perf_users) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+>>>>> [perf@five ~]$ perf top --stdio
+>>>>> Error:
+>>>>> Failed to mmap with 1 (Operation not permitted)
+>>>>> [perf@five ~]$ perf record -a
+>>>>> ^C[ perf record: Woken up 1 times to write data ]
+>>>>> [ perf record: Captured and wrote 1.177 MB perf.data (1552 samples) ]
+>>>>>
+>>>>> [perf@five ~]$ perf evlist
+>>>>> cycles:u
+>>>>> [perf@five ~]$
+>>>>
+>>>> Humm, perf record falls back to cycles:u after initially trying cycles
+>>>> (i.e. kernel and userspace), lemme see trying 'perf top -e cycles:u',
+>>>> lemme test, humm not really:
+>>>>
+>>>> [perf@five ~]$ perf top --stdio -e cycles:u
+>>>> Error:
+>>>> Failed to mmap with 1 (Operation not permitted)
+>>>> [perf@five ~]$ perf record -e cycles:u -a sleep 1
+>>>> [ perf record: Woken up 1 times to write data ]
+>>>> [ perf record: Captured and wrote 1.123 MB perf.data (132 samples) ]
+>>>> [perf@five ~]$
+>>>>
+>>>> Back to debugging this.
+>>>
+>>> Could makes sense adding cap_ipc_lock to the binary to isolate from this:
+>>>
+>>> kernel/events/core.c: 6101
+>>> 	if ((locked > lock_limit) && perf_is_paranoid() &&
+>>> 		!capable(CAP_IPC_LOCK)) {
+>>> 		ret = -EPERM;
+>>> 		goto unlock;
+>>> 	}
+>>
+>>
+>> That did the trick, I'll update the documentation and include in my
+>> "Committer testing" section:
 > 
-> On 07.04.2020 19:36, Arnaldo Carvalho de Melo wrote:
-> > Em Tue, Apr 07, 2020 at 05:54:27PM +0300, Alexey Budankov escreveu:
-> >> Could makes sense adding cap_ipc_lock to the binary to isolate from this:
+> I ammended this to that patch, please check the wording:
+> 
+> - Arnaldo
+> 
+> diff --git a/Documentation/admin-guide/perf-security.rst b/Documentation/admin-guide/perf-security.rst
+> index c0ca0c1a6804..ed33682e26b0 100644
+> --- a/Documentation/admin-guide/perf-security.rst
+> +++ b/Documentation/admin-guide/perf-security.rst
+> @@ -127,12 +127,19 @@ taken to create such groups of privileged Perf users.
+>  
+>  ::
+>  
+> -   # setcap "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" perf
+> -   # setcap -v "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" perf
+> +   # setcap "cap_perfmon,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
+> +   # setcap -v "cap_perfmon,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
+>     perf: OK
+>     # getcap perf
+>     perf = cap_sys_ptrace,cap_syslog,cap_perfmon+ep
+>  
+> +If the libcap installed doesn't yet support "cap_perfmon", use "38" instead,
+> +i.e.:
+> +
+> +::
+> +
+> +   # setcap "38,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
+> +
+>  As a result, members of perf_users group are capable of conducting
+>  performance monitoring and observability by using functionality of the
+>  configured Perf tool executable that, when executes, passes perf_events
+> 
 
-> >> kernel/events/core.c: 6101
-> >> 	if ((locked > lock_limit) && perf_is_paranoid() &&
-> >> 		!capable(CAP_IPC_LOCK)) {
-> >> 		ret = -EPERM;
-> >> 		goto unlock;
-> >> 	}
+Looks good to me. The paragraph just above should then also be extended to
+mention that perf_events subsystem memory limit is ignored due to usage of
+CAP_IPC_LOCK:
 
-> > That did the trick, I'll update the documentation and include in my
-> > "Committer testing" section:
- 
-> Looks like top mode somehow reaches perf mmap limit described here [1].
-> Using -m option solves the issue avoiding cap_ipc_lock on my 8 cores machine:
-> perf top -e cycles -m 1
-
-So this would read better?
-
-diff --git a/Documentation/admin-guide/perf-security.rst b/Documentation/admin-guide/perf-security.rst
-index ed33682e26b0..d44dd24b0244 100644
---- a/Documentation/admin-guide/perf-security.rst
-+++ b/Documentation/admin-guide/perf-security.rst
-@@ -127,8 +127,8 @@ taken to create such groups of privileged Perf users.
- 
- ::
- 
--   # setcap "cap_perfmon,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
--   # setcap -v "cap_perfmon,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
-+   # setcap "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" perf
-+   # setcap -v "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" perf
-    perf: OK
-    # getcap perf
-    perf = cap_sys_ptrace,cap_syslog,cap_perfmon+ep
-@@ -140,6 +140,10 @@ i.e.:
- 
-    # setcap "38,cap_ipc_lock,cap_sys_ptrace,cap_syslog=ep" perf
- 
-+Note that you may need to have 'cap_ipc_lock' in the mix for tools such as
-+'perf top', alternatively use 'perf top -m N', to reduce the memory that
-+it uses for the perf ring buffer, see the memory allocation section below.
-+
- As a result, members of perf_users group are capable of conducting
+"As a result, members of perf_users group are capable of conducting
  performance monitoring and observability by using functionality of the
  configured Perf tool executable that, when executes, passes perf_events
+ subsystem scope and perf_event_mlock_kb locking limit checks."
+
+~Alexey
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
