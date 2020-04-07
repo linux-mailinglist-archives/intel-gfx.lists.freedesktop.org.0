@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 447541A0C08
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 12:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98DBA1A0BF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 12:34:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FD86E827;
-	Tue,  7 Apr 2020 10:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 552F16E81E;
+	Tue,  7 Apr 2020 10:34:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651566E826
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 10:36:05 +0000 (UTC)
-IronPort-SDR: OOGN4mziu/INOeI+QtUyGVasqzq05LIvH9JZBr+80yrXVMXR8nvUkC1nzNMmmkPjgF3vR17GNt
- YtVOcvqYYVCQ==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 439976E81E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 10:34:32 +0000 (UTC)
+IronPort-SDR: JJKBtyFahEoVoSHVyTQVQ3o7J2cpQjMx9W3/rxuNrelueefHlcKvAwmYhW2qOCTZGVbRaIeE+Q
+ fAi97inGgEnw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 03:36:05 -0700
-IronPort-SDR: 14e1TpdmTuD14RhcDCzf1mH/jY3/4+ydxObhswVchu6vIQJ7RJ4xBTfcv67PatxD/k6SHwqOYo
- cHITEORGpWNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="254416569"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga006.jf.intel.com with ESMTP; 07 Apr 2020 03:36:03 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 03:34:31 -0700
+IronPort-SDR: 8WsjfE5G1Cu+i54dDXeJCNifeVxmcAPqtbaKy1eQaZ3DUuVELvwfYT9oDyj5Aaczphp9dyHPWy
+ CmGoaA+ZeFSg==
+X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="424704106"
+Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.153])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 03:34:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Apr 2020 13:32:22 +0300
-Message-Id: <20200407103222.15629-6-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
-References: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
+Date: Tue,  7 Apr 2020 13:34:21 +0300
+Message-Id: <20200407103422.28222-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 5/5] drm/i915: Remove unneeded hack now for
- CDCLK
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/hdmi: remove unused
+ intel_hdmi_hdcp2_protocol()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,44 +47,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to bump up CDCLK now, as it is now correctly
-calculated, accounting for DBuf BW as BSpec says.
+Unused, hiding from the compiler warnings behind the inline keyword.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ------------
- 1 file changed, 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index fbb8cbcee3d2..b8c41cd4452e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2069,18 +2069,6 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	/* Account for additional needs from the planes */
- 	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 011d83c2a1e3..44b8c3b06986 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1750,12 +1750,6 @@ int intel_hdmi_hdcp2_capable(struct intel_digital_port *intel_dig_port,
+ 	return ret;
+ }
  
--	/*
--	 * HACK. Currently for TGL platforms we calculate
--	 * min_cdclk initially based on pixel_rate divided
--	 * by 2, accounting for also plane requirements,
--	 * however in some cases the lowest possible CDCLK
--	 * doesn't work and causing the underruns.
--	 * Explicitly stating here that this seems to be currently
--	 * rather a Hack, than final solution.
--	 */
--	if (IS_TIGERLAKE(dev_priv))
--		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+-static inline
+-enum hdcp_wired_protocol intel_hdmi_hdcp2_protocol(void)
+-{
+-	return HDCP_PROTOCOL_HDMI;
+-}
 -
- 	if (min_cdclk > dev_priv->max_cdclk_freq) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
+ static const struct intel_hdcp_shim intel_hdmi_hdcp_shim = {
+ 	.write_an_aksv = intel_hdmi_hdcp_write_an_aksv,
+ 	.read_bksv = intel_hdmi_hdcp_read_bksv,
 -- 
-2.24.1.485.gad05a3d8e5
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
