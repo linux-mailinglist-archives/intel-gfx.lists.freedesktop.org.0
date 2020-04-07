@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0C81A18CD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 01:50:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 014C41A18BC
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 01:44:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEF566E940;
-	Tue,  7 Apr 2020 23:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B47616E93E;
+	Tue,  7 Apr 2020 23:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32F446E05A;
- Tue,  7 Apr 2020 23:50:25 +0000 (UTC)
-IronPort-SDR: Vwe6hzIyMM3IU79gTpf2u2hmx9thgwDhDgnv8BXeS/4C1RXufBYFLMItWCHlgNwckRTqM4QLhi
- KCph6i65Io4g==
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 16:50:24 -0700
-IronPort-SDR: aMcKpv6w5WgdMuPw6uz3qk5z7/28I+ec2uC/NyFGg3z5heem77eAPYpeD1UEDifKgs47GgQj9d
- IUGJ0+Fx1Smw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,357,1580803200"; 
- d="asc'?scan'208";a="240122291"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga007.jf.intel.com with ESMTP; 07 Apr 2020 16:50:21 -0700
-Date: Wed, 8 Apr 2020 07:36:53 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200407233653.GC11247@zhen-hp.sh.intel.com>
-References: <20200331070025.GB16629@zhen-hp.sh.intel.com>
- <20200331162644.GA3779315@intel.com>
- <20200403030507.GQ16629@zhen-hp.sh.intel.com>
- <20200403175033.GA3997092@intel.com>
- <20200407080256.GU16629@zhen-hp.sh.intel.com>
- <20200407133559.GB4170610@intel.com> <87wo6rier4.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75A816E05A;
+ Tue,  7 Apr 2020 23:44:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6FB23A0BC6;
+ Tue,  7 Apr 2020 23:44:09 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87wo6rier4.fsf@intel.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Tue, 07 Apr 2020 23:44:09 -0000
+Message-ID: <158630304942.26328.7440757450222877038@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200407214350.217495-1-andi@etezian.org>
+In-Reply-To: <20200407214350.217495-1-andi@etezian.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_move_remaining_debugfs_interfaces_into_gt_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,146 +39,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
- Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>
-Content-Type: multipart/mixed; boundary="===============0690245931=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---===============0690245931==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="A6N2fC+uXW/VQSAv"
-Content-Disposition: inline
+Series: drm/i915/gt: move remaining debugfs interfaces into gt (rev6)
+URL   : https://patchwork.freedesktop.org/series/75333/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8269 -> Patchwork_17242
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17242 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-skl-6770hq:      [PASS][1] -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [DMESG-WARN][3] ([i915#203]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [DMESG-FAIL][5] ([i915#62] / [i915#95]) -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92]) -> [DMESG-WARN][8] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-skl-6770hq:      [DMESG-WARN][9] ([i915#106]) -> [SKIP][10] ([fdo#109271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +9 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
---A6N2fC+uXW/VQSAv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Participating hosts (53 -> 47)
+------------------------------
 
-On 2020.04.07 16:53:19 +0300, Jani Nikula wrote:
-> On Tue, 07 Apr 2020, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Tue, Apr 07, 2020 at 04:02:56PM +0800, Zhenyu Wang wrote:
-> >> On 2020.04.03 10:50:33 -0700, Rodrigo Vivi wrote:
-> >> >=20
-> >> > +Dave and Daniel,
-> >> >=20
-> >> > >=20
-> >> > > I forgot to mention one thing for 5.7. We've fixed to change guest=
- mem r/w
-> >> > > from KVM to use new VFIO dma r/w instead in this series: https://p=
-atchwork.freedesktop.org/series/72038/
-> >> > >=20
-> >> > > As this depends on VFIO tree and looks VFIO pull for 5.7 is not se=
-ttled down
-> >> > > yet, we'd need to backmerge and send pull against vfio merge for 5=
-=2E7.
-> >> >=20
-> >> > I'm not sure if I'm following on which backmerge you are willing
-> >> > us to do here. And for me it looks like late for 5.7 already.
-> >> >=20
-> >> > Maybe you mean we ack all of this to go through vfio flow
-> >> > then once that is settled drm backmerge and then drm-intel backmerge
-> >> > and you backmerge...
-> >> >=20
-> >> > Is that what you want?
-> >> >=20
-> >>=20
-> >> My purpose is to get GVT side fixes of guest memory r/w through new
-> >> vfio dma r/w interface in 5.7. As vfio 5.7-rc1 pull has already been
-> >> merged in linus master, looks just want drm-intel backmerge now then
-> >> could send gvt side fixes. Ok for you?
-> >
-> > I'm afraid it is too late for that. That would depend on backmerge
-> > of drm itself as well... And we are in a point that we are about to
-> > move from drm-next to drm-fixes.
->=20
-> *If* they're fixes, drm-intel-fixes rebases on v5.7-rc1 or -rc2, and if
-> they can send a gvt fixes pull based on that, it could work out.
->=20
+  Additional (1): fi-kbl-r 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-yeah, that's also what I'm thinking about. Here's more background.
 
-In gvt we need to access guest pages in some places, our current way
-is to call KVM interface, but it turns out later that this interface
-is supposed to be used by arch code only and what we should actually
-depend on is using IOVA for guest page access instead of using guest
-physical address by KVM. So we tried to add IOVA based guest r/w
-support for VFIO and change gvt to use that. In that way they're real
-fixes to me.
+Build changes
+-------------
 
-> >
-> > Also looking to the patches itself they look more content for -next
-> > than -fixes and our window with drm closed on -rc6
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8269 -> Patchwork_17242
 
-I understand that but the patches mostly for vfio interface hadn't been
-finalized during rc6 window..
+  CI-20190529: 20190529
+  CI_DRM_8269: 301d0427e2e3108839bf6c36f58dd0b2b5258c25 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5577: 7ee7e86fd79e4dbb6300ef4c23e50cb699216ae2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17242: 18e6d48db27860f49db12e7aa50aca6f0154c5de @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> >
-> > So it looks to me that this will have to wait for the 5.8.
-> >
-> > One good suggestion I heard from Daniel for cases like this in the
-> > future is the use of topic branches so things don't get spread into
-> > multiple versions like this.
-> >
 
-Good idea. Does that mean such topic branch could be merged during
-e.g -rc1 merge window?
+== Linux commits ==
 
-Thanks
+18e6d48db278 drm/i915/gt: move remaining debugfs interfaces into gt
 
-> >>=20
-> >> Sorry for late reply, I was out for a short vacation.
-> >
-> > Sorry for not been able to help further here
-> >
-> > Thanks,
-> > Rodrigo.
-> >
-> >>=20
-> >> Thanks
-> >>=20
-> >> --=20
-> >> Open Source Technology Center, Intel ltd.
-> >>=20
-> >> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-> >
-> >
->=20
-> --=20
-> Jani Nikula, Intel Open Source Graphics Center
+== Logs ==
 
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---A6N2fC+uXW/VQSAv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXo0OlQAKCRCxBBozTXgY
-J2VXAJ98j1NHNtQmH/r0g5w0Ok/xpHUsowCgnFe7Iv+V8x3GcNEH+MO7RlAQEV0=
-=C6I8
------END PGP SIGNATURE-----
-
---A6N2fC+uXW/VQSAv--
-
---===============0690245931==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17242/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0690245931==--
