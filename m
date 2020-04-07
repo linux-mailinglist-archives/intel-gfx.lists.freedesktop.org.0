@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0D81A0DC3
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C991A0DC5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:36:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 470FA6E85E;
-	Tue,  7 Apr 2020 12:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 497CB6E861;
+	Tue,  7 Apr 2020 12:36:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0FB6E85D
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:35:46 +0000 (UTC)
-IronPort-SDR: hcv4rrFGabzBYt8jGYo1Tbk+Z1BNpX0K4SOxm75YO9+6itM8SY4MPUhA1G6IGk40VX5cQEoKUR
- XYIU0GXC1hzw==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E663C6E861
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:36:00 +0000 (UTC)
+IronPort-SDR: RxUh3YPKQrflDfcP/ueSp7nlL+5FontCKsg9AEGbfebFYZsZ6189lRvX9R/JkcV1k8kO1quHo/
+ G5MUg0KvEKhg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:35:46 -0700
-IronPort-SDR: rvgMXnhLEI6iiUYSpcpvQdrUzF3L4rmomn4K6moU2x4EZNQ/XtPZEtRw5DkVYl1AZiiZV1NNNI
- 3xzEo/R/ZN2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="330177563"
-Received: from tronach-mobl1.ger.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.39.230])
- by orsmga001.jf.intel.com with ESMTP; 07 Apr 2020 05:35:45 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Apr 2020 15:35:40 +0300
-Message-Id: <20200407123540.601497-3-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200407123540.601497-1-lionel.g.landwerlin@intel.com>
-References: <20200407123540.601497-1-lionel.g.landwerlin@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:35:56 -0700
+IronPort-SDR: ga3qF4EPIcI/LNAQLyPcO6xmGflTSQzfCsI0jyDFbEXhylvMXh5IVEAQ9J8gHiRiYIPrpSmadq
+ LvD/MfsjBsAw==
+X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="397841746"
+Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.153])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:35:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vipin Anand <vipin.anand@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200327052357.22269-4-vipin.anand@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200327052357.22269-1-vipin.anand@intel.com>
+ <20200327052357.22269-4-vipin.anand@intel.com>
+Date: Tue, 07 Apr 2020 15:35:52 +0300
+Message-ID: <87h7xvjwwn.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 3/3] drm/i915/perf: enable filtering on
- multiple contexts
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/display: Attach HDR property
+ for capable Gen9 devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,151 +54,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add 2 new properties to the i915-perf open ioctl to specify an array
-of GEM context handles as well as the length of the array.
+On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
+> From: Uma Shankar <uma.shankar@intel.com>
+>
+> Attach HDR property for Gen9 devices with MCA LSPCON
+> chips.
+>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> index c5ddabf903d6..4d8027493f2c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -628,6 +628,11 @@ bool lspcon_init(struct intel_digital_port *intel_dig_port)
+>  		return false;
+>  	}
+>  
+> +	if (lspcon->vendor == LSPCON_VENDOR_MCA && lspcon->hdr_supported)
 
-This can be used by drivers using multiple GEM contexts to implement a
-single GL context.
+Just look at lspcon->hdr_supported, and make sure it's false if the
+vendor does not support it.
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 58 ++++++++++++++++++++++++++++++--
- include/uapi/drm/i915_drm.h      | 21 ++++++++++++
- 2 files changed, 76 insertions(+), 3 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 41789e128449..ef0285a17a66 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3652,7 +3652,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 				    struct perf_open_properties *props)
- {
- 	u64 __user *uprop = uprops;
--	u32 i;
-+	u32 __user *uctx_handles = NULL;
-+	u32 i, n_uctx_handles = 0;
- 	int err;
- 
- 	memset(props, 0, sizeof(struct perf_open_properties));
-@@ -3703,7 +3704,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 
- 		switch ((enum drm_i915_perf_property_id)id) {
- 		case DRM_I915_PERF_PROP_CTX_HANDLE:
--			if (props->n_ctx_handles > 0) {
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
- 				DRM_DEBUG("Context handle specified multiple times\n");
- 				err = -EINVAL;
- 				goto error;
-@@ -3817,6 +3818,38 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 			}
- 			props->poll_oa_period = value;
- 			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY:
-+			/* HSW can only filter in HW and only on a single
-+			 * context.
-+			 */
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			uctx_handles = u64_to_user_ptr(value);
-+			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH:
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
-+				DRM_DEBUG("Context handle specified multiple times\n");
-+				err = -EINVAL;
-+				goto error;
-+			}
-+			props->ctx_handles =
-+				kmalloc_array(value,
-+					      sizeof(*props->ctx_handles),
-+					      GFP_KERNEL);
-+			if (!props->ctx_handles) {
-+				err = -ENOMEM;
-+				goto error;
-+			}
-+			n_uctx_handles = value;
-+			break;
- 		case DRM_I915_PERF_PROP_MAX:
- 			MISSING_CASE(id);
- 			err = -EINVAL;
-@@ -3826,6 +3859,21 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 		uprop += 2;
- 	}
- 
-+	if (n_uctx_handles > 0 && props->n_ctx_handles > 0) {
-+		DRM_DEBUG("Context handle specified multiple times\n");
-+		err = -EINVAL;
-+		goto error;
-+	}
-+
-+	for (i = 0; i < n_uctx_handles; i++) {
-+		err = get_user(props->ctx_handles[i], uctx_handles);
-+		if (err)
-+			goto error;
-+
-+		uctx_handles++;
-+		props->n_ctx_handles++;
-+	}
-+
- 	return 0;
- 
- error:
-@@ -4609,8 +4657,12 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
- 	 *    interval for the hrtimer used to check for OA data.
-+	 *
-+	 * 6: Add DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY &
-+	 *    DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH to allow an
-+	 *    application monitor/pin multiple contexts.
- 	 */
--	return 5;
-+	return 6;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd6b54b..f80e7932d728 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1993,6 +1993,27 @@ enum drm_i915_perf_property_id {
- 	 */
- 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
- 
-+	/**
-+	 * Specifies an array of u32 GEM context handles to filter reports
-+	 * with.
-+	 *
-+	 * Using this parameter is incompatible with using
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE.
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY,
-+
-+	/**
-+	 * Specifies the length of the array specified with
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY.
-+	 *
-+	 * The length must be in the range [1, 4].
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH,
-+
- 	DRM_I915_PERF_PROP_MAX /* non-ABI */
- };
- 
+> +		drm_object_attach_property(&connector->base,
+> +					   connector->dev->mode_config.hdr_output_metadata_property,
+> +					   0);
+> +
+>  	connector->ycbcr_420_allowed = true;
+>  	lspcon->active = true;
+>  	DRM_DEBUG_KMS("Success: LSPCON init\n");
+
 -- 
-2.26.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
