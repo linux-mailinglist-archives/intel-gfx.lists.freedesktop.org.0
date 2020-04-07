@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B4DD1A089B
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:48:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9B251A0931
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 10:16:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B586E578;
-	Tue,  7 Apr 2020 07:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326ED89DFB;
+	Tue,  7 Apr 2020 08:16:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89B636E578
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:48:43 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id D96751C4A6E; Tue,  7 Apr 2020 09:48:41 +0200 (CEST)
-Date: Tue, 7 Apr 2020 09:48:41 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200407074841.GB18673@amd.ucw.cz>
-References: <20200407072047.GA18532@amd.ucw.cz>
- <158624426770.4794.6070200474948860768@build.alporthouse.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83EA389DDD;
+ Tue,  7 Apr 2020 08:16:26 +0000 (UTC)
+IronPort-SDR: wNyD7TPcTkyvuUbk29LSmORS277ZcJpK7M1DeQSRdMcN5Q3NLXZrPbIJ2a53kVYLugS9z7g9o7
+ MmG17tmViatg==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 01:16:25 -0700
+IronPort-SDR: uUUxSvUMF/9a2u3/lJr2RVovgTv1prut62xYebCkkFuLe+l+8EkobO3jYqgWQpCdkriCFBA7Mh
+ 91js4XZJLi9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; 
+ d="asc'?scan'208";a="286157430"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Apr 2020 01:16:22 -0700
+Date: Tue, 7 Apr 2020 16:02:56 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200407080256.GU16629@zhen-hp.sh.intel.com>
+References: <20200331070025.GB16629@zhen-hp.sh.intel.com>
+ <20200331162644.GA3779315@intel.com>
+ <20200403030507.GQ16629@zhen-hp.sh.intel.com>
+ <20200403175033.GA3997092@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <158624426770.4794.6070200474948860768@build.alporthouse.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] Linus,
- please revert 7dc8f11437: regression in 5.7-rc0,
- hangs while attempting to run X
+In-Reply-To: <20200403175033.GA3997092@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,73 +51,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hpa@zytor.com, intel-gfx@lists.freedesktop.org,
- kernel list <linux-kernel@vger.kernel.org>, mingo@redhat.com, bp@alien8.de,
- matthew.auld@intel.com, airlied@redhat.com, tglx@linutronix.de,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: multipart/mixed; boundary="===============0878606042=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: "Zhao, Yan Y" <yan.y.zhao@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============1445250488=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0878606042==
+--===============1445250488==
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hQiwHBbRI9kgIhsi"
+	protocol="application/pgp-signature"; boundary="TMgB3/Ch1aWgZB1L"
 Content-Disposition: inline
 
 
---hQiwHBbRI9kgIhsi
+--TMgB3/Ch1aWgZB1L
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
-
-> > > 7dc8f1143778a35b190f9413f228b3cf28f67f8d
-> > >=20
-> > >     drm/i915/gem: Drop relocation slowpath
-> > >    =20
-> > >     Since the relocations are no longer performed under a global
-> > >     struct_mutex, or any other lock, that is also held by pagefault h=
-andlers,
-> > >     we can relax and allow our fast path to take a fault. As we no lo=
-nger
-> > >     need to abort the fast path for lock avoidance, we no longer need=
- the
-> > >     slow path handling at all.
-> > >=20
-> > > causes regression on thinkpad x220: instead of starting X, I'm looking
-> > > at blinking cursor.
-> > >=20
-> > > Reverting the patch on too of 919dce24701f7b3 fixes things for me.
-> >=20
-> > I have received no feedback from patch authors, and I believe we don't
-> > want to break boot in -rc1 on Intel hardware... so the commit should
-> > be simply reverted.
+On 2020.04.03 10:50:33 -0700, Rodrigo Vivi wrote:
 >=20
-> Beyond the fix already submitted?
+> +Dave and Daniel,
+>=20
+> >=20
+> > I forgot to mention one thing for 5.7. We've fixed to change guest mem =
+r/w
+> > from KVM to use new VFIO dma r/w instead in this series: https://patchw=
+ork.freedesktop.org/series/72038/
+> >=20
+> > As this depends on VFIO tree and looks VFIO pull for 5.7 is not settled=
+ down
+> > yet, we'd need to backmerge and send pull against vfio merge for 5.7.
+>=20
+> I'm not sure if I'm following on which backmerge you are willing
+> us to do here. And for me it looks like late for 5.7 already.
+>=20
+> Maybe you mean we ack all of this to go through vfio flow
+> then once that is settled drm backmerge and then drm-intel backmerge
+> and you backmerge...
+>=20
+> Is that what you want?
+>=20
 
-I did not get that one, can I have a pointer?
+My purpose is to get GVT side fixes of guest memory r/w through new
+vfio dma r/w interface in 5.7. As vfio 5.7-rc1 pull has already been
+merged in linus master, looks just want drm-intel backmerge now then
+could send gvt side fixes. Ok for you?
 
-									Pavel
+Sorry for late reply, I was out for a short vacation.
+
+Thanks
+
 --=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+Open Source Technology Center, Intel ltd.
 
---hQiwHBbRI9kgIhsi
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--TMgB3/Ch1aWgZB1L
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXowwWQAKCRAw5/Bqldv6
-8ptBAJ9iwHYXM0KdeR4HdWyZ7IEsER3vHACcC1g2U0sCmmYeFy9vvaeM+OCph0g=
-=8TpN
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXowzsAAKCRCxBBozTXgY
+J/XEAKCCWcl8X/Hylh80WjrMGUvTrWz/uQCfYrSZ/7PHbMx4iz9xmy4v7WRb9YI=
+=mcl9
 -----END PGP SIGNATURE-----
 
---hQiwHBbRI9kgIhsi--
+--TMgB3/Ch1aWgZB1L--
 
---===============0878606042==
+--===============1445250488==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +134,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0878606042==--
+--===============1445250488==--
