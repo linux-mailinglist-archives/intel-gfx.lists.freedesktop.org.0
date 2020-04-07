@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298421A0F17
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 16:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D22BC1A1250
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:58:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2A688161;
-	Tue,  7 Apr 2020 14:26:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2546E8B2;
+	Tue,  7 Apr 2020 16:58:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E18F6E0B9
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 14:26:16 +0000 (UTC)
-IronPort-SDR: scPPZOpLQtqYEioN2BmN4yHlBYxZq2Z6yDySyhZYLCrKcs40CSySMAQIqIBNFqN6yYJN37A4L2
- BjYrcTum55Nw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 07:26:15 -0700
-IronPort-SDR: oIveXKNOtHyJcE9qPVcOYtwiczgG9hoZtlVghMQg2AMriktP4F03Ec8guWcqtevqIEXf5K9OJf
- +WxpZnT/UlEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="451239196"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga005.fm.intel.com with ESMTP; 07 Apr 2020 07:26:15 -0700
-Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 7 Apr 2020 07:26:15 -0700
-Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 7 Apr 2020 07:26:15 -0700
-Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 7 Apr 2020 07:26:14 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
- BGSMSX101.gar.corp.intel.com ([169.254.1.36]) with mapi id 14.03.0439.000;
- Tue, 7 Apr 2020 19:54:50 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v3] drm/i915/display: Enable DP Display
- Audio WA
-Thread-Index: AQHWDOLGEWVZVhvXvE6A3GForGdwkKhtVu4AgABfNrA=
-Date: Tue, 7 Apr 2020 14:24:49 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F82447B0C@BGSMSX104.gar.corp.intel.com>
-References: <20200407141257.30076-1-uma.shankar@intel.com>
- <alpine.DEB.2.21.2004071651380.2957@eliteleevi.tm.intel.com>
-In-Reply-To: <alpine.DEB.2.21.2004071651380.2957@eliteleevi.tm.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B57B6E0DC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 14:30:18 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id s30so2798954qth.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 07:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=wAYrV6F6G+t5gtx1fZuHs6BGJWDWpkiLa+6bzhMBPMw=;
+ b=lditmRVv/LcoROMCq/bKinCSCXK7kSIPrd2WRkQgfMAG5iVrBZ7uZka/PsnKohQP4j
+ 5Ig6xbokfQxWbvrqqOP7Fe0/tljFqjZ80Gbua+AN6PMXq9s4R68pYsgeD7r1Fqj3pNs/
+ IsJOdPJ5t4WGOqRjC0s5L83yp/k8PHgJatpA0ED1TX7i2eDBvs0ELJvtm9oE+S+iWZcJ
+ bcp4PUVjR/UGlyu0CDmP1DmVV6MGtCGjLpoDfAMr7gwkoH0eoRQKU/i8LwAwcoASeSjp
+ Ylh8TlsWTOmutTIIZ3KXodzQRUC7kb6ikoJSb/vTaeiBtaot8jodWWYa5xiD4kkggAO8
+ O9Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=wAYrV6F6G+t5gtx1fZuHs6BGJWDWpkiLa+6bzhMBPMw=;
+ b=t7LkbGMGMXA0/i1FTQ/+gh/nO81eu9xyQXTQiITZdEkAydIbGgcD6s0eDM2c1fcYE8
+ zLPQcgq43QJHeK10FAHDCMXe4Sul6vBJnqchp+VW6i2rAdGuN2fs4fLGfb76AuVKMc5s
+ N2oA/dLhA5ZpIUbxzQPy/fkUL48Qd0DLUe1dAvBolLMiP7UtKlOPz1rLl+GGdTN0481v
+ NsGc8O46AR+KIvxtI3TVO3UHgD6qEjDAJhJBgQUQSKsVyNrhncdOffIgWg5Au3/OINM7
+ sQklADhegX9GpWyOtUn/T1kJCdXd/y98y7LXfdDKH+daWPGz3sFShwqPcqjcFFlVHRIQ
+ Cwvw==
+X-Gm-Message-State: AGi0Pubv6EZiodIjvL6LhyXg5nVE2IXC7OKz5ORJLgzQjgwOCn5cyWeg
+ Qi57mEcMsKb6kbiDMzI7yb0=
+X-Google-Smtp-Source: APiQypIGrLW0bPlJckdtYiMlXs17H02JiQkfUDEoX+VYMNZN6nQVg3T1qcLOBfWIiE8HKabTPloJSQ==
+X-Received: by 2002:aed:29e1:: with SMTP id o88mr2530139qtd.251.1586269817494; 
+ Tue, 07 Apr 2020 07:30:17 -0700 (PDT)
+Received: from quaco.ghostprotocols.net ([179.97.37.151])
+ by smtp.gmail.com with ESMTPSA id w30sm17976587qtw.21.2020.04.07.07.30.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Apr 2020 07:30:16 -0700 (PDT)
+From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
+X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
+Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
+ id 67DAA409A3; Tue,  7 Apr 2020 11:30:14 -0300 (-03)
+Date: Tue, 7 Apr 2020 11:30:14 -0300
+To: Alexey Budankov <alexey.budankov@linux.intel.com>
+Message-ID: <20200407143014.GD11186@kernel.org>
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Enable DP Display
- Audio WA
+Content-Disposition: inline
+In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+X-Url: http://acmel.wordpress.com
+X-Mailman-Approved-At: Tue, 07 Apr 2020 16:58:43 +0000
+Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
+ system performance monitoring and observability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,71 +72,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vehmanen, Kai" <kai.vehmanen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
+ Andi Kleen <ak@linux.intel.com>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Em Thu, Apr 02, 2020 at 11:42:05AM +0300, Alexey Budankov escreveu:
+> This patch set introduces CAP_PERFMON capability designed to secure
+> system performance monitoring and observability operations so that
+> CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing role
+> for performance monitoring and observability subsystems of the kernel.
 
+So, what am I doing wrong?
 
-> -----Original Message-----
-> From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Sent: Tuesday, April 7, 2020 7:42 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Vehmanen, Kai <kai.vehmanen@intel.com>
-> Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Enable DP Display Audio WA
-> 
-> Hi,
-> 
-> thanks Uma! It's good to see the implementation is this localized and doesn't need
-> changes elsewhere. Other reviewers already covered most parts, but a few notes:
-> 
-> On Tue, 7 Apr 2020, Uma Shankar wrote:
-> 
-> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +	enum pipe pipe = crtc->pipe;
-> > +	u32 link_clks_available, link_clks_required;
-> > +	u32 tu_data, tu_line, link_clks_active;
-> > +	u32 hblank_rise, hblank_early_prog;
-> > +	u32 h_active, h_total, hblank_delta, pixel_clk, v_total;
-> > +	u32 fec_coeff, refresh_rate, cdclk;
-> 
-> hmm, minor thing, but why are these u32 and not just unsigned ints?
+[perf@five ~]$ type perf
+perf is hashed (/home/perf/bin/perf)
+[perf@five ~]$
+[perf@five ~]$ ls -lahF /home/perf/bin/perf
+-rwxr-x---. 1 root perf_users 24M Apr  7 10:34 /home/perf/bin/perf*
+[perf@five ~]$
+[perf@five ~]$ getcap /home/perf/bin/perf
+[perf@five ~]$ perf top --stdio
+Error:
+You may not have permission to collect system-wide stats.
 
-No major reasons as such. Will switch to unsigned int.
+Consider tweaking /proc/sys/kernel/perf_event_paranoid,
+which controls use of the performance events system by
+unprivileged users (without CAP_PERFMON or CAP_SYS_ADMIN).
 
-> > +	if (!(h_active && crtc_state->port_clock && crtc_state->lane_count &&
-> > +	      crtc_state->pipe_bpp && cdclk)) {
-> > +		drm_err(&i915->drm, "Null Parameters received\n");
-> > +		WARN_ON(1);
-> > +		return -EINVAL;
-> 
-> This is still not very informative. "Invalid parameters for hblank_early"..?
+The current value is 2:
 
-Ok Sure, will improve this message.
- 
-> > +	if (samples_room < 3) {
-> > +		*val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
-> > +		*val |= NUMBER_SAMPLES_PER_LINE(pipe, samples_room);
-> > +	} else {
-> > +		*val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
-> > +		*val |= NUMBER_SAMPLES_PER_LINE(pipe, 0x0);
-> > +	}
-> 
-> This is a bit hard to follow in terms of logic. Maybe worth a comment that 0x0
-> means to take all samples from the buffer.
+  -1: Allow use of (almost) all events by all users
+      Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
+>= 0: Disallow ftrace function tracepoint by users without CAP_PERFMON or CAP_SYS_ADMIN
+      Disallow raw tracepoint access by users without CAP_SYS_PERFMON or CAP_SYS_ADMIN
+>= 1: Disallow CPU event access by users without CAP_PERFMON or CAP_SYS_ADMIN
+>= 2: Disallow kernel profiling by users without CAP_PERFMON or CAP_SYS_ADMIN
 
-Sure, will add comments to make this more clear.
+To make this setting permanent, edit /etc/sysctl.conf too, e.g.:
 
-Thanks Kai for the feedback. Will address and send the next version.
+	kernel.perf_event_paranoid = -1
 
-Regards,
-Uma Shankar
+[perf@five ~]$
 
-> Br, Kai
+Ok, the message says I  need to have CAP_PERFMON, lets do it, using an
+unpatched libcap that doesn't know about it but we can use 38,
+CAP_PERFMON value instead, and I tested this with a patched libcap as
+well, same results:
+
+As root:
+
+[root@five bin]# setcap "38,cap_sys_ptrace,cap_syslog=ep" perf
+[root@five bin]#
+
+Back to the 'perf' user in the 'perf_users' group, ok, so now 'perf
+record -a' works for system wide sampling of cycles:u, i.e. only
+userspace samples, but 'perf top' is failing:
+
+[perf@five ~]$ type perf
+perf is hashed (/home/perf/bin/perf)
+[perf@five ~]$ getcap /home/perf/bin/perf
+/home/perf/bin/perf = cap_sys_ptrace,cap_syslog,38+ep
+[perf@five ~]$ groups
+perf perf_users
+[perf@five ~]$ id
+uid=1002(perf) gid=1002(perf) groups=1002(perf),1003(perf_users) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+[perf@five ~]$ perf top --stdio
+Error:
+Failed to mmap with 1 (Operation not permitted)
+[perf@five ~]$ perf record -a
+^C[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 1.177 MB perf.data (1552 samples) ]
+
+[perf@five ~]$ perf evlist
+cycles:u
+[perf@five ~]$
+
+- Arnaldo
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
