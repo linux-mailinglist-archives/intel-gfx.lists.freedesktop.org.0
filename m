@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEDB71A1113
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 350FE1A10A4
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 17:51:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E124D6E121;
-	Tue,  7 Apr 2020 16:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C8166E8AA;
+	Tue,  7 Apr 2020 15:51:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A79AF6E121
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 16:18:27 +0000 (UTC)
-IronPort-SDR: gbvb1z2E0fbvINIbrbj6JW9TsjDRGi/gqJ2v5soE/wD3amSHHyOGbhloKKcVL5EIzycTa1BHFh
- mOrc8gqcukTA==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7490D6E8A6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 15:51:10 +0000 (UTC)
+IronPort-SDR: R0vUTTx9G2ADlZkbkLYFOEc8vC+UjJs7TWQM0DAkycGBw0a4rzjj9Zz12jtm0QzCOcaW5E1qyY
+ T9bCYb92f7KQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 09:18:28 -0700
-IronPort-SDR: zxcKGODOCL9me8scTBvkju7Pn5UBahca+W0nrjOiY2v+3dkpbpv/h9mNz1RoAgmlKUJ8Vfe2jM
- zyfjxWlUKNoA==
-X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="424803138"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 09:18:25 -0700
-Date: Tue, 7 Apr 2020 19:18:15 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200407161815.GH21484@ideak-desk.fi.intel.com>
-References: <20200407011157.362092-1-jose.souza@intel.com>
- <20200407011157.362092-8-jose.souza@intel.com>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 08:51:10 -0700
+IronPort-SDR: 6MvkqHMQ9hAaHMpt6yJyYiInDVjkeY95vnmzMkKdWvo45rceK6aBw9A5sep/XHBxCZbxsJdbQi
+ t2siRVSckzUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="275139714"
+Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
+ ([10.223.74.152])
+ by fmsmga004.fm.intel.com with ESMTP; 07 Apr 2020 08:51:08 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Apr 2020 21:48:57 +0530
+Message-Id: <20200407161857.20408-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200407011157.362092-8-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 8/8] drm/i915/tc: Do not warn when aux
- power well of static TC ports timeout
+Subject: [Intel-gfx] [PATCH v4] drm/i915/display: Enable DP Display Audio WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,114 +45,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: kai.vehmanen@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2020 at 06:11:57PM -0700, Jos=E9 Roberto de Souza wrote:
-> This is a expected timeout of static TC ports not conneceted, so
-> not throwing warnings that would taint CI.
-> =
+For certain DP VDSC bpp settings, hblank asserts before hblank_early,
+leading to a bad audio state. Driver need to program "hblank early
+enable" and "samples per line" parameters in AUDIO_CONFIG_BE
+register.
 
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    | 37 +++++++++++--------
->  1 file changed, 21 insertions(+), 16 deletions(-)
-> =
+This is Display Audio WA #1406928334 for 4k+VDSC usecase
+applicable on DP encoders. Implemented the same.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 5d33929f3724..50af5854658e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -284,6 +284,21 @@ static void hsw_power_well_pre_disable(struct drm_i9=
-15_private *dev_priv,
->  		gen8_irq_power_well_pre_disable(dev_priv, irq_pipe_mask);
->  }
->  =
+v2: Fixed build failures on 32bit machine.
 
-> +#define ICL_AUX_PW_TO_CH(pw_idx)	\
-> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
-> +
-> +#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
-> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
-> +
-> +static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
-> +				     struct i915_power_well *power_well)
-> +{
-> +	int pw_idx =3D power_well->desc->hsw.idx;
-> +
-> +	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
-> +						 ICL_AUX_PW_TO_CH(pw_idx);
-> +}
-> +
->  static struct intel_digital_port *
->  aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
->  		       enum aux_ch aux_ch)
-> @@ -320,11 +335,16 @@ static void hsw_wait_for_power_well_enable(struct d=
-rm_i915_private *dev_priv,
->  	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
->  	if (intel_de_wait_for_set(dev_priv, regs->driver,
->  				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
-> +		enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+v3: Dropped u64, added helpers for sample room calculation,
+    other general comments as per Jani Nikula's feedback.
+    Also fixed connector type check (spotted by Anshuman)
 
-This is only valid for ICL tc phy power wells. You could move the logic
-for that to a tc_phy_aux_timeout_expected(pw_idx) helper.
+v4: Addressed Jani Nikula and Kai's review comments.
 
-> +		struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_pri=
-v, aux_ch);
-> +
->  		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
->  			    power_well->desc->name);
->  =
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 147 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h            |  16 +++
+ 2 files changed, 163 insertions(+)
 
->  		/* An AUX timeout is expected if the TBT DP tunnel is down. */
-> -		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt);
-> +		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt &&
-> +			    !(INTEL_GEN(dev_priv) =3D=3D 11 && dig_port->tc_legacy_port));
-> +
->  	}
->  }
->  =
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 950160f1a89f..87118cb4a3ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -512,6 +512,149 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	mutex_unlock(&dev_priv->av_mutex);
+ }
+ 
++/* Add a factor to take care of rounding and truncations */
++#define ROUNDING_FACTOR 10000
++
++static unsigned int get_hblank_early_enable_config(struct intel_encoder *encoder,
++						   const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	unsigned int link_clks_available, link_clks_required;
++	unsigned int tu_data, tu_line, link_clks_active;
++	unsigned int hblank_rise, hblank_early_prog;
++	unsigned int h_active, h_total, hblank_delta, pixel_clk, v_total;
++	unsigned int fec_coeff, refresh_rate, cdclk;
++
++	h_active = crtc_state->hw.adjusted_mode.hdisplay;
++	h_total = crtc_state->hw.adjusted_mode.htotal;
++	v_total = crtc_state->hw.adjusted_mode.vtotal;
++	hblank_rise = crtc_state->hw.adjusted_mode.hsync_start;
++	pixel_clk = crtc_state->hw.adjusted_mode.clock;
++	refresh_rate = crtc_state->hw.adjusted_mode.vrefresh;
++	cdclk = i915->cdclk.hw.cdclk;
++	/* fec= 0.972261, using rounding multiplier of 1000000 */
++	fec_coeff = 972261;
++
++	drm_dbg_kms(&i915->drm, "h_active = %u link_clk = %u :"
++		    "lanes = %u vdsc_bpp = %u cdclk = %u\n",
++		    h_active, crtc_state->port_clock, crtc_state->lane_count,
++		    crtc_state->pipe_bpp, cdclk);
++
++	link_clks_available = ((((h_total - h_active) *
++			       ((crtc_state->port_clock * ROUNDING_FACTOR) /
++				pixel_clk)) / ROUNDING_FACTOR) - 28);
++
++	link_clks_required = DIV_ROUND_UP(192000, (refresh_rate *
++					  v_total)) * ((48 /
++					  crtc_state->lane_count) + 2);
++
++	if (link_clks_available > link_clks_required)
++		hblank_delta = 32;
++	else
++		hblank_delta = DIV_ROUND_UP(((((5 * ROUNDING_FACTOR) /
++					    crtc_state->port_clock) + ((5 *
++					    ROUNDING_FACTOR) /
++					    cdclk)) * pixel_clk),
++					    ROUNDING_FACTOR);
++
++	tu_data = (pixel_clk * crtc_state->pipe_bpp * 8) /
++		   ((crtc_state->port_clock *
++		   crtc_state->lane_count * fec_coeff) / 1000000);
++	tu_line = (((h_active * crtc_state->port_clock * fec_coeff) /
++		   1000000) / (64 * pixel_clk));
++	link_clks_active  = (tu_line - 1) * 64 + tu_data;
++
++	hblank_rise = ((link_clks_active + 6 * DIV_ROUND_UP(link_clks_active,
++			250) + 4) * ((pixel_clk * ROUNDING_FACTOR) /
++			crtc_state->port_clock)) / ROUNDING_FACTOR;
++
++	hblank_early_prog = h_active - hblank_rise + hblank_delta;
++
++	return hblank_early_prog;
++}
++
++static unsigned int get_sample_room_req_config(const struct intel_crtc_state *crtc_state)
++{
++	unsigned int h_active, h_total, pixel_clk;
++	unsigned int samples_room;
++
++	h_active = crtc_state->hw.adjusted_mode.hdisplay;
++	h_total = crtc_state->hw.adjusted_mode.htotal;
++	pixel_clk = crtc_state->hw.adjusted_mode.clock;
++
++	samples_room = ((((h_total - h_active) * ((crtc_state->port_clock *
++			ROUNDING_FACTOR) / pixel_clk)) /
++			ROUNDING_FACTOR) - 12) / ((48 /
++			crtc_state->lane_count) + 2);
++
++	return samples_room;
++}
++
++static void enable_audio_dsc_wa(struct intel_encoder *encoder,
++				const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum pipe pipe = crtc->pipe;
++	unsigned int hblank_early_prog, samples_room, h_active;
++	unsigned int val;
++
++	if (INTEL_GEN(i915) < 11)
++		return;
++
++	h_active = crtc_state->hw.adjusted_mode.hdisplay;
++
++	if (!(h_active && crtc_state->port_clock && crtc_state->lane_count &&
++	      crtc_state->pipe_bpp && i915->cdclk.hw.cdclk)) {
++		drm_err(&i915->drm, "Null Params rcvd for hblank early enabling\n");
++		WARN_ON(1);
++		return;
++	}
++
++	val = intel_de_read(i915, AUD_CONFIG_BE);
++
++	if (INTEL_GEN(i915) == 11)
++		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
++	else if (INTEL_GEN(i915) >= 12)
++		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
++
++	if (crtc_state->dsc.compression_enable &&
++	    (crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
++	    crtc_state->hw.adjusted_mode.vdisplay >= 2160)) {
++		/* Get hblank early enable value required */
++		hblank_early_prog = get_hblank_early_enable_config(encoder,
++								   crtc_state);
++		if (hblank_early_prog < 32) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_32);
++		} else if (hblank_early_prog < 64) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_64);
++		} else if (hblank_early_prog < 96) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_96);
++		} else {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(pipe, HBLANK_START_COUNT_128);
++		}
++
++		/* Get samples room value required */
++		samples_room = get_sample_room_req_config(crtc_state);
++		if (samples_room < 3) {
++			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
++			val |= NUMBER_SAMPLES_PER_LINE(pipe, samples_room);
++		} else {
++			/* Program 0 i.e "All Samples available in buffer" */
++			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
++			val |= NUMBER_SAMPLES_PER_LINE(pipe, 0x0);
++		}
++	}
++
++	intel_de_write(i915, AUD_CONFIG_BE, val);
++}
++
++#undef ROUNDING_FACTOR
++
+ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 				   const struct intel_crtc_state *crtc_state,
+ 				   const struct drm_connector_state *conn_state)
+@@ -529,6 +672,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 
+ 	mutex_lock(&dev_priv->av_mutex);
+ 
++	/* Enable Audio WA for 4k DSC usecases */
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
++		enable_audio_dsc_wa(encoder, crtc_state);
++
+ 	/* Enable audio presence detect, invalidate ELD */
+ 	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8cebb7a86b8c..f72ea2c2a8e3 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9395,6 +9395,22 @@ enum {
+ #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+ #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+ 
++/* Display Audio Config Reg */
++#define AUD_CONFIG_BE			_MMIO(0x65ef0)
++#define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
++#define HBLANK_EARLY_ENABLE_TGL(pipe)		(0x1 << (24 + (pipe)))
++#define HBLANK_START_COUNT_MASK(pipe)		(0x7 << (3 + ((pipe) * 6)))
++#define HBLANK_START_COUNT(pipe, val)		(((val) & 0x7) << (3 + ((pipe)) * 6))
++#define NUMBER_SAMPLES_PER_LINE_MASK(pipe)	(0x3 << ((pipe) * 6))
++#define NUMBER_SAMPLES_PER_LINE(pipe, val)	(((val) & 0x3) << ((pipe) * 6))
++
++#define HBLANK_START_COUNT_8	0
++#define HBLANK_START_COUNT_16	1
++#define HBLANK_START_COUNT_32	2
++#define HBLANK_START_COUNT_64	3
++#define HBLANK_START_COUNT_96	4
++#define HBLANK_START_COUNT_128	5
++
+ /*
+  * HSW - ICL power wells
+  *
+-- 
+2.22.0
 
-> @@ -520,21 +540,6 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915=
-_private *dev_priv,
->  	hsw_wait_for_power_well_disable(dev_priv, power_well);
->  }
->  =
-
-> -#define ICL_AUX_PW_TO_CH(pw_idx)	\
-> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
-> -
-> -#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
-> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
-> -
-> -static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
-> -				     struct i915_power_well *power_well)
-> -{
-> -	int pw_idx =3D power_well->desc->hsw.idx;
-> -
-> -	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
-> -						 ICL_AUX_PW_TO_CH(pw_idx);
-> -}
-> -
->  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->  =
-
->  static u64 async_put_domains_mask(struct i915_power_domains *power_domai=
-ns);
-> -- =
-
-> 2.26.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
