@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 885561A0D89
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:26:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F161A0DBE
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:35:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B52F89DA8;
-	Tue,  7 Apr 2020 12:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0966E85B;
+	Tue,  7 Apr 2020 12:35:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9265589DA8;
- Tue,  7 Apr 2020 12:26:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8BAC4A00E7;
- Tue,  7 Apr 2020 12:26:38 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34BFE6E85B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:35:00 +0000 (UTC)
+IronPort-SDR: kZMbOgm2gPy/nIhaZUupaOmegJEIW8MfXny1oKMjD/rzrWRlurYk5/grapwdXhlCIa3jCM3zRS
+ YHnwmZ3bgWFA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:34:59 -0700
+IronPort-SDR: Mwaz/AdlHRKs2O5RHNEMnpGxh20u6yWZ5bFD3ghrrQKMR7XWptjWjDbG7OTITpAEZ4pwTcAJPo
+ yLt63gBuK9OA==
+X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="424733325"
+Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.153])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:34:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vipin Anand <vipin.anand@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200327052357.22269-3-vipin.anand@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200327052357.22269-1-vipin.anand@intel.com>
+ <20200327052357.22269-3-vipin.anand@intel.com>
+Date: Tue, 07 Apr 2020 15:34:55 +0300
+Message-ID: <87k12rjwy8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 07 Apr 2020 12:26:38 -0000
-Message-ID: <158626239854.26325.13723967481398371880@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1586252867.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1586252867.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_from_module_params_to_device_params_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/display: Enable HDR on gen9
+ devices with MCA Lspcon
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,106 +49,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
+> From: Uma Shankar <uma.shankar@intel.com>
+>
+> Gen9 hardware supports HDMI2.0 through LSPCON chips.
+> Extending HDR support for MCA LSPCON based GEN9 devices.
+>
+> SOC will drive LSPCON as DP and send HDR metadata as standard
+> DP SDP packets. LSPCON will be set to operate in PCON mode,
+> will receive the metadata and create Dynamic Range and
+> Mastering Infoframe (DRM packets) and send it to HDR capable
+> HDMI sink devices.
+>
+> v2: Re-used hsw infoframe write implementation for HDR metadata
+> for LSPCON as per Ville's suggestion.
+>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c   | 10 ++++++
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 35 +++++++++++++++------
+>  drivers/gpu/drm/i915/display/intel_lspcon.h |  5 ++-
+>  3 files changed, 39 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 93ac0f296852..9ae2f88cc925 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -577,6 +577,16 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
+>  	return val & mask;
+>  }
+>  
+> +void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
+> +	const struct intel_crtc_state *crtc_state,
+> +	unsigned int type,
+> +	const void *frame, ssize_t len)
+> +{
+> +	DRM_DEBUG_KMS("Update HDR metadata for lspcon\n");
+> +	/* It uses the legacy hsw implementation for the same */
+> +	hsw_write_infoframe(encoder, crtc_state, type, frame, len);
+> +}
 
-Series: drm/i915: from module params to device params (rev2)
-URL   : https://patchwork.freedesktop.org/series/54414/
-State : warning
+This seems like an unnecessary wrapper.
 
-== Summary ==
+> +
+>  static const u8 infoframe_type_to_idx[] = {
+>  	HDMI_PACKET_TYPE_GENERAL_CONTROL,
+>  	HDMI_PACKET_TYPE_GAMUT_METADATA,
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> index 2e41ae483a23..c5ddabf903d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -460,27 +460,42 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
+>  			    unsigned int type,
+>  			    const void *frame, ssize_t len)
+>  {
+> -	bool ret;
+> +	bool ret = true;
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
+>  
+>  	/* LSPCON only needs AVI IF */
+> -	if (type != HDMI_INFOFRAME_TYPE_AVI)
+> +	if (!(type == HDMI_INFOFRAME_TYPE_AVI ||
+> +	      type == HDMI_PACKET_TYPE_GAMUT_METADATA))
+>  		return;
+>  
+> -	if (lspcon->vendor == LSPCON_VENDOR_MCA)
+> -		ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
+> -						      frame, len);
+> -	else
+> -		ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux,
+> -							 frame, len);
+> +	/*
+> +	 * Supporting HDR on MCA LSPCON
+> +	 * Todo: Add support for Parade later
+> +	 */
+> +	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA &&
+> +	    lspcon->vendor != LSPCON_VENDOR_MCA)
+> +		return;
+> +
+> +	if (lspcon->vendor == LSPCON_VENDOR_MCA) {
+> +		if (type == HDMI_INFOFRAME_TYPE_AVI)
+> +			ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
+> +							      frame, len);
+> +		else if (type == HDMI_PACKET_TYPE_GAMUT_METADATA)
+> +			lspcon_drm_write_infoframe(encoder, crtc_state,
+> +						   HDMI_PACKET_TYPE_GAMUT_METADATA,
+> +						   frame, VIDEO_DIP_DATA_SIZE);
+> +	} else {
+> +		ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux, frame,
+> +							 len);
+> +	}
 
-$ dim checkpatch origin/drm-tip
-f9135c748581 drm/i915/params: don't expose inject_probe_failure in debugfs
-9870a0bf570a drm/i915/params: prevent changing module params runtime
--:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#57: FILE: drivers/gpu/drm/i915/i915_params.c:62:
-+i915_param_named_unsafe(enable_fbc, int, 0400,
- 	"Enable frame buffer compression for power savings "
+Seems to me it would be best to replace from the beginning of this
+function with something like:
 
--:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#66: FILE: drivers/gpu/drm/i915/i915_params.c:70:
-+i915_param_named_unsafe(panel_use_ssc, int, 0400,
- 	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
+        switch (type) {
+        case HDMI_INFOFRAME_TYPE_AVI:
+                if (lspcon->vendor == LSPCON_VENDOR_MCA)
+                        ...
+                else
+                        ...
+                break;
+        case HDMI_PACKET_TYPE_GAMUT_METADATA:
+                if (lspcon->vendor == LSPCON_VENDOR_MCA)
+                        ...
+                else
+                        break;
+                break;
+        default:
+                return;
+        }
 
--:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#75: FILE: drivers/gpu/drm/i915/i915_params.c:78:
-+i915_param_named_unsafe(reset, int, 0400,
- 	"Attempt GPU resets (0=disabled, 1=full gpu reset, 2=engine reset [default])");
+Then it'll be straightforward to replace the actual vendor specific if
+ladders with function pointers in struct intel_lspcon in the future.
 
--:83: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#83: FILE: drivers/gpu/drm/i915/i915_params.c:85:
-+i915_param_named(error_capture, bool, 0400,
- 	"Record the GPU state following a hang. "
+>  
+>  	if (!ret) {
+> -		DRM_ERROR("Failed to write AVI infoframes\n");
+> +		DRM_ERROR("Failed to write infoframes\n");
+>  		return;
+>  	}
+>  
+> -	DRM_DEBUG_DRIVER("AVI infoframes updated successfully\n");
+> +	DRM_DEBUG_DRIVER("Infoframes updated successfully\n");
+>  }
+>  
+>  void lspcon_read_infoframe(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
+> index 37cfddf8a9c5..b2051f236223 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
+> @@ -34,5 +34,8 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *pipe_config);
+>  void lspcon_ycbcr420_config(struct drm_connector *connector,
+>  			    struct intel_crtc_state *crtc_state);
+> -
+> +void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
+> +				const struct intel_crtc_state *crtc_state,
+> +				unsigned int type,
+> +				const void *frame, ssize_t len);
+>  #endif /* __INTEL_LSPCON_H__ */
 
--:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#90: FILE: drivers/gpu/drm/i915/i915_params.c:91:
-+i915_param_named_unsafe(enable_hangcheck, bool, 0400,
- 	"Periodically check GPU activity for detecting hangs. "
-
--:96: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#96: FILE: drivers/gpu/drm/i915/i915_params.c:96:
-+i915_param_named_unsafe(enable_psr, int, 0400,
- 	"Enable PSR "
-
--:108: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#108: FILE: drivers/gpu/drm/i915/i915_params.c:111:
-+i915_param_named(fastboot, int, 0400,
- 	"Try to skip unnecessary mode sets at boot time "
-
--:114: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#114: FILE: drivers/gpu/drm/i915/i915_params.c:116:
-+i915_param_named_unsafe(load_detect_test, bool, 0400,
- 	"Force-enable the VGA load detect code for testing (default:false). "
-
--:119: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#119: FILE: drivers/gpu/drm/i915/i915_params.c:120:
-+i915_param_named_unsafe(force_reset_modeset_test, bool, 0400,
- 	"Force a modeset during gpu reset for testing (default:false). "
-
--:124: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#124: FILE: drivers/gpu/drm/i915/i915_params.c:124:
-+i915_param_named_unsafe(invert_brightness, int, 0400,
- 	"Invert backlight brightness "
-
--:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#133: FILE: drivers/gpu/drm/i915/i915_params.c:134:
-+i915_param_named(mmio_debug, int, 0400,
- 	"Enable the MMIO debug code for the first N failures (default: off). "
-
--:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#146: FILE: drivers/gpu/drm/i915/i915_params.c:169:
-+i915_param_named_unsafe(enable_dp_mst, bool, 0400,
- 	"Enable multi-stream transport (MST) for new DisplayPort sinks. (default: true)");
-
--:155: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#155: FILE: drivers/gpu/drm/i915/i915_params.c:177:
-+i915_param_named(enable_dpcd_backlight, int, 0400,
- 	"Enable support for DPCD backlight control"
-
--:164: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#164: FILE: drivers/gpu/drm/i915/i915_params.c:187:
-+i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
- 	"Fake LMEM start offset (default: 0)");
-
-total: 0 errors, 0 warnings, 14 checks, 123 lines checked
-6fb0bc4cf092 drm/i915/params: switch to device specific parameters
--:734: WARNING:LONG_LINE: line over 100 characters
-#734: FILE: drivers/gpu/drm/i915/i915_drv.h:1653:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
-
--:734: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#734: FILE: drivers/gpu/drm/i915/i915_drv.h:1653:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
-
-total: 0 errors, 1 warnings, 1 checks, 662 lines checked
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
