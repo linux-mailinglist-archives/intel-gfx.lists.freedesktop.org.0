@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB511A0D0E
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 13:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9721A0D53
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:08:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 397DE6E842;
-	Tue,  7 Apr 2020 11:49:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00CBA89DD2;
+	Tue,  7 Apr 2020 12:08:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35D596E84D
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 11:49:56 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id r26so1511951wmh.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 04:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:in-reply-to:message-id:references
- :user-agent:mime-version;
- bh=C22Inixa2GP4o4A4bOqnhTQTvNYq2UUrFPkMWCd0JO8=;
- b=qnEoJA9V9tOhOXnlLl6moGGjGDnLXXisqlFKI2YWpBQW08GEDzbBWgH4bh2A+bz17l
- eQ6ptVvTtNLPic2edxVDgWTLuxeTZ251xFsMo2HO3ak3DO1dx6It71xoY1X8qwYiHDUw
- XYV90iM01TEtCrX+VckZoXiPgDlKZ6agCBuLozkE7TF6AO1Ktv2DJW4sYeGCwZynmXnc
- u2UGSpfUiwTMSbeqJm4Xc61Dr5LHaRZE99R+ZvlKwCs/0Yjd4whcODk1YtIt6Kk5Kf7K
- MLDaOZkZAQbEWeYcbiN8jMAyh6hBpx4Uguo6ybtcD3khlzxR5Ge5zUYEsrG0Gcd+NBWa
- UiTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
- :references:user-agent:mime-version;
- bh=C22Inixa2GP4o4A4bOqnhTQTvNYq2UUrFPkMWCd0JO8=;
- b=JP+AowoqFlWKB8Xt+HEklhc3YW7eZ6tWFx0i9EE+S/7vASy6iOkmg7hPOZ1+9qRj7v
- d/XXpt/nidfgKMjuDqZP68s6kWa9vepN0xFKK7VbWdM2ktUoHmoY46S7wL445VMUqfvV
- b9m3dOAb9VqJbEy2JX+KI2lMesNaENIQJBIbPcsbogQNHaPS7Xe1+j6RLhEslY/K58eJ
- fyGBYyNiJFREMH/GXwv1fzln25DiEK5IYFxuWXoIIRk9wvShnocFphkYkHkWIQZkzXMK
- pbSm8X0mR1HAY4btGbrmR0LZKO8OZiAeFLG4UC3niOuh3cFjdSawrPtprCS42u9aTmqe
- FofA==
-X-Gm-Message-State: AGi0PuZDqvgcrxaHd4OqE6qoF5VUOI49eqs0VmxSY1+heini3S5UhWLE
- epxwWl0o3ja06Dyrvhprj8tI2WxI
-X-Google-Smtp-Source: APiQypK8vqIwOjH6P9HHjruTknOzQUMP3mg/NhkfwiaPRsvksNlq7hF0uvAQxSjBwQnRtXPTc/ulQA==
-X-Received: by 2002:a7b:cd89:: with SMTP id y9mr2078750wmj.102.1586260194834; 
- Tue, 07 Apr 2020 04:49:54 -0700 (PDT)
-Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id s9sm2861890wmc.2.2020.04.07.04.49.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Apr 2020 04:49:54 -0700 (PDT)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Tue, 7 Apr 2020 14:49:37 +0300 (EAT)
-To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-6-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2004071448440.77089@wambui>
-References: <20200402114819.17232-1-jani.nikula@intel.com>
- <20200402114819.17232-6-jani.nikula@intel.com>
-User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D9DD89DD2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:08:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20827195-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 13:08:29 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Apr 2020 13:08:30 +0100
+Message-Id: <20200407120830.3257-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 06/17] drm/i915/debugfs: use struct
- drm_device based logging
+Subject: [Intel-gfx] [CI] drm/i915/gt: Yield the timeslice if caught waiting
+ on a user semaphore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,47 +37,286 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
+user batch or in our own preamble, the engine raises a
+GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
+respond to a semaphore wait by yielding the timeslice, if we have
+another context to yield to!
 
+The only real complication is that the interrupt is only generated for
+the start of the semaphore wait, and is asynchronous to our
+process_csb() -- that is, we may not have registered the timeslice before
+we see the interrupt. To ensure we don't miss a potential semaphore
+blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
+the interrupt and apply it to the next timeslice regardless of whether it
+was active at the time.
 
-On Thu, 2 Apr 2020, Jani Nikula wrote:
+v2: We use semaphores in preempt-to-busy, within the timeslicing
+implementation itself! Ergo, when we do insert a preemption due to an
+expired timeslice, the new context may start with the missed semaphore
+flagged by the retired context and be yielded, ad infinitum. To avoid
+this, read the context id at the time of the semaphore interrupt and
+only yield if that context is still active.
 
-> Convert all the DRM_* logging macros to the struct drm_device based
-> macros to provide device specific logging.
->
-> No functional changes.
->
-> Cc: Wambui Karuga <wambui.karugax@gmail.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 +++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 +++++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 13 ++++++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 41 +++++++++++++++++---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c       | 36 +++++++++--------
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 6 files changed, 82 insertions(+), 24 deletions(-)
 
-Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 977e23fac5ce..b1f8527f02c8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1325,6 +1325,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 
+ 	if (engine->id == RENDER_CLASS && IS_GEN_RANGE(dev_priv, 4, 7))
+ 		drm_printf(m, "\tCCID: 0x%08x\n", ENGINE_READ(engine, CCID));
++	if (HAS_EXECLISTS(dev_priv)) {
++		drm_printf(m, "\tEL_STAT_HI: 0x%08x\n",
++			   ENGINE_READ(engine, RING_EXECLIST_STATUS_HI));
++		drm_printf(m, "\tEL_STAT_LO: 0x%08x\n",
++			   ENGINE_READ(engine, RING_EXECLIST_STATUS_LO));
++	}
+ 	drm_printf(m, "\tRING_START: 0x%08x\n",
+ 		   ENGINE_READ(engine, RING_START));
+ 	drm_printf(m, "\tRING_HEAD:  0x%08x\n",
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index de8e6edcf999..01d4bd781a2f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -156,6 +156,15 @@ struct intel_engine_execlists {
+ 	 */
+ 	struct i915_priolist default_priolist;
+ 
++	/**
++	 * @yield: CCID at the time of the last semaphore-wait interrupt.
++	 *
++	 * Instead of leaving a semaphore busy-spinning on an engine, we would
++	 * like to switch to another ready context, i.e. yielding the semaphore
++	 * timeslice.
++	 */
++	u32 yield;
++
+ 	/**
+ 	 * @error_interrupt: CS Master EIR
+ 	 *
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+index f0e7fd95165a..875bd0392ffc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+@@ -39,6 +39,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
+ 		}
+ 	}
+ 
++	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
++		WRITE_ONCE(engine->execlists.yield,
++			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
++		if (del_timer(&engine->execlists.timer))
++			tasklet = true;
++	}
++
+ 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
+ 		tasklet = true;
+ 
+@@ -228,7 +235,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+ 	const u32 irqs =
+ 		GT_CS_MASTER_ERROR_INTERRUPT |
+ 		GT_RENDER_USER_INTERRUPT |
+-		GT_CONTEXT_SWITCH_INTERRUPT;
++		GT_CONTEXT_SWITCH_INTERRUPT |
++		GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	struct intel_uncore *uncore = gt->uncore;
+ 	const u32 dmask = irqs << 16 | irqs;
+ 	const u32 smask = irqs << 16;
+@@ -366,7 +374,8 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
+ 	const u32 irqs =
+ 		GT_CS_MASTER_ERROR_INTERRUPT |
+ 		GT_RENDER_USER_INTERRUPT |
+-		GT_CONTEXT_SWITCH_INTERRUPT;
++		GT_CONTEXT_SWITCH_INTERRUPT |
++		GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	const u32 gt_interrupts[] = {
+ 		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
+ 		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 19ffc7763683..7adc73a5b709 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1768,7 +1768,8 @@ static void defer_active(struct intel_engine_cs *engine)
+ }
+ 
+ static bool
+-need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
++need_timeslice(const struct intel_engine_cs *engine,
++	       const struct i915_request *rq)
+ {
+ 	int hint;
+ 
+@@ -1782,6 +1783,32 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
+ 	return hint >= effective_prio(rq);
+ }
+ 
++static bool
++timeslice_yield(const struct intel_engine_execlists *el,
++		const struct i915_request *rq)
++{
++	/*
++	 * Once bitten, forever smitten!
++	 *
++	 * If the active context ever busy-waited on a semaphore,
++	 * it will be treated as a hog until the end of its timeslice (i.e.
++	 * until it is scheduled out and replaced by a new submission,
++	 * possibly even its own lite-restore). The HW only sends an interrupt
++	 * on the first miss, and we do know if that semaphore has been
++	 * signaled, or even if it is now stuck on another semaphore. Play
++	 * safe, yield if it might be stuck -- it will be given a fresh
++	 * timeslice in the near future.
++	 */
++	return upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield);
++}
++
++static bool
++timeslice_expired(const struct intel_engine_execlists *el,
++		  const struct i915_request *rq)
++{
++	return timer_expired(&el->timer) || timeslice_yield(el, rq);
++}
++
+ static int
+ switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
+ {
+@@ -1797,8 +1824,7 @@ timeslice(const struct intel_engine_cs *engine)
+ 	return READ_ONCE(engine->props.timeslice_duration_ms);
+ }
+ 
+-static unsigned long
+-active_timeslice(const struct intel_engine_cs *engine)
++static unsigned long active_timeslice(const struct intel_engine_cs *engine)
+ {
+ 	const struct intel_engine_execlists *execlists = &engine->execlists;
+ 	const struct i915_request *rq = *execlists->active;
+@@ -1989,18 +2015,19 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 
+ 			last = NULL;
+ 		} else if (need_timeslice(engine, last) &&
+-			   timer_expired(&engine->execlists.timer)) {
++			   timeslice_expired(execlists, last)) {
+ 			if (i915_request_completed(last)) {
+ 				tasklet_hi_schedule(&execlists->tasklet);
+ 				return;
+ 			}
+ 
+ 			ENGINE_TRACE(engine,
+-				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
++				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
+ 				     last->fence.context,
+ 				     last->fence.seqno,
+ 				     last->sched.attr.priority,
+-				     execlists->queue_priority_hint);
++				     execlists->queue_priority_hint,
++				     yesno(timeslice_yield(execlists, last)));
+ 
+ 			ring_set_paused(engine, 1);
+ 			defer_active(engine);
+@@ -2261,6 +2288,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		}
+ 		clear_ports(port + 1, last_port - port);
+ 
++		WRITE_ONCE(execlists->yield, -1);
+ 		execlists_submit_ports(engine);
+ 		set_preempt_timeout(engine, *active);
+ 	} else {
+@@ -4563,6 +4591,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
+ 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
+ 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
+ 	engine->irq_keep_mask |= GT_CS_MASTER_ERROR_INTERRUPT << shift;
++	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
+ }
+ 
+ static void rcs_submission_override(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index a9ccfae54c24..9496e9318db3 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -954,13 +954,20 @@ create_rewinder(struct intel_context *ce,
+ 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	*cs++ = MI_NOOP;
+ 
+-	*cs++ = MI_SEMAPHORE_WAIT |
+-		MI_SEMAPHORE_GLOBAL_GTT |
+-		MI_SEMAPHORE_POLL |
+-		MI_SEMAPHORE_SAD_NEQ_SDD;
+-	*cs++ = 0;
+-	*cs++ = offset;
+-	*cs++ = 0;
++	if (!wait) {
++		*cs++ = MI_SEMAPHORE_WAIT |
++			MI_SEMAPHORE_GLOBAL_GTT |
++			MI_SEMAPHORE_POLL |
++			MI_SEMAPHORE_SAD_NEQ_SDD;
++		*cs++ = 0;
++		*cs++ = offset;
++		*cs++ = 0;
++	} else { /* avoid accidentally yielding due to semaphore wait */
++		*cs++ = MI_NOOP;
++		*cs++ = MI_NOOP;
++		*cs++ = MI_NOOP;
++		*cs++ = MI_NOOP;
++	}
+ 
+ 	*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
+ 	*cs++ = i915_mmio_reg_offset(RING_TIMESTAMP(rq->engine->mmio_base));
+@@ -1071,15 +1078,12 @@ static int live_timeslice_rewind(void *arg)
+ 		GEM_BUG_ON(!timer_pending(&engine->execlists.timer));
+ 
+ 		/* ELSP[] = { { A:rq1, A:rq2 }, { B:rq1 } } */
+-		GEM_BUG_ON(!i915_request_is_active(rq[A1]));
+-		GEM_BUG_ON(!i915_request_is_active(rq[A2]));
+-		GEM_BUG_ON(!i915_request_is_active(rq[B1]));
+-
+-		/* Wait for the timeslice to kick in */
+-		del_timer(&engine->execlists.timer);
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
+-		intel_engine_flush_submission(engine);
+-
++		if (i915_request_is_active(rq[A2])) { /* semaphore yielded! */
++			/* Wait for the timeslice to kick in */
++			del_timer(&engine->execlists.timer);
++			tasklet_hi_schedule(&engine->execlists.tasklet);
++			intel_engine_flush_submission(engine);
++		}
+ 		/* -> ELSP[] = { { A:rq1 }, { B:rq1 } } */
+ 		GEM_BUG_ON(!i915_request_is_active(rq[A1]));
+ 		GEM_BUG_ON(!i915_request_is_active(rq[B1]));
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8cebb7a86b8c..1a7bd6db164b 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3094,6 +3094,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
+ #define GT_BSD_USER_INTERRUPT			(1 << 12)
+ #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
++#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
+ #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
+ #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
+ #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
+-- 
+2.20.1
 
-> ---
-> drivers/gpu/drm/i915/i915_debugfs.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index b22b4e9c3138..aa35a59f1c7d 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -741,7 +741,7 @@ i915_error_state_write(struct file *filp,
-> 	if (!error)
-> 		return 0;
->
-> -	DRM_DEBUG_DRIVER("Resetting error state\n");
-> +	drm_dbg(&error->i915->drm, "Resetting error state\n");
-> 	i915_reset_error_state(error->i915);
->
-> 	return cnt;
-> -- 
-> 2.20.1
->
->
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
