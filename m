@@ -2,59 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CF31A0885
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E84FA1A088E
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:45:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4EFC6E584;
-	Tue,  7 Apr 2020 07:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCD76E570;
+	Tue,  7 Apr 2020 07:45:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA966E57E
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:42:54 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id p10so2654968wrt.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 00:42:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=jq4C3ivERiHGWYHnYULrL/YqTLEFidM1uG9DLMVZrU4=;
- b=jcD3Cp/NNO8tlS19HhBDJW8XSVHkGzjX615r/W0iEmI/dW05OIw9UkArP1Ym6sXsfr
- GrzVNLWOr4rBX+VdkYJIs7bqmc7rMEFhXaKU9tgP7O6upMGpkpl3PLaFjhoQQ+ILePHP
- PCRppTabfGv+X6IjqHudvZShSKZXU1HbLhmAA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=jq4C3ivERiHGWYHnYULrL/YqTLEFidM1uG9DLMVZrU4=;
- b=mwy3EV+YCyBGg38rtRaDcO69L9s5Uz+uy/lHCHQj2K44nc9B6TH/e4bwoIfaoUCWGX
- G6EykIzsbjCPspvbijuLuLlSkHycO2iEBy5vcjtcrrDeABm2lgKFnZfge8XPlJQMgemB
- hd1pC1AAdJ3mqsx4+qo4gCdwTxtseLgjMU2jKOIOvDS99lguutdFBWGudU48CI2+5ynY
- /OvSEUqJTwFN8vx28kwb5EyCRi8aMp27z+8K5jaMfgwf7p7EWglIVDJv9OpcPH7sFTzQ
- XTqmb1DA7L2tyjsfKQ3ENKdGgjk4Qc/gAZuvLyICenr4BtuRYvAmMaxtdUv40X7pdJ9P
- a/xw==
-X-Gm-Message-State: AGi0Pua1ySxND8OSA3kliSfmzp7NvbVhS6bl57E0+0uzLjHut8GhUWG9
- dX3K2KutVPrpMcc4n9HXY3eBzQ==
-X-Google-Smtp-Source: APiQypJ0dRXDI93nwsVbUW/FK3rq4YdhPWN3FRgv1K5NG2KIlaHkzh4+Wjq+DWfXap98lroTPF+Ahg==
-X-Received: by 2002:a5d:4e4e:: with SMTP id r14mr1234597wrt.362.1586245372966; 
- Tue, 07 Apr 2020 00:42:52 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o13sm7528334wrm.74.2020.04.07.00.42.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Apr 2020 00:42:52 -0700 (PDT)
-Date: Tue, 7 Apr 2020 09:42:50 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200407074250.GC3456981@phenom.ffwll.local>
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-15-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 078146E570;
+ Tue,  7 Apr 2020 07:45:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01CA1A00C7;
+ Tue,  7 Apr 2020 07:45:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200403204008.14864-15-ville.syrjala@linux.intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 14/17] drm/i915: Replace
- I915_MODE_FLAG_INHERITED with a boolean
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jeevan B" <jeevan.b@intel.com>
+Date: Tue, 07 Apr 2020 07:45:01 -0000
+Message-ID: <158624550100.26325.16307056540194785137@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
+In-Reply-To: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/5=5D_drm=3A_report_dp_downstream_port?=
+ =?utf-8?q?_type_as_a_subconnector_property?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,165 +39,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 11:40:05PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> There's no reason for I915_MODE_FLAG_INHERITED to exist as a flag
-> anymore. Just make it a boolean.
-> =
+Series: series starting with [1/5] drm: report dp downstream port type as a subconnector property
+URL   : https://patchwork.freedesktop.org/series/75585/
+State : warning
 
-> CC: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Emil Velikov <emil.l.velikov@gmail.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+== Summary ==
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm: report dp downstream port type as a subconnector property
+Okay!
 
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_display.c      | 15 ++++++---------
->  .../gpu/drm/i915/display/intel_display_types.h    |  2 +-
->  3 files changed, 8 insertions(+), 11 deletions(-)
-> =
+Commit: drm/i915: utilize subconnector property for DP
+Okay!
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
-m/i915/display/intel_atomic.c
-> index 5863e339a426..2deafaa9ec74 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -249,10 +249,10 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
->  	crtc_state->update_wm_post =3D false;
->  	crtc_state->fifo_changed =3D false;
->  	crtc_state->preload_luts =3D false;
-> +	crtc_state->inherited =3D false;
->  	crtc_state->wm.need_postvbl_update =3D false;
->  	crtc_state->fb_bits =3D 0;
->  	crtc_state->update_planes =3D 0;
-> -	crtc_state->mode_flags &=3D ~I915_MODE_FLAG_INHERITED;
->  =
+Commit: drm/nouveau: utilize subconnector property for DP
+Okay!
 
->  	return &crtc_state->uapi;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index d88cade45c35..550369444811 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6413,8 +6413,7 @@ static bool hsw_post_update_enable_ips(const struct=
- intel_crtc_state *old_crtc_s
->  	 * We can't read out IPS on broadwell, assume the worst and
->  	 * forcibly enable IPS on the first fastset.
->  	 */
-> -	if (new_crtc_state->update_pipe &&
-> -	    old_crtc_state->mode_flags & I915_MODE_FLAG_INHERITED)
-> +	if (new_crtc_state->update_pipe && old_crtc_state->inherited)
->  		return true;
->  =
+Commit: drm/amdgpu: utilize subconnector property for DP through atombios
+Okay!
 
->  	return !old_crtc_state->ips_enabled;
-> @@ -13516,8 +13515,7 @@ intel_pipe_config_compare(const struct intel_crtc=
-_state *current_config,
->  	bool ret =3D true;
->  	u32 bp_gamma =3D 0;
->  	bool fixup_inherited =3D fastset &&
-> -		(current_config->mode_flags & I915_MODE_FLAG_INHERITED) &&
-> -		!(pipe_config->mode_flags & I915_MODE_FLAG_INHERITED);
-> +		current_config->inherited && !pipe_config->inherited;
->  =
+Commit: drm/amdgpu: utilize subconnector property for DP through DisplayManager
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1161:36: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1234:37: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1260:41: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1262:39: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1266:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1267:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2511:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2529:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5298:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:750:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:805:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:809:23: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:810:23: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:813:30: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:816:28: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8632:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8636:50: warning: missing braces around initializer
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1197:36: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1270:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1296:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1298:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1302:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1303:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2548:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2566:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5337:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:786:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:841:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:845:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:846:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:849:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:852:28: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8671:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8675:50: warning: missing braces around initializer
 
->  	if (fixup_inherited && !fastboot_enabled(dev_priv)) {
->  		drm_dbg_kms(&dev_priv->drm,
-> @@ -14667,10 +14665,9 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  	int ret, i;
->  	bool any_ms =3D false;
->  =
-
-> -	/* Catch I915_MODE_FLAG_INHERITED */
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
-> -		if (new_crtc_state->mode_flags !=3D old_crtc_state->mode_flags)
-> +		if (new_crtc_state->inherited !=3D old_crtc_state->inherited)
->  			new_crtc_state->uapi.mode_changed =3D true;
->  	}
->  =
-
-> @@ -15016,7 +15013,7 @@ static void intel_update_crtc(struct intel_atomic=
-_state *state,
->  	 * of enabling them on the CRTC's first fastset.
->  	 */
->  	if (new_crtc_state->update_pipe && !modeset &&
-> -	    old_crtc_state->mode_flags & I915_MODE_FLAG_INHERITED)
-> +	    old_crtc_state->inherited)
->  		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
->  }
->  =
-
-> @@ -17494,7 +17491,7 @@ static int intel_initial_commit(struct drm_device=
- *dev)
->  			 * happen only for the first real commit from userspace.
->  			 * So preserve the inherited flag for the time being.
->  			 */
-> -			crtc_state->mode_flags |=3D I915_MODE_FLAG_INHERITED;
-> +			crtc_state->inherited =3D true;
->  =
-
->  			ret =3D drm_atomic_add_affected_planes(state, &crtc->base);
->  			if (ret)
-> @@ -18266,7 +18263,7 @@ static void intel_modeset_readout_hw_state(struct=
- drm_device *dev)
->  			 * set a flag to indicate that a full recalculation is
->  			 * needed on the next commit.
->  			 */
-> -			crtc_state->mode_flags |=3D I915_MODE_FLAG_INHERITED;
-> +			crtc_state->inherited =3D true;
->  =
-
->  			intel_crtc_compute_pixel_rate(crtc_state);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 26df856f8b72..f529b14fbb2a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -642,7 +642,6 @@ struct intel_crtc_scaler_state {
->  };
->  =
-
->  /* {crtc,crtc_state}->mode_flags */
-> -#define I915_MODE_FLAG_INHERITED (1<<0)
->  /* Flag to get scanline using frame time stamps */
->  #define I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP (1<<1)
->  /* Flag to use the scanline counter instead of the pixel counter */
-> @@ -837,6 +836,7 @@ struct intel_crtc_state {
->  	bool update_wm_pre, update_wm_post; /* watermarks are updated */
->  	bool fifo_changed; /* FIFO split is changed */
->  	bool preload_luts;
-> +	bool inherited; /* state inherited from BIOS? */
->  =
-
->  	/* Pipe source size (ie. panel fitter input size)
->  	 * All planes will be positioned inside this space,
-> -- =
-
-> 2.24.1
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
