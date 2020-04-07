@@ -1,60 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC0C1A0892
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:46:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4DD1A089B
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:48:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB9F6E573;
-	Tue,  7 Apr 2020 07:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02B586E578;
+	Tue,  7 Apr 2020 07:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 522486E573
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:46:25 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id j17so2619334wru.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 00:46:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=lVZ+YdwfIk4PeMabQVzWIFSraf5btbPFfPJ0hBqt9yI=;
- b=EF+k95AwD6bPpwIwEsasOreHbgtuI2K8eJjY1RRWNWTihPEHBWAhVO2k7cbSZjdDa+
- Tk2y1/DEBUWlWPgyOsBB39WIkAVqA/2kgMtiu1E1gil2VadmaH58rAA4HUm/TP5XHmtW
- SL+MBW36t8TMMLf75TBBkD3qBLf7X9qDpz4NY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=lVZ+YdwfIk4PeMabQVzWIFSraf5btbPFfPJ0hBqt9yI=;
- b=KLsRdA76A+lUSJyJk1cXfZZPGwfTY4WteMULWAqq6y1Wn60DY6E8sgup56evQutDtJ
- ZNtomiFb0LQ2hJn2dXQiSfrwFBpyBgMO0QlofXRMMRXp03JIKjN7xlWyJr/ujclMK91E
- XhDpla2jBrC52pC2Xy2R67L2wsl059ap9DZUqtzSjovaxTzqa4lDHktLlN1BuIbeI+1Z
- PqcoiAgQj/EaP8m32hgp+jrIfU0ZVjmvjTgupwgB7HRSlLXDTAd9TRzv5VxwUvG/0762
- S6T7hdjLh5/noAYx2owHUnBlgEH4lVHM+eCjgvow8g6LPkVBHiAfksb2qtyxV0fBqSeA
- kBHw==
-X-Gm-Message-State: AGi0PuaKXsFTacwFG8ZT9nufJBWz+nESxNkDkQam9Rb+7rqgZCgyHAwe
- 1fEXOmeJS0rz3lOTwwi5dKDjig==
-X-Google-Smtp-Source: APiQypICjAebPo3knB98Owf+DaBh/JvQjgUTjZlGbvCFiqt7eMU5Aw4X36Lybdm/9gjYajp9OefX0g==
-X-Received: by 2002:adf:a406:: with SMTP id d6mr1236977wra.79.1586245583835;
- Tue, 07 Apr 2020 00:46:23 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n124sm1276376wma.11.2020.04.07.00.46.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Apr 2020 00:46:23 -0700 (PDT)
-Date: Tue, 7 Apr 2020 09:46:21 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200407074621.GD3456981@phenom.ffwll.local>
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-16-ville.syrjala@linux.intel.com>
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B636E578
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:48:43 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id D96751C4A6E; Tue,  7 Apr 2020 09:48:41 +0200 (CEST)
+Date: Tue, 7 Apr 2020 09:48:41 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200407074841.GB18673@amd.ucw.cz>
+References: <20200407072047.GA18532@amd.ucw.cz>
+ <158624426770.4794.6070200474948860768@build.alporthouse.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200403204008.14864-16-ville.syrjala@linux.intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 15/17] drm/gma500: Stop using
- mode->private_flags
+In-Reply-To: <158624426770.4794.6070200474948860768@build.alporthouse.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] Linus,
+ please revert 7dc8f11437: regression in 5.7-rc0,
+ hangs while attempting to run X
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,158 +38,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: hpa@zytor.com, intel-gfx@lists.freedesktop.org,
+ kernel list <linux-kernel@vger.kernel.org>, mingo@redhat.com, bp@alien8.de,
+ matthew.auld@intel.com, airlied@redhat.com, tglx@linutronix.de,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Content-Type: multipart/mixed; boundary="===============0878606042=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 11:40:06PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
 
-> gma500 only uses mode->private_flags to convey the sdvo pixel
-> multiplier from the encoder .mode_fixup() hook to the encoder
-> .mode_set() hook. Those always seems get called as a pair so
-> let's just stuff the pixel multiplier into the encoder itself
-> as there are no state objects we could use in this non-atomic
-> driver.
-> =
-
-> Paves the way for nuking mode->private_flag.
-
-Yeah the sdvo multiplier is why I originally started with creating the
-intel_pipe_config stuff ...
-
-The only semi-nasty thing with legacy crtc helpers is that they don't
-clean up anything from mode_fixup failures. But since the next modeset
-will go through the full dance again I think that's ok.
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> =
-
-> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> CC: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Emil Velikov <emil.l.velikov@gmail.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/gma500/psb_intel_drv.h  | 19 -------------------
->  drivers/gpu/drm/gma500/psb_intel_sdvo.c | 11 ++++++-----
->  2 files changed, 6 insertions(+), 24 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/gma500/psb_intel_drv.h b/drivers/gpu/drm/gma=
-500/psb_intel_drv.h
-> index fb601983cef0..3dd5718c3e31 100644
-> --- a/drivers/gpu/drm/gma500/psb_intel_drv.h
-> +++ b/drivers/gpu/drm/gma500/psb_intel_drv.h
-> @@ -56,25 +56,6 @@
->  #define INTEL_OUTPUT_DISPLAYPORT 9
->  #define INTEL_OUTPUT_EDP 10
->  =
-
-> -#define INTEL_MODE_PIXEL_MULTIPLIER_SHIFT (0x0)
-> -#define INTEL_MODE_PIXEL_MULTIPLIER_MASK (0xf << INTEL_MODE_PIXEL_MULTIP=
-LIER_SHIFT)
-> -
-> -static inline void
-> -psb_intel_mode_set_pixel_multiplier(struct drm_display_mode *mode,
-> -				int multiplier)
-> -{
-> -	mode->clock *=3D multiplier;
-> -	mode->private_flags |=3D multiplier;
-> -}
-> -
-> -static inline int
-> -psb_intel_mode_get_pixel_multiplier(const struct drm_display_mode *mode)
-> -{
-> -	return (mode->private_flags & INTEL_MODE_PIXEL_MULTIPLIER_MASK)
-> -	       >> INTEL_MODE_PIXEL_MULTIPLIER_SHIFT;
-> -}
-> -
-> -
->  /*
->   * Hold information useally put on the device driver privates here,
->   * since it needs to be shared across multiple of devices drivers privat=
-es.
-> diff --git a/drivers/gpu/drm/gma500/psb_intel_sdvo.c b/drivers/gpu/drm/gm=
-a500/psb_intel_sdvo.c
-> index 264d7ad004b4..9e88a37f55e9 100644
-> --- a/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-> +++ b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-> @@ -132,6 +132,8 @@ struct psb_intel_sdvo {
->  	/* DDC bus used by this SDVO encoder */
->  	uint8_t ddc_bus;
->  =
-
-> +	u8 pixel_multiplier;
-> +
->  	/* Input timings for adjusted_mode */
->  	struct psb_intel_sdvo_dtd input_dtd;
->  =
-
-> @@ -958,7 +960,6 @@ static bool psb_intel_sdvo_mode_fixup(struct drm_enco=
-der *encoder,
->  				  struct drm_display_mode *adjusted_mode)
->  {
->  	struct psb_intel_sdvo *psb_intel_sdvo =3D to_psb_intel_sdvo(encoder);
-> -	int multiplier;
->  =
-
->  	/* We need to construct preferred input timings based on our
->  	 * output timings.  To do that, we have to set the output
-> @@ -985,8 +986,9 @@ static bool psb_intel_sdvo_mode_fixup(struct drm_enco=
-der *encoder,
->  	/* Make the CRTC code factor in the SDVO pixel multiplier.  The
->  	 * SDVO device will factor out the multiplier during mode_set.
->  	 */
-> -	multiplier =3D psb_intel_sdvo_get_pixel_multiplier(adjusted_mode);
-> -	psb_intel_mode_set_pixel_multiplier(adjusted_mode, multiplier);
-> +	psb_intel_sdvo->pixel_multiplier =3D
-> +		psb_intel_sdvo_get_pixel_multiplier(adjusted_mode);
-> +	adjusted_mode->clock *=3D psb_intel_sdvo->pixel_multiplier;
->  =
-
->  	return true;
->  }
-> @@ -1002,7 +1004,6 @@ static void psb_intel_sdvo_mode_set(struct drm_enco=
-der *encoder,
->  	u32 sdvox;
->  	struct psb_intel_sdvo_in_out_map in_out;
->  	struct psb_intel_sdvo_dtd input_dtd;
-> -	int pixel_multiplier =3D psb_intel_mode_get_pixel_multiplier(adjusted_m=
-ode);
->  	int rate;
->  	int need_aux =3D IS_MRST(dev) ? 1 : 0;
->  =
-
-> @@ -1060,7 +1061,7 @@ static void psb_intel_sdvo_mode_set(struct drm_enco=
-der *encoder,
->  =
-
->  	(void) psb_intel_sdvo_set_input_timing(psb_intel_sdvo, &input_dtd);
->  =
-
-> -	switch (pixel_multiplier) {
-> +	switch (psb_intel_sdvo->pixel_multiplier) {
->  	default:
->  	case 1: rate =3D SDVO_CLOCK_RATE_MULT_1X; break;
->  	case 2: rate =3D SDVO_CLOCK_RATE_MULT_2X; break;
-> -- =
-
-> 2.24.1
-> =
+--===============0878606042==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="hQiwHBbRI9kgIhsi"
+Content-Disposition: inline
 
 
--- =
+--hQiwHBbRI9kgIhsi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Hi!
+
+> > > 7dc8f1143778a35b190f9413f228b3cf28f67f8d
+> > >=20
+> > >     drm/i915/gem: Drop relocation slowpath
+> > >    =20
+> > >     Since the relocations are no longer performed under a global
+> > >     struct_mutex, or any other lock, that is also held by pagefault h=
+andlers,
+> > >     we can relax and allow our fast path to take a fault. As we no lo=
+nger
+> > >     need to abort the fast path for lock avoidance, we no longer need=
+ the
+> > >     slow path handling at all.
+> > >=20
+> > > causes regression on thinkpad x220: instead of starting X, I'm looking
+> > > at blinking cursor.
+> > >=20
+> > > Reverting the patch on too of 919dce24701f7b3 fixes things for me.
+> >=20
+> > I have received no feedback from patch authors, and I believe we don't
+> > want to break boot in -rc1 on Intel hardware... so the commit should
+> > be simply reverted.
+>=20
+> Beyond the fix already submitted?
+
+I did not get that one, can I have a pointer?
+
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--hQiwHBbRI9kgIhsi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXowwWQAKCRAw5/Bqldv6
+8ptBAJ9iwHYXM0KdeR4HdWyZ7IEsER3vHACcC1g2U0sCmmYeFy9vvaeM+OCph0g=
+=8TpN
+-----END PGP SIGNATURE-----
+
+--hQiwHBbRI9kgIhsi--
+
+--===============0878606042==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0878606042==--
