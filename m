@@ -1,44 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A701A1784
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 23:52:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E440C1A1789
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 23:55:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C82D6E907;
-	Tue,  7 Apr 2020 21:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 491AB6E90E;
+	Tue,  7 Apr 2020 21:55:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 056936E907
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 21:52:38 +0000 (UTC)
-IronPort-SDR: O9NrGkxd6aPoeQBlUW9ntLlBQsSFzOcxnk5KgKi+APAAWf0Psx1b2xoDDfleK8ZyVvWUgVB9dG
- Y1LsTSP9uIYA==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4338D6E90E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 21:55:50 +0000 (UTC)
+IronPort-SDR: fQ3V5skfOKVrebQa5X9j5Inr/RH1B3FGLawNE/x5koH7vxqlzRNhsx/FHcWE6DM9x0ZajOxU/C
+ +sMH61FE/JLQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 14:52:38 -0700
-IronPort-SDR: qH8uLSdDfz3iMx4QKm8Rc/Q04qxYlUACf4c/t5qhHOtUNvJxTQLm1UAIPuolySJpRwNjEiGCzv
- RJ5WmXmoC5NQ==
-X-IronPort-AV: E=Sophos;i="5.72,356,1580803200"; d="scan'208";a="424904812"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 14:52:36 -0700
-Date: Wed, 8 Apr 2020 00:52:26 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200407215226.GA23597@ideak-desk.fi.intel.com>
-References: <20200407011157.362092-1-jose.souza@intel.com>
- <20200407011157.362092-4-jose.souza@intel.com>
- <20200407154207.GD21484@ideak-desk.fi.intel.com>
- <953592d02bb1c6587b4a12cd5dabb2926e8f3da5.camel@intel.com>
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 14:55:49 -0700
+IronPort-SDR: Be+qmYlOJfrCSylINTJ6T84PsMyhKSjjJKhHA/YBvvMsRfwahsdaoQkklNRgyVK9/fHSUI/GRj
+ t6jkjS0ucRXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,356,1580803200"; d="scan'208";a="269563535"
+Received: from bpaauwe-desk1.fm.intel.com ([10.105.128.11])
+ by orsmga002.jf.intel.com with ESMTP; 07 Apr 2020 14:55:49 -0700
+From: Bob Paauwe <bob.j.paauwe@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Tue,  7 Apr 2020 14:55:45 -0700
+Message-Id: <20200407215546.5445-1-bob.j.paauwe@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <953592d02bb1c6587b4a12cd5dabb2926e8f3da5.camel@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 4/8] drm/i915/tc/icl: Implement TC cold
- sequences
+Subject: [Intel-gfx] [PATCH 0/1] Adding YUV444 packed format support for skl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,44 +44,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kai.heng.feng@canonical.com" <kai.heng.feng@canonical.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2020 at 11:01:14PM +0300, Souza, Jose wrote:
-> [...]
-> > > +	} while (ret == -EAGAIN);
-> > 
-> > Let's protect against an endless loop.
-> 
-> const ktime_t timeout = ktime_add_ms(ktime_get_raw(), 3);
-> int ret;
-> 
-> do {
-> 	ret = sandybridge_pcode_write_timeout(i915,
-> 					      ICL_PCODE_EXIT_TCCOLD,
-> 					      0, 250, 1);
-> } while (ret == -EAGAIN && ktime_compare(timeout, ktime_get_raw()) > 0);
+Test-with: <20200407215146.5331-1-bob.j.paauwe@intel.com>
 
-Why not just a simple
+Stanislav Lisovskiy (1):
+  drm/i915: Adding YUV444 packed format support for skl+ (V15)
 
-	trial = 0;
-	while (1) {
-		ret = pcode_write();
-		if (ret != -EAGAIN || ++trial == 3)
-			break;
-		msleep(1);
-	}
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 8 ++++++++
+ drivers/gpu/drm/i915/i915_reg.h              | 2 +-
+ 3 files changed, 14 insertions(+), 1 deletion(-)
 
-with the msleep(1), as if the PCODE run/busy flag didn't get cleared after
-the 1ms polling, it probably doesn't make sense to retry in a tight loop.
+-- 
+2.21.0
 
---Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
