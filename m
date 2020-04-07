@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B9D1A087D
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:40:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B421A086F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:37:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D1D6E566;
-	Tue,  7 Apr 2020 07:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB7AE6E550;
+	Tue,  7 Apr 2020 07:37:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 662D06E598
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:40:17 +0000 (UTC)
-IronPort-SDR: Ymoj0vtZ2mWagzYS10IYCrTbcEUDGJmf4y9/jezfZCNLMfxhawTTP37RUJnisA3vxcTlUz6Er3
- 9zRrabS9VfmQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 00:40:16 -0700
-IronPort-SDR: I1mRg4FAD4zvi4gVvQCl2PzolpqwhrxiMrEGhAIG40G77NPgv0HKPSzTvnBNPt6Kajw6HOMq6m
- 2YaElJA/E8Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="424660058"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 07 Apr 2020 00:40:14 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Apr 2020 10:36:43 +0300
-Message-Id: <20200407073643.3910-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20200330122354.24752-3-stanislav.lisovskiy@intel.com>
-References: <20200330122354.24752-3-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 125CE6E550;
+ Tue,  7 Apr 2020 07:37:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BCD2A47DA;
+ Tue,  7 Apr 2020 07:37:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 2/5] drm/i915: Force recalculate min_cdclk if
- planes config changed
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Tue, 07 Apr 2020 07:37:08 -0000
+Message-ID: <158624502804.26326.16810333224306129909@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200407070916.30475-1-uma.shankar@intel.com>
+In-Reply-To: <20200407070916.30475-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Enable_DP_Display_Audio_WA?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +38,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In Gen11+ whenever we might exceed DBuf bandwidth we might need to
-recalculate CDCLK which DBuf bandwidth is scaled with.
-Total Dbuf bw used might change based on particular plane needs.
+== Series Details ==
 
-In intel_atomic_check_planes we try to filter out the cases when
-we definitely don't need to recalculate required bandwidth/CDCLK.
-In current code we compare amount of planes and skip recalculating
-if those are equal.
-This seems being too relaxed requirement and might be even wrong
-because plane combination might become different despite amount
-of planes is same - that requires recalculating min cdclk and
-consumed bandwidth.
+Series: drm/i915/display: Enable DP Display Audio WA
+URL   : https://patchwork.freedesktop.org/series/75582/
+State : success
 
-v2: - Changed commit message to properly reflect the need why,
-      we might want to change from hamming weight comparison
-      to actual plane combination checking.
+== Summary ==
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+CI Bug Log - changes from CI_DRM_8264 -> Patchwork_17227
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c77088e1d033..307636b23ac9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -14540,7 +14540,7 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
- 	/* See {hsw,vlv,ivb}_plane_ratio() */
- 	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
- 		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
--		IS_IVYBRIDGE(dev_priv);
-+		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >= 11);
- }
- 
- static int intel_atomic_check_planes(struct intel_atomic_state *state,
-@@ -14586,7 +14586,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state,
- 		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
- 		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
- 
--		if (hweight8(old_active_planes) == hweight8(new_active_planes))
-+		/*
-+		 * Not only the number of planes, but if the plane configuration had
-+		 * changed might already mean we need to recompute min CDCLK,
-+		 * because different planes might consume different amount of Dbuf bandwidth
-+		 * according to formula: Bw per plane = Pixel rate * bpp * pipe/plane scale factor
-+		 */
-+		if (old_active_planes == new_active_planes)
- 			continue;
- 
- 		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
--- 
-2.24.1.485.gad05a3d8e5
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17227/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17227 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][1] ([i915#1158]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17227/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-y:           [INCOMPLETE][3] ([i915#1580]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17227/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
+  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
+
+
+Participating hosts (53 -> 47)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8264 -> Patchwork_17227
+
+  CI-20190529: 20190529
+  CI_DRM_8264: e0104585f880a64d4a9b40803cf4fb51ab499f7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5573: 9c582425d6b4fc1de9fc2ffc8015cc6f0a0d3e98 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17227: 4b7c7a1dc51c77c7d32c5b48f44b5a9ab37a8565 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_17227/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  MODPOST 121 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__divdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1283: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+4b7c7a1dc51c drm/i915/display: Enable DP Display Audio WA
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17227/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
