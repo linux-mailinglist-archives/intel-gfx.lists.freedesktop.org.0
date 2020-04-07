@@ -1,35 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008651A0C42
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 12:51:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494861A0C6E
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 13:02:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB58489D89;
-	Tue,  7 Apr 2020 10:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B65D6E82E;
+	Tue,  7 Apr 2020 11:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4246E826
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 10:51:16 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20826240-1500050 for multiple; Tue, 07 Apr 2020 11:51:11 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E4376E82E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 11:02:48 +0000 (UTC)
+IronPort-SDR: 9oZCiSgCWRcuLqrw2k3C3lWyj2XZ04cOzkdlw8vnElpzjy3KCoB/dOZRDkdZHi07tq5b+5HKZN
+ CVUUJwtUhS7A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 04:02:48 -0700
+IronPort-SDR: jTSdbP4hUbHDy4fboq7WrzkcNiK4uIPN4GtDLazxmupMwXIq/shJUbOzmbeVU+Ll5elDdXL2+p
+ PMDYAbV7fJeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="397820234"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga004.jf.intel.com with ESMTP; 07 Apr 2020 04:02:46 -0700
+Date: Tue, 7 Apr 2020 16:22:51 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20200407105251.GG5533@intel.com>
+References: <20200407085038.11602-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <368ed897-311b-2237-54cb-8c9cf26527c4@linux.intel.com>
-References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
- <20200403091300.14734-9-chris@chris-wilson.co.uk>
- <368ed897-311b-2237-54cb-8c9cf26527c4@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158625667260.8918.18433618047035214543@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 07 Apr 2020 11:51:12 +0100
-Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/gem: Allow combining
- submit-fences with syncobj
+Content-Disposition: inline
+In-Reply-To: <20200407085038.11602-1-uma.shankar@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Enable DP Display
+ Audio WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,25 +48,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kai.vehmanen@intel.com, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-04-07 11:44:45)
+On 2020-04-07 at 14:20:38 +0530, Uma Shankar wrote:
+> Enable Display Audio WA #1406928334 for 4k+VDSC usecase
+> on DP encoders.
 > 
-> On 03/04/2020 10:12, Chris Wilson wrote:
-> > Fixes: a88b6e4cbafd ("drm/i915: Allow specification of parallel execbuf")
+> v2: Fixed build failures on 32bit machine.
 > 
-> It looks like new uapi on the technical level, even though from a higher 
-> level it is just an application of existing uapi across more modes, so 
-> why fixes and who is the consumer?
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 113 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h            |  16 +++
+>  2 files changed, 129 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 950160f1a89f..ae896d75596b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -512,6 +512,115 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+>  	mutex_unlock(&dev_priv->av_mutex);
+>  }
+>  
+> +static void enable_audio_dsc_wa(struct intel_encoder *encoder,
+> +				const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum pipe pipe = crtc->pipe;
+> +	u64 link_clks_available, link_clks_required, link_clk;
+> +	u64 tu_data, tu_line, link_clks_active;
+> +	u64 hblank_rise, hblank_early_prog, samples_room;
+> +	u64 h_active, h_total, hblank_delta, pixel_clk, v_total, lanes;
+> +	u64 vdsc_bpp, fec_coeff, refresh_rate, cdclk;
+> +	u64 rounding_factor = 100000;
+> +	u32 val;
+> +
+> +	val = intel_de_read(dev_priv, AUD_CONFIG_BE);
+> +
+> +	if (INTEL_GEN(dev_priv) == 11)
+> +		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
+> +	else if (INTEL_GEN(dev_priv) >= 12)
+> +		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
+> +
+> +	if (crtc_state->dsc.compression_enable &&
+> +	    (crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
+> +	     crtc_state->hw.adjusted_mode.vdisplay >= 2160)) {
+> +		h_active = crtc_state->hw.adjusted_mode.hdisplay;
+> +		h_total = crtc_state->hw.adjusted_mode.htotal;
+> +		v_total = crtc_state->hw.adjusted_mode.vtotal;
+> +		hblank_rise = crtc_state->hw.adjusted_mode.hsync_start;
+> +		pixel_clk = crtc_state->hw.adjusted_mode.clock;
+> +		link_clk = crtc_state->port_clock;
+> +		lanes = crtc_state->lane_count;
+> +		vdsc_bpp = crtc_state->pipe_bpp;
+> +		refresh_rate = crtc_state->hw.adjusted_mode.vrefresh;
+> +		cdclk = dev_priv->cdclk.hw.cdclk;
+> +		/* fec= 0.972261, using rounding multiplier of 1000000 */
+> +		fec_coeff = 972261;
+> +
+> +		if (!(h_active && link_clk && lanes && vdsc_bpp && cdclk)) {
+> +			drm_err(&dev_priv->drm, "Null Parameters received\n");
+> +			return;
+> +		}
+> +
+> +		drm_dbg_kms(&dev_priv->drm, "h_active = %llu link_clk = %llu :"
+> +			    "lanes = %llu vdsc_bpp = %llu cdclk = %llu\n",
+> +			    h_active, link_clk, lanes, vdsc_bpp, cdclk);
+> +
+> +		link_clks_available = ((((h_total - h_active) *
+> +				       ((link_clk * rounding_factor) /
+> +				       pixel_clk)) / rounding_factor) - 28);
+> +
+> +		link_clks_required = DIV_ROUND_UP_ULL(192000, (refresh_rate *
+> +						      v_total)) *
+> +						      ((48 / lanes) + 2);
+> +
+> +		if (link_clks_available > link_clks_required)
+> +			hblank_delta = 32;
+> +		else
+> +			hblank_delta = DIV_ROUND_UP_ULL(((((5 *
+> +							rounding_factor) /
+> +							link_clk) + ((5 *
+> +							rounding_factor) /
+> +							cdclk)) * pixel_clk),
+> +							rounding_factor);
+> +
+> +		tu_data = (pixel_clk * vdsc_bpp * 8) / ((link_clk *
+> +							lanes * fec_coeff) /
+> +							1000000);
+> +		tu_line = (((h_active * link_clk * fec_coeff) / 1000000) /
+> +			   (64 * pixel_clk));
+> +		link_clks_active  = (tu_line - 1) * 64 + tu_data;
+> +		hblank_rise = ((link_clks_active + 6 *
+> +				DIV_ROUND_UP_ULL(link_clks_active, 250) + 4) *
+> +						 ((pixel_clk *
+> +						 rounding_factor) /
+> +						 link_clk)) / rounding_factor;
+> +
+> +		hblank_early_prog = h_active - hblank_rise + hblank_delta;
+> +
+> +		if (hblank_early_prog < 32) {
+> +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> +			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_32, pipe);
+> +		} else if (hblank_early_prog < 64) {
+> +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> +			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_64, pipe);
+> +		} else if (hblank_early_prog < 96) {
+> +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> +			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_96, pipe);
+> +		} else {
+> +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> +			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_128, pipe);
+> +		}
+> +
+> +		samples_room = ((((h_total - h_active) *
+> +					 ((link_clk * rounding_factor) /
+> +					 pixel_clk)) / rounding_factor) - 12) /
+> +					 ((48 / lanes) + 2);
+> +
+> +		if (samples_room < 3) {
+> +			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
+> +			val |= NUMBER_SAMPLES_PER_LINE(samples_room, pipe);
+> +		} else {
+> +			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
+> +			val |= NUMBER_SAMPLES_PER_LINE(0x0, pipe);
+> +		}
+> +	}
+> +
+> +	intel_de_write(dev_priv, AUD_CONFIG_BE, val);
+> +}
+> +
+>  static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+>  				   const struct intel_crtc_state *crtc_state,
+>  				   const struct drm_connector_state *conn_state)
+> @@ -529,6 +638,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+>  
+>  	mutex_lock(&dev_priv->av_mutex);
+>  
+> +	/* Enable Audio WA for 4k DSC usecases */
+> +	if (encoder->type == INTEL_OUTPUT_DP)
+May be intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) requires to check here.
+AFAIU encoder->type will be INTEL_OUTPUT_DDI for Gens having DDI.
+So for Gens having DDI this condition will never be true.
+drivers/gpu/drm/i915/display/intel_ddi.c +4615
+Please correct me if i am wrong here.
+Thanks,
+Anshuman Gupta.
 
-Submitting semaphores from userspace for batches under construction
-[passed between processes via syncobj/sync-file]. iris has a bug where
-it is trying to wait on a future fence to be submitted and cannot --
-but we already have the uapi to handle that elsewhere.
--Chris
+> +		enable_audio_dsc_wa(encoder, crtc_state);
+> +
+>  	/* Enable audio presence detect, invalidate ELD */
+>  	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+>  	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8cebb7a86b8c..ff293e9d5a63 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9395,6 +9395,22 @@ enum {
+>  #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+>  #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+>  
+> +/* Display Audio Config Reg */
+> +#define AUD_CONFIG_BE			_MMIO(0x65ef0)
+> +#define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
+> +#define HBLANK_EARLY_ENABLE_TGL(pipe)		(0x1 << (24 + (pipe)))
+> +#define HBLANK_START_COUNT_MASK(pipe)		(0x7 << (3 + ((pipe) * 6)))
+> +#define HBLANK_START_COUNT(val, pipe)		(((val) & 0x7) << (3 + ((pipe)) * 6))
+> +#define NUMBER_SAMPLES_PER_LINE_MASK(pipe)	(0x3 << ((pipe) * 6))
+> +#define NUMBER_SAMPLES_PER_LINE(val, pipe)	(((val) & 0x3) << ((pipe) * 6))
+> +
+> +#define HBLANK_START_COUNT_8	0x0
+> +#define HBLANK_START_COUNT_16	0x1
+> +#define HBLANK_START_COUNT_32	0x2
+> +#define HBLANK_START_COUNT_64	0x3
+> +#define HBLANK_START_COUNT_96	0x4
+> +#define HBLANK_START_COUNT_128	0x5
+> +
+>  /*
+>   * HSW - ICL power wells
+>   *
+> -- 
+> 2.22.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
