@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6437E1A0E39
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 15:18:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A871A0E3F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 15:19:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0A116E872;
-	Tue,  7 Apr 2020 13:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FED06E874;
+	Tue,  7 Apr 2020 13:19:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2654E6E871;
- Tue,  7 Apr 2020 13:17:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AD91C6E874;
+ Tue,  7 Apr 2020 13:19:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1D743A47DA;
- Tue,  7 Apr 2020 13:17:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AB57EA73C9;
+ Tue,  7 Apr 2020 13:19:08 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 07 Apr 2020 13:17:59 -0000
-Message-ID: <158626547911.26327.17071508909412649439@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 07 Apr 2020 13:19:08 -0000
+Message-ID: <158626554869.26325.16809652720826436579@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200407103422.28222-1-jani.nikula@intel.com>
-In-Reply-To: <20200407103422.28222-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/hdmi=3A_remove_unused_inte?=
- =?utf-8?b?bF9oZG1pX2hkY3AyX3Byb3RvY29sKCk=?=
+References: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200407103222.15629-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Consider_DBuf_bandwidth_when_calculating_CDCLK_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,104 +47,26 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915/hdmi: remove unused intel_hdmi_hdcp2_protocol()
-URL   : https://patchwork.freedesktop.org/series/75608/
-State : failure
+Series: Consider DBuf bandwidth when calculating CDCLK (rev8)
+URL   : https://patchwork.freedesktop.org/series/74739/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8264 -> Patchwork_17234
-====================================================
+$ dim checkpatch origin/drm-tip
+a2d97b3a68fc drm/i915: Decouple cdclk calculation from modeset checks
+9fe9c8a12e97 drm/i915: Force recalculate min_cdclk if planes config changed
+460156f3ab0b drm/i915: Introduce for_each_dbuf_slice_in_mask macro
+-:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__slice' - possible side-effects?
+#24: FILE: drivers/gpu/drm/i915/display/intel_display.h:190:
++#define for_each_dbuf_slice_in_mask(__slice, __mask) \
++	for ((__slice) = DBUF_S1; (__slice) < I915_MAX_DBUF_SLICES; (__slice)++) \
++		for_each_if((BIT(__slice)) & (__mask))
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 20 lines checked
+d94782227906 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
+20fd5967e21b drm/i915: Remove unneeded hack now for CDCLK
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17234 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17234, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17234:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-icl-u2/igt@i915_selftest@live@gt_timelines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/fi-icl-u2/igt@i915_selftest@live@gt_timelines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17234 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@active:
-    - fi-kbl-r:           [PASS][3] -> [DMESG-FAIL][4] ([i915#666])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-r/igt@i915_selftest@live@active.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/fi-kbl-r/igt@i915_selftest@live@active.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][5] ([i915#1158]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [INCOMPLETE][7] ([i915#1580]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-
-
-Participating hosts (53 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8264 -> Patchwork_17234
-
-  CI-20190529: 20190529
-  CI_DRM_8264: e0104585f880a64d4a9b40803cf4fb51ab499f7c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5573: 9c582425d6b4fc1de9fc2ffc8015cc6f0a0d3e98 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17234: ff5f26a86c11db62ea186edae26172a2956ed7d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ff5f26a86c11 drm/i915: drop a bunch of superfluous inlines
-5ac132751785 drm/i915/hdmi: remove unused intel_hdmi_hdcp2_protocol()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17234/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
