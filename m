@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B4D1A110A
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:15:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDB71A1113
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 18:18:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7CA6E120;
-	Tue,  7 Apr 2020 16:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E124D6E121;
+	Tue,  7 Apr 2020 16:18:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03B1D6E120
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 16:15:33 +0000 (UTC)
-IronPort-SDR: odbuK4SSgoHL1WuULh/du/12gx1FJEz0I/XNXTglV/pFqjtifm6pKwh87b/QFMe/YvdWl7kEYd
- J5n1H7zesrSA==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A79AF6E121
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 16:18:27 +0000 (UTC)
+IronPort-SDR: gbvb1z2E0fbvINIbrbj6JW9TsjDRGi/gqJ2v5soE/wD3amSHHyOGbhloKKcVL5EIzycTa1BHFh
+ mOrc8gqcukTA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 09:15:33 -0700
-IronPort-SDR: j8NoW1vW6gSIuLqOCDABZh7sVc18USJYjZmJAEkyLaN/NFCisn8qjuLfcKM0vm7akrh9oY6b2c
- /nImmuyrysRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="296985365"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 07 Apr 2020 09:15:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Apr 2020 19:15:29 +0300
-Date: Tue, 7 Apr 2020 19:15:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200407161529.GF6112@intel.com>
-References: <20200330122354.24752-2-stanislav.lisovskiy@intel.com>
- <20200407073356.3783-1-stanislav.lisovskiy@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 09:18:28 -0700
+IronPort-SDR: zxcKGODOCL9me8scTBvkju7Pn5UBahca+W0nrjOiY2v+3dkpbpv/h9mNz1RoAgmlKUJ8Vfe2jM
+ zyfjxWlUKNoA==
+X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="424803138"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 09:18:25 -0700
+Date: Tue, 7 Apr 2020 19:18:15 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200407161815.GH21484@ideak-desk.fi.intel.com>
+References: <20200407011157.362092-1-jose.souza@intel.com>
+ <20200407011157.362092-8-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200407073356.3783-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 1/5] drm/i915: Decouple cdclk calculation
- from modeset checks
+In-Reply-To: <20200407011157.362092-8-jose.souza@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2 8/8] drm/i915/tc: Do not warn when aux
+ power well of static TC ports timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,108 +49,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2020 at 10:33:56AM +0300, Stanislav Lisovskiy wrote:
-> We need to calculate cdclk after watermarks/ddb has been calculated
-> as with recent hw CDCLK needs to be adjusted accordingly to DBuf
-> requirements, which is not possible with current code organization.
+On Mon, Apr 06, 2020 at 06:11:57PM -0700, Jos=E9 Roberto de Souza wrote:
+> This is a expected timeout of static TC ports not conneceted, so
+> not throwing warnings that would taint CI.
 > =
 
-> Setting CDCLK according to DBuf BW requirements and not just rejecting
-> if it doesn't satisfy BW requirements, will allow us to save power when
-> it is possible and gain additional bandwidth when it's needed - i.e
-> boosting both our power management and perfomance capabilities.
-> =
-
-> This patch is preparation for that, first we now extract modeset
-> calculation from modeset checks, in order to call it after wm/ddb
-> has been calculated.
-> =
-
-> v2: - Extract only intel_modeset_calc_cdclk from intel_modeset_checks
->       (Ville Syrj=E4l=E4)
-> =
-
-> v3: - Clear plls after intel_modeset_calc_cdclk
-
-Why did we change this now?
-
-> =
-
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++---------
->  1 file changed, 12 insertions(+), 10 deletions(-)
+>  .../drm/i915/display/intel_display_power.c    | 37 +++++++++++--------
+>  1 file changed, 21 insertions(+), 16 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 70ec301fe6e3..c77088e1d033 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14464,12 +14464,6 @@ static int intel_modeset_checks(struct intel_ato=
-mic_state *state)
->  			return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 5d33929f3724..50af5854658e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -284,6 +284,21 @@ static void hsw_power_well_pre_disable(struct drm_i9=
+15_private *dev_priv,
+>  		gen8_irq_power_well_pre_disable(dev_priv, irq_pipe_mask);
+>  }
+>  =
+
+> +#define ICL_AUX_PW_TO_CH(pw_idx)	\
+> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
+> +
+> +#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
+> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
+> +
+> +static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
+> +				     struct i915_power_well *power_well)
+> +{
+> +	int pw_idx =3D power_well->desc->hsw.idx;
+> +
+> +	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
+> +						 ICL_AUX_PW_TO_CH(pw_idx);
+> +}
+> +
+>  static struct intel_digital_port *
+>  aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
+>  		       enum aux_ch aux_ch)
+> @@ -320,11 +335,16 @@ static void hsw_wait_for_power_well_enable(struct d=
+rm_i915_private *dev_priv,
+>  	/* Timeout for PW1:10 us, AUX:not specified, other PWs:20 us. */
+>  	if (intel_de_wait_for_set(dev_priv, regs->driver,
+>  				  HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
+> +		enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+
+This is only valid for ICL tc phy power wells. You could move the logic
+for that to a tc_phy_aux_timeout_expected(pw_idx) helper.
+
+> +		struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_pri=
+v, aux_ch);
+> +
+>  		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
+>  			    power_well->desc->name);
+>  =
+
+>  		/* An AUX timeout is expected if the TBT DP tunnel is down. */
+> -		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt);
+> +		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt &&
+> +			    !(INTEL_GEN(dev_priv) =3D=3D 11 && dig_port->tc_legacy_port));
+> +
 >  	}
+>  }
 >  =
 
-> -	ret =3D intel_modeset_calc_cdclk(state);
-> -	if (ret)
-> -		return ret;
+> @@ -520,21 +540,6 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915=
+_private *dev_priv,
+>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>  }
+>  =
+
+> -#define ICL_AUX_PW_TO_CH(pw_idx)	\
+> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
 > -
-> -	intel_modeset_clear_plls(state);
+> -#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
+> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
 > -
->  	if (IS_HASWELL(dev_priv))
->  		return hsw_mode_set_planes_workaround(state);
->  =
-
-> @@ -14801,10 +14795,6 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  			goto fail;
->  	}
->  =
-
-> -	ret =3D intel_atomic_check_crtcs(state);
-> -	if (ret)
-> -		goto fail;
+> -static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
+> -				     struct i915_power_well *power_well)
+> -{
+> -	int pw_idx =3D power_well->desc->hsw.idx;
 > -
->  	intel_fbc_choose_crtc(dev_priv, state);
->  	ret =3D calc_watermark_data(state);
->  	if (ret)
-> @@ -14814,6 +14804,18 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  	if (ret)
->  		goto fail;
+> -	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
+> -						 ICL_AUX_PW_TO_CH(pw_idx);
+> -}
+> -
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
 >  =
 
-> +	if (any_ms) {
-> +		ret =3D intel_modeset_calc_cdclk(state);
-> +		if (ret)
-> +			return ret;
-> +
-> +		intel_modeset_clear_plls(state);
-> +	}
-> +
-> +	ret =3D intel_atomic_check_crtcs(state);
-> +	if (ret)
-> +		goto fail;
-> +
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		if (!needs_modeset(new_crtc_state) &&
+>  static u64 async_put_domains_mask(struct i915_power_domains *power_domai=
+ns);
 > -- =
 
-> 2.24.1.485.gad05a3d8e5
+> 2.26.0
+> =
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
