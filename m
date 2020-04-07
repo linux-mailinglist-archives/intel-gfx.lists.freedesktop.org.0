@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F161A0DBE
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 100FF1A0DC1
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:35:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0966E85B;
-	Tue,  7 Apr 2020 12:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B92E6E85C;
+	Tue,  7 Apr 2020 12:35:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34BFE6E85B
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:35:00 +0000 (UTC)
-IronPort-SDR: kZMbOgm2gPy/nIhaZUupaOmegJEIW8MfXny1oKMjD/rzrWRlurYk5/grapwdXhlCIa3jCM3zRS
- YHnwmZ3bgWFA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29DAE6E85C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:35:44 +0000 (UTC)
+IronPort-SDR: X3WW590SH72vXmGvSRwJ6AaZqDozpyUvRLltEMG2wjPYm6iV/Zt+Ecd5ie9VikleY8Pj3iCEwr
+ wXvlDU6cmixw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:34:59 -0700
-IronPort-SDR: Mwaz/AdlHRKs2O5RHNEMnpGxh20u6yWZ5bFD3ghrrQKMR7XWptjWjDbG7OTITpAEZ4pwTcAJPo
- yLt63gBuK9OA==
-X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="424733325"
-Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.249.40.153])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:34:58 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vipin Anand <vipin.anand@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200327052357.22269-3-vipin.anand@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200327052357.22269-1-vipin.anand@intel.com>
- <20200327052357.22269-3-vipin.anand@intel.com>
-Date: Tue, 07 Apr 2020 15:34:55 +0300
-Message-ID: <87k12rjwy8.fsf@intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:35:43 -0700
+IronPort-SDR: DMXvANFp6k8R244iq3Re4aeB5g/NbTsZ+XfhKZzOdStGTMzMSRfbHhjXxyGjKQ3veZv0sIC2Fh
+ Ebk6AuWi6Fqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="330177553"
+Received: from tronach-mobl1.ger.corp.intel.com (HELO
+ delly.ger.corp.intel.com) ([10.252.39.230])
+ by orsmga001.jf.intel.com with ESMTP; 07 Apr 2020 05:35:42 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Apr 2020 15:35:38 +0300
+Message-Id: <20200407123540.601497-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/display: Enable HDR on gen9
- devices with MCA Lspcon
+Subject: [Intel-gfx] [PATCH v4 1/3] drm/i915/perf: break OA config buffer
+ object in 2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,150 +51,371 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
-> From: Uma Shankar <uma.shankar@intel.com>
->
-> Gen9 hardware supports HDMI2.0 through LSPCON chips.
-> Extending HDR support for MCA LSPCON based GEN9 devices.
->
-> SOC will drive LSPCON as DP and send HDR metadata as standard
-> DP SDP packets. LSPCON will be set to operate in PCON mode,
-> will receive the metadata and create Dynamic Range and
-> Mastering Infoframe (DRM packets) and send it to HDR capable
-> HDMI sink devices.
->
-> v2: Re-used hsw infoframe write implementation for HDR metadata
-> for LSPCON as per Ville's suggestion.
->
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c   | 10 ++++++
->  drivers/gpu/drm/i915/display/intel_lspcon.c | 35 +++++++++++++++------
->  drivers/gpu/drm/i915/display/intel_lspcon.h |  5 ++-
->  3 files changed, 39 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 93ac0f296852..9ae2f88cc925 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -577,6 +577,16 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
->  	return val & mask;
->  }
->  
-> +void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
-> +	const struct intel_crtc_state *crtc_state,
-> +	unsigned int type,
-> +	const void *frame, ssize_t len)
-> +{
-> +	DRM_DEBUG_KMS("Update HDR metadata for lspcon\n");
-> +	/* It uses the legacy hsw implementation for the same */
-> +	hsw_write_infoframe(encoder, crtc_state, type, frame, len);
-> +}
+We want to enable performance monitoring on multiple contexts to cover
+the Iris use case of using 2 GEM contexts (3D & compute).
 
-This seems like an unnecessary wrapper.
+So start by breaking the OA configuration BO which contains global &
+per context register writes.
 
-> +
->  static const u8 infoframe_type_to_idx[] = {
->  	HDMI_PACKET_TYPE_GENERAL_CONTROL,
->  	HDMI_PACKET_TYPE_GAMUT_METADATA,
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> index 2e41ae483a23..c5ddabf903d6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -460,27 +460,42 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
->  			    unsigned int type,
->  			    const void *frame, ssize_t len)
->  {
-> -	bool ret;
-> +	bool ret = true;
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
->  
->  	/* LSPCON only needs AVI IF */
-> -	if (type != HDMI_INFOFRAME_TYPE_AVI)
-> +	if (!(type == HDMI_INFOFRAME_TYPE_AVI ||
-> +	      type == HDMI_PACKET_TYPE_GAMUT_METADATA))
->  		return;
->  
-> -	if (lspcon->vendor == LSPCON_VENDOR_MCA)
-> -		ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
-> -						      frame, len);
-> -	else
-> -		ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux,
-> -							 frame, len);
-> +	/*
-> +	 * Supporting HDR on MCA LSPCON
-> +	 * Todo: Add support for Parade later
-> +	 */
-> +	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA &&
-> +	    lspcon->vendor != LSPCON_VENDOR_MCA)
-> +		return;
-> +
-> +	if (lspcon->vendor == LSPCON_VENDOR_MCA) {
-> +		if (type == HDMI_INFOFRAME_TYPE_AVI)
-> +			ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
-> +							      frame, len);
-> +		else if (type == HDMI_PACKET_TYPE_GAMUT_METADATA)
-> +			lspcon_drm_write_infoframe(encoder, crtc_state,
-> +						   HDMI_PACKET_TYPE_GAMUT_METADATA,
-> +						   frame, VIDEO_DIP_DATA_SIZE);
-> +	} else {
-> +		ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux, frame,
-> +							 len);
-> +	}
+NOA muxes & OA configurations are global, while FLEXEU register
+configurations are per context.
 
-Seems to me it would be best to replace from the beginning of this
-function with something like:
+v2: Use an offset into the same VMA (Chris)
 
-        switch (type) {
-        case HDMI_INFOFRAME_TYPE_AVI:
-                if (lspcon->vendor == LSPCON_VENDOR_MCA)
-                        ...
-                else
-                        ...
-                break;
-        case HDMI_PACKET_TYPE_GAMUT_METADATA:
-                if (lspcon->vendor == LSPCON_VENDOR_MCA)
-                        ...
-                else
-                        break;
-                break;
-        default:
-                return;
-        }
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 176 ++++++++++++++++++++-----------
+ 1 file changed, 116 insertions(+), 60 deletions(-)
 
-Then it'll be straightforward to replace the actual vendor specific if
-ladders with function pointers in struct intel_lspcon in the future.
-
->  
->  	if (!ret) {
-> -		DRM_ERROR("Failed to write AVI infoframes\n");
-> +		DRM_ERROR("Failed to write infoframes\n");
->  		return;
->  	}
->  
-> -	DRM_DEBUG_DRIVER("AVI infoframes updated successfully\n");
-> +	DRM_DEBUG_DRIVER("Infoframes updated successfully\n");
->  }
->  
->  void lspcon_read_infoframe(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> index 37cfddf8a9c5..b2051f236223 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> @@ -34,5 +34,8 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *pipe_config);
->  void lspcon_ycbcr420_config(struct drm_connector *connector,
->  			    struct intel_crtc_state *crtc_state);
-> -
-> +void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
-> +				const struct intel_crtc_state *crtc_state,
-> +				unsigned int type,
-> +				const void *frame, ssize_t len);
->  #endif /* __INTEL_LSPCON_H__ */
-
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 5cde3e4e7be6..d2183fd701a3 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -372,6 +372,7 @@ struct i915_oa_config_bo {
+ 
+ 	struct i915_oa_config *oa_config;
+ 	struct i915_vma *vma;
++	u32 per_context_offset;
+ };
+ 
+ static struct ctl_table_header *sysctl_header;
+@@ -1826,37 +1827,43 @@ static struct i915_oa_config_bo *
+ alloc_oa_config_buffer(struct i915_perf_stream *stream,
+ 		       struct i915_oa_config *oa_config)
+ {
+-	struct drm_i915_gem_object *obj;
+ 	struct i915_oa_config_bo *oa_bo;
++	struct drm_i915_gem_object *obj;
+ 	size_t config_length = 0;
+-	u32 *cs;
++	u32 *cs_start, *cs;
+ 	int err;
+ 
+ 	oa_bo = kzalloc(sizeof(*oa_bo), GFP_KERNEL);
+ 	if (!oa_bo)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	/*
++	 * Global configuration requires a jump into the NOA wait BO for it to
++	 * apply.
++	 */
+ 	config_length += num_lri_dwords(oa_config->mux_regs_len);
+ 	config_length += num_lri_dwords(oa_config->b_counter_regs_len);
+-	config_length += num_lri_dwords(oa_config->flex_regs_len);
+ 	config_length += 3; /* MI_BATCH_BUFFER_START */
++
++	config_length += num_lri_dwords(oa_config->flex_regs_len);
++	config_length += 1 /* MI_BATCH_BUFFER_END */;
++
+ 	config_length = ALIGN(sizeof(u32) * config_length, I915_GTT_PAGE_SIZE);
+ 
+-	obj = i915_gem_object_create_shmem(stream->perf->i915, config_length);
++	obj = i915_gem_object_create_shmem(stream->perf->i915,
++					   config_length);
+ 	if (IS_ERR(obj)) {
+ 		err = PTR_ERR(obj);
+ 		goto err_free;
+ 	}
+ 
+-	cs = i915_gem_object_pin_map(obj, I915_MAP_WB);
+-	if (IS_ERR(cs)) {
+-		err = PTR_ERR(cs);
+-		goto err_oa_bo;
++	cs_start = i915_gem_object_pin_map(obj, I915_MAP_WB);
++	if (IS_ERR(cs_start)) {
++		err = PTR_ERR(cs_start);
++		goto err_bo;
+ 	}
+ 
+-	cs = write_cs_mi_lri(cs,
+-			     oa_config->mux_regs,
+-			     oa_config->mux_regs_len);
++	cs = cs_start;
+ 	cs = write_cs_mi_lri(cs,
+ 			     oa_config->b_counter_regs,
+ 			     oa_config->b_counter_regs_len);
+@@ -1871,6 +1878,14 @@ alloc_oa_config_buffer(struct i915_perf_stream *stream,
+ 	*cs++ = i915_ggtt_offset(stream->noa_wait);
+ 	*cs++ = 0;
+ 
++	oa_bo->per_context_offset = 4 * (cs - cs_start);
++
++	cs = write_cs_mi_lri(cs,
++			     oa_config->mux_regs,
++			     oa_config->mux_regs_len);
++
++	*cs++ = MI_BATCH_BUFFER_END;
++
+ 	i915_gem_object_flush_map(obj);
+ 	i915_gem_object_unpin_map(obj);
+ 
+@@ -1879,7 +1894,7 @@ alloc_oa_config_buffer(struct i915_perf_stream *stream,
+ 				       NULL);
+ 	if (IS_ERR(oa_bo->vma)) {
+ 		err = PTR_ERR(oa_bo->vma);
+-		goto err_oa_bo;
++		goto err_bo;
+ 	}
+ 
+ 	oa_bo->oa_config = i915_oa_config_get(oa_config);
+@@ -1887,15 +1902,15 @@ alloc_oa_config_buffer(struct i915_perf_stream *stream,
+ 
+ 	return oa_bo;
+ 
+-err_oa_bo:
++err_bo:
+ 	i915_gem_object_put(obj);
+ err_free:
+ 	kfree(oa_bo);
+ 	return ERR_PTR(err);
+ }
+ 
+-static struct i915_vma *
+-get_oa_vma(struct i915_perf_stream *stream, struct i915_oa_config *oa_config)
++static struct i915_oa_config_bo *
++get_oa_bo(struct i915_perf_stream *stream, struct i915_oa_config *oa_config)
+ {
+ 	struct i915_oa_config_bo *oa_bo;
+ 
+@@ -1908,34 +1923,31 @@ get_oa_vma(struct i915_perf_stream *stream, struct i915_oa_config *oa_config)
+ 		    memcmp(oa_bo->oa_config->uuid,
+ 			   oa_config->uuid,
+ 			   sizeof(oa_config->uuid)) == 0)
+-			goto out;
++			return oa_bo;
+ 	}
+ 
+-	oa_bo = alloc_oa_config_buffer(stream, oa_config);
+-	if (IS_ERR(oa_bo))
+-		return ERR_CAST(oa_bo);
+-
+-out:
+-	return i915_vma_get(oa_bo->vma);
++	return alloc_oa_config_buffer(stream, oa_config);
+ }
+ 
+ static int
+ emit_oa_config(struct i915_perf_stream *stream,
+ 	       struct i915_oa_config *oa_config,
+ 	       struct intel_context *ce,
+-	       struct i915_active *active)
++	       struct i915_active *active,
++	       bool global)
+ {
++	struct i915_oa_config_bo *oa_bo;
+ 	struct i915_request *rq;
+-	struct i915_vma *vma;
++	u64 vma_offset;
+ 	int err;
+ 
+-	vma = get_oa_vma(stream, oa_config);
+-	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
++	oa_bo = get_oa_bo(stream, oa_config);
++	if (IS_ERR(oa_bo))
++		return PTR_ERR(oa_bo);
+ 
+-	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	err = i915_vma_pin(oa_bo->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
+ 	if (err)
+-		goto err_vma_put;
++		return err;
+ 
+ 	intel_engine_pm_get(ce->engine);
+ 	rq = i915_request_create(ce);
+@@ -1957,16 +1969,19 @@ emit_oa_config(struct i915_perf_stream *stream,
+ 			goto err_add_request;
+ 	}
+ 
+-	i915_vma_lock(vma);
+-	err = i915_request_await_object(rq, vma->obj, 0);
++	i915_vma_lock(oa_bo->vma);
++	err = i915_request_await_object(rq, oa_bo->vma->obj, 0);
+ 	if (!err)
+-		err = i915_vma_move_to_active(vma, rq, 0);
+-	i915_vma_unlock(vma);
++		err = i915_vma_move_to_active(oa_bo->vma, rq, 0);
++	i915_vma_unlock(oa_bo->vma);
+ 	if (err)
+ 		goto err_add_request;
+ 
+-	err = rq->engine->emit_bb_start(rq,
+-					vma->node.start, 0,
++	vma_offset = oa_bo->vma->node.start;
++	if (!global)
++		vma_offset += oa_bo->per_context_offset;
++
++	err = rq->engine->emit_bb_start(rq, vma_offset, 0,
+ 					I915_DISPATCH_SECURE);
+ 	if (err)
+ 		goto err_add_request;
+@@ -1974,9 +1989,7 @@ emit_oa_config(struct i915_perf_stream *stream,
+ err_add_request:
+ 	i915_request_add(rq);
+ err_vma_unpin:
+-	i915_vma_unpin(vma);
+-err_vma_put:
+-	i915_vma_put(vma);
++	i915_vma_unpin(oa_bo->vma);
+ 	return err;
+ }
+ 
+@@ -1990,6 +2003,7 @@ hsw_enable_metric_set(struct i915_perf_stream *stream,
+ 		      struct i915_active *active)
+ {
+ 	struct intel_uncore *uncore = stream->uncore;
++	int err;
+ 
+ 	/*
+ 	 * PRM:
+@@ -2006,9 +2020,17 @@ hsw_enable_metric_set(struct i915_perf_stream *stream,
+ 	intel_uncore_rmw(uncore, GEN6_UCGCTL1,
+ 			 0, GEN6_CSUNIT_CLOCK_GATE_DISABLE);
+ 
+-	return emit_oa_config(stream,
+-			      stream->oa_config, oa_context(stream),
+-			      active);
++	err = emit_oa_config(stream, stream->oa_config,
++			     oa_context(stream),
++			     active,
++			     false /* global */);
++	if (err)
++		return err;
++
++	return emit_oa_config(stream, stream->oa_config,
++			      oa_context(stream),
++			      active,
++			      true /* global */);
+ }
+ 
+ static void hsw_disable_metric_set(struct i915_perf_stream *stream)
+@@ -2419,7 +2441,7 @@ gen8_enable_metric_set(struct i915_perf_stream *stream,
+ {
+ 	struct intel_uncore *uncore = stream->uncore;
+ 	struct i915_oa_config *oa_config = stream->oa_config;
+-	int ret;
++	int err;
+ 
+ 	/*
+ 	 * We disable slice/unslice clock ratio change reports on SKL since
+@@ -2455,13 +2477,21 @@ gen8_enable_metric_set(struct i915_perf_stream *stream,
+ 	 * to make sure all slices/subslices are ON before writing to NOA
+ 	 * registers.
+ 	 */
+-	ret = lrc_configure_all_contexts(stream, oa_config, active);
+-	if (ret)
+-		return ret;
++	err = lrc_configure_all_contexts(stream, oa_config, active);
++	if (err)
++		return err;
+ 
+-	return emit_oa_config(stream,
+-			      stream->oa_config, oa_context(stream),
+-			      active);
++	err = emit_oa_config(stream, oa_config,
++			     oa_context(stream),
++			     active,
++			     false /* global */);
++	if (err)
++		return err;
++
++	return emit_oa_config(stream, stream->oa_config,
++			      oa_context(stream),
++			      active,
++			      true /* global */);
+ }
+ 
+ static u32 oag_report_ctx_switches(const struct i915_perf_stream *stream)
+@@ -2507,9 +2537,9 @@ gen12_enable_metric_set(struct i915_perf_stream *stream,
+ 		return ret;
+ 
+ 	/*
+-	 * For Gen12, performance counters are context
+-	 * saved/restored. Only enable it for the context that
+-	 * requested this.
++	 * For Gen12, performance counters are also context saved/restored on
++	 * another set of performance registers. Configure the unit dealing
++	 * with those.
+ 	 */
+ 	if (stream->ctx) {
+ 		ret = gen12_configure_oar_context(stream, active);
+@@ -2517,9 +2547,17 @@ gen12_enable_metric_set(struct i915_perf_stream *stream,
+ 			return ret;
+ 	}
+ 
+-	return emit_oa_config(stream,
+-			      stream->oa_config, oa_context(stream),
+-			      active);
++	ret = emit_oa_config(stream, oa_config,
++			     oa_context(stream),
++			     active,
++			     false /* global */);
++	if (ret)
++		return ret;
++
++	return emit_oa_config(stream, stream->oa_config,
++			      oa_context(stream),
++			      active,
++			      true /* global */);
+ }
+ 
+ static void gen8_disable_metric_set(struct i915_perf_stream *stream)
+@@ -3174,6 +3212,7 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 				    unsigned long metrics_set)
+ {
+ 	struct i915_oa_config *config;
++	struct i915_active *active = NULL;
+ 	long ret = stream->oa_config->id;
+ 
+ 	config = i915_perf_get_oa_config(stream->perf, metrics_set);
+@@ -3181,7 +3220,11 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 		return -EINVAL;
+ 
+ 	if (config != stream->oa_config) {
+-		int err;
++		active = i915_active_create();
++		if (!active) {
++			ret = -ENOMEM;
++			goto err_config;
++		}
+ 
+ 		/*
+ 		 * If OA is bound to a specific context, emit the
+@@ -3192,13 +3235,26 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 		 * When set globally, we use a low priority kernel context,
+ 		 * so it will effectively take effect when idle.
+ 		 */
+-		err = emit_oa_config(stream, config, oa_context(stream), NULL);
+-		if (!err)
+-			config = xchg(&stream->oa_config, config);
+-		else
+-			ret = err;
++		ret = emit_oa_config(stream, config,
++				     oa_context(stream),
++				     active,
++				     false /* global */);
++		if (ret)
++			goto err_active;
++
++		ret = emit_oa_config(stream, config,
++				     oa_context(stream),
++				     active,
++				     true /* global */);
++		if (ret)
++			goto err_active;
++
++		config = xchg(&stream->oa_config, config);
+ 	}
+ 
++err_active:
++	i915_active_put(active);
++err_config:
+ 	i915_oa_config_put(config);
+ 
+ 	return ret;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.26.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
