@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BEC1A1011
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 17:20:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E461A1029
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 17:26:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B1DC6E890;
-	Tue,  7 Apr 2020 15:20:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE0EE6E892;
+	Tue,  7 Apr 2020 15:26:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355AE6E890;
- Tue,  7 Apr 2020 15:20:55 +0000 (UTC)
-IronPort-SDR: mKZ1p9OZck9e0yGQnQKq8yAZWhFUQxmli4VWff99NtR+jKlG8qGV6tHyshVVKE5+NobFDijORy
- E7UAbix0c4Zw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 08:20:54 -0700
-IronPort-SDR: V7ZcDLyLs6cTl0T2HOEefkqV0o2JS5TGpMd1HTKRuP+fqYMbKvZmJh7Y3rO5HXAYu8bhpIaIjz
- n/1W4bOvbf/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="239987173"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 07 Apr 2020 08:20:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Apr 2020 18:20:50 +0300
-Date: Tue, 7 Apr 2020 18:20:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200407152050.GC6112@intel.com>
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-14-ville.syrjala@linux.intel.com>
- <20200407073847.GB3456981@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F2CF6E88E;
+ Tue,  7 Apr 2020 15:26:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 876C8A00FD;
+ Tue,  7 Apr 2020 15:26:37 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200407073847.GB3456981@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 13/17] drm/i915: Stop using
- mode->private_flags
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 07 Apr 2020 15:26:37 -0000
+Message-ID: <158627319752.26325.7367209340901780892@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200407130811.17321-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200407130811.17321-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Yield_the_timeslice_if_caught_waiting_on_a_user_sem?=
+ =?utf-8?q?aphore_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,119 +39,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2020 at 09:38:47AM +0200, Daniel Vetter wrote:
-> On Fri, Apr 03, 2020 at 11:40:04PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+== Series Details ==
 
-> > Replace the use of mode->private_flags with a truly private bitmaks
-> > in our own crtc state. We also need a copy in the crtc itself so the
-> > vblank code can get at it. We already have scanline_offset in there
-> > for a similar reason, as well as the vblank->hwmode which is assigned
-> > via drm_calc_timestamping_constants(). Fortunately we now have a
-> > nice place for doing the crtc_state->crtc copy in
-> > intel_crtc_update_active_timings() which gets called both for
-> > modesets and init/resume readout.
-> > =
+Series: drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore (rev4)
+URL   : https://patchwork.freedesktop.org/series/72724/
+State : success
 
-> > The one slightly iffy spot is the INHERITED flag which we want to
-> > preserve until userspace/fb_helper does the first proper commit after
-> > actually calling .detecti() on the connectors. Otherwise we don't have
-> > the full sink capabilities (audio,infoframes,etc.) when .compute_config=
-()
-> > gets called and thus we will fail to enable those features when the
-> > first userspace commit happens. The only internal commit we do prior to
-> > that should be from intel_initial_commit() and there we can simply
-> > preserve the INHERITED flag from the readout.
-> > =
+== Summary ==
 
-> > CC: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Emil Velikov <emil.l.velikov@gmail.com>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/icl_dsi.c        | 13 ++++------
-> >  drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 24 +++++++++++++------
-> >  .../drm/i915/display/intel_display_types.h    |  9 ++++++-
-> >  drivers/gpu/drm/i915/display/intel_tv.c       |  4 ++--
-> >  drivers/gpu/drm/i915/display/vlv_dsi.c        |  6 ++---
-> >  drivers/gpu/drm/i915/i915_irq.c               |  4 ++--
-> >  7 files changed, 37 insertions(+), 24 deletions(-)
-> > =
+CI Bug Log - changes from CI_DRM_8264 -> Patchwork_17237
+====================================================
 
-> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i=
-915/display/icl_dsi.c
-> > index 99a25c0bb08f..4d6788ef2e5e 100644
-> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > @@ -1469,8 +1469,7 @@ static void gen11_dsi_get_config(struct intel_enc=
-oder *encoder,
-> >  	pipe_config->pipe_bpp =3D bdw_get_pipemisc_bpp(crtc);
-> >  =
+Summary
+-------
 
-> >  	if (gen11_dsi_is_periodic_cmd_mode(intel_dsi))
-> > -		pipe_config->hw.adjusted_mode.private_flags |=3D
-> > -					I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
-> > +		pipe_config->mode_flags |=3D I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
-> >  }
-> >  =
+  **SUCCESS**
 
-> >  static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
-> > @@ -1555,10 +1554,6 @@ static int gen11_dsi_compute_config(struct intel=
-_encoder *encoder,
-> >  =
+  No regressions found.
 
-> >  	pipe_config->port_clock =3D afe_clk(encoder, pipe_config) / 5;
-> >  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/index.html
 
-> > -	/* We would not operate in periodic command mode */
-> > -	pipe_config->hw.adjusted_mode.private_flags &=3D
-> > -					~I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
-> > -
-> =
+Known issues
+------------
 
-> Since you delete this here, but not above (and then you could also detel
-> gen11_dsi_is_periodic_cmd_mode I think): It's dead code, maybe prep patch
-> to just garbage collect I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE?
+  Here are the changes found in Patchwork_17237 that come from known issues:
 
-I think this flag is still WIP. It was added very recently so I'm
-assuming there is some plan for it (not that I like adding half
-baked dead stuff like this). So we may want to wait a bit to see
-where it's going. The reason I deleted this specific statement is
-that we zero the crtc state before .compute_config() so this one
-would remain dead code even if the flag starts to get used for
-something.
+### IGT changes ###
 
-> =
+#### Issues hit ####
 
-> I think the proper replacement is the mode flag stuff below, this is just
-> interim stuff that fell through the review.
-> =
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2] ([i915#69])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
 
-> With that prep patch to get rid of these 2 hunks above:
-> =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [PASS][3] -> [SKIP][4] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> =
+  * igt@kms_busy@basic@modeset:
+    - fi-kbl-x1275:       [PASS][5] -> [DMESG-FAIL][6] ([i915#62])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@kms_busy@basic@modeset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-kbl-x1275/igt@kms_busy@basic@modeset.html
 
-> Also surplus Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch> on the patch
-> to delete I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE in case I miss the new
-> version.
-> =
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [PASS][7] -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +19 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [PASS][9] -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +11 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][11] ([i915#1158]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-y:           [INCOMPLETE][13] ([i915#1580]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
+  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
--- =
+Participating hosts (53 -> 46)
+------------------------------
 
-Ville Syrj=E4l=E4
-Intel
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8264 -> Patchwork_17237
+
+  CI-20190529: 20190529
+  CI_DRM_8264: e0104585f880a64d4a9b40803cf4fb51ab499f7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5573: 9c582425d6b4fc1de9fc2ffc8015cc6f0a0d3e98 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17237: cedc9393c9d4371eb9d9bb0f7da8953996329398 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cedc9393c9d4 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17237/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
