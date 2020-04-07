@@ -2,37 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C601A077A
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 08:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2107E1A0818
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 09:19:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A7A89FA0;
-	Tue,  7 Apr 2020 06:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 490C06E52E;
+	Tue,  7 Apr 2020 07:19:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A56E89F9F
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 06:41:31 +0000 (UTC)
-IronPort-SDR: 4q9GNarEkDq7JYlPaqrS/W88dfLMajKS2EZ8M4ZOsyoL6+Axzlw9lvNXEHI0I948g3zfr27+8b
- HftpDusQFy6Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2020 23:41:31 -0700
-IronPort-SDR: 1C05lGqb66peN/d+718flfvjKahkATlDaMskdLqZ7MmMB4fjnOm/wa5PKZBS2/ESV/oIuB+C+r
- qlEGlN2QivfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="451111803"
-Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
- ([10.223.74.152])
- by fmsmga005.fm.intel.com with ESMTP; 06 Apr 2020 23:41:29 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Apr 2020 12:39:16 +0530
-Message-Id: <20200407070916.30475-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.22.0
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED6CD6E525
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 07:19:11 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id v2so2097878oto.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 00:19:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=xNt3fDE6uJaNJCPc+/p8WDTR1SyRQ5WstF8jn/ypiGg=;
+ b=DmvXpxRMjwvCS4gQNEX4ITP0c8Ox3pRdomle/scBfSC52mVwde2qeCuylii8tNsjTI
+ BNx0hDHffFu5pGwTIyIgu13huMIpbmjHM+XsBTsSqasGaBqSoy1yRmJqXm+lSO1ikIaR
+ EE1W4IsLjHWRXOR/K5uxIUPqgIqPOJbYCNerE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=xNt3fDE6uJaNJCPc+/p8WDTR1SyRQ5WstF8jn/ypiGg=;
+ b=d5onnA7e61FgIM7H1ZMfTuNmL8vtfQq1IMep30rR7kRu0ipgZA9csG3ZkAG16S/Eqp
+ PaDNflUBiLKzbV2mn9P8WronR5bXgXCrzJ9lyPmfwvhwybLfGCYn5QdVnBSJwN04bQd2
+ MeFg0hQpFE1w35oPGnn6KNAtE0Fxm7wEwAij/NrzHuXEcPKYzlQDYwVvxiPRt2tpMuuI
+ rabS6csCrg5xUn/hrmodaC0LYdJjTEsf5BGQhN0WHBdBGBSr6JapM/TSzQgvCBmCU5AM
+ pIKB6pT1CpPfjZZhlVt6a/iHbXYn4N8zCR1oqHEg3/P/6ezTJGGaeulVjF6LdIcDu9LR
+ iAqg==
+X-Gm-Message-State: AGi0PuZ1tu895453pmF3MCOuThddXbhzLJNSDhQUTgt1SE1ePnBemxzR
+ 3Y6Y6kxDUhz85g5MDULGVeke7LUkgcqZJBwFmI79WA==
+X-Google-Smtp-Source: APiQypJtSZZoscLNc2qZAw5+6Gq+qMAG5y4QND3L+RtVHbUwDzAmVPY2eeqlD6VMpx2R3w5b8nhL/OI59tyfSeXJrgg=
+X-Received: by 2002:a9d:2056:: with SMTP id n80mr479406ota.281.1586243951190; 
+ Tue, 07 Apr 2020 00:19:11 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Enable DP Display Audio WA
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-31-daniel.vetter@ffwll.ch>
+ <f85e0d74-2d1a-03ce-3eef-8c21b90845d4@suse.de>
+In-Reply-To: <f85e0d74-2d1a-03ce-3eef-8c21b90845d4@suse.de>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 7 Apr 2020 09:19:00 +0200
+Message-ID: <CAKMK7uEfEMq8BNGYHHJa0Q10D9FAmEuogS0k9=pkL2WhyAT9iA@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 30/44] drm/qxl: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,180 +60,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kai.vehmanen@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Dave Airlie <airlied@redhat.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>, "open list:VIRTIO CORE,
+ NET..." <virtualization@lists.linux-foundation.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ "open list:DRM DRIVER FOR QXL VIRTUAL GPU" <spice-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable Display Audio WA #1406928334 for 4k+VDSC usecase
-on DP encoders.
-
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c | 110 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h            |  16 +++
- 2 files changed, 126 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 950160f1a89f..035f2949e9c0 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -512,6 +512,112 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
- 	mutex_unlock(&dev_priv->av_mutex);
- }
- 
-+static void enable_audio_dsc_wa(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum pipe pipe = crtc->pipe;
-+	u64 link_clks_available, link_clks_required, link_clk;
-+	u64 tu_data, tu_line, link_clks_active;
-+	u64 hblank_rise, hblank_early_prog, samples_room;
-+	u64 h_active, h_total, hblank_delta, pixel_clk, v_total, lanes;
-+	u64 vdsc_bpp, fec_coeff, refresh_rate, cdclk;
-+	u64 rounding_factor = 100000;
-+	u32 val;
-+
-+	val = intel_de_read(dev_priv, AUD_CONFIG_BE);
-+
-+	if (INTEL_GEN(dev_priv) == 11)
-+		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
-+	else if (INTEL_GEN(dev_priv) >= 12)
-+		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
-+
-+	if (crtc_state->dsc.compression_enable &&
-+	    (crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
-+	     crtc_state->hw.adjusted_mode.vdisplay >= 2160)) {
-+		h_active = crtc_state->hw.adjusted_mode.hdisplay;
-+		h_total = crtc_state->hw.adjusted_mode.htotal;
-+		v_total = crtc_state->hw.adjusted_mode.vtotal;
-+		hblank_rise = crtc_state->hw.adjusted_mode.hsync_start;
-+		pixel_clk = crtc_state->hw.adjusted_mode.clock;
-+		link_clk = crtc_state->port_clock;
-+		lanes = crtc_state->lane_count;
-+		vdsc_bpp = crtc_state->pipe_bpp;
-+		refresh_rate = crtc_state->hw.adjusted_mode.vrefresh;
-+		cdclk = dev_priv->cdclk.hw.cdclk;
-+		/* fec= 0.972261, using rounding multiplier of 1000000 */
-+		fec_coeff = 972261;
-+
-+		if (!(h_active && link_clk && lanes && vdsc_bpp && cdclk)) {
-+			drm_err(&dev_priv->drm, "Null Parameters received\n");
-+			return;
-+		}
-+
-+		drm_dbg_kms(&dev_priv->drm, "h_active = %llu link_clk = %llu :"
-+			    "lanes = %llu vdsc_bpp = %llu cdclk = %llu\n",
-+			    h_active, link_clk, lanes, vdsc_bpp, cdclk);
-+
-+		link_clks_available = ((((h_total - h_active) *
-+				       ((link_clk * rounding_factor) /
-+				       pixel_clk)) / rounding_factor) - 28);
-+
-+		link_clks_required = DIV_ROUND_UP(192000, (refresh_rate *
-+						  v_total)) *
-+						  ((48 / lanes) + 2);
-+
-+		if (link_clks_available > link_clks_required)
-+			hblank_delta = 32;
-+		else
-+			hblank_delta = DIV_ROUND_UP(((((5 * rounding_factor) /
-+					       link_clk) + ((5 *
-+					       rounding_factor) / cdclk)) *
-+					       pixel_clk), rounding_factor);
-+
-+		tu_data = (pixel_clk * vdsc_bpp * 8) / ((link_clk *
-+							lanes * fec_coeff) /
-+							1000000);
-+		tu_line = (((h_active * link_clk * fec_coeff) / 1000000) /
-+			   (64 * pixel_clk));
-+		link_clks_active  = (tu_line - 1) * 64 + tu_data;
-+		hblank_rise = ((link_clks_active + 6 *
-+				DIV_ROUND_UP(link_clks_active, 250) + 4) *
-+					((pixel_clk * rounding_factor) /
-+					 link_clk)) / rounding_factor;
-+
-+		hblank_early_prog = h_active - hblank_rise + hblank_delta;
-+
-+		if (hblank_early_prog < 32) {
-+			val &= ~HBLANK_START_COUNT_MASK(pipe);
-+			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_32, pipe);
-+		} else if (hblank_early_prog < 64) {
-+			val &= ~HBLANK_START_COUNT_MASK(pipe);
-+			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_64, pipe);
-+		} else if (hblank_early_prog < 96) {
-+			val &= ~HBLANK_START_COUNT_MASK(pipe);
-+			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_96, pipe);
-+		} else {
-+			val &= ~HBLANK_START_COUNT_MASK(pipe);
-+			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_128, pipe);
-+		}
-+
-+		samples_room = ((((h_total - h_active) *
-+					 ((link_clk * rounding_factor) /
-+					 pixel_clk)) / rounding_factor) - 12) /
-+					 ((48 / lanes) + 2);
-+
-+		if (samples_room < 3) {
-+			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
-+			val |= NUMBER_SAMPLES_PER_LINE(samples_room, pipe);
-+		} else {
-+			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
-+			val |= NUMBER_SAMPLES_PER_LINE(0x0, pipe);
-+		}
-+	}
-+
-+	intel_de_write(dev_priv, AUD_CONFIG_BE, val);
-+}
-+
- static void hsw_audio_codec_enable(struct intel_encoder *encoder,
- 				   const struct intel_crtc_state *crtc_state,
- 				   const struct drm_connector_state *conn_state)
-@@ -529,6 +635,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
- 
- 	mutex_lock(&dev_priv->av_mutex);
- 
-+	/* Enable Audio WA for 4k DSC usecases */
-+	if (encoder->type == INTEL_OUTPUT_DP)
-+		enable_audio_dsc_wa(encoder, crtc_state);
-+
- 	/* Enable audio presence detect, invalidate ELD */
- 	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
- 	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8cebb7a86b8c..ff293e9d5a63 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9395,6 +9395,22 @@ enum {
- #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
- #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
- 
-+/* Display Audio Config Reg */
-+#define AUD_CONFIG_BE			_MMIO(0x65ef0)
-+#define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
-+#define HBLANK_EARLY_ENABLE_TGL(pipe)		(0x1 << (24 + (pipe)))
-+#define HBLANK_START_COUNT_MASK(pipe)		(0x7 << (3 + ((pipe) * 6)))
-+#define HBLANK_START_COUNT(val, pipe)		(((val) & 0x7) << (3 + ((pipe)) * 6))
-+#define NUMBER_SAMPLES_PER_LINE_MASK(pipe)	(0x3 << ((pipe) * 6))
-+#define NUMBER_SAMPLES_PER_LINE(val, pipe)	(((val) & 0x3) << ((pipe) * 6))
-+
-+#define HBLANK_START_COUNT_8	0x0
-+#define HBLANK_START_COUNT_16	0x1
-+#define HBLANK_START_COUNT_32	0x2
-+#define HBLANK_START_COUNT_64	0x3
-+#define HBLANK_START_COUNT_96	0x4
-+#define HBLANK_START_COUNT_128	0x5
-+
- /*
-  * HSW - ICL power wells
-  *
--- 
-2.22.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCBBcHIgNiwgMjAyMCBhdCA3OjI5IFBNIFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPiB3cm90ZToKPgo+Cj4KPiBBbSAwMy4wNC4yMCB1bSAxNTo1OCBzY2hyaWVi
+IERhbmllbCBWZXR0ZXI6Cj4gPiBBbHNvIG5lZWQgdG8gcmVtb3ZlIHRoZSBkcm1fZGV2X3B1dCBm
+cm9tIHRoZSByZW1vdmUgaG9vay4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVy
+IDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiA+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEBy
+ZWRoYXQuY29tPgo+ID4gQ2M6IEdlcmQgSG9mZm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPgo+ID4g
+Q2M6IHZpcnR1YWxpemF0aW9uQGxpc3RzLmxpbnV4LWZvdW5kYXRpb24ub3JnCj4gPiBDYzogc3Bp
+Y2UtZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9k
+cm0vcXhsL3F4bF9kcnYuYyB8IDE1ICsrKysrKysrLS0tLS0tLQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
+bS9xeGwvcXhsX2Rydi5oIHwgIDMgKy0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfa21z
+LmMgfCAxMiArLS0tLS0tLS0tLS0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMo
+KyksIDIwIGRlbGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+cXhsL3F4bF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9xeGwvcXhsX2Rydi5jCj4gPiBpbmRleCAw
+OTEwMmUyZWZhYmMuLjZiNGFlNGM1ZmI3NiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9xeGwvcXhsX2Rydi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9kcnYuYwo+
+ID4gQEAgLTgxLDEzICs4MSwxNiBAQCBxeGxfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2
+LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQo+ID4gICAgICAgICAgICAgICByZXR1
+cm4gLUVJTlZBTDsgLyogVE9ETzogRU5PREVWID8gKi8KPiA+ICAgICAgIH0KPiA+Cj4gPiAtICAg
+ICBxZGV2ID0ga3phbGxvYyhzaXplb2Yoc3RydWN0IHF4bF9kZXZpY2UpLCBHRlBfS0VSTkVMKTsK
+PiA+IC0gICAgIGlmICghcWRldikKPiA+ICsgICAgIHFkZXYgPSBkZXZtX2RybV9kZXZfYWxsb2Mo
+JnBkZXYtPmRldiwgJnF4bF9kcml2ZXIsCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHN0cnVjdCBxeGxfZGV2aWNlLCBkZGV2KTsKPiA+ICsgICAgIGlmIChJU19FUlIocWRldikp
+IHsKPiA+ICsgICAgICAgICAgICAgcHJfZXJyKCJVbmFibGUgdG8gaW5pdCBkcm0gZGV2Iik7Cj4g
+PiAgICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOwo+ID4gKyAgICAgfQo+Cj4gTXkgZmVlbGlu
+ZyBpcyB0aGF0IGl0IGlzIHRvbyBlYXJseSB0byBhbGxvY2F0ZS4gV291bGRuJ3QgaXQgYmUgYmV0
+dGVyIHRvCj4gZmlyc3QgZG8gdGhlIHBkZXYgYW5kIGNvbmZsaWN0aW5nLWZiIHN0dWZmIGFuZCBh
+bGxvY2F0ZSByaWdodCBiZWZvcmUKPiBxeGxfZGV2aWNlX2luaXQoKSA/CgpJdCBkb2Vzbid0IG1h
+dHRlci4gSSBjYW4gcmVvcmRlciwgb3IgSSBjYW4gYWxzbyBub3QgcmVvcmRlciwgaXQnbGwKaGF2
+ZSAwIGVmZmVjdHMgb24gY2xlYW51cCAoYWxsIGRvbmUgYXV0b21hdGljYWxseSkgb3IgY29ycmVj
+dG5lc3MKKGl0J3MganVzdCBhIG1lbW9yeSBhbGxvY2F0aW9uLCBpdCBkb2Vzbid0IGRvIGFueXRo
+aW5nKS4KLURhbmllbAoKCj4gQmVzdCByZWdhcmRzCj4gVGhvbWFzCj4KPiA+Cj4gPiAgICAgICBy
+ZXQgPSBwY2lfZW5hYmxlX2RldmljZShwZGV2KTsKPiA+ICAgICAgIGlmIChyZXQpCj4gPiAtICAg
+ICAgICAgICAgIGdvdG8gZnJlZV9kZXY7Cj4gPiArICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4g
+Pgo+ID4gICAgICAgcmV0ID0gZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfcGNpX2Zy
+YW1lYnVmZmVycyhwZGV2LCAicXhsIik7Cj4gPiAgICAgICBpZiAocmV0KQo+ID4gQEAgLTEwMSw3
+ICsxMDQsNyBAQCBxeGxfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1
+Y3QgcGNpX2RldmljZV9pZCAqZW50KQo+ID4gICAgICAgICAgICAgICB9Cj4gPiAgICAgICB9Cj4g
+Pgo+ID4gLSAgICAgcmV0ID0gcXhsX2RldmljZV9pbml0KHFkZXYsICZxeGxfZHJpdmVyLCBwZGV2
+KTsKPiA+ICsgICAgIHJldCA9IHF4bF9kZXZpY2VfaW5pdChxZGV2LCBwZGV2KTsKPiA+ICAgICAg
+IGlmIChyZXQpCj4gPiAgICAgICAgICAgICAgIGdvdG8gcHV0X3ZnYTsKPiA+Cj4gPiBAQCAtMTI4
+LDggKzEzMSw3IEBAIHF4bF9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0IHN0
+cnVjdCBwY2lfZGV2aWNlX2lkICplbnQpCj4gPiAgICAgICAgICAgICAgIHZnYV9wdXQocGRldiwg
+VkdBX1JTUkNfTEVHQUNZX0lPKTsKPiA+ICBkaXNhYmxlX3BjaToKPiA+ICAgICAgIHBjaV9kaXNh
+YmxlX2RldmljZShwZGV2KTsKPiA+IC1mcmVlX2RldjoKPiA+IC0gICAgIGtmcmVlKHFkZXYpOwo+
+ID4gKwo+ID4gICAgICAgcmV0dXJuIHJldDsKPiA+ICB9Cj4gPgo+ID4gQEAgLTE1NSw3ICsxNTcs
+NiBAQCBxeGxfcGNpX3JlbW92ZShzdHJ1Y3QgcGNpX2RldiAqcGRldikKPiA+ICAgICAgIGRybV9h
+dG9taWNfaGVscGVyX3NodXRkb3duKGRldik7Cj4gPiAgICAgICBpZiAoaXNfdmdhKHBkZXYpKQo+
+ID4gICAgICAgICAgICAgICB2Z2FfcHV0KHBkZXYsIFZHQV9SU1JDX0xFR0FDWV9JTyk7Cj4gPiAt
+ICAgICBkcm1fZGV2X3B1dChkZXYpOwo+ID4gIH0KPiA+Cj4gPiAgREVGSU5FX0RSTV9HRU1fRk9Q
+UyhxeGxfZm9wcyk7Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfZHJ2
+LmggYi9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9kcnYuaAo+ID4gaW5kZXggNDM1MTI2ZmFjYzli
+Li44NmFjMTkxZDkyMDUgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9k
+cnYuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfZHJ2LmgKPiA+IEBAIC0yNzYs
+OCArMjc2LDcgQEAgc3RydWN0IHF4bF9kZXZpY2Ugewo+ID4gIGV4dGVybiBjb25zdCBzdHJ1Y3Qg
+ZHJtX2lvY3RsX2Rlc2MgcXhsX2lvY3Rsc1tdOwo+ID4gIGV4dGVybiBpbnQgcXhsX21heF9pb2N0
+bDsKPiA+Cj4gPiAtaW50IHF4bF9kZXZpY2VfaW5pdChzdHJ1Y3QgcXhsX2RldmljZSAqcWRldiwg
+c3RydWN0IGRybV9kcml2ZXIgKmRydiwKPiA+IC0gICAgICAgICAgICAgICAgIHN0cnVjdCBwY2lf
+ZGV2ICpwZGV2KTsKPiA+ICtpbnQgcXhsX2RldmljZV9pbml0KHN0cnVjdCBxeGxfZGV2aWNlICpx
+ZGV2LCBzdHJ1Y3QgcGNpX2RldiAqcGRldik7Cj4gPiAgdm9pZCBxeGxfZGV2aWNlX2Zpbmkoc3Ry
+dWN0IHF4bF9kZXZpY2UgKnFkZXYpOwo+ID4KPiA+ICBpbnQgcXhsX21vZGVzZXRfaW5pdChzdHJ1
+Y3QgcXhsX2RldmljZSAqcWRldik7Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3F4
+bC9xeGxfa21zLmMgYi9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9rbXMuYwo+ID4gaW5kZXggOWVl
+ZDFhMzc1ZjI0Li45MWEzNGRkODM1ZDcgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+cXhsL3F4bF9rbXMuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfa21zLmMKPiA+
+IEBAIC0xMDgsMjEgKzEwOCwxMyBAQCBzdGF0aWMgdm9pZCBxeGxfZ2Nfd29yayhzdHJ1Y3Qgd29y
+a19zdHJ1Y3QgKndvcmspCj4gPiAgfQo+ID4KPiA+ICBpbnQgcXhsX2RldmljZV9pbml0KHN0cnVj
+dCBxeGxfZGV2aWNlICpxZGV2LAo+ID4gLSAgICAgICAgICAgICAgICAgc3RydWN0IGRybV9kcml2
+ZXIgKmRydiwKPiA+ICAgICAgICAgICAgICAgICAgIHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4g
+IHsKPiA+ICAgICAgIGludCByLCBzYjsKPiA+Cj4gPiAtICAgICByID0gZHJtX2Rldl9pbml0KCZx
+ZGV2LT5kZGV2LCBkcnYsICZwZGV2LT5kZXYpOwo+ID4gLSAgICAgaWYgKHIpIHsKPiA+IC0gICAg
+ICAgICAgICAgcHJfZXJyKCJVbmFibGUgdG8gaW5pdCBkcm0gZGV2Iik7Cj4gPiAtICAgICAgICAg
+ICAgIGdvdG8gZXJyb3I7Cj4gPiAtICAgICB9Cj4gPiAtCj4gPiAgICAgICBxZGV2LT5kZGV2LnBk
+ZXYgPSBwZGV2Owo+ID4gICAgICAgcGNpX3NldF9kcnZkYXRhKHBkZXYsICZxZGV2LT5kZGV2KTsK
+PiA+ICAgICAgIHFkZXYtPmRkZXYuZGV2X3ByaXZhdGUgPSBxZGV2Owo+ID4gLSAgICAgZHJtbV9h
+ZGRfZmluYWxfa2ZyZWUoJnFkZXYtPmRkZXYsIHFkZXYpOwo+ID4KPiA+ICAgICAgIG11dGV4X2lu
+aXQoJnFkZXYtPmdlbS5tdXRleCk7Cj4gPiAgICAgICBtdXRleF9pbml0KCZxZGV2LT51cGRhdGVf
+YXJlYV9tdXRleCk7Cj4gPiBAQCAtMTM4LDggKzEzMCw3IEBAIGludCBxeGxfZGV2aWNlX2luaXQo
+c3RydWN0IHF4bF9kZXZpY2UgKnFkZXYsCj4gPiAgICAgICBxZGV2LT52cmFtX21hcHBpbmcgPSBp
+b19tYXBwaW5nX2NyZWF0ZV93YyhxZGV2LT52cmFtX2Jhc2UsIHBjaV9yZXNvdXJjZV9sZW4ocGRl
+diwgMCkpOwo+ID4gICAgICAgaWYgKCFxZGV2LT52cmFtX21hcHBpbmcpIHsKPiA+ICAgICAgICAg
+ICAgICAgcHJfZXJyKCJVbmFibGUgdG8gY3JlYXRlIHZyYW1fbWFwcGluZyIpOwo+ID4gLSAgICAg
+ICAgICAgICByID0gLUVOT01FTTsKPiA+IC0gICAgICAgICAgICAgZ290byBlcnJvcjsKPiA+ICsg
+ICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07Cj4gPiAgICAgICB9Cj4gPgo+ID4gICAgICAgaWYg
+KHBjaV9yZXNvdXJjZV9sZW4ocGRldiwgNCkgPiAwKSB7Cj4gPiBAQCAtMjkzLDcgKzI4NCw2IEBA
+IGludCBxeGxfZGV2aWNlX2luaXQoc3RydWN0IHF4bF9kZXZpY2UgKnFkZXYsCj4gPiAgICAgICBp
+b19tYXBwaW5nX2ZyZWUocWRldi0+c3VyZmFjZV9tYXBwaW5nKTsKPiA+ICB2cmFtX21hcHBpbmdf
+ZnJlZToKPiA+ICAgICAgIGlvX21hcHBpbmdfZnJlZShxZGV2LT52cmFtX21hcHBpbmcpOwo+ID4g
+LWVycm9yOgo+ID4gICAgICAgcmV0dXJuIHI7Cj4gPiAgfQo+ID4KPiA+Cj4KPiAtLQo+IFRob21h
+cyBaaW1tZXJtYW5uCj4gR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUg
+U29sdXRpb25zIEdlcm1hbnkgR21iSAo+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywg
+R2VybWFueQo+IChIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjog
+RmVsaXggSW1lbmTDtnJmZmVyCj4KCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVl
+ciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5m
+ZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
