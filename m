@@ -2,69 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD331A17C7
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 00:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8131A12B4
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 19:27:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1D3D6E91C;
-	Tue,  7 Apr 2020 22:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99CC06E12E;
+	Tue,  7 Apr 2020 17:27:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
- [IPv6:2607:f8b0:4864:20::735])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 462456E8B5
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 17:23:44 +0000 (UTC)
-Received: by mail-qk1-x735.google.com with SMTP id m67so122840qke.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 10:23:44 -0700 (PDT)
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A94B6E12E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 17:27:54 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id 111so2569257oth.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 10:27:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=K+MMhgwbQedUfosyD2Cw+pAjWD5r/4ySukc35JXfHtQ=;
- b=AISqMdEd8PmC6p044QKzmqRvTEknmQL37J3YiXyuydqqLA9II7+ikNL1/d1tev4diw
- 4quCsK0SbFHe16ewvETijwjSegnewllWpsYE9/RmuzbJzWeof90cD8xTKghvASkb5YCH
- dRKhp4Rea3pGc0yerTbItjCt5X7Q8nHrSdPObogOtuRJj1IWe5klvpHR/WnB/7mbgXra
- voptzu1KNaqfjBPeOBjpm5QxutfUDr8T9uglWizgQ6zcyAGPT2NqX77iU7bjsLV8ATIV
- g/ERhpCiQDGEaTqr22AW+xneH6DFGgLRiqvNdYmUHEv4QCOZCr7VYviX87oE7r/2kDCY
- WuDA==
+ h=sender:from:to:subject:message-id:date:user-agent:mime-version
+ :content-language:content-transfer-encoding;
+ bh=KdqaAAJflyge1OY4FTOM/OByFlIeyjJc5sWo18ksWr4=;
+ b=PCKHUnGbhj9pqItVIY3Hm45IGqui1dS1BJQkc+NydxiacKk/WYsajoKnw0CK/DrcDq
+ s40zpWIR+9hpHmJ5W+Y8dMLHbxvDkW67vM8mH7hLlS58p2ZqrLxExjp1eQioZuZI2nah
+ Dgiecp6m1xysN6GCkhUedk6ikEBNeEHX9BzwDMKc9qW9oVQ2TrJN+m5wNnH1QSK7AbuS
+ RRCCV2j+3mIrCknxulv+bkhiDvSyUDL5RyMX6XhexJ7+48vmg8dt2BiwIfXUL2E/WCrK
+ 65GK3se1u9DuCPxzXNCS81QkJKnxTV38+kWcl1X6iZi+XO3IU0YrpeLudNext+3J8RP7
+ 28VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=K+MMhgwbQedUfosyD2Cw+pAjWD5r/4ySukc35JXfHtQ=;
- b=JcPKTKO1mDMI1gUTN/vwPTVT7W8XCWdjhLo32JWAYM+vMxCRxqX4xA5EeqPkyDnqRd
- xulTGRy+jgMaJYJY9v96VZxReixrHcvTy7LLkr8nlGZ37MW5T2MTmWfd8bx3gQdxu0bi
- DDZF1J4WkW6PbBB9rkXhhcgUabfrEAdI3gXKh4ukqsY5mD7zuHeq5u039RsHcFXhNKLs
- R729XgbpmsqQSQA+iHT2A/HupIpUhY0ITDXsbZdk48XpnpDlazj6tftu6jZNVTkW8pbg
- T/Gxo3VxcVwrwvznGQy9i/AW0UM/XnryAjlOJdg4tJpLazNs9leiEUK7VnKsuUd014PF
- eSbQ==
-X-Gm-Message-State: AGi0PuZb43rqJt42DiEE1aM74jUNyEXANDb7RDWkBHZj9e1i+wTDccNu
- LHXVQTN/p/qihcJaUYeRiDA=
-X-Google-Smtp-Source: APiQypKsro8wjK4xTL2iHaRs1nV2makOkwiSA9zQ+y+DTWaEm6VBA1HeGxqxnp89G+j6RhEQBYILJg==
-X-Received: by 2002:a37:6213:: with SMTP id w19mr3134388qkb.447.1586280222882; 
- Tue, 07 Apr 2020 10:23:42 -0700 (PDT)
-Received: from quaco.ghostprotocols.net ([179.97.37.151])
- by smtp.gmail.com with ESMTPSA id l7sm16781124qkb.47.2020.04.07.10.23.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Apr 2020 10:23:42 -0700 (PDT)
-From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
-X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
-Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
- id 1678C409A3; Tue,  7 Apr 2020 14:23:40 -0300 (-03)
-Date: Tue, 7 Apr 2020 14:23:40 -0300
-To: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
-Message-ID: <20200407172340.GF12003@kernel.org>
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
- <20200407143014.GD11186@kernel.org>
- <20200407143551.GF11186@kernel.org>
- <10cc74ee-8587-8cdb-f85f-5724b370a2ce@linux.intel.com>
- <20200407163654.GB12003@kernel.org>
- <20200407165643.GD12003@kernel.org>
+ h=x-gm-message-state:sender:from:to:subject:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=KdqaAAJflyge1OY4FTOM/OByFlIeyjJc5sWo18ksWr4=;
+ b=ERtXQ9R90GH0DDAlrvrgwwAgYUAaCld63DF4V9wyWQtdUOuSnlOd6nMNS+vIwnJtOu
+ lsOd+AX7nMZfHTv6dQ9dQMnkNpqJ7jw6hO7rJ+zea7KHyiA1jiwaNwh6s/QxUlAB579G
+ yoXWn/dkSUeQ5VXgjqxuyjnirozj3USSvFQVJm2ik3sIRknslNvSz8sQkPx1Vo6mAhA6
+ ytyPZ9hgJBjsygsbDVYZk+ekJxQSsbnFzLzm2O8/D2weV9RE6jwuy4UN0mNWhEb0cjh7
+ 2YqPLNm8avEN5sNB+2fnr2e3jDkYuJdnBWP7tsf6+9Ad90EqkPeU8vxP6WT44ufZt7Xc
+ J9Xw==
+X-Gm-Message-State: AGi0PuYTcDgYEzOaFqbHYEe8RYHIYOFAZavtYnX0wwwz+faEAanZ8yaL
+ TGL/H2vUP1kyfPb45HWh2It2v7F1
+X-Google-Smtp-Source: APiQypKBudTBOxyXhkheXR3BjemfTWjp5WOoDr6VjtQZFi/bNq43h3CnvY1/TUfg2apSX0fq/HH6zA==
+X-Received: by 2002:a05:6830:4038:: with SMTP id
+ i24mr2610200ots.0.1586280473646; 
+ Tue, 07 Apr 2020 10:27:53 -0700 (PDT)
+Received: from [192.168.1.120] (cpe-24-31-245-230.kc.res.rr.com.
+ [24.31.245.230])
+ by smtp.gmail.com with ESMTPSA id p25sm4357696oth.49.2020.04.07.10.27.53
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 07 Apr 2020 10:27:53 -0700 (PDT)
+From: Larry Finger <Larry.Finger@lwfinger.net>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Message-ID: <34c9768d-bb55-7834-c232-37b1751f4e84@lwfinger.net>
+Date: Tue, 7 Apr 2020 12:27:52 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200407165643.GD12003@kernel.org>
-X-Url: http://acmel.wordpress.com
-X-Mailman-Approved-At: Tue, 07 Apr 2020 22:08:57 +0000
-Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
- system performance monitoring and observability
+Content-Language: en-US
+Subject: [Intel-gfx] Regression in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,83 +69,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
- Andi Kleen <ak@linux.intel.com>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Jiri Olsa <jolsa@redhat.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Serge Hallyn <serge@hallyn.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Tue, Apr 07, 2020 at 01:56:43PM -0300, Arnaldo Carvalho de Melo escreveu:
-> 
-> But then, even with that attr.exclude_kernel set to 1 we _still_ get
-> kernel samples, which looks like another bug, now trying with strace,
-> which leads us to another rabbit hole:
-> 
-> [perf@five ~]$ strace -e perf_event_open -o /tmp/out.put perf top --stdio
-> Error:
-> You may not have permission to collect system-wide stats.
-> 
-> Consider tweaking /proc/sys/kernel/perf_event_paranoid,
-> which controls use of the performance events system by
-> unprivileged users (without CAP_PERFMON or CAP_SYS_ADMIN).
-> 
-> The current value is 2:
-> 
->   -1: Allow use of (almost) all events by all users
->       Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
-> >= 0: Disallow ftrace function tracepoint by users without CAP_PERFMON or CAP_SYS_ADMIN
->       Disallow raw tracepoint access by users without CAP_SYS_PERFMON or CAP_SYS_ADMIN
-> >= 1: Disallow CPU event access by users without CAP_PERFMON or CAP_SYS_ADMIN
-> >= 2: Disallow kernel profiling by users without CAP_PERFMON or CAP_SYS_ADMIN
-> 
-> To make this setting permanent, edit /etc/sysctl.conf too, e.g.:
-> 
-> 	kernel.perf_event_paranoid = -1
-> 
-> [perf@five ~]$
-> 
-> If I remove that strace -e ... from the front, 'perf top' is back
-> working as a non-cap_sys_admin user, just with cap_perfmon.
-> 
+Chris,
 
-So I couldn't figure it out so far why is that exclude_kernel is being
-set to 1, as perf-top when no event is passed defaults to this to find
-out what to use as a default event:
+With a recent pull of kernel head, my Toshiba laptop with an i915 graphics card 
+fails to boot. It hangs at the point where it should switch to a graphics 
+screen. I bisected the problem to
 
-  perf_evlist__add_default(top.evlist)
-     perf_evsel__new_cycles(true);
-	struct perf_event_attr attr = {
-                .type   = PERF_TYPE_HARDWARE,
-                .config = PERF_COUNT_HW_CPU_CYCLES,
-                .exclude_kernel = !perf_event_can_profile_kernel(),
-        };
+commit 7dc8f1143778a35b190f9413f228b3cf28f67f8d
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Wed Mar 11 16:03:10 2020 +0000
 
-			perf_event_paranoid_check(1);
-			        return perf_cap__capable(CAP_SYS_ADMIN) ||
-				       perf_cap__capable(CAP_PERFMON) ||
-				       perf_event_paranoid() <= max_level;
+     drm/i915/gem: Drop relocation slowpath
 
+The lspci command reports my card as
+00:02.0 VGA compatible controller [0300]: Intel Corporation 4th Gen Core 
+Processor Integrated Graphics Controller [8086:0416] (rev 06)
 
-And then that second condition should hold true, it returns true, and
-then .exclude_kernel should be set to !true -> zero.o
+Has this problem been reported, and is there a fix?
 
-Now the wallclock says I need to stop being a programmer and turn into a
-daycare provider for Pedro, cya!
+Thanks,
 
-- Arnaldo
+Larry
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
