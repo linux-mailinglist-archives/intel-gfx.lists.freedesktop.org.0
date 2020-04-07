@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF81E1A0FC4
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 16:58:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6751A0FF5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 17:14:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D41946E043;
-	Tue,  7 Apr 2020 14:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E06C46E0AC;
+	Tue,  7 Apr 2020 15:14:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E1826E043;
- Tue,  7 Apr 2020 14:58:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05C90A47DF;
- Tue,  7 Apr 2020 14:58:50 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 166DB6E0AC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 15:14:19 +0000 (UTC)
+IronPort-SDR: UL7/zt1z0SKo1psY1gEZLvFdqePdBsxBmnx4pTEt34WzowOrDeTKnko8guEhbp6W2ncBGeZw3P
+ VuAzRrciumNg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 08:14:09 -0700
+IronPort-SDR: I3O9/Hl9JS3Nd/lyYRyvrdEVF/3yWfR+Hv5VSOp804AweolT9qCQNeFBBPe8Er4m2GPMgpjJ30
+ 6KfSeRq5MyUw==
+X-IronPort-AV: E=Sophos;i="5.72,355,1580803200"; d="scan'208";a="275128612"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 08:14:07 -0700
+Date: Tue, 7 Apr 2020 18:13:57 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200407151357.GA21484@ideak-desk.fi.intel.com>
+References: <20200407011157.362092-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Tue, 07 Apr 2020 14:58:49 -0000
-Message-ID: <158627152999.26327.16376300189475528826@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200407123540.601497-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200407123540.601497-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/3=5D_drm/i915/perf=3A_break_OA_conf?=
- =?utf-8?q?ig_buffer_object_in_2?=
+Content-Disposition: inline
+In-Reply-To: <20200407011157.362092-1-jose.souza@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915/display: Move out code to
+ return the digital_port of the aux ch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,126 +48,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: You-Sheng Yang <vicamo@gmail.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Apr 06, 2020 at 06:11:50PM -0700, Jos=E9 Roberto de Souza wrote:
+> Moving the code to return the digital port of the aux channel also
+> removing the intel_phy_is_tc() to make it generic.
+> digital_port will be needed in icl_tc_phy_aux_power_well_enable()
+> so adding it as a parameter to icl_tc_port_assert_ref_held().
+> =
 
-Series: series starting with [v4,1/3] drm/i915/perf: break OA config buffer object in 2
-URL   : https://patchwork.freedesktop.org/series/75612/
-State : failure
+> While at at removing the duplicated call to icl_tc_phy_aux_ch() in
+> icl_tc_port_assert_ref_held().
+> =
 
-== Summary ==
+> v2:
+> - fixed build when DRM_I915_DEBUG_RUNTIME_PM is not set
+> - moved to before hsw_wait_for_power_well_enable() as it will be
+> needed by hsw_wait_for_power_well_enable() in a future patch
+> =
 
-CI Bug Log - changes from CI_DRM_8264 -> Patchwork_17236
-====================================================
+> Cc: You-Sheng Yang <vicamo@gmail.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_power.c    | 69 ++++++++++---------
+>  1 file changed, 37 insertions(+), 32 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 433e5a81dd4d..f2f42b5960df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -282,6 +282,33 @@ static void hsw_power_well_pre_disable(struct drm_i9=
+15_private *dev_priv,
+>  		gen8_irq_power_well_pre_disable(dev_priv, irq_pipe_mask);
+>  }
+>  =
 
-  **FAILURE**
+> +static struct intel_digital_port *
+> +aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
+> +		       enum aux_ch aux_ch)
+> +{
+> +	struct intel_digital_port *dig_port =3D NULL;
+> +	struct intel_encoder *encoder;
+> +
+> +	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> +		/* We'll check the MST primary port */
+> +		if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST)
+> +			continue;
+> +
+> +		dig_port =3D enc_to_dig_port(encoder);
+> +		if (drm_WARN_ON(&dev_priv->drm, !dig_port))
 
-  Serious unknown changes coming with Patchwork_17236 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17236, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+This would not work on non-digital port encoders (DSI), so just
+		if (!dig_port)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/index.html
+With that fixed:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Possible new issues
--------------------
+> +			continue;
+> +
+> +		if (dig_port->aux_ch !=3D aux_ch) {
+> +			dig_port =3D NULL;
+> +			continue;
+> +		}
+> +
+> +		break;
+> +	}
+> +
+> +	return dig_port;
+> +}
+> +
+>  static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_=
+priv,
+>  					   struct i915_power_well *power_well)
+>  {
+> @@ -501,41 +528,14 @@ static int power_well_async_ref_count(struct drm_i9=
+15_private *dev_priv,
+>  }
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17236:
+>  static void icl_tc_port_assert_ref_held(struct drm_i915_private *dev_pri=
+v,
+> -					struct i915_power_well *power_well)
+> +					struct i915_power_well *power_well,
+> +					struct intel_digital_port *dig_port)
+>  {
+> -	enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+> -	struct intel_digital_port *dig_port =3D NULL;
+> -	struct intel_encoder *encoder;
+> -
+>  	/* Bypass the check if all references are released asynchronously */
+>  	if (power_well_async_ref_count(dev_priv, power_well) =3D=3D
+>  	    power_well->count)
+>  		return;
+>  =
 
-### IGT changes ###
+> -	aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+> -
+> -	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> -		enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> -
+> -		if (!intel_phy_is_tc(dev_priv, phy))
+> -			continue;
+> -
+> -		/* We'll check the MST primary port */
+> -		if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST)
+> -			continue;
+> -
+> -		dig_port =3D enc_to_dig_port(encoder);
+> -		if (drm_WARN_ON(&dev_priv->drm, !dig_port))
+> -			continue;
+> -
+> -		if (dig_port->aux_ch !=3D aux_ch) {
+> -			dig_port =3D NULL;
+> -			continue;
+> -		}
+> -
+> -		break;
+> -	}
+> -
+>  	if (drm_WARN_ON(&dev_priv->drm, !dig_port))
+>  		return;
+>  =
 
-#### Possible regressions ####
+> @@ -545,7 +545,8 @@ static void icl_tc_port_assert_ref_held(struct drm_i9=
+15_private *dev_priv,
+>  #else
+>  =
 
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-icl-y/igt@i915_selftest@live@execlists.html
+>  static void icl_tc_port_assert_ref_held(struct drm_i915_private *dev_pri=
+v,
+> -					struct i915_power_well *power_well)
+> +					struct i915_power_well *power_well,
+> +					struct intel_digital_port *dig_port)
+>  {
+>  }
+>  =
 
-  
-Known issues
-------------
+> @@ -558,9 +559,10 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_pri=
+vate *dev_priv,
+>  				 struct i915_power_well *power_well)
+>  {
+>  	enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+> +	struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_priv=
+, aux_ch);
+>  	u32 val;
+>  =
 
-  Here are the changes found in Patchwork_17236 that come from known issues:
+> -	icl_tc_port_assert_ref_held(dev_priv, power_well);
+> +	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+>  =
 
-### IGT changes ###
+>  	val =3D intel_de_read(dev_priv, DP_AUX_CH_CTL(aux_ch));
+>  	val &=3D ~DP_AUX_CH_CTL_TBT_IO;
+> @@ -588,7 +590,10 @@ static void
+>  icl_tc_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  				  struct i915_power_well *power_well)
+>  {
+> -	icl_tc_port_assert_ref_held(dev_priv, power_well);
+> +	enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+> +	struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_priv=
+, aux_ch);
+> +
+> +	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+>  =
 
-#### Issues hit ####
+>  	hsw_power_well_disable(dev_priv, power_well);
+>  }
+> -- =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [PASS][2] -> [SKIP][3] ([fdo#109271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+> 2.26.0
+> =
 
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-kbl-x1275:       [PASS][4] -> [DMESG-WARN][5] ([i915#62] / [i915#92]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [PASS][6] -> [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][8] ([i915#1158]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [INCOMPLETE][10] ([i915#1580]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8264/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (53 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8264 -> Patchwork_17236
-
-  CI-20190529: 20190529
-  CI_DRM_8264: e0104585f880a64d4a9b40803cf4fb51ab499f7c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5573: 9c582425d6b4fc1de9fc2ffc8015cc6f0a0d3e98 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17236: 0ff87b9cbfcf8cdd5645e0f5c7b3394ad8361bea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0ff87b9cbfcf drm/i915/perf: enable filtering on multiple contexts
-75dd29591d6c drm/i915/perf: prepare driver to receive multiple ctx handles
-58ebe77ccc99 drm/i915/perf: break OA config buffer object in 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17236/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
