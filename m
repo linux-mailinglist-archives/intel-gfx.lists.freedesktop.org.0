@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9BF1A1378
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 20:20:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 975171A13B5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 20:31:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA8F6E8CD;
-	Tue,  7 Apr 2020 18:20:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64ED66E8D0;
+	Tue,  7 Apr 2020 18:31:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB5E6E8CD
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 18:20:21 +0000 (UTC)
-IronPort-SDR: YsdDzyv2WpW/lUEOheXnOT7Y8uOIWvFT8qlqhdkvJLyqw42uRDoGgT//l4GKMOeILiOvQ5/cug
- z44EitjGZzWA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 11:20:21 -0700
-IronPort-SDR: 5aN1IyoATCZpHvj0nOViehMhljBHX63dwKn+nUmlcv9hOcUxNS2tPUIq3Q0ivZhoSH2IYloITM
- EDIvEUXyEPNw==
-X-IronPort-AV: E=Sophos;i="5.72,356,1580803200"; d="scan'208";a="243831483"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 11:20:19 -0700
-Date: Tue, 7 Apr 2020 21:20:09 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200407182009.GJ21484@ideak-desk.fi.intel.com>
-References: <20200407011157.362092-1-jose.souza@intel.com>
- <20200407011157.362092-7-jose.souza@intel.com>
- <20200407160455.GG21484@ideak-desk.fi.intel.com>
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 270306E8CC;
+ Tue,  7 Apr 2020 18:31:03 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id E35FC804D5;
+ Tue,  7 Apr 2020 20:31:00 +0200 (CEST)
+Date: Tue, 7 Apr 2020 20:30:59 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200407183059.GD6356@ravnborg.org>
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200407160455.GG21484@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 7/8] drm/i915/tc: Catch TC users
- accessing FIA registers without enable aux
+In-Reply-To: <20200403204008.14864-2-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=QyXUC8HyAAAA:8
+ a=QX4gbG5DAAAA:8 a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=Yqb6jqoWToFXY3bZnXMA:9
+ a=wPNLvfGTeEIA:10 a=AbAUZ8qAyYyZVLSsDulk:22 a=E9Po1WZjFZOl8hwRPBS3:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH v2 01/17] drm: Nuke mode->hsync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,127 +47,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Emil Velikov <emil.velikov@collabora.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2020 at 07:04:55PM +0300, Imre Deak wrote:
-> On Mon, Apr 06, 2020 at 06:11:56PM -0700, Jos=E9 Roberto de Souza wrote:
-> > As described in "drm/i915/tc/icl: Implement TC cold sequences" users
-> > of TC functions should held aux power well during access to avoid
-> > read garbage due HW in TC cold state.
-> > =
-
-> > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_tc.c | 22 ++++++++++++++++++++--
-> >  1 file changed, 20 insertions(+), 2 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/=
-i915/display/intel_tc.c
-> > index 83861653768d..e473bb4a9b0b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> > @@ -95,6 +95,20 @@ tc_cold_unblock(struct intel_digital_port *dig_port,=
- intel_wakeref_t wakeref)
-> >  	intel_display_power_put_async(i915, domain, wakeref);
-> >  }
-> >  =
-
-> > +static void
-> > +is_tc_cold_blocked(struct intel_digital_port *dig_port)
+On Fri, Apr 03, 2020 at 11:39:52PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> assert_tc_cold_blocked()?
+> Let's just calculate the hsync rate on demand. No point in wasting
+> space storing it and risking the cached value getting out of sync
+> with reality.
 > =
 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
+> v2: Move drm_mode_hsync() next to its only users
+>     Drop the TODO
 > =
 
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> > +	bool enabled;
-> > +
-> > +	if (INTEL_GEN(i915) =3D=3D 11 && !dig_port->tc_legacy_port)
-> > +		return;
-> > +
-> > +	enabled =3D intel_display_power_is_enabled(i915,
-> > +						 tc_cold_get_power_domain(dig_port));
-> > +	drm_WARN_ON(&i915->drm, !enabled);
-> > +}
-> > +
-> >  u32 intel_tc_port_get_lane_mask(struct intel_digital_port *dig_port)
-> >  {
-> >  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> > @@ -104,7 +118,7 @@ u32 intel_tc_port_get_lane_mask(struct intel_digita=
-l_port *dig_port)
-> >  	lane_mask =3D intel_uncore_read(uncore,
-> >  				      PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
-> >  =
+> Reviewed-by: Emil Velikov <emil.velikov@collabora.com> #v1
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-> > -	drm_WARN_ON(&i915->drm, lane_mask =3D=3D 0xffffffff);
+> ---
+>  Documentation/gpu/todo.rst                   | 12 ---------
+>  drivers/gpu/drm/drm_edid.c                   |  8 ++++++
+>  drivers/gpu/drm/drm_modes.c                  | 26 --------------------
+>  drivers/gpu/drm/i915/display/intel_display.c |  1 -
+>  include/drm/drm_modes.h                      | 11 ---------
+>  5 files changed, 8 insertions(+), 50 deletions(-)
+> =
 
-You could also keep the checks like the above one, since reading all
-0xff is still bogus.
+> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+> index 439656f55c5d..658b52f7ffc6 100644
+> --- a/Documentation/gpu/todo.rst
+> +++ b/Documentation/gpu/todo.rst
+> @@ -347,18 +347,6 @@ Contact: Sean Paul
+>  =
 
-> > +	is_tc_cold_blocked(dig_port);
-> >  =
+>  Level: Starter
+>  =
 
-> >  	lane_mask &=3D DP_LANE_ASSIGNMENT_MASK(dig_port->tc_phy_fia_idx);
-> >  	return lane_mask >> DP_LANE_ASSIGNMENT_SHIFT(dig_port->tc_phy_fia_idx=
-);
-> > @@ -119,7 +133,7 @@ u32 intel_tc_port_get_pin_assignment_mask(struct in=
-tel_digital_port *dig_port)
-> >  	pin_mask =3D intel_uncore_read(uncore,
-> >  				     PORT_TX_DFLEXPA1(dig_port->tc_phy_fia));
-> >  =
+> -Remove drm_display_mode.hsync
+> ------------------------------
+> -
+> -We have drm_mode_hsync() to calculate this from hsync_start/end, since d=
+rivers
+> -shouldn't/don't use this, remove this member to avoid any temptations to=
+ use it
+> -in the future. If there is any debug code using drm_display_mode.hsync, =
+convert
+> -it to use drm_mode_hsync() instead.
+> -
+> -Contact: Sean Paul
+> -
+> -Level: Starter
+> -
+>  connector register/unregister fixes
+>  -----------------------------------
+>  =
 
-> > -	drm_WARN_ON(&i915->drm, pin_mask =3D=3D 0xffffffff);
-> > +	is_tc_cold_blocked(dig_port);
-> >  =
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 43b6ca364daa..3bd95c4b02eb 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -2380,6 +2380,14 @@ bad_std_timing(u8 a, u8 b)
+>  	       (a =3D=3D 0x20 && b =3D=3D 0x20);
+>  }
+>  =
 
-> >  	return (pin_mask & DP_PIN_ASSIGNMENT_MASK(dig_port->tc_phy_fia_idx)) =
->>
-> >  	       DP_PIN_ASSIGNMENT_SHIFT(dig_port->tc_phy_fia_idx);
-> > @@ -134,6 +148,8 @@ int intel_tc_port_fia_max_lane_count(struct intel_d=
-igital_port *dig_port)
-> >  	if (dig_port->tc_mode !=3D TC_PORT_DP_ALT)
-> >  		return 4;
-> >  =
+> +static int drm_mode_hsync(const struct drm_display_mode *mode)
+> +{
+> +	if (mode->htotal <=3D 0)
+> +		return 0;
+> +
+> +	return DIV_ROUND_CLOSEST(mode->clock, mode->htotal);
+> +}
+> +
+>  /**
+>   * drm_mode_std - convert standard mode info (width, height, refresh) in=
+to mode
+>   * @connector: connector of for the EDID block
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index d4d64518e11b..fec1c33b3045 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -747,32 +747,6 @@ void drm_mode_set_name(struct drm_display_mode *mode)
+>  }
+>  EXPORT_SYMBOL(drm_mode_set_name);
+>  =
 
-> > +	is_tc_cold_blocked(dig_port);
-> > +
-> >  	lane_mask =3D 0;
-> >  	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
-> >  		lane_mask =3D intel_tc_port_get_lane_mask(dig_port);
-> > @@ -166,6 +182,8 @@ void intel_tc_port_set_fia_lane_count(struct intel_=
-digital_port *dig_port,
-> >  	drm_WARN_ON(&i915->drm,
-> >  		    lane_reversal && dig_port->tc_mode !=3D TC_PORT_LEGACY);
-> >  =
+> -/**
+> - * drm_mode_hsync - get the hsync of a mode
+> - * @mode: mode
+> - *
+> - * Returns:
+> - * @modes's hsync rate in kHz, rounded to the nearest integer. Calculate=
+s the
+> - * value first if it is not yet set.
+> - */
+> -int drm_mode_hsync(const struct drm_display_mode *mode)
+> -{
+> -	unsigned int calc_val;
+> -
+> -	if (mode->hsync)
+> -		return mode->hsync;
+> -
+> -	if (mode->htotal <=3D 0)
+> -		return 0;
+> -
+> -	calc_val =3D (mode->clock * 1000) / mode->htotal; /* hsync in Hz */
+> -	calc_val +=3D 500;				/* round to 1000Hz */
+> -	calc_val /=3D 1000;				/* truncate to kHz */
+> -
+> -	return calc_val;
+> -}
+> -EXPORT_SYMBOL(drm_mode_hsync);
+> -
+>  /**
+>   * drm_mode_vrefresh - get the vrefresh of a mode
+>   * @mode: mode
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 70ec301fe6e3..5ebb2df5f1f4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8870,7 +8870,6 @@ void intel_mode_from_pipe_config(struct drm_display=
+_mode *mode,
+>  =
 
-> > +	is_tc_cold_blocked(dig_port);
-> > +
-> >  	val =3D intel_uncore_read(uncore,
-> >  				PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia));
-> >  	val &=3D ~DFLEXDPMLE1_DPMLETC_MASK(dig_port->tc_phy_fia_idx);
-> > -- =
+>  	mode->clock =3D pipe_config->hw.adjusted_mode.crtc_clock;
+>  =
 
-> > 2.26.0
-> > =
+> -	mode->hsync =3D drm_mode_hsync(mode);
+>  	mode->vrefresh =3D drm_mode_vrefresh(mode);
+>  	drm_mode_set_name(mode);
+>  }
+> diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
+> index 99134d4f35eb..730fc31de4fb 100644
+> --- a/include/drm/drm_modes.h
+> +++ b/include/drm/drm_modes.h
+> @@ -390,16 +390,6 @@ struct drm_display_mode {
+>  	 */
+>  	int vrefresh;
+>  =
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> -	/**
+> -	 * @hsync:
+> -	 *
+> -	 * Horizontal refresh rate, for debug output in human readable form. Not
+> -	 * used in a functional way.
+> -	 *
+> -	 * This value is in kHz.
+> -	 */
+> -	int hsync;
+> -
+>  	/**
+>  	 * @picture_aspect_ratio:
+>  	 *
+> @@ -493,7 +483,6 @@ int of_get_drm_display_mode(struct device_node *np,
+>  			    int index);
+>  =
+
+>  void drm_mode_set_name(struct drm_display_mode *mode);
+> -int drm_mode_hsync(const struct drm_display_mode *mode);
+>  int drm_mode_vrefresh(const struct drm_display_mode *mode);
+>  void drm_mode_get_hv_timing(const struct drm_display_mode *mode,
+>  			    int *hdisplay, int *vdisplay);
+> -- =
+
+> 2.24.1
+> =
+
 > _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
