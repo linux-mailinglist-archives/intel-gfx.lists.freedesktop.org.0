@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8131A0DCF
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:37:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 909C71A0DE1
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 14:40:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 391EF6E864;
-	Tue,  7 Apr 2020 12:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 014B76E85D;
+	Tue,  7 Apr 2020 12:40:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 974DF6E864
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:37:55 +0000 (UTC)
-IronPort-SDR: SnbFZteMZNm1oCXp5EIXWaOMPT1LRbf/bANdQiGovQgRrQ8PK/UvspHr1Lkha7HgVApFUSnKgN
- rWyF4IVToiNg==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5026E85D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 12:40:41 +0000 (UTC)
+IronPort-SDR: 6YfHJcdZdWh/0pJgNKvtWJWeDzsdLN8e5dnt6qdcmxoVjk72x+F6K9PD0xyM+ctpJZKv54QVPe
+ khBb46qr4XLA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:37:55 -0700
-IronPort-SDR: 7KFhF4p8nLh0ClGmwa5MNyJJ2NytbRuHB9/0EG3r9gs2SuQfbUQonivSnq1Q3a7rP/E9VKTcN/
- R2CRl/Pg2Hhg==
-X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="451204555"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:40:40 -0700
+IronPort-SDR: Jnthy4L6IC3QOKmWVhAi7pSIwrk5hbfaCxENbH6P9jfRHsi6uF2U2NNL2mC0u0N7Goo30q9g5G
+ lfcyFPuLLESw==
+X-IronPort-AV: E=Sophos;i="5.72,354,1580803200"; d="scan'208";a="424734577"
 Received: from vogtstef-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.249.40.153])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2020 05:37:53 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2020 05:40:38 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Vipin Anand <vipin.anand@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87eeszjwui.fsf@intel.com>
+In-Reply-To: <20200327052357.22269-7-vipin.anand@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200327052357.22269-1-vipin.anand@intel.com>
- <20200327052357.22269-5-vipin.anand@intel.com> <87eeszjwui.fsf@intel.com>
-Date: Tue, 07 Apr 2020 15:37:51 +0300
-Message-ID: <87blo3jwtc.fsf@intel.com>
+ <20200327052357.22269-7-vipin.anand@intel.com>
+Date: Tue, 07 Apr 2020 15:40:36 +0300
+Message-ID: <878sj7jwor.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/display: Set HDR Infoframe for
- HDR capable LSPCON devices
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/display: Reduce blanking to
+ support 4k60@10bpp for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,81 +54,71 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2020, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
->> From: Uma Shankar <uma.shankar@intel.com>
->>
->> Send Dynamic Range and Mastering Infoframe (DRM for HDR metadata)
->> as SDP packet to LSPCON following the DP spec. LSPCON receives the
->> same and sends it to HDMI sink.
->>
->> v2: Suppressed some warnings. No functional change.
->>
->> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
->> ---
->>  drivers/gpu/drm/drm_atomic_state_helper.c   | 1 +
->>  drivers/gpu/drm/drm_atomic_uapi.c           | 1 +
->>  drivers/gpu/drm/i915/display/intel_lspcon.h | 1 +
->>  include/drm/drm_connector.h                 | 1 +
->>  4 files changed, 4 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
->> index 7cf3cf936547..7cf98c06f424 100644
->> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
->> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
->> @@ -468,6 +468,7 @@ __drm_atomic_helper_connector_duplicate_state(struct drm_connector *connector,
->>  
->>  	if (state->hdr_output_metadata)
->>  		drm_property_blob_get(state->hdr_output_metadata);
->> +	state->hdr_metadata_changed = false;
->>  
->>  	/* Don't copy over a writeback job, they are used only once */
->>  	state->writeback_job = NULL;
->> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
->> index a1e5e262bae2..4c520e0b9872 100644
->> --- a/drivers/gpu/drm/drm_atomic_uapi.c
->> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
->> @@ -734,6 +734,7 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
->>  				val,
->>  				sizeof(struct hdr_output_metadata), -1,
->>  				&replaced);
->> +		state->hdr_metadata_changed |= replaced;
->>  		return ret;
->>  	} else if (property == config->aspect_ratio_property) {
->>  		state->picture_aspect_ratio = val;
->> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
->> index b2051f236223..bc34124f532e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
->> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
->> @@ -38,4 +38,5 @@ void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
->>  				const struct intel_crtc_state *crtc_state,
->>  				unsigned int type,
->>  				const void *frame, ssize_t len);
->> +
+On Fri, 27 Mar 2020, Vipin Anand <vipin.anand@intel.com> wrote:
+> From: Uma Shankar <uma.shankar@intel.com>
 >
-> Superfluous change.
+> Blanking needs to be reduced to incorporate DP and HDMI timing/link
+> bandwidth limitations for CEA modes (4k@60 at 10 bpp). DP can drive
+> 17.28Gbs while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps.
+> This will cause mode to blank out. Reduced Htotal by shortening the
+> back porch and front porch within permissible limits.
 >
-> Patch needs to be posted to dri-devel.
+> v2: This is marked as Not for merge and the responsibilty to program
+> these custom timings will be on userspace. This patch is just for
+> reference purposes. This is based on Ville's recommendation.
 
-Alternatively, the details need to be in intel specific states.
+This must be highlighted in the subject. HACK or whatever.
+
+And even as a hack, don't change stuff in the .mode_valid hook. It
+belongs to compute config.
+
+BR,
+Jani.
+
 
 >
-> BR,
-> Jani.
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 >
->>  #endif /* __INTEL_LSPCON_H__ */
->> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
->> index 221910948b37..28df268aa1a7 100644
->> --- a/include/drm/drm_connector.h
->> +++ b/include/drm/drm_connector.h
->> @@ -661,6 +661,7 @@ struct drm_connector_state {
->>  	 * DRM blob property for HDR output metadata
->>  	 */
->>  	struct drm_property_blob *hdr_output_metadata;
->> +	u8 hdr_metadata_changed : 1;
->>  };
->>  
->>  /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c7424e2a04a3..3ab1fadb2ea3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -616,9 +616,11 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  {
+>  	struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> +	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
+>  	struct drm_display_mode *fixed_mode = intel_connector->panel.fixed_mode;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+>  	int target_clock = mode->clock;
+> +	struct intel_lspcon *lspcon = enc_to_intel_lspcon(intel_encoder);
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+>  	int max_dotclk;
+>  	u16 dsc_max_output_bpp = 0;
+> @@ -638,6 +640,20 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  
+>  		target_clock = fixed_mode->clock;
+>  	}
+> +	/*
+> +	 * Reducing Blanking to incorporate DP and HDMI timing/link bandwidth
+> +	 * limitations for CEA modes (4k@60 at 10 bpp). DP can drive 17.28Gbs
+> +	 * while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps. This will
+> +	 * cause mode to blank out. Reduced Htotal by shortening the back porch
+> +	 * and front porch within permissible limits.
+> +	 */
+> +	if (lspcon->active && lspcon->hdr_supported &&
+> +	    mode->clock > 570000) {
+> +		mode->clock = 570000;
+> +		mode->htotal -= 180;
+> +		mode->hsync_start -= 72;
+> +		mode->hsync_end -= 72;
+> +	}
+>  
+>  	max_link_clock = intel_dp_max_link_rate(intel_dp);
+>  	max_lanes = intel_dp_max_lane_count(intel_dp);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
