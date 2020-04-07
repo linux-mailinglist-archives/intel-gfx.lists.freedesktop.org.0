@@ -2,68 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A14471A07B1
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 08:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C601A077A
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Apr 2020 08:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B67B56E51C;
-	Tue,  7 Apr 2020 06:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57A7A89FA0;
+	Tue,  7 Apr 2020 06:41:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
- [64.147.123.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9496E51C;
- Tue,  7 Apr 2020 06:52:21 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailout.west.internal (Postfix) with ESMTP id 45FDE6A3;
- Tue,  7 Apr 2020 02:52:18 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Tue, 07 Apr 2020 02:52:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=VnZixAcAV+VvdCuDr09IqmEOF+J
- YKHYuBulHUlCgYuk=; b=TaIMA9ZQgg/1AK728uU80EWY0Dzy/7NdX4fFQ8Ep0LA
- ZAB0fmL+QqCgUoiQkRPAUNt3noL9PV7j0A2PDHHJPX+OV3ZiljBrZsrZK6t6BEP1
- lZb/MknPowHEpc2m8GFiwSv+uzIsLlJ6jvW8Ga6O3OQ7CUZE+5M+JFgnEtawB2IJ
- IRxiAoNS2JzTilWYVSaO0yug78Zz6vqkm+uEFqUJOq3zHR7bqszKIiCg8jalAHjl
- TCs7Ms4vqdObeokHk1sBcud5N3LV37zWLrYNf7I0ijLMxipc+kBBY8a2pYOUPL7h
- GCQJNQovuRRy5ydldgYBSEsQuhX/JUBKMTC1gxskuoA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=VnZixA
- cAV+VvdCuDr09IqmEOF+JYKHYuBulHUlCgYuk=; b=q6QAn03e0wbs4PwIN0sUj1
- UiWWbWlm5ns3yYXKUi8jbFpsQDl2lumg319cpXyTVoqKdC+0kiLz3UeeJCiET7bE
- JuxNGXHPHz9z7TQCzX6CJ2D8vKVh74oZGn8w3ln/AdokD6q+UdFU9SWbc2Eo8qPF
- JRwBShWv7dYTwzFXckkHT7dQ/EzKSUxJJJ1b+azOCzwPmtNMbPuKamxvzkhLmsTt
- l1PXiZORD99aowdQeDd8BAJlhSIl8M/wWLJ2fQNlzH3Jj3HOn2W9vpwU4nRd2wmL
- RKV7OiwF+h0gDS7sidtb1nBEmJsTYkLWZKkGVBieBQ7mIHDFIus8fbchLlVPwutw
- ==
-X-ME-Sender: <xms:ICOMXoB_jVTWE7wA_abyXwAN-_c3rC3qUZN0Fore_Q0G1Ls4uwgcew>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudeggdduuddtucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefirhgvghcu
- mffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucfkphepkeefrdekiedrkeelrddutd
- ejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhr
- vghgsehkrhhorghhrdgtohhm
-X-ME-Proxy: <xmx:ICOMXlqsNjKOd7pwu7022yxd7YpfBhq6hjale40JGRRhQ7O5kBAjRQ>
- <xmx:ICOMXq-C8cMLrB0hNIBDXLKzYbe-3b-GJ99lFDt6AENgHcvHMfECKA>
- <xmx:ICOMXuDMI5uIl8XLVFQYthPLiN0jCprgDCiTCHDqm6I1JQLJGkhQ5w>
- <xmx:ISOMXkQtLndXvwjQVKC2VWc4F-t5aVW1oF7HXaBLmmRSxKocCGK6rQ>
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- by mail.messagingengine.com (Postfix) with ESMTPA id 933BF306C4E3;
- Tue,  7 Apr 2020 02:52:15 -0400 (EDT)
-Date: Tue, 7 Apr 2020 08:52:10 +0200
-From: Greg KH <greg@kroah.com>
-To: Sultan Alsawaf <sultan@kerneltoast.com>
-Message-ID: <20200407065210.GA263852@kroah.com>
-References: <20200407062622.6443-1-sultan@kerneltoast.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A56E89F9F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 06:41:31 +0000 (UTC)
+IronPort-SDR: 4q9GNarEkDq7JYlPaqrS/W88dfLMajKS2EZ8M4ZOsyoL6+Axzlw9lvNXEHI0I948g3zfr27+8b
+ HftpDusQFy6Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2020 23:41:31 -0700
+IronPort-SDR: 1C05lGqb66peN/d+718flfvjKahkATlDaMskdLqZ7MmMB4fjnOm/wa5PKZBS2/ESV/oIuB+C+r
+ qlEGlN2QivfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,353,1580803200"; d="scan'208";a="451111803"
+Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
+ ([10.223.74.152])
+ by fmsmga005.fm.intel.com with ESMTP; 06 Apr 2020 23:41:29 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Apr 2020 12:39:16 +0530
+Message-Id: <20200407070916.30475-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200407062622.6443-1-sultan@kerneltoast.com>
-Subject: Re: [Intel-gfx] [PATCH 0/1] drm/i915: Fix a deadlock that only
- affects 5.4
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Enable DP Display Audio WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,35 +45,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- stable@vger.kernel.org
+Cc: kai.vehmanen@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2020 at 11:26:21PM -0700, Sultan Alsawaf wrote:
-> From: Sultan Alsawaf <sultan@kerneltoast.com>
-> 
-> Hi,
-> 
-> There's a mutex lock deadlock in i915 that only affects 5.4, but was fixed in
-> 5.5. Normally, I would send a backport of the fix from 5.5, but the patch set
-> that fixes the deadlock involves massive changes that are neither feasible nor
-> desirable for backporting [1][2][3]. Therefore, I've made a small patch that
-> only addresses the deadlock specifically for 5.4.
+Enable Display Audio WA #1406928334 for 4k+VDSC usecase
+on DP encoders.
 
-This paragraph needs to go into the patch itself, otherwise just looking
-at that doesn't make any sense.
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 110 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h            |  16 +++
+ 2 files changed, 126 insertions(+)
 
-And you do not need a cover letter for a single patch.
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 950160f1a89f..035f2949e9c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -512,6 +512,112 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	mutex_unlock(&dev_priv->av_mutex);
+ }
+ 
++static void enable_audio_dsc_wa(struct intel_encoder *encoder,
++				const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum pipe pipe = crtc->pipe;
++	u64 link_clks_available, link_clks_required, link_clk;
++	u64 tu_data, tu_line, link_clks_active;
++	u64 hblank_rise, hblank_early_prog, samples_room;
++	u64 h_active, h_total, hblank_delta, pixel_clk, v_total, lanes;
++	u64 vdsc_bpp, fec_coeff, refresh_rate, cdclk;
++	u64 rounding_factor = 100000;
++	u32 val;
++
++	val = intel_de_read(dev_priv, AUD_CONFIG_BE);
++
++	if (INTEL_GEN(dev_priv) == 11)
++		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
++	else if (INTEL_GEN(dev_priv) >= 12)
++		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
++
++	if (crtc_state->dsc.compression_enable &&
++	    (crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
++	     crtc_state->hw.adjusted_mode.vdisplay >= 2160)) {
++		h_active = crtc_state->hw.adjusted_mode.hdisplay;
++		h_total = crtc_state->hw.adjusted_mode.htotal;
++		v_total = crtc_state->hw.adjusted_mode.vtotal;
++		hblank_rise = crtc_state->hw.adjusted_mode.hsync_start;
++		pixel_clk = crtc_state->hw.adjusted_mode.clock;
++		link_clk = crtc_state->port_clock;
++		lanes = crtc_state->lane_count;
++		vdsc_bpp = crtc_state->pipe_bpp;
++		refresh_rate = crtc_state->hw.adjusted_mode.vrefresh;
++		cdclk = dev_priv->cdclk.hw.cdclk;
++		/* fec= 0.972261, using rounding multiplier of 1000000 */
++		fec_coeff = 972261;
++
++		if (!(h_active && link_clk && lanes && vdsc_bpp && cdclk)) {
++			drm_err(&dev_priv->drm, "Null Parameters received\n");
++			return;
++		}
++
++		drm_dbg_kms(&dev_priv->drm, "h_active = %llu link_clk = %llu :"
++			    "lanes = %llu vdsc_bpp = %llu cdclk = %llu\n",
++			    h_active, link_clk, lanes, vdsc_bpp, cdclk);
++
++		link_clks_available = ((((h_total - h_active) *
++				       ((link_clk * rounding_factor) /
++				       pixel_clk)) / rounding_factor) - 28);
++
++		link_clks_required = DIV_ROUND_UP(192000, (refresh_rate *
++						  v_total)) *
++						  ((48 / lanes) + 2);
++
++		if (link_clks_available > link_clks_required)
++			hblank_delta = 32;
++		else
++			hblank_delta = DIV_ROUND_UP(((((5 * rounding_factor) /
++					       link_clk) + ((5 *
++					       rounding_factor) / cdclk)) *
++					       pixel_clk), rounding_factor);
++
++		tu_data = (pixel_clk * vdsc_bpp * 8) / ((link_clk *
++							lanes * fec_coeff) /
++							1000000);
++		tu_line = (((h_active * link_clk * fec_coeff) / 1000000) /
++			   (64 * pixel_clk));
++		link_clks_active  = (tu_line - 1) * 64 + tu_data;
++		hblank_rise = ((link_clks_active + 6 *
++				DIV_ROUND_UP(link_clks_active, 250) + 4) *
++					((pixel_clk * rounding_factor) /
++					 link_clk)) / rounding_factor;
++
++		hblank_early_prog = h_active - hblank_rise + hblank_delta;
++
++		if (hblank_early_prog < 32) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_32, pipe);
++		} else if (hblank_early_prog < 64) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_64, pipe);
++		} else if (hblank_early_prog < 96) {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_96, pipe);
++		} else {
++			val &= ~HBLANK_START_COUNT_MASK(pipe);
++			val |= HBLANK_START_COUNT(HBLANK_START_COUNT_128, pipe);
++		}
++
++		samples_room = ((((h_total - h_active) *
++					 ((link_clk * rounding_factor) /
++					 pixel_clk)) / rounding_factor) - 12) /
++					 ((48 / lanes) + 2);
++
++		if (samples_room < 3) {
++			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
++			val |= NUMBER_SAMPLES_PER_LINE(samples_room, pipe);
++		} else {
++			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
++			val |= NUMBER_SAMPLES_PER_LINE(0x0, pipe);
++		}
++	}
++
++	intel_de_write(dev_priv, AUD_CONFIG_BE, val);
++}
++
+ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 				   const struct intel_crtc_state *crtc_state,
+ 				   const struct drm_connector_state *conn_state)
+@@ -529,6 +635,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 
+ 	mutex_lock(&dev_priv->av_mutex);
+ 
++	/* Enable Audio WA for 4k DSC usecases */
++	if (encoder->type == INTEL_OUTPUT_DP)
++		enable_audio_dsc_wa(encoder, crtc_state);
++
+ 	/* Enable audio presence detect, invalidate ELD */
+ 	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8cebb7a86b8c..ff293e9d5a63 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9395,6 +9395,22 @@ enum {
+ #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+ #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+ 
++/* Display Audio Config Reg */
++#define AUD_CONFIG_BE			_MMIO(0x65ef0)
++#define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
++#define HBLANK_EARLY_ENABLE_TGL(pipe)		(0x1 << (24 + (pipe)))
++#define HBLANK_START_COUNT_MASK(pipe)		(0x7 << (3 + ((pipe) * 6)))
++#define HBLANK_START_COUNT(val, pipe)		(((val) & 0x7) << (3 + ((pipe)) * 6))
++#define NUMBER_SAMPLES_PER_LINE_MASK(pipe)	(0x3 << ((pipe) * 6))
++#define NUMBER_SAMPLES_PER_LINE(val, pipe)	(((val) & 0x3) << ((pipe) * 6))
++
++#define HBLANK_START_COUNT_8	0x0
++#define HBLANK_START_COUNT_16	0x1
++#define HBLANK_START_COUNT_32	0x2
++#define HBLANK_START_COUNT_64	0x3
++#define HBLANK_START_COUNT_96	0x4
++#define HBLANK_START_COUNT_128	0x5
++
+ /*
+  * HSW - ICL power wells
+  *
+-- 
+2.22.0
 
-Please fix up and resend.
-
-thanks,
-
-greg k-h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
