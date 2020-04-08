@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B3A1A1CDD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 09:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1994C1A1CF5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 09:57:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A786E98E;
-	Wed,  8 Apr 2020 07:53:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC9D89DC2;
+	Wed,  8 Apr 2020 07:57:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73ED66E98D;
- Wed,  8 Apr 2020 07:53:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0E9689DC2;
+ Wed,  8 Apr 2020 07:57:53 +0000 (UTC)
 Received: from ravnborg.org (unknown [158.248.194.18])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 9D87E20027;
- Wed,  8 Apr 2020 09:53:33 +0200 (CEST)
-Date: Wed, 8 Apr 2020 09:53:32 +0200
+ by asavdk3.altibox.net (Postfix) with ESMTPS id C6F9820029;
+ Wed,  8 Apr 2020 09:57:51 +0200 (CEST)
+Date: Wed, 8 Apr 2020 09:57:50 +0200
 From: Sam Ravnborg <sam@ravnborg.org>
 To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200408075332.GM14965@ravnborg.org>
+Message-ID: <20200408075750.GN14965@ravnborg.org>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-30-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-33-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200403135828.2542770-30-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200403135828.2542770-33-daniel.vetter@ffwll.ch>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
  a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
  a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=sozttTNsAAAA:8 a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=_HJzfnGNqXqh_GtX15QA:9
- a=CjuIK1q_8ugA:10 a=aeg5Gbbo78KNqacMgKqU:22 a=E9Po1WZjFZOl8hwRPBS3:22
+ a=KKAkSRfTAAAA:8 a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=8So5QykSJbI84FPh_KwA:9
+ a=CjuIK1q_8ugA:10 a=cvBusfyB2V15izCimMoJ:22 a=E9Po1WZjFZOl8hwRPBS3:22
  a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 29/44] drm/tidss: Delete tidss->saved_state
+Subject: Re: [Intel-gfx] [PATCH 32/44] drm/mcde: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,40 +49,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Jyri Sarha <jsarha@ti.com>,
  DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 03:58:13PM +0200, Daniel Vetter wrote:
-> Not used anymore since the switch to suspend/resume helpers.
+On Fri, Apr 03, 2020 at 03:58:16PM +0200, Daniel Vetter wrote:
+> Already using devm_drm_dev_init, so very simple replacment.
 > 
 > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Jyri Sarha <jsarha@ti.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-
-Good spot.
+> Cc: Linus Walleij <linus.walleij@linaro.org>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
+But one comment below.
+
 > ---
->  drivers/gpu/drm/tidss/tidss_drv.h | 2 --
->  1 file changed, 2 deletions(-)
+>  drivers/gpu/drm/mcde/mcde_drv.c | 16 ++++------------
+>  1 file changed, 4 insertions(+), 12 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h b/drivers/gpu/drm/tidss/tidss_drv.h
-> index b23cd95c8d78..3b0a3d87b7c4 100644
-> --- a/drivers/gpu/drm/tidss/tidss_drv.h
-> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
-> @@ -29,8 +29,6 @@ struct tidss_device {
+> diff --git a/drivers/gpu/drm/mcde/mcde_drv.c b/drivers/gpu/drm/mcde/mcde_drv.c
+> index 88cc6b4a7a64..bdb525e3c5d7 100644
+> --- a/drivers/gpu/drm/mcde/mcde_drv.c
+> +++ b/drivers/gpu/drm/mcde/mcde_drv.c
+> @@ -307,24 +307,16 @@ static int mcde_probe(struct platform_device *pdev)
+>  	int ret;
+>  	int i;
 >  
->  	spinlock_t wait_lock;	/* protects the irq masks */
->  	dispc_irq_t irq_mask;	/* enabled irqs in addition to wait_list */
+> -	mcde = kzalloc(sizeof(*mcde), GFP_KERNEL);
+> -	if (!mcde)
+> -		return -ENOMEM;
+> -	mcde->dev = dev;
 > -
-> -	struct drm_atomic_state *saved_state;
->  };
+> -	ret = devm_drm_dev_init(dev, &mcde->drm, &mcde_drm_driver);
+> -	if (ret) {
+> -		kfree(mcde);
+> -		return ret;
+> -	}
+> +	mcde = devm_drm_dev_alloc(dev, &mcde_drm_driver, struct mcde, drm);
+> +	if (IS_ERR(mcde))
+> +		return PTR_ERR(mcde);
+>  	drm = &mcde->drm;
+>  	drm->dev_private = mcde;
+> -	drmm_add_final_kfree(drm, mcde);
+> +	mcde->dev = dev;
+>  	platform_set_drvdata(pdev, drm);
 >  
->  #define to_tidss(__dev) container_of(__dev, struct tidss_device, ddev)
+>  	/* Enable continuous updates: this is what Linux' framebuffer expects */
+>  	mcde->oneshot_mode = false;
+> -	drm->dev_private = mcde;
+It is assinged twice - but this change really belongs in next patch.
+
+>  
+>  	/* First obtain and turn on the main power */
+>  	mcde->epod = devm_regulator_get(dev, "epod");
 > -- 
 > 2.25.1
 > 
