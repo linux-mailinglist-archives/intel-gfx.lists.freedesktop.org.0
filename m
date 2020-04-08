@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39C11A1D87
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:43:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19CE91A1D88
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:44:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 083A26E9D1;
-	Wed,  8 Apr 2020 08:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4B26E9D2;
+	Wed,  8 Apr 2020 08:44:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
  [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C0846E9D1
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:43:19 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id 65so6862203wrl.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:43:19 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBCAF6E9D2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:44:22 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id f13so233272wrm.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:44:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:date:to:cc:subject:in-reply-to:message-id:references
  :user-agent:mime-version;
- bh=B3aDdZASnyELIOavmgJ+3RVuvOon8Lf5byCZBBlaqwc=;
- b=vLPdPQBURshgbMf5YaUym572aGAWwSu65KaABQz1gV/9IjIj9Qp96kzLaXywU23f2h
- /lppEov4sORmJNZ+lwExmAIvzmJ1DvtL8HOJusVFUPYjJMToWsdJL55wCQJpzMjfjbGX
- iUmfkR0ZIbyIjZpNvcNRohsJQY5926MDHa5TkpRhDPGYTAEe09T8gYkdWs5GgKYMxm9s
- SdR8FGsMQDlbbz4weECXR82UgAJg0kLvKhpX13UX1YxMARF1rwQeoVWOKXtenqBi0tY1
- fogMgZb/P8QLGW71EKV+WQ3HzDeJfIsHFJLOSA6TtPWt2RFVeDpyCgcuJ6WuGU+e/e33
- DPaQ==
+ bh=jm3I3FmLYJLm9g0RJQi2gS9r9VIeW3sspufzHZlB8/I=;
+ b=DviGEni7Oc/8lnl4Y7SxEVM2ZriHBhMpb7AZj4PXKaN+q9XdvSO22BSQNQ+nlsS5jZ
+ SsoOCkBKb+7Fd/tZJ8gYJvbQOr0Ap2KPiSzOQ9mompMmIXixEuLsdabR0whFn7qVmxpO
+ YzCc563CaSJQQctc6gLql7/NqagVVgkTYA76T9Ryxs5QiQ0dj3LerlojPYbnO2KXFzBQ
+ jmTLreHDb4Si/B+6IxBy4+NdlSranpDQRN+HNgkoxVC3aMo/OfxYPk8PNU2W9ZLoF22q
+ P+AFi2tA6rcB8/jqLIosAJUq2WAd1pv+0gUjQ9YE7V7O66Vw3n73Fevs6qi8VT627qYW
+ 5wSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
  :references:user-agent:mime-version;
- bh=B3aDdZASnyELIOavmgJ+3RVuvOon8Lf5byCZBBlaqwc=;
- b=PdYMMxtREOGwD2jvtFPwfcilYO0yPlUwtl3ujYFJGGqrw+haZOETkOPaJYCxpZwJrq
- aCUsfsS+yQ8z/gj7WBnvnbARNToDq4zNDl1BTsivL+4V+MiyJypRe4FU7qMvNoZu8DiP
- 65sZGI7f3Vf5lDz66XV422D5eFEI+T5sdcIVbu5zU8TIMfz2/BrfuWp/VSOftfLna8OQ
- 8+f3g7M5HK4go06KLnhFBGhBV8/biwLOdi3i2rQmaVlKkMjsrTZo/JGKEi0MtzHuz8cl
- pXddr+Mk6Afb9KbpRLOUM3OF7PPYlLAw8XNz9mpt0JFt9JJiQGS2B9ZDcGScSuM20qji
- 7JOg==
-X-Gm-Message-State: AGi0PuaFhj7+HOQ/hcYJzvbRev+eNGDcH1++DpN39UrkTJNJSScOHGKd
- TiqwnPxlsIHujpxYby6fAVU=
-X-Google-Smtp-Source: APiQypIDfswAnYn0bDeNMgiJRwMneCp2RkTUMZPuNrM/Dyw6g7EKqkkAOc2bz23UWMZ6o8TwbsCW4Q==
-X-Received: by 2002:adf:f9cc:: with SMTP id w12mr7414179wrr.148.1586335397957; 
- Wed, 08 Apr 2020 01:43:17 -0700 (PDT)
+ bh=jm3I3FmLYJLm9g0RJQi2gS9r9VIeW3sspufzHZlB8/I=;
+ b=G+bYNcS16hYyNnjQMQLu1zha1lhIZxniw6XqOxyCOL9J8yle7MqnXko2bkYVBl/Vvz
+ NfOXhhPhVJD5bpJKm77LlTqAOV83EZAODtlb/rS1l1H9z7DBt9iwzuwiN3p04ntXgZqJ
+ Vz4Tbr3VU1Vix2UO5qkT2Co4HlffeEzB1Klf/H0Tjp5aqWDh56Cbao+qYTCXh+nbZOyF
+ 9j+7liiM6oaW1PoCTh88hWiXo3Om+AFao7Q/GpYf7qCfvgPNdSb3zuEaTWdtr7BhgYoL
+ /8KiqcVVfxf5oC2V1iyui7D+xtvG5/dxw0bvBdjOFBGYIn0ywnSmwxbiZIz8VHec1pdC
+ 5gww==
+X-Gm-Message-State: AGi0Pub9w6GSJ22x1GGk0nbRQSqZ8/+sQdjUXkG8E1Wj5/d5T7aHNAJC
+ gXVhmawjLkccFnWqKnH8sZk=
+X-Google-Smtp-Source: APiQypJ5g42dryXlqT2TwaDnKNvZwcxxujZyXUUxpctuVI7B0zEIzfW5cSR2DRx8DLD/EG/y1G1MCQ==
+X-Received: by 2002:adf:f790:: with SMTP id q16mr6825162wrp.94.1586335461472; 
+ Wed, 08 Apr 2020 01:44:21 -0700 (PDT)
 Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id c18sm34231255wrx.5.2020.04.08.01.43.16
+ by smtp.googlemail.com with ESMTPSA id z17sm24677008wru.39.2020.04.08.01.44.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 01:43:17 -0700 (PDT)
+ Wed, 08 Apr 2020 01:44:20 -0700 (PDT)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Wed, 8 Apr 2020 11:43:13 +0300 (EAT)
+Date: Wed, 8 Apr 2020 11:44:17 +0300 (EAT)
 To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-13-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2004081142400.25609@wambui>
+In-Reply-To: <20200402114819.17232-14-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2004081143440.25609@wambui>
 References: <20200402114819.17232-1-jani.nikula@intel.com>
- <20200402114819.17232-13-jani.nikula@intel.com>
+ <20200402114819.17232-14-jani.nikula@intel.com>
 User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 13/17] drm/i915/dram: prefer struct
+Subject: Re: [Intel-gfx] [PATCH 14/17] drm/i915/uncore: prefer struct
  drm_device based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,21 +89,22 @@ On Thu, 2 Apr 2020, Jani Nikula wrote:
 Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
 
 > ---
-> drivers/gpu/drm/i915/intel_dram.c | 3 +--
-> 1 file changed, 1 insertion(+), 2 deletions(-)
+> drivers/gpu/drm/i915/intel_uncore.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> index 6b922efb1d7c..8aa12cad93ce 100644
-> --- a/drivers/gpu/drm/i915/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/intel_dram.c
-> @@ -495,6 +495,5 @@ void intel_dram_edram_detect(struct drm_i915_private *i915)
-> 	else
-> 		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 013312e9b55c..fa86b7ab2d99 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -665,7 +665,7 @@ void intel_uncore_forcewake_user_put(struct intel_uncore *uncore)
+> 		mmio_debug_resume(uncore->debug);
 >
-> -	dev_info(i915->drm.dev,
-> -		 "Found %uMB of eDRAM\n", i915->edram_size_mb);
-> +	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
-> }
+> 		if (check_for_unclaimed_mmio(uncore))
+> -			dev_info(uncore->i915->drm.dev,
+> +			drm_info(&uncore->i915->drm,
+> 				 "Invalid mmio detected during user access\n");
+> 		spin_unlock(&uncore->debug->lock);
+>
 > -- 
 > 2.20.1
 >
