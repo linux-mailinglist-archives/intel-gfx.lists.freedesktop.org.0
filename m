@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71BED1A1D92
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 452D01A1D9D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:51:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112716E209;
-	Wed,  8 Apr 2020 08:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E7B76E9D9;
+	Wed,  8 Apr 2020 08:51:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C00A86E209
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:49:55 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id y24so466227wma.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:49:55 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 877256E9D8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:51:24 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id v8so31752wma.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:51:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:date:to:cc:subject:in-reply-to:message-id:references
  :user-agent:mime-version;
- bh=lZmov27QH5lvMvSvM28yeximE0N51ZO4XTT4+m/nqGw=;
- b=nfs9eJHJvhENqJambQG1MzMsX9uP866fCrL4OCVz8nGD40VjU4EauveaHiwCXKGYeD
- uVWddV2K+paOP8LxTaFGGPbj3DUEvoB63OjZD/lpceFsFkE2JIFyA38tomdOGARBDQyH
- 2oe25H7OL6dJK1lHSpYD4BHdLqfpiIDVPWF/hXZzn0TsgcbCKsotdXlARqP8ejB3WMdz
- m1zobGka+bA2xVjahVUIKjBKUSIHZC7TRoXL/GtRyjJz57YoioleCd/KfydO0KqgO4RY
- UoDkyYv5pymDQq5nUojpESV7D7VbbWAPBqYxGxjriHHQXyWhftZ3nr1/FwriFfCowmDP
- 8IAA==
+ bh=g1cZ7za0dDfUeENxySVtC95WeHayhZ3U5yzNoVhKm+o=;
+ b=HafdRIjI6G8IAhv8YOvERMEP+oJfEtRD7uE6Kr/aa0P9RakAXXc0OtnsTTpIs6Ns2t
+ WpjdOMUi4TFkJkKnMyUZSWB5QcUaQh7rz3AZ4lmByoLVzORFEcappoZ+nlWGUD9qJR7r
+ HckiUykvshXmaK35WtOZmT+ClsB9qkX7j4FXIosWqThgPJsgQLd9/A0tpA9n49ene381
+ 4fVBo57kb/zRLmjLTJ7AgJOVhfh0geD7AO/P7a4+YdYHTKP7soJC0bh50eU7j5lCPr4v
+ DZKtSqDtFHUn2f2c74gMGvMHCUUwnZry3RjF2Y0lQ1fXh8t+elSmHnxCWj4Y3TKZNI08
+ IoPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
  :references:user-agent:mime-version;
- bh=lZmov27QH5lvMvSvM28yeximE0N51ZO4XTT4+m/nqGw=;
- b=sH6LgctzcTrwkUFivVMh7lU52ea0F+EfyPg3CNekX2ZOmWTk5S6UwpSKqjyyiR8+qg
- LHdtT1d9QzmOjRINzChouw3khA+i5eTo8kdyHDNslhEE+7VSS2RkVjWE0drPpS2x30G8
- rQyVFBfZlfKFtLTQyPApfYYoVoNjhWSuE93TjKXMAYb5XhC/qkzF6QLfBgKEHe1QAPhG
- 3ZD79VEPRGs9CW/UGliK24OqiKiuVHMyU1vcza2g2NBC12KXdWTLkzCosO1LGowbDMno
- 2xoIkSirxDRQMxh4HWpn5d95W97m1jxbJWJ0jrCbwDGsl9EiaQpY9+hfGVPwB2COpvD6
- kK/g==
-X-Gm-Message-State: AGi0PuYwzFGk+Fz6Msu/XiwYCg7ULErhj9EX3zgiySnt4lEXCuK6OnB+
- 10003QPsmnnQxZuh1TdaQHWG6r8t
-X-Google-Smtp-Source: APiQypI5fTaqHweQBscuMCSVXS/e5wXd9D3K3oUgA0RDX0o57/qq1Y9V6DC+C5w/61bTdSSENtVc4A==
-X-Received: by 2002:a1c:307:: with SMTP id 7mr3435326wmd.126.1586335794396;
- Wed, 08 Apr 2020 01:49:54 -0700 (PDT)
+ bh=g1cZ7za0dDfUeENxySVtC95WeHayhZ3U5yzNoVhKm+o=;
+ b=UztNKrE/rhoLRSXLw0EcYqBXjn74+9X8ONcMiXu3pLHSY1+6ocwqWEhe9ucAaXPDNl
+ oxutwap9T6i+yNk36emTfnQuiIpWMUR0c7LPhyO1eiDX36FZJuEFZpUDGUyNL7N6LJTt
+ /pEWUpMON1zkxeCXMOTXdYUq2VwOkSd8aBC11EKyN/KKW/ZufKps2cfqZwwZKKmMIcmY
+ rR5W/4CV73cGrDrlz1pkMo6yoHHiExz1rQx3PxCjcHJI3GBmZla26PSNbPp54/sZksva
+ I2Al3Zeelb6kuR1/FPkR8CfwFw1wV+Shsy3M2v8FYLOWTbS5ILNaIf64yumiLqmvAd+P
+ 234w==
+X-Gm-Message-State: AGi0PuZCC0lqgbp96RfnsNvDx3iv1DnFpTKIrnqXAkmpq4DMO4KqidDT
+ kQl7kYpFjmYWuazYH3mYQQbGiWAO
+X-Google-Smtp-Source: APiQypK7ASGJQy9dp/z2AV3OvXnrjWInOpg14nxKkfhbWPAYCMZozfEjZy2mUwL/AZv88q+a6tOm5w==
+X-Received: by 2002:a1c:2002:: with SMTP id g2mr3381306wmg.109.1586335883106; 
+ Wed, 08 Apr 2020 01:51:23 -0700 (PDT)
 Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id x11sm33942499wru.62.2020.04.08.01.49.52
+ by smtp.googlemail.com with ESMTPSA id 106sm25241062wrc.46.2020.04.08.01.51.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 01:49:53 -0700 (PDT)
+ Wed, 08 Apr 2020 01:51:22 -0700 (PDT)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Wed, 8 Apr 2020 11:49:50 +0300 (EAT)
+Date: Wed, 8 Apr 2020 11:51:17 +0300 (EAT)
 To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-16-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2004081149190.25609@wambui>
+In-Reply-To: <20200402114819.17232-17-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2004081150500.25609@wambui>
 References: <20200402114819.17232-1-jani.nikula@intel.com>
- <20200402114819.17232-16-jani.nikula@intel.com>
+ <20200402114819.17232-17-jani.nikula@intel.com>
 User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 16/17] drm/i915/gt: prefer struct drm_device
+Subject: Re: [Intel-gfx] [PATCH 17/17] drm/i915/uc: prefer struct drm_device
  based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,168 +89,149 @@ On Thu, 2 Apr 2020, Jani Nikula wrote:
 Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
 
 > ---
-> drivers/gpu/drm/i915/gt/intel_ggtt.c  |  4 ++--
-> drivers/gpu/drm/i915/gt/intel_gt_pm.c |  4 ++--
-> drivers/gpu/drm/i915/gt/intel_lrc.c   |  4 ++--
-> drivers/gpu/drm/i915/gt/intel_rc6.c   |  4 ++--
-> drivers/gpu/drm/i915/gt/intel_reset.c | 14 +++++++-------
-> 5 files changed, 15 insertions(+), 15 deletions(-)
+> drivers/gpu/drm/i915/gt/uc/intel_uc.c    | 14 +++++++-------
+> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 18 +++++++++---------
+> 2 files changed, 16 insertions(+), 16 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index ae07bcd7c226..eebd1190506f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -1080,7 +1080,7 @@ static int i915_gmch_probe(struct i915_ggtt *ggtt)
-> 	ggtt->vm.vma_ops.clear_pages = clear_pages;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 4681cdd24da4..f518fe05c6f9 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -63,25 +63,25 @@ static void __confirm_options(struct intel_uc *uc)
+> 	}
 >
-> 	if (unlikely(ggtt->do_idle_maps))
-> -		dev_notice(i915->drm.dev,
-> +		drm_notice(&i915->drm,
-> 			   "Applying Ironlake quirks for intel_iommu\n");
+> 	if (!intel_uc_supports_guc(uc))
+> -		dev_info(i915->drm.dev,
+> +		drm_info(&i915->drm,
+> 			 "Incompatible option enable_guc=%d - %s\n",
+> 			 i915_modparams.enable_guc, "GuC is not supported!");
 >
-> 	return 0;
-> @@ -1145,7 +1145,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
-> 		return ret;
+> 	if (i915_modparams.enable_guc & ENABLE_GUC_LOAD_HUC &&
+> 	    !intel_uc_supports_huc(uc))
+> -		dev_info(i915->drm.dev,
+> +		drm_info(&i915->drm,
+> 			 "Incompatible option enable_guc=%d - %s\n",
+> 			 i915_modparams.enable_guc, "HuC is not supported!");
 >
-> 	if (intel_vtd_active())
-> -		dev_info(i915->drm.dev, "VT-d active for gfx access\n");
-> +		drm_info(&i915->drm, "VT-d active for gfx access\n");
+> 	if (i915_modparams.enable_guc & ENABLE_GUC_SUBMISSION &&
+> 	    !intel_uc_supports_guc_submission(uc))
+> -		dev_info(i915->drm.dev,
+> +		drm_info(&i915->drm,
+> 			 "Incompatible option enable_guc=%d - %s\n",
+> 			 i915_modparams.enable_guc, "GuC submission is N/A");
 >
-> 	return 0;
+> 	if (i915_modparams.enable_guc & ~(ENABLE_GUC_SUBMISSION |
+> 					  ENABLE_GUC_LOAD_HUC))
+> -		dev_info(i915->drm.dev,
+> +		drm_info(&i915->drm,
+> 			 "Incompatible option enable_guc=%d - %s\n",
+> 			 i915_modparams.enable_guc, "undocumented flag");
 > }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index 2e40400d1ecd..3e8a56c7d818 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -204,7 +204,7 @@ int intel_gt_resume(struct intel_gt *gt)
-> 	/* Only when the HW is re-initialised, can we replay the requests */
-> 	err = intel_gt_init_hw(gt);
-> 	if (err) {
-> -		dev_err(gt->i915->drm.dev,
-> +		drm_err(&gt->i915->drm,
-> 			"Failed to initialize GPU, declaring it wedged!\n");
-> 		goto err_wedged;
+> @@ -480,14 +480,14 @@ static int __uc_init_hw(struct intel_uc *uc)
+> 	if (intel_uc_uses_guc_submission(uc))
+> 		intel_guc_submission_enable(guc);
+>
+> -	dev_info(i915->drm.dev, "%s firmware %s version %u.%u %s:%s\n",
+> +	drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
+> 		 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_GUC), guc->fw.path,
+> 		 guc->fw.major_ver_found, guc->fw.minor_ver_found,
+> 		 "submission",
+> 		 enableddisabled(intel_uc_uses_guc_submission(uc)));
+>
+> 	if (intel_uc_uses_huc(uc)) {
+> -		dev_info(i915->drm.dev, "%s firmware %s version %u.%u %s:%s\n",
+> +		drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
+> 			 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
+> 			 huc->fw.path,
+> 			 huc->fw.major_ver_found, huc->fw.minor_ver_found,
+> @@ -508,7 +508,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+> 	__uc_sanitize(uc);
+>
+> 	if (!ret) {
+> -		dev_notice(i915->drm.dev, "GuC is uninitialized\n");
+> +		drm_notice(&i915->drm, "GuC is uninitialized\n");
+> 		/* We want to run without GuC submission */
+> 		return 0;
 > 	}
-> @@ -220,7 +220,7 @@ int intel_gt_resume(struct intel_gt *gt)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index 129db476f69e..572e34f28f0e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -299,7 +299,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
 >
-> 		intel_engine_pm_put(engine);
-> 		if (err) {
-> -			dev_err(gt->i915->drm.dev,
-> +			drm_err(&gt->i915->drm,
-> 				"Failed to restart %s (%d)\n",
-> 				engine->name, err);
-> 			goto err_wedged;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 3479cda37fdc..21164bc691c7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -3062,7 +3062,7 @@ check_redzone(const void *vaddr, const struct intel_engine_cs *engine)
-> 	vaddr += engine->context_size;
+> 	/* Check the size of the blob before examining buffer contents */
+> 	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
+> -		dev_warn(dev, "%s firmware %s: invalid size: %zu < %zu\n",
+> +		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			 fw->size, sizeof(struct uc_css_header));
+> 		err = -ENODATA;
+> @@ -312,7 +312,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+> 	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
+> 		css->exponent_size_dw) * sizeof(u32);
+> 	if (unlikely(size != sizeof(struct uc_css_header))) {
+> -		dev_warn(dev,
+> +		drm_warn(&i915->drm,
+> 			 "%s firmware %s: unexpected header size: %zu != %zu\n",
+> 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			 fw->size, sizeof(struct uc_css_header));
+> @@ -325,7 +325,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
 >
-> 	if (memchr_inv(vaddr, CONTEXT_REDZONE, I915_GTT_PAGE_SIZE))
-> -		dev_err_once(engine->i915->drm.dev,
-> +		drm_err_once(&engine->i915->drm,
-> 			     "%s context redzone overwritten!\n",
-> 			     engine->name);
-> }
-> @@ -3558,7 +3558,7 @@ static void enable_error_interrupt(struct intel_engine_cs *engine)
+> 	/* now RSA */
+> 	if (unlikely(css->key_size_dw != UOS_RSA_SCRATCH_COUNT)) {
+> -		dev_warn(dev, "%s firmware %s: unexpected key size: %u != %u\n",
+> +		drm_warn(&i915->drm, "%s firmware %s: unexpected key size: %u != %u\n",
+> 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			 css->key_size_dw, UOS_RSA_SCRATCH_COUNT);
+> 		err = -EPROTO;
+> @@ -336,7 +336,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+> 	/* At least, it should have header, uCode and RSA. Size of all three. */
+> 	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
+> 	if (unlikely(fw->size < size)) {
+> -		dev_warn(dev, "%s firmware %s: invalid size: %zu < %zu\n",
+> +		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			 fw->size, size);
+> 		err = -ENOEXEC;
+> @@ -346,7 +346,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+> 	/* Sanity check whether this fw is not larger than whole WOPCM memory */
+> 	size = __intel_uc_fw_get_upload_size(uc_fw);
+> 	if (unlikely(size >= i915->wopcm.size)) {
+> -		dev_warn(dev, "%s firmware %s: invalid size: %zu > %zu\n",
+> +		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
+> 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			 size, (size_t)i915->wopcm.size);
+> 		err = -E2BIG;
+> @@ -361,7 +361,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
 >
-> 	status = ENGINE_READ(engine, RING_ESR);
-> 	if (unlikely(status)) {
-> -		dev_err(engine->i915->drm.dev,
-> +		drm_err(&engine->i915->drm,
-> 			"engine '%s' resumed still in error: %08x\n",
-> 			engine->name, status);
-> 		__intel_gt_reset(engine->gt, engine->mask);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> index 09d3e5a45397..1c1923ec8be7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> @@ -468,7 +468,7 @@ static bool rc6_supported(struct intel_rc6 *rc6)
-> 		return false;
+> 	if (uc_fw->major_ver_found != uc_fw->major_ver_wanted ||
+> 	    uc_fw->minor_ver_found < uc_fw->minor_ver_wanted) {
+> -		dev_notice(dev, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> +		drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> 			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> 			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
+> 			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
+> @@ -389,9 +389,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+> 				  INTEL_UC_FIRMWARE_MISSING :
+> 				  INTEL_UC_FIRMWARE_ERROR);
 >
-> 	if (IS_GEN9_LP(i915) && !bxt_check_bios_rc6_setup(rc6)) {
-> -		dev_notice(i915->drm.dev,
-> +		drm_notice(&i915->drm,
-> 			   "RC6 and powersaving disabled by BIOS\n");
-> 		return false;
-> 	}
-> @@ -500,7 +500,7 @@ static bool pctx_corrupted(struct intel_rc6 *rc6)
-> 	if (intel_uncore_read(rc6_to_uncore(rc6), GEN8_RC6_CTX_INFO))
-> 		return false;
+> -	dev_notice(dev, "%s firmware %s: fetch failed with error %d\n",
+> +	drm_notice(&i915->drm, "%s firmware %s: fetch failed with error %d\n",
+> 		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->path, err);
+> -	dev_info(dev, "%s firmware(s) can be downloaded from %s\n",
+> +	drm_info(&i915->drm, "%s firmware(s) can be downloaded from %s\n",
+> 		 intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
 >
-> -	dev_notice(i915->drm.dev,
-> +	drm_notice(&i915->drm,
-> 		   "RC6 context corruption, disabling runtime power management\n");
-> 	return true;
-> }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 003f26b42998..39070b514e65 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -109,7 +109,7 @@ static bool mark_guilty(struct i915_request *rq)
-> 		goto out;
-> 	}
+> 	release_firmware(fw);		/* OK even if fw is NULL */
+> @@ -476,7 +476,7 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
+> 	/* Wait for DMA to finish */
+> 	ret = intel_wait_for_register_fw(uncore, DMA_CTRL, START_DMA, 0, 100);
+> 	if (ret)
+> -		dev_err(gt->i915->drm.dev, "DMA for %s fw failed, DMA_CTRL=%u\n",
+> +		drm_err(&gt->i915->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
+> 			intel_uc_fw_type_repr(uc_fw->type),
+> 			intel_uncore_read_fw(uncore, DMA_CTRL));
 >
-> -	dev_notice(ctx->i915->drm.dev,
-> +	drm_notice(&ctx->i915->drm,
-> 		   "%s context reset due to GPU hang\n",
-> 		   ctx->name);
->
-> @@ -1031,7 +1031,7 @@ void intel_gt_reset(struct intel_gt *gt,
-> 		goto unlock;
->
-> 	if (reason)
-> -		dev_notice(gt->i915->drm.dev,
-> +		drm_notice(&gt->i915->drm,
-> 			   "Resetting chip for %s\n", reason);
-> 	atomic_inc(&gt->i915->gpu_error.reset_count);
->
-> @@ -1039,7 +1039,7 @@ void intel_gt_reset(struct intel_gt *gt,
->
-> 	if (!intel_has_gpu_reset(gt)) {
-> 		if (i915_modparams.reset)
-> -			dev_err(gt->i915->drm.dev, "GPU reset not supported\n");
-> +			drm_err(&gt->i915->drm, "GPU reset not supported\n");
-> 		else
-> 			drm_dbg(&gt->i915->drm, "GPU reset disabled\n");
-> 		goto error;
-> @@ -1049,7 +1049,7 @@ void intel_gt_reset(struct intel_gt *gt,
-> 		intel_runtime_pm_disable_interrupts(gt->i915);
->
-> 	if (do_reset(gt, stalled_mask)) {
-> -		dev_err(gt->i915->drm.dev, "Failed to reset chip\n");
-> +		drm_err(&gt->i915->drm, "Failed to reset chip\n");
-> 		goto taint;
-> 	}
->
-> @@ -1111,7 +1111,7 @@ static inline int intel_gt_reset_engine(struct intel_engine_cs *engine)
-> /**
->  * intel_engine_reset - reset GPU engine to recover from a hang
->  * @engine: engine to reset
-> - * @msg: reason for GPU reset; or NULL for no dev_notice()
-> + * @msg: reason for GPU reset; or NULL for no drm_notice()
->  *
->  * Reset a specific GPU engine. Useful if a hang is detected.
->  * Returns zero on successful reset or otherwise an error code.
-> @@ -1136,7 +1136,7 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
-> 	reset_prepare_engine(engine);
->
-> 	if (msg)
-> -		dev_notice(engine->i915->drm.dev,
-> +		drm_notice(&engine->i915->drm,
-> 			   "Resetting %s for %s\n", engine->name, msg);
-> 	atomic_inc(&engine->i915->gpu_error.reset_engine_count[engine->uabi_class]);
->
-> @@ -1381,7 +1381,7 @@ static void intel_wedge_me(struct work_struct *work)
-> {
-> 	struct intel_wedge_me *w = container_of(work, typeof(*w), work.work);
->
-> -	dev_err(w->gt->i915->drm.dev,
-> +	drm_err(&w->gt->i915->drm,
-> 		"%s timed out, cancelling all in-flight rendering.\n",
-> 		w->name);
-> 	intel_gt_set_wedged(w->gt);
 > -- 
 > 2.20.1
 >
