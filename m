@@ -2,39 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D5D1A1CFA
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 09:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 508511A1D0E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:03:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 867276E998;
-	Wed,  8 Apr 2020 07:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F986E997;
+	Wed,  8 Apr 2020 08:03:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 664226E998;
- Wed,  8 Apr 2020 07:59:05 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 9593820027;
- Wed,  8 Apr 2020 09:59:03 +0200 (CEST)
-Date: Wed, 8 Apr 2020 09:59:02 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200408075902.GP14965@ravnborg.org>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-35-daniel.vetter@ffwll.ch>
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9CBF6E997
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:02:59 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id d202so4407206wmd.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:in-reply-to:message-id:references
+ :user-agent:mime-version;
+ bh=MPNhFeXAq7o9dLbBTsSJ03Ja5Ug/a1E5ob2OxpbvRgc=;
+ b=oRMuLj8eykGhogc7QEmRVBzoSqUrhJWzw/NoNfj2IIzwWa92EpTMvQ+OFnpSk4N33Q
+ RsSPhrOD5fyvowEMZl0XaPqnjhXOUSq/b9K/UxSEMMU/SC5dTmvN9eQmY+gIPdFv8Rxf
+ RM7/K4kNC9z20wUkP0ykroNMZUs++HeIXL1h0cg/YZ/DHeC5aTTBhHMu71oWMIEy7Qwo
+ yAtIsbi8PNs6JrQKbUaxzoxjDv91abvMNnQVifWFMxVa/+yZh8+tfvLvQmBHVkbT3bE7
+ Mlofh2c9B02Xktumj+42bTax6j8uRSRiAE4/CgZkdGTF0UT8ouhvA6zSFXl8MA+9roH8
+ UHng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+ :references:user-agent:mime-version;
+ bh=MPNhFeXAq7o9dLbBTsSJ03Ja5Ug/a1E5ob2OxpbvRgc=;
+ b=kxt7TYUG8ZbgshvWCFuyyn7cSsmqUwPQr7f0oRGnDfUB0GFqN9tVfeCva009LVj4uG
+ qEoJIaTXkyc/587HVZWG3Ud/dWkMSi5G26qHDOEHUoK3N1bnIks08FeXiOyLjIluXTJ6
+ KlXyB1sTCTJ72OxHhV5xVYgQNxbZ5oJI1JGSI5cPMTikBAMol8lcXf9dSaPYsrj42owu
+ pTJiVvCD2IXHEZBRerKGs45LR+O5EqOJ+7PTmzpRQJAx3JK0W2fmtVicYuAOLVmjxnm0
+ OaocnQjOeAAxMKEk1+Ytp+Dis/SK10j2G/28Bzcelrn5veYWibG5SRC7+bAtuV45Wjs+
+ pDsQ==
+X-Gm-Message-State: AGi0PubB15oZ1WqYtR+qaR6Z2eRSjJYYfGV4iyy4D1VlIg4qflRKxoUW
+ B+YIcftc+3MHpUnaz0NGKMvf6Ks9
+X-Google-Smtp-Source: APiQypLLqia21uz+WrStAh/DP0Vu4OazmcJJJPCK0kzRZDuy5gmnjBirbW8KcMjV+ELc9UFFsYaVmw==
+X-Received: by 2002:a1c:9aca:: with SMTP id c193mr3274529wme.38.1586332978300; 
+ Wed, 08 Apr 2020 01:02:58 -0700 (PDT)
+Received: from wambui.local ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id g9sm4002713wrr.15.2020.04.08.01.02.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Apr 2020 01:02:57 -0700 (PDT)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+X-Google-Original-From: Wambui Karuga <wambui@wambui>
+Date: Wed, 8 Apr 2020 10:59:38 +0300 (EAT)
+To: Jani Nikula <jani.nikula@intel.com>
+In-Reply-To: <20200402114819.17232-8-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2004081005180.20922@wambui>
+References: <20200402114819.17232-1-jani.nikula@intel.com>
+ <20200402114819.17232-8-jani.nikula@intel.com>
+User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200403135828.2542770-35-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=ER_8r6IbAAAA:8 a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=W9GrBFWLyRNNeEoKAFkA:9
- a=CjuIK1q_8ugA:10 a=9LHmKk7ezEChjTCyhBa9:22 a=E9Po1WZjFZOl8hwRPBS3:22
- a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 34/44] drm/ingenic: Use devm_drm_dev_alloc
+Subject: Re: [Intel-gfx] [PATCH 08/17] drm/i915/state: use struct drm_device
+ based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,64 +69,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Cercueil <paul@crapouillou.net>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 03:58:18PM +0200, Daniel Vetter wrote:
-> Already using devm_drm_dev_init, so very simple replacment.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Paul Cercueil <paul@crapouillou.net>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+
+On Thu, 2 Apr 2020, Jani Nikula wrote:
+
+> Convert all the DRM_* logging macros to the struct drm_device based
+> macros to provide device specific logging.
+>
+> No functional changes.
+>
+> Cc: Wambui Karuga <wambui.karugax@gmail.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/ingenic/ingenic-drm.c | 14 ++++----------
->  1 file changed, 4 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.c b/drivers/gpu/drm/ingenic/ingenic-drm.c
-> index a9bc6623b488..bb62d8e93985 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm.c
-> @@ -614,9 +614,10 @@ static int ingenic_drm_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> -	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-> -	if (!priv)
-> -		return -ENOMEM;
-> +	priv = devm_drm_dev_alloc(dev, &ingenic_drm_driver_data,
-> +				  struct ingenic_drm, drm);
-> +	if (IS_ERR(priv))
-> +		return PTR_ERR(priv);
->  
->  	priv->soc_info = soc_info;
->  	priv->dev = dev;
-> @@ -625,13 +626,6 @@ static int ingenic_drm_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, priv);
->  
-> -	ret = devm_drm_dev_init(dev, drm, &ingenic_drm_driver_data);
-> -	if (ret) {
-> -		kfree(priv);
-> -		return ret;
-> -	}
-> -	drmm_add_final_kfree(drm, priv);
-> -
->  	ret = drmm_mode_config_init(drm);
->  	if (ret)
->  		return ret;
+> drivers/gpu/drm/i915/display/intel_global_state.c | 5 +++--
+> 1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/gpu/drm/i915/display/intel_global_state.c
+> index a0cc894c3868..6f72feb14f3e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_global_state.c
+> +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
+> @@ -71,6 +71,7 @@ struct intel_global_state *
+> intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
+> 				  struct intel_global_obj *obj)
+> {
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> 	int index, num_objs, i;
+> 	size_t size;
+> 	struct __intel_global_objs_state *arr;
+> @@ -106,8 +107,8 @@ intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
+>
+> 	state->num_global_objs = num_objs;
+>
+> -	DRM_DEBUG_ATOMIC("Added new global object %p state %p to %p\n",
+> -			 obj, obj_state, state);
+> +	drm_dbg_atomic(&i915->drm, "Added new global object %p state %p to %p\n",
+
+I think this line can be split to fix the checkpatch warning as it's over 
+80 characters.
+
+Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
+
+> +		       obj, obj_state, state);
+>
+> 	return obj_state;
+> }
 > -- 
-> 2.25.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 2.20.1
+>
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
