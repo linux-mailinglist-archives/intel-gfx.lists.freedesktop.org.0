@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F5D1A2214
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:33:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4651A223F
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:44:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DC36EA58;
-	Wed,  8 Apr 2020 12:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D93F6E1D7;
+	Wed,  8 Apr 2020 12:44:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8DBA86E0FA;
- Wed,  8 Apr 2020 12:33:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7E03EA00E7;
- Wed,  8 Apr 2020 12:33:49 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 08 Apr 2020 12:33:49 -0000
-Message-ID: <158634922948.19348.10362010880206938585@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200408092916.5355-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200408092916.5355-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Mark_up_racy_check_of_breadcrumb_irq_enabled?=
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52C8B6E13D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 12:43:58 +0000 (UTC)
+IronPort-SDR: Twa4kgEJNhzJdohkCHPp35l11gH6OEU5hz1A+b4dmaBtx8qfuegQGtJbvuqWNYtOPwt1JPPdEv
+ u1w9fGo4DcZA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 05:43:57 -0700
+IronPort-SDR: vRiDUPNTT8uAFpNwhsXCUvmz5tAe79Akak7Ypn9HQsoiI3dkWiGt9crn9cj88BRcGcM+WC6YZb
+ 49tgdbZG11Kg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="451591237"
+Received: from unknown (HELO kkadiyal.iind.intel.com) ([10.223.74.161])
+ by fmsmga005.fm.intel.com with ESMTP; 08 Apr 2020 05:43:55 -0700
+From: Kishore Kadiyala <kishore.kadiyala@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Apr 2020 18:13:44 +0530
+Message-Id: <20200408124344.13711-1-kishore.kadiyala@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v4] drm/i915: Add Plane color encoding support
+ for YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,85 +44,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Kishore Kadiyala <kishore.kadiyala@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently the plane property doesn't have support for YCBCR_BT2020,
+which enables the corresponding color conversion mode on plane CSC.
+In ICL+ platforms , this property setting is confined only to HDR
+Planes as there is limitation in SDR Planes and while in GLK it
+set for all planes.
 
-Series: drm/i915/gt: Mark up racy check of breadcrumb irq enabled
-URL   : https://patchwork.freedesktop.org/series/75663/
-State : success
+V2: Enabling support for YCBCT_BT2020 for HDR planes on
+    platforms GLK & ICL
 
-== Summary ==
+V3: Refined the condition check to handle GLK & ICL+ HDR planes
+    Also added BT2020 handling in glk_plane_color_ctl.
 
-CI Bug Log - changes from CI_DRM_8274 -> Patchwork_17250
-====================================================
+V4: Combine If-else into single If
 
-Summary
--------
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 15 +++++++++++++--
+ 2 files changed, 22 insertions(+), 5 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 70ec301fe6e3..f2dfa61a49fa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4808,11 +4808,17 @@ u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
+ 	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
+ 
+ 	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
+-		if (plane_state->hw.color_encoding == DRM_COLOR_YCBCR_BT709)
++		switch (plane_state->hw.color_encoding) {
++		case DRM_COLOR_YCBCR_BT709:
+ 			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
+-		else
++			break;
++		case DRM_COLOR_YCBCR_BT2020:
++			plane_color_ctl |=
++					PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
++			break;
++		default:
+ 			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
+-
++		}
+ 		if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
+ 			plane_color_ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
+ 	} else if (fb->format->is_yuv) {
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index deda351719db..fe2ca3e6e026 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	struct intel_plane *plane;
+ 	enum drm_plane_type plane_type;
+ 	unsigned int supported_rotations;
++	unsigned int supported_csc;
+ 	const u64 *modifiers;
+ 	const u32 *formats;
+ 	int num_formats;
+@@ -3105,9 +3106,19 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 					   DRM_MODE_ROTATE_0,
+ 					   supported_rotations);
+ 
++	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
++
++	/*
++	 * Setting the CSC BT2020 for all the planes in case of GLK
++	 * While for ICL+ platforms it is set only for HDR planes 1 through 3
++	 * as there are issues seen with SDR planes
++	 */
++	if (IS_GEN(dev_priv, 10) || IS_GEMINILAKE(dev_priv) ||
++	    icl_is_hdr_plane(dev_priv, plane_id))
++		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
++
+ 	drm_plane_create_color_properties(&plane->base,
+-					  BIT(DRM_COLOR_YCBCR_BT601) |
+-					  BIT(DRM_COLOR_YCBCR_BT709),
++					  supported_csc,
+ 					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+ 					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+ 					  DRM_COLOR_YCBCR_BT709,
+-- 
+2.17.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17250 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-skl-6770hq:      [PASS][1] -> [SKIP][2] ([fdo#109271]) +24 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8274/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-hsw-4770:        [SKIP][3] ([fdo#109271]) -> [PASS][4] +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8274/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-
-
-Participating hosts (51 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8274 -> Patchwork_17250
-
-  CI-20190529: 20190529
-  CI_DRM_8274: 860acd37e552def563b63ac3f77ad002b58fada0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5580: fb488389a7a263b649361ec9c29e8b3b69851122 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17250: 3fc532718c8a0bba71f95c542817b955487663d2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3fc532718c8a drm/i915/gt: Mark up racy check of breadcrumb irq enabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
