@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5601A1F34
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2361A1F3B
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:54:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22A8989EB4;
-	Wed,  8 Apr 2020 10:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D84F26E0B7;
+	Wed,  8 Apr 2020 10:54:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id ABD5489B03;
- Wed,  8 Apr 2020 10:51:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5147A0118;
- Wed,  8 Apr 2020 10:51:55 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3242C6E0B7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 10:54:46 +0000 (UTC)
+IronPort-SDR: E5/lxDYTI4XujX8s3sL9KVZoN0Ns2lF/DaNe99l+LBIu+8ePirOt6RFB3WYIdO9jlxeliecPtp
+ MwEGTrm303Jw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 03:54:45 -0700
+IronPort-SDR: XgtQjPyyLmIBZ/93CGJ0g5XyID381eyGEuUkGgSnHqpqYl3icfqMaYSydNOYYdE28biLycAtg7
+ VDMPuoyKWaVA==
+X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="425099370"
+Received: from slinke-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.237])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 03:54:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>
+In-Reply-To: <alpine.LNX.2.21.99999.375.2004071410480.77089@wambui>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200402114819.17232-1-jani.nikula@intel.com>
+ <alpine.LNX.2.21.99999.375.2004071410480.77089@wambui>
+Date: Wed, 08 Apr 2020 13:54:40 +0300
+Message-ID: <87y2r6gscv.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 08 Apr 2020 10:51:55 -0000
-Message-ID: <158634311564.19348.6825093131410290151@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200408091631.28753-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200408091631.28753-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Take_an_explicit_ref_for_rq-=3Ebatch_=28rev2?=
- =?utf-8?q?=29?=
+Subject: Re: [Intel-gfx] [PATCH 01/17] drm/i915/audio: use struct drm_device
+ based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,123 +49,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 07 Apr 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> On Thu, 2 Apr 2020, Jani Nikula wrote:
+>
+>> Convert all the DRM_* logging macros to the struct drm_device based
+>> macros to provide device specific logging.
+>>
+>> No functional changes.
+>>
+>> Generated using the following semantic patch, originally written by
+>> Wambui Karuga <wambui.karugax@gmail.com>, with manual fixups on top:
+>>
+>> @@
+>> identifier fn, T;
+>> @@
+>>
+>> fn(...,struct drm_i915_private *T,...) {
+>> <+...
+>> (
+>> -DRM_INFO(
+>> +drm_info(&T->drm,
+>> ...)
+>> |
+>> -DRM_NOTE(
+>> +drm_notice(&T->drm,
+>> ...)
+>> |
+>> -DRM_ERROR(
+>> +drm_err(&T->drm,
+>> ...)
+>> |
+>> -DRM_WARN(
+>> +drm_warn(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_DRIVER(
+>> +drm_dbg(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_KMS(
+>> +drm_dbg_kms(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_ATOMIC(
+>> +drm_dbg_atomic(&T->drm,
+>> ...)
+>> )
+>> ...+>
+>> }
+>>
+>> @@
+>> identifier fn, T;
+>> @@
+>>
+>> fn(...) {
+>> ...
+>> struct drm_i915_private *T = ...;
+>> <+...
+>> (
+>> -DRM_INFO(
+>> +drm_info(&T->drm,
+>> ...)
+>> |
+>> -DRM_NOTE(
+>> +drm_notice(&T->drm,
+>> ...)
+>> |
+>> -DRM_ERROR(
+>> +drm_err(&T->drm,
+>> ...)
+>> |
+>> -DRM_WARN(
+>> +drm_warn(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_DRIVER(
+>> +drm_dbg(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_KMS(
+>> +drm_dbg_kms(&T->drm,
+>> ...)
+>> |
+>> -DRM_DEBUG_ATOMIC(
+>> +drm_dbg_atomic(&T->drm,
+>> ...)
+>> )
+>> ...+>
+>> }
+>>
+>> Cc: Wambui Karuga <wambui.karugax@gmail.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
 
-Series: drm/i915/selftests: Take an explicit ref for rq->batch (rev2)
-URL   : https://patchwork.freedesktop.org/series/75662/
-State : success
+Many thanks for all the reviews, pushed the lot.
 
-== Summary ==
+BR,
+Jani.
 
-CI Bug Log - changes from CI_DRM_8272 -> Patchwork_17249
-====================================================
+>
+>> ---
+>> drivers/gpu/drm/i915/display/intel_audio.c | 12 +++++++-----
+>> 1 file changed, 7 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+>> index 950160f1a89f..47402c2869db 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+>> @@ -252,14 +252,16 @@ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_sta
+>> 		i = ARRAY_SIZE(hdmi_audio_clock);
+>>
+>> 	if (i == ARRAY_SIZE(hdmi_audio_clock)) {
+>> -		DRM_DEBUG_KMS("HDMI audio pixel clock setting for %d not found, falling back to defaults\n",
+>> -			      adjusted_mode->crtc_clock);
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "HDMI audio pixel clock setting for %d not found, falling back to defaults\n",
+>> +			    adjusted_mode->crtc_clock);
+>> 		i = 1;
+>> 	}
+>>
+>> -	DRM_DEBUG_KMS("Configuring HDMI audio for pixel clock %d (0x%08x)\n",
+>> -		      hdmi_audio_clock[i].clock,
+>> -		      hdmi_audio_clock[i].config);
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "Configuring HDMI audio for pixel clock %d (0x%08x)\n",
+>> +		    hdmi_audio_clock[i].clock,
+>> +		    hdmi_audio_clock[i].config);
+>>
+>> 	return hdmi_audio_clock[i].config;
+>> }
+>> -- 
+>> 2.20.1
+>>
+>>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17249:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@gem_wait@busy@all}:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8272/fi-tgl-y/igt@gem_wait@busy@all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/fi-tgl-y/igt@gem_wait@busy@all.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17249 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-u2:          [PASS][3] -> [INCOMPLETE][4] ([i915#1580])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8272/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [INCOMPLETE][5] ([i915#392]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8272/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +5 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8272/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8272/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (54 -> 47)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8272 -> Patchwork_17249
-
-  CI-20190529: 20190529
-  CI_DRM_8272: 119725479d96edd8dfbae721c6ff343a14f1dc25 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5579: 13cf98c409f05fe43de9e43cbb5b7fd2274667fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17249: 2cc3bded914e69c9e6edfcc700520bc99c30d52d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2cc3bded914e drm/i915/selftests: Take an explicit ref for rq->batch
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17249/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
