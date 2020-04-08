@@ -1,62 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556CA1A1D71
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:31:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B20F1A1D72
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:32:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B44989958;
-	Wed,  8 Apr 2020 08:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41836E9DD;
+	Wed,  8 Apr 2020 08:32:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30C4089958
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:31:19 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id r26so4492913wmh.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:31:19 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 088F889E52
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:32:08 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id f13so192120wrm.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:32:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:date:to:cc:subject:in-reply-to:message-id:references
  :user-agent:mime-version;
- bh=JkAH2io5qsSgFRTZvd+03DE1C6THbIxxlhC5L2HQ9oo=;
- b=SE5/X2Kf/1tjopk2VUkpPOIFVrWNOCM50qvP4/n5f7HCWg3UQNikZfgU221flaEf2d
- wor2BpJcJIBs5TbYL+WnGjcIabcKNlFo5Z+pXZOXDjVBjcM+1ABhXHSjUxTtg4+XSLwH
- jcEnQkk/OY/bEHHCnTESXBRUusfC0oU9FIAFOvu9wrV99+zxX1Aa+A8hUW2XRvD3Tns5
- j5we2WR8Gft8ip0EdDX8XH8hKfx78vjF6kRywY1mO9wUuhlkoF1ybUGKzTOBgUTNHkiz
- 18qZzhMhGVUY4N8AZZa+JwKw0lgViaWXUWMCroC6d+NjTttIoCJMv7EDSgCKap517+l1
- C9Fg==
+ bh=Uh/WZPo4NmvqG51XBp+m4iYb7ZftFHKT2mP1p4eLAUE=;
+ b=ulF0v2sCguzKaIeJQztpe5QsnslDWZeogrmJkZep+PhD4OEyKi24ERj1jGpkHSLFmr
+ S/vCKSIXu3sorZ+5vN8wixTmIaWR4tvUMOcZvN6RyWymtF1+SRczcmbsNHspR04TJ0PD
+ SsH+mKHufpwev7EPU+P2EoWVd+P63qVcoJLO6ZnkpT1EER60UR5XeKP9dMgzq4CwK7Kr
+ Zg0fjmygSmgk7xk1RzDMndeFLG0Eju8ijCx+fk3SLKNBB91dXlYHhbHkq8lGcxhYUnBR
+ li0+uQdUbn99FHE15OCcVPeE7FhyAyWzv8fNbLJsIbTRZUzfTInJ91H67ZCJEKMhcAo/
+ 9mxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
  :references:user-agent:mime-version;
- bh=JkAH2io5qsSgFRTZvd+03DE1C6THbIxxlhC5L2HQ9oo=;
- b=YRugBVJTRk6ExoG3QyoZHD0JjVwR9HqwUsaDV7/IHFD98TSs0qAJ+iT+zaLZkiavJd
- T+EHKfGN1LJFLt/80zn7Aoj47hEN4GFIZlAfzXQpEj3tudyCjQYJ5qKsEMpezE+2HDYB
- 3U1tSPfsP0WZweFwo5ENpCMmnLwtVN8+HRMwTz/mShFjgVvdziM3VZ8xNLOS5gqo9UaW
- abjCvf8aKG+eg5yTYfm/Dg2d9E+qmcItu7n6zo0Dj7W5VTgu4m01fQSRVJO+JJo9YRDY
- sNUcCCMzsuvmXd6TnUrNMldM0cvOZOmhkPoVaBs/G/IHITZ0yY8nZzVIITVWJYxM/Fs0
- 95MA==
-X-Gm-Message-State: AGi0PuaW0l19Jd5YGuOM89/F8gHY9ygqW7NK0toXMVDXPLkWm0WY4JBT
- VuK8I7IhazMc1L3XX7zOgNQ=
-X-Google-Smtp-Source: APiQypJ4GjzO/7tIBRGwIPeSv8A0y6cOhA3iCFpmhcFB1lPP6EZgqCoGrxAAYNgYmd9QJIYYkoU0Sg==
-X-Received: by 2002:a1c:1dc3:: with SMTP id d186mr3428851wmd.90.1586334677910; 
- Wed, 08 Apr 2020 01:31:17 -0700 (PDT)
+ bh=Uh/WZPo4NmvqG51XBp+m4iYb7ZftFHKT2mP1p4eLAUE=;
+ b=mUi9GcrHZzavBbfuxD0MsWMGrLWMkm1+EJCDA92W0osT3c2vjlQY8BpkOrjxuWmBUK
+ rCEvY/7MidGByGrsm/vr50XIWxLh9fHVYanEuBCYE553huln9zkgYogzd+tYfOWMSyBN
+ oqI4B9M7YMyyc1nv2DAtY7vIxqRCdce+q2lC+tjGI+97GBomQAessQPvgRoilu5ZXNY+
+ dG8isieBVn2QS3CyBr9mqdcllRZV+A4wWr2/2rp0VGgLnhIP0oZ2zmJfP6j53xxlQ+i3
+ 3yih4rnF9vKCiwQs+YbyEkCTr/wW1cX6Gg5CUJWE6Cnp/fc8mT/Fum2/013IVY1ZzcIQ
+ BXhw==
+X-Gm-Message-State: AGi0Puax7d31pizogOCkK5lBeOpDZnrl6VrIynf29YfUTgMecNKpRVrs
+ /TpdYE1IFm9ZewiHOtgyuejTShfX
+X-Google-Smtp-Source: APiQypIBoHZ13mldylDar6ZI1Y9Wbhfj1pSwjn3howZUR2cOzSv8zcnbheDh/Dp1RSaDzBbbKuLIVA==
+X-Received: by 2002:adf:ef51:: with SMTP id c17mr7043453wrp.130.1586334726670; 
+ Wed, 08 Apr 2020 01:32:06 -0700 (PDT)
 Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id x18sm5770108wmi.29.2020.04.08.01.31.16
+ by smtp.googlemail.com with ESMTPSA id 89sm5832589wri.11.2020.04.08.01.32.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 01:31:17 -0700 (PDT)
+ Wed, 08 Apr 2020 01:32:06 -0700 (PDT)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Wed, 8 Apr 2020 11:31:02 +0300 (EAT)
+Date: Wed, 8 Apr 2020 11:31:57 +0300 (EAT)
 To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-10-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2004081124230.25609@wambui>
+In-Reply-To: <20200402114819.17232-11-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2004081131290.25609@wambui>
 References: <20200402114819.17232-1-jani.nikula@intel.com>
- <20200402114819.17232-10-jani.nikula@intel.com>
+ <20200402114819.17232-11-jani.nikula@intel.com>
 User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/17] drm/i915/uc: prefer struct drm_device
- based logging
+Subject: Re: [Intel-gfx] [PATCH 11/17] drm/i915/error: prefer struct
+ drm_device based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,54 +89,22 @@ On Thu, 2 Apr 2020, Jani Nikula wrote:
 Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
 
 > ---
-> drivers/gpu/drm/i915/gt/uc/intel_uc.c    | 12 ++++++------
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 10 +++++-----
-> 2 files changed, 11 insertions(+), 11 deletions(-)
+> drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index b11e564ef22e..4681cdd24da4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -45,12 +45,12 @@ static void __confirm_options(struct intel_uc *uc)
-> {
-> 	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
->
-> -	DRM_DEV_DEBUG_DRIVER(i915->drm.dev,
-> -			     "enable_guc=%d (guc:%s submission:%s huc:%s)\n",
-> -			     i915_modparams.enable_guc,
-> -			     yesno(intel_uc_wants_guc(uc)),
-> -			     yesno(intel_uc_wants_guc_submission(uc)),
-> -			     yesno(intel_uc_wants_huc(uc)));
-> +	drm_dbg(&i915->drm,
-> +		"enable_guc=%d (guc:%s submission:%s huc:%s)\n",
-> +		i915_modparams.enable_guc,
-> +		yesno(intel_uc_wants_guc(uc)),
-> +		yesno(intel_uc_wants_guc_submission(uc)),
-> +		yesno(intel_uc_wants_huc(uc)));
->
-> 	if (i915_modparams.enable_guc == -1)
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 2a4cd0ba5464..424ad975a360 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1858,7 +1858,7 @@ void i915_error_state_store(struct i915_gpu_coredump *error)
 > 		return;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index fa893dd1823c..129db476f69e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -32,11 +32,11 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
-> 			       enum intel_uc_fw_status status)
-> {
-> 	uc_fw->__status =  status;
-> -	DRM_DEV_DEBUG_DRIVER(__uc_fw_to_gt(uc_fw)->i915->drm.dev,
-> -			     "%s firmware -> %s\n",
-> -			     intel_uc_fw_type_repr(uc_fw->type),
-> -			     status == INTEL_UC_FIRMWARE_SELECTED ?
-> -			     uc_fw->path : intel_uc_fw_status_repr(status));
-> +	drm_dbg(&__uc_fw_to_gt(uc_fw)->i915->drm,
-> +		"%s firmware -> %s\n",
-> +		intel_uc_fw_type_repr(uc_fw->type),
-> +		status == INTEL_UC_FIRMWARE_SELECTED ?
-> +		uc_fw->path : intel_uc_fw_status_repr(status));
-> }
-> #endif
 >
+> 	i915 = error->i915;
+> -	dev_info(i915->drm.dev, "%s\n", error_msg(error));
+> +	drm_info(&i915->drm, "%s\n", error_msg(error));
+>
+> 	if (error->simulated ||
+> 	    cmpxchg(&i915->gpu_error.first_error, NULL, error))
 > -- 
 > 2.20.1
 >
