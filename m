@@ -2,61 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8109C1A1E81
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E41BB1A1EA1
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:18:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB67B6EA0A;
-	Wed,  8 Apr 2020 10:04:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD9C6EA10;
+	Wed,  8 Apr 2020 10:18:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 719C56EA0A;
- Wed,  8 Apr 2020 10:04:30 +0000 (UTC)
-IronPort-SDR: HhteyjB0pX+1PdhWJJzNCr9YzyDaLuOmnLupWg4PtwOqkFqfSwY132ZbeIGuO3ul+Oid1zBE5l
- G5ooPse4bVTw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 03:04:29 -0700
-IronPort-SDR: 96LWhhPqlDay1nBs6ew+05kQYOzCAgmLnAWgRzldDu+pV7TDt5Qaqfp8PddPZtFL3TjEJxm+VM
- ucgTjPhOALnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,357,1580803200"; d="scan'208";a="269709006"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga002.jf.intel.com with ESMTP; 08 Apr 2020 03:04:29 -0700
-Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 8 Apr 2020 03:04:29 -0700
-Received: from bgsmsx155.gar.corp.intel.com (10.224.48.102) by
- fmsmsx117.amr.corp.intel.com (10.18.116.17) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 8 Apr 2020 03:04:29 -0700
-Received: from BGSMSX108.gar.corp.intel.com ([169.254.8.65]) by
- BGSMSX155.gar.corp.intel.com ([169.254.12.231]) with mapi id 14.03.0439.000;
- Wed, 8 Apr 2020 15:34:19 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-Thread-Topic: [PATCH RESEND 6/7] drm/i915/bios: fill in DSC rc_model_size
- from VBT
-Thread-Index: AQHWBDVFrB/wiUVEKEayh4J8Dzt8SahvD3pQ
-Date: Wed, 8 Apr 2020 10:04:19 +0000
-Message-ID: <57510F3E2013164E925CD03ED7512A3B80A88437@BGSMSX108.gar.corp.intel.com>
-References: <20200327124229.26461-1-jani.nikula@intel.com>
- <20200327124229.26461-6-jani.nikula@intel.com>
-In-Reply-To: <20200327124229.26461-6-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 62C9D6EA0F;
+ Wed,  8 Apr 2020 10:18:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5AE08A0138;
+ Wed,  8 Apr 2020 10:18:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH RESEND 6/7] drm/i915/bios: fill in DSC
- rc_model_size from VBT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kishore Kadiyala" <kishore.kadiyala@intel.com>
+Date: Wed, 08 Apr 2020 10:18:10 -0000
+Message-ID: <158634109036.19346.9264285432609870301@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200408084734.8834-1-kishore.kadiyala@intel.com>
+In-Reply-To: <20200408084734.8834-1-kishore.kadiyala@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Add_Plane_color_encoding_support_for_YCBCR=5FBT2020?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,68 +38,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@intel.com>
-> Sent: Friday, March 27, 2020 6:12 PM
-> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Navare, Manasi D
-> <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Subject: [PATCH RESEND 6/7] drm/i915/bios: fill in DSC rc_model_size from
-> VBT
-> 
-> The VBT fields match the DPCD data, so use the same helper.
-> 
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
-> b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 839124647202..a4ea0e6c3286 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2494,16 +2494,11 @@ static void fill_dsc(struct intel_crtc_state
-> *crtc_state,
->  			      crtc_state->dsc.slice_count);
-> 
->  	/*
-> -	 * FIXME: Use VBT rc_buffer_block_size and rc_buffer_size for the
-> -	 * implementation specific physical rate buffer size. Currently we use
-> -	 * the required rate buffer model size calculated in
-> -	 * drm_dsc_compute_rc_parameters() according to VESA DSC Annex E.
-> -	 *
->  	 * The VBT rc_buffer_block_size and rc_buffer_size definitions
-> -	 * correspond to DP 1.4 DPCD offsets 0x62 and 0x63. The DP DSC
-> -	 * implementation should also use the DPCD (or perhaps VBT for eDP)
-> -	 * provided value for the buffer size.
-> +	 * correspond to DP 1.4 DPCD offsets 0x62 and 0x63.
->  	 */
-> +	vdsc_cfg->rc_model_size = drm_dsc_dp_rc_buffer_size(dsc-
-> >rc_buffer_block_size,
-> +							    dsc-
-> >rc_buffer_size);
-Do we need to handle the invalid case here?
-
-Regards
-Vandita
-
-> 
->  	/* FIXME: DSI spec says bpc + 1 for this one */
->  	vdsc_cfg->line_buf_depth = VBT_DSC_LINE_BUFFER_DEPTH(dsc-
-> >line_buffer_depth);
-> --
-> 2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IEFkZCBQbGFuZSBjb2xvciBl
+bmNvZGluZyBzdXBwb3J0IGZvciBZQ0JDUl9CVDIwMjAKVVJMICAgOiBodHRwczovL3BhdGNod29y
+ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzc1NjYwLwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1h
+cnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRz
+L2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAgICAgaW5j
+bHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX3Nwcml0ZS5vCmRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+c3ByaXRlLmM6IEluIGZ1bmN0aW9uIOKAmHNrbF91bml2ZXJzYWxfcGxhbmVfY3JlYXRl4oCZOgpk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jOjMxMTE6NTk6IGVycm9y
+OiBzdWdnZXN0IHBhcmVudGhlc2VzIGFyb3VuZCDigJgmJuKAmSB3aXRoaW4g4oCYfHzigJkgWy1X
+ZXJyb3I9cGFyZW50aGVzZXNdCiAgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTAgfHwgSVNf
+R0VNSU5JTEFLRShkZXZfcHJpdikgJiYKY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBh
+cyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNjc6IHJlY2lwZSBmb3IgdGFyZ2V0ICdk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5vJyBmYWlsZWQKbWFrZVs0
+XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5vXSBFcnJv
+ciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTA1OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVy
+cy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1
+XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTA1OiByZWNpcGUgZm9yIHRhcmdldCAn
+ZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1dIEVy
+cm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2
+ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFrZWZp
+bGU6MTY4MzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiogW2Ry
+aXZlcnNdIEVycm9yIDIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
