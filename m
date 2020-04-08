@@ -2,41 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2361A1F3B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 349231A1F90
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 13:11:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D84F26E0B7;
-	Wed,  8 Apr 2020 10:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3037F6EA3F;
+	Wed,  8 Apr 2020 11:10:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3242C6E0B7
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 10:54:46 +0000 (UTC)
-IronPort-SDR: E5/lxDYTI4XujX8s3sL9KVZoN0Ns2lF/DaNe99l+LBIu+8ePirOt6RFB3WYIdO9jlxeliecPtp
- MwEGTrm303Jw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 03:54:45 -0700
-IronPort-SDR: XgtQjPyyLmIBZ/93CGJ0g5XyID381eyGEuUkGgSnHqpqYl3icfqMaYSydNOYYdE28biLycAtg7
- VDMPuoyKWaVA==
-X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="425099370"
-Received: from slinke-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.60.237])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 03:54:43 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>
-In-Reply-To: <alpine.LNX.2.21.99999.375.2004071410480.77089@wambui>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200402114819.17232-1-jani.nikula@intel.com>
- <alpine.LNX.2.21.99999.375.2004071410480.77089@wambui>
-Date: Wed, 08 Apr 2020 13:54:40 +0300
-Message-ID: <87y2r6gscv.fsf@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990C46EA25
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 11:10:35 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Apr 2020 13:10:09 +0200
+Message-Id: <20200408111031.2330026-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/17] drm/i915/audio: use struct drm_device
- based logging
+Subject: [Intel-gfx] [PATCH 01/23] perf/core: Only copy-to-user after
+ completely unlocking all locks, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,153 +32,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> On Thu, 2 Apr 2020, Jani Nikula wrote:
->
->> Convert all the DRM_* logging macros to the struct drm_device based
->> macros to provide device specific logging.
->>
->> No functional changes.
->>
->> Generated using the following semantic patch, originally written by
->> Wambui Karuga <wambui.karugax@gmail.com>, with manual fixups on top:
->>
->> @@
->> identifier fn, T;
->> @@
->>
->> fn(...,struct drm_i915_private *T,...) {
->> <+...
->> (
->> -DRM_INFO(
->> +drm_info(&T->drm,
->> ...)
->> |
->> -DRM_NOTE(
->> +drm_notice(&T->drm,
->> ...)
->> |
->> -DRM_ERROR(
->> +drm_err(&T->drm,
->> ...)
->> |
->> -DRM_WARN(
->> +drm_warn(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_DRIVER(
->> +drm_dbg(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_KMS(
->> +drm_dbg_kms(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_ATOMIC(
->> +drm_dbg_atomic(&T->drm,
->> ...)
->> )
->> ...+>
->> }
->>
->> @@
->> identifier fn, T;
->> @@
->>
->> fn(...) {
->> ...
->> struct drm_i915_private *T = ...;
->> <+...
->> (
->> -DRM_INFO(
->> +drm_info(&T->drm,
->> ...)
->> |
->> -DRM_NOTE(
->> +drm_notice(&T->drm,
->> ...)
->> |
->> -DRM_ERROR(
->> +drm_err(&T->drm,
->> ...)
->> |
->> -DRM_WARN(
->> +drm_warn(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_DRIVER(
->> +drm_dbg(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_KMS(
->> +drm_dbg_kms(&T->drm,
->> ...)
->> |
->> -DRM_DEBUG_ATOMIC(
->> +drm_dbg_atomic(&T->drm,
->> ...)
->> )
->> ...+>
->> }
->>
->> Cc: Wambui Karuga <wambui.karugax@gmail.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
+We inadvertently create a dependency on mmap_sem with a whole chain.
 
-Many thanks for all the reviews, pushed the lot.
+This breaks any user who wants to take a lock and call rcu_barrier(),
+while also taking that lock inside mmap_sem:
 
-BR,
-Jani.
+<4> [604.892532] ======================================================
+<4> [604.892534] WARNING: possible circular locking dependency detected
+<4> [604.892536] 5.6.0-rc7-CI-Patchwork_17096+ #1 Tainted: G     U
+<4> [604.892537] ------------------------------------------------------
+<4> [604.892538] kms_frontbuffer/2595 is trying to acquire lock:
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
+<4> [604.892547]
+but task is already holding lock:
+<4> [604.892547] ffff888484716050 (reservation_ww_class_mutex){+.+.}, at: i915_gem_object_pin_to_display_plane+0x89/0x270 [i915]
+<4> [604.892592]
+which lock already depends on the new lock.
+<4> [604.892593]
+the existing dependency chain (in reverse order) is:
+<4> [604.892594]
+-> #6 (reservation_ww_class_mutex){+.+.}:
+<4> [604.892597]        __ww_mutex_lock.constprop.15+0xc3/0x1090
+<4> [604.892598]        ww_mutex_lock+0x39/0x70
+<4> [604.892600]        dma_resv_lockdep+0x10e/0x1f5
+<4> [604.892602]        do_one_initcall+0x58/0x300
+<4> [604.892604]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892605]        kernel_init+0x5/0x100
+<4> [604.892606]        ret_from_fork+0x24/0x50
+<4> [604.892607]
+-> #5 (reservation_ww_class_acquire){+.+.}:
+<4> [604.892609]        dma_resv_lockdep+0xec/0x1f5
+<4> [604.892610]        do_one_initcall+0x58/0x300
+<4> [604.892610]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892611]        kernel_init+0x5/0x100
+<4> [604.892612]        ret_from_fork+0x24/0x50
+<4> [604.892613]
+-> #4 (&mm->mmap_sem#2){++++}:
+<4> [604.892615]        __might_fault+0x63/0x90
+<4> [604.892617]        _copy_to_user+0x1e/0x80
+<4> [604.892619]        perf_read+0x200/0x2b0
+<4> [604.892621]        vfs_read+0x96/0x160
+<4> [604.892622]        ksys_read+0x9f/0xe0
+<4> [604.892623]        do_syscall_64+0x4f/0x220
+<4> [604.892624]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892625]
+-> #3 (&cpuctx_mutex){+.+.}:
+<4> [604.892626]        __mutex_lock+0x9a/0x9c0
+<4> [604.892627]        perf_event_init_cpu+0xa4/0x140
+<4> [604.892629]        perf_event_init+0x19d/0x1cd
+<4> [604.892630]        start_kernel+0x362/0x4e4
+<4> [604.892631]        secondary_startup_64+0xa4/0xb0
+<4> [604.892631]
+-> #2 (pmus_lock){+.+.}:
+<4> [604.892633]        __mutex_lock+0x9a/0x9c0
+<4> [604.892633]        perf_event_init_cpu+0x6b/0x140
+<4> [604.892635]        cpuhp_invoke_callback+0x9b/0x9d0
+<4> [604.892636]        _cpu_up+0xa2/0x140
+<4> [604.892637]        do_cpu_up+0x61/0xa0
+<4> [604.892639]        smp_init+0x57/0x96
+<4> [604.892639]        kernel_init_freeable+0x87/0x1dc
+<4> [604.892640]        kernel_init+0x5/0x100
+<4> [604.892642]        ret_from_fork+0x24/0x50
+<4> [604.892642]
+-> #1 (cpu_hotplug_lock.rw_sem){++++}:
+<4> [604.892643]        cpus_read_lock+0x34/0xd0
+<4> [604.892644]        rcu_barrier+0xaa/0x190
+<4> [604.892645]        kernel_init+0x21/0x100
+<4> [604.892647]        ret_from_fork+0x24/0x50
+<4> [604.892647]
+-> #0 (rcu_state.barrier_mutex){+.+.}:
+<4> [604.892649]        __lock_acquire+0x1328/0x15d0
+<4> [604.892650]        lock_acquire+0xa7/0x1c0
+<4> [604.892651]        __mutex_lock+0x9a/0x9c0
+<4> [604.892652]        rcu_barrier+0x23/0x190
+<4> [604.892680]        i915_gem_object_unbind+0x29d/0x3f0 [i915]
+<4> [604.892707]        i915_gem_object_pin_to_display_plane+0x141/0x270 [i915]
+<4> [604.892737]        intel_pin_and_fence_fb_obj+0xec/0x1f0 [i915]
+<4> [604.892767]        intel_plane_pin_fb+0x3f/0xd0 [i915]
+<4> [604.892797]        intel_prepare_plane_fb+0x13b/0x5c0 [i915]
+<4> [604.892798]        drm_atomic_helper_prepare_planes+0x85/0x110
+<4> [604.892827]        intel_atomic_commit+0xda/0x390 [i915]
+<4> [604.892828]        drm_atomic_helper_set_config+0x57/0xa0
+<4> [604.892830]        drm_mode_setcrtc+0x1c4/0x720
+<4> [604.892830]        drm_ioctl_kernel+0xb0/0xf0
+<4> [604.892831]        drm_ioctl+0x2e1/0x390
+<4> [604.892833]        ksys_ioctl+0x7b/0x90
+<4> [604.892835]        __x64_sys_ioctl+0x11/0x20
+<4> [604.892835]        do_syscall_64+0x4f/0x220
+<4> [604.892836]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892837]
 
->
->> ---
->> drivers/gpu/drm/i915/display/intel_audio.c | 12 +++++++-----
->> 1 file changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
->> index 950160f1a89f..47402c2869db 100644
->> --- a/drivers/gpu/drm/i915/display/intel_audio.c
->> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
->> @@ -252,14 +252,16 @@ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_sta
->> 		i = ARRAY_SIZE(hdmi_audio_clock);
->>
->> 	if (i == ARRAY_SIZE(hdmi_audio_clock)) {
->> -		DRM_DEBUG_KMS("HDMI audio pixel clock setting for %d not found, falling back to defaults\n",
->> -			      adjusted_mode->crtc_clock);
->> +		drm_dbg_kms(&dev_priv->drm,
->> +			    "HDMI audio pixel clock setting for %d not found, falling back to defaults\n",
->> +			    adjusted_mode->crtc_clock);
->> 		i = 1;
->> 	}
->>
->> -	DRM_DEBUG_KMS("Configuring HDMI audio for pixel clock %d (0x%08x)\n",
->> -		      hdmi_audio_clock[i].clock,
->> -		      hdmi_audio_clock[i].config);
->> +	drm_dbg_kms(&dev_priv->drm,
->> +		    "Configuring HDMI audio for pixel clock %d (0x%08x)\n",
->> +		    hdmi_audio_clock[i].clock,
->> +		    hdmi_audio_clock[i].config);
->>
->> 	return hdmi_audio_clock[i].config;
->> }
->> -- 
->> 2.20.1
->>
->>
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Changes since v1:
+- Use (*values)[n++] in perf_read_one().
+Changes since v2:
+- Centrally allocate values.
 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+fixup perf patch
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ kernel/events/core.c | 45 +++++++++++++++++++++-----------------------
+ 1 file changed, 21 insertions(+), 24 deletions(-)
+
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index 085d9263d595..4921b64a0abd 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -4926,20 +4926,16 @@ static int __perf_read_group_add(struct perf_event *leader,
+ }
+ 
+ static int perf_read_group(struct perf_event *event,
+-				   u64 read_format, char __user *buf)
++				   u64 read_format, char __user *buf,
++				   u64 *values)
+ {
+ 	struct perf_event *leader = event->group_leader, *child;
+ 	struct perf_event_context *ctx = leader->ctx;
+ 	int ret;
+-	u64 *values;
+ 
+ 	lockdep_assert_held(&ctx->mutex);
+ 
+-	values = kzalloc(event->read_size, GFP_KERNEL);
+-	if (!values)
+-		return -ENOMEM;
+-
+-	values[0] = 1 + leader->nr_siblings;
++	*values = 1 + leader->nr_siblings;
+ 
+ 	/*
+ 	 * By locking the child_mutex of the leader we effectively
+@@ -4957,25 +4953,17 @@ static int perf_read_group(struct perf_event *event,
+ 			goto unlock;
+ 	}
+ 
+-	mutex_unlock(&leader->child_mutex);
+-
+ 	ret = event->read_size;
+-	if (copy_to_user(buf, values, event->read_size))
+-		ret = -EFAULT;
+-	goto out;
+-
+ unlock:
+ 	mutex_unlock(&leader->child_mutex);
+-out:
+-	kfree(values);
+ 	return ret;
+ }
+ 
+ static int perf_read_one(struct perf_event *event,
+-				 u64 read_format, char __user *buf)
++				 u64 read_format, char __user *buf,
++				 u64 *values)
+ {
+ 	u64 enabled, running;
+-	u64 values[4];
+ 	int n = 0;
+ 
+ 	values[n++] = __perf_event_read_value(event, &enabled, &running);
+@@ -4986,9 +4974,6 @@ static int perf_read_one(struct perf_event *event,
+ 	if (read_format & PERF_FORMAT_ID)
+ 		values[n++] = primary_event_id(event);
+ 
+-	if (copy_to_user(buf, values, n * sizeof(u64)))
+-		return -EFAULT;
+-
+ 	return n * sizeof(u64);
+ }
+ 
+@@ -5009,7 +4994,8 @@ static bool is_event_hup(struct perf_event *event)
+  * Read the performance event - simple non blocking version for now
+  */
+ static ssize_t
+-__perf_read(struct perf_event *event, char __user *buf, size_t count)
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
+ {
+ 	u64 read_format = event->attr.read_format;
+ 	int ret;
+@@ -5027,9 +5013,9 @@ __perf_read(struct perf_event *event, char __user *buf, size_t count)
+ 
+ 	WARN_ON_ONCE(event->ctx->parent_ctx);
+ 	if (read_format & PERF_FORMAT_GROUP)
+-		ret = perf_read_group(event, read_format, buf);
++		ret = perf_read_group(event, read_format, buf, values);
+ 	else
+-		ret = perf_read_one(event, read_format, buf);
++		ret = perf_read_one(event, read_format, buf, values);
+ 
+ 	return ret;
+ }
+@@ -5039,6 +5025,7 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ {
+ 	struct perf_event *event = file->private_data;
+ 	struct perf_event_context *ctx;
++	u64 *values;
+ 	int ret;
+ 
+ 	ret = security_perf_event_read(event);
+@@ -5046,9 +5033,19 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ 		return ret;
+ 
+ 	ctx = perf_event_ctx_lock(event);
+-	ret = __perf_read(event, buf, count);
++	values = kzalloc(event->read_size, GFP_KERNEL);
++	if (values)
++		ret = __perf_read(event, buf, count, values);
++	else
++		ret = -ENOMEM;
+ 	perf_event_ctx_unlock(event, ctx);
+ 
++	if (ret > 0) {
++		if (copy_to_user(buf, values, ret))
++			ret = -EFAULT;
++	}
++	kfree(values);
++
+ 	return ret;
+ }
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
