@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BD91A231E
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 15:36:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52A01A232B
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 15:38:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46AA26EA62;
-	Wed,  8 Apr 2020 13:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC576EA64;
+	Wed,  8 Apr 2020 13:38:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD5066EA62;
- Wed,  8 Apr 2020 13:35:59 +0000 (UTC)
-IronPort-SDR: M6r4IyTVbanGIGsJJNCwpTNycE603aIOCK8TaroMROmlN/Yc4oK4KxeEtEv5b11tSYPiZAoQty
- hpEnNOa8TMiw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 028AA6EA64
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 13:38:07 +0000 (UTC)
+IronPort-SDR: +k19JGhziT6GVi2jLp5EVAmtr5PREv5ECxQtj00ad6dxiZevW0ZTbqJ40ENf/UCovebz1fIMUY
+ YMpD/StuFOWg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 06:35:59 -0700
-IronPort-SDR: 8IMh/o7yQaqcc1smZE/LaP58DUG2LoyXbvj9kC6TPiIe0XPdFBacZ18DwYHv367781OLmsPYAY
- 4g7LOm663dug==
+ 08 Apr 2020 06:38:07 -0700
+IronPort-SDR: 7LJhH5rOmB845bgIYQaqlToBdjxOB24weK1EIgyRwFvIvG1yXx1MQplp/NQTP0+RSiWRimaVTg
+ sQuNEBAJmPDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="361843103"
+X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="244037430"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 08 Apr 2020 06:35:55 -0700
+ by fmsmga008.fm.intel.com with SMTP; 08 Apr 2020 06:38:02 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Apr 2020 16:35:54 +0300
-Date: Wed, 8 Apr 2020 16:35:54 +0300
+ Wed, 08 Apr 2020 16:38:01 +0300
+Date: Wed, 8 Apr 2020 16:38:01 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200408133554.GR6112@intel.com>
-References: <20200330183857.13270-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200330183857.13270-2-pankaj.laxminarayan.bharadiya@intel.com>
- <20200407172802.GJ6112@intel.com>
- <20200408094726.GA9393@plaxmina-desktop.iind.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <20200408133801.GS6112@intel.com>
+References: <20200408111347.5156-1-kishore.kadiyala@intel.com>
+ <20200408124630.GQ6112@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F82449A78@BGSMSX104.gar.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200408094726.GA9393@plaxmina-desktop.iind.intel.com>
+In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F82449A78@BGSMSX104.gar.corp.intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm: Introduce plane and CRTC
- scaling filter properties
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Add Plane color encoding
+ support for YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,414 +53,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, daniels@collabora.com,
- David Airlie <airlied@linux.ie>, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Kadiyala,
+ Kishore" <kishore.kadiyala@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2020 at 03:17:27PM +0530, Bharadiya,Pankaj wrote:
-> On Tue, Apr 07, 2020 at 08:28:02PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Mar 31, 2020 at 12:08:53AM +0530, Pankaj Bharadiya wrote:
-> > > Introduce per-plane and per-CRTC scaling filter properties to allow
-> > > userspace to select the driver's default scaling filter or
-> > > Nearest-neighbor(NN) filter for upscaling operations on CRTC and
-> > > plane.
-> > > =
+On Wed, Apr 08, 2020 at 01:23:27PM +0000, Shankar, Uma wrote:
+> =
 
-> > > Drivers can set up this property for a plane by calling
-> > > drm_plane_create_scaling_filter() and for a CRTC by calling
-> > > drm_crtc_create_scaling_filter().
-> > > =
+> =
 
-> > > NN filter works by filling in the missing color values in the upscaled
-> > > image with that of the coordinate-mapped nearest source pixel value.
-> > > =
+> > -----Original Message-----
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Sent: Wednesday, April 8, 2020 6:17 PM
+> > To: Kadiyala, Kishore <kishore.kadiyala@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.co=
+m>;
+> > Nikula, Jani <jani.nikula@intel.com>
+> > Subject: Re: [PATCH v3] drm/i915: Add Plane color encoding support for
+> > YCBCR_BT2020
+> > =
 
-> > > NN filter for integer multiple scaling can be particularly useful for
-> > > for pixel art games that rely on sharp, blocky images to deliver their
-> > > distinctive look.
-> > > =
-
-> > > changes since v2:
-> > > * Create per-plane and per-CRTC scaling filter property (Ville)
-> > > changes since v1:
-> > > * None
-> > > changes since RFC:
-> > > * Add separate properties for plane and CRTC (Ville)
-> > > =
-
-> > > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.=
-com>
+> > On Wed, Apr 08, 2020 at 04:43:47PM +0530, Kishore Kadiyala wrote:
+> > > Currently the plane property doesn't have support for YCBCR_BT2020,
+> > > which enables the corresponding color conversion mode on plane CSC.
+> > > In ICL+ platforms , this property setting is confined only to HDR
+> > > Planes as there is limitation in SDR Planes and while in GLK it set
+> > > for all planes.
+> > >
+> > > V2: Enabling support for YCBCT_BT2020 for HDR planes on
+> > >     platforms GLK & ICL
+> > >
+> > > V3: Refined the condition check to handle GLK & ICL+ HDR planes
+> > >     Also added BT2020 handling in glk_plane_color_ctl.
+> > >
+> > > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > > Cc: Uma Shankar <uma.shankar@intel.com>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
 > > > ---
-> > >  drivers/gpu/drm/drm_atomic_uapi.c |  8 ++++
-> > >  drivers/gpu/drm/drm_crtc.c        | 78 +++++++++++++++++++++++++++++=
-++
-> > >  drivers/gpu/drm/drm_plane.c       | 78 +++++++++++++++++++++++++++++=
-++
-> > >  include/drm/drm_crtc.h            | 16 +++++++
-> > >  include/drm/drm_plane.h           | 21 +++++++++
-> > >  5 files changed, 201 insertions(+)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_=
-atomic_uapi.c
-> > > index a1e5e262bae2..ac7dabbf0bcf 100644
-> > > --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> > > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> > > @@ -469,6 +469,8 @@ static int drm_atomic_crtc_set_property(struct dr=
-m_crtc *crtc,
-> > >  			return -EFAULT;
-> > >  =
-
-> > >  		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
-> > > +	} else if (property =3D=3D crtc->scaling_filter_property) {
-> > > +		state->scaling_filter =3D val;
-> > >  	} else if (crtc->funcs->atomic_set_property) {
-> > >  		return crtc->funcs->atomic_set_property(crtc, state, property, val=
-);
-> > >  	} else {
-> > > @@ -503,6 +505,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crt=
-c,
-> > >  		*val =3D (state->gamma_lut) ? state->gamma_lut->base.id : 0;
-> > >  	else if (property =3D=3D config->prop_out_fence_ptr)
-> > >  		*val =3D 0;
-> > > +	else if (property =3D=3D crtc->scaling_filter_property)
-> > =
-
-> > Random side observation: Why do we have two different styles to naming
-> > these things (prop_foo vs. foo_property)? Would be nice to unify this
-> > one way or the other.
-> =
-
-> Need to handle this separately.
-> =
-
-> All per-plane props follow foo_property convention and we have mixed =
-
-> conventions for properties in struct drm_mode_config with majority being
-> foo_property.
-> =
-
-> > =
-
-> > > +		*val =3D state->scaling_filter;
-> > >  	else if (crtc->funcs->atomic_get_property)
-> > >  		return crtc->funcs->atomic_get_property(crtc, state, property, val=
-);
-> > >  	else
-> > > @@ -583,6 +587,8 @@ static int drm_atomic_plane_set_property(struct d=
-rm_plane *plane,
-> > >  					sizeof(struct drm_rect),
-> > >  					&replaced);
-> > >  		return ret;
-> > > +	} else if (property =3D=3D plane->scaling_filter_property) {
-> > > +		state->scaling_filter =3D val;
-> > >  	} else if (plane->funcs->atomic_set_property) {
-> > >  		return plane->funcs->atomic_set_property(plane, state,
-> > >  				property, val);
-> > > @@ -641,6 +647,8 @@ drm_atomic_plane_get_property(struct drm_plane *p=
-lane,
-> > >  	} else if (property =3D=3D config->prop_fb_damage_clips) {
-> > >  		*val =3D (state->fb_damage_clips) ?
-> > >  			state->fb_damage_clips->base.id : 0;
-> > > +	} else if (property =3D=3D plane->scaling_filter_property) {
-> > > +		*val =3D state->scaling_filter;
-> > >  	} else if (plane->funcs->atomic_get_property) {
-> > >  		return plane->funcs->atomic_get_property(plane, state, property, v=
-al);
-> > >  	} else {
-> > > diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-> > > index 4936e1080e41..95502c88966b 100644
-> > > --- a/drivers/gpu/drm/drm_crtc.c
-> > > +++ b/drivers/gpu/drm/drm_crtc.c
-> > > @@ -748,3 +748,81 @@ int drm_mode_crtc_set_obj_prop(struct drm_mode_o=
-bject *obj,
-> > >  =
-
-> > >  	return ret;
-> > >  }
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+> > > drivers/gpu/drm/i915/display/intel_sprite.c  | 17 +++++++++++++++--
+> > >  2 files changed, 24 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 70ec301fe6e3..f2dfa61a49fa 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -4808,11 +4808,17 @@ u32 glk_plane_color_ctl(const struct intel_cr=
+tc_state
+> > *crtc_state,
+> > >  	plane_color_ctl |=3D glk_plane_color_ctl_alpha(plane_state);
+> > >
+> > >  	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
+> > > -		if (plane_state->hw.color_encoding =3D=3D
+> > DRM_COLOR_YCBCR_BT709)
+> > > +		switch (plane_state->hw.color_encoding) {
+> > > +		case DRM_COLOR_YCBCR_BT709:
+> > >  			plane_color_ctl |=3D
+> > PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
+> > > -		else
+> > > +			break;
+> > > +		case DRM_COLOR_YCBCR_BT2020:
+> > > +			plane_color_ctl |=3D
 > > > +
-> > > +/**
-> > > + * DOC: CRTC scaling filter property
-> > > + *
-> > > + * SCALING_FILTER:
-> > > + *
-> > > + *	Indicates scaling filter to be used for CRTC scaler
-> > > + *
-> > > + *	The value of this property can be one of the following:
-> > > + *	Default:
-> > > + *		Driver's default scaling filter
-> > > + *	Nearest Neighbor:
-> > > + *		Nearest Neighbor scaling filter
-> > > + *
-> > > + * Drivers can set up this property for a CRTC by calling
-> > > + * drm_crtc_create_scaling_filter_property
-> > > + */
-> > > +
-> > > +/**
-> > > + * drm_crtc_create_scaling_filter_property - create a new scaling fi=
-lter
-> > > + * property
-> > > + *
-> > > + * @crtc: drm CRTC
-> > > + * @supported_filters: bitmask of supported scaling filters, must in=
-clude
-> > > + *		       BIT(DRM_SCALING_FILTER_DEFAULT).
-> > > + *
-> > > + * This function lets driver to enable the scaling filter property o=
-n a given
-> > > + * CRTC.
-> > > + *
-> > > + * RETURNS:
-> > > + * Zero for success or -errno
-> > > + */
-> > > +int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
-> > > +					    unsigned int supported_filters)
-> > > +{
-> > > +	struct drm_device *dev =3D crtc->dev;
-> > > +	struct drm_property *prop;
-> > > +	static const struct drm_prop_enum_list props[] =3D {
-> > > +		{ DRM_SCALING_FILTER_DEFAULT, "Default" },
-> > > +		{ DRM_SCALING_FILTER_NEAREST_NEIGHBOR, "Nearest Neighbor" },
-> > > +	};
-> > > +	unsigned int valid_mode_mask =3D BIT(DRM_SCALING_FILTER_DEFAULT) |
-> > > +				       BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR);
-> > > +	int i;
-> > > +
-> > > +	if (WARN_ON((supported_filters & ~valid_mode_mask) ||
-> > > +		    ((supported_filters & BIT(DRM_SCALING_FILTER_DEFAULT)) =3D=3D =
-0)))
-> > > +		return -EINVAL;
-> > > +
-> > > +	prop =3D drm_property_create(dev, DRM_MODE_PROP_ENUM,
-> > > +				   "SCALING_FILTER",
-> > > +				   hweight32(supported_filters));
-> > > +	if (!prop)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	for (i =3D 0; i < ARRAY_SIZE(props); i++) {
-> > > +		int ret;
-> > > +
-> > > +		if (!(BIT(props[i].type) & supported_filters))
-> > > +			continue;
-> > > +
-> > > +		ret =3D drm_property_add_enum(prop, props[i].type,
-> > > +					    props[i].name);
-> > > +
-> > > +		if (ret) {
-> > > +			drm_property_destroy(dev, prop);
-> > > +
-> > > +			return ret;
+> > 	PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
+> > > +			break;
+> > > +		default:
+> > >  			plane_color_ctl |=3D
+> > PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
+> > > -
 > > > +		}
-> > > +	}
+> > >  		if (plane_state->hw.color_range =3D=3D
+> > DRM_COLOR_YCBCR_FULL_RANGE)
+> > >  			plane_color_ctl |=3D
+> > PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
+> > >  	} else if (fb->format->is_yuv) {
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > index deda351719db..237c4b951f02 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > @@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_priv=
+ate
+> > *dev_priv,
+> > >  	struct intel_plane *plane;
+> > >  	enum drm_plane_type plane_type;
+> > >  	unsigned int supported_rotations;
+> > > +	unsigned int supported_csc;
+> > >  	const u64 *modifiers;
+> > >  	const u32 *formats;
+> > >  	int num_formats;
+> > > @@ -3105,9 +3106,21 @@ skl_universal_plane_create(struct drm_i915_pri=
+vate
+> > *dev_priv,
+> > >  					   DRM_MODE_ROTATE_0,
+> > >  					   supported_rotations);
+> > >
+> > > +	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) |
+> > > +BIT(DRM_COLOR_YCBCR_BT709);
 > > > +
-> > > +	drm_object_attach_property(&crtc->base, prop,
-> > > +				   DRM_SCALING_FILTER_DEFAULT);
+> > > +	/*
+> > > +	 * Setting the CSC BT2020 for all the planes in case of GLK
+> > > +	 * While for ICL+ platforms it is set only for HDR planes 1 through=
+ 3
+> > > +	 * as there are issues seen with SDR planes
 > > =
 
-> > Everything up to here is identical between the crtc and plane. Needs a
-> > refactoring. In fact this whole thing seems pretty generic.
+> > What issues are those?
 > =
 
-> How about spliting code like below -
-> =
+> There was an issue on some of the hardcoded matrix values used in SDR pla=
+nes,
+> hence it would be good to not enable BT2020 conversion on SDR planes in I=
+CL+
+> till this gets resolved. =
 
-> diff --git a/drivers/gpu/drm/drm_crtc_internal.h b/drivers/gpu/drm/drm_cr=
-tc_internal.h
-> --- a/drivers/gpu/drm/drm_crtc_internal.h
-> +++ b/drivers/gpu/drm/drm_crtc_internal.h
-> @@ -72,6 +72,9 @@ int drm_crtc_force_disable(struct drm_crtc *crtc);
->  =
+> Reference WA: #220884772
+> "Incorrect plane CSC coefficients for sRGB to Bt2020 :
+> SDR planes PLANE_COLOR_CTL Plane CSC Mode 100b, RGB709 to RGB2020, =
 
->  struct dma_fence *drm_crtc_create_fence(struct drm_crtc *crtc);
->  =
+> uses hardcoded R-Y coefficient of 0.75 instead of 0.625, resulting in inc=
+orrect BT2020
+> color conversion. WA: Limit RGB709 to RGB2020 conversion to the HDR capab=
+le planes"
 
-> +struct drm_property *
-> +drm_prepare_scaling_filter_prop(struct drm_device *dev,
-> +				unsigned int supported_filters);
-
-s/prepare/create/
-with that seems good enough.
-
->  /* IOCTLs */
->  int drm_mode_getcrtc(struct drm_device *dev,
->  		     void *data, struct drm_file *file_priv);
-> =
+That only matters for RGB->RGB conversion, which has nothing to do with
+this patch.
 
 > =
 
-> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> index d6ad60ab0d38..e63614fe3eed 100644
-> --- a/drivers/gpu/drm/drm_plane.c
-> +++ b/drivers/gpu/drm/drm_plane.c
-> @@ -1221,3 +1221,93 @@ int drm_mode_page_flip_ioctl(struct drm_device *de=
-v,
->  =
-
->  	return ret;
->  }
-> +
-> +struct drm_property *
-> +drm_prepare_scaling_filter_prop(struct drm_device *dev,
-> +				unsigned int supported_filters)
-> +{
-> +	struct drm_property *prop;
-> +	static const struct drm_prop_enum_list props[] =3D {
-> +		{ DRM_SCALING_FILTER_DEFAULT, "Default" },
-> +		{ DRM_SCALING_FILTER_NEAREST_NEIGHBOR, "Nearest Neighbor" },
-> +	};
-> +	unsigned int valid_mode_mask =3D BIT(DRM_SCALING_FILTER_DEFAULT) |
-> +				       BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR);
-> +	int i;
-> +
-> +	if (WARN_ON((supported_filters & ~valid_mode_mask) ||
-> +		    ((supported_filters & BIT(DRM_SCALING_FILTER_DEFAULT)) =3D=3D 0)))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	prop =3D drm_property_create(dev, DRM_MODE_PROP_ENUM,
-> +				   "SCALING_FILTER",
-> +				   hweight32(supported_filters));
-> +	if (!prop)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(props); i++) {
-> +		int ret;
-> +
-> +		if (!(BIT(props[i].type) & supported_filters))
-> +			continue;
-> +
-> +		ret =3D drm_property_add_enum(prop, props[i].type,
-> +					    props[i].name);
-> +
-> +		if (ret) {
-> +			drm_property_destroy(dev, prop);
-> +
-> +			return ERR_PTR(ret);
-> +		}
-> +	}
-> +
-> +	return prop;
-> +}
-> +
-> +/**
-> + * drm_plane_create_scaling_filter_property - create a new scaling filter
-> + * property
-> + *
-> + * @plane: drm plane
-> + * @supported_filters: bitmask of supported scaling filters, must include
-> + *		       BIT(DRM_SCALING_FILTER_DEFAULT).
-> + *
-> + * This function lets driver to enable the scaling filter property on a =
-given
-> + * plane.
-> + *
-> + * RETURNS:
-> + * Zero for success or -errno
-> + */
-> +int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
-> +					     unsigned int supported_filters)
-> +{
-> +	struct drm_property *prop =3D
-> +		drm_prepare_scaling_filter_prop(plane->dev, supported_filters);
-> +
-> +	if (IS_ERR(prop))
-> +		return PTR_ERR(prop);
-> +
-> +	drm_object_attach_property(&plane->base, prop,
-> +				   DRM_SCALING_FILTER_DEFAULT);
-> +	plane->scaling_filter_property =3D prop;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_plane_create_scaling_filter_property);
+> @Kishore : Please add this as comment here.
 > =
 
-> index 4936e1080e41..b48e0bce8f60 100644
-> --- a/drivers/gpu/drm/drm_crtc.c
-> +++ b/drivers/gpu/drm/drm_crtc.c
-> =
-
-> +int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
-> +					    unsigned int supported_filters)
-> +{
-> +	struct drm_property *prop =3D
-> +		drm_prepare_scaling_filter_prop(crtc->dev, supported_filters);
-> +
-> +	if (IS_ERR(prop))
-> +		return PTR_ERR(prop);
-> +
-> +	drm_object_attach_property(&crtc->base, prop,
-> +				   DRM_SCALING_FILTER_DEFAULT);
-> +	crtc->scaling_filter_property =3D prop;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
-> =
-
-> =
-
-> > Should probably think about just adding that bitmask to
-> > drm_property_create_enum(). I suppose we could try to avoid having to
-> > change all the existing callers by keeping the current thing without the
-> > bitmask (though it could probably internally just call the version which
-> > takes the bitmask, assuming our enum values aren't too big for that.
-> =
-
-> As more filters can be added in future and different hardwares can have
-> different capabilities, I think it make sense to provide a bitmask to the
-> callers so that drivers can expose *only* filters which they support.
-> =
-
-> What do you think?
-
-I was musing about something like =
-
-
-drm_property_create_enum(...
-+	supported_bitmask
-	);
-
-Nothing specifically about the scaling filter prop.
-
->  =
-
-> Thanks,
-> Pankaj
-> =
-
-> > =
-
-> > Otherwise the patch seems reasonable.
-> > =
-
-> > > +	crtc->scaling_filter_property =3D prop;
+> > > +	 */
+> > > +	if ((INTEL_GEN(dev_priv) =3D=3D 10) ||  IS_GEMINILAKE(dev_priv))
+> > > +		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
+> > > +	else
+> > > +		if (icl_is_hdr_plane(dev_priv, plane_id))
+> > > +			supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
 > > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
-> > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> =
-
-> [snip]
-> >  					state->fb_damage_clips->data : NULL);
-> > >  }
-> > >  =
-
-> > > +int drm_plane_create_scaling_filter_property(struct drm_plane *plane,
-> > > +					     unsigned int supported_filters);
-> > > +
-> > >  #endif
-> > > -- =
-
-> > > 2.23.0
+> > >  	drm_plane_create_color_properties(&plane->base,
+> > > -					  BIT(DRM_COLOR_YCBCR_BT601) |
+> > > -					  BIT(DRM_COLOR_YCBCR_BT709),
+> > > +					  supported_csc,
+> > >
+> > BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+> > >  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+> > >  					  DRM_COLOR_YCBCR_BT709,
+> > > --
+> > > 2.17.1
 > > =
 
-> > -- =
-
+> > --
 > > Ville Syrj=E4l=E4
 > > Intel
 
