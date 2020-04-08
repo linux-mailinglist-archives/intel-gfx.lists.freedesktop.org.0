@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A551A27D7
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 19:19:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89771A284F
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 20:14:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844446EAA5;
-	Wed,  8 Apr 2020 17:19:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61AB96EAAC;
+	Wed,  8 Apr 2020 18:13:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 67F036EAA4;
- Wed,  8 Apr 2020 17:19:17 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AC8B36EAAC;
+ Wed,  8 Apr 2020 18:13:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 614C1A3C0D;
- Wed,  8 Apr 2020 17:19:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A4DB1A00E7;
+ Wed,  8 Apr 2020 18:13:57 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 08 Apr 2020 17:19:17 -0000
-Message-ID: <158636635739.19349.10213498430023312868@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Wed, 08 Apr 2020 18:13:57 -0000
+Message-ID: <158636963764.19347.15826071629480352269@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200408145902.21641-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200408145902.21641-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgYWdw?=
- =?utf-8?q?/intel=3A_Disable_use_of_WC_for_GMM_updates?=
+References: <20200408155927.32300-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200408155927.32300-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_drm_scaling_filter_property_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,88 +47,55 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: agp/intel: Disable use of WC for GMM updates
-URL   : https://patchwork.freedesktop.org/series/75680/
-State : failure
+Series: Introduce drm scaling filter property (rev6)
+URL   : https://patchwork.freedesktop.org/series/73883/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8277 -> Patchwork_17255
-====================================================
+$ dim checkpatch origin/drm-tip
+6ca2d49eb95e drm: Introduce plane and CRTC scaling filter properties
+e722fd229b86 drm/drm-kms.rst: Add plane and CRTC scaling filter property documentation
+c85f9bde5ba8 drm/i915: Introduce scaling filter related registers and bit fields.
+-:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#70: FILE: drivers/gpu/drm/i915/i915_reg.h:7419:
++#define CNL_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-Summary
--------
+-:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#70: FILE: drivers/gpu/drm/i915/i915_reg.h:7419:
++#define CNL_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-  **FAILURE**
+-:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#74: FILE: drivers/gpu/drm/i915/i915_reg.h:7423:
++#define CNL_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  Serious unknown changes coming with Patchwork_17255 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17255, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#74: FILE: drivers/gpu/drm/i915/i915_reg.h:7423:
++#define CNL_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17255/index.html
+total: 0 errors, 0 warnings, 4 checks, 47 lines checked
+418a0d11c2c1 drm/i915/display: Add Nearest-neighbor based integer scaling support
+a81f7638d04a drm/i915: Enable scaling filter for plane and CRTC
+-:94: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:16626:
++		drm_crtc_create_scaling_filter_property(&crtc->base,
++						BIT(DRM_SCALING_FILTER_DEFAULT) |
 
-Possible new issues
--------------------
+-:154: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#154: FILE: drivers/gpu/drm/i915/display/intel_sprite.c:3132:
++		drm_plane_create_scaling_filter_property(&plane->base,
++						BIT(DRM_SCALING_FILTER_DEFAULT) |
 
-  Here are the unknown changes that may have been introduced in Patchwork_17255:
+total: 0 errors, 0 warnings, 2 checks, 103 lines checked
 
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8277/fi-icl-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17255/fi-icl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17255 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][3] ([i915#1158]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8277/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17255/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  
-  [i915#1158]: https://gitlab.freedesktop.org/drm/intel/issues/1158
-
-
-Participating hosts (52 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8277 -> Patchwork_17255
-
-  CI-20190529: 20190529
-  CI_DRM_8277: f7d56913e1668f3a269db391189a7888a4b22570 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5581: ab0620e555119ec55f12ba9ab9e6e9246d407648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17255: a18804e368c8302a0e6c48e9025555c2bcf92e30 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a18804e368c8 agp/intel: Disable use of WC for GMM updates
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17255/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
