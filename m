@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF241A243B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 16:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5A81A2463
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 16:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2DA89B51;
-	Wed,  8 Apr 2020 14:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF32C6E137;
+	Wed,  8 Apr 2020 14:55:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 58D9389B51;
- Wed,  8 Apr 2020 14:44:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52D2AA0091;
- Wed,  8 Apr 2020 14:44:01 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B086E137
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 14:55:07 +0000 (UTC)
+IronPort-SDR: OQazYYEaPwEyo0t2VZ0WC+2JGHzP99weBAzssynRnk6pvu4TsEHHFP8GEWeRpNRpd/VW1BR16W
+ z28YVBlNqPZw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 07:55:06 -0700
+IronPort-SDR: UAqF2UwznsjfiMX5ocGARrf7EoQ06oc+blXRC/cyJhb8KJJo+DP113O01H2sA/SCOecxNlCSdC
+ v6IEDAksXMqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,358,1580803200"; d="scan'208";a="297252908"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 08 Apr 2020 07:55:03 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Apr 2020 17:55:02 +0300
+Date: Wed, 8 Apr 2020 17:55:02 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200408145502.GU6112@intel.com>
+References: <20200326181005.11775-6-stanislav.lisovskiy@intel.com>
+ <20200403062003.11539-1-stanislav.lisovskiy@intel.com>
+ <20200407190128.GN6112@intel.com>
+ <20200408075804.GA20704@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 08 Apr 2020 14:44:01 -0000
-Message-ID: <158635704130.19346.14921504515346093865@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200408111031.2330026-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200408111031.2330026-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/23=5D_perf/core=3A_Only_copy-to-user_af?=
- =?utf-8?q?ter_completely_unlocking_all_locks=2C_v3=2E?=
+Content-Disposition: inline
+In-Reply-To: <20200408075804.GA20704@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v21 05/10] drm/i915: Extract gen specific
+ functions from intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,220 +54,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 08, 2020 at 10:58:04AM +0300, Lisovskiy, Stanislav wrote:
+> On Tue, Apr 07, 2020 at 10:01:28PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Apr 03, 2020 at 09:20:03AM +0300, Stanislav Lisovskiy wrote:
+> > > Addressing one of the comments, recommending to extract platform
+> > > specific code from intel_can_enable_sagv as a preparation, before
+> > > we are going to add support for tgl+.
+> > > =
 
-Series: series starting with [01/23] perf/core: Only copy-to-user after completely unlocking all locks, v3.
-URL   : https://patchwork.freedesktop.org/series/75668/
-State : failure
+> > > Current code in intel_can_enable_sagv is valid only for skl,
+> > > so this patch adds also proper support for icl, subsequent
+> > > patches will add support for tgl+, combined with other required
+> > > changes.
+> > > =
 
-== Summary ==
+> > > v2: - Renamed icl_can_enable_sagv into icl_crtc_can_enable_sagv(Ville)
+> > >     - Removed dev variables(Ville)
+> > >     - Constified crtc/plane_state in icl_crtc_can_enable_sagv
+> > >       function(Ville)
+> > >     - Added hw.active check(Ville)
+> > >     - Refactored if ladder(Ville)
+> > > =
 
-CI Bug Log - changes from CI_DRM_8275 -> Patchwork_17253
-====================================================
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/intel_pm.c | 84 +++++++++++++++++++++----------=
+--
+> > >  1 file changed, 55 insertions(+), 29 deletions(-)
+> > > =
 
-Summary
--------
+> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/i=
+ntel_pm.c
+> > > index f8d62d1977ac..27d4d626cb34 100644
+> > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > @@ -3757,42 +3757,25 @@ intel_disable_sagv(struct drm_i915_private *d=
+ev_priv)
+> > >  	return 0;
+> > >  }
+> > >  =
 
-  **FAILURE**
+> > > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > +static bool icl_crtc_can_enable_sagv(const struct intel_crtc_state *=
+crtc_state)
+> > >  {
+> > > -	struct drm_device *dev =3D state->base.dev;
+> > > -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > -	struct intel_crtc *crtc;
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc=
+->dev);
+> > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > >  	struct intel_plane *plane;
+> > > -	struct intel_crtc_state *crtc_state;
+> > > -	enum pipe pipe;
+> > > +	const struct intel_plane_state *plane_state;
+> > >  	int level, latency;
+> > >  =
 
-  Serious unknown changes coming with Patchwork_17253 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17253, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> > > -	if (!intel_has_sagv(dev_priv))
+> > > +	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
+> > > +		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
+> > > +			      pipe_name(crtc->pipe));
+> > >  		return false;
+> > > +	}
+> > >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/index.html
+> > > -	/*
+> > > -	 * If there are no active CRTCs, no additional checks need be perfo=
+rmed
+> > > -	 */
+> > > -	if (hweight8(state->active_pipes) =3D=3D 0)
+> > > +	if (!crtc_state->hw.active)
+> > =
 
-Possible new issues
--------------------
+> > Should really be checked before anything else. Doesn't matter too much
+> > anymore since I made us clear the crtc state always, but still a bit
+> > inconsistent to look at other stuff in the state before we even know if
+> > the crtc is even enabled.
+> > =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17253:
+> > >  		return true;
+> > >  =
 
-### IGT changes ###
+> > > -	/*
+> > > -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > > -	 * more then one pipe enabled
+> > > -	 */
+> > > -	if (hweight8(state->active_pipes) > 1)
+> > > -		return false;
+> > > -
+> > > -	/* Since we're now guaranteed to only have one active CRTC... */
+> > > -	pipe =3D ffs(state->active_pipes) - 1;
+> > > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> > > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > > -
+> > > -	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> > > -		return false;
+> > > -
+> > > -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> > > -		struct skl_plane_wm *wm =3D
+> > > +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, cr=
+tc_state) {
+> > > +		const struct skl_plane_wm *wm =3D
+> > >  			&crtc_state->wm.skl.optimal.planes[plane->id];
+> > >  =
 
-#### Possible regressions ####
+> > >  		/* Skip this plane if it's not enabled */
+> > > @@ -3807,7 +3790,7 @@ bool intel_can_enable_sagv(struct intel_atomic_=
+state *state)
+> > >  		latency =3D dev_priv->wm.skl_latency[level];
+> > >  =
 
-  * igt@gem_close_race@basic-process:
-    - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-ivb-3770/igt@gem_close_race@basic-process.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-ivb-3770/igt@gem_close_race@basic-process.html
-    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-hsw-4770/igt@gem_close_race@basic-process.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-hsw-4770/igt@gem_close_race@basic-process.html
-    - fi-hsw-peppy:       [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-hsw-peppy/igt@gem_close_race@basic-process.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-hsw-peppy/igt@gem_close_race@basic-process.html
+> > >  		if (skl_needs_memory_bw_wa(dev_priv) &&
+> > > -		    plane->base.state->fb->modifier =3D=3D
+> > > +		    plane_state->uapi.fb->modifier =3D=3D
+> > =
 
-  * igt@gem_exec_fence@basic-await@rcs0:
-    - fi-blb-e6850:       [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-blb-e6850/igt@gem_exec_fence@basic-await@rcs0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-blb-e6850/igt@gem_exec_fence@basic-await@rcs0.html
-    - fi-elk-e7500:       [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-elk-e7500/igt@gem_exec_fence@basic-await@rcs0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-elk-e7500/igt@gem_exec_fence@basic-await@rcs0.html
-    - fi-pnv-d510:        [PASS][11] -> [DMESG-WARN][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-pnv-d510/igt@gem_exec_fence@basic-await@rcs0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-pnv-d510/igt@gem_exec_fence@basic-await@rcs0.html
-    - fi-ilk-650:         [PASS][13] -> [DMESG-WARN][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-ilk-650/igt@gem_exec_fence@basic-await@rcs0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-ilk-650/igt@gem_exec_fence@basic-await@rcs0.html
+> > hw.fb
+> > =
 
-  * igt@gem_exec_fence@basic-await@vcs0:
-    - fi-ilk-650:         [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-ilk-650/igt@gem_exec_fence@basic-await@vcs0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-ilk-650/igt@gem_exec_fence@basic-await@vcs0.html
+> > With those this is basically good, but still need to think how to avoid
+> > the regression due to only checking the crtcs in the state.
+> =
 
-  * igt@gem_render_tiled_blits@basic:
-    - fi-gdg-551:         [PASS][17] -> [DMESG-WARN][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
+> Well tbh, initially you told me that this *_crtc_can_enable_sagv function=
+ extraction
+> can be "trivially" done as a separate patch :)) So I followed your instru=
+ction, and =
 
-  * igt@gem_sync@basic-each:
-    - fi-cfl-8109u:       [PASS][19] -> [INCOMPLETE][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-cfl-8109u/igt@gem_sync@basic-each.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-cfl-8109u/igt@gem_sync@basic-each.html
+> then I got a comment saying that "this is now temporary busted because we=
+ are checking
+> only crtcs in a state". This kind of contraversial requirements - in orde=
+r not to =
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-6770hq:      [PASS][21] -> [DMESG-WARN][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-skl-6770hq/igt@i915_selftest@live@gem_contexts.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-skl-6770hq/igt@i915_selftest@live@gem_contexts.html
-    - fi-skl-lmem:        [PASS][23] -> [DMESG-WARN][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+> have it "temporary busted", we should have introduced it at the same time=
+ with SAGV mask,
+> at the same time you wanted it to be extracted as a separate patch.
 
-  * igt@kms_busy@basic@flip:
-    - fi-bwr-2160:        [PASS][25] -> [FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-bwr-2160/igt@kms_busy@basic@flip.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-bwr-2160/igt@kms_busy@basic@flip.html
+TBF this patch does quite a bit more than extract the current code.
 
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][27]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-ilk-650/igt@runner@aborted.html
-    - fi-pnv-d510:        NOTRUN -> [FAIL][28]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-pnv-d510/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][29]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-elk-e7500/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][30]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-blb-e6850/igt@runner@aborted.html
+What I think would work as a series is something like:
+patch 1:
++intel_crtc_can_enable_sagv(crtc_state)
+{
++	stuff
+}
 
-  
-Known issues
-------------
+intel_can_enable_sagv(state)
+{
+	...
+	crtc_state =3D to_intel_crtc_state(crtc->base.state);
 
-  Here are the changes found in Patchwork_17253 that come from known issues:
+-	stuff
++	return intel_crtc_can_eanble_sagv(crtc_state);
+}
 
-### IGT changes ###
+patch 2:
++sagv_pre_plane_update(state)
++{
++	if (!intel_can_enable_sagv(state))
++		intel_disable_sagv(dev_priv);
++}
 
-#### Issues hit ####
+intel_atomic_commit_tail()
+{
+	...
+-	if (!intel_can_enable_sagv(state))
+-		intel_disable_sagv(dev_priv);
++	sagv_pre_plane_update(state);
+	...
+}
 
-  * igt@gem_close_race@basic-process:
-    - fi-byt-j1900:       [PASS][31] -> [INCOMPLETE][32] ([i915#45])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-byt-j1900/igt@gem_close_race@basic-process.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-byt-j1900/igt@gem_close_race@basic-process.html
-    - fi-byt-n2820:       [PASS][33] -> [INCOMPLETE][34] ([i915#45])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-byt-n2820/igt@gem_close_race@basic-process.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-byt-n2820/igt@gem_close_race@basic-process.html
+(+ identical changes for post_plane_update())
 
-  * igt@gem_exec_fence@basic-await@vcs0:
-    - fi-elk-e7500:       [PASS][35] -> [INCOMPLETE][36] ([i915#66])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-elk-e7500/igt@gem_exec_fence@basic-await@vcs0.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-elk-e7500/igt@gem_exec_fence@basic-await@vcs0.html
+So far everything has been pure refactoring.
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [PASS][37] -> [FAIL][38] ([i915#178])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+patch 3:
+Introduce the sagv mask in bw state and precompute it using
+intel_crtc_can_enable_sagv() (while fixing the iterator issue therein),
+and update the pre/post hooks to consult said mask. Not quite pure
+refactoring anymore but seems like a bit more straightforward change
+now.
 
-  
-#### Possible fixes ####
+At this point we should have a nicely precomputed sagv mask without
+intentional changes to current behaviour. After which it should be
+easier to extend this for new platforms.
 
-  * {igt@gem_wait@busy@all}:
-    - fi-bwr-2160:        [FAIL][39] ([i915#1604]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-bwr-2160/igt@gem_wait@busy@all.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-bwr-2160/igt@gem_wait@busy@all.html
+-- =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-icl-dsi:         [INCOMPLETE][41] ([i915#189]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][43] ([i915#62]) -> [SKIP][44] ([fdo#109271])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1604]: https://gitlab.freedesktop.org/drm/intel/issues/1604
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#66]: https://gitlab.freedesktop.org/drm/intel/issues/66
-  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
-
-
-Participating hosts (52 -> 46)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8275 -> Patchwork_17253
-
-  CI-20190529: 20190529
-  CI_DRM_8275: f2a4da2bcd576d1b56aeb53600e8a0b710117a20 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5581: ab0620e555119ec55f12ba9ab9e6e9246d407648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17253: 68e985f3b25a85cda132487d89625696488d1ed7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-68e985f3b25a drm/i915: Ensure we hold the pin mutex
-ef4b37bc4757 drm/i915: Add ww locking to pin_to_display_plane
-b8b699f678f6 drm/i915: Add ww locking to vm_fault_gtt
-fcf3a2fda97b drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
-09011eb630f6 drm/i915: Use ww pinning for intel_context_create_request()
-bfc4aab3b1a2 drm/i915/selftests: Fix locking inversion in lrc selftest.
-76f08941fb96 drm/i915: Dirty hack to fix selftests locking inversion
-8fa1ddf4790a drm/i915: Convert i915_perf to ww locking as well
-e3058c9e38cd drm/i915: Kill last user of intel_context_create_request outside of selftests
-19816681a8b9 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
-ffb87f30e8e4 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-d8aa2d4a5f34 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
-e6d6e2ddae25 drm/i915: Pin engine before pinning all objects, v3.
-7749cc342e6f drm/i915: Nuke arguments to eb_pin_engine
-cfb0d26c1f8e drm/i915: Add ww context handling to context_barrier_task
-d7aeab78a2e2 drm/i915: Use ww locking in intel_renderstate.
-d3c15b6fa06a drm/i915: Use per object locking in execbuf, v7.
-9b2e3aa9640b Revert "drm/i915/gem: Split eb_vma into its own allocation"
-db3ef6207fc6 drm/i915: Parse command buffer earlier in eb_relocate(slow)
-91b84c36aeac drm/i915: Remove locking from i915_gem_object_prepare_read/write
-0650546c9515 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-ae1f1cda17bc Revert "drm/i915/gem: Drop relocation slowpath"
-bfdbf3931f48 perf/core: Only copy-to-user after completely unlocking all locks, v3.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17253/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
