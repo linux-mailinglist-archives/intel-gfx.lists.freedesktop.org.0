@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99221A2182
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F5D1A2214
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC556EA50;
-	Wed,  8 Apr 2020 12:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16DC36EA58;
+	Wed,  8 Apr 2020 12:33:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CFA16EA55
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 12:15:58 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id c195so10373wme.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 05:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ZGE9Gm7kKJAzoMqYSEZGw7bs4qlg1yVbTDVhmaW9yJQ=;
- b=GWi5OKltfxNgA/JMoGDLbjGuWShYouFP+q5ffkwrmslkjwBLPJgQSfUQHa/fCN9ZPX
- RRLQp/8WjdDo/3DpbU7pL4XeHbQNFAb8FO1FnqTCsxOwKJlqk+dG7qPy6F9lTfU11GyN
- dh2h2iP4vzUVkO7IFQ8flQ+Kz86eTOAmXJGk8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ZGE9Gm7kKJAzoMqYSEZGw7bs4qlg1yVbTDVhmaW9yJQ=;
- b=uOXeXcW+bo19bQ2vQdjn2wRStgEqZqL90olAOKXRkO3rXj8gZ40DtroxpAJCMloqom
- LDdzcZ7u271Pf15Rrf4l7392j9U8zlUj4wSefUBdxZH4m8Z7XHW+pn+40cSIpbPjJPF+
- YWGZt/IZjD0v8sQq4TG2Miy3jfOqFsRUJlT1l6q6fDgKiYFGomjYrqbLxpHuMefPRF0N
- 0/YIzbZ8HQv+RZ3W9Ld8YPjZOig2kxbZFRdmCZwCiQVyMSDrjjiCGwOCupcAQG68lc4q
- EjsoxkmVRnhAyZ36Ri3vhePCdpEJMkOPHK+rQseeCnB7hHdhZ8SOGTEFu8f+i0lOLQW0
- NdDQ==
-X-Gm-Message-State: AGi0PuaPTJR2qCi90F+iPU8DAtWZ8gQH5nXwuuUAuBsLW5CE6uEqaOqk
- Mj6pv3xkz2j6oXh26nbzsfSv0g==
-X-Google-Smtp-Source: APiQypLAU+dVhgnw6c+BiXTrTMl28Ozzne52PP37Tlk/DBFFKxp3jgegaO9lzihMJMgK7brG51DLVA==
-X-Received: by 2002:a7b:cc01:: with SMTP id f1mr4593812wmh.39.1586348156886;
- Wed, 08 Apr 2020 05:15:56 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f141sm6757427wmf.3.2020.04.08.05.15.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 05:15:56 -0700 (PDT)
-Date: Wed, 8 Apr 2020 14:15:54 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20200408121554.GN3456981@phenom.ffwll.local>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200408080817.GU14965@ravnborg.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8DBA86E0FA;
+ Wed,  8 Apr 2020 12:33:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7E03EA00E7;
+ Wed,  8 Apr 2020 12:33:49 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200408080817.GU14965@ravnborg.org>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 00/44] devm_drm_dev_alloc,
- no more drmm_add_final_kfree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 08 Apr 2020 12:33:49 -0000
+Message-ID: <158634922948.19348.10362010880206938585@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200408092916.5355-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200408092916.5355-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Mark_up_racy_check_of_breadcrumb_irq_enabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,48 +38,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2020 at 10:08:17AM +0200, Sam Ravnborg wrote:
-> Hi Daniel.
-> 
-> Made specific reply to several patches.
-> 
-> This bunch:
-> >   drm/st7735r: Use devm_drm_dev_alloc
-> >   drm/st7586: Use devm_drm_dev_alloc
-> >   drm/repaper: Use devm_drm_dev_alloc
-> >   drm/mi0283qt: Use devm_drm_dev_alloc
-> >   drm/ili9486: Use devm_drm_dev_alloc
-> >   drm/ili9341: Use devm_drm_dev_alloc
-> >   drm/ili9225: Use devm_drm_dev_alloc
-> >   drm/hx8357d: Use devm_drm_dev_alloc
-> >   drm/gm12u320: Use devm_drm_dev_alloc
-> >   drm/gm12u320: Don't use drm_device->dev_private
-> 
-> are all:
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> I will take a look at patch 44 later today.
-> I steered away from the vgem, i915 stuff on purpose.
-> I leave that to more competent persons.
+== Series Details ==
 
-Yeah I think next round I'll leave out the vkms, vgem and i915-selftest,
-since that's a bigger discussion. But hopefully I can land the
-devm_drm_dev_alloc and many of the more basic conversions in here soonish.
+Series: drm/i915/gt: Mark up racy check of breadcrumb irq enabled
+URL   : https://patchwork.freedesktop.org/series/75663/
+State : success
 
-Thanks a lot for looking through this all.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8274 -> Patchwork_17250
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17250 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-skl-6770hq:      [PASS][1] -> [SKIP][2] ([fdo#109271]) +24 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8274/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-hsw-4770:        [SKIP][3] ([fdo#109271]) -> [PASS][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8274/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+
+
+Participating hosts (51 -> 47)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8274 -> Patchwork_17250
+
+  CI-20190529: 20190529
+  CI_DRM_8274: 860acd37e552def563b63ac3f77ad002b58fada0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5580: fb488389a7a263b649361ec9c29e8b3b69851122 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17250: 3fc532718c8a0bba71f95c542817b955487663d2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3fc532718c8a drm/i915/gt: Mark up racy check of breadcrumb irq enabled
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17250/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
