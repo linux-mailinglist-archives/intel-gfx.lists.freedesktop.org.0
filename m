@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 898D61A23D7
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 16:15:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE041A23E7
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 16:18:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A446EA77;
-	Wed,  8 Apr 2020 14:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC21289E4C;
+	Wed,  8 Apr 2020 14:18:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7DF126EA73;
- Wed,  8 Apr 2020 14:15:07 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 45C0489E4C;
+ Wed,  8 Apr 2020 14:18:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6D743A47E2;
- Wed,  8 Apr 2020 14:15:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3EF81A47E2;
+ Wed,  8 Apr 2020 14:18:45 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 08 Apr 2020 14:15:07 -0000
-Message-ID: <158635530741.19347.5837345075070517403@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Wed, 08 Apr 2020 14:18:45 -0000
+Message-ID: <158635552522.19346.13787258097277237095@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200408104812.22386-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200408104812.22386-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/9=5D_drm/i915/gt=3A_Mark_up_racy_re?=
- =?utf-8?q?ad_of_intel=5Fring=2Ehead?=
+References: <20200408111031.2330026-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200408111031.2330026-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/23=5D_perf/core=3A_Only_copy-to-?=
+ =?utf-8?q?user_after_completely_unlocking_all_locks=2C_v3=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,127 +48,102 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [CI,1/9] drm/i915/gt: Mark up racy read of intel_ring.head
-URL   : https://patchwork.freedesktop.org/series/75667/
-State : failure
+Series: series starting with [01/23] perf/core: Only copy-to-user after completely unlocking all locks, v3.
+URL   : https://patchwork.freedesktop.org/series/75668/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8275 -> Patchwork_17252
-====================================================
+$ dim checkpatch origin/drm-tip
+bfdbf3931f48 perf/core: Only copy-to-user after completely unlocking all locks, v3.
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
 
-Summary
--------
+-:106: WARNING:BAD_SIGN_OFF: Duplicate signature
+#106: 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-  **FAILURE**
+-:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#180: FILE: kernel/events/core.c:4998:
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
 
-  Serious unknown changes coming with Patchwork_17252 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17252, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 2 warnings, 1 checks, 106 lines checked
+ae1f1cda17bc Revert "drm/i915/gem: Drop relocation slowpath"
+-:78: WARNING:LINE_SPACING: Missing a blank line after declarations
+#78: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1628:
++		int err = __get_user(c, addr);
++		if (err)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/index.html
+total: 0 errors, 1 warnings, 0 checks, 257 lines checked
+0650546c9515 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:506: WARNING:LONG_LINE: line over 100 characters
+#506: FILE: drivers/gpu/drm/i915/i915_gem.c:1341:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
 
-Possible new issues
--------------------
+total: 0 errors, 1 warnings, 0 checks, 481 lines checked
+91b84c36aeac drm/i915: Remove locking from i915_gem_object_prepare_read/write
+db3ef6207fc6 drm/i915: Parse command buffer earlier in eb_relocate(slow)
+9b2e3aa9640b Revert "drm/i915/gem: Split eb_vma into its own allocation"
+d3c15b6fa06a drm/i915: Use per object locking in execbuf, v7.
+d7aeab78a2e2 drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
 
-  Here are the unknown changes that may have been introduced in Patchwork_17252:
+total: 0 errors, 1 warnings, 0 checks, 209 lines checked
+cfb0d26c1f8e drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line over 100 characters
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1099:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+7749cc342e6f drm/i915: Nuke arguments to eb_pin_engine
+e6d6e2ddae25 drm/i915: Pin engine before pinning all objects, v3.
+d8aa2d4a5f34 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
++
++
 
-#### Possible regressions ####
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3180:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-ilk-650:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-ilk-650/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-ilk-650/igt@gem_exec_gttfill@basic.html
+total: 0 errors, 0 warnings, 2 checks, 435 lines checked
+ffb87f30e8e4 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:593:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
 
-  * igt@gem_tiled_blits@basic:
-    - fi-blb-e6850:       [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-blb-e6850/igt@gem_tiled_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-blb-e6850/igt@gem_tiled_blits@basic.html
+-:203: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#203: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2223:
++	 * hsw should have this fixed, but bdw mucks it up again. */
 
-  
-Known issues
-------------
+total: 0 errors, 1 warnings, 1 checks, 827 lines checked
+19816681a8b9 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+e3058c9e38cd drm/i915: Kill last user of intel_context_create_request outside of selftests
+8fa1ddf4790a drm/i915: Convert i915_perf to ww locking as well
+76f08941fb96 drm/i915: Dirty hack to fix selftests locking inversion
+bfc4aab3b1a2 drm/i915/selftests: Fix locking inversion in lrc selftest.
+09011eb630f6 drm/i915: Use ww pinning for intel_context_create_request()
+fcf3a2fda97b drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
+b8b699f678f6 drm/i915: Add ww locking to vm_fault_gtt
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  Here are the changes found in Patchwork_17252 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+ef4b37bc4757 drm/i915: Add ww locking to pin_to_display_plane
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+68e985f3b25a drm/i915: Ensure we hold the pin mutex
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
 
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-guc:         [PASS][5] -> [DMESG-FAIL][6] ([i915#656])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-icl-guc/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-icl-guc/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * {igt@gem_wait@busy@all}:
-    - fi-bwr-2160:        [FAIL][7] ([i915#1604]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-bwr-2160/igt@gem_wait@busy@all.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-bwr-2160/igt@gem_wait@busy@all.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-icl-dsi:         [INCOMPLETE][9] ([i915#189]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-icl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][11] ([i915#62]) -> [SKIP][12] ([fdo#109271])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8275/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1604]: https://gitlab.freedesktop.org/drm/intel/issues/1604
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (52 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8275 -> Patchwork_17252
-
-  CI-20190529: 20190529
-  CI_DRM_8275: f2a4da2bcd576d1b56aeb53600e8a0b710117a20 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5581: ab0620e555119ec55f12ba9ab9e6e9246d407648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17252: c498c6b039e88f76f02b1b6d714e9d81c3bb4b18 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c498c6b039e8 drm/i915/gem: Bind the fence async for execbuf
-27d347f131a9 drm/i915/gem: Asynchronous GTT unbinding
-2538bbe3b0dd drm/i915/gem: Separate the ww_mutex walker into its own list
-50f81cbd53ef drm/i915: Export a preallocate variant of i915_active_acquire()
-390e4f1dba9b drm/i915/gem: Assign context id for async work
-5383336232fb drm/i915/gem: Include PIN_GLOBAL prior to using I915_DISPATCH_SECURE
-78a5ccdb8c47 drm/i915/gem: Apply more mb() around clflush relocation paths
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17252/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
