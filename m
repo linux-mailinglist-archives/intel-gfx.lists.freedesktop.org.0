@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D11C1A1DFA
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 11:16:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A774C1A1DFC
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 11:17:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE5536E9E1;
-	Wed,  8 Apr 2020 09:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07C976E9E6;
+	Wed,  8 Apr 2020 09:17:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F8D6E9E1
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 09:16:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDF4E6E07D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 09:17:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20836381-1500050 
- for multiple; Wed, 08 Apr 2020 10:16:33 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20836394-1500050 
+ for multiple; Wed, 08 Apr 2020 10:17:24 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Apr 2020 10:16:31 +0100
-Message-Id: <20200408091631.28753-1-chris@chris-wilson.co.uk>
+Date: Wed,  8 Apr 2020 10:17:23 +0100
+Message-Id: <20200408091723.28937-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200408091631.28753-1-chris@chris-wilson.co.uk>
+References: <20200408091631.28753-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Take an explicit ref for
  rq->batch
@@ -49,11 +51,11 @@ beholden on us to hold a reference to it.
 Closes: https://gitlab.freedesktop.org/drm/intel/issues/1634
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 57db3d0ffaf2..c14ecdd04ec3 100644
+index 57db3d0ffaf2..616d03506c2c 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
 @@ -2655,7 +2655,7 @@ static int create_gang(struct intel_engine_cs *engine,
@@ -65,7 +67,15 @@ index 57db3d0ffaf2..c14ecdd04ec3 100644
  	i915_request_get(rq);
  
  	i915_vma_lock(vma);
-@@ -2775,6 +2775,7 @@ static int live_preempt_gang(void *arg)
+@@ -2679,6 +2679,7 @@ static int create_gang(struct intel_engine_cs *engine,
+ 	return 0;
+ 
+ err_rq:
++	i915_vma_put(rq->batch);
+ 	i915_request_put(rq);
+ err_obj:
+ 	i915_gem_object_put(obj);
+@@ -2775,6 +2776,7 @@ static int live_preempt_gang(void *arg)
  				err = -ETIME;
  			}
  
