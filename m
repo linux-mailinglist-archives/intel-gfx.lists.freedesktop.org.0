@@ -1,30 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 743C41A2AA9
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 22:51:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB661A2AB9
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 22:59:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF93B6EB01;
-	Wed,  8 Apr 2020 20:51:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645DC6E8B9;
+	Wed,  8 Apr 2020 20:59:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2B976EAFF;
- Wed,  8 Apr 2020 20:51:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20844005-1500050 
- for multiple; Wed, 08 Apr 2020 21:50:57 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Apr 2020 21:50:56 +0100
-Message-Id: <20200408205056.2113025-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CFCD6E8B9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 20:59:50 +0000 (UTC)
+IronPort-SDR: Mp/lUKl8qL5S9ODCrsaPCsazCcT7FD84XeQTYOrKX9GIy0PysUWDzlkgsiBttf7rViZWwMlbjI
+ 74x4bWsfx20w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 13:59:50 -0700
+IronPort-SDR: uD4O7/0NuePvOs/ciy6r+rqLHV/DPQ/MWTwDaf2xPEtMuIEBSwPGRqDb1creWW/gIaICT3eAjf
+ +wD8yOWCcQLw==
+X-IronPort-AV: E=Sophos;i="5.72,359,1580803200"; d="scan'208";a="361947990"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 13:59:49 -0700
+Date: Wed, 8 Apr 2020 13:59:38 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, ashutosh.dixit@intel.com
+Message-ID: <20200408205938.GC1851257@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] lib: Show the actual error from
- submitting the rendercopy
+Content-Disposition: inline
+Subject: [Intel-gfx] Patches that didn't applied cleanly on
+ drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,169 +46,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- lib/gpu_cmds.c        | 13 ++++++-------
- lib/rendercopy_gen4.c | 13 ++++++-------
- lib/rendercopy_gen6.c | 13 ++++++-------
- lib/rendercopy_gen7.c | 13 ++++++-------
- lib/rendercopy_gen8.c | 13 ++++++-------
- lib/rendercopy_gen9.c | 13 ++++++-------
- 6 files changed, 36 insertions(+), 42 deletions(-)
+Hi Ashutosh and Chris,
 
-diff --git a/lib/gpu_cmds.c b/lib/gpu_cmds.c
-index 79412725a..dc0ae96c6 100644
---- a/lib/gpu_cmds.c
-+++ b/lib/gpu_cmds.c
-@@ -39,13 +39,12 @@ gen7_render_flush(struct intel_batchbuffer *batch, uint32_t batch_end)
- void
- gen7_render_context_flush(struct intel_batchbuffer *batch, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, batch->ctx,
--				batch_end, 0);
--	igt_assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo, batch->ctx,
-+						    batch_end, 0),
-+		      0);
- }
- 
- uint32_t
-diff --git a/lib/rendercopy_gen4.c b/lib/rendercopy_gen4.c
-index d07b8e488..413e33578 100644
---- a/lib/rendercopy_gen4.c
-+++ b/lib/rendercopy_gen4.c
-@@ -124,13 +124,12 @@ static void
- gen4_render_flush(struct intel_batchbuffer *batch,
- 		  drm_intel_context *context, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, context,
--						    batch_end, 0);
--	assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo, context,
-+						    batch_end, 0),
-+		      0);
- }
- 
- static uint32_t
-diff --git a/lib/rendercopy_gen6.c b/lib/rendercopy_gen6.c
-index 870347748..16cbb679b 100644
---- a/lib/rendercopy_gen6.c
-+++ b/lib/rendercopy_gen6.c
-@@ -62,13 +62,12 @@ static void
- gen6_render_flush(struct intel_batchbuffer *batch,
- 		  drm_intel_context *context, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, context,
--						    batch_end, 0);
--	igt_assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo,
-+						    context, batch_end, 0),
-+		      0);
- }
- 
- static uint32_t
-diff --git a/lib/rendercopy_gen7.c b/lib/rendercopy_gen7.c
-index b88b75e98..93b4da720 100644
---- a/lib/rendercopy_gen7.c
-+++ b/lib/rendercopy_gen7.c
-@@ -36,13 +36,12 @@ static void
- gen7_render_flush(struct intel_batchbuffer *batch,
- 		  drm_intel_context *context, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, context,
--						    batch_end, 0);
--	igt_assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo, context,
-+						    batch_end, 0),
-+		      0);
- }
- 
- static uint32_t
-diff --git a/lib/rendercopy_gen8.c b/lib/rendercopy_gen8.c
-index bace64a7a..75005d0b9 100644
---- a/lib/rendercopy_gen8.c
-+++ b/lib/rendercopy_gen8.c
-@@ -132,13 +132,12 @@ static void
- gen6_render_flush(struct intel_batchbuffer *batch,
- 		  drm_intel_context *context, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, context,
--						    batch_end, 0);
--	igt_assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo, context,
-+						    batch_end, 0),
-+		      0);
- }
- 
- /* Mostly copy+paste from gen6, except height, width, pitch moved */
-diff --git a/lib/rendercopy_gen9.c b/lib/rendercopy_gen9.c
-index f364c2b9e..85ae4cabc 100644
---- a/lib/rendercopy_gen9.c
-+++ b/lib/rendercopy_gen9.c
-@@ -182,13 +182,12 @@ static void
- gen6_render_flush(struct intel_batchbuffer *batch,
- 		  drm_intel_context *context, uint32_t batch_end)
- {
--	int ret;
--
--	ret = drm_intel_bo_subdata(batch->bo, 0, 4096, batch->buffer);
--	if (ret == 0)
--		ret = drm_intel_gem_bo_context_exec(batch->bo, context,
--						    batch_end, 0);
--	assert(ret == 0);
-+	igt_assert_eq(drm_intel_bo_subdata(batch->bo,
-+					   0, 4096, batch->buffer),
-+		      0);
-+	igt_assert_eq(drm_intel_gem_bo_context_exec(batch->bo,
-+						    context, batch_end, 0),
-+		      0);
- }
- 
- /* Mostly copy+paste from gen6, except height, width, pitch moved */
--- 
-2.26.0
+these patches seems needed for 5.7 but didn't applied cleanly on dinf:
 
+Failed to cherry-pick:
+6352219c39c0 ("drm/i915/perf: Do not clear pollin for small user read buffers")
+614654abe847 ("drm/i915: Check current i915_vma.pin_count status first on unbind")
+c4e8ba739034 ("drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore")
+
+If they are critical for 5.7 please provide a version that applies or list the dependencies.
+
+Thanks,
+Rodrigo.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
