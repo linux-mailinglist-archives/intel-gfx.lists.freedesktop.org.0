@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CE91A1D88
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:44:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2D41A1D8B
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 10:45:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4B26E9D2;
-	Wed,  8 Apr 2020 08:44:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5EA6E9D6;
+	Wed,  8 Apr 2020 08:45:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBCAF6E9D2
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:44:22 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id f13so233272wrm.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:44:22 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06B5A6E9D6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 08:45:30 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id d202so4533039wmd.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 01:45:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:date:to:cc:subject:in-reply-to:message-id:references
  :user-agent:mime-version;
- bh=jm3I3FmLYJLm9g0RJQi2gS9r9VIeW3sspufzHZlB8/I=;
- b=DviGEni7Oc/8lnl4Y7SxEVM2ZriHBhMpb7AZj4PXKaN+q9XdvSO22BSQNQ+nlsS5jZ
- SsoOCkBKb+7Fd/tZJ8gYJvbQOr0Ap2KPiSzOQ9mompMmIXixEuLsdabR0whFn7qVmxpO
- YzCc563CaSJQQctc6gLql7/NqagVVgkTYA76T9Ryxs5QiQ0dj3LerlojPYbnO2KXFzBQ
- jmTLreHDb4Si/B+6IxBy4+NdlSranpDQRN+HNgkoxVC3aMo/OfxYPk8PNU2W9ZLoF22q
- P+AFi2tA6rcB8/jqLIosAJUq2WAd1pv+0gUjQ9YE7V7O66Vw3n73Fevs6qi8VT627qYW
- 5wSw==
+ bh=L2ORB2Iq5dWGV5GgI1zlWC8vBlrSkL0T1A+mCGPuu4s=;
+ b=jOT6hyF6Qw+6T2JhL2K8Tn02aELK9UJBwVLPNk466XRNyoqoYDUowXwM4VPx7sB+R7
+ G2n3RVMHXkRWbvObVO0f2NKv9rXxhAYmcaHbmEYGaxc+W6YBvNRPBu6FHrbuBatb7xRW
+ KDOH/uzoDkqp2CyP6FQe4C63KEDdgKWVcTkg4Z8nJt8BIXvGJpndHnXx0c6i9Zi2Aqpx
+ U2apHfnKYCwTHnLtHBrCQWHePV9cT5ZRs3pFTNMpX3xJg06hLkNGll9O9qgvb8FkGNv6
+ 5E2omBQ6DxI/q+3bX174nNy19WcS7ihAUV7yawkqfklZZfyPCefF03fXRNv99KiO1e45
+ IcIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
  :references:user-agent:mime-version;
- bh=jm3I3FmLYJLm9g0RJQi2gS9r9VIeW3sspufzHZlB8/I=;
- b=G+bYNcS16hYyNnjQMQLu1zha1lhIZxniw6XqOxyCOL9J8yle7MqnXko2bkYVBl/Vvz
- NfOXhhPhVJD5bpJKm77LlTqAOV83EZAODtlb/rS1l1H9z7DBt9iwzuwiN3p04ntXgZqJ
- Vz4Tbr3VU1Vix2UO5qkT2Co4HlffeEzB1Klf/H0Tjp5aqWDh56Cbao+qYTCXh+nbZOyF
- 9j+7liiM6oaW1PoCTh88hWiXo3Om+AFao7Q/GpYf7qCfvgPNdSb3zuEaTWdtr7BhgYoL
- /8KiqcVVfxf5oC2V1iyui7D+xtvG5/dxw0bvBdjOFBGYIn0ywnSmwxbiZIz8VHec1pdC
- 5gww==
-X-Gm-Message-State: AGi0Pub9w6GSJ22x1GGk0nbRQSqZ8/+sQdjUXkG8E1Wj5/d5T7aHNAJC
- gXVhmawjLkccFnWqKnH8sZk=
-X-Google-Smtp-Source: APiQypJ5g42dryXlqT2TwaDnKNvZwcxxujZyXUUxpctuVI7B0zEIzfW5cSR2DRx8DLD/EG/y1G1MCQ==
-X-Received: by 2002:adf:f790:: with SMTP id q16mr6825162wrp.94.1586335461472; 
- Wed, 08 Apr 2020 01:44:21 -0700 (PDT)
+ bh=L2ORB2Iq5dWGV5GgI1zlWC8vBlrSkL0T1A+mCGPuu4s=;
+ b=U4kUD/HaBHpvYpuZdYper+i2z3y0WASS0sBbXgu23+tl7DLN4TIVFpsxm5XtUjFSdg
+ gw3DLPhi9FYOwsAlpoiNMwPu19RF34fdh6hSEeemstnshh4GkPKpkmeKsb3BpgLQS+qy
+ +cP3dCKovkdDWAVQiS+Anh96Zh/OTspNPOWxYkhB2vVZ0VAiAj6voJjpB6v8JQrta9tz
+ LFIjweH9tV59AfceiVU6Dd+C21Gdqx3mftHQNK5Sq8Dl8JNutsUBGB4BlOPzZ28eIUFt
+ rXw4uzy4jMfpqIB+0KmC365fg4JfdKwqlPkIZU0LUbJQanbnyGcAAhD2U9eWR6zfP3Xe
+ qD3g==
+X-Gm-Message-State: AGi0Pua1ZZSgTia1ZRKhV3OrK9JA2OMTTcpNC8pv8F5tLJU3do7OCwCJ
+ fV1weW53lDHvkldIX4H3Fl8=
+X-Google-Smtp-Source: APiQypL8lVLHvXCPSz25+4/XHG1BtHDP1891j31hSXpE63aw2bYbxr8ooxxrgdFNCC+Cnx9Cmsx+Yw==
+X-Received: by 2002:a1c:bd8b:: with SMTP id n133mr3648551wmf.175.1586335529650; 
+ Wed, 08 Apr 2020 01:45:29 -0700 (PDT)
 Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id z17sm24677008wru.39.2020.04.08.01.44.19
+ by smtp.googlemail.com with ESMTPSA id u17sm39530393wra.63.2020.04.08.01.45.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 01:44:20 -0700 (PDT)
+ Wed, 08 Apr 2020 01:45:29 -0700 (PDT)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Wed, 8 Apr 2020 11:44:17 +0300 (EAT)
+Date: Wed, 8 Apr 2020 11:45:25 +0300 (EAT)
 To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200402114819.17232-14-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2004081143440.25609@wambui>
+In-Reply-To: <20200402114819.17232-15-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2004081144510.25609@wambui>
 References: <20200402114819.17232-1-jani.nikula@intel.com>
- <20200402114819.17232-14-jani.nikula@intel.com>
+ <20200402114819.17232-15-jani.nikula@intel.com>
 User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 14/17] drm/i915/uncore: prefer struct
+Subject: Re: [Intel-gfx] [PATCH 15/17] drm/i915/stolen: prefer struct
  drm_device based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,22 +89,30 @@ On Thu, 2 Apr 2020, Jani Nikula wrote:
 Reviewed-by: Wambui Karuga <wambui.karugax@gmail.com>
 
 > ---
-> drivers/gpu/drm/i915/intel_uncore.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 4 ++--
+> 1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> index 013312e9b55c..fa86b7ab2d99 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> @@ -665,7 +665,7 @@ void intel_uncore_forcewake_user_put(struct intel_uncore *uncore)
-> 		mmio_debug_resume(uncore->debug);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index 5557dfa83a7b..dc250278bd2c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -381,14 +381,14 @@ static int i915_gem_init_stolen(struct drm_i915_private *i915)
+> 	mutex_init(&i915->mm.stolen_lock);
 >
-> 		if (check_for_unclaimed_mmio(uncore))
-> -			dev_info(uncore->i915->drm.dev,
-> +			drm_info(&uncore->i915->drm,
-> 				 "Invalid mmio detected during user access\n");
-> 		spin_unlock(&uncore->debug->lock);
+> 	if (intel_vgpu_active(i915)) {
+> -		dev_notice(i915->drm.dev,
+> +		drm_notice(&i915->drm,
+> 			   "%s, disabling use of stolen memory\n",
+> 			   "iGVT-g active");
+> 		return 0;
+> 	}
 >
+> 	if (intel_vtd_active() && INTEL_GEN(i915) < 8) {
+> -		dev_notice(i915->drm.dev,
+> +		drm_notice(&i915->drm,
+> 			   "%s, disabling use of stolen memory\n",
+> 			   "DMAR active");
+> 		return 0;
 > -- 
 > 2.20.1
 >
