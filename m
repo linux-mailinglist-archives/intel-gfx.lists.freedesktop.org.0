@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30AC1A2716
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 18:24:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D227C1A2731
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 18:29:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 019D16EA96;
-	Wed,  8 Apr 2020 16:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 728E96E161;
+	Wed,  8 Apr 2020 16:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 267756EA96
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 16:24:11 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id z6so67183wml.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 09:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=o1wXXAbri86QChEa50j3H0JwCub+mO1ccJpn2usVHv0=;
- b=HYp5Bq75xxTmKkQ+MwniWHFEFiXu9DoFPzIjKWs0sTP35Z4+14iO0Ez2Itb5g6Yzf4
- gGIW60ImXzKzNMVCeZNeLLmoYyzc/2bSB490taxtJsRyvN1rr5hsDcDs/Kxz6UI/Zg/g
- PLn57TkhnsaZH3nq26pN7Agbq8A8eE+yjcgoU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=o1wXXAbri86QChEa50j3H0JwCub+mO1ccJpn2usVHv0=;
- b=mg5MIt+srVO7AIEu/iROOMfw5pdgVN3ei/okA/hQoGeQ3tFnqVDi7h/9HWEQXvBlxy
- /70wzrCj4hqzijMRgGoC9IG2AhtQjVcQu52k0Xchy12+FsMYoSEdMpn3e2dRhMH7+8K8
- EslEmjm8FQCgmbzixmgV9TI6eqcBYpJCnaUYaPTM+Qie7mLSBQ+lYsywVymQZlg0wxM4
- eF95qQNC1fpmquHlw9CDm4S1r2UjEIHsxRGyVoEdYBYxvNf4QNYft9RkFrYaIseiecr9
- dKONYNCTiMRnwIhqsirYCFNkxgFrGdT4Psfyh9Av/1BmzjG3fv8CjoVCamzepuyJTITD
- EtrQ==
-X-Gm-Message-State: AGi0Pub1fvZ9vF9V/P40gVOd3itTUX2NVGoidjE58GtOpxtcFUOnkAaw
- 8pP18tLMYnzZSWkFPru0MOYl0g==
-X-Google-Smtp-Source: APiQypKz8wOvsiwaQ6yZhKkaOvbAB1KfIjZ7OheWj1K9qwQtTAOpdj5ga9Ksu7zXCCdYCbGmsA9ZIg==
-X-Received: by 2002:a1c:7ed0:: with SMTP id z199mr5427573wmc.60.1586363049729; 
- Wed, 08 Apr 2020 09:24:09 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id m15sm47369wmc.35.2020.04.08.09.24.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 09:24:08 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed,  8 Apr 2020 18:24:03 +0200
-Message-Id: <20200408162403.3616785-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.25.1
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97EF86E161
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 16:29:43 +0000 (UTC)
+IronPort-SDR: Wnw8TQmEpk+1HII/+RFLGRLgw3wcniePa4lVA6CwFKHRzEMZqOrtCdycJ7Dg3usG4evgBoj+NW
+ J7lvPQq4s4UA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 09:29:43 -0700
+IronPort-SDR: xBmHbmXZBRBwuLOhku+x+zSK7XeFNjmHvdvktyiYG942tkoACKvXgmQlQOAssZuYrkrM9MffAl
+ uiTb45Rioq6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,359,1580803200"; d="scan'208";a="240344033"
+Received: from mkuligow-mobl1.ger.corp.intel.com (HELO [10.252.40.242])
+ ([10.252.40.242])
+ by orsmga007.jf.intel.com with ESMTP; 08 Apr 2020 09:29:41 -0700
+To: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200406200710.2056-1-venkata.s.dhanalakota@intel.com>
+ <20200406200710.2056-2-venkata.s.dhanalakota@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <1ee99034-fdbc-9100-e43a-4e8f483bb10a@intel.com>
+Date: Wed, 8 Apr 2020 19:29:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to nonblocking
- atomic modesets
+In-Reply-To: <20200406200710.2056-2-venkata.s.dhanalakota@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: add syncobj timeline support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,82 +53,656 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Stone <daniels@collabora.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: chris.p.wilson@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2hlbiBkb2luZyBhbiBhdG9taWMgbW9kZXNldCB3aXRoIEFMTE9XX01PREVTRVQgZHJpdmVycyBh
-cmUgYWxsb3dlZCB0bwpwdWxsIGluIGFyYml0cmFyeSBvdGhlciByZXNvdXJjZXMsIGluY2x1ZGlu
-ZyBDUlRDcyAoZS5nLiB3aGVuCnJlY29uZmlndXJpbmcgZ2xvYmFsIHJlc291cmNlcykuCgpCdXQg
-aW4gbm9uYmxvY2tpbmcgbW9kZSB1c2Vyc3BhY2UgaGFzIHRoZW4gbm8gaWRlYSB0aGlzIGhhcHBl
-bmVkLAp3aGljaCBjYW4gbGVhZCB0byBzcHVyaW91cyBFQlVTWSBjYWxscywgYm90aDoKLSB3aGVu
-IHRoYXQgb3RoZXIgQ1JUQyBpcyBjdXJyZW50bHkgYnVzeSBkb2luZyBhIHBhZ2VfZmxpcCB0aGUK
-ICBBTExPV19NT0RFU0VUIGNvbW1pdCBjYW4gZmFpbCB3aXRoIGFuIEVCVVNZCi0gb24gdGhlIG90
-aGVyIENSVEMgYSBub3JtYWwgYXRvbWljIGZsaXAgY2FuIGZhaWwgd2l0aCBFQlVTWSBiZWNhdXNl
-CiAgb2YgdGhlIGFkZGl0aW9uYWwgY29tbWl0IGluc2VydGVkIGJ5IHRoZSBrZXJuZWwgd2l0aG91
-dCB1c2Vyc3BhY2UncwogIGtub3dsZWRnZQoKRm9yIGJsb2NraW5nIGNvbW1pdHMgdGhpcyBpc24n
-dCBhIHByb2JsZW0sIGJlY2F1c2UgZXZlcnlvbmUgZWxzZSB3aWxsCmp1c3QgYmxvY2sgdW50aWwg
-YWxsIHRoZSBDUlRDIGFyZSByZWNvbmZpZ3VyZWQuIE9ubHkgdGhpbmcgdXNlcnNwYWNlCmNhbiBu
-b3RpY2UgaXMgdGhlIGRyb3BwZWQgZnJhbWVzIHdpdGhvdXQgYW55IHJlYXNvbiBmb3Igd2h5IGZy
-YW1lcyBnb3QKZHJvcHBlZC4KCkNvbnNlbnN1cyBpcyB0aGF0IHdlIG5lZWQgbmV3IHVhcGkgdG8g
-aGFuZGxlIHRoaXMgcHJvcGVybHksIGJ1dCBubyBvbmUKaGFzIGFueSBpZGVhIHdoYXQgZXhhY3Rs
-eSB0aGUgbmV3IHVhcGkgc2hvdWxkIGxvb2sgbGlrZS4gQXMgYSBzdG9wLWdhcApwbHVnIHRoaXMg
-cHJvYmxlbSBieSBkZW1vdGluZyBub25ibG9ja2luZyBjb21taXRzIHdoaWNoIG1pZ2h0IGNhdXNl
-Cmlzc3VlcyBieSBpbmNsdWRpbmcgQ1JUQ3Mgbm90IGluIHRoZSBvcmlnaW5hbCByZXF1ZXN0IHRv
-IGJsb2NraW5nCmNvbW1pdHMuCgp2MjogQWRkIGNvbW1lbnRzIGFuZCBhIFdBUk5fT04gdG8gZW5m
-b3JjZSB0aGlzIG9ubHkgd2hlbiBhbGxvd2VkIC0gd2UKZG9uJ3Qgd2FudCB0byBzaWxlbnRseSBj
-b252ZXJ0IHBhZ2UgZmxpcHMgaW50byBibG9ja2luZyBwbGFuZSB1cGRhdGVzCmp1c3QgYmVjYXVz
-ZSB0aGUgZHJpdmVyIGlzIGJ1Z2d5LgoKdjM6IEZpeCBpbnZlcnRlZCBXQVJOX09OIChQZWtrYSku
-CgpSZWZlcmVuY2VzOiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmkt
-ZGV2ZWwvMjAxOC1KdWx5LzE4MjI4MS5odG1sCkJ1Z3ppbGxhOiBodHRwczovL2dpdGxhYi5mcmVl
-ZGVza3RvcC5vcmcvd2F5bGFuZC93ZXN0b24vaXNzdWVzLzI0I25vdGVfOTU2OApDYzogRGFuaWVs
-IFN0b25lIDxkYW5pZWxAZm9vaXNoYmFyLm9yZz4KQ2M6IFBla2thIFBhYWxhbmVuIDxwZWtrYS5w
-YWFsYW5lbkBjb2xsYWJvcmEuY28udWs+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnClJldmll
-d2VkLWJ5OiBEYW5pZWwgU3RvbmUgPGRhbmllbHNAY29sbGFib3JhLmNvbT4KQ2M6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IERh
-bmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgotLQpSZXNlbmRpbmcgYmVjYXVz
-ZSBsYXN0IGF0dGVtcHQgZmFpbGVkIENJIGFuZCBtZWFud2hpbGUgdGhlIHJlc3VsdHMgYXJlCmxv
-c3QgOi0vCi1EYW5pZWwKLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jIHwgMzQgKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDMxIGluc2Vy
-dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ry
-bV9hdG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmMKaW5kZXggOTY1MTczZmQw
-YWMyLi40ZjE0MGZmNmZiOTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWlj
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwpAQCAtMTM2MiwxNSArMTM2Miw0
-MyBAQCBFWFBPUlRfU1lNQk9MKGRybV9hdG9taWNfY29tbWl0KTsKIGludCBkcm1fYXRvbWljX25v
-bmJsb2NraW5nX2NvbW1pdChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpCiB7CiAJc3Ry
-dWN0IGRybV9tb2RlX2NvbmZpZyAqY29uZmlnID0gJnN0YXRlLT5kZXYtPm1vZGVfY29uZmlnOwot
-CWludCByZXQ7CisJdW5zaWduZWQgcmVxdWVzdGVkX2NydGMgPSAwOworCXVuc2lnbmVkIGFmZmVj
-dGVkX2NydGMgPSAwOworCXN0cnVjdCBkcm1fY3J0YyAqY3J0YzsKKwlzdHJ1Y3QgZHJtX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGU7CisJYm9vbCBub25ibG9ja2luZyA9IHRydWU7CisJaW50IHJldCwg
-aTsKKworCS8qCisJICogRm9yIGNvbW1pdHMgdGhhdCBhbGxvdyBtb2Rlc2V0cyBkcml2ZXJzIGNh
-biBhZGQgb3RoZXIgQ1JUQ3MgdG8gdGhlCisJICogYXRvbWljIGNvbW1pdCwgZS5nLiB3aGVuIHRo
-ZXkgbmVlZCB0byByZWFsbG9jYXRlIGdsb2JhbCByZXNvdXJjZXMuCisJICoKKwkgKiBCdXQgd2hl
-biB1c2Vyc3BhY2UgYWxzbyByZXF1ZXN0cyBhIG5vbmJsb2NraW5nIGNvbW1pdCB0aGVuIHVzZXJz
-cGFjZQorCSAqIGNhbm5vdCBrbm93IHRoYXQgdGhlIGNvbW1pdCBhZmZlY3RzIG90aGVyIENSVENz
-LCB3aGljaCBjYW4gcmVzdWx0IGluCisJICogc3B1cmlvdXMgRUJVU1kgZmFpbHVyZXMuIFVudGls
-IHdlIGhhdmUgYmV0dGVyIHVhcGkgcGx1ZyB0aGlzIGJ5CisJICogZGVtb3Rpbmcgc3VjaCBjb21t
-aXRzIHRvIGJsb2NraW5nIG1vZGUuCisJICovCisJZm9yX2VhY2hfbmV3X2NydGNfaW5fc3RhdGUo
-c3RhdGUsIGNydGMsIGNydGNfc3RhdGUsIGkpCisJCXJlcXVlc3RlZF9jcnRjIHw9IGRybV9jcnRj
-X21hc2soY3J0Yyk7CiAKIAlyZXQgPSBkcm1fYXRvbWljX2NoZWNrX29ubHkoc3RhdGUpOwogCWlm
-IChyZXQpCiAJCXJldHVybiByZXQ7CiAKLQlEUk1fREVCVUdfQVRPTUlDKCJjb21taXR0aW5nICVw
-IG5vbmJsb2NraW5nXG4iLCBzdGF0ZSk7CisJZm9yX2VhY2hfbmV3X2NydGNfaW5fc3RhdGUoc3Rh
-dGUsIGNydGMsIGNydGNfc3RhdGUsIGkpCisJCWFmZmVjdGVkX2NydGMgfD0gZHJtX2NydGNfbWFz
-ayhjcnRjKTsKKworCWlmIChhZmZlY3RlZF9jcnRjICE9IHJlcXVlc3RlZF9jcnRjKSB7CisJCS8q
-IGFkZGluZyBvdGhlciBDUlRDIGlzIG9ubHkgYWxsb3dlZCBmb3IgbW9kZXNldCBjb21taXRzICov
-CisJCVdBUk5fT04oIXN0YXRlLT5hbGxvd19tb2Rlc2V0KTsKKworCQlEUk1fREVCVUdfQVRPTUlD
-KCJkZW1vdGluZyAlcCB0byBibG9ja2luZyBtb2RlIHRvIGF2b2lkIEVCVVNZXG4iLCBzdGF0ZSk7
-CisJCW5vbmJsb2NraW5nID0gZmFsc2U7CisJfSBlbHNlIHsKKwkJRFJNX0RFQlVHX0FUT01JQygi
-Y29tbWl0dGluZyAlcCBub25ibG9ja2luZ1xuIiwgc3RhdGUpOworCX0KIAotCXJldHVybiBjb25m
-aWctPmZ1bmNzLT5hdG9taWNfY29tbWl0KHN0YXRlLT5kZXYsIHN0YXRlLCB0cnVlKTsKKwlyZXR1
-cm4gY29uZmlnLT5mdW5jcy0+YXRvbWljX2NvbW1pdChzdGF0ZS0+ZGV2LCBzdGF0ZSwgbm9uYmxv
-Y2tpbmcpOwogfQogRVhQT1JUX1NZTUJPTChkcm1fYXRvbWljX25vbmJsb2NraW5nX2NvbW1pdCk7
-CiAKLS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On 06/04/2020 23:07, Venkata Sandeep Dhanalakota wrote:
+> Introduces a new parameters to execbuf so that we can specify syncobj
+> handles as well as timeline points.
+>
+> v2: Reuse i915_user_extension_fn
+>
+> v3: Check that the chained extension is only present once (Chris)
+>
+> v4: Check that dma_fence_chain_find_seqno returns a non NULL fence
+> (Lionel)
+>
+> v5: Use BIT_ULL (Chris)
+>
+> v6: Fix issue with already signaled timeline points,
+>      dma_fence_chain_find_seqno() setting fence to NULL (Chris)
+>
+> v7: Report ENOENT with invalid syncobj handle (Lionel)
+>
+> v8: Check for out of order timeline point insertion (Chris)
+>
+> v9: After explanations on
+>      https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
+>      drop the ordering check from v8 (Lionel)
+>
+> v10: Set first extension enum item to 1 (Jason)
+>
+> v11: Add wait on previous sync points in timelines (Sandeep)
+
+
+Thanks for picking this series up!
+
+
+Could you point to the changes in v11?
+
+I haven't look at it in a while and I can't remember what you would have 
+changed.
+
+
+Thanks a lot,
+
+
+-Lionel
+
+
+>
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota at intel.com>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 312 ++++++++++++++----
+>   drivers/gpu/drm/i915/i915_drv.c               |   3 +-
+>   drivers/gpu/drm/i915/i915_getparam.c          |   1 +
+>   include/uapi/drm/i915_drm.h                   |  38 +++
+>   4 files changed, 296 insertions(+), 58 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 16831f715daa..4cb4cd035daa 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -230,6 +230,13 @@ enum {
+>    * the batchbuffer in trusted mode, otherwise the ioctl is rejected.
+>    */
+>   
+> +struct i915_eb_fences {
+> +	struct drm_syncobj *syncobj; /* Use with ptr_mask_bits() */
+> +	struct dma_fence *dma_fence;
+> +	u64 value;
+> +	struct dma_fence_chain *chain_fence;
+> +};
+> +
+>   struct i915_execbuffer {
+>   	struct drm_i915_private *i915; /** i915 backpointer */
+>   	struct drm_file *file; /** per-file lookup tables and limits */
+> @@ -292,6 +299,7 @@ struct i915_execbuffer {
+>   
+>   	struct {
+>   		u64 flags; /** Available extensions parameters */
+> +		struct drm_i915_gem_execbuffer_ext_timeline_fences timeline_fences;
+>   	} extensions;
+>   };
+>   
+> @@ -2244,67 +2252,219 @@ eb_pin_engine(struct i915_execbuffer *eb,
+>   }
+>   
+>   static void
+> -__free_fence_array(struct drm_syncobj **fences, unsigned int n)
+> +__free_fence_array(struct i915_eb_fences *fences, unsigned int n)
+>   {
+> -	while (n--)
+> -		drm_syncobj_put(ptr_mask_bits(fences[n], 2));
+> +	while (n--) {
+> +		drm_syncobj_put(ptr_mask_bits(fences[n].syncobj, 2));
+> +		dma_fence_put(fences[n].dma_fence);
+> +		kfree(fences[n].chain_fence);
+> +	}
+>   	kvfree(fences);
+>   }
+>   
+> -static struct drm_syncobj **
+> -get_fence_array(struct drm_i915_gem_execbuffer2 *args,
+> -		struct drm_file *file)
+> +static struct i915_eb_fences *
+> +get_timeline_fence_array(struct i915_execbuffer *eb, int *out_n_fences)
+> +{
+> +	struct drm_i915_gem_execbuffer_ext_timeline_fences *timeline_fences =
+> +		&eb->extensions.timeline_fences;
+> +	struct drm_i915_gem_exec_fence __user *user_fences;
+> +	struct i915_eb_fences *fences;
+> +	u64 __user *user_values;
+> +	u64 num_fences, num_user_fences = timeline_fences->fence_count;
+> +	unsigned long n;
+> +	int err = 0;
+> +
+> +	/* Check multiplication overflow for access_ok() and kvmalloc_array() */
+> +	BUILD_BUG_ON(sizeof(size_t) > sizeof(unsigned long));
+> +	if (num_user_fences > min_t(unsigned long,
+> +				    ULONG_MAX / sizeof(*user_fences),
+> +				    SIZE_MAX / sizeof(*fences)))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	user_fences = u64_to_user_ptr(timeline_fences->handles_ptr);
+> +	if (!access_ok(user_fences, num_user_fences * sizeof(*user_fences)))
+> +		return ERR_PTR(-EFAULT);
+> +
+> +	user_values = u64_to_user_ptr(timeline_fences->values_ptr);
+> +	if (!access_ok(user_values, num_user_fences * sizeof(*user_values)))
+> +		return ERR_PTR(-EFAULT);
+> +
+> +	fences = kvmalloc_array(num_user_fences, sizeof(*fences),
+> +				__GFP_NOWARN | GFP_KERNEL);
+> +	if (!fences)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
+> +		     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
+> +
+> +	for (n = 0, num_fences = 0; n < timeline_fences->fence_count; n++) {
+> +		struct drm_i915_gem_exec_fence user_fence;
+> +		struct drm_syncobj *syncobj;
+> +		struct dma_fence *fence = NULL;
+> +		u64 point;
+> +
+> +		if (__copy_from_user(&user_fence, user_fences++, sizeof(user_fence))) {
+> +			err = -EFAULT;
+> +			goto err;
+> +		}
+> +
+> +		if (user_fence.flags & __I915_EXEC_FENCE_UNKNOWN_FLAGS) {
+> +			err = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		if (__get_user(point, user_values++)) {
+> +			err = -EFAULT;
+> +			goto err;
+> +		}
+> +
+> +		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
+> +		if (!syncobj) {
+> +			DRM_DEBUG("Invalid syncobj handle provided\n");
+> +			err = -ENOENT;
+> +			goto err;
+> +		}
+> +
+> +		fence = drm_syncobj_fence_get(syncobj);
+> +
+> +		if (!fence && user_fence.flags &&
+> +		    !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> +			DRM_DEBUG("Syncobj handle has no fence\n");
+> +			drm_syncobj_put(syncobj);
+> +			err = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		if (fence)
+> +			err = dma_fence_chain_find_seqno(&fence, point);
+> +
+> +		if (err && !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> +			DRM_DEBUG("Syncobj handle missing requested point %llu\n", point);
+> +			drm_syncobj_put(syncobj);
+> +			goto err;
+> +		}
+> +
+> +		/* A point might have been signaled already and
+> +		 * garbage collected from the timeline. In this case
+> +		 * just ignore the point and carry on.
+> +		 */
+> +		if (!fence && (user_fence.flags & I915_EXEC_FENCE_WAIT)) {
+> +			drm_syncobj_put(syncobj);
+> +			continue;
+> +		}
+> +
+> +		/*
+> +		 * For timeline syncobjs we need to preallocate chains for
+> +		 * later signaling.
+> +		 */
+> +		if (point != 0 && user_fence.flags & I915_EXEC_FENCE_SIGNAL) {
+> +			/*
+> +			 * Waiting and signaling the same point (when point !=
+> +			 * 0) would break the timeline.
+> +			 */
+> +			if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
+> +				DRM_DEBUG("Trying to wait & signal the same timeline point.\n");
+> +				err = -EINVAL;
+> +				drm_syncobj_put(syncobj);
+> +				goto err;
+> +			}
+> +
+> +			fences[num_fences].chain_fence =
+> +				kmalloc(sizeof(*fences[num_fences].chain_fence),
+> +					GFP_KERNEL);
+> +			if (!fences[num_fences].chain_fence) {
+> +				drm_syncobj_put(syncobj);
+> +				err = -ENOMEM;
+> +				DRM_DEBUG("Unable to alloc chain_fence\n");
+> +				goto err;
+> +			}
+> +		} else {
+> +			fences[num_fences].chain_fence = NULL;
+> +		}
+> +
+> +		fences[num_fences].syncobj = ptr_pack_bits(syncobj, user_fence.flags, 2);
+> +		fences[num_fences].dma_fence = fence;
+> +		fences[num_fences].value = point;
+> +		num_fences++;
+> +	}
+> +
+> +	*out_n_fences = num_fences;
+> +
+> +	return fences;
+> +
+> +err:
+> +	__free_fence_array(fences, num_fences);
+> +	return ERR_PTR(err);
+> +}
+> +
+> +static struct i915_eb_fences *
+> +get_legacy_fence_array(struct i915_execbuffer *eb,
+> +		       int *out_n_fences)
+>   {
+> -	const unsigned long nfences = args->num_cliprects;
+> +	struct drm_i915_gem_execbuffer2 *args = eb->args;
+>   	struct drm_i915_gem_exec_fence __user *user;
+> -	struct drm_syncobj **fences;
+> +	struct i915_eb_fences *fences;
+> +	const u32 num_fences = args->num_cliprects;
+>   	unsigned long n;
+>   	int err;
+>   
+> -	if (!(args->flags & I915_EXEC_FENCE_ARRAY))
+> -		return NULL;
+> +	*out_n_fences = num_fences;
+>   
+>   	/* Check multiplication overflow for access_ok() and kvmalloc_array() */
+>   	BUILD_BUG_ON(sizeof(size_t) > sizeof(unsigned long));
+> -	if (nfences > min_t(unsigned long,
+> -			    ULONG_MAX / sizeof(*user),
+> -			    SIZE_MAX / sizeof(*fences)))
+> +	if (*out_n_fences > min_t(unsigned long,
+> +				  ULONG_MAX / sizeof(*user),
+> +				  SIZE_MAX / sizeof(*fences)))
+>   		return ERR_PTR(-EINVAL);
+>   
+>   	user = u64_to_user_ptr(args->cliprects_ptr);
+> -	if (!access_ok(user, nfences * sizeof(*user)))
+> +	if (!access_ok(user, *out_n_fences * sizeof(*user)))
+>   		return ERR_PTR(-EFAULT);
+>   
+> -	fences = kvmalloc_array(nfences, sizeof(*fences),
+> +	fences = kvmalloc_array(*out_n_fences, sizeof(*fences),
+>   				__GFP_NOWARN | GFP_KERNEL);
+>   	if (!fences)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	for (n = 0; n < nfences; n++) {
+> -		struct drm_i915_gem_exec_fence fence;
+> +	for (n = 0; n < *out_n_fences; n++) {
+> +		struct drm_i915_gem_exec_fence user_fence;
+>   		struct drm_syncobj *syncobj;
+> +		struct dma_fence *fence = NULL;
+>   
+> -		if (__copy_from_user(&fence, user++, sizeof(fence))) {
+> +		if (__copy_from_user(&user_fence, user++, sizeof(user_fence))) {
+>   			err = -EFAULT;
+>   			goto err;
+>   		}
+>   
+> -		if (fence.flags & __I915_EXEC_FENCE_UNKNOWN_FLAGS) {
+> +		if (user_fence.flags & __I915_EXEC_FENCE_UNKNOWN_FLAGS) {
+>   			err = -EINVAL;
+>   			goto err;
+>   		}
+>   
+> -		syncobj = drm_syncobj_find(file, fence.handle);
+> +		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
+>   		if (!syncobj) {
+>   			DRM_DEBUG("Invalid syncobj handle provided\n");
+>   			err = -ENOENT;
+>   			goto err;
+>   		}
+>   
+> +		if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
+> +			fence = drm_syncobj_fence_get(syncobj);
+> +			if (!fence) {
+> +				DRM_DEBUG("Syncobj handle has no fence\n");
+> +				drm_syncobj_put(syncobj);
+> +				err = -EINVAL;
+> +				goto err;
+> +			}
+> +		}
+> +
+>   		BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
+>   			     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
+>   
+> -		fences[n] = ptr_pack_bits(syncobj, fence.flags, 2);
+> +		fences[n].syncobj = ptr_pack_bits(syncobj, user_fence.flags, 2);
+> +		fences[n].dma_fence = fence;
+> +		fences[n].value = 0;
+> +		fences[n].chain_fence = NULL;
+>   	}
+>   
+>   	return fences;
+> @@ -2314,37 +2474,45 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
+>   	return ERR_PTR(err);
+>   }
+>   
+> +static struct i915_eb_fences *
+> +get_fence_array(struct i915_execbuffer *eb, int *out_n_fences)
+> +{
+> +	if (eb->args->flags & I915_EXEC_FENCE_ARRAY)
+> +		return get_legacy_fence_array(eb, out_n_fences);
+> +
+> +	if (eb->extensions.flags & BIT_ULL(DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES))
+> +		return get_timeline_fence_array(eb, out_n_fences);
+> +
+> +	*out_n_fences = 0;
+> +	return NULL;
+> +}
+> +
+>   static void
+> -put_fence_array(struct drm_i915_gem_execbuffer2 *args,
+> -		struct drm_syncobj **fences)
+> +put_fence_array(struct i915_eb_fences *fences, int nfences)
+>   {
+>   	if (fences)
+> -		__free_fence_array(fences, args->num_cliprects);
+> +		__free_fence_array(fences, nfences);
+>   }
+>   
+>   static int
+>   await_fence_array(struct i915_execbuffer *eb,
+> -		  struct drm_syncobj **fences)
+> +		  struct i915_eb_fences *fences,
+> +		  int nfences)
+>   {
+> -	const unsigned int nfences = eb->args->num_cliprects;
+>   	unsigned int n;
+>   	int err;
+>   
+>   	for (n = 0; n < nfences; n++) {
+>   		struct drm_syncobj *syncobj;
+> -		struct dma_fence *fence;
+>   		unsigned int flags;
+>   
+> -		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
+> -		if (!(flags & I915_EXEC_FENCE_WAIT))
+> -			continue;
+> +		syncobj = ptr_unpack_bits(fences[n].syncobj, &flags, 2);
+>   
+> -		fence = drm_syncobj_fence_get(syncobj);
+> -		if (!fence)
+> -			return -EINVAL;
+> +		if (!fences[n].dma_fence)
+> +			continue;
+>   
+> -		err = i915_request_await_dma_fence(eb->request, fence);
+> -		dma_fence_put(fence);
+> +		err = i915_request_await_dma_fence(eb->request,
+> +						   fences[n].dma_fence);
+>   		if (err < 0)
+>   			return err;
+>   	}
+> @@ -2354,9 +2522,9 @@ await_fence_array(struct i915_execbuffer *eb,
+>   
+>   static void
+>   signal_fence_array(struct i915_execbuffer *eb,
+> -		   struct drm_syncobj **fences)
+> +		   struct i915_eb_fences *fences,
+> +		   int nfences)
+>   {
+> -	const unsigned int nfences = eb->args->num_cliprects;
+>   	struct dma_fence * const fence = &eb->request->fence;
+>   	unsigned int n;
+>   
+> @@ -2364,14 +2532,44 @@ signal_fence_array(struct i915_execbuffer *eb,
+>   		struct drm_syncobj *syncobj;
+>   		unsigned int flags;
+>   
+> -		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
+> +		syncobj = ptr_unpack_bits(fences[n].syncobj, &flags, 2);
+>   		if (!(flags & I915_EXEC_FENCE_SIGNAL))
+>   			continue;
+>   
+> -		drm_syncobj_replace_fence(syncobj, fence);
+> +		if (fences[n].chain_fence) {
+> +			drm_syncobj_add_point(syncobj, fences[n].chain_fence,
+> +					      fence, fences[n].value);
+> +			/*
+> +			 * The chain's ownership is transferred to the
+> +			 * timeline.
+> +			 */
+> +			fences[n].chain_fence = NULL;
+> +		} else {
+> +			drm_syncobj_replace_fence(syncobj, fence);
+> +		}
+>   	}
+>   }
+>   
+> +static int parse_timeline_fences(struct i915_user_extension __user *ext, void *data)
+> +{
+> +	struct i915_execbuffer *eb = data;
+> +
+> +	/* Timeline fences are incompatible with the fence array flag. */
+> +	if (eb->args->flags & I915_EXEC_FENCE_ARRAY)
+> +		return -EINVAL;
+> +
+> +	if (eb->extensions.flags & BIT_ULL(DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES))
+> +		return -EINVAL;
+> +
+> +	if (copy_from_user(&eb->extensions.timeline_fences, ext,
+> +			   sizeof(eb->extensions.timeline_fences)))
+> +		return -EFAULT;
+> +
+> +	eb->extensions.flags |= BIT_ULL(DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES);
+> +
+> +	return 0;
+> +}
+> +
+>   static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
+>   {
+>   	struct i915_request *rq, *rn;
+> @@ -2438,6 +2636,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
+>   }
+>   
+>   static const i915_user_extension_fn execbuf_extensions[] = {
+> +	[DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES] = parse_timeline_fences,
+>   };
+>   
+>   static int
+> @@ -2468,16 +2667,17 @@ static int
+>   i915_gem_do_execbuffer(struct drm_device *dev,
+>   		       struct drm_file *file,
+>   		       struct drm_i915_gem_execbuffer2 *args,
+> -		       struct drm_i915_gem_exec_object2 *exec,
+> -		       struct drm_syncobj **fences)
+> +		       struct drm_i915_gem_exec_object2 *exec)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(dev);
+>   	struct i915_execbuffer eb;
+>   	struct dma_fence *in_fence = NULL;
+>   	struct dma_fence *exec_fence = NULL;
+>   	struct sync_file *out_fence = NULL;
+> +	struct i915_eb_fences *fences = NULL;
+>   	struct i915_vma *batch;
+>   	int out_fence_fd = -1;
+> +	int nfences = 0;
+>   	int err;
+>   
+>   	BUILD_BUG_ON(__EXEC_INTERNAL_FLAGS & ~__I915_EXEC_ILLEGAL_FLAGS);
+> @@ -2521,10 +2721,16 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	if (err)
+>   		return err;
+>   
+> +	fences = get_fence_array(&eb, &nfences);
+> +	if (IS_ERR(fences))
+> +		return PTR_ERR(fences);
+> +
+>   	if (args->flags & I915_EXEC_FENCE_IN) {
+>   		in_fence = sync_file_get_fence(lower_32_bits(args->rsvd2));
+> -		if (!in_fence)
+> -			return -EINVAL;
+> +		if (!in_fence) {
+> +			err = -EINVAL;
+> +			goto err_fences;
+> +		}
+>   	}
+>   
+>   	if (args->flags & I915_EXEC_FENCE_SUBMIT) {
+> @@ -2648,7 +2854,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	}
+>   
+>   	if (fences) {
+> -		err = await_fence_array(&eb, fences);
+> +		err = await_fence_array(&eb, fences, nfences);
+>   		if (err)
+>   			goto err_request;
+>   	}
+> @@ -2680,7 +2886,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	eb_request_add(&eb);
+>   
+>   	if (fences)
+> -		signal_fence_array(&eb, fences);
+> +		signal_fence_array(&eb, fences, nfences);
+>   
+>   	if (out_fence) {
+>   		if (err == 0) {
+> @@ -2715,6 +2921,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	dma_fence_put(exec_fence);
+>   err_in_fence:
+>   	dma_fence_put(in_fence);
+> +err_fences:
+> +	put_fence_array(fences, nfences);
+>   	return err;
+>   }
+>   
+> @@ -2809,7 +3017,7 @@ i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
+>   			exec2_list[i].flags = 0;
+>   	}
+>   
+> -	err = i915_gem_do_execbuffer(dev, file, &exec2, exec2_list, NULL);
+> +	err = i915_gem_do_execbuffer(dev, file, &exec2, exec2_list);
+>   	if (exec2.flags & __EXEC_HAS_RELOC) {
+>   		struct drm_i915_gem_exec_object __user *user_exec_list =
+>   			u64_to_user_ptr(args->buffers_ptr);
+> @@ -2841,7 +3049,6 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>   	struct drm_i915_private *i915 = to_i915(dev);
+>   	struct drm_i915_gem_execbuffer2 *args = data;
+>   	struct drm_i915_gem_exec_object2 *exec2_list;
+> -	struct drm_syncobj **fences = NULL;
+>   	const size_t count = args->buffer_count;
+>   	int err;
+>   
+> @@ -2869,15 +3076,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>   		return -EFAULT;
+>   	}
+>   
+> -	if (args->flags & I915_EXEC_FENCE_ARRAY) {
+> -		fences = get_fence_array(args, file);
+> -		if (IS_ERR(fences)) {
+> -			kvfree(exec2_list);
+> -			return PTR_ERR(fences);
+> -		}
+> -	}
+> -
+> -	err = i915_gem_do_execbuffer(dev, file, args, exec2_list, fences);
+> +	err = i915_gem_do_execbuffer(dev, file, args, exec2_list);
+>   
+>   	/*
+>   	 * Now that we have begun execution of the batchbuffer, we ignore
+> @@ -2917,7 +3116,6 @@ end:;
+>   	}
+>   
+>   	args->flags &= ~__I915_EXEC_UNKNOWN_FLAGS;
+> -	put_fence_array(args, fences);
+>   	kvfree(exec2_list);
+>   	return err;
+>   }
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index a7a3b4b98572..f7f868c3c510 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1828,7 +1828,8 @@ static struct drm_driver driver = {
+>   	 */
+>   	.driver_features =
+>   	    DRIVER_GEM |
+> -	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ,
+> +	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ |
+> +	    DRIVER_SYNCOBJ_TIMELINE,
+>   	.release = i915_driver_release,
+>   	.open = i915_driver_open,
+>   	.lastclose = i915_driver_lastclose,
+> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+> index 54fce81d5724..b9d3aab53c03 100644
+> --- a/drivers/gpu/drm/i915/i915_getparam.c
+> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> @@ -132,6 +132,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+>   	case I915_PARAM_HAS_EXEC_BATCH_FIRST:
+>   	case I915_PARAM_HAS_EXEC_FENCE_ARRAY:
+>   	case I915_PARAM_HAS_EXEC_SUBMIT_FENCE:
+> +	case I915_PARAM_HAS_EXEC_TIMELINE_FENCES:
+>   		/* For the time being all of these are always true;
+>   		 * if some supported hardware does not have one of these
+>   		 * features this value needs to be provided from
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 7ea38aa6502c..7b8680e3b49d 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -619,6 +619,12 @@ typedef struct drm_i915_irq_wait {
+>    */
+>   #define I915_PARAM_PERF_REVISION	54
+>   
+> +/* Query whether DRM_I915_GEM_EXECBUFFER2 supports supplying an array of
+> + * timeline syncobj through drm_i915_gem_execbuf_ext_timeline_fences. See
+> + * I915_EXEC_USE_EXTENSIONS.
+> + */
+> +#define I915_PARAM_HAS_EXEC_TIMELINE_FENCES 55
+> +
+>   /* Must be kept compact -- no holes and well documented */
+>   
+>   typedef struct drm_i915_getparam {
+> @@ -1047,9 +1053,41 @@ struct drm_i915_gem_exec_fence {
+>   };
+>   
+>   enum drm_i915_gem_execbuffer_ext {
+> +	/**
+> +	 * See drm_i915_gem_execbuf_ext_timeline_fences.
+> +	 */
+> +	DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES = 1,
+> +
+>   	DRM_I915_GEM_EXECBUFFER_EXT_MAX /* non-ABI */
+>   };
+>   
+> +/**
+> + * This structure describes an array of drm_syncobj and associated points for
+> + * timeline variants of drm_syncobj. It is invalid to append this structure to
+> + * the execbuf if I915_EXEC_FENCE_ARRAY is set.
+> + */
+> +struct drm_i915_gem_execbuffer_ext_timeline_fences {
+> +	struct i915_user_extension base;
+> +
+> +	/**
+> +	 * Number of element in the handles_ptr & value_ptr arrays.
+> +	 */
+> +	__u64 fence_count;
+> +
+> +	/**
+> +	 * Pointer to an array of struct drm_i915_gem_exec_fence of length
+> +	 * fence_count.
+> +	 */
+> +	__u64 handles_ptr;
+> +
+> +	/**
+> +	 * Pointer to an array of u64 values of length fence_count. Values
+> +	 * must be 0 for a binary drm_syncobj. A Value of 0 for a timeline
+> +	 * drm_syncobj is invalid as it turns a drm_syncobj into a binary one.
+> +	 */
+> +	__u64 values_ptr;
+> +};
+> +
+>   struct drm_i915_gem_execbuffer2 {
+>   	/**
+>   	 * List of gem_exec_object2 structs
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
