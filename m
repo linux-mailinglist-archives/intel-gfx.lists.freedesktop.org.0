@@ -1,42 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6E51A1E56
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 11:53:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9AB01A1E70
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 12:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B18596E082;
-	Wed,  8 Apr 2020 09:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1036EA05;
+	Wed,  8 Apr 2020 10:01:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D888B6E082
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 09:53:54 +0000 (UTC)
-IronPort-SDR: iNV4yP0vAJx5z1Qw54P++HrPQZL8gLjX8gYJTyLeGXSJYVKbMQGv6y8ogDkV0KuZFBxy7/OMmB
- gEasXAW8zd/w==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B14D66E0A6;
+ Wed,  8 Apr 2020 10:01:06 +0000 (UTC)
+IronPort-SDR: kGeLy4cCEx12NwoeKxpQe4CR9qH4lIadup5+a3RV7hwRUDjnKHJEYQXxfH3izZ+4j+l4Crj7c8
+ fy5thOhpGj1w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 02:53:54 -0700
-IronPort-SDR: TH599Bv79G1MNytz/mxGGWQkekeVjUTRL3PaVunpHzapHZ3VCRmghNLgId52x/sbaEp3bU24Ry
- hbXHmh3Y6v6A==
-X-IronPort-AV: E=Sophos;i="5.72,357,1580803200"; d="scan'208";a="425080596"
-Received: from slinke-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.60.237])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 02:53:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kishore Kadiyala <kishore.kadiyala@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200408084734.8834-1-kishore.kadiyala@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200408084734.8834-1-kishore.kadiyala@intel.com>
-Date: Wed, 08 Apr 2020 12:53:49 +0300
-Message-ID: <871royi9qq.fsf@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 03:01:06 -0700
+IronPort-SDR: zwKDfBW1VAICxh+o1tjJvU7Fh5RuaFLQUkCDECE1qZ+tgXdxH5TGr2xEYkbvW6MHF1DbzIqDFT
+ j5+H/1h56BpQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,357,1580803200"; d="scan'208";a="240252790"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga007.jf.intel.com with ESMTP; 08 Apr 2020 03:01:05 -0700
+Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 8 Apr 2020 03:01:05 -0700
+Received: from BGSMSX107.gar.corp.intel.com (10.223.4.191) by
+ FMSMSX152.amr.corp.intel.com (10.18.125.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 8 Apr 2020 03:01:05 -0700
+Received: from BGSMSX108.gar.corp.intel.com ([169.254.8.65]) by
+ BGSMSX107.gar.corp.intel.com ([169.254.9.81]) with mapi id 14.03.0439.000;
+ Wed, 8 Apr 2020 15:30:58 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH RESEND 4/7] drm/i915/dsc: configure hardware using
+ specified rc_model_size
+Thread-Index: AQHWBDVBFWkODEQ6uk+gUxz/liIO16hvEDHw
+Date: Wed, 8 Apr 2020 10:00:58 +0000
+Message-ID: <57510F3E2013164E925CD03ED7512A3B80A8841F@BGSMSX108.gar.corp.intel.com>
+References: <20200327124229.26461-1-jani.nikula@intel.com>
+ <20200327124229.26461-4-jani.nikula@intel.com>
+In-Reply-To: <20200327124229.26461-4-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Add Plane color encoding
- support for YCBCR_BT2020
+Subject: Re: [Intel-gfx] [PATCH RESEND 4/7] drm/i915/dsc: configure hardware
+ using specified rc_model_size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,79 +69,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kishore Kadiyala <kishore.kadiyala@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 Apr 2020, Kishore Kadiyala <kishore.kadiyala@intel.com> wrote:
-> Currently the plane property doesn't have support for YCBCR_BT2020,
-> which enables the corresponding color conversion mode on plane CSC.
-> This propery setting is confined only to HDR Planes as there is
-> limitation in SDR Planes.
->
-> V2: Enabling support for YCBCT_BT2020 for HDR planes on
->     platforms GLK & ICL
->
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@intel.com>
+> Sent: Friday, March 27, 2020 6:12 PM
+> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>; Navare, Manasi D
+> <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Subject: [PATCH RESEND 4/7] drm/i915/dsc: configure hardware using
+> specified rc_model_size
+> 
+> The rc_model_size is specified in the DSC config, and the hardware
+> programming should respect that instead of hard coding a value of 8192.
+> 
+> Regardless, the rc_model_size in DSC config is currently hard coded to the
+> same value, so this should have no impact, other than allowing the use of other
+> sizes as needed.
+> 
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Looks good to me.
+Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index deda351719db..4c25d90d16ce 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
->  	unsigned int supported_rotations;
-> +	unsigned int supported_csc;
->  	const u64 *modifiers;
->  	const u32 *formats;
->  	int num_formats;
-> @@ -3105,9 +3106,14 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  					   DRM_MODE_ROTATE_0,
->  					   supported_rotations);
->  
-> +	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
-> +
-> +	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv) &&
-> +					(icl_is_hdr_plane(dev_priv, plane_id)))
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 95ad87d4ccb3..1f74b0174b1a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -740,7 +740,7 @@ static void intel_dsc_pps_configure(struct
+> intel_encoder *encoder,
+> 
+>  	/* Populate PICTURE_PARAMETER_SET_9 registers */
+>  	pps_val = 0;
+> -	pps_val |= DSC_RC_MODEL_SIZE(DSC_RC_MODEL_SIZE_CONST) |
+> +	pps_val |= DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
+>  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+>  	drm_info(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
+>  	if (!is_pipe_dsc(crtc_state)) {
+> --
+> 2.20.1
 
-This is incorrect and/or misleading in so many levels.
-
-First, the precedence means this is
-
-	(gen >= 10 || (is_glk && icl_is_hdr_plane))
-
-Second, it's odd to have an icl_ prefixed function used only on glk.
-
-Third, icl_is_hdr_plane() internally has gen >= 11. So the right hand
-part of the || is always false.
-
-Fourth, there's no point in wrapping the icl_is_hdr_plane() in parens.
-
-Fifth, does this really apply to gen 10 cnl?
-
-BR,
-Jani.
-
-
-> +		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-> +
->  	drm_plane_create_color_properties(&plane->base,
-> -					  BIT(DRM_COLOR_YCBCR_BT601) |
-> -					  BIT(DRM_COLOR_YCBCR_BT709),
-> +					  supported_csc,
->  					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
->  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
->  					  DRM_COLOR_YCBCR_BT709,
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
