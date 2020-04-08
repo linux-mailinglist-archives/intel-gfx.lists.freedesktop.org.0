@@ -2,38 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2841A1C9A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 09:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B72261A1C9D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 09:27:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDA16E838;
-	Wed,  8 Apr 2020 07:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13AE46E839;
+	Wed,  8 Apr 2020 07:27:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D645E6E056;
- Wed,  8 Apr 2020 07:27:04 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id EA25780512;
- Wed,  8 Apr 2020 09:27:02 +0200 (CEST)
-Date: Wed, 8 Apr 2020 09:27:01 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200408072701.GI14965@ravnborg.org>
-References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-15-daniel.vetter@ffwll.ch>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200403135828.2542770-15-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=-VAfIpHNAAAA:8 a=e5mUnYsNAAAA:8 a=AK0yhmGKWhJIuLkF4NUA:9
- a=CjuIK1q_8ugA:10 a=srlwD-8ojaedGGhPAyx8:22 a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 14/44] drm/v3d: Delete v3d_dev->pdev
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D32F6E839
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 07:27:45 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id 71so4825968qtc.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 00:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=qgf0TWjPpZoNAt2ioSSn8WvEg8RFxU+2Q13+kLcHMec=;
+ b=QSOUKwHyWgwwRC0WdBGrZsgq7Ym+SpiNnnY6cu68PCOFM2wB7Cdkcd/prs724ZPmKN
+ YmXxilSrtkTfrztV9LmbnQs8L909g4KAoJTo/LcO2ps6rxuO4o+15MFhPyD7sRzK2RBw
+ 4UBxYYCcO6WITmrnbph6NI1a5zw+6pBxDPDuKb2dTVGslP0sNcrc5IFtD877L3OUuTCv
+ VPl6kxqwj0a11IFQZldQuIuszmD9bQwxiBioheDXuP+gC9fT2/baltIzjocDe47hG2UV
+ pe2lXvZKYohIUCXaKOZPGHPF+pyRhIs7aVlG/img43JAbj1uQHBgDuEynv2BBz9NpSdl
+ zY0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=qgf0TWjPpZoNAt2ioSSn8WvEg8RFxU+2Q13+kLcHMec=;
+ b=Gys+P6l6FIsglScSQ34+aPjCjbFqO0o6RR6kFUj03W3vmeL45XfA0Ub1KpCxB/kVDQ
+ QeKV0zBJBvV3D/JDK6gU/GlLxS6eFH99Ifc4WT5Hcmb2zjTGp2vk1zUnyYQSGr6wa7cy
+ h+10bdNxHagqQHSAJ7KkegzM7SEXgPqjcb2TnBczubHq7z+JfM09fqNCfpGjmdNKZXRm
+ PK6ifqRs4d39tEydqSzHu7uGEAN6M7W8f2lO/vdd/3/Bsi9PDALGCoRtV7npb3/WbsPQ
+ ZJYAug/tNcqerUglshPs/SHuw0LQ1xsuCjgcVxa4LMfQYTFKbqd2slpD/5eCcvfY3Qu6
+ r6Lg==
+X-Gm-Message-State: AGi0PuZSzZY6jsAQXLgCCH2JRpey90uZe20v3NcLslYGGam3K0DVaguY
+ 1ela3QVPWOyesrO3kbLGJW4TI/Zo
+X-Google-Smtp-Source: APiQypKkJ/mya3w6lL0T95sVsu3cgIQWwW65euk+AKouiDgWSiNk8tezDCuNmCE0sjXGHRxgT4D8fQ==
+X-Received: by 2002:ac8:5384:: with SMTP id x4mr6021038qtp.135.1586330864588; 
+ Wed, 08 Apr 2020 00:27:44 -0700 (PDT)
+Received: from [192.168.1.153] (pool-72-92-48-173.phlapa.fios.verizon.net.
+ [72.92.48.173])
+ by smtp.gmail.com with ESMTPSA id u126sm8291746qkh.66.2020.04.08.00.27.43
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 08 Apr 2020 00:27:43 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+From: Alexei Podtelezhnikov <apodtele@gmail.com>
+X-Mailer: iPhone Mail (16G183)
+In-Reply-To: <158632979672.26322.1457844000492581204@build.alporthouse.com>
+Date: Wed, 8 Apr 2020 03:27:42 -0400
+Message-Id: <5D705E23-66E7-482D-A271-B70DF87C97DF@gmail.com>
+References: <20200408030921.6436-1-apodtele@gmail.com>
+ <158632979672.26322.1457844000492581204@build.alporthouse.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH xf86-video-intel] sna: Fix double-free
+ crashes.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,128 +69,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel.
 
-On Fri, Apr 03, 2020 at 03:57:58PM +0200, Daniel Vetter wrote:
-> We already have it in v3d_dev->drm.dev with zero additional pointer
-> chasing. Personally I don't like duplicated pointers like this
-> because:
-> - reviewers need to check whether the pointer is for the same or
-> different objects if there's multiple
-> - compilers have an easier time too
-> 
-> To avoid having to pull in some big headers I implemented the casting
-> function as a macro instead of a static inline.
-Hmm...
 
-> Typechecking thanks to
-> container_of still assured.
+>> Fix double-free crashes.
+>> See https://bugzilla.redhat.com/show_bug.cgi?id=1808767
 > 
-> But also a bit a bikeshed, so feel free to ignore.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Eric Anholt <eric@anholt.net>
+> It should be impossible to get here, so this is just papering over a
+> bug.
 
-This and patch 13 has same subject - confusing.
-
-	Sam
-
-> ---
->  drivers/gpu/drm/v3d/v3d_drv.c | 3 +--
->  drivers/gpu/drm/v3d/v3d_drv.h | 3 ++-
->  drivers/gpu/drm/v3d/v3d_irq.c | 8 +++++---
->  3 files changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-> index 37cb880f2826..82a7dfdd14c2 100644
-> --- a/drivers/gpu/drm/v3d/v3d_drv.c
-> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
-> @@ -235,7 +235,7 @@ static int
->  map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
->  {
->  	struct resource *res =
-> -		platform_get_resource_byname(v3d->pdev, IORESOURCE_MEM, name);
-> +		platform_get_resource_byname(v3d_to_pdev(v3d), IORESOURCE_MEM, name);
->  
->  	*regs = devm_ioremap_resource(v3d->drm.dev, res);
->  	return PTR_ERR_OR_ZERO(*regs);
-> @@ -255,7 +255,6 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
->  	if (IS_ERR(v3d))
->  		return PTR_ERR(v3d);
->  
-> -	v3d->pdev = pdev;
->  	drm = &v3d->drm;
->  
->  	platform_set_drvdata(pdev, drm);
-> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
-> index 4d2d1f2fe1af..935f23b524b2 100644
-> --- a/drivers/gpu/drm/v3d/v3d_drv.h
-> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
-> @@ -46,7 +46,6 @@ struct v3d_dev {
->  	int ver;
->  	bool single_irq_line;
->  
-> -	struct platform_device *pdev;
->  	void __iomem *hub_regs;
->  	void __iomem *core_regs[3];
->  	void __iomem *bridge_regs;
-> @@ -128,6 +127,8 @@ v3d_has_csd(struct v3d_dev *v3d)
->  	return v3d->ver >= 41;
->  }
->  
-> +#define v3d_to_pdev(v3d) to_platform_device(v3d->drm.dev)
-> +
->  /* The per-fd struct, which tracks the MMU mappings. */
->  struct v3d_file_priv {
->  	struct v3d_dev *v3d;
-> diff --git a/drivers/gpu/drm/v3d/v3d_irq.c b/drivers/gpu/drm/v3d/v3d_irq.c
-> index f4ce6d057c90..51b65263c657 100644
-> --- a/drivers/gpu/drm/v3d/v3d_irq.c
-> +++ b/drivers/gpu/drm/v3d/v3d_irq.c
-> @@ -217,7 +217,7 @@ v3d_irq_init(struct v3d_dev *v3d)
->  		V3D_CORE_WRITE(core, V3D_CTL_INT_CLR, V3D_CORE_IRQS);
->  	V3D_WRITE(V3D_HUB_INT_CLR, V3D_HUB_IRQS);
->  
-> -	irq1 = platform_get_irq(v3d->pdev, 1);
-> +	irq1 = platform_get_irq(v3d_to_pdev(v3d), 1);
->  	if (irq1 == -EPROBE_DEFER)
->  		return irq1;
->  	if (irq1 > 0) {
-> @@ -226,7 +226,8 @@ v3d_irq_init(struct v3d_dev *v3d)
->  				       "v3d_core0", v3d);
->  		if (ret)
->  			goto fail;
-> -		ret = devm_request_irq(v3d->drm.dev, platform_get_irq(v3d->pdev, 0),
-> +		ret = devm_request_irq(v3d->drm.dev,
-> +				       platform_get_irq(v3d_to_pdev(v3d), 0),
->  				       v3d_hub_irq, IRQF_SHARED,
->  				       "v3d_hub", v3d);
->  		if (ret)
-> @@ -234,7 +235,8 @@ v3d_irq_init(struct v3d_dev *v3d)
->  	} else {
->  		v3d->single_irq_line = true;
->  
-> -		ret = devm_request_irq(v3d->drm.dev, platform_get_irq(v3d->pdev, 0),
-> +		ret = devm_request_irq(v3d->drm.dev,
-> +				       platform_get_irq(v3d_to_pdev(v3d), 0),
->  				       v3d_irq, IRQF_SHARED,
->  				       "v3d", v3d);
->  		if (ret)
-> -- 
-> 2.25.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+You sound certain that locking is airtight and pthread.so just happened to be there. The crashes are quite random but seem to need memory shortage. Please also try while I am working on a full debug.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
