@@ -1,46 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B43D1A270F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 18:21:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A30AC1A2716
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 18:24:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA4F6EA9B;
-	Wed,  8 Apr 2020 16:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 019D16EA96;
+	Wed,  8 Apr 2020 16:24:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE546EA9B
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 16:21:50 +0000 (UTC)
-IronPort-SDR: opkJmgsnzZIXkaouaUkyrIgGb93p5RnJ6HIxAuAAlphsT6jppT29yL3PkTX8ex5IQawHz2TbBw
- Pwrkekz4cuhQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 09:21:49 -0700
-IronPort-SDR: vSPZu/ln4kPZJQP0W/a7tUU/uAACxdlsuM0dvVUxtIsTpEPsgpzi04RfZUyC3tl/ugX99CmHkd
- UdVbZG3ECjOA==
-X-IronPort-AV: E=Sophos;i="5.72,359,1580803200"; d="scan'208";a="425191185"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 09:21:47 -0700
-Date: Wed, 8 Apr 2020 19:18:11 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200408161811.GA27809@intel.com>
-References: <20200326181005.11775-6-stanislav.lisovskiy@intel.com>
- <20200403062003.11539-1-stanislav.lisovskiy@intel.com>
- <20200407190128.GN6112@intel.com>
- <20200408075804.GA20704@intel.com>
- <20200408145502.GU6112@intel.com>
- <20200408155353.GA27657@intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 267756EA96
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 16:24:11 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id z6so67183wml.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 09:24:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=o1wXXAbri86QChEa50j3H0JwCub+mO1ccJpn2usVHv0=;
+ b=HYp5Bq75xxTmKkQ+MwniWHFEFiXu9DoFPzIjKWs0sTP35Z4+14iO0Ez2Itb5g6Yzf4
+ gGIW60ImXzKzNMVCeZNeLLmoYyzc/2bSB490taxtJsRyvN1rr5hsDcDs/Kxz6UI/Zg/g
+ PLn57TkhnsaZH3nq26pN7Agbq8A8eE+yjcgoU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=o1wXXAbri86QChEa50j3H0JwCub+mO1ccJpn2usVHv0=;
+ b=mg5MIt+srVO7AIEu/iROOMfw5pdgVN3ei/okA/hQoGeQ3tFnqVDi7h/9HWEQXvBlxy
+ /70wzrCj4hqzijMRgGoC9IG2AhtQjVcQu52k0Xchy12+FsMYoSEdMpn3e2dRhMH7+8K8
+ EslEmjm8FQCgmbzixmgV9TI6eqcBYpJCnaUYaPTM+Qie7mLSBQ+lYsywVymQZlg0wxM4
+ eF95qQNC1fpmquHlw9CDm4S1r2UjEIHsxRGyVoEdYBYxvNf4QNYft9RkFrYaIseiecr9
+ dKONYNCTiMRnwIhqsirYCFNkxgFrGdT4Psfyh9Av/1BmzjG3fv8CjoVCamzepuyJTITD
+ EtrQ==
+X-Gm-Message-State: AGi0Pub1fvZ9vF9V/P40gVOd3itTUX2NVGoidjE58GtOpxtcFUOnkAaw
+ 8pP18tLMYnzZSWkFPru0MOYl0g==
+X-Google-Smtp-Source: APiQypKz8wOvsiwaQ6yZhKkaOvbAB1KfIjZ7OheWj1K9qwQtTAOpdj5ga9Ksu7zXCCdYCbGmsA9ZIg==
+X-Received: by 2002:a1c:7ed0:: with SMTP id z199mr5427573wmc.60.1586363049729; 
+ Wed, 08 Apr 2020 09:24:09 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id m15sm47369wmc.35.2020.04.08.09.24.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Apr 2020 09:24:08 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Wed,  8 Apr 2020 18:24:03 +0200
+Message-Id: <20200408162403.3616785-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200408155353.GA27657@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v21 05/10] drm/i915: Extract gen specific
- functions from intel_can_enable_sagv
+Subject: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to nonblocking
+ atomic modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,273 +62,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Stone <daniels@collabora.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2020 at 06:54:09PM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, Apr 08, 2020 at 05:55:02PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Apr 08, 2020 at 10:58:04AM +0300, Lisovskiy, Stanislav wrote:
-> > > On Tue, Apr 07, 2020 at 10:01:28PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > On Fri, Apr 03, 2020 at 09:20:03AM +0300, Stanislav Lisovskiy wrote:
-> > > > > Addressing one of the comments, recommending to extract platform
-> > > > > specific code from intel_can_enable_sagv as a preparation, before
-> > > > > we are going to add support for tgl+.
-> > > > > =
-
-> > > > > Current code in intel_can_enable_sagv is valid only for skl,
-> > > > > so this patch adds also proper support for icl, subsequent
-> > > > > patches will add support for tgl+, combined with other required
-> > > > > changes.
-> > > > > =
-
-> > > > > v2: - Renamed icl_can_enable_sagv into icl_crtc_can_enable_sagv(V=
-ille)
-> > > > >     - Removed dev variables(Ville)
-> > > > >     - Constified crtc/plane_state in icl_crtc_can_enable_sagv
-> > > > >       function(Ville)
-> > > > >     - Added hw.active check(Ville)
-> > > > >     - Refactored if ladder(Ville)
-> > > > > =
-
-> > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/intel_pm.c | 84 +++++++++++++++++++++------=
-------
-> > > > >  1 file changed, 55 insertions(+), 29 deletions(-)
-> > > > > =
-
-> > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i9=
-15/intel_pm.c
-> > > > > index f8d62d1977ac..27d4d626cb34 100644
-> > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > @@ -3757,42 +3757,25 @@ intel_disable_sagv(struct drm_i915_privat=
-e *dev_priv)
-> > > > >  	return 0;
-> > > > >  }
-> > > > >  =
-
-> > > > > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
-> > > > > +static bool icl_crtc_can_enable_sagv(const struct intel_crtc_sta=
-te *crtc_state)
-> > > > >  {
-> > > > > -	struct drm_device *dev =3D state->base.dev;
-> > > > > -	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> > > > > -	struct intel_crtc *crtc;
-> > > > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.=
-crtc->dev);
-> > > > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc=
-);
-> > > > >  	struct intel_plane *plane;
-> > > > > -	struct intel_crtc_state *crtc_state;
-> > > > > -	enum pipe pipe;
-> > > > > +	const struct intel_plane_state *plane_state;
-> > > > >  	int level, latency;
-> > > > >  =
-
-> > > > > -	if (!intel_has_sagv(dev_priv))
-> > > > > +	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLAC=
-E) {
-> > > > > +		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
-> > > > > +			      pipe_name(crtc->pipe));
-> > > > >  		return false;
-> > > > > +	}
-> > > > >  =
-
-> > > > > -	/*
-> > > > > -	 * If there are no active CRTCs, no additional checks need be p=
-erformed
-> > > > > -	 */
-> > > > > -	if (hweight8(state->active_pipes) =3D=3D 0)
-> > > > > +	if (!crtc_state->hw.active)
-> > > > =
-
-> > > > Should really be checked before anything else. Doesn't matter too m=
-uch
-> > > > anymore since I made us clear the crtc state always, but still a bit
-> > > > inconsistent to look at other stuff in the state before we even kno=
-w if
-> > > > the crtc is even enabled.
-> > > > =
-
-> > > > >  		return true;
-> > > > >  =
-
-> > > > > -	/*
-> > > > > -	 * SKL+ workaround: bspec recommends we disable SAGV when we ha=
-ve
-> > > > > -	 * more then one pipe enabled
-> > > > > -	 */
-> > > > > -	if (hweight8(state->active_pipes) > 1)
-> > > > > -		return false;
-> > > > > -
-> > > > > -	/* Since we're now guaranteed to only have one active CRTC... */
-> > > > > -	pipe =3D ffs(state->active_pipes) - 1;
-> > > > > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
-> > > > > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
-> > > > > -
-> > > > > -	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLAC=
-E)
-> > > > > -		return false;
-> > > > > -
-> > > > > -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
-> > > > > -		struct skl_plane_wm *wm =3D
-> > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state=
-, crtc_state) {
-> > > > > +		const struct skl_plane_wm *wm =3D
-> > > > >  			&crtc_state->wm.skl.optimal.planes[plane->id];
-> > > > >  =
-
-> > > > >  		/* Skip this plane if it's not enabled */
-> > > > > @@ -3807,7 +3790,7 @@ bool intel_can_enable_sagv(struct intel_ato=
-mic_state *state)
-> > > > >  		latency =3D dev_priv->wm.skl_latency[level];
-> > > > >  =
-
-> > > > >  		if (skl_needs_memory_bw_wa(dev_priv) &&
-> > > > > -		    plane->base.state->fb->modifier =3D=3D
-> > > > > +		    plane_state->uapi.fb->modifier =3D=3D
-> > > > =
-
-> > > > hw.fb
-> > > > =
-
-> > > > With those this is basically good, but still need to think how to a=
-void
-> > > > the regression due to only checking the crtcs in the state.
-> > > =
-
-> > > Well tbh, initially you told me that this *_crtc_can_enable_sagv func=
-tion extraction
-> > > can be "trivially" done as a separate patch :)) So I followed your in=
-struction, and =
-
-> > > then I got a comment saying that "this is now temporary busted becaus=
-e we are checking
-> > > only crtcs in a state". This kind of contraversial requirements - in =
-order not to =
-
-> > > have it "temporary busted", we should have introduced it at the same =
-time with SAGV mask,
-> > > at the same time you wanted it to be extracted as a separate patch.
-> > =
-
-> > TBF this patch does quite a bit more than extract the current code.
-> > =
-
-> > What I think would work as a series is something like:
-> > patch 1:
-> > +intel_crtc_can_enable_sagv(crtc_state)
-> > {
-> > +	stuff
-> > }
-> > =
-
-> > intel_can_enable_sagv(state)
-> > {
-> > 	...
-> > 	crtc_state =3D to_intel_crtc_state(crtc->base.state);
-> > =
-
-> > -	stuff
-> > +	return intel_crtc_can_eanble_sagv(crtc_state);
-> > }
-> > =
-
-> > patch 2:
-> > +sagv_pre_plane_update(state)
-> > +{
-> > +	if (!intel_can_enable_sagv(state))
-> > +		intel_disable_sagv(dev_priv);
-> > +}
-> > =
-
-> > intel_atomic_commit_tail()
-> > {
-> > 	...
-> > -	if (!intel_can_enable_sagv(state))
-> > -		intel_disable_sagv(dev_priv);
-> > +	sagv_pre_plane_update(state);
-> > 	...
-> > }
-> > =
-
-> > (+ identical changes for post_plane_update())
-> > =
-
-> > So far everything has been pure refactoring.
-> > =
-
-> > patch 3:
-> > Introduce the sagv mask in bw state and precompute it using
-> > intel_crtc_can_enable_sagv() (while fixing the iterator issue therein),
-> > and update the pre/post hooks to consult said mask. Not quite pure
-> > refactoring anymore but seems like a bit more straightforward change
-> > now.
-> > =
-
-> > At this point we should have a nicely precomputed sagv mask without
-> > intentional changes to current behaviour. After which it should be
-> > easier to extend this for new platforms.
-> =
-
-> This all makes sense, however in the end we'll have the same result as no=
-w, however this would
-> require to reshuffle the whole series...again. =
-
-> Will try do it, the least painful way :) =
-
-
-Also the only weird thing with this approach is that it is going to stay
-this ugly _one_ crtc way, until sagv mask and bw state is introduced:
-
-bool intel_can_enable_sagv(struct intel_atomic_state *state)
-{
-	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-	struct intel_crtc *crtc;
-	const struct intel_crtc_state *crtc_state;
-	int i;
-
-	if (!intel_has_sagv(dev_priv))
-		return false;
-
-	/*
-	 * SKL+ workaround: bspec recommends we disable SAGV when we have
-	 * more then one pipe enabled
-	 */
-	if (hweight8(state->active_pipes) > 1)
-		return false;
-
-	/* Since we're now guaranteed to only have one active CRTC... */
-	pipe =3D ffs(state->active_pipes) - 1;
-	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
-	crtc_state =3D to_intel_crtc_state(crtc->base.state);
-
-	return intel_crtc_can_enable_sagv(crtc_state);
-}
-
-because you can't iterate crtcs anyway so that patch would be =
-
-just a name change basically. =
-
-The I can add pre/post plane update and only once bw state->sagv_mask
-is in place - the real SAGV changes can come. So SAGV logic would be
-anyway wrong in the middle of that series.
-
-Stan
-
-> =
-
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2hlbiBkb2luZyBhbiBhdG9taWMgbW9kZXNldCB3aXRoIEFMTE9XX01PREVTRVQgZHJpdmVycyBh
+cmUgYWxsb3dlZCB0bwpwdWxsIGluIGFyYml0cmFyeSBvdGhlciByZXNvdXJjZXMsIGluY2x1ZGlu
+ZyBDUlRDcyAoZS5nLiB3aGVuCnJlY29uZmlndXJpbmcgZ2xvYmFsIHJlc291cmNlcykuCgpCdXQg
+aW4gbm9uYmxvY2tpbmcgbW9kZSB1c2Vyc3BhY2UgaGFzIHRoZW4gbm8gaWRlYSB0aGlzIGhhcHBl
+bmVkLAp3aGljaCBjYW4gbGVhZCB0byBzcHVyaW91cyBFQlVTWSBjYWxscywgYm90aDoKLSB3aGVu
+IHRoYXQgb3RoZXIgQ1JUQyBpcyBjdXJyZW50bHkgYnVzeSBkb2luZyBhIHBhZ2VfZmxpcCB0aGUK
+ICBBTExPV19NT0RFU0VUIGNvbW1pdCBjYW4gZmFpbCB3aXRoIGFuIEVCVVNZCi0gb24gdGhlIG90
+aGVyIENSVEMgYSBub3JtYWwgYXRvbWljIGZsaXAgY2FuIGZhaWwgd2l0aCBFQlVTWSBiZWNhdXNl
+CiAgb2YgdGhlIGFkZGl0aW9uYWwgY29tbWl0IGluc2VydGVkIGJ5IHRoZSBrZXJuZWwgd2l0aG91
+dCB1c2Vyc3BhY2UncwogIGtub3dsZWRnZQoKRm9yIGJsb2NraW5nIGNvbW1pdHMgdGhpcyBpc24n
+dCBhIHByb2JsZW0sIGJlY2F1c2UgZXZlcnlvbmUgZWxzZSB3aWxsCmp1c3QgYmxvY2sgdW50aWwg
+YWxsIHRoZSBDUlRDIGFyZSByZWNvbmZpZ3VyZWQuIE9ubHkgdGhpbmcgdXNlcnNwYWNlCmNhbiBu
+b3RpY2UgaXMgdGhlIGRyb3BwZWQgZnJhbWVzIHdpdGhvdXQgYW55IHJlYXNvbiBmb3Igd2h5IGZy
+YW1lcyBnb3QKZHJvcHBlZC4KCkNvbnNlbnN1cyBpcyB0aGF0IHdlIG5lZWQgbmV3IHVhcGkgdG8g
+aGFuZGxlIHRoaXMgcHJvcGVybHksIGJ1dCBubyBvbmUKaGFzIGFueSBpZGVhIHdoYXQgZXhhY3Rs
+eSB0aGUgbmV3IHVhcGkgc2hvdWxkIGxvb2sgbGlrZS4gQXMgYSBzdG9wLWdhcApwbHVnIHRoaXMg
+cHJvYmxlbSBieSBkZW1vdGluZyBub25ibG9ja2luZyBjb21taXRzIHdoaWNoIG1pZ2h0IGNhdXNl
+Cmlzc3VlcyBieSBpbmNsdWRpbmcgQ1JUQ3Mgbm90IGluIHRoZSBvcmlnaW5hbCByZXF1ZXN0IHRv
+IGJsb2NraW5nCmNvbW1pdHMuCgp2MjogQWRkIGNvbW1lbnRzIGFuZCBhIFdBUk5fT04gdG8gZW5m
+b3JjZSB0aGlzIG9ubHkgd2hlbiBhbGxvd2VkIC0gd2UKZG9uJ3Qgd2FudCB0byBzaWxlbnRseSBj
+b252ZXJ0IHBhZ2UgZmxpcHMgaW50byBibG9ja2luZyBwbGFuZSB1cGRhdGVzCmp1c3QgYmVjYXVz
+ZSB0aGUgZHJpdmVyIGlzIGJ1Z2d5LgoKdjM6IEZpeCBpbnZlcnRlZCBXQVJOX09OIChQZWtrYSku
+CgpSZWZlcmVuY2VzOiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmkt
+ZGV2ZWwvMjAxOC1KdWx5LzE4MjI4MS5odG1sCkJ1Z3ppbGxhOiBodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvd2F5bGFuZC93ZXN0b24vaXNzdWVzLzI0I25vdGVfOTU2OApDYzogRGFuaWVs
+IFN0b25lIDxkYW5pZWxAZm9vaXNoYmFyLm9yZz4KQ2M6IFBla2thIFBhYWxhbmVuIDxwZWtrYS5w
+YWFsYW5lbkBjb2xsYWJvcmEuY28udWs+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnClJldmll
+d2VkLWJ5OiBEYW5pZWwgU3RvbmUgPGRhbmllbHNAY29sbGFib3JhLmNvbT4KQ2M6IFZpbGxlIFN5
+cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IERh
+bmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgotLQpSZXNlbmRpbmcgYmVjYXVz
+ZSBsYXN0IGF0dGVtcHQgZmFpbGVkIENJIGFuZCBtZWFud2hpbGUgdGhlIHJlc3VsdHMgYXJlCmxv
+c3QgOi0vCi1EYW5pZWwKLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jIHwgMzQgKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDMxIGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ry
+bV9hdG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmMKaW5kZXggOTY1MTczZmQw
+YWMyLi40ZjE0MGZmNmZiOTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWlj
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwpAQCAtMTM2MiwxNSArMTM2Miw0
+MyBAQCBFWFBPUlRfU1lNQk9MKGRybV9hdG9taWNfY29tbWl0KTsKIGludCBkcm1fYXRvbWljX25v
+bmJsb2NraW5nX2NvbW1pdChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpCiB7CiAJc3Ry
+dWN0IGRybV9tb2RlX2NvbmZpZyAqY29uZmlnID0gJnN0YXRlLT5kZXYtPm1vZGVfY29uZmlnOwot
+CWludCByZXQ7CisJdW5zaWduZWQgcmVxdWVzdGVkX2NydGMgPSAwOworCXVuc2lnbmVkIGFmZmVj
+dGVkX2NydGMgPSAwOworCXN0cnVjdCBkcm1fY3J0YyAqY3J0YzsKKwlzdHJ1Y3QgZHJtX2NydGNf
+c3RhdGUgKmNydGNfc3RhdGU7CisJYm9vbCBub25ibG9ja2luZyA9IHRydWU7CisJaW50IHJldCwg
+aTsKKworCS8qCisJICogRm9yIGNvbW1pdHMgdGhhdCBhbGxvdyBtb2Rlc2V0cyBkcml2ZXJzIGNh
+biBhZGQgb3RoZXIgQ1JUQ3MgdG8gdGhlCisJICogYXRvbWljIGNvbW1pdCwgZS5nLiB3aGVuIHRo
+ZXkgbmVlZCB0byByZWFsbG9jYXRlIGdsb2JhbCByZXNvdXJjZXMuCisJICoKKwkgKiBCdXQgd2hl
+biB1c2Vyc3BhY2UgYWxzbyByZXF1ZXN0cyBhIG5vbmJsb2NraW5nIGNvbW1pdCB0aGVuIHVzZXJz
+cGFjZQorCSAqIGNhbm5vdCBrbm93IHRoYXQgdGhlIGNvbW1pdCBhZmZlY3RzIG90aGVyIENSVENz
+LCB3aGljaCBjYW4gcmVzdWx0IGluCisJICogc3B1cmlvdXMgRUJVU1kgZmFpbHVyZXMuIFVudGls
+IHdlIGhhdmUgYmV0dGVyIHVhcGkgcGx1ZyB0aGlzIGJ5CisJICogZGVtb3Rpbmcgc3VjaCBjb21t
+aXRzIHRvIGJsb2NraW5nIG1vZGUuCisJICovCisJZm9yX2VhY2hfbmV3X2NydGNfaW5fc3RhdGUo
+c3RhdGUsIGNydGMsIGNydGNfc3RhdGUsIGkpCisJCXJlcXVlc3RlZF9jcnRjIHw9IGRybV9jcnRj
+X21hc2soY3J0Yyk7CiAKIAlyZXQgPSBkcm1fYXRvbWljX2NoZWNrX29ubHkoc3RhdGUpOwogCWlm
+IChyZXQpCiAJCXJldHVybiByZXQ7CiAKLQlEUk1fREVCVUdfQVRPTUlDKCJjb21taXR0aW5nICVw
+IG5vbmJsb2NraW5nXG4iLCBzdGF0ZSk7CisJZm9yX2VhY2hfbmV3X2NydGNfaW5fc3RhdGUoc3Rh
+dGUsIGNydGMsIGNydGNfc3RhdGUsIGkpCisJCWFmZmVjdGVkX2NydGMgfD0gZHJtX2NydGNfbWFz
+ayhjcnRjKTsKKworCWlmIChhZmZlY3RlZF9jcnRjICE9IHJlcXVlc3RlZF9jcnRjKSB7CisJCS8q
+IGFkZGluZyBvdGhlciBDUlRDIGlzIG9ubHkgYWxsb3dlZCBmb3IgbW9kZXNldCBjb21taXRzICov
+CisJCVdBUk5fT04oIXN0YXRlLT5hbGxvd19tb2Rlc2V0KTsKKworCQlEUk1fREVCVUdfQVRPTUlD
+KCJkZW1vdGluZyAlcCB0byBibG9ja2luZyBtb2RlIHRvIGF2b2lkIEVCVVNZXG4iLCBzdGF0ZSk7
+CisJCW5vbmJsb2NraW5nID0gZmFsc2U7CisJfSBlbHNlIHsKKwkJRFJNX0RFQlVHX0FUT01JQygi
+Y29tbWl0dGluZyAlcCBub25ibG9ja2luZ1xuIiwgc3RhdGUpOworCX0KIAotCXJldHVybiBjb25m
+aWctPmZ1bmNzLT5hdG9taWNfY29tbWl0KHN0YXRlLT5kZXYsIHN0YXRlLCB0cnVlKTsKKwlyZXR1
+cm4gY29uZmlnLT5mdW5jcy0+YXRvbWljX2NvbW1pdChzdGF0ZS0+ZGV2LCBzdGF0ZSwgbm9uYmxv
+Y2tpbmcpOwogfQogRVhQT1JUX1NZTUJPTChkcm1fYXRvbWljX25vbmJsb2NraW5nX2NvbW1pdCk7
+CiAKLS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
