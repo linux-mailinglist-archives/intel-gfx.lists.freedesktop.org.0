@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AFC01A216F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E451A2177
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 14:13:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB0CA6E98F;
-	Wed,  8 Apr 2020 12:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6D3B6EA4D;
+	Wed,  8 Apr 2020 12:13:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696606EA4A
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 12:11:51 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id h2so4893280wmb.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 05:11:51 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA9D6EA4D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 12:13:37 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id h2so4898607wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 05:13:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=c9O6GiNLs3PI/XZFUUoTTQcDWfGeIenpn7JnnRpynQc=;
- b=IHeZbWoowvudckfoYIkOgm9/9idlMHsseEK0ctU/ploefniStmcjhulX6lWr+3Ib5Q
- Pl+7BPD3dWpZ5Y9T7Yz/OitSfWQu//lh8pcBlgAWomNAFPY2XjL3U7NizxpI/XOvvn59
- ORGo3tsv1NMtgxV3BM3t8OdQr8pnHlYnLojfg=
+ bh=mrNCJAovJt3GXMs7ulBH/uKKHC2ZSg50Ujua8nzpokY=;
+ b=BpBeMvyFY97FhTbDs+2dpGKoHZrGCudtX2yhEC31Mbny0S4Xa2o2dJtOGnh3zWPYLb
+ BYkTIkeA0v7QQGqFeHD1WKBjguG/OEqSpCIMY/9CXLIBt6l+jdYu/UHltcUMJkVrO2z/
+ /o+SAdoKc1EjdN8x0IWaZWEWYhMF5DL5y9D1w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=c9O6GiNLs3PI/XZFUUoTTQcDWfGeIenpn7JnnRpynQc=;
- b=cEo8K3qQgdOR/5XIv2SkS+qBR8AhIXlb7Uwtwy8OuqnbGxV/kUebxO7AyhDQJycDSW
- jFBE/vymnlSOY3d1VyncF2BLq8BapT7s91vrpyQm2S6kus+KEOBgsygBPrThOo9MP3Qv
- ftxDffgLFVG3I3DXAN4YHwosgccUIYCxwgmPEnbpRmXadC5BcpjWyYSbubMt8OSjZxMD
- QX8s2YyU/RBCl9QkxcDgt6PM/fPXoqTm4a8Rxl8+2vWCiVMqvL5Z303TSuTzHrKKNdyY
- PEeUn+UJvd4nUw4Qtvp8IxoQcjkyZi53Ut2AQt0f01v0JkMYkgRMskbarU9DWc6QqRGe
- OPJQ==
-X-Gm-Message-State: AGi0PuZkmtE95LzWFt3J9u+19hlI3zu0yFS+GCzZXML6S9gMxYsXUNAg
- MVJC9hENYkvwGUrHmwEtRjHTdw==
-X-Google-Smtp-Source: APiQypKo1EQGF2d683Z+B0ImWNijJ1q0faOY3oyfUiQ0jYLIkU65wc0Tdj/zuANgzumbwyNTgohoXg==
-X-Received: by 2002:a1c:ba82:: with SMTP id k124mr4613404wmf.66.1586347909913; 
- Wed, 08 Apr 2020 05:11:49 -0700 (PDT)
+ bh=mrNCJAovJt3GXMs7ulBH/uKKHC2ZSg50Ujua8nzpokY=;
+ b=iAhrh6gnnmlVkqE+QTdfwG0g2cRHKLDwgia/DccEzSI80t8xsSjPDqWiDw6inY4DIl
+ jt6cZRSkyjcHpxJutvkS9Yz87H/qmWklQfsvlbXAaTq2c4ScFnF0xA/Vaf8sTChseuu4
+ LNOSWy/ef1bNtX1QA4OvXAR7EQ5NL9MaXaWvlNCOmzVIszljUqGobd13vhDF+hu5E5Sq
+ NC1RI346SJJ5btPEk5DPYRNovvsneNS7Ko1s4FqiVlMyp6Gv+1dm07Y3v6irc5HUkFn4
+ 9tQF89cn3S+1ldg0ZBsXVz2JUvXQtPanLcuBQkh6lEG9gINAlsllMp8ln+cvs6xYy2Bs
+ 4fFA==
+X-Gm-Message-State: AGi0PuZ+FUzdrjHLyWl2Z5/FEZXIcGYeNMYPASufoAHESZ10qqlpR5aI
+ c7bHO60qkmih1hFfRkdzSBiUTE7u7xU=
+X-Google-Smtp-Source: APiQypLU5E3F/ozuXc2+y1m12HEekvC4YnsV/7ZnG00q5OournbJ34uT4VMiRCq3sKlJv4eAPzH6/Q==
+X-Received: by 2002:a1c:4409:: with SMTP id r9mr4542864wma.165.1586348015760; 
+ Wed, 08 Apr 2020 05:13:35 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y22sm7071911wma.18.2020.04.08.05.11.48
+ by smtp.gmail.com with ESMTPSA id 145sm5826764wma.1.2020.04.08.05.13.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 05:11:49 -0700 (PDT)
-Date: Wed, 8 Apr 2020 14:11:47 +0200
+ Wed, 08 Apr 2020 05:13:35 -0700 (PDT)
+Date: Wed, 8 Apr 2020 14:13:33 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20200408121147.GL3456981@phenom.ffwll.local>
+Message-ID: <20200408121333.GM3456981@phenom.ffwll.local>
 References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
- <20200403135828.2542770-3-daniel.vetter@ffwll.ch>
- <20200408065714.GC14965@ravnborg.org>
+ <20200403135828.2542770-15-daniel.vetter@ffwll.ch>
+ <20200408072701.GI14965@ravnborg.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200408065714.GC14965@ravnborg.org>
+In-Reply-To: <20200408072701.GI14965@ravnborg.org>
 X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 02/44] drm: Add devm_drm_dev_alloc macro
+Subject: Re: [Intel-gfx] [PATCH 14/44] drm/v3d: Delete v3d_dev->pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,165 +69,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2020 at 08:57:14AM +0200, Sam Ravnborg wrote:
+On Wed, Apr 08, 2020 at 09:27:01AM +0200, Sam Ravnborg wrote:
 > Hi Daniel.
 > 
-> Finally managed to dive into this..
+> On Fri, Apr 03, 2020 at 03:57:58PM +0200, Daniel Vetter wrote:
+> > We already have it in v3d_dev->drm.dev with zero additional pointer
+> > chasing. Personally I don't like duplicated pointers like this
+> > because:
+> > - reviewers need to check whether the pointer is for the same or
+> > different objects if there's multiple
+> > - compilers have an easier time too
+> > 
+> > To avoid having to pull in some big headers I implemented the casting
+> > function as a macro instead of a static inline.
+> Hmm...
 > 
-> Maybe I need more coffee, it is still morning here.
-> But alas this patch triggered a few comments.
+> > Typechecking thanks to
+> > container_of still assured.
+> > 
+> > But also a bit a bikeshed, so feel free to ignore.
+> > 
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Eric Anholt <eric@anholt.net>
+> 
+> This and patch 13 has same subject - confusing.
+
+dev != pdev
+
+But yeah I agree it's a nice trick I'm pulling here :-)
+
+Cheers, Daniel
 > 
 > 	Sam
 > 
-> On Fri, Apr 03, 2020 at 03:57:46PM +0200, Daniel Vetter wrote:
-> > The kerneldoc is only added for this new function. Existing kerneldoc
-> > and examples will be udated at the very end, since once all drivers
-> > are converted over to devm_drm_dev_alloc we can unexport a lot of
-> > interim functions and make the documentation for driver authors a lot
-> > cleaner and less confusing. There will be only one true way to
-> > initialize a drm_device at the end of this, which is going to be
-> > devm_drm_dev_alloc.
-> 
-> This changelog entry does a poor job describing what the purpose of this
-> change is.
-> Try to read it outside context.
-
-Something like:
-
-Add a new macro helper to combine the usual init sequence in drivers,
-consisting of a kzalloc + devm_drm_dev_init + drmm_add_final_kfree
-triplet. This allows us to remove the rather unsightly
-drmm_add_final_kfree from all currently merged drivers.
-
-This good enough, as an intro paragraph?
-
-> 
-> 
-> > 
-> > Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > > ---
-> >  drivers/gpu/drm/drm_drv.c | 23 +++++++++++++++++++++++
-> >  include/drm/drm_drv.h     | 33 +++++++++++++++++++++++++++++++++
-> >  2 files changed, 56 insertions(+)
+> >  drivers/gpu/drm/v3d/v3d_drv.c | 3 +--
+> >  drivers/gpu/drm/v3d/v3d_drv.h | 3 ++-
+> >  drivers/gpu/drm/v3d/v3d_irq.c | 8 +++++---
+> >  3 files changed, 8 insertions(+), 6 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 1bb4f636b83c..9e60b784b3ac 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -739,6 +739,29 @@ int devm_drm_dev_init(struct device *parent,
+> > diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+> > index 37cb880f2826..82a7dfdd14c2 100644
+> > --- a/drivers/gpu/drm/v3d/v3d_drv.c
+> > +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+> > @@ -235,7 +235,7 @@ static int
+> >  map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
+> >  {
+> >  	struct resource *res =
+> > -		platform_get_resource_byname(v3d->pdev, IORESOURCE_MEM, name);
+> > +		platform_get_resource_byname(v3d_to_pdev(v3d), IORESOURCE_MEM, name);
+> >  
+> >  	*regs = devm_ioremap_resource(v3d->drm.dev, res);
+> >  	return PTR_ERR_OR_ZERO(*regs);
+> > @@ -255,7 +255,6 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
+> >  	if (IS_ERR(v3d))
+> >  		return PTR_ERR(v3d);
+> >  
+> > -	v3d->pdev = pdev;
+> >  	drm = &v3d->drm;
+> >  
+> >  	platform_set_drvdata(pdev, drm);
+> > diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+> > index 4d2d1f2fe1af..935f23b524b2 100644
+> > --- a/drivers/gpu/drm/v3d/v3d_drv.h
+> > +++ b/drivers/gpu/drm/v3d/v3d_drv.h
+> > @@ -46,7 +46,6 @@ struct v3d_dev {
+> >  	int ver;
+> >  	bool single_irq_line;
+> >  
+> > -	struct platform_device *pdev;
+> >  	void __iomem *hub_regs;
+> >  	void __iomem *core_regs[3];
+> >  	void __iomem *bridge_regs;
+> > @@ -128,6 +127,8 @@ v3d_has_csd(struct v3d_dev *v3d)
+> >  	return v3d->ver >= 41;
 > >  }
-> >  EXPORT_SYMBOL(devm_drm_dev_init);
 > >  
-> > +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
-> > +			   size_t size, size_t offset)
-> > +{
-> > +	void *container;
-> > +	struct drm_device *drm;
-> > +	int ret;
+> > +#define v3d_to_pdev(v3d) to_platform_device(v3d->drm.dev)
 > > +
-> > +	container = kzalloc(size, GFP_KERNEL);
-> > +	if (!container)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	drm = container + offset;
-> > +	ret = devm_drm_dev_init(parent, drm, driver);
-> > +	if (ret) {
-> > +		kfree(container);
-> > +		return ERR_PTR(ret);
-> > +	}
-> > +	drmm_add_final_kfree(drm, container);
-> > +
-> > +	return container;
-> > +}
-> > +EXPORT_SYMBOL(__devm_drm_dev_alloc);
-> > +
-> >  /**
-> >   * drm_dev_alloc - Allocate new DRM device
-> >   * @driver: DRM driver to allocate device for
-> > diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> > index e7c6ea261ed1..26776be5a21e 100644
-> > --- a/include/drm/drm_drv.h
-> > +++ b/include/drm/drm_drv.h
-> > @@ -626,6 +626,39 @@ int devm_drm_dev_init(struct device *parent,
-> >  		      struct drm_device *dev,
-> >  		      struct drm_driver *driver);
+> >  /* The per-fd struct, which tracks the MMU mappings. */
+> >  struct v3d_file_priv {
+> >  	struct v3d_dev *v3d;
+> > diff --git a/drivers/gpu/drm/v3d/v3d_irq.c b/drivers/gpu/drm/v3d/v3d_irq.c
+> > index f4ce6d057c90..51b65263c657 100644
+> > --- a/drivers/gpu/drm/v3d/v3d_irq.c
+> > +++ b/drivers/gpu/drm/v3d/v3d_irq.c
+> > @@ -217,7 +217,7 @@ v3d_irq_init(struct v3d_dev *v3d)
+> >  		V3D_CORE_WRITE(core, V3D_CTL_INT_CLR, V3D_CORE_IRQS);
+> >  	V3D_WRITE(V3D_HUB_INT_CLR, V3D_HUB_IRQS);
 > >  
-> > +void* __devm_drm_dev_alloc(struct device *parent, struct drm_driver *driver,
-> > +			   size_t size, size_t offset);
-> > +
-> > +/**
-> > + * devm_drm_dev_alloc - Resource managed allocation of a &drm_device instance
-> > + * @parent: Parent device object
-> > + * @driver: DRM driver
-> > + * @type: the type of the struct which contains struct &drm_device
-> > + * @member: the name of the &drm_device within @type.
-> I am confused about the naming here.
-> devm_ implies we allocate something with a lifetime equal that of a
-> driver. So when the driver are gone what we allocate is also gone.
-> Like everythign else devm_ prefixed.
-> 
-> But the lifetime of a drm_device is until the last userspace reference
-> is gone (final drm_dev_put() is called).
-
-The kerneldoc for this is largely copied from the existing
-devm_drm_dev_init. And yes the lifetime is bound to the device, we do the
-drm_dev_put() when that disappears. Now other users of drm_device might
-still hold references and delay cleanup, but "cleanup is done as a devres
-action" is very much what devm_ signifies.
-"
-> > + *
-> > + * This allocates and initialize a new DRM device. No device registration is done.
-> > + * Call drm_dev_register() to advertice the device to user space and register it
-> > + * with other core subsystems. This should be done last in the device
-> s/This/Calling drm_dev_register()/ will make this sentence a bit more
-> explicit.
-> 
-> > + * initialization sequence to make sure userspace can't access an inconsistent
-> > + * state.
-> > + *
-> > + * The initial ref-count of the object is 1. Use drm_dev_get() and
-> > + * drm_dev_put() to take and drop further ref-counts.
-> > + *
-> > + * It is recommended that drivers embed &struct drm_device into their own device
-> > + * structure.
-> > + *
-> > + * Note that this manages the lifetime of the resulting &drm_device
-> > + * automatically using devres.
-> Hmm, no this is managed by drmres???
-
-Yup, the next sentence explains how. And note that we're already using
-this in the form of devm_drm_dev_init. So not clear what's unclear here
-...
-
-Thanks for your comments.
--Daniel
-
-
-> 
-> 
-> > + * The DRM device initialized with this function is
-> > + * automatically put on driver detach using drm_dev_put().
-> > + *
-> > + * RETURNS:
-> > + * Pointer to new DRM device, or ERR_PTR on failure.
-> > + */
-> > +#define devm_drm_dev_alloc(parent, driver, type, member) \
-> > +	((type *) __devm_drm_dev_alloc(parent, driver, sizeof(type), \
-> > +				       offsetof(type, member)))
-> > +
-> >  struct drm_device *drm_dev_alloc(struct drm_driver *driver,
-> >  				 struct device *parent);
-> >  int drm_dev_register(struct drm_device *dev, unsigned long flags);
+> > -	irq1 = platform_get_irq(v3d->pdev, 1);
+> > +	irq1 = platform_get_irq(v3d_to_pdev(v3d), 1);
+> >  	if (irq1 == -EPROBE_DEFER)
+> >  		return irq1;
+> >  	if (irq1 > 0) {
+> > @@ -226,7 +226,8 @@ v3d_irq_init(struct v3d_dev *v3d)
+> >  				       "v3d_core0", v3d);
+> >  		if (ret)
+> >  			goto fail;
+> > -		ret = devm_request_irq(v3d->drm.dev, platform_get_irq(v3d->pdev, 0),
+> > +		ret = devm_request_irq(v3d->drm.dev,
+> > +				       platform_get_irq(v3d_to_pdev(v3d), 0),
+> >  				       v3d_hub_irq, IRQF_SHARED,
+> >  				       "v3d_hub", v3d);
+> >  		if (ret)
+> > @@ -234,7 +235,8 @@ v3d_irq_init(struct v3d_dev *v3d)
+> >  	} else {
+> >  		v3d->single_irq_line = true;
+> >  
+> > -		ret = devm_request_irq(v3d->drm.dev, platform_get_irq(v3d->pdev, 0),
+> > +		ret = devm_request_irq(v3d->drm.dev,
+> > +				       platform_get_irq(v3d_to_pdev(v3d), 0),
+> >  				       v3d_irq, IRQF_SHARED,
+> >  				       "v3d", v3d);
+> >  		if (ret)
 > > -- 
 > > 2.25.1
 > > 
