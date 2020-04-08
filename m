@@ -2,30 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B8E1A192F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 02:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3941A2298
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 15:09:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1A176E943;
-	Wed,  8 Apr 2020 00:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 462AD6E1B1;
+	Wed,  8 Apr 2020 13:09:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 920916E05A;
- Wed,  8 Apr 2020 00:17:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8B989A3C0D;
- Wed,  8 Apr 2020 00:17:00 +0000 (UTC)
+Received: from frisell.zx2c4.com (frisell.zx2c4.com [192.95.5.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95A6B6E05A;
+ Wed,  8 Apr 2020 00:40:21 +0000 (UTC)
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 6aa8cdd8;
+ Wed, 8 Apr 2020 00:31:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+ :references:in-reply-to:from:date:message-id:subject:to:cc
+ :content-type; s=mail; bh=pVZbz2BQiRw2Mi3KrA8/Yoa+8c8=; b=3TcYGn
+ Yj01O9WWE/XKUXtg4fDPrqV69tp2+JqTx4aclm3f7Q46GJY//9rcpEoQYPOrMPEs
+ drxICokhgcw03fi/N93H+fnRqF60Pw9tZOfw91moZCYnS+h/DVrLMrVYwqUY5h2J
+ KcHrfHEgb2+So579x6808LkgeC1SO47sPFYOmEQeWKulCmDJF3ituSwsLFs7Rz6y
+ fKlTepo+50ybdmQfTqYvrVAjKYMP76uR5SX4hMVI3TccA9MfTgBM/AZpF76+XGVf
+ 25VyWRylR6eC/Sh8eYIOhskkPxE1Sc087qrux8s5yk+he4mJcdPtDhzhwlQq8OoZ
+ M2uVtWOhuOzeeweg==
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 2cfff373
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO); 
+ Wed, 8 Apr 2020 00:31:19 +0000 (UTC)
+Received: by mail-il1-f182.google.com with SMTP id r5so5123339ilq.6;
+ Tue, 07 Apr 2020 17:40:18 -0700 (PDT)
+X-Gm-Message-State: AGi0Puay+MEs6AfqaRUtO3LD7LdWrNOkWs2o7GIso0TgDvx8UIOxfszs
+ VGz9Cu5/39E2GpNUK+keaFs/xaFy4bn/sSnrTCo=
+X-Google-Smtp-Source: APiQypKf0JHKHozVl5Ekm5/yscJCcYicF7LPFAQcfWzPigdyRdaNvh62EnA/SB13ZFPsDX4AC1SNpbWwZzYtTjPd4Ts=
+X-Received: by 2002:a92:798f:: with SMTP id u137mr5578644ilc.231.1586306418050; 
+ Tue, 07 Apr 2020 17:40:18 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi@etezian.org>
-Date: Wed, 08 Apr 2020 00:17:00 -0000
-Message-ID: <158630502054.19347.12036978376374731609@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200407214502.217567-1-andi@etezian.org>
-In-Reply-To: <20200407214502.217567-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZGVi?=
- =?utf-8?q?ugfs_cleanup_and_gt_depenencies=2E?=
+References: <20200328000422.98978-1-Jason@zx2c4.com>
+ <158538232569.25292.15795048542441478192@build.alporthouse.com>
+In-Reply-To: <158538232569.25292.15795048542441478192@build.alporthouse.com>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Tue, 7 Apr 2020 18:40:07 -0600
+X-Gmail-Original-Message-ID: <CAHmME9rQQjMY3+CxmUO3Yp+hHaOyfyORrPbBV5jBqVEZFXwecg@mail.gmail.com>
+Message-ID: <CAHmME9rQQjMY3+CxmUO3Yp+hHaOyfyORrPbBV5jBqVEZFXwecg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Approved-At: Wed, 08 Apr 2020 13:09:32 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if the FPU is
+ available before using it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,120 +57,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sat, Mar 28, 2020 at 1:59 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Jason A. Donenfeld (2020-03-28 00:04:22)
+> > It's not safe to just grab the FPU willy nilly without first checking to
+> > see if it's available. This patch adds the usual call to may_use_simd()
+> > and falls back to boring memcpy if it's not available.
+>
+> These instructions do not use the fpu, nor are these registers aliased
+> over the fpu stack. This description and the may_use_simd() do not
+> look like they express the right granularity as to which simd state are
+> included
 
-Series: debugfs cleanup and gt depenencies.
-URL   : https://patchwork.freedesktop.org/series/75635/
-State : success
+Most of the time when discussing vector instructions in the kernel
+with x86, "FPU" is used to denote the whole shebang, because of
+similar XSAVE semantics and requirements with actual floating point
+instructions and SIMD instructions. So when I say "grab the FPU", I'm
+really referring to the act of messing with any registers that aren't
+saved and restored by default during context switch and need the
+explicit marking for XSAVE to come in -- the kernel_fpu_begin/end
+calls that you already have.
 
-== Summary ==
+With regards to the granularity here, you are in fact touching xmm
+registers. That means you need kernel_fpu_begin/end, which you
+correctly have. However, it also means that before using those, you
+should check to see if that's okay by using the may_use_simd()
+instruction.
 
-CI Bug Log - changes from CI_DRM_8269 -> Patchwork_17243
-====================================================
+Now you may claim that at the moment
+may_use_simd()-->irq_fpu_usable()-->(!in_interrupt() ||
+interrupted_user_mode() || interrupted_kernel_fpu_idle()) always holds
+true, and you're a keen follower of the (recently changed) kernel fpu
+x86 semantics in case those conditions change, and that your driver is
+so strictly written that you know exactly the context this fancy
+memcpy will run in, always, and you'll never deviate from it, and
+therefore it's okay to depart from the rules and omit the check and
+safe fallback code. But c'mon - i915 is complex, and mixed context
+bugs abound, and the rules for using those registers might in fact
+change without you noticing.
 
-Summary
--------
+So why not apply this to have a safe fallback for when the numerous
+assumptions no longer hold? (If you're extra worried I suppose you
+could make it a `if (WARN_ON(!may_use_simd()))` instead or something,
+but that seems like a bit much.)
 
-  **SUCCESS**
+> Look at caller, return the error and let them decide if they can avoid
+> the read from WC, which quite often they can. And no, this is not done
+> from interrupt context, we would be crucified if we did.
 
-  No regressions found.
+Ahh, now, reading this comment here I realize maybe I've misunderstood
+you. Do you mean to say that checking for may_use_simd() is a thing
+that you'd like to do after all, but you don't like it falling back to
+slow memcpy. Instead, you'd like for the code to return an error
+value, and then caller can just optionally skip the memcpy under some
+complicated driver circumstances?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17243 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][1] -> [FAIL][2] ([i915#976])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [DMESG-WARN][3] ([i915#203]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [SKIP][5] ([fdo#109271]) -> [PASS][6] +5 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [DMESG-WARN][7] ([i915#106]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][9] ([i915#62] / [i915#95]) -> [SKIP][10] ([fdo#109271])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +9 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8269/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (53 -> 47)
-------------------------------
-
-  Additional (1): fi-kbl-r 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8269 -> Patchwork_17243
-
-  CI-20190529: 20190529
-  CI_DRM_8269: 301d0427e2e3108839bf6c36f58dd0b2b5258c25 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5577: 7ee7e86fd79e4dbb6300ef4c23e50cb699216ae2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17243: 1e192f84ccd90d30a5fe711ba72a3e9693f72519 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1e192f84ccd9 drm/i915/gt: move remaining debugfs interfaces into gt
-95bc256f9b08 drm/i915: remove broken i915_sseu_status interface
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17243/index.html
+Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
