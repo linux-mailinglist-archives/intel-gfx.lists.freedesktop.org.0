@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB8F1A2982
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 21:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 423031A299A
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Apr 2020 21:46:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3EA6E972;
-	Wed,  8 Apr 2020 19:44:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861E06EAC4;
+	Wed,  8 Apr 2020 19:46:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF7256E972
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 19:44:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20843590-1500050 for multiple; Wed, 08 Apr 2020 20:44:44 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3C86EAC4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 19:46:45 +0000 (UTC)
+IronPort-SDR: mlhyLOv7lACZ0FFVEHKcICkJGj6xXa4LVQxiTtAfNJ1Z7CYFBoS4M1oZu1WOGykPk3RfbbyN3c
+ vgUTfwMV5JTg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 12:46:44 -0700
+IronPort-SDR: /ssnNYJCmhhl+UKY7pjITYvW3ww3kpnGm3S0Gz2UKnElCgZ0vrjSKUO1vPhNuR528KCqbpgP1X
+ snVm8qgDCdtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,359,1580803200"; d="scan'208";a="269853095"
+Received: from linux.fm.intel.com (HELO intel.com) ([10.1.27.42])
+ by orsmga002.jf.intel.com with ESMTP; 08 Apr 2020 12:46:44 -0700
+Date: Wed, 8 Apr 2020 12:46:44 -0700
+From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200408194644.GB22556@intel.com>
+References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
+ <20200403091300.14734-4-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <20200408170456.399604-1-matthew.auld@intel.com>
-References: <20200408170456.399604-1-matthew.auld@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <158637508347.23732.17831144977931918019@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 08 Apr 2020 20:44:43 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/evict: watch out for unevictable
- nodes
+Content-Disposition: inline
+In-Reply-To: <20200403091300.14734-4-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 04/10] dma-buf: Report signaled links inside
+ dma-fence-chain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +49,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-04-08 18:04:56)
-> In an address space there can be sprinkling of I915_COLOR_UNEVICTABLE
-> nodes, which lack a parent vma. For platforms with cache coloring we
-> might be very unlucky and abut with such a node thinking we can simply
-> unbind the vma.
-
-I did notice this myself recently (from observation); it's highly
-unlikely to ever matter.
-
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_gem_evict.c | 4 ++++
->  1 file changed, 4 insertions(+)
+On 20/04/03 10:12, Chris Wilson wrote:
+> Whenever we walk along the dma-fence-chain, we prune signaled links to
+> keep the chain nice and tidy. This leads to situations where we can
+> prune a link and report the earlier fence as the target seqno --
+> violating our own consistency checks that the seqno is not more advanced
+> than the last element in a dma-fence-chain.
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-> index 4518b9b35c3d..9e462c6a4c6a 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-> @@ -227,6 +227,10 @@ i915_gem_evict_something(struct i915_address_space *vm,
->         }
+> Report a NULL fence and success if the seqno has already been signaled.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/dma-buf/dma-fence-chain.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
+> index 3d123502ff12..c435bbba851c 100644
+> --- a/drivers/dma-buf/dma-fence-chain.c
+> +++ b/drivers/dma-buf/dma-fence-chain.c
+> @@ -99,6 +99,12 @@ int dma_fence_chain_find_seqno(struct dma_fence **pfence, uint64_t seqno)
+>  		return -EINVAL;
 >  
->         while (ret == 0 && (node = drm_mm_scan_color_evict(&scan))) {
-> +               /* If we find any non-objects (!vma), we cannot evict them */
-> +               if (node->color == I915_COLOR_UNEVICTABLE)
-> +                       return -ENOSPC;
+>  	dma_fence_chain_for_each(*pfence, &chain->base) {
+> +		if ((*pfence)->seqno < seqno) { /* already signaled */
+> +			dma_fence_put(*pfence);
+> +			*pfence = NULL;
+> +			break;
+> +		}
+> +
+Looks good to me.
 
-Returning error immediately looks ok, I was worried as around here we
-usually have lists to clean up, but this is after those. However, I
-would suggest that setting ret = -ENOSPC would be more consistent with
-the flow.
+Tested-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+Reviewed-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 
-Fwiw, we can actually pull this logic into evict_for_node for a bit of
-simplification.
--Chris
+>  		if ((*pfence)->context != chain->base.context ||
+>  		    to_dma_fence_chain(*pfence)->prev_seqno < seqno)
+>  			break;
+> @@ -222,6 +228,7 @@ EXPORT_SYMBOL(dma_fence_chain_ops);
+>   * @chain: the chain node to initialize
+>   * @prev: the previous fence
+>   * @fence: the current fence
+> + * @seqno: the sequence number (syncpt) of the fence within the chain
+>   *
+>   * Initialize a new chain node and either start a new chain or add the node to
+>   * the existing chain of the previous fence.
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
