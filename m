@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3534A1A3B82
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 22:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF391A3C2B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 23:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A946EC25;
-	Thu,  9 Apr 2020 20:47:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7CC86EC2E;
+	Thu,  9 Apr 2020 21:58:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFC46EC24;
- Thu,  9 Apr 2020 20:47:48 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 8E9B820029;
- Thu,  9 Apr 2020 22:47:45 +0200 (CEST)
-Date: Thu, 9 Apr 2020 22:47:43 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200409204743.GA29379@ravnborg.org>
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-16-ville.syrjala@linux.intel.com>
- <20200407185653.GL6356@ravnborg.org>
- <20200407190800.GO6112@intel.com>
- <20200407193537.GA28584@ravnborg.org>
- <20200409194952.GZ6112@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8CBC6EC2A;
+ Thu,  9 Apr 2020 21:58:23 +0000 (UTC)
+IronPort-SDR: I0SvzK11s3il3/brROHn9JYNWetaWC0H9u2Wwj6U2qO3eSk71A0tr8LWyBzqEabnoyv0Sou4rv
+ Ye0q6jS1xiBg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2020 14:58:23 -0700
+IronPort-SDR: D0pm5353ktocpv3kpo6A6WHysf3MP6G8D5ge3b2t4SECFo5NL7i7GSNW6qc7EkQ/UyECLinL/P
+ sDP9uCGUF1yA==
+X-IronPort-AV: E=Sophos;i="5.72,364,1580803200"; d="scan'208";a="425675703"
+Received: from ashakhno-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.61.38])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2020 14:58:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Masahiro Yamada <masahiroy@kernel.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200409150627.29205-2-masahiroy@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200409150627.29205-1-masahiroy@kernel.org>
+ <20200409150627.29205-2-masahiroy@kernel.org>
+Date: Fri, 10 Apr 2020 00:58:16 +0300
+Message-ID: <87h7xsgw3r.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200409194952.GZ6112@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
- a=WlxNldc-yDntvwyGQAkA:9 a=CjuIK1q_8ugA:10
-Subject: Re: [Intel-gfx] [PATCH v2 15/17] drm/gma500: Stop using
- mode->private_flags
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: remove gvt/Makefile
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,77 +50,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Masahiro Yamada <masahiroy@kernel.org>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville.
+On Fri, 10 Apr 2020, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> Including subdirectory Makefile from the driver main Makefile does not
+> buy us much because this is not real isolation.
 
-> > > > > index 264d7ad004b4..9e88a37f55e9 100644
-> > > > > --- a/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-> > > > > +++ b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-> > > > > @@ -132,6 +132,8 @@ struct psb_intel_sdvo {
-> > > > >  	/* DDC bus used by this SDVO encoder */
-> > > > >  	uint8_t ddc_bus;
-> > > > >  
-> > > > > +	u8 pixel_multiplier;
-> > > > > +
-> > > > 
-> > > > There is really no good reason to use an u8 here.
-> > > 
-> > > Wastes less space.
-> > 
-> > When there is a good reason - use the size limited variants.
-> > But in this use case there is no reason to space optimize it.
-> 
-> IMO when it's stuffed into a structure there's no reason not to
-> optimize it. At some point it all starts to add up.
-> 
-> At least i915 suffers a lot from bloated structures (dev_priv
-> and atomic state structs being the prime examples) where we
-> could probably shave dozens if not hundreds of bytes if
-> everything just used the smallest type possible. In fact
-> this series does shave dozens of bytes from the crtc state
-> alone.
+The isolation it does buy us is that gvt/ subdirectory is developed and
+maintained on a separate mailing list and separate git repo. I think at
+some point there were plans to make it an actual module too.
 
-There is a difference between a structure used many times -
-And a structure used once or only a few times.
-If everyone started to optimize the types used, then we
-would end up with code that is hard to maintain.
+So while you could quip about Conway's law here, I think it might be
+better to keep this as it is.
 
-The point here is that we have a structure allocated maybe
-once and a field assinged from a int - which using integer promotion
-is then stuffed into an u8. If we one day start to be clever and
-use values above 255 we need to find all the places where a
-u8 was used to optimize size of some random struct.
+Zhenyu, Zhi, what do you think?
 
-If this was a struct instantiated many times and used all over
-the story was another - but thats not the case here.
-Here the principle of least suprises hold - do not change the type.
 
-I try to explain the rationale behind the argument to use int.
-Feel free to disagree.
+BR,
+Jani.
 
-> 
-> > 
-> > When in the slightly pedantic mode, using u8 is not consistent.
-> > ddc_bus defined above usese uint8_t.
-> 
-> u8 & co. are preferred in kernel code. Checkpatch even complains when
-> you use the stdint types. The uint8_t here is some old leftovers.
 
-Mixing coding practice makes code less readable, no matter
-the output of checkpatch.
-The right fix would be to update gma500 to migrate away from the
-stdint types. But that would be a sepearte patch for another day.
+>
+> Having a single Makefile at the top of the module is clearer, and
+> it is what this driver almost does.
+>
+> Move all gvt objects to the i915 main Makefile.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+>  drivers/gpu/drm/i915/Makefile     | 28 ++++++++++++++++++++++++----
+>  drivers/gpu/drm/i915/gvt/Makefile |  8 --------
+>  2 files changed, 24 insertions(+), 12 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/gvt/Makefile
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 6cd1f6253814..74e965882a98 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -275,10 +275,30 @@ i915-$(CONFIG_DRM_I915_SELFTEST) += \
+>  # virtual gpu code
+>  i915-y += i915_vgpu.o
+>  
+> -ifeq ($(CONFIG_DRM_I915_GVT),y)
+> -i915-y += intel_gvt.o
+> -include $(src)/gvt/Makefile
+> -endif
+> +i915-$(CONFIG_DRM_I915_GVT) += \
+> +	intel_gvt.o \
+> +	gvt/gvt.o \
+> +	gvt/aperture_gm.o \
+> +	gvt/handlers.o \
+> +	gvt/vgpu.o \
+> +	gvt/trace_points.o \
+> +	gvt/firmware.o \
+> +	gvt/interrupt.o \
+> +	gvt/gtt.o \
+> +	gvt/cfg_space.o \
+> +	gvt/opregion.o \
+> +	gvt/mmio.o \
+> +	gvt/display.o \
+> +	gvt/edid.o \
+> +	gvt/execlist.o \
+> +	gvt/scheduler.o \
+> +	gvt/sched_policy.o \
+> +	gvt/mmio_context.o \
+> +	gvt/cmd_parser.o \
+> +	gvt/debugfs.o \
+> +	gvt/fb_decoder.o \
+> +	gvt/dmabuf.o \
+> +	gvt/page_track.o
+>  
+>  obj-$(CONFIG_DRM_I915) += i915.o
+>  obj-$(CONFIG_DRM_I915_GVT_KVMGT) += gvt/kvmgt.o
+> diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
+> deleted file mode 100644
+> index 4d70f4689479..000000000000
+> --- a/drivers/gpu/drm/i915/gvt/Makefile
+> +++ /dev/null
+> @@ -1,8 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0
+> -GVT_DIR := gvt
+> -GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
+> -	interrupt.o gtt.o cfg_space.o opregion.o mmio.o display.o edid.o \
+> -	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
+> -	fb_decoder.o dmabuf.o page_track.o
+> -
+> -i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
 
-My orginal feedback on the patch has not changed.
-Feel free to move forward with the patch without my r-b.
-
-	Sam
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
