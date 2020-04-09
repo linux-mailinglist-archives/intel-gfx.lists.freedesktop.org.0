@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3861A3B76
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 22:43:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3534A1A3B82
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 22:47:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12BF96EC1F;
-	Thu,  9 Apr 2020 20:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A946EC25;
+	Thu,  9 Apr 2020 20:47:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 468766E27F;
- Thu,  9 Apr 2020 20:43:44 +0000 (UTC)
-IronPort-SDR: qo6wXd7xWYxX7swE2WtyCVjYfYRBC6og8A27Nt0eIE/UIHRcoGGlxYWZ1MNfv3tGjMcTdZwir3
- Bn4nHBaAc8DA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2020 13:43:41 -0700
-IronPort-SDR: fkSEf7U9HntVSKEj3aym9SlSpPq0MVzE42iAnEvCe97ETT9JJMPQehl98Un1Gln9GUZA531G8+
- 8TIArm+dPbvw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,364,1580803200"; d="scan'208";a="297632790"
-Received: from aaronkel-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.4.177])
- by FMSMGA003.fm.intel.com with ESMTP; 09 Apr 2020 13:43:38 -0700
-Date: Thu, 9 Apr 2020 23:43:36 +0300
-From: Andi Shyti <andi.shyti@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200409204336.GA20635@intel.intel>
-References: <20200408125946.2054864-1-chris@chris-wilson.co.uk>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFC46EC24;
+ Thu,  9 Apr 2020 20:47:48 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 8E9B820029;
+ Thu,  9 Apr 2020 22:47:45 +0200 (CEST)
+Date: Thu, 9 Apr 2020 22:47:43 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200409204743.GA29379@ravnborg.org>
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-16-ville.syrjala@linux.intel.com>
+ <20200407185653.GL6356@ravnborg.org>
+ <20200407190800.GO6112@intel.com>
+ <20200407193537.GA28584@ravnborg.org>
+ <20200409194952.GZ6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200408125946.2054864-1-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rc6_residency: Show
- where the time is spent
+In-Reply-To: <20200409194952.GZ6112@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
+ a=WlxNldc-yDntvwyGQAkA:9 a=CjuIK1q_8ugA:10
+Subject: Re: [Intel-gfx] [PATCH v2 15/17] drm/gma500: Stop using
+ mode->private_flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,24 +50,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Hi Ville.
 
-On Wed, Apr 08, 2020 at 01:59:46PM +0100, Chris Wilson wrote:
-> Sometimes the bg_load only wakes up once or twice in 3s. That's
-> just unbelievable, so include some measurements to see how long the
-> load spends in submission & waiting.
+> > > > > index 264d7ad004b4..9e88a37f55e9 100644
+> > > > > --- a/drivers/gpu/drm/gma500/psb_intel_sdvo.c
+> > > > > +++ b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
+> > > > > @@ -132,6 +132,8 @@ struct psb_intel_sdvo {
+> > > > >  	/* DDC bus used by this SDVO encoder */
+> > > > >  	uint8_t ddc_bus;
+> > > > >  
+> > > > > +	u8 pixel_multiplier;
+> > > > > +
+> > > > 
+> > > > There is really no good reason to use an u8 here.
+> > > 
+> > > Wastes less space.
+> > 
+> > When there is a good reason - use the size limited variants.
+> > But in this use case there is no reason to space optimize it.
 > 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> IMO when it's stuffed into a structure there's no reason not to
+> optimize it. At some point it all starts to add up.
+> 
+> At least i915 suffers a lot from bloated structures (dev_priv
+> and atomic state structs being the prime examples) where we
+> could probably shave dozens if not hundreds of bytes if
+> everything just used the smallest type possible. In fact
+> this series does shave dozens of bytes from the crtc state
+> alone.
 
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+There is a difference between a structure used many times -
+And a structure used once or only a few times.
+If everyone started to optimize the types used, then we
+would end up with code that is hard to maintain.
 
-Andi
+The point here is that we have a structure allocated maybe
+once and a field assinged from a int - which using integer promotion
+is then stuffed into an u8. If we one day start to be clever and
+use values above 255 we need to find all the places where a
+u8 was used to optimize size of some random struct.
+
+If this was a struct instantiated many times and used all over
+the story was another - but thats not the case here.
+Here the principle of least suprises hold - do not change the type.
+
+I try to explain the rationale behind the argument to use int.
+Feel free to disagree.
+
+> 
+> > 
+> > When in the slightly pedantic mode, using u8 is not consistent.
+> > ddc_bus defined above usese uint8_t.
+> 
+> u8 & co. are preferred in kernel code. Checkpatch even complains when
+> you use the stdint types. The uint8_t here is some old leftovers.
+
+Mixing coding practice makes code less readable, no matter
+the output of checkpatch.
+The right fix would be to update gma500 to migrate away from the
+stdint types. But that would be a sepearte patch for another day.
+
+My orginal feedback on the patch has not changed.
+Feel free to move forward with the patch without my r-b.
+
+	Sam
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
