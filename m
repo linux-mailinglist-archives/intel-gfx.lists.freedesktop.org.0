@@ -1,31 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0CE1A38F5
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 19:33:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259B41A3987
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 20:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4AB6E15C;
-	Thu,  9 Apr 2020 17:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9446E171;
+	Thu,  9 Apr 2020 18:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 96E556E0AA;
- Thu,  9 Apr 2020 17:33:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93E80A41FB;
- Thu,  9 Apr 2020 17:33:40 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C504E6E171
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 18:04:22 +0000 (UTC)
+IronPort-SDR: hvKlGBTixYqy2nBvPo+vGxIQJ8wDewtjZ3uNioDCyDUHKF6NSe8mDhw85Kql+ANBCUta9AvrHK
+ yuDjx/3fEqXg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2020 11:04:21 -0700
+IronPort-SDR: EFQdHI3nX/zpBLBw9MSm7S6MI1m23fRzbyyCFqeWvD3kgFvpBFUFux/PY3RWV3IsYLYCsmQB4h
+ BeJ+i8r3sFWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,363,1580803200"; d="scan'208";a="297601390"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 09 Apr 2020 11:04:19 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 09 Apr 2020 21:04:18 +0300
+Date: Thu, 9 Apr 2020 21:04:18 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Message-ID: <20200409180418.GY6112@intel.com>
+References: <20200330144421.11632-1-kai.vehmanen@linux.intel.com>
+ <alpine.DEB.2.21.2004091657320.2957@eliteleevi.tm.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 09 Apr 2020 17:33:40 -0000
-Message-ID: <158645362060.11551.13978649860504630976@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev14=29?=
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.21.2004091657320.2957@eliteleevi.tm.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: do AUD_FREQ_CNTRL state
+ save on all gen9+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,120 +52,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Apr 09, 2020 at 05:14:01PM +0300, Kai Vehmanen wrote:
+> Hey,
+> =
 
-Series: SAGV support for Gen12+ (rev14)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : success
+> On Mon, 30 Mar 2020, Kai Vehmanen wrote:
+> =
 
-== Summary ==
+> > Replace the TGL/ICL specific platform checks with a more generic check
+> > using INTEL_GEN(). Fixes bug with broken audio after S3 resume on JSL
+> > platforms.
+> =
 
-CI Bug Log - changes from CI_DRM_8285 -> Patchwork_17271
-====================================================
+> I would be (gently) beaten with a stick on alsa-devel for sending this
+> type of content free ping, but I still dare to seek your input on what is =
 
-Summary
--------
+> the proper way to get attention to a patch that are seemingly forever =
 
-  **SUCCESS**
+> stuck on the review sideline.
 
-  No regressions found.
+And what is this?
+https://patchwork.freedesktop.org/patch/347148/?series=3D71527&rev=3D1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/index.html
+> =
 
-Known issues
-------------
+> I've sent this on 13.3., resend on 30.3.. Should I just keep on sending =
 
-  Here are the changes found in Patchwork_17271 that come from known issues:
+> resends and let the system work (this is the alsa-devel practise), or =
 
-### IGT changes ###
+> should I start to contact potential reviewers with more direct asks?
 
-#### Issues hit ####
+Just ping on original patch or ping someone on irc. Resending
+the same patch over and over does no good. At least my brain just
+ignores anything that looks like it's just a resend w/o any clear
+justification.
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#262])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8285/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+> =
 
-  
-#### Possible fixes ####
+> Tests seem to all pass and this is pretty important for anyone using JSL =
 
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [DMESG-WARN][3] ([i915#203]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8285/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/fi-skl-6770hq/igt@i915_module_load@reload.html
+> platforms (you lose HDMI/DP audio after first S3 suspend otherwise):
+> https://patchwork.freedesktop.org/series/74664/
+> =
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [SKIP][5] ([fdo#109271]) -> [PASS][6] +4 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8285/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+> Br, Kai
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - fi-skl-6770hq:      [DMESG-WARN][7] ([i915#106]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8285/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+-- =
 
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][9] ([i915#62] / [i915#95]) -> [SKIP][10] ([fdo#109271])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8285/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (51 -> 47)
-------------------------------
-
-  Additional (1): fi-cml-u2 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8285 -> Patchwork_17271
-
-  CI-20190529: 20190529
-  CI_DRM_8285: 12fc367c2557ea74051378b2baadc6116add10ba @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5586: 29fad328e6a1b105c8d688cafe19b1b5c19ad0c8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17271: e967954f905e7e51449b415b65d478a0eb934a99 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e967954f905e drm/i915: Enable SAGV support for Gen12
-9a18dd734b17 drm/i915: Restrict qgv points which don't have enough bandwidth.
-8324f5130045 drm/i915: Rename bw_state to new_bw_state
-49c46f4edf34 drm/i915: Added required new PCode commands
-fd7ee6e3d868 drm/i915: Add TGL+ SAGV support
-7c3a86821437 drm/i915: Separate icl and skl SAGV checking
-7b65af3b3c25 drm/i915: Use bw state for per crtc SAGV evaluation
-f573a32afca5 drm/i915: Add pre/post plane updates for SAGV
-926c0a7aaf2a drm/i915: Prepare to extract gen specific functions from intel_can_enable_sagv
-00989296f52d drm/i915: Add intel_atomic_get_bw_*_state helpers
-28f3e791c62a drm/i915: Introduce skl_plane_wm_level accessor.
-39684149a1cb drm/i915: Eliminate magic numbers "0" and "1" from color plane
-db3bb77d347e drm/i915: Start passing latency as parameter
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17271/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
