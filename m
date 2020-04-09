@@ -1,44 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B361A36E9
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 17:22:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BCEF1A376C
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 17:51:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5C136EBE3;
-	Thu,  9 Apr 2020 15:22:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 131B26E243;
+	Thu,  9 Apr 2020 15:51:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from conuserg-07.nifty.com (conuserg-07.nifty.com [210.131.2.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB376EBDA;
- Thu,  9 Apr 2020 15:07:29 +0000 (UTC)
-Received: from grover.flets-west.jp (softbank126125134031.bbtec.net
- [126.125.134.31]) (authenticated)
- by conuserg-07.nifty.com with ESMTP id 039F6Zj6025357;
- Fri, 10 Apr 2020 00:06:36 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-07.nifty.com 039F6Zj6025357
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1586444797;
- bh=3FWc8C25LITNQQg0scvue6NeZtoknDzBN+lCFDj1JxY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EOfo+Iv88S2F74NASApAzGboR82EULxA/WbLaWS1Sl3Uf3q91pcLBNWTeKeX9pUAv
- X+75wDSUj+frCAPA2h4WrKgenfG7uo8M9EiFlyj1+IhUW5iVaipT24ng/soW0coUWj
- sYtgbj5GFQk5W0s5xEzV3K7GLPta6E78A6Y8VzekpTb7qV/px7uoCP8VQJZA/XF3gm
- 7i+/0um1vVt+w0P30BIbdMognQ1+KCNt9H19zUBeKjvf3A3f3pNJWmprhLOlDyvmft
- tD31ALtzXKnY7RwE1ywOKbbeOvCOJ8dCignjBz+Hno0nZBPWXYhNt0njIaWzWcv2AT
- CfUQSWTMhfsYQ==
-X-Nifty-SrcIP: [126.125.134.31]
-From: Masahiro Yamada <masahiroy@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Apr 2020 00:06:27 +0900
-Message-Id: <20200409150627.29205-2-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200409150627.29205-1-masahiroy@kernel.org>
-References: <20200409150627.29205-1-masahiroy@kernel.org>
-X-Mailman-Approved-At: Thu, 09 Apr 2020 15:22:34 +0000
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: remove gvt/Makefile
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25B676E243
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 15:51:01 +0000 (UTC)
+IronPort-SDR: C7dnD5OG8Po5q/Y6wloCAYDTuDG0M7iv2wciiLw0HtPNueaBZRtj/EJax2yshWL4h/PqCfsIa4
+ C/Adm8udMM0Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2020 08:51:00 -0700
+IronPort-SDR: 4fjSM8GZYBfIPTXU9+OsykQ+y5LATCx+hwKSxYycxE9PWbvHib3qHYuJEYvDSS9S+iNq+8uGPC
+ zAsd5Yz50naQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,363,1580803200"; d="scan'208";a="257857037"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by orsmga008.jf.intel.com with ESMTP; 09 Apr 2020 08:50:58 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Apr 2020 18:47:17 +0300
+Message-Id: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v22 00/13] SAGV support for Gen12+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,86 +45,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Masahiro Yamada <masahiroy@kernel.org>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-MIME-Version: 1.0
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Including subdirectory Makefile from the driver main Makefile does not
-buy us much because this is not real isolation.
+For Gen11+ platforms BSpec suggests disabling specific
+QGV points separately, depending on bandwidth limitations
+and current display configuration. Thus it required adding
+a new PCode request for disabling QGV points and some
+refactoring of already existing SAGV code.
+Also had to refactor intel_can_enable_sagv function,
+as current seems to be outdated and using skl specific
+workarounds, also not following BSpec for Gen11+.
 
-Having a single Makefile at the top of the module is clearer, and
-it is what this driver almost does.
+Stanislav Lisovskiy (13):
+  drm/i915: Start passing latency as parameter
+  drm/i915: Eliminate magic numbers "0" and "1" from color plane
+  drm/i915: Introduce skl_plane_wm_level accessor.
+  drm/i915: Add intel_atomic_get_bw_*_state helpers
+  drm/i915: Prepare to extract gen specific functions from
+    intel_can_enable_sagv
+  drm/i915: Add pre/post plane updates for SAGV
+  drm/i915: Use bw state for per crtc SAGV evaluation
+  drm/i915: Separate icl and skl SAGV checking
+  drm/i915: Add TGL+ SAGV support
+  drm/i915: Added required new PCode commands
+  drm/i915: Rename bw_state to new_bw_state
+  drm/i915: Restrict qgv points which don't have enough bandwidth.
+  drm/i915: Enable SAGV support for Gen12
 
-Move all gvt objects to the i915 main Makefile.
+ drivers/gpu/drm/i915/display/intel_bw.c       | 191 +++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  24 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  21 +-
+ .../drm/i915/display/intel_display_types.h    |  11 +
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +
+ drivers/gpu/drm/i915/intel_pm.c               | 476 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_pm.h               |   8 +-
+ drivers/gpu/drm/i915/intel_sideband.c         |   2 +
+ 8 files changed, 604 insertions(+), 134 deletions(-)
 
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
-
- drivers/gpu/drm/i915/Makefile     | 28 ++++++++++++++++++++++++----
- drivers/gpu/drm/i915/gvt/Makefile |  8 --------
- 2 files changed, 24 insertions(+), 12 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/gvt/Makefile
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 6cd1f6253814..74e965882a98 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -275,10 +275,30 @@ i915-$(CONFIG_DRM_I915_SELFTEST) += \
- # virtual gpu code
- i915-y += i915_vgpu.o
- 
--ifeq ($(CONFIG_DRM_I915_GVT),y)
--i915-y += intel_gvt.o
--include $(src)/gvt/Makefile
--endif
-+i915-$(CONFIG_DRM_I915_GVT) += \
-+	intel_gvt.o \
-+	gvt/gvt.o \
-+	gvt/aperture_gm.o \
-+	gvt/handlers.o \
-+	gvt/vgpu.o \
-+	gvt/trace_points.o \
-+	gvt/firmware.o \
-+	gvt/interrupt.o \
-+	gvt/gtt.o \
-+	gvt/cfg_space.o \
-+	gvt/opregion.o \
-+	gvt/mmio.o \
-+	gvt/display.o \
-+	gvt/edid.o \
-+	gvt/execlist.o \
-+	gvt/scheduler.o \
-+	gvt/sched_policy.o \
-+	gvt/mmio_context.o \
-+	gvt/cmd_parser.o \
-+	gvt/debugfs.o \
-+	gvt/fb_decoder.o \
-+	gvt/dmabuf.o \
-+	gvt/page_track.o
- 
- obj-$(CONFIG_DRM_I915) += i915.o
- obj-$(CONFIG_DRM_I915_GVT_KVMGT) += gvt/kvmgt.o
-diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
-deleted file mode 100644
-index 4d70f4689479..000000000000
---- a/drivers/gpu/drm/i915/gvt/Makefile
-+++ /dev/null
-@@ -1,8 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--GVT_DIR := gvt
--GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
--	interrupt.o gtt.o cfg_space.o opregion.o mmio.o display.o edid.o \
--	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
--	fb_decoder.o dmabuf.o page_track.o
--
--i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
 -- 
-2.17.1
+2.24.1.485.gad05a3d8e5
 
 _______________________________________________
 Intel-gfx mailing list
