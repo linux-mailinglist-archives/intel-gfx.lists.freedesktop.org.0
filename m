@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B621A34E1
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 15:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDADB1A34E3
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 15:31:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D65E6EBBD;
-	Thu,  9 Apr 2020 13:30:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05F7F88130;
+	Thu,  9 Apr 2020 13:31:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 38D666EBBB;
- Thu,  9 Apr 2020 13:30:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 32978A00C7;
- Thu,  9 Apr 2020 13:30:57 +0000 (UTC)
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0126EBBB;
+ Thu,  9 Apr 2020 13:31:18 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1jMXGt-00057o-J0; Thu, 09 Apr 2020 13:31:07 +0000
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu,  9 Apr 2020 14:31:07 +0100
+Message-Id: <20200409133107.415812-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Apr 2020 13:30:57 -0000
-Message-ID: <158643905717.11552.17072827495017555161@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_HAX_timer=3A_Describe_the_delayed=5Fwork_for_a_freed_timer_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] [PATCH] drm/i915: remove redundant assignment to
+ variable err
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +42,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Colin Ian King <colin.king@canonical.com>
 
-Series: HAX timer: Describe the delayed_work for a freed timer (rev2)
-URL   : https://patchwork.freedesktop.org/series/75740/
-State : warning
+The variable err is being initialized with a value that is never read
+and it is being updated later with a new value.  The initialization is
+redundant and can be removed.
 
-== Summary ==
+Addresses-Coverity: ("Unused value")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-$ dim checkpatch origin/drm-tip
-05d26e5da5b7 HAX timer: Describe the delayed_work for a freed timer
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-<3> [310.437368] ODEBUG: free active (active state 0) object type: timer_list hint: delayed_work_timer_fn+0x0/0x10
-
--:27: WARNING:LINE_SPACING: Missing a blank line after declarations
-#27: FILE: kernel/time/timer.c:609:
-+		struct delayed_work *work = from_timer(work, timer, timer);
-+		return work->work.func;
-
-total: 0 errors, 2 warnings, 0 checks, 15 lines checked
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
+index 2b6db6f799de..faa5b6d91795 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object.c
+@@ -14,7 +14,7 @@ static int igt_gem_object(void *arg)
+ {
+ 	struct drm_i915_private *i915 = arg;
+ 	struct drm_i915_gem_object *obj;
+-	int err = -ENOMEM;
++	int err;
+ 
+ 	/* Basic test to ensure we can create an object */
+ 
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
