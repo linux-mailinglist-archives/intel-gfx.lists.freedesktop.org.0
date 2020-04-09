@@ -2,31 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D331A354C
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 16:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A83D31A3557
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 16:03:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB2386E1F3;
-	Thu,  9 Apr 2020 14:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14BE86E1CE;
+	Thu,  9 Apr 2020 14:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B61F6E1E8;
- Thu,  9 Apr 2020 14:00:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73F29A00E7;
- Thu,  9 Apr 2020 14:00:52 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4C896E1CE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 14:03:54 +0000 (UTC)
+IronPort-SDR: iJ1NA6ynNjAmCYR2RPsiwxBIVHNyxbfDVoG3zdc92eTYDCzgE7byaDeYSii1fVhzQgU6HjTNgD
+ 0467ci8ImsqQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2020 07:03:54 -0700
+IronPort-SDR: 2KBp5ArJ8jxc1o3NxzBOpdAPYc1z15cqfCWD++ZDadSqJye7AtoV+B1ZhCRvelmuCw0memapzz
+ fuf4je/oxf9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,362,1580803200"; d="scan'208";a="453168826"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by fmsmga006.fm.intel.com with ESMTP; 09 Apr 2020 07:03:52 -0700
+Received: from [10.249.155.144] (mwajdecz-mobl.ger.corp.intel.com
+ [10.249.155.144])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 039E3ox8001860; Thu, 9 Apr 2020 15:03:51 +0100
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200409005658.12262-1-daniele.ceraolospurio@intel.com>
+ <20200409005658.12262-2-daniele.ceraolospurio@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <446d2f1d-9940-730e-905a-e6b815be767d@intel.com>
+Date: Thu, 9 Apr 2020 16:03:49 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Apr 2020 14:00:52 -0000
-Message-ID: <158644085244.11549.17210776107003818558@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSEFY?=
- =?utf-8?q?_timer=3A_Describe_the_delayed=5Fwork_for_a_freed_timer_=28rev2?=
- =?utf-8?q?=29?=
+In-Reply-To: <20200409005658.12262-2-daniele.ceraolospurio@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/guc: drop guc parameter from
+ guc_ggtt_offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +55,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: HAX timer: Describe the delayed_work for a freed timer (rev2)
-URL   : https://patchwork.freedesktop.org/series/75740/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8283 -> Patchwork_17268
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17268/index.html
 
 
-Changes
--------
+On 09.04.2020 02:56, Daniele Ceraolo Spurio wrote:
+> We stopped using the parameter in commit dd18cedfa36f
+> ("drm/i915/guc: Move the pin bias value from GuC to GGTT"),
+> so we can safely remove it.
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <john.c.harrison@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.c            | 6 +++---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h            | 4 +---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c        | 2 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         | 5 ++---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c            | 3 +--
+>  6 files changed, 10 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> index 861657897c0f..5134d544bf4c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -220,7 +220,7 @@ static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
+>  	if (intel_guc_submission_is_used(guc)) {
+>  		u32 ctxnum, base;
+>  
+> -		base = intel_guc_ggtt_offset(guc, guc->stage_desc_pool);
+> +		base = intel_guc_ggtt_offset(guc->stage_desc_pool);
+>  		ctxnum = GUC_MAX_STAGE_DESCRIPTORS / 16;
+>  
+>  		base >>= PAGE_SHIFT;
+> @@ -232,7 +232,7 @@ static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
+>  
+>  static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
+>  {
+> -	u32 offset = intel_guc_ggtt_offset(guc, guc->log.vma) >> PAGE_SHIFT;
+> +	u32 offset = intel_guc_ggtt_offset(guc->log.vma) >> PAGE_SHIFT;
+>  	u32 flags;
+>  
+>  	#if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
+> @@ -273,7 +273,7 @@ static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
+>  
+>  static u32 guc_ctl_ads_flags(struct intel_guc *guc)
+>  {
+> -	u32 ads = intel_guc_ggtt_offset(guc, guc->ads_vma) >> PAGE_SHIFT;
+> +	u32 ads = intel_guc_ggtt_offset(guc->ads_vma) >> PAGE_SHIFT;
+>  	u32 flags = ads << GUC_ADS_ADDR_SHIFT;
+>  
+>  	return flags;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index e84ab67b317d..366191204a7d 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -103,7 +103,6 @@ static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
+>  
+>  /**
+>   * intel_guc_ggtt_offset() - Get and validate the GGTT offset of @vma
+> - * @guc: intel_guc structure.
+>   * @vma: i915 graphics virtual memory area.
+>   *
+>   * GuC does not allow any gfx GGTT address that falls into range
+> @@ -114,8 +113,7 @@ static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
+>   *
+>   * Return: GGTT offset of the @vma.
+>   */
+> -static inline u32 intel_guc_ggtt_offset(struct intel_guc *guc,
+> -					struct i915_vma *vma)
+> +static inline u32 intel_guc_ggtt_offset(struct i915_vma *vma)
 
-  No changes found
+leaving this function with 'intel_guc' prefix without param guc would
+break our naming schema, maybe we should rename it to:
 
+	static inline u32 i915_ggtt_offset_guc(struct i915_vma *vma)
 
-Participating hosts (52 -> 45)
-------------------------------
+as code inside init_ggtt() already understands guc specifics ...
 
-  Additional (1): fi-skl-6770hq 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-tgl-y fi-byt-clapper 
+>  {
+>  	u32 offset = i915_ggtt_offset(vma);
 
+btw, we have here (not shown) in diff:
 
-Build changes
--------------
+	GEM_BUG_ON(offset < i915_ggtt_pin_bias(vma));
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8283 -> Patchwork_17268
+that I would move to i915_ggtt_offset() as it quite generic
+and replace it with something more GuC specific, like:
 
-  CI-20190529: 20190529
-  CI_DRM_8283: a6f4f55d343fea03e11e754b1094dda8cf2538ac @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5585: 13c0be2fe8669fef08c0d1c44b147c43d1f53d2b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17268: 05d26e5da5b73691ad6f673c43511085ba18fbeb @ git://anongit.freedesktop.org/gfx-ci/linux
+	GEM_BUG_ON(offset < intel_wopcm_guc_size(wopcm))
 
+Michal
 
-== Linux commits ==
-
-05d26e5da5b7 HAX timer: Describe the delayed_work for a freed timer
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17268/index.html
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index 101728006ae9..9237d798f7f4 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -107,7 +107,7 @@ static void __guc_ads_init(struct intel_guc *guc)
+>  	blob->system_info.vebox_enable_mask = VEBOX_MASK(dev_priv);
+>  	blob->system_info.vdbox_sfc_support_mask = RUNTIME_INFO(dev_priv)->vdbox_sfc_access;
+>  
+> -	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
+> +	base = intel_guc_ggtt_offset(guc->ads_vma);
+>  
+>  	/* Clients info  */
+>  	guc_ct_pool_entries_init(blob->ct_pool, ARRAY_SIZE(blob->ct_pool));
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 11742fca0e9e..aad5ac54c1ba 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -187,7 +187,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>  		return err;
+>  	}
+>  
+> -	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(guc, ct->vma));
+> +	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(ct->vma));
+>  
+>  	/* store pointers to desc and cmds */
+>  	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
+> @@ -220,7 +220,6 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
+>   */
+>  int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>  {
+> -	struct intel_guc *guc = ct_to_guc(ct);
+>  	u32 base, cmds, size;
+>  	int err;
+>  	int i;
+> @@ -229,7 +228,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>  
+>  	/* vma should be already allocated and map'ed */
+>  	GEM_BUG_ON(!ct->vma);
+> -	base = intel_guc_ggtt_offset(guc, ct->vma);
+> +	base = intel_guc_ggtt_offset(ct->vma);
+>  
+>  	/* (re)initialize descriptors
+>  	 * cmds buffers are in the second half of the blob page
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index fe7778c28d2d..7eaf173dd588 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -153,8 +153,8 @@ static void guc_stage_desc_init(struct intel_guc *guc)
+>  	desc->stage_id = 0;
+>  	desc->priority = GUC_CLIENT_PRIORITY_KMD_NORMAL;
+>  
+> -	desc->process_desc = intel_guc_ggtt_offset(guc, guc->proc_desc);
+> -	desc->wq_addr = intel_guc_ggtt_offset(guc, guc->workqueue);
+> +	desc->process_desc = intel_guc_ggtt_offset(guc->proc_desc);
+> +	desc->wq_addr = intel_guc_ggtt_offset(guc->workqueue);
+>  	desc->wq_size = GUC_WQ_SIZE;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index 65eeb44b397d..534f4d9f6591 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -166,8 +166,7 @@ int intel_huc_auth(struct intel_huc *huc)
+>  	if (ret)
+>  		goto fail;
+>  
+> -	ret = intel_guc_auth_huc(guc,
+> -				 intel_guc_ggtt_offset(guc, huc->rsa_data));
+> +	ret = intel_guc_auth_huc(guc, intel_guc_ggtt_offset(huc->rsa_data));
+>  	if (ret) {
+>  		DRM_ERROR("HuC: GuC did not ack Auth request %d\n", ret);
+>  		goto fail;
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
