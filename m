@@ -1,34 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7301A32D2
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 12:52:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B09311A32E0
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 13:01:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC3C26E0ED;
-	Thu,  9 Apr 2020 10:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 285DB890B4;
+	Thu,  9 Apr 2020 11:01:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD2D6E0ED
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 10:52:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36D886E0FE;
+ Thu,  9 Apr 2020 11:01:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20849691-1500050 for multiple; Thu, 09 Apr 2020 11:52:21 +0100
-MIME-Version: 1.0
-In-Reply-To: <bb2ca1d8-0da8-2e3b-db05-f9c877a00ae1@intel.com>
-References: <20200403091300.14734-1-chris@chris-wilson.co.uk>
- <20200403091300.14734-4-chris@chris-wilson.co.uk>
- <bb2ca1d8-0da8-2e3b-db05-f9c877a00ae1@intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20849840-1500050 
+ for multiple; Thu, 09 Apr 2020 12:01:02 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158642954064.23161.10597558821934207099@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 09 Apr 2020 11:52:20 +0100
-Subject: Re: [Intel-gfx] [PATCH 04/10] dma-buf: Report signaled links inside
+To: dri-devel@lists.freedesktop.org
+Date: Thu,  9 Apr 2020 12:00:59 +0100
+Message-Id: <20200409110101.18400-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/3] dma-buf: Prettify typecasts for
  dma-fence-chain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -42,42 +37,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBMaW9uZWwgTGFuZHdlcmxpbiAoMjAyMC0wNC0wOCAyMTowMDo1OSkKPiBPbiAwMy8w
-NC8yMDIwIDEyOjEyLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiBXaGVuZXZlciB3ZSB3YWxrIGFs
-b25nIHRoZSBkbWEtZmVuY2UtY2hhaW4sIHdlIHBydW5lIHNpZ25hbGVkIGxpbmtzIHRvCj4gPiBr
-ZWVwIHRoZSBjaGFpbiBuaWNlIGFuZCB0aWR5LiBUaGlzIGxlYWRzIHRvIHNpdHVhdGlvbnMgd2hl
-cmUgd2UgY2FuCj4gPiBwcnVuZSBhIGxpbmsgYW5kIHJlcG9ydCB0aGUgZWFybGllciBmZW5jZSBh
-cyB0aGUgdGFyZ2V0IHNlcW5vIC0tCj4gPiB2aW9sYXRpbmcgb3VyIG93biBjb25zaXN0ZW5jeSBj
-aGVja3MgdGhhdCB0aGUgc2Vxbm8gaXMgbm90IG1vcmUgYWR2YW5jZWQKPiA+IHRoYW4gdGhlIGxh
-c3QgZWxlbWVudCBpbiBhIGRtYS1mZW5jZS1jaGFpbi4KPiA+Cj4gPiBSZXBvcnQgYSBOVUxMIGZl
-bmNlIGFuZCBzdWNjZXNzIGlmIHRoZSBzZXFubyBoYXMgYWxyZWFkeSBiZWVuIHNpZ25hbGVkLgo+
-ID4KPiA+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNv
-LnVrPgo+ID4gLS0tCj4gPiAgIGRyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UtY2hhaW4uYyB8IDcg
-KysrKysrKwo+ID4gICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspCj4gPgo+ID4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UtY2hhaW4uYyBiL2RyaXZlcnMvZG1h
-LWJ1Zi9kbWEtZmVuY2UtY2hhaW4uYwo+ID4gaW5kZXggM2QxMjM1MDJmZjEyLi5jNDM1YmJiYTg1
-MWMgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLWNoYWluLmMKPiA+
-ICsrKyBiL2RyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UtY2hhaW4uYwo+ID4gQEAgLTk5LDYgKzk5
-LDEyIEBAIGludCBkbWFfZmVuY2VfY2hhaW5fZmluZF9zZXFubyhzdHJ1Y3QgZG1hX2ZlbmNlICoq
-cGZlbmNlLCB1aW50NjRfdCBzZXFubykKPiA+ICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7
-Cj4gPiAgIAo+ID4gICAgICAgZG1hX2ZlbmNlX2NoYWluX2Zvcl9lYWNoKCpwZmVuY2UsICZjaGFp
-bi0+YmFzZSkgewo+ID4gKyAgICAgICAgICAgICBpZiAoKCpwZmVuY2UpLT5zZXFubyA8IHNlcW5v
-KSB7IC8qIGFscmVhZHkgc2lnbmFsZWQgKi8KPiA+ICsgICAgICAgICAgICAgICAgICAgICBkbWFf
-ZmVuY2VfcHV0KCpwZmVuY2UpOwo+ID4gKyAgICAgICAgICAgICAgICAgICAgICpwZmVuY2UgPSBO
-VUxMOwo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ID4gKyAgICAgICAgICAgICB9
-Cj4gPiArCj4gCj4gCj4gV291bGRuJ3QgdGhpcyBjb25kaXRpb24gYmVlbiBmdWxmaWxsZWQgaW4g
-dGhlIHByZXZpb3VzIGNoZWNrPyA6Cj4gCj4gCj4gY2hhaW4gPSB0b19kbWFfZmVuY2VfY2hhaW4o
-KnBmZW5jZSk7Cj4gaWYgKCFjaGFpbiB8fCBjaGFpbi0+YmFzZS5zZXFubyA8IHNlcW5vKQo+ICDC
-oMKgwqDCoMKgwqDCoCByZXR1cm4gLUVJTlZBTDsKClRoZSBwcm9ibGVtIGlzIGluIHRoZSBjaGFp
-biBpdGVyYXRpb24uIEl0IGFzc3VtZXMgdGhhdCBhbiB1bm9yZGVyZWQgc2V0Cm9mIGZlbmNlcyBp
-cyBpbiB0aGUgb3JkZXIgb2YgdGhlIHVzZXIncyBzZXFuby4gVGhlcmUgYXJlIG5vIHJlc3RyaWN0
-aW9ucwpwbGFjZWQgb24gdGhlIGNoYWluLCBzbyB3ZSBtdXN0IGFwcGx5IHRoZSBvcmRlcmluZyBm
-cm9tIHRoZSB0aW1lbGluZSBzZXFubwpkaXJlY3RseS4KLUNocmlzCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Inside dma-fence-chain, we use a cmpxchg on an RCU-protected pointer. To
+avoid the sparse warning for using the RCU pointer directly, we have to
+cast away the __rcu annotation. However, we don't need to use void*
+everywhere and can stick to the dma_fence*.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/dma-buf/dma-fence-chain.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
+index 44a741677d25..3d123502ff12 100644
+--- a/drivers/dma-buf/dma-fence-chain.c
++++ b/drivers/dma-buf/dma-fence-chain.c
+@@ -62,7 +62,8 @@ struct dma_fence *dma_fence_chain_walk(struct dma_fence *fence)
+ 			replacement = NULL;
+ 		}
+ 
+-		tmp = cmpxchg((void **)&chain->prev, (void *)prev, (void *)replacement);
++		tmp = cmpxchg((struct dma_fence __force **)&chain->prev,
++			      prev, replacement);
+ 		if (tmp == prev)
+ 			dma_fence_put(tmp);
+ 		else
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
