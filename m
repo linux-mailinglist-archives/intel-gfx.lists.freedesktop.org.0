@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762981A2D22
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 02:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F201A2D23
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 02:57:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30BA76EB26;
-	Thu,  9 Apr 2020 00:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24D386EB28;
+	Thu,  9 Apr 2020 00:57:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557066EB27
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 00:57:26 +0000 (UTC)
-IronPort-SDR: yLQB0dkP9kmWpbTOF+jxxIfgzYGzjlHzwefdJpZRg1pJfI4be0tQsgUaHGVcGyH50lO59eFjz9
- DyylIFBaMilA==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E826B6EB26
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 00:57:27 +0000 (UTC)
+IronPort-SDR: v0Po1Bf9vi5Ibob7hbrV3jdqsqKahA9Q62KbOFl84G/n51Pz5v5HAmH2bYk86TAVSQEp3stG6q
+ f9r6nJrqj+Uw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 17:57:26 -0700
-IronPort-SDR: u0KocL/S6zrBakq437EY92KF/G+dZoSj7a5Ev6oWEwFLY+fRQGH+HkH4pKuL+pLrbfpS0NlKAE
- bdQ1cQjwLtbQ==
+ 08 Apr 2020 17:57:27 -0700
+IronPort-SDR: QsTdrQak+D/+S7n2bPR7hDn3GEbDaWRB4RJfbcCdaBTG28S+59y2xit8IYlnHN79kPTRXXbMsd
+ rplKzMm1Vung==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,360,1580803200"; d="scan'208";a="244185359"
+X-IronPort-AV: E=Sophos;i="5.72,360,1580803200"; d="scan'208";a="244185370"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by fmsmga008.fm.intel.com with ESMTP; 08 Apr 2020 17:57:26 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 08 Apr 2020 17:57:27 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Apr 2020 17:56:55 -0700
-Message-Id: <20200409005658.12262-2-daniele.ceraolospurio@intel.com>
+Date: Wed,  8 Apr 2020 17:56:56 -0700
+Message-Id: <20200409005658.12262-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200409005658.12262-1-daniele.ceraolospurio@intel.com>
 References: <20200409005658.12262-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/guc: drop guc parameter from
- guc_ggtt_offset
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/guc: drop gt.pm_guc_events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,148 +51,94 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We stopped using the parameter in commit dd18cedfa36f
-("drm/i915/guc: Move the pin bias value from GuC to GGTT"),
-so we can safely remove it.
+We always set it to the same value, so there is no need to actually have
+a variable for it and we can just use the value directly.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: John Harrison <john.c.harrison@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.c            | 6 +++---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h            | 4 +---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c        | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         | 5 ++---
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
- drivers/gpu/drm/i915/gt/uc/intel_huc.c            | 3 +--
- 6 files changed, 10 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_types.h   | 2 --
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c     | 8 ++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h | 3 +++
+ drivers/gpu/drm/i915/i915_irq.c            | 4 ----
+ 4 files changed, 7 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 96890dd12b5f..81691cf1d411 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -85,8 +85,6 @@ struct intel_gt {
+ 	u32 pm_ier;
+ 	u32 pm_imr;
+ 
+-	u32 pm_guc_events;
+-
+ 	struct intel_engine_cs *engine[I915_NUM_ENGINES];
+ 	struct intel_engine_cs *engine_class[MAX_ENGINE_CLASS + 1]
+ 					    [MAX_ENGINE_INSTANCE + 1];
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 861657897c0f..5134d544bf4c 100644
+index 5134d544bf4c..eadea9d47e31 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -220,7 +220,7 @@ static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
- 	if (intel_guc_submission_is_used(guc)) {
- 		u32 ctxnum, base;
+@@ -85,7 +85,7 @@ static void gen9_reset_guc_interrupts(struct intel_guc *guc)
+ 	assert_rpm_wakelock_held(&gt->i915->runtime_pm);
  
--		base = intel_guc_ggtt_offset(guc, guc->stage_desc_pool);
-+		base = intel_guc_ggtt_offset(guc->stage_desc_pool);
- 		ctxnum = GUC_MAX_STAGE_DESCRIPTORS / 16;
- 
- 		base >>= PAGE_SHIFT;
-@@ -232,7 +232,7 @@ static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
- 
- static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
- {
--	u32 offset = intel_guc_ggtt_offset(guc, guc->log.vma) >> PAGE_SHIFT;
-+	u32 offset = intel_guc_ggtt_offset(guc->log.vma) >> PAGE_SHIFT;
- 	u32 flags;
- 
- 	#if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
-@@ -273,7 +273,7 @@ static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
- 
- static u32 guc_ctl_ads_flags(struct intel_guc *guc)
- {
--	u32 ads = intel_guc_ggtt_offset(guc, guc->ads_vma) >> PAGE_SHIFT;
-+	u32 ads = intel_guc_ggtt_offset(guc->ads_vma) >> PAGE_SHIFT;
- 	u32 flags = ads << GUC_ADS_ADDR_SHIFT;
- 
- 	return flags;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index e84ab67b317d..366191204a7d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -103,7 +103,6 @@ static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
- 
- /**
-  * intel_guc_ggtt_offset() - Get and validate the GGTT offset of @vma
-- * @guc: intel_guc structure.
-  * @vma: i915 graphics virtual memory area.
-  *
-  * GuC does not allow any gfx GGTT address that falls into range
-@@ -114,8 +113,7 @@ static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
-  *
-  * Return: GGTT offset of the @vma.
-  */
--static inline u32 intel_guc_ggtt_offset(struct intel_guc *guc,
--					struct i915_vma *vma)
-+static inline u32 intel_guc_ggtt_offset(struct i915_vma *vma)
- {
- 	u32 offset = i915_ggtt_offset(vma);
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 101728006ae9..9237d798f7f4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -107,7 +107,7 @@ static void __guc_ads_init(struct intel_guc *guc)
- 	blob->system_info.vebox_enable_mask = VEBOX_MASK(dev_priv);
- 	blob->system_info.vdbox_sfc_support_mask = RUNTIME_INFO(dev_priv)->vdbox_sfc_access;
- 
--	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
-+	base = intel_guc_ggtt_offset(guc->ads_vma);
- 
- 	/* Clients info  */
- 	guc_ct_pool_entries_init(blob->ct_pool, ARRAY_SIZE(blob->ct_pool));
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 11742fca0e9e..aad5ac54c1ba 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -187,7 +187,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
- 		return err;
- 	}
- 
--	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(guc, ct->vma));
-+	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(ct->vma));
- 
- 	/* store pointers to desc and cmds */
- 	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
-@@ -220,7 +220,6 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
-  */
- int intel_guc_ct_enable(struct intel_guc_ct *ct)
- {
--	struct intel_guc *guc = ct_to_guc(ct);
- 	u32 base, cmds, size;
- 	int err;
- 	int i;
-@@ -229,7 +228,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
- 
- 	/* vma should be already allocated and map'ed */
- 	GEM_BUG_ON(!ct->vma);
--	base = intel_guc_ggtt_offset(guc, ct->vma);
-+	base = intel_guc_ggtt_offset(ct->vma);
- 
- 	/* (re)initialize descriptors
- 	 * cmds buffers are in the second half of the blob page
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index fe7778c28d2d..7eaf173dd588 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -153,8 +153,8 @@ static void guc_stage_desc_init(struct intel_guc *guc)
- 	desc->stage_id = 0;
- 	desc->priority = GUC_CLIENT_PRIORITY_KMD_NORMAL;
- 
--	desc->process_desc = intel_guc_ggtt_offset(guc, guc->proc_desc);
--	desc->wq_addr = intel_guc_ggtt_offset(guc, guc->workqueue);
-+	desc->process_desc = intel_guc_ggtt_offset(guc->proc_desc);
-+	desc->wq_addr = intel_guc_ggtt_offset(guc->workqueue);
- 	desc->wq_size = GUC_WQ_SIZE;
+ 	spin_lock_irq(&gt->irq_lock);
+-	gen6_gt_pm_reset_iir(gt, gt->pm_guc_events);
++	gen6_gt_pm_reset_iir(gt, GEN9_GUC_INTR_BIT(GUC2HOST));
+ 	spin_unlock_irq(&gt->irq_lock);
  }
  
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index 65eeb44b397d..534f4d9f6591 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -166,8 +166,7 @@ int intel_huc_auth(struct intel_huc *huc)
- 	if (ret)
- 		goto fail;
+@@ -98,9 +98,9 @@ static void gen9_enable_guc_interrupts(struct intel_guc *guc)
+ 	spin_lock_irq(&gt->irq_lock);
+ 	if (!guc->interrupts.enabled) {
+ 		WARN_ON_ONCE(intel_uncore_read(gt->uncore, GEN8_GT_IIR(2)) &
+-			     gt->pm_guc_events);
++			     GEN9_GUC_INTR_BIT(GUC2HOST));
+ 		guc->interrupts.enabled = true;
+-		gen6_gt_pm_enable_irq(gt, gt->pm_guc_events);
++		gen6_gt_pm_enable_irq(gt, GEN9_GUC_INTR_BIT(GUC2HOST));
+ 	}
+ 	spin_unlock_irq(&gt->irq_lock);
+ }
+@@ -114,7 +114,7 @@ static void gen9_disable_guc_interrupts(struct intel_guc *guc)
+ 	spin_lock_irq(&gt->irq_lock);
+ 	guc->interrupts.enabled = false;
  
--	ret = intel_guc_auth_huc(guc,
--				 intel_guc_ggtt_offset(guc, huc->rsa_data));
-+	ret = intel_guc_auth_huc(guc, intel_guc_ggtt_offset(huc->rsa_data));
- 	if (ret) {
- 		DRM_ERROR("HuC: GuC did not ack Auth request %d\n", ret);
- 		goto fail;
+-	gen6_gt_pm_disable_irq(gt, gt->pm_guc_events);
++	gen6_gt_pm_disable_irq(gt, GEN9_GUC_INTR_BIT(GUC2HOST));
+ 
+ 	spin_unlock_irq(&gt->irq_lock);
+ 	intel_synchronize_irq(gt->i915);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
+index 1949346e714e..ae785a757316 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
+@@ -143,4 +143,7 @@ struct guc_doorbell_info {
+ #define GUC_INTR_SW_INT_1		BIT(1)
+ #define GUC_INTR_SW_INT_0		BIT(0)
+ 
++/* pre-gen11 the guc irqs bits are in the upper 16 bits of the pm reg */
++#define GEN9_GUC_INTR_BIT(x) (GUC_INTR_##x << 16)
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 1502ab44f1a5..a224a05b0551 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3942,10 +3942,6 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 	for (i = 0; i < MAX_L3_SLICES; ++i)
+ 		dev_priv->l3_parity.remap_info[i] = NULL;
+ 
+-	/* pre-gen11 the guc irqs bits are in the upper 16 bits of the pm reg */
+-	if (HAS_GT_UC(dev_priv) && INTEL_GEN(dev_priv) < 11)
+-		dev_priv->gt.pm_guc_events = GUC_INTR_GUC2HOST << 16;
+-
+ 	dev->vblank_disable_immediate = true;
+ 
+ 	/* Most platforms treat the display irq block as an always-on
 -- 
 2.24.1
 
