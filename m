@@ -1,30 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0801A318E
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 11:10:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9869A1A3533
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 15:54:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE566E02D;
-	Thu,  9 Apr 2020 09:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA4A56E190;
+	Thu,  9 Apr 2020 13:54:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007336E02D
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 09:10:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20848380-1500050 
- for multiple; Thu, 09 Apr 2020 10:09:54 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Apr 2020 10:09:53 +0100
-Message-Id: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 855856EA52;
+ Thu,  9 Apr 2020 09:14:33 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.west.internal (Postfix) with ESMTP id 5047364D;
+ Thu,  9 Apr 2020 05:14:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Thu, 09 Apr 2020 05:14:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm2; bh=C1p+Rld4hVWf8r9Z7DAfkkp5lK5V59qTzXoUs0XWoak=; b=VpSF2GLf
+ Qr9MAro9JrGkH2MD2gRUHsFs9XW5QZEeDP+iUyQYPBxsOQmRGj8zVjFB4iePv/mx
+ ivWNxdHH5ESWtWn0qiyy8OIfYf1NvBfLwFUrvSO59ay7FIKh1n680YJAoJlvEqrk
+ N9BcJM4B0/9WpoLSulpAEZl1uHEx1yWanJsZOI0I32Wp6Hy0y5v7+0IWEejCSB/e
+ THw8G3tJgTNgpehdFO4KFuGrWCWTA1tbeLg3nGcHceKRkjU9t+mqKZVPFKnbWtx+
+ 9zdMxDurCRSh2BNdTXsVEwef7i4IAIidXeJMLz5zLjR38+2+pX0qFPIaEUbCkrNN
+ HLD+PLlTSdmkAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm2; bh=C1p+Rld4hVWf8r9Z7DAfkkp5lK5V5
+ 9qTzXoUs0XWoak=; b=LwJMYc2rVvaYeWJnH/3YGN+PcPZGk0UO0wAnRYE5rVaCB
+ VXI62xY7Aj7j3aslnXcYXNxOb/eztM+m+tkxczN7puS2nRUwFI9iqzyvke5CosvU
+ G/iadbofKb6lMGcFStZDiSHInpK/uYfYM00tpOeumhkHQrANxXB6CtABbGeh0xDE
+ eJvEtqX7OmSsL/FQrj9CA6HDhSJy7M8QCAdeiFia1UU18OBhJhyOuH8C1ddSAOK2
+ MHaW7vojaah+sdkJJuDzDGoC/T7WxhyiwZTmOPd3ReZ3H9LCGdI+SH/1AWbPB/CO
+ wKKQSse3unhshSg2ijzGwuTzCHh7eV4lpC3jd+nyA==
+X-ME-Sender: <xms:cueOXlaqdGClNi7YoCZk-bbCHR1zYdKb79Gz3KnFNwBfe4f0J0rhAQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudelgddtkecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgvucft
+ ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinhepfh
+ hrvggvuggvshhkthhophdrohhrghenucfkphepledtrdekledrieekrdejieenucevlhhu
+ shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestg
+ gvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:cueOXoQZAVr3SdSEdqcBzeDo3RWIG1SWcL9PLANJ4T594OJQBXKmJA>
+ <xmx:cueOXjdcKFaSqxS9lbmigHy8rtnr9M3U81cE-RPa_7vV052FRN7Dlw>
+ <xmx:cueOXnmXL_rUtFSnrXThiNlU18F6l-sya_dbgdTmEPP0acepj7gknQ>
+ <xmx:c-eOXnGSii36XUWFs2YDxStoqKJt5SN_M3lEgkjzywUz-vder_oNcUVYd2U>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 16FB83280068;
+ Thu,  9 Apr 2020 05:14:26 -0400 (EDT)
+Date: Thu, 9 Apr 2020 11:14:24 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200409091424.cfpqqbqjxtkgnfme@gilmour.lan>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] HAX timer: Describe the delayed_work for a
- freed timer
+X-Mailman-Approved-At: Thu, 09 Apr 2020 13:54:33 +0000
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,47 +73,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1482769037=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Improve upon the
 
-<3> [310.437368] ODEBUG: free active (active state 0) object type: timer_list hint: delayed_work_timer_fn+0x0/0x10
+--===============1482769037==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jtqvxnv4eyglp7l3"
+Content-Disposition: inline
 
-by describing what delayed_work was queued instead.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- kernel/time/timer.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+--jtqvxnv4eyglp7l3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/kernel/time/timer.c b/kernel/time/timer.c
-index 4820823515e9..f637a815d91c 100644
---- a/kernel/time/timer.c
-+++ b/kernel/time/timer.c
-@@ -602,7 +602,14 @@ static struct debug_obj_descr timer_debug_descr;
- 
- static void *timer_debug_hint(void *addr)
- {
--	return ((struct timer_list *) addr)->function;
-+	struct timer_list *timer = addr;
-+
-+	if (addr->function == delayed_work_timer_fn) {
-+		struct delayed_work *work = from_timer(work, timer, timer);
-+		return work->work.func;
-+	}
-+
-+	return timer->function;
- }
- 
- static bool timer_is_static_object(void *addr)
--- 
-2.20.1
+Hi Dave, Daniel,
+
+Here's this week round of drm-misc-next-fixes
+
+Maxime
+
+drm-misc-next-fixes-2020-04-09:
+A few DMA-related fixes, an OOB fix for virtio and a probe-related fix for
+analogix_dp
+The following changes since commit 0e7e6198af28c1573267aba1be33dd0b7fb35691:
+
+  Merge branch 'ttm-transhuge' of git://people.freedesktop.org/~thomash/linux into drm-next (2020-04-03 09:07:49 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2020-04-09
+
+for you to fetch changes up to 152cce0006abf7e17dfb7dc94896b044bda4e588:
+
+  drm/bridge: analogix_dp: Split bind() into probe() and real bind() (2020-04-09 10:29:35 +0200)
+
+----------------------------------------------------------------
+A few DMA-related fixes, an OOB fix for virtio and a probe-related fix for
+analogix_dp
+
+----------------------------------------------------------------
+Chris Wilson (1):
+      drm/legacy: Fix type for drm_local_map.offset
+
+Jiri Slaby (1):
+      drm/virtio: fix OOB in virtio_gpu_object_create
+
+Marek Szyprowski (2):
+      drm/prime: fix extracting of the DMA addresses from a scatterlist
+      drm/bridge: analogix_dp: Split bind() into probe() and real bind()
+
+Maxime Ripard (1):
+      Merge drm/drm-next into drm-misc-next-fixes
+
+ .../bindings/display/panel/panel-dpi.yaml          | 10 ------
+ .../bindings/display/ti/ti,am65x-dss.yaml          |  4 +--
+ .../bindings/display/ti/ti,j721e-dss.yaml          |  4 +--
+ .../devicetree/bindings/display/ti/ti,k2g-dss.yaml |  4 +--
+ drivers/dma-buf/Kconfig                            | 11 ++++---
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 33 ++++++++++++-------
+ drivers/gpu/drm/drm_mm.c                           |  8 +----
+ drivers/gpu/drm/drm_prime.c                        | 37 +++++++++++++++-------
+ drivers/gpu/drm/exynos/exynos_dp.c                 | 29 ++++++++++-------
+ drivers/gpu/drm/panel/panel-simple.c               | 11 -------
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    | 36 +++++++++++----------
+ drivers/gpu/drm/vboxvideo/vbox_drv.c               |  4 +++
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 20 +++++++++---
+ drivers/gpu/drm/virtio/virtgpu_object.c            | 14 ++++----
+ drivers/gpu/drm/xen/xen_drm_front.c                |  2 +-
+ drivers/video/fbdev/core/fbcon.c                   |  3 ++
+ include/drm/bridge/analogix_dp.h                   |  5 +--
+ include/drm/drm_legacy.h                           |  2 +-
+ 18 files changed, 132 insertions(+), 105 deletions(-)
+
+--jtqvxnv4eyglp7l3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXo7ncAAKCRDj7w1vZxhR
+xSmvAP4hPJuGgNWWlDRmITVnhgOw/egUygtw13QV4cxMSWOEHAD+LjgnTlI7THIR
+zJGp55uVJobrbxyPlPe7R3+bQeoRbAk=
+=ZdZp
+-----END PGP SIGNATURE-----
+
+--jtqvxnv4eyglp7l3--
+
+--===============1482769037==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1482769037==--
