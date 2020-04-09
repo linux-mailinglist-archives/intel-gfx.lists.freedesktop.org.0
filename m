@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A961A3534
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 15:54:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812D21A300C
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 09:31:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED5C06E1C0;
-	Thu,  9 Apr 2020 13:54:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9813A6EB58;
+	Thu,  9 Apr 2020 07:31:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
- [199.106.114.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FED26EB4F;
- Thu,  9 Apr 2020 06:52:55 +0000 (UTC)
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Apr 2020 23:52:54 -0700
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
- by ironmsg01-sd.qualcomm.com with ESMTP; 08 Apr 2020 23:52:53 -0700
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
- id F24854BF6; Wed,  8 Apr 2020 23:52:53 -0700 (PDT)
-From: Guru Das Srinagesh <gurus@codeaurora.org>
-To: linux-pwm@vger.kernel.org
-Date: Wed,  8 Apr 2020 23:52:30 -0700
-Message-Id: <13845382bcb686ec707f7d3ab2e05a2aabde4e33.1586414867.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <cover.1586414867.git.gurus@codeaurora.org>
-References: <cover.1586414867.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1586414867.git.gurus@codeaurora.org>
-References: <cover.1586414867.git.gurus@codeaurora.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3DB326EB58;
+ Thu,  9 Apr 2020 07:31:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36C8FA0138;
+ Thu,  9 Apr 2020 07:31:51 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 09 Apr 2020 13:54:33 +0000
-Subject: [Intel-gfx] [PATCH v12 01/11] drm/i915: Use 64-bit division macro
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 09 Apr 2020 07:31:51 -0000
+Message-ID: <158641751119.11551.1546720578022282097@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200409060646.30817-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200409060646.30817-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
+ =?utf-8?q?5_lpsp_support_for_lpsp_igt_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,43 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guru Das Srinagesh <gurus@codeaurora.org>,
- David Collins <collinsd@codeaurora.org>, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2UgdGhlIFBXTSBmcmFtZXdvcmsgaXMgc3dpdGNoaW5nIHN0cnVjdCBwd21fc3RhdGUuZHV0
-eV9jeWNsZSdzCmRhdGF0eXBlIHRvIHU2NCwgcHJlcGFyZSBmb3IgdGhpcyB0cmFuc2l0aW9uIGJ5
-IHVzaW5nIERJVl9ST1VORF9VUF9VTEwKdG8gaGFuZGxlIGEgNjQtYml0IGRpdmlkZW5kLgoKQ2M6
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBKb29uYXMgTGFo
-dGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CkNjOiBEYXZpZCBBaXJsaWUg
-PGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+CkNj
-OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6ICJWaWxsZSBTeXJq
-w6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IGludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKClNp
-Z25lZC1vZmYtYnk6IEd1cnUgRGFzIFNyaW5hZ2VzaCA8Z3VydXNAY29kZWF1cm9yYS5vcmc+ClJl
-dmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyB8IDIgKy0KIDEgZmlsZSBjaGFu
-Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYwppbmRleCA3YjNlYzZlYi4uYjQ1ZWFiZiAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYwpAQCAtMTg3Nyw3ICsxODc3LDcg
-QEAgc3RhdGljIGludCBwd21fc2V0dXBfYmFja2xpZ2h0KHN0cnVjdCBpbnRlbF9jb25uZWN0b3Ig
-KmNvbm5lY3RvciwKIAogCXBhbmVsLT5iYWNrbGlnaHQubWluID0gMDsgLyogMCUgKi8KIAlwYW5l
-bC0+YmFja2xpZ2h0Lm1heCA9IDEwMDsgLyogMTAwJSAqLwotCXBhbmVsLT5iYWNrbGlnaHQubGV2
-ZWwgPSBESVZfUk9VTkRfVVAoCisJcGFuZWwtPmJhY2tsaWdodC5sZXZlbCA9IERJVl9ST1VORF9V
-UF9VTEwoCiAJCQkJIHB3bV9nZXRfZHV0eV9jeWNsZShwYW5lbC0+YmFja2xpZ2h0LnB3bSkgKiAx
-MDAsCiAJCQkJIENSQ19QTUlDX1BXTV9QRVJJT0RfTlMpOwogCXBhbmVsLT5iYWNrbGlnaHQuZW5h
-YmxlZCA9IHBhbmVsLT5iYWNrbGlnaHQubGV2ZWwgIT0gMDsKLS0gClRoZSBRdWFsY29tbSBJbm5v
-dmF0aW9uIENlbnRlciwgSW5jLiBpcyBhIG1lbWJlciBvZiB0aGUgQ29kZSBBdXJvcmEgRm9ydW0s
-CmEgTGludXggRm91bmRhdGlvbiBDb2xsYWJvcmF0aXZlIFByb2plY3QKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: i915 lpsp support for lpsp igt (rev7)
+URL   : https://patchwork.freedesktop.org/series/74648/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8281 -> Patchwork_17264
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17264/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17264:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@debugfs_test@read_all_entries:
+    - {fi-ehl-1}:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8281/fi-ehl-1/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17264/fi-ehl-1/igt@debugfs_test@read_all_entries.html
+
+  * igt@runner@aborted:
+    - {fi-ehl-1}:         NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17264/fi-ehl-1/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17264 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-dsi:         [INCOMPLETE][4] ([i915#189]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8281/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17264/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+
+
+Participating hosts (51 -> 46)
+------------------------------
+
+  Additional (2): fi-skl-6770hq fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-8809g fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * IGT: IGT_5581 -> IGTPW_4438
+  * Linux: CI_DRM_8281 -> Patchwork_17264
+
+  CI-20190529: 20190529
+  CI_DRM_8281: 4d6c69198d6840226f92f2c4645e2c8260ca3e83 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_4438: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4438/index.html
+  IGT_5581: ab0620e555119ec55f12ba9ab9e6e9246d407648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17264: 314d3d56f22db613bee1306e86f1a3bf2a41edee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+314d3d56f22d drm/i915: Add i915_lpsp_status debugfs attribute
+a7c4df3f9562 drm/i915: Add connector dbgfs for all connectors
+9a892f85809b drm/i915: Add i915_lpsp_capability debugfs
+9485fcfc0011 drm/i915: Power well id for ICL PG3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17264/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
