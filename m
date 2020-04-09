@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84981A334F
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 13:40:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6611A3379
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 13:46:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7056E053;
-	Thu,  9 Apr 2020 11:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 577A66EBA7;
+	Thu,  9 Apr 2020 11:46:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 687DA890E9;
- Thu,  9 Apr 2020 11:40:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65DDDA3C0D;
- Thu,  9 Apr 2020 11:40:34 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Apr 2020 11:40:34 -0000
-Message-ID: <158643243441.11552.15775685868998516963@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200409090953.8671-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED93D6EBA7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 11:46:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20850441-1500050 
+ for multiple; Thu, 09 Apr 2020 12:46:25 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Apr 2020 12:46:25 +0100
+Message-Id: <20200409114625.12251-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200409090953.8671-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBI?=
- =?utf-8?q?AX_timer=3A_Describe_the_delayed=5Fwork_for_a_freed_timer?=
+References: <20200409090953.8671-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] HAX timer: Describe the delayed_work for a
+ freed timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +39,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogSEFYIHRpbWVyOiBEZXNjcmliZSB0aGUgZGVs
-YXllZF93b3JrIGZvciBhIGZyZWVkIHRpbWVyClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJl
-ZWRlc2t0b3Aub3JnL3Nlcmllcy83NTc0MC8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09
-CgpDQUxMICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9t
-aWMvY2hlY2stYXRvbWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUv
-Z2VuZXJhdGVkL2NvbXBpbGUuaAogIENDICAgICAga2VybmVsL3RpbWUvdGltZXIubwprZXJuZWwv
-dGltZS90aW1lci5jOiBJbiBmdW5jdGlvbiDigJh0aW1lcl9kZWJ1Z19oaW504oCZOgprZXJuZWwv
-dGltZS90aW1lci5jOjYwNzoxMDogd2FybmluZzogZGVyZWZlcmVuY2luZyDigJh2b2lkICrigJkg
-cG9pbnRlcgogIGlmIChhZGRyLT5mdW5jdGlvbiA9PSBkZWxheWVkX3dvcmtfdGltZXJfZm4pIHsK
-ICAgICAgICAgIF5+Cmtlcm5lbC90aW1lL3RpbWVyLmM6NjA3OjEwOiBlcnJvcjogcmVxdWVzdCBm
-b3IgbWVtYmVyIOKAmGZ1bmN0aW9u4oCZIGluIHNvbWV0aGluZyBub3QgYSBzdHJ1Y3R1cmUgb3Ig
-dW5pb24Kc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNjc6IHJlY2lwZSBmb3IgdGFyZ2V0ICdrZXJu
-ZWwvdGltZS90aW1lci5vJyBmYWlsZWQKbWFrZVsyXTogKioqIFtrZXJuZWwvdGltZS90aW1lci5v
-XSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTA1OiByZWNpcGUgZm9yIHRhcmdldCAn
-a2VybmVsL3RpbWUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2tlcm5lbC90aW1lXSBFcnJvciAyCk1h
-a2VmaWxlOjE2ODM6IHJlY2lwZSBmb3IgdGFyZ2V0ICdrZXJuZWwnIGZhaWxlZAptYWtlOiAqKiog
-W2tlcm5lbF0gRXJyb3IgMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+Improve upon the
+
+<3> [310.437368] ODEBUG: free active (active state 0) object type: timer_list hint: delayed_work_timer_fn+0x0/0x10
+
+by describing what delayed_work was queued instead.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ kernel/time/timer.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/kernel/time/timer.c b/kernel/time/timer.c
+index 4820823515e9..262eea5abb86 100644
+--- a/kernel/time/timer.c
++++ b/kernel/time/timer.c
+@@ -602,7 +602,14 @@ static struct debug_obj_descr timer_debug_descr;
+ 
+ static void *timer_debug_hint(void *addr)
+ {
+-	return ((struct timer_list *) addr)->function;
++	struct timer_list *timer = addr;
++
++	if (timer->function == delayed_work_timer_fn) {
++		struct delayed_work *work = from_timer(work, timer, timer);
++		return work->work.func;
++	}
++
++	return timer->function;
+ }
+ 
+ static bool timer_is_static_object(void *addr)
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
