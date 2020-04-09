@@ -2,64 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B0F1A2E8C
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 06:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F5C1A2EEB
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Apr 2020 08:01:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D82D26EB42;
-	Thu,  9 Apr 2020 04:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B216EB48;
+	Thu,  9 Apr 2020 06:01:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27DEE6EB42
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 04:52:43 +0000 (UTC)
-IronPort-SDR: JmZ9/USkogDXS59lHmbNh1zYEdr2O+spSpiZqi1MWtMAHO4uT2rgkP1Z1f8ezOhs+CkxvWqgx3
- sNy2kI2byJYw==
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F7A6EB47;
+ Thu,  9 Apr 2020 06:01:23 +0000 (UTC)
+IronPort-SDR: 7sBpXAtktZiArDK51DClcEQiNRWNhBn8lJ5xFPm1mc0ZQkzw2fGOiddpKIy8rAiDmw6+quP/wR
+ Rs39XO4XfDoA==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2020 21:52:41 -0700
-IronPort-SDR: MgkRuKMiHNXtYAqmyZYMOit2Wsax82NmbRt5oh3sCPr9UG5F8UVo7jTYykIbsbggQszqcMm2vs
- DFNNyjQF6vUA==
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2020 23:01:18 -0700
+IronPort-SDR: R5TtvF7TFdMTM0x7JBvwW6sb7Zob361WJO4YMlXPbmbsfBUtM3Gd269tbWAK0AIXscNNYBOR/o
+ Cc4gogo945Rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,361,1580803200"; d="scan'208";a="244223866"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga008.fm.intel.com with ESMTP; 08 Apr 2020 21:52:41 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 8 Apr 2020 21:52:41 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.72,361,1580803200"; 
+ d="asc'?scan'208";a="362063168"
+Received: from irsmsx107.ger.corp.intel.com ([163.33.3.99])
+ by fmsmga001.fm.intel.com with ESMTP; 08 Apr 2020 23:01:11 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX107.ger.corp.intel.com (163.33.3.99) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 9 Apr 2020 07:01:10 +0100
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 8 Apr 2020 21:52:41 -0700
-Received: from bgsmsx109.gar.corp.intel.com (10.223.4.211) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 8 Apr 2020 21:52:40 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
- BGSMSX109.gar.corp.intel.com ([169.254.10.57]) with mapi id 14.03.0439.000;
- Thu, 9 Apr 2020 10:22:38 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Kadiyala, Kishore" <kishore.kadiyala@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v5] drm/i915: Add Plane color encoding support for
- YCBCR_BT2020
-Thread-Index: AQHWDbEnfNCZdMTCdUygIqaNKIx18ahwObjw
-Date: Thu, 9 Apr 2020 04:52:38 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8244A875@BGSMSX104.gar.corp.intel.com>
-References: <20200408142227.21000-1-kishore.kadiyala@intel.com>
-In-Reply-To: <20200408142227.21000-1-kishore.kadiyala@intel.com>
+ 15.1.1713.5; Thu, 9 Apr 2020 07:01:10 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Thu, 9 Apr 2020 07:01:10 +0100
+From: "Peres, Martin" <martin.peres@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "igt-dev@lists.freedesktop.org"
+ <igt-dev@lists.freedesktop.org>
+Thread-Topic: [PATCH i-g-t] intel-ci: Drop gem_exec_suspend@basic-S4-device
+ from BAT
+Thread-Index: AQHWDjRELUx1mOL+EEixOHK4fhcHBw==
+Date: Thu, 9 Apr 2020 06:01:10 +0000
+Message-ID: <f985417f67ed40a6866cf8d9ff975fa8@intel.com>
+References: <20200408141921.2057263-1-chris@chris-wilson.co.uk>
 Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+x-originating-ip: [10.252.62.1]
+Content-Type: multipart/mixed;
+ boundary="_002_f985417f67ed40a6866cf8d9ff975fa8intelcom_"
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Add Plane color encoding
- support for YCBCR_BT2020
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel-ci: Drop
+ gem_exec_suspend@basic-S4-device from BAT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,120 +68,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--_002_f985417f67ed40a6866cf8d9ff975fa8intelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+On 2020-04-08 17:19, Chris Wilson wrote:=0A=
+> S4-devices is a debug only path, and while it can prove informative as=0A=
+> to the nature of suspend issues, being a debug only path it is not so=0A=
+> relevant towards the driver health. Relegate it to the shards and idle=0A=
+> runs, so we can shave 20s off BAT.=0A=
+> =0A=
+> gem_exec_suspend@basic itself is just a test suspend, a sanitycheck to=0A=
+> ensure the test is functional, for manual debugging of the tests.=0A=
+> =0A=
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>=0A=
+> Cc: Martin Peres <martin.peres@linux.intel.com>=0A=
+> Cc: Petri Latvala <petri.latvala@intel.com>=0A=
+=0A=
+Acked-by: Martin Peres <martin.peres@linux.intel.com>=0A=
+> ---=0A=
+>  tests/intel-ci/fast-feedback.testlist | 2 --=0A=
+>  1 file changed, 2 deletions(-)=0A=
+> =0A=
+> diff --git a/tests/intel-ci/fast-feedback.testlist b/tests/intel-ci/fast-=
+feedback.testlist=0A=
+> index 620d5f3a7..2ccad4386 100644=0A=
+> --- a/tests/intel-ci/fast-feedback.testlist=0A=
+> +++ b/tests/intel-ci/fast-feedback.testlist=0A=
+> @@ -23,10 +23,8 @@ igt@gem_exec_fence@nb-await=0A=
+>  igt@gem_exec_gttfill@basic=0A=
+>  igt@gem_exec_parallel@engines=0A=
+>  igt@gem_exec_store@basic=0A=
+> -igt@gem_exec_suspend@basic=0A=
+>  igt@gem_exec_suspend@basic-s0=0A=
+>  igt@gem_exec_suspend@basic-s3=0A=
+> -igt@gem_exec_suspend@basic-s4-devices=0A=
+>  igt@gem_flink_basic@bad-flink=0A=
+>  igt@gem_flink_basic@bad-open=0A=
+>  igt@gem_flink_basic@basic=0A=
+> =0A=
+=0A=
 
-> -----Original Message-----
-> From: Kadiyala, Kishore <kishore.kadiyala@intel.com>
-> Sent: Wednesday, April 8, 2020 7:52 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Kadiyala, Kishore <kishore.kadiyala@intel.com>; Ville Syrjala
-> <ville.syrjala@linux.intel.com>; Shankar, Uma <uma.shankar@intel.com>; Nikula,
-> Jani <jani.nikula@intel.com>
-> Subject: [PATCH v5] drm/i915: Add Plane color encoding support for YCBCR_BT2020
-> 
-> Currently the plane property doesn't have support for YCBCR_BT2020, which enables
-> the corresponding color conversion mode on plane CSC.
-> Enabling the plane property for the planes for GLK & ICL+ platforms.
-> 
-> V2: Enabling support for YCBCT_BT2020 for HDR planes on
->     platforms GLK & ICL
-> 
-> V3: Refined the condition check to handle GLK & ICL+ HDR planes
->     Also added BT2020 handling in glk_plane_color_ctl.
-> 
-> V4: Combine If-else into single If
-> 
-> V5: Drop the checking for HDR planes and enable YCBCR_BT2020
->     for platforms GLK & ICL+.
+--_002_f985417f67ed40a6866cf8d9ff975fa8intelcom_
+Content-Type: application/pgp-keys; name="pEpkey.asc"
+Content-Description: pEpkey.asc
+Content-Disposition: attachment; filename="pEpkey.asc"; size=1774;
+	creation-date="Thu, 09 Apr 2020 06:01:10 GMT";
+	modification-date="Thu, 09 Apr 2020 06:01:10 GMT"
+Content-Transfer-Encoding: base64
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkYzazA1Z0JDQUN5WmhP
+WGExNGJUY3lUUWtjMVV5R2ZjNGx4ckhQREw1YXVPbkM3cUVIWkw1b3ZWd3NDCmF1ZlFaOVFKVWwx
+NHh1OCt4dUl6UGoyWXhEbjFBeVJFN0RzSXNxNjVIaDlRa2YxQytFNmtHeHBDS2VXeFpEalIKS0xE
+a2pQWmdRTTdOeHNFWkRkemNaTlFLUEt3OXBXUUovRCtrSUlyNDJYaERhbktyQ1pHV3Vxc3VwVGI4
+YmM2agp3ZnBxVzV2eUp2WnVMSHcrTURhRVhoZ1Z0SlVWYVdSWENXbXFZQU1YWFlMMGh5NHVjRDZz
+UWl3U2psK3JUU2NIClhqSHdhWURWWTI5bVFlR3lWMDMyeXBFWFQzWG1DVTJVT0hhNENNaktLR3ZK
+MjRBU2Q5SFkyWHo4cmNyR1pTbGsKRkhMTGRwNUNET2wrRFU2Vjc5SWs5a3pPMFVxK0hXWDRtc2Z4
+QUJFQkFBRzBLMDFoY25ScGJpQlFaWEpsY3lBOApiV0Z5ZEdsdUxuQmxjbVZ6UUd4cGJuVjRMbWx1
+ZEdWc0xtTnZiVDZKQVZRRUV3RUlBRDRXSVFSTjlzUS9iN0dPClhRdkh5WUVDditaL002VXplUVVD
+WGVUVG1RSWJBd1VKQWVFemdBVUxDUWdIQWdZVkNna0lDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkFD
+ditaL002VXplUmJ3Qi85ZHhZaG01WU14eGlSa2tZRVBrOE9DUGZjOGJwazF6RFc5Nkc0MgpLYVoz
+RlRPRGNSMktjelg1ZVRMRFYwdklNRndqMmw0UXAvRFpzbVlsNzlKNDNhbHg1RHRIQUZJMlJHSis2
+dXJhClFZMkovVXUvUWt5eEdrMTRpQUFzYytaalJSdWllQ1h0Wkc2THRMYmdsTUZCWUd4dzlWVEow
+L0xhNHJjUVk3UksKOW1KM1QwWUxKMkJNNlVha3lUWEdzbnN0aWtOa2wzU0JKVDBJc1B1bVdGL240
+a25penZQcG5BTGNQWGwwS3VtUwpuZDZ1b2dPT3VrQ0t4Z0RUWm1qRG9meDVvN1pveDI5blNkdjR3
+aVJMOHVBeDRrY0pPOUxPOFhBN0lITzd6SXRTCmpXbWRXRmN4QTVicFRkRWR0TThIQWlCQkFaNU44
+WXVraENuejltT0FFOXZLOXZydHVRRU5CRjNrMDVrQkNBREwKR3JGN1NBblB5NVo2R2ZlelZDclFm
+dUlHSmhPemxuY0c2aFdHYU05YzlDVEtxSGZDNHROV1VFeHJmam5YNjBtRgpJbUx2aHhlRlZDOWJv
+QS9jNGFVTmhEYy9NOUtqc08ycWRyd2d4QXl3bnIraVJqbzNORUJWQkF3T2NldWRRM0xPClZmZW5k
+b296d3lqd3ZZRFV2QzNUcWtjajBsNmE2R3JqZTZWMVVTQ3RIL0ZlR2NONG9EMnZPOW1yWFlQb2hr
+V2cKU3B2QUpPSEs5bk5nMUtaTjcvcDlXNUZMMlZZN2pIbHErd1gxZDBTRytRNlhjVHNEQUEyOStO
+YmM1Qk0vcTJJTAphV1Fva0I0bzBaRjNsakZiN2RYZDNRZEpNWDdvNXRURzFMUi9TalZmbkZGckMw
+K1IrZGhlRUVldGxVckRMRmF0CnhnRTdvREVPLzA4c2g5eHJPdzdMQUJFQkFBR0pBVHdFR0FFSUFD
+WVdJUVJOOXNRL2I3R09YUXZIeVlFQ3YrWi8KTTZVemVRVUNYZVRUbVFJYkRBVUpBZUV6Z0FBS0NS
+QUN2K1ovTTZVemVTMVRCLzlNbTFYTUhpbWtFbW15ZXNiMQpxdHFUY2htV2Q1NWhiRkIxMDRSbUx5
+c0VrSU43Q3IweVNEZjBZRWxxd2QvSDlGWWVLUTVEWWJWWS9CclhjeGYzCmNKVDJBZ01Zdk54bHZ5
+NHluR1F4Yy9YbXRzMGZVSno5cmRVVmZxZlFKbDlHZkR1U3dpQnhmb3BlN21aR2NIZWcKNzBaQTg3
+Q0xJQ0FVbi9uRFpSekZuUHNhdUxJSU9sMGhxVWtJUml3WVp0WW9WZnNoVGhTNzNEcXNGS2U0Y25r
+eApZcGVCRXNsYUduZnRMUC9uWDl6dkZ4SXJYUXBPdHJ2eWdkWklhMVMrZXhYM2NXMHNPYm02Zjk0
+T3Q1Mjl3V3pTCnhJRjBvRnZPY3NlZ2ErL3FPK1hSNHNjbUJ1K3NUVU5FQnA1NWYyc0ptOWllVlU5
+SXUwM2JYVnBMZGV3dTNtMEIKTTVtaAo9YzJPTwotLS0tLUVORCBQR1AgUFVCTElDIEtFWSBCTE9D
+Sy0tLS0tCg==
 
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
-> drivers/gpu/drm/i915/display/intel_sprite.c  |  9 +++++++--
->  2 files changed, 16 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index 70ec301fe6e3..f2dfa61a49fa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4808,11 +4808,17 @@ u32 glk_plane_color_ctl(const struct intel_crtc_state
-> *crtc_state,
->  	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
-> 
->  	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
-> -		if (plane_state->hw.color_encoding ==
-> DRM_COLOR_YCBCR_BT709)
-> +		switch (plane_state->hw.color_encoding) {
-> +		case DRM_COLOR_YCBCR_BT709:
->  			plane_color_ctl |=
-> PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
-> -		else
-> +			break;
-> +		case DRM_COLOR_YCBCR_BT2020:
-> +			plane_color_ctl |=
-> +
-> 	PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
-> +			break;
-> +		default:
->  			plane_color_ctl |=
-> PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
-> -
-> +		}
->  		if (plane_state->hw.color_range ==
-> DRM_COLOR_YCBCR_FULL_RANGE)
->  			plane_color_ctl |=
-> PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
->  	} else if (fb->format->is_yuv) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
-> b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index deda351719db..0072525046a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_private
-> *dev_priv,
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
->  	unsigned int supported_rotations;
-> +	unsigned int supported_csc;
->  	const u64 *modifiers;
->  	const u32 *formats;
->  	int num_formats;
-> @@ -3105,9 +3106,13 @@ skl_universal_plane_create(struct drm_i915_private
-> *dev_priv,
->  					   DRM_MODE_ROTATE_0,
->  					   supported_rotations);
-> 
-> +	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) |
-> +BIT(DRM_COLOR_YCBCR_BT709);
-> +
-> +	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> +		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-> +
->  	drm_plane_create_color_properties(&plane->base,
-> -					  BIT(DRM_COLOR_YCBCR_BT601) |
-> -					  BIT(DRM_COLOR_YCBCR_BT709),
-> +					  supported_csc,
-> 
-> BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
->  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
->  					  DRM_COLOR_YCBCR_BT709,
-> --
-> 2.17.1
+--_002_f985417f67ed40a6866cf8d9ff975fa8intelcom_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--_002_f985417f67ed40a6866cf8d9ff975fa8intelcom_--
