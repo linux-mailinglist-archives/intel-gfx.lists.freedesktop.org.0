@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A78D1A4C37
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 00:49:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8672E1A4C1E
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 00:33:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C27BF6ED6F;
-	Fri, 10 Apr 2020 22:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72BC36ED67;
+	Fri, 10 Apr 2020 22:33:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 7.mo178.mail-out.ovh.net (7.mo178.mail-out.ovh.net
- [46.105.58.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83AA66ED6F
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 22:49:52 +0000 (UTC)
-Received: from player168.ha.ovh.net (unknown [10.110.103.23])
- by mo178.mail-out.ovh.net (Postfix) with ESMTP id A563B9921C
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Apr 2020 00:33:27 +0200 (CEST)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player168.ha.ovh.net (Postfix) with ESMTPSA id A9BF21149DCC0;
- Fri, 10 Apr 2020 22:33:24 +0000 (UTC)
-Date: Sat, 11 Apr 2020 01:33:23 +0300
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200410223323.GB264232@jack.zhora.eu>
-References: <20200408102408.1959598-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA166ED64;
+ Fri, 10 Apr 2020 22:33:11 +0000 (UTC)
+IronPort-SDR: KezODp9asxgnkDFmvvWwgn/6XAGBdk93XDCXIHKK+QLRi1Bt5630IhIvja9Ybtqo3M60I1KKKY
+ zJtKufxzkq0w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2020 15:33:10 -0700
+IronPort-SDR: fX6FTprqQjzErsduJkmvkiIAaT5PiIXYPtys0bmKAT1PYZ7zJJETjMiv1jCj+HyBClyJ6FHocq
+ YH5HRVr9eaIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,368,1580803200"; d="scan'208";a="287317067"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2020 15:33:10 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 10 Apr 2020 15:34:00 -0700
+Message-Id: <20200410223402.6663-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200408102408.1959598-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 17597534070218998281
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrvdefgddtiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrudeikedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH i-g-t] kms_flip: Reduce hang tests to
- minimum duration
+Subject: [Intel-gfx] [PATCH v3 1/3] drm/dp: DRM DP helper for reading Ignore
+ MSA from DPCD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,44 +46,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
-
-On Wed, Apr 08, 2020 at 11:24:08AM +0100, Chris Wilson wrote:
-> Hang tests are slow since we must wait for the kernel to detect the GPU
-> hang before it forcibly completes the execution and signals the fence.
-> The flip is not allowed before the fence is signaled and so must wait.
-> Our test is that the flip does eventually occur, we only need to do that
-> once, and let the power of repeated runs across many machines weed out
-> the corner cases.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  tests/kms_flip.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/kms_flip.c b/tests/kms_flip.c
-> index afaed69aa..4535ecc8b 100755
-> --- a/tests/kms_flip.c
-> +++ b/tests/kms_flip.c
-> @@ -1546,8 +1546,8 @@ igt_main
->  					"flip-vs-wf_vblank" },
->  		{ 30, TEST_FLIP | TEST_VBLANK | TEST_VBLANK_BLOCK |
->  			TEST_CHECK_TS, "flip-vs-blocking-wf-vblank" },
-> -		{ 30, TEST_FLIP | TEST_MODESET | TEST_HANG | TEST_NOEVENT, "flip-vs-modeset-vs-hang" },
-> -		{ 30, TEST_FLIP | TEST_PAN | TEST_HANG, "flip-vs-panning-vs-hang" },
-> +		{ 1, TEST_FLIP | TEST_MODESET | TEST_HANG | TEST_NOEVENT, "flip-vs-modeset-vs-hang" },
-> +		{ 1, TEST_FLIP | TEST_PAN | TEST_HANG, "flip-vs-panning-vs-hang" },
-
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-
-Andi
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFAgc2luayBkZXZpY2Ugc2V0cyB0aGUgSWdub3JlIE1TQSBiaXQgaW4gaXRzCkRQX0RPV05TVFJF
+QU1fUE9SVF9DT1VOVCByZWdpc3RlciB0byBpbmRpY2F0ZSBpdHMgYWJpbGl0eSB0bwppZ25vcmUg
+dGhlIE1TQSB2aWRlbyB0aW1pbmcgcGFyYW1ldGVycyBhbmQgaXRzIGFiaWxpdHkgdG8gc3VwcG9y
+dApzZWFtbGVzcyB2aWRlbyB0aW1pbmcgY2hhbmdlIG92ZXIgYSByYW5nZSBvZiB0aW1pbmcgZXhw
+b3NlZCBieQpEaXNwbGF5SUQgYW5kIEVESUQuClRoaXMgaXMgcmVxdWlyZWQgZm9yIHRoZSBzaW5r
+IHRvIGluZGljYXRlIHRoYXQgaXQgaXMgQWRhcHRpdmUgc3luYwpjYXBhYmxlLgoKdjM6CiogRmkg
+dGhlIHR5cG8gaW4gY29tbWl0IG1lc3NhZ2UgKE1hbmFzaSkKdjI6CiogUmVuYW1lIHRvIGRlc2Ny
+aWJlIHdoYXQgdGhlIGZ1bmN0aW9uIGRvZXMgKEphbmkgTmlrdWxhKQoKQ2M6IEphbmkgTmlrdWxh
+IDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogSGFycnkgV2VudGxhbmQgPGhhcnJ5LndlbnRs
+YW5kQGFtZC5jb20+CkNjOiBOaWNob2xhcyBLYXpsYXVza2FzIDxOaWNob2xhcy5LYXpsYXVza2Fz
+QGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBp
+bnRlbC5jb20+ClJldmlld2VkLWJ5OiBIYXJyeSBXZW50bGFuZCA8aGFycnkud2VudGxhbmRAYW1k
+LmNvbT4KLS0tCiBpbmNsdWRlL2RybS9kcm1fZHBfaGVscGVyLmggfCA4ICsrKysrKysrCiAxIGZp
+bGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJt
+X2RwX2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCmluZGV4IDMwNTUzM2Rh
+MTNhZC4uMmI0MWU4OTkwNTMxIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fZHBfaGVscGVy
+LmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCkBAIC0xNDQ1LDYgKzE0NDUsMTQg
+QEAgZHJtX2RwX2FsdGVybmF0ZV9zY3JhbWJsZXJfcmVzZXRfY2FwKGNvbnN0IHU4IGRwY2RbRFBf
+UkVDRUlWRVJfQ0FQX1NJWkVdKQogCQkJRFBfQUxURVJOQVRFX1NDUkFNQkxFUl9SRVNFVF9DQVA7
+CiB9CiAKKy8qIElnbm9yZSBNU0EgdGltaW5nIGZvciBBZGFwdGl2ZSBTeW5jIHN1cHBvcnQgb24g
+RFAgMS40ICovCitzdGF0aWMgaW5saW5lIGJvb2wKK2RybV9kcF9zaW5rX2Nhbl9kb192aWRlb193
+aXRob3V0X3RpbWluZ19tc2EoY29uc3QgdTggZHBjZFtEUF9SRUNFSVZFUl9DQVBfU0laRV0pCit7
+CisJcmV0dXJuIGRwY2RbRFBfRE9XTl9TVFJFQU1fUE9SVF9DT1VOVF0gJgorCQlEUF9NU0FfVElN
+SU5HX1BBUl9JR05PUkVEOworfQorCiAvKgogICogRGlzcGxheVBvcnQgQVVYIGNoYW5uZWwKICAq
+LwotLSAKMi4xOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
