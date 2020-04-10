@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121AD1A6A54
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8107E1A6A5A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6582189FD9;
-	Mon, 13 Apr 2020 16:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD42A6E0A6;
+	Mon, 13 Apr 2020 16:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00C6A6ECEC;
- Fri, 10 Apr 2020 14:15:12 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id b72so1079236pfb.11;
- Fri, 10 Apr 2020 07:15:12 -0700 (PDT)
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+ [209.85.210.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0466ECEE;
+ Fri, 10 Apr 2020 14:17:42 +0000 (UTC)
+Received: by mail-pf1-f194.google.com with SMTP id v23so1111850pfm.1;
+ Fri, 10 Apr 2020 07:17:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=xO1FGU/icOILvFWOuncN4qsCUUWcHUB8OtOA1cu0N2s=;
- b=VoTuOVdEcNBfcHYU89RCVbHhc2qzCD4cXA1F88goVf53FmaPJciQC7iylHs9d7Hcjp
- 7R0bjrWVPeK9lT8uS/fiLX0N4I/7GBPYT/M6M1/T2DnoAaJhkWQM8rKM2y65PkOPtswM
- 9bn1naovK7F1iu7XcNQih4uK8cgDd1J9c+gY9nxacBLBCv/meUPaH5oqjdm0ZDNFtLyt
- HMNRSWOTMKPIUlgM8oOcyfDI77aIEXFOytC4DDya4XML8jClewGc+MuBydPCQe5HS68r
- OXAFjuq6bDl0/zgMr7q1dBUrXGfX6kpW2NT6sf5CCQQbyi95rjHVrabyAOkAe6ypDjSJ
- xBQg==
-X-Gm-Message-State: AGi0Pua/o1JY3DTTfue/Fuo5Uy74LvCg8KlokDMHIad6gIdPQIUytEzD
- 8OmJ1Y974LiA/WCF9AB5LhE=
-X-Google-Smtp-Source: APiQypJSCa9K9MnX8xss6uk3WdmwEdOYIYI5gQFTkBUq5NrSTxzecl4NUnAlt9445YegA/m/FHQj1Q==
-X-Received: by 2002:a65:53cf:: with SMTP id z15mr4747258pgr.367.1586528112467; 
- Fri, 10 Apr 2020 07:15:12 -0700 (PDT)
+ bh=phSmRmK8df1FHnQ5vNeBAAQ75z9yd9I/uZBVXE2qr20=;
+ b=ZIcVsJn4UjSA3Sp2PX7HxaKIqILbmsW9A/S68ICfQKGX9CF0a+50UJwdgJ7OJxD0hp
+ jr/sN1M4oYKX2je/xhRlzyMsuTpOC/WzAmV59qc16o7lFp6orQOubyqUtRSCo7kYW+Ra
+ cLamay1/p2mWIS+KWm660wWRi6Lu1IdUZvy8ZtWgCfdHt1k7qgZQqr1i+KR7KixzSbgn
+ NcnTmrYMVcIoaN5QhOPnLfRng6dm4Qm9EWx5FwL2tDYYJviXRSIZoje4bepiKAHshpYt
+ bvAibkwC2AhG7E47K9lS1eTfuhYWQBryG/rUDtT9pvWw6jzgNaNmXgQrxK3Dt4i3Dsr3
+ pN+Q==
+X-Gm-Message-State: AGi0PubJNh5WRAGLZBpjMhRd5hDdSE4m/2gcxW9+70Tq5kpaaJd+3aMC
+ 5+AUruhj4tedIB9O2yiuKos=
+X-Google-Smtp-Source: APiQypJeGWMtEkYgrzBPjdIl7sj2PdpafWKmiZDlFKA/qWp0FO3nWji0ifyG/uz4StCCWE0/jA2S/g==
+X-Received: by 2002:a63:f403:: with SMTP id g3mr4880072pgi.47.1586528262067;
+ Fri, 10 Apr 2020 07:17:42 -0700 (PDT)
 Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
  [198.54.129.52])
- by smtp.gmail.com with ESMTPSA id t126sm902648pfb.29.2020.04.10.07.15.10
+ by smtp.gmail.com with ESMTPSA id s9sm1841879pjr.5.2020.04.10.07.17.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Apr 2020 07:15:11 -0700 (PDT)
-Date: Fri, 10 Apr 2020 07:15:08 -0700
+ Fri, 10 Apr 2020 07:17:41 -0700 (PDT)
+Date: Fri, 10 Apr 2020 07:17:38 -0700
 From: Sultan Alsawaf <sultan@kerneltoast.com>
 To: Greg KH <gregkh@linuxfoundation.org>
-Message-ID: <20200410141508.GA2025@sultan-box.localdomain>
+Message-ID: <20200410141738.GB2025@sultan-box.localdomain>
 References: <20200407065210.GA263852@kroah.com>
  <20200407071809.3148-1-sultan@kerneltoast.com>
  <20200410090838.GD1691838@kroah.com>
@@ -107,13 +107,13 @@ On Fri, Apr 10, 2020 at 11:08:38AM +0200, Greg KH wrote:
 > 
 > greg k-h
 
-Hi Greg,
-
-Thanks for queuing this! However, you queued the v1 version of the patch instead
-of v2. Please pick the v2 version instead.
+I'm sorry, I meant the v3 [1]. Apologies for the confusion. The v3 was picked
+into Ubuntu so that's what we're rolling with.
 
 Thanks,
 Sultan
+
+[1] https://lore.kernel.org/stable/20200407203222.2493-1-sultan@kerneltoast.com
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
