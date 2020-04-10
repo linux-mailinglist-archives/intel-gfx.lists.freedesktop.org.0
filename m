@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEDB1A4371
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2020 10:16:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33691A4380
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2020 10:25:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D03316E1F9;
-	Fri, 10 Apr 2020 08:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C71A6E266;
+	Fri, 10 Apr 2020 08:25:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C470F6E1F9
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 08:16:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5458A6E266
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 08:25:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20860386-1500050 
- for multiple; Fri, 10 Apr 2020 09:16:40 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20860464-1500050 
+ for multiple; Fri, 10 Apr 2020 09:25:27 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Apr 2020 09:16:38 +0100
-Message-Id: <20200410081638.19893-1-chris@chris-wilson.co.uk>
+Date: Fri, 10 Apr 2020 09:25:25 +0100
+Message-Id: <20200410082525.24733-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Check for an already
- completed timeslice
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Poison the async power domain
+ on shutdown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,28 +43,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With timeslice yielding on a semaphore, we may complete timeslices much
-faster than we were expecting and already have yielded the stuck
-request. Before complaining that timeslicing is not enabled, check that
-we haven't already applied the switch.
+Lets see if we can find who is still running after the driver has been
+removed!
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 1 +
+ drivers/gpu/drm/i915/display/intel_display_power.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 616d03506c2c..6f5e35afe1b2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1252,6 +1252,7 @@ static int live_timeslice_queue(void *arg)
- 		} while (READ_ONCE(engine->execlists.pending[0]));
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 433e5a81dd4d..9d18b24730b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -2282,6 +2282,7 @@ intel_display_power_flush_work_sync(struct drm_i915_private *i915)
  
- 		if (!READ_ONCE(engine->execlists.timer.expires) &&
-+		    execlists_active(&engine->execlists) == rq &&
- 		    !i915_request_completed(rq)) {
- 			struct drm_printer p =
- 				drm_info_printer(gt->i915->drm.dev);
+ 	intel_display_power_flush_work(i915);
+ 	cancel_delayed_work_sync(&power_domains->async_put_work);
++	memset(&power_domains->async_put_work, POISON_FREE, sizeof(power_domains->async_put_work));
+ 
+ 	verify_async_put_domains_state(power_domains);
+ 
 -- 
 2.20.1
 
