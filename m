@@ -1,39 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A825D1A4A9B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2020 21:38:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0F61A4ABB
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2020 21:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98B166ED3B;
-	Fri, 10 Apr 2020 19:38:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B9F6E2A3;
+	Fri, 10 Apr 2020 19:42:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51AF46ED3A;
- Fri, 10 Apr 2020 19:38:02 +0000 (UTC)
-Received: from localhost (mobile-166-170-220-109.mycingular.net
- [166.170.220.109])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id BB1CC20732;
- Fri, 10 Apr 2020 19:38:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586547482;
- bh=76FW6bsyi+GvI3cA1295vPvYzfcdLfIdfR/uMK0cqIM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=f5aqyeY5H8P+Dg0VtR5VXhNEaIBxx4R/gGzchOa7w+V/JIMrsYuYNV7aLVSvrZntH
- WWv3dp0kGmlDxfECQgMchX8GExkaXAsoMWQhr1nrjc+24qlq2ngw+8X5Yw7mD9qxHN
- rCJAnLyi2B0qmE9qQBazZ/B4H3+CIp6g7so4MwFk=
-Date: Fri, 10 Apr 2020 14:38:00 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Message-ID: <20200410193800.GA5202@google.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D28356E2A3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 19:41:59 +0000 (UTC)
+IronPort-SDR: go1NoZGt4xLRgdp6mRiMwjd8Y3YCjqaGRjsreuRxtcGY82Kku9esbhdFTVv2e6KjxfhKzF61fN
+ kqWvCHbGigYA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2020 12:41:58 -0700
+IronPort-SDR: XzwU9WGazlWOUZvL2b8O3jv6C02aXmZYrR80LJ0j+Oe0essivAGfS2sgyOrMyS8/+OV7wS47aP
+ a8DPYTgdeRyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,367,1580803200"; d="scan'208";a="261560564"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga008.jf.intel.com with ESMTP; 10 Apr 2020 12:41:58 -0700
+Received: from fmsmsx126.amr.corp.intel.com (10.18.125.43) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 10 Apr 2020 12:41:58 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
+ FMSMSX126.amr.corp.intel.com ([169.254.1.221]) with mapi id 14.03.0439.000;
+ Fri, 10 Apr 2020 12:41:58 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Flush async power domains on
+ probe failure
+Thread-Index: AQHWD0aV1fiaZjzNt0iP6Cjb7b/md6hzN3OA
+Date: Fri, 10 Apr 2020 19:41:57 +0000
+Message-ID: <02af48873c1c1b4f5331215f5ed6ae61170cbf5c.camel@intel.com>
+References: <20200410144328.15286-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200410144328.15286-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.209.74.15]
+Content-ID: <26AEEC34A1FE9647B267D8F0D68EC130@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5092680.jloV5Ae5OO@kreacher>
-Subject: Re: [Intel-gfx] [PATCH 5/7] PM: sleep: core: Rename
- DPM_FLAG_NEVER_SKIP
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flush async power domains on
+ probe failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,111 +62,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux PM <linux-pm@vger.kernel.org>, Linux PCI <linux-pci@vger.kernel.org>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI-devel <dri-devel@lists.freedesktop.org>,
- Linux ACPI <linux-acpi@vger.kernel.org>,
- Alan Stern <stern@rowland.harvard.edu>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-wired-lan@lists.osuosl.org, Ulf Hansson <ulf.hansson@linaro.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 10, 2020 at 05:56:13PM +0200, Rafael J. Wysocki wrote:
-> From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
-> 
-> Rename DPM_FLAG_NEVER_SKIP to DPM_FLAG_NO_DIRECT_COMPLETE which
-> matches its purpose more closely.
-> 
-> No functional impact.
-> 
-> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # for PCI parts
-
-> ---
->  Documentation/driver-api/pm/devices.rst    |  6 +++---
->  Documentation/power/pci.rst                | 10 +++++-----
->  drivers/base/power/main.c                  |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  2 +-
->  drivers/gpu/drm/i915/intel_runtime_pm.c    |  2 +-
->  drivers/gpu/drm/radeon/radeon_kms.c        |  2 +-
->  drivers/misc/mei/pci-me.c                  |  2 +-
->  drivers/misc/mei/pci-txe.c                 |  2 +-
->  drivers/net/ethernet/intel/e1000e/netdev.c |  2 +-
->  drivers/net/ethernet/intel/igb/igb_main.c  |  2 +-
->  drivers/net/ethernet/intel/igc/igc_main.c  |  2 +-
->  drivers/pci/pcie/portdrv_pci.c             |  2 +-
->  include/linux/pm.h                         |  6 +++---
->  13 files changed, 21 insertions(+), 21 deletions(-)
-> 
-> diff --git a/Documentation/driver-api/pm/devices.rst b/Documentation/driver-api/pm/devices.rst
-> index f66c7b9126ea..4ace0eba4506 100644
-> --- a/Documentation/driver-api/pm/devices.rst
-> +++ b/Documentation/driver-api/pm/devices.rst
-> @@ -361,9 +361,9 @@ the phases are: ``prepare``, ``suspend``, ``suspend_late``, ``suspend_noirq``.
->  	runtime PM disabled.
-
-Minor question about a preceding paragraph that ends:
-
-  In that case, the ``->complete`` callback will be invoked directly
-  after the ``->prepare`` callback and is entirely responsible for
-  putting the device into a consistent state as appropriate.
-
-What does" a consistent state as appropriate" mean?  I know this is
-generic documentation at a high level, so maybe there's no good
-explanation for "consistent state," but I don't know what to imagine
-there.
-
-And what does "as appropriate" mean?  Would it change the meaning to
-drop those two words, or are there situations where it's not
-appropriate to put the device into a consistent state?  Or maybe it's
-just that the type of device determines what the consistent state is?
-
->  	This feature also can be controlled by device drivers by using the
-> -	``DPM_FLAG_NEVER_SKIP`` and ``DPM_FLAG_SMART_PREPARE`` driver power
-> -	management flags.  [Typically, they are set at the time the driver is
-> -	probed against the device in question by passing them to the
-> +	``DPM_FLAG_NO_DIRECT_COMPLETE`` and ``DPM_FLAG_SMART_PREPARE`` driver
-> +	power management flags.  [Typically, they are set at the time the driver
-> +	is probed against the device in question by passing them to the
->  	:c:func:`dev_pm_set_driver_flags` helper function.]  If the first of
->  	these flags is set, the PM core will not apply the direct-complete
->  	procedure described above to the given device and, consequenty, to any
-
-s/consequenty/consequently/
-
-Drive-by comment: I looked for a definition of "direct-complete".  The
-closest I found is a couple paragraphs above this, where it says "Note
-that this direct-complete procedure ...," but that leaves me to try to
-reconstruct the definition from the preceding text.
-
-AFAICT, going to freeze, standby, or memory sleep includes these
-callbacks:
-
-  ->prepare
-  ->suspend
-  ->suspend_late
-  ->suspend_noirq
-  ->complete         (not mentioned in the list of phases)
-
-And "direct-complete" means we skip the suspend, suspend_late,
-and suspend_noirq callbacks so we only use these:
-
-  ->prepare
-  ->complete
-
-And apparently we skip those callbacks for device X if ->prepare() for
-X and all its descendents returns a positive value AND they are all
-runtime-suspended, except if a driver for X or a descendent sets
-DPM_FLAG_NO_DIRECT_COMPLETE.
-
-Bjorn
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDIwLTA0LTEwIGF0IDE1OjQzICswMTAwLCBDaHJpcyBXaWxzb24gd3JvdGU6DQo+
+IEZsdXNoIHRoZSBhc3luYyBwb3dlciBkb21haW4gd29yayBhZnRlciBhYm9ydGluZyB0aGUgbW9k
+dWxlIHByb2JlOg0KPiANCj4gPDM+IFszMDcuNzg1NTUyXSBPREVCVUc6IGZyZWUgYWN0aXZlIChh
+Y3RpdmUgc3RhdGUgMCkgb2JqZWN0IHR5cGU6DQo+IHRpbWVyX2xpc3QgaGludDogaW50ZWxfZGlz
+cGxheV9wb3dlcl9wdXRfYXN5bmNfd29yaysweDAvMHhmMCBbaTkxNV0NCj4gDQo+IENsb3Nlczog
+aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8xNjQ3DQo+
+IEZpeGVzOiBiNjY0MjU5ZjNmZTIgKCJkcm0vaTkxNTogc3BsaXQgaTkxNV9kcml2ZXJfbW9kZXNl
+dF9wcm9iZSgpIHRvDQo+IHByZS9wb3N0IGlycSBpbnN0YWxsIikNCj4gU2lnbmVkLW9mZi1ieTog
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+DQo+IENjOiBKYW5pIE5pa3Vs
+YSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
+eXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
+LmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIHwgMSArDQo+
+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuYw0KPiBpbmRleCBhN2EzYjRiOTg1NzIuLjEzYzFjZTI0NDA5MiAxMDA2NDQNCj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2Rydi5jDQo+IEBAIC05OTYsNiArOTk2LDcgQEAgaW50IGk5MTVfZHJpdmVy
+X3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdA0KPiBzdHJ1Y3QgcGNpX2RldmljZV9p
+ZCAqZW50KQ0KPiAgb3V0X2NsZWFudXBfbW9kZXNldDoNCj4gIAkvKiBGSVhNRSAqLw0KPiAgb3V0
+X2NsZWFudXBfaHc6DQo+ICsJaW50ZWxfcG93ZXJfZG9tYWluc19kcml2ZXJfcmVtb3ZlKGk5MTUp
+Ow0KDQpJZiB0aGUgZmFpbHVyZSBoYXBwZW5lZCBpbiB0aGUgZmlyc3QgdHdvIHJldHVybnMgb2YN
+Cmk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmVfbm9pcnEoKSBubyBjYWxsIHRvDQppbnRlbF9wb3dl
+cl9kb21haW5zX2luaXRfaHcoKSB3b3VsZCBiZSBtYWRlLg0KDQpJJ20gYWxzbyB3b3JraW5nIG9u
+IHRoaXMsIHdpbGwgc2VuZCB0byBNTCBhZnRlciBhIHJvdW5kIG9uIHRyeWJvdDoNCmh0dHBzOi8v
+cGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC8zNjEwNTMvP3Nlcmllcz03NTgxNiZyZXY9
+MQ0KDQo+ICAJaTkxNV9kcml2ZXJfaHdfcmVtb3ZlKGk5MTUpOw0KPiAgCWludGVsX21lbW9yeV9y
+ZWdpb25zX2RyaXZlcl9yZWxlYXNlKGk5MTUpOw0KPiAgCWk5MTVfZ2d0dF9kcml2ZXJfcmVsZWFz
+ZShpOTE1KTsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
