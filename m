@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA361A4E2D
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 07:10:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D371A4E85
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 09:26:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7456E2A5;
-	Sat, 11 Apr 2020 05:10:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F696E231;
+	Sat, 11 Apr 2020 07:26:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2DA86E2A5
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Apr 2020 05:10:28 +0000 (UTC)
-IronPort-SDR: ca26cKZO6/vwhA7x4+0PLCViikvYMyJdT/h5jPTOwsvOf6KDfgZjcshy+Znfv8TuvUBZ8Zh8mw
- cgUXxyYpTldg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2020 22:10:26 -0700
-IronPort-SDR: QA7bG3lzze7EzCermbxFJU05SehoQUqqvt7LM//FTbQkouInrgR25QBa+dqUkjxLUFk6lHEIgG
- H1R8BIB3X3Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,368,1580803200"; d="scan'208";a="244729430"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 10 Apr 2020 22:10:25 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1jN8PR-0005xO-5m; Sat, 11 Apr 2020 13:10:25 +0800
-Date: Sat, 11 Apr 2020 13:09:54 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-Message-ID: <202004111310.6qAhf3aF%lkp@intel.com>
-References: <20200410165158.29546-3-venkata.s.dhanalakota@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 136306E231;
+ Sat, 11 Apr 2020 07:26:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 03552A008A;
+ Sat, 11 Apr 2020 07:26:06 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200410165158.29546-3-venkata.s.dhanalakota@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: peel dma-fence-chains wait
- fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Sat, 11 Apr 2020 07:26:05 -0000
+Message-ID: <158658996598.321.12886540441492619886@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU0FH?=
+ =?utf-8?q?V_support_for_Gen12+_=28rev18=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,121 +38,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- chris.p.wilson@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Venkata,
+== Series Details ==
 
-Thank you for the patch! Perhaps something to improve:
+Series: SAGV support for Gen12+ (rev18)
+URL   : https://patchwork.freedesktop.org/series/75129/
+State : failure
 
-[auto build test WARNING on drm-tip/drm-tip]
-[cannot apply to drm-intel/for-linux-next linus/master v5.6 next-20200410]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+== Summary ==
 
-url:    https://github.com/0day-ci/linux/commits/Venkata-Sandeep-Dhanalakota/drm-i915-introduce-a-mechanism-to-extend-execbuf2/20200411-031057
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+CI Bug Log - changes from CI_DRM_8289 -> Patchwork_17276
+====================================================
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kbuild test robot <lkp@intel.com>
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17276 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17276, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17276:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17276 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-skl-lmem:        [DMESG-WARN][3] ([i915#1688]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-skl-lmem/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-skl-lmem/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][5] ([i915#62] / [i915#95]) -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1688]: https://gitlab.freedesktop.org/drm/intel/issues/1688
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-cppcheck warnings: (new ones prefixed by >>)
+Participating hosts (52 -> 47)
+------------------------------
 
->> drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2550:12: warning: Either the condition '!iter_chain' is redundant or there is possible null pointer dereference: iter_chain. [nullPointerRedundantCheck]
-              iter_chain->fence);
-              ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2547:16: note: Assuming that condition '!iter_chain' is not redundant
-       GEM_BUG_ON(!iter_chain);
-                  ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2545:24: note: Assignment 'iter_chain=to_dma_fence_chain(iter)', assigned value is 0
-        to_dma_fence_chain(iter);
-                          ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2550:12: note: Null pointer dereference
-              iter_chain->fence);
-              ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1423:6: warning: The scope of the variable 'err' can be reduced. [variableScope]
-    int err;
-        ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3158:1: warning: Label 'end_user' is not used. [unusedLabel]
-   end_user:
-   ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1346:21: warning: Clarify calculation precedence for '&' and '?'. [clarifyCalculation]
-      len = offset & 7 ? 8 : 5;
-                       ^
-   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1401:24: warning: 'vaddr' is of type 'void *'. When using void pointers in calculations, the behaviour is undefined. [arithOperationsOnVoidPointer]
-    clflush_write32(vaddr + offset_in_page(offset),
-                          ^
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
 
-vim +2550 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 
-  2510	
-  2511	static int
-  2512	await_fence_array(struct i915_execbuffer *eb,
-  2513			  struct i915_eb_fences *fences,
-  2514			  int nfences)
-  2515	{
-  2516		unsigned int n;
-  2517		int err;
-  2518	
-  2519		for (n = 0; n < nfences; n++) {
-  2520			struct drm_syncobj *syncobj;
-  2521			struct dma_fence_chain *chain;
-  2522			unsigned int flags;
-  2523	
-  2524			syncobj = ptr_unpack_bits(fences[n].syncobj, &flags, 2);
-  2525	
-  2526			if (!fences[n].dma_fence)
-  2527				continue;
-  2528	
-  2529			/*
-  2530			 * If we're dealing with a dma-fence-chain, peel the chain by
-  2531			 * adding all of the unsignaled fences
-  2532			 * (dma_fence_chain_for_each does that for us) the chain
-  2533			 * points to.
-  2534			 *
-  2535			 * This enables us to identify waits on i915 fences and allows
-  2536			 * for faster engine-to-engine synchronization using HW
-  2537			 * semaphores.
-  2538			 */
-  2539			chain = to_dma_fence_chain(fences[n].dma_fence);
-  2540			if (chain) {
-  2541				struct dma_fence *iter;
-  2542	
-  2543				dma_fence_chain_for_each(iter, fences[n].dma_fence) {
-  2544					struct dma_fence_chain *iter_chain =
-  2545						to_dma_fence_chain(iter);
-  2546	
-  2547					GEM_BUG_ON(!iter_chain);
-  2548	
-  2549					err = i915_request_await_dma_fence(eb->request,
-> 2550									   iter_chain->fence);
-  2551					if (err < 0) {
-  2552						dma_fence_put(iter);
-  2553						return err;
-  2554					}
-  2555				}
-  2556	
-  2557			} else {
-  2558				err = i915_request_await_dma_fence(eb->request,
-  2559								   fences[n].dma_fence);
-  2560				if (err < 0)
-  2561					return err;
-  2562			}
-  2563		}
-  2564	
-  2565		return 0;
-  2566	}
-  2567	
+Build changes
+-------------
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8289 -> Patchwork_17276
+
+  CI-20190529: 20190529
+  CI_DRM_8289: 81e3d7ff72672b6aeadbf9c0b9cc514cec9c889d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5586: 29fad328e6a1b105c8d688cafe19b1b5c19ad0c8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17276: d05fb4a0457b591b3f67b57bd9f5786c4efe4add @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d05fb4a0457b drm/i915: Enable SAGV support for Gen12
+08b2bfe6c74c drm/i915: Restrict qgv points which don't have enough bandwidth.
+e1d400340158 drm/i915: Rename bw_state to new_bw_state
+d7dfb591ab1a drm/i915: Added required new PCode commands
+86c74315ca04 drm/i915: Add TGL+ SAGV support
+1d27dc3371c2 drm/i915: Separate icl and skl SAGV checking
+3d65a6833e4d drm/i915: Use bw state for per crtc SAGV evaluation
+b7dc3af9b55a drm/i915: Add pre/post plane updates for SAGV
+340b37dd96c3 drm/i915: Prepare to extract gen specific functions from intel_can_enable_sagv
+5f292c54ef03 drm/i915: Add intel_atomic_get_bw_*_state helpers
+b247b1150e51 drm/i915: Introduce skl_plane_wm_level accessor.
+dd9d5971ba9b drm/i915: Eliminate magic numbers "0" and "1" from color plane
+e1a65ab6533f drm/i915: Start passing latency as parameter
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
