@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D371A4E85
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 09:26:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCCB1A4EC5
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2020 09:51:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F696E231;
-	Sat, 11 Apr 2020 07:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 273A16E434;
+	Sat, 11 Apr 2020 07:51:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 136306E231;
- Sat, 11 Apr 2020 07:26:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03552A008A;
- Sat, 11 Apr 2020 07:26:06 +0000 (UTC)
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 773AF6E434
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Apr 2020 07:51:23 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id 88B711C6109; Sat, 11 Apr 2020 09:51:20 +0200 (CEST)
+Date: Sat, 11 Apr 2020 09:51:20 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20200411075119.GA16837@amd.ucw.cz>
+References: <20200407072047.GA18532@amd.ucw.cz>
+ <158624426770.4794.6070200474948860768@build.alporthouse.com>
+ <20200407074841.GB18673@amd.ucw.cz>
+ <CAHk-=wixvbCie+EQ-vTPdyrzmdopM_BQc=uetneuSSa7PtCt2g@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Sat, 11 Apr 2020 07:26:05 -0000
-Message-ID: <158658996598.321.12886540441492619886@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev18=29?=
+In-Reply-To: <CAHk-=wixvbCie+EQ-vTPdyrzmdopM_BQc=uetneuSSa7PtCt2g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] Linus,
+ please revert 7dc8f11437: regression in 5.7-rc0,
+ hangs while attempting to run X
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,121 +40,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Peter Anvin <hpa@zytor.com>, intel-gfx@lists.freedesktop.org,
+ kernel list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, matthew.auld@intel.com,
+ Dave Airlie <airlied@redhat.com>, Thomas Gleixner <tglx@linutronix.de>
+Content-Type: multipart/mixed; boundary="===============2012704578=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: SAGV support for Gen12+ (rev18)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8289 -> Patchwork_17276
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17276 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17276, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17276:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17276 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - fi-skl-lmem:        [DMESG-WARN][3] ([i915#1688]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-skl-lmem/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-skl-lmem/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][5] ([i915#62] / [i915#95]) -> [SKIP][6] ([fdo#109271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8289/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1688]: https://gitlab.freedesktop.org/drm/intel/issues/1688
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+--===============2012704578==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="pWyiEgJYm5f9v55/"
+Content-Disposition: inline
 
 
-Participating hosts (52 -> 47)
-------------------------------
+--pWyiEgJYm5f9v55/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+Hi!
+
+> > > Beyond the fix already submitted?
+> >
+> > I did not get that one, can I have a pointer?
+>=20
+> What's the status of this one?
+
+I tried updating my kernel on April 3, that one did not work, but it
+did not include 721017cf4bd8.
+
+> I'm assuming the fix is commit 721017cf4bd8 ("drm/i915/gem: Ignore
+> readonly failures when updating relics"), but didn't see a reply to
+> the query or a confirmation of things working..
+
+I pulled latest tree from Linus, and this one has 721017cf4bd8. Let my
+try to revert my revert, and test... yes, this one seems okay.
+
+Something changed in the X, now it seems that only one monitor is used
+for login, not both... but it now works.
+
+Best regards,
+								Pavel
+
+PS: Hmm. This is not helpful. I guess this is "N".
+
+*
+* VDPA drivers
+*
+VDPA drivers (VDPA_MENU) [N/y/?] (NEW) ?
+
+There is no help available for this option.
+Symbol: VDPA_MENU [=3Dn]
+Type  : bool
+Defined at drivers/vdpa/Kconfig:9
+  Prompt: VDPA drivers
+  Location:
+    -> Device Drivers
+
+*
+* VHOST drivers
+*
+VHOST drivers (VHOST_MENU) [Y/n/?] (NEW) ?
+
+There is no help available for this option.
+Symbol: VHOST_MENU [=3Dy]
+Type  : bool
+Defined at drivers/vhost/Kconfig:21
+  Prompt: VHOST drivers
+  Location:
+    -> Device Drivers
 
 
-Build changes
--------------
+> Btw, Chris, that __put_user() not testing the error should at least
+> have a comment. We don't have a working "__must_check" for those
+> things (because they are subtle macros, not functions), but if we did,
+> we'd get a compiler warning for not checking the error value.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8289 -> Patchwork_17276
-
-  CI-20190529: 20190529
-  CI_DRM_8289: 81e3d7ff72672b6aeadbf9c0b9cc514cec9c889d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5586: 29fad328e6a1b105c8d688cafe19b1b5c19ad0c8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17276: d05fb4a0457b591b3f67b57bd9f5786c4efe4add @ git://anongit.freedesktop.org/gfx-ci/linux
+Best regards,
+								Pavel
 
 
-== Linux commits ==
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
-d05fb4a0457b drm/i915: Enable SAGV support for Gen12
-08b2bfe6c74c drm/i915: Restrict qgv points which don't have enough bandwidth.
-e1d400340158 drm/i915: Rename bw_state to new_bw_state
-d7dfb591ab1a drm/i915: Added required new PCode commands
-86c74315ca04 drm/i915: Add TGL+ SAGV support
-1d27dc3371c2 drm/i915: Separate icl and skl SAGV checking
-3d65a6833e4d drm/i915: Use bw state for per crtc SAGV evaluation
-b7dc3af9b55a drm/i915: Add pre/post plane updates for SAGV
-340b37dd96c3 drm/i915: Prepare to extract gen specific functions from intel_can_enable_sagv
-5f292c54ef03 drm/i915: Add intel_atomic_get_bw_*_state helpers
-b247b1150e51 drm/i915: Introduce skl_plane_wm_level accessor.
-dd9d5971ba9b drm/i915: Eliminate magic numbers "0" and "1" from color plane
-e1a65ab6533f drm/i915: Start passing latency as parameter
+--pWyiEgJYm5f9v55/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-== Logs ==
+-----BEGIN PGP SIGNATURE-----
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17276/index.html
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXpF29wAKCRAw5/Bqldv6
+8rLbAJ9+qb+examYdcgoosM2keLFuc5dEACgoiaicqZxc1Pwd7HChqIdJieOojI=
+=Kt+J
+-----END PGP SIGNATURE-----
+
+--pWyiEgJYm5f9v55/--
+
+--===============2012704578==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2012704578==--
