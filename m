@@ -1,38 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0111A6A53
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D711A691A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 17:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC8B289FCC;
-	Mon, 13 Apr 2020 16:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7352B89E5B;
+	Mon, 13 Apr 2020 15:48:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8153889EB7;
- Mon, 13 Apr 2020 14:06:07 +0000 (UTC)
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id B91073424AE328FD0861;
- Mon, 13 Apr 2020 22:06:02 +0800 (CST)
-Received: from huawei.com (10.175.124.28) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Mon, 13 Apr 2020
- 22:05:56 +0800
-From: Jason Yan <yanaijie@huawei.com>
-To: <zhenyuw@linux.intel.com>, <zhi.a.wang@intel.com>,
- <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <intel-gvt-dev@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-Date: Mon, 13 Apr 2020 22:32:24 +0800
-Message-ID: <20200413143224.22806-1-yanaijie@huawei.com>
-X-Mailer: git-send-email 2.21.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC3B89DD5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 15:48:24 +0000 (UTC)
+IronPort-SDR: XzvZ/+bPvthBoIjZ2MZwKjVn5JAJBOLoimd+46987PMHYk8xTrwumhphXSY6pIh5gLbviNOMw2
+ CqvEC0GbuAmw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2020 08:48:23 -0700
+IronPort-SDR: X8s07braQ5Ji/aug/prgC8UQjNY1eCQw+pE8W2pGmicKmtKJSuqplQrG/81fXfaJefrb/O8lMT
+ SZAcAu+NRpaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,378,1580803200"; d="scan'208";a="241695649"
+Received: from unerlige-desk.jf.intel.com ([10.165.21.208])
+ by orsmga007.jf.intel.com with ESMTP; 13 Apr 2020 08:48:22 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date: Mon, 13 Apr 2020 08:48:19 -0700
+Message-Id: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Originating-IP: [10.175.124.28]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Mon, 13 Apr 2020 16:55:00 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: Use ARRAY_SIZE instead of
- hardcoded size
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/perf: add OA interrupt support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,36 +46,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jason Yan <yanaijie@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the following coccicheck warning:
+Hi all,
 
-drivers/gpu/drm/i915/gvt/vgpu.c:127:30-31: WARNING: Use ARRAY_SIZE
+This is a revival of an earlier patch series submitted by Lionel
+Landwerlin - https://patchwork.freedesktop.org/series/54280/
 
-Signed-off-by: Jason Yan <yanaijie@huawei.com>
----
- drivers/gpu/drm/i915/gvt/vgpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The patches enable interrupt support for the perf OA unit in
+i915, further details can be found in the orignal series linked
+above.
 
-diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
-index 1d5ff88078bd..7d361623ff67 100644
---- a/drivers/gpu/drm/i915/gvt/vgpu.c
-+++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-@@ -124,7 +124,7 @@ int intel_gvt_init_vgpu_types(struct intel_gvt *gvt)
- 	 */
- 	low_avail = gvt_aperture_sz(gvt) - HOST_LOW_GM_SIZE;
- 	high_avail = gvt_hidden_sz(gvt) - HOST_HIGH_GM_SIZE;
--	num_types = sizeof(vgpu_types) / sizeof(vgpu_types[0]);
-+	num_types = ARRAY_SIZE(vgpu_types);
- 
- 	gvt->types = kcalloc(num_types, sizeof(struct intel_vgpu_type),
- 			     GFP_KERNEL);
+This series was split into 2. The first part is merged. This part
+enables interrupts.
+
+Regards,
+Umesh
+
+Lionel Landwerlin (2):
+  drm/i915: handle interrupts from the OA unit
+  drm/i915/perf: add interrupt enabling parameter
+
+Umesh Nerlige Ramappa (1):
+  drm/i915/perf: Reduce cpu overhead for blocking perf OA reads
+
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  29 ++++-
+ drivers/gpu/drm/i915/gt/intel_gt_irq.h        |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm_irq.c     |  34 ++---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   2 +
+ drivers/gpu/drm/i915/i915_perf.c              | 118 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h        |  19 +++
+ drivers/gpu/drm/i915/i915_reg.h               |   9 ++
+ include/uapi/drm/i915_drm.h                   |  13 +-
+ 8 files changed, 202 insertions(+), 23 deletions(-)
+
 -- 
-2.21.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
