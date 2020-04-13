@@ -1,37 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6B91A6370
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 09:13:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7791A6375
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 09:19:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95E3F6E194;
-	Mon, 13 Apr 2020 07:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C278984C;
+	Mon, 13 Apr 2020 07:19:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7054D6E194
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 07:13:52 +0000 (UTC)
-IronPort-SDR: OclHY3xPy5QEe7OrTRpdt3skHru+Gt3zpC1GVLZonUv7vY2uHwUnOwrt9ALUWaCDjbvBStKy7b
- 2K7KByN3bVIA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D638984C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 07:19:01 +0000 (UTC)
+IronPort-SDR: m26CCyQrjHZBnWkyQJ8+Dboo+IBquBUcL9Scmtdx+Rn9i5Ffva7mRuheBSLThBS6ymhGw7C/IP
+ W9miIsDbRqJw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2020 00:13:51 -0700
-IronPort-SDR: 9C2mLZtTn6SbFKtH40ncCNKRzEz+lY6r9S4/1KdcqGTD8qeHqKcqhQXKTJhN/ERLourg5T532V
- XDg3o+aSaTNw==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2020 00:19:00 -0700
+IronPort-SDR: TNX0Imtbu4RbFm/6CN6j+mWMyTMeSJn2Fkth4Ssj8jyZZchyCFF0xdfIAcvOnmcOx2UxgITywd
+ zNUfpoV7moGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,377,1580803200"; d="scan'208";a="426605350"
-Received: from unknown (HELO kkadiyal.iind.intel.com) ([10.223.74.161])
- by orsmga005.jf.intel.com with ESMTP; 13 Apr 2020 00:13:49 -0700
-From: Kishore Kadiyala <kishore.kadiyala@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Apr 2020 12:43:46 +0530
-Message-Id: <20200413071346.14612-1-kishore.kadiyala@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH v6] drm/i915: Add Plane color encoding support
- for YCBCR_BT2020
+X-IronPort-AV: E=Sophos;i="5.72,377,1580803200"; d="scan'208";a="399532599"
+Received: from irsmsx152.ger.corp.intel.com ([163.33.192.66])
+ by orsmga004.jf.intel.com with ESMTP; 13 Apr 2020 00:19:00 -0700
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX152.ger.corp.intel.com (163.33.192.66) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 13 Apr 2020 08:18:59 +0100
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 13 Apr 2020 08:18:59 +0100
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Mon, 13 Apr 2020 08:18:59 +0100
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>, "Peres, Martin"
+ <martin.peres@intel.com>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU0FHViBzdXBwb3J0IGZvciBH?=
+ =?utf-8?Q?en12+_(rev18)?=
+Thread-Index: AQHWD9J91rBsXocZgEGkvzxxD3BEqKh2p7BD
+Date: Mon, 13 Apr 2020 07:18:58 +0000
+Message-ID: <a956481db7ea4f6684b0d5e6f0a976c4@intel.com>
+References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>,
+ <158658996598.321.12886540441492619886@emeril.freedesktop.org>
+In-Reply-To: <158658996598.321.12886540441492619886@emeril.freedesktop.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU0FH?=
+ =?utf-8?q?V_support_for_Gen12+_=28rev18=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,117 +68,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Kishore Kadiyala <kishore.kadiyala@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently the plane property doesn't have support for YCBCR_BT2020,
-which enables the corresponding color conversion mode on plane CSC.
-Enabling the plane property for the planes for GLK & ICL+ platforms.
-Also as per spec, update the Plane Color CSC from YUV601_TO_RGB709
-to YUV601_TO_RGB601.
-
-V2: Enabling support for YCBCT_BT2020 for HDR planes on
-    platforms GLK & ICL
-
-V3: Refined the condition check to handle GLK & ICL+ HDR planes
-    Also added BT2020 handling in glk_plane_color_ctl.
-
-V4: Combine If-else into single If
-
-V5: Drop the checking for HDR planes and enable YCBCR_BT2020
-    for platforms GLK & ICL+.
-
-V6: As per Spec, update PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709
-    to PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601 as per Ville's
-    feedback.
-
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++----
- drivers/gpu/drm/i915/display/intel_sprite.c  |  9 +++++++--
- drivers/gpu/drm/i915/i915_reg.h              |  2 +-
- 3 files changed, 19 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 70ec301fe6e3..dc28f88a83b4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4808,11 +4808,18 @@ u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
- 	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
- 
- 	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
--		if (plane_state->hw.color_encoding == DRM_COLOR_YCBCR_BT709)
-+		switch (plane_state->hw.color_encoding) {
-+		case DRM_COLOR_YCBCR_BT709:
- 			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
--		else
--			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
--
-+			break;
-+		case DRM_COLOR_YCBCR_BT2020:
-+			plane_color_ctl |=
-+				PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
-+			break;
-+		default:
-+			plane_color_ctl |=
-+				PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601;
-+		}
- 		if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
- 			plane_color_ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
- 	} else if (fb->format->is_yuv) {
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index deda351719db..0072525046a1 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 	struct intel_plane *plane;
- 	enum drm_plane_type plane_type;
- 	unsigned int supported_rotations;
-+	unsigned int supported_csc;
- 	const u64 *modifiers;
- 	const u32 *formats;
- 	int num_formats;
-@@ -3105,9 +3106,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 					   DRM_MODE_ROTATE_0,
- 					   supported_rotations);
- 
-+	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
-+
-+	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-+		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-+
- 	drm_plane_create_color_properties(&plane->base,
--					  BIT(DRM_COLOR_YCBCR_BT601) |
--					  BIT(DRM_COLOR_YCBCR_BT709),
-+					  supported_csc,
- 					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
- 					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
- 					  DRM_COLOR_YCBCR_BT709,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 1a7bd6db164b..9ba2b185d513 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6946,7 +6946,7 @@ enum {
- #define   PLANE_COLOR_INPUT_CSC_ENABLE		(1 << 20) /* ICL+ */
- #define   PLANE_COLOR_PIPE_CSC_ENABLE		(1 << 23) /* Pre-ICL */
- #define   PLANE_COLOR_CSC_MODE_BYPASS			(0 << 17)
--#define   PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709		(1 << 17)
-+#define   PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601		BIT(17)
- #define   PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709		(2 << 17)
- #define   PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020	(3 << 17)
- #define   PLANE_COLOR_CSC_MODE_RGB709_TO_RGB2020	(4 << 17)
--- 
-2.17.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+c2VsZl90ZXN0IGlzIGJyb2tlbiwgbm90IHJlbGF0ZWQgdG8gU0FHViBhbnlob3cgLSBkbyB3ZSBo
+YXZlIGEgYnVnPw0KDQpCZXN0IFJlZ2FyZHMsDQoNCkxpc292c2tpeSBTdGFuaXNsYXYNCg0KT3Jn
+YW5pemF0aW9uOiBJbnRlbCBGaW5sYW5kIE95IC0gQklDIDAzNTc2MDYtNCAtIFdlc3RlbmRpbmth
+dHUgNywgMDIxNjAgRXNwb28NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXw0KRnJvbTogUGF0Y2h3b3JrIDxwYXRjaHdvcmtAZW1lcmlsLmZyZWVkZXNrdG9wLm9yZz4N
+ClNlbnQ6IFNhdHVyZGF5LCBBcHJpbCAxMSwgMjAyMCAxMDoyNjowNSBBTQ0KVG86IExpc292c2tp
+eSwgU3RhbmlzbGF2DQpDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KU3ViamVj
+dDog4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU0FHViBzdXBwb3J0IGZvciBHZW4xMisgKHJl
+djE4KQ0KDQo9PSBTZXJpZXMgRGV0YWlscyA9PQ0KDQpTZXJpZXM6IFNBR1Ygc3VwcG9ydCBmb3Ig
+R2VuMTIrIChyZXYxOCkNClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3Jn
+L3Nlcmllcy83NTEyOS8NClN0YXRlIDogZmFpbHVyZQ0KDQo9PSBTdW1tYXJ5ID09DQoNCkNJIEJ1
+ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzgyODkgLT4gUGF0Y2h3b3JrXzE3Mjc2DQo9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQoNClN1bW1h
+cnkNCi0tLS0tLS0NCg0KICAqKkZBSUxVUkUqKg0KDQogIFNlcmlvdXMgdW5rbm93biBjaGFuZ2Vz
+IGNvbWluZyB3aXRoIFBhdGNod29ya18xNzI3NiBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCiAgdmVy
+aWZpZWQgbWFudWFsbHkuDQoNCiAgSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhh
+dmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQogIGludHJvZHVjZWQgaW4gUGF0Y2h3
+b3JrXzE3Mjc2LCBwbGVhc2Ugbm90aWZ5IHlvdXIgYnVnIHRlYW0gdG8gYWxsb3cgdGhlbQ0KICB0
+byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNl
+IHBvc2l0aXZlcyBpbiBDSS4NCg0KICBFeHRlcm5hbCBVUkw6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
+LjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE3Mjc2L2luZGV4Lmh0bWwNCg0KUG9zc2li
+bGUgbmV3IGlzc3Vlcw0KLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQogIEhlcmUgYXJlIHRoZSB1bmtu
+b3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzE3
+Mjc2Og0KDQojIyMgSUdUIGNoYW5nZXMgIyMjDQoNCiMjIyMgUG9zc2libGUgcmVncmVzc2lvbnMg
+IyMjIw0KDQogICogaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBleGVjbGlzdHM6DQogICAgLSBmaS1z
+a2wtbG1lbTogICAgICAgIFtQQVNTXVsxXSAtPiBbRE1FU0ctV0FSTl1bMl0gKzEgc2ltaWxhciBp
+c3N1ZQ0KICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJ
+X0RSTV84Mjg5L2ZpLXNrbC1sbWVtL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZXhlY2xpc3RzLmh0
+bWwNCiAgIFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
+aHdvcmtfMTcyNzYvZmktc2tsLWxtZW0vaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBleGVjbGlzdHMu
+aHRtbA0KDQoNCktub3duIGlzc3Vlcw0KLS0tLS0tLS0tLS0tDQoNCiAgSGVyZSBhcmUgdGhlIGNo
+YW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE3Mjc2IHRoYXQgY29tZSBmcm9tIGtub3duIGlzc3Vl
+czoNCg0KIyMjIElHVCBjaGFuZ2VzICMjIw0KDQojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMNCg0K
+ICAqIGlndEBrbXNfZmxpcEBiYXNpYy1mbGlwLXZzLXdmX3ZibGFuazoNCiAgICAtIGZpLXNrbC1s
+bWVtOiAgICAgICAgW0RNRVNHLVdBUk5dWzNdIChbaTkxNSMxNjg4XSkgLT4gW1BBU1NdWzRdDQog
+ICBbM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzgy
+ODkvZmktc2tsLWxtZW0vaWd0QGttc19mbGlwQGJhc2ljLWZsaXAtdnMtd2ZfdmJsYW5rLmh0bWwN
+CiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
+cmtfMTcyNzYvZmktc2tsLWxtZW0vaWd0QGttc19mbGlwQGJhc2ljLWZsaXAtdnMtd2ZfdmJsYW5r
+Lmh0bWwNCg0KDQojIyMjIFdhcm5pbmdzICMjIyMNCg0KICAqIGlndEBpOTE1X3BtX3JwbUBtb2R1
+bGUtcmVsb2FkOg0KICAgIC0gZmkta2JsLXgxMjc1OiAgICAgICBbRkFJTF1bNV0gKFtpOTE1IzYy
+XSAvIFtpOTE1Izk1XSkgLT4gW1NLSVBdWzZdIChbZmRvIzEwOTI3MV0pDQogICBbNV06IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzgyODkvZmkta2JsLXgx
+Mjc1L2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwNCiAgIFs2XTogaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTcyNzYvZmkta2JsLXgx
+Mjc1L2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwNCg0KDQogIFtmZG8jMTA5Mjcx
+XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxDQog
+IFtpOTE1IzE2ODhdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lz
+c3Vlcy8xNjg4DQogIFtpOTE1IzYyXTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2Ry
+bS9pbnRlbC9pc3N1ZXMvNjINCiAgW2k5MTUjOTVdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvZHJtL2ludGVsL2lzc3Vlcy85NQ0KDQoNClBhcnRpY2lwYXRpbmcgaG9zdHMgKDUyIC0+
+IDQ3KQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiAgQWRkaXRpb25hbCAoMSk6
+IGZpLWtibC03NTYwdQ0KICBNaXNzaW5nICAgICg2KTogZmktaWxrLW01NDAgZmktaHN3LTQyMDB1
+IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1jeWFuIGZpLWJ5dC1jbGFwcGVyIGZpLWJkdy1zYW11cw0K
+DQoNCkJ1aWxkIGNoYW5nZXMNCi0tLS0tLS0tLS0tLS0NCg0KICAqIENJOiBDSS0yMDE5MDUyOSAt
+PiBOb25lDQogICogTGludXg6IENJX0RSTV84Mjg5IC0+IFBhdGNod29ya18xNzI3Ng0KDQogIENJ
+LTIwMTkwNTI5OiAyMDE5MDUyOQ0KICBDSV9EUk1fODI4OTogODFlM2Q3ZmY3MjY3MmI2YWVhZGJm
+OWMwYjljYzUxNGNlYzljODg5ZCBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1j
+aS9saW51eA0KICBJR1RfNTU4NjogMjlmYWQzMjhlNmExYjEwNWM4ZDY4OGNhZmUxOWIxYjVjMTlh
+ZDBjOCBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10
+b29scw0KICBQYXRjaHdvcmtfMTcyNzY6IGQwNWZiNGEwNDU3YjU5MWIzZjY3YjU3YmQ5ZjU3ODZj
+NGVmZTRhZGQgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCg0K
+DQo9PSBMaW51eCBjb21taXRzID09DQoNCmQwNWZiNGEwNDU3YiBkcm0vaTkxNTogRW5hYmxlIFNB
+R1Ygc3VwcG9ydCBmb3IgR2VuMTINCjA4YjJiZmU2Yzc0YyBkcm0vaTkxNTogUmVzdHJpY3QgcWd2
+IHBvaW50cyB3aGljaCBkb24ndCBoYXZlIGVub3VnaCBiYW5kd2lkdGguDQplMWQ0MDAzNDAxNTgg
+ZHJtL2k5MTU6IFJlbmFtZSBid19zdGF0ZSB0byBuZXdfYndfc3RhdGUNCmQ3ZGZiNTkxYWIxYSBk
+cm0vaTkxNTogQWRkZWQgcmVxdWlyZWQgbmV3IFBDb2RlIGNvbW1hbmRzDQo4NmM3NDMxNWNhMDQg
+ZHJtL2k5MTU6IEFkZCBUR0wrIFNBR1Ygc3VwcG9ydA0KMWQyN2RjMzM3MWMyIGRybS9pOTE1OiBT
+ZXBhcmF0ZSBpY2wgYW5kIHNrbCBTQUdWIGNoZWNraW5nDQozZDY1YTY4MzNlNGQgZHJtL2k5MTU6
+IFVzZSBidyBzdGF0ZSBmb3IgcGVyIGNydGMgU0FHViBldmFsdWF0aW9uDQpiN2RjM2FmOWI1NWEg
+ZHJtL2k5MTU6IEFkZCBwcmUvcG9zdCBwbGFuZSB1cGRhdGVzIGZvciBTQUdWDQozNDBiMzdkZDk2
+YzMgZHJtL2k5MTU6IFByZXBhcmUgdG8gZXh0cmFjdCBnZW4gc3BlY2lmaWMgZnVuY3Rpb25zIGZy
+b20gaW50ZWxfY2FuX2VuYWJsZV9zYWd2DQo1ZjI5MmM1NGVmMDMgZHJtL2k5MTU6IEFkZCBpbnRl
+bF9hdG9taWNfZ2V0X2J3Xypfc3RhdGUgaGVscGVycw0KYjI0N2IxMTUwZTUxIGRybS9pOTE1OiBJ
+bnRyb2R1Y2Ugc2tsX3BsYW5lX3dtX2xldmVsIGFjY2Vzc29yLg0KZGQ5ZDU5NzFiYTliIGRybS9p
+OTE1OiBFbGltaW5hdGUgbWFnaWMgbnVtYmVycyAiMCIgYW5kICIxIiBmcm9tIGNvbG9yIHBsYW5l
+DQplMWE2NWFiNjUzM2YgZHJtL2k5MTU6IFN0YXJ0IHBhc3NpbmcgbGF0ZW5jeSBhcyBwYXJhbWV0
+ZXINCg0KPT0gTG9ncyA9PQ0KDQpGb3IgbW9yZSBkZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTcyNzYvaW5kZXguaHRtbA0KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
