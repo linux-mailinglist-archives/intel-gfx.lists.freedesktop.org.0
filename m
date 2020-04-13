@@ -1,43 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92AC1A6155
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 03:32:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F1B1A62EC
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 08:12:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63F0F89A7A;
-	Mon, 13 Apr 2020 01:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6530C6E18E;
+	Mon, 13 Apr 2020 06:12:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D67776E04B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 01:32:17 +0000 (UTC)
-IronPort-SDR: fCzLPCUTfw73a/eubMEyWt7MMmxLHzTE/YyFtGPFbFY/2w2Iz5tTVFWwdxFg7ETSPtoMe1QU9b
- hEwzOPBT5Zag==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 390206E18E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 06:11:59 +0000 (UTC)
+IronPort-SDR: HE5AQDMwEzPS39n9IyeLxJs6bbbmANlcpqVMk00CbCzmrfksAdOrybbjpf7bcY+9j6p+9+p3J+
+ bHnvqe1AWSVg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2020 18:32:17 -0700
-IronPort-SDR: XTobS1nzuOcLjBZR2k+bnbC2hkIl3XgzroNv8ch/ocY/wdWrqY9+djhcQQMLHTL20FEakgIC4w
- VOCfquFYJJ3A==
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2020 23:11:58 -0700
+IronPort-SDR: ioktnSurrQ/3Vkx5kW5ocw1w4obA1rnAQqJHu7nx9pmskhq2+HMY8xY9Cn8W90ho19trgfqoya
+ +84/7tD/UIUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,375,1580803200"; d="scan'208";a="298292980"
-Received: from linux.fm.intel.com (HELO intel.com) ([10.1.27.42])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Apr 2020 18:32:16 -0700
-Date: Sun, 12 Apr 2020 18:32:16 -0700
-From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200413013216.GA64842@intel.com>
-References: <20200410165158.29546-1-venkata.s.dhanalakota@intel.com>
- <20200410165158.29546-3-venkata.s.dhanalakota@intel.com>
- <2fca650f-baac-2b71-8ab4-e3fc2a4c23fb@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,377,1580803200"; d="scan'208";a="245067283"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Apr 2020 23:11:58 -0700
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 12 Apr 2020 23:11:58 -0700
+Received: from bgsmsx110.gar.corp.intel.com (10.223.4.212) by
+ FMSMSX113.amr.corp.intel.com (10.18.116.7) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 12 Apr 2020 23:11:57 -0700
+Received: from bgsmsx101.gar.corp.intel.com ([169.254.1.75]) by
+ BGSMSX110.gar.corp.intel.com ([169.254.11.79]) with mapi id 14.03.0439.000;
+ Mon, 13 Apr 2020 11:41:54 +0530
+From: "Kadiyala, Kishore" <kishore.kadiyala@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v5] drm/i915: Add Plane color encoding support for
+ YCBCR_BT2020
+Thread-Index: AQHWDbEnebmkPEB/KEiZom68s+4PXqhwrKoAgAXsq3A=
+Date: Mon, 13 Apr 2020 06:11:53 +0000
+Message-ID: <92C2E46C14A43E4BBF8F51564D4E95565881AA7A@BGSMSX101.gar.corp.intel.com>
+References: <20200408142227.21000-1-kishore.kadiyala@intel.com>
+ <20200409171302.GX6112@intel.com>
+In-Reply-To: <20200409171302.GX6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2fca650f-baac-2b71-8ab4-e3fc2a4c23fb@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: peel dma-fence-chains wait
- fences
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Add Plane color encoding
+ support for YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,69 +67,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAvMDQvMTEgMTE6NTAsIExpb25lbCBMYW5kd2VybGluIHdyb3RlOgo+IE9uIDEwLzA0LzIw
-MjAgMTk6NTEsIFZlbmthdGEgU2FuZGVlcCBEaGFuYWxha290YSB3cm90ZToKPiA+IEZyb206IExp
-b25lbCBMYW5kd2VybGluIDxsaW9uZWwuZy5sYW5kd2VybGluQGludGVsLmNvbT4KPiA+IAo+ID4g
-VG8gYWxsb3cgZmFzdGVyIGVuZ2luZSB0byBlbmdpbmUgc3luY2hyb25pemF0aW9uLCBwZWVsIHRo
-ZSBsYXllciBvZgo+ID4gZG1hLWZlbmNlLWNoYWluIHRvIGV4cG9zZSBwb3RlbnRpYWwgaTkxNSBm
-ZW5jZXMgc28gdGhhdCB0aGUKPiA+IGk5MTUtcmVxdWVzdCBjb2RlIGNhbiBlbWl0IEhXIHNlbWFw
-aG9yZSB3YWl0L3NpZ25hbCBvcGVyYXRpb25zIGluIHRoZQo+ID4gcmluZyB3aGljaCBpcyBmYXN0
-ZXIgdGhhbiB3YWtpbmcgdXAgdGhlIGhvc3QgdG8gc3VibWl0IHVuYmxvY2tlZAo+ID4gd29ya2xv
-YWRzIGFmdGVyIGludGVycnVwdCBub3RpZmljYXRpb24uCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6
-IExpb25lbCBMYW5kd2VybGluIDxsaW9uZWwuZy5sYW5kd2VybGluQGludGVsLmNvbT4KPiA+IC0t
-LQo+ID4gICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgICAgfCAz
-OSArKysrKysrKysrKysrKysrKy0tCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAzNSBpbnNlcnRpb25z
-KCspLCA0IGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKPiA+IGluZGV4IDhkZDY1MWNkY2EzOS4uZTQzYjc2ZDdl
-OWZkIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4
-ZWNidWZmZXIuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4
-ZWNidWZmZXIuYwo+ID4gQEAgLTI1MDgsNiArMjUwOCw3IEBAIGF3YWl0X2ZlbmNlX2FycmF5KHN0
-cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViLAo+ID4gICAJZm9yIChuID0gMDsgbiA8IG5mZW5jZXM7
-IG4rKykgewo+ID4gICAJCXN0cnVjdCBkcm1fc3luY29iaiAqc3luY29iajsKPiA+ICsJCXN0cnVj
-dCBkbWFfZmVuY2VfY2hhaW4gKmNoYWluOwo+ID4gICAJCXVuc2lnbmVkIGludCBmbGFnczsKPiA+
-ICAgCQlzeW5jb2JqID0gcHRyX3VucGFja19iaXRzKGZlbmNlc1tuXS5zeW5jb2JqLCAmZmxhZ3Ms
-IDIpOwo+ID4gQEAgLTI1MTUsMTAgKzI1MTYsNDAgQEAgYXdhaXRfZmVuY2VfYXJyYXkoc3RydWN0
-IGk5MTVfZXhlY2J1ZmZlciAqZWIsCj4gPiAgIAkJaWYgKCFmZW5jZXNbbl0uZG1hX2ZlbmNlKQo+
-ID4gICAJCQljb250aW51ZTsKPiA+IC0JCWVyciA9IGk5MTVfcmVxdWVzdF9hd2FpdF9kbWFfZmVu
-Y2UoZWItPnJlcXVlc3QsCj4gPiAtCQkJCQkJICAgZmVuY2VzW25dLmRtYV9mZW5jZSk7Cj4gPiAt
-CQlpZiAoZXJyIDwgMCkKPiA+IC0JCQlyZXR1cm4gZXJyOwo+ID4gKwkJLyoKPiA+ICsJCSAqIElm
-IHdlJ3JlIGRlYWxpbmcgd2l0aCBhIGRtYS1mZW5jZS1jaGFpbiwgcGVlbCB0aGUgY2hhaW4gYnkK
-PiA+ICsJCSAqIGFkZGluZyBhbGwgb2YgdGhlIHVuc2lnbmFsZWQgZmVuY2VzCj4gPiArCQkgKiAo
-ZG1hX2ZlbmNlX2NoYWluX2Zvcl9lYWNoIGRvZXMgdGhhdCBmb3IgdXMpIHRoZSBjaGFpbgo+ID4g
-KwkJICogcG9pbnRzIHRvLgo+ID4gKwkJICoKPiA+ICsJCSAqIFRoaXMgZW5hYmxlcyB1cyB0byBp
-ZGVudGlmeSB3YWl0cyBvbiBpOTE1IGZlbmNlcyBhbmQgYWxsb3dzCj4gPiArCQkgKiBmb3IgZmFz
-dGVyIGVuZ2luZS10by1lbmdpbmUgc3luY2hyb25pemF0aW9uIHVzaW5nIEhXCj4gPiArCQkgKiBz
-ZW1hcGhvcmVzLgo+ID4gKwkJICovCj4gPiArCQljaGFpbiA9IHRvX2RtYV9mZW5jZV9jaGFpbihm
-ZW5jZXNbbl0uZG1hX2ZlbmNlKTsKPiA+ICsJCWlmIChjaGFpbikgewo+ID4gKwkJCXN0cnVjdCBk
-bWFfZmVuY2UgKml0ZXI7Cj4gPiArCj4gPiArCQkJZG1hX2ZlbmNlX2NoYWluX2Zvcl9lYWNoKGl0
-ZXIsIGZlbmNlc1tuXS5kbWFfZmVuY2UpIHsKPiAKPiAKPiBUaGUga2J1aWxkIGJvdCBtYWRlIG1l
-IHRoaW5rIG9mIGFuIGludGVyZXN0aW5nIGNhc2UuCj4gCj4gSXQgaXMgcG9zc2libGUgdG8gYnVp
-bGQgYSBjaGFpbiB3aGVyZSB0aGUgZmlyc3QgZWxlbWVudCBpc24ndCBhCj4gZG1hX2ZlbmNlX2No
-YWluLgo+IApZZXMgYWdyZWVkLCB3ZSBjb3VsZCBoYXZlIGEgdmFsaWQgZmVuY2UtY2hhaW4gd2l0
-aCBmaXJzdCBlbGVtZW50IGFzIG5vcm1hbApkbWFfZmVuY2UgYW5kIHNvIGl0ZXJfY2hhaW4gY2Fu
-IGJlIG51bGwuIFdpbGwgYWRkcmVzcyB0aGlzIGluIG5leHQKcmV2aXNpb24gb2YgdGhlIHBhdGNo
-LgoKPiAKPiBXZSBzaG91bGQgaGFuZGxlIHRoaXMgaGVyZSBsaWtlIHRoaXMgOgo+IAo+IAo+IGlm
-IChpdGVyX2NoYWluKQo+IAo+IMKgwqDCoCBlcnIgPSBpOTE1X3JlcXVlc3RfYXdhaXRfZG1hX2Zl
-bmNlKGViLT5yZXF1ZXN0LCBpdGVyX2NoYWluLT5mZW5jZSk7Cj4gCj4gZWxzZQo+IAo+IMKgwqDC
-oCBlcnIgPSBpOTE1X3JlcXVlc3RfYXdhaXRfZG1hX2ZlbmNlKGViLT5yZXF1ZXN0LCBpdGVyKTsK
-PiAKPiBpZiAoZXJyIDwgMCkgewo+IAo+IMKgwqDCoCBkbWFfZmVuY2VfcHV0KGl0ZXIpOwo+IAo+
-IMKgwqDCoCByZXR1cm4gZXJyOwo+IAo+IH0KPiAKPiAKPiA+ICsJCQkJc3RydWN0IGRtYV9mZW5j
-ZV9jaGFpbiAqaXRlcl9jaGFpbiA9Cj4gPiArCQkJCQl0b19kbWFfZmVuY2VfY2hhaW4oaXRlcik7
-Cj4gPiArCj4gPiArCQkJCUdFTV9CVUdfT04oIWl0ZXJfY2hhaW4pOwo+ID4gKwo+ID4gKwkJCQll
-cnIgPSBpOTE1X3JlcXVlc3RfYXdhaXRfZG1hX2ZlbmNlKGViLT5yZXF1ZXN0LAo+ID4gKwkJCQkJ
-CQkJICAgaXRlcl9jaGFpbi0+ZmVuY2UpOwo+ID4gKwkJCQlpZiAoZXJyIDwgMCkgewo+ID4gKwkJ
-CQkJZG1hX2ZlbmNlX3B1dChpdGVyKTsKPiA+ICsJCQkJCXJldHVybiBlcnI7Cj4gPiArCQkJCX0K
-PiA+ICsJCQl9Cj4gPiArCj4gPiArCQl9IGVsc2Ugewo+ID4gKwkJCWVyciA9IGk5MTVfcmVxdWVz
-dF9hd2FpdF9kbWFfZmVuY2UoZWItPnJlcXVlc3QsCj4gPiArCQkJCQkJCSAgIGZlbmNlc1tuXS5k
-bWFfZmVuY2UpOwo+ID4gKwkJCWlmIChlcnIgPCAwKQo+ID4gKwkJCQlyZXR1cm4gZXJyOwo+ID4g
-KwkJfQo+ID4gICAJfQo+ID4gICAJcmV0dXJuIDA7Cj4gCj4gCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Thursday, April 9, 2020 10:43 PM
+> To: Kadiyala, Kishore <kishore.kadiyala@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+> Nikula, Jani <jani.nikula@intel.com>
+> Subject: Re: [PATCH v5] drm/i915: Add Plane color encoding support for
+> YCBCR_BT2020
+> =
+
+> On Wed, Apr 08, 2020 at 07:52:27PM +0530, Kishore Kadiyala wrote:
+> > Currently the plane property doesn't have support for YCBCR_BT2020,
+> > which enables the corresponding color conversion mode on plane CSC.
+> > Enabling the plane property for the planes for GLK & ICL+ platforms.
+> >
+> > V2: Enabling support for YCBCT_BT2020 for HDR planes on
+> >     platforms GLK & ICL
+> >
+> > V3: Refined the condition check to handle GLK & ICL+ HDR planes
+> >     Also added BT2020 handling in glk_plane_color_ctl.
+> >
+> > V4: Combine If-else into single If
+> >
+> > V5: Drop the checking for HDR planes and enable YCBCR_BT2020
+> >     for platforms GLK & ICL+.
+> >
+> > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > Cc: Uma Shankar <uma.shankar@intel.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+> > drivers/gpu/drm/i915/display/intel_sprite.c  |  9 +++++++--
+> >  2 files changed, 16 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 70ec301fe6e3..f2dfa61a49fa 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -4808,11 +4808,17 @@ u32 glk_plane_color_ctl(const struct
+> intel_crtc_state *crtc_state,
+> >  	plane_color_ctl |=3D glk_plane_color_ctl_alpha(plane_state);
+> >
+> >  	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
+> > -		if (plane_state->hw.color_encoding =3D=3D
+> DRM_COLOR_YCBCR_BT709)
+> > +		switch (plane_state->hw.color_encoding) {
+> > +		case DRM_COLOR_YCBCR_BT709:
+> >  			plane_color_ctl |=3D
+> PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
+> > -		else
+> > +			break;
+> > +		case DRM_COLOR_YCBCR_BT2020:
+> > +			plane_color_ctl |=3D
+> > +
+> 	PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
+> > +			break;
+> > +		default:
+> >  			plane_color_ctl |=3D
+> PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
+> =
+
+> IIRC the spec has been fixed in the meantime, so as a followup can you re=
+name
+> this to YUV601_TO_RGB601?
+
+
+Sure Ville
+
+Thanks,
+Kishore
+> > -
+> > +		}
+> >  		if (plane_state->hw.color_range =3D=3D
+> DRM_COLOR_YCBCR_FULL_RANGE)
+> >  			plane_color_ctl |=3D
+> PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
+> >  	} else if (fb->format->is_yuv) {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > index deda351719db..0072525046a1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > @@ -3031,6 +3031,7 @@ skl_universal_plane_create(struct drm_i915_private
+> *dev_priv,
+> >  	struct intel_plane *plane;
+> >  	enum drm_plane_type plane_type;
+> >  	unsigned int supported_rotations;
+> > +	unsigned int supported_csc;
+> >  	const u64 *modifiers;
+> >  	const u32 *formats;
+> >  	int num_formats;
+> > @@ -3105,9 +3106,13 @@ skl_universal_plane_create(struct
+> drm_i915_private *dev_priv,
+> >  					   DRM_MODE_ROTATE_0,
+> >  					   supported_rotations);
+> >
+> > +	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) |
+> > +BIT(DRM_COLOR_YCBCR_BT709);
+> > +
+> > +	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
+> > +		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
+> > +
+> >  	drm_plane_create_color_properties(&plane->base,
+> > -					  BIT(DRM_COLOR_YCBCR_BT601) |
+> > -					  BIT(DRM_COLOR_YCBCR_BT709),
+> > +					  supported_csc,
+> >
+> BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+> >
+> BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+> >  					  DRM_COLOR_YCBCR_BT709,
+> > --
+> > 2.17.1
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
