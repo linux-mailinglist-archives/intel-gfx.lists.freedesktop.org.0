@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6981A6A59
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0D01A6A4D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8AE6E07D;
-	Mon, 13 Apr 2020 16:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 448F189FAD;
+	Mon, 13 Apr 2020 16:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B3C89F75
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 16:53:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF96489F75
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 16:53:15 +0000 (UTC)
 Received: from quaco.ghostprotocols.net (unknown [179.97.37.151])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 997C2208FE;
- Mon, 13 Apr 2020 16:53:04 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 62EF7208E0;
+ Mon, 13 Apr 2020 16:53:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586796789;
- bh=S9zsoZaEeRAovYBhoG6sjAQNUq7j5Am/ZPdNcUlRFdQ=;
+ s=default; t=1586796795;
+ bh=PXwArPyrCB+9UYBajG3cuzXYyMjKBkArgtx7/t80yDQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=nnl+mOx4rEjA1iBPwbYvhatCRtMT0c3UDzLrdqWeOp1JNg6MbFrs+jc+jPe5kk67R
- G1Pq7BtkH4AMjg7Bp0aKvgzUw/1XWnIJhWhRSkC8KkbXeHOq6WidzMBT50wK7w9VN4
- 8lp7A8qTqu8y0x0ndSQ3Au95akSJQH5eON+O0VXE=
+ b=0Ye3QTeaS86gUwQ6vaqghWKUPtsyPWvtMoV/T9srtDd688AuzzYOnmOfSSyvNb1NZ
+ pSnQ5WUa2265qzabJQcZ4l3PD7KRbGUKgZcmm0QHRyhkVj0NcQ8eVgFAaHIehQ83Uw
+ 0LGYeTc2nhKKtj6ANWzZ4NMou+5ERcZbUKkFpZBk=
 From: Arnaldo Carvalho de Melo <acme@kernel.org>
 To: Ingo Molnar <mingo@kernel.org>,
 	Thomas Gleixner <tglx@linutronix.de>
-Date: Mon, 13 Apr 2020 13:51:48 -0300
-Message-Id: <20200413165203.1816-12-acme@kernel.org>
+Date: Mon, 13 Apr 2020 13:51:49 -0300
+Message-Id: <20200413165203.1816-13-acme@kernel.org>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200413165203.1816-1-acme@kernel.org>
 References: <20200413165203.1816-1-acme@kernel.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 13 Apr 2020 16:55:00 +0000
-Subject: [Intel-gfx] [PATCH 11/26] powerpc/perf: open access for CAP_PERFMON
+Subject: [Intel-gfx] [PATCH 12/26] parisc/perf: open access for CAP_PERFMON
  privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,12 +54,12 @@ Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
  Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
  Igor Lubashev <ilubashe@akamai.com>,
  James Morris <jamorris@linux.microsoft.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Anju T Sudhakar <anju@linux.vnet.ibm.com>, Serge Hallyn <serge@hallyn.com>,
+ Peter Zijlstra <peterz@infradead.org>, Serge Hallyn <serge@hallyn.com>,
  selinux@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  Arnaldo Carvalho de Melo <acme@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
  linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-security-module@vger.kernel.org, Jiri Olsa <jolsa@kernel.org>
+ linux-security-module@vger.kernel.org, Jiri Olsa <jolsa@kernel.org>,
+ Helge Deller <deller@gmx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -85,7 +85,7 @@ secure monitoring is discouraged with respect to CAP_PERFMON capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 Reviewed-by: James Morris <jamorris@linux.microsoft.com>
-Acked-by: Anju T Sudhakar <anju@linux.vnet.ibm.com>
+Acked-by: Helge Deller <deller@gmx.de>
 Cc: Alexei Starovoitov <ast@kernel.org>
 Cc: Andi Kleen <ak@linux.intel.com>
 Cc: Igor Lubashev <ilubashe@akamai.com>
@@ -101,34 +101,25 @@ Cc: linux-doc@vger.kernel.org
 Cc: linux-man@vger.kernel.org
 Cc: linux-security-module@vger.kernel.org
 Cc: selinux@vger.kernel.org
-Link: http://lore.kernel.org/lkml/ac98cd9f-b59e-673c-c70d-180b3e7695d2@linux.intel.com
+Link: http://lore.kernel.org/lkml/8cc98809-d35b-de0f-de02-4cf554f3cf62@linux.intel.com
 Signed-off-by: Arnaldo Carvalho de Melo <acme@redhat.com>
 ---
- arch/powerpc/perf/imc-pmu.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/parisc/kernel/perf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/powerpc/perf/imc-pmu.c b/arch/powerpc/perf/imc-pmu.c
-index cb50a9e1fd2d..e837717492e4 100644
---- a/arch/powerpc/perf/imc-pmu.c
-+++ b/arch/powerpc/perf/imc-pmu.c
-@@ -898,7 +898,7 @@ static int thread_imc_event_init(struct perf_event *event)
- 	if (event->attr.type != event->pmu->type)
- 		return -ENOENT;
+diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
+index e1a8fee3ad49..d46b6709ec56 100644
+--- a/arch/parisc/kernel/perf.c
++++ b/arch/parisc/kernel/perf.c
+@@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
+ 	else
+ 		return -EFAULT;
  
 -	if (!capable(CAP_SYS_ADMIN))
 +	if (!perfmon_capable())
  		return -EACCES;
  
- 	/* Sampling not supported */
-@@ -1307,7 +1307,7 @@ static int trace_imc_event_init(struct perf_event *event)
- 	if (event->attr.type != event->pmu->type)
- 		return -ENOENT;
- 
--	if (!capable(CAP_SYS_ADMIN))
-+	if (!perfmon_capable())
- 		return -EACCES;
- 
- 	/* Return if this is a couting event */
+ 	if (count != sizeof(uint32_t))
 -- 
 2.21.1
 
