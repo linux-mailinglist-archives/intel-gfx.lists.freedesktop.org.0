@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6B21A6A57
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4AF1A6A4E
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2020 18:55:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E41D589FDD;
-	Mon, 13 Apr 2020 16:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B33889FBC;
+	Mon, 13 Apr 2020 16:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F19B89F5B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 16:52:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9D4689F5B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 16:52:41 +0000 (UTC)
 Received: from quaco.ghostprotocols.net (unknown [179.97.37.151])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id BDACE20857;
- Mon, 13 Apr 2020 16:52:30 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 888FA2078B;
+ Mon, 13 Apr 2020 16:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1586796756;
- bh=bsha3xY0b0htxjAC74+rhyzPRn3pa6BRck29iTQylnQ=;
+ s=default; t=1586796761;
+ bh=t5agIYwO6o7SWx9yh1z/HGXcrUeg1cVcDz9eOtThQ6o=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=vOyCN8Q/sTPseoZteALKxvDyyep46Pk//XGWf/kI2kc1EPeNnPoD4sOZfyN4nQwX1
- hiZGsr9uPWoQ78JTlSCk/cJQxMKOJd1zwIEpqQ/A1Ez6Z+Y8kkcSIIyCuFOaxF7ekd
- 8hOgvv4ax+kGpDQmcHQE+8VVh6cuU6QrVP87kDNk=
+ b=HejxPEgLATWON/Ye6GG8OVfowBCSj9U/CB6Ayq/WEvozFloDXHO09Uj7bYAm1DVpr
+ yL5HYCmY/wx7DdzGdALMYfbF77mhaLRjopvkLH6hn9fyBR0Hl7pPBcXFkDBx5r1Lmr
+ bDKZqtAcimbohq+VSzhUI3q6aFu6xET8jkT4rRnQ=
 From: Arnaldo Carvalho de Melo <acme@kernel.org>
 To: Ingo Molnar <mingo@kernel.org>,
 	Thomas Gleixner <tglx@linutronix.de>
-Date: Mon, 13 Apr 2020 13:51:42 -0300
-Message-Id: <20200413165203.1816-6-acme@kernel.org>
+Date: Mon, 13 Apr 2020 13:51:43 -0300
+Message-Id: <20200413165203.1816-7-acme@kernel.org>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200413165203.1816-1-acme@kernel.org>
 References: <20200413165203.1816-1-acme@kernel.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 13 Apr 2020 16:55:00 +0000
-Subject: [Intel-gfx] [PATCH 05/26] capabilities: Introduce CAP_PERFMON to
- kernel and user space
+Subject: [Intel-gfx] [PATCH 06/26] perf/core: Open access to the core for
+ CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,18 +48,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
- linux-doc@vger.kernel.org, Clark Williams <williams@redhat.com>,
- Alexei Starovoitov <ast@kernel.org>, Stephane Eranian <eranian@google.com>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jamorris@linux.microsoft.com>,
- Peter Zijlstra <peterz@infradead.org>, Stephen Smalley <sds@tycho.nsa.gov>,
- "Serge E . Hallyn" <serge@hallyn.com>, selinux@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Arnaldo Carvalho de Melo <acme@redhat.com>,
- Namhyung Kim <namhyung@kernel.org>, linux-kernel@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-security-module@vger.kernel.org,
- Jiri Olsa <jolsa@kernel.org>
+Cc: Arnaldo Carvalho de Melo <acme@redhat.com>,
+ Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ linux-man@vger.kernel.org, Clark Williams <williams@redhat.com>,
+ Igor Lubashev <ilubashe@akamai.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, James Morris <jamorris@linux.microsoft.com>,
+ Alexei Starovoitov <ast@kernel.org>, linux-perf-users@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, linux-security-module@vger.kernel.org,
+ Stephane Eranian <eranian@google.com>, Jiri Olsa <jolsa@kernel.org>,
+ selinux@vger.kernel.org, Namhyung Kim <namhyung@kernel.org>,
+ Jiri Olsa <jolsa@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Serge Hallyn <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -67,131 +66,92 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Alexey Budankov <alexey.budankov@linux.intel.com>
 
-Introduce the CAP_PERFMON capability designed to secure system
-performance monitoring and observability operations so that CAP_PERFMON
-can assist CAP_SYS_ADMIN capability in its governing role for
-performance monitoring and observability subsystems.
+Open access to monitoring of kernel code, CPUs, tracepoints and
+namespaces data for a CAP_PERFMON privileged process. Providing the
+access under CAP_PERFMON capability singly, without the rest of
+CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials
+and makes operation more secure.
 
-CAP_PERFMON hardens system security and integrity during performance
-monitoring and observability operations by decreasing attack surface that
-is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
-to system performance monitoring and observability operations under CAP_PERFMON
-capability singly, without the rest of CAP_SYS_ADMIN credentials, excludes
-chances to misuse the credentials and makes the operation more secure.
+CAP_PERFMON implements the principle of least privilege for performance
+monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39
+principle of least privilege: A security design principle that states
+that a process or program be granted only those privileges (e.g.,
+capabilities) necessary to accomplish its legitimate function, and only
+for the time that such privileges are actually required)
 
-Thus, CAP_PERFMON implements the principle of least privilege for
-performance monitoring and observability operations (POSIX IEEE 1003.1e:
-2.2.2.39 principle of least privilege: A security design principle that
-  states that a process or program be granted only those privileges
-(e.g., capabilities) necessary to accomplish its legitimate function,
-and only for the time that such privileges are actually required)
-
-CAP_PERFMON meets the demand to secure system performance monitoring and
-observability operations for adoption in security sensitive, restricted,
-multiuser production environments (e.g. HPC clusters, cloud and virtual compute
-environments), where root or CAP_SYS_ADMIN credentials are not available to
-mass users of a system, and securely unblocks applicability and scalability
-of system performance monitoring and observability operations beyond root
-and CAP_SYS_ADMIN use cases.
-
-CAP_PERFMON takes over CAP_SYS_ADMIN credentials related to system performance
-monitoring and observability operations and balances amount of CAP_SYS_ADMIN
-credentials following the recommendations in the capabilities man page [1]
-for CAP_SYS_ADMIN: "Note: this capability is overloaded; see Notes to kernel
-developers, below." For backward compatibility reasons access to system
-performance monitoring and observability subsystems of the kernel remains
-open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN capability
-usage for secure system performance monitoring and observability operations
-is discouraged with respect to the designed CAP_PERFMON capability.
-
-Although the software running under CAP_PERFMON can not ensure avoidance
-of related hardware issues, the software can still mitigate these issues
-following the official hardware issues mitigation procedure [2]. The bugs
-in the software itself can be fixed following the standard kernel development
-process [3] to maintain and harden security of system performance monitoring
-and observability operations.
-
-[1] http://man7.org/linux/man-pages/man7/capabilities.7.html
-[2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
-[3] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
+For backward compatibility reasons the access to perf_events subsystem
+remains open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN
+usage for secure perf_events monitoring is discouraged with respect to
+CAP_PERFMON capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
-Acked-by: James Morris <jamorris@linux.microsoft.com>
-Acked-by: Serge E. Hallyn <serge@hallyn.com>
-Acked-by: Song Liu <songliubraving@fb.com>
-Acked-by: Stephen Smalley <sds@tycho.nsa.gov>
+Reviewed-by: James Morris <jamorris@linux.microsoft.com>
 Tested-by: Arnaldo Carvalho de Melo <acme@redhat.com>
 Cc: Alexei Starovoitov <ast@kernel.org>
 Cc: Andi Kleen <ak@linux.intel.com>
 Cc: Igor Lubashev <ilubashe@akamai.com>
 Cc: Jiri Olsa <jolsa@redhat.com>
+Cc: linux-man@vger.kernel.org
 Cc: Namhyung Kim <namhyung@kernel.org>
 Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Serge Hallyn <serge@hallyn.com>
+Cc: Song Liu <songliubraving@fb.com>
 Cc: Stephane Eranian <eranian@google.com>
 Cc: Thomas Gleixner <tglx@linutronix.de>
 Cc: intel-gfx@lists.freedesktop.org
 Cc: linux-doc@vger.kernel.org
-Cc: linux-man@vger.kernel.org
 Cc: linux-security-module@vger.kernel.org
 Cc: selinux@vger.kernel.org
-Link: http://lore.kernel.org/lkml/5590d543-82c6-490a-6544-08e6a5517db0@linux.intel.com
+Link: http://lore.kernel.org/lkml/471acaef-bb8a-5ce2-923f-90606b78eef9@linux.intel.com
 Signed-off-by: Arnaldo Carvalho de Melo <acme@redhat.com>
 ---
- include/linux/capability.h          | 4 ++++
- include/uapi/linux/capability.h     | 8 +++++++-
- security/selinux/include/classmap.h | 4 ++--
- 3 files changed, 13 insertions(+), 3 deletions(-)
+ include/linux/perf_event.h | 6 +++---
+ kernel/events/core.c       | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/capability.h b/include/linux/capability.h
-index ecce0f43c73a..027d7e4a853b 100644
---- a/include/linux/capability.h
-+++ b/include/linux/capability.h
-@@ -251,6 +251,10 @@ extern bool privileged_wrt_inode_uidgid(struct user_namespace *ns, const struct
- extern bool capable_wrt_inode_uidgid(const struct inode *inode, int cap);
- extern bool file_ns_capable(const struct file *file, struct user_namespace *ns, int cap);
- extern bool ptracer_capable(struct task_struct *tsk, struct user_namespace *ns);
-+static inline bool perfmon_capable(void)
-+{
-+	return capable(CAP_PERFMON) || capable(CAP_SYS_ADMIN);
-+}
+diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
+index 9c3e7619c929..87e21681759c 100644
+--- a/include/linux/perf_event.h
++++ b/include/linux/perf_event.h
+@@ -1305,7 +1305,7 @@ static inline int perf_is_paranoid(void)
  
- /* audit system wants to get cap info from files as well */
- extern int get_vfs_caps_from_disk(const struct dentry *dentry, struct cpu_vfs_cap_data *cpu_caps);
-diff --git a/include/uapi/linux/capability.h b/include/uapi/linux/capability.h
-index 272dc69fa080..e58c9636741b 100644
---- a/include/uapi/linux/capability.h
-+++ b/include/uapi/linux/capability.h
-@@ -367,8 +367,14 @@ struct vfs_ns_cap_data {
+ static inline int perf_allow_kernel(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > 1 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > 1 && !perfmon_capable())
+ 		return -EACCES;
  
- #define CAP_AUDIT_READ		37
+ 	return security_perf_event_open(attr, PERF_SECURITY_KERNEL);
+@@ -1313,7 +1313,7 @@ static inline int perf_allow_kernel(struct perf_event_attr *attr)
  
-+/*
-+ * Allow system performance and observability privileged operations
-+ * using perf_events, i915_perf and other kernel subsystems
-+ */
-+
-+#define CAP_PERFMON		38
+ static inline int perf_allow_cpu(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > 0 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
+ 		return -EACCES;
  
--#define CAP_LAST_CAP         CAP_AUDIT_READ
-+#define CAP_LAST_CAP         CAP_PERFMON
+ 	return security_perf_event_open(attr, PERF_SECURITY_CPU);
+@@ -1321,7 +1321,7 @@ static inline int perf_allow_cpu(struct perf_event_attr *attr)
  
- #define cap_valid(x) ((x) >= 0 && (x) <= CAP_LAST_CAP)
+ static inline int perf_allow_tracepoint(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > -1 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
+ 		return -EPERM;
  
-diff --git a/security/selinux/include/classmap.h b/security/selinux/include/classmap.h
-index 986f3ac14282..d233ab3f1533 100644
---- a/security/selinux/include/classmap.h
-+++ b/security/selinux/include/classmap.h
-@@ -27,9 +27,9 @@
- 	    "audit_control", "setfcap"
+ 	return security_perf_event_open(attr, PERF_SECURITY_TRACEPOINT);
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index 1569979c8912..f9d564127e2e 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -11486,7 +11486,7 @@ SYSCALL_DEFINE5(perf_event_open,
+ 	}
  
- #define COMMON_CAP2_PERMS  "mac_override", "mac_admin", "syslog", \
--		"wake_alarm", "block_suspend", "audit_read"
-+		"wake_alarm", "block_suspend", "audit_read", "perfmon"
- 
--#if CAP_LAST_CAP > CAP_AUDIT_READ
-+#if CAP_LAST_CAP > CAP_PERFMON
- #error New capability defined, please update COMMON_CAP2_PERMS.
- #endif
+ 	if (attr.namespaces) {
+-		if (!capable(CAP_SYS_ADMIN))
++		if (!perfmon_capable())
+ 			return -EACCES;
+ 	}
  
 -- 
 2.21.1
