@@ -2,43 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636A71A8B19
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 21:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 380851A8B62
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 21:48:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AAE6E14A;
-	Tue, 14 Apr 2020 19:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5246E14B;
+	Tue, 14 Apr 2020 19:48:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBA36E14A
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 19:39:43 +0000 (UTC)
-Received: from capuchin.riseup.net (unknown [10.0.1.176])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 491wmZ5fW5zFfrn;
- Tue, 14 Apr 2020 12:39:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1586893182; bh=L/2CdWmt5gF4mKn7Vs3u2+aPwTt2oAo+hqt6cYczmIw=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=JAhaza8FYtDCA2Z/8IB/MS2kIWN8Wf1VMYVpnD5m2yEBa3tSbf0qVX+FRBpIyrELh
- r1+UEhtOnmpPdI7qun8N3nJMWShItbm5y5VG6LARLymyIux1oodGUOFaJQnaqUrPWv
- EQ1O5ERG/Zru+H7AOp+yeQ9eVZCp8ZlIu0s5uMik=
-X-Riseup-User-ID: 958E0A922B1A24D785162A56EE6F17BF502905CDD379AA46ED3B19F813A79FCC
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by capuchin.riseup.net (Postfix) with ESMTPSA id 491wmZ18MDz8tJ1;
- Tue, 14 Apr 2020 12:39:42 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158688212611.24667.7132327074792389398@build.alporthouse.com>
-References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
- <20200414161423.23830-2-chris@chris-wilson.co.uk>
- <158688212611.24667.7132327074792389398@build.alporthouse.com>
-Date: Tue, 14 Apr 2020 12:39:48 -0700
-Message-ID: <87pnc9zwjf.fsf@riseup.net>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF286E14B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 19:48:13 +0000 (UTC)
+IronPort-SDR: ayOZ771eFwhDPGcEzqokgO0VHwDdXr2wRzcHWkivqsE39x0A6fYQSoZ6X5XS/VusZwzlTt0gCY
+ 3BAjjfhKWojg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 12:48:12 -0700
+IronPort-SDR: 7pBQv5n5xnZkvPMydEfC77uw+Cg0WfMwmc2OrBqv+IIIKt0MKG2FEfNG7xGeJw4DOm/qO7tvDM
+ AXYvGtTBEVqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,384,1580803200"; d="scan'208";a="242090920"
+Received: from unknown (HELO josouza-MOBL2.amr.corp.intel.com) ([10.209.55.81])
+ by orsmga007.jf.intel.com with ESMTP; 14 Apr 2020 12:48:12 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Apr 2020 12:49:49 -0700
+Message-Id: <20200414194956.164323-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
- intervals
+Subject: [Intel-gfx] [PATCH v5 1/8] drm/i915/display: Move out code to
+ return the digital_port of the aux ch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,112 +45,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============0969423215=="
+Cc: You-Sheng Yang <vicamo@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0969423215==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> Quoting Chris Wilson (2020-04-14 17:14:23)
->> Try to make RPS dramatically more responsive by shrinking the evaluation
->> intervales by a factor of 100! The issue is as we now park the GPU
->> rapidly upon idling, a short or bursty workload such as the composited
->> desktop never sustains enough work to fill and complete an evaluation
->> window. As such, the frequency we program remains stuck. This was first
->> reported as once boosted, we never relinquished the boost [see commit
->> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
->> it equally applies in the order direction for bursty workloads that
->> *need* low latency, like desktop animations.
->>=20
->> What we could try is preserve the incomplete EI history across idling,
->> it is not clear whether that would be effective, nor whether the
->> presumption of continuous workloads is accurate. A clearer path seems to
->> treat it as symptomatic that we fail to handle bursty workload with the
->> current EI, and seek to address that by shrinking the EI so the
->> evaluations are run much more often.
->>=20
->> This will likely entail more frequent interrupts, and by the time we
->> process the interrupt in the bottom half [from inside a worker], the
->> workload on the GPU has changed. To address the changeable nature, in
->> the previous patch we compared the previous complete EI with the
->> interrupt request and only up/down clock if both agree. The impact of
->> asking for, and presumably, receiving more interrupts is still to be
->> determined and mitigations sought. The first idea is to differentiate
->> between up/down responsivity and make upclocking more responsive than
->> downlocking. This should both help thwart jitter on bursty workloads by
->> making it easier to increase than it is to decrease frequencies, and
->> reduce the number of interrupts we would need to process.
->
-> Another worry I'd like to raise, is that by reducing the EI we risk
-> unstable evaluations. I'm not sure how accurate the HW is, and I worry
-> about borderline workloads (if that is possible) but mainly the worry is
-> how the HW is sampling.
->
-> The other unmentioned unknown is the latency in reprogramming the
-> frequency. At what point does it start to become a significant factor?
-> I'm presuming the RPS evaluation itself is free, until it has to talk
-> across the chip to send an interrupt.
-> -Chris
-
-At least on ICL the problem which this patch and 21abf0bf168d were
-working around seems to have to do with RPS interrupt delivery being
-inadvertently blocked for extended periods of time.  Looking at the GPU
-utilization and RPS events on a graph I could see the GPU being stuck at
-low frequency without any RPS interrupts firing, for a time interval
-orders of magnitude greater than the EI we're theoretically programming
-today.  IOW it seems like the real problem isn't that our EIs are too
-long, but that we're missing a bunch of them.
-
-The solution I was suggesting for this on IRC during the last couple of
-days wouldn't have any of the drawbacks you mention above, I'll send it
-to this list in a moment if the general approach seems okay to you:
-
-https://github.com/curro/linux/commit/f7bc31402aa727a52d957e62d985c6dae6be4=
-b86
-
-That said it *might* be helpful to reduce the EIs we use right now in
-addition, but a factor of 100 seems over the top since that will cause
-the evaluation interval to be roughly two orders of magnitude shorter
-than the rendering time of a typical frame, which can lead to massive
-oscillations even in workloads that use a small fraction of the GPU time
-to render a single frame.  Maybe we want something in between?
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXpYRhAAKCRCDmTidfVK/
-W5EKAP9+iKcFKDM4oZVco6h6GaeSBgveqxYpq+WpPlQqslW20AD/RTB08QKoYV9n
-xkggg0JmtQunTBH1Kqi4HeeAg2FXzMI=
-=g9Ng
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0969423215==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0969423215==--
+TW92aW5nIHRoZSBjb2RlIHRvIHJldHVybiB0aGUgZGlnaXRhbCBwb3J0IG9mIHRoZSBhdXggY2hh
+bm5lbCBhbHNvCnJlbW92aW5nIHRoZSBpbnRlbF9waHlfaXNfdGMoKSB0byBtYWtlIGl0IGdlbmVy
+aWMuCmRpZ2l0YWxfcG9ydCB3aWxsIGJlIG5lZWRlZCBpbiBpY2xfdGNfcGh5X2F1eF9wb3dlcl93
+ZWxsX2VuYWJsZSgpCnNvIGFkZGluZyBpdCBhcyBhIHBhcmFtZXRlciB0byBpY2xfdGNfcG9ydF9h
+c3NlcnRfcmVmX2hlbGQoKS4KCldoaWxlIGF0IGF0IHJlbW92aW5nIHRoZSBkdXBsaWNhdGVkIGNh
+bGwgdG8gaWNsX3RjX3BoeV9hdXhfY2goKSBpbgppY2xfdGNfcG9ydF9hc3NlcnRfcmVmX2hlbGQo
+KS4KCnYyOgotIGZpeGVkIGJ1aWxkIHdoZW4gRFJNX0k5MTVfREVCVUdfUlVOVElNRV9QTSBpcyBu
+b3Qgc2V0Ci0gbW92ZWQgdG8gYmVmb3JlIGhzd193YWl0X2Zvcl9wb3dlcl93ZWxsX2VuYWJsZSgp
+IGFzIGl0IHdpbGwgYmUKbmVlZGVkIGJ5IGhzd193YWl0X2Zvcl9wb3dlcl93ZWxsX2VuYWJsZSgp
+IGluIGEgZnV0dXJlIHBhdGNoCgp2NDoKLSBmaXhlZCBhY3Rpb24gb2YgaWYgKCFkaWdfcG9ydCks
+IGNvbnRpbnVlIGluc3RlYWQgb2YgcmV0dXJuCgpDYzogWW91LVNoZW5nIFlhbmcgPHZpY2Ftb0Bn
+bWFpbC5jb20+ClJldmlld2VkLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+ClRl
+c3RlZC1ieTogWW91LVNoZW5nIFlhbmcgPHZpY2Ftby55YW5nQGNhbm9uaWNhbC5jb20+ClNpZ25l
+ZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgot
+LS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyAgICB8IDY5ICsr
+KysrKysrKystLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzNyBpbnNlcnRpb25zKCspLCAzMiBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfcG93ZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheV9wb3dlci5jCmluZGV4IDQzM2U1YTgxZGQ0ZC4uODE0ZTIyMzgzNmRiIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwpA
+QCAtMjgyLDYgKzI4MiwzMyBAQCBzdGF0aWMgdm9pZCBoc3dfcG93ZXJfd2VsbF9wcmVfZGlzYWJs
+ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCWdlbjhfaXJxX3Bvd2VyX3dl
+bGxfcHJlX2Rpc2FibGUoZGV2X3ByaXYsIGlycV9waXBlX21hc2spOwogfQogCitzdGF0aWMgc3Ry
+dWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqCithdXhfY2hfdG9fZGlnaXRhbF9wb3J0KHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKKwkJICAgICAgIGVudW0gYXV4X2NoIGF1eF9jaCkK
+K3sKKwlzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCA9IE5VTEw7CisJc3RydWN0
+IGludGVsX2VuY29kZXIgKmVuY29kZXI7CisKKwlmb3JfZWFjaF9pbnRlbF9lbmNvZGVyKCZkZXZf
+cHJpdi0+ZHJtLCBlbmNvZGVyKSB7CisJCS8qIFdlJ2xsIGNoZWNrIHRoZSBNU1QgcHJpbWFyeSBw
+b3J0ICovCisJCWlmIChlbmNvZGVyLT50eXBlID09IElOVEVMX09VVFBVVF9EUF9NU1QpCisJCQlj
+b250aW51ZTsKKworCQlkaWdfcG9ydCA9IGVuY190b19kaWdfcG9ydChlbmNvZGVyKTsKKwkJaWYg
+KCFkaWdfcG9ydCkKKwkJCWNvbnRpbnVlOworCisJCWlmIChkaWdfcG9ydC0+YXV4X2NoICE9IGF1
+eF9jaCkgeworCQkJZGlnX3BvcnQgPSBOVUxMOworCQkJY29udGludWU7CisJCX0KKworCQlicmVh
+azsKKwl9CisKKwlyZXR1cm4gZGlnX3BvcnQ7Cit9CisKIHN0YXRpYyB2b2lkIGhzd193YWl0X2Zv
+cl9wb3dlcl93ZWxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJ
+CQkJCSAgIHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBvd2VyX3dlbGwpCiB7CkBAIC01MDEsNDEg
+KzUyOCwxNCBAQCBzdGF0aWMgaW50IHBvd2VyX3dlbGxfYXN5bmNfcmVmX2NvdW50KHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIH0KIAogc3RhdGljIHZvaWQgaWNsX3RjX3BvcnRf
+YXNzZXJ0X3JlZl9oZWxkKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKLQkJCQkJ
+c3RydWN0IGk5MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2VsbCkKKwkJCQkJc3RydWN0IGk5MTVfcG93
+ZXJfd2VsbCAqcG93ZXJfd2VsbCwKKwkJCQkJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGln
+X3BvcnQpCiB7Ci0JZW51bSBhdXhfY2ggYXV4X2NoID0gaWNsX3RjX3BoeV9hdXhfY2goZGV2X3By
+aXYsIHBvd2VyX3dlbGwpOwotCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0g
+TlVMTDsKLQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcjsKLQogCS8qIEJ5cGFzcyB0aGUg
+Y2hlY2sgaWYgYWxsIHJlZmVyZW5jZXMgYXJlIHJlbGVhc2VkIGFzeW5jaHJvbm91c2x5ICovCiAJ
+aWYgKHBvd2VyX3dlbGxfYXN5bmNfcmVmX2NvdW50KGRldl9wcml2LCBwb3dlcl93ZWxsKSA9PQog
+CSAgICBwb3dlcl93ZWxsLT5jb3VudCkKIAkJcmV0dXJuOwogCi0JYXV4X2NoID0gaWNsX3RjX3Bo
+eV9hdXhfY2goZGV2X3ByaXYsIHBvd2VyX3dlbGwpOwotCi0JZm9yX2VhY2hfaW50ZWxfZW5jb2Rl
+cigmZGV2X3ByaXYtPmRybSwgZW5jb2RlcikgewotCQllbnVtIHBoeSBwaHkgPSBpbnRlbF9wb3J0
+X3RvX3BoeShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7Ci0KLQkJaWYgKCFpbnRlbF9waHlfaXNf
+dGMoZGV2X3ByaXYsIHBoeSkpCi0JCQljb250aW51ZTsKLQotCQkvKiBXZSdsbCBjaGVjayB0aGUg
+TVNUIHByaW1hcnkgcG9ydCAqLwotCQlpZiAoZW5jb2Rlci0+dHlwZSA9PSBJTlRFTF9PVVRQVVRf
+RFBfTVNUKQotCQkJY29udGludWU7Ci0KLQkJZGlnX3BvcnQgPSBlbmNfdG9fZGlnX3BvcnQoZW5j
+b2Rlcik7Ci0JCWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgIWRpZ19wb3J0KSkKLQkJ
+CWNvbnRpbnVlOwotCi0JCWlmIChkaWdfcG9ydC0+YXV4X2NoICE9IGF1eF9jaCkgewotCQkJZGln
+X3BvcnQgPSBOVUxMOwotCQkJY29udGludWU7Ci0JCX0KLQotCQlicmVhazsKLQl9Ci0KIAlpZiAo
+ZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sICFkaWdfcG9ydCkpCiAJCXJldHVybjsKIApAQCAt
+NTQ1LDcgKzU0NSw4IEBAIHN0YXRpYyB2b2lkIGljbF90Y19wb3J0X2Fzc2VydF9yZWZfaGVsZChz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAjZWxzZQogCiBzdGF0aWMgdm9pZCBp
+Y2xfdGNfcG9ydF9hc3NlcnRfcmVmX2hlbGQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2LAotCQkJCQlzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsKQorCQkJCQlzdHJ1
+Y3QgaTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsLAorCQkJCQlzdHJ1Y3QgaW50ZWxfZGlnaXRh
+bF9wb3J0ICpkaWdfcG9ydCkKIHsKIH0KIApAQCAtNTU4LDkgKzU1OSwxMCBAQCBpY2xfdGNfcGh5
+X2F1eF9wb3dlcl93ZWxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
+CiAJCQkJIHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBvd2VyX3dlbGwpCiB7CiAJZW51bSBhdXhf
+Y2ggYXV4X2NoID0gaWNsX3RjX3BoeV9hdXhfY2goZGV2X3ByaXYsIHBvd2VyX3dlbGwpOworCXN0
+cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gYXV4X2NoX3RvX2RpZ2l0YWxfcG9y
+dChkZXZfcHJpdiwgYXV4X2NoKTsKIAl1MzIgdmFsOwogCi0JaWNsX3RjX3BvcnRfYXNzZXJ0X3Jl
+Zl9oZWxkKGRldl9wcml2LCBwb3dlcl93ZWxsKTsKKwlpY2xfdGNfcG9ydF9hc3NlcnRfcmVmX2hl
+bGQoZGV2X3ByaXYsIHBvd2VyX3dlbGwsIGRpZ19wb3J0KTsKIAogCXZhbCA9IGludGVsX2RlX3Jl
+YWQoZGV2X3ByaXYsIERQX0FVWF9DSF9DVEwoYXV4X2NoKSk7CiAJdmFsICY9IH5EUF9BVVhfQ0hf
+Q1RMX1RCVF9JTzsKQEAgLTU4OCw3ICs1OTAsMTAgQEAgc3RhdGljIHZvaWQKIGljbF90Y19waHlf
+YXV4X3Bvd2VyX3dlbGxfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
+CiAJCQkJICBzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsKQogewotCWljbF90Y19w
+b3J0X2Fzc2VydF9yZWZfaGVsZChkZXZfcHJpdiwgcG93ZXJfd2VsbCk7CisJZW51bSBhdXhfY2gg
+YXV4X2NoID0gaWNsX3RjX3BoeV9hdXhfY2goZGV2X3ByaXYsIHBvd2VyX3dlbGwpOworCXN0cnVj
+dCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gYXV4X2NoX3RvX2RpZ2l0YWxfcG9ydChk
+ZXZfcHJpdiwgYXV4X2NoKTsKKworCWljbF90Y19wb3J0X2Fzc2VydF9yZWZfaGVsZChkZXZfcHJp
+diwgcG93ZXJfd2VsbCwgZGlnX3BvcnQpOwogCiAJaHN3X3Bvd2VyX3dlbGxfZGlzYWJsZShkZXZf
+cHJpdiwgcG93ZXJfd2VsbCk7CiB9Ci0tIAoyLjI2LjAKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
