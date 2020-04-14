@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F37D1A8D96
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A403F1A8DC8
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:35:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82A0E6E598;
-	Tue, 14 Apr 2020 21:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0127F6E595;
+	Tue, 14 Apr 2020 21:35:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD77B6E595;
- Tue, 14 Apr 2020 21:22:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B7045A0BA8;
- Tue, 14 Apr 2020 21:22:29 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B63E6E595
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 21:35:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20900481-1500050 for multiple; Tue, 14 Apr 2020 22:35:02 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Date: Tue, 14 Apr 2020 21:22:29 -0000
-Message-ID: <158689934972.30376.4159909411171317552@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200413175322.12162-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200413175322.12162-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ehl=3A_extended_Wa=5F2006604312_to_ehl?=
+In-Reply-To: <87pnc9zwjf.fsf@riseup.net>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+ <20200414161423.23830-2-chris@chris-wilson.co.uk>
+ <158688212611.24667.7132327074792389398@build.alporthouse.com>
+ <87pnc9zwjf.fsf@riseup.net>
+To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158690010150.24667.4991755951851899304@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 14 Apr 2020 22:35:01 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,97 +42,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Francisco Jerez (2020-04-14 20:39:48)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > Quoting Chris Wilson (2020-04-14 17:14:23)
+> >> Try to make RPS dramatically more responsive by shrinking the evaluation
+> >> intervales by a factor of 100! The issue is as we now park the GPU
+> >> rapidly upon idling, a short or bursty workload such as the composited
+> >> desktop never sustains enough work to fill and complete an evaluation
+> >> window. As such, the frequency we program remains stuck. This was first
+> >> reported as once boosted, we never relinquished the boost [see commit
+> >> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
+> >> it equally applies in the order direction for bursty workloads that
+> >> *need* low latency, like desktop animations.
+> >> 
+> >> What we could try is preserve the incomplete EI history across idling,
+> >> it is not clear whether that would be effective, nor whether the
+> >> presumption of continuous workloads is accurate. A clearer path seems to
+> >> treat it as symptomatic that we fail to handle bursty workload with the
+> >> current EI, and seek to address that by shrinking the EI so the
+> >> evaluations are run much more often.
+> >> 
+> >> This will likely entail more frequent interrupts, and by the time we
+> >> process the interrupt in the bottom half [from inside a worker], the
+> >> workload on the GPU has changed. To address the changeable nature, in
+> >> the previous patch we compared the previous complete EI with the
+> >> interrupt request and only up/down clock if both agree. The impact of
+> >> asking for, and presumably, receiving more interrupts is still to be
+> >> determined and mitigations sought. The first idea is to differentiate
+> >> between up/down responsivity and make upclocking more responsive than
+> >> downlocking. This should both help thwart jitter on bursty workloads by
+> >> making it easier to increase than it is to decrease frequencies, and
+> >> reduce the number of interrupts we would need to process.
+> >
+> > Another worry I'd like to raise, is that by reducing the EI we risk
+> > unstable evaluations. I'm not sure how accurate the HW is, and I worry
+> > about borderline workloads (if that is possible) but mainly the worry is
+> > how the HW is sampling.
+> >
+> > The other unmentioned unknown is the latency in reprogramming the
+> > frequency. At what point does it start to become a significant factor?
+> > I'm presuming the RPS evaluation itself is free, until it has to talk
+> > across the chip to send an interrupt.
+> > -Chris
+> 
+> At least on ICL the problem which this patch and 21abf0bf168d were
+> working around seems to have to do with RPS interrupt delivery being
+> inadvertently blocked for extended periods of time.  Looking at the GPU
+> utilization and RPS events on a graph I could see the GPU being stuck at
+> low frequency without any RPS interrupts firing, for a time interval
+> orders of magnitude greater than the EI we're theoretically programming
+> today.  IOW it seems like the real problem isn't that our EIs are too
+> long, but that we're missing a bunch of them.
 
-Series: drm/i915/ehl: extended Wa_2006604312 to ehl
-URL   : https://patchwork.freedesktop.org/series/75894/
-State : success
+Just stuck a pr_err() into gen11_handle_rps_events(), and momentarily
+before we were throttled (and so capped at 100% load), interrupts were
+being delivered:
 
-== Summary ==
+[  887.521727] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.538039] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.538253] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.538555] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.554731] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.554857] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.555604] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.571373] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.571496] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.571646] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.588199] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.588380] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.588692] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.604718] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.604937] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.621591] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.621755] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.637988] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.638166] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.638803] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.654812] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.655029] gen11_rps_irq_handler: { iir:20, events:20 }
+[  887.671423] gen11_rps_irq_handler: { iir:10, events:10 }
+[  887.671649] gen11_rps_irq_handler: { iir:20, events:20 }
 
-CI Bug Log - changes from CI_DRM_8298 -> Patchwork_17290
-====================================================
+That looks within expectations for the short EI settings. So many
+interrupts is a drag, and I would be tempted to remove the process bottom
+half.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17290/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17290:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@gem_wait@busy@all}:
-    - fi-elk-e7500:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/fi-elk-e7500/igt@gem_wait@busy@all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17290/fi-elk-e7500/igt@gem_wait@busy@all.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17290 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@objects:
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#489])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/fi-bwr-2160/igt@i915_selftest@live@objects.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17290/fi-bwr-2160/igt@i915_selftest@live@objects.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8298 -> Patchwork_17290
-
-  CI-20190529: 20190529
-  CI_DRM_8298: 17f82f0c2857d0b442adbdb62eb44b61d0f5b775 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5589: 31962324ac86f029e2841e56e97c42cf9d572956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17290: 8291fb20b0e53e2ea184a6fc312103f76f23b2b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8291fb20b0e5 drm/i915/ehl: extended Wa_2006604312 to ehl
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17290/index.html
+Oh well, I should check how many of those are translated into frequency
+updates. I just wanted to first check if in the first try I stumbled
+into the same loss of interrupts issue.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
