@@ -1,32 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9DB1A8491
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:23:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D131A84EC
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5AC6E110;
-	Tue, 14 Apr 2020 16:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4584589C9D;
+	Tue, 14 Apr 2020 16:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BC9C6E110;
- Tue, 14 Apr 2020 16:23:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7481DA3C0D;
- Tue, 14 Apr 2020 16:23:16 +0000 (UTC)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D669489CAD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:30:19 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id x25so13685287wmc.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 09:30:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=j6iT+4OltUOabgOBVLnkXdCNEsUQWouuz2jP5vYgELc=;
+ b=NIMIF8ZncM3RCZl4gwuajK430pMg4bISfQ7uqeMPuWe/H3hEkwCX2yLw1gxOuLgy0G
+ WFB2gv+1wAVr1zpbKbm071xcyqxH4P/Jo/9uk0KP6iI+pCjqrEs+qH2EbbBmWRRQRMLN
+ 1wQCkUbOQx7Nb2JjANEwz4DPPDLIws1F7HPCI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=j6iT+4OltUOabgOBVLnkXdCNEsUQWouuz2jP5vYgELc=;
+ b=DOCsMAY9/pYTzgFltdcr26nXp2sn2sO7gy+r39dyHGBz3Wsy6+Y1UN6zqzNI/owG6l
+ pHupIc/NikwQ3g8A/NRYj056UO1H5aAmxSspoOa1X7RlH9xCuY8w/DBOp5m9UdLKrej2
+ 46UvkzeBj8UZmBJ2In97u4B/PZOj0Y2S2Nm3Ap4mTc62IpYDb8JaJTg9EjqBrMMBgHOL
+ 7CEkfDwy/NgNdClOVFjBQ+FsSDaMhFjEqCl2eZCqSBeaEhoyPfQnCU/BixKgaZq7Acn7
+ jhshukxfsNLhw2BVYzuFofvSrMIzMJPoNbMfmBb0cokS+LfEy3iDAO643sOpiQgvNzU5
+ MvrQ==
+X-Gm-Message-State: AGi0PuYCD6nk+OGYNN4D6/Yp20rcwHXAGqW5/bMbi1cu2ab6uNN/ufgA
+ uXie0JOjhvr6ihkAgginHq1ueQ==
+X-Google-Smtp-Source: APiQypKFuZ1Tyi6JAmlIPQve6oVDWVGmIA2J3XrIqZx88WDewk4OErRHjXy4QoM6xzgWk8uwpbaZRA==
+X-Received: by 2002:a1c:4e16:: with SMTP id g22mr596718wmh.157.1586881818446; 
+ Tue, 14 Apr 2020 09:30:18 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g186sm20519838wmg.36.2020.04.14.09.30.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Apr 2020 09:30:17 -0700 (PDT)
+Date: Tue, 14 Apr 2020 18:30:15 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <20200414163015.GX3456981@phenom.ffwll.local>
+References: <20200403135828.2542770-1-daniel.vetter@ffwll.ch>
+ <20200403135828.2542770-10-daniel.vetter@ffwll.ch>
+ <20200408072146.GG14965@ravnborg.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kishore Kadiyala" <kishore.kadiyala@intel.com>
-Date: Tue, 14 Apr 2020 16:23:16 -0000
-Message-ID: <158688139644.30377.3964128122460591513@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200413071346.14612-1-kishore.kadiyala@intel.com>
-In-Reply-To: <20200413071346.14612-1-kishore.kadiyala@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_Plane_color_encoding_support_for_YCBCR=5FBT2020_?=
- =?utf-8?b?KHJldjUp?=
+Content-Disposition: inline
+In-Reply-To: <20200408072146.GG14965@ravnborg.org>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 09/44] drm/vboxvidoe: use managed pci
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,76 +67,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 08, 2020 at 09:21:46AM +0200, Sam Ravnborg wrote:
+> On Fri, Apr 03, 2020 at 03:57:53PM +0200, Daniel Vetter wrote:
+> > Allows us to drop the cleanup code on the floor.
+> > 
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Hans de Goede <hdegoede@redhat.com>
+> 
+> With this change we avoid calling pci_disable_device()
+> twise in case vbox_mm_init() fails.
+> Once in vbox_hw_fini() and once in the error path.
 
-Series: drm/i915: Add Plane color encoding support for YCBCR_BT2020 (rev5)
-URL   : https://patchwork.freedesktop.org/series/75660/
-State : success
+Yup, I forgot to mention this in the commit message. I've added your
+remark here as a quote, thanks for checking stuff in detail.
+-Daniel
 
-== Summary ==
+> 
+> Which is just a small extra bonus.
+> 
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> 
+> > ---
+> >  drivers/gpu/drm/vboxvideo/vbox_drv.c  | 6 ++----
+> >  drivers/gpu/drm/vboxvideo/vbox_main.c | 7 +------
+> >  2 files changed, 3 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> > index d34cddd809fd..c80695c2f6c0 100644
+> > --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> > +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> > @@ -55,13 +55,13 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  	pci_set_drvdata(pdev, vbox);
+> >  	mutex_init(&vbox->hw_mutex);
+> >  
+> > -	ret = pci_enable_device(pdev);
+> > +	ret = pcim_enable_device(pdev);
+> >  	if (ret)
+> >  		return ret;
+> >  
+> >  	ret = vbox_hw_init(vbox);
+> >  	if (ret)
+> > -		goto err_pci_disable;
+> > +		return ret;
+> >  
+> >  	ret = vbox_mm_init(vbox);
+> >  	if (ret)
+> > @@ -93,8 +93,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  	vbox_mm_fini(vbox);
+> >  err_hw_fini:
+> >  	vbox_hw_fini(vbox);
+> > -err_pci_disable:
+> > -	pci_disable_device(pdev);
+> >  	return ret;
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
+> > index 9dcab115a261..1336ab9795fc 100644
+> > --- a/drivers/gpu/drm/vboxvideo/vbox_main.c
+> > +++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
+> > @@ -71,8 +71,6 @@ static void vbox_accel_fini(struct vbox_private *vbox)
+> >  
+> >  	for (i = 0; i < vbox->num_crtcs; ++i)
+> >  		vbva_disable(&vbox->vbva_info[i], vbox->guest_pool, i);
+> > -
+> > -	pci_iounmap(vbox->ddev.pdev, vbox->vbva_buffers);
+> >  }
+> >  
+> >  /* Do we support the 4.3 plus mode hint reporting interface? */
+> > @@ -125,7 +123,7 @@ int vbox_hw_init(struct vbox_private *vbox)
+> >  	/* Create guest-heap mem-pool use 2^4 = 16 byte chunks */
+> >  	vbox->guest_pool = gen_pool_create(4, -1);
+> >  	if (!vbox->guest_pool)
+> > -		goto err_unmap_guest_heap;
+> > +		return -ENOMEM;
+> >  
+> >  	ret = gen_pool_add_virt(vbox->guest_pool,
+> >  				(unsigned long)vbox->guest_heap,
+> > @@ -168,8 +166,6 @@ int vbox_hw_init(struct vbox_private *vbox)
+> >  
+> >  err_destroy_guest_pool:
+> >  	gen_pool_destroy(vbox->guest_pool);
+> > -err_unmap_guest_heap:
+> > -	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
+> >  	return ret;
+> >  }
+> >  
+> > @@ -177,5 +173,4 @@ void vbox_hw_fini(struct vbox_private *vbox)
+> >  {
+> >  	vbox_accel_fini(vbox);
+> >  	gen_pool_destroy(vbox->guest_pool);
+> > -	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
+> >  }
+> > -- 
+> > 2.25.1
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-CI Bug Log - changes from CI_DRM_8295 -> Patchwork_17285
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17285/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17285 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6600u:       [INCOMPLETE][1] ([i915#69]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8295/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17285/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-
-
-Participating hosts (49 -> 44)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8295 -> Patchwork_17285
-
-  CI-20190529: 20190529
-  CI_DRM_8295: 4cb6dbe0a641129fd07ad1fbfcd6e7b4f03ec5c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5589: 31962324ac86f029e2841e56e97c42cf9d572956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17285: c23e702e8b821acdcb9e35f4ffd05e14bc0e058a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c23e702e8b82 drm/i915: Add Plane color encoding support for YCBCR_BT2020
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17285/index.html
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
