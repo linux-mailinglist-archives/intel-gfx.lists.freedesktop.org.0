@@ -1,44 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E35E1A7AD6
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 14:32:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6521A7B14
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 14:45:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E8DD89B7D;
-	Tue, 14 Apr 2020 12:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0C86E11F;
+	Tue, 14 Apr 2020 12:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB1C89B7D
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 12:32:28 +0000 (UTC)
-IronPort-SDR: TPeRK5DMWDjfmNae2OjrF/elr2CFQntv6JmlAojub56delkS4gMSUrIKBCSgHMfdnceOWQAQfd
- U1R2OqUgkjNA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 05:32:27 -0700
-IronPort-SDR: /LVEc3C+k+tDp1M0UAfDgof38ENssiTBpCzKcK1x7pq5thuH0TE97l89WAMb7opiJDiep9peOl
- eW7Nry9ZxDYA==
-X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; d="scan'208";a="427046472"
-Received: from mdoerbec-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.38.76])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 05:32:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Souza\, Jose" <jose.souza@intel.com>,
- "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chris\@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
-In-Reply-To: <02af48873c1c1b4f5331215f5ed6ae61170cbf5c.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200410144328.15286-1-chris@chris-wilson.co.uk>
- <02af48873c1c1b4f5331215f5ed6ae61170cbf5c.camel@intel.com>
-Date: Tue, 14 Apr 2020 15:32:22 +0300
-Message-ID: <87a73emend.fsf@intel.com>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB8E66E11F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 12:44:58 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id r26so13818700wmh.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 05:44:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=/DbyWC/V56uvP1+UtYrcBWXMbTIi6NrJJc/uH5SPhRA=;
+ b=OBKXPg8mO7r+/bMZCHJqbFG41NF9nczOd+ao7FLXejqEhOzCZB1CPcBa1uQj3oLdnH
+ oaPJ4u0IcrFkievPfPe5sFhKkxw/cnoQ6qrmmWCaQg7r9qRgvyiz1wgDlx8CnbMrEZtb
+ MUu3GywGrmTp8WbK6KfIRfc6BsYNZPyHF57oM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=/DbyWC/V56uvP1+UtYrcBWXMbTIi6NrJJc/uH5SPhRA=;
+ b=Txle8nRCJSP/rReVXM8YqHh2XEagjWYTyEbQymNdfWhXydzxi8rAwbtz8NcLBfmJCZ
+ bGKQ76cQDwV2T0P3CR8rX8fAC4a8Q8JCwVFBEj6Vfr3dErL59B8QxliSdPa1Jq5dxm1j
+ 0zP8+A7qN/xS0e+ZiMhYoVpzuQD38onep/bRvmnygm26xIwl8+/G8jxWVO6mM0kAqw8Y
+ D0P2fFJoed99r2JbZfufdxAqVfuFpQoxojNm127WFCJPulZWV1wP++kFsCJ/vJHhI+xW
+ SLd7FHc7F+BAsxgHneHRfG0ytcufyu6qFhCXfmXzRiiSJp3lVZKVIESENB1Pzdf1hRI4
+ +mQQ==
+X-Gm-Message-State: AGi0PuZ/1922cle6f2AT3rbyiPjY+Hgkv7zHJRQS9xUmRP8mVm2ScBND
+ 83bl04EFiq2dPubHx9TzRpLUXg==
+X-Google-Smtp-Source: APiQypLwnSqSoceH29nhs87TKD1t19EW/JQDDyWXymflZZp6Lwi0u1irOfQ08W703ofifDHmR1DMTQ==
+X-Received: by 2002:a1c:5a06:: with SMTP id o6mr23288178wmb.34.1586868297304; 
+ Tue, 14 Apr 2020 05:44:57 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id k8sm17130062wrm.52.2020.04.14.05.44.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Apr 2020 05:44:56 -0700 (PDT)
+Date: Tue, 14 Apr 2020 14:44:54 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200414124454.GW3456981@phenom.ffwll.local>
+References: <20200414050807.13531-1-manasi.d.navare@intel.com>
+ <20200414050807.13531-3-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flush async power domains on
- probe failure
+Content-Disposition: inline
+In-Reply-To: <20200414050807.13531-3-manasi.d.navare@intel.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/dp: Expose connector VRR
+ info via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,42 +67,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ nicholas.kazlauskas@amd.com, dri-devel@lists.freedesktop.org,
+ Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAxMCBBcHIgMjAyMCwgIlNvdXphLCBKb3NlIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+
-IHdyb3RlOgo+IE9uIEZyaSwgMjAyMC0wNC0xMCBhdCAxNTo0MyArMDEwMCwgQ2hyaXMgV2lsc29u
-IHdyb3RlOgo+PiBGbHVzaCB0aGUgYXN5bmMgcG93ZXIgZG9tYWluIHdvcmsgYWZ0ZXIgYWJvcnRp
-bmcgdGhlIG1vZHVsZSBwcm9iZToKPj4gCj4+IDwzPiBbMzA3Ljc4NTU1Ml0gT0RFQlVHOiBmcmVl
-IGFjdGl2ZSAoYWN0aXZlIHN0YXRlIDApIG9iamVjdCB0eXBlOgo+PiB0aW1lcl9saXN0IGhpbnQ6
-IGludGVsX2Rpc3BsYXlfcG93ZXJfcHV0X2FzeW5jX3dvcmsrMHgwLzB4ZjAgW2k5MTVdCj4+IAo+
-PiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1
-ZXMvMTY0Nwo+PiBGaXhlczogYjY2NDI1OWYzZmUyICgiZHJtL2k5MTU6IHNwbGl0IGk5MTVfZHJp
-dmVyX21vZGVzZXRfcHJvYmUoKSB0bwo+PiBwcmUvcG9zdCBpcnEgaW5zdGFsbCIpCj4+IFNpZ25l
-ZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+PiBDYzog
-SmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gQ2M6IFZpbGxlIFN5cmrDpGzD
-pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBJbXJlIERlYWsgPGltcmUu
-ZGVha0BpbnRlbC5jb20+Cj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-YyB8IDEgKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4+IAo+PiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+PiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmMKPj4gaW5kZXggYTdhM2I0Yjk4NTcyLi4xM2MxY2UyNDQwOTIgMTAw
-NjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+PiBAQCAtOTk2LDYgKzk5Niw3IEBAIGludCBp
-OTE1X2RyaXZlcl9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwgY29uc3QKPj4gc3RydWN0IHBj
-aV9kZXZpY2VfaWQgKmVudCkKPj4gIG91dF9jbGVhbnVwX21vZGVzZXQ6Cj4+ICAJLyogRklYTUUg
-Ki8KPj4gIG91dF9jbGVhbnVwX2h3Ogo+PiArCWludGVsX3Bvd2VyX2RvbWFpbnNfZHJpdmVyX3Jl
-bW92ZShpOTE1KTsKPgo+IElmIHRoZSBmYWlsdXJlIGhhcHBlbmVkIGluIHRoZSBmaXJzdCB0d28g
-cmV0dXJucyBvZgo+IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmVfbm9pcnEoKSBubyBjYWxsIHRv
-Cj4gaW50ZWxfcG93ZXJfZG9tYWluc19pbml0X2h3KCkgd291bGQgYmUgbWFkZS4KPgo+IEknbSBh
-bHNvIHdvcmtpbmcgb24gdGhpcywgd2lsbCBzZW5kIHRvIE1MIGFmdGVyIGEgcm91bmQgb24gdHJ5
-Ym90Ogo+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC8zNjEwNTMvP3Nl
-cmllcz03NTgxNiZyZXY9MQoKQWxzbyBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcv
-c2VyaWVzLzc0MDIxLwoKQlIsCkphbmkuCgoKPgo+PiAgCWk5MTVfZHJpdmVyX2h3X3JlbW92ZShp
-OTE1KTsKPj4gIAlpbnRlbF9tZW1vcnlfcmVnaW9uc19kcml2ZXJfcmVsZWFzZShpOTE1KTsKPj4g
-IAlpOTE1X2dndHRfZHJpdmVyX3JlbGVhc2UoaTkxNSk7CgotLSAKSmFuaSBOaWt1bGEsIEludGVs
-IE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+On Mon, Apr 13, 2020 at 10:08:07PM -0700, Manasi Navare wrote:
+> From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> =
+
+> [Why]
+> It's useful to know the min and max vrr range for IGT testing.
+> =
+
+> [How]
+> Expose the min and max vfreq for the connector via a debugfs file
+> on the connector, "i915_vrr_info".
+> =
+
+> Example usage: cat /sys/kernel/debug/dri/0/DP-1/i915_vrr_info
+> =
+
+> v3:
+> * Remove the unnecessary debug print (Manasi)
+> v2:
+> * Fix the typo in max_vfreq (Manasi)
+> * Change the name of node to i915_vrr_info so we can add
+> other vrr info for more debug info (Manasi)
+> * Change the VRR capable to display Yes or No (Manasi)
+> * Fix indentation checkpatch errors (Manasi)
+> =
+
+> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Tested-by: Manasi Navare <manasi.d.navare@intel.com>
+
+So if I'm understanding things correctly AMD butchered the VRR stuff and
+only exposes it when:
+
+- VRR_ENABLED is set
+- _and_ you're using the legacy page_flip path, atomic flip doesn't
+  support it
+- _and_ the PAGE_FLIP_ASYNC flag is set.
+
+That's pretty bonkers uapi, and I think before we add a new driver we need
+to figure out how to make this work. Works case we might need a revert
+hammer for the amdgpu side and new VRR properties so we're not tricking
+any existing userspace into something where stuff then would break.
+
+But I'm hoping we can do a bit more clever than that. Or maybe I'm just
+wrong on how amdgpu vrr works.
+
+Adding amd folks.
+-Daniel
+
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 22 ++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index bdeea2e02642..35b229ab4d19 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -2096,6 +2096,21 @@ static const struct file_operations i915_dsc_fec_s=
+upport_fops =3D {
+>  	.write =3D i915_dsc_fec_support_write
+>  };
+>  =
+
+> +static int i915_vrr_info_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_connector *connector =3D m->private;
+> +
+> +	if (connector->status !=3D connector_status_connected)
+> +		return -ENODEV;
+> +
+> +	seq_printf(m, "Vrr_capable: %s\n", yesno(intel_dp_is_vrr_capable(connec=
+tor)));
+> +	seq_printf(m, "Min: %u\n", (u8)connector->display_info.monitor_range.mi=
+n_vfreq);
+> +	seq_printf(m, "Max: %u\n", (u8)connector->display_info.monitor_range.ma=
+x_vfreq);
+> +
+> +	return 0;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(i915_vrr_info);
+> +
+>  /**
+>   * intel_connector_debugfs_add - add i915 specific connector debugfs fil=
+es
+>   * @connector: pointer to a registered drm_connector
+> @@ -2130,9 +2145,14 @@ int intel_connector_debugfs_add(struct drm_connect=
+or *connector)
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 10 &&
+>  	    (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> -	     connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP))
+> +	     connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP)) {
+>  		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
+>  				    connector, &i915_dsc_fec_support_fops);
+>  =
+
+> +		if (INTEL_GEN(dev_priv) >=3D 12)
+> +			debugfs_create_file("i915_vrr_info", S_IRUGO,
+> +					    root, connector, &i915_vrr_info_fops);
+> +	}
+> +
+>  	return 0;
+>  }
+> -- =
+
+> 2.19.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
