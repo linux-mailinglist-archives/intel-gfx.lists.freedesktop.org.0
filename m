@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D590A1A8677
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C73C71A8741
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 19:16:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABB0F6E505;
-	Tue, 14 Apr 2020 16:59:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B967C89A8B;
+	Tue, 14 Apr 2020 17:16:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6208C6E505
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:59:50 +0000 (UTC)
-IronPort-SDR: 6fNiIGiYCt523wYUO6naQwaqnPDGTqHRK2uIsBw4hBBwAi09sEnl5d0lWwlDX4ni29YwuVgKoO
- t+sc86B+7UWA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D8F89A8B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 17:16:46 +0000 (UTC)
+IronPort-SDR: b/hiSDTnizLO0JD2Dsk83U2geJ+2BKNTNWitFDGYyaBvXQ5L2YuhUpNURVmC+9RSA69leS1amJ
+ PFtgbZRoG06Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 09:59:49 -0700
-IronPort-SDR: r3dDpBiZqrl+y83L94kE+jlmkM6AYoNKMnpthuUoT+oqFcCjsSauRo7T0uo5KC+XaIzJiTRsEX
- v5t2H7UFAomA==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 10:16:44 -0700
+IronPort-SDR: KFqwgNqqibJOuSAckgTnW9+6zeWdlF9c5DmeWNypqMAOkCn3KAIGiEFLACthtaF/VaZBXmG1+4
+ k3nr6saucONg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="277324257"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by fmsmga004.fm.intel.com with ESMTP; 14 Apr 2020 09:59:48 -0700
-Date: Tue, 14 Apr 2020 09:59:48 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <20200414165948.GD61072@orsosgc001.amr.corp.intel.com>
-References: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
- <20200413154822.11620-2-umesh.nerlige.ramappa@intel.com>
- <87y2qy4psw.wl-ashutosh.dixit@intel.com>
- <87wo6i4kqd.wl-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="288280901"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 14 Apr 2020 10:16:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Apr 2020 20:16:41 +0300
+Date: Tue, 14 Apr 2020 20:16:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200414171641.GD6112@intel.com>
+References: <20200409154730.18568-6-stanislav.lisovskiy@intel.com>
+ <20200410122432.9001-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <87wo6i4kqd.wl-ashutosh.dixit@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/perf: Reduce cpu overhead for
- blocking perf OA reads
+In-Reply-To: <20200410122432.9001-1-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v23 05/13] drm/i915: Prepare to extract gen
+ specific functions from intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,115 +52,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 13, 2020 at 11:58:18PM -0700, Dixit, Ashutosh wrote:
->On Mon, 13 Apr 2020 22:08:47 -0700, Dixit, Ashutosh wrote:
->>
->> On Mon, 13 Apr 2020 08:48:20 -0700, Umesh Nerlige Ramappa wrote:
->> >
->> > A condition in wait_event_interruptible seems to be checked twice before
->> > waiting on the event to occur. These checks are redundant when hrtimer
->> > events will call oa_buffer_check_unlocked to update the oa_buffer tail
->> > pointers. The redundant checks add cpu overhead. Simplify the check
->> > to reduce cpu overhead when using blocking io to read oa buffer reports.
->> >
->> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/i915_perf.c | 28 +++++++++++++++++++++++++++-
->> >  1 file changed, 27 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->> > index 5cde3e4e7be6..e28a3ab83fde 100644
->> > --- a/drivers/gpu/drm/i915/i915_perf.c
->> > +++ b/drivers/gpu/drm/i915/i915_perf.c
->> > @@ -541,6 +541,32 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
->> >	return pollin;
->> >  }
->> >
->> > +/**
->> > + * oa_buffer_check_reports - quick check if reports are available
->> > + * @stream: i915 stream instance
->> > + *
->> > + * The return from this function is used as a condition for
->> > + * wait_event_interruptible in blocking read. This is used to detect
->> > + * available reports.
->> > + *
->> > + * A condition in wait_event_interruptible seems to be checked twice before
->> > + * waiting on an event to occur. These checks are redundant when hrtimer events
->> > + * will call oa_buffer_check_unlocked to update the oa_buffer tail pointers. The
->> > + * redundant checks add cpu overhead. We simplify the check to reduce cpu
->> > + * overhead.
->> > + */
->> > +static bool oa_buffer_check_reports(struct i915_perf_stream *stream)
->> > +{
->> > +	unsigned long flags;
->> > +	bool available;
->> > +
->> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
->> > +	available = stream->oa_buffer.tail != stream->oa_buffer.head;
->> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
->> > +
->> > +	return available;
->> > +}
->> > +
->> >  /**
->> >   * append_oa_status - Appends a status record to a userspace read() buffer.
->> >   * @stream: An i915-perf stream opened for OA metrics
->> > @@ -1150,7 +1176,7 @@ static int i915_oa_wait_unlocked(struct i915_perf_stream *stream)
->> >		return -EIO;
->> >
->> >	return wait_event_interruptible(stream->poll_wq,
->> > -					oa_buffer_check_unlocked(stream));
->> > +					oa_buffer_check_reports(stream));
->> >  }
->>
->> I think the problem with this patch is that the original code had the
->> property that the condition for data availability is checked (and the OA
->> tail advanced) /before/ entering the wait. So the tail was advanced and if
->> there was data there was no need to wait at all. This change has lost that
->> property. With this change we will first always enter the wait and then get
->> unblocked after the timer interrupt which will advance the tail and wake us
->> up.
->>
->> I think if we want to do this, it is possible to do without losing the
->> original property. Just call oa_buffer_check_unlocked() first (outside
->> wait_event) and if there is data just return. If not, put yourself on
->> stream->poll_wq from which the timer callback will wake us up. I think this
->> is going to be something like prepare_to_wait() / schedule() /
->> finish_wait() pattern of which there are numerous examples in the
->> kernel. So in this case we won't call wait_event_interruptible() which
->> checks the condition upon waking up. No need to define
->> oa_buffer_check_reports() either.
->
->If on the other hand we say that this should actually be the desired
->behavior of the blocking read, that it should not unblock immediately but
->only after the next timer interrupt (so that an app can call the blocking
->read repeatedly without worrying about it will return a little bit of data
->in each call at a considerable amount of CPU load), then we may be able to
->do something like this, but even then we may have to think about what would
->be the correct way to do that. Though this may be that correct way and we
->may just need to change the commit message, but is that what we want?
+On Fri, Apr 10, 2020 at 03:24:32PM +0300, Stanislav Lisovskiy wrote:
+> Addressing one of the comments, recommending to extract platform
+> specific code from intel_can_enable_sagv as a preparation, before
+> we are going to add support for tgl+.
+> =
 
-I am not quite clear on how the blocking read should behave in terms of 
-the API itself.
+> v2: - Removed whitespace
+> =
 
-The change here is solely to reduce cpu overhead from the additional 2 
-calls to oa_buffer_check_unlocked before blocking and that would happen 
-on every call to the read. I agree that the read would block if the 
-timer did not update the tail yet, but that makes sense in a way that we 
-don't want read to constantly return data when the OA sampling rates are 
-high (say 100 us). With this change the behavior becomes consistent 
-irrespective of the OA sampling rate and user has the flexibility to set 
-the POLL_OA_PERIOD to whatever value is suitable for the OA sampling 
-rate chosen.
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 66 ++++++++++++++++++---------------
+>  1 file changed, 37 insertions(+), 29 deletions(-)
+> =
 
-Thanks,
-Umesh
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 15ad6a73e0bd..a90cd235954d 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3757,42 +3757,25 @@ intel_disable_sagv(struct drm_i915_private *dev_p=
+riv)
+>  	return 0;
+>  }
+>  =
+
+> -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> +static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *cr=
+tc_state)
+>  {
+> -	struct drm_device *dev =3D state->base.dev;
+> -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> -	struct intel_crtc *crtc;
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct intel_plane *plane;
+> -	struct intel_crtc_state *crtc_state;
+> -	enum pipe pipe;
+> +	const struct intel_plane_state *plane_state;
+>  	int level, latency;
+>  =
+
+> -	if (!intel_has_sagv(dev_priv))
+> -		return false;
+> -
+> -	/*
+> -	 * If there are no active CRTCs, no additional checks need be performed
+> -	 */
+> -	if (hweight8(state->active_pipes) =3D=3D 0)
+> +	if (!crtc_state->hw.active)
+>  		return true;
+>  =
+
+> -	/*
+> -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> -	 * more then one pipe enabled
+> -	 */
+> -	if (hweight8(state->active_pipes) > 1)
+> -		return false;
+> -
+> -	/* Since we're now guaranteed to only have one active CRTC... */
+> -	pipe =3D ffs(state->active_pipes) - 1;
+> -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> -
+> -	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> +	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
+> +		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
+> +			      pipe_name(crtc->pipe));
+
+Why are we adding new debugs in this patch? Please stick to pure
+refactoring.
+
+>  		return false;
+> +	}
+>  =
+
+> -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> -		struct skl_plane_wm *wm =3D
+> +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, crtc_s=
+tate) {
+
+Too early for this change. Again, pure refactoring please.
+
+> +		const struct skl_plane_wm *wm =3D
+>  			&crtc_state->wm.skl.optimal.planes[plane->id];
+>  =
+
+>  		/* Skip this plane if it's not enabled */
+> @@ -3807,7 +3790,7 @@ bool intel_can_enable_sagv(struct intel_atomic_stat=
+e *state)
+>  		latency =3D dev_priv->wm.skl_latency[level];
+>  =
+
+>  		if (skl_needs_memory_bw_wa(dev_priv) &&
+> -		    plane->base.state->fb->modifier =3D=3D
+> +		    plane_state->uapi.fb->modifier =3D=3D
+>  		    I915_FORMAT_MOD_X_TILED)
+>  			latency +=3D 15;
+>  =
+
+> @@ -3823,6 +3806,31 @@ bool intel_can_enable_sagv(struct intel_atomic_sta=
+te *state)
+>  	return true;
+>  }
+>  =
+
+> +bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	struct intel_crtc *crtc;
+> +	const struct intel_crtc_state *crtc_state;
+> +	enum pipe pipe;
+> +
+> +	if (!intel_has_sagv(dev_priv))
+> +		return false;
+> +
+> +	/*
+> +	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> +	 * more then one pipe enabled
+> +	 */
+> +	if (hweight8(state->active_pipes) > 1)
+> +		return false;
+> +
+
+Lost the active_pipes=3D=3D0 check here, which means pipe=3D-1 below.
+
+> +	/* Since we're now guaranteed to only have one active CRTC... */
+> +	pipe =3D ffs(state->active_pipes) - 1;
+> +	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> +
+> +	return intel_crtc_can_enable_sagv(crtc_state);
+> +}
+> +
+>  /*
+>   * Calculate initial DBuf slice offset, based on slice size
+>   * and mask(i.e if slice size is 1024 and second slice is enabled
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
