@@ -1,37 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7821A8E0F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:52:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2017D1A8E0E
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:52:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBF2C6E5A4;
-	Tue, 14 Apr 2020 21:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1AC6E5A3;
+	Tue, 14 Apr 2020 21:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 363A66E5A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 21:52:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20900550-1500050 for multiple; Tue, 14 Apr 2020 22:52:08 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9BE6E5A3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 21:52:24 +0000 (UTC)
+IronPort-SDR: Y9yPSgw6urI80WtVhfT1p8QuB69SYGS1Q0M5C0TP/VLWRoA429BvC8tuInWVzHSkbGk+u7YXEp
+ 4ukz3wQlvrCw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 14:52:23 -0700
+IronPort-SDR: p6s5dJvcA1u12tfKGfwv6jN1lYt5z7bPxmObtZQRQP6DDNSN92lP+bWbu4VNzC77FT+Ery+4Vo
+ nvLqIzvWcwzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,384,1580803200"; d="scan'208";a="332308758"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga001.jf.intel.com with ESMTP; 14 Apr 2020 14:52:23 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
+ FMSMSX106.amr.corp.intel.com ([169.254.5.155]) with mapi id 14.03.0439.000;
+ Tue, 14 Apr 2020 14:52:22 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/3] drm/i915/tgl: Add Wa_14010477008:tgl
+Thread-Index: AQHWEqFMcfm+A1zR206kjIQszxH2F6h5noeA
+Date: Tue, 14 Apr 2020 21:52:22 +0000
+Message-ID: <ca0354494ec9a7223fa98d5a19623738cf91580b.camel@intel.com>
+References: <20200414211118.2787489-1-matthew.d.roper@intel.com>
+ <20200414211118.2787489-3-matthew.d.roper@intel.com>
+In-Reply-To: <20200414211118.2787489-3-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.209.55.81]
+Content-ID: <E720E41F3566274FAA7819DF77AD1773@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <87lfmxzst2.fsf@riseup.net>
-References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
- <20200414161423.23830-2-chris@chris-wilson.co.uk>
- <158688212611.24667.7132327074792389398@build.alporthouse.com>
- <87pnc9zwjf.fsf@riseup.net>
- <158689519187.24667.5193852715594735657@build.alporthouse.com>
- <87lfmxzst2.fsf@riseup.net>
-To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158690112767.24667.10470136433913366578@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 14 Apr 2020 22:52:07 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
- intervals
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/tgl: Add Wa_14010477008:tgl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,175 +58,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Francisco Jerez (2020-04-14 22:00:25)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > Quoting Francisco Jerez (2020-04-14 20:39:48)
-> >> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> >> 
-> >> > Quoting Chris Wilson (2020-04-14 17:14:23)
-> >> >> Try to make RPS dramatically more responsive by shrinking the evaluation
-> >> >> intervales by a factor of 100! The issue is as we now park the GPU
-> >> >> rapidly upon idling, a short or bursty workload such as the composited
-> >> >> desktop never sustains enough work to fill and complete an evaluation
-> >> >> window. As such, the frequency we program remains stuck. This was first
-> >> >> reported as once boosted, we never relinquished the boost [see commit
-> >> >> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
-> >> >> it equally applies in the order direction for bursty workloads that
-> >> >> *need* low latency, like desktop animations.
-> >> >> 
-> >> >> What we could try is preserve the incomplete EI history across idling,
-> >> >> it is not clear whether that would be effective, nor whether the
-> >> >> presumption of continuous workloads is accurate. A clearer path seems to
-> >> >> treat it as symptomatic that we fail to handle bursty workload with the
-> >> >> current EI, and seek to address that by shrinking the EI so the
-> >> >> evaluations are run much more often.
-> >> >> 
-> >> >> This will likely entail more frequent interrupts, and by the time we
-> >> >> process the interrupt in the bottom half [from inside a worker], the
-> >> >> workload on the GPU has changed. To address the changeable nature, in
-> >> >> the previous patch we compared the previous complete EI with the
-> >> >> interrupt request and only up/down clock if both agree. The impact of
-> >> >> asking for, and presumably, receiving more interrupts is still to be
-> >> >> determined and mitigations sought. The first idea is to differentiate
-> >> >> between up/down responsivity and make upclocking more responsive than
-> >> >> downlocking. This should both help thwart jitter on bursty workloads by
-> >> >> making it easier to increase than it is to decrease frequencies, and
-> >> >> reduce the number of interrupts we would need to process.
-> >> >
-> >> > Another worry I'd like to raise, is that by reducing the EI we risk
-> >> > unstable evaluations. I'm not sure how accurate the HW is, and I worry
-> >> > about borderline workloads (if that is possible) but mainly the worry is
-> >> > how the HW is sampling.
-> >> >
-> >> > The other unmentioned unknown is the latency in reprogramming the
-> >> > frequency. At what point does it start to become a significant factor?
-> >> > I'm presuming the RPS evaluation itself is free, until it has to talk
-> >> > across the chip to send an interrupt.
-> >> > -Chris
-> >> 
-> >> At least on ICL the problem which this patch and 21abf0bf168d were
-> >> working around seems to have to do with RPS interrupt delivery being
-> >> inadvertently blocked for extended periods of time.  Looking at the GPU
-> >> utilization and RPS events on a graph I could see the GPU being stuck at
-> >> low frequency without any RPS interrupts firing, for a time interval
-> >> orders of magnitude greater than the EI we're theoretically programming
-> >> today.  IOW it seems like the real problem isn't that our EIs are too
-> >> long, but that we're missing a bunch of them.
-> >> 
-> >> The solution I was suggesting for this on IRC during the last couple of
-> >> days wouldn't have any of the drawbacks you mention above, I'll send it
-> >> to this list in a moment if the general approach seems okay to you:
-> >> 
-> >> https://github.com/curro/linux/commit/f7bc31402aa727a52d957e62d985c6dae6be4b86
-> >
-> > We were explicitly told to mask the interrupt generation at source
-> > to conserve power. So I would hope for a statement as to whether that is
-> > still a requirement from the HW architects; but I can't see why we would
-> > not apply the mask and that this is just paper. If the observation about
-> > forcewake tallies, would this not suggest that it is still conserving
-> > power on icl?
-> >
-> 
-> Yeah, it's hard to see how disabling interrupt generation could save any
-> additional power in a unit which is powered off -- At least on ICL where
-> even the interrupt masking register is powered off...
-> 
-> > I haven't looked at whether I see the same phenomenon as you [missing
-> > interrupts on icl] locally, but I was expecting something like the bug
-> > report since the observation that render times are less than EI was
-> > causing the clocks to stay high. And I noticed your problem statement
-> > and was hopeful for a link.
-> >
-> 
-> Right.  In the workloads I was looking at last week the GPU would often
-> be active for periods of time several times greater than the EI, and we
-> would still fail to clock up.
-> 
-> > They sound like two different problems. (Underclocking for animations is
-> > not icl specific.)
-> >
-> 
-> Sure.  But it seems like the underclocking problem has been greatly
-> exacerbated by 21abf0bf168d, which may have been mitigating the same ICL
-> problem I was looking at leading to RPS interrupt loss.  Maybe
-> 21abf0bf168d wouldn't be necessary with working RPS interrupt delivery?
-> And without 21abf0bf168d platforms earlier than ICL wouldn't have as
-> much of an underclocking problem either.
-
-21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
-
-is necessary due to that we can set a boost frequency and then never run
-the RPS worker due to short activity cycles. See
-igt/i915_pm_rc6_residency for rc6-idle, the bg_load is essentially just
-
-for (;;) {
-	execbuf(&nop);
-	sleep(.1);
-}
-
-Without 21abf0bf168d if you trigger a waitboost just before, it never
-recovers and power utilisation is measurably higher.
-
-> >> That said it *might* be helpful to reduce the EIs we use right now in
-> >> addition, but a factor of 100 seems over the top since that will cause
-> >> the evaluation interval to be roughly two orders of magnitude shorter
-> >> than the rendering time of a typical frame, which can lead to massive
-> >> oscillations even in workloads that use a small fraction of the GPU time
-> >> to render a single frame.  Maybe we want something in between?
-> >
-> > Probably; as you can guess these were pulled out of nowhere based on the
-> > observation that the frame lengths are much shorter than the current EI
-> > and that in order for us to ramp up to maxclocks in a single frame of
-> > animation would take about 4 samples per frame. Based on the reporter's
-> > observations, we do have to ramp up very quickly for single frame of
-> > rendering in order to hit the vblank, as we are ramping down afterwards.
-> >
-> > With a target of 4 samples within say 1ms, 160us isn't too far of the
-> > mark. (We have to allow some extra time to catch up rendering.)
-> 
-> 
-> How about we stop ramping down after the rendering of a single frame?
-> It's not like we save any power by doing that, since the GPU seems to be
-> forced to the minimum frequency for as long as it remains parked anyway.
-> If the GPU remains idle long enough for the RPS utilization counters to
-> drop below the threshold and qualify for a ramp-down the RPS should send
-> us an interrupt, at which point we will ramp down the frequency.
-
-Because it demonstrably and quite dramatically reduces power consumption
-for very light desktop workloads.
-
-> Unconditionally ramping down on parking seems to disturb the accuracy of
-> that RPS feedback loop, which then needs to be worked around by reducing
-> the averaging window of the RPS to a tiny fraction of the oscillation
-> period of any typical GPU workload, which is going to prevent the RPS
-> from seeing a whole oscillation period before it reacts, which is almost
-> guaranteed to have a serious energy-efficiency cost.
-
-There is no feedback loop in these workloads. There are no completed RPS
-workers, they are all cancelled if they were even scheduled. (Now we
-might be tempted to look at the results if they scheduled and take that
-into consideration instead of unconditionally downclocking.)
-
-> > As for steady state workloads, I'm optimistic the smoothing helps. (It's
-> > harder to find steady state, unthrottled workloads!)
-> 
-> I'm curious, how is that smoothing you do in PATCH 1 better than simply
-> setting 2x the EIs? (Which would also mean half the interrupt processing
-> overhead as in this series)
-
-I'm anticipating where the RPS worker may not run until the next jiffie
-or two, by which point the iir is stale. But yes, there's only a subtle
-difference between comparing the last 320us every 160us and comparing
-the last 320us every 320us.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTA0LTE0IGF0IDE0OjExIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBN
+ZWRpYSBkZWNvbXByZXNzaW9uIHN1cHBvcnQgc2hvdWxkIG5vdCBiZSBhZHZlcnRpc2VkIG9uIGFu
+eSBkaXNwbGF5DQo+IHBsYW5lcyBmb3Igc3RlcHBpbmdzIEEwLUMwLg0KDQpSZXZpZXdlZC1ieTog
+Sm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IEJz
+cGVjOiA1MzI3Mw0KPiBGaXhlczogMmRmYmY5ZDI4NzNhICgiZHJtL2k5MTUvdGdsOiBHZW4tMTIg
+ZGlzcGxheSBjYW4gZGVjb21wcmVzcw0KPiBzdXJmYWNlcyBjb21wcmVzc2VkIGJ5IHRoZSBtZWRp
+YSBlbmdpbmUiKQ0KPiBDYzogTWF0dCBBdHdvb2QgPG1hdHRoZXcucy5hdHdvb2RAaW50ZWwuY29t
+Pg0KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29t
+Pg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMg
+fCAxNyArKysrKysrKysrKystLS0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
+aCAgICAgICAgICAgICB8ICAyICsrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMo
+KyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfc3ByaXRlLmMNCj4gaW5kZXggZGVkYTM1MTcxOWRiLi4zM2Q4ODYxNDExMzggMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMN
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiBA
+QCAtMjgxNywxOSArMjgxNywyNSBAQCBzdGF0aWMgYm9vbA0KPiBza2xfcGxhbmVfZm9ybWF0X21v
+ZF9zdXBwb3J0ZWQoc3RydWN0IGRybV9wbGFuZSAqX3BsYW5lLA0KPiAgCX0NCj4gIH0NCj4gIA0K
+PiAtc3RhdGljIGJvb2wgZ2VuMTJfcGxhbmVfc3VwcG9ydHNfbWNfY2NzKGVudW0gcGxhbmVfaWQg
+cGxhbmVfaWQpDQo+ICtzdGF0aWMgYm9vbCBnZW4xMl9wbGFuZV9zdXBwb3J0c19tY19jY3Moc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiArCQkJCQllbnVtIHBsYW5lX2lk
+IHBsYW5lX2lkKQ0KPiAgew0KPiArCS8qIFdhXzE0MDEwNDc3MDA4OnRnbFthMC4uYzBdICovDQo+
+ICsJaWYgKElTX1RHTF9SRVZJRChkZXZfcHJpdiwgVEdMX1JFVklEX0EwLCBUR0xfUkVWSURfQzAp
+KQ0KPiArCQlyZXR1cm4gZmFsc2U7DQo+ICsNCj4gIAlyZXR1cm4gcGxhbmVfaWQgPCBQTEFORV9T
+UFJJVEU0Ow0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgYm9vbCBnZW4xMl9wbGFuZV9mb3JtYXRfbW9k
+X3N1cHBvcnRlZChzdHJ1Y3QgZHJtX3BsYW5lDQo+ICpfcGxhbmUsDQo+ICAJCQkJCSAgICAgdTMy
+IGZvcm1hdCwgdTY0IG1vZGlmaWVyKQ0KPiAgew0KPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiA9IHRvX2k5MTUoX3BsYW5lLT5kZXYpOw0KPiAgCXN0cnVjdCBpbnRlbF9wbGFu
+ZSAqcGxhbmUgPSB0b19pbnRlbF9wbGFuZShfcGxhbmUpOw0KPiAgDQo+ICAJc3dpdGNoIChtb2Rp
+Zmllcikgew0KPiAgCWNhc2UgSTkxNV9GT1JNQVRfTU9EX1lfVElMRURfR0VOMTJfTUNfQ0NTOg0K
+PiAtCQlpZiAoIWdlbjEyX3BsYW5lX3N1cHBvcnRzX21jX2NjcyhwbGFuZS0+aWQpKQ0KPiArCQlp
+ZiAoIWdlbjEyX3BsYW5lX3N1cHBvcnRzX21jX2NjcyhkZXZfcHJpdiwgcGxhbmUtPmlkKSkNCj4g
+IAkJCXJldHVybiBmYWxzZTsNCj4gIAkJLyogZmFsbCB0aHJvdWdoICovDQo+ICAJY2FzZSBEUk1f
+Rk9STUFUX01PRF9MSU5FQVI6DQo+IEBAIC0yOTk4LDkgKzMwMDQsMTAgQEAgc3RhdGljIGNvbnN0
+IHUzMiAqaWNsX2dldF9wbGFuZV9mb3JtYXRzKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdiwNCj4gIAl9DQo+ICB9DQo+ICANCj4gLXN0YXRpYyBjb25zdCB1NjQgKmdlbjEyX2dl
+dF9wbGFuZV9tb2RpZmllcnMoZW51bSBwbGFuZV9pZCBwbGFuZV9pZCkNCj4gK3N0YXRpYyBjb25z
+dCB1NjQgKmdlbjEyX2dldF9wbGFuZV9tb2RpZmllcnMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUN
+Cj4gKmRldl9wcml2LA0KPiArCQkJCQkgICAgZW51bSBwbGFuZV9pZCBwbGFuZV9pZCkNCj4gIHsN
+Cj4gLQlpZiAoZ2VuMTJfcGxhbmVfc3VwcG9ydHNfbWNfY2NzKHBsYW5lX2lkKSkNCj4gKwlpZiAo
+Z2VuMTJfcGxhbmVfc3VwcG9ydHNfbWNfY2NzKGRldl9wcml2LCBwbGFuZV9pZCkpDQo+ICAJCXJl
+dHVybiBnZW4xMl9wbGFuZV9mb3JtYXRfbW9kaWZpZXJzX21jX2NjczsNCj4gIAllbHNlDQo+ICAJ
+CXJldHVybiBnZW4xMl9wbGFuZV9mb3JtYXRfbW9kaWZpZXJzX3JjX2NjczsNCj4gQEAgLTMwNzAs
+NyArMzA3Nyw3IEBAIHNrbF91bml2ZXJzYWxfcGxhbmVfY3JlYXRlKHN0cnVjdA0KPiBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdiwNCj4gIA0KPiAgCXBsYW5lLT5oYXNfY2NzID0gc2tsX3BsYW5l
+X2hhc19jY3MoZGV2X3ByaXYsIHBpcGUsIHBsYW5lX2lkKTsNCj4gIAlpZiAoSU5URUxfR0VOKGRl
+dl9wcml2KSA+PSAxMikgew0KPiAtCQltb2RpZmllcnMgPSBnZW4xMl9nZXRfcGxhbmVfbW9kaWZp
+ZXJzKHBsYW5lX2lkKTsNCj4gKwkJbW9kaWZpZXJzID0gZ2VuMTJfZ2V0X3BsYW5lX21vZGlmaWVy
+cyhkZXZfcHJpdiwNCj4gcGxhbmVfaWQpOw0KPiAgCQlwbGFuZV9mdW5jcyA9ICZnZW4xMl9wbGFu
+ZV9mdW5jczsNCj4gIAl9IGVsc2Ugew0KPiAgCQlpZiAocGxhbmUtPmhhc19jY3MpDQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+IGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiBpbmRleCBlOWVlNGRhYTkzMjAuLmUyNTZiNmJlNWQ3OSAx
+MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+IEBAIC0xNTA4LDYgKzE1MDgsOCBAQCBJ
+U19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQ0KPiAqaTkxNSwNCj4g
+IAkoSVNfSUNFTEFLRShwKSAmJiBJU19SRVZJRChwLCBzaW5jZSwgdW50aWwpKQ0KPiAgDQo+ICAj
+ZGVmaW5lIFRHTF9SRVZJRF9BMAkJMHgwDQo+ICsjZGVmaW5lIFRHTF9SRVZJRF9CMAkJMHgxDQo+
+ICsjZGVmaW5lIFRHTF9SRVZJRF9DMAkJMHgyDQo+ICANCj4gICNkZWZpbmUgSVNfVEdMX1JFVklE
+KHAsIHNpbmNlLCB1bnRpbCkgXA0KPiAgCShJU19USUdFUkxBS0UocCkgJiYgSVNfUkVWSUQocCwg
+c2luY2UsIHVudGlsKSkNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
