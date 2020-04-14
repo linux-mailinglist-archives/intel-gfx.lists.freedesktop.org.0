@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2BED1A8609
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D590A1A8677
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:59:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 135C06E4F9;
-	Tue, 14 Apr 2020 16:54:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABB0F6E505;
+	Tue, 14 Apr 2020 16:59:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2DFF6E4F9
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:54:34 +0000 (UTC)
-IronPort-SDR: e1UuHBw9cbuG8Jytdyk+KSnnOE4Ya1TAUerywC5ncQoaQklibDvkprSACXZJIF9PTkoeClGCIR
- D/A9ZPYhly+A==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6208C6E505
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:59:50 +0000 (UTC)
+IronPort-SDR: 6fNiIGiYCt523wYUO6naQwaqnPDGTqHRK2uIsBw4hBBwAi09sEnl5d0lWwlDX4ni29YwuVgKoO
+ t+sc86B+7UWA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 09:54:31 -0700
-IronPort-SDR: p/SDsrvsXUcm6HTfUWYsi+HtOtOUnrmmACPfIp/xEXjZ1zoBTJ9JyGxo9v/l2ZqEwlGkvprwr/
- +Jy9WyPAbPnQ==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 09:59:49 -0700
+IronPort-SDR: r3dDpBiZqrl+y83L94kE+jlmkM6AYoNKMnpthuUoT+oqFcCjsSauRo7T0uo5KC+XaIzJiTRsEX
+ v5t2H7UFAomA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="298756928"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 14 Apr 2020 09:54:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Apr 2020 19:54:29 +0300
-Date: Tue, 14 Apr 2020 19:54:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Message-ID: <20200414165429.GC6112@intel.com>
-References: <20200330144421.11632-1-kai.vehmanen@linux.intel.com>
- <alpine.DEB.2.21.2004091657320.2957@eliteleevi.tm.intel.com>
- <20200409180418.GY6112@intel.com>
- <alpine.DEB.2.21.2004141315410.2957@eliteleevi.tm.intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="277324257"
+Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
+ ([10.23.184.150])
+ by fmsmga004.fm.intel.com with ESMTP; 14 Apr 2020 09:59:48 -0700
+Date: Tue, 14 Apr 2020 09:59:48 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <20200414165948.GD61072@orsosgc001.amr.corp.intel.com>
+References: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
+ <20200413154822.11620-2-umesh.nerlige.ramappa@intel.com>
+ <87y2qy4psw.wl-ashutosh.dixit@intel.com>
+ <87wo6i4kqd.wl-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2004141315410.2957@eliteleevi.tm.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: do AUD_FREQ_CNTRL state
- save on all gen9+ platforms
+In-Reply-To: <87wo6i4kqd.wl-ashutosh.dixit@intel.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/perf: Reduce cpu overhead for
+ blocking perf OA reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,81 +52,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 14, 2020 at 01:32:49PM +0300, Kai Vehmanen wrote:
-> Hey,
-> =
+On Mon, Apr 13, 2020 at 11:58:18PM -0700, Dixit, Ashutosh wrote:
+>On Mon, 13 Apr 2020 22:08:47 -0700, Dixit, Ashutosh wrote:
+>>
+>> On Mon, 13 Apr 2020 08:48:20 -0700, Umesh Nerlige Ramappa wrote:
+>> >
+>> > A condition in wait_event_interruptible seems to be checked twice before
+>> > waiting on the event to occur. These checks are redundant when hrtimer
+>> > events will call oa_buffer_check_unlocked to update the oa_buffer tail
+>> > pointers. The redundant checks add cpu overhead. Simplify the check
+>> > to reduce cpu overhead when using blocking io to read oa buffer reports.
+>> >
+>> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/i915_perf.c | 28 +++++++++++++++++++++++++++-
+>> >  1 file changed, 27 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> > index 5cde3e4e7be6..e28a3ab83fde 100644
+>> > --- a/drivers/gpu/drm/i915/i915_perf.c
+>> > +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> > @@ -541,6 +541,32 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+>> >	return pollin;
+>> >  }
+>> >
+>> > +/**
+>> > + * oa_buffer_check_reports - quick check if reports are available
+>> > + * @stream: i915 stream instance
+>> > + *
+>> > + * The return from this function is used as a condition for
+>> > + * wait_event_interruptible in blocking read. This is used to detect
+>> > + * available reports.
+>> > + *
+>> > + * A condition in wait_event_interruptible seems to be checked twice before
+>> > + * waiting on an event to occur. These checks are redundant when hrtimer events
+>> > + * will call oa_buffer_check_unlocked to update the oa_buffer tail pointers. The
+>> > + * redundant checks add cpu overhead. We simplify the check to reduce cpu
+>> > + * overhead.
+>> > + */
+>> > +static bool oa_buffer_check_reports(struct i915_perf_stream *stream)
+>> > +{
+>> > +	unsigned long flags;
+>> > +	bool available;
+>> > +
+>> > +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+>> > +	available = stream->oa_buffer.tail != stream->oa_buffer.head;
+>> > +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+>> > +
+>> > +	return available;
+>> > +}
+>> > +
+>> >  /**
+>> >   * append_oa_status - Appends a status record to a userspace read() buffer.
+>> >   * @stream: An i915-perf stream opened for OA metrics
+>> > @@ -1150,7 +1176,7 @@ static int i915_oa_wait_unlocked(struct i915_perf_stream *stream)
+>> >		return -EIO;
+>> >
+>> >	return wait_event_interruptible(stream->poll_wq,
+>> > -					oa_buffer_check_unlocked(stream));
+>> > +					oa_buffer_check_reports(stream));
+>> >  }
+>>
+>> I think the problem with this patch is that the original code had the
+>> property that the condition for data availability is checked (and the OA
+>> tail advanced) /before/ entering the wait. So the tail was advanced and if
+>> there was data there was no need to wait at all. This change has lost that
+>> property. With this change we will first always enter the wait and then get
+>> unblocked after the timer interrupt which will advance the tail and wake us
+>> up.
+>>
+>> I think if we want to do this, it is possible to do without losing the
+>> original property. Just call oa_buffer_check_unlocked() first (outside
+>> wait_event) and if there is data just return. If not, put yourself on
+>> stream->poll_wq from which the timer callback will wake us up. I think this
+>> is going to be something like prepare_to_wait() / schedule() /
+>> finish_wait() pattern of which there are numerous examples in the
+>> kernel. So in this case we won't call wait_event_interruptible() which
+>> checks the condition upon waking up. No need to define
+>> oa_buffer_check_reports() either.
+>
+>If on the other hand we say that this should actually be the desired
+>behavior of the blocking read, that it should not unblock immediately but
+>only after the next timer interrupt (so that an app can call the blocking
+>read repeatedly without worrying about it will return a little bit of data
+>in each call at a considerable amount of CPU load), then we may be able to
+>do something like this, but even then we may have to think about what would
+>be the correct way to do that. Though this may be that correct way and we
+>may just need to change the commit message, but is that what we want?
 
-> On Thu, 9 Apr 2020, Ville Syrj=E4l=E4 wrote:
-> =
+I am not quite clear on how the blocking read should behave in terms of 
+the API itself.
 
-> > On Thu, Apr 09, 2020 at 05:14:01PM +0300, Kai Vehmanen wrote:
-> > > type of content free ping, but I still dare to seek your input on wha=
-t is =
+The change here is solely to reduce cpu overhead from the additional 2 
+calls to oa_buffer_check_unlocked before blocking and that would happen 
+on every call to the read. I agree that the read would block if the 
+timer did not update the tail yet, but that makes sense in a way that we 
+don't want read to constantly return data when the OA sampling rates are 
+high (say 100 us). With this change the behavior becomes consistent 
+irrespective of the OA sampling rate and user has the flexibility to set 
+the POLL_OA_PERIOD to whatever value is suitable for the OA sampling 
+rate chosen.
 
-> > > the proper way to get attention to a patch that are seemingly forever =
-
-> > > stuck on the review sideline.
-> > =
-
-> > And what is this?
-> > https://patchwork.freedesktop.org/patch/347148/?series=3D71527&rev=3D1
-> =
-
-> that's a lost child I'm afraid. It's essentially the same patch I =
-
-> submitted late last year. It got review ok from Matt, and I thought it wa=
-s =
-
-> going to be merged and went on to do other things -- i.e. I failed to =
-
-> follow-up on this. Back then I did not know about any actual bugs this =
-
-> would fix -- this was a generic change to align with hw specs.
-> =
-
-> Fast forward two months. I had forgotten about that previous patch, and =
-
-> I ended up recreating the same patch to fix an actual bug. I.e. the of =
-
-> this thread:
-> https://patchwork.freedesktop.org/series/74664/
-
-OK. I sucked in the rb from the old patch and pushed the new version.
-Thanks.
-
-> =
-
-> I only very recently noticed the old patch. But alas, the new attempt =
-
-> is probably the one that should be merged as it has more information in =
-
-> the commit message (we now know about actual issues on JSL).
-> =
-
-> > Just ping on original patch or ping someone on irc. Resending
-> > the same patch over and over does no good. At least my brain just
-> > ignores anything that looks like it's just a resend w/o any clear
-> > justification.
-> =
-
-> Ack, thanks a lot, this clarifies. In any case, patch author should own =
-
-> the follow-up and I definitely dropped the ball on the older #347148 .
-> =
-
-> Br, Kai
-
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Thanks,
+Umesh
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
