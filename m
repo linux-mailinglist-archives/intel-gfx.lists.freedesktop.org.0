@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F381A8455
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C355A1A8466
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:15:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D9A89C68;
-	Tue, 14 Apr 2020 16:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D35889F35;
+	Tue, 14 Apr 2020 16:15:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 370CD89C68
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:14:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC94389F35
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:15:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20897747-1500050 
- for multiple; Tue, 14 Apr 2020 17:14:24 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20897748-1500050 
+ for multiple; Tue, 14 Apr 2020 17:14:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Apr 2020 17:14:22 +0100
-Message-Id: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+Date: Tue, 14 Apr 2020 17:14:23 +0100
+Message-Id: <20200414161423.23830-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Try to smooth RPS spikes
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,163 +39,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By the time we respond to the RPS interrupt [inside a worker], the GPU
-may be running a different workload. As we look to make the evalution
-intervals shorter, these spikes are more likely to okay. Let's try to
-smooth over the spikes in the workload by comparing the EI interrupt
-[up/down events] with the most recently completed EI; if both say up,
-then increase the clocks, if they disagree stay the same. In principle,
-this means we now take 2 up EI to go increase into the next bin, and
-similary 2 down EI to decrease. However, if the worker runs fast enough,
-the previous EI in the registers will be the same as triggered the
-interrupt, so responsiveness remains unaffect. [Under the current scheme
-where EI are on the order of 10ms, it is likely that this is true and we
-compare the interrupt with the EI that caused it.]
+Try to make RPS dramatically more responsive by shrinking the evaluation
+intervales by a factor of 100! The issue is as we now park the GPU
+rapidly upon idling, a short or bursty workload such as the composited
+desktop never sustains enough work to fill and complete an evaluation
+window. As such, the frequency we program remains stuck. This was first
+reported as once boosted, we never relinquished the boost [see commit
+21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
+it equally applies in the order direction for bursty workloads that
+*need* low latency, like desktop animations.
 
-As usual, Valleyview just likes to be different; and there since we are
-manually evaluating the threshold, we cannot sample the previous EI
-registers.
+What we could try is preserve the incomplete EI history across idling,
+it is not clear whether that would be effective, nor whether the
+presumption of continuous workloads is accurate. A clearer path seems to
+treat it as symptomatic that we fail to handle bursty workload with the
+current EI, and seek to address that by shrinking the EI so the
+evaluations are run much more often.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/1698
+This will likely entail more frequent interrupts, and by the time we
+process the interrupt in the bottom half [from inside a worker], the
+workload on the GPU has changed. To address the changeable nature, in
+the previous patch we compared the previous complete EI with the
+interrupt request and only up/down clock if both agree. The impact of
+asking for, and presumably, receiving more interrupts is still to be
+determined and mitigations sought. The first idea is to differentiate
+between up/down responsivity and make upclocking more responsive than
+downlocking. This should both help thwart jitter on bursty workloads by
+making it easier to increase than it is to decrease frequencies, and
+reduce the number of interrupts we would need to process.
+
+Fixes: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1698
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Francisco Jerez <currojerez@riseup.net>
+Cc: <stable@vger.kernel.org> # v5.5+
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 59 ++++++++++++++++++++++++-----
- 1 file changed, 50 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 86110458e2a7..367132092bed 100644
+index 367132092bed..47ddb25edc97 100644
 --- a/drivers/gpu/drm/i915/gt/intel_rps.c
 +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1416,6 +1416,11 @@ static void vlv_c0_read(struct intel_uncore *uncore, struct intel_rps_ei *ei)
- 	ei->media_c0 = intel_uncore_read(uncore, VLV_MEDIA_C0_COUNT);
- }
+@@ -542,37 +542,38 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 	/* Note the units here are not exactly 1us, but 1280ns. */
+ 	switch (new_power) {
+ 	case LOW_POWER:
+-		/* Upclock if more than 95% busy over 16ms */
+-		ei_up = 16000;
++		/* Upclock if more than 95% busy over 160us */
++		ei_up = 160;
+ 		threshold_up = 95;
  
-+static bool vlv_manual_ei(u32 pm_iir)
-+{
-+	return pm_iir & GEN6_PM_RP_UP_EI_EXPIRED;
-+}
-+
- static u32 vlv_wa_c0_ei(struct intel_rps *rps, u32 pm_iir)
- {
- 	struct intel_uncore *uncore = rps_to_uncore(rps);
-@@ -1423,7 +1428,7 @@ static u32 vlv_wa_c0_ei(struct intel_rps *rps, u32 pm_iir)
- 	struct intel_rps_ei now;
- 	u32 events = 0;
+-		/* Downclock if less than 85% busy over 32ms */
+-		ei_down = 32000;
++		/* Downclock if less than 85% busy over 1600us */
++		ei_down = 1600;
+ 		threshold_down = 85;
+ 		break;
  
--	if ((pm_iir & GEN6_PM_RP_UP_EI_EXPIRED) == 0)
-+	if (!vlv_manual_ei(pm_iir))
- 		return 0;
+ 	case BETWEEN:
+-		/* Upclock if more than 90% busy over 13ms */
+-		ei_up = 13000;
++		/* Upclock if more than 90% busy over 160us */
++		ei_up = 160;
+ 		threshold_up = 90;
  
- 	vlv_c0_read(uncore, &now);
-@@ -1456,6 +1461,37 @@ static u32 vlv_wa_c0_ei(struct intel_rps *rps, u32 pm_iir)
- 	return events;
- }
+-		/* Downclock if less than 75% busy over 32ms */
+-		ei_down = 32000;
++		/* Downclock if less than 75% busy over 1600us */
++		ei_down = 1600;
+ 		threshold_down = 75;
+ 		break;
  
-+static bool __confirm_ei(struct intel_rps *rps,
-+			 i915_reg_t ei_sample,
-+			 i915_reg_t ei_threshold)
-+{
-+	struct intel_uncore *uncore = rps_to_uncore(rps);
-+	u32 threshold, sample;
-+
-+	sample = intel_uncore_read(uncore, ei_sample);
-+	threshold = intel_uncore_read(uncore, ei_threshold);
-+
-+	sample &= GEN6_CURBSYTAVG_MASK;
-+
-+	return sample > threshold;
-+}
-+
-+static bool confirm_up(struct intel_rps *rps, u32 pm_iir)
-+{
-+	if (vlv_manual_ei(pm_iir))
-+		return true;
-+
-+	return __confirm_ei(rps, GEN6_RP_PREV_UP, GEN6_RP_UP_THRESHOLD);
-+}
-+
-+static bool confirm_down(struct intel_rps *rps, u32 pm_iir)
-+{
-+	if (vlv_manual_ei(pm_iir))
-+		return true;
-+
-+	return !__confirm_ei(rps, GEN6_RP_PREV_UP, GEN6_RP_UP_THRESHOLD);
-+}
-+
- static void rps_work(struct work_struct *work)
- {
- 	struct intel_rps *rps = container_of(work, typeof(*rps), work);
-@@ -1484,10 +1520,11 @@ static void rps_work(struct work_struct *work)
- 	max = rps->max_freq_softlimit;
- 	if (client_boost)
- 		max = rps->max_freq;
--	if (client_boost && new_freq < rps->boost_freq) {
-+	if (client_boost && new_freq <= rps->boost_freq) {
- 		new_freq = rps->boost_freq;
- 		adj = 0;
--	} else if (pm_iir & GEN6_PM_RP_UP_THRESHOLD) {
-+	} else if (pm_iir & GEN6_PM_RP_UP_THRESHOLD &&
-+		   confirm_up(rps, pm_iir)) {
- 		if (adj > 0)
- 			adj *= 2;
- 		else /* CHV needs even encode values */
-@@ -1497,13 +1534,15 @@ static void rps_work(struct work_struct *work)
- 			adj = 0;
- 	} else if (client_boost) {
- 		adj = 0;
--	} else if (pm_iir & GEN6_PM_RP_DOWN_TIMEOUT) {
-+	} else if (pm_iir & GEN6_PM_RP_DOWN_TIMEOUT &&
-+		   confirm_down(rps, pm_iir)) {
- 		if (rps->cur_freq > rps->efficient_freq)
- 			new_freq = rps->efficient_freq;
- 		else if (rps->cur_freq > rps->min_freq_softlimit)
- 			new_freq = rps->min_freq_softlimit;
- 		adj = 0;
--	} else if (pm_iir & GEN6_PM_RP_DOWN_THRESHOLD) {
-+	} else if (pm_iir & GEN6_PM_RP_DOWN_THRESHOLD &&
-+		   confirm_down(rps, pm_iir)) {
- 		if (adj < 0)
- 			adj *= 2;
- 		else /* CHV needs even encode values */
-@@ -1511,8 +1550,8 @@ static void rps_work(struct work_struct *work)
+ 	case HIGH_POWER:
+-		/* Upclock if more than 85% busy over 10ms */
+-		ei_up = 10000;
++		/* Upclock if more than 85% busy over 160us */
++		ei_up = 160;
+ 		threshold_up = 85;
  
- 		if (new_freq <= rps->min_freq_softlimit)
- 			adj = 0;
--	} else { /* unknown event */
--		adj = 0;
-+	} else { /* unknown event, or unwanted */
-+		goto unlock;
+-		/* Downclock if less than 60% busy over 32ms */
+-		ei_down = 32000;
++		/* Downclock if less than 60% busy over 1600us */
++		ei_down = 1600;
+ 		threshold_down = 60;
+ 		break;
  	}
  
- 	rps->last_adj = adj;
-@@ -1529,8 +1568,9 @@ static void rps_work(struct work_struct *work)
- 	    (adj > 0 && rps->power.mode == LOW_POWER))
- 		rps->last_adj = 0;
- 
--	/* sysfs frequency interfaces may have snuck in while servicing the
--	 * interrupt
+-	/* When byt can survive without system hang with dynamic
 +	/*
-+	 * sysfs frequency limits may have snuck in while
-+	 * servicing the interrupt
++	 * When byt can survive without system hang with dynamic
+ 	 * sw freq adjustments, this restriction can be lifted.
  	 */
- 	new_freq += adj;
- 	new_freq = clamp_t(int, new_freq, min, max);
-@@ -1540,6 +1580,7 @@ static void rps_work(struct work_struct *work)
- 		rps->last_adj = 0;
- 	}
- 
-+unlock:
- 	mutex_unlock(&rps->lock);
- 
- out:
+ 	if (IS_VALLEYVIEW(i915))
 -- 
 2.20.1
 
