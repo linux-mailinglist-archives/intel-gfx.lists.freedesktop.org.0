@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA4F51A8EB4
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 00:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5002C1A8ECF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 00:58:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F4956E5BD;
-	Tue, 14 Apr 2020 22:39:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48A0D6E067;
+	Tue, 14 Apr 2020 22:58:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 516296E5B6;
- Tue, 14 Apr 2020 22:39:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 76CFD6E5C1;
+ Tue, 14 Apr 2020 22:58:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4A897A432F;
- Tue, 14 Apr 2020 22:39:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70C89A0088;
+ Tue, 14 Apr 2020 22:58:22 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Tue, 14 Apr 2020 22:39:16 -0000
-Message-ID: <158690395630.30377.3454755456715026204@emeril.freedesktop.org>
+Date: Tue, 14 Apr 2020 22:58:22 -0000
+Message-ID: <158690510243.30377.7073744259973992635@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200414050807.13531-1-manasi.d.navare@intel.com>
 In-Reply-To: <20200414050807.13531-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv4=2C1/3=5D_drm/dp=3A_DRM_DP_helper?=
- =?utf-8?q?_for_reading_Ignore_MSA_from_DPCD?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv4=2C1/3=5D_drm/dp=3A_DRM_DP_helper_for_r?=
+ =?utf-8?q?eading_Ignore_MSA_from_DPCD?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,15 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e720179743cc drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-2cbf52b03156 drm/i915/dp: Attach and set drm connector VRR property
-8f0b035d39de drm/i915/dp: Expose connector VRR info via debugfs
--:69: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
-#69: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2153:
-+			debugfs_create_file("i915_vrr_info", S_IRUGO,
-
-total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
