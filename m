@@ -2,30 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB4D1A85B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2BED1A8609
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 18:54:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFFBC6E4F4;
-	Tue, 14 Apr 2020 16:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135C06E4F9;
+	Tue, 14 Apr 2020 16:54:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB78C6E4F4;
- Tue, 14 Apr 2020 16:50:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C8293A47EE;
- Tue, 14 Apr 2020 16:50:29 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2DFF6E4F9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 16:54:34 +0000 (UTC)
+IronPort-SDR: e1UuHBw9cbuG8Jytdyk+KSnnOE4Ya1TAUerywC5ncQoaQklibDvkprSACXZJIF9PTkoeClGCIR
+ D/A9ZPYhly+A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 09:54:31 -0700
+IronPort-SDR: p/SDsrvsXUcm6HTfUWYsi+HtOtOUnrmmACPfIp/xEXjZ1zoBTJ9JyGxo9v/l2ZqEwlGkvprwr/
+ +Jy9WyPAbPnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="298756928"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 14 Apr 2020 09:54:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Apr 2020 19:54:29 +0300
+Date: Tue, 14 Apr 2020 19:54:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Message-ID: <20200414165429.GC6112@intel.com>
+References: <20200330144421.11632-1-kai.vehmanen@linux.intel.com>
+ <alpine.DEB.2.21.2004091657320.2957@eliteleevi.tm.intel.com>
+ <20200409180418.GY6112@intel.com>
+ <alpine.DEB.2.21.2004141315410.2957@eliteleevi.tm.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Date: Tue, 14 Apr 2020 16:50:29 -0000
-Message-ID: <158688302981.30376.15811732434219644156@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200413090003.13451-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20200413090003.13451-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/icl=3A_Update_forcewake_firmware_ranges?=
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.21.2004141315410.2957@eliteleevi.tm.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: do AUD_FREQ_CNTRL state
+ save on all gen9+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +54,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Apr 14, 2020 at 01:32:49PM +0300, Kai Vehmanen wrote:
+> Hey,
+> =
 
-Series: drm/i915/icl: Update forcewake firmware ranges
-URL   : https://patchwork.freedesktop.org/series/75864/
-State : success
+> On Thu, 9 Apr 2020, Ville Syrj=E4l=E4 wrote:
+> =
 
-== Summary ==
+> > On Thu, Apr 09, 2020 at 05:14:01PM +0300, Kai Vehmanen wrote:
+> > > type of content free ping, but I still dare to seek your input on wha=
+t is =
 
-CI Bug Log - changes from CI_DRM_8295 -> Patchwork_17286
-====================================================
+> > > the proper way to get attention to a patch that are seemingly forever =
 
-Summary
--------
+> > > stuck on the review sideline.
+> > =
 
-  **SUCCESS**
+> > And what is this?
+> > https://patchwork.freedesktop.org/patch/347148/?series=3D71527&rev=3D1
+> =
 
-  No regressions found.
+> that's a lost child I'm afraid. It's essentially the same patch I =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17286/index.html
+> submitted late last year. It got review ok from Matt, and I thought it wa=
+s =
 
-Known issues
-------------
+> going to be merged and went on to do other things -- i.e. I failed to =
 
-  Here are the changes found in Patchwork_17286 that come from known issues:
+> follow-up on this. Back then I did not know about any actual bugs this =
 
-### IGT changes ###
+> would fix -- this was a generic change to align with hw specs.
+> =
 
-#### Possible fixes ####
+> Fast forward two months. I had forgotten about that previous patch, and =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6600u:       [INCOMPLETE][1] ([i915#69]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8295/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17286/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+> I ended up recreating the same patch to fix an actual bug. I.e. the of =
 
-  
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+> this thread:
+> https://patchwork.freedesktop.org/series/74664/
+
+OK. I sucked in the rb from the old patch and pushed the new version.
+Thanks.
+
+> =
+
+> I only very recently noticed the old patch. But alas, the new attempt =
+
+> is probably the one that should be merged as it has more information in =
+
+> the commit message (we now know about actual issues on JSL).
+> =
+
+> > Just ping on original patch or ping someone on irc. Resending
+> > the same patch over and over does no good. At least my brain just
+> > ignores anything that looks like it's just a resend w/o any clear
+> > justification.
+> =
+
+> Ack, thanks a lot, this clarifies. In any case, patch author should own =
+
+> the follow-up and I definitely dropped the ball on the older #347148 .
+> =
+
+> Br, Kai
 
 
-Participating hosts (49 -> 44)
-------------------------------
+-- =
 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8295 -> Patchwork_17286
-
-  CI-20190529: 20190529
-  CI_DRM_8295: 4cb6dbe0a641129fd07ad1fbfcd6e7b4f03ec5c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5589: 31962324ac86f029e2841e56e97c42cf9d572956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17286: 74cf7649142c5062a5d48b302e4c210b154d2f94 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-74cf7649142c drm/i915/icl: Update forcewake firmware ranges
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17286/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
