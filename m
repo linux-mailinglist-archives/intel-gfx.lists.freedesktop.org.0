@@ -1,34 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB821A7FF4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 16:39:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1441A808E
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 16:58:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCBE76E1BB;
-	Tue, 14 Apr 2020 14:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDD4189D8E;
+	Tue, 14 Apr 2020 14:58:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C4E6E1BB
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 14:39:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20896467-1500050 for multiple; Tue, 14 Apr 2020 15:39:18 +0100
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+ [209.85.215.196])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F84F89CDF;
+ Tue, 14 Apr 2020 14:43:15 +0000 (UTC)
+Received: by mail-pg1-f196.google.com with SMTP id g32so6091525pgb.6;
+ Tue, 14 Apr 2020 07:43:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ISpaCA7mjN5YjkHYISL3HSq+S++mjTHZ6Lu/DzWzgxg=;
+ b=f1wl6JySXRwxxtJjjvOaVdSK1D2k/c7LeRlLMcAvouxHm8nuctFxjRB17kG0E3/6G0
+ uqQUkiEGVAlHrroZzfkK2ocawUynvmG+8ELztMjnId3Aocg5Zz+49ncAWAV1GK7xOX4A
+ iosE90/t3VvqYL2a59b5o+G+0QpoyxopovnWbXjoqV2FbWBiJjXzSR1+AKwuE8JqZSRT
+ uPhJ374RYXSM0zkwEOr/Z1QbOGrt+5xt/4s9HjewXxVjpa0fOyaqK+CTzB8v2H4OwHaP
+ Y5NECtSoqo49Qb0vLEHsd0+aG27AQBWr5UrNBxbzRtoTgh7i60iBkXQoE8TVSKZ0mYdA
+ xt+A==
+X-Gm-Message-State: AGi0PuaxNdIDom6vnvsgfO8+prkF49nMP/0nIwD672M9rWE0jVyqKhUE
+ sA/JCB1dXicmQCfSZP4vU0I=
+X-Google-Smtp-Source: APiQypKYnkcJwA8lBILHDaTEYsu7MMvchjuIIOFNWKTQsueYRWsxR236WZye6IlT0+1XV9h4RXp4Tg==
+X-Received: by 2002:a63:ec44:: with SMTP id r4mr21490047pgj.425.1586875395070; 
+ Tue, 14 Apr 2020 07:43:15 -0700 (PDT)
+Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
+ [198.54.129.52])
+ by smtp.gmail.com with ESMTPSA id y123sm11056229pfb.13.2020.04.14.07.43.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Apr 2020 07:43:14 -0700 (PDT)
+Date: Tue, 14 Apr 2020 07:43:09 -0700
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200414144309.GB2082@sultan-box.localdomain>
+References: <20200404024156.GA10382@sultan-box.localdomain>
+ <20200407064007.7599-1-sultan@kerneltoast.com>
+ <20200414061312.GA90768@sultan-box.localdomain>
+ <158685263618.16269.9317893477736764675@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <87d08anpjv.fsf@gaia.fi.intel.com>
-References: <20200414122000.19353-1-mika.kuoppala@linux.intel.com>
- <87d08anpjv.fsf@gaia.fi.intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158687515680.24667.17077993294325702170@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 14 Apr 2020 15:39:16 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix indirect context size
- calculation
+Content-Disposition: inline
+In-Reply-To: <158685263618.16269.9317893477736764675@build.alporthouse.com>
+X-Mailman-Approved-At: Tue, 14 Apr 2020 14:58:47 +0000
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Synchronize active and retire
+ callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,47 +62,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-04-14 14:51:32)
-> Mika Kuoppala <mika.kuoppala@linux.intel.com> writes:
+On Tue, Apr 14, 2020 at 09:23:56AM +0100, Chris Wilson wrote:
+> Quoting Sultan Alsawaf (2020-04-14 07:13:12)
+> > Chris,
+> > 
+> > Could you please take a look at this? This really is quite an important fix.
 > 
-> > Hardware needs cacheline count for indirect context size.
-> > Count of zero means that the feature is disabled.
-> > If we only divide size with cacheline bytes, we get
-> > one cacheline short of execution.
-> >
-> > Divide by rounding up to a cacheline size so that
-> > hardware executes everything intended.
-> >
-> > Bspec: 11739
-> > Fixes: 17ee950df38b ("drm/i915/gen8: Add infrastructure to initialize WA batch buffers")
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index 6fbad5e2343f..acbb36ad17ff 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -4739,7 +4739,8 @@ static void init_wa_bb_reg_state(u32 * const regs,
-> >  
-> >               regs[pos_bb_per_ctx + 2] =
-> >                       (ggtt_offset + wa_ctx->indirect_ctx.offset) |
-> > -                     (wa_ctx->indirect_ctx.size / CACHELINE_BYTES);
-> > +                     DIV_ROUND_UP(wa_ctx->indirect_ctx.size,
-> > +                                  CACHELINE_BYTES);
-> 
-> The aligment to cacheline is checked on the emitting phase.
+> It's crazy. See a266bf420060 for a patch that should be applied to v5.4
+> -Chris
 
-My headache is screwing with my latency. I see I am superfluous and
-should just call it a day.
--Chris
+What? a266bf420060 was part of 5.4.0-rc7, so it's already in 5.4. And if you
+read the commit message, you would see that the problem in question affects
+Linus' tree.
+
+You can break i915 in 5.6 by just adding a small delay:
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 6ff803f397c4..3a7968effdfd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -10,6 +10,7 @@
+ #include "intel_engine.h"
+ #include "intel_ring.h"
+ #include "intel_timeline.h"
++#include <linux/delay.h>
+ 
+ unsigned int intel_ring_update_space(struct intel_ring *ring)
+ {
+@@ -92,6 +93,9 @@ void intel_ring_unpin(struct intel_ring *ring)
+ 	else
+ 		i915_gem_object_unpin_map(vma->obj);
+ 
++	mdelay(1);
++	ring->vaddr = NULL;
++
+ 	i915_vma_make_purgeable(vma);
+ 	i915_vma_unpin(vma);
+ }
+
+This is how I reproduced the race in question. I can't even reach the greeter on
+my laptop with this, because i915 dies before that.
+
+Sultan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
