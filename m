@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE351A8090
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 16:58:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD43E1A818F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 17:11:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06F886E140;
-	Tue, 14 Apr 2020 14:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4DD89B60;
+	Tue, 14 Apr 2020 15:11:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
- [209.85.210.196])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93DC86E197;
- Tue, 14 Apr 2020 14:52:17 +0000 (UTC)
-Received: by mail-pf1-f196.google.com with SMTP id m21so6406pff.13;
- Tue, 14 Apr 2020 07:52:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=4WBdHUkYY7smG8N50aarxY/4v+FvQTuqufQXoC73mFQ=;
- b=MEXki3BaFWnYoRR85tDAQx5t+k2hbOoYL1UqxELV4hJ9Q/vNcmjnM/eNLsd3Ut0Dug
- 8Sg0yl+favtQwMzms5YE30YSRcIkEOGPnc0+of4JYt8tWMd4ZFhi/G83ivnIOh1jZFtx
- pNIa3474B2SkRtM0KFb1ef5ktSAvpCqX3EHYHtTCY9zct1IhmCuH286dv9chQseJzmmx
- dGiWnBIUCU4DBMUUrZhRbJuaCf5b1AL2u2QGUW/R2IGdpVssI4X4Krj+TpvuUP7Wz0nG
- Qx5+jhpNbi3WwMy+xdgPBuARVPQ80BG3/cfDityDixgrGRqW41iGACfIUJf81cD/kjXL
- qzpQ==
-X-Gm-Message-State: AGi0Puayc0mPdAlIR6C4f9N1UQmG82Bmh6zJx6bMKSI27I06Rdk4j8DC
- bYDWgXJ29k/3Fqi6bkTKqiE=
-X-Google-Smtp-Source: APiQypLsvkblz51WUZpaRhQYiOLEZSBo6rwtEWCpFLomKuFySQ2et7hfOCSdy26kKt9i4WSgUjZekA==
-X-Received: by 2002:a63:2cce:: with SMTP id
- s197mr23209940pgs.184.1586875937101; 
- Tue, 14 Apr 2020 07:52:17 -0700 (PDT)
-Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
- [198.54.129.52])
- by smtp.gmail.com with ESMTPSA id i190sm9442055pfc.119.2020.04.14.07.52.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Apr 2020 07:52:16 -0700 (PDT)
-Date: Tue, 14 Apr 2020 07:52:13 -0700
-From: Sultan Alsawaf <sultan@kerneltoast.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200414145213.GC2082@sultan-box.localdomain>
-References: <20200407062622.6443-1-sultan@kerneltoast.com>
- <20200407062622.6443-2-sultan@kerneltoast.com>
- <158685200854.16269.9481176231557533815@build.alporthouse.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DED989A62;
+ Tue, 14 Apr 2020 15:11:33 +0000 (UTC)
+IronPort-SDR: ih9ZlzJWyYLJbDxWstccOjXGgTBl5RZthBvNRNqGsPRqN0bBrxiNUGgDdnPe1gnObNDHJ2EPwB
+ SZ3hFB8FAw0Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 08:11:33 -0700
+IronPort-SDR: sH96fvLLvntuBmGs2Ok3YBYavp7UoyL0c87itB/J04TdxlRFmjl6f7PyoACEhd4LtfZ8oNLsYh
+ Pe9iTLdbaCoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; d="scan'208";a="245440789"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 14 Apr 2020 08:11:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Apr 2020 18:11:29 +0300
+Date: Tue, 14 Apr 2020 18:11:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <20200414151129.GB6112@intel.com>
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-16-ville.syrjala@linux.intel.com>
+ <20200407185653.GL6356@ravnborg.org>
+ <20200407190800.GO6112@intel.com>
+ <20200407193537.GA28584@ravnborg.org>
+ <20200409194952.GZ6112@intel.com>
+ <20200409204743.GA29379@ravnborg.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <158685200854.16269.9481176231557533815@build.alporthouse.com>
-X-Mailman-Approved-At: Tue, 14 Apr 2020 14:58:47 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Fix ref->mutex deadlock in
- i915_active_wait()
+In-Reply-To: <20200409204743.GA29379@ravnborg.org>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 15/17] drm/gma500: Stop using
+ mode->private_flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,46 +57,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 14, 2020 at 09:13:28AM +0100, Chris Wilson wrote:
-> Quoting Sultan Alsawaf (2020-04-07 07:26:22)
-> > From: Sultan Alsawaf <sultan@kerneltoast.com>
-> > 
-> > The following deadlock exists in i915_active_wait() due to a double lock
-> > on ref->mutex (call chain listed in order from top to bottom):
-> >  i915_active_wait();
-> >  mutex_lock_interruptible(&ref->mutex); <-- ref->mutex first acquired
-> >  i915_active_request_retire();
-> >  node_retire();
-> >  active_retire();
-> >  mutex_lock_nested(&ref->mutex, SINGLE_DEPTH_NESTING); <-- DEADLOCK
-> > 
-> > Fix the deadlock by skipping the second ref->mutex lock when
-> > active_retire() is called through i915_active_request_retire().
-> > 
-> > Fixes: 12c255b5dad1 ("drm/i915: Provide an i915_active.acquire callback")
-> > Cc: <stable@vger.kernel.org> # 5.4.x
-> > Signed-off-by: Sultan Alsawaf <sultan@kerneltoast.com>
-> 
-> Incorrect. 
-> 
-> You missed that it cannot retire from inside the wait due to the active
-> reference held on the i915_active for the wait.
-> 
-> The only point it can enter retire from inside i915_active_wait() is via
-> the terminal __active_retire() which releases the mutex in doing so.
-> -Chris
+On Thu, Apr 09, 2020 at 10:47:43PM +0200, Sam Ravnborg wrote:
+> Hi Ville.
+> =
 
-The terminal __active_retire() and rbtree_postorder_for_each_entry_safe() loop
-retire different objects, so this isn't true.
+> > > > > > index 264d7ad004b4..9e88a37f55e9 100644
+> > > > > > --- a/drivers/gpu/drm/gma500/psb_intel_sdvo.c
+> > > > > > +++ b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
+> > > > > > @@ -132,6 +132,8 @@ struct psb_intel_sdvo {
+> > > > > >  	/* DDC bus used by this SDVO encoder */
+> > > > > >  	uint8_t ddc_bus;
+> > > > > >  =
 
-Sultan
+> > > > > > +	u8 pixel_multiplier;
+> > > > > > +
+> > > > > =
+
+> > > > > There is really no good reason to use an u8 here.
+> > > > =
+
+> > > > Wastes less space.
+> > > =
+
+> > > When there is a good reason - use the size limited variants.
+> > > But in this use case there is no reason to space optimize it.
+> > =
+
+> > IMO when it's stuffed into a structure there's no reason not to
+> > optimize it. At some point it all starts to add up.
+> > =
+
+> > At least i915 suffers a lot from bloated structures (dev_priv
+> > and atomic state structs being the prime examples) where we
+> > could probably shave dozens if not hundreds of bytes if
+> > everything just used the smallest type possible. In fact
+> > this series does shave dozens of bytes from the crtc state
+> > alone.
+> =
+
+> There is a difference between a structure used many times -
+> And a structure used once or only a few times.
+> If everyone started to optimize the types used, then we
+> would end up with code that is hard to maintain.
+> =
+
+> The point here is that we have a structure allocated maybe
+> once and a field assinged from a int - which using integer promotion
+> is then stuffed into an u8. If we one day start to be clever and
+> use values above 255 we need to find all the places where a
+> u8 was used to optimize size of some random struct.
+
+Never going to happen. The pixel multiplier can only have values <=3D4.
+Also a lot of other things here are already size optimized (eg. the
+ddc_bus which was even part of the patch context).
+
+> =
+
+> If this was a struct instantiated many times and used all over
+> the story was another - but thats not the case here.
+
+That would mostly lead to inconsistencies with the same thing
+potentially using multiple different types between different
+structs. IMO best to use the smallest type everywhere to make
+things consistent. Also helps with refactoring when you don't
+have to change types when moving things between structs.
+
+> Here the principle of least suprises hold - do not change the type.
+> =
+
+> I try to explain the rationale behind the argument to use int.
+> Feel free to disagree.
+> =
+
+> > =
+
+> > > =
+
+> > > When in the slightly pedantic mode, using u8 is not consistent.
+> > > ddc_bus defined above usese uint8_t.
+> > =
+
+> > u8 & co. are preferred in kernel code. Checkpatch even complains when
+> > you use the stdint types. The uint8_t here is some old leftovers.
+> =
+
+> Mixing coding practice makes code less readable, no matter
+> the output of checkpatch.
+> The right fix would be to update gma500 to migrate away from the
+> stdint types. But that would be a sepearte patch for another day.
+
+Have you actually looked at this file? It's already a mismash of both
+types.
+
+> =
+
+> My orginal feedback on the patch has not changed.
+> Feel free to move forward with the patch without my r-b.
+> =
+
+> 	Sam
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
