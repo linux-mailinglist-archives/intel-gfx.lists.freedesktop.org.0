@@ -2,54 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4081A8E93
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 00:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0391A8E96
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 00:28:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2F36E5B9;
-	Tue, 14 Apr 2020 22:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF696E5B4;
+	Tue, 14 Apr 2020 22:28:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFA576E5B4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 22:28:02 +0000 (UTC)
-IronPort-SDR: LNd69LMBpRUiJCYzI1t40s5SLuv7V/keKQ2NjRkZMnT2pvVijx3lr9P898XsW4Ta00v6pJzFR5
- x6OvYS7c0fFQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 15:28:02 -0700
-IronPort-SDR: QjtrTQEvzV22p+txggZ9sQ2UkYgWUtV1nTIOuT5yfNd98aG7pj/aMjMEkDqmkvyBwdpUOshtBf
- dUUKWCjmcJLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,384,1580803200"; d="scan'208";a="271434614"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga008.jf.intel.com with ESMTP; 14 Apr 2020 15:28:01 -0700
-Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 14 Apr 2020 15:28:01 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
- FMSMSX155.amr.corp.intel.com ([169.254.5.71]) with mapi id 14.03.0439.000;
- Tue, 14 Apr 2020 15:28:00 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Use single set of AUX powerwell
- ops for gen11+
-Thread-Index: AQHWEp90DepNyunF5Uq2TN7pAvpuR6h5qH+A
-Date: Tue, 14 Apr 2020 22:28:00 +0000
-Message-ID: <7025ac2e3502ce9193d2aa9ee144b7891f732d0c.camel@intel.com>
-References: <20200414205755.2777261-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200414205755.2777261-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.209.55.81]
-Content-ID: <A7730774446E2D409467754FD7E230CE@intel.com>
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78B0C6E5B4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 22:28:26 +0000 (UTC)
+Received: from bell.riseup.net (unknown [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4920WG0yVhzFfs9;
+ Tue, 14 Apr 2020 15:28:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1586903306; bh=QFz5HFs9FircilZnI1DxbpSNA57dFUy6JMqFiZSVp/U=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=q65NXim5CXhws0QHEoFMwsnyJukXIam+qF4VnWqrCBnvouyYoOp8+Hwba8GSjCZRe
+ UJUFSz1nBc6vr/QT//Y99Muha2b9neGgig0uIIMDdOJIStM9vXIrNNYv5EWbMd+UNR
+ 5BDIV8ZOQ1h+GHDfufUOV1rkf+r/e+5sBR7i000k=
+X-Riseup-User-ID: 7755368B2B0CBFA6AEEE1E39A0A175F0169DCB03C6F12D041543CB11025736E7
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id 4920WF6PBvzJncc;
+ Tue, 14 Apr 2020 15:28:25 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158690112767.24667.10470136433913366578@build.alporthouse.com>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+ <20200414161423.23830-2-chris@chris-wilson.co.uk>
+ <158688212611.24667.7132327074792389398@build.alporthouse.com>
+ <87pnc9zwjf.fsf@riseup.net>
+ <158689519187.24667.5193852715594735657@build.alporthouse.com>
+ <87lfmxzst2.fsf@riseup.net>
+ <158690112767.24667.10470136433913366578@build.alporthouse.com>
+Date: Tue, 14 Apr 2020 15:28:34 -0700
+Message-ID: <87eespzoq5.fsf@riseup.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use single set of AUX powerwell
- ops for gen11+
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,546 +55,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>, stable@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1027588339=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-04-14 at 13:57 -0700, Matt Roper wrote:
-> AUX power wells sometimes need additional handling besides just
-> programming the specific power well registers:
->  * Type-C PHY's also require additional Type-C register programming
->  * ICL combo PHY's require additional workarounds
->  * TGL & EHL combo PHY's can be treated like any other power well
-> 
-> Today we have dedicated aux ops for the ICL combo PHY and Type-C
-> cases.
-> This works fine, but means that when a new platform shows up with
-> identical general power well handling, but different types of PHYs on
-> its outputs, we have to define an entire new power well table for
-> that
-> platform and can't just re-use the table from the earlier platform --
-> as
-> an example, see ehl_power_wells[], which is a subset of
-> icl_power_wells[], *except* that we need to specify different AUX ops
-> for the third display.
-> 
-> If we instead create a single set of top-level aux ops that will
-> check
-> the PHY type and then dispatch to the appropriate handlers, we can
-> get
-> more reuse out of our power well definitions.  This allows us to
-> immediately eliminate ehl_power_wells[] and simply reuse the ICL
-> table;
-> if future platforms follow the same general power well assignments as
-> either ICL or TGL, we'll be able to re-use those tables in the same
-> way.
-> 
-> Note that I've only changed ICL+ platforms over to using the new
-> icl_aux
-> ops; at this point it's unlikely that we'll have any new platforms
-> that
-> re-use gen9 or earlier power well configurations.
-> 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    | 242 +++++-----------
-> --
->  1 file changed, 60 insertions(+), 182 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 433e5a81dd4d..ddeaa475b8a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -593,6 +593,38 @@ icl_tc_phy_aux_power_well_disable(struct
-> drm_i915_private *dev_priv,
->  	hsw_power_well_disable(dev_priv, power_well);
->  }
->  
-> +static void
-> +icl_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> +			  struct i915_power_well *power_well)
-> +{
-> +	int pw_idx = power_well->desc->hsw.idx;
-> +	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
-> +
+--===============1027588339==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-The above will not work for TBT aux powerwells.
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-Other than that looks a good idea.
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +	if (intel_phy_is_tc(dev_priv, phy))
-> +		return icl_tc_phy_aux_power_well_enable(dev_priv, 
-> power_well);
-> +	else if (IS_ICELAKE(dev_priv))
-> +		return icl_combo_phy_aux_power_well_enable(dev_priv,
-> +							   power_well);
-> +	else
-> +		return hsw_power_well_enable(dev_priv, power_well);
-> +}
-> +
-> +static void
-> +icl_aux_power_well_disable(struct drm_i915_private *dev_priv,
-> +			   struct i915_power_well *power_well)
-> +{
-> +	int pw_idx = power_well->desc->hsw.idx;
-> +	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
-> +
-> +	if (intel_phy_is_tc(dev_priv, phy))
-> +		return icl_tc_phy_aux_power_well_disable(dev_priv,
-> power_well);
-> +	else if (IS_ICELAKE(dev_priv))
-> +		return icl_combo_phy_aux_power_well_disable(dev_priv,
-> +							    power_well)
-> ;
-> +	else
-> +		return hsw_power_well_disable(dev_priv, power_well);
-> +}
-> +
->  /*
->   * We should only use the power well if we explicitly asked the
-> hardware to
->   * enable it, so check if it's enabled and also check if we've
-> requested it to
-> @@ -3503,17 +3535,10 @@ static const struct i915_power_well_desc
-> cnl_power_wells[] = {
->  	},
->  };
->  
-> -static const struct i915_power_well_ops
-> icl_combo_phy_aux_power_well_ops = {
-> +static const struct i915_power_well_ops icl_aux_power_well_ops = {
->  	.sync_hw = hsw_power_well_sync_hw,
-> -	.enable = icl_combo_phy_aux_power_well_enable,
-> -	.disable = icl_combo_phy_aux_power_well_disable,
-> -	.is_enabled = hsw_power_well_enabled,
-> -};
-> -
-> -static const struct i915_power_well_ops
-> icl_tc_phy_aux_power_well_ops = {
-> -	.sync_hw = hsw_power_well_sync_hw,
-> -	.enable = icl_tc_phy_aux_power_well_enable,
-> -	.disable = icl_tc_phy_aux_power_well_disable,
-> +	.enable = icl_aux_power_well_enable,
-> +	.disable = icl_aux_power_well_disable,
->  	.is_enabled = hsw_power_well_enabled,
->  };
->  
-> @@ -3643,7 +3668,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX A",
->  		.domains = ICL_AUX_A_IO_POWER_DOMAINS,
-> -		.ops = &icl_combo_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3653,7 +3678,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX B",
->  		.domains = ICL_AUX_B_IO_POWER_DOMAINS,
-> -		.ops = &icl_combo_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3663,7 +3688,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX C TC1",
->  		.domains = ICL_AUX_C_TC1_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3674,7 +3699,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX D TC2",
->  		.domains = ICL_AUX_D_TC2_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3685,7 +3710,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX E TC3",
->  		.domains = ICL_AUX_E_TC3_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3696,7 +3721,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX F TC4",
->  		.domains = ICL_AUX_F_TC4_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3707,7 +3732,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX C TBT1",
->  		.domains = ICL_AUX_C_TBT1_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3718,7 +3743,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX D TBT2",
->  		.domains = ICL_AUX_D_TBT2_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3729,7 +3754,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX E TBT3",
->  		.domains = ICL_AUX_E_TBT3_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3740,7 +3765,7 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	{
->  		.name = "AUX F TBT4",
->  		.domains = ICL_AUX_F_TBT4_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -3762,151 +3787,6 @@ static const struct i915_power_well_desc
-> icl_power_wells[] = {
->  	},
->  };
->  
-> -static const struct i915_power_well_desc ehl_power_wells[] = {
-> -	{
-> -		.name = "always-on",
-> -		.always_on = true,
-> -		.domains = POWER_DOMAIN_MASK,
-> -		.ops = &i9xx_always_on_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -	},
-> -	{
-> -		.name = "power well 1",
-> -		/* Handled by the DMC firmware */
-> -		.always_on = true,
-> -		.domains = 0,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = SKL_DISP_PW_1,
-> -		{
-> -			.hsw.regs = &hsw_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_PW_1,
-> -			.hsw.has_fuses = true,
-> -		},
-> -	},
-> -	{
-> -		.name = "DC off",
-> -		.domains = ICL_DISPLAY_DC_OFF_POWER_DOMAINS,
-> -		.ops = &gen9_dc_off_power_well_ops,
-> -		.id = SKL_DISP_DC_OFF,
-> -	},
-> -	{
-> -		.name = "power well 2",
-> -		.domains = ICL_PW_2_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = SKL_DISP_PW_2,
-> -		{
-> -			.hsw.regs = &hsw_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_PW_2,
-> -			.hsw.has_fuses = true,
-> -		},
-> -	},
-> -	{
-> -		.name = "power well 3",
-> -		.domains = ICL_PW_3_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &hsw_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
-> -			.hsw.irq_pipe_mask = BIT(PIPE_B),
-> -			.hsw.has_vga = true,
-> -			.hsw.has_fuses = true,
-> -		},
-> -	},
-> -	{
-> -		.name = "DDI A IO",
-> -		.domains = ICL_DDI_IO_A_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_ddi_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_DDI_A,
-> -		},
-> -	},
-> -	{
-> -		.name = "DDI B IO",
-> -		.domains = ICL_DDI_IO_B_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_ddi_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_DDI_B,
-> -		},
-> -	},
-> -	{
-> -		.name = "DDI C IO",
-> -		.domains = ICL_DDI_IO_C_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_ddi_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_DDI_C,
-> -		},
-> -	},
-> -	{
-> -		.name = "DDI D IO",
-> -		.domains = ICL_DDI_IO_D_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_ddi_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_DDI_D,
-> -		},
-> -	},
-> -	{
-> -		.name = "AUX A",
-> -		.domains = ICL_AUX_A_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_aux_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_AUX_A,
-> -		},
-> -	},
-> -	{
-> -		.name = "AUX B",
-> -		.domains = ICL_AUX_B_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_aux_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_AUX_B,
-> -		},
-> -	},
-> -	{
-> -		.name = "AUX C",
-> -		.domains = ICL_AUX_C_TC1_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_aux_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_AUX_C,
-> -		},
-> -	},
-> -	{
-> -		.name = "AUX D",
-> -		.domains = ICL_AUX_D_TC2_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &icl_aux_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_AUX_D,
-> -		},
-> -	},
-> -	{
-> -		.name = "power well 4",
-> -		.domains = ICL_PW_4_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> -		{
-> -			.hsw.regs = &hsw_power_well_regs,
-> -			.hsw.idx = ICL_PW_CTL_IDX_PW_4,
-> -			.hsw.has_fuses = true,
-> -			.hsw.irq_pipe_mask = BIT(PIPE_C),
-> -		},
-> -	},
-> -};
-> -
->  static const struct i915_power_well_desc tgl_power_wells[] = {
->  	{
->  		.name = "always-on",
-> @@ -4051,7 +3931,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX A",
->  		.domains = TGL_AUX_A_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4061,7 +3941,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX B",
->  		.domains = TGL_AUX_B_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4071,7 +3951,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX C",
->  		.domains = TGL_AUX_C_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4081,7 +3961,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX D TC1",
->  		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4092,7 +3972,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX E TC2",
->  		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4103,7 +3983,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX F TC3",
->  		.domains = TGL_AUX_F_TC3_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4114,7 +3994,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX G TC4",
->  		.domains = TGL_AUX_G_TC4_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4125,7 +4005,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX H TC5",
->  		.domains = TGL_AUX_H_TC5_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4136,7 +4016,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX I TC6",
->  		.domains = TGL_AUX_I_TC6_IO_POWER_DOMAINS,
-> -		.ops = &icl_tc_phy_aux_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4147,7 +4027,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX D TBT1",
->  		.domains = TGL_AUX_D_TBT1_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4158,7 +4038,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX E TBT2",
->  		.domains = TGL_AUX_E_TBT2_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4169,7 +4049,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX F TBT3",
->  		.domains = TGL_AUX_F_TBT3_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4180,7 +4060,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX G TBT4",
->  		.domains = TGL_AUX_G_TBT4_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4191,7 +4071,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX H TBT5",
->  		.domains = TGL_AUX_H_TBT5_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4202,7 +4082,7 @@ static const struct i915_power_well_desc
-> tgl_power_wells[] = {
->  	{
->  		.name = "AUX I TBT6",
->  		.domains = TGL_AUX_I_TBT6_IO_POWER_DOMAINS,
-> -		.ops = &hsw_power_well_ops,
-> +		.ops = &icl_aux_power_well_ops,
->  		.id = DISP_PW_ID_NONE,
->  		{
->  			.hsw.regs = &icl_aux_power_well_regs,
-> @@ -4383,8 +4263,6 @@ int intel_power_domains_init(struct
-> drm_i915_private *dev_priv)
->  	 */
->  	if (IS_GEN(dev_priv, 12)) {
->  		err = set_power_wells(power_domains, tgl_power_wells);
-> -	} else if (IS_ELKHARTLAKE(dev_priv)) {
-> -		err = set_power_wells(power_domains, ehl_power_wells);
->  	} else if (IS_GEN(dev_priv, 11)) {
->  		err = set_power_wells(power_domains, icl_power_wells);
->  	} else if (IS_CANNONLAKE(dev_priv)) {
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Quoting Francisco Jerez (2020-04-14 22:00:25)
+>> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>>=20
+>> > Quoting Francisco Jerez (2020-04-14 20:39:48)
+>> >> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>> >>=20
+>> >> > Quoting Chris Wilson (2020-04-14 17:14:23)
+>> >> >> Try to make RPS dramatically more responsive by shrinking the eval=
+uation
+>> >> >> intervales by a factor of 100! The issue is as we now park the GPU
+>> >> >> rapidly upon idling, a short or bursty workload such as the compos=
+ited
+>> >> >> desktop never sustains enough work to fill and complete an evaluat=
+ion
+>> >> >> window. As such, the frequency we program remains stuck. This was =
+first
+>> >> >> reported as once boosted, we never relinquished the boost [see com=
+mit
+>> >> >> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event"=
+)] but
+>> >> >> it equally applies in the order direction for bursty workloads that
+>> >> >> *need* low latency, like desktop animations.
+>> >> >>=20
+>> >> >> What we could try is preserve the incomplete EI history across idl=
+ing,
+>> >> >> it is not clear whether that would be effective, nor whether the
+>> >> >> presumption of continuous workloads is accurate. A clearer path se=
+ems to
+>> >> >> treat it as symptomatic that we fail to handle bursty workload wit=
+h the
+>> >> >> current EI, and seek to address that by shrinking the EI so the
+>> >> >> evaluations are run much more often.
+>> >> >>=20
+>> >> >> This will likely entail more frequent interrupts, and by the time =
+we
+>> >> >> process the interrupt in the bottom half [from inside a worker], t=
+he
+>> >> >> workload on the GPU has changed. To address the changeable nature,=
+ in
+>> >> >> the previous patch we compared the previous complete EI with the
+>> >> >> interrupt request and only up/down clock if both agree. The impact=
+ of
+>> >> >> asking for, and presumably, receiving more interrupts is still to =
+be
+>> >> >> determined and mitigations sought. The first idea is to differenti=
+ate
+>> >> >> between up/down responsivity and make upclocking more responsive t=
+han
+>> >> >> downlocking. This should both help thwart jitter on bursty workloa=
+ds by
+>> >> >> making it easier to increase than it is to decrease frequencies, a=
+nd
+>> >> >> reduce the number of interrupts we would need to process.
+>> >> >
+>> >> > Another worry I'd like to raise, is that by reducing the EI we risk
+>> >> > unstable evaluations. I'm not sure how accurate the HW is, and I wo=
+rry
+>> >> > about borderline workloads (if that is possible) but mainly the wor=
+ry is
+>> >> > how the HW is sampling.
+>> >> >
+>> >> > The other unmentioned unknown is the latency in reprogramming the
+>> >> > frequency. At what point does it start to become a significant fact=
+or?
+>> >> > I'm presuming the RPS evaluation itself is free, until it has to ta=
+lk
+>> >> > across the chip to send an interrupt.
+>> >> > -Chris
+>> >>=20
+>> >> At least on ICL the problem which this patch and 21abf0bf168d were
+>> >> working around seems to have to do with RPS interrupt delivery being
+>> >> inadvertently blocked for extended periods of time.  Looking at the G=
+PU
+>> >> utilization and RPS events on a graph I could see the GPU being stuck=
+ at
+>> >> low frequency without any RPS interrupts firing, for a time interval
+>> >> orders of magnitude greater than the EI we're theoretically programmi=
+ng
+>> >> today.  IOW it seems like the real problem isn't that our EIs are too
+>> >> long, but that we're missing a bunch of them.
+>> >>=20
+>> >> The solution I was suggesting for this on IRC during the last couple =
+of
+>> >> days wouldn't have any of the drawbacks you mention above, I'll send =
+it
+>> >> to this list in a moment if the general approach seems okay to you:
+>> >>=20
+>> >> https://github.com/curro/linux/commit/f7bc31402aa727a52d957e62d985c6d=
+ae6be4b86
+>> >
+>> > We were explicitly told to mask the interrupt generation at source
+>> > to conserve power. So I would hope for a statement as to whether that =
+is
+>> > still a requirement from the HW architects; but I can't see why we wou=
+ld
+>> > not apply the mask and that this is just paper. If the observation abo=
+ut
+>> > forcewake tallies, would this not suggest that it is still conserving
+>> > power on icl?
+>> >
+>>=20
+>> Yeah, it's hard to see how disabling interrupt generation could save any
+>> additional power in a unit which is powered off -- At least on ICL where
+>> even the interrupt masking register is powered off...
+>>=20
+>> > I haven't looked at whether I see the same phenomenon as you [missing
+>> > interrupts on icl] locally, but I was expecting something like the bug
+>> > report since the observation that render times are less than EI was
+>> > causing the clocks to stay high. And I noticed your problem statement
+>> > and was hopeful for a link.
+>> >
+>>=20
+>> Right.  In the workloads I was looking at last week the GPU would often
+>> be active for periods of time several times greater than the EI, and we
+>> would still fail to clock up.
+>>=20
+>> > They sound like two different problems. (Underclocking for animations =
+is
+>> > not icl specific.)
+>> >
+>>=20
+>> Sure.  But it seems like the underclocking problem has been greatly
+>> exacerbated by 21abf0bf168d, which may have been mitigating the same ICL
+>> problem I was looking at leading to RPS interrupt loss.  Maybe
+>> 21abf0bf168d wouldn't be necessary with working RPS interrupt delivery?
+>> And without 21abf0bf168d platforms earlier than ICL wouldn't have as
+>> much of an underclocking problem either.
+>
+> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+>
+> is necessary due to that we can set a boost frequency and then never run
+> the RPS worker due to short activity cycles. See
+> igt/i915_pm_rc6_residency for rc6-idle, the bg_load is essentially just
+>
+> for (;;) {
+> 	execbuf(&nop);
+> 	sleep(.1);
+> }
+>
+> Without 21abf0bf168d if you trigger a waitboost just before, it never
+> recovers and power utilisation is measurably higher.
+>
+
+I can believe that, but can you confirm that the problem isn't a symptom
+of the PMINTRMSK issue I was talking about earlier?  Assuming it isn't,
+couldn't you do something like 21abf0bf168d which simply stores a
+timestamp at GPU parking time and delays the actual frequency ramp-down
+to GPU unpark, at which point it's performed *only* if the time spent
+idle goes over a down-clock threshold based on the current "power" mode
+(e.g. something like the value of GEN6_RP_DOWN_EI minus
+GEN6_RP_DOWN_THRESHOLD) -- So the behavior of frequency rampdown due to
+parking more closely matches what the RPS would have done if it had been
+active.
+
+>> >> That said it *might* be helpful to reduce the EIs we use right now in
+>> >> addition, but a factor of 100 seems over the top since that will cause
+>> >> the evaluation interval to be roughly two orders of magnitude shorter
+>> >> than the rendering time of a typical frame, which can lead to massive
+>> >> oscillations even in workloads that use a small fraction of the GPU t=
+ime
+>> >> to render a single frame.  Maybe we want something in between?
+>> >
+>> > Probably; as you can guess these were pulled out of nowhere based on t=
+he
+>> > observation that the frame lengths are much shorter than the current EI
+>> > and that in order for us to ramp up to maxclocks in a single frame of
+>> > animation would take about 4 samples per frame. Based on the reporter's
+>> > observations, we do have to ramp up very quickly for single frame of
+>> > rendering in order to hit the vblank, as we are ramping down afterward=
+s.
+>> >
+>> > With a target of 4 samples within say 1ms, 160us isn't too far of the
+>> > mark. (We have to allow some extra time to catch up rendering.)
+>>=20
+>>=20
+>> How about we stop ramping down after the rendering of a single frame?
+>> It's not like we save any power by doing that, since the GPU seems to be
+>> forced to the minimum frequency for as long as it remains parked anyway.
+>> If the GPU remains idle long enough for the RPS utilization counters to
+>> drop below the threshold and qualify for a ramp-down the RPS should send
+>> us an interrupt, at which point we will ramp down the frequency.
+>
+> Because it demonstrably and quite dramatically reduces power consumption
+> for very light desktop workloads.
+>
+>> Unconditionally ramping down on parking seems to disturb the accuracy of
+>> that RPS feedback loop, which then needs to be worked around by reducing
+>> the averaging window of the RPS to a tiny fraction of the oscillation
+>> period of any typical GPU workload, which is going to prevent the RPS
+>> from seeing a whole oscillation period before it reacts, which is almost
+>> guaranteed to have a serious energy-efficiency cost.
+>
+> There is no feedback loop in these workloads. There are no completed RPS
+> workers, they are all cancelled if they were even scheduled. (Now we
+> might be tempted to look at the results if they scheduled and take that
+> into consideration instead of unconditionally downclocking.)
+>
+
+Processing any pending RPS work seems better IMHO than unconditionally
+assuming they indicate a clock-down.
+
+>> > As for steady state workloads, I'm optimistic the smoothing helps. (It=
+'s
+>> > harder to find steady state, unthrottled workloads!)
+>>=20
+>> I'm curious, how is that smoothing you do in PATCH 1 better than simply
+>> setting 2x the EIs? (Which would also mean half the interrupt processing
+>> overhead as in this series)
+>
+> I'm anticipating where the RPS worker may not run until the next jiffie
+> or two, by which point the iir is stale. But yes, there's only a subtle
+> difference between comparing the last 320us every 160us and comparing
+> the last 320us every 320us.
+
+Sounds like the benefit from smoothing is very slight, considering its
+accuracy and interrupt processing overhead costs.
+
+> -Chris
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXpY5EgAKCRCDmTidfVK/
+W9rtAQCf+YY6DVhrNnByU4fIwHpR7PaIdmiVuIHwQ9x7lw42wgD/XNAaOOd2zICW
+3OPQ9mcAeRvgZVUp7u1yJjcqA0rFJYo=
+=aEqb
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1027588339==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1027588339==--
