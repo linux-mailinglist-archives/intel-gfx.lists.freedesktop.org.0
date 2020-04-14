@@ -1,34 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6BE1A75E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 10:24:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7581A766B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 10:50:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AB4589E36;
-	Tue, 14 Apr 2020 08:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6ACD6E4A2;
+	Tue, 14 Apr 2020 08:50:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694EC89E36;
- Tue, 14 Apr 2020 08:24:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20891897-1500050 for multiple; Tue, 14 Apr 2020 09:23:57 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36A576E4A2;
+ Tue, 14 Apr 2020 08:50:11 +0000 (UTC)
+IronPort-SDR: 4DJDAn+tYnHYNwce9wvJnikERY7ST1Sx9+f7D/efBPkg4L9/IrtZrw+ia14Y1pV59mAdKcORmb
+ zOsjRRB9tc+w==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 01:50:10 -0700
+IronPort-SDR: q0hvaMKfW/Y0+ztXDEBq4CDOUp6ylYPrQ9bm5Lm1c6Nlf8zLxvb+FttuwKboDUzeQJYARt11Ux
+ 1OCiI0VNagFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; 
+ d="asc'?scan'208";a="256446161"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga006.jf.intel.com with ESMTP; 14 Apr 2020 01:50:07 -0700
+Date: Tue, 14 Apr 2020 16:36:26 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20200414083626.GQ11247@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200414061312.GA90768@sultan-box.localdomain>
-References: <20200404024156.GA10382@sultan-box.localdomain>
- <20200407064007.7599-1-sultan@kerneltoast.com>
- <20200414061312.GA90768@sultan-box.localdomain>
-To: Sultan Alsawaf <sultan@kerneltoast.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158685263618.16269.9317893477736764675@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 14 Apr 2020 09:23:56 +0100
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Synchronize active and retire
- callbacks
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,22 +48,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0239621296=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Sultan Alsawaf (2020-04-14 07:13:12)
-> Chris,
-> 
-> Could you please take a look at this? This really is quite an important fix.
 
-It's crazy. See a266bf420060 for a patch that should be applied to v5.4
--Chris
+--===============0239621296==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="RUqJLqMNe5u4kDWT"
+Content-Disposition: inline
+
+
+--RUqJLqMNe5u4kDWT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi,
+
+As I stated in last pull
+(https://lists.freedesktop.org/archives/intel-gvt-dev/2020-April/006542.htm=
+l),
+this one includes gvt fixes for guest page access by using VFIO
+interface instead, so remove the concern from KVM and do the right thing.
+
+Thanks
+--
+The following changes since commit bcad588dea538a4fc173d16a90a005536ec8dbf2:
+
+  drm/i915/perf: Do not clear pollin for small user read buffers (2020-04-1=
+3 14:09:48 -0700)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-fixes-2020-04-14
+
+for you to fetch changes up to ec7301d5146c9abe8aaf6e16e420ea3951018503:
+
+  drm/i915/gvt: switch to user vfio_group_pin/upin_pages (2020-04-14 16:30:=
+17 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2020-04-14
+
+- Fix guest page access by using VFIO dma r/w interface (Yan)
+
+----------------------------------------------------------------
+Yan Zhao (3):
+      drm/i915/gvt: hold reference of VFIO group during opening of vgpu
+      drm/i915/gvt: subsitute kvm_read/write_guest with vfio_dma_rw
+      drm/i915/gvt: switch to user vfio_group_pin/upin_pages
+
+ drivers/gpu/drm/i915/gvt/kvmgt.c | 46 +++++++++++++++++++-----------------=
+----
+ 1 file changed, 22 insertions(+), 24 deletions(-)
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--RUqJLqMNe5u4kDWT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXpV2CgAKCRCxBBozTXgY
+J8+RAKCdND6eHdP2aOXNq/AVUFXqDL7XdwCfThondAbPAupAXosPw8tDdLTI+9c=
+=cX9V
+-----END PGP SIGNATURE-----
+
+--RUqJLqMNe5u4kDWT--
+
+--===============0239621296==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0239621296==--
