@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A931A7BF9
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 15:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 391621A7BFF
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 15:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1BF96E4D0;
-	Tue, 14 Apr 2020 13:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788846E3FC;
+	Tue, 14 Apr 2020 13:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC2126E4CB
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 13:10:17 +0000 (UTC)
-IronPort-SDR: SoprtWdJnS/PdJK+bokFSJvoNRDsz0gK/pBaZbWTV6u6jMtn4zO/B5O4jN13BVdY2ihwMw/7+r
- acjU9xUEAakw==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB156E3FC;
+ Tue, 14 Apr 2020 13:11:31 +0000 (UTC)
+IronPort-SDR: 3cG6U2YNpoVn0tBPXpUpPhtyf/yky2qgfEbgoF+/JxmSONoZcIyUExa3g4KzNFO/nPWcxO1qmN
+ /0YgOGpZ8VeA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 06:10:16 -0700
-IronPort-SDR: kJOwwNrZ1kr+UTiLRI2Q2wGLzzJm+77wYlONPlPczq4BCWoixbMNBVm5dkeROSnnXPeWF1fohi
- JrRMCqSneYEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; d="scan'208";a="332171706"
-Received: from marinasm-mobl1.ccr.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.42.43])
- by orsmga001.jf.intel.com with ESMTP; 14 Apr 2020 06:10:15 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Apr 2020 16:10:07 +0300
-Message-Id: <20200414131007.108377-4-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200414131007.108377-1-lionel.g.landwerlin@intel.com>
-References: <20200414131007.108377-1-lionel.g.landwerlin@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 06:11:28 -0700
+IronPort-SDR: 50ouSXyFUkfaZqv6WgTzhIINXRBbGDQ6X3JBi8W7yox5JpSHKPBeXPn/Yi1qGEkrAsIZ8HhRKY
+ 69ICwl3oaOKA==
+X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; d="scan'208";a="427056264"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 06:11:28 -0700
+Date: Tue, 14 Apr 2020 06:11:07 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <20200414131107.GB4008304@intel.com>
+References: <20200414083626.GQ11247@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 4/4] drm/i915/perf: enable filtering on
- multiple contexts
+Content-Disposition: inline
+In-Reply-To: <20200414083626.GQ11247@zhen-hp.sh.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,155 +47,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add 2 new properties to the i915-perf open ioctl to specify an array
-of GEM context handles as well as the length of the array.
+On Tue, Apr 14, 2020 at 04:36:26PM +0800, Zhenyu Wang wrote:
+> 
+> Hi,
+> 
+> As I stated in last pull
+> (https://lists.freedesktop.org/archives/intel-gvt-dev/2020-April/006542.html),
+> this one includes gvt fixes for guest page access by using VFIO
+> interface instead, so remove the concern from KVM and do the right thing.
 
-This can be used by drivers using multiple GEM contexts to implement a
-single GL context.
+Looking the patches now with more calm and the vfio part merged there
+it makes sense to get this for -rc1 imho.
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 58 ++++++++++++++++++++++++++++++--
- include/uapi/drm/i915_drm.h      | 21 ++++++++++++
- 2 files changed, 76 insertions(+), 3 deletions(-)
+So, pulled to drm-intel-fixes.
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 624ac7c8d74d..0f79c184a127 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3686,7 +3686,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 				    struct perf_open_properties *props)
- {
- 	u64 __user *uprop = uprops;
--	u32 i;
-+	u32 __user *uctx_handles = NULL;
-+	u32 i, n_uctx_handles = 0;
- 	int err;
- 
- 	memset(props, 0, sizeof(struct perf_open_properties));
-@@ -3737,7 +3738,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 
- 		switch ((enum drm_i915_perf_property_id)id) {
- 		case DRM_I915_PERF_PROP_CTX_HANDLE:
--			if (props->n_ctx_handles > 0) {
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
- 				DRM_DEBUG("Context handle specified multiple times\n");
- 				err = -EINVAL;
- 				goto error;
-@@ -3851,6 +3852,38 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 			}
- 			props->poll_oa_period = value;
- 			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY:
-+			/* HSW can only filter in HW and only on a single
-+			 * context.
-+			 */
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			uctx_handles = u64_to_user_ptr(value);
-+			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH:
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
-+				DRM_DEBUG("Context handle specified multiple times\n");
-+				err = -EINVAL;
-+				goto error;
-+			}
-+			props->ctx_handles =
-+				kmalloc_array(value,
-+					      sizeof(*props->ctx_handles),
-+					      GFP_KERNEL);
-+			if (!props->ctx_handles) {
-+				err = -ENOMEM;
-+				goto error;
-+			}
-+			n_uctx_handles = value;
-+			break;
- 		case DRM_I915_PERF_PROP_MAX:
- 			MISSING_CASE(id);
- 			err = -EINVAL;
-@@ -3860,6 +3893,21 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 		uprop += 2;
- 	}
- 
-+	if (n_uctx_handles > 0 && props->n_ctx_handles > 0) {
-+		DRM_DEBUG("Context handle specified multiple times\n");
-+		err = -EINVAL;
-+		goto error;
-+	}
-+
-+	for (i = 0; i < n_uctx_handles; i++) {
-+		err = get_user(props->ctx_handles[i], uctx_handles);
-+		if (err)
-+			goto error;
-+
-+		uctx_handles++;
-+		props->n_ctx_handles++;
-+	}
-+
- 	return 0;
- 
- error:
-@@ -4643,8 +4691,12 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
- 	 *    interval for the hrtimer used to check for OA data.
-+	 *
-+	 * 6: Add DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY &
-+	 *    DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH to allow an
-+	 *    application monitor/pin multiple contexts.
- 	 */
--	return 5;
-+	return 6;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd6b54b..f80e7932d728 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1993,6 +1993,27 @@ enum drm_i915_perf_property_id {
- 	 */
- 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
- 
-+	/**
-+	 * Specifies an array of u32 GEM context handles to filter reports
-+	 * with.
-+	 *
-+	 * Using this parameter is incompatible with using
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE.
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY,
-+
-+	/**
-+	 * Specifies the length of the array specified with
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY.
-+	 *
-+	 * The length must be in the range [1, 4].
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH,
-+
- 	DRM_I915_PERF_PROP_MAX /* non-ABI */
- };
- 
--- 
-2.26.0
+thanks for the patches and sorry for the previous confusion,
+Rodrigo.
+
+> 
+> Thanks
+> --
+> The following changes since commit bcad588dea538a4fc173d16a90a005536ec8dbf2:
+> 
+>   drm/i915/perf: Do not clear pollin for small user read buffers (2020-04-13 14:09:48 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-04-14
+> 
+> for you to fetch changes up to ec7301d5146c9abe8aaf6e16e420ea3951018503:
+> 
+>   drm/i915/gvt: switch to user vfio_group_pin/upin_pages (2020-04-14 16:30:17 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-fixes-2020-04-14
+> 
+> - Fix guest page access by using VFIO dma r/w interface (Yan)
+> 
+> ----------------------------------------------------------------
+> Yan Zhao (3):
+>       drm/i915/gvt: hold reference of VFIO group during opening of vgpu
+>       drm/i915/gvt: subsitute kvm_read/write_guest with vfio_dma_rw
+>       drm/i915/gvt: switch to user vfio_group_pin/upin_pages
+> 
+>  drivers/gpu/drm/i915/gvt/kvmgt.c | 46 +++++++++++++++++++---------------------
+>  1 file changed, 22 insertions(+), 24 deletions(-)
+> 
+> -- 
+> Open Source Technology Center, Intel ltd.
+> 
+> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 _______________________________________________
 Intel-gfx mailing list
