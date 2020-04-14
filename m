@@ -1,43 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9E91A7F8B
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 16:22:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18DF1A808D
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 16:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8342891FA;
-	Tue, 14 Apr 2020 14:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFEB789C33;
+	Tue, 14 Apr 2020 14:58:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42E8D891FA
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 14:22:14 +0000 (UTC)
-IronPort-SDR: K9q1hkdBO0lnChE3KKBBJ8gMIV567lJmwZJq3+OM/VQsKn1Geufl/lK8joIWu4G4NmctjdNu7Y
- JZpNxNlAITwg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 07:22:13 -0700
-IronPort-SDR: mjivkPebTBFTOkSPwxdDYde9vEM0/P0maz+/T0OBoiHXVUfsZueDoDS4Q9vm9RT4lXkZL3h3Kz
- cgB+xc7nTu7g==
-X-IronPort-AV: E=Sophos;i="5.72,382,1580803200"; d="scan'208";a="427075948"
-Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.215.132.4])
- ([10.215.132.4])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 07:22:12 -0700
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200409060646.30817-1-anshuman.gupta@intel.com>
- <20200409060646.30817-2-anshuman.gupta@intel.com>
-From: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <02393d9d-d04a-4565-a60a-ec4498673d23@intel.com>
-Date: Tue, 14 Apr 2020 19:52:07 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+ [209.85.215.196])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 829FB6E1D2;
+ Tue, 14 Apr 2020 14:35:23 +0000 (UTC)
+Received: by mail-pg1-f196.google.com with SMTP id i3so2062262pgk.1;
+ Tue, 14 Apr 2020 07:35:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=rBqTt0fHqGzLLLy8qeio9bjdtjym9/WMds2EnBXmXZQ=;
+ b=qYKGpU8kAuSIUjPnBiVhVainmm6RUwWexvPY8624t7CN9JnPRqEU0IQoleLfwNVUs8
+ BTnppzoomw9C0qGESbtU7lwuUoxa6Eu0KqtEf7p2MgT0UhJcGIYHVkV0CNff5lnYsqfa
+ JM5TkeYXR4eqdBjit/e710zpwRyw0uGoEiy20/S+6dGEvyb9ZCrSXc+58OSaQL8SYAUg
+ s40Og+DDhzPRHVJGzMY2d4Nsrn8zMxpMSxtbK++04aLNvloVkbM8k1yk6/nhIlsFTH/d
+ HYSROP3dMPhHsTGTQPWU5zMnOlJdnItWvLpeDqgldz3RJ2Ii2wvPO3zBVFtnBVPhQDDn
+ rTQQ==
+X-Gm-Message-State: AGi0PuajynD/Yk4n410owrm2Mrz7zhJdc9VT3EmZK9k9UcjijAUPJnG7
+ 3XKxjvmco9SmUYMk1tRhFg4=
+X-Google-Smtp-Source: APiQypLeApFBSy8U/PtpeBuAxlxao12boDe4O39ePDAlMjL1FL/bamWKZ5BnsQ9TQXvtr20djFEifQ==
+X-Received: by 2002:a62:8202:: with SMTP id w2mr23015058pfd.117.1586874922890; 
+ Tue, 14 Apr 2020 07:35:22 -0700 (PDT)
+Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
+ [198.54.129.52])
+ by smtp.gmail.com with ESMTPSA id x18sm4147758pfi.22.2020.04.14.07.35.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Apr 2020 07:35:22 -0700 (PDT)
+Date: Tue, 14 Apr 2020 07:35:18 -0700
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200414143518.GA2082@sultan-box.localdomain>
+References: <20200407065210.GA263852@kroah.com>
+ <20200407071809.3148-1-sultan@kerneltoast.com>
+ <20200410090838.GD1691838@kroah.com>
+ <20200410141738.GB2025@sultan-box.localdomain>
+ <20200411113957.GB2606747@kroah.com>
+ <158685210730.16269.15932754047962572236@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <20200409060646.30817-2-anshuman.gupta@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 1/4] drm/i915: Power well id for ICL PG3
+Content-Disposition: inline
+In-Reply-To: <158685210730.16269.15932754047962572236@build.alporthouse.com>
+X-Mailman-Approved-At: Tue, 14 Apr 2020 14:58:47 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix ref->mutex deadlock in
+ i915_active_wait()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,73 +64,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 09-04-2020 11:36, Anshuman Gupta wrote:
-> Gen11 onwards PG3 is contains functions for pipe B,
-> external displays, and VGA. It make sense to add
-> a power well id with name ICL_DISP_PW_3 rather then
-> TGL_DISP_PW_3, Also PG3 power well id requires to
-> know if lpsp is enabled.
->
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+On Tue, Apr 14, 2020 at 09:15:07AM +0100, Chris Wilson wrote:
+> The patch does not fix a deadlock. Greg, this patch is not a backport of
+> a bugfix, why is it in stable?
+> -Chris
 
-Looks good to me.
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+Here's the deadlock this supposedly doesn't fix:
+INFO: task kswapd0:178 blocked for more than 122 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+kswapd0         D    0   178      2 0x80004000
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ ? i915_request_wait+0x25b/0x370
+ active_retire+0x26/0x30
+ i915_active_wait+0xa3/0x1a0
+ i915_vma_unbind+0xe2/0x1c0
+ i915_gem_object_unbind+0x111/0x140
+ i915_gem_shrink+0x21b/0x530
+ i915_gem_shrinker_scan+0xfd/0x120
+ do_shrink_slab+0x154/0x2c0
+ shrink_slab+0xd0/0x2f0
+ shrink_node+0xdf/0x420
+ balance_pgdat+0x2e3/0x540
+ kswapd+0x200/0x3c0
+ ? __wake_up_common_lock+0xc0/0xc0
+ kthread+0xfb/0x130
+ ? balance_pgdat+0x540/0x540
+ ? __kthread_parkme+0x60/0x60
+ ret_from_fork+0x1f/0x40
+INFO: task kworker/u32:5:222 blocked for more than 122 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+kworker/u32:5   D    0   222      2 0x80004000
+Workqueue: i915 idle_work_handler
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ idle_work_handler+0x34/0x120
+ process_one_work+0x1ea/0x3a0
+ worker_thread+0x4d/0x3f0
+ kthread+0xfb/0x130
+ ? process_one_work+0x3a0/0x3a0
+ ? __kthread_parkme+0x60/0x60
+ ret_from_fork+0x1f/0x40
+INFO: task mpv:1535 blocked for more than 122 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+mpv             D    0  1535      1 0x00000000
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ __i915_gem_free_objects+0x68/0x190
+ i915_gem_create_ioctl+0x18/0x30
+ ? i915_gem_dumb_create+0xa0/0xa0
+ drm_ioctl_kernel+0xb2/0x100
+ drm_ioctl+0x209/0x360
+ ? i915_gem_dumb_create+0xa0/0xa0
+ do_vfs_ioctl+0x43f/0x6c0
+ ksys_ioctl+0x5e/0x90
+ __x64_sys_ioctl+0x16/0x20
+ do_syscall_64+0x4e/0x140
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7fb49f1b32eb
+Code: Bad RIP value.
+RSP: 002b:00007ffef9eb0948 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ffef9eb09c0 RCX: 00007fb49f1b32eb
+RDX: 00007ffef9eb09c0 RSI: 00000000c010645b RDI: 0000000000000008
+RBP: 00000000c010645b R08: 000055fdb80c1370 R09: 000055fdb80c14e0
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fb4781e56b0
+R13: 0000000000000008 R14: 00007fb4781e5560 R15: 00007fb4781e56b0
+INFO: task kswapd0:178 blocked for more than 245 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+kswapd0         D    0   178      2 0x80004000
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ ? i915_request_wait+0x25b/0x370
+ active_retire+0x26/0x30
+ i915_active_wait+0xa3/0x1a0
+ i915_vma_unbind+0xe2/0x1c0
+ i915_gem_object_unbind+0x111/0x140
+ i915_gem_shrink+0x21b/0x530
+ i915_gem_shrinker_scan+0xfd/0x120
+ do_shrink_slab+0x154/0x2c0
+ shrink_slab+0xd0/0x2f0
+ shrink_node+0xdf/0x420
+ balance_pgdat+0x2e3/0x540
+ kswapd+0x200/0x3c0
+ ? __wake_up_common_lock+0xc0/0xc0
+ kthread+0xfb/0x130
+ ? balance_pgdat+0x540/0x540
+ ? __kthread_parkme+0x60/0x60
+ ret_from_fork+0x1f/0x40
+INFO: task kworker/u32:5:222 blocked for more than 245 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+kworker/u32:5   D    0   222      2 0x80004000
+Workqueue: i915 idle_work_handler
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ idle_work_handler+0x34/0x120
+ process_one_work+0x1ea/0x3a0
+ worker_thread+0x4d/0x3f0
+ kthread+0xfb/0x130
+ ? process_one_work+0x3a0/0x3a0
+ ? __kthread_parkme+0x60/0x60
+ ret_from_fork+0x1f/0x40
+INFO: task mpv:1535 blocked for more than 245 seconds.
+      Tainted: G     U            5.4.28-00014-gd1e04f91d2c5 #4
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+mpv             D    0  1535      1 0x00000000
+Call Trace:
+ ? __schedule+0x2f3/0x750
+ schedule+0x39/0xa0
+ schedule_preempt_disabled+0xa/0x10
+ __mutex_lock.isra.0+0x19b/0x500
+ __i915_gem_free_objects+0x68/0x190
+ i915_gem_create_ioctl+0x18/0x30
+ ? i915_gem_dumb_create+0xa0/0xa0
+ drm_ioctl_kernel+0xb2/0x100
+ drm_ioctl+0x209/0x360
+ ? i915_gem_dumb_create+0xa0/0xa0
+ do_vfs_ioctl+0x43f/0x6c0
+ ksys_ioctl+0x5e/0x90
+ __x64_sys_ioctl+0x16/0x20
+ do_syscall_64+0x4e/0x140
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7fb49f1b32eb
+Code: Bad RIP value.
+RSP: 002b:00007ffef9eb0948 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ffef9eb09c0 RCX: 00007fb49f1b32eb
+RDX: 00007ffef9eb09c0 RSI: 00000000c010645b RDI: 0000000000000008
+RBP: 00000000c010645b R08: 000055fdb80c1370 R09: 000055fdb80c14e0
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fb4781e56b0
+R13: 0000000000000008 R14: 00007fb4781e5560 R15: 00007fb4781e56b0
 
-> ---
->   drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
->   drivers/gpu/drm/i915/display/intel_display_power.h | 2 +-
->   2 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 433e5a81dd4d..3672c00be94a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -943,7 +943,7 @@ static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
->   
->   	/* Power wells at this level and above must be disabled for DC5 entry */
->   	if (INTEL_GEN(dev_priv) >= 12)
-> -		high_pg = TGL_DISP_PW_3;
-> +		high_pg = ICL_DISP_PW_3;
->   	else
->   		high_pg = SKL_DISP_PW_2;
->   
-> @@ -3571,7 +3571,7 @@ static const struct i915_power_well_desc icl_power_wells[] = {
->   		.name = "power well 3",
->   		.domains = ICL_PW_3_POWER_DOMAINS,
->   		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> +		.id = ICL_DISP_PW_3,
->   		{
->   			.hsw.regs = &hsw_power_well_regs,
->   			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
-> @@ -3949,7 +3949,7 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
->   		.name = "power well 3",
->   		.domains = TGL_PW_3_POWER_DOMAINS,
->   		.ops = &hsw_power_well_ops,
-> -		.id = TGL_DISP_PW_3,
-> +		.id = ICL_DISP_PW_3,
->   		{
->   			.hsw.regs = &hsw_power_well_regs,
->   			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index da64a5edae7a..56cbae6327b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -100,7 +100,7 @@ enum i915_power_well_id {
->   	SKL_DISP_PW_MISC_IO,
->   	SKL_DISP_PW_1,
->   	SKL_DISP_PW_2,
-> -	TGL_DISP_PW_3,
-> +	ICL_DISP_PW_3,
->   	SKL_DISP_DC_OFF,
->   };
->   
+Dead inside the shrinker, and very easy to reproduce.
+
+Sultan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
