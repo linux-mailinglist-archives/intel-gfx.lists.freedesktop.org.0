@@ -2,55 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA2F1A8DE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7821A8E0F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 23:52:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECED06E59F;
-	Tue, 14 Apr 2020 21:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBF2C6E5A4;
+	Tue, 14 Apr 2020 21:52:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7EB16E59F
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 21:45:00 +0000 (UTC)
-IronPort-SDR: k8zKWRfvPuvjEnmpgiwLRsNr2mgbK0688WQylD4w1a1D59iUmhA8Z5mo/v2RFcnOOmvdSgfTfu
- lPCGgt3P/nuw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 14:45:00 -0700
-IronPort-SDR: 4JZaW140LNssbeXdvQiH92P93pmEo6y/8QTnZie7L6sIuLzVMr/Hq1G4Rx0dUvRpwv9uCyZaL9
- W3BHNbkfefsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,384,1580803200"; d="scan'208";a="400091287"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by orsmga004.jf.intel.com with ESMTP; 14 Apr 2020 14:44:59 -0700
-Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 14 Apr 2020 14:44:59 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
- FMSMSX125.amr.corp.intel.com ([169.254.2.68]) with mapi id 14.03.0439.000;
- Tue, 14 Apr 2020 14:44:59 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915/tgl: Extend Wa_1409767108:tgl
- to B0 stepping
-Thread-Index: AQHWEqFNktx8OhcqmUKEOfIJDGcJBqh5nHWA
-Date: Tue, 14 Apr 2020 21:44:57 +0000
-Message-ID: <e407af661a1f8dd28eaf25d907eea64c8ba7a94a.camel@intel.com>
-References: <20200414211118.2787489-1-matthew.d.roper@intel.com>
- <20200414211118.2787489-2-matthew.d.roper@intel.com>
-In-Reply-To: <20200414211118.2787489-2-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.209.55.81]
-Content-ID: <05F74A24A50E1E44B44E037FCBAE8998@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 363A66E5A4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 21:52:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20900550-1500050 for multiple; Tue, 14 Apr 2020 22:52:08 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/tgl: Extend Wa_1409767108:tgl
- to B0 stepping
+In-Reply-To: <87lfmxzst2.fsf@riseup.net>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+ <20200414161423.23830-2-chris@chris-wilson.co.uk>
+ <158688212611.24667.7132327074792389398@build.alporthouse.com>
+ <87pnc9zwjf.fsf@riseup.net>
+ <158689519187.24667.5193852715594735657@build.alporthouse.com>
+ <87lfmxzst2.fsf@riseup.net>
+To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158690112767.24667.10470136433913366578@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 14 Apr 2020 22:52:07 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +44,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-04-14 at 14:11 -0700, Matt Roper wrote:
-> Cc: Matt Atwood <matthew.s.atwood@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Quoting Francisco Jerez (2020-04-14 22:00:25)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 433e5a81dd4d..6cc0e23ca566 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -5024,7 +5024,7 @@ static void tgl_bw_buddy_init(struct
-> drm_i915_private *dev_priv)
->  	const struct buddy_page_mask *table;
->  	int i;
->  
-> -	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
-> +	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+> > Quoting Francisco Jerez (2020-04-14 20:39:48)
+> >> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> >> 
+> >> > Quoting Chris Wilson (2020-04-14 17:14:23)
+> >> >> Try to make RPS dramatically more responsive by shrinking the evaluation
+> >> >> intervales by a factor of 100! The issue is as we now park the GPU
+> >> >> rapidly upon idling, a short or bursty workload such as the composited
+> >> >> desktop never sustains enough work to fill and complete an evaluation
+> >> >> window. As such, the frequency we program remains stuck. This was first
+> >> >> reported as once boosted, we never relinquished the boost [see commit
+> >> >> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
+> >> >> it equally applies in the order direction for bursty workloads that
+> >> >> *need* low latency, like desktop animations.
+> >> >> 
+> >> >> What we could try is preserve the incomplete EI history across idling,
+> >> >> it is not clear whether that would be effective, nor whether the
+> >> >> presumption of continuous workloads is accurate. A clearer path seems to
+> >> >> treat it as symptomatic that we fail to handle bursty workload with the
+> >> >> current EI, and seek to address that by shrinking the EI so the
+> >> >> evaluations are run much more often.
+> >> >> 
+> >> >> This will likely entail more frequent interrupts, and by the time we
+> >> >> process the interrupt in the bottom half [from inside a worker], the
+> >> >> workload on the GPU has changed. To address the changeable nature, in
+> >> >> the previous patch we compared the previous complete EI with the
+> >> >> interrupt request and only up/down clock if both agree. The impact of
+> >> >> asking for, and presumably, receiving more interrupts is still to be
+> >> >> determined and mitigations sought. The first idea is to differentiate
+> >> >> between up/down responsivity and make upclocking more responsive than
+> >> >> downlocking. This should both help thwart jitter on bursty workloads by
+> >> >> making it easier to increase than it is to decrease frequencies, and
+> >> >> reduce the number of interrupts we would need to process.
+> >> >
+> >> > Another worry I'd like to raise, is that by reducing the EI we risk
+> >> > unstable evaluations. I'm not sure how accurate the HW is, and I worry
+> >> > about borderline workloads (if that is possible) but mainly the worry is
+> >> > how the HW is sampling.
+> >> >
+> >> > The other unmentioned unknown is the latency in reprogramming the
+> >> > frequency. At what point does it start to become a significant factor?
+> >> > I'm presuming the RPS evaluation itself is free, until it has to talk
+> >> > across the chip to send an interrupt.
+> >> > -Chris
+> >> 
+> >> At least on ICL the problem which this patch and 21abf0bf168d were
+> >> working around seems to have to do with RPS interrupt delivery being
+> >> inadvertently blocked for extended periods of time.  Looking at the GPU
+> >> utilization and RPS events on a graph I could see the GPU being stuck at
+> >> low frequency without any RPS interrupts firing, for a time interval
+> >> orders of magnitude greater than the EI we're theoretically programming
+> >> today.  IOW it seems like the real problem isn't that our EIs are too
+> >> long, but that we're missing a bunch of them.
+> >> 
+> >> The solution I was suggesting for this on IRC during the last couple of
+> >> days wouldn't have any of the drawbacks you mention above, I'll send it
+> >> to this list in a moment if the general approach seems okay to you:
+> >> 
+> >> https://github.com/curro/linux/commit/f7bc31402aa727a52d957e62d985c6dae6be4b86
+> >
+> > We were explicitly told to mask the interrupt generation at source
+> > to conserve power. So I would hope for a statement as to whether that is
+> > still a requirement from the HW architects; but I can't see why we would
+> > not apply the mask and that this is just paper. If the observation about
+> > forcewake tallies, would this not suggest that it is still conserving
+> > power on icl?
+> >
+> 
+> Yeah, it's hard to see how disabling interrupt generation could save any
+> additional power in a unit which is powered off -- At least on ICL where
+> even the interrupt masking register is powered off...
+> 
+> > I haven't looked at whether I see the same phenomenon as you [missing
+> > interrupts on icl] locally, but I was expecting something like the bug
+> > report since the observation that render times are less than EI was
+> > causing the clocks to stay high. And I noticed your problem statement
+> > and was hopeful for a link.
+> >
+> 
+> Right.  In the workloads I was looking at last week the GPU would often
+> be active for periods of time several times greater than the EI, and we
+> would still fail to clock up.
+> 
+> > They sound like two different problems. (Underclocking for animations is
+> > not icl specific.)
+> >
+> 
+> Sure.  But it seems like the underclocking problem has been greatly
+> exacerbated by 21abf0bf168d, which may have been mitigating the same ICL
+> problem I was looking at leading to RPS interrupt loss.  Maybe
+> 21abf0bf168d wouldn't be necessary with working RPS interrupt delivery?
+> And without 21abf0bf168d platforms earlier than ICL wouldn't have as
+> much of an underclocking problem either.
 
-Just notice now, TGL_REVID_B0 is defined in the second patch so please
-reorder or add TGL_REVID_B0 in here.
+21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
 
->  		/* Wa_1409767108: tgl */
->  		table = wa_1409767108_buddy_page_masks;
->  	else
+is necessary due to that we can set a boost frequency and then never run
+the RPS worker due to short activity cycles. See
+igt/i915_pm_rc6_residency for rc6-idle, the bg_load is essentially just
+
+for (;;) {
+	execbuf(&nop);
+	sleep(.1);
+}
+
+Without 21abf0bf168d if you trigger a waitboost just before, it never
+recovers and power utilisation is measurably higher.
+
+> >> That said it *might* be helpful to reduce the EIs we use right now in
+> >> addition, but a factor of 100 seems over the top since that will cause
+> >> the evaluation interval to be roughly two orders of magnitude shorter
+> >> than the rendering time of a typical frame, which can lead to massive
+> >> oscillations even in workloads that use a small fraction of the GPU time
+> >> to render a single frame.  Maybe we want something in between?
+> >
+> > Probably; as you can guess these were pulled out of nowhere based on the
+> > observation that the frame lengths are much shorter than the current EI
+> > and that in order for us to ramp up to maxclocks in a single frame of
+> > animation would take about 4 samples per frame. Based on the reporter's
+> > observations, we do have to ramp up very quickly for single frame of
+> > rendering in order to hit the vblank, as we are ramping down afterwards.
+> >
+> > With a target of 4 samples within say 1ms, 160us isn't too far of the
+> > mark. (We have to allow some extra time to catch up rendering.)
+> 
+> 
+> How about we stop ramping down after the rendering of a single frame?
+> It's not like we save any power by doing that, since the GPU seems to be
+> forced to the minimum frequency for as long as it remains parked anyway.
+> If the GPU remains idle long enough for the RPS utilization counters to
+> drop below the threshold and qualify for a ramp-down the RPS should send
+> us an interrupt, at which point we will ramp down the frequency.
+
+Because it demonstrably and quite dramatically reduces power consumption
+for very light desktop workloads.
+
+> Unconditionally ramping down on parking seems to disturb the accuracy of
+> that RPS feedback loop, which then needs to be worked around by reducing
+> the averaging window of the RPS to a tiny fraction of the oscillation
+> period of any typical GPU workload, which is going to prevent the RPS
+> from seeing a whole oscillation period before it reacts, which is almost
+> guaranteed to have a serious energy-efficiency cost.
+
+There is no feedback loop in these workloads. There are no completed RPS
+workers, they are all cancelled if they were even scheduled. (Now we
+might be tempted to look at the results if they scheduled and take that
+into consideration instead of unconditionally downclocking.)
+
+> > As for steady state workloads, I'm optimistic the smoothing helps. (It's
+> > harder to find steady state, unthrottled workloads!)
+> 
+> I'm curious, how is that smoothing you do in PATCH 1 better than simply
+> setting 2x the EIs? (Which would also mean half the interrupt processing
+> overhead as in this series)
+
+I'm anticipating where the RPS worker may not run until the next jiffie
+or two, by which point the iir is stale. But yes, there's only a subtle
+difference between comparing the last 320us every 160us and comparing
+the last 320us every 320us.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
