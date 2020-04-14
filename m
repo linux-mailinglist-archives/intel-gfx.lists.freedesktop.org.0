@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57671A8B68
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 21:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B521A8BD4
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 22:01:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EED876E57E;
-	Tue, 14 Apr 2020 19:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 791EF89BAF;
+	Tue, 14 Apr 2020 20:01:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12EBC6E57E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 19:48:17 +0000 (UTC)
-IronPort-SDR: HIYHe6pDDldwwF21t/rQVdFlTqnqodP2eFtlin//kpq14N4Ze9eJQeOfWyYg9Nt0bRVzN+WbHP
- 45g09el7SXJA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 12:48:13 -0700
-IronPort-SDR: 8KYIi40u6jrnkhWfKXgv+gs0UYKETvqN3nTPrrGMfCYvqevAjlCZAoPkB2aQCebykyzl01X/JS
- uUAwh72sMksw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,384,1580803200"; d="scan'208";a="242090940"
-Received: from unknown (HELO josouza-MOBL2.amr.corp.intel.com) ([10.209.55.81])
- by orsmga007.jf.intel.com with ESMTP; 14 Apr 2020 12:48:13 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Apr 2020 12:49:56 -0700
-Message-Id: <20200414194956.164323-8-jose.souza@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200414194956.164323-1-jose.souza@intel.com>
-References: <20200414194956.164323-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ABCF089BAF;
+ Tue, 14 Apr 2020 20:01:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E0A9A0019;
+ Tue, 14 Apr 2020 20:01:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 8/8] drm/i915/tc: Do not warn when aux power
- well of static TC ports timeout
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Tue, 14 Apr 2020 20:01:45 -0000
+Message-ID: <158689450561.30376.1771115753536915286@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200413164515.13355-1-jose.souza@intel.com>
+In-Reply-To: <20200413164515.13355-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv4=2C1/9=5D_drm/i915/display=3A_Mov?=
+ =?utf-8?q?e_out_code_to_return_the_digital=5Fport_of_the_aux_ch?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,78 +39,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBpcyBhIGV4cGVjdGVkIHRpbWVvdXQgb2Ygc3RhdGljIFRDIHBvcnRzIG5vdCBjb25uZWNl
-dGVkLCBzbwpub3QgdGhyb3dpbmcgd2FybmluZ3MgdGhhdCB3b3VsZCB0YWludCBDSS4KCnYzOgot
-IG1vdmVkIGNoZWNrcyB0byB0Y19waHlfYXV4X3RpbWVvdXRfZXhwZWN0ZWQoKQoKdjQ6Ci0gbW92
-ZWQgYW5kIGFkZCBjb21tZW50cyB0byB0Y19waHlfYXV4X3RpbWVvdXRfZXhwZWN0ZWQoKQoKdjU6
-Ci0gb25seSBjaGVja2luZyB0Y19sZWdhY3lfcG9ydCBmb3IgVEMgcG9ydHMKClNpZ25lZC1vZmYt
-Ynk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIC4u
-Li9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyAgICB8IDU5ICsrKysrKysr
-KysrKystLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA0MiBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlv
-bnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfcG93ZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eV9wb3dlci5jCmluZGV4IGUyODc1NmNlZTY4YS4uNDBlMTcxM2ZjZGJmIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwpAQCAtMjAs
-NiArMjAsOCBAQAogI2luY2x1ZGUgImludGVsX3RjLmgiCiAjaW5jbHVkZSAiaW50ZWxfdmdhLmgi
-CiAKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsX29wcyBpY2xfdGNfcGh5X2F1
-eF9wb3dlcl93ZWxsX29wczsKKwogYm9vbCBpbnRlbF9kaXNwbGF5X3Bvd2VyX3dlbGxfaXNfZW5h
-YmxlZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJCSBlbnVtIGk5MTVf
-cG93ZXJfd2VsbF9pZCBwb3dlcl93ZWxsX2lkKTsKIApAQCAtMjg0LDYgKzI4NiwyMSBAQCBzdGF0
-aWMgdm9pZCBoc3dfcG93ZXJfd2VsbF9wcmVfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYsCiAJCWdlbjhfaXJxX3Bvd2VyX3dlbGxfcHJlX2Rpc2FibGUoZGV2X3ByaXYs
-IGlycV9waXBlX21hc2spOwogfQogCisjZGVmaW5lIElDTF9BVVhfUFdfVE9fQ0gocHdfaWR4KQlc
-CisJKChwd19pZHgpIC0gSUNMX1BXX0NUTF9JRFhfQVVYX0EgKyBBVVhfQ0hfQSkKKworI2RlZmlu
-ZSBJQ0xfVEJUX0FVWF9QV19UT19DSChwd19pZHgpCVwKKwkoKHB3X2lkeCkgLSBJQ0xfUFdfQ1RM
-X0lEWF9BVVhfVEJUMSArIEFVWF9DSF9DKQorCitzdGF0aWMgZW51bSBhdXhfY2ggaWNsX3RjX3Bo
-eV9hdXhfY2goc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAorCQkJCSAgICAgc3Ry
-dWN0IGk5MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2VsbCkKK3sKKwlpbnQgcHdfaWR4ID0gcG93ZXJf
-d2VsbC0+ZGVzYy0+aHN3LmlkeDsKKworCXJldHVybiBwb3dlcl93ZWxsLT5kZXNjLT5oc3cuaXNf
-dGNfdGJ0ID8gSUNMX1RCVF9BVVhfUFdfVE9fQ0gocHdfaWR4KSA6CisJCQkJCQkgSUNMX0FVWF9Q
-V19UT19DSChwd19pZHgpOworfQorCiBzdGF0aWMgc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAq
-CiBhdXhfY2hfdG9fZGlnaXRhbF9wb3J0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diwKIAkJICAgICAgIGVudW0gYXV4X2NoIGF1eF9jaCkKQEAgLTMxMSw2ICszMjgsMjggQEAgYXV4
-X2NoX3RvX2RpZ2l0YWxfcG9ydChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJ
-cmV0dXJuIGRpZ19wb3J0OwogfQogCitzdGF0aWMgYm9vbCB0Y19waHlfYXV4X3RpbWVvdXRfZXhw
-ZWN0ZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAorCQkJCQlzdHJ1Y3QgaTkx
-NV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsKQoreworCS8qIEFuIEFVWCB0aW1lb3V0IGlzIGV4cGVj
-dGVkIGlmIHRoZSBUQlQgRFAgdHVubmVsIGlzIGRvd24uICovCisJaWYgKHBvd2VyX3dlbGwtPmRl
-c2MtPmhzdy5pc190Y190YnQpCisJCXJldHVybiB0cnVlOworCisJLyoKKwkgKiBBbiBBVVggdGlt
-ZW91dCBpcyBleHBlY3RlZCBiZWNhdXNlIHdlIGVuYWJsZSBUQyBsZWdhY3kgcG9ydCBhdXgKKwkg
-KiB0byBob2xkIHBvcnQgb3V0IG9mIFRDIGNvbGQKKwkgKi8KKwlpZiAoSU5URUxfR0VOKGRldl9w
-cml2KSA9PSAxMSAmJgorCSAgICBwb3dlcl93ZWxsLT5kZXNjLT5vcHMgPT0gJmljbF90Y19waHlf
-YXV4X3Bvd2VyX3dlbGxfb3BzKSB7CisJCWVudW0gYXV4X2NoIGF1eF9jaCA9IGljbF90Y19waHlf
-YXV4X2NoKGRldl9wcml2LCBwb3dlcl93ZWxsKTsKKwkJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
-dCAqZGlnX3BvcnQgPSBhdXhfY2hfdG9fZGlnaXRhbF9wb3J0KGRldl9wcml2LCBhdXhfY2gpOwor
-CisJCXJldHVybiBkaWdfcG9ydC0+dGNfbGVnYWN5X3BvcnQ7CisJfQorCisJcmV0dXJuIGZhbHNl
-OworfQorCiBzdGF0aWMgdm9pZCBoc3dfd2FpdF9mb3JfcG93ZXJfd2VsbF9lbmFibGUoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCQkJCQkgICBzdHJ1Y3QgaTkxNV9wb3dlcl93
-ZWxsICpwb3dlcl93ZWxsKQogewpAQCAtMzIzLDggKzM2Miw5IEBAIHN0YXRpYyB2b2lkIGhzd193
-YWl0X2Zvcl9wb3dlcl93ZWxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYsCiAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLCAiJXMgcG93ZXIgd2VsbCBlbmFibGUg
-dGltZW91dFxuIiwKIAkJCSAgICBwb3dlcl93ZWxsLT5kZXNjLT5uYW1lKTsKIAotCQkvKiBBbiBB
-VVggdGltZW91dCBpcyBleHBlY3RlZCBpZiB0aGUgVEJUIERQIHR1bm5lbCBpcyBkb3duLiAqLwot
-CQlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgIXBvd2VyX3dlbGwtPmRlc2MtPmhzdy5pc190
-Y190YnQpOworCQlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwKKwkJCSAgICAhdGNfcGh5X2F1
-eF90aW1lb3V0X2V4cGVjdGVkKGRldl9wcml2LCBwb3dlcl93ZWxsKSk7CisKIAl9CiB9CiAKQEAg
-LTUyMCwyMSArNTYwLDYgQEAgaWNsX2NvbWJvX3BoeV9hdXhfcG93ZXJfd2VsbF9kaXNhYmxlKHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAloc3dfd2FpdF9mb3JfcG93ZXJfd2Vs
-bF9kaXNhYmxlKGRldl9wcml2LCBwb3dlcl93ZWxsKTsKIH0KIAotI2RlZmluZSBJQ0xfQVVYX1BX
-X1RPX0NIKHB3X2lkeCkJXAotCSgocHdfaWR4KSAtIElDTF9QV19DVExfSURYX0FVWF9BICsgQVVY
-X0NIX0EpCi0KLSNkZWZpbmUgSUNMX1RCVF9BVVhfUFdfVE9fQ0gocHdfaWR4KQlcCi0JKChwd19p
-ZHgpIC0gSUNMX1BXX0NUTF9JRFhfQVVYX1RCVDEgKyBBVVhfQ0hfQykKLQotc3RhdGljIGVudW0g
-YXV4X2NoIGljbF90Y19waHlfYXV4X2NoKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diwKLQkJCQkgICAgIHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBvd2VyX3dlbGwpCi17Ci0JaW50
-IHB3X2lkeCA9IHBvd2VyX3dlbGwtPmRlc2MtPmhzdy5pZHg7Ci0KLQlyZXR1cm4gcG93ZXJfd2Vs
-bC0+ZGVzYy0+aHN3LmlzX3RjX3RidCA/IElDTF9UQlRfQVVYX1BXX1RPX0NIKHB3X2lkeCkgOgot
-CQkJCQkJIElDTF9BVVhfUFdfVE9fQ0gocHdfaWR4KTsKLX0KLQogI2lmIElTX0VOQUJMRUQoQ09O
-RklHX0RSTV9JOTE1X0RFQlVHX1JVTlRJTUVfUE0pCiAKIHN0YXRpYyB1NjQgYXN5bmNfcHV0X2Rv
-bWFpbnNfbWFzayhzdHJ1Y3QgaTkxNV9wb3dlcl9kb21haW5zICpwb3dlcl9kb21haW5zKTsKLS0g
-CjIuMjYuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [v4,1/9] drm/i915/display: Move out code to return the digital_port of the aux ch
+URL   : https://patchwork.freedesktop.org/series/75886/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+07f7e1eaedcd drm/i915/display: Move out code to return the digital_port of the aux ch
+0c650cdb3e24 drm/i915/display: Add intel_legacy_aux_to_power_domain()
+13beb443d72c drm/i915/display: Split hsw_power_well_enable() into two
+53d8424945c4 drm/i915/tc/icl: Implement TC cold sequences
+-:76: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#76: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:588:
++		msleep(1);
+
+-:81: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#81: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:593:
++		msleep(1);
+
+total: 0 errors, 2 warnings, 0 checks, 157 lines checked
+4d5beb240164 drm/i915/tc: Skip ref held check for TC legacy aux power wells
+87ba4c5c772a drm/i915/tc/tgl: Implement TC cold sequences
+-:112: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#112: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:4014:
++		msleep(1);
+
+total: 0 errors, 1 warnings, 0 checks, 185 lines checked
+1de4d7a9096c drm/i915/tc: Catch TC users accessing FIA registers without enable aux
+073806ccfac9 drm/i915/tc: Do not warn when aux power well of static TC ports timeout
+167a931dadfe drm/i915: Add missing deinitialization cases of load failure
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+[drm:__intel_engine_init_ctx_wa [i915]] Initialized 3 context workarounds on rcs'0
+
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
