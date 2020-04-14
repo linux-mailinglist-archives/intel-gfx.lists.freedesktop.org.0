@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB581A8798
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 19:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8DA1A87B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 19:39:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8973389944;
-	Tue, 14 Apr 2020 17:36:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FEB16E20D;
+	Tue, 14 Apr 2020 17:39:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C25F8984D
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 17:36:22 +0000 (UTC)
-IronPort-SDR: KMSFf3ZIiWQRw8JGfy2nRt/Juc2xCgp++/S/yoeFt0MUpsf+qe3voCUskjvE3TcReXSLgvDuJa
- xIDxvTNA2tKw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC0D96E20D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 17:39:30 +0000 (UTC)
+IronPort-SDR: GZZ11VKzKyfrL/6aSY/+isiofkBhs/4Tfy2wEIIY5yf4MbhdGw/WrL5j66v6vLnLno323bkmK7
+ juqZ4oolRKag==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 10:36:21 -0700
-IronPort-SDR: PsONwvecuoFXNiKBO4d7rG7I8HZbn0ifuAS+5nauuzOGdSmn+7eO2YC6ZcWpPvinMidONa4Ipv
- mctLgBsDx9VQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="332248006"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 14 Apr 2020 10:36:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Apr 2020 20:36:18 +0300
-Date: Tue, 14 Apr 2020 20:36:18 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200414173618.GE6112@intel.com>
-References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
- <20200409154730.18568-3-stanislav.lisovskiy@intel.com>
+ 14 Apr 2020 10:39:29 -0700
+IronPort-SDR: CeJeJ5A2U6h1yG9MFpBsrXNXfDcKasGKDAZ4zsHlk9FCT/xJ6sBdxBkeX6Kbmn3lxzEzx6RVMA
+ +VZXRzlaYJog==
+X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="245478852"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 10:39:29 -0700
+Date: Tue, 14 Apr 2020 20:39:12 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200414173912.GB5942@ideak-desk.fi.intel.com>
+References: <20200413164515.13355-1-jose.souza@intel.com>
+ <20200413164515.13355-6-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200409154730.18568-3-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v22 02/13] drm/i915: Eliminate magic numbers
- "0" and "1" from color plane
+In-Reply-To: <20200413164515.13355-6-jose.souza@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v4 6/9] drm/i915/tc/tgl: Implement TC cold
+ sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,281 +49,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 09, 2020 at 06:47:19PM +0300, Stanislav Lisovskiy wrote:
-> According to many computer science sources - magic values
-> in code _are_ _bad_. For many reasons: the reason is that "0"
-> or "1" or whatever magic values confuses and doesn't give any
-> info why this parameter is this value and what it's meaning
-> is.
-> I renamed "0" to COLOR_PLANE_Y and "1" to COLOR_PLANE_UV,
-> because we in fact already use this naming in many other places
-> and function names, when dealing with color planes.
+On Mon, Apr 13, 2020 at 09:45:12AM -0700, Jos=E9 Roberto de Souza wrote:
+> TC ports can enter in TCCOLD to save power and is required to request
+> to PCODE to exit this state before use or read to TC registers.
 > =
 
-> v2: Removed long line to make checkpatch happy.
+> For TGL there is a new MBOX command to do that with a parameter to ask
+> PCODE to exit and block TCCOLD entry or unblock TCCOLD entry.
 > =
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> So adding a new power domain to reuse the refcount and only allow
+> TC cold when all TC ports are not in use.
+> =
+
+> v2:
+> - fixed missing case in intel_display_power_domain_str()
+> - moved tgl_tc_cold_request to intel_display_power.c
+> - renamed TGL_TC_COLD_OFF to TGL_TC_COLD_OFF_POWER_DOMAINS
+> - added all TC and TBT aux power domains to
+> TGL_TC_COLD_OFF_POWER_DOMAINS
+> =
+
+> v3:
+> - added one msec sleep when PCODE returns -EAGAIN
+> - added timeout of 5msec to not loop forever if
+> sandybridge_pcode_write_timeout() keeps returning -EAGAIN
+> =
+
+> v4:
+> - Made failure to block or unblock TC cold a error
+> - removed 5msec timeout, intead giving PCODE 1msec by up 3 times to
+> recover from the internal error
+> =
+
+> BSpec: 49294
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  .../drm/i915/display/intel_display_types.h    |  5 +++
->  drivers/gpu/drm/i915/intel_pm.c               | 42 ++++++++++---------
-
-Still super inconsistent with the rest of the driver. Also there's
-the fact that wm_uv doesn't even exist on icl+ so the Y vs. UV naming
-isn't even accurate in a bunch of places.
-
-IMO just drop this for now. We can argue ab out this sort of stuff
-later if we figure out a way to make it consistent across the whole
-driver.
-
->  2 files changed, 27 insertions(+), 20 deletions(-)
+>  .../drm/i915/display/intel_display_power.c    | 107 ++++++++++++++++++
+>  .../drm/i915/display/intel_display_power.h    |   1 +
+>  drivers/gpu/drm/i915/display/intel_tc.c       |  17 ++-
+>  drivers/gpu/drm/i915/i915_reg.h               |   4 +
+>  4 files changed, 126 insertions(+), 3 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index ba8c08145c88..b437182c630a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -691,6 +691,11 @@ struct skl_plane_wm {
->  	bool is_planar;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 50bed2d1dd13..00de926aaccf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -151,6 +151,8 @@ intel_display_power_domain_str(enum intel_display_pow=
+er_domain domain)
+>  		return "GT_IRQ";
+>  	case POWER_DOMAIN_DPLL_DC_OFF:
+>  		return "DPLL_DC_OFF";
+> +	case POWER_DOMAIN_TC_COLD_OFF:
+> +		return "TC_COLD_OFF";
+>  	default:
+>  		MISSING_CASE(domain);
+>  		return "?";
+> @@ -2861,6 +2863,21 @@ void intel_display_power_put(struct drm_i915_priva=
+te *dev_priv,
+>  #define TGL_AUX_I_TBT6_IO_POWER_DOMAINS (	\
+>  	BIT_ULL(POWER_DOMAIN_AUX_I_TBT))
+>  =
+
+> +#define TGL_TC_COLD_OFF_POWER_DOMAINS (		\
+> +	BIT_ULL(POWER_DOMAIN_AUX_D)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_E)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_F)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_G)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_H)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_I)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_D_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_E_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_F_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_G_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_H_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
+> +	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
+> +
+>  static const struct i915_power_well_ops i9xx_always_on_power_well_ops =
+=3D {
+>  	.sync_hw =3D i9xx_power_well_sync_hw_noop,
+>  	.enable =3D i9xx_always_on_power_well_noop,
+> @@ -3963,6 +3980,90 @@ static const struct i915_power_well_desc ehl_power=
+_wells[] =3D {
+>  	},
 >  };
 >  =
 
-> +enum color_plane {
-> +	COLOR_PLANE_Y,
-> +	COLOR_PLANE_UV
+> +static void
+> +tgl_tc_cold_request(struct drm_i915_private *i915, bool block)
+> +{
+> +	u8 tries =3D 0;
+> +	int ret;
+> +
+> +	while (1) {
+> +		u32 low_val =3D 0, high_val;
+> +
+> +		if (block)
+> +			high_val =3D TGL_PCODE_EXIT_TCCOLD_DATA_H_BLOCK_REQ;
+> +		else
+> +			high_val =3D TGL_PCODE_EXIT_TCCOLD_DATA_H_UNBLOCK_REQ;
+> +
+> +		/*
+> +		 * Spec states that we should timeout the request after 200us
+> +		 * but the function below will timeout after 500us
+> +		 */
+> +		ret =3D sandybridge_pcode_read(i915, TGL_PCODE_TCCOLD, &low_val,
+> +					     &high_val);
+> +		if (ret =3D=3D 0) {
+> +			if (block &&
+> +			    (low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED))
+> +				ret =3D -EIO;
+> +			else
+> +				break;
+> +		}
+> +
+> +		if (++tries =3D=3D 3)
+> +			break;
+> +
+> +		msleep(1);
+
+Why did this go back to msleep unconditionally? Doing that only for
+ret =3D=3D -EAGAIN made sense to me, since that is only the case where you'd
+want to avoid busy looping.
+
+> +	}
+> +
+> +	if (ret)
+> +		drm_err(&i915->drm, "TC cold %sblock failed\n",
+> +			block ? "" : "un");
+> +	else
+> +		drm_dbg_kms(&i915->drm, "TC cold %sblock succeeded\n",
+> +			    block ? "" : "un");
+> +}
+> +
+> +static void
+> +tgl_tc_cold_off_power_well_enable(struct drm_i915_private *i915,
+> +				  struct i915_power_well *power_well)
+> +{
+> +	tgl_tc_cold_request(i915, true);
+> +}
+> +
+> +static void
+> +tgl_tc_cold_off_power_well_disable(struct drm_i915_private *i915,
+> +				   struct i915_power_well *power_well)
+> +{
+> +	tgl_tc_cold_request(i915, false);
+> +}
+> +
+> +static void
+> +tgl_tc_cold_off_power_well_sync_hw(struct drm_i915_private *i915,
+> +				   struct i915_power_well *power_well)
+> +{
+> +	if (power_well->count > 0)
+> +		tgl_tc_cold_off_power_well_enable(i915, power_well);
+> +	else
+> +		tgl_tc_cold_off_power_well_disable(i915, power_well);
+> +}
+> +
+> +static bool
+> +tgl_tc_cold_off_power_well_is_enabled(struct drm_i915_private *dev_priv,
+> +				      struct i915_power_well *power_well)
+> +{
+> +	/*
+> +	 * Not the correctly implementation but there is no way to just read it
+> +	 * from PCODE, so returning count to avoid state mismatch errors
+> +	 */
+> +	return power_well->count;
+> +}
+> +
+> +static const struct i915_power_well_ops tgl_tc_cold_off_ops =3D {
+> +	.sync_hw =3D tgl_tc_cold_off_power_well_sync_hw,
+> +	.enable =3D tgl_tc_cold_off_power_well_enable,
+> +	.disable =3D tgl_tc_cold_off_power_well_disable,
+> +	.is_enabled =3D tgl_tc_cold_off_power_well_is_enabled,
 > +};
 > +
->  struct skl_pipe_wm {
->  	struct skl_plane_wm planes[I915_MAX_PLANES];
+>  static const struct i915_power_well_desc tgl_power_wells[] =3D {
+>  	{
+>  		.name =3D "always-on",
+> @@ -4290,6 +4391,12 @@ static const struct i915_power_well_desc tgl_power=
+_wells[] =3D {
+>  			.hsw.irq_pipe_mask =3D BIT(PIPE_D),
+>  		},
+>  	},
+> +	{
+> +		.name =3D "TC cold off",
+> +		.domains =3D TGL_TC_COLD_OFF_POWER_DOMAINS,
+> +		.ops =3D &tgl_tc_cold_off_ops,
+> +		.id =3D DISP_PW_ID_NONE,
+> +	},
 >  };
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index b632b6bb9c3e..176a28d71822 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4013,7 +4013,7 @@ static int skl_compute_wm_params(const struct intel=
-_crtc_state *crtc_state,
->  				 int width, const struct drm_format_info *format,
->  				 u64 modifier, unsigned int rotation,
->  				 u32 plane_pixel_rate, struct skl_wm_params *wp,
-> -				 int color_plane);
-> +				 enum color_plane);
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
-te,
->  				 int level,
->  				 unsigned int latency,
-> @@ -4035,7 +4035,7 @@ skl_cursor_allocation(const struct intel_crtc_state=
- *crtc_state,
->  				    drm_format_info(DRM_FORMAT_ARGB8888),
->  				    DRM_FORMAT_MOD_LINEAR,
->  				    DRM_MODE_ROTATE_0,
-> -				    crtc_state->pixel_rate, &wp, 0);
-> +				    crtc_state->pixel_rate, &wp, COLOR_PLANE_Y);
->  	drm_WARN_ON(&dev_priv->drm, ret);
 >  =
 
->  	for (level =3D 0; level <=3D max_level; level++) {
-> @@ -4431,7 +4431,7 @@ static u8 skl_compute_dbuf_slices(const struct inte=
-l_crtc_state *crtc_state,
->  static u64
->  skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  			     const struct intel_plane_state *plane_state,
-> -			     int color_plane)
-> +			     enum color_plane color_plane)
->  {
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> @@ -4446,7 +4446,7 @@ skl_plane_relative_data_rate(const struct intel_crt=
-c_state *crtc_state,
->  	if (plane->id =3D=3D PLANE_CURSOR)
->  		return 0;
->  =
-
-> -	if (color_plane =3D=3D 1 &&
-> +	if (color_plane =3D=3D COLOR_PLANE_UV &&
->  	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
->  		return 0;
->  =
-
-> @@ -4459,7 +4459,7 @@ skl_plane_relative_data_rate(const struct intel_crt=
-c_state *crtc_state,
->  	height =3D drm_rect_height(&plane_state->uapi.src) >> 16;
->  =
-
->  	/* UV plane does 1/2 pixel sub-sampling */
-> -	if (color_plane =3D=3D 1) {
-> +	if (color_plane =3D=3D COLOR_PLANE_UV) {
->  		width /=3D 2;
->  		height /=3D 2;
->  	}
-> @@ -4489,12 +4489,12 @@ skl_get_total_relative_data_rate(struct intel_crt=
-c_state *crtc_state,
->  		u64 rate;
->  =
-
->  		/* packed/y */
-> -		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> +		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_P=
-LANE_Y);
->  		plane_data_rate[plane_id] =3D rate;
->  		total_data_rate +=3D rate;
->  =
-
->  		/* uv-plane */
-> -		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 1);
-> +		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_P=
-LANE_UV);
->  		uv_plane_data_rate[plane_id] =3D rate;
->  		total_data_rate +=3D rate;
->  	}
-> @@ -4516,7 +4516,7 @@ icl_get_total_relative_data_rate(struct intel_crtc_=
-state *crtc_state,
->  		u64 rate;
->  =
-
->  		if (!plane_state->planar_linked_plane) {
-> -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_=
-PLANE_Y);
->  			plane_data_rate[plane_id] =3D rate;
->  			total_data_rate +=3D rate;
->  		} else {
-> @@ -4533,12 +4533,14 @@ icl_get_total_relative_data_rate(struct intel_crt=
-c_state *crtc_state,
->  				continue;
->  =
-
->  			/* Y plane rate is calculated on the slave */
-> -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state,
-> +							    COLOR_PLANE_Y);
->  			y_plane_id =3D plane_state->planar_linked_plane->id;
->  			plane_data_rate[y_plane_id] =3D rate;
->  			total_data_rate +=3D rate;
->  =
-
-> -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 1);
-> +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state,
-> +							    COLOR_PLANE_UV);
->  			plane_data_rate[plane_id] =3D rate;
->  			total_data_rate +=3D rate;
->  		}
-> @@ -4854,14 +4856,14 @@ skl_compute_wm_params(const struct intel_crtc_sta=
-te *crtc_state,
->  		      int width, const struct drm_format_info *format,
->  		      u64 modifier, unsigned int rotation,
->  		      u32 plane_pixel_rate, struct skl_wm_params *wp,
-> -		      int color_plane)
-> +		      enum color_plane color_plane)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	u32 interm_pbpl;
->  =
-
->  	/* only planar format has two planes */
-> -	if (color_plane =3D=3D 1 &&
-> +	if (color_plane =3D=3D COLOR_PLANE_UV &&
->  	    !intel_format_info_is_yuv_semiplanar(format, modifier)) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "Non planar format have single plane\n");
-> @@ -4878,7 +4880,7 @@ skl_compute_wm_params(const struct intel_crtc_state=
- *crtc_state,
->  	wp->is_planar =3D intel_format_info_is_yuv_semiplanar(format, modifier);
->  =
-
->  	wp->width =3D width;
-> -	if (color_plane =3D=3D 1 && wp->is_planar)
-> +	if (color_plane =3D=3D COLOR_PLANE_UV && wp->is_planar)
->  		wp->width /=3D 2;
->  =
-
->  	wp->cpp =3D format->cpp[color_plane];
-> @@ -4945,7 +4947,7 @@ skl_compute_wm_params(const struct intel_crtc_state=
- *crtc_state,
 >  static int
->  skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
->  			    const struct intel_plane_state *plane_state,
-> -			    struct skl_wm_params *wp, int color_plane)
-> +			    struct skl_wm_params *wp, enum color_plane color_plane)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
+/gpu/drm/i915/display/intel_display_power.h
+> index da64a5edae7a..070457e7b948 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -76,6 +76,7 @@ enum intel_display_power_domain {
+>  	POWER_DOMAIN_MODESET,
+>  	POWER_DOMAIN_GT_IRQ,
+>  	POWER_DOMAIN_DPLL_DC_OFF,
+> +	POWER_DOMAIN_TC_COLD_OFF,
+>  	POWER_DOMAIN_INIT,
+>  =
+
+>  	POWER_DOMAIN_NUM,
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 0cf33d4d21c3..521a94c63640 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -53,16 +53,27 @@ tc_port_load_fia_params(struct drm_i915_private *i915,
+>  	}
+>  }
+>  =
+
+> +static enum intel_display_power_domain
+> +tc_cold_get_power_domain(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +
+> +	if (INTEL_GEN(i915) =3D=3D 11)
+> +		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> +	else
+> +		return POWER_DOMAIN_TC_COLD_OFF;
+> +}
+> +
+>  static intel_wakeref_t
+>  tc_cold_block(struct intel_digital_port *dig_port)
 >  {
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
->  	int width;
-> @@ -5187,7 +5189,7 @@ static void skl_compute_transition_wm(const struct =
-intel_crtc_state *crtc_state,
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	enum intel_display_power_domain domain;
 >  =
 
->  static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  				     const struct intel_plane_state *plane_state,
-> -				     enum plane_id plane_id, int color_plane)
-> +				     enum plane_id plane_id, enum color_plane color_plane)
->  {
->  	struct skl_plane_wm *wm =3D &crtc_state->wm.skl.optimal.planes[plane_id=
-];
->  	struct skl_wm_params wm_params;
-> @@ -5216,7 +5218,7 @@ static int skl_build_plane_wm_uv(struct intel_crtc_=
-state *crtc_state,
->  =
-
->  	/* uv plane watermarks must also be validated for NV12/Planar */
->  	ret =3D skl_compute_plane_wm_params(crtc_state, plane_state,
-> -					  &wm_params, 1);
-> +					  &wm_params, COLOR_PLANE_UV);
->  	if (ret)
->  		return ret;
->  =
-
-> @@ -5237,7 +5239,7 @@ static int skl_build_plane_wm(struct intel_crtc_sta=
-te *crtc_state,
+> -	if (INTEL_GEN(i915) !=3D 11 || !dig_port->tc_legacy_port)
+> +	if (INTEL_GEN(i915) =3D=3D 11 && !dig_port->tc_legacy_port)
 >  		return 0;
 >  =
 
->  	ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
-> -					plane_id, 0);
-> +					plane_id, COLOR_PLANE_Y);
->  	if (ret)
->  		return ret;
+> -	domain =3D intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> +	domain =3D tc_cold_get_power_domain(dig_port);
+>  	return intel_display_power_get(i915, domain);
+>  }
 >  =
 
-> @@ -5270,17 +5272,17 @@ static int icl_build_plane_wm(struct intel_crtc_s=
-tate *crtc_state,
->  			fb->format->num_planes =3D=3D 1);
+> @@ -80,7 +91,7 @@ tc_cold_unblock(struct intel_digital_port *dig_port, in=
+tel_wakeref_t wakeref)
+>  	if (wakeref =3D=3D 0)
+>  		return;
 >  =
 
->  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
-> -						y_plane_id, 0);
-> +						y_plane_id, COLOR_PLANE_Y);
->  		if (ret)
->  			return ret;
+> -	domain =3D intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> +	domain =3D tc_cold_get_power_domain(dig_port);
+>  	intel_display_power_put_async(i915, domain, wakeref);
+>  }
 >  =
 
->  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
-> -						plane_id, 1);
-> +						plane_id, COLOR_PLANE_UV);
->  		if (ret)
->  			return ret;
->  	} else if (intel_wm_plane_visible(crtc_state, plane_state)) {
->  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
-> -						plane_id, 0);
-> +						plane_id, COLOR_PLANE_Y);
->  		if (ret)
->  			return ret;
->  	}
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index e4667add70b0..39f281fe6d6c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9111,6 +9111,10 @@ enum {
+>  #define   ICL_PCODE_EXIT_TCCOLD			0x12
+>  #define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
+>  #define   DISPLAY_IPS_CONTROL			0x19
+> +#define   TGL_PCODE_TCCOLD			0x26
+> +#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED	REG_BIT(0)
+> +#define     TGL_PCODE_EXIT_TCCOLD_DATA_H_BLOCK_REQ	0
+> +#define     TGL_PCODE_EXIT_TCCOLD_DATA_H_UNBLOCK_REQ	REG_BIT(0)
+>              /* See also IPS_CTL */
+>  #define     IPS_PCODE_CONTROL			(1 << 30)
+>  #define   HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL	0x1A
 > -- =
 
-> 2.24.1.485.gad05a3d8e5
+> 2.26.0
+> =
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
