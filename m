@@ -2,41 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594611A87E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 19:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A931A87E8
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 19:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B24ED6E50C;
-	Tue, 14 Apr 2020 17:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 626CC6E511;
+	Tue, 14 Apr 2020 17:48:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514816E50C
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 17:48:13 +0000 (UTC)
-IronPort-SDR: QQ9OzGwLZRKUT46RRACftcII4ByKu11uKssTAFTu9s/xPHllAJlnuExA1A14iSHjh/nhMp2rZW
- YKZa6YQTUXsw==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27F06E50C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 17:48:01 +0000 (UTC)
+IronPort-SDR: 559LlXN4zYRoGAtcSjvxbmQv0fafZ92gfRkW18JxVjd7ONpTS9iYe2Sy+gtoxAgzW70NsUc5Up
+ c9Sx4lSf0BKQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 10:48:12 -0700
-IronPort-SDR: Zq8KclKr6WWEs2PndUlu7vHYR+AiDAu6TM0SKEiGXUxkiT9h9T1fHypiI2PjDeknZHhHwrMdWQ
- 9vCwGrDRlWSQ==
-X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="427145584"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2020 10:48:11 -0700
-Date: Tue, 14 Apr 2020 20:47:54 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200414174754.GC5942@ideak-desk.fi.intel.com>
-References: <20200413164515.13355-1-jose.souza@intel.com>
- <20200413164515.13355-8-jose.souza@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2020 10:47:59 -0700
+IronPort-SDR: kbt4pQc1GcXrDOCpx3Lp9rsqqncTyoyteYq8Qdc0CJKTgOOzVNDOdBTI3L7CqVU7wLuMMlwyE/
+ r2OZxAUdWGuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,383,1580803200"; d="scan'208";a="245481374"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 14 Apr 2020 10:47:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Apr 2020 20:47:56 +0300
+Date: Tue, 14 Apr 2020 20:47:56 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200414174756.GH6112@intel.com>
+References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+ <20200409154730.18568-2-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200413164515.13355-8-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v4 8/9] drm/i915/tc: Do not warn when aux
- power well of static TC ports timeout
+In-Reply-To: <20200409154730.18568-2-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v22 01/13] drm/i915: Start passing latency
+ as parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,149 +52,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 13, 2020 at 09:45:14AM -0700, Jos=E9 Roberto de Souza wrote:
-> This is a expected timeout of static TC ports not conneceted, so
-> not throwing warnings that would taint CI.
+On Thu, Apr 09, 2020 at 06:47:18PM +0300, Stanislav Lisovskiy wrote:
+> We need to start passing memory latency as a
+> parameter when calculating plane wm levels,
+> as latency can get changed in different
+> circumstances(for example with or without SAGV).
+> So we need to be more flexible on that matter.
 > =
 
-> v3:
-> - moved checks to tc_phy_aux_timeout_expected()
+> v2: Changed latency type from u32 to unsigned int(Ville Syrj=E4l=E4)
 > =
 
-> v4:
-> - moved and add comments to tc_phy_aux_timeout_expected()
-> =
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+Pushed this one. Thanks.
+
 > ---
->  .../drm/i915/display/intel_display_power.c    | 56 +++++++++++++------
->  1 file changed, 39 insertions(+), 17 deletions(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 00de926aaccf..2d2125d1534b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -284,6 +284,21 @@ static void hsw_power_well_pre_disable(struct drm_i9=
-15_private *dev_priv,
->  		gen8_irq_power_well_pre_disable(dev_priv, irq_pipe_mask);
->  }
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 8375054ba27d..b632b6bb9c3e 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4016,6 +4016,7 @@ static int skl_compute_wm_params(const struct intel=
+_crtc_state *crtc_state,
+>  				 int color_plane);
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
+te,
+>  				 int level,
+> +				 unsigned int latency,
+>  				 const struct skl_wm_params *wp,
+>  				 const struct skl_wm_level *result_prev,
+>  				 struct skl_wm_level *result /* out */);
+> @@ -4038,7 +4039,9 @@ skl_cursor_allocation(const struct intel_crtc_state=
+ *crtc_state,
+>  	drm_WARN_ON(&dev_priv->drm, ret);
 >  =
 
-> +#define ICL_AUX_PW_TO_CH(pw_idx)	\
-> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
+>  	for (level =3D 0; level <=3D max_level; level++) {
+> -		skl_compute_plane_wm(crtc_state, level, &wp, &wm, &wm);
+> +		unsigned int latency =3D dev_priv->wm.skl_latency[level];
 > +
-> +#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
-> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
-> +
-> +static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
-> +				     struct i915_power_well *power_well)
-> +{
-> +	int pw_idx =3D power_well->desc->hsw.idx;
-> +
-> +	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
-> +						 ICL_AUX_PW_TO_CH(pw_idx);
-> +}
-> +
->  static struct intel_digital_port *
->  aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
->  		       enum aux_ch aux_ch)
-> @@ -311,6 +326,27 @@ aux_ch_to_digital_port(struct drm_i915_private *dev_=
-priv,
->  	return dig_port;
->  }
+> +		skl_compute_plane_wm(crtc_state, level, latency, &wp, &wm, &wm);
+>  		if (wm.min_ddb_alloc =3D=3D U16_MAX)
+>  			break;
 >  =
 
-> +static bool tc_phy_aux_timeout_expected(struct drm_i915_private *dev_pri=
-v,
-> +					struct i915_power_well *power_well)
-> +{
-> +	/* An AUX timeout is expected if the TBT DP tunnel is down. */
-> +	if (power_well->desc->hsw.is_tc_tbt)
-> +		return true;
-> +
-> +	/*
-> +	 * An AUX timeout is expected because we enable TC legacy port aux
-> +	 * to hold port out of TC cold
-> +	 */
-> +	if (INTEL_GEN(dev_priv) =3D=3D 11) {
+> @@ -4972,12 +4975,12 @@ static bool skl_wm_has_lines(struct drm_i915_priv=
+ate *dev_priv, int level)
+>  =
 
-You missed my comment on the previous version, should be:
- 	if (GEN=3D=3D11 && power_well->desc->ops =3D=3D &icl_tc_phy_aux_power_wel=
-l_ops) {
-
-> +		enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
-> +		struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_pri=
-v, aux_ch);
-> +
-> +		return dig_port->tc_legacy_port;
-> +	}
-> +
-> +	return false;
-> +}
-> +
->  static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_=
-priv,
->  					   struct i915_power_well *power_well)
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
+te,
+>  				 int level,
+> +				 unsigned int latency,
+>  				 const struct skl_wm_params *wp,
+>  				 const struct skl_wm_level *result_prev,
+>  				 struct skl_wm_level *result /* out */)
 >  {
-> @@ -323,8 +359,9 @@ static void hsw_wait_for_power_well_enable(struct drm=
-_i915_private *dev_priv,
->  		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
->  			    power_well->desc->name);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+> -	u32 latency =3D dev_priv->wm.skl_latency[level];
+>  	uint_fixed_16_16_t method1, method2;
+>  	uint_fixed_16_16_t selected_result;
+>  	u32 res_blocks, res_lines, min_ddb_alloc =3D 0;
+> @@ -5106,9 +5109,10 @@ skl_compute_wm_levels(const struct intel_crtc_stat=
+e *crtc_state,
 >  =
 
-> -		/* An AUX timeout is expected if the TBT DP tunnel is down. */
-> -		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt);
-> +		drm_WARN_ON(&dev_priv->drm,
-> +			    !tc_phy_aux_timeout_expected(dev_priv, power_well));
-> +
+>  	for (level =3D 0; level <=3D max_level; level++) {
+>  		struct skl_wm_level *result =3D &levels[level];
+> +		unsigned int latency =3D dev_priv->wm.skl_latency[level];
+>  =
+
+> -		skl_compute_plane_wm(crtc_state, level, wm_params,
+> -				     result_prev, result);
+> +		skl_compute_plane_wm(crtc_state, level, latency,
+> +				     wm_params, result_prev, result);
+>  =
+
+>  		result_prev =3D result;
 >  	}
->  }
->  =
-
-> @@ -520,21 +557,6 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915=
-_private *dev_priv,
->  	hsw_wait_for_power_well_disable(dev_priv, power_well);
->  }
->  =
-
-> -#define ICL_AUX_PW_TO_CH(pw_idx)	\
-> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
-> -
-> -#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
-> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
-> -
-> -static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
-> -				     struct i915_power_well *power_well)
-> -{
-> -	int pw_idx =3D power_well->desc->hsw.idx;
-> -
-> -	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
-> -						 ICL_AUX_PW_TO_CH(pw_idx);
-> -}
-> -
->  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->  =
-
->  static u64 async_put_domains_mask(struct i915_power_domains *power_domai=
-ns);
 > -- =
 
-> 2.26.0
-> =
+> 2.24.1.485.gad05a3d8e5
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
