@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9545F1A8A82
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 21:05:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EED1A8A85
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2020 21:09:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A176E570;
-	Tue, 14 Apr 2020 19:05:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B436189819;
+	Tue, 14 Apr 2020 19:09:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E34A26E56D;
- Tue, 14 Apr 2020 19:05:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20899716-1500050 
- for multiple; Tue, 14 Apr 2020 20:05:11 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Apr 2020 20:05:09 +0100
-Message-Id: <20200414190509.2868509-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A41289819;
+ Tue, 14 Apr 2020 19:09:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 047E1A47E0;
+ Tue, 14 Apr 2020 19:09:20 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] lib: Use read() for timerfd timeout
- detection
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Tue, 14 Apr 2020 19:09:19 -0000
+Message-ID: <158689135998.30379.6281811489222226157@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/perf=3A_add_OA_interrupt_support_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,47 +38,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, michal.winiarski@intel.com,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The poll() is proving unreliable, where our tests timeout without the
-spinner being terminated. Let's try a blocking read instead!
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1676
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- lib/igt_dummyload.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+Series: drm/i915/perf: add OA interrupt support (rev9)
+URL   : https://patchwork.freedesktop.org/series/54280/
+State : warning
 
-diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
-index 99ca84ad8..a59afd45b 100644
---- a/lib/igt_dummyload.c
-+++ b/lib/igt_dummyload.c
-@@ -399,12 +399,13 @@ igt_spin_factory(int fd, const struct igt_spin_factory *opts)
- static void *timer_thread(void *data)
- {
- 	igt_spin_t *spin = data;
--	struct pollfd pfd = {
--		.fd = spin->timerfd,
--		.events = POLLIN,
--	};
-+	uint64_t overruns = 0;
-+	int ret;
- 
--	if (poll(&pfd, 1, -1) >= 0)
-+	do {
-+		ret = read(spin->timerfd, &overruns, sizeof(overruns));
-+	} while (ret == -1 && errno == EINTR);
-+	if (overruns)
- 		igt_spin_end(spin);
- 
- 	return NULL;
--- 
-2.26.0
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e5020136b3c9 drm/i915/perf: Reduce cpu overhead for blocking perf OA reads
+260dadb836a3 drm/i915: handle interrupts from the OA unit
+4ff3bedffc2f drm/i915/perf: add interrupt enabling parameter
+-:106: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'stream->half_full_count_last !=
+ 	     atomic64_read(&stream->half_full_count)'
+#106: FILE: drivers/gpu/drm/i915/i915_perf.c:3158:
++	if (stream->oa_interrupt_monitor &&
++	    (stream->half_full_count_last !=
++	     atomic64_read(&stream->half_full_count))) {
+
+total: 0 errors, 0 warnings, 1 checks, 179 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
