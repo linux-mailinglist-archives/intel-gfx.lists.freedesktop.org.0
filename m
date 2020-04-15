@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 353321A94BC
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1162F1A94C3
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC136E8BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFED89BF6;
 	Wed, 15 Apr 2020 07:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 510556E8A1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:18 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id y24so17673836wma.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:18 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 392AB6E8A5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:19 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id o81so10590783wmo.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=PxVTSouR1TyBKjD4k/5dVEyIh4AxWSKjDZy7rMGX8Zk=;
- b=hDK+BiDRX4sM7nRmRqepvD3umIcWmlVjpGfir3xtaBEtgOWJhlAIQL1AUMiXtAAP1W
- iI1APD9u2+w7Whw7HXiI4hhORf7md0zywZsUKatRhaeCQCq+J2sEqKRF/DdfR5WT8TgW
- XDmAh0DKD8bTIwcRpoQNnQ+ClSQN4Vw/26qA4=
+ bh=68pRrV/FcZHhfKF8N6ed2Kst21jlb9WtulkqBRnU6S8=;
+ b=Gyz+CtzkcX37Hl3nRFOLm4GVr0azPRX/NrKG8ap0W4baKemymnbW+Lxwz1Xp6GzRWr
+ lx8lnLIxv1Ol9V12XsfA9QbmLLL+3YuN9Oi/tEmm8esrE92s8XrfhUVGnPj+V2YfEa9U
+ /1rFjd2vFJTcNB51K1Lp7i6tJvkBxa6hlf7kw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=PxVTSouR1TyBKjD4k/5dVEyIh4AxWSKjDZy7rMGX8Zk=;
- b=NhRemkidB0A1FzqFIEjF9vREMveJyKTAQi2dK2dYwHJ/5H2PGrnaJS4m11Xa5k1MWU
- 7+yWeZ+Gqbb2YhammjRQ53nvacyJhljqsgy5ozjm1sDGbgj7DKosS5+ZRqbMISfco2sx
- rEjKPfgli6OaCazCICptQGyzxgIABFV1V2OEBBxYM8HhzBXxnz+f6JvpDvFh6Qqj9JXP
- Kdom38xDaq/VSocRoPH6TIDpO1WbGCoNljmLjemzgyJJgPiRvVpqWAvMd7BiZnkSomy1
- 0DN3SG504+PCgytFf6yVJM+VGSAGT05ZgPCV/x+2VBvWho0raLUUUe7JikN+iL34+5vx
- YTmg==
-X-Gm-Message-State: AGi0PuYX/iub6H7LJMFefJ+5fw5UsHy0jr14OuX1YXBmMFL45miYPQUz
- I7lDjEc1vnKYbPCwmu6Kod2JTYBNjrs=
-X-Google-Smtp-Source: APiQypKbTcknJ3S+rY5DwcekGtyrccMLDhhhwYrlpUkTnQVB4HoT91V9IsPE9VFGrPYQMbg5Fu3VYA==
-X-Received: by 2002:a1c:4d18:: with SMTP id o24mr3568827wmh.141.1586936476542; 
- Wed, 15 Apr 2020 00:41:16 -0700 (PDT)
+ bh=68pRrV/FcZHhfKF8N6ed2Kst21jlb9WtulkqBRnU6S8=;
+ b=hTZvCcpgqpYoEQpfmInhKoPT4oKd9a4iuqBgYsR6tY1uYH5B8OdB1mMCqlfAfHxpwI
+ PZhF+/nxRXuwXCEaAGKJmpqq6ypDImw3BtOR3buIUkq9lxk6eer9P5nDBAzUV11PPG3F
+ 5WT7QuPPLaHDaIc69wnEaIukMydvqRT6gXKZp7xFj42VjTqSzUmq+JvuR9X+u/EcOP7C
+ hkomyun+mz9E7/L5mxN1Z3GgE1uE+LH5ENv+rMyztc6TBfQnGcekLcg4mpa+ZrKZ0HpD
+ w6IAdwPDB/paw2/TpNvR0T6nSmY1iu/XN3+FDPm+lOsucMdApjsJ4cHHnWk6gjhF9tN1
+ skUQ==
+X-Gm-Message-State: AGi0PubE9nW9OiANXKgf+420n9keZsiHm34PHQopHTBkLzx76LzZhlbB
+ A0fXYAbKaR3sSLjADjkFZ3Xxxu6CmJ0=
+X-Google-Smtp-Source: APiQypK5zCrPi1yHK4Hs/xsz2aEThr6qJhfA2NsVnJXgzOw3DJadAR07qQZyjbKa0Tk2q2OD7lnVVg==
+X-Received: by 2002:a1c:80c3:: with SMTP id b186mr4095533wmd.117.1586936477577; 
+ Wed, 15 Apr 2020 00:41:17 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.15
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:15 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:17 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:09 +0200
-Message-Id: <20200415074034.175360-35-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:10 +0200
+Message-Id: <20200415074034.175360-36-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 34/59] drm/armada: Don't use
- drm_device->dev_private
+Subject: [Intel-gfx] [PATCH 35/59] drm/cirrus: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,188 +63,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Russell King <linux@armlinux.org.uk>,
+Cc: Rob Herring <robh@kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ virtualization@lists.linux-foundation.org,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Upcasting using a container_of macro is more typesafe, faster and
-easier for the compiler to optimize.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Russell King <linux@armlinux.org.uk>
----
- drivers/gpu/drm/armada/armada_crtc.c    | 4 ++--
- drivers/gpu/drm/armada/armada_debugfs.c | 2 +-
- drivers/gpu/drm/armada/armada_drm.h     | 2 ++
- drivers/gpu/drm/armada/armada_drv.c     | 4 +---
- drivers/gpu/drm/armada/armada_fbdev.c   | 4 ++--
- drivers/gpu/drm/armada/armada_gem.c     | 4 ++--
- drivers/gpu/drm/armada/armada_overlay.c | 8 ++++----
- 7 files changed, 14 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/armada/armada_crtc.c b/drivers/gpu/drm/armada/armada_crtc.c
-index c2b92acd1e9a..8686e50226a5 100644
---- a/drivers/gpu/drm/armada/armada_crtc.c
-+++ b/drivers/gpu/drm/armada/armada_crtc.c
-@@ -757,7 +757,7 @@ static int armada_drm_crtc_cursor_move(struct drm_crtc *crtc, int x, int y)
- static void armada_drm_crtc_destroy(struct drm_crtc *crtc)
- {
- 	struct armada_crtc *dcrtc = drm_to_armada_crtc(crtc);
--	struct armada_private *priv = crtc->dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(crtc->dev);
- 
- 	if (dcrtc->cursor_obj)
- 		drm_gem_object_put_unlocked(&dcrtc->cursor_obj->obj);
-@@ -901,7 +901,7 @@ static int armada_drm_crtc_create(struct drm_device *drm, struct device *dev,
- 	struct resource *res, int irq, const struct armada_variant *variant,
- 	struct device_node *port)
- {
--	struct armada_private *priv = drm->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(drm);
- 	struct armada_crtc *dcrtc;
- 	struct drm_plane *primary;
- 	void __iomem *base;
-diff --git a/drivers/gpu/drm/armada/armada_debugfs.c b/drivers/gpu/drm/armada/armada_debugfs.c
-index c6fc2f1d58e9..29f4b52e3c8d 100644
---- a/drivers/gpu/drm/armada/armada_debugfs.c
-+++ b/drivers/gpu/drm/armada/armada_debugfs.c
-@@ -19,7 +19,7 @@ static int armada_debugfs_gem_linear_show(struct seq_file *m, void *data)
- {
- 	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
- 	mutex_lock(&priv->linear_lock);
-diff --git a/drivers/gpu/drm/armada/armada_drm.h b/drivers/gpu/drm/armada/armada_drm.h
-index a11bdaccbb33..6a5a87932576 100644
---- a/drivers/gpu/drm/armada/armada_drm.h
-+++ b/drivers/gpu/drm/armada/armada_drm.h
-@@ -73,6 +73,8 @@ struct armada_private {
- #endif
- };
- 
-+#define drm_to_armada_dev(dev) container_of(dev, struct armada_private, drm)
-+
- int armada_fbdev_init(struct drm_device *);
- void armada_fbdev_fini(struct drm_device *);
- 
-diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-index 2546ff9d1c92..2a9ee76ee585 100644
---- a/drivers/gpu/drm/armada/armada_drv.c
-+++ b/drivers/gpu/drm/armada/armada_drv.c
-@@ -106,8 +106,6 @@ static int armada_drm_bind(struct device *dev)
- 		return ret;
- 	}
- 
--	priv->drm.dev_private = priv;
--
- 	dev_set_drvdata(dev, &priv->drm);
- 
- 	/* Mode setting support */
-@@ -169,7 +167,7 @@ static int armada_drm_bind(struct device *dev)
- static void armada_drm_unbind(struct device *dev)
- {
- 	struct drm_device *drm = dev_get_drvdata(dev);
--	struct armada_private *priv = drm->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(drm);
- 
- 	drm_kms_helper_poll_fini(&priv->drm);
- 	armada_fbdev_fini(&priv->drm);
-diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-index f2dc371bd8e5..c9a414b3a8c4 100644
---- a/drivers/gpu/drm/armada/armada_fbdev.c
-+++ b/drivers/gpu/drm/armada/armada_fbdev.c
-@@ -117,7 +117,7 @@ static const struct drm_fb_helper_funcs armada_fb_helper_funcs = {
- 
- int armada_fbdev_init(struct drm_device *dev)
- {
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 	struct drm_fb_helper *fbh;
- 	int ret;
- 
-@@ -151,7 +151,7 @@ int armada_fbdev_init(struct drm_device *dev)
- 
- void armada_fbdev_fini(struct drm_device *dev)
- {
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 	struct drm_fb_helper *fbh = priv->fbdev;
- 
- 	if (fbh) {
-diff --git a/drivers/gpu/drm/armada/armada_gem.c b/drivers/gpu/drm/armada/armada_gem.c
-index 976685f2939e..2c7d5f71e715 100644
---- a/drivers/gpu/drm/armada/armada_gem.c
-+++ b/drivers/gpu/drm/armada/armada_gem.c
-@@ -39,7 +39,7 @@ static size_t roundup_gem_size(size_t size)
- void armada_gem_free_object(struct drm_gem_object *obj)
- {
- 	struct armada_gem_object *dobj = drm_to_armada_gem(obj);
--	struct armada_private *priv = obj->dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(obj->dev);
- 
- 	DRM_DEBUG_DRIVER("release obj %p\n", dobj);
- 
-@@ -77,7 +77,7 @@ void armada_gem_free_object(struct drm_gem_object *obj)
- int
- armada_gem_linear_back(struct drm_device *dev, struct armada_gem_object *obj)
- {
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 	size_t size = obj->obj.size;
- 
- 	if (obj->page || obj->linear)
-diff --git a/drivers/gpu/drm/armada/armada_overlay.c b/drivers/gpu/drm/armada/armada_overlay.c
-index 07f0da4d9ba1..30e01101f59e 100644
---- a/drivers/gpu/drm/armada/armada_overlay.c
-+++ b/drivers/gpu/drm/armada/armada_overlay.c
-@@ -344,7 +344,7 @@ static int armada_overlay_set_property(struct drm_plane *plane,
- 	struct drm_plane_state *state, struct drm_property *property,
- 	uint64_t val)
- {
--	struct armada_private *priv = plane->dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(plane->dev);
- 
- #define K2R(val) (((val) >> 0) & 0xff)
- #define K2G(val) (((val) >> 8) & 0xff)
-@@ -412,7 +412,7 @@ static int armada_overlay_get_property(struct drm_plane *plane,
- 	const struct drm_plane_state *state, struct drm_property *property,
- 	uint64_t *val)
- {
--	struct armada_private *priv = plane->dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(plane->dev);
- 
- #define C2K(c,s)	(((c) >> (s)) & 0xff)
- #define R2BGR(r,g,b,s)	(C2K(r,s) << 0 | C2K(g,s) << 8 | C2K(b,s) << 16)
-@@ -505,7 +505,7 @@ static const struct drm_prop_enum_list armada_drm_colorkey_enum_list[] = {
- 
- static int armada_overlay_create_properties(struct drm_device *dev)
- {
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 
- 	if (priv->colorkey_prop)
- 		return 0;
-@@ -539,7 +539,7 @@ static int armada_overlay_create_properties(struct drm_device *dev)
- 
- int armada_overlay_plane_create(struct drm_device *dev, unsigned long crtcs)
- {
--	struct armada_private *priv = dev->dev_private;
-+	struct armada_private *priv = drm_to_armada_dev(dev);
- 	struct drm_mode_object *mobj;
- 	struct drm_plane *overlay;
- 	int ret;
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWxyZWFkeSB1c2luZyBkZXZtX2RybV9kZXZfaW5pdCwgc28gdmVyeSBzaW1wbGUgcmVwbGFjbWVu
+dC4KCkFja2VkLWJ5OiBOb3JhbGYgVHLDuG5uZXMgPG5vcmFsZkB0cm9ubmVzLm9yZz4KQWNrZWQt
+Ynk6IFNhbSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4KU2lnbmVkLW9mZi1ieTogRGFuaWVs
+IFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkNjOiBEYXZlIEFpcmxpZSA8YWlybGll
+ZEByZWRoYXQuY29tPgpDYzogR2VyZCBIb2ZmbWFubiA8a3JheGVsQHJlZGhhdC5jb20+CkNjOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogU2FtIFJhdm5ib3JnIDxz
+YW1AcmF2bmJvcmcub3JnPgpDYzogIk5vcmFsZiBUcsO4bm5lcyIgPG5vcmFsZkB0cm9ubmVzLm9y
+Zz4KQ2M6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+CkNjOiBUaG9tYXMgWmltbWVybWFu
+biA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6IHZpcnR1YWxpemF0aW9uQGxpc3RzLmxpbnV4LWZv
+dW5kYXRpb24ub3JnCkNjOiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVzLmMgfCAxMyArKysrLS0tLS0tLS0t
+CiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVzLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+Y2lycnVzL2NpcnJ1cy5jCmluZGV4IGEzNjI2OTcxN2MzYi4uNGI2NTYzNzE0N2JhIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9jaXJydXMvY2lycnVzLmMKQEAgLTU2NywxOCArNTY3LDEzIEBAIHN0YXRpYyBpbnQgY2lycnVz
+X3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKIAkJcmV0dXJuIHJldDsKIAogCXJldCA9
+IC1FTk9NRU07Ci0JY2lycnVzID0ga3phbGxvYyhzaXplb2YoKmNpcnJ1cyksIEdGUF9LRVJORUwp
+OwotCWlmIChjaXJydXMgPT0gTlVMTCkKLQkJcmV0dXJuIHJldDsKKwljaXJydXMgPSBkZXZtX2Ry
+bV9kZXZfYWxsb2MoJnBkZXYtPmRldiwgJmNpcnJ1c19kcml2ZXIsCisJCQkJICAgIHN0cnVjdCBj
+aXJydXNfZGV2aWNlLCBkZXYpOworCWlmIChJU19FUlIoY2lycnVzKSkKKwkJcmV0dXJuIFBUUl9F
+UlIoY2lycnVzKTsKIAogCWRldiA9ICZjaXJydXMtPmRldjsKLQlyZXQgPSBkZXZtX2RybV9kZXZf
+aW5pdCgmcGRldi0+ZGV2LCBkZXYsICZjaXJydXNfZHJpdmVyKTsKLQlpZiAocmV0KSB7Ci0JCWtm
+cmVlKGNpcnJ1cyk7Ci0JCXJldHVybiByZXQ7Ci0JfQogCWRldi0+ZGV2X3ByaXZhdGUgPSBjaXJy
+dXM7Ci0JZHJtbV9hZGRfZmluYWxfa2ZyZWUoZGV2LCBjaXJydXMpOwogCiAJY2lycnVzLT52cmFt
+ID0gZGV2bV9pb3JlbWFwKCZwZGV2LT5kZXYsIHBjaV9yZXNvdXJjZV9zdGFydChwZGV2LCAwKSwK
+IAkJCQkgICAgcGNpX3Jlc291cmNlX2xlbihwZGV2LCAwKSk7Ci0tIAoyLjI1LjEKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
