@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2CC51A90CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 04:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C64EF1A90F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 04:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9946E820;
-	Wed, 15 Apr 2020 02:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 183CE6E822;
+	Wed, 15 Apr 2020 02:35:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D25A56E820;
- Wed, 15 Apr 2020 02:13:56 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 62C3A6E822;
+ Wed, 15 Apr 2020 02:35:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CB6A4A47E0;
- Wed, 15 Apr 2020 02:13:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5CBD5A47DA;
+ Wed, 15 Apr 2020 02:35:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Wed, 15 Apr 2020 02:13:56 -0000
-Message-ID: <158691683680.21015.17750751482889067017@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Wed, 15 Apr 2020 02:35:44 -0000
+Message-ID: <158691814435.21016.16143562921063230488@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200414194956.164323-1-jose.souza@intel.com>
-In-Reply-To: <20200414194956.164323-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv5=2C1/8=5D_drm/i915/display=3A_Move_out_c?=
- =?utf-8?q?ode_to_return_the_digital=5Fport_of_the_aux_ch?=
+References: <20200414205755.2777261-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200414205755.2777261-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Use_single_set_of_AUX_powerwell_ops_for_gen11+?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,63 +47,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v5,1/8] drm/i915/display: Move out code to return the digital_port of the aux ch
-URL   : https://patchwork.freedesktop.org/series/75941/
-State : success
+Series: drm/i915: Use single set of AUX powerwell ops for gen11+
+URL   : https://patchwork.freedesktop.org/series/75943/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8298 -> Patchwork_17300
-====================================================
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17300/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8298 -> Patchwork_17300
-
-  CI-20190529: 20190529
-  CI_DRM_8298: 17f82f0c2857d0b442adbdb62eb44b61d0f5b775 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5589: 31962324ac86f029e2841e56e97c42cf9d572956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17300: 640ead5d9bb4a3b6e0c45de906737a0452ed3959 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-640ead5d9bb4 drm/i915/tc: Do not warn when aux power well of static TC ports timeout
-d2af4a2252d5 drm/i915/tc: Catch TC users accessing FIA registers without enable aux
-2852a24c509c drm/i915/tc/tgl: Implement TC cold sequences
-614f2cb98c89 drm/i915/tc: Skip ref held check for TC legacy aux power wells
-cd9056a5d603 drm/i915/tc/icl: Implement TC cold sequences
-d7143aab9207 drm/i915/display: Split hsw_power_well_enable() into two
-a96a166e6551 drm/i915/display: Add intel_legacy_aux_to_power_domain()
-960c21212bc2 drm/i915/display: Move out code to return the digital_port of the aux ch
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17300/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
