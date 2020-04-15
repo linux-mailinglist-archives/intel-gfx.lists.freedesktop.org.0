@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107AD1AAA59
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6C81AAA1F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:39:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5100C6E9EA;
-	Wed, 15 Apr 2020 14:42:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11DE76E9E9;
+	Wed, 15 Apr 2020 14:39:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D32F76E9EA
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 14:42:35 +0000 (UTC)
-IronPort-SDR: w6TEH5mb6FMl2c87HkXCmxi/vQXo4hCAyWA4KHsA9nTkK8BmibZtzsQtZ7DPVpYH3HCS3nPGRv
- D4Li/TMOm65A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 07:42:35 -0700
-IronPort-SDR: oUXU9LIXjSos+CYspTm2BhEVsX4QMtKmL8lEFz3XucuH4lgCtZmkZgZeGcl0AwEPwSJlNA03Lz
- tEj2Ijtehiqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,387,1580803200"; d="scan'208";a="427454481"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 15 Apr 2020 07:42:32 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCCD86E9E9;
+ Wed, 15 Apr 2020 14:39:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20907389-1500050 
+ for multiple; Wed, 15 Apr 2020 15:39:02 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Apr 2020 17:39:00 +0300
-Message-Id: <20200415143911.10244-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Date: Wed, 15 Apr 2020 15:39:00 +0100
+Message-Id: <20200415143900.2927491-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200414190509.2868509-1-chris@chris-wilson.co.uk>
+References: <20200414190509.2868509-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v24 00/11] SAGV support for Gen12+
+Subject: [Intel-gfx] [PATCH i-g-t] lib: Use read() for timerfd timeout
+ detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,47 +39,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For Gen11+ platforms BSpec suggests disabling specific
-QGV points separately, depending on bandwidth limitations
-and current display configuration. Thus it required adding
-a new PCode request for disabling QGV points and some
-refactoring of already existing SAGV code.
-Also had to refactor intel_can_enable_sagv function,
-as current seems to be outdated and using skl specific
-workarounds, also not following BSpec for Gen11+.
+The poll() is proving unreliable, where our tests timeout without the
+spinner being terminated. Let's try a blocking read instead!
 
-Stanislav Lisovskiy (11):
-  drm/i915: Introduce skl_plane_wm_level accessor.
-  drm/i915: Add intel_atomic_get_bw_*_state helpers
-  drm/i915: Prepare to extract gen specific functions from
-    intel_can_enable_sagv
-  drm/i915: Add pre/post plane updates for SAGV
-  drm/i915: Use bw state for per crtc SAGV evaluation
-  drm/i915: Separate icl and skl SAGV checking
-  drm/i915: Add TGL+ SAGV support
-  drm/i915: Added required new PCode commands
-  drm/i915: Rename bw_state to new_bw_state
-  drm/i915: Restrict qgv points which don't have enough bandwidth.
-  drm/i915: Enable SAGV support for Gen12
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1676
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+---
+ lib/igt_dummyload.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_bw.c       | 187 ++++++--
- drivers/gpu/drm/i915/display/intel_bw.h       |  24 +
- drivers/gpu/drm/i915/display/intel_display.c  |  21 +-
- .../drm/i915/display/intel_display_types.h    |   6 +
- drivers/gpu/drm/i915/i915_reg.h               |   5 +
- drivers/gpu/drm/i915/intel_pm.c               | 421 ++++++++++++++++--
- drivers/gpu/drm/i915/intel_pm.h               |   8 +-
- drivers/gpu/drm/i915/intel_sideband.c         |   2 +
- 8 files changed, 565 insertions(+), 109 deletions(-)
-
+diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+index 99ca84ad8..ae0fb9378 100644
+--- a/lib/igt_dummyload.c
++++ b/lib/igt_dummyload.c
+@@ -399,14 +399,14 @@ igt_spin_factory(int fd, const struct igt_spin_factory *opts)
+ static void *timer_thread(void *data)
+ {
+ 	igt_spin_t *spin = data;
+-	struct pollfd pfd = {
+-		.fd = spin->timerfd,
+-		.events = POLLIN,
+-	};
++	uint64_t overruns = 0;
+ 
+-	if (poll(&pfd, 1, -1) >= 0)
+-		igt_spin_end(spin);
++	/* Wait until we see the timer fire, or we get cancelled */
++	do {
++		read(spin->timerfd, &overruns, sizeof(overruns));
++	} while (!overruns);
+ 
++	igt_spin_end(spin);
+ 	return NULL;
+ }
+ 
 -- 
-2.24.1.485.gad05a3d8e5
+2.26.0
 
 _______________________________________________
 Intel-gfx mailing list
