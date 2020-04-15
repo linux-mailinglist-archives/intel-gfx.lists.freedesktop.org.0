@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C621A9C1D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:25:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0ABB1A9C23
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:25:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5702D6E96E;
-	Wed, 15 Apr 2020 11:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 455506E972;
+	Wed, 15 Apr 2020 11:25:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601EB6E96E
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 11:25:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20905472-1500050 for multiple; Wed, 15 Apr 2020 12:25:01 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C9BBF6E971;
+ Wed, 15 Apr 2020 11:25:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BAA15A363D;
+ Wed, 15 Apr 2020 11:25:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200415105659.GA50947@intel.intel>
-References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
- <20200415105659.GA50947@intel.intel>
-To: Andi Shyti <andi.shyti@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158694989939.24667.16243976890282267889@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 15 Apr 2020 12:24:59 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Try to smooth RPS spikes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 15 Apr 2020 11:25:36 -0000
+Message-ID: <158694993676.21013.4857690117793599086@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200415101138.26126-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200415101138.26126-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIFBl?=
+ =?utf-8?q?r_client_engine_busyness?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,35 +38,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-04-15 11:56:59)
-> Hi Chris,
-> 
-> On Tue, Apr 14, 2020 at 05:14:22PM +0100, Chris Wilson wrote:
-> > By the time we respond to the RPS interrupt [inside a worker], the GPU
-> > may be running a different workload. As we look to make the evalution
-> > intervals shorter, these spikes are more likely to okay. Let's try to
-> > smooth over the spikes in the workload by comparing the EI interrupt
-> > [up/down events] with the most recently completed EI; if both say up,
-> > then increase the clocks, if they disagree stay the same. In principle,
-> > this means we now take 2 up EI to go increase into the next bin, and
-> > similary 2 down EI to decrease. However, if the worker runs fast enough,
-> > the previous EI in the registers will be the same as triggered the
-> > interrupt, so responsiveness remains unaffect. [Under the current scheme
-> > where EI are on the order of 10ms, it is likely that this is true and we
-> > compare the interrupt with the EI that caused it.]
-> 
-> looks reasonable to me. Wouldn't it make also sense to evaluate
-> the difference between the current and the previous pm_iir?
+== Series Details ==
 
-I was considering it... We can't look at IIR since we apply the mask,
-but ISR should be valid. Worth a looksee.
--Chris
+Series: Per client engine busyness
+URL   : https://patchwork.freedesktop.org/series/75967/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
