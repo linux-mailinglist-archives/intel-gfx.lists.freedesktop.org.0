@@ -1,54 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 562611A960E
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:17:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9921A962A
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:22:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 944DD6E908;
-	Wed, 15 Apr 2020 08:17:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 895856E915;
+	Wed, 15 Apr 2020 08:22:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
- [IPv6:2607:f8b0:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 712BB6E90A
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:17:54 +0000 (UTC)
-Received: by mail-oi1-x241.google.com with SMTP id s202so9586632oih.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 01:17:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=+JmTOeIwr7i+ixdxdNVBM+tjIczQkeGYYiYkQWIGWlo=;
- b=geYxb6C1Db6+CcOjVa7gnrIF63SCrKgn2aVse3j/t9tH44b80OY41Rqom3q6QLKOyJ
- iGWPrke8Phm6AsUFvWlCt8rfujL7ylmf8403A2SaeKDcG6hjlHpHoncGjG1xamtaKShm
- iTs9MPySr0uj/vLVv2IYsUTsCq1tgNWqPFdv4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=+JmTOeIwr7i+ixdxdNVBM+tjIczQkeGYYiYkQWIGWlo=;
- b=smWOSzfflEJvcw88C8/QQvxx150Gb3FJ/yLKFPYZ87BAvw7WvRbtzx4BO3Q1ufhBhl
- yU/TmlfieSrAGKgPCWipmYM8qexWB7UNpjKPgXaaNvwnQs709xmlJAg2IsD0yhtb0X9P
- eOXssaW/Os+YPh8lPM4f7YTFzxWjotLvN5tKMQrKDkIHax2QBgedzW1fSxCF2/EDgsjR
- m2D/agYbVzgO5q58ji4tFhKkK5x81uVew0ugg0sF809n44j549GzC1t7fL0LTruMOj/8
- dGoqvpWL5kcO1rJYg1IanTEAU8F2+qJCTcVOUs6MANaMKXUDCo9pSzpc93F5g2sCabJD
- AmAg==
-X-Gm-Message-State: AGi0PubpqkfUxawOnbanKO8hcmIgTU+ZkbuF/6GMIEJmYc6IT8Cbjlzv
- nLU5L2eAwr2ZZWZYlm52PmDTfcsEAkCCY69mFKCrrg==
-X-Google-Smtp-Source: APiQypKi/bMGLQXqFc05UGZtx+YyhjASJyJPlMmuSuNNYfubsvRFrwaP1cisbGEfK4pDPXC8ASWk/bF5NoJFYfJKQmI=
-X-Received: by 2002:aca:4408:: with SMTP id r8mr16237631oia.14.1586938673780; 
- Wed, 15 Apr 2020 01:17:53 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1A066E913
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:22:37 +0000 (UTC)
+IronPort-SDR: w3wHATVSrmoMr1hIzTOBdT0Jrtw30wQQf21Vi/cc5r/c0wksCZ1np7JvArylm+2eujhIWWXjpm
+ HiN8uI6aWNbg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 01:22:37 -0700
+IronPort-SDR: UWkcNI/VJK0CwguQ/jcmB+fbDgZjAs5QcGv7Vuc0uwpC92zU4U6czXPVD1H+MSAC8bRfy4L0H5
+ qadfvd+3elyQ==
+X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="245635128"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 01:22:35 -0700
+Date: Wed, 15 Apr 2020 11:19:10 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200415081910.GC17859@intel.com>
+References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+ <20200409154730.18568-3-stanislav.lisovskiy@intel.com>
+ <20200414173618.GE6112@intel.com>
 MIME-Version: 1.0
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-58-daniel.vetter@ffwll.ch>
- <d33d1565-1c1a-a926-01a1-cf01691ec84d@suse.de>
- <CAKMK7uHxN62MUJrFtWJ7oKjYPnrrMHPLZgSNVZX21BAsM=8P2w@mail.gmail.com>
-In-Reply-To: <CAKMK7uHxN62MUJrFtWJ7oKjYPnrrMHPLZgSNVZX21BAsM=8P2w@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 15 Apr 2020 10:17:42 +0200
-Message-ID: <CAKMK7uEiA0SxSWBWkyfTJpo0BBr9aekzc6fa3P-HQqEjmuB8TQ@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 57/59] drm/ast: Use managed pci functions
+Content-Disposition: inline
+In-Reply-To: <20200414173618.GE6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v22 02/13] drm/i915: Eliminate magic numbers
+ "0" and "1" from color plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,110 +50,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Emil Velikov <emil.velikov@collabora.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBBcHIgMTUsIDIwMjAgYXQgMTA6MDkgQU0gRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZl
-dHRlckBmZndsbC5jaD4gd3JvdGU6Cj4KPiBPbiBXZWQsIEFwciAxNSwgMjAyMCBhdCA5OjUyIEFN
-IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPiB3cm90ZToKPiA+Cj4gPiBI
-aSBEYW5pZWwKPiA+Cj4gPiBBbSAxNS4wNC4yMCB1bSAwOTo0MCBzY2hyaWViIERhbmllbCBWZXR0
-ZXI6Cj4gPiA+IEFsbG93cyB1cyB0byByZW1vdmUgYSBiaXQgb2YgY2xlYW51cCBjb2RlLgo+ID4g
-Pgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVs
-LmNvbT4KPiA+ID4gQ2M6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gPiA+IENj
-OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KPiA+ID4gQ2M6IEdlcmQg
-SG9mZm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPgo+ID4gPiBDYzogRGFuaWVsIFZldHRlciA8ZGFu
-aWVsLnZldHRlckBmZndsbC5jaD4KPiA+ID4gQ2M6IEVtaWwgVmVsaWtvdiA8ZW1pbC52ZWxpa292
-QGNvbGxhYm9yYS5jb20+Cj4gPiA+IENjOiAiTm9yYWxmIFRyw7hubmVzIiA8bm9yYWxmQHRyb25u
-ZXMub3JnPgo+ID4gPiBDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+ID4gPiBD
-YzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gPiA+IENj
-OiAiWS5DLiBDaGVuIiA8eWNfY2hlbkBhc3BlZWR0ZWNoLmNvbT4KPiA+ID4gLS0tCj4gPiA+ICBk
-cml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9kcnYuYyAgfCAxMCArKystLS0tLS0tCj4gPiA+ICBkcml2
-ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMgfCAgMyAtLS0KPiA+ID4gIDIgZmlsZXMgY2hhbmdl
-ZCwgMyBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKPiA+ID4KPiA+ID4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2FzdC9h
-c3RfZHJ2LmMKPiA+ID4gaW5kZXggYjdiYTIyZGRkY2FkLi40OGE5Y2M0ZTA4MGEgMTAwNjQ0Cj4g
-PiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X2Rydi5jCj4gPiA+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9hc3QvYXN0X2Rydi5jCj4gPiA+IEBAIC05MSwxNSArOTEsMTMgQEAgc3RhdGlj
-IGludCBhc3RfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNp
-X2RldmljZV9pZCAqZW50KQo+ID4gPgo+ID4gPiAgICAgICBhc3Rfa2lja19vdXRfZmlybXdhcmVf
-ZmIocGRldik7Cj4gPiA+Cj4gPiA+IC0gICAgIHJldCA9IHBjaV9lbmFibGVfZGV2aWNlKHBkZXYp
-Owo+ID4gPiArICAgICByZXQgPSBwY2ltX2VuYWJsZV9kZXZpY2UocGRldik7Cj4gPiA+ICAgICAg
-IGlmIChyZXQpCj4gPiA+ICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiA+ID4KPiA+ID4gICAg
-ICAgZGV2ID0gZHJtX2Rldl9hbGxvYygmZHJpdmVyLCAmcGRldi0+ZGV2KTsKPiA+ID4gLSAgICAg
-aWYgKElTX0VSUihkZXYpKSB7Cj4gPiA+IC0gICAgICAgICAgICAgcmV0ID0gUFRSX0VSUihkZXYp
-Owo+ID4gPiAtICAgICAgICAgICAgIGdvdG8gZXJyX3BjaV9kaXNhYmxlX2RldmljZTsKPiA+ID4g
-LSAgICAgfQo+ID4gPiArICAgICBpZiAoSVNfRVJSKGRldikpCj4gPiA+ICsgICAgICAgICAgICAg
-cmV0dXJuICBQVFJfRVJSKGRldik7Cj4gPiA+Cj4gPiA+ICAgICAgIGRldi0+cGRldiA9IHBkZXY7
-Cj4gPiA+ICAgICAgIHBjaV9zZXRfZHJ2ZGF0YShwZGV2LCBkZXYpOwo+ID4gPiBAQCAtMTIwLDgg
-KzExOCw2IEBAIHN0YXRpYyBpbnQgYXN0X3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwg
-Y29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkKPiA+ID4gICAgICAgYXN0X2RyaXZlcl91
-bmxvYWQoZGV2KTsKPiA+ID4gIGVycl9kcm1fZGV2X3B1dDoKPiA+ID4gICAgICAgZHJtX2Rldl9w
-dXQoZGV2KTsKPiA+ID4gLWVycl9wY2lfZGlzYWJsZV9kZXZpY2U6Cj4gPiA+IC0gICAgIHBjaV9k
-aXNhYmxlX2RldmljZShwZGV2KTsKPiA+ID4gICAgICAgcmV0dXJuIHJldDsKPiA+ID4KPiA+ID4g
-IH0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X21haW4uYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hc3QvYXN0X21haW4uYwo+ID4gPiBpbmRleCBlNTM5OGUzZGFiZTcuLjFi
-MzU3MjhhZDg3MSAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FzdC9hc3RfbWFp
-bi5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X21haW4uYwo+ID4gPiBAQCAt
-NTMxLDggKzUzMSw1IEBAIHZvaWQgYXN0X2RyaXZlcl91bmxvYWQoc3RydWN0IGRybV9kZXZpY2Ug
-KmRldikKPiA+ID4gICAgICAgZHJtX21vZGVfY29uZmlnX2NsZWFudXAoZGV2KTsKPiA+ID4KPiA+
-ID4gICAgICAgYXN0X21tX2ZpbmkoYXN0KTsKPiA+ID4gLSAgICAgaWYgKGFzdC0+aW9yZWdzICE9
-IGFzdC0+cmVncyArIEFTVF9JT19NTV9PRkZTRVQpCj4gPiA+IC0gICAgICAgICAgICAgcGNpX2lv
-dW5tYXAoZGV2LT5wZGV2LCBhc3QtPmlvcmVncyk7Cj4gPiA+IC0gICAgIHBjaV9pb3VubWFwKGRl
-di0+cGRldiwgYXN0LT5yZWdzKTsKPiA+Cj4gPiBUaGlzIGdldHMgdW5tYXBwZWQgYXMgcGFydCBv
-ZiB0aGUgYXV0b21hdGljIHBjaV9kaXNhYmxlX2RldmljZSgpLCBJIGd1ZXNzPwo+Cj4gWXVwLCBv
-bmNlIHlvdSBnbyB3aXRoIHBjaW1fZW5hYmxlX2RldmljZSBhbGwgcGNpXyBmdW5jdGlvbnMgb24g
-dGhhdAo+IGRldmljZSBiZWNvbWUgbWFuZ2VkIGFuZCBhdXRvLWNsZWFudXAuCj4KPiA+IERvIHdl
-IG5lZWQgZHJtX2Rldl9lbnRlcigpL19leGl0KCkgdG8gbWFrZSBJL08gd29yayByZWxpYWJseT8K
-Pgo+IFRoYXQgZG9lcyBub3RoaW5nIHdpdGhvdXQgZHJtX2Rldl91bnBsdWcoKSwgd2hpY2ggaGFz
-IHRoZSBhbm5veWluZwo+IHNpZGUgZWZmZWN0IHRoYXQgaXQgYWxzbyBzaHV0cyB1cCBzdHVmZiBs
-aWtlCj4gZHJtX2F0b21pY19oZWxwZXJfc2h1dGRvd24gZm9yIG1vZHVsZSB1bmxvYWQuIEFuZCBk
-ZXZlbG9wZXJzIHJlYWxseQo+IHdhbnQgdGhlaXIgZGV2aWNlcyB0byBiZSBzaHV0IG9mZiBvbiBk
-cml2ZXIgdW5sb2FkLiBTbyB5ZWFoCj4gdW5mb3J0dW5hdGVseSB3ZSBjdXJyZW50bHkgY2FuIGRl
-Y2lkZSBiZXR3ZWVuICJjb3JyZWN0IGZvciBob3R1bnBsdWciCj4gYW5kICJjb252ZW5pZW50IGZv
-ciBkcml2ZXIgdW5sb2FkIGZvciBkcml2ZXIgYXV0aG9ycyIuIEknbSBub3Qgc3VyZQo+IHdoYXQg
-dG8gYmVzdCBkbyBoZXJlLCBzaW5jZSBhbGwgb3B0aW9ucyBhcmUga2luZGEgbm90IGdyZWF0IGZv
-ciBvbmUKPiB1c2UtY2FzZSBvciB0aGUgb3RoZXIuCgpTbyBpZiB3ZSdkIHNwbGl0IHVwIGRybV9k
-ZXZfdW5wbHVnIGludG8gZHJtX2Rldl91bnJlZ2lzdGVyICsKZHJtX2Rldl9tYXJrX3VucGx1Z2dl
-ZCBvciB3aGF0ZXZlciB0aGUgb3B0aW9ucyB3b3VsZCBiZToKCmRybV9hdG9taWNfaGVscGVyX3No
-dXRkb3duKCk7IC8qIGFuZCBvdGhlciBodyBzaHV0IGRvd24gKi8KZHJtX2Rldl91bnJlZ2lzdGVy
-KCk7CmRybV9kZXZfbWFya191bnBsdWdnZWQoKTsKCktpbmRhIGFubm95aW5nIHNpbmNlIHVzZXJz
-cGFjZSBtaWdodCByYWNlIHdpdGggdXMsIHNvIHdlIG1pZ2h0IHN0aWxsCmhhdmUgYW4gYWN0aXZl
-IGZiIChpbiBzdyB0cmFja2luZyBhdCBsZWFzdCkgdGhhdCB3ZSBuZWVkIHRvIGNsZWFuIHVwCmFn
-YWluIGxhdGVyIG9uLiBQbHVzIHNodXR0aW5nIGRvd24gaHcgYmVmb3JlIHdlIHVucmVnaXN0ZXIg
-aXMgZ29pbmcgdG8KbWFrZSB0aGUgaG90dW5wbHVnIGNvbmZ1c2lvbiBmb3IgdXNlcnNwYWNlIGV2
-ZW4gbW9yZSBhIG1lc3MuCgpOZXh0IG9wdGlvbjoKZHJtX2Rldl91bnJlZ3N0ZXIoKTsKLyogc2h1
-dCBkb3duIGh3ICovCmRybV9kZXZfbWFya191bnBsdWdnZWQoKTsKClRoaXMganVzdCB3YXN0ZXMg
-dGltZSBzaW5jZSBpZiB3ZSdyZSByZWFsbHkgdW5wbHVnZ2VkIHdlJ2xsIGRvIGxvdHMgb2YKaW8g
-YXR0ZW1wdHMgdGhhdCBnbyBub3doZXJlIGJlY2F1c2UgdGhlIGRldmljZSBpcyBnb25lIGFscmVh
-ZHkuClRoZXknbGwgYWxsIHRpbWUgb3V0IChpZiB0aGUgYnVzIHN1YnN5c3RlbS9odyBmb3Igb3Vy
-IGRyaXZlciB3b3Jrcwpjb3JyZWN0bHkgYXQgbGVhc3QpLiBQbHVzIHVzZXJzcGFjZSBjYW4gc3Rp
-bGwgc25lYWsgaW4gYW5kIGRvIHN0dXBpZApzdHVmZiBJIHRoaW5rIHdoaWxlIHdlJ3JlIG5vdCBs
-b29raW5nLgoKTmV4dCB1cDoKZHJtX2Rldl91bnJlZ2lzdGVyKCk7CmRybV9kZXZfbWFya191bnBs
-dWdnZWQoKTsKZHJtX2F0b21pY19oZWxwZXJfc2h1dGRvd24oKTsKClRoaXMgaXMgYSBiaXQgc2ls
-bHkgc2luY2UgYWxsIHRoZSBzaHV0ZG93biBjb2RlIG5vdyBkb2VzIGlzIHNodXQgZG93bgpzdyBz
-dGF0ZSwgYW5kIG5ldmVyIHRvdWNoZXMgaHcgKGlmIHRoZSBkcml2ZXIgaXMgZnVsbHkgYW5ub3Rh
-dGVkIHdpdGgKZHJtX2Rldl9lbnRlci9leGl0KS4KCk9uZSBvcHRpb24gbWlnaHQgYmUgdGhhdCB3
-ZSBzbGFwIGEgbG90IG1vcmUgZHJtX2Rldl9lbnRlci9leGl0IGFyb3VuZAp0aGUgdG9wLWxldmVs
-IGlvY3RscyAodG8gYXQgbGVhc3Qgc3RvcCB0aGUgdXNlcnNwYWNlIHJhY2VzIHdpdGggZHJpdmVy
-CnVubG9hZCksIGFuZCBhbGxvdyBkcml2ZXJzIHRvIHN0aWxsIHNodXQgZG93biBzdHVmZiBpbnRl
-cm5hbGx5LgoKdGxkcjsgaXQncyBhbGwgc3RpbGwgYSBiaXQgYSBtZXNzLgotRGFuaWVsCgo+IC1E
-YW5pZWwKPgo+ID4gQmVzdCByZWdhcmRzCj4gPiBUaG9tYXMKPiA+Cj4gPiA+ICAgICAgIGtmcmVl
-KGFzdCk7Cj4gPiA+ICB9Cj4gPiA+Cj4gPgo+ID4gLS0KPiA+IFRob21hcyBaaW1tZXJtYW5uCj4g
-PiBHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj4gPiBTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBH
-ZXJtYW55IEdtYkgKPiA+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+
-ID4gKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQo+ID4gR2VzY2jDpGZ0c2bDvGhyZXI6IEZlbGl4
-IEltZW5kw7ZyZmZlcgo+ID4KPgo+Cj4gLS0KPiBEYW5pZWwgVmV0dGVyCj4gU29mdHdhcmUgRW5n
-aW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gKzQxICgwKSA3OSAzNjUgNTcgNDggLSBodHRwOi8v
-YmxvZy5mZndsbC5jaAoKCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50
-ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5j
-aApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Apr 14, 2020 at 08:36:18PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Apr 09, 2020 at 06:47:19PM +0300, Stanislav Lisovskiy wrote:
+> > According to many computer science sources - magic values
+> > in code _are_ _bad_. For many reasons: the reason is that "0"
+> > or "1" or whatever magic values confuses and doesn't give any
+> > info why this parameter is this value and what it's meaning
+> > is.
+> > I renamed "0" to COLOR_PLANE_Y and "1" to COLOR_PLANE_UV,
+> > because we in fact already use this naming in many other places
+> > and function names, when dealing with color planes.
+> > =
+
+> > v2: Removed long line to make checkpatch happy.
+> > =
+
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_types.h    |  5 +++
+> >  drivers/gpu/drm/i915/intel_pm.c               | 42 ++++++++++---------
+> =
+
+> Still super inconsistent with the rest of the driver. Also there's
+> the fact that wm_uv doesn't even exist on icl+ so the Y vs. UV naming
+> isn't even accurate in a bunch of places.
+> =
+
+> IMO just drop this for now. We can argue ab out this sort of stuff
+> later if we figure out a way to make it consistent across the whole
+> driver.
+
+Ok, not saying that this is the best solution, just think that
+we should not have expressions like "if (color_plane =3D=3D 1)" like now.
+
+Good article about this:
+
+https://users.ece.cmu.edu/~eno/coding/CCodingStandard.html#nomagic
+
+Stan
+
+> =
+
+> >  2 files changed, 27 insertions(+), 20 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
+rs/gpu/drm/i915/display/intel_display_types.h
+> > index ba8c08145c88..b437182c630a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -691,6 +691,11 @@ struct skl_plane_wm {
+> >  	bool is_planar;
+> >  };
+> >  =
+
+> > +enum color_plane {
+> > +	COLOR_PLANE_Y,
+> > +	COLOR_PLANE_UV
+> > +};
+> > +
+> >  struct skl_pipe_wm {
+> >  	struct skl_plane_wm planes[I915_MAX_PLANES];
+> >  };
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
+el_pm.c
+> > index b632b6bb9c3e..176a28d71822 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -4013,7 +4013,7 @@ static int skl_compute_wm_params(const struct int=
+el_crtc_state *crtc_state,
+> >  				 int width, const struct drm_format_info *format,
+> >  				 u64 modifier, unsigned int rotation,
+> >  				 u32 plane_pixel_rate, struct skl_wm_params *wp,
+> > -				 int color_plane);
+> > +				 enum color_plane);
+> >  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_s=
+tate,
+> >  				 int level,
+> >  				 unsigned int latency,
+> > @@ -4035,7 +4035,7 @@ skl_cursor_allocation(const struct intel_crtc_sta=
+te *crtc_state,
+> >  				    drm_format_info(DRM_FORMAT_ARGB8888),
+> >  				    DRM_FORMAT_MOD_LINEAR,
+> >  				    DRM_MODE_ROTATE_0,
+> > -				    crtc_state->pixel_rate, &wp, 0);
+> > +				    crtc_state->pixel_rate, &wp, COLOR_PLANE_Y);
+> >  	drm_WARN_ON(&dev_priv->drm, ret);
+> >  =
+
+> >  	for (level =3D 0; level <=3D max_level; level++) {
+> > @@ -4431,7 +4431,7 @@ static u8 skl_compute_dbuf_slices(const struct in=
+tel_crtc_state *crtc_state,
+> >  static u64
+> >  skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+> >  			     const struct intel_plane_state *plane_state,
+> > -			     int color_plane)
+> > +			     enum color_plane color_plane)
+> >  {
+> >  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+> >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> > @@ -4446,7 +4446,7 @@ skl_plane_relative_data_rate(const struct intel_c=
+rtc_state *crtc_state,
+> >  	if (plane->id =3D=3D PLANE_CURSOR)
+> >  		return 0;
+> >  =
+
+> > -	if (color_plane =3D=3D 1 &&
+> > +	if (color_plane =3D=3D COLOR_PLANE_UV &&
+> >  	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+> >  		return 0;
+> >  =
+
+> > @@ -4459,7 +4459,7 @@ skl_plane_relative_data_rate(const struct intel_c=
+rtc_state *crtc_state,
+> >  	height =3D drm_rect_height(&plane_state->uapi.src) >> 16;
+> >  =
+
+> >  	/* UV plane does 1/2 pixel sub-sampling */
+> > -	if (color_plane =3D=3D 1) {
+> > +	if (color_plane =3D=3D COLOR_PLANE_UV) {
+> >  		width /=3D 2;
+> >  		height /=3D 2;
+> >  	}
+> > @@ -4489,12 +4489,12 @@ skl_get_total_relative_data_rate(struct intel_c=
+rtc_state *crtc_state,
+> >  		u64 rate;
+> >  =
+
+> >  		/* packed/y */
+> > -		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> > +		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLOR=
+_PLANE_Y);
+> >  		plane_data_rate[plane_id] =3D rate;
+> >  		total_data_rate +=3D rate;
+> >  =
+
+> >  		/* uv-plane */
+> > -		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 1);
+> > +		rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLOR=
+_PLANE_UV);
+> >  		uv_plane_data_rate[plane_id] =3D rate;
+> >  		total_data_rate +=3D rate;
+> >  	}
+> > @@ -4516,7 +4516,7 @@ icl_get_total_relative_data_rate(struct intel_crt=
+c_state *crtc_state,
+> >  		u64 rate;
+> >  =
+
+> >  		if (!plane_state->planar_linked_plane) {
+> > -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> > +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, COLO=
+R_PLANE_Y);
+> >  			plane_data_rate[plane_id] =3D rate;
+> >  			total_data_rate +=3D rate;
+> >  		} else {
+> > @@ -4533,12 +4533,14 @@ icl_get_total_relative_data_rate(struct intel_c=
+rtc_state *crtc_state,
+> >  				continue;
+> >  =
+
+> >  			/* Y plane rate is calculated on the slave */
+> > -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> > +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state,
+> > +							    COLOR_PLANE_Y);
+> >  			y_plane_id =3D plane_state->planar_linked_plane->id;
+> >  			plane_data_rate[y_plane_id] =3D rate;
+> >  			total_data_rate +=3D rate;
+> >  =
+
+> > -			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state, 1);
+> > +			rate =3D skl_plane_relative_data_rate(crtc_state, plane_state,
+> > +							    COLOR_PLANE_UV);
+> >  			plane_data_rate[plane_id] =3D rate;
+> >  			total_data_rate +=3D rate;
+> >  		}
+> > @@ -4854,14 +4856,14 @@ skl_compute_wm_params(const struct intel_crtc_s=
+tate *crtc_state,
+> >  		      int width, const struct drm_format_info *format,
+> >  		      u64 modifier, unsigned int rotation,
+> >  		      u32 plane_pixel_rate, struct skl_wm_params *wp,
+> > -		      int color_plane)
+> > +		      enum color_plane color_plane)
+> >  {
+> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> >  	u32 interm_pbpl;
+> >  =
+
+> >  	/* only planar format has two planes */
+> > -	if (color_plane =3D=3D 1 &&
+> > +	if (color_plane =3D=3D COLOR_PLANE_UV &&
+> >  	    !intel_format_info_is_yuv_semiplanar(format, modifier)) {
+> >  		drm_dbg_kms(&dev_priv->drm,
+> >  			    "Non planar format have single plane\n");
+> > @@ -4878,7 +4880,7 @@ skl_compute_wm_params(const struct intel_crtc_sta=
+te *crtc_state,
+> >  	wp->is_planar =3D intel_format_info_is_yuv_semiplanar(format, modifie=
+r);
+> >  =
+
+> >  	wp->width =3D width;
+> > -	if (color_plane =3D=3D 1 && wp->is_planar)
+> > +	if (color_plane =3D=3D COLOR_PLANE_UV && wp->is_planar)
+> >  		wp->width /=3D 2;
+> >  =
+
+> >  	wp->cpp =3D format->cpp[color_plane];
+> > @@ -4945,7 +4947,7 @@ skl_compute_wm_params(const struct intel_crtc_sta=
+te *crtc_state,
+> >  static int
+> >  skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
+> >  			    const struct intel_plane_state *plane_state,
+> > -			    struct skl_wm_params *wp, int color_plane)
+> > +			    struct skl_wm_params *wp, enum color_plane color_plane)
+> >  {
+> >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> >  	int width;
+> > @@ -5187,7 +5189,7 @@ static void skl_compute_transition_wm(const struc=
+t intel_crtc_state *crtc_state,
+> >  =
+
+> >  static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_sta=
+te,
+> >  				     const struct intel_plane_state *plane_state,
+> > -				     enum plane_id plane_id, int color_plane)
+> > +				     enum plane_id plane_id, enum color_plane color_plane)
+> >  {
+> >  	struct skl_plane_wm *wm =3D &crtc_state->wm.skl.optimal.planes[plane_=
+id];
+> >  	struct skl_wm_params wm_params;
+> > @@ -5216,7 +5218,7 @@ static int skl_build_plane_wm_uv(struct intel_crt=
+c_state *crtc_state,
+> >  =
+
+> >  	/* uv plane watermarks must also be validated for NV12/Planar */
+> >  	ret =3D skl_compute_plane_wm_params(crtc_state, plane_state,
+> > -					  &wm_params, 1);
+> > +					  &wm_params, COLOR_PLANE_UV);
+> >  	if (ret)
+> >  		return ret;
+> >  =
+
+> > @@ -5237,7 +5239,7 @@ static int skl_build_plane_wm(struct intel_crtc_s=
+tate *crtc_state,
+> >  		return 0;
+> >  =
+
+> >  	ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
+> > -					plane_id, 0);
+> > +					plane_id, COLOR_PLANE_Y);
+> >  	if (ret)
+> >  		return ret;
+> >  =
+
+> > @@ -5270,17 +5272,17 @@ static int icl_build_plane_wm(struct intel_crtc=
+_state *crtc_state,
+> >  			fb->format->num_planes =3D=3D 1);
+> >  =
+
+> >  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
+> > -						y_plane_id, 0);
+> > +						y_plane_id, COLOR_PLANE_Y);
+> >  		if (ret)
+> >  			return ret;
+> >  =
+
+> >  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
+> > -						plane_id, 1);
+> > +						plane_id, COLOR_PLANE_UV);
+> >  		if (ret)
+> >  			return ret;
+> >  	} else if (intel_wm_plane_visible(crtc_state, plane_state)) {
+> >  		ret =3D skl_build_plane_wm_single(crtc_state, plane_state,
+> > -						plane_id, 0);
+> > +						plane_id, COLOR_PLANE_Y);
+> >  		if (ret)
+> >  			return ret;
+> >  	}
+> > -- =
+
+> > 2.24.1.485.gad05a3d8e5
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
