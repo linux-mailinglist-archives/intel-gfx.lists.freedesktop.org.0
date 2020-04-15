@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB4F1AAF07
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 19:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7121AAF53
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 19:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0346EA3D;
-	Wed, 15 Apr 2020 17:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C253C6EA39;
+	Wed, 15 Apr 2020 17:20:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBEB6EA3B
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 17:03:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20908948-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 18:03:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0666EA39
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 17:20:40 +0000 (UTC)
+IronPort-SDR: tER/3BkTnhRlD0sU1t3gcXLLGieh/3uRSxuE66AuZ4jmBnN1tVvAgZqCt2wlS4lQu3F3azjZGx
+ s6Yh0ibfbsOA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 10:20:40 -0700
+IronPort-SDR: 9Qlpr/vkwDcVbXZUDu+iDRIeLq8QPw5cX6sbkfJjITB88lYCJwIV2X6o5SS0KpIkW5J7Rq9BAb
+ psw38nRgvXdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,387,1580803200"; d="scan'208";a="400382897"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga004.jf.intel.com with ESMTP; 15 Apr 2020 10:20:38 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Apr 2020 18:03:18 +0100
-Message-Id: <20200415170318.16771-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200415170318.16771-1-chris@chris-wilson.co.uk>
-References: <20200415170318.16771-1-chris@chris-wilson.co.uk>
+Date: Wed, 15 Apr 2020 22:35:51 +0530
+Message-Id: <20200415170555.15531-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Update PMINTRMSK holding fw
+Subject: [Intel-gfx] [PATCH v5 0/4] i915 lpsp support for lpsp igt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,64 +44,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we use a non-forcewaked write to PMINTRMSK, it does not take effect
-until much later, if at all, causing a loss of RPS interrupts and no GPU
-reclocking, leaving the GPU running at the wrong frequency for long
-periods of time.
+v5 has fixed the review comment for [PATCH 2/4] 
+provided by animesh and rebased the series.
 
-Reported-by: Francisco Jerez <currojerez@riseup.net>
-Suggested-by: Francisco Jerez <currojerez@riseup.net>
-Fixes: 35cc7f32c298 ("drm/i915/gt: Use non-forcewake writes for RPS")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Francisco Jerez <currojerez@riseup.net>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-Cc: <stable@vger.kernel.org> # v5.6+
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Test-with: 20200409053951.26929-2-anshuman.gupta@intel.com
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index d19161c7a3d8..4dcfae16a7ce 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -81,13 +81,14 @@ static void rps_enable_interrupts(struct intel_rps *rps)
- 		events = (GEN6_PM_RP_UP_THRESHOLD |
- 			  GEN6_PM_RP_DOWN_THRESHOLD |
- 			  GEN6_PM_RP_DOWN_TIMEOUT);
--
- 	WRITE_ONCE(rps->pm_events, events);
-+
- 	spin_lock_irq(&gt->irq_lock);
- 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
- 	spin_unlock_irq(&gt->irq_lock);
- 
--	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_mask(rps, rps->cur_freq));
-+	intel_uncore_write(gt->uncore,
-+			   GEN6_PMINTRMSK, rps_pm_mask(rps, rps->last_freq));
- }
- 
- static void gen6_rps_reset_interrupts(struct intel_rps *rps)
-@@ -120,7 +121,9 @@ static void rps_disable_interrupts(struct intel_rps *rps)
- 	struct intel_gt *gt = rps_to_gt(rps);
- 
- 	WRITE_ONCE(rps->pm_events, 0);
--	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
-+
-+	intel_uncore_write(gt->uncore,
-+			   GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
- 
- 	spin_lock_irq(&gt->irq_lock);
- 	gen6_gt_pm_disable_irq(gt, GEN6_PM_RPS_EVENTS);
+Anshuman Gupta (4):
+  drm/i915: Power well id for ICL PG3
+  drm/i915: Add i915_lpsp_capability debugfs
+  drm/i915: Add connector dbgfs for all connectors
+  drm/i915: Add i915_lpsp_status debugfs attribute
+
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +
+ .../drm/i915/display/intel_display_debugfs.c  | 100 ++++++++++++++++++
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ .../drm/i915/display/intel_display_power.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 -
+ 6 files changed, 109 insertions(+), 10 deletions(-)
+
 -- 
-2.20.1
+2.26.0
 
 _______________________________________________
 Intel-gfx mailing list
