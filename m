@@ -1,43 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F001A99DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 12:05:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F2A1AA47E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 15:32:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA2446E941;
-	Wed, 15 Apr 2020 10:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 539546E9DC;
+	Wed, 15 Apr 2020 13:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBBC66E93D;
- Wed, 15 Apr 2020 10:05:00 +0000 (UTC)
-IronPort-SDR: BNmrgxxent7xyICqVrAgA0AHqxVI2xm+1upNt2D4vMDewPHDJW+HxQrLxt0GJ2HHfiKxxNvQa0
- r/afLSmd7QlQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 03:05:00 -0700
-IronPort-SDR: ghz2RAXc5u8E96SqMJC6toCqj3AWhj5BOHuiyX2pOMsNhb3Ol/3kiEQ7JYMTEpEITOr+1UDhU3
- z9hZZb3j7RaQ==
-X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="277567623"
-Received: from ssolodk-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.48.37])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 03:04:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jeevan B <jeevan.b@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <1586242207-23214-4-git-send-email-jeevan.b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
- <1586242207-23214-4-git-send-email-jeevan.b@intel.com>
-Date: Wed, 15 Apr 2020 13:04:53 +0300
-Message-ID: <871rop5aka.fsf@intel.com>
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
+ [66.111.4.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D5F89BFE;
+ Wed, 15 Apr 2020 10:06:21 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id 69BD35C01C1;
+ Wed, 15 Apr 2020 06:06:20 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Wed, 15 Apr 2020 06:06:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=xwLJEkyStLLRx/MkSJzpK9ctfqQ
+ DiowaHbVnRT1E52w=; b=rrajHLpZFd73V8GN6vje2MPe1N3vDEivlK41gTcuVJ8
+ slNZeE+GDcaoC3Uw1XZ0vb2oeG4Rosj0rddrCKNoG34ftSZm6Rd0DlxcAHNkrmY9
+ DewKZrZEBcCrjf5owfAiks4bZcajhoE9lkuX40xOaLyvWtev9mwLgiok6tbbjM6p
+ hXbaG3NWNFi4kyboB1wApoowNh3YrEeZuoqmuTaPrW9zQuNiheLVklPzdq6xgAvO
+ p28mJUKrk2VFzwM5z5sk+tbjgu/mpD2o2pVGCvcD69Khx3jCYjDYqRx2YjjXutMd
+ hpl309T2YANSFdOIT5sHpnrDi24iOcxGqoyqKy9lBJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=xwLJEk
+ yStLLRx/MkSJzpK9ctfqQDiowaHbVnRT1E52w=; b=dgK7tt9A6Ofy0bCzUTeTgC
+ Etp/izQ25Dh0jslwvoF+0NstvkSc+2t+O1+aOBBfaDgjDKXLHT1tDV2wZlaCM7hm
+ fLul09aS3nJ9aE4JHrgEew6KgzmewYrw7uCBDkszI8G9dpNH1c5QC+1Rf3cj41jI
+ EJxw+7tP9CjnlmTbXlVIOaJM0iOJroEx2fSfyd4TnOz4s0WumePjozdDNBMUebvr
+ 9K9JyAUFnxp58peo5RascZD8q1Y1EkEazLveJwp01ARGI4psdL7v70qyW/AXHDKx
+ EXuH7y+qskJ+HXKPElEKRnCC7LBTnkrRFtcM8JLgeek1QtXF8lvRWjVEiasyyIzw
+ ==
+X-ME-Sender: <xms:m9yWXkTUmOJhIK1h6VuDUrMuPPAqvG4IAI85gqT4JuWrLQgsnKJHdA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrfeefgdduvdcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
+ ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+ fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:m9yWXjQVWTO-kQqP1q0TkGTgVisY_0p7yQGJWmib4tdsjwOzpOdaJQ>
+ <xmx:m9yWXveXkKzp5r_aJJTojlG1zIVO7wpagxN76vZxf_Ly9v7EacjJlA>
+ <xmx:m9yWXvdQjLh2WKxQvFy2nBX-XrkU8XPgMHIu3pXRyjJMx53f9U32wA>
+ <xmx:nNyWXnRPdyqDH-YSH4wRSX4EJSy3qDCDIyx7E9SA8UYzUzLZmAT0Zw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 505E6306005E;
+ Wed, 15 Apr 2020 06:06:19 -0400 (EDT)
+Date: Wed, 15 Apr 2020 12:06:18 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Simon Ser <contact@emersion.fr>
+Message-ID: <20200415100618.dffhwxhctgarqleq@gilmour.lan>
+References: <20191022005910.siuiwfikmr76qpg3@smtp.gmail.com>
+ <20200415094649.2tgelyotjliao2dk@gilmour.lan>
+ <0kwho152-gzRe09N-ECBh9KepTGX-b_MU8X-TtBnTdWAQP9o5ni7tOVqGn9LK2U2ormexeYvS8U1uVcBMY5Lv-Le4z0dnnMnRaSbb29xjqo=@emersion.fr>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/amdgpu: utilize subconnector
- property for DP through atombios
+In-Reply-To: <0kwho152-gzRe09N-ECBh9KepTGX-b_MU8X-TtBnTdWAQP9o5ni7tOVqGn9LK2U2ormexeYvS8U1uVcBMY5Lv-Le4z0dnnMnRaSbb29xjqo=@emersion.fr>
+X-Mailman-Approved-At: Wed, 15 Apr 2020 13:32:12 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 i-g-t 2/4] kms_writeback: Add initial
+ writeback tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,88 +78,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Zhou <David1.Zhou@amd.com>, Jeevan B <jeevan.b@intel.com>,
- Oleg Vasilev <oleg.vasilev@intel.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, Harry Wentland <hwentlan@amd.com>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Brian Starkey <rodrigosiqueiramelo@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ nd <nd@arm.com>
+Content-Type: multipart/mixed; boundary="===============0126914759=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkFsZXgsIEhhcnJ5LCBDaHJpc3RpYW4sIGNhbiB5b3UgcGxlYXNlIGV5ZWJhbGwgdGhpcyBzZXJp
-ZXMgYW5kIHNlZSBpZiBpdAptYWtlcyBzZW5zZSBmb3IgeW91PwoKVGhhbmtzLApKYW5pLgoKCk9u
-IFR1ZSwgMDcgQXByIDIwMjAsIEplZXZhbiBCIDxqZWV2YW4uYkBpbnRlbC5jb20+IHdyb3RlOgo+
-IEZyb206IE9sZWcgVmFzaWxldiA8b2xlZy52YXNpbGV2QGludGVsLmNvbT4KPgo+IFNpbmNlIERQ
-LXNwZWNpZmljIGluZm9ybWF0aW9uIGlzIHN0b3JlZCBpbiBkcml2ZXIncyBzdHJ1Y3R1cmVzLCBl
-dmVyeQo+IGRyaXZlciBuZWVkcyB0byBpbXBsZW1lbnQgc3ViY29ubmVjdG9yIHByb3BlcnR5IGJ5
-IGl0c2VsZi4KPgo+IHYyOiByZWJhc2UKPgo+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
-ZXVjaGVyQGFtZC5jb20+Cj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
-YW1kLmNvbT4KPiBDYzogRGF2aWQgKENodW5NaW5nKSBaaG91IDxEYXZpZDEuWmhvdUBhbWQuY29t
-Pgo+IENjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IFNpZ25lZC1vZmYtYnk6IEpl
-ZXZhbiBCIDxqZWV2YW4uYkBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogT2xlZyBWYXNpbGV2
-IDxvbGVnLnZhc2lsZXZAaW50ZWwuY29tPgo+IFJldmlld2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVt
-aWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgo+IExpbms6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVk
-ZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDE5MDgyOTExNDg1NC4xNTM5LTYtb2xlZy52YXNpbGV2
-QGludGVsLmNvbQo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY29u
-bmVjdG9ycy5jIHwgMTAgKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfbW9kZS5oICAgICAgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-dG9tYmlvc19kcC5jICAgICAgIHwgMTggKysrKysrKysrKysrKysrKystCj4gIDMgZmlsZXMgY2hh
-bmdlZCwgMjggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9jb25uZWN0b3JzLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY29ubmVjdG9ycy5jCj4gaW5kZXggZjM1NWQ5YS4uNzFh
-YWRlMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY29u
-bmVjdG9ycy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Nvbm5l
-Y3RvcnMuYwo+IEBAIC0yNiw2ICsyNiw3IEBACj4gIAo+ICAjaW5jbHVkZSA8ZHJtL2RybV9lZGlk
-Lmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX2ZiX2hlbHBlci5oPgo+ICsjaW5jbHVkZSA8ZHJtL2Ry
-bV9kcF9oZWxwZXIuaD4KPiAgI2luY2x1ZGUgPGRybS9kcm1fcHJvYmVfaGVscGVyLmg+Cj4gICNp
-bmNsdWRlIDxkcm0vYW1kZ3B1X2RybS5oPgo+ICAjaW5jbHVkZSAiYW1kZ3B1LmgiCj4gQEAgLTE0
-MDUsNiArMTQwNiwxMCBAQCBhbWRncHVfY29ubmVjdG9yX2RwX2RldGVjdChzdHJ1Y3QgZHJtX2Nv
-bm5lY3RvciAqY29ubmVjdG9yLCBib29sIGZvcmNlKQo+ICAJCXBtX3J1bnRpbWVfcHV0X2F1dG9z
-dXNwZW5kKGNvbm5lY3Rvci0+ZGV2LT5kZXYpOwo+ICAJfQo+ICAKPiArCWRybV9kcF9zZXRfc3Vi
-Y29ubmVjdG9yX3Byb3BlcnR5KCZhbWRncHVfY29ubmVjdG9yLT5iYXNlLAo+ICsJCQkJCSByZXQs
-Cj4gKwkJCQkJIGFtZGdwdV9kaWdfY29ubmVjdG9yLT5kcGNkLAo+ICsJCQkJCSBhbWRncHVfZGln
-X2Nvbm5lY3Rvci0+ZG93bnN0cmVhbV9wb3J0cyk7Cj4gIAlyZXR1cm4gcmV0Owo+ICB9Cj4gIAo+
-IEBAIC0xOTUxLDYgKzE5NTYsMTEgQEAgYW1kZ3B1X2Nvbm5lY3Rvcl9hZGQoc3RydWN0IGFtZGdw
-dV9kZXZpY2UgKmFkZXYsCj4gIAlpZiAoaGFzX2F1eCkKPiAgCQlhbWRncHVfYXRvbWJpb3NfZHBf
-YXV4X2luaXQoYW1kZ3B1X2Nvbm5lY3Rvcik7Cj4gIAo+ICsJaWYgKGNvbm5lY3Rvcl90eXBlID09
-IERSTV9NT0RFX0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCB8fAo+ICsJICAgIGNvbm5lY3Rvcl90eXBl
-ID09IERSTV9NT0RFX0NPTk5FQ1RPUl9lRFApIHsKPiArCQlkcm1fbW9kZV9hZGRfZHBfc3ViY29u
-bmVjdG9yX3Byb3BlcnR5KCZhbWRncHVfY29ubmVjdG9yLT5iYXNlKTsKPiArCX0KPiArCj4gIAly
-ZXR1cm47Cj4gIAo+ICBmYWlsZWQ6Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9tb2RlLmggYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-bW9kZS5oCj4gaW5kZXggMzdiYTA3ZS4uMDRhNDMwZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW9kZS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X21vZGUuaAo+IEBAIC00NjksNiArNDY5LDcgQEAgc3RydWN0IGFtZGdw
-dV9lbmNvZGVyIHsKPiAgc3RydWN0IGFtZGdwdV9jb25uZWN0b3JfYXRvbV9kaWcgewo+ICAJLyog
-ZGlzcGxheXBvcnQgKi8KPiAgCXU4IGRwY2RbRFBfUkVDRUlWRVJfQ0FQX1NJWkVdOwo+ICsJdTgg
-ZG93bnN0cmVhbV9wb3J0c1tEUF9NQVhfRE9XTlNUUkVBTV9QT1JUU107Cj4gIAl1OCBkcF9zaW5r
-X3R5cGU7Cj4gIAlpbnQgZHBfY2xvY2s7Cj4gIAlpbnQgZHBfbGFuZV9jb3VudDsKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYXRvbWJpb3NfZHAuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2F0b21iaW9zX2RwLmMKPiBpbmRleCA5Yjc0Y2ZkLi45MDBiMjcy
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2F0b21iaW9zX2RwLmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hdG9tYmlvc19kcC5jCj4gQEAgLTMy
-OCw2ICszMjgsMjIgQEAgc3RhdGljIHZvaWQgYW1kZ3B1X2F0b21iaW9zX2RwX3Byb2JlX291aShz
-dHJ1Y3QgYW1kZ3B1X2Nvbm5lY3RvciAqYW1kZ3B1X2Nvbm5lY3QKPiAgCQkJICAgICAgYnVmWzBd
-LCBidWZbMV0sIGJ1ZlsyXSk7Cj4gIH0KPiAgCj4gK3N0YXRpYyB2b2lkIGFtZGdwdV9hdG9tYmlv
-c19kcF9kc19wb3J0cyhzdHJ1Y3QgYW1kZ3B1X2Nvbm5lY3RvciAqYW1kZ3B1X2Nvbm5lY3RvcikK
-PiArewo+ICsJc3RydWN0IGFtZGdwdV9jb25uZWN0b3JfYXRvbV9kaWcgKmRpZ19jb25uZWN0b3Ig
-PSBhbWRncHVfY29ubmVjdG9yLT5jb25fcHJpdjsKPiArCWludCByZXQ7Cj4gKwo+ICsJaWYgKGRp
-Z19jb25uZWN0b3ItPmRwY2RbRFBfRFBDRF9SRVZdID4gMHgxMCkgewo+ICsJCXJldCA9IGRybV9k
-cF9kcGNkX3JlYWQoJmFtZGdwdV9jb25uZWN0b3ItPmRkY19idXMtPmF1eCwKPiArCQkJCSAgICAg
-ICBEUF9ET1dOU1RSRUFNX1BPUlRfMCwKPiArCQkJCSAgICAgICBkaWdfY29ubmVjdG9yLT5kb3du
-c3RyZWFtX3BvcnRzLAo+ICsJCQkJICAgICAgIERQX01BWF9ET1dOU1RSRUFNX1BPUlRTKTsKPiAr
-CQlpZiAocmV0KQo+ICsJCQltZW1zZXQoZGlnX2Nvbm5lY3Rvci0+ZG93bnN0cmVhbV9wb3J0cywg
-MCwKPiArCQkJICAgICAgIERQX01BWF9ET1dOU1RSRUFNX1BPUlRTKTsKPiArCX0KPiArfQo+ICsK
-PiAgaW50IGFtZGdwdV9hdG9tYmlvc19kcF9nZXRfZHBjZChzdHJ1Y3QgYW1kZ3B1X2Nvbm5lY3Rv
-ciAqYW1kZ3B1X2Nvbm5lY3RvcikKPiAgewo+ICAJc3RydWN0IGFtZGdwdV9jb25uZWN0b3JfYXRv
-bV9kaWcgKmRpZ19jb25uZWN0b3IgPSBhbWRncHVfY29ubmVjdG9yLT5jb25fcHJpdjsKPiBAQCAt
-MzQzLDcgKzM1OSw3IEBAIGludCBhbWRncHVfYXRvbWJpb3NfZHBfZ2V0X2RwY2Qoc3RydWN0IGFt
-ZGdwdV9jb25uZWN0b3IgKmFtZGdwdV9jb25uZWN0b3IpCj4gIAkJCSAgICAgIGRpZ19jb25uZWN0
-b3ItPmRwY2QpOwo+ICAKPiAgCQlhbWRncHVfYXRvbWJpb3NfZHBfcHJvYmVfb3VpKGFtZGdwdV9j
-b25uZWN0b3IpOwo+IC0KPiArCQlhbWRncHVfYXRvbWJpb3NfZHBfZHNfcG9ydHMoYW1kZ3B1X2Nv
-bm5lY3Rvcik7Cj4gIAkJcmV0dXJuIDA7Cj4gIAl9CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9w
-ZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+
+--===============0126914759==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="iqwghg2ae7xjnb5u"
+Content-Disposition: inline
+
+
+--iqwghg2ae7xjnb5u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Apr 15, 2020 at 09:49:46AM +0000, Simon Ser wrote:
+> > > +   igt_output_set_prop_value(output, IGT_CONNECTOR_WRITEBACK_OUT_FENCE_PTR, (uint64_t)out_fence_ptr);
+> >
+> > On ARM (32bits), this cast creates a compilation error since the
+> > pointer size isn't an uint64_t.
+>
+> Does casting to uintptr_t before uint64_t fix it?
+
+It does yep. Casting to uintptr_t alone also works
+
+Maxime
+
+--iqwghg2ae7xjnb5u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXpbcmQAKCRDj7w1vZxhR
+xRltAQCsHwl0Opg1dnFbHzByfer2JWyYtCvM5aNFZxyjXiNCDQEAjfl2jJJBRsTA
+pOEtKD/zOuO0xPadYxVUN15OL/v4JQc=
+=dxUv
+-----END PGP SIGNATURE-----
+
+--iqwghg2ae7xjnb5u--
+
+--===============0126914759==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0126914759==--
