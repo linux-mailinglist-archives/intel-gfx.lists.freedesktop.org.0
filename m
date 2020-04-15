@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CEE71AB0DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 20:55:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5462D1AB0E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 21:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6DA6EA6D;
-	Wed, 15 Apr 2020 18:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFFF76EA75;
+	Wed, 15 Apr 2020 19:02:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5536EA6D
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 18:55:03 +0000 (UTC)
-IronPort-SDR: ufcCejq9OMumlFTsW/lO356mEBBOEfLOPCNpIV2xHHCgm//F8OXTsfOpWpr0HThjJ9+lhLPvqB
- gIs0/weWaDnw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 11:55:02 -0700
-IronPort-SDR: roJoxRyvIhTANx74fpG/ERtG6Rx1FgU02Ju8tacsv1aeAVocQgdaHtl27eZUJ+4wfZuV7ljZjm
- GjyCiiULJNcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,388,1580803200"; d="scan'208";a="454026764"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by fmsmga005.fm.intel.com with ESMTP; 15 Apr 2020 11:55:02 -0700
-Date: Wed, 15 Apr 2020 11:55:02 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200415185502.GA16071@orsosgc001.amr.corp.intel.com>
-References: <20200413154822.11620-1-umesh.nerlige.ramappa@intel.com>
- <20200413154822.11620-2-umesh.nerlige.ramappa@intel.com>
- <6fd2488e-4a76-cb94-12b2-a61ab7f4bfe2@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0E1306EA74;
+ Wed, 15 Apr 2020 19:02:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 08A81A47E2;
+ Wed, 15 Apr 2020 19:02:28 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <6fd2488e-4a76-cb94-12b2-a61ab7f4bfe2@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/perf: Reduce cpu overhead for
- blocking perf OA reads
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 15 Apr 2020 19:02:28 -0000
+Message-ID: <158697734800.21014.6819022922541404181@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200415170318.16771-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200415170318.16771-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/selftests=3A_Exercise?=
+ =?utf-8?q?_basic_RPS_interrupt_generation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,89 +39,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2020 at 01:00:30PM +0300, Lionel Landwerlin wrote:
->On 13/04/2020 18:48, Umesh Nerlige Ramappa wrote:
->>A condition in wait_event_interruptible seems to be checked twice before
->>waiting on the event to occur. These checks are redundant when hrtimer
->>events will call oa_buffer_check_unlocked to update the oa_buffer tail
->>pointers. The redundant checks add cpu overhead. Simplify the check
->>to reduce cpu overhead when using blocking io to read oa buffer reports.
->>
->>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->
->
->I cherry picked this patch alone and it seems to break the 
->disabled-read-error test.
+== Series Details ==
 
-Strange. I don't see it fail on my CFL. I am apply this on the latest 
-drm-tip from yesterday.
+Series: series starting with [CI,1/2] drm/i915/selftests: Exercise basic RPS interrupt generation
+URL   : https://patchwork.freedesktop.org/series/75983/
+State : success
 
-The patch still checks if reports are available before blocking.  The 
-behavior should still be the same w.r.t this test.
+== Summary ==
 
-What machine did you run it on? I will try on the same. Any chance you 
-have the debug output from the test?
+CI Bug Log - changes from CI_DRM_8302 -> Patchwork_17314
+====================================================
 
-Thanks,
-Umesh
+Summary
+-------
 
->
->
->>---
->>  drivers/gpu/drm/i915/i915_perf.c | 28 +++++++++++++++++++++++++++-
->>  1 file changed, 27 insertions(+), 1 deletion(-)
->>
->>diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->>index 5cde3e4e7be6..e28a3ab83fde 100644
->>--- a/drivers/gpu/drm/i915/i915_perf.c
->>+++ b/drivers/gpu/drm/i915/i915_perf.c
->>@@ -541,6 +541,32 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
->>  	return pollin;
->>  }
->>+/**
->>+ * oa_buffer_check_reports - quick check if reports are available
->>+ * @stream: i915 stream instance
->>+ *
->>+ * The return from this function is used as a condition for
->>+ * wait_event_interruptible in blocking read. This is used to detect
->>+ * available reports.
->>+ *
->>+ * A condition in wait_event_interruptible seems to be checked twice before
->>+ * waiting on an event to occur. These checks are redundant when hrtimer events
->>+ * will call oa_buffer_check_unlocked to update the oa_buffer tail pointers. The
->>+ * redundant checks add cpu overhead. We simplify the check to reduce cpu
->>+ * overhead.
->>+ */
->>+static bool oa_buffer_check_reports(struct i915_perf_stream *stream)
->>+{
->>+	unsigned long flags;
->>+	bool available;
->>+
->>+	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
->>+	available = stream->oa_buffer.tail != stream->oa_buffer.head;
->>+	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
->>+
->>+	return available;
->>+}
->>+
->>  /**
->>   * append_oa_status - Appends a status record to a userspace read() buffer.
->>   * @stream: An i915-perf stream opened for OA metrics
->>@@ -1150,7 +1176,7 @@ static int i915_oa_wait_unlocked(struct i915_perf_stream *stream)
->>  		return -EIO;
->>  	return wait_event_interruptible(stream->poll_wq,
->>-					oa_buffer_check_unlocked(stream));
->>+					oa_buffer_check_reports(stream));
->>  }
->>  /**
->
->
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17314 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#1726])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8302/fi-bwr-2160/igt@i915_selftest@live@gt_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/fi-bwr-2160/igt@i915_selftest@live@gt_contexts.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-FAIL][4] ([i915#1725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8302/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-guc:         [PASS][5] -> [INCOMPLETE][6] ([i915#1580])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8302/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][7] ([i915#62] / [i915#95]) -> [SKIP][8] ([fdo#109271])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8302/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
+  [i915#1725]: https://gitlab.freedesktop.org/drm/intel/issues/1725
+  [i915#1726]: https://gitlab.freedesktop.org/drm/intel/issues/1726
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8302 -> Patchwork_17314
+
+  CI-20190529: 20190529
+  CI_DRM_8302: e022648f1633f24b4ec326805f1de22209826519 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5591: f57b7fdbe8d04ce3edf0433a03c7d9d5c3d96680 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17314: 8f0a2624ce986e0756ec6cf5148ca50c29b2c14f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8f0a2624ce98 drm/i915/gt: Update PMINTRMSK holding fw
+fbb035e1d2f5 drm/i915/selftests: Exercise basic RPS interrupt generation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17314/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
