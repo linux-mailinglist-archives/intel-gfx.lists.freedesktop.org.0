@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDEC61AB1E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 21:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 679731AB1F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 21:45:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE87B6E25B;
-	Wed, 15 Apr 2020 19:39:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A3B6E291;
+	Wed, 15 Apr 2020 19:45:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 630606E25B;
- Wed, 15 Apr 2020 19:39:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0CD556E28E;
+ Wed, 15 Apr 2020 19:45:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 561B9A47DA;
- Wed, 15 Apr 2020 19:39:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06A13A00E6;
+ Wed, 15 Apr 2020 19:45:40 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 15 Apr 2020 19:39:15 -0000
-Message-ID: <158697955532.21016.7223461962291126567@emeril.freedesktop.org>
+Date: Wed, 15 Apr 2020 19:45:39 -0000
+Message-ID: <158697993999.21014.12363463700452346359@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200415191408.82574-1-jose.souza@intel.com>
 In-Reply-To: <20200415191408.82574-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Add_missing_deinitialization_cases_of_load_failure?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_missing_deinitialization_cases_of_load_failure?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +49,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915: Add missing deinitialization cases of load failure
 URL   : https://patchwork.freedesktop.org/series/75987/
-State : warning
+State : success
 
 == Summary ==
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
+CI Bug Log - changes from CI_DRM_8302 -> Patchwork_17316
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17316/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17316 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][1] ([i915#62] / [i915#95]) -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8302/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17316/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8302 -> Patchwork_17316
+
+  CI-20190529: 20190529
+  CI_DRM_8302: e022648f1633f24b4ec326805f1de22209826519 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5591: f57b7fdbe8d04ce3edf0433a03c7d9d5c3d96680 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17316: 40cdb21a2c1ee7f94a8f8754870d0d3ee3b85f11 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+40cdb21a2c1e drm/i915: Add missing deinitialization cases of load failure
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17316/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
