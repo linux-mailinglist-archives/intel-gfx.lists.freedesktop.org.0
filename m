@@ -1,40 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DBD1A9BD4
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:11:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76FD01A9BD5
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:11:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7E8F6E962;
-	Wed, 15 Apr 2020 11:11:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1FA16E963;
+	Wed, 15 Apr 2020 11:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAE616E962
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 11:11:02 +0000 (UTC)
-IronPort-SDR: 7t+pXzLZ4GpGH+k/bHJc4TFdZJmEz7nrSLR6jN02fI8WRQ9Fj1EywKb2HzJKen+bwi3LKwnP4F
- s73+gMVtl98w==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C30496E963
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 11:11:12 +0000 (UTC)
+IronPort-SDR: UHiYupcvx6Ci7X1LvhgQFeBPtRww3N7sxPhqtoE6QG3f5LgFCRWxNSlSJxQIrl1XhRC5rqVa1D
+ tCnfbXpUFzUw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 04:11:02 -0700
-IronPort-SDR: m784YejBeSGPC4uUll48KfJugWat0l1mlLktWdHH8pxDn013ofHBIaKHoM7AZzX9rcj6zDgRKU
- h0BrXbORmCtA==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 04:11:12 -0700
+IronPort-SDR: QlO/xvfhEE1n/5CtQHnYUJIHVZ9Qu8ZP2V6X635EmursCUyCqayYNy5v7ndjAaUKHx7gFW4Itx
+ cgXKf5dQbM9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="256825955"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 15 Apr 2020 04:11:00 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 0316E5C1DA7; Wed, 15 Apr 2020 14:09:10 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200415075018.7636-1-chris@chris-wilson.co.uk>
-References: <20200415075018.7636-1-chris@chris-wilson.co.uk>
-Date: Wed, 15 Apr 2020 14:09:10 +0300
-Message-ID: <875ze1ngyx.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="400282827"
+Received: from lbrannix-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.93.149])
+ by orsmga004.jf.intel.com with ESMTP; 15 Apr 2020 04:11:09 -0700
+Date: Wed, 15 Apr 2020 14:11:08 +0300
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200415111108.GB50947@intel.intel>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+ <20200414161423.23830-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Update PMINTRMSK holding fw
+Content-Disposition: inline
+In-Reply-To: <20200414161423.23830-2-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +49,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Hi Chris,
 
-> If we use a non-forcewaked write to PMINTRMSK, it does not take effect
-> until much later, if at all, causing a loss of RPS interrupts and no GPU
-> reclocking, leaving the GPU running at the wrong frequency for long
-> periods of time.
->
-> Reported-by: Francisco Jerez <currojerez@riseup.net>
-> Suggested-by: Francisco Jerez <currojerez@riseup.net>
-> Fixes: 35cc7f32c298 ("drm/i915/gt: Use non-forcewake writes for RPS")
+On Tue, Apr 14, 2020 at 05:14:23PM +0100, Chris Wilson wrote:
+> Try to make RPS dramatically more responsive by shrinking the evaluation
+> intervales by a factor of 100! The issue is as we now park the GPU
+> rapidly upon idling, a short or bursty workload such as the composited
+> desktop never sustains enough work to fill and complete an evaluation
+> window. As such, the frequency we program remains stuck. This was first
+> reported as once boosted, we never relinquished the boost [see commit
+> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
+> it equally applies in the order direction for bursty workloads that
+> *need* low latency, like desktop animations.
+> 
+> What we could try is preserve the incomplete EI history across idling,
+> it is not clear whether that would be effective, nor whether the
+> presumption of continuous workloads is accurate. A clearer path seems to
+> treat it as symptomatic that we fail to handle bursty workload with the
+> current EI, and seek to address that by shrinking the EI so the
+> evaluations are run much more often.
+> 
+> This will likely entail more frequent interrupts, and by the time we
+> process the interrupt in the bottom half [from inside a worker], the
+> workload on the GPU has changed. To address the changeable nature, in
+> the previous patch we compared the previous complete EI with the
+> interrupt request and only up/down clock if both agree. The impact of
+> asking for, and presumably, receiving more interrupts is still to be
+> determined and mitigations sought. The first idea is to differentiate
+> between up/down responsivity and make upclocking more responsive than
+> downlocking. This should both help thwart jitter on bursty workloads by
+> making it easier to increase than it is to decrease frequencies, and
+> reduce the number of interrupts we would need to process.
+> 
+> Fixes: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1698
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Francisco Jerez <currojerez@riseup.net>
 > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > Cc: Andi Shyti <andi.shyti@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.6+
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Francisco Jerez <currojerez@riseup.net>
+> Cc: <stable@vger.kernel.org> # v5.5+
 > ---
->  drivers/gpu/drm/i915/gt/intel_rps.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
+>  drivers/gpu/drm/i915/gt/intel_rps.c | 27 ++++++++++++++-------------
+>  1 file changed, 14 insertions(+), 13 deletions(-)
+> 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index 86110458e2a7..6a3505467406 100644
+> index 367132092bed..47ddb25edc97 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_rps.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -81,13 +81,14 @@ static void rps_enable_interrupts(struct intel_rps *rps)
->  		events = (GEN6_PM_RP_UP_THRESHOLD |
->  			  GEN6_PM_RP_DOWN_THRESHOLD |
->  			  GEN6_PM_RP_DOWN_TIMEOUT);
-> -
->  	WRITE_ONCE(rps->pm_events, events);
-> +
->  	spin_lock_irq(&gt->irq_lock);
->  	gen6_gt_pm_enable_irq(gt, rps->pm_events);
->  	spin_unlock_irq(&gt->irq_lock);
+> @@ -542,37 +542,38 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+>  	/* Note the units here are not exactly 1us, but 1280ns. */
+>  	switch (new_power) {
+>  	case LOW_POWER:
+> -		/* Upclock if more than 95% busy over 16ms */
+> -		ei_up = 16000;
+> +		/* Upclock if more than 95% busy over 160us */
+> +		ei_up = 160;
+>  		threshold_up = 95;
 >  
-> -	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_mask(rps, rps->cur_freq));
-> +	intel_uncore_write(gt->uncore,
-> +                           GEN6_PMINTRMSK, rps_pm_mask(rps, rps->last_freq));
->  }
+> -		/* Downclock if less than 85% busy over 32ms */
+> -		ei_down = 32000;
+> +		/* Downclock if less than 85% busy over 1600us */
+> +		ei_down = 1600;
+>  		threshold_down = 85;
+>  		break;
 >  
->  static void gen6_rps_reset_interrupts(struct intel_rps *rps)
-> @@ -120,7 +121,9 @@ static void rps_disable_interrupts(struct intel_rps *rps)
->  	struct intel_gt *gt = rps_to_gt(rps);
+>  	case BETWEEN:
+> -		/* Upclock if more than 90% busy over 13ms */
+> -		ei_up = 13000;
+> +		/* Upclock if more than 90% busy over 160us */
+> +		ei_up = 160;
+>  		threshold_up = 90;
 >  
->  	WRITE_ONCE(rps->pm_events, 0);
-> -	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
-> +
-> +	intel_uncore_write(gt->uncore,
-> +                           GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
+> -		/* Downclock if less than 75% busy over 32ms */
+> -		ei_down = 32000;
+> +		/* Downclock if less than 75% busy over 1600us */
+> +		ei_down = 1600;
+>  		threshold_down = 75;
+>  		break;
 >  
->  	spin_lock_irq(&gt->irq_lock);
->  	gen6_gt_pm_disable_irq(gt, GEN6_PM_RPS_EVENTS);
-> -- 
-> 2.20.1
+>  	case HIGH_POWER:
+> -		/* Upclock if more than 85% busy over 10ms */
+> -		ei_up = 10000;
+> +		/* Upclock if more than 85% busy over 160us */
+> +		ei_up = 160;
+>  		threshold_up = 85;
+>  
+> -		/* Downclock if less than 60% busy over 32ms */
+> -		ei_down = 32000;
+> +		/* Downclock if less than 60% busy over 1600us */
+> +		ei_down = 1600;
+
+This is quite a drammatic change.
+
+Can we have a more dynamic selection of the interval depending on
+the frequency we are running? We reduce the interval in low
+frequencies and increase the interval in high frequencies.
+
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
