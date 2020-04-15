@@ -2,42 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F71A1A9510
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2ED1A951C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:51:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62D0B6E8EB;
-	Wed, 15 Apr 2020 07:48:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2E186E8B2;
+	Wed, 15 Apr 2020 07:51:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84CF6E8B2;
- Wed, 15 Apr 2020 07:48:25 +0000 (UTC)
-IronPort-SDR: dwpJyfeH60hfcJfItdgOV4ZQBJ5nmrKEr6kZOcPN4ThVgfLyF4+QdZPvLlFNubE98ZMlDIOAlV
- U9Rmi5rNSE5Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 00:48:25 -0700
-IronPort-SDR: Yw3vkIFrF1PjnK/eiFxqhgmc+7IR8tBi1rTI5Hz52EXIJ4rDUpav5BEc3bvDOwwSrCzdtwdflg
- AfO7UBDPAt8A==
-X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="427350052"
-Received: from ssolodk-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.48.37])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 00:48:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Alex Deucher <alexdeucher@gmail.com>
-In-Reply-To: <CAKMK7uEWkGA2e2ZV9H0m8ParE_9DNtgAhG3FuqPzvgv-xeVcng@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <efb3d0d9-2cf7-046b-3a9b-2548d086258e@linux.intel.com>
- <87wo6h5k0d.fsf@intel.com>
- <CAKMK7uEWkGA2e2ZV9H0m8ParE_9DNtgAhG3FuqPzvgv-xeVcng@mail.gmail.com>
-Date: Wed, 15 Apr 2020 10:48:15 +0300
-Message-ID: <87imi15gw0.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD6666E8B2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:51:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20902964-1500050 
+ for multiple; Wed, 15 Apr 2020 08:50:21 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Apr 2020 08:50:18 +0100
+Message-Id: <20200415075018.7636-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] topic/phy-compliance
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Update PMINTRMSK holding fw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,116 +36,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Apr 2020, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> On Wed, Apr 15, 2020 at 8:40 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> On Wed, 08 Apr 2020, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
->> > Hey,
->> >
->> > Here's a pull request to pull in the DP PHY Compliance series.
->> > It's based on top of drm/drm-next, and contains all patches for core, amd and i915. :)
->>
->> Ping, I don't see this merged in any tree yet.
->
-> Generally topic pull requests get pulled into all relevant trees,
-> which would be drm-misc, drm-intel and drm-amd here. All of the
-> optional ofc if you do instead maintainer-acks for merging through
-> another tree.
->
-> Since I wasn't involved in this no idea who requested the topic tree
-> instead of acks, and the pull isn't addressed to specific people who
-> should pull it in (I generally add that to avoid confusion like this
-> here), but this aint something that drm.git needs to pull. Just stuff
-> it into one of the trees as usual. Also just noticed that amd
-> maintainers arent even cc'ed, adding Alex. You guys pls figure this
-> out :-)
+If we use a non-forcewaked write to PMINTRMSK, it does not take effect
+until much later, if at all, causing a loss of RPS interrupts and no GPU
+reclocking, leaving the GPU running at the wrong frequency for long
+periods of time.
 
-It seemed like drm-misc and drm-intel would be out-of-sync for too long
-before we'd get all of them eventually (back)merged together, so I
-leaned towards the topic branch. Of course, the point starts to be moot
-if it has already taken more than a week to merge this anywhere...
+Reported-by: Francisco Jerez <currojerez@riseup.net>
+Suggested-by: Francisco Jerez <currojerez@riseup.net>
+Fixes: 35cc7f32c298 ("drm/i915/gt: Use non-forcewake writes for RPS")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Francisco Jerez <currojerez@riseup.net>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: <stable@vger.kernel.org> # v5.6+
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-And I'm pinging about merging the topic pull to drm-misc and drm-intel;
-I'm currently not covering drm-intel.
-
-BR,
-Jani.
-
-
-
-
-> -Daniel
->
->>
->> BR,
->> Jani.
->>
->>
->> >
->> > Cheers,
->> > Maarten
->> >
->> > topic/phy-compliance-2020-04-08:
->> > Topic pull request for topic/phy-compliance:
->> > - Standardize DP_PHY_TEST_PATTERN name.
->> > - Add support for setting/getting test pattern from sink.
->> > - Implement DP PHY compliance to i915.
->> > The following changes since commit 12ab316ced2c5f32ced0e6300a054db644b5444a:
->> >
->> >   Merge tag 'amd-drm-next-5.7-2020-04-01' of git://people.freedesktop.org/~agd5f/linux into drm-next (2020-04-08 09:34:27 +1000)
->> >
->> > are available in the Git repository at:
->> >
->> >   git://anongit.freedesktop.org/drm/drm-misc tags/topic/phy-compliance-2020-04-08
->> >
->> > for you to fetch changes up to 8cdf727119289db3a98835662eb28e1c5ad835f1:
->> >
->> >   drm/i915/dp: Program vswing, pre-emphasis, test-pattern (2020-04-08 14:41:09 +0200)
->> >
->> > ----------------------------------------------------------------
->> > Topic pull request for topic/phy-compliance:
->> > - Standardize DP_PHY_TEST_PATTERN name.
->> > - Add support for setting/getting test pattern from sink.
->> > - Implement DP PHY compliance to i915.
->> >
->> > ----------------------------------------------------------------
->> > Animesh Manna (7):
->> >       drm/amd/display: Align macro name as per DP spec
->> >       drm/dp: get/set phy compliance pattern
->> >       drm/i915/dp: Made intel_dp_adjust_train() non-static
->> >       drm/i915/dp: Preparation for DP phy compliance auto test
->> >       drm/i915/dp: Add debugfs entry for DP phy compliance
->> >       drm/i915/dp: Register definition for DP compliance register
->> >       drm/i915/dp: Program vswing, pre-emphasis, test-pattern
->> >
->> >  drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c   |   2 +-
->> >  drivers/gpu/drm/drm_dp_helper.c                    |  94 +++++++++++
->> >  .../gpu/drm/i915/display/intel_display_debugfs.c   |  12 +-
->> >  drivers/gpu/drm/i915/display/intel_display_types.h |   1 +
->> >  drivers/gpu/drm/i915/display/intel_dp.c            | 171 +++++++++++++++++++++
->> >  drivers/gpu/drm/i915/display/intel_dp.h            |   1 +
->> >  .../gpu/drm/i915/display/intel_dp_link_training.c  |   9 +-
->> >  .../gpu/drm/i915/display/intel_dp_link_training.h  |   4 +
->> >  drivers/gpu/drm/i915/i915_reg.h                    |  18 +++
->> >  include/drm/drm_dp_helper.h                        |  33 +++-
->> >  10 files changed, 337 insertions(+), 8 deletions(-)
->>
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 86110458e2a7..6a3505467406 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -81,13 +81,14 @@ static void rps_enable_interrupts(struct intel_rps *rps)
+ 		events = (GEN6_PM_RP_UP_THRESHOLD |
+ 			  GEN6_PM_RP_DOWN_THRESHOLD |
+ 			  GEN6_PM_RP_DOWN_TIMEOUT);
+-
+ 	WRITE_ONCE(rps->pm_events, events);
++
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
+ 	spin_unlock_irq(&gt->irq_lock);
+ 
+-	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_mask(rps, rps->cur_freq));
++	intel_uncore_write(gt->uncore,
++                           GEN6_PMINTRMSK, rps_pm_mask(rps, rps->last_freq));
+ }
+ 
+ static void gen6_rps_reset_interrupts(struct intel_rps *rps)
+@@ -120,7 +121,9 @@ static void rps_disable_interrupts(struct intel_rps *rps)
+ 	struct intel_gt *gt = rps_to_gt(rps);
+ 
+ 	WRITE_ONCE(rps->pm_events, 0);
+-	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
++
++	intel_uncore_write(gt->uncore,
++                           GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_disable_irq(gt, GEN6_PM_RPS_EVENTS);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
