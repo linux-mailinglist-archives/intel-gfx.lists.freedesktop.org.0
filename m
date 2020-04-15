@@ -1,43 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19AF1A95AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:08:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC471A95B0
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:09:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13BAF6E902;
-	Wed, 15 Apr 2020 08:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E3A6E903;
+	Wed, 15 Apr 2020 08:09:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 324046E902
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:08:25 +0000 (UTC)
-IronPort-SDR: RiOSz4f2X446/7XoCpSnBWni5n6wQ4tnsqf6vlZwPIgO4BRePSyfj3e+wuf5nJ7xwuhnbxhL60
- v9fsFsNCBSVw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 01:08:24 -0700
-IronPort-SDR: DucsXdWozyS/KAMKJvFHpVUAWv+XcZiqBh8R/8GU7CAyLB+egzpWfWFb5nnRmshJBcLN+ctR0/
- Xad85pcBnGiA==
-X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="427354781"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 01:08:22 -0700
-Date: Wed, 15 Apr 2020 11:04:54 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200415080454.GA17859@intel.com>
-References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
- <20200409154730.18568-7-stanislav.lisovskiy@intel.com>
- <20200414174225.GG6112@intel.com>
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0D186E906
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:09:45 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id i22so2501588otp.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 01:09:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=cR3k8d3xfmclQS8lvjY9yXbBPZe6NeGIStVHsQdqnps=;
+ b=lX/Y2v8dhsU8Nb7yMJv2lv1K/wPWEKMCbEHtyrWqdPR8DoREn1lXkW+4BAm0a2VmQg
+ B1xwJzesV4rnV2+6vk+a+DcJF1ohFZW8o5ElZl1SSoBs7tiQwHfxu9JlEj+cKDIiRwZm
+ i1Kbk1gPa0K2GuH/AFYmiMyu+c78fOhMteOFg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=cR3k8d3xfmclQS8lvjY9yXbBPZe6NeGIStVHsQdqnps=;
+ b=cPhLn9A6hppLMCrk8RR/RG5/Uk67RTuDZyW88gTVpo4VYIDTWciKKS79A1Yme5TZij
+ XGxdwLOlWlM3RbdtHVpazT4h66efFWRlvzboV3AHLnhxKqQm4sJGot4coJENHOzXqfw9
+ l3mJrf6IFEK82mPdVlYSxd4NvF5ZH0nnD3kI9CdkhUTjvXNf+mqaJHOmSEs6WkIvUJ+v
+ BPQjwJyTrbrhVSLDeEU4WqY1wOQQa7km7u/QpHTZKozWDEBLWoJ2CgoyAwRyWCzzpJ0w
+ P+3Bdb8MN/M6+oukzwmLu5QSnbIH+wuZNkx7brko+OHobuE7Ev97kJSI0iPGzjrY4fcJ
+ 9btg==
+X-Gm-Message-State: AGi0PuYXK0iOJ6HUER/yoqN506Hpx0gXbao4Qj80uqLkhLBEl1mlbYjt
+ gqfaP5/zoCnMqnbff6iCNe9zSiaKiOzy1Nv1I+LYhQ==
+X-Google-Smtp-Source: APiQypKTYlFRX7NbAI2zQ9dkIwd61K6vLaomU5Zm5IZzuaepADUzy5xQ8jKDZxE4rMhhaV25UhYUeJw8I633O8Ye06M=
+X-Received: by 2002:a05:6830:1d0:: with SMTP id
+ r16mr12578122ota.303.1586938185063; 
+ Wed, 15 Apr 2020 01:09:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200414174225.GG6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v22 06/13] drm/i915: Add pre/post plane
- updates for SAGV
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-58-daniel.vetter@ffwll.ch>
+ <d33d1565-1c1a-a926-01a1-cf01691ec84d@suse.de>
+In-Reply-To: <d33d1565-1c1a-a926-01a1-cf01691ec84d@suse.de>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 10:09:33 +0200
+Message-ID: <CAKMK7uHxN62MUJrFtWJ7oKjYPnrrMHPLZgSNVZX21BAsM=8P2w@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 57/59] drm/ast: Use managed pci functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,148 +61,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 14, 2020 at 08:42:25PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Apr 09, 2020 at 06:47:23PM +0300, Stanislav Lisovskiy wrote:
-> > Lets have a unified way to handle SAGV changes,
-> > espoecially considering the upcoming Gen12 changes.
-> > =
-
-> > Current "standard" way of doing this in commit_tail
-> > is pre/post plane updates, when everything which
-> > has to be forbidden and not supported in new config
-> > has to be restricted before update and relaxed after
-> > plane update.
-> > =
-
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 13 ++++---------
-> >  drivers/gpu/drm/i915/intel_pm.c              | 20 ++++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_pm.h              |  2 ++
-> >  3 files changed, 26 insertions(+), 9 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 70ec301fe6e3..ac7f600c84ca 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -15349,12 +15349,7 @@ static void intel_atomic_commit_tail(struct in=
-tel_atomic_state *state)
-> >  =
-
-> >  		intel_set_cdclk_pre_plane_update(state);
-> >  =
-
-> > -		/*
-> > -		 * SKL workaround: bspec recommends we disable the SAGV when we
-> > -		 * have more then one pipe enabled
-> > -		 */
-> > -		if (!intel_can_enable_sagv(state))
-> > -			intel_disable_sagv(dev_priv);
-> > +		intel_sagv_pre_plane_update(state);
-> >  =
-
-> >  		intel_modeset_verify_disabled(dev_priv, state);
-> >  	}
-> > @@ -15451,11 +15446,11 @@ static void intel_atomic_commit_tail(struct i=
-ntel_atomic_state *state)
-> >  	intel_check_cpu_fifo_underruns(dev_priv);
-> >  	intel_check_pch_fifo_underruns(dev_priv);
-> >  =
-
-> > -	if (state->modeset)
-> > +	if (state->modeset) {
-> >  		intel_verify_planes(state);
-> >  =
-
-> > -	if (state->modeset && intel_can_enable_sagv(state))
-> > -		intel_enable_sagv(dev_priv);
-> > +		intel_sagv_post_plane_update(state);
-> > +	}
-> >  =
-
-> >  	drm_atomic_helper_commit_hw_done(&state->base);
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
-el_pm.c
-> > index 41af69ad3edc..d1df288396d8 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -3757,6 +3757,26 @@ intel_disable_sagv(struct drm_i915_private *dev_=
-priv)
-> >  	return 0;
-> >  }
-> >  =
-
-> > +void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
-> > +{
-> > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > +
-> > +	if (!intel_can_enable_sagv(state)) {
-> > +		intel_disable_sagv(dev_priv);
-> > +		return;
-> > +	}
-> > +}
-> > +
-> > +void intel_sagv_post_plane_update(struct intel_atomic_state *state)
-> > +{
-> > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > +
-> > +	if (intel_can_enable_sagv(state)) {
-> > +		intel_enable_sagv(dev_priv);
-> > +		return;
-> =
-
-> Pointless returns. With those removed
-
-Agree, my vision was way to blurry after reshuffling.
-
-> =
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> > +	}
-> > +}
-> > +
-> >  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *=
-crtc_state)
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/int=
-el_pm.h
-> > index d60a85421c5a..9a6036ab0f90 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.h
-> > +++ b/drivers/gpu/drm/i915/intel_pm.h
-> > @@ -44,6 +44,8 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_pri=
-v);
-> >  bool intel_can_enable_sagv(struct intel_atomic_state *state);
-> >  int intel_enable_sagv(struct drm_i915_private *dev_priv);
-> >  int intel_disable_sagv(struct drm_i915_private *dev_priv);
-> > +void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
-> > +void intel_sagv_post_plane_update(struct intel_atomic_state *state);
-> >  bool skl_wm_level_equals(const struct skl_wm_level *l1,
-> >  			 const struct skl_wm_level *l2);
-> >  bool skl_ddb_allocation_overlaps(const struct skl_ddb_entry *ddb,
-> > -- =
-
-> > 2.24.1.485.gad05a3d8e5
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCBBcHIgMTUsIDIwMjAgYXQgOTo1MiBBTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4KPiBIaSBEYW5pZWwKPgo+IEFtIDE1LjA0LjIwIHVtIDA5
+OjQwIHNjaHJpZWIgRGFuaWVsIFZldHRlcjoKPiA+IEFsbG93cyB1cyB0byByZW1vdmUgYSBiaXQg
+b2YgY2xlYW51cCBjb2RlLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRh
+bmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+ID4gQ2M6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhh
+dC5jb20+Cj4gPiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4g
+PiBDYzogR2VyZCBIb2ZmbWFubiA8a3JheGVsQHJlZGhhdC5jb20+Cj4gPiBDYzogRGFuaWVsIFZl
+dHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiA+IENjOiBFbWlsIFZlbGlrb3YgPGVtaWwu
+dmVsaWtvdkBjb2xsYWJvcmEuY29tPgo+ID4gQ2M6ICJOb3JhbGYgVHLDuG5uZXMiIDxub3JhbGZA
+dHJvbm5lcy5vcmc+Cj4gPiBDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+ID4g
+Q2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+ID4gQ2M6
+ICJZLkMuIENoZW4iIDx5Y19jaGVuQGFzcGVlZHRlY2guY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVy
+cy9ncHUvZHJtL2FzdC9hc3RfZHJ2LmMgIHwgMTAgKysrLS0tLS0tLQo+ID4gIGRyaXZlcnMvZ3B1
+L2RybS9hc3QvYXN0X21haW4uYyB8ICAzIC0tLQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMyBpbnNl
+cnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2FzdC9hc3RfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9kcnYuYwo+ID4g
+aW5kZXggYjdiYTIyZGRkY2FkLi40OGE5Y2M0ZTA4MGEgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vYXN0L2FzdF9kcnYuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FzdC9hc3Rf
+ZHJ2LmMKPiA+IEBAIC05MSwxNSArOTEsMTMgQEAgc3RhdGljIGludCBhc3RfcGNpX3Byb2JlKHN0
+cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQo+ID4K
+PiA+ICAgICAgIGFzdF9raWNrX291dF9maXJtd2FyZV9mYihwZGV2KTsKPiA+Cj4gPiAtICAgICBy
+ZXQgPSBwY2lfZW5hYmxlX2RldmljZShwZGV2KTsKPiA+ICsgICAgIHJldCA9IHBjaW1fZW5hYmxl
+X2RldmljZShwZGV2KTsKPiA+ICAgICAgIGlmIChyZXQpCj4gPiAgICAgICAgICAgICAgIHJldHVy
+biByZXQ7Cj4gPgo+ID4gICAgICAgZGV2ID0gZHJtX2Rldl9hbGxvYygmZHJpdmVyLCAmcGRldi0+
+ZGV2KTsKPiA+IC0gICAgIGlmIChJU19FUlIoZGV2KSkgewo+ID4gLSAgICAgICAgICAgICByZXQg
+PSBQVFJfRVJSKGRldik7Cj4gPiAtICAgICAgICAgICAgIGdvdG8gZXJyX3BjaV9kaXNhYmxlX2Rl
+dmljZTsKPiA+IC0gICAgIH0KPiA+ICsgICAgIGlmIChJU19FUlIoZGV2KSkKPiA+ICsgICAgICAg
+ICAgICAgcmV0dXJuICBQVFJfRVJSKGRldik7Cj4gPgo+ID4gICAgICAgZGV2LT5wZGV2ID0gcGRl
+djsKPiA+ICAgICAgIHBjaV9zZXRfZHJ2ZGF0YShwZGV2LCBkZXYpOwo+ID4gQEAgLTEyMCw4ICsx
+MTgsNiBAQCBzdGF0aWMgaW50IGFzdF9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNv
+bnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkICplbnQpCj4gPiAgICAgICBhc3RfZHJpdmVyX3VubG9h
+ZChkZXYpOwo+ID4gIGVycl9kcm1fZGV2X3B1dDoKPiA+ICAgICAgIGRybV9kZXZfcHV0KGRldik7
+Cj4gPiAtZXJyX3BjaV9kaXNhYmxlX2RldmljZToKPiA+IC0gICAgIHBjaV9kaXNhYmxlX2Rldmlj
+ZShwZGV2KTsKPiA+ICAgICAgIHJldHVybiByZXQ7Cj4gPgo+ID4gIH0KPiA+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMgYi9kcml2ZXJzL2dwdS9kcm0vYXN0L2Fz
+dF9tYWluLmMKPiA+IGluZGV4IGU1Mzk4ZTNkYWJlNy4uMWIzNTcyOGFkODcxIDEwMDY0NAo+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FzdC9hc3RfbWFpbi5jCj4gPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vYXN0L2FzdF9tYWluLmMKPiA+IEBAIC01MzEsOCArNTMxLDUgQEAgdm9pZCBhc3RfZHJp
+dmVyX3VubG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ID4gICAgICAgZHJtX21vZGVfY29u
+ZmlnX2NsZWFudXAoZGV2KTsKPiA+Cj4gPiAgICAgICBhc3RfbW1fZmluaShhc3QpOwo+ID4gLSAg
+ICAgaWYgKGFzdC0+aW9yZWdzICE9IGFzdC0+cmVncyArIEFTVF9JT19NTV9PRkZTRVQpCj4gPiAt
+ICAgICAgICAgICAgIHBjaV9pb3VubWFwKGRldi0+cGRldiwgYXN0LT5pb3JlZ3MpOwo+ID4gLSAg
+ICAgcGNpX2lvdW5tYXAoZGV2LT5wZGV2LCBhc3QtPnJlZ3MpOwo+Cj4gVGhpcyBnZXRzIHVubWFw
+cGVkIGFzIHBhcnQgb2YgdGhlIGF1dG9tYXRpYyBwY2lfZGlzYWJsZV9kZXZpY2UoKSwgSSBndWVz
+cz8KCll1cCwgb25jZSB5b3UgZ28gd2l0aCBwY2ltX2VuYWJsZV9kZXZpY2UgYWxsIHBjaV8gZnVu
+Y3Rpb25zIG9uIHRoYXQKZGV2aWNlIGJlY29tZSBtYW5nZWQgYW5kIGF1dG8tY2xlYW51cC4KCj4g
+RG8gd2UgbmVlZCBkcm1fZGV2X2VudGVyKCkvX2V4aXQoKSB0byBtYWtlIEkvTyB3b3JrIHJlbGlh
+Ymx5PwoKVGhhdCBkb2VzIG5vdGhpbmcgd2l0aG91dCBkcm1fZGV2X3VucGx1ZygpLCB3aGljaCBo
+YXMgdGhlIGFubm95aW5nCnNpZGUgZWZmZWN0IHRoYXQgaXQgYWxzbyBzaHV0cyB1cCBzdHVmZiBs
+aWtlCmRybV9hdG9taWNfaGVscGVyX3NodXRkb3duIGZvciBtb2R1bGUgdW5sb2FkLiBBbmQgZGV2
+ZWxvcGVycyByZWFsbHkKd2FudCB0aGVpciBkZXZpY2VzIHRvIGJlIHNodXQgb2ZmIG9uIGRyaXZl
+ciB1bmxvYWQuIFNvIHllYWgKdW5mb3J0dW5hdGVseSB3ZSBjdXJyZW50bHkgY2FuIGRlY2lkZSBi
+ZXR3ZWVuICJjb3JyZWN0IGZvciBob3R1bnBsdWciCmFuZCAiY29udmVuaWVudCBmb3IgZHJpdmVy
+IHVubG9hZCBmb3IgZHJpdmVyIGF1dGhvcnMiLiBJJ20gbm90IHN1cmUKd2hhdCB0byBiZXN0IGRv
+IGhlcmUsIHNpbmNlIGFsbCBvcHRpb25zIGFyZSBraW5kYSBub3QgZ3JlYXQgZm9yIG9uZQp1c2Ut
+Y2FzZSBvciB0aGUgb3RoZXIuCi1EYW5pZWwKCj4gQmVzdCByZWdhcmRzCj4gVGhvbWFzCj4KPiA+
+ICAgICAgIGtmcmVlKGFzdCk7Cj4gPiAgfQo+ID4KPgo+IC0tCj4gVGhvbWFzIFppbW1lcm1hbm4K
+PiBHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj4gU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2Vy
+bWFueSBHbWJICj4gTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55Cj4gKEhS
+QiAzNjgwOSwgQUcgTsO8cm5iZXJnKQo+IEdlc2Now6RmdHNmw7xocmVyOiBGZWxpeCBJbWVuZMO2
+cmZmZXIKPgoKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jw
+b3JhdGlvbgorNDEgKDApIDc5IDM2NSA1NyA0OCAtIGh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
