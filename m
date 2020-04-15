@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CA81A94B8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD73E1A94BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5E86E8C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8167F6E8C4;
 	Wed, 15 Apr 2020 07:41:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 730C089308
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:21 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id a201so17307528wme.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:21 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB3B89622
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:22 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id b11so6485168wrs.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2H30jIEDD11qSxQxpCleB9uk8qmGhVe/WOieJFi7LTw=;
- b=OFvhQt+wzABIdksPxx9xVuNqEN7IekHKj8l+0SlgB7+6jRXeGJ4/RisMZm6OoXpo5i
- 3cQIQEE/s8jQ6SkV2mkouXky8Usy7J/6XIOYM6VOvA56lHjXrHMhJIt6mTGUxaC49h2w
- uT5KJkz9EkyxQeNn+GPZzUH2Wo75tVoztazDE=
+ bh=qNncsUXlzsPXlZto5mxj4G9qCB9ihW7GhOP14Dzx+88=;
+ b=kKDYv0zBj63u0YKpPv7lsnH5tPY+K4nLY5xgL7IxJVbhDTaGek5voYsqsoL5gYSME+
+ yO3JWYG75Vrg/fvfbqU1uBt2shGuktV5TFeMrE14ovjgeYMT5DsooR855KHMaPFOfofK
+ fSqgREVhI8k8S+VmdB9LhPmkEQHJUQMVqEDXE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2H30jIEDD11qSxQxpCleB9uk8qmGhVe/WOieJFi7LTw=;
- b=gK9l0GHFwSg8PNkOPNVt3ruvhC4A8ogMgrYmHNKkpN7kpK78pljsbFmTjYwVJsKMKz
- Ii8m1ZKm2tLySJWiWz9Yy2kFBiuFH7z/igSePsIHtPbj7FicuBdkY/v85SABUsqAm60j
- GqzndYXz4wDxlh5mvNMYJj7WqgUkI7hYrstkryFgILPTvSBPM9sx+PSDrN6W2mNBDfDt
- mxZxSuEOdc+XHgpoPA2YP4GlTd7Sq3I9uDLPvzlUsXDaGf7/Y3z7iScxJ7TmzAfWY+ky
- zWyULZS6GDRYsVbu4vTmCP8k6w/bj5k7MQXpi4Ku0+2Bxzzi1NnZFD8QiQ6b+VE10JgR
- oGpg==
-X-Gm-Message-State: AGi0Pubt7IJrk87U2pkAh+gcpoLDxv8tAO32SCy/a2FnQzIuOUiKl6cv
- 2pG92YVLGDP40YMleQTzUDxmgfNZFJo=
-X-Google-Smtp-Source: APiQypLs5r80mVEEP1uzMzAmmqWiKQSAQy7ew3+iWYVMq92xN6QC2hhYFiEZMck6gWVDyQtJdrs+QA==
-X-Received: by 2002:a05:600c:2f17:: with SMTP id
- r23mr3597690wmn.81.1586936479698; 
- Wed, 15 Apr 2020 00:41:19 -0700 (PDT)
+ bh=qNncsUXlzsPXlZto5mxj4G9qCB9ihW7GhOP14Dzx+88=;
+ b=BGXIIPYlFBi9ipsR22fCOi6WuiZHqlVx0efEpH/SefF7hn2Wuwp2AbX3x/cF3ohT5h
+ CG90GLDnN79CtCfm7pi55Slunqp2UF/qeDCApvj9p1I/dMJIc5PySRiy9JucWbfTfIn5
+ ds3C26Me4uZf1iP2pDwtONt/voAJ7Nf5Ddj6h0PTZPh4BpmHXDO54pXtYQWB3u+R4kfx
+ WVQ8WbLu3ChVDYN1dqCu7li1/OpsAtO3aGNmwAORSJN/r+EvBy2GGtwA4PopktHpufxq
+ ibOzn2RJCs13YTW14eQCKqLa1zpvVcgrtqjPNRhzuVbTQORD+jh/5CxRvZ1pk416ZCFD
+ lSHw==
+X-Gm-Message-State: AGi0PuYbtwf77NSF1qyEMJsXnIOjjAg5ku2MmpaCKhk7m8Eplr2KMAcW
+ IzzGzFqf4XepstjA/mKHYLFGNpxjPSg=
+X-Google-Smtp-Source: APiQypJKnQy1o+OQi/gK/YB7zTVyphWXyt5KDuCdGcSFUCktHK0msc87FZbs5xoZpxHJ6nS6K1btLQ==
+X-Received: by 2002:adf:feca:: with SMTP id q10mr27383217wrs.199.1586936480652; 
+ Wed, 15 Apr 2020 00:41:20 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.18
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:19 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:20 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:12 +0200
-Message-Id: <20200415074034.175360-38-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:13 +0200
+Message-Id: <20200415074034.175360-39-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 37/59] drm/cirrus: Move to drm/tiny
+Subject: [Intel-gfx] [PATCH 38/59] drm/i915: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,149 +65,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Because it is. Huge congrats to everyone who made this kind of
-refactoring happen!
+Luckily we're already well set up in the main driver, with
+drm_dev_put() being the last thing in both the unload error case and
+the pci remove function.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: virtualization@lists.linux-foundation.org
 ---
- MAINTAINERS                               |  2 +-
- drivers/gpu/drm/Kconfig                   |  2 --
- drivers/gpu/drm/Makefile                  |  1 -
- drivers/gpu/drm/cirrus/Kconfig            | 19 -------------------
- drivers/gpu/drm/cirrus/Makefile           |  2 --
- drivers/gpu/drm/tiny/Kconfig              | 19 +++++++++++++++++++
- drivers/gpu/drm/tiny/Makefile             |  1 +
- drivers/gpu/drm/{cirrus => tiny}/cirrus.c |  0
- 8 files changed, 21 insertions(+), 25 deletions(-)
- delete mode 100644 drivers/gpu/drm/cirrus/Kconfig
- delete mode 100644 drivers/gpu/drm/cirrus/Makefile
- rename drivers/gpu/drm/{cirrus => tiny}/cirrus.c (100%)
+ drivers/gpu/drm/i915/i915_drv.c | 17 ++++-------------
+ drivers/gpu/drm/i915/i915_pci.c |  2 --
+ 2 files changed, 4 insertions(+), 15 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7b3255d96d1d..0a5cf105ee37 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5397,7 +5397,7 @@ L:	virtualization@lists.linux-foundation.org
- S:	Obsolete
- W:	https://www.kraxel.org/blog/2014/10/qemu-using-cirrus-considered-harmful/
- T:	git git://anongit.freedesktop.org/drm/drm-misc
--F:	drivers/gpu/drm/cirrus/
-+F:	drivers/gpu/drm/tiny/cirrus.c
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 641f5e03b661..ff9a5b1b4c6d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -877,19 +877,11 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		(struct intel_device_info *)ent->driver_data;
+ 	struct intel_device_info *device_info;
+ 	struct drm_i915_private *i915;
+-	int err;
  
- DRM DRIVER FOR QXL VIRTUAL GPU
- M:	Dave Airlie <airlied@redhat.com>
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 43594978958e..4f4e7fa001c1 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -310,8 +310,6 @@ source "drivers/gpu/drm/ast/Kconfig"
- 
- source "drivers/gpu/drm/mgag200/Kconfig"
- 
--source "drivers/gpu/drm/cirrus/Kconfig"
+-	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
+-	if (!i915)
+-		return ERR_PTR(-ENOMEM);
 -
- source "drivers/gpu/drm/armada/Kconfig"
- 
- source "drivers/gpu/drm/atmel-hlcdc/Kconfig"
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index f34d08c83485..2c0e5a7e5953 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -74,7 +74,6 @@ obj-$(CONFIG_DRM_I915)	+= i915/
- obj-$(CONFIG_DRM_MGAG200) += mgag200/
- obj-$(CONFIG_DRM_V3D)  += v3d/
- obj-$(CONFIG_DRM_VC4)  += vc4/
--obj-$(CONFIG_DRM_CIRRUS_QEMU) += cirrus/
- obj-$(CONFIG_DRM_SIS)   += sis/
- obj-$(CONFIG_DRM_SAVAGE)+= savage/
- obj-$(CONFIG_DRM_VMWGFX)+= vmwgfx/
-diff --git a/drivers/gpu/drm/cirrus/Kconfig b/drivers/gpu/drm/cirrus/Kconfig
-deleted file mode 100644
-index c6bbd988b0e5..000000000000
---- a/drivers/gpu/drm/cirrus/Kconfig
-+++ /dev/null
-@@ -1,19 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--config DRM_CIRRUS_QEMU
--	tristate "Cirrus driver for QEMU emulated device"
--	depends on DRM && PCI && MMU
--	select DRM_KMS_HELPER
--	select DRM_GEM_SHMEM_HELPER
--	help
--	 This is a KMS driver for emulated cirrus device in qemu.
--	 It is *NOT* intended for real cirrus devices. This requires
--	 the modesetting userspace X.org driver.
+-	err = drm_dev_init(&i915->drm, &driver, &pdev->dev);
+-	if (err) {
+-		kfree(i915);
+-		return ERR_PTR(err);
+-	}
 -
--	 Cirrus is obsolete, the hardware was designed in the 90ies
--	 and can't keep up with todays needs.  More background:
--	 https://www.kraxel.org/blog/2014/10/qemu-using-cirrus-considered-harmful/
+-	drmm_add_final_kfree(&i915->drm, i915);
++	i915 = devm_drm_dev_alloc(&pdev->dev, &driver,
++				  struct drm_i915_private, drm);
++	if (IS_ERR(i915))
++		return i915;
+ 
+ 	i915->drm.pdev = pdev;
+ 	pci_set_drvdata(pdev, i915);
+@@ -1006,7 +998,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	pci_disable_device(pdev);
+ out_fini:
+ 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
+-	drm_dev_put(&i915->drm);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 66738f2c4f28..2741fb3e30cb 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -941,8 +941,6 @@ static void i915_pci_remove(struct pci_dev *pdev)
+ 
+ 	i915_driver_remove(i915);
+ 	pci_set_drvdata(pdev, NULL);
 -
--	 Better alternatives are:
--	   - stdvga (DRM_BOCHS, qemu -vga std, default in qemu 2.2+)
--	   - qxl (DRM_QXL, qemu -vga qxl, works best with spice)
--	   - virtio (DRM_VIRTIO_GPU), qemu -vga virtio)
-diff --git a/drivers/gpu/drm/cirrus/Makefile b/drivers/gpu/drm/cirrus/Makefile
-deleted file mode 100644
-index 0c1ed3f99725..000000000000
---- a/drivers/gpu/drm/cirrus/Makefile
-+++ /dev/null
-@@ -1,2 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--obj-$(CONFIG_DRM_CIRRUS_QEMU) += cirrus.o
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index 4160e74e4751..2b6414f0fa75 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -1,5 +1,24 @@
- # SPDX-License-Identifier: GPL-2.0-only
+-	drm_dev_put(&i915->drm);
+ }
  
-+config DRM_CIRRUS_QEMU
-+	tristate "Cirrus driver for QEMU emulated device"
-+	depends on DRM && PCI && MMU
-+	select DRM_KMS_HELPER
-+	select DRM_GEM_SHMEM_HELPER
-+	help
-+	 This is a KMS driver for emulated cirrus device in qemu.
-+	 It is *NOT* intended for real cirrus devices. This requires
-+	 the modesetting userspace X.org driver.
-+
-+	 Cirrus is obsolete, the hardware was designed in the 90ies
-+	 and can't keep up with todays needs.  More background:
-+	 https://www.kraxel.org/blog/2014/10/qemu-using-cirrus-considered-harmful/
-+
-+	 Better alternatives are:
-+	   - stdvga (DRM_BOCHS, qemu -vga std, default in qemu 2.2+)
-+	   - qxl (DRM_QXL, qemu -vga qxl, works best with spice)
-+	   - virtio (DRM_VIRTIO_GPU), qemu -vga virtio)
-+
- config DRM_GM12U320
- 	tristate "GM12U320 driver for USB projectors"
- 	depends on DRM && USB
-diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-index c96ceee71453..6ae4e9e5a35f 100644
---- a/drivers/gpu/drm/tiny/Makefile
-+++ b/drivers/gpu/drm/tiny/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
- obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
- obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
- obj-$(CONFIG_TINYDRM_ILI9225)		+= ili9225.o
-diff --git a/drivers/gpu/drm/cirrus/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
-similarity index 100%
-rename from drivers/gpu/drm/cirrus/cirrus.c
-rename to drivers/gpu/drm/tiny/cirrus.c
+ /* is device_id present in comma separated list of ids */
 -- 
 2.25.1
 
