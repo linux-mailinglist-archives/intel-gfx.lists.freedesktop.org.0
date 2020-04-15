@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD73E1A94BA
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8271A94C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8167F6E8C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46D016E8C2;
 	Wed, 15 Apr 2020 07:41:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB3B89622
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:22 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id b11so6485168wrs.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:22 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 426A989622
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:23 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id h9so17867608wrc.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=qNncsUXlzsPXlZto5mxj4G9qCB9ihW7GhOP14Dzx+88=;
- b=kKDYv0zBj63u0YKpPv7lsnH5tPY+K4nLY5xgL7IxJVbhDTaGek5voYsqsoL5gYSME+
- yO3JWYG75Vrg/fvfbqU1uBt2shGuktV5TFeMrE14ovjgeYMT5DsooR855KHMaPFOfofK
- fSqgREVhI8k8S+VmdB9LhPmkEQHJUQMVqEDXE=
+ bh=p5nxv6sFrv49qRkQCRr6EHVDhp/xrnS2ylrpIQk+ldc=;
+ b=SL6l+los8yC8KzC+ig7zbUt/3h0Ts8nLQN0J+AGM7pAO5AfMfJ8wCXSZKMhghA0WfW
+ AP+6DkU6WAnQGc2TwIeZCPCRV4Rjv6mGtg7yWMFT3pRiz6YPw0VOgSMZgqxJORW86Zu7
+ aGpPSkBXVP+18stjpwn4b6rf2A9tGW5ydUkOM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=qNncsUXlzsPXlZto5mxj4G9qCB9ihW7GhOP14Dzx+88=;
- b=BGXIIPYlFBi9ipsR22fCOi6WuiZHqlVx0efEpH/SefF7hn2Wuwp2AbX3x/cF3ohT5h
- CG90GLDnN79CtCfm7pi55Slunqp2UF/qeDCApvj9p1I/dMJIc5PySRiy9JucWbfTfIn5
- ds3C26Me4uZf1iP2pDwtONt/voAJ7Nf5Ddj6h0PTZPh4BpmHXDO54pXtYQWB3u+R4kfx
- WVQ8WbLu3ChVDYN1dqCu7li1/OpsAtO3aGNmwAORSJN/r+EvBy2GGtwA4PopktHpufxq
- ibOzn2RJCs13YTW14eQCKqLa1zpvVcgrtqjPNRhzuVbTQORD+jh/5CxRvZ1pk416ZCFD
- lSHw==
-X-Gm-Message-State: AGi0PuYbtwf77NSF1qyEMJsXnIOjjAg5ku2MmpaCKhk7m8Eplr2KMAcW
- IzzGzFqf4XepstjA/mKHYLFGNpxjPSg=
-X-Google-Smtp-Source: APiQypJKnQy1o+OQi/gK/YB7zTVyphWXyt5KDuCdGcSFUCktHK0msc87FZbs5xoZpxHJ6nS6K1btLQ==
-X-Received: by 2002:adf:feca:: with SMTP id q10mr27383217wrs.199.1586936480652; 
- Wed, 15 Apr 2020 00:41:20 -0700 (PDT)
+ bh=p5nxv6sFrv49qRkQCRr6EHVDhp/xrnS2ylrpIQk+ldc=;
+ b=guW2eqtB4TicEX5SqCS+Yu8Bqk+H0wo51kd3Ix9c8YRXxA/rCZfl8AKKbBsvtW6Q5F
+ vNz4c6BSMULASDhDW4aZxvVOqRm1EyuHX3bJgqeZZOa9l6pAl9TH4iiAAusO0hpXzKrV
+ ZQ+nNOZvVjFWT7FhXTy8abXi21vliQMzLPFgLTKG8i2sxK+LjNUCamINDBREFcK7Q4aP
+ dulfAgUQAyR6TKUnnKrlEEmSFwghIS1pmgDWLeABuKlrNqMW3G9kcJ1pkXmtbP0bLIvu
+ rns3yuye6n1Gj3yEuMTh6yGFhx+HZXE/YbIwKV0s7AP/UFXCn5EVv8yKmZ02fct80KR4
+ WLwA==
+X-Gm-Message-State: AGi0Pubaif5eUWDLnieBrshn5+ohBzz9KrnzbXiQtl8JAXD/7lxX1mIB
+ 20bQsuIfPdL/EZtCodYGNPTw3hqhLlg=
+X-Google-Smtp-Source: APiQypJe1V320iBQiAX7XyMkUPj34hmWC2UxrWmIPM54Cy3gpiOjnZREaU9iGvSgGg7Rm/jQjqF0gg==
+X-Received: by 2002:adf:dbce:: with SMTP id e14mr26062012wrj.337.1586936481630; 
+ Wed, 15 Apr 2020 00:41:21 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.19
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:20 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:21 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:13 +0200
-Message-Id: <20200415074034.175360-39-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:14 +0200
+Message-Id: <20200415074034.175360-40-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 38/59] drm/i915: Use devm_drm_dev_alloc
+Subject: [Intel-gfx] [PATCH 39/59] drm/arcpgu: Switch to devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,6 +64,7 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
@@ -71,65 +72,106 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Luckily we're already well set up in the main driver, with
-drm_dev_put() being the last thing in both the unload error case and
-the pci remove function.
+- Need to embedded the drm_device, but for now we keep the usual
+  pointer chasing.
+- No more devm_kzalloc, which fixes a lifetime issues on driver
+  remove.
+- No more drm_dev_put, that's done by devm_ now.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Alexey Brodkin <abrodkin@synopsys.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c | 17 ++++-------------
- drivers/gpu/drm/i915/i915_pci.c |  2 --
- 2 files changed, 4 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/arc/arcpgu.h     |  1 +
+ drivers/gpu/drm/arc/arcpgu_drv.c | 33 +++++++++++++-------------------
+ 2 files changed, 14 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 641f5e03b661..ff9a5b1b4c6d 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -877,19 +877,11 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		(struct intel_device_info *)ent->driver_data;
- 	struct intel_device_info *device_info;
- 	struct drm_i915_private *i915;
--	int err;
+diff --git a/drivers/gpu/drm/arc/arcpgu.h b/drivers/gpu/drm/arc/arcpgu.h
+index 6aac44b953ad..cd9e932f501e 100644
+--- a/drivers/gpu/drm/arc/arcpgu.h
++++ b/drivers/gpu/drm/arc/arcpgu.h
+@@ -9,6 +9,7 @@
+ #define _ARCPGU_H_
  
--	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
--	if (!i915)
--		return ERR_PTR(-ENOMEM);
--
--	err = drm_dev_init(&i915->drm, &driver, &pdev->dev);
--	if (err) {
--		kfree(i915);
--		return ERR_PTR(err);
--	}
--
--	drmm_add_final_kfree(&i915->drm, i915);
-+	i915 = devm_drm_dev_alloc(&pdev->dev, &driver,
-+				  struct drm_i915_private, drm);
-+	if (IS_ERR(i915))
-+		return i915;
+ struct arcpgu_drm_private {
++	struct drm_device	drm;
+ 	void __iomem		*regs;
+ 	struct clk		*clk;
+ 	struct drm_framebuffer	*fb;
+diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/arc/arcpgu_drv.c
+index c05d001163e0..bbd7acb150f3 100644
+--- a/drivers/gpu/drm/arc/arcpgu_drv.c
++++ b/drivers/gpu/drm/arc/arcpgu_drv.c
+@@ -42,18 +42,14 @@ static void arcpgu_setup_mode_config(struct drm_device *drm)
  
- 	i915->drm.pdev = pdev;
- 	pci_set_drvdata(pdev, i915);
-@@ -1006,7 +998,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	pci_disable_device(pdev);
- out_fini:
- 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
--	drm_dev_put(&i915->drm);
+ DEFINE_DRM_GEM_CMA_FOPS(arcpgu_drm_ops);
+ 
+-static int arcpgu_load(struct drm_device *drm)
++static int arcpgu_load(struct arcpgu_drm_private *arcpgu)
+ {
+-	struct platform_device *pdev = to_platform_device(drm->dev);
+-	struct arcpgu_drm_private *arcpgu;
++	struct platform_device *pdev = to_platform_device(arcpgu->drm.dev);
+ 	struct device_node *encoder_node = NULL, *endpoint_node = NULL;
++	struct drm_device *drm = &arcpgu->drm;
+ 	struct resource *res;
+ 	int ret;
+ 
+-	arcpgu = devm_kzalloc(&pdev->dev, sizeof(*arcpgu), GFP_KERNEL);
+-	if (arcpgu == NULL)
+-		return -ENOMEM;
+-
+ 	drm->dev_private = arcpgu;
+ 
+ 	arcpgu->clk = devm_clk_get(drm->dev, "pxlclk");
+@@ -172,30 +168,28 @@ static struct drm_driver arcpgu_drm_driver = {
+ 
+ static int arcpgu_probe(struct platform_device *pdev)
+ {
+-	struct drm_device *drm;
++	struct arcpgu_drm_private *arcpgu;
+ 	int ret;
+ 
+-	drm = drm_dev_alloc(&arcpgu_drm_driver, &pdev->dev);
+-	if (IS_ERR(drm))
+-		return PTR_ERR(drm);
++	arcpgu = devm_drm_dev_alloc(&pdev->dev, &arcpgu_drm_driver,
++				    struct arcpgu_drm_private, drm);
++	if (IS_ERR(arcpgu))
++		return PTR_ERR(arcpgu);
+ 
+-	ret = arcpgu_load(drm);
++	ret = arcpgu_load(arcpgu);
+ 	if (ret)
+-		goto err_unref;
++		return ret;
+ 
+-	ret = drm_dev_register(drm, 0);
++	ret = drm_dev_register(&arcpgu->drm, 0);
+ 	if (ret)
+ 		goto err_unload;
+ 
+-	drm_fbdev_generic_setup(drm, 16);
++	drm_fbdev_generic_setup(&arcpgu->drm, 16);
+ 
+ 	return 0;
+ 
+ err_unload:
+-	arcpgu_unload(drm);
+-
+-err_unref:
+-	drm_dev_put(drm);
++	arcpgu_unload(&arcpgu->drm);
+ 
  	return ret;
  }
+@@ -206,7 +200,6 @@ static int arcpgu_remove(struct platform_device *pdev)
  
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 66738f2c4f28..2741fb3e30cb 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -941,8 +941,6 @@ static void i915_pci_remove(struct pci_dev *pdev)
+ 	drm_dev_unregister(drm);
+ 	arcpgu_unload(drm);
+-	drm_dev_put(drm);
  
- 	i915_driver_remove(i915);
- 	pci_set_drvdata(pdev, NULL);
--
--	drm_dev_put(&i915->drm);
+ 	return 0;
  }
- 
- /* is device_id present in comma separated list of ids */
 -- 
 2.25.1
 
