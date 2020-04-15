@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91491A905A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 03:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 783AF1A908B
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 03:39:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2867E6E811;
-	Wed, 15 Apr 2020 01:22:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 516436E819;
+	Wed, 15 Apr 2020 01:39:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 090E16E1A4;
- Wed, 15 Apr 2020 01:22:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD2656E819;
+ Wed, 15 Apr 2020 01:39:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EF2AAA00E6;
- Wed, 15 Apr 2020 01:22:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C81CFA0BA8;
+ Wed, 15 Apr 2020 01:39:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Sean Paul" <sean@poorly.run>
-Date: Wed, 15 Apr 2020 01:22:42 -0000
-Message-ID: <158691376295.21015.3831439754323870573@emeril.freedesktop.org>
+Date: Wed, 15 Apr 2020 01:39:26 -0000
+Message-ID: <158691476679.21013.14730287172875232501@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200414184835.2878-1-sean@poorly.run>
 In-Reply-To: <20200414184835.2878-1-sean@poorly.run>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Fix_HDCP_failures_when_SRM_fw_is_missing_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m=3A_Fix_HDCP_failures_when_SRM_fw_is_missing_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,13 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e0a6dea979f6 drm: Fix HDCP failures when SRM fw is missing
--:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 79643fddd6eb ("drm/hdcp: optimizing the srm handling")'
-#6: 
-The SRM cleanup in 79643fddd6eb2 ("drm/hdcp: optimizing the srm
-
-total: 1 errors, 0 warnings, 0 checks, 21 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
