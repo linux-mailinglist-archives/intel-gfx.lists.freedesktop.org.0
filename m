@@ -2,38 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B046B1A992F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 11:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD51D1AA47B
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 15:32:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F2956E93A;
-	Wed, 15 Apr 2020 09:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F1386E82D;
+	Wed, 15 Apr 2020 13:32:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 241496E930;
- Wed, 15 Apr 2020 09:45:19 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id 4E26F8046E;
- Wed, 15 Apr 2020 11:45:14 +0200 (CEST)
-Date: Wed, 15 Apr 2020 11:45:12 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200415094512.GA30444@ravnborg.org>
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-54-daniel.vetter@ffwll.ch>
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
+ [66.111.4.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F07296E939;
+ Wed, 15 Apr 2020 09:51:07 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id DCB225C025D;
+ Wed, 15 Apr 2020 05:45:35 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Wed, 15 Apr 2020 05:45:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=7fGtIQAxiUuC+rt8tquSMkMyMu8
+ 0K6kIPJ4qo27RE/k=; b=WGL/Kr91eUFnf7WzHkKn0HcSRNas9GJFDw48t4HI1ux
+ hfHXAbDP01rqhP+LIIYuJVi8e8vV5J6RkJOKnoDRMjYlfdxiLvBW+xWp31YhpIRa
+ eHx8iNieD7PgRU+FTsIgrsSTn+rud9wkHEGPSm+ewoNAUECyUXP3IG+5VorlDPb3
+ D4tj3eplo9Krb0cJCOkvrIDFRd1vi9jVstkVEr/Ea27i/kL9f0JSLUSu+uG66YXA
+ 5yNo5SrMjg28GZj2CJwm8IY/bEd85OTekFlL3arGWZa961KmEj+7BRvmxdYRisq3
+ mdtZbuzjtSZl2HqphphoQU701nqXgKx2+9aNkq0gMmg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=7fGtIQ
+ AxiUuC+rt8tquSMkMyMu80K6kIPJ4qo27RE/k=; b=wr87J/Wdz+w1FrScNPj6JU
+ ElLdFjIktYu/etsMfNoZeqHIscxcGKQj2q5rlrnXPe7tCnv7YLDPKW6Emq6yOkd1
+ Xbdt8PexmmNiMJ3Y4qcu/n5H+LJXoQQJ4OQ2H2JqpmpFx5k+YzwDkptn9QEvprs0
+ ctXpqDbFvXeoZ48VK0Ztxt/qCkg1n8HR0Lub395aMEZkJhCAhIKnzupZvcHN/byy
+ GqeojL53Vk+8WyRbIMR5jrmLmBaooA9aNakWbs21cfNAySMR/fEapq9QtHKHhHP/
+ sDk3O1MLtoL6jAKZJEz/TQx4eAdp8zuCTYFGnTwaO3CbdugUqyn8CYZNeHJNJoWw
+ ==
+X-ME-Sender: <xms:vteWXiJOQlcJm4eEoFbt7oMoSfBKeDqEoFsieGgAh9aOPQ4VZPo6ng>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrfeefgddtkecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
+ ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+ fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:vteWXsj2NyClj36tQgBy9s0yanTvDS1pMVxs8Nfl01PItIrmtCjoGA>
+ <xmx:vteWXr_EfumUfvpFMM9rg89y2P2SMhWVPq3TIozS7UqSMr7lAw4Qsw>
+ <xmx:vteWXqgKkt0bDQEjSseHbjaotihKskpoTKvyrKkCsSnYCs3dnhXCcQ>
+ <xmx:v9eWXk8AOmcfo4S0crcs1FL9Sqq70f5gXKSQZf5RZeZqQZ_hif0fIw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id B14813060057;
+ Wed, 15 Apr 2020 05:45:34 -0400 (EDT)
+Date: Wed, 15 Apr 2020 11:45:33 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+Message-ID: <20200415094533.teqmhp7hoz5hbllw@gilmour.lan>
+References: <20191022010032.pgqop52v4gz5omlc@smtp.gmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200415074034.175360-54-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=jIQo8A4GAAAA:8 a=e5mUnYsNAAAA:8 a=1gUMNOpLyEigj0iPTqUA:9
- a=CjuIK1q_8ugA:10 a=Lf5xNeLK5dgiOs8hzIjU:22 a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 53/59] drm/arc: Move to drm/tiny
+In-Reply-To: <20191022010032.pgqop52v4gz5omlc@smtp.gmail.com>
+X-Mailman-Approved-At: Wed, 15 Apr 2020 13:32:12 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 i-g-t 4/4] kms_writeback: Add
+ writeback-check-output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,148 +76,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Alexey Brodkin <abrodkin@synopsys.com>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ igt-dev@lists.freedesktop.org, nd <nd@arm.com>
+Content-Type: multipart/mixed; boundary="===============0846904180=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel.
-On Wed, Apr 15, 2020 at 09:40:28AM +0200, Daniel Vetter wrote:
-> Because it is.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Alexey Brodkin <abrodkin@synopsys.com>
+
+--===============0846904180==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vpcz6ucay7yepl5n"
+Content-Disposition: inline
+
+
+--vpcz6ucay7yepl5n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi!
+
+On Mon, Oct 21, 2019 at 10:00:39PM -0300, Brian Starkey wrote:
+> Add a test which makes commits using the writeback connector, and
+> checks the output buffer hash to make sure it is/isn't written as
+> appropriate.
+>
+> V6: Simon Ser
+>  - Add igt documentation with igt_describe
+>  - Replace int ret by unsigned int fd_id when calling igt_create_fb
+>  - Add a descriptive error message if sync_fence_wait fail
+>  - Replace color_idx variable by i
+>  - Use in_fb instead of out_fb for getting the expected CRC
+>  - Drop unnecessary parentheses
+>  - Replace igt_fb_mod_to_tiling to DRM_FORMAT_MOD_LINEAR
+>
+> Signed-off-by: Brian Starkey <brian.starkey@arm.com>
+> [rebased and updated the patch to address feedback]
+> Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
 > ---
->  MAINTAINERS                                         |  2 +-
->  drivers/gpu/drm/Kconfig                             |  2 --
->  drivers/gpu/drm/Makefile                            |  1 -
->  drivers/gpu/drm/arc/Kconfig                         | 10 ----------
->  drivers/gpu/drm/arc/Makefile                        |  3 ---
->  drivers/gpu/drm/tiny/Kconfig                        | 10 ++++++++++
->  drivers/gpu/drm/tiny/Makefile                       |  1 +
->  drivers/gpu/drm/{arc/arcpgu_drv.c => tiny/arcpgu.c} |  0
->  8 files changed, 12 insertions(+), 17 deletions(-)
->  delete mode 100644 drivers/gpu/drm/arc/Kconfig
->  delete mode 100644 drivers/gpu/drm/arc/Makefile
->  rename drivers/gpu/drm/{arc/arcpgu_drv.c => tiny/arcpgu.c} (100%)
-
-We have "DRM: ARC: add HDMI 2.0 TX encoder support" which
-adds another platform driver to drm/arc/
-This speaks against the move to tiny IMO
-
-	Sam
-
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0a5cf105ee37..748244b1625b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1295,7 +1295,7 @@ ARC PGU DRM DRIVER
->  M:	Alexey Brodkin <abrodkin@synopsys.com>
->  S:	Supported
->  F:	Documentation/devicetree/bindings/display/snps,arcpgu.txt
-> -F:	drivers/gpu/drm/arc/
-> +F:	drivers/gpu/drm/tiny/arcpgu.c
->  
->  ARCNET NETWORK LAYER
->  M:	Michael Grzeschik <m.grzeschik@pengutronix.de>
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 4f4e7fa001c1..a0a89025d6fa 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -354,8 +354,6 @@ source "drivers/gpu/drm/vc4/Kconfig"
->  
->  source "drivers/gpu/drm/etnaviv/Kconfig"
->  
-> -source "drivers/gpu/drm/arc/Kconfig"
-> -
->  source "drivers/gpu/drm/hisilicon/Kconfig"
->  
->  source "drivers/gpu/drm/mediatek/Kconfig"
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 2c0e5a7e5953..e69eafbf9e39 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -109,7 +109,6 @@ obj-y			+= panel/
->  obj-y			+= bridge/
->  obj-$(CONFIG_DRM_FSL_DCU) += fsl-dcu/
->  obj-$(CONFIG_DRM_ETNAVIV) += etnaviv/
-> -obj-$(CONFIG_DRM_ARCPGU)+= arc/
->  obj-y			+= hisilicon/
->  obj-$(CONFIG_DRM_ZTE)	+= zte/
->  obj-$(CONFIG_DRM_MXSFB)	+= mxsfb/
-> diff --git a/drivers/gpu/drm/arc/Kconfig b/drivers/gpu/drm/arc/Kconfig
-> deleted file mode 100644
-> index e8f3d63e0b91..000000000000
-> --- a/drivers/gpu/drm/arc/Kconfig
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0-only
-> -config DRM_ARCPGU
-> -	tristate "ARC PGU"
-> -	depends on DRM && OF
-> -	select DRM_KMS_CMA_HELPER
-> -	select DRM_KMS_HELPER
-> -	help
-> -	  Choose this option if you have an ARC PGU controller.
-> -
-> -	  If M is selected the module will be called arcpgu.
-> diff --git a/drivers/gpu/drm/arc/Makefile b/drivers/gpu/drm/arc/Makefile
-> deleted file mode 100644
-> index b26f2495c532..000000000000
-> --- a/drivers/gpu/drm/arc/Makefile
-> +++ /dev/null
-> @@ -1,3 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0-only
-> -arcpgu-y := arcpgu_drv.o
-> -obj-$(CONFIG_DRM_ARCPGU) += arcpgu.o
-> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-> index 2b6414f0fa75..9bbaa1a69050 100644
-> --- a/drivers/gpu/drm/tiny/Kconfig
-> +++ b/drivers/gpu/drm/tiny/Kconfig
-> @@ -1,5 +1,15 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
-> +config DRM_ARCPGU
-> +	tristate "ARC PGU"
-> +	depends on DRM && OF
-> +	select DRM_KMS_CMA_HELPER
-> +	select DRM_KMS_HELPER
-> +	help
-> +	  Choose this option if you have an ARC PGU controller.
+>  tests/kms_writeback.c | 123 ++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>
+> diff --git a/tests/kms_writeback.c b/tests/kms_writeback.c
+> index a373ec4d..068595b9 100644
+> --- a/tests/kms_writeback.c
+> +++ b/tests/kms_writeback.c
+> @@ -30,6 +30,7 @@
+>  #include "igt.h"
+>  #include "igt_core.h"
+>  #include "igt_fb.h"
+> +#include "sw_sync.h"
+>
+>  IGT_TEST_DESCRIPTION("Exercise writeback feature.");
+>
+> @@ -196,6 +197,115 @@ static void writeback_test_fb(igt_output_t *output, igt_fb_t *valid_fb, igt_fb_t
+>  	igt_assert(ret == -EINVAL);
+>  }
+>
+> +static void fill_fb(igt_fb_t *fb, double color[3])
+> +{
+> +	cairo_t *cr = igt_get_cairo_ctx(fb->fd, fb);
+> +	igt_assert(cr);
 > +
-> +	  If M is selected the module will be called arcpgu.
+> +	igt_paint_color(cr, 0, 0, fb->width, fb->height,
+> +			color[0], color[1], color[2]);
+> +}
 > +
->  config DRM_CIRRUS_QEMU
->  	tristate "Cirrus driver for QEMU emulated device"
->  	depends on DRM && PCI && MMU
-> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-> index 6ae4e9e5a35f..bef6780bdd6f 100644
-> --- a/drivers/gpu/drm/tiny/Makefile
-> +++ b/drivers/gpu/drm/tiny/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
-> +obj-$(CONFIG_DRM_ARCPGU)		+= arcpgu.o
->  obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
->  obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
->  obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
-> diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/tiny/arcpgu.c
-> similarity index 100%
-> rename from drivers/gpu/drm/arc/arcpgu_drv.c
-> rename to drivers/gpu/drm/tiny/arcpgu.c
-> -- 
-> 2.25.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+On which platform did you test this? On Arm (but I would assume
+anything !i915), this will fire up an assert.
+
+I've replaced this with a igt_fb_map_buffer/memset, and it works as
+expected.
+
+Maxime
+
+--vpcz6ucay7yepl5n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXpbXvQAKCRDj7w1vZxhR
+xbBrAP9VV7WQPW0dXYTQMRezNrrZBZQoNz0Oay4JXl8tHXiDfgD+P6XSfseo2i9T
+ntLDlJwMifHXeZaeU2zCIJVCnZZMLQ4=
+=LWD0
+-----END PGP SIGNATURE-----
+
+--vpcz6ucay7yepl5n--
+
+--===============0846904180==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0846904180==--
