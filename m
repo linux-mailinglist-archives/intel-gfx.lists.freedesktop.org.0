@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94361A94A9
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 353321A94BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8FD56E885;
-	Wed, 15 Apr 2020 07:41:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC136E8BB;
+	Wed, 15 Apr 2020 07:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49FB96E8A5
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:17 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id d27so8668317wra.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:17 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510556E8A1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:18 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id y24so17673836wma.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=X/tGVA9+iA6j1FaLA5UzvSFyGahWhU9fG6IuWtfziBc=;
- b=TY7w7IMpK5f6wYj/w5auhramrfXStB1M61CKe5hFl6nB/aLWBEQfUaDIfiCQc9e6Xx
- OZ2IfguL2F1sOdn/1GS3Efh5fwkBv3gPCcTvHDtj/9Z7rOwLtVdNeCDjdKEspiHpI1rd
- ul8t5r+lrAx2+6ejecedxZ8zdnwmT0WPHGfxw=
+ bh=PxVTSouR1TyBKjD4k/5dVEyIh4AxWSKjDZy7rMGX8Zk=;
+ b=hDK+BiDRX4sM7nRmRqepvD3umIcWmlVjpGfir3xtaBEtgOWJhlAIQL1AUMiXtAAP1W
+ iI1APD9u2+w7Whw7HXiI4hhORf7md0zywZsUKatRhaeCQCq+J2sEqKRF/DdfR5WT8TgW
+ XDmAh0DKD8bTIwcRpoQNnQ+ClSQN4Vw/26qA4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=X/tGVA9+iA6j1FaLA5UzvSFyGahWhU9fG6IuWtfziBc=;
- b=Z8xCJ3n5xTcdqtSVf5kVT8w9nilB6ffZVSxvJoHqbZRnr8DSAXwdKNtXR1ubaw7Z44
- MkEazgRxeIsQXIx9mpc2LTebFWzJLMTQHm4vSjuep2rz9VEklojUGSwIFefevdMWm7E5
- 3bccbcv6JBqPD8YxsRMRckypKdD2wTyLSnROm5vyfhmWRhgYyTUYHfNu+9K50+Jb4kIz
- 1rYiENYc8gdlLFGLEU8VkQ9BE2g9/EPObYu+x/MnoYoi4+vG6DqD3PbeBtchtIRZ/93b
- PjpQe8qFX0e3k6YLHWExm+Bl9Ksz2EiXEjXEqFWdAPhaFHwCMUHt1ON/YmWBUH/b+3IH
- sipw==
-X-Gm-Message-State: AGi0PuYahNctUI1533A928r8KCFoXaZcnj96DC5h79LOQJ1o/Rybjqde
- oi1iHbbPYEYrtYIOWie5CWbkRj49vkQ=
-X-Google-Smtp-Source: APiQypJscuC3QnUxEwMpyTHx0j2pfWxXeJjR06jBmsDJLOKV4PYhpdJOrs/DpUJEWwIO1azgSDlsBA==
-X-Received: by 2002:adf:cd84:: with SMTP id q4mr13446534wrj.320.1586936475586; 
- Wed, 15 Apr 2020 00:41:15 -0700 (PDT)
+ bh=PxVTSouR1TyBKjD4k/5dVEyIh4AxWSKjDZy7rMGX8Zk=;
+ b=NhRemkidB0A1FzqFIEjF9vREMveJyKTAQi2dK2dYwHJ/5H2PGrnaJS4m11Xa5k1MWU
+ 7+yWeZ+Gqbb2YhammjRQ53nvacyJhljqsgy5ozjm1sDGbgj7DKosS5+ZRqbMISfco2sx
+ rEjKPfgli6OaCazCICptQGyzxgIABFV1V2OEBBxYM8HhzBXxnz+f6JvpDvFh6Qqj9JXP
+ Kdom38xDaq/VSocRoPH6TIDpO1WbGCoNljmLjemzgyJJgPiRvVpqWAvMd7BiZnkSomy1
+ 0DN3SG504+PCgytFf6yVJM+VGSAGT05ZgPCV/x+2VBvWho0raLUUUe7JikN+iL34+5vx
+ YTmg==
+X-Gm-Message-State: AGi0PuYX/iub6H7LJMFefJ+5fw5UsHy0jr14OuX1YXBmMFL45miYPQUz
+ I7lDjEc1vnKYbPCwmu6Kod2JTYBNjrs=
+X-Google-Smtp-Source: APiQypKbTcknJ3S+rY5DwcekGtyrccMLDhhhwYrlpUkTnQVB4HoT91V9IsPE9VFGrPYQMbg5Fu3VYA==
+X-Received: by 2002:a1c:4d18:: with SMTP id o24mr3568827wmh.141.1586936476542; 
+ Wed, 15 Apr 2020 00:41:16 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.14
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Wed, 15 Apr 2020 00:41:15 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:08 +0200
-Message-Id: <20200415074034.175360-34-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:09 +0200
+Message-Id: <20200415074034.175360-35-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 33/59] drm/armada: Use devm_drm_dev_alloc
+Subject: [Intel-gfx] [PATCH 34/59] drm/armada: Don't use
+ drm_device->dev_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,72 +73,175 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Also remove the now no longer needed build bug on since that's already
-not needed anymore with drmm_add_final_kfree. Conversion to managed
-drm_device cleanup is easy, the final drm_dev_put() is already the
-last thing in both the bind unbind as in the unbind flow.
-
-Also, this relies on component.c correctly wrapping bind&unbind in
-separate devres groups, which it does.
+Upcasting using a container_of macro is more typesafe, faster and
+easier for the compiler to optimize.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Russell King <linux@armlinux.org.uk>
 ---
- drivers/gpu/drm/armada/armada_drv.c | 26 ++++++--------------------
- 1 file changed, 6 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/armada/armada_crtc.c    | 4 ++--
+ drivers/gpu/drm/armada/armada_debugfs.c | 2 +-
+ drivers/gpu/drm/armada/armada_drm.h     | 2 ++
+ drivers/gpu/drm/armada/armada_drv.c     | 4 +---
+ drivers/gpu/drm/armada/armada_fbdev.c   | 4 ++--
+ drivers/gpu/drm/armada/armada_gem.c     | 4 ++--
+ drivers/gpu/drm/armada/armada_overlay.c | 8 ++++----
+ 7 files changed, 14 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/armada/armada_crtc.c b/drivers/gpu/drm/armada/armada_crtc.c
+index c2b92acd1e9a..8686e50226a5 100644
+--- a/drivers/gpu/drm/armada/armada_crtc.c
++++ b/drivers/gpu/drm/armada/armada_crtc.c
+@@ -757,7 +757,7 @@ static int armada_drm_crtc_cursor_move(struct drm_crtc *crtc, int x, int y)
+ static void armada_drm_crtc_destroy(struct drm_crtc *crtc)
+ {
+ 	struct armada_crtc *dcrtc = drm_to_armada_crtc(crtc);
+-	struct armada_private *priv = crtc->dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(crtc->dev);
+ 
+ 	if (dcrtc->cursor_obj)
+ 		drm_gem_object_put_unlocked(&dcrtc->cursor_obj->obj);
+@@ -901,7 +901,7 @@ static int armada_drm_crtc_create(struct drm_device *drm, struct device *dev,
+ 	struct resource *res, int irq, const struct armada_variant *variant,
+ 	struct device_node *port)
+ {
+-	struct armada_private *priv = drm->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(drm);
+ 	struct armada_crtc *dcrtc;
+ 	struct drm_plane *primary;
+ 	void __iomem *base;
+diff --git a/drivers/gpu/drm/armada/armada_debugfs.c b/drivers/gpu/drm/armada/armada_debugfs.c
+index c6fc2f1d58e9..29f4b52e3c8d 100644
+--- a/drivers/gpu/drm/armada/armada_debugfs.c
++++ b/drivers/gpu/drm/armada/armada_debugfs.c
+@@ -19,7 +19,7 @@ static int armada_debugfs_gem_linear_show(struct seq_file *m, void *data)
+ {
+ 	struct drm_info_node *node = m->private;
+ 	struct drm_device *dev = node->minor->dev;
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 	struct drm_printer p = drm_seq_file_printer(m);
+ 
+ 	mutex_lock(&priv->linear_lock);
+diff --git a/drivers/gpu/drm/armada/armada_drm.h b/drivers/gpu/drm/armada/armada_drm.h
+index a11bdaccbb33..6a5a87932576 100644
+--- a/drivers/gpu/drm/armada/armada_drm.h
++++ b/drivers/gpu/drm/armada/armada_drm.h
+@@ -73,6 +73,8 @@ struct armada_private {
+ #endif
+ };
+ 
++#define drm_to_armada_dev(dev) container_of(dev, struct armada_private, drm)
++
+ int armada_fbdev_init(struct drm_device *);
+ void armada_fbdev_fini(struct drm_device *);
+ 
 diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-index dd9ed71ed942..2546ff9d1c92 100644
+index 2546ff9d1c92..2a9ee76ee585 100644
 --- a/drivers/gpu/drm/armada/armada_drv.c
 +++ b/drivers/gpu/drm/armada/armada_drv.c
-@@ -87,24 +87,13 @@ static int armada_drm_bind(struct device *dev)
- 				     "armada-drm"))
- 		return -EBUSY;
- 
--	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
--
--	/*
--	 * The drm_device structure must be at the start of
--	 * armada_private for drm_dev_put() to work correctly.
--	 */
--	BUILD_BUG_ON(offsetof(struct armada_private, drm) != 0);
--
--	ret = drm_dev_init(&priv->drm, &armada_drm_driver, dev);
--	if (ret) {
--		dev_err(dev, "[" DRM_NAME ":%s] drm_dev_init failed: %d\n",
--			__func__, ret);
--		kfree(priv);
--		return ret;
-+	priv = devm_drm_dev_alloc(dev, &armada_drm_driver,
-+				  struct armada_private, drm);
-+	if (IS_ERR(priv)) {
-+		dev_err(dev, "[" DRM_NAME ":%s] devm_drm_dev_alloc failed: %li\n",
-+			__func__, PTR_ERR(priv));
-+		return PTR_ERR(priv);
+@@ -106,8 +106,6 @@ static int armada_drm_bind(struct device *dev)
+ 		return ret;
  	}
--	drmm_add_final_kfree(&priv->drm, priv);
  
- 	/* Remove early framebuffers */
- 	ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
-@@ -174,7 +163,6 @@ static int armada_drm_bind(struct device *dev)
-  err_kms:
- 	drm_mode_config_cleanup(&priv->drm);
- 	drm_mm_takedown(&priv->linear);
--	drm_dev_put(&priv->drm);
- 	return ret;
- }
- 
-@@ -194,8 +182,6 @@ static void armada_drm_unbind(struct device *dev)
- 
- 	drm_mode_config_cleanup(&priv->drm);
- 	drm_mm_takedown(&priv->linear);
+-	priv->drm.dev_private = priv;
 -
--	drm_dev_put(&priv->drm);
- }
+ 	dev_set_drvdata(dev, &priv->drm);
  
- static int compare_of(struct device *dev, void *data)
+ 	/* Mode setting support */
+@@ -169,7 +167,7 @@ static int armada_drm_bind(struct device *dev)
+ static void armada_drm_unbind(struct device *dev)
+ {
+ 	struct drm_device *drm = dev_get_drvdata(dev);
+-	struct armada_private *priv = drm->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(drm);
+ 
+ 	drm_kms_helper_poll_fini(&priv->drm);
+ 	armada_fbdev_fini(&priv->drm);
+diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
+index f2dc371bd8e5..c9a414b3a8c4 100644
+--- a/drivers/gpu/drm/armada/armada_fbdev.c
++++ b/drivers/gpu/drm/armada/armada_fbdev.c
+@@ -117,7 +117,7 @@ static const struct drm_fb_helper_funcs armada_fb_helper_funcs = {
+ 
+ int armada_fbdev_init(struct drm_device *dev)
+ {
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 	struct drm_fb_helper *fbh;
+ 	int ret;
+ 
+@@ -151,7 +151,7 @@ int armada_fbdev_init(struct drm_device *dev)
+ 
+ void armada_fbdev_fini(struct drm_device *dev)
+ {
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 	struct drm_fb_helper *fbh = priv->fbdev;
+ 
+ 	if (fbh) {
+diff --git a/drivers/gpu/drm/armada/armada_gem.c b/drivers/gpu/drm/armada/armada_gem.c
+index 976685f2939e..2c7d5f71e715 100644
+--- a/drivers/gpu/drm/armada/armada_gem.c
++++ b/drivers/gpu/drm/armada/armada_gem.c
+@@ -39,7 +39,7 @@ static size_t roundup_gem_size(size_t size)
+ void armada_gem_free_object(struct drm_gem_object *obj)
+ {
+ 	struct armada_gem_object *dobj = drm_to_armada_gem(obj);
+-	struct armada_private *priv = obj->dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(obj->dev);
+ 
+ 	DRM_DEBUG_DRIVER("release obj %p\n", dobj);
+ 
+@@ -77,7 +77,7 @@ void armada_gem_free_object(struct drm_gem_object *obj)
+ int
+ armada_gem_linear_back(struct drm_device *dev, struct armada_gem_object *obj)
+ {
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 	size_t size = obj->obj.size;
+ 
+ 	if (obj->page || obj->linear)
+diff --git a/drivers/gpu/drm/armada/armada_overlay.c b/drivers/gpu/drm/armada/armada_overlay.c
+index 07f0da4d9ba1..30e01101f59e 100644
+--- a/drivers/gpu/drm/armada/armada_overlay.c
++++ b/drivers/gpu/drm/armada/armada_overlay.c
+@@ -344,7 +344,7 @@ static int armada_overlay_set_property(struct drm_plane *plane,
+ 	struct drm_plane_state *state, struct drm_property *property,
+ 	uint64_t val)
+ {
+-	struct armada_private *priv = plane->dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(plane->dev);
+ 
+ #define K2R(val) (((val) >> 0) & 0xff)
+ #define K2G(val) (((val) >> 8) & 0xff)
+@@ -412,7 +412,7 @@ static int armada_overlay_get_property(struct drm_plane *plane,
+ 	const struct drm_plane_state *state, struct drm_property *property,
+ 	uint64_t *val)
+ {
+-	struct armada_private *priv = plane->dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(plane->dev);
+ 
+ #define C2K(c,s)	(((c) >> (s)) & 0xff)
+ #define R2BGR(r,g,b,s)	(C2K(r,s) << 0 | C2K(g,s) << 8 | C2K(b,s) << 16)
+@@ -505,7 +505,7 @@ static const struct drm_prop_enum_list armada_drm_colorkey_enum_list[] = {
+ 
+ static int armada_overlay_create_properties(struct drm_device *dev)
+ {
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 
+ 	if (priv->colorkey_prop)
+ 		return 0;
+@@ -539,7 +539,7 @@ static int armada_overlay_create_properties(struct drm_device *dev)
+ 
+ int armada_overlay_plane_create(struct drm_device *dev, unsigned long crtcs)
+ {
+-	struct armada_private *priv = dev->dev_private;
++	struct armada_private *priv = drm_to_armada_dev(dev);
+ 	struct drm_mode_object *mobj;
+ 	struct drm_plane *overlay;
+ 	int ret;
 -- 
 2.25.1
 
