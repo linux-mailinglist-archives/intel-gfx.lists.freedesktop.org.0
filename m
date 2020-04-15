@@ -1,31 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53CC21A9C59
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:34:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4E71A9CA6
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 13:37:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 023D86E973;
-	Wed, 15 Apr 2020 11:34:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1D826E98B;
+	Wed, 15 Apr 2020 11:37:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E97BF6E973;
- Wed, 15 Apr 2020 11:34:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DB362A0BA8;
- Wed, 15 Apr 2020 11:34:36 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 184546E1BA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 11:37:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20905638-1500050 for multiple; Wed, 15 Apr 2020 12:36:58 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 15 Apr 2020 11:34:36 -0000
-Message-ID: <158695047687.21013.74990144404526356@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200415101138.26126-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20200415101138.26126-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUGVy?=
- =?utf-8?q?_client_engine_busyness?=
+In-Reply-To: <158693622761.6982.16961571297064928576@build.alporthouse.com>
+References: <20200414161423.23830-1-chris@chris-wilson.co.uk>
+ <20200414161423.23830-2-chris@chris-wilson.co.uk>
+ <158688212611.24667.7132327074792389398@build.alporthouse.com>
+ <87pnc9zwjf.fsf@riseup.net>
+ <158693622761.6982.16961571297064928576@build.alporthouse.com>
+To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158695061645.24667.18024114483475762648@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 15 Apr 2020 12:36:56 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Shrink the RPS evalution
+ intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,91 +43,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Chris Wilson (2020-04-15 08:37:07)
+> Quoting Francisco Jerez (2020-04-14 20:39:48)
+> > Chris Wilson <chris@chris-wilson.co.uk> writes:
+> > 
+> > > Quoting Chris Wilson (2020-04-14 17:14:23)
+> > >> Try to make RPS dramatically more responsive by shrinking the evaluation
+> > >> intervales by a factor of 100! The issue is as we now park the GPU
+> > >> rapidly upon idling, a short or bursty workload such as the composited
+> > >> desktop never sustains enough work to fill and complete an evaluation
+> > >> window. As such, the frequency we program remains stuck. This was first
+> > >> reported as once boosted, we never relinquished the boost [see commit
+> > >> 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")] but
+> > >> it equally applies in the order direction for bursty workloads that
+> > >> *need* low latency, like desktop animations.
+> > >> 
+> > >> What we could try is preserve the incomplete EI history across idling,
+> > >> it is not clear whether that would be effective, nor whether the
+> > >> presumption of continuous workloads is accurate. A clearer path seems to
+> > >> treat it as symptomatic that we fail to handle bursty workload with the
+> > >> current EI, and seek to address that by shrinking the EI so the
+> > >> evaluations are run much more often.
+> > >> 
+> > >> This will likely entail more frequent interrupts, and by the time we
+> > >> process the interrupt in the bottom half [from inside a worker], the
+> > >> workload on the GPU has changed. To address the changeable nature, in
+> > >> the previous patch we compared the previous complete EI with the
+> > >> interrupt request and only up/down clock if both agree. The impact of
+> > >> asking for, and presumably, receiving more interrupts is still to be
+> > >> determined and mitigations sought. The first idea is to differentiate
+> > >> between up/down responsivity and make upclocking more responsive than
+> > >> downlocking. This should both help thwart jitter on bursty workloads by
+> > >> making it easier to increase than it is to decrease frequencies, and
+> > >> reduce the number of interrupts we would need to process.
+> > >
+> > > Another worry I'd like to raise, is that by reducing the EI we risk
+> > > unstable evaluations. I'm not sure how accurate the HW is, and I worry
+> > > about borderline workloads (if that is possible) but mainly the worry is
+> > > how the HW is sampling.
+> > >
+> > > The other unmentioned unknown is the latency in reprogramming the
+> > > frequency. At what point does it start to become a significant factor?
+> > > I'm presuming the RPS evaluation itself is free, until it has to talk
+> > > across the chip to send an interrupt.
+> > > -Chris
+> > 
+> > At least on ICL the problem which this patch and 21abf0bf168d were
+> > working around seems to have to do with RPS interrupt delivery being
+> > inadvertently blocked for extended periods of time.  Looking at the GPU
+> > utilization and RPS events on a graph I could see the GPU being stuck at
+> > low frequency without any RPS interrupts firing, for a time interval
+> > orders of magnitude greater than the EI we're theoretically programming
+> > today.  IOW it seems like the real problem isn't that our EIs are too
+> > long, but that we're missing a bunch of them.
+> > 
+> > The solution I was suggesting for this on IRC during the last couple of
+> > days wouldn't have any of the drawbacks you mention above, I'll send it
+> > to this list in a moment if the general approach seems okay to you:
+> > 
+> > https://github.com/curro/linux/commit/f7bc31402aa727a52d957e62d985c6dae6be4b86
+> 
+> Confirmed that the PMINTRMSK is sufficiently delayed to cause problems.
 
-Series: Per client engine busyness
-URL   : https://patchwork.freedesktop.org/series/75967/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8300 -> Patchwork_17306
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17306/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17306 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#1580])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8300/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17306/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([i915#976])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8300/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17306/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8300 -> Patchwork_17306
-
-  CI-20190529: 20190529
-  CI_DRM_8300: 02f5d84db84f885cba1f8d258b23e9ea0f2d922e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5590: c7b4a43942be32245b1c00b5b4a38401d8ca6e0d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17306: e9b16b5095f854deeaee59534fa4047771ace61e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e9b16b5095f8 drm/i915: Prefer software tracked context busyness
-a89a065b63bf drm/i915: Track context current active time
-96b05255f5c0 drm/i915: Expose per-engine client busyness
-80f8fe2f733c drm/i915: Track all user contexts per client
-7d61e2172ad1 drm/i915: Track runtime spent in closed GEM contexts
-0cd24e79ea05 drm/i915: Track runtime spent in unreachable intel_contexts
-7aaaba098c18 drm/i915: Make GEM contexts track DRM clients
-a763b56f5eed drm/i915: Update client name on context create
-027b0636d391 drm/i915: Expose list of clients in sysfs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17306/index.html
+[   68.462428] rcs0: UP interrupt not recorded for spinner, pm_iir:0, prev_up:2ee0, up_threshold:2c88, up_ei:2ee0
+Have selftest \o/
+FW fixes selftest.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
