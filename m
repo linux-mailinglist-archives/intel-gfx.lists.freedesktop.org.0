@@ -1,40 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B7EB1AAF57
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 19:20:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A65A1AAF97
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 19:33:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7F16EA42;
-	Wed, 15 Apr 2020 17:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9FF6EA45;
+	Wed, 15 Apr 2020 17:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE006EA41
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 17:20:48 +0000 (UTC)
-IronPort-SDR: NHwJWfATxdguU5WWxMSHQuWVFaHo+v23YCAru+NGH735rvyHbrCQvce2neK2Wx2+qRGYKietE2
- JB3qTuw+gR+A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 10:20:48 -0700
-IronPort-SDR: l8MZa8CyVy97UFBkRXgN46P0OQHjPf5b+SAsbch2iHbqXuGCz+rPj3alpRg5/aXcSg5KwVdy1F
- tE3FZgZXNj5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,387,1580803200"; d="scan'208";a="400382932"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by orsmga004.jf.intel.com with ESMTP; 15 Apr 2020 10:20:46 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Apr 2020 22:35:55 +0530
-Message-Id: <20200415170555.15531-5-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200415170555.15531-1-anshuman.gupta@intel.com>
-References: <20200415170555.15531-1-anshuman.gupta@intel.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A266E1FB;
+ Wed, 15 Apr 2020 17:32:54 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 26923AF3F;
+ Wed, 15 Apr 2020 17:32:52 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-6-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <30509d8f-f2ce-ce32-1de6-b807c3eb5b4b@suse.de>
+Date: Wed, 15 Apr 2020 19:32:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 4/4] drm/i915: Add i915_lpsp_status debugfs
- attribute
+In-Reply-To: <20200415074034.175360-6-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 05/59] drm/vboxvidoe: use managed pci
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,114 +66,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Sam Ravnborg <sam@ravnborg.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============1217697302=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It requires a separate debugfs attribute to expose lpsp
-status to user space, as there may be display less configuration
-without any valid connected output, those configuration will not be
-able to test lpsp status, if lpsp status exposed from a connector
-based debugfs attribute.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1217697302==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="ez2CnJveTAfgLs2uiV80M236OHAYLxMig"
 
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  | 47 +++++++++++++++++++
- .../drm/i915/display/intel_display_power.h    |  2 +
- 2 files changed, 49 insertions(+)
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--ez2CnJveTAfgLs2uiV80M236OHAYLxMig
+Content-Type: multipart/mixed; boundary="lTmyJdGtNFbhQSBGjE4UBXjX0F9OhdDda";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Hans de Goede <hdegoede@redhat.com>, Sam Ravnborg <sam@ravnborg.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <30509d8f-f2ce-ce32-1de6-b807c3eb5b4b@suse.de>
+Subject: Re: [PATCH 05/59] drm/vboxvidoe: use managed pci functions
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-6-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200415074034.175360-6-daniel.vetter@ffwll.ch>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index ea48de3cac24..70525623bcdf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -9,6 +9,7 @@
- #include "i915_debugfs.h"
- #include "intel_csr.h"
- #include "intel_display_debugfs.h"
-+#include "intel_display_power.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_fbc.h"
-@@ -1143,6 +1144,51 @@ static int i915_drrs_status(struct seq_file *m, void *unused)
- 	return 0;
- }
- 
-+#define LPSP_STATUS(COND) (COND ? seq_puts(m, "LPSP: enabled\n") : \
-+				seq_puts(m, "LPSP: disabled\n"))
-+
-+static bool
-+intel_lpsp_power_well_enabled(struct drm_i915_private *i915,
-+			      enum i915_power_well_id power_well_id)
-+{
-+	intel_wakeref_t wakeref;
-+	bool is_enabled;
-+
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-+	is_enabled = intel_display_power_well_is_enabled(i915,
-+							 power_well_id);
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-+
-+	return is_enabled;
-+}
-+
-+static int i915_lpsp_status(struct seq_file *m, void *unused)
-+{
-+	struct drm_i915_private *i915 = node_to_i915(m->private);
-+
-+	switch (INTEL_GEN(i915)) {
-+	case 12:
-+	case 11:
-+		LPSP_STATUS(!intel_lpsp_power_well_enabled(i915, ICL_DISP_PW_3));
-+		break;
-+	case 10:
-+	case 9:
-+		LPSP_STATUS(!intel_lpsp_power_well_enabled(i915, SKL_DISP_PW_2));
-+		break;
-+	default:
-+		/*
-+		 * Apart from HASWELL/BROADWELL other legacy platform doesn't
-+		 * support lpsp.
-+		 */
-+		if (IS_HASWELL(i915) || IS_BROADWELL(i915))
-+			LPSP_STATUS(!intel_lpsp_power_well_enabled(i915, HSW_DISP_PW_GLOBAL));
-+		else
-+			seq_puts(m, "LPSP: not supported\n");
-+	}
-+
-+	return 0;
-+}
-+
- static int i915_dp_mst_info(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-@@ -1910,6 +1956,7 @@ static const struct drm_info_list intel_display_debugfs_list[] = {
- 	{"i915_dp_mst_info", i915_dp_mst_info, 0},
- 	{"i915_ddb_info", i915_ddb_info, 0},
- 	{"i915_drrs_status", i915_drrs_status, 0},
-+	{"i915_lpsp_status", i915_lpsp_status, 0},
- };
- 
- static const struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 56cbae6327b7..14c5ad20287f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -266,6 +266,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain);
- 
- bool intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
- 				    enum intel_display_power_domain domain);
-+bool intel_display_power_well_is_enabled(struct drm_i915_private *dev_priv,
-+					 enum i915_power_well_id power_well_id);
- bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
- 				      enum intel_display_power_domain domain);
- intel_wakeref_t intel_display_power_get(struct drm_i915_private *dev_priv,
--- 
-2.26.0
+--lTmyJdGtNFbhQSBGjE4UBXjX0F9OhdDda
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+The commit's headline says 'vboxvidoe'.
+
+Am 15.04.20 um 09:39 schrieb Daniel Vetter:
+> Allows us to drop the cleanup code on the floor.
+>=20
+> Sam noticed in his review:
+>> With this change we avoid calling pci_disable_device()
+>> twise in case vbox_mm_init() fails.
+>> Once in vbox_hw_fini() and once in the error path.
+>=20
+> v2: Include Sam's review remarks
+>=20
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c  | 6 ++----
+>  drivers/gpu/drm/vboxvideo/vbox_main.c | 7 +------
+>  2 files changed, 3 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vbo=
+xvideo/vbox_drv.c
+> index cfa4639c5142..cf2e3e6a2388 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> @@ -55,13 +55,13 @@ static int vbox_pci_probe(struct pci_dev *pdev, con=
+st struct pci_device_id *ent)
+>  	pci_set_drvdata(pdev, vbox);
+>  	mutex_init(&vbox->hw_mutex);
+> =20
+> -	ret =3D pci_enable_device(pdev);
+> +	ret =3D pcim_enable_device(pdev);
+>  	if (ret)
+>  		return ret;
+> =20
+>  	ret =3D vbox_hw_init(vbox);
+>  	if (ret)
+> -		goto err_pci_disable;
+> +		return ret;
+> =20
+>  	ret =3D vbox_mm_init(vbox);
+>  	if (ret)
+> @@ -91,8 +91,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const=
+ struct pci_device_id *ent)
+>  	vbox_mm_fini(vbox);
+>  err_hw_fini:
+>  	vbox_hw_fini(vbox);
+> -err_pci_disable:
+> -	pci_disable_device(pdev);
+>  	return ret;
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vb=
+oxvideo/vbox_main.c
+> index 9dcab115a261..1336ab9795fc 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_main.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
+> @@ -71,8 +71,6 @@ static void vbox_accel_fini(struct vbox_private *vbox=
+)
+> =20
+>  	for (i =3D 0; i < vbox->num_crtcs; ++i)
+>  		vbva_disable(&vbox->vbva_info[i], vbox->guest_pool, i);
+> -
+> -	pci_iounmap(vbox->ddev.pdev, vbox->vbva_buffers);
+>  }
+> =20
+>  /* Do we support the 4.3 plus mode hint reporting interface? */
+> @@ -125,7 +123,7 @@ int vbox_hw_init(struct vbox_private *vbox)
+>  	/* Create guest-heap mem-pool use 2^4 =3D 16 byte chunks */
+>  	vbox->guest_pool =3D gen_pool_create(4, -1);
+>  	if (!vbox->guest_pool)
+> -		goto err_unmap_guest_heap;
+> +		return -ENOMEM;
+> =20
+>  	ret =3D gen_pool_add_virt(vbox->guest_pool,
+>  				(unsigned long)vbox->guest_heap,
+> @@ -168,8 +166,6 @@ int vbox_hw_init(struct vbox_private *vbox)
+> =20
+>  err_destroy_guest_pool:
+>  	gen_pool_destroy(vbox->guest_pool);
+> -err_unmap_guest_heap:
+> -	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
+>  	return ret;
+>  }
+> =20
+> @@ -177,5 +173,4 @@ void vbox_hw_fini(struct vbox_private *vbox)
+>  {
+>  	vbox_accel_fini(vbox);
+>  	gen_pool_destroy(vbox->guest_pool);
+> -	pci_iounmap(vbox->ddev.pdev, vbox->guest_heap);
+>  }
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--lTmyJdGtNFbhQSBGjE4UBXjX0F9OhdDda--
+
+--ez2CnJveTAfgLs2uiV80M236OHAYLxMig
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl6XRUEACgkQaA3BHVML
+eiOrYwgAnXeD43oIm5bYpq4i2M2BmFSH1jJoznWUMNaNHjEKf9r9H4lV1lq74Ntp
+/IBYeEGaDGBMch54y83tEPlKUVCGEon710jVLDKECwxNtO6ypkLlKC4YKHdvojWp
++QyhCEjijNzlh1HaNVdVJUGkQjoKyUWton2GxbcYM4x2DAbIFB4C7DJ2mF40T3oE
+/DNc2KhX8KRxtm5sTG7N0xxCG8d77Fh3WZDmwwcp45pOFlHJkN5D8/5gVPSo4c3G
+MtTCjPw16i7hwLjoDOqThY9lS1SWxjJeQQwAWgvG+NiEZ/En1eZ6HuaeQVZgZnQM
+BQ7YXSwczR4NHfKX/sBuiIRVqNvMVQ==
+=dCP8
+-----END PGP SIGNATURE-----
+
+--ez2CnJveTAfgLs2uiV80M236OHAYLxMig--
+
+--===============1217697302==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1217697302==--
