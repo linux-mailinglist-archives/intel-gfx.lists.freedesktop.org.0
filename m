@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6114B1A949D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:41:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 951F51A94A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:42:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 730156E899;
-	Wed, 15 Apr 2020 07:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB0D06E89D;
+	Wed, 15 Apr 2020 07:41:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B666E88C
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:03 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id h9so17866430wrc.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:03 -0700 (PDT)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C5A66E890
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:04 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id a25so17884482wrd.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=FoCcPJgxLCMumcla6Kq5B0fQKqpfJGcLuflkgXPteSs=;
- b=FLkbXNCaeuA1NUP0hDBWW2JwZeeiX1UEXkAbFJy4E5Kd4VPIyFhj1s84/P/ow8Irk7
- cezK9FSaz6SPinXLu88JAe0TNtWc3ArPu9XYiphh5+zhUUQWdmRD2E2uUOXS8uJ9LcBb
- Bys7DYLtt6yVP9tm8UBflULjpOqjVPMK9rdxQ=
+ bh=DeMO3vlmgxOJF9CNwpQjB+v8eWcJq3jGpnPcZIzXutE=;
+ b=gjrx1chkYeUEcIaHdeH8s4z11nOP1syPUIkoVGO0e4XoRfV3w4XW38Wc0HV+5s1drJ
+ NRp9L2mF3rpduiiJungyv24OrrR/qyciaFeQUOsin1Cs4UEJMkHObLggJ7LzO21Pc2WZ
+ d50BPmBnVuGwYEzTcNoJfJDHS2jj6JwPVQjoc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=FoCcPJgxLCMumcla6Kq5B0fQKqpfJGcLuflkgXPteSs=;
- b=ZVeEQj+6AbG1s6CiZHW39ARUUlxL1o4TPU5lhR3boBybxJU+E5T5a0QuGg7vFf/Odf
- g+UGp1KiZcEc5ZeMrMP7CnwAhzRxVXKqrFO589Ls45ocLkcQBH8TFCvn2X8g4/U3VMc7
- DechdXt7ebgbsygU8lCc1XxxNRpPgYQ90csejNN0RYj3rrU7fx1c5z2r0AARa34NjSt0
- Vn4qX45YoxMLO/gwxXqLFxpQnqpez6CYwF/4RJiNulpjap/LN0EZLYFJNfrI3XzuTXHP
- FWR6I9hUUlKpbP4mHp9lI9/lAqfiLAqJ8MMUU1geHzYty8pZQTyAKbcpXi0Dz5dNrfac
- kMrA==
-X-Gm-Message-State: AGi0PubL5CUWhToU+GZip1hdCPsUtT9Vp6bpEmlLCWwGVD5pMYfENLAl
- oIbw8zzodfxswwPWp+gMEC1xRp5xcJc=
-X-Google-Smtp-Source: APiQypLESpy/gqNyQD5ttOiGzYI6N0cR4raPJ++yTG5m4b1i1PMgb2w/zTnPYZMg9F/SpW8Tq3UzvQ==
-X-Received: by 2002:adf:cd0a:: with SMTP id w10mr13671838wrm.404.1586936461935; 
- Wed, 15 Apr 2020 00:41:01 -0700 (PDT)
+ bh=DeMO3vlmgxOJF9CNwpQjB+v8eWcJq3jGpnPcZIzXutE=;
+ b=Fl9b3DcqFIHL7ymsSZqilrOr8QelaiI/bS+UkZEra8zxWMaJD7soEDCNoF6eLCzqy1
+ BWNsGQrnRDQfhcgY0fYGTeO3mToCaEZwcefLbzSPAK1IFVdPnG5ZPEtPwH6wTYnGUMJl
+ sbK6mh1350iNZHIjAfGRzVtE6gnZcLzHnPRm78wOhrvs+caoyss0N50bUjG9LjI0kA02
+ Sdn4c4FCIBavOZHIz26j6aHiXOqVVTVl/FC4reIyLvL2/xE1BAz72WS8TdkvV2I4KdlE
+ 6CHJncj8ZMVG54w26mX8wGIRXkaanxeFfmfBB6HenC6acDpDKMl/ySKNMxzVLIyqTZ2M
+ eN0A==
+X-Gm-Message-State: AGi0PuaMlmwDBdiQiTr8Nzsx810wNxXtBXQpZpwsGUJn77IABqEmwgzn
+ gp2/EVvapS9h8RmtJfwYinB3ulvdPpA=
+X-Google-Smtp-Source: APiQypKtihbjQqJm3Jnxso5irDArazHMZESwCu/Ssw6YteIUYK1yEIOc9VL4luAk7ORb88Bbrci98Q==
+X-Received: by 2002:adf:fe03:: with SMTP id n3mr26844871wrr.315.1586936462938; 
+ Wed, 15 Apr 2020 00:41:02 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.00
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:01 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:02 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:39:55 +0200
-Message-Id: <20200415074034.175360-21-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:39:56 +0200
+Message-Id: <20200415074034.175360-22-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 20/59] drm/hx8357d: Use devm_drm_dev_alloc
+Subject: [Intel-gfx] [PATCH 21/59] drm/gm12u320: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,10 +63,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -74,40 +73,44 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Already using devm_drm_dev_init, so very simple replacment.
 
-Acked-by: Eric Anholt <eric@anholt.net>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Eric Anholt <eric@anholt.net>
+Cc: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/tiny/hx8357d.c | 13 ++++---------
+ drivers/gpu/drm/tiny/gm12u320.c | 13 ++++---------
  1 file changed, 4 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/tiny/hx8357d.c b/drivers/gpu/drm/tiny/hx8357d.c
-index af7f3d10aac3..b4bc358a3269 100644
---- a/drivers/gpu/drm/tiny/hx8357d.c
-+++ b/drivers/gpu/drm/tiny/hx8357d.c
-@@ -226,17 +226,12 @@ static int hx8357d_probe(struct spi_device *spi)
- 	u32 rotation = 0;
- 	int ret;
+diff --git a/drivers/gpu/drm/tiny/gm12u320.c b/drivers/gpu/drm/tiny/gm12u320.c
+index 6f0ea2827d62..907739a67bf6 100644
+--- a/drivers/gpu/drm/tiny/gm12u320.c
++++ b/drivers/gpu/drm/tiny/gm12u320.c
+@@ -631,22 +631,17 @@ static int gm12u320_usb_probe(struct usb_interface *interface,
+ 	if (interface->cur_altsetting->desc.bInterfaceNumber != 0)
+ 		return -ENODEV;
  
--	dbidev = kzalloc(sizeof(*dbidev), GFP_KERNEL);
--	if (!dbidev)
+-	gm12u320 = kzalloc(sizeof(*gm12u320), GFP_KERNEL);
+-	if (gm12u320 == NULL)
 -		return -ENOMEM;
-+	dbidev = devm_drm_dev_alloc(dev, &hx8357d_driver,
-+				    struct mipi_dbi_dev, drm);
-+	if (IS_ERR(dbidev))
-+		return PTR_ERR(dbidev);
++	gm12u320 = devm_drm_dev_alloc(&interface->dev, &gm12u320_drm_driver,
++				      struct gm12u320_device, dev);
++	if (IS_ERR(gm12u320))
++		return PTR_ERR(gm12u320);
  
- 	drm = &dbidev->drm;
--	ret = devm_drm_dev_init(dev, drm, &hx8357d_driver);
+ 	gm12u320->udev = interface_to_usbdev(interface);
+ 	INIT_DELAYED_WORK(&gm12u320->fb_update.work, gm12u320_fb_update_work);
+ 	mutex_init(&gm12u320->fb_update.lock);
+ 
+ 	dev = &gm12u320->dev;
+-	ret = devm_drm_dev_init(&interface->dev, dev, &gm12u320_drm_driver);
 -	if (ret) {
--		kfree(dbidev);
+-		kfree(gm12u320);
 -		return ret;
 -	}
--	drmm_add_final_kfree(drm, dbidev);
+ 	dev->dev_private = gm12u320;
+-	drmm_add_final_kfree(dev, gm12u320);
  
- 	dc = devm_gpiod_get(dev, "dc", GPIOD_OUT_LOW);
- 	if (IS_ERR(dc)) {
+ 	ret = drmm_mode_config_init(dev);
+ 	if (ret)
 -- 
 2.25.1
 
