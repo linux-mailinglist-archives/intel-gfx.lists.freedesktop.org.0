@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1723E1A94E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E371A94EF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F506E8D1;
-	Wed, 15 Apr 2020 07:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5796E8E5;
+	Wed, 15 Apr 2020 07:41:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095276E8BA
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:30 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id d77so16168490wmd.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:29 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B2026E8C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:31 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id k11so17252767wrp.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=20t0le5X6RHJ7j1XiDolNqzntpIKdrGSGwvqPHwX8CE=;
- b=Is9Lq58RsIUkwp/y/FiZ/NVD/cE/KgOnLbCxhTbf2JVp9Pulu8oJ27EYq9IAV1uJMg
- ZNPrprNXP9LpXkgljvHAvhAQotPv2WRkKnK5jJPgDOp83n5bqVrsozedPGaP4SX9nOOg
- mrDDkKoKG4Y85i+ArKsexqwnBkf7hR8H45IQI=
+ bh=+jhjmoDtwZfUYvdH7TBEqC1ZYPPwf7qgoFSNEKxsay0=;
+ b=HGTf8KWBAsiKH2ZzyURRzHrXLXoonewVvfUkD+vFfUbo+5z4Md+5/MwotnyfkoP6QU
+ /a3/WCW+ED1ItjgFioSOSU2axMKQbVYTrPTqP4sVW4xuW8Nq61mdZ1IQxxhIPUZlvJOp
+ np1GSjJvtCu67zhZTU8v68H7MKfPm7lmujD0E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=20t0le5X6RHJ7j1XiDolNqzntpIKdrGSGwvqPHwX8CE=;
- b=Uq+C6ZFHYUMPLV2ybw9RmZd1/17lROiQhyo5QPDpV7rgI1d28hIdrGB5WL/aBc2U1C
- 8QuQmEXthywdmw0jKn6SZYfPLVgsbGyo6rA9IlFZNNM8L/noL9SIC8/zjxfonawF/Q7N
- 8q3AgHxnHmLZ6s+Fn586Eu+ukGKSoqBNAlcOxuIrDt9twMoLkYrQMnn1G6jId7PETpCO
- U3qHYQqsD3Jx7J88OThsGdfcaUlEFw61OnwCIVp4Mbmq+4paHhNlZhN9p9JER023ideX
- n4KJ8QdyAusThfFg52Tlk4fy5vHU4e0T8/TXD6tQhhiEB3W/IZlTsVgxwlKf8sj+S608
- 7Tag==
-X-Gm-Message-State: AGi0PubY7S3p/3ooeEOjjL9oyFT58Lm+qOCQCATMilkSbf16caSZpgYj
- OOSLUq+mHPmHkqsVrV+rrpyezuoMSSI=
-X-Google-Smtp-Source: APiQypLjg5cxdS/B9OezSLtejSop+E2sdAmKxjHyITmvX/VuJVeu8iWovxx8kvTfRZBfY6nWYcYZKw==
-X-Received: by 2002:a7b:c1d4:: with SMTP id a20mr3932939wmj.111.1586936488361; 
- Wed, 15 Apr 2020 00:41:28 -0700 (PDT)
+ bh=+jhjmoDtwZfUYvdH7TBEqC1ZYPPwf7qgoFSNEKxsay0=;
+ b=dN5bLVjrEPyTnVYcN7X8m4TzqJSIRjkkizs9v0YVKTMnDQcpCry9/2AURvNqJt2+aN
+ Vn/i8+C3cNfDAjM4UKm351lRmTkB1R5osVKrUTLmZslehIreP3Q8uSp+9rqybMrXFuFt
+ sLSVmAQCAFFpStJ3VeJ8/7FzHtwVY0k9SbNdehJ4VcNWemBFM/Z1kDEGXWpOF8sPyxzH
+ sz+3OrSTmIf2r8whIi2ArxSr2s8TSDzgXWrBFbx+vJK6HjE/v+su06kAi/4IH2ctyNhR
+ ES6xkVogpHJ576MM3MQL3aTc4yvKK6M1/CeFfTVAKb9KvuoGN8nSmlTf0VZlLlu+c1wx
+ FeDA==
+X-Gm-Message-State: AGi0PuaYmB0FMbMOS9fteSsLna+j1FblsTUKG/FF802oGWpPZIJkzMYB
+ JBfm3yHTNPy1zPGYL0UHRC0TplphrcE=
+X-Google-Smtp-Source: APiQypKVW4WvAoRKanbd3Nt718W8L1RsZwdX8CU9Kzl6lDjEAeoOa075LMR6egFw00hlAuMebMQOLQ==
+X-Received: by 2002:adf:82b1:: with SMTP id 46mr20226509wrc.44.1586936489421; 
+ Wed, 15 Apr 2020 00:41:29 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.27
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:27 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:28 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:21 +0200
-Message-Id: <20200415074034.175360-47-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:22 +0200
+Message-Id: <20200415074034.175360-48-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 46/59] drm/arc: Align with simple pipe helpers
+Subject: [Intel-gfx] [PATCH 47/59] drm/arc: Convert to
+ drm_simple_kms_pipe_helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,62 +73,255 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simple pipe helpers only have an enable and disable hook, no more
-mode_set_nofb. Call it from our enable hook to align with that
-conversions.
+Really straighforward, only slight issue is that the sim connector is
+created after the pipe is set up, so can't use the helpers perfectly
+yet. Subsequent patches will fix that.
 
-Atomic helpers always call mode_set_nofb and enable together, so
-there's no functional change here.
+Aside from lots of deleting code no functional changes in here.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Alexey Brodkin <abrodkin@synopsys.com>
 ---
- drivers/gpu/drm/arc/arcpgu_crtc.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/arc/arcpgu.h      |   4 +-
+ drivers/gpu/drm/arc/arcpgu_crtc.c | 102 ++++++++----------------------
+ drivers/gpu/drm/arc/arcpgu_drv.c  |   2 +-
+ drivers/gpu/drm/arc/arcpgu_hdmi.c |  18 +-----
+ 4 files changed, 31 insertions(+), 95 deletions(-)
 
-diff --git a/drivers/gpu/drm/arc/arcpgu_crtc.c b/drivers/gpu/drm/arc/arcpgu_crtc.c
-index 72719556debb..c7769edeefdf 100644
---- a/drivers/gpu/drm/arc/arcpgu_crtc.c
-+++ b/drivers/gpu/drm/arc/arcpgu_crtc.c
-@@ -73,10 +73,9 @@ static enum drm_mode_status arc_pgu_crtc_mode_valid(struct drm_crtc *crtc,
- 	return MODE_NOCLOCK;
+diff --git a/drivers/gpu/drm/arc/arcpgu.h b/drivers/gpu/drm/arc/arcpgu.h
+index c52cdd2274e1..b5c699d14f27 100644
+--- a/drivers/gpu/drm/arc/arcpgu.h
++++ b/drivers/gpu/drm/arc/arcpgu.h
+@@ -20,7 +20,7 @@ struct arcpgu_drm_private {
+ 
+ #define dev_to_arcpgu(x) container_of(x, struct arcpgu_drm_private, drm)
+ 
+-#define crtc_to_arcpgu_priv(x) container_of(x, struct arcpgu_drm_private, pipe.crtc)
++#define pipe_to_arcpgu_priv(x) container_of(x, struct arcpgu_drm_private, pipe)
+ 
+ static inline void arc_pgu_write(struct arcpgu_drm_private *arcpgu,
+ 				 unsigned int reg, u32 value)
+@@ -34,7 +34,7 @@ static inline u32 arc_pgu_read(struct arcpgu_drm_private *arcpgu,
+ 	return ioread32(arcpgu->regs + reg);
  }
  
--static void arc_pgu_crtc_mode_set_nofb(struct drm_crtc *crtc)
-+static void arc_pgu_mode_set(struct arcpgu_drm_private *arcpgu)
+-int arc_pgu_setup_crtc(struct drm_device *dev);
++int arc_pgu_setup_pipe(struct drm_device *dev);
+ int arcpgu_drm_hdmi_init(struct drm_device *drm, struct device_node *np);
+ int arcpgu_drm_sim_init(struct drm_device *drm, struct device_node *np);
+ 
+diff --git a/drivers/gpu/drm/arc/arcpgu_crtc.c b/drivers/gpu/drm/arc/arcpgu_crtc.c
+index c7769edeefdf..5c6d7e34ca73 100644
+--- a/drivers/gpu/drm/arc/arcpgu_crtc.c
++++ b/drivers/gpu/drm/arc/arcpgu_crtc.c
+@@ -25,10 +25,9 @@ static const u32 arc_pgu_supported_formats[] = {
+ 	DRM_FORMAT_ARGB8888,
+ };
+ 
+-static void arc_pgu_set_pxl_fmt(struct drm_crtc *crtc)
++static void arc_pgu_set_pxl_fmt(struct arcpgu_drm_private *arcpgu)
  {
 -	struct arcpgu_drm_private *arcpgu = crtc_to_arcpgu_priv(crtc);
--	struct drm_display_mode *m = &crtc->state->adjusted_mode;
-+	struct drm_display_mode *m = &arcpgu->pipe.crtc.state->adjusted_mode;
- 	u32 val;
+-	const struct drm_framebuffer *fb = crtc->primary->state->fb;
++	const struct drm_framebuffer *fb = arcpgu->pipe.plane.state->fb;
+ 	uint32_t pixel_format = fb->format->format;
+ 	u32 format = DRM_FORMAT_INVALID;
+ 	int i;
+@@ -59,10 +58,10 @@ static const struct drm_crtc_funcs arc_pgu_crtc_funcs = {
+ 	.atomic_destroy_state = drm_atomic_helper_crtc_destroy_state,
+ };
  
- 	arc_pgu_write(arcpgu, ARCPGU_REG_FMT,
-@@ -110,7 +109,7 @@ static void arc_pgu_crtc_mode_set_nofb(struct drm_crtc *crtc)
+-static enum drm_mode_status arc_pgu_crtc_mode_valid(struct drm_crtc *crtc,
+-						    const struct drm_display_mode *mode)
++static enum drm_mode_status arc_pgu_mode_valid(struct drm_simple_display_pipe *pipe,
++					       const struct drm_display_mode *mode)
+ {
+-	struct arcpgu_drm_private *arcpgu = crtc_to_arcpgu_priv(crtc);
++	struct arcpgu_drm_private *arcpgu = pipe_to_arcpgu_priv(pipe);
+ 	long rate, clk_rate = mode->clock * 1000;
+ 	long diff = clk_rate / 200; /* +-0.5% allowed by HDMI spec */
+ 
+@@ -109,15 +108,16 @@ static void arc_pgu_mode_set(struct arcpgu_drm_private *arcpgu)
  	arc_pgu_write(arcpgu, ARCPGU_REG_STRIDE, 0);
  	arc_pgu_write(arcpgu, ARCPGU_REG_START_SET, 1);
  
--	arc_pgu_set_pxl_fmt(crtc);
-+	arc_pgu_set_pxl_fmt(&arcpgu->pipe.crtc);
+-	arc_pgu_set_pxl_fmt(&arcpgu->pipe.crtc);
++	arc_pgu_set_pxl_fmt(arcpgu);
  
  	clk_set_rate(arcpgu->clk, m->crtc_clock * 1000);
  }
-@@ -120,6 +119,8 @@ static void arc_pgu_crtc_atomic_enable(struct drm_crtc *crtc,
+ 
+-static void arc_pgu_crtc_atomic_enable(struct drm_crtc *crtc,
+-				       struct drm_crtc_state *old_state)
++static void arc_pgu_enable(struct drm_simple_display_pipe *pipe,
++			   struct drm_crtc_state *crtc_state,
++			   struct drm_plane_state *plane_state)
  {
- 	struct arcpgu_drm_private *arcpgu = crtc_to_arcpgu_priv(crtc);
+-	struct arcpgu_drm_private *arcpgu = crtc_to_arcpgu_priv(crtc);
++	struct arcpgu_drm_private *arcpgu = pipe_to_arcpgu_priv(pipe);
  
-+	arc_pgu_mode_set(arcpgu);
-+
- 	clk_prepare_enable(arcpgu->clk);
+ 	arc_pgu_mode_set(arcpgu);
+ 
+@@ -127,10 +127,9 @@ static void arc_pgu_crtc_atomic_enable(struct drm_crtc *crtc,
+ 		      ARCPGU_CTRL_ENABLE_MASK);
+ }
+ 
+-static void arc_pgu_crtc_atomic_disable(struct drm_crtc *crtc,
+-					struct drm_crtc_state *old_state)
++static void arc_pgu_disable(struct drm_simple_display_pipe *pipe)
+ {
+-	struct arcpgu_drm_private *arcpgu = crtc_to_arcpgu_priv(crtc);
++	struct arcpgu_drm_private *arcpgu = pipe_to_arcpgu_priv(pipe);
+ 
+ 	clk_disable_unprepare(arcpgu->clk);
  	arc_pgu_write(arcpgu, ARCPGU_REG_CTRL,
- 		      arc_pgu_read(arcpgu, ARCPGU_REG_CTRL) |
-@@ -139,7 +140,6 @@ static void arc_pgu_crtc_atomic_disable(struct drm_crtc *crtc,
+@@ -138,80 +137,33 @@ static void arc_pgu_crtc_atomic_disable(struct drm_crtc *crtc,
+ 			      ~ARCPGU_CTRL_ENABLE_MASK);
+ }
  
- static const struct drm_crtc_helper_funcs arc_pgu_crtc_helper_funcs = {
- 	.mode_valid	= arc_pgu_crtc_mode_valid,
--	.mode_set_nofb	= arc_pgu_crtc_mode_set_nofb,
- 	.atomic_enable	= arc_pgu_crtc_atomic_enable,
- 	.atomic_disable	= arc_pgu_crtc_atomic_disable,
+-static const struct drm_crtc_helper_funcs arc_pgu_crtc_helper_funcs = {
+-	.mode_valid	= arc_pgu_crtc_mode_valid,
+-	.atomic_enable	= arc_pgu_crtc_atomic_enable,
+-	.atomic_disable	= arc_pgu_crtc_atomic_disable,
+-};
+-
+-static void arc_pgu_plane_atomic_update(struct drm_plane *plane,
+-					struct drm_plane_state *state)
++static void arc_pgu_update(struct drm_simple_display_pipe *pipe,
++			   struct drm_plane_state *state)
+ {
+ 	struct arcpgu_drm_private *arcpgu;
+ 	struct drm_gem_cma_object *gem;
+ 
+-	if (!plane->state->crtc || !plane->state->fb)
++	if (!pipe->plane.state->crtc || !pipe->plane.state->fb)
+ 		return;
+ 
+-	arcpgu = crtc_to_arcpgu_priv(plane->state->crtc);
+-	gem = drm_fb_cma_get_gem_obj(plane->state->fb, 0);
++	arcpgu = pipe_to_arcpgu_priv(pipe);
++	gem = drm_fb_cma_get_gem_obj(pipe->plane.state->fb, 0);
+ 	arc_pgu_write(arcpgu, ARCPGU_REG_BUF0_ADDR, gem->paddr);
+ }
+ 
+-static const struct drm_plane_helper_funcs arc_pgu_plane_helper_funcs = {
+-	.atomic_update = arc_pgu_plane_atomic_update,
++static const struct drm_simple_display_pipe_funcs arc_pgu_pipe_funcs = {
++	.update = arc_pgu_update,
++	.mode_valid = arc_pgu_mode_valid,
++	.enable	= arc_pgu_enable,
++	.disable = arc_pgu_disable,
  };
+ 
+-static void arc_pgu_plane_destroy(struct drm_plane *plane)
+-{
+-	drm_plane_cleanup(plane);
+-}
+-
+-static const struct drm_plane_funcs arc_pgu_plane_funcs = {
+-	.update_plane		= drm_atomic_helper_update_plane,
+-	.disable_plane		= drm_atomic_helper_disable_plane,
+-	.destroy		= arc_pgu_plane_destroy,
+-	.reset			= drm_atomic_helper_plane_reset,
+-	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
+-	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
+-};
+-
+-static struct drm_plane *arc_pgu_plane_init(struct drm_device *drm)
++int arc_pgu_setup_pipe(struct drm_device *drm)
+ {
+ 	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+-	struct drm_plane *plane = NULL;
+-	int ret;
+-
+-	plane = &arcpgu->pipe.plane;
+-
+-	ret = drm_universal_plane_init(drm, plane, 0xff, &arc_pgu_plane_funcs,
+-				       arc_pgu_supported_formats,
+-				       ARRAY_SIZE(arc_pgu_supported_formats),
+-				       NULL,
+-				       DRM_PLANE_TYPE_PRIMARY, NULL);
+-	if (ret)
+-		return ERR_PTR(ret);
+-
+-	drm_plane_helper_add(plane, &arc_pgu_plane_helper_funcs);
+-
+-	return plane;
+-}
+-
+-int arc_pgu_setup_crtc(struct drm_device *drm)
+-{
+-	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+-	struct drm_plane *primary;
+-	int ret;
+-
+-	primary = arc_pgu_plane_init(drm);
+-	if (IS_ERR(primary))
+-		return PTR_ERR(primary);
+-
+-	ret = drm_crtc_init_with_planes(drm, &arcpgu->pipe.crtc, primary, NULL,
+-					&arc_pgu_crtc_funcs, NULL);
+-	if (ret)
+-		return ret;
+ 
+-	drm_crtc_helper_add(&arcpgu->pipe.crtc, &arc_pgu_crtc_helper_funcs);
+-	return 0;
++	return drm_simple_display_pipe_init(drm, &arcpgu->pipe, &arc_pgu_pipe_funcs,
++					    arc_pgu_supported_formats,
++					    ARRAY_SIZE(arc_pgu_supported_formats),
++					    NULL, NULL);
+ }
+diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/arc/arcpgu_drv.c
+index 40c9fc12d515..bf03eda532bc 100644
+--- a/drivers/gpu/drm/arc/arcpgu_drv.c
++++ b/drivers/gpu/drm/arc/arcpgu_drv.c
+@@ -70,7 +70,7 @@ static int arcpgu_load(struct arcpgu_drm_private *arcpgu)
+ 	if (dma_set_mask_and_coherent(drm->dev, DMA_BIT_MASK(32)))
+ 		return -ENODEV;
+ 
+-	if (arc_pgu_setup_crtc(drm) < 0)
++	if (arc_pgu_setup_pipe(drm) < 0)
+ 		return -ENODEV;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/arc/arcpgu_hdmi.c b/drivers/gpu/drm/arc/arcpgu_hdmi.c
+index 925d6d31bb78..d430af686cbc 100644
+--- a/drivers/gpu/drm/arc/arcpgu_hdmi.c
++++ b/drivers/gpu/drm/arc/arcpgu_hdmi.c
+@@ -12,32 +12,16 @@
+ 
+ #include "arcpgu.h"
+ 
+-static struct drm_encoder_funcs arcpgu_drm_encoder_funcs = {
+-	.destroy = drm_encoder_cleanup,
+-};
+-
+ int arcpgu_drm_hdmi_init(struct drm_device *drm, struct device_node *np)
+ {
+ 	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+-	struct drm_encoder *encoder;
+ 	struct drm_bridge *bridge;
+ 
+-	int ret = 0;
+-
+-	encoder = &arcpgu->pipe.encoder;
+-
+ 	/* Locate drm bridge from the hdmi encoder DT node */
+ 	bridge = of_drm_find_bridge(np);
+ 	if (!bridge)
+ 		return -EPROBE_DEFER;
+ 
+-	encoder->possible_crtcs = 1;
+-	encoder->possible_clones = 0;
+-	ret = drm_encoder_init(drm, encoder, &arcpgu_drm_encoder_funcs,
+-			       DRM_MODE_ENCODER_TMDS, NULL);
+-	if (ret)
+-		return ret;
+-
+ 	/* Link drm_bridge to encoder */
+-	return drm_bridge_attach(encoder, bridge, NULL, 0);
++	return drm_simple_display_pipe_attach_bridge(&arcpgu->pipe, bridge);
+ }
 -- 
 2.25.1
 
