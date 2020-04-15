@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91BAF1A94FA
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A56421A94ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B52986E8EF;
-	Wed, 15 Apr 2020 07:42:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA7A46E8D4;
+	Wed, 15 Apr 2020 07:41:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 517606E8B7
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:40 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id d77so16168916wmd.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:40 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B1676E8A6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:41 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id g12so9843793wmh.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZWa+0Oys+vMQm0MRzpu+zoysYIM61WV8KWl6BOTV5TM=;
- b=COiUy+78SV03+5BB4HxAfAXqTsH3Aug+6v795tyzUOTzplfzbun9T8hiRT+MdVCQty
- 2VB5ugeoidB2RaLFMz5jr7/F7TdlcaJgL/5VVWQMlWilA/rIQY7N3j/L91YLypZMvNT+
- 4BPDkLoLa6sS6q3ET4EIjOziuXV/47BS83tpY=
+ bh=WTzqaDrOCjOy+NvsZEi5X1prpX7tJueFkok9mHub9BE=;
+ b=Mx9WlA0RkjMk5en23zym4AnFC+pYZh1AhhzDtRTzs5ujL3cfdqJoOf1f2x7p7JSLrd
+ v0eM3hSi3zGOGnOmDh9BJ/3e/GdZh7n0CGlkD7JlttcROmG1qXV0ahvaRFiN/zhFVtRG
+ usYUgCqhgYzWb0n8P54/HbdisHLpkRRT7jHW0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZWa+0Oys+vMQm0MRzpu+zoysYIM61WV8KWl6BOTV5TM=;
- b=GfYVpY4wRJ/eYV2HUd8XWH55gm8TulNwtipCbfQGNIujnIOUsI+sKICdqR/xkBs0Ag
- 7m4NFGQgJ4JtFQU1mB/UY59FQJPKDLOKUGsuoMSalSEdbchnjWxCipa3eHncH67uhcd1
- zMkEhlI1Dw9uEq23gpWlU3e2Na4oUj2AoUVZp3C9obxGgMAmbIVelBrdcdkDGgxSsBEx
- rHK7SKXjM017MQ8Y2UVKj+ncXb/XjrUDWievxOFayeJZFXLXxZS+SIW1+z66Nw43VqYF
- j4pvsuZ9KrLPqPFn0SqPdXHpKBObQobq8YxSiXDMOnWA8fH+DJ6TFiXEepxHphKur63r
- VqFQ==
-X-Gm-Message-State: AGi0PuYuWlxdx20Cc/+g3BW/ud0GfHqAY8ren8Ik0Odi/k36ba7EDG5p
- eg/Hint5i+IrpJ70berSAeIGcvddo6g=
-X-Google-Smtp-Source: APiQypIQlrmcnQ3TzOri+kZR478vwbjnd+j6WkNeCyzansv5PLdEwvtlt1jQ56O3dub3FqnsMnX3zQ==
-X-Received: by 2002:a7b:c404:: with SMTP id k4mr3575540wmi.37.1586936498669;
- Wed, 15 Apr 2020 00:41:38 -0700 (PDT)
+ bh=WTzqaDrOCjOy+NvsZEi5X1prpX7tJueFkok9mHub9BE=;
+ b=rKBLHRoOA9n7mbybTAaZYMN3bUR9KwigkYBUpc5t1zXOILBJxQ+K6j5BRLzOPDiWka
+ FOy2dYdufRr/bA4U7BDvQsDpz5W4Mt1nBPM5/79hJqHpW0ZUWwuiQbWwNFjrXII2Eod4
+ 3ho/oXn46ZjT4EdOwYTm8C8ZOzlKdZSK4QClyOH0cef1ubD6ft0uZV7sVIFGU4HXxkN6
+ CXoG0q/tSpr1LB1NWSPwtM2PNHEkIHwEiBp3QIkoYEH044rkMhXMPsKysUIgEm3MsL5B
+ qKCs/CyHzvr4svW1R7ZJpLi1b7kZzAN9EpIB/38i6BPh/awuS0LUrST89S9mpmTTDeCe
+ GFuw==
+X-Gm-Message-State: AGi0PuaonjZgTopSgKSoH9ecrM/2/mUdh521hU+XAldczeRa7D1oDj8u
+ zswiiPk08uYZVuRqvqp6BB3bcYCjWC8=
+X-Google-Smtp-Source: APiQypL/rUa/bFVI+lG/Z9+1ny7ZzFmAzsDUu29ROIFPLJOljCD1EUNPudrv/9KhNQCl/0Va8VL/JA==
+X-Received: by 2002:a1c:4c10:: with SMTP id z16mr3823279wmf.77.1586936499654; 
+ Wed, 15 Apr 2020 00:41:39 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.37
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:38 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:39 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:32 +0200
-Message-Id: <20200415074034.175360-58-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:33 +0200
+Message-Id: <20200415074034.175360-59-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 57/59] drm/ast: Use managed pci functions
+Subject: [Intel-gfx] [PATCH 58/59] drm/ast: Drop explicit connector
+ register/unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +64,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Y.C. Chen" <yc_chen@aspeedtech.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Emil Velikov <emil.velikov@collabora.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Sam Ravnborg <sam@ravnborg.org>, Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWxsb3dzIHVzIHRvIHJlbW92ZSBhIGJpdCBvZiBjbGVhbnVwIGNvZGUuCgpTaWduZWQtb2ZmLWJ5
-OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IERhdmUgQWlybGll
-IDxhaXJsaWVkQHJlZGhhdC5jb20+CkNjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
-c3VzZS5kZT4KQ2M6IEdlcmQgSG9mZm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPgpDYzogRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KQ2M6IEVtaWwgVmVsaWtvdiA8ZW1pbC52
-ZWxpa292QGNvbGxhYm9yYS5jb20+CkNjOiAiTm9yYWxmIFRyw7hubmVzIiA8bm9yYWxmQHRyb25u
-ZXMub3JnPgpDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgpDYzogIkNocmlzdGlh
-biBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkNjOiAiWS5DLiBDaGVuIiA8eWNf
-Y2hlbkBhc3BlZWR0ZWNoLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9kcnYuYyAg
-fCAxMCArKystLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMgfCAgMyAtLS0K
-IDIgZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9h
-c3QvYXN0X2Rydi5jCmluZGV4IGI3YmEyMmRkZGNhZC4uNDhhOWNjNGUwODBhIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYXN0
-L2FzdF9kcnYuYwpAQCAtOTEsMTUgKzkxLDEzIEBAIHN0YXRpYyBpbnQgYXN0X3BjaV9wcm9iZShz
-dHJ1Y3QgcGNpX2RldiAqcGRldiwgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkKIAog
-CWFzdF9raWNrX291dF9maXJtd2FyZV9mYihwZGV2KTsKIAotCXJldCA9IHBjaV9lbmFibGVfZGV2
-aWNlKHBkZXYpOworCXJldCA9IHBjaW1fZW5hYmxlX2RldmljZShwZGV2KTsKIAlpZiAocmV0KQog
-CQlyZXR1cm4gcmV0OwogCiAJZGV2ID0gZHJtX2Rldl9hbGxvYygmZHJpdmVyLCAmcGRldi0+ZGV2
-KTsKLQlpZiAoSVNfRVJSKGRldikpIHsKLQkJcmV0ID0gUFRSX0VSUihkZXYpOwotCQlnb3RvIGVy
-cl9wY2lfZGlzYWJsZV9kZXZpY2U7Ci0JfQorCWlmIChJU19FUlIoZGV2KSkKKwkJcmV0dXJuICBQ
-VFJfRVJSKGRldik7CiAKIAlkZXYtPnBkZXYgPSBwZGV2OwogCXBjaV9zZXRfZHJ2ZGF0YShwZGV2
-LCBkZXYpOwpAQCAtMTIwLDggKzExOCw2IEBAIHN0YXRpYyBpbnQgYXN0X3BjaV9wcm9iZShzdHJ1
-Y3QgcGNpX2RldiAqcGRldiwgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkKIAlhc3Rf
-ZHJpdmVyX3VubG9hZChkZXYpOwogZXJyX2RybV9kZXZfcHV0OgogCWRybV9kZXZfcHV0KGRldik7
-Ci1lcnJfcGNpX2Rpc2FibGVfZGV2aWNlOgotCXBjaV9kaXNhYmxlX2RldmljZShwZGV2KTsKIAly
-ZXR1cm4gcmV0OwogCiB9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWlu
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMKaW5kZXggZTUzOThlM2RhYmU3Li4x
-YjM1NzI4YWQ4NzEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X21haW4uYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMKQEAgLTUzMSw4ICs1MzEsNSBAQCB2
-b2lkIGFzdF9kcml2ZXJfdW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJZHJtX21vZGVf
-Y29uZmlnX2NsZWFudXAoZGV2KTsKIAogCWFzdF9tbV9maW5pKGFzdCk7Ci0JaWYgKGFzdC0+aW9y
-ZWdzICE9IGFzdC0+cmVncyArIEFTVF9JT19NTV9PRkZTRVQpCi0JCXBjaV9pb3VubWFwKGRldi0+
-cGRldiwgYXN0LT5pb3JlZ3MpOwotCXBjaV9pb3VubWFwKGRldi0+cGRldiwgYXN0LT5yZWdzKTsK
-IAlrZnJlZShhc3QpOwogfQotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+This is only needed for hotpluggable connectors set up after
+drm_dev_register().
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Emil Velikov <emil.velikov@collabora.com>
+---
+ drivers/gpu/drm/ast/ast_mode.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_mode.c
+index cdd6c46d6557..84b1d1fea41f 100644
+--- a/drivers/gpu/drm/ast/ast_mode.c
++++ b/drivers/gpu/drm/ast/ast_mode.c
+@@ -1069,7 +1069,6 @@ static void ast_connector_destroy(struct drm_connector *connector)
+ {
+ 	struct ast_connector *ast_connector = to_ast_connector(connector);
+ 	ast_i2c_destroy(ast_connector->i2c);
+-	drm_connector_unregister(connector);
+ 	drm_connector_cleanup(connector);
+ 	kfree(connector);
+ }
+@@ -1112,8 +1111,6 @@ static int ast_connector_init(struct drm_device *dev)
+ 	connector->interlace_allowed = 0;
+ 	connector->doublescan_allowed = 0;
+ 
+-	drm_connector_register(connector);
+-
+ 	connector->polled = DRM_CONNECTOR_POLL_CONNECT;
+ 
+ 	encoder = list_first_entry(&dev->mode_config.encoder_list, struct drm_encoder, head);
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
