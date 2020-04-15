@@ -1,32 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5961AA93B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:00:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA671AA9DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:28:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B167D6E905;
-	Wed, 15 Apr 2020 14:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB9D06E91C;
+	Wed, 15 Apr 2020 14:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1C09D6E905;
- Wed, 15 Apr 2020 14:00:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 13EFEA00C7;
- Wed, 15 Apr 2020 14:00:45 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88656E91C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 14:28:19 +0000 (UTC)
+IronPort-SDR: FJugka20Ki2apXrGANX+Q0/R725Z0GgyNKCwJEMmg3I5o8SB2MplLTYPecAjezdGyX0s3tj73p
+ 6UBwhZcENtmw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 07:28:19 -0700
+IronPort-SDR: QwfSPnS/SKqupVW5oDwVzXHT9sG1fOSbnohBYadUHTqgdzfmMOkUjzCzOrw6ei/JGXinIaVlsz
+ ulV+kC5KdxpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,387,1580803200"; d="scan'208";a="453938680"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Apr 2020 07:28:19 -0700
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+ ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 15 Apr 2020 07:28:19 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.204]) by
+ ORSMSX115.amr.corp.intel.com ([169.254.4.102]) with mapi id 14.03.0439.000;
+ Wed, 15 Apr 2020 07:28:19 -0700
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH] drm/i915/icl: Update forcewake firmware ranges
+Thread-Index: AQHWEXHNkxCs7tUcmEq2+Rf8/+kYsah5aqOAgADO+9A=
+Date: Wed, 15 Apr 2020 14:28:18 +0000
+Message-ID: <8C2593290C2B3E488D763E819AF1F02E160ABACF@ORSMSX101.amr.corp.intel.com>
+References: <20200413090003.13451-1-radhakrishna.sripada@intel.com>
+ <20200414183955.GA2715344@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20200414183955.GA2715344@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYTViMGMwYzYtYjViZS00ZDgyLWJiMzEtMGMwZmE5NDdmYjUwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRnZ1aVRzTnduMWlcL3RHeEttQk1kc2pqakpDUElwY2Rud3J5MHFJN1lYaTRTb3J1VUx0YXJWQmVUQ1JaVHdENmIifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 15 Apr 2020 14:00:45 -0000
-Message-ID: <158695924505.21016.1805561137202897288@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200414050807.13531-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200414050807.13531-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/3=5D_drm/dp=3A_DRM_DP_helper_for_re?=
- =?utf-8?q?ading_Ignore_MSA_from_DPCD?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Update forcewake firmware
+ ranges
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,222 +65,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Matt,
 
-Series: series starting with [v4,1/3] drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-URL   : https://patchwork.freedesktop.org/series/75899/
-State : failure
+> -----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>
+> Sent: Tuesday, April 14, 2020 11:40 AM
+> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [PATCH] drm/i915/icl: Update forcewake firmware ranges
+> 
+> On Mon, Apr 13, 2020 at 02:00:03AM -0700, Radhakrishna Sripada wrote:
+> > Some workarounds are not sticking across suspend resume cycles. The
+> > forcewake ranges table has been updated and would reflect the hardware
+> > appropriately.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1222
+> 
+> It's unfortunate that they still haven't updated the bspec for this yet.
+> A few comments below based on my understanding of the document we
+> received from the hardware team.
+> 
+> >
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_uncore.c | 55
+> > +++++++++++++++++++++--------
+> >  1 file changed, 41 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_uncore.c
+> > b/drivers/gpu/drm/i915/intel_uncore.c
+> > index fa86b7ab2d99..c0e21697a44c 100644
+> > --- a/drivers/gpu/drm/i915/intel_uncore.c
+> > +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> > @@ -1098,32 +1098,59 @@ static const struct intel_forcewake_range
+> > __gen11_fw_ranges[] = {
+> 
+> Looks like the first range in this table (0x0 - 0xaff) needs to be changed to '0' (or
+> rather combined with the following entry for a combined 0x0 - 0x1fff range set
+> to '0')
 
-== Summary ==
+Comparing with previous gens, my understanding is the '0' is indicative of uncore range
+Of registers. The reserved ranges are marked with "Blitter" force wake range. Am I in the right
+Path making that assumption? Hence made all the subsequent changes according to the assumption.
 
-CI Bug Log - changes from CI_DRM_8298_full -> Patchwork_17293_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17293_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17293_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17293_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@perf_pmu@cpu-hotplug:
-    - shard-tglb:         NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-tglb8/igt@perf_pmu@cpu-hotplug.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17293_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-snb:          [PASS][2] -> [FAIL][3] ([i915#1066])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-snb2/igt@i915_pm_rc6_residency@rc6-idle.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-snb6/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - shard-glk:          [PASS][4] -> [INCOMPLETE][5] ([i915#58] / [k.org#198133])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-glk6/igt@i915_pm_rpm@basic-rte.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-glk1/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible:
-    - shard-skl:          [PASS][6] -> [FAIL][7] ([i915#34])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl10/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl7/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-blt:
-    - shard-tglb:         [PASS][8] -> [SKIP][9] ([i915#668]) +7 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-tglb2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-blt.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-blt.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
-    - shard-apl:          [PASS][10] -> [DMESG-WARN][11] ([i915#180])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-apl4/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-apl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-kbl:          [PASS][12] -> [DMESG-WARN][13] ([i915#180] / [i915#93] / [i915#95])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-kbl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][14] -> [FAIL][15] ([fdo#108145] / [i915#265]) +1 similar issue
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl3/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_primary_page_flip:
-    - shard-iclb:         [PASS][16] -> [SKIP][17] ([fdo#109441])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-iclb1/igt@kms_psr@psr2_primary_page_flip.html
-
-  * igt@kms_setmode@basic:
-    - shard-skl:          [PASS][18] -> [FAIL][19] ([i915#31])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl7/igt@kms_setmode@basic.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl6/igt@kms_setmode@basic.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-kbl:          [PASS][20] -> [DMESG-WARN][21] ([i915#180]) +4 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-kbl7/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  
-#### Possible fixes ####
-
-  * {igt@gem_wait@write-wait@all}:
-    - shard-skl:          [FAIL][22] ([i915#1676]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl2/igt@gem_wait@write-wait@all.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl9/igt@gem_wait@write-wait@all.html
-
-  * igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy:
-    - shard-glk:          [FAIL][24] ([i915#72]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-glk6/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-glk1/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [FAIL][26] ([i915#79]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl8/igt@kms_flip@flip-vs-expired-vblank.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl10/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][28] ([i915#1188]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl9/igt@kms_hdr@bpc-switch.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl9/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [DMESG-WARN][30] ([i915#180]) -> [PASS][31] +1 similar issue
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_psr@psr2_cursor_plane_onoff:
-    - shard-iclb:         [SKIP][32] ([fdo#109441]) -> [PASS][33] +1 similar issue
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-iclb6/igt@kms_psr@psr2_cursor_plane_onoff.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-iclb2/igt@kms_psr@psr2_cursor_plane_onoff.html
-
-  * igt@kms_vblank@pipe-b-ts-continuation-suspend:
-    - shard-apl:          [DMESG-WARN][34] ([i915#180]) -> [PASS][35] +3 similar issues
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-apl4/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-apl8/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
-
-  * {igt@sysfs_heartbeat_interval@mixed@vcs0}:
-    - shard-skl:          [INCOMPLETE][36] ([i915#198]) -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-skl7/igt@sysfs_heartbeat_interval@mixed@vcs0.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-skl6/igt@sysfs_heartbeat_interval@mixed@vcs0.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-iclb:         [WARN][38] ([i915#1515]) -> [FAIL][39] ([i915#1515])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-iclb6/igt@i915_pm_rc6_residency@rc6-idle.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-iclb2/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-alpha-basic:
-    - shard-apl:          [FAIL][40] ([fdo#108145] / [i915#265]) -> [FAIL][41] ([fdo#108145] / [i915#265] / [i915#95])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-apl1/igt@kms_plane_alpha_blend@pipe-a-alpha-basic.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-apl8/igt@kms_plane_alpha_blend@pipe-a-alpha-basic.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:
-    - shard-kbl:          [FAIL][42] ([fdo#108145] / [i915#265] / [i915#93] / [i915#95]) -> [FAIL][43] ([fdo#108145] / [i915#265])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-kbl2/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-kbl2/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-    - shard-apl:          [FAIL][44] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][45] ([fdo#108145] / [i915#265])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8298/shard-apl4/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/shard-apl2/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1066]: https://gitlab.freedesktop.org/drm/intel/issues/1066
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1459]: https://gitlab.freedesktop.org/drm/intel/issues/1459
-  [i915#1515]: https://gitlab.freedesktop.org/drm/intel/issues/1515
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1676]: https://gitlab.freedesktop.org/drm/intel/issues/1676
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
-  [i915#72]: https://gitlab.freedesktop.org/drm/intel/issues/72
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8298 -> Patchwork_17293
-
-  CI-20190529: 20190529
-  CI_DRM_8298: 17f82f0c2857d0b442adbdb62eb44b61d0f5b775 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5589: 31962324ac86f029e2841e56e97c42cf9d572956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17293: 8f0b035d39defe9940ae35c3ec07a73afdcb69ad @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17293/index.html
+Thanks,
+Radhakrishna(RK) Sripada
+> 
+> 
+> >  	GEN_FW_RANGE(0x2700, 0x2fff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x3000, 0x3fff, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0x4000, 0x51ff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0x5200, 0x7fff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x5200, 0x53ff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x5400, 0x54ff, FORCEWAKE_BLITTER),
+> 
+> In the version of the document I'm looking at, the wake target for this entry is
+> blank, which usually means no wake target is required.  AFAICS, no registers
+> actually fall in this range on gen11, so I'd either set this to '0' to explicitly match
+> the document, or just leave it combined with the two surrounding render ranges
+> for simplicity (and smaller table size).
+> 
+> > +	GEN_FW_RANGE(0x5500, 0x7fff, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0x8000, 0x813f, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0x8160, 0x82ff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x8500, 0x8bff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8500, 0x87ff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8800, 0x883f, 0),
+> > +	GEN_FW_RANGE(0x8840, 0x8bff, FORCEWAKE_BLITTER),
+> 
+> I see 0x8840 - 0x8bff as a reserved range with no forcewake target so we should
+> be able to combine it with the range before it.
+> 
+> >  	GEN_FW_RANGE(0x8c00, 0x8cff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x8d00, 0x93ff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0x9400, 0x97ff, FORCEWAKE_ALL),
+> > -	GEN_FW_RANGE(0x9800, 0xafff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8d00, 0x94cf, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x9560, 0x95ff, 0),
+> > +	GEN_FW_RANGE(0x9600, 0xafff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0xb000, 0xb47f, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0xb480, 0xdeff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0xdf00, 0xe8ff, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0xe900, 0x16dff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x16e00, 0x19fff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x1a000, 0x243ff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0x24400, 0x247ff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x24800, 0x3ffff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1a000, 0x23fff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24000, 0x2407f, 0),
+> > +	GEN_FW_RANGE(0x24080, 0x2417f, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24180, 0x242ff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x24300, 0x243ff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24400, 0x245ff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x24600, 0x2467f, FORCEWAKE_BLITTER),
+> 
+> This one is a reserved range with no registers, so we can just squash it into the
+> two render ranges on either side of it.
+> 
+> > +	GEN_FW_RANGE(0x24680, 0x247ff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x24800, 0x249ff, FORCEWAKE_BLITTER),
+> 
+> Also reserved with no registers.
+> 
+> > +	GEN_FW_RANGE(0x24a00, 0x24a7f, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x24a80, 0x24dff, FORCEWAKE_BLITTER),
+> 
+> Also reserved with no registers.
+> 
+> So I think we should be able to have just use one render range that runs from
+> 0x24400 - 0x24fff.
+> 
+> > +	GEN_FW_RANGE(0x24e00, 0x24fff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x25000, 0x3ffff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x40000, 0x1bffff, 0),
+> > -	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
+> > -	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
+> > -	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
+> > +	GEN_FW_RANGE(0x1c0000, 0x1c2bff, FORCEWAKE_MEDIA_VDBOX0),
+> > +	GEN_FW_RANGE(0x1c2c00, 0x1c3eff, FORCEWAKE_BLITTER),
+> 
+> This is another reserved range that can be combined into the ranges around it
+> (0x1c0000 - 0x1c3fff).
+> 
+> > +	GEN_FW_RANGE(0x1c3f00, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
+> > +	GEN_FW_RANGE(0x1c4000, 0x1c6bff, FORCEWAKE_MEDIA_VDBOX1),
+> > +	GEN_FW_RANGE(0x1c6c00, 0x1c7eff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1c7f00, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
+> 
+> 0x1c4000 - 0x1c7fff are reserved for vdbox1, but that doesn't exist on this
+> platform (we only have vdbox0 and vdbox2 on ICL and only vdbox0 on EHL/JSL).
+> So the three entries above should be combined into a single range with target '0'
+> here.
+> 
+> > +	GEN_FW_RANGE(0x1c8000, 0x1ca0ff, FORCEWAKE_MEDIA_VEBOX0),
+> > +	GEN_FW_RANGE(0x1ca100, 0x1cbeff, FORCEWAKE_BLITTER),
+> 
+> Another reserved range; can squash with the two surrounding ranges.
+> 
+> > +	GEN_FW_RANGE(0x1cbf00, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
+> >  	GEN_FW_RANGE(0x1cc000, 0x1cffff, FORCEWAKE_BLITTER),
+> 
+> Another reserved range.  Either set to 0 or combine with one of the ranges
+> before/after it.
+> 
+> > -	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
+> > -	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
+> > -	GEN_FW_RANGE(0x1d8000, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
+> > +	GEN_FW_RANGE(0x1d0000, 0x1d2bff, FORCEWAKE_MEDIA_VDBOX2),
+> > +	GEN_FW_RANGE(0x1d2c00, 0x1d3eff, FORCEWAKE_BLITTER),
+> 
+> Reserved range; can squash with ranges around it.
+> 
+> > +	GEN_FW_RANGE(0x1d3f00, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
+> > +	GEN_FW_RANGE(0x1d4000, 0x1d6bff, FORCEWAKE_MEDIA_VDBOX3),
+> > +	GEN_FW_RANGE(0x1d6c00, 0x1d7eff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1d7f00, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
+> > +	GEN_FW_RANGE(0x1d8000, 0x1da0ff, FORCEWAKE_MEDIA_VEBOX1),
+> > +	GEN_FW_RANGE(0x1da100, 0x1dbeff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1dbf00, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
+> 
+> As noted above, gen11 doesn't have vdbox1 or vdbox3, so these entries should
+> just be set to '0' (including the reserved ranges that you have listed as blitter
+> right now).
+> 
+> >  };
+> >
+> >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+> > --
+> > 2.20.1
+> >
+> 
+> --
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
