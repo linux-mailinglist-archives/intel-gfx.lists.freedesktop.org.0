@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DB31A94E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C68851A94EA
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 09:43:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBF86E897;
-	Wed, 15 Apr 2020 07:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 447E96E8E4;
+	Wed, 15 Apr 2020 07:41:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B546E8BF
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:36 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id y24so17675153wma.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:36 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C7D6E8AA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 07:41:37 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id j2so17883639wrs.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 00:41:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=/O80CnGhcLcZzT6QHRKesAbNntx2JJLrEjlz68nNumA=;
- b=SmVxShk7K8tTYpEOA/+Gisjw3nwqxHDAWDzX5eawhvwEmcNcFn9X132Zt6pKHRb0+7
- fxc0lzLZtnRZFBvEqiUEVQMswm5w2hfepRTYtMJKqND7BrVOzwjR9hfm+odoX4kUzR4J
- Bu8fGOakumarw/vbaQ5+yv0QjCPfxF4PYhuFY=
+ bh=m8LdowvRj6y5F/lzc0z+wTLajfnWKM9lBo0QaQxdrxw=;
+ b=dDWOltVkXSOBk1IiL8MGDd4W/Djoa1TmmKBWN/ACzBJhTGB6DVnNb+bdfp7yXv+ILx
+ bPVlegHUcpx/jn37fxJlmy6MggQXsKXqt1jbmKh2owgqv35hUekH2fvR07MARNAxxDcZ
+ sKHEmL/k4jUdpxWPK3HUwx3VS8Y1uye7JNtWY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=/O80CnGhcLcZzT6QHRKesAbNntx2JJLrEjlz68nNumA=;
- b=MnPwCvlapCXIbo7e/5lqsHqXkUHWARdvcbx1T3q8nWqZ/GGoyDlG1fdpMmjQ8XV4ky
- lX3GCYfrLYsW3XmOtOZ5zQ1GsTrrlnGopKESD0U481pkwt2XzfiaL2JMoMA9LS/GJdIr
- LRKx/L72IWAAZo8L49848t2IPJHvXt703J2gN9GBYE0eF+gU8nyWisqhVdAlpITykmBB
- Itq48KkwVTXVUSlBbgXXvUciU34ULEN1HQ4pLRybmkxxHyeKN4WsGOYa/c+YnEjAhiEe
- /QX0s+YqjzyIra3oAY30dgUOzulBhbu2LDAhmRb8N3gBfshhWJWX4Y+7RCnk5pba1/77
- 0XFQ==
-X-Gm-Message-State: AGi0PuaQ/LdF/90oOfbzgO1b+pR+eO7Z5/u32X8NpHDjjGvS8PHkuup3
- CHq0pHhAnE2KcVuDLsHslpaZ1NYXHqc=
-X-Google-Smtp-Source: APiQypKw9/e4wA0jehthA3APCUvDc87ZGfO0UmDa2ni4A8QtNHfxfTOgMJEXJWugCL0WUe6oaiHZ7w==
-X-Received: by 2002:a1c:6a17:: with SMTP id f23mr3628361wmc.136.1586936494598; 
- Wed, 15 Apr 2020 00:41:34 -0700 (PDT)
+ bh=m8LdowvRj6y5F/lzc0z+wTLajfnWKM9lBo0QaQxdrxw=;
+ b=NJOIId9N2hDaYBkascau7RR1/ZwSZPz7DKAzL+Y4ZE/L/LcEhpqBtQ79Hc4+zs88wU
+ /Kqh/fGnRlzIG1NHELnustqUaEtKXTsOQXB57sLyIhPu+LEL477hCHPohZGU7RUsW70m
+ c+I0rWaTtGKstuhgtOjiwO1z5h7PJcY5+mJ5Mv+9t7KNJoQP7zHVQlQPZ+wf692LiS4k
+ S8bP8FrIZmd5ltwfbaxwG71aEM1nmkg22NS4U/QKg3XjAQwdjg4YZ7mjOy8eyDN+z8er
+ kpaSnKFm5H09dVjEEPztDoPvYrarkJRm0YQ480PdC4Ykjj8VvGIdwjybL6G4hiVbxA04
+ gbNw==
+X-Gm-Message-State: AGi0PubZ5UsM65KgbsIYJPNx9iLmwtJkKK3qDF3mYCb15Rhr3lhwbRBJ
+ FQLF10z7k9rMvycbA5+9pPN7ctzUJB4=
+X-Google-Smtp-Source: APiQypIr7FTFgGbKeiSR3G8G8hKb8rSC1ydf5oz/DSRkwR5KNFKQJDnHsecYRWgMt0sIJI+cp5eSjA==
+X-Received: by 2002:adf:fa41:: with SMTP id y1mr26643336wrr.131.1586936495555; 
+ Wed, 15 Apr 2020 00:41:35 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.33
+ by smtp.gmail.com with ESMTPSA id u30sm1878552wru.13.2020.04.15.00.41.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 00:41:34 -0700 (PDT)
+ Wed, 15 Apr 2020 00:41:35 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 Apr 2020 09:40:28 +0200
-Message-Id: <20200415074034.175360-54-daniel.vetter@ffwll.ch>
+Date: Wed, 15 Apr 2020 09:40:29 +0200
+Message-Id: <20200415074034.175360-55-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 53/59] drm/arc: Move to drm/tiny
+Subject: [Intel-gfx] [PATCH 54/59] drm/aspeed: Drop aspeed_gfx->fbdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,131 +63,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Alexey Brodkin <abrodkin@synopsys.com>,
+Cc: linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+ Joel Stanley <joel@jms.id.au>, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Because it is.
+No longer used since the conversion to generic fbdev.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Alexey Brodkin <abrodkin@synopsys.com>
+Cc: Joel Stanley <joel@jms.id.au>
+Cc: Andrew Jeffery <andrew@aj.id.au>
+Cc: linux-aspeed@lists.ozlabs.org
+Cc: linux-arm-kernel@lists.infradead.org
 ---
- MAINTAINERS                                         |  2 +-
- drivers/gpu/drm/Kconfig                             |  2 --
- drivers/gpu/drm/Makefile                            |  1 -
- drivers/gpu/drm/arc/Kconfig                         | 10 ----------
- drivers/gpu/drm/arc/Makefile                        |  3 ---
- drivers/gpu/drm/tiny/Kconfig                        | 10 ++++++++++
- drivers/gpu/drm/tiny/Makefile                       |  1 +
- drivers/gpu/drm/{arc/arcpgu_drv.c => tiny/arcpgu.c} |  0
- 8 files changed, 12 insertions(+), 17 deletions(-)
- delete mode 100644 drivers/gpu/drm/arc/Kconfig
- delete mode 100644 drivers/gpu/drm/arc/Makefile
- rename drivers/gpu/drm/{arc/arcpgu_drv.c => tiny/arcpgu.c} (100%)
+ drivers/gpu/drm/aspeed/aspeed_gfx.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0a5cf105ee37..748244b1625b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1295,7 +1295,7 @@ ARC PGU DRM DRIVER
- M:	Alexey Brodkin <abrodkin@synopsys.com>
- S:	Supported
- F:	Documentation/devicetree/bindings/display/snps,arcpgu.txt
--F:	drivers/gpu/drm/arc/
-+F:	drivers/gpu/drm/tiny/arcpgu.c
+diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx.h b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+index a10358bb61ec..adc02940de6f 100644
+--- a/drivers/gpu/drm/aspeed/aspeed_gfx.h
++++ b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+@@ -12,7 +12,6 @@ struct aspeed_gfx {
  
- ARCNET NETWORK LAYER
- M:	Michael Grzeschik <m.grzeschik@pengutronix.de>
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 4f4e7fa001c1..a0a89025d6fa 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -354,8 +354,6 @@ source "drivers/gpu/drm/vc4/Kconfig"
+ 	struct drm_simple_display_pipe	pipe;
+ 	struct drm_connector		connector;
+-	struct drm_fbdev_cma		*fbdev;
+ };
  
- source "drivers/gpu/drm/etnaviv/Kconfig"
- 
--source "drivers/gpu/drm/arc/Kconfig"
--
- source "drivers/gpu/drm/hisilicon/Kconfig"
- 
- source "drivers/gpu/drm/mediatek/Kconfig"
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 2c0e5a7e5953..e69eafbf9e39 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -109,7 +109,6 @@ obj-y			+= panel/
- obj-y			+= bridge/
- obj-$(CONFIG_DRM_FSL_DCU) += fsl-dcu/
- obj-$(CONFIG_DRM_ETNAVIV) += etnaviv/
--obj-$(CONFIG_DRM_ARCPGU)+= arc/
- obj-y			+= hisilicon/
- obj-$(CONFIG_DRM_ZTE)	+= zte/
- obj-$(CONFIG_DRM_MXSFB)	+= mxsfb/
-diff --git a/drivers/gpu/drm/arc/Kconfig b/drivers/gpu/drm/arc/Kconfig
-deleted file mode 100644
-index e8f3d63e0b91..000000000000
---- a/drivers/gpu/drm/arc/Kconfig
-+++ /dev/null
-@@ -1,10 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--config DRM_ARCPGU
--	tristate "ARC PGU"
--	depends on DRM && OF
--	select DRM_KMS_CMA_HELPER
--	select DRM_KMS_HELPER
--	help
--	  Choose this option if you have an ARC PGU controller.
--
--	  If M is selected the module will be called arcpgu.
-diff --git a/drivers/gpu/drm/arc/Makefile b/drivers/gpu/drm/arc/Makefile
-deleted file mode 100644
-index b26f2495c532..000000000000
---- a/drivers/gpu/drm/arc/Makefile
-+++ /dev/null
-@@ -1,3 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--arcpgu-y := arcpgu_drv.o
--obj-$(CONFIG_DRM_ARCPGU) += arcpgu.o
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index 2b6414f0fa75..9bbaa1a69050 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -1,5 +1,15 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+config DRM_ARCPGU
-+	tristate "ARC PGU"
-+	depends on DRM && OF
-+	select DRM_KMS_CMA_HELPER
-+	select DRM_KMS_HELPER
-+	help
-+	  Choose this option if you have an ARC PGU controller.
-+
-+	  If M is selected the module will be called arcpgu.
-+
- config DRM_CIRRUS_QEMU
- 	tristate "Cirrus driver for QEMU emulated device"
- 	depends on DRM && PCI && MMU
-diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-index 6ae4e9e5a35f..bef6780bdd6f 100644
---- a/drivers/gpu/drm/tiny/Makefile
-+++ b/drivers/gpu/drm/tiny/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+obj-$(CONFIG_DRM_ARCPGU)		+= arcpgu.o
- obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
- obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
- obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
-diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/tiny/arcpgu.c
-similarity index 100%
-rename from drivers/gpu/drm/arc/arcpgu_drv.c
-rename to drivers/gpu/drm/tiny/arcpgu.c
+ int aspeed_gfx_create_pipe(struct drm_device *drm);
 -- 
 2.25.1
 
