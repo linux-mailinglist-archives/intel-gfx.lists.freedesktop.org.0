@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D46571A8F6D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 02:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B3A1A8FA8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 02:21:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A16D6E196;
-	Wed, 15 Apr 2020 00:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B57A76E7D3;
+	Wed, 15 Apr 2020 00:21:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 989926E196;
- Wed, 15 Apr 2020 00:02:13 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1173B6E7D3;
+ Wed, 15 Apr 2020 00:21:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8AC15A432F;
- Wed, 15 Apr 2020 00:02:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 00823A0088;
+ Wed, 15 Apr 2020 00:21:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Wed, 15 Apr 2020 00:02:13 -0000
-Message-ID: <158690893353.21015.14020905172514472523@emeril.freedesktop.org>
+Date: Wed, 15 Apr 2020 00:21:17 -0000
+Message-ID: <158691007797.21014.1036303199340689274@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200414131007.108377-1-lionel.g.landwerlin@intel.com>
 In-Reply-To: <20200414131007.108377-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv6=2C1/4=5D_drm/i915/perf=3A_break_?=
- =?utf-8?q?OA_config_buffer_object_in_2?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv6=2C1/4=5D_drm/i915/perf=3A_break_OA_con?=
+ =?utf-8?q?fig_buffer_object_in_2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,17 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-29791c84c5a1 drm/i915/perf: break OA config buffer object in 2
-bb4da53398c0 drm/i915/perf: stop using the kernel context
--:168: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#168: FILE: drivers/gpu/drm/i915/i915_perf.c:2524:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 325 lines checked
-9dc9a1aaf289 drm/i915/perf: prepare driver to receive multiple ctx handles
-11441aa78074 drm/i915/perf: enable filtering on multiple contexts
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
