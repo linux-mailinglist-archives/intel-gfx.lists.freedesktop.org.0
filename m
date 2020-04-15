@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797391AB1E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 21:37:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDEC61AB1E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 21:39:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B2E6E27C;
-	Wed, 15 Apr 2020 19:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE87B6E25B;
+	Wed, 15 Apr 2020 19:39:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 486A56EA8A
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 19:37:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20910272-1500050 for multiple; Wed, 15 Apr 2020 20:36:55 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 630606E25B;
+ Wed, 15 Apr 2020 19:39:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 561B9A47DA;
+ Wed, 15 Apr 2020 19:39:15 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200415191408.82574-1-jose.souza@intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 15 Apr 2020 19:39:15 -0000
+Message-ID: <158697955532.21016.7223461962291126567@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200415191408.82574-1-jose.souza@intel.com>
-To: José Roberto de Souza <jose.souza@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158697941400.24667.4512728438444809786@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 15 Apr 2020 20:36:54 +0100
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Add missing deinitialization
- cases of load failure
+In-Reply-To: <20200415191408.82574-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Add_missing_deinitialization_cases_of_load_failure?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,17 +38,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKb3PDqSBSb2JlcnRvIGRlIFNvdXphICgyMDIwLTA0LTE1IDIwOjE0OjA4KQo+ICsg
-ICAgICAgaTkxNV9yZXNldF9lcnJvcl9zdGF0ZShpOTE1KTsKCklmIHlvdSBhcmUgYm9yZWQsIHdl
-IHNob3VsZCBtb3ZlIHRoaXMgdG8gdW5yZWdpc3RlciBhcyB0aGF0IGlzIHRoZSBsYXN0CnBvaW50
-IGF0IHdoaWNoIGl0IGNhbiBiZSBhY2Nlc3NlZCBmcm9tIHVzZXJzcGFjZS4gSG9wZWZ1bGx5IEkg
-cmVtZW1iZXIKbmV4dCB0aW1lIHdlIGFyZSByZWFycmFuZ2luZyB0aGlzIHNlcXVlbmNlLgotQ2hy
-aXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915: Add missing deinitialization cases of load failure
+URL   : https://patchwork.freedesktop.org/series/75987/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
