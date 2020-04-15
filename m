@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1B21AAAA5
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:52:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C95D1AAAEE
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 16:54:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB2306E9F8;
-	Wed, 15 Apr 2020 14:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE3C6E9FA;
+	Wed, 15 Apr 2020 14:54:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1B506E9F8
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 14:52:15 +0000 (UTC)
-IronPort-SDR: c6aAvq7JtxQFogJFEBkm5RSWKPLoirfkEBR7pRQn1luwpfnYx1sKkBDS1HJegebwUzSR+MZGuf
- NHFxxwIMvkeA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2020 07:52:15 -0700
-IronPort-SDR: xrH5fQP7RyZxNITShZ5TaxGuQ9jeEJW9QnzshoPD9gTG9N3OeLbwiQIfZVPfNUMCw04zTe8aMJ
- PgR7rl5jhHAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,387,1580803200"; d="scan'208";a="299014380"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by FMSMGA003.fm.intel.com with SMTP; 15 Apr 2020 07:52:15 -0700
-Date: Wed, 15 Apr 2020 07:52:15 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-Message-ID: <20200415145215.GB2715344@mdroper-desk1.amr.corp.intel.com>
-References: <20200413090003.13451-1-radhakrishna.sripada@intel.com>
- <20200414183955.GA2715344@mdroper-desk1.amr.corp.intel.com>
- <8C2593290C2B3E488D763E819AF1F02E160ABACF@ORSMSX101.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4407D6E9E8;
+ Wed, 15 Apr 2020 14:54:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D517A008A;
+ Wed, 15 Apr 2020 14:54:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <8C2593290C2B3E488D763E819AF1F02E160ABACF@ORSMSX101.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Update forcewake firmware
- ranges
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 15 Apr 2020 14:54:01 -0000
+Message-ID: <158696244123.21015.9467385539124054069@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200415100322.28378-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200415100322.28378-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Exercise_basic_RPS_interrupt_generation_=28r?=
+ =?utf-8?q?ev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,219 +39,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2020 at 07:28:18AM -0700, Sripada, Radhakrishna wrote:
-> Hi Matt,
-> 
-> > -----Original Message-----
-> > From: Roper, Matthew D <matthew.d.roper@intel.com>
-> > Sent: Tuesday, April 14, 2020 11:40 AM
-> > To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [PATCH] drm/i915/icl: Update forcewake firmware ranges
-> > 
-> > On Mon, Apr 13, 2020 at 02:00:03AM -0700, Radhakrishna Sripada wrote:
-> > > Some workarounds are not sticking across suspend resume cycles. The
-> > > forcewake ranges table has been updated and would reflect the hardware
-> > > appropriately.
-> > >
-> > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1222
-> > 
-> > It's unfortunate that they still haven't updated the bspec for this yet.
-> > A few comments below based on my understanding of the document we
-> > received from the hardware team.
-> > 
-> > >
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/intel_uncore.c | 55
-> > > +++++++++++++++++++++--------
-> > >  1 file changed, 41 insertions(+), 14 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/intel_uncore.c
-> > > b/drivers/gpu/drm/i915/intel_uncore.c
-> > > index fa86b7ab2d99..c0e21697a44c 100644
-> > > --- a/drivers/gpu/drm/i915/intel_uncore.c
-> > > +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> > > @@ -1098,32 +1098,59 @@ static const struct intel_forcewake_range
-> > > __gen11_fw_ranges[] = {
-> > 
-> > Looks like the first range in this table (0x0 - 0xaff) needs to be changed to '0' (or
-> > rather combined with the following entry for a combined 0x0 - 0x1fff range set
-> > to '0')
-> 
-> Comparing with previous gens, my understanding is the '0' is indicative of uncore range
-> Of registers. The reserved ranges are marked with "Blitter" force wake range. Am I in the right
-> Path making that assumption? Hence made all the subsequent changes according to the assumption.
+== Series Details ==
 
-The final parameter of GEN_FW_RANGE() is a bitmask of domains that we
-need to make sure are powered up when we're going to access a register
-in that range.  So a 0 means no domains need to be powered up for
-registers in that range.  That might be because it's a range that
-contains no registers at all (reserved range), or it may be that the
-registers in that range simply aren't part of the blitter, render,
-media, etc.  power wells and we don't have to worry about powering
-anything up.
+Series: drm/i915/selftests: Exercise basic RPS interrupt generation (rev5)
+URL   : https://patchwork.freedesktop.org/series/75966/
+State : failure
 
-In cases where there are no actual registers (i.e., reserved ranges), it
-doesn't really matter what you put since there shouldn't be any register
-reads/writes in that range.  So for those we'll often combine them with
-one of the surrounding ranges just to keep the overall forcewake table
-smaller and make lookups faster.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8301 -> Patchwork_17308
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17308 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17308, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17308:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+    - fi-cfl-guc:         [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-cfl-guc/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-cfl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-6700k2:      [PASS][7] -> [DMESG-FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-skl-6700k2/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-skl-6700k2/igt@i915_selftest@live@gt_pm.html
+    - fi-bsw-n3050:       [PASS][9] -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-bsw-n3050/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-n3050/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-guc:         [PASS][11] -> [DMESG-FAIL][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-skl-guc/igt@i915_selftest@live@gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-skl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-icl-dsi:         [PASS][13] -> [DMESG-FAIL][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-icl-dsi/igt@i915_selftest@live@gt_pm.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-icl-dsi/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-x1275:       [PASS][15] -> [INCOMPLETE][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
+    - fi-bsw-kefka:       [PASS][17] -> [INCOMPLETE][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-bsw-kefka/igt@i915_selftest@live@gt_pm.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-kefka/igt@i915_selftest@live@gt_pm.html
+    - fi-tgl-y:           [PASS][19] -> [DMESG-FAIL][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+    - fi-cfl-8700k:       NOTRUN -> [DMESG-FAIL][21]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-cfl-8700k/igt@i915_selftest@live@gt_pm.html
+    - fi-icl-u2:          [PASS][22] -> [DMESG-FAIL][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-6600u:       [PASS][24] -> [INCOMPLETE][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+    - fi-cfl-8109u:       [PASS][26] -> [DMESG-FAIL][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+    - fi-bsw-nick:        [PASS][28] -> [INCOMPLETE][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-bsw-nick/igt@i915_selftest@live@gt_pm.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-nick/igt@i915_selftest@live@gt_pm.html
+    - fi-hsw-peppy:       [PASS][30] -> [INCOMPLETE][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-hsw-peppy/igt@i915_selftest@live@gt_pm.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-hsw-peppy/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-lmem:        [PASS][32] -> [DMESG-FAIL][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+    - fi-glk-dsi:         [PASS][34] -> [DMESG-FAIL][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
+    - fi-apl-guc:         [PASS][36] -> [DMESG-FAIL][37]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-snb-2520m:       [PASS][38] -> [INCOMPLETE][39]
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-snb-2520m/igt@i915_selftest@live@gt_pm.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-snb-2520m/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-8809g:       [PASS][40] -> [INCOMPLETE][41]
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-8809g/igt@i915_selftest@live@gt_pm.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-8809g/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-r:           [PASS][42] -> [DMESG-FAIL][43]
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
+    - fi-bdw-5557u:       [PASS][44] -> [DMESG-FAIL][45]
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-soraka:      [PASS][46] -> [DMESG-FAIL][47]
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-6770hq:      NOTRUN -> [DMESG-FAIL][48]
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-skl-6770hq/igt@i915_selftest@live@gt_pm.html
+    - fi-hsw-4770:        [PASS][49] -> [INCOMPLETE][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-hsw-4770/igt@i915_selftest@live@gt_pm.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-hsw-4770/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-7500u:       [PASS][51] -> [DMESG-FAIL][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-7500u/igt@i915_selftest@live@gt_pm.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-7500u/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-guc:         [PASS][53] -> [DMESG-FAIL][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-kbl-guc/igt@i915_selftest@live@gt_pm.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-cml-u2:          [PASS][55] -> [DMESG-FAIL][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
+    - fi-whl-u:           [PASS][57] -> [INCOMPLETE][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+    - fi-ivb-3770:        [PASS][59] -> [INCOMPLETE][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-ivb-3770/igt@i915_selftest@live@gt_pm.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-ivb-3770/igt@i915_selftest@live@gt_pm.html
+    - fi-bxt-dsi:         [PASS][61] -> [DMESG-FAIL][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][63]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-kefka/igt@runner@aborted.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][64]
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-nick/igt@runner@aborted.html
+    - fi-snb-2520m:       NOTRUN -> [FAIL][65]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-snb-2520m/igt@runner@aborted.html
+    - fi-snb-2600:        NOTRUN -> [FAIL][66]
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-snb-2600/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][67]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-tgl-dsi}:       [PASS][68] -> [DMESG-FAIL][69]
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
+    - {fi-tgl-u}:         [PASS][70] -> [DMESG-FAIL][71]
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
+    - {fi-kbl-7560u}:     NOTRUN -> [DMESG-FAIL][72]
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-kbl-7560u/igt@i915_selftest@live@gt_pm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17308 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-snb-2600:        [PASS][73] -> [INCOMPLETE][74] ([i915#82])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/fi-snb-2600/igt@i915_selftest@live@gt_pm.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/fi-snb-2600/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
 
 
-Matt
+Participating hosts (50 -> 46)
+------------------------------
 
-> 
-> Thanks,
-> Radhakrishna(RK) Sripada
-> > 
-> > 
-> > >  	GEN_FW_RANGE(0x2700, 0x2fff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0x3000, 0x3fff, FORCEWAKE_RENDER),
-> > >  	GEN_FW_RANGE(0x4000, 0x51ff, FORCEWAKE_BLITTER),
-> > > -	GEN_FW_RANGE(0x5200, 0x7fff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x5200, 0x53ff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x5400, 0x54ff, FORCEWAKE_BLITTER),
-> > 
-> > In the version of the document I'm looking at, the wake target for this entry is
-> > blank, which usually means no wake target is required.  AFAICS, no registers
-> > actually fall in this range on gen11, so I'd either set this to '0' to explicitly match
-> > the document, or just leave it combined with the two surrounding render ranges
-> > for simplicity (and smaller table size).
-> > 
-> > > +	GEN_FW_RANGE(0x5500, 0x7fff, FORCEWAKE_RENDER),
-> > >  	GEN_FW_RANGE(0x8000, 0x813f, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),
-> > >  	GEN_FW_RANGE(0x8160, 0x82ff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),
-> > > -	GEN_FW_RANGE(0x8500, 0x8bff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x8500, 0x87ff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x8800, 0x883f, 0),
-> > > +	GEN_FW_RANGE(0x8840, 0x8bff, FORCEWAKE_BLITTER),
-> > 
-> > I see 0x8840 - 0x8bff as a reserved range with no forcewake target so we should
-> > be able to combine it with the range before it.
-> > 
-> > >  	GEN_FW_RANGE(0x8c00, 0x8cff, FORCEWAKE_RENDER),
-> > > -	GEN_FW_RANGE(0x8d00, 0x93ff, FORCEWAKE_BLITTER),
-> > > -	GEN_FW_RANGE(0x9400, 0x97ff, FORCEWAKE_ALL),
-> > > -	GEN_FW_RANGE(0x9800, 0xafff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x8d00, 0x94cf, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x9560, 0x95ff, 0),
-> > > +	GEN_FW_RANGE(0x9600, 0xafff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0xb000, 0xb47f, FORCEWAKE_RENDER),
-> > >  	GEN_FW_RANGE(0xb480, 0xdeff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0xdf00, 0xe8ff, FORCEWAKE_RENDER),
-> > >  	GEN_FW_RANGE(0xe900, 0x16dff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0x16e00, 0x19fff, FORCEWAKE_RENDER),
-> > > -	GEN_FW_RANGE(0x1a000, 0x243ff, FORCEWAKE_BLITTER),
-> > > -	GEN_FW_RANGE(0x24400, 0x247ff, FORCEWAKE_RENDER),
-> > > -	GEN_FW_RANGE(0x24800, 0x3ffff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x1a000, 0x23fff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x24000, 0x2407f, 0),
-> > > +	GEN_FW_RANGE(0x24080, 0x2417f, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x24180, 0x242ff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x24300, 0x243ff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x24400, 0x245ff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x24600, 0x2467f, FORCEWAKE_BLITTER),
-> > 
-> > This one is a reserved range with no registers, so we can just squash it into the
-> > two render ranges on either side of it.
-> > 
-> > > +	GEN_FW_RANGE(0x24680, 0x247ff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x24800, 0x249ff, FORCEWAKE_BLITTER),
-> > 
-> > Also reserved with no registers.
-> > 
-> > > +	GEN_FW_RANGE(0x24a00, 0x24a7f, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x24a80, 0x24dff, FORCEWAKE_BLITTER),
-> > 
-> > Also reserved with no registers.
-> > 
-> > So I think we should be able to have just use one render range that runs from
-> > 0x24400 - 0x24fff.
-> > 
-> > > +	GEN_FW_RANGE(0x24e00, 0x24fff, FORCEWAKE_RENDER),
-> > > +	GEN_FW_RANGE(0x25000, 0x3ffff, FORCEWAKE_BLITTER),
-> > >  	GEN_FW_RANGE(0x40000, 0x1bffff, 0),
-> > > -	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
-> > > -	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
-> > > -	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
-> > > +	GEN_FW_RANGE(0x1c0000, 0x1c2bff, FORCEWAKE_MEDIA_VDBOX0),
-> > > +	GEN_FW_RANGE(0x1c2c00, 0x1c3eff, FORCEWAKE_BLITTER),
-> > 
-> > This is another reserved range that can be combined into the ranges around it
-> > (0x1c0000 - 0x1c3fff).
-> > 
-> > > +	GEN_FW_RANGE(0x1c3f00, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
-> > > +	GEN_FW_RANGE(0x1c4000, 0x1c6bff, FORCEWAKE_MEDIA_VDBOX1),
-> > > +	GEN_FW_RANGE(0x1c6c00, 0x1c7eff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x1c7f00, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
-> > 
-> > 0x1c4000 - 0x1c7fff are reserved for vdbox1, but that doesn't exist on this
-> > platform (we only have vdbox0 and vdbox2 on ICL and only vdbox0 on EHL/JSL).
-> > So the three entries above should be combined into a single range with target '0'
-> > here.
-> > 
-> > > +	GEN_FW_RANGE(0x1c8000, 0x1ca0ff, FORCEWAKE_MEDIA_VEBOX0),
-> > > +	GEN_FW_RANGE(0x1ca100, 0x1cbeff, FORCEWAKE_BLITTER),
-> > 
-> > Another reserved range; can squash with the two surrounding ranges.
-> > 
-> > > +	GEN_FW_RANGE(0x1cbf00, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
-> > >  	GEN_FW_RANGE(0x1cc000, 0x1cffff, FORCEWAKE_BLITTER),
-> > 
-> > Another reserved range.  Either set to 0 or combine with one of the ranges
-> > before/after it.
-> > 
-> > > -	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
-> > > -	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
-> > > -	GEN_FW_RANGE(0x1d8000, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
-> > > +	GEN_FW_RANGE(0x1d0000, 0x1d2bff, FORCEWAKE_MEDIA_VDBOX2),
-> > > +	GEN_FW_RANGE(0x1d2c00, 0x1d3eff, FORCEWAKE_BLITTER),
-> > 
-> > Reserved range; can squash with ranges around it.
-> > 
-> > > +	GEN_FW_RANGE(0x1d3f00, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
-> > > +	GEN_FW_RANGE(0x1d4000, 0x1d6bff, FORCEWAKE_MEDIA_VDBOX3),
-> > > +	GEN_FW_RANGE(0x1d6c00, 0x1d7eff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x1d7f00, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
-> > > +	GEN_FW_RANGE(0x1d8000, 0x1da0ff, FORCEWAKE_MEDIA_VEBOX1),
-> > > +	GEN_FW_RANGE(0x1da100, 0x1dbeff, FORCEWAKE_BLITTER),
-> > > +	GEN_FW_RANGE(0x1dbf00, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
-> > 
-> > As noted above, gen11 doesn't have vdbox1 or vdbox3, so these entries should
-> > just be set to '0' (including the reserved ranges that you have listed as blitter
-> > right now).
-> > 
-> > >  };
-> > >
-> > >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
-> > > --
-> > > 2.20.1
-> > >
-> > 
-> > --
-> > Matt Roper
-> > Graphics Software Engineer
-> > VTT-OSGC Platform Enablement
-> > Intel Corporation
-> > (916) 356-2795
+  Additional (2): fi-skl-6770hq fi-cfl-8700k 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8301 -> Patchwork_17308
+
+  CI-20190529: 20190529
+  CI_DRM_8301: 7d2bdd2df0d18945bb274de8bc7560e14779e346 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5590: c7b4a43942be32245b1c00b5b4a38401d8ca6e0d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17308: ff4a038bdd9a40cafcfe96baeb891e24c8800bf2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ff4a038bdd9a drm/i915/selftests: Exercise basic RPS interrupt generation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17308/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
