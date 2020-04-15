@@ -1,58 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30C51A9584
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:04:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19AF1A95AC
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 10:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 315136E900;
-	Wed, 15 Apr 2020 08:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BAF6E902;
+	Wed, 15 Apr 2020 08:08:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62FBB6E8FE;
- Wed, 15 Apr 2020 08:04:51 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 4505FAD2C;
- Wed, 15 Apr 2020 08:04:49 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-54-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <b354f293-111e-166f-eac2-8f061169bb81@suse.de>
-Date: Wed, 15 Apr 2020 10:04:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 324046E902
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:08:25 +0000 (UTC)
+IronPort-SDR: RiOSz4f2X446/7XoCpSnBWni5n6wQ4tnsqf6vlZwPIgO4BRePSyfj3e+wuf5nJ7xwuhnbxhL60
+ v9fsFsNCBSVw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 01:08:24 -0700
+IronPort-SDR: DucsXdWozyS/KAMKJvFHpVUAWv+XcZiqBh8R/8GU7CAyLB+egzpWfWFb5nnRmshJBcLN+ctR0/
+ Xad85pcBnGiA==
+X-IronPort-AV: E=Sophos;i="5.72,386,1580803200"; d="scan'208";a="427354781"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 01:08:22 -0700
+Date: Wed, 15 Apr 2020 11:04:54 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200415080454.GA17859@intel.com>
+References: <20200409154730.18568-1-stanislav.lisovskiy@intel.com>
+ <20200409154730.18568-7-stanislav.lisovskiy@intel.com>
+ <20200414174225.GG6112@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200415074034.175360-54-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 53/59] drm/arc: Move to drm/tiny
+Content-Disposition: inline
+In-Reply-To: <20200414174225.GG6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v22 06/13] drm/i915: Add pre/post plane
+ updates for SAGV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,213 +50,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Alexey Brodkin <abrodkin@synopsys.com>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0388634720=="
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0388634720==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="xIYzm7Q1FmMoRDMxt8IC3ikf9fdEOd2Tl"
+On Tue, Apr 14, 2020 at 08:42:25PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Apr 09, 2020 at 06:47:23PM +0300, Stanislav Lisovskiy wrote:
+> > Lets have a unified way to handle SAGV changes,
+> > espoecially considering the upcoming Gen12 changes.
+> > =
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---xIYzm7Q1FmMoRDMxt8IC3ikf9fdEOd2Tl
-Content-Type: multipart/mixed; boundary="qebEZc3nCgYVemTBIdJOFvKdwYIbC8hgq";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Cc: Alexey Brodkin <abrodkin@synopsys.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <b354f293-111e-166f-eac2-8f061169bb81@suse.de>
-Subject: Re: [PATCH 53/59] drm/arc: Move to drm/tiny
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-54-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200415074034.175360-54-daniel.vetter@ffwll.ch>
+> > Current "standard" way of doing this in commit_tail
+> > is pre/post plane updates, when everything which
+> > has to be forbidden and not supported in new config
+> > has to be restricted before update and relaxed after
+> > plane update.
+> > =
 
---qebEZc3nCgYVemTBIdJOFvKdwYIbC8hgq
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 13 ++++---------
+> >  drivers/gpu/drm/i915/intel_pm.c              | 20 ++++++++++++++++++++
+> >  drivers/gpu/drm/i915/intel_pm.h              |  2 ++
+> >  3 files changed, 26 insertions(+), 9 deletions(-)
+> > =
 
-Hi
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 70ec301fe6e3..ac7f600c84ca 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -15349,12 +15349,7 @@ static void intel_atomic_commit_tail(struct in=
+tel_atomic_state *state)
+> >  =
 
-Am 15.04.20 um 09:40 schrieb Daniel Vetter:
-> Because it is.
+> >  		intel_set_cdclk_pre_plane_update(state);
+> >  =
 
-Yes.
+> > -		/*
+> > -		 * SKL workaround: bspec recommends we disable the SAGV when we
+> > -		 * have more then one pipe enabled
+> > -		 */
+> > -		if (!intel_can_enable_sagv(state))
+> > -			intel_disable_sagv(dev_priv);
+> > +		intel_sagv_pre_plane_update(state);
+> >  =
 
-OTOH, as much as I appreciate the simplification, I think it should be
-in a separate series.
+> >  		intel_modeset_verify_disabled(dev_priv, state);
+> >  	}
+> > @@ -15451,11 +15446,11 @@ static void intel_atomic_commit_tail(struct i=
+ntel_atomic_state *state)
+> >  	intel_check_cpu_fifo_underruns(dev_priv);
+> >  	intel_check_pch_fifo_underruns(dev_priv);
+> >  =
 
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Alexey Brodkin <abrodkin@synopsys.com>
+> > -	if (state->modeset)
+> > +	if (state->modeset) {
+> >  		intel_verify_planes(state);
+> >  =
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> > -	if (state->modeset && intel_can_enable_sagv(state))
+> > -		intel_enable_sagv(dev_priv);
+> > +		intel_sagv_post_plane_update(state);
+> > +	}
+> >  =
 
-> ---
->  MAINTAINERS                                         |  2 +-
->  drivers/gpu/drm/Kconfig                             |  2 --
->  drivers/gpu/drm/Makefile                            |  1 -
->  drivers/gpu/drm/arc/Kconfig                         | 10 ----------
->  drivers/gpu/drm/arc/Makefile                        |  3 ---
->  drivers/gpu/drm/tiny/Kconfig                        | 10 ++++++++++
->  drivers/gpu/drm/tiny/Makefile                       |  1 +
->  drivers/gpu/drm/{arc/arcpgu_drv.c =3D> tiny/arcpgu.c} |  0
->  8 files changed, 12 insertions(+), 17 deletions(-)
->  delete mode 100644 drivers/gpu/drm/arc/Kconfig
->  delete mode 100644 drivers/gpu/drm/arc/Makefile
->  rename drivers/gpu/drm/{arc/arcpgu_drv.c =3D> tiny/arcpgu.c} (100%)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0a5cf105ee37..748244b1625b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1295,7 +1295,7 @@ ARC PGU DRM DRIVER
->  M:	Alexey Brodkin <abrodkin@synopsys.com>
->  S:	Supported
->  F:	Documentation/devicetree/bindings/display/snps,arcpgu.txt
-> -F:	drivers/gpu/drm/arc/
-> +F:	drivers/gpu/drm/tiny/arcpgu.c
-> =20
->  ARCNET NETWORK LAYER
->  M:	Michael Grzeschik <m.grzeschik@pengutronix.de>
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 4f4e7fa001c1..a0a89025d6fa 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -354,8 +354,6 @@ source "drivers/gpu/drm/vc4/Kconfig"
-> =20
->  source "drivers/gpu/drm/etnaviv/Kconfig"
-> =20
-> -source "drivers/gpu/drm/arc/Kconfig"
-> -
->  source "drivers/gpu/drm/hisilicon/Kconfig"
-> =20
->  source "drivers/gpu/drm/mediatek/Kconfig"
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 2c0e5a7e5953..e69eafbf9e39 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -109,7 +109,6 @@ obj-y			+=3D panel/
->  obj-y			+=3D bridge/
->  obj-$(CONFIG_DRM_FSL_DCU) +=3D fsl-dcu/
->  obj-$(CONFIG_DRM_ETNAVIV) +=3D etnaviv/
-> -obj-$(CONFIG_DRM_ARCPGU)+=3D arc/
->  obj-y			+=3D hisilicon/
->  obj-$(CONFIG_DRM_ZTE)	+=3D zte/
->  obj-$(CONFIG_DRM_MXSFB)	+=3D mxsfb/
-> diff --git a/drivers/gpu/drm/arc/Kconfig b/drivers/gpu/drm/arc/Kconfig
-> deleted file mode 100644
-> index e8f3d63e0b91..000000000000
-> --- a/drivers/gpu/drm/arc/Kconfig
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0-only
-> -config DRM_ARCPGU
-> -	tristate "ARC PGU"
-> -	depends on DRM && OF
-> -	select DRM_KMS_CMA_HELPER
-> -	select DRM_KMS_HELPER
-> -	help
-> -	  Choose this option if you have an ARC PGU controller.
-> -
-> -	  If M is selected the module will be called arcpgu.
-> diff --git a/drivers/gpu/drm/arc/Makefile b/drivers/gpu/drm/arc/Makefil=
-e
-> deleted file mode 100644
-> index b26f2495c532..000000000000
-> --- a/drivers/gpu/drm/arc/Makefile
-> +++ /dev/null
-> @@ -1,3 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0-only
-> -arcpgu-y :=3D arcpgu_drv.o
-> -obj-$(CONFIG_DRM_ARCPGU) +=3D arcpgu.o
-> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfi=
-g
-> index 2b6414f0fa75..9bbaa1a69050 100644
-> --- a/drivers/gpu/drm/tiny/Kconfig
-> +++ b/drivers/gpu/drm/tiny/Kconfig
-> @@ -1,5 +1,15 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> =20
-> +config DRM_ARCPGU
-> +	tristate "ARC PGU"
-> +	depends on DRM && OF
-> +	select DRM_KMS_CMA_HELPER
-> +	select DRM_KMS_HELPER
-> +	help
-> +	  Choose this option if you have an ARC PGU controller.
-> +
-> +	  If M is selected the module will be called arcpgu.
-> +
->  config DRM_CIRRUS_QEMU
->  	tristate "Cirrus driver for QEMU emulated device"
->  	depends on DRM && PCI && MMU
-> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makef=
-ile
-> index 6ae4e9e5a35f..bef6780bdd6f 100644
-> --- a/drivers/gpu/drm/tiny/Makefile
-> +++ b/drivers/gpu/drm/tiny/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> =20
-> +obj-$(CONFIG_DRM_ARCPGU)		+=3D arcpgu.o
->  obj-$(CONFIG_DRM_CIRRUS_QEMU)		+=3D cirrus.o
->  obj-$(CONFIG_DRM_GM12U320)		+=3D gm12u320.o
->  obj-$(CONFIG_TINYDRM_HX8357D)		+=3D hx8357d.o
-> diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/tiny/ar=
-cpgu.c
-> similarity index 100%
-> rename from drivers/gpu/drm/arc/arcpgu_drv.c
-> rename to drivers/gpu/drm/tiny/arcpgu.c
->=20
+> >  	drm_atomic_helper_commit_hw_done(&state->base);
+> >  =
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
+el_pm.c
+> > index 41af69ad3edc..d1df288396d8 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -3757,6 +3757,26 @@ intel_disable_sagv(struct drm_i915_private *dev_=
+priv)
+> >  	return 0;
+> >  }
+> >  =
 
+> > +void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +
+> > +	if (!intel_can_enable_sagv(state)) {
+> > +		intel_disable_sagv(dev_priv);
+> > +		return;
+> > +	}
+> > +}
+> > +
+> > +void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +
+> > +	if (intel_can_enable_sagv(state)) {
+> > +		intel_enable_sagv(dev_priv);
+> > +		return;
+> =
 
---qebEZc3nCgYVemTBIdJOFvKdwYIbC8hgq--
+> Pointless returns. With those removed
 
---xIYzm7Q1FmMoRDMxt8IC3ikf9fdEOd2Tl
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Agree, my vision was way to blurry after reshuffling.
 
------BEGIN PGP SIGNATURE-----
+> =
 
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl6WwBwACgkQaA3BHVML
-eiNZ4Af/UFTTgKFcokX83J5qNUvto4LgspWsgF4UdRpmoFF+71dDy5yTImLBOoW/
-4LWbvWl6LqSEzuQE7nD85xA1TPM88y6souvTSf8PjGSMEFjMz1xhxt19Q14QgRL+
-13S7t5xM70kFjZXYYFaKGdjCvQhOEqInrHKEJ/k4JwjDLk/+1fyiyOzj45RrgJ2m
-r5sMJJXiU2u59WuFBFqDJKpzYPU09ZNnz3xMMZeqWx91+iR6gffizZcJ6xhwj8TA
-mEzk43REFCwqp9K9iEaNprpNJFzloBXjoVvVs3eBTik1VsGKLgKzkD1n4T9fiuJv
-cjmZdHoVpfHzSD3vrU0PVjUr2u4xwg==
-=cyKm
------END PGP SIGNATURE-----
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
---xIYzm7Q1FmMoRDMxt8IC3ikf9fdEOd2Tl--
+> > +	}
+> > +}
+> > +
+> >  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *=
+crtc_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
+dev);
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/int=
+el_pm.h
+> > index d60a85421c5a..9a6036ab0f90 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.h
+> > +++ b/drivers/gpu/drm/i915/intel_pm.h
+> > @@ -44,6 +44,8 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_pri=
+v);
+> >  bool intel_can_enable_sagv(struct intel_atomic_state *state);
+> >  int intel_enable_sagv(struct drm_i915_private *dev_priv);
+> >  int intel_disable_sagv(struct drm_i915_private *dev_priv);
+> > +void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
+> > +void intel_sagv_post_plane_update(struct intel_atomic_state *state);
+> >  bool skl_wm_level_equals(const struct skl_wm_level *l1,
+> >  			 const struct skl_wm_level *l2);
+> >  bool skl_ddb_allocation_overlaps(const struct skl_ddb_entry *ddb,
+> > -- =
 
---===============0388634720==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > 2.24.1.485.gad05a3d8e5
+> =
 
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0388634720==--
