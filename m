@@ -2,74 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9632B1AAB33
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 17:02:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B533C1AAB37
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2020 17:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9FAB6E9FF;
-	Wed, 15 Apr 2020 15:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 000AD6EA04;
+	Wed, 15 Apr 2020 15:02:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C3E6E9FF
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 15:02:14 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-2.mimecast.com [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB9E06EA04
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 15:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1586962933;
+ s=mimecast20190719; t=1586962947;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=myXKXkPhI0YO5uvHdoGbAr5c30JpzJRFVuKEAMn7Ras=;
- b=fH2AMp15mDfg4w1rF1+vRjr+VKZPvyk/epfAyhE0eWRr/kBnFpXkY4yH4mzdZ4jNGY+OlE
- zP98KFbhsPluu08UzV3VHw0EyNl3GSsFOyGxotICZekBBo0CRf3+81mWOhWky6+XYIMjuX
- T7sMtHHKHGQAokB3ut9ZouLFRRqq+Ns=
+ bh=q0EuYdE39kebv6qi4JKnmKjtG4iLkRnAmbQWQIpPHo0=;
+ b=cL5+uMR2SISB2wGQ4IcoLsA6M4DXaXNVZam8KZ4umBIEYCHQSM5rDfVGv3VwUJrvxMfQYM
+ 4VyRbA0MSxkSdOV9dvY1hzoxxLVzAl31zbksDuDktueRApkmjz6aUj56BhqfCkS2Z1rSlS
+ nTZmRtstKdmH63OchrZvUw4+5IUo8G0=
 Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
  [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-236-z224PSLaO6OWBDnasY-JDQ-1; Wed, 15 Apr 2020 11:02:12 -0400
-X-MC-Unique: z224PSLaO6OWBDnasY-JDQ-1
-Received: by mail-wr1-f69.google.com with SMTP id h14so41883wrr.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:02:11 -0700 (PDT)
+ us-mta-8-tUM9GBInPr6B4GCHiNeYlA-1; Wed, 15 Apr 2020 11:02:23 -0400
+X-MC-Unique: tUM9GBInPr6B4GCHiNeYlA-1
+Received: by mail-wr1-f69.google.com with SMTP id p16so36350wro.16
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 08:02:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=myXKXkPhI0YO5uvHdoGbAr5c30JpzJRFVuKEAMn7Ras=;
- b=Q40NUp0gWuSe2WkJ9eGWGhHNUjNwiC9tq/rcQF18vH4WzKFrEPXaYAeAm4DGqGUKG8
- D8I077U3DJOzTZibeUO60HaTHCop8O6CtOfOMkdDADxeoHnVrRrpWPirzWqwNdLlFHRK
- Xfmbp7UkEE+Hseh7OavP1qT3iMSKMduCH/QJwXO5Bum5UEL7k3FUrb27uu/59+rPj0LH
- e1czp4WPyx03a9Lsyt6WJnREuX5p7zje9Uy4fm7EeRVcajF1ZHeGahmYLq8xJQANhuf6
- 3693cZIjVzQemZ1Wwftb7DtJ03QSqLEqUWkVHVN8ECdrX4entcDWoY8KYI1RgnJNfbpo
- VHGg==
-X-Gm-Message-State: AGi0Pub9OVh7ITZX9o+Kv4Ar3N6gR6VhSEQHLWnrw3Z33CTQPmyjrMij
- E4UMM2JO+reHSLVyhhMjCGU8dbUcqIj2l0t+8ir42HDHghNvUrGQ2vFDg3Bzq/ECpkOKDvNWW+v
- lRq0RlBOn+NiIx6+ZU+lxpgcm6l3W
-X-Received: by 2002:a1c:1f8e:: with SMTP id f136mr5463877wmf.166.1586962930566; 
- Wed, 15 Apr 2020 08:02:10 -0700 (PDT)
-X-Google-Smtp-Source: APiQypLh6eLZN8FjmFn+CItFuUjpHT6h97ckl+foTbrICqX92GwQYad70pu2toY2tjYZ5dhwbegsFg==
-X-Received: by 2002:a1c:1f8e:: with SMTP id f136mr5463775wmf.166.1586962929424; 
- Wed, 15 Apr 2020 08:02:09 -0700 (PDT)
+ bh=q0EuYdE39kebv6qi4JKnmKjtG4iLkRnAmbQWQIpPHo0=;
+ b=XIiIWqtl6KS9KJ0uQ38TgzNH+ZNUewBL/ff0UmIaH9GWq4HDDS0bKQYMBcPin4/AU0
+ dGgpXIWUuUE8n/TcPVd5lGDXVaW8TGaCmbM0WyJEa+ySfrtfgfUjrz5obueVnXT7Tj14
+ XeGqz9VDTqNsM8dzy0/QDyFWE4OspRkCu22meBLHtqDMX1vB9jplko/oBRBjlgJuurOn
+ eBjwGvi1bZLPEd32+AqCjI9FMU9y9FAY/BL2XOPgQ9paEuRY4UNmUyPCKBnPIdEl6VJi
+ 5EJalk9NwnNvH1tSJOJ7KhWbgzvuc/T6Ps2KoXRc0fFTDX4WO01x1LIchobx0jiFIZcO
+ FWpg==
+X-Gm-Message-State: AGi0PuYvPdN7+Y3TqXL3uzT5hpwd57v81PVRJnaq2lvIvg07iSgXlbvR
+ F7VHnAr+FaRWMmkJ14d8HZV+GmV5wNyHhXDjv35K+5yY016Gyfri6rgQYCZcL3IAErjetYsJwQX
+ P2V7/Ly+v/mGqz+g4qmA/U7QyJkhl
+X-Received: by 2002:a05:6000:1008:: with SMTP id
+ a8mr23829888wrx.189.1586962942626; 
+ Wed, 15 Apr 2020 08:02:22 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJqT9IEirqvuR3V7bc7XcNVVEzGf4dD9KyUc8TaM1mHE2qBWJyA/q/wIAX4EQvfsRJtoCjRiQ==
+X-Received: by 2002:a05:6000:1008:: with SMTP id
+ a8mr23829816wrx.189.1586962941781; 
+ Wed, 15 Apr 2020 08:02:21 -0700 (PDT)
 Received: from x1.localdomain
  (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id f63sm22744288wma.47.2020.04.15.08.02.07
+ by smtp.gmail.com with ESMTPSA id p6sm16253295wrt.3.2020.04.15.08.02.20
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Apr 2020 08:02:08 -0700 (PDT)
+ Wed, 15 Apr 2020 08:02:21 -0700 (PDT)
 To: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-4-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-5-daniel.vetter@ffwll.ch>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <223676df-c1a1-853b-cf5a-ccba1954170a@redhat.com>
-Date: Wed, 15 Apr 2020 17:02:07 +0200
+Message-ID: <21dd3550-058c-e172-b0cd-00a12ffd9fd1@redhat.com>
+Date: Wed, 15 Apr 2020 17:02:20 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <20200415074034.175360-4-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200415074034.175360-5-daniel.vetter@ffwll.ch>
 Content-Language: en-US
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH 03/59] drm/vboxvideo: Use devm_drm_dev_alloc
+Subject: Re: [Intel-gfx] [PATCH 04/59] drm/vboxvideo: Stop using
+ drm_device->dev_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,7 +84,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
+Cc: Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  DRI Development <dri-devel@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
@@ -92,8 +95,11 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 Hi,
 
 On 4/15/20 9:39 AM, Daniel Vetter wrote:
-> Straightforward conversion.
+> We use the baseclass pattern here, so lets to the proper (and more
+> typesafe) upcasting.
 > 
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > Cc: Hans de Goede <hdegoede@redhat.com>
 
@@ -108,61 +114,98 @@ Hans
 
 
 > ---
->   drivers/gpu/drm/vboxvideo/vbox_drv.c | 19 +++++--------------
->   1 file changed, 5 insertions(+), 14 deletions(-)
+>   drivers/gpu/drm/vboxvideo/vbox_drv.c  |  1 -
+>   drivers/gpu/drm/vboxvideo/vbox_drv.h  |  1 +
+>   drivers/gpu/drm/vboxvideo/vbox_irq.c  |  2 +-
+>   drivers/gpu/drm/vboxvideo/vbox_mode.c | 10 +++++-----
+>   4 files changed, 7 insertions(+), 7 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> index 282348e071fe..7dd25c7a3768 100644
+> index 7dd25c7a3768..cfa4639c5142 100644
 > --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
 > +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> @@ -46,25 +46,19 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	if (ret)
->   		return ret;
->   
-> -	vbox = kzalloc(sizeof(*vbox), GFP_KERNEL);
-> -	if (!vbox)
-> -		return -ENOMEM;
-> -
-> -	ret = drm_dev_init(&vbox->ddev, &driver, &pdev->dev);
-> -	if (ret) {
-> -		kfree(vbox);
-> -		return ret;
-> -	}
-> +	vbox = devm_drm_dev_alloc(&pdev->dev, &driver,
-> +				  struct vbox_private, ddev);
-> +	if (IS_ERR(vbox))
-> +		return PTR_ERR(vbox);
+> @@ -52,7 +52,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>   		return PTR_ERR(vbox);
 >   
 >   	vbox->ddev.pdev = pdev;
->   	vbox->ddev.dev_private = vbox;
+> -	vbox->ddev.dev_private = vbox;
 >   	pci_set_drvdata(pdev, vbox);
-> -	drmm_add_final_kfree(&vbox->ddev, vbox);
 >   	mutex_init(&vbox->hw_mutex);
 >   
->   	ret = pci_enable_device(pdev);
->   	if (ret)
-> -		goto err_dev_put;
-> +		return ret;
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.h b/drivers/gpu/drm/vboxvideo/vbox_drv.h
+> index 87421903816c..ac7c2effc46f 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_drv.h
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.h
+> @@ -127,6 +127,7 @@ struct vbox_encoder {
+>   #define to_vbox_crtc(x) container_of(x, struct vbox_crtc, base)
+>   #define to_vbox_connector(x) container_of(x, struct vbox_connector, base)
+>   #define to_vbox_encoder(x) container_of(x, struct vbox_encoder, base)
+> +#define to_vbox_dev(x) container_of(x, struct vbox_private, ddev)
 >   
->   	ret = vbox_hw_init(vbox);
->   	if (ret)
-> @@ -100,8 +94,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	vbox_hw_fini(vbox);
->   err_pci_disable:
->   	pci_disable_device(pdev);
-> -err_dev_put:
-> -	drm_dev_put(&vbox->ddev);
->   	return ret;
->   }
+>   bool vbox_check_supported(u16 id);
+>   int vbox_hw_init(struct vbox_private *vbox);
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_irq.c b/drivers/gpu/drm/vboxvideo/vbox_irq.c
+> index 16a1e29f5292..631657fa554f 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_irq.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_irq.c
+> @@ -34,7 +34,7 @@ void vbox_report_hotplug(struct vbox_private *vbox)
+>   irqreturn_t vbox_irq_handler(int irq, void *arg)
+>   {
+>   	struct drm_device *dev = (struct drm_device *)arg;
+> -	struct vbox_private *vbox = (struct vbox_private *)dev->dev_private;
+> +	struct vbox_private *vbox = to_vbox_dev(dev);
+>   	u32 host_flags = vbox_get_flags(vbox);
 >   
-> @@ -114,7 +106,6 @@ static void vbox_pci_remove(struct pci_dev *pdev)
->   	vbox_mode_fini(vbox);
->   	vbox_mm_fini(vbox);
->   	vbox_hw_fini(vbox);
-> -	drm_dev_put(&vbox->ddev);
->   }
+>   	if (!(host_flags & HGSMIHOSTFLAGS_IRQ))
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vboxvideo/vbox_mode.c
+> index 0883a435e62b..d9a5af62af89 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
+> @@ -36,7 +36,7 @@ static void vbox_do_modeset(struct drm_crtc *crtc)
+>   	u16 flags;
+>   	s32 x_offset, y_offset;
 >   
->   #ifdef CONFIG_PM_SLEEP
+> -	vbox = crtc->dev->dev_private;
+> +	vbox = to_vbox_dev(crtc->dev);
+>   	width = vbox_crtc->width ? vbox_crtc->width : 640;
+>   	height = vbox_crtc->height ? vbox_crtc->height : 480;
+>   	bpp = fb ? fb->format->cpp[0] * 8 : 32;
+> @@ -77,7 +77,7 @@ static void vbox_do_modeset(struct drm_crtc *crtc)
+>   static int vbox_set_view(struct drm_crtc *crtc)
+>   {
+>   	struct vbox_crtc *vbox_crtc = to_vbox_crtc(crtc);
+> -	struct vbox_private *vbox = crtc->dev->dev_private;
+> +	struct vbox_private *vbox = to_vbox_dev(crtc->dev);
+>   	struct vbva_infoview *p;
+>   
+>   	/*
+> @@ -174,7 +174,7 @@ static void vbox_crtc_set_base_and_mode(struct drm_crtc *crtc,
+>   					int x, int y)
+>   {
+>   	struct drm_gem_vram_object *gbo = drm_gem_vram_of_gem(fb->obj[0]);
+> -	struct vbox_private *vbox = crtc->dev->dev_private;
+> +	struct vbox_private *vbox = to_vbox_dev(crtc->dev);
+>   	struct vbox_crtc *vbox_crtc = to_vbox_crtc(crtc);
+>   	bool needs_modeset = drm_atomic_crtc_needs_modeset(crtc->state);
+>   
+> @@ -272,7 +272,7 @@ static void vbox_primary_atomic_update(struct drm_plane *plane,
+>   {
+>   	struct drm_crtc *crtc = plane->state->crtc;
+>   	struct drm_framebuffer *fb = plane->state->fb;
+> -	struct vbox_private *vbox = fb->dev->dev_private;
+> +	struct vbox_private *vbox = to_vbox_dev(fb->dev);
+>   	struct drm_mode_rect *clips;
+>   	uint32_t num_clips, i;
+>   
+> @@ -704,7 +704,7 @@ static int vbox_get_modes(struct drm_connector *connector)
+>   	int preferred_width, preferred_height;
+>   
+>   	vbox_connector = to_vbox_connector(connector);
+> -	vbox = connector->dev->dev_private;
+> +	vbox = to_vbox_dev(connector->dev);
+>   
+>   	hgsmi_report_flags_location(vbox->guest_pool, GUEST_HEAP_OFFSET(vbox) +
+>   				    HOST_FLAGS_OFFSET);
 > 
 
 _______________________________________________
