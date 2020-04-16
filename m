@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED161AB67C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 06:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CCCA1AB74F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 07:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA986E22E;
-	Thu, 16 Apr 2020 04:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882EB6E22D;
+	Thu, 16 Apr 2020 05:32:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A5F406E22E;
- Thu, 16 Apr 2020 04:05:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A12E8A47DA;
- Thu, 16 Apr 2020 04:05:53 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7236E297;
+ Thu, 16 Apr 2020 05:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=caaBFvJdfOo1IN5qevwlJmwf935Igyt+4EcpOBF44yE=; b=XUW+Db+sJFJbLBoT8O5Wa0upCM
+ /aJd+zWh0noLirqF3SVMiXpymnjLe2pbURetrVTa/cBAFmv0kU/9CkjyOkMUX6ItRycFtWBPd8WNB
+ y43uek6dwdJWBJZQWlqcKldVjOchgwPo55LyImUsSYL2T5MY2hP5YyyRLFJE16gH9x3dlp2saYoiG
+ 8hz2Bv7hq6CvtCqux1v32NoCaZZytQny8Tq3TY5gDJecVHXo4f5h6Dy9XuhU4MCEP7fPUMAEOcBdA
+ vbvIfpCbshY9cVHo5xPgTl2uM6SAwiLbSF948nCXBCVfurje9wpH4LMz5EbRV2hW7mspgF17vb1C1
+ srKZ6lNg==;
+Received: from [2001:4bb8:184:4aa1:c70:4a89:bc61:2] (helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jOx84-0003cw-Kn; Thu, 16 Apr 2020 05:32:01 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+ Andrew Morton <akpm@linux-foundation.org>
+Date: Thu, 16 Apr 2020 07:31:55 +0200
+Message-Id: <20200416053158.586887-1-hch@lst.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexei Podtelezhnikov" <apodtele@gmail.com>
-Date: Thu, 16 Apr 2020 04:05:53 -0000
-Message-ID: <158700995363.20886.10395374429842920910@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200416035611.24604-1-apodtele@gmail.com>
-In-Reply-To: <20200416035611.24604-1-apodtele@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?na=3A_fix_--enable-debug=3Dfull?=
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] improve use_mm / unuse_mm v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +48,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jens Axboe <axboe@kernel.dk>, Felipe Balbi <balbi@kernel.org>,
+ amd-gfx@lists.freedesktop.org, "Michael S. Tsirkin" <mst@redhat.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, linux-usb@vger.kernel.org,
+ io-uring@vger.kernel.org, linux-kernel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
+ linux-fsdevel@vger.kernel.org, Al Viro <viro@zeniv.linux.org.uk>,
+ intel-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ intel-gvt-dev@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi all,
 
-Series: sna: fix --enable-debug=full
-URL   : https://patchwork.freedesktop.org/series/76002/
-State : failure
+this series improves the use_mm / unuse_mm interface by better
+documenting the assumptions, and my taking the set_fs manipulations
+spread over the callers into the core API.
 
-== Summary ==
-
-Applying: sna: fix --enable-debug=full
-error: sha1 information is lacking or useless (src/sna/compiler.h).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 sna: fix --enable-debug=full
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
+Changes since v1:
+ - drop a few patches
+ - fix a comment typo
+ - cover the newly merged use_mm/unuse_mm caller in vfio
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
