@@ -2,44 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA211AB965
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 09:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23AA11AB971
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 09:12:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E2E66EB19;
-	Thu, 16 Apr 2020 07:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 666C56EAC8;
+	Thu, 16 Apr 2020 07:12:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E136EB19;
- Thu, 16 Apr 2020 07:09:48 +0000 (UTC)
-IronPort-SDR: O68ssVoe/MXnOObXPQB1ADHHXeFkJIpBokzEBO1X15T8LQ0TJleo32n6goQx7BQp3dteetCh79
- +qOmRPqKPPlA==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B78D6EAC8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 07:12:51 +0000 (UTC)
+IronPort-SDR: 6PwOJiy6bQoVcZmtK6C5xuih8qvrNZvnQ+WDUEAei/tMkOvFz+kSs5beCIR4XBakuC0Wch/fhO
+ kcJoTfRXbVEw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2020 00:09:47 -0700
-IronPort-SDR: MEX9GUuN58Z8y9bgtGifG+uMQ1zy505QWccnMJ8I9FrEeebOwxAk8ka3AU7pZi8XaTfpkh2NIg
- r8HD/O0TvUOA==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 00:12:50 -0700
+IronPort-SDR: N32y5f86QiKANkB/IMiHoMYkoxnZq4uWgxQ8oFXrE8xu3ENobivazv1s7js2ks3VPRKZTGEfwi
+ uxbK7V7c2PCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,390,1580803200"; d="scan'208";a="455169283"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by fmsmga006.fm.intel.com with ESMTP; 16 Apr 2020 00:09:45 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1jOyee-00011B-7M; Thu, 16 Apr 2020 10:09:44 +0300
-Date: Thu, 16 Apr 2020 10:09:44 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <20200416070944.GT9497@platvala-desk.ger.corp.intel.com>
-References: <20200415131515.7507-1-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,390,1580803200"; d="scan'208";a="257123427"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga006.jf.intel.com with ESMTP; 16 Apr 2020 00:12:49 -0700
+Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Apr 2020 00:12:49 -0700
+Received: from BGSMSX107.gar.corp.intel.com (10.223.4.191) by
+ FMSMSX154.amr.corp.intel.com (10.18.116.70) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Apr 2020 00:12:48 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.58]) by
+ BGSMSX107.gar.corp.intel.com ([169.254.9.214]) with mapi id 14.03.0439.000;
+ Thu, 16 Apr 2020 12:42:39 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Thread-Topic: [PATCH v4] drm/i915/display: Enable DP Display Audio WA
+Thread-Index: AQHWDPRoAqzuIeMCN02KR4YGlfNgQqh4WL+AgAMI+LA=
+Date: Thu, 16 Apr 2020 07:12:38 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F82483576@BGSMSX104.gar.corp.intel.com>
+References: <20200407161857.20408-1-uma.shankar@intel.com>
+ <20200414141729.GH5533@intel.com>
+In-Reply-To: <20200414141729.GH5533@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200415131515.7507-1-janusz.krzysztofik@linux.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH i-g-t v15] tests: Add a test for device hot
- unplug
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/display: Enable DP Display
+ Audio WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,470 +66,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Janusz Krzysztofik <janusz.krzysztofik@intel.com>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "Vehmanen, Kai" <kai.vehmanen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2020 at 03:15:15PM +0200, Janusz Krzysztofik wrote:
-> From: Janusz Krzysztofik <janusz.krzysztofik@intel.com>
-> =
-
-> There is a test which verifies unloading of i915 driver module but no
-> test exists that checks how a driver behaves when it gets unbound from
-> a device or when the device gets unplugged.  Implement such test using
-> sysfs interface.
-> =
-
-> Two minimalistic subtests - "unbind-rebind" and "unplug-rescan" -
-> perform the named operations on a DRM device which is believed to be
-> not in use.  Another pair of subtests named "hotunbind-lateclose" and
-> hotunplug-lateclose" do the same on a DRM device while keeping its file
-> descriptor open and close it thereafter.
-> =
-
-> v2: Run a subprocess with dummy_load instead of external command
->     (Antonio).
-> v3: Run dummy_load from the test process directly (Antonio).
-> v4: Run dummy_load from inside subtests (Antonio).
-> v5: Try to restore the device to a working state after each subtest
->     (Petri, Daniel).
-> v6: Run workload inside an igt helper subprocess so resources consumed
->     by the workload are cleaned up automatically on workload subprocess
->     crash, without affecting test results,
->   - move the igt helper with workload back from subtests to initial
->     fixture so workload crash also does not affect test results,
->   - other cleanups suggested by Katarzyna and Chris.
-> v7: No changes.
-> v8: Move workload functions back from fixture to subtests,
->   - register different actions and different workloads in respective
->     tables and iterate over those tables while enumerating subtests,
->   - introduce new subtest flavors by simply omitting module unload step,
->   - instead of simply requesting bus rescan or not, introduce action
->     specific device recovery helpers, required specifically with those
->     new subtests not touching the module,
->   - split workload functions in two parts, one spawning the workload,
->     the other waiting for its completion,
->   - for the new subtests not requiring module unload, run workload
->     functions directly from the test process and use new workload
->     completion wait functions in place of subprocess completion wait,
->   - take more control over logging, longjumps and exit codes in
->     workload subprocesses,
->   - add some debug messages for easy progress watching,
->   - move function API descriptions on top of respective typedefs.
-> v9: All changes after Daniel's comments - thanks!
->   - flatten the code, don't try to create a midlayer (Daniel),
->   - provide minimal subtests that even don't keep device open (Daniel),
->   - don't use driver unbind in more advanced subtests (Daniel),
->   - provide subtests with different level of resources allocated
->     during device unplug (Daniel),
->   - provide subtests which check driver behavior after device hot
->     unplug (Daniel).
-> v10 Rename variables and function arguments to something that
->     indicates they're file descriptors (Daniel),
->   - introduce a data structure that contains various file descriptors
->     and a helper function to set them all (Daniel),
->   - fix strange indentation (Daniel),
->   - limit scope to first three subtests as the initial set of tests to
->     merge (Daniel).
-> v11 Fix typos in some comments,
->   - use SPDX license identifier,
->   - include a per-patch changelog in the commit message (Daniel).
-> v12 We don't use SPDX license identifiers nor GPL-2.0 in IGT (Petri),
->   - avoid chipset, make sure we reopen the same device (Chris),
->   - rename subtest "drm_open-hotunplug" to "hotunplug-lateclose",
->   - add subtest "hotunbind-lateclose" (less affected by IOMMU issues),
->   - move some redundant code to helpers,
->   - reorder some helpers,
->   - reword some messages and comments,
->   - clean up headers.
-> v13 Add test / subtest descriptions (patchwork).
-> v14 Extract redundant device rescan and reopen code to a 'healthcheck'
->     helper,
->   - call igt_abort_on_f() on device reopen failure (Petri),
->   - if any timeout set with igt_set_timeout() inside a subtest expires,
->     call igt_abort_on_f() from a follow-up igt_fixture (Petri),
->   - when running on a i915 device, require GEM and call
->     igt_abort_on_f() if no usable GEM is detected on device reopen.
-> v15 Add the test to CI blacklist (Martin).
-> =
-
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@intel.com>
-> Cc: Antonio Argenziano <antonio.argenziano@intel.com>
-> Cc: Petri Latvala <petri.latvala@intel.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Katarzyna Dec <katarzyna.dec@intel.com>
-> Cc: Martin Peres <martin.peres@linux.intel.com>
-> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  tests/Makefile.sources       |   1 +
->  tests/core_hotunplug.c       | 300 +++++++++++++++++++++++++++++++++++
->  tests/intel-ci/blacklist.txt |   1 +
->  tests/meson.build            |   1 +
->  4 files changed, 303 insertions(+)
->  create mode 100644 tests/core_hotunplug.c
-> =
-
-> diff --git a/tests/Makefile.sources b/tests/Makefile.sources
-> index 4e44c98c2..32cbbf4f9 100644
-> --- a/tests/Makefile.sources
-> +++ b/tests/Makefile.sources
-> @@ -18,6 +18,7 @@ TESTS_progs =3D \
->  	core_getclient \
->  	core_getstats \
->  	core_getversion \
-> +	core_hotunplug \
->  	core_setmaster \
->  	core_setmaster_vs_auth \
->  	debugfs_test \
-> diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-> new file mode 100644
-> index 000000000..f9cfc8c3c
-> --- /dev/null
-> +++ b/tests/core_hotunplug.c
-> @@ -0,0 +1,300 @@
-> +/*
-> + * Copyright =A9 2019 Intel Corporation
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining=
- a
-> + * copy of this software and associated documentation files (the "Softwa=
-re"),
-> + * to deal in the Software without restriction, including without limita=
-tion
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
-se,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice (including the =
-next
-> + * paragraph) shall be included in all copies or substantial portions of=
- the
-> + * Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
-SS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
-TY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
-ALL
-> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR =
-OTHER
-> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISI=
-NG
-> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER D=
-EALINGS
-> + * IN THE SOFTWARE.
-> + */
-> +
-> +#include <fcntl.h>
-> +#include <limits.h>
-> +#include <stdlib.h>
-> +#include <string.h>
-> +#include <sys/stat.h>
-> +#include <sys/types.h>
-> +#include <unistd.h>
-> +
-> +#include "igt.h"
-> +#include "igt_device_scan.h"
-> +#include "igt_kmod.h"
-> +#include "igt_sysfs.h"
-> +
-> +IGT_TEST_DESCRIPTION("Examine behavior of a driver on device hot unplug"=
-);
-> +
-> +struct hotunplug {
-> +	struct {
-> +		int drm;
-> +		int sysfs_dev;
-> +		int sysfs_bus;
-> +		int sysfs_drv;
-> +	} fd;
-> +	char *dev_bus_addr;
-> +};
-> +
-> +/* Helpers */
-> +
-> +static void prepare_for_unbind(struct hotunplug *priv, char *buf, int bu=
-flen)
-> +{
-> +	int len;
-> +
-> +	igt_assert(buflen);
-> +
-> +	priv->fd.sysfs_drv =3D openat(priv->fd.sysfs_dev, "device/driver",
-> +				    O_DIRECTORY);
-> +	igt_assert(priv->fd.sysfs_drv >=3D 0);
-> +
-> +	len =3D readlinkat(priv->fd.sysfs_dev, "device", buf, buflen - 1);
-> +	buf[len] =3D '\0';
-> +	priv->dev_bus_addr =3D strrchr(buf, '/');
-> +	igt_assert(priv->dev_bus_addr++);
-> +
-> +	/* sysfs_dev no longer needed */
-> +	close(priv->fd.sysfs_dev);
-> +}
-> +
-> +static void prepare(struct hotunplug *priv, char *buf, int buflen)
-> +{
-> +	igt_debug("opening device\n");
-> +	priv->fd.drm =3D __drm_open_driver(DRIVER_ANY);
-> +	igt_assert(priv->fd.drm >=3D 0);
-> +
-> +	priv->fd.sysfs_dev =3D igt_sysfs_open(priv->fd.drm);
-> +	igt_assert(priv->fd.sysfs_dev >=3D 0);
-> +
-> +	if (buf) {
-> +		prepare_for_unbind(priv, buf, buflen);
-> +	} else {
-> +		/* prepare for bus rescan */
-> +		priv->fd.sysfs_bus =3D openat(priv->fd.sysfs_dev,
-> +					    "device/subsystem", O_DIRECTORY);
-> +		igt_assert(priv->fd.sysfs_bus >=3D 0);
-> +	}
-> +}
-> +
-> +static const char *failure;
-> +
-> +/* Unbind the driver from the device */
-> +static void driver_unbind(int fd_sysfs_drv, const char *dev_bus_addr)
-> +{
-> +	failure =3D "Driver unbind timeout!";
-> +	igt_set_timeout(60, failure);
-> +	igt_sysfs_set(fd_sysfs_drv, "unbind", dev_bus_addr);
-> +	igt_reset_timeout();
-> +	failure =3D NULL;
-> +
-> +	/* don't close fd_sysfs_drv, it will be used for driver rebinding */
-> +}
-> +
-> +/* Re-bind the driver to the device */
-> +static void driver_bind(int fd_sysfs_drv, const char *dev_bus_addr)
-> +{
-> +	failure =3D "Driver re-bind timeout!";
-> +	igt_set_timeout(60, failure);
-> +	igt_sysfs_set(fd_sysfs_drv, "bind", dev_bus_addr);
-> +	igt_reset_timeout();
-> +	failure =3D NULL;
-> +
-> +	close(fd_sysfs_drv);
-> +}
-> +
-> +/* Remove (virtually unplug) the device from its bus */
-> +static void device_unplug(int fd_sysfs_dev)
-> +{
-> +	failure =3D "Device unplug timeout!";
-> +	igt_set_timeout(60, failure);
-> +	igt_sysfs_set(fd_sysfs_dev, "device/remove", "1");
-> +	igt_reset_timeout();
-> +	failure =3D NULL;
-> +
-> +	close(fd_sysfs_dev);
-> +}
-> +
-> +/* Re-discover the device by rescanning its bus */
-> +static void bus_rescan(int fd_sysfs_bus)
-> +{
-> +	failure =3D "Bus rescan timeout!";
-> +	igt_set_timeout(60, failure);
-> +	igt_sysfs_set(fd_sysfs_bus, "rescan", "1");
-> +	igt_reset_timeout();
-> +	failure =3D NULL;
-> +
-> +	close(fd_sysfs_bus);
-> +}
-> +
-> +static void healthcheck(void)
-> +{
-> +	int fd_drm;
-> +
-> +	/* device name may have changed, rebuild IGT device list */
-> +	igt_devices_scan(true);
-> +
-> +	igt_debug("reopening the device\n");
-> +	fd_drm =3D __drm_open_driver(DRIVER_ANY);
-> +	igt_abort_on_f(fd_drm < 0, "Device reopen failure");
-> +
-> +	if (is_i915_device(fd_drm)) {
-> +		failure =3D "GEM failure";
-> +		igt_require_gem(fd_drm);
-> +		failure =3D NULL;
-> +	}
-> +
-> +	close(fd_drm);
-> +}
-> +
-> +static void set_filter_from_device(int fd)
-> +{
-> +	const char *filter_type =3D "sys:";
-> +	char filter[strlen(filter_type) + PATH_MAX + 1];
-> +	char *dst =3D stpcpy(filter, filter_type);
-> +	char path[PATH_MAX + 1];
-> +
-> +	igt_assert(igt_sysfs_path(fd, path, PATH_MAX));
-> +	strncat(path, "/device", PATH_MAX - strlen(path));
-> +	igt_assert(realpath(path, dst));
-> +
-> +	igt_device_filter_set(filter);
-> +}
-> +
-> +/* Subtests */
-> +
-> +static void unbind_rebind(void)
-> +{
-> +	struct hotunplug priv;
-> +	char buf[PATH_MAX];
-> +
-> +	prepare(&priv, buf, sizeof(buf));
-> +
-> +	igt_debug("closing the device\n");
-> +	close(priv.fd.drm);
-> +
-> +	igt_debug("unbinding the driver from the device\n");
-> +	driver_unbind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-> +
-> +	igt_debug("rebinding the driver to the device\n");
-> +	driver_bind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-> +
-> +	healthcheck();
-> +}
-> +
-> +static void unplug_rescan(void)
-> +{
-> +	struct hotunplug priv;
-> +
-> +	prepare(&priv, NULL, 0);
-> +
-> +	igt_debug("closing the device\n");
-> +	close(priv.fd.drm);
-> +
-> +	igt_debug("unplugging the device\n");
-> +	device_unplug(priv.fd.sysfs_dev);
-> +
-> +	igt_debug("recovering the device\n");
-> +	bus_rescan(priv.fd.sysfs_bus);
-> +
-> +	healthcheck();
-> +}
-> +
-> +static void hotunbind_lateclose(void)
-> +{
-> +	struct hotunplug priv;
-> +	char buf[PATH_MAX];
-> +
-> +	prepare(&priv, buf, sizeof(buf));
-> +
-> +	igt_debug("hot unbinding the driver from the device\n");
-> +	driver_unbind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-> +
-> +	igt_debug("rebinding the driver to the device\n");
-> +	driver_bind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-> +
-> +	igt_debug("late closing the unbound device instance\n");
-> +	close(priv.fd.drm);
-> +
-> +	healthcheck();
-> +}
-> +
-> +static void hotunplug_lateclose(void)
-> +{
-> +	struct hotunplug priv;
-> +
-> +	prepare(&priv, NULL, 0);
-> +
-> +	igt_debug("hot unplugging the device\n");
-> +	device_unplug(priv.fd.sysfs_dev);
-> +
-> +	igt_debug("recovering the device\n");
-> +	bus_rescan(priv.fd.sysfs_bus);
-> +
-> +	igt_debug("late closing the removed device instance\n");
-> +	close(priv.fd.drm);
-> +
-> +	healthcheck();
-> +}
-> +
-> +/* Main */
-> +
-> +igt_main
-> +{
-> +	igt_fixture {
-> +		int fd_drm;
-> +
-> +		/**
-> +		 * As subtests must be able to close examined devices
-> +		 * completely, don't use drm_open_driver() as it keeps
-> +		 * a device file descriptor open for exit handler use.
-> +		 */
-> +		fd_drm =3D __drm_open_driver(DRIVER_ANY);
-> +		igt_assert(fd_drm >=3D 0);
-> +
-> +		if (is_i915_device(fd_drm))
-> +			igt_require_gem(fd_drm);
-> +
-> +		/* Make sure subtests always reopen the same device */
-> +		set_filter_from_device(fd_drm);
-> +
-> +		close(fd_drm);
-> +	}
-> +
-> +	igt_describe("Check if the driver can be cleanly unbound from a device =
-believed to be closed");
-> +	igt_subtest("unbind-rebind")
-> +		unbind_rebind();
-> +
-> +	igt_fixture
-> +		igt_abort_on_f(failure, "%s\n", failure);
-> +
-> +	igt_describe("Check if a device believed to be closed can be cleanly un=
-plugged");
-> +	igt_subtest("unplug-rescan")
-> +		unplug_rescan();
-> +
-> +	igt_fixture
-> +		igt_abort_on_f(failure, "%s\n", failure);
-> +
-> +	igt_describe("Check if the driver can be cleanly unbound from a still o=
-pen device, then released");
-> +	igt_subtest("hotunbind-lateclose")
-> +		hotunbind_lateclose();
-> +
-> +	igt_fixture
-> +		igt_abort_on_f(failure, "%s\n", failure);
-> +
-> +	igt_describe("Check if a still open device can be cleanly unplugged, th=
-en released");
-> +	igt_subtest("hotunplug-lateclose")
-> +		hotunplug_lateclose();
-> +
-> +	igt_fixture
-> +		igt_abort_on_f(failure, "%s\n", failure);
-> +}
-> diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
-> index ee7045f03..201f4b1b4 100644
-> --- a/tests/intel-ci/blacklist.txt
-> +++ b/tests/intel-ci/blacklist.txt
-> @@ -117,3 +117,4 @@ igt@.*@.*pipe-f($|-.*)
->  # Since 5.7-rc1, this test has produced tens of megabytes of kernel
->  # logs.
->  igt@perf_pmu@cpu-hotplug
-> +igt@core_hotunplug@.*
 
 
-That makes it read like it's also "producing tens of megabytes of
-kernel logs". An empty line, and a separate comment with something
-like
+> -----Original Message-----
+> From: Gupta, Anshuman <anshuman.gupta@intel.com>
+> Sent: Tuesday, April 14, 2020 7:47 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Vehmanen, Kai <kai.vehmanen@intel.com>;
+> jani.nikula@linux.intel.com
+> Subject: Re: [PATCH v4] drm/i915/display: Enable DP Display Audio WA
+> 
+> On 2020-04-07 at 21:48:57 +0530, Uma Shankar wrote:
+> > For certain DP VDSC bpp settings, hblank asserts before hblank_early,
+> > leading to a bad audio state. Driver need to program "hblank early
+> > enable" and "samples per line" parameters in AUDIO_CONFIG_BE register.
+> >
+> > This is Display Audio WA #1406928334 for 4k+VDSC usecase applicable on
+> > DP encoders. Implemented the same.
+> >
+> > v2: Fixed build failures on 32bit machine.
+> >
+> > v3: Dropped u64, added helpers for sample room calculation,
+> >     other general comments as per Jani Nikula's feedback.
+> >     Also fixed connector type check (spotted by Anshuman)
+> >
+> > v4: Addressed Jani Nikula and Kai's review comments.
+> There are some minor comment below.
+> >
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_audio.c | 147 +++++++++++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h            |  16 +++
+> >  2 files changed, 163 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
+> > b/drivers/gpu/drm/i915/display/intel_audio.c
+> > index 950160f1a89f..87118cb4a3ae 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> > @@ -512,6 +512,149 @@ static void hsw_audio_codec_disable(struct
+> intel_encoder *encoder,
+> >  	mutex_unlock(&dev_priv->av_mutex);
+> >  }
+> >
+> > +/* Add a factor to take care of rounding and truncations */ #define
+> > +ROUNDING_FACTOR 10000
+> > +
+> > +static unsigned int get_hblank_early_enable_config(struct intel_encoder
+> *encoder,
+> > +						   const struct intel_crtc_state
+> *crtc_state) {
+> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > +	unsigned int link_clks_available, link_clks_required;
+> > +	unsigned int tu_data, tu_line, link_clks_active;
+> > +	unsigned int hblank_rise, hblank_early_prog;
+> > +	unsigned int h_active, h_total, hblank_delta, pixel_clk, v_total;
+> > +	unsigned int fec_coeff, refresh_rate, cdclk;
+> > +
+> > +	h_active = crtc_state->hw.adjusted_mode.hdisplay;
+> > +	h_total = crtc_state->hw.adjusted_mode.htotal;
+> > +	v_total = crtc_state->hw.adjusted_mode.vtotal;
+> 	IMO we should adjusted_mode.crtc_x param for any crtc timing
+>         realted math , as crtc_x params are actual hw params.
+>         please correct me if i am wrong.
 
-# Currently fails and leaves the machine in a very bad state, and
-# causes coverage loss for other tests.
+Yeah ok, I will update these to crtc_*
 
+> > +	hblank_rise = crtc_state->hw.adjusted_mode.hsync_start;
+> 	IMO we don't need to intilize this with hsync_start.
+> > +	pixel_clk = crtc_state->hw.adjusted_mode.clock;
+> > +	refresh_rate = crtc_state->hw.adjusted_mode.vrefresh;
+> > +	cdclk = i915->cdclk.hw.cdclk;
+> > +	/* fec= 0.972261, using rounding multiplier of 1000000 */
+> > +	fec_coeff = 972261;
+> > +
+> > +	drm_dbg_kms(&i915->drm, "h_active = %u link_clk = %u :"
+> > +		    "lanes = %u vdsc_bpp = %u cdclk = %u\n",
+> 		    B.Specs says "If not using compression, vdsc_bpp = input_bpp",
+> 		    if i am correct is it vdsc comression ?
+> 		    and we program hblank_early when dsc comression is enabled,
+> 		    so from this logic vdsc_bpp != pipe_bpp ?
+> > +		    h_active, crtc_state->port_clock, crtc_state->lane_count,
+> > +		    crtc_state->pipe_bpp, cdclk);
+> > +
+> > +	link_clks_available = ((((h_total - h_active) *
+> > +			       ((crtc_state->port_clock * ROUNDING_FACTOR) /
+> > +				pixel_clk)) / ROUNDING_FACTOR) - 28);
+> > +
+> > +	link_clks_required = DIV_ROUND_UP(192000, (refresh_rate *
+> > +					  v_total)) * ((48 /
+> > +					  crtc_state->lane_count) + 2);
+> > +
+> > +	if (link_clks_available > link_clks_required)
+> > +		hblank_delta = 32;
+> > +	else
+> > +		hblank_delta = DIV_ROUND_UP(((((5 * ROUNDING_FACTOR) /
+> > +					    crtc_state->port_clock) + ((5 *
+> > +					    ROUNDING_FACTOR) /
+> > +					    cdclk)) * pixel_clk),
+> > +					    ROUNDING_FACTOR);
+> > +
+> > +	tu_data = (pixel_clk * crtc_state->pipe_bpp * 8) /
+> > +		   ((crtc_state->port_clock *
+> > +		   crtc_state->lane_count * fec_coeff) / 1000000);
+> > +	tu_line = (((h_active * crtc_state->port_clock * fec_coeff) /
+> > +		   1000000) / (64 * pixel_clk));
+> > +	link_clks_active  = (tu_line - 1) * 64 + tu_data;
+> > +
+> > +	hblank_rise = ((link_clks_active + 6 * DIV_ROUND_UP(link_clks_active,
+> > +			250) + 4) * ((pixel_clk * ROUNDING_FACTOR) /
+> > +			crtc_state->port_clock)) / ROUNDING_FACTOR;
+> > +
+> > +	hblank_early_prog = h_active - hblank_rise + hblank_delta;
+> > +
+> > +	return hblank_early_prog;
+> > +}
+> > +
+> > +static unsigned int get_sample_room_req_config(const struct
+> > +intel_crtc_state *crtc_state) {
+> > +	unsigned int h_active, h_total, pixel_clk;
+> > +	unsigned int samples_room;
+> > +
+> > +	h_active = crtc_state->hw.adjusted_mode.hdisplay;
+> > +	h_total = crtc_state->hw.adjusted_mode.htotal;
+> > +	pixel_clk = crtc_state->hw.adjusted_mode.clock;
+> > +
+> > +	samples_room = ((((h_total - h_active) * ((crtc_state->port_clock *
+> > +			ROUNDING_FACTOR) / pixel_clk)) /
+> > +			ROUNDING_FACTOR) - 12) / ((48 /
+> > +			crtc_state->lane_count) + 2);
+> > +
+> > +	return samples_room;
+> > +}
+> > +
+> > +static void enable_audio_dsc_wa(struct intel_encoder *encoder,
+> > +				const struct intel_crtc_state *crtc_state) {
+> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	enum pipe pipe = crtc->pipe;
+> > +	unsigned int hblank_early_prog, samples_room, h_active;
+> > +	unsigned int val;
+> > +
+> > +	if (INTEL_GEN(i915) < 11)
+> > +		return;
+> > +
+> > +	h_active = crtc_state->hw.adjusted_mode.hdisplay;
+> > +
+> > +	if (!(h_active && crtc_state->port_clock && crtc_state->lane_count &&
+> > +	      crtc_state->pipe_bpp && i915->cdclk.hw.cdclk)) {
+> > +		drm_err(&i915->drm, "Null Params rcvd for hblank early
+> enabling\n");
+> > +		WARN_ON(1);
+> > +		return;
+> > +	}
+> > +
+> > +	val = intel_de_read(i915, AUD_CONFIG_BE);
+> > +
+> > +	if (INTEL_GEN(i915) == 11)
+> > +		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
+> > +	else if (INTEL_GEN(i915) >= 12)
+> > +		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
+> > +
+> > +	if (crtc_state->dsc.compression_enable &&
+> > +	    (crtc_state->hw.adjusted_mode.hdisplay >= 3840 &&
+> > +	    crtc_state->hw.adjusted_mode.vdisplay >= 2160)) {
+> > +		/* Get hblank early enable value required */
+> > +		hblank_early_prog = get_hblank_early_enable_config(encoder,
+> > +								   crtc_state);
+> > +		if (hblank_early_prog < 32) {
+> > +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> > +			val |= HBLANK_START_COUNT(pipe,
+> HBLANK_START_COUNT_32);
+> > +		} else if (hblank_early_prog < 64) {
+> > +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> > +			val |= HBLANK_START_COUNT(pipe,
+> HBLANK_START_COUNT_64);
+> > +		} else if (hblank_early_prog < 96) {
+> > +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> > +			val |= HBLANK_START_COUNT(pipe,
+> HBLANK_START_COUNT_96);
+> > +		} else {
+> > +			val &= ~HBLANK_START_COUNT_MASK(pipe);
+> > +			val |= HBLANK_START_COUNT(pipe,
+> HBLANK_START_COUNT_128);
+> > +		}
+> > +
+> > +		/* Get samples room value required */
+> > +		samples_room = get_sample_room_req_config(crtc_state);
+> > +		if (samples_room < 3) {
+> > +			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
+> > +			val |= NUMBER_SAMPLES_PER_LINE(pipe, samples_room);
+> > +		} else {
+> > +			/* Program 0 i.e "All Samples available in buffer" */
+> > +			val &= ~NUMBER_SAMPLES_PER_LINE_MASK(pipe);
+> > +			val |= NUMBER_SAMPLES_PER_LINE(pipe, 0x0);
+> > +		}
+> > +	}
+> > +
+> > +	intel_de_write(i915, AUD_CONFIG_BE, val); }
+> > +
+> > +#undef ROUNDING_FACTOR
+> > +
+> >  static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+> >  				   const struct intel_crtc_state *crtc_state,
+> >  				   const struct drm_connector_state *conn_state)
+> @@ -529,6
+> > +672,10 @@ static void hsw_audio_codec_enable(struct intel_encoder
+> > *encoder,
+> >
+> >  	mutex_lock(&dev_priv->av_mutex);
+> >
+> > +	/* Enable Audio WA for 4k DSC usecases */
+> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
+> > +		enable_audio_dsc_wa(encoder, crtc_state);
+> > +
+> >  	/* Enable audio presence detect, invalidate ELD */
+> >  	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+> >  	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 8cebb7a86b8c..f72ea2c2a8e3
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -9395,6 +9395,22 @@ enum {
+> >  #define AUD_PIN_BUF_CTL		_MMIO(0x48414)
+> >  #define   AUD_PIN_BUF_ENABLE		REG_BIT(31)
+> >
+> > +/* Display Audio Config Reg */
+> > +#define AUD_CONFIG_BE			_MMIO(0x65ef0)
+> > +#define HBLANK_EARLY_ENABLE_ICL(pipe)		(0x1 << (20 - (pipe)))
+> > +#define HBLANK_EARLY_ENABLE_TGL(pipe)		(0x1 << (24 + (pipe)))
+> > +#define HBLANK_START_COUNT_MASK(pipe)		(0x7 << (3 + ((pipe) * 6)))
+> > +#define HBLANK_START_COUNT(pipe, val)		(((val) & 0x7) << (3 +
+> ((pipe)) * 6))
+> > +#define NUMBER_SAMPLES_PER_LINE_MASK(pipe)	(0x3 << ((pipe) * 6))
+> > +#define NUMBER_SAMPLES_PER_LINE(pipe, val)	(((val) & 0x3) << ((pipe) *
+> 6))
+> Earlier Nikula Jani has provided suggestion to use REG_FIELD_PREP.
 
-With that,
-Acked-by: Petri Latvala <petri.latvala@intel.com>
+MASK itself is dependent on pipe, so I feel it is simpler like this. 
+
+> Thanks ,
+> Anshuman Gupta.
+> > +
+> > +#define HBLANK_START_COUNT_8	0
+> > +#define HBLANK_START_COUNT_16	1
+> > +#define HBLANK_START_COUNT_32	2
+> > +#define HBLANK_START_COUNT_64	3
+> > +#define HBLANK_START_COUNT_96	4
+> > +#define HBLANK_START_COUNT_128	5
+> > +
+> >  /*
+> >   * HSW - ICL power wells
+> >   *
+> > --
+> > 2.22.0
+> >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
