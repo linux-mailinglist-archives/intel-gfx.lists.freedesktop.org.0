@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780211ACFE5
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 20:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6299C1ACFE6
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 20:46:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B48EE6EAA7;
-	Thu, 16 Apr 2020 18:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABADB6EAB5;
+	Thu, 16 Apr 2020 18:46:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9256EAA7
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 18:45:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20925059-1500050 
- for multiple; Thu, 16 Apr 2020 19:45:24 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Apr 2020 19:45:22 +0100
-Message-Id: <20200416184522.21812-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200416184522.21812-1-chris@chris-wilson.co.uk>
-References: <20200416184522.21812-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B24496EAB6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 18:46:32 +0000 (UTC)
+IronPort-SDR: Zb/d2MmJ+Li78bDLcs7LVnond0TqfipI0ZsuA8YiGLvF3ca8K2AtWmQRhFFKllfR91SBtdY9UJ
+ 94lvLJo6fkuQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 11:46:31 -0700
+IronPort-SDR: Yn1brQgV1H17EPKYPMpsxNQz6nQGdCd8Ez9ggbQlUBvlbQ8MWmK5/lvBMNkEPsqnVsnsDuDJuY
+ zoz/udGxC5cg==
+X-IronPort-AV: E=Sophos;i="5.72,391,1580803200"; d="scan'208";a="427941592"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 11:46:30 -0700
+Date: Thu, 16 Apr 2020 21:46:11 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200416184611.GD2764@ideak-desk.fi.intel.com>
+References: <20200414194956.164323-1-jose.souza@intel.com>
+ <20200414194956.164323-8-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: Check power consumption
- at min/max frequencies
+Content-Disposition: inline
+In-Reply-To: <20200414194956.164323-8-jose.souza@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v5 8/8] drm/i915/tc: Do not warn when aux
+ power well of static TC ports timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,99 +49,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QSBiYXNpYyBwcmVtaXNlIG9mIFJQUyBpcyB0aGF0IGF0IGxvd2VyIGZyZXF1ZW5jaWVzLCBub3Qg
-b25seSBkbyB3ZSBydW4Kc2xvd2VyLCBidXQgd2Ugc2F2ZSBwb3dlciBjb21wYXJlZCB0byBoaWdo
-ZXIgZnJlcXVlbmNpZXMuIEZvciBleGFtcGxlLAp3aGVuIGlkbGUsIHdlIHNldCB0aGUgbWluaW11
-bSBmcmVxdWVuY3kganVzdCBpbiBjYXNlIHRoZXJlIGlzIHNvbWUKcmVzaWR1YWwgY3VycmVudC4g
-U2luY2UgdGhlIHBvd2VyIGN1cnZlIHNob3VsZCBiZSBhIHBoeXNpY2FsCnJlbGF0aW9uc2hpcCwg
-aWYgd2UgZmluZCBubyBwb3dlciBzYXZpbmcgaXQncyBsaWtlbHkgdGhhdCB3ZSd2ZSBicm9rZW4K
-b3VyIGZyZXF1ZW5jeSBoYW5kbGluZywgc28gdGVzdCEKClNpZ25lZC1vZmYtYnk6IENocmlzIFdp
-bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5r
-dW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVs
-LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ndF9wbS5jIHwgICAx
-ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jICAgfCAxMjkgKysrKysr
-KysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5o
-ICAgfCAgIDEgKwogMyBmaWxlcyBjaGFuZ2VkLCAxMzEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2d0X3BtLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ndF9wbS5jCmluZGV4IGM1MGJiNTAyZmUwMy4uMDE0MWMz
-MzRmMmFjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ndF9w
-bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2d0X3BtLmMKQEAgLTU0
-LDYgKzU0LDcgQEAgaW50IGludGVsX2d0X3BtX2xpdmVfc2VsZnRlc3RzKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1KQogCXN0YXRpYyBjb25zdCBzdHJ1Y3QgaTkxNV9zdWJ0ZXN0IHRlc3Rz
-W10gPSB7CiAJCVNVQlRFU1QobGl2ZV9yYzZfbWFudWFsKSwKIAkJU1VCVEVTVChsaXZlX3Jwc19p
-bnRlcnJ1cHQpLAorCQlTVUJURVNUKGxpdmVfcnBzX3Bvd2VyKSwKIAkJU1VCVEVTVChsaXZlX2d0
-X3Jlc3VtZSksCiAJfTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2Vs
-ZnRlc3RfcnBzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuYwppbmRl
-eCA1YWQ1YmVlNmJkYmEuLjNjNzgzZjlhMDRkNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2Vs
-ZnRlc3RfcnBzLmMKQEAgLTMsNiArMyw4IEBACiAgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBD
-b3Jwb3JhdGlvbgogICovCiAKKyNpbmNsdWRlIDxsaW51eC9zb3J0Lmg+CisKICNpbmNsdWRlICJp
-bnRlbF9lbmdpbmVfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9ndF9jbGsuaCIKICNpbmNsdWRlICJp
-bnRlbF9ndF9wbS5oIgpAQCAtMTAsNiArMTIsNyBAQAogI2luY2x1ZGUgInNlbGZ0ZXN0X3Jwcy5o
-IgogI2luY2x1ZGUgInNlbGZ0ZXN0cy9pZ3RfZmx1c2hfdGVzdC5oIgogI2luY2x1ZGUgInNlbGZ0
-ZXN0cy9pZ3Rfc3Bpbm5lci5oIgorI2luY2x1ZGUgInNlbGZ0ZXN0cy9saWJyYXBsLmgiCiAKIHN0
-YXRpYyB2b2lkIGR1bW15X3Jwc193b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd3JrKQogewpAQCAt
-MjI0LDMgKzIyNywxMjkgQEAgaW50IGxpdmVfcnBzX2ludGVycnVwdCh2b2lkICphcmcpCiAKIAly
-ZXR1cm4gZXJyOwogfQorCitzdGF0aWMgdTY0IF9fbWVhc3VyZV9wb3dlcihpbnQgZHVyYXRpb25f
-bXMpCit7CisJdTY0IG5yZywgZHQ7CisKKwlkdCA9IC1rdGltZV9nZXQoKTsKKwlucmcgPSAtc3Rf
-ZW5lcmd5X3VKKCk7CisJbXNsZWVwKDUpOworCW5yZyArPSBzdF9lbmVyZ3lfdUooKTsKKwlkdCAr
-PSBrdGltZV9nZXQoKTsKKworCXJldHVybiBkaXY2NF91NjQoMTAwMCAqIDEwMDAgKiBucmcsIGR0
-KTsKK30KKworc3RhdGljIGludCBjbXBfdTY0KGNvbnN0IHZvaWQgKkEsIGNvbnN0IHZvaWQgKkIp
-Cit7CisJY29uc3QgdTY0ICphID0gQSwgKmIgPSBCOworCisJaWYgKGEgPCBiKQorCQlyZXR1cm4g
-LTE7CisJZWxzZSBpZiAoYSA+IGIpCisJCXJldHVybiAxOworCWVsc2UKKwkJcmV0dXJuIDA7Cit9
-CisKK3N0YXRpYyB1NjQgbWVhc3VyZV9wb3dlcl9hdChzdHJ1Y3QgaW50ZWxfcnBzICpycHMsIGlu
-dCBmcmVxKQoreworCXU2NCB4WzVdOworCWludCBpOworCisJbXV0ZXhfbG9jaygmcnBzLT5sb2Nr
-KTsKKwlHRU1fQlVHX09OKCFycHMtPmFjdGl2ZSk7CisJaW50ZWxfcnBzX3NldChycHMsIGZyZXEp
-OworCW11dGV4X3VubG9jaygmcnBzLT5sb2NrKTsKKworCW1zbGVlcCgyMCk7IC8qIG1vcmUgdGhh
-biBlbm91Z2ggdGltZSB0byBzdGFiaWxpc2UhICovCisKKwlmb3IgKGkgPSAwOyBpIDwgNTsgaSsr
-KQorCQl4W2ldID0gX19tZWFzdXJlX3Bvd2VyKDUpOworCisJLyogQSBzaW1wbGUgdHJpYW5nbGUg
-ZmlsdGVyIGZvciBiZXR0ZXIgcmVzdWx0IHN0YWJpbGl0eSAqLworCXNvcnQoeCwgNSwgc2l6ZW9m
-KCp4KSwgY21wX3U2NCwgTlVMTCk7CisJcmV0dXJuIGRpdl91NjQoeFsxXSArIDIgKiB4WzJdICsg
-eFszXSwgNCk7Cit9CisKK2ludCBsaXZlX3Jwc19wb3dlcih2b2lkICphcmcpCit7CisJc3RydWN0
-IGludGVsX2d0ICpndCA9IGFyZzsKKwlzdHJ1Y3QgaW50ZWxfcnBzICpycHMgPSAmZ3QtPnJwczsK
-Kwl2b2lkICgqc2F2ZWRfd29yaykoc3RydWN0IHdvcmtfc3RydWN0ICp3cmspOworCXN0cnVjdCBp
-bnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsKKwllbnVtIGludGVsX2VuZ2luZV9pZCBpZDsKKwlzdHJ1
-Y3QgaWd0X3NwaW5uZXIgc3BpbjsKKwlpbnQgZXJyID0gMDsKKworCS8qCisJICogT3VyIGZ1bmRh
-bWVudGFsIGFzc3VtcHRpb24gaXMgdGhhdCBydW5uaW5nIGF0IGxvd2VyIGZyZXF1ZW5jeQorCSAq
-IGFjdHVhbGx5IHNhdmVzIHBvd2VyLiBMZXQncyBzZWUgaWYgb3VyIFJBUEwgbWVhc3VyZW1lbnQg
-c3VwcG9ydAorCSAqIHRoYXQgdGhlb3J5LgorCSAqLworCisJaWYgKCFycHMtPmVuYWJsZWQgfHwg
-cnBzLT5tYXhfZnJlcSA8PSBycHMtPm1pbl9mcmVxKQorCQlyZXR1cm4gMDsKKworCWlmIChpZ3Rf
-c3Bpbm5lcl9pbml0KCZzcGluLCBndCkpCisJCXJldHVybiAtRU5PTUVNOworCisJaW50ZWxfZ3Rf
-cG1fd2FpdF9mb3JfaWRsZShndCk7CisJc2F2ZWRfd29yayA9IHJwcy0+d29yay5mdW5jOworCXJw
-cy0+d29yay5mdW5jID0gZHVtbXlfcnBzX3dvcms7CisKKwlmb3JfZWFjaF9lbmdpbmUoZW5naW5l
-LCBndCwgaWQpIHsKKwkJc3RydWN0IGk5MTVfcmVxdWVzdCAqcnE7CisJCXU2NCBtaW4sIG1heDsK
-KworCQlpZiAoIWludGVsX2VuZ2luZV9jYW5fc3RvcmVfZHdvcmQoZW5naW5lKSkKKwkJCWNvbnRp
-bnVlOworCisJCXJxID0gaWd0X3NwaW5uZXJfY3JlYXRlX3JlcXVlc3QoJnNwaW4sCisJCQkJCQll
-bmdpbmUtPmtlcm5lbF9jb250ZXh0LAorCQkJCQkJTUlfTk9PUCk7CisJCWlmIChJU19FUlIocnEp
-KSB7CisJCQllcnIgPSBQVFJfRVJSKHJxKTsKKwkJCWJyZWFrOworCQl9CisKKwkJaTkxNV9yZXF1
-ZXN0X2FkZChycSk7CisKKwkJaWYgKCFpZ3Rfd2FpdF9mb3Jfc3Bpbm5lcigmc3BpbiwgcnEpKSB7
-CisJCQlwcl9lcnIoIiVzOiBSUFMgc3Bpbm5lciBkaWQgbm90IHN0YXJ0XG4iLAorCQkJICAgICAg
-IGVuZ2luZS0+bmFtZSk7CisJCQlpbnRlbF9ndF9zZXRfd2VkZ2VkKGVuZ2luZS0+Z3QpOworCQkJ
-ZXJyID0gLUVJTzsKKwkJCWJyZWFrOworCQl9CisKKwkJbWF4ID0gbWVhc3VyZV9wb3dlcl9hdChy
-cHMsIHJwcy0+bWF4X2ZyZXEpOworCQltaW4gPSBtZWFzdXJlX3Bvd2VyX2F0KHJwcywgcnBzLT5t
-aW5fZnJlcSk7CisKKwkJaWd0X3NwaW5uZXJfZW5kKCZzcGluKTsKKworCQlwcl9pbmZvKCIlczog
-bWluOiVsbHVtVyBAICV1TUh6LCBtYXg6JWxsdW1XIEAgJXVNSHpcbiIsCisJCQllbmdpbmUtPm5h
-bWUsCisJCQltaW4sIGludGVsX2dwdV9mcmVxKHJwcywgcnBzLT5taW5fZnJlcSksCisJCQltYXgs
-IGludGVsX2dwdV9mcmVxKHJwcywgcnBzLT5tYXhfZnJlcSkpOworCQlpZiAobWluID49IG1heCkg
-eworCQkJcHJfZXJyKCIlczogZGlkIG5vdCBjb25zZXJ2ZSBwb3dlciB3aGVuIHNldHRpbmcgbG93
-ZXIgZnJlcXVlbmN5IVxuIiwKKwkJCSAgICAgICBlbmdpbmUtPm5hbWUpOworCQkJZXJyID0gLUVJ
-TlZBTDsKKwkJCWJyZWFrOworCQl9CisKKwkJaWYgKGlndF9mbHVzaF90ZXN0KGd0LT5pOTE1KSkg
-eworCQkJZXJyID0gLUVJTzsKKwkJCWJyZWFrOworCQl9CisJfQorCisJaWd0X3NwaW5uZXJfZmlu
-aSgmc3Bpbik7CisKKwlpbnRlbF9ndF9wbV93YWl0X2Zvcl9pZGxlKGd0KTsKKwlycHMtPndvcmsu
-ZnVuYyA9IHNhdmVkX3dvcms7CisKKwlyZXR1cm4gZXJyOworfQpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9zZWxmdGVzdF9ycHMuaAppbmRleCBhYmJhNjY0MjA5OTYuLmNhZDUxNWE3ZjBlNSAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmgKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmgKQEAgLTcsNSArNyw2IEBACiAjZGVmaW5l
-IFNFTEZURVNUX1JQU19ICiAKIGludCBsaXZlX3Jwc19pbnRlcnJ1cHQodm9pZCAqYXJnKTsKK2lu
-dCBsaXZlX3Jwc19wb3dlcih2b2lkICphcmcpOwogCiAjZW5kaWYgLyogU0VMRlRFU1RfUlBTX0gg
-Ki8KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Tue, Apr 14, 2020 at 12:49:56PM -0700, Jos=E9 Roberto de Souza wrote:
+> This is a expected timeout of static TC ports not conneceted, so
+> not throwing warnings that would taint CI.
+> =
+
+> v3:
+> - moved checks to tc_phy_aux_timeout_expected()
+> =
+
+> v4:
+> - moved and add comments to tc_phy_aux_timeout_expected()
+> =
+
+> v5:
+> - only checking tc_legacy_port for TC ports
+> =
+
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+
+Looks ok:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  .../drm/i915/display/intel_display_power.c    | 59 +++++++++++++------
+>  1 file changed, 42 insertions(+), 17 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index e28756cee68a..40e1713fcdbf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -20,6 +20,8 @@
+>  #include "intel_tc.h"
+>  #include "intel_vga.h"
+>  =
+
+> +static const struct i915_power_well_ops icl_tc_phy_aux_power_well_ops;
+> +
+>  bool intel_display_power_well_is_enabled(struct drm_i915_private *dev_pr=
+iv,
+>  					 enum i915_power_well_id power_well_id);
+>  =
+
+> @@ -284,6 +286,21 @@ static void hsw_power_well_pre_disable(struct drm_i9=
+15_private *dev_priv,
+>  		gen8_irq_power_well_pre_disable(dev_priv, irq_pipe_mask);
+>  }
+>  =
+
+> +#define ICL_AUX_PW_TO_CH(pw_idx)	\
+> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
+> +
+> +#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
+> +	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
+> +
+> +static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
+> +				     struct i915_power_well *power_well)
+> +{
+> +	int pw_idx =3D power_well->desc->hsw.idx;
+> +
+> +	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
+> +						 ICL_AUX_PW_TO_CH(pw_idx);
+> +}
+> +
+>  static struct intel_digital_port *
+>  aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
+>  		       enum aux_ch aux_ch)
+> @@ -311,6 +328,28 @@ aux_ch_to_digital_port(struct drm_i915_private *dev_=
+priv,
+>  	return dig_port;
+>  }
+>  =
+
+> +static bool tc_phy_aux_timeout_expected(struct drm_i915_private *dev_pri=
+v,
+> +					struct i915_power_well *power_well)
+> +{
+> +	/* An AUX timeout is expected if the TBT DP tunnel is down. */
+> +	if (power_well->desc->hsw.is_tc_tbt)
+> +		return true;
+> +
+> +	/*
+> +	 * An AUX timeout is expected because we enable TC legacy port aux
+> +	 * to hold port out of TC cold
+> +	 */
+> +	if (INTEL_GEN(dev_priv) =3D=3D 11 &&
+> +	    power_well->desc->ops =3D=3D &icl_tc_phy_aux_power_well_ops) {
+> +		enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
+> +		struct intel_digital_port *dig_port =3D aux_ch_to_digital_port(dev_pri=
+v, aux_ch);
+> +
+> +		return dig_port->tc_legacy_port;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_=
+priv,
+>  					   struct i915_power_well *power_well)
+>  {
+> @@ -323,8 +362,9 @@ static void hsw_wait_for_power_well_enable(struct drm=
+_i915_private *dev_priv,
+>  		drm_dbg_kms(&dev_priv->drm, "%s power well enable timeout\n",
+>  			    power_well->desc->name);
+>  =
+
+> -		/* An AUX timeout is expected if the TBT DP tunnel is down. */
+> -		drm_WARN_ON(&dev_priv->drm, !power_well->desc->hsw.is_tc_tbt);
+> +		drm_WARN_ON(&dev_priv->drm,
+> +			    !tc_phy_aux_timeout_expected(dev_priv, power_well));
+> +
+>  	}
+>  }
+>  =
+
+> @@ -520,21 +560,6 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915=
+_private *dev_priv,
+>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>  }
+>  =
+
+> -#define ICL_AUX_PW_TO_CH(pw_idx)	\
+> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_A + AUX_CH_A)
+> -
+> -#define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
+> -	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
+> -
+> -static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
+> -				     struct i915_power_well *power_well)
+> -{
+> -	int pw_idx =3D power_well->desc->hsw.idx;
+> -
+> -	return power_well->desc->hsw.is_tc_tbt ? ICL_TBT_AUX_PW_TO_CH(pw_idx) :
+> -						 ICL_AUX_PW_TO_CH(pw_idx);
+> -}
+> -
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>  =
+
+>  static u64 async_put_domains_mask(struct i915_power_domains *power_domai=
+ns);
+> -- =
+
+> 2.26.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
