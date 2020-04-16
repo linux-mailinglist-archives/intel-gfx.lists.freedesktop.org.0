@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBFB21AD1B1
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 23:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E651AD1B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 23:06:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 438FA6EB70;
-	Thu, 16 Apr 2020 21:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D206B6EB6F;
+	Thu, 16 Apr 2020 21:06:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0E2E6EB6D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0487E6EB6F
  for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 21:06:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20926621-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20926622-1500050 
  for multiple; Thu, 16 Apr 2020 22:05:55 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Apr 2020 22:05:49 +0100
-Message-Id: <20200416210553.10860-1-chris@chris-wilson.co.uk>
+Date: Thu, 16 Apr 2020 22:05:50 +0100
+Message-Id: <20200416210553.10860-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200416210553.10860-1-chris@chris-wilson.co.uk>
+References: <20200416210553.10860-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/5] drm/i915/selftests: Delay spinner before
- waiting for an interrupt
+Subject: [Intel-gfx] [PATCH 2/5] drm/i915/gt: Trace RPS events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,78 +44,165 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It seems that although (perhaps because of the memory stall?) the
-spinner has signaled that it has started, it still takes some time to
-spin up to 100% utilisation of the HW. Since the test depends on the
-full utilisation of the HW to trigger the RPS interrupt, wait a little
-bit and flush the interrupt status to be sure that the event we see if
-from the spinner.
+Add tracek to the RPS events (interrupts, worker, enabling, threshold
+selection, frequency setting), so that if we have to debug reticent HW
+we have some traces to start from.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_rps.c | 28 +++++++++++++++-----------
- 1 file changed, 16 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 47 ++++++++++++++++++++++++++---
+ 1 file changed, 43 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 26aadc2ae3be..199d608aa763 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -14,6 +14,20 @@ static void dummy_rps_work(struct work_struct *wrk)
- {
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 4dcfae16a7ce..42275e25ea1b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -82,6 +82,8 @@ static void rps_enable_interrupts(struct intel_rps *rps)
+ 			  GEN6_PM_RP_DOWN_THRESHOLD |
+ 			  GEN6_PM_RP_DOWN_TIMEOUT);
+ 	WRITE_ONCE(rps->pm_events, events);
++	GT_TRACE(gt, "interrupts:on rps->pm_events: %x, rps_pm_mask:%x\n",
++		 events, rps_pm_mask(rps, rps->last_freq));
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
+@@ -140,6 +142,7 @@ static void rps_disable_interrupts(struct intel_rps *rps)
+ 	cancel_work_sync(&rps->work);
+ 
+ 	rps_reset_interrupts(rps);
++	GT_TRACE(gt, "interrupts:off\n");
  }
  
-+static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
-+{
-+	/* Flush any previous EI */
-+	usleep_range(timeout_us, 2 * timeout_us);
+ static const struct cparams {
+@@ -581,6 +584,10 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 	if (IS_VALLEYVIEW(i915))
+ 		goto skip_hw_write;
+ 
++	GT_TRACE(rps_to_gt(rps),
++		 "changing power mode [%d], up %d%% @ %dus, down %d%% @ %dus\n",
++		 new_power, threshold_up, ei_up, threshold_down, ei_down);
 +
-+	/* Reset the interrupt status */
-+	rps_disable_interrupts(rps);
-+	GEM_BUG_ON(rps->pm_iir);
-+	rps_enable_interrupts(rps);
+ 	set(uncore, GEN6_RP_UP_EI, GT_INTERVAL_FROM_US(i915, ei_up));
+ 	set(uncore, GEN6_RP_UP_THRESHOLD,
+ 	    GT_INTERVAL_FROM_US(i915, ei_up * threshold_up / 100));
+@@ -645,6 +652,8 @@ static void gen6_rps_set_thresholds(struct intel_rps *rps, u8 val)
+ 
+ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive)
+ {
++	GT_TRACE(rps_to_gt(rps), "mark interactive: %s\n", yesno(interactive));
 +
-+	/* And then wait for the timeout, for real this time */
-+	usleep_range(2 * timeout_us, 3 * timeout_us);
-+}
+ 	mutex_lock(&rps->power.mutex);
+ 	if (interactive) {
+ 		if (!rps->power.interactive++ && READ_ONCE(rps->active))
+@@ -672,6 +681,9 @@ static int gen6_rps_set(struct intel_rps *rps, u8 val)
+ 			 GEN6_AGGRESSIVE_TURBO);
+ 	set(uncore, GEN6_RPNSWREQ, swreq);
+ 
++	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d, swreq:%x\n",
++		 val, intel_gpu_freq(rps, val), swreq);
 +
- static int __rps_up_interrupt(struct intel_rps *rps,
- 			      struct intel_engine_cs *engine,
- 			      struct igt_spinner *spin)
-@@ -28,7 +42,6 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	intel_gt_pm_wait_for_idle(engine->gt);
- 	GEM_BUG_ON(rps->active);
+ 	return 0;
+ }
  
--	rps->pm_iir = 0;
- 	rps->cur_freq = rps->min_freq;
+@@ -684,6 +696,9 @@ static int vlv_rps_set(struct intel_rps *rps, u8 val)
+ 	err = vlv_punit_write(i915, PUNIT_REG_GPU_FREQ_REQ, val);
+ 	vlv_punit_put(i915);
  
- 	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
-@@ -71,7 +84,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_UP_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
++	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d\n",
++		 val, intel_gpu_freq(rps, val));
++
+ 	return err;
+ }
  
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
- 	GEM_BUG_ON(i915_request_completed(rq));
+@@ -717,6 +732,8 @@ void intel_rps_unpark(struct intel_rps *rps)
+ 	if (!rps->enabled)
+ 		return;
  
- 	igt_spinner_end(spin);
-@@ -122,16 +135,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_DOWN_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
++	GT_TRACE(rps_to_gt(rps), "unpark:%x\n", rps->cur_freq);
++
+ 	/*
+ 	 * Use the user's desired frequency as a guide, but for better
+ 	 * performance, jump directly to RPe as our starting frequency.
+@@ -784,6 +801,8 @@ void intel_rps_park(struct intel_rps *rps)
+ 	 */
+ 	rps->cur_freq =
+ 		max_t(int, round_down(rps->cur_freq - 1, 2), rps->min_freq);
++
++	GT_TRACE(rps_to_gt(rps), "park:%x\n", rps->cur_freq);
+ }
  
--	/* Flush any previous EI */
--	usleep_range(timeout, 2 * timeout);
--
--	/* Reset the interrupt status */
--	rps_disable_interrupts(rps);
--	GEM_BUG_ON(rps->pm_iir);
--	rps_enable_interrupts(rps);
--
--	/* And then wait for the timeout, for real this time */
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
+ void intel_rps_boost(struct i915_request *rq)
+@@ -800,6 +819,9 @@ void intel_rps_boost(struct i915_request *rq)
+ 	    !dma_fence_is_signaled_locked(&rq->fence)) {
+ 		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
  
- 	if (rps->cur_freq != rps->max_freq) {
- 		pr_err("%s: Frequency unexpectedly changed [down], now %d!\n",
++		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
++			 rq->fence.context, rq->fence.seqno);
++
+ 		if (!atomic_fetch_inc(&rps->num_waiters) &&
+ 		    READ_ONCE(rps->cur_freq) < rps->boost_freq)
+ 			schedule_work(&rps->work);
+@@ -895,6 +917,7 @@ static void gen6_rps_init(struct intel_rps *rps)
+ static bool rps_reset(struct intel_rps *rps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
++
+ 	/* force a reset */
+ 	rps->power.mode = -1;
+ 	rps->last_freq = -1;
+@@ -1215,11 +1238,17 @@ void intel_rps_enable(struct intel_rps *rps)
+ 	if (!rps->enabled)
+ 		return;
+ 
+-	drm_WARN_ON(&i915->drm, rps->max_freq < rps->min_freq);
+-	drm_WARN_ON(&i915->drm, rps->idle_freq > rps->max_freq);
++	GT_TRACE(rps_to_gt(rps),
++		 "min:%x, max:%x, freq:[%d, %d]\n",
++		 rps->min_freq, rps->max_freq,
++		 intel_gpu_freq(rps, rps->min_freq),
++		 intel_gpu_freq(rps, rps->max_freq));
++
++	GEM_BUG_ON(rps->max_freq < rps->min_freq);
++	GEM_BUG_ON(rps->idle_freq > rps->max_freq);
+ 
+-	drm_WARN_ON(&i915->drm, rps->efficient_freq < rps->min_freq);
+-	drm_WARN_ON(&i915->drm, rps->efficient_freq > rps->max_freq);
++	GEM_BUG_ON(rps->efficient_freq < rps->min_freq);
++	GEM_BUG_ON(rps->efficient_freq > rps->max_freq);
+ }
+ 
+ static void gen6_rps_disable(struct intel_rps *rps)
+@@ -1487,6 +1516,12 @@ static void rps_work(struct work_struct *work)
+ 	max = rps->max_freq_softlimit;
+ 	if (client_boost)
+ 		max = rps->max_freq;
++
++	GT_TRACE(gt,
++		 "pm_iir:%x, client_boost:%s, last:%d, cur:%x, min:%x, max:%x\n",
++		 pm_iir, yesno(client_boost),
++		 adj, new_freq, min, max);
++
+ 	if (client_boost && new_freq < rps->boost_freq) {
+ 		new_freq = rps->boost_freq;
+ 		adj = 0;
+@@ -1561,6 +1596,8 @@ void gen11_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	if (unlikely(!events))
+ 		return;
+ 
++	GT_TRACE(gt, "irq events:%x\n", events);
++
+ 	gen6_gt_pm_mask_irq(gt, events);
+ 
+ 	rps->pm_iir |= events;
+@@ -1576,6 +1613,8 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	if (events) {
+ 		spin_lock(&gt->irq_lock);
+ 
++		GT_TRACE(gt, "irq events:%x\n", events);
++
+ 		gen6_gt_pm_mask_irq(gt, events);
+ 		rps->pm_iir |= events;
+ 
 -- 
 2.20.1
 
