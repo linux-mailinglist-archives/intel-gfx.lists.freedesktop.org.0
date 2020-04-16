@@ -2,38 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EF31ACE50
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 19:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 811C11ACE60
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 19:07:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2E136E4E8;
-	Thu, 16 Apr 2020 17:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD3C96E400;
+	Thu, 16 Apr 2020 17:07:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D956E4A5;
- Thu, 16 Apr 2020 17:04:24 +0000 (UTC)
-IronPort-SDR: AtwD1cv02VZT5EinOBMNs/HOInwby06hlHwlCIOpP2L4z07JXkTH74RBugRY81RXr1c55nggK2
- sFTAl8uOyR3A==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B58446E400
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 17:07:16 +0000 (UTC)
+IronPort-SDR: KS1B+E8yajSWkTIwOHzgdYRVhmMQte9bybKRIwh3e5/R2FUCB5aZme4ZSD3sl7uM0LgwtCvWnz
+ GMADeqTCzJYA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2020 10:04:23 -0700
-IronPort-SDR: CHlCpPPTn0wP84hCQFbtidgGiD3xrJB8aLRxv3YCNK+vUaNWxQe/io2+hmePQGg7C1FALNcyqo
- SKp8Y1qqAmWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,391,1580803200"; d="scan'208";a="277385993"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 16 Apr 2020 10:04:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Apr 2020 20:04:20 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 16 Apr 2020 20:04:20 +0300
-Message-Id: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 10:07:16 -0700
+IronPort-SDR: /LZ+8PgGC4SFninuTxjNvz8W4HoD9mNPrcyiNY26K3tIDpK1NZsj2Qnc7lLes2ltgV/vG+VfhD
+ wP/a94K9Qcug==
+X-IronPort-AV: E=Sophos;i="5.72,391,1580803200"; d="scan'208";a="427904050"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 10:07:14 -0700
+Date: Thu, 16 Apr 2020 20:06:55 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200416170655.GB2764@ideak-desk.fi.intel.com>
+References: <20200415191408.82574-1-jose.souza@intel.com>
+ <20200416164219.GA2764@ideak-desk.fi.intel.com>
+ <83eab7901b73aa15de69d02843fd40557b4e7024.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
+Content-Disposition: inline
+In-Reply-To: <83eab7901b73aa15de69d02843fd40557b4e7024.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Add missing deinitialization
+ cases of load failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,54 +50,261 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
-dmVydCBiYWNrIHRvIGNvbXBhcmluZyBmYi0+Zm9ybWF0LT5mb3JtYXQgaW5zdGVhZCBmYi0+Zm9y
-bWF0IGZvciB0aGUKcGFnZSBmbGlwIGlvY3RsLiBUaGlzIGNoZWNrIHdhcyBvcmlnaW5hbGx5IG9u
-bHkgaGVyZSB0byBkaXNhbGxvdyBwaXhlbApmb3JtYXQgY2hhbmdlcywgYnV0IHdoZW4gd2UgY2hh
-bmdlZCBpdCB0byBkbyB0aGUgcG9pbnRlciBjb21wYXJpc29uCndlIHBvdGVudGlhbGx5IHN0YXJ0
-ZWQgdG8gcmVqZWN0IHNvbWUgKGJ1dCBkZWZpbml0ZWx5IG5vdCBhbGwpIG1vZGlmaWVyCmNoYW5n
-ZXMgYXMgd2VsbC4gSW4gZmFjdCB0aGUgY3VycmVudCBiZWhhdmlvdXIgZGVwZW5kcyBvbiB3aGV0
-aGVyIHRoZQpkcml2ZXIgb3ZlcnJpZGVzIHRoZSBmb3JtYXQgaW5mbyBmb3IgYSBzcGVjaWZpYyBm
-b3JtYXQrbW9kaWZpZXIgY29tYm8uCkVnLiBvbiBpOTE1IHRoaXMgbm93IHJlamVjdHMgY29tcHJl
-c3Npb24gdnMuIG5vIGNvbXByZXNzaW9uIGNoYW5nZXMgYnV0CmRvZXMgbm90IHJlamVjdCBhbnkg
-b3RoZXIgdGlsaW5nIGNoYW5nZXMuIFRoYXQncyBqdXN0IGluY29uc2lzdGVudApub25zZW5zZS4K
-ClRoZSBtYWluIHJlYXNvbiB3ZSBoYXZlIHRvIGdvIGJhY2sgdG8gdGhlIG9sZCBiZWhhdmlvdXIg
-aXMgdG8gZml4IHBhZ2UKZmxpcHBpbmcgd2l0aCBYb3JnLiBBdCBzb21lIHBvaW50IFhvcmcgZ290
-IGl0cyBhdG9taWMgcmlnaHRzIHRha2VuIGF3YXkKYW5kIHNpbmNlIHRoZW4gd2UgY2FuJ3QgcGFn
-ZSBmbGlwIGJldHdlZW4gY29tcHJlc3NlZCBhbmQgbm9uLWNvbXByZXNzZWQKZmJzIG9uIGk5MTUu
-IEN1cnJlbnRseSB3ZSBnZXQgbm8gcGFnZSBmbGlwcGluZyBmb3IgYW55IGdhbWVzIHByZXR0eSBt
-dWNoCnNpbmNlIE1lc2EgbGlrZXMgdG8gdXNlIGNvbXByZXNzZWQgYnVmZmVycy4gTm90IHN1cmUg
-aG93IGNvbXBvc2l0b3JzIGFyZQp3b3JraW5nIGFyb3VuZCB0aGlzIChkb24ndCB1c2Ugb25lIG15
-c2VsZikuIEkgZ3Vlc3MgdGhleSBtdXN0IGJlIGRvaW5nCnNvbWV0aGluZyB0byBnZXQgbm9uLWNv
-bXByZXNzZWQgYnVmZmVycyBpbnN0ZWFkLiBFaXRoZXIgdGhhdCBvcgpzb21laG93IG5vIG9uZSBu
-b3RpY2VkIHRoZSB0ZWFyaW5nIGZyb20gdGhlIGJsaXQgZmFsbGJhY2suCgpMb29raW5nIGJhY2sg
-YXQgdGhlIG9yaWdpbmFsIGRpc2N1c3Npb24gb24gdGhpcyBjaGFuZ2Ugd2UgcHJldHR5IG11Y2gK
-anVzdCBkaWQgaXQgaW4gdGhlIG5hbWUgb2Ygc2tpcHBpbmcgYSBmZXcgZXh0cmEgcG9pbnRlciBk
-ZXJlZmVyZW5jZXMuCkhvd2V2ZXIsIEkndmUgZGVjaWRlZCBub3QgdG8gcmV2ZXJ0IHRoZSB3aG9s
-ZSB0aGluZyBpbiBjYXNlIHNvbWVvbmUKaGFzIHNpbmNlIHN0YXJ0ZWQgdG8gZGVwZW5kIG9uIHRo
-ZXNlIGNoYW5nZXMuIE5vbmUgb2YgdGhlIG90aGVyIGNoZWNrcwphcmUgcmVsZXZhbnQgZm9yIGk5
-MTUgYW55d2F5cy4KCkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCkNjOiBMYXVyZW50IFBpbmNo
-YXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+CkZpeGVzOiBkYmQ0ZDU3NjFl
-MWYgKCJkcm06IFJlcGxhY2UgJ2Zvcm1hdC0+Zm9ybWF0JyBjb21wYXJpc29ucyB0byBqdXN0ICdm
-b3JtYXQnIGNvbXBhcmlzb25zIikKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX3BsYW5l
-LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vZHJtX3BsYW5lLmMKaW5kZXggZDZhZDYwYWIwZDM4Li5mMmNhNTMxNWYyM2IgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
-X3BsYW5lLmMKQEAgLTExNTMsNyArMTE1Myw3IEBAIGludCBkcm1fbW9kZV9wYWdlX2ZsaXBfaW9j
-dGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKIAlpZiAocmV0KQogCQlnb3RvIG91dDsKIAotCWlm
-IChvbGRfZmItPmZvcm1hdCAhPSBmYi0+Zm9ybWF0KSB7CisJaWYgKG9sZF9mYi0+Zm9ybWF0LT5m
-b3JtYXQgIT0gZmItPmZvcm1hdC0+Zm9ybWF0KSB7CiAJCURSTV9ERUJVR19LTVMoIlBhZ2UgZmxp
-cCBpcyBub3QgYWxsb3dlZCB0byBjaGFuZ2UgZnJhbWUgYnVmZmVyIGZvcm1hdC5cbiIpOwogCQly
-ZXQgPSAtRUlOVkFMOwogCQlnb3RvIG91dDsKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, Apr 16, 2020 at 08:03:39PM +0300, Souza, Jose wrote:
+> On Thu, 2020-04-16 at 19:42 +0300, Imre Deak wrote:
+> > On Wed, Apr 15, 2020 at 12:14:08PM -0700, Jos=E9 Roberto de Souza
+> > wrote:
+> > > The intel_display_power_put_async() used in TC cold sequences made
+> > > easy to hit the missing deinitialization of driver in case of load
+> > > failure as seen in the stack trace bellow.
+> > > =
+
+> > > intel_modeset_driver_remove_noirq() had to be removed from
+> > > i915_driver_modeset_remove_noirq() as those are different
+> > > initialialition steps with IRQ and GEM initialization in between
+> > > then.
+> > > =
+
+> > > [drm:__intel_engine_init_ctx_wa [i915]] Initialized 3 context
+> > > workarounds on rcs'0
+> > > [drm:__i915_inject_probe_error [i915]] Injecting failure -19 at
+> > > checkpoint 36 [__uc_init:294]
+> > > [drm:i915_hdcp_component_unbind [i915]] I915 HDCP comp unbind
+> > > [drm:edp_panel_vdd_off_sync [i915]] Turning [ENCODER:275:DDI A] VDD
+> > > off
+> > > [drm:edp_panel_vdd_off_sync [i915]] PP_STATUS: 0x00000000
+> > > PP_CONTROL: 0x00000060
+> > > [drm:intel_power_well_disable [i915]] disabling AUX A
+> > > general protection fault, probably for non-canonical address
+> > > 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
+> > > CPU: 3 PID: 1142 Comm: kworker/u16:20 Tainted:
+> > > G     U            5.6.0-CI-Patchwork_17226+ #1
+> > > Hardware name: Intel Corporation Tiger Lake Client
+> > > Platform/TigerLake U DDR4 SODIMM RVP, BIOS
+> > > TGLSFWI1.R00.2457.A16.1912270059 12/27/2019
+> > > Workqueue: events_unbound intel_display_power_put_async_work [i915]
+> > > RIP: 0010:__intel_display_power_put_domain+0xa5/0x180 [i915]
+> > > Code: 48 85 c0 78 54 44 89 e1 41 bd 01 00 00 00 49 c7 c4 80 44 41
+> > > a0 49 d3 e5 eb 0d 48 83 eb 10 48 3b 9d 08 ad 00 00 78 32 48 8b 03
+> > > <4c> 85 68 10 74 ea 8b 53 08 85 d2 74 2d 83 ea 01 85 d2 89 53 08 75
+> > > RSP: 0018:ffffc9000061fdb0 EFLAGS: 00010206
+> > > RAX: 6b6b6b6b6b6b6b6b RBX: ffff8884948f5df0 RCX: 000000000000003d
+> > > RDX: 0000000080000001 RSI: 0000000000000000 RDI: 0000000000000000
+> > > RBP: ffff888479be0000 R08: ffff88849a180920 R09: 0000000000000000
+> > > R10: 0000000000000000 R11: 0000000000000000 R12: ffffffffa0414480
+> > > R13: 2000000000000000 R14: ffff888479beb320 R15: 2000000000000000
+> > > FS:  0000000000000000(0000) GS:ffff88849ff80000(0000)
+> > > knlGS:0000000000000000
+> > > CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > > CR2: 00005634fa8ed670 CR3: 0000000005610004 CR4: 0000000000760ee0
+> > > PKRU: 55555554
+> > > Call Trace:
+> > >  release_async_put_domains+0x9b/0x110 [i915]
+> > >  intel_display_power_put_async_work+0x91/0xf0 [i915]
+> > >  process_one_work+0x260/0x600
+> > >  ? worker_thread+0xc9/0x380
+> > >  worker_thread+0x37/0x380
+> > >  ? process_one_work+0x600/0x600
+> > >  kthread+0x119/0x130
+> > >  ? kthread_park+0x80/0x80
+> > >  ret_from_fork+0x24/0x50
+> > > Modules linked in: i915(+) vgem snd_hda_codec_hdmi mei_hdcp
+> > > x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul
+> > > cdc_ether usbnet mii snd_intel_dspcfg ghash_clmulni_intel
+> > > snd_hda_codec snd_hwdep snd_hda_core e1000e ptp mei_me snd_pcm
+> > > pps_core mei intel_lpss_pci prime_numbers [last unloaded: i915]
+> > > ---[ end trace b402d1b4060f8b97 ]---
+> > > BUG: sleeping function called from invalid context at
+> > > kernel/sched/completion.c:99
+> > > in_atomic(): 0, irqs_disabled(): 0, non_block: 0, pid: 1142, name:
+> > > kworker/u16:20
+> > > INFO: lockdep is turned off.
+> > > Preemption disabled at:
+> > > [<0000000000000000>] 0x0
+> > > CPU: 3 PID: 1142 Comm: kworker/u16:20 Tainted:
+> > > G     UD           5.6.0-CI-Patchwork_17226+ #1
+> > > Hardware name: Intel Corporation Tiger Lake Client
+> > > Platform/TigerLake U DDR4 SODIMM RVP, BIOS
+> > > TGLSFWI1.R00.2457.A16.1912270059 12/27/2019
+> > > Workqueue: events_unbound intel_display_power_put_async_work [i915]
+> > > Call Trace:
+> > >  dump_stack+0x71/0x9b
+> > >  ___might_sleep+0x178/0x260
+> > >  wait_for_completion+0x37/0x1a0
+> > >  virt_efi_query_variable_info+0x161/0x1b0
+> > >  efi_query_variable_store+0xb3/0x1a0
+> > >  ? efivar_entry_set_safe+0x19c/0x220
+> > >  efivar_entry_set_safe+0x19c/0x220
+> > >  ? efi_pstore_write+0x10b/0x150
+> > >  ? efi_pstore_write+0xa0/0x150
+> > >  efi_pstore_write+0x10b/0x150
+> > >  pstore_dump+0x123/0x340
+> > >  kmsg_dump+0x87/0x1b0
+> > >  oops_end+0x3e/0x90
+> > >  do_general_protection+0x1c3/0x2f0
+> > >  general_protection+0x2d/0x40
+> > > RIP: 0010:__intel_display_power_put_domain+0xa5/0x180 [i915]
+> > > Code: 48 85 c0 78 54 44 89 e1 41 bd 01 00 00 00 49 c7 c4 80 44 41
+> > > a0 49 d3 e5 eb 0d 48 83 eb 10 48 3b 9d 08 ad 00 00 78 32 48 8b 03
+> > > <4c> 85 68 10 74 ea 8b 53 08 85 d2 74 2d 83 ea 01 85 d2 89 53 08 75
+> > > RSP: 0018:ffffc9000061fdb0 EFLAGS: 00010206
+> > > RAX: 6b6b6b6b6b6b6b6b RBX: ffff8884948f5df0 RCX: 000000000000003d
+> > > RDX: 0000000080000001 RSI: 0000000000000000 RDI: 0000000000000000
+> > > RBP: ffff888479be0000 R08: ffff88849a180920 R09: 0000000000000000
+> > > R10: 0000000000000000 R11: 0000000000000000 R12: ffffffffa0414480
+> > > R13: 2000000000000000 R14: ffff888479beb320 R15: 2000000000000000
+> > >  release_async_put_domains+0x9b/0x110 [i915]
+> > >  intel_display_power_put_async_work+0x91/0xf0 [i915]
+> > >  process_one_work+0x260/0x600
+> > >  ? worker_thread+0xc9/0x380
+> > >  worker_thread+0x37/0x380
+> > >  ? process_one_work+0x600/0x600
+> > >  kthread+0x119/0x130
+> > >  ? kthread_park+0x80/0x80
+> > >  ret_from_fork+0x24/0x50
+> > > ------------[ cut here ]------------
+> > > WARNING: CPU: 3 PID: 1142 at kernel/rcu/tree_plugin.h:293
+> > > rcu_note_context_switch+0x87/0x650
+> > > Modules linked in: i915(+) vgem snd_hda_codec_hdmi mei_hdcp
+> > > x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul
+> > > cdc_ether usbnet mii snd_intel_dspcfg ghash_clmulni_intel
+> > > snd_hda_codec snd_hwdep snd_hda_core e1000e ptp mei_me snd_pcm
+> > > pps_core mei intel_lpss_pci prime_numbers [last unloaded: i915]
+> > > =
+
+> > > v2:
+> > > - fixed handling in case of failure in drm_vblank_init()
+> > > - moved i915_gem_driver_remove() call to before
+> > > i915_driver_modeset_remove_noirq() this match initialization order
+> > > too
+> > > =
+
+> > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1647
+> > > Cc: Imre Deak <imre.deak@intel.com>
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_drv.c | 20 ++++++++++++--------
+> > >  1 file changed, 12 insertions(+), 8 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.c
+> > > b/drivers/gpu/drm/i915/i915_drv.c
+> > > index 641f5e03b661..e31535744060 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > > @@ -228,7 +228,7 @@ static int
+> > > i915_driver_modeset_probe_noirq(struct drm_i915_private *i915)
+> > >  		ret =3D drm_vblank_init(&i915->drm,
+> > >  				      INTEL_NUM_PIPES(i915));
+> > >  		if (ret)
+> > > -			goto out;
+> > > +			return ret;
+> > >  	}
+> > >  =
+
+> > >  	intel_bios_init(i915);
+> > > @@ -248,8 +248,11 @@ static int
+> > > i915_driver_modeset_probe_noirq(struct drm_i915_private *i915)
+> > >  	return 0;
+> > >  =
+
+> > >  cleanup_vga_client:
+> > > +	intel_csr_ucode_fini(i915);
+> > > +	intel_power_domains_driver_remove(i915);
+> > >  	intel_vga_unregister(i915);
+> > >  out:
+> > > +	intel_bios_driver_remove(i915);
+> > >  	return ret;
+> > >  }
+> > >  =
+
+> > > @@ -308,13 +311,13 @@ static void i915_driver_modeset_remove(struct
+> > > drm_i915_private *i915)
+> > >  /* part #2: call after irq uninstall */
+> > >  static void i915_driver_modeset_remove_noirq(struct
+> > > drm_i915_private *i915)
+> > >  {
+> > > -	intel_modeset_driver_remove_noirq(i915);
+> > > +	intel_csr_ucode_fini(i915);
+> > >  =
+
+> > > -	intel_bios_driver_remove(i915);
+> > > +	intel_power_domains_driver_remove(i915);
+> > >  =
+
+> > >  	intel_vga_unregister(i915);
+> > >  =
+
+> > > -	intel_csr_ucode_fini(i915);
+> > > +	intel_bios_driver_remove(i915);
+> > >  }
+> > >  =
+
+> > >  static void intel_init_dpio(struct drm_i915_private *dev_priv)
+> > > @@ -992,7 +995,7 @@ int i915_driver_probe(struct pci_dev *pdev,
+> > > const struct pci_device_id *ent)
+> > >  out_cleanup_irq:
+> > >  	intel_irq_uninstall(i915);
+> > >  out_cleanup_modeset:
+> > > -	/* FIXME */
+> > > +	i915_driver_modeset_remove_noirq(i915);
+> > >  out_cleanup_hw:
+> > >  	i915_driver_hw_remove(i915);
+> > >  	intel_memory_regions_driver_release(i915);
+> > > @@ -1029,12 +1032,13 @@ void i915_driver_remove(struct
+> > > drm_i915_private *i915)
+> > >  =
+
+> > >  	intel_irq_uninstall(i915);
+> > >  =
+
+> > > -	i915_driver_modeset_remove_noirq(i915);
+> > > +	intel_modeset_driver_remove_noirq(i915);
+> > >  =
+
+> > > -	i915_reset_error_state(i915);
+> > =
+
+> > Moving the above later looks unrelated to this patch. The rest looks
+> > ok
+> > to me.
+> =
+
+> i915_reset_error_state()? What is moving is things around it.
+
+The order of i915_reset_error_state() and i915_gem_driver_remove() is
+swapped now, which is an unrelated change.
+
+> > =
+
+> > >  	i915_gem_driver_remove(i915);
+> > >  =
+
+> > > -	intel_power_domains_driver_remove(i915);
+> > > +	i915_driver_modeset_remove_noirq(i915);
+> > > +
+> > > +	i915_reset_error_state(i915);
+> > >  =
+
+> > >  	i915_driver_hw_remove(i915);
+> > >  =
+
+> > > -- =
+
+> > > 2.26.1
+> > > =
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
