@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44E981AB4D8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 02:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D8A1AB570
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 03:25:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 400986E200;
-	Thu, 16 Apr 2020 00:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237816EAC2;
+	Thu, 16 Apr 2020 01:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 31BB56E200;
- Thu, 16 Apr 2020 00:41:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2195BA47E2;
- Thu, 16 Apr 2020 00:41:12 +0000 (UTC)
+X-Greylist: delayed 85139 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Apr 2020 01:25:29 UTC
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C806E05D;
+ Thu, 16 Apr 2020 01:25:28 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 492hNz2ng9z9sR4;
+ Thu, 16 Apr 2020 11:25:22 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1587000326;
+ bh=x3lpdVUepnNgZQf7tZXXTh4P8pqMEPhXHfvV9QGBu1U=;
+ h=Date:From:To:Cc:Subject:From;
+ b=adEKi4mPSl/DAn2aUbOCZMdSE75cWBVRHEAU51KWKVgEG1SUS72HmOhiZC3QTreNL
+ qmrRl+1bzt/zWkI8XD9bawy4JMtDEl0t5FaQhRszwGe2oljGGJuX38qLJJpa8uY00f
+ H6lv8aUrKkKCmEFUIigNqU3V9shsiPxFoKKbWMD+/B0aYtAdsTPK7taD0gcGEnHtLH
+ i9GTQAPJzzoiLSJNxNCv1Z+wQpKNGpvFalFbQqQNl2LlcZkJFj9LChegocfuaFalDo
+ 81g40isLTiPIu/idFHaXeZv4Dk3xmPacjtt3/+s2GrTWkbOP8Aa3yDmk1MBcgqb1KA
+ xHRKx9ZKXBizw==
+Date: Thu, 16 Apr 2020 11:25:19 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200416112519.7a1fdd8b@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 16 Apr 2020 00:41:12 -0000
-Message-ID: <158699767210.20886.1341308547183489373@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200415233435.3064257-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200415233435.3064257-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/tgl=3A_TBT_AUX_should_use_?=
- =?utf-8?q?TC_power_well_ops?=
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +50,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Joe Perches <joe@perches.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0839622330=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============0839622330==
+Content-Type: multipart/signed; boundary="Sig_/9prFsjk7hua=0QSd8qYIwww";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: series starting with [1/2] drm/i915/tgl: TBT AUX should use TC power well ops
-URL   : https://patchwork.freedesktop.org/series/75998/
-State : success
+--Sig_/9prFsjk7hua=0QSd8qYIwww
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-CI Bug Log - changes from CI_DRM_8305 -> Patchwork_17319
-====================================================
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
-Summary
--------
+  MAINTAINERS
 
-  **SUCCESS**
+between commits:
 
-  No regressions found.
+  4400b7d68f6e ("MAINTAINERS: sort entries by entry name")
+  3b50142d8528 ("MAINTAINERS: sort field names for all entries")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17319/index.html
+from Linus' tree and commits:
 
-Known issues
-------------
+  5304058b1526 ("dt-bindings: display: convert arm,versatile-tft-panel to D=
+T Schema")
+  c1eb28405d3a ("dt-bindings: display: convert boe,himax8279d to DT Schema")
+  1aa3bf853cb4 ("dt-bindings: display: convert raydium,rm67191 to DT Schema=
+")
+  8b9e7ace123d ("dt-bindings: display: convert olimex,lcd-olinuxino to DT S=
+chema")
 
-  Here are the changes found in Patchwork_17319 that come from known issues:
+from the drm-misc tree.
 
-### IGT changes ###
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-#### Issues hit ####
+--=20
+Cheers,
+Stephen Rothwell
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [PASS][1] -> [SKIP][2] ([fdo#109271]) +20 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8305/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17319/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+diff --cc MAINTAINERS
+index a7f3c96eb61e,ccd0ccfce4eb..000000000000
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@@ -5037,14 -5019,32 +5037,14 @@@ M:	Sumit Semwal <sumit.semwal@linaro.or
+  L:	linux-media@vger.kernel.org
+  L:	dri-devel@lists.freedesktop.org
+  L:	linaro-mm-sig@lists.linaro.org (moderated for non-subscribers)
+ +S:	Maintained
+ +T:	git git://anongit.freedesktop.org/drm/drm-misc
+ +F:	Documentation/driver-api/dma-buf.rst
+  F:	drivers/dma-buf/
+ +F:	include/linux/*fence.h
+  F:	include/linux/dma-buf*
+  F:	include/linux/dma-resv.h
+- K:	dma_(buf|fence|resv)
+ -F:	include/linux/*fence.h
+ -F:	Documentation/driver-api/dma-buf.rst
++ K:	\bdma_(?:buf|fence|resv)\b
+ -T:	git git://anongit.freedesktop.org/drm/drm-misc
+ -
+ -DMA-BUF HEAPS FRAMEWORK
+ -M:	Sumit Semwal <sumit.semwal@linaro.org>
+ -R:	Andrew F. Davis <afd@ti.com>
+ -R:	Benjamin Gaignard <benjamin.gaignard@linaro.org>
+ -R:	Liam Mark <lmark@codeaurora.org>
+ -R:	Laura Abbott <labbott@redhat.com>
+ -R:	Brian Starkey <Brian.Starkey@arm.com>
+ -R:	John Stultz <john.stultz@linaro.org>
+ -S:	Maintained
+ -L:	linux-media@vger.kernel.org
+ -L:	dri-devel@lists.freedesktop.org
+ -L:	linaro-mm-sig@lists.linaro.org (moderated for non-subscribers)
+ -F:	include/uapi/linux/dma-heap.h
+ -F:	include/linux/dma-heap.h
+ -F:	drivers/dma-buf/dma-heap.c
+ -F:	drivers/dma-buf/heaps/*
+ -T:	git git://anongit.freedesktop.org/drm/drm-misc
+ =20
+  DMA GENERIC OFFLOAD ENGINE SUBSYSTEM
+  M:	Vinod Koul <vkoul@kernel.org>
+@@@ -5255,10 -5226,15 +5255,10 @@@ F:	drivers/gpu/drm/pl111
+ =20
+  DRM DRIVER FOR ARM VERSATILE TFT PANELS
+  M:	Linus Walleij <linus.walleij@linaro.org>
+ -T:	git git://anongit.freedesktop.org/drm/drm-misc
+  S:	Maintained
+ -F:	drivers/gpu/drm/panel/panel-arm-versatile.c
+ +T:	git git://anongit.freedesktop.org/drm/drm-misc
+- F:	Documentation/devicetree/bindings/display/panel/arm,versatile-tft-pane=
+l.txt
++ F:	Documentation/devicetree/bindings/display/panel/arm,versatile-tft-pane=
+l.yaml
+ -
+ -DRM DRIVER FOR AST SERVER GRAPHICS CHIPS
+ -M:	Dave Airlie <airlied@redhat.com>
+ -S:	Odd Fixes
+ -F:	drivers/gpu/drm/ast/
+ +F:	drivers/gpu/drm/panel/panel-arm-versatile.c
+ =20
+  DRM DRIVER FOR ASPEED BMC GFX
+  M:	Joel Stanley <joel@jms.id.au>
+@@@ -5283,8 -5254,8 +5283,8 @@@ F:	drivers/gpu/drm/bochs
+  DRM DRIVER FOR BOE HIMAX8279D PANELS
+  M:	Jerry Han <hanxu5@huaqin.corp-partner.google.com>
+  S:	Maintained
+- F:	Documentation/devicetree/bindings/display/panel/boe,himax8279d.txt
+ -F:	drivers/gpu/drm/panel/panel-boe-himax8279d.c
++ F:	Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
+ +F:	drivers/gpu/drm/panel/panel-boe-himax8279d.c
+ =20
+  DRM DRIVER FOR FARADAY TVE200 TV ENCODER
+  M:	Linus Walleij <linus.walleij@linaro.org>
+@@@ -5301,8 -5272,8 +5301,8 @@@ F:	drivers/gpu/drm/panel/panel-feixin-k
+  DRM DRIVER FOR FEIYANG FY07024DI26A30-D MIPI-DSI LCD PANELS
+  M:	Jagan Teki <jagan@amarulasolutions.com>
+  S:	Maintained
+- F:	Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30=
+d.txt
+ -F:	drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
++ F:	Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30=
+d.yaml
+ +F:	drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
+ =20
+  DRM DRIVER FOR GRAIN MEDIA GM12U320 PROJECTORS
+  M:	Hans de Goede <hdegoede@redhat.com>
+@@@ -5384,8 -5355,8 +5384,8 @@@ F:	include/uapi/drm/nouveau_drm.
+  DRM DRIVER FOR OLIMEX LCD-OLINUXINO PANELS
+  M:	Stefan Mavrodiev <stefan@olimex.com>
+  S:	Maintained
+- F:	Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.t=
+xt
+ -F:	drivers/gpu/drm/panel/panel-olimex-lcd-olinuxino.c
++ F:	Documentation/devicetree/bindings/display/panel/olimex,lcd-olinuxino.y=
+aml
+ +F:	drivers/gpu/drm/panel/panel-olimex-lcd-olinuxino.c
+ =20
+  DRM DRIVER FOR PERVASIVE DISPLAYS REPAPER PANELS
+  M:	Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+@@@ -5418,12 -5395,6 +5418,12 @@@ S:	Orphan / Obsolet
+  F:	drivers/gpu/drm/r128/
+  F:	include/uapi/drm/r128_drm.h
+ =20
+ +DRM DRIVER FOR RAYDIUM RM67191 PANELS
+ +M:	Robert Chiras <robert.chiras@nxp.com>
+ +S:	Maintained
+- F:	Documentation/devicetree/bindings/display/panel/raydium,rm67191.txt
+++F:	Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+ +F:	drivers/gpu/drm/panel/panel-raydium-rm67191.c
+ +
+  DRM DRIVER FOR ROCKTECH JH057N00900 PANELS
+  M:	Guido G=C3=BCnther <agx@sigxcpu.org>
+  R:	Purism Kernel Team <kernel@puri.sm>
+@@@ -5441,18 -5412,18 +5441,18 @@@ S:	Orphan / Obsolet
+  F:	drivers/gpu/drm/sis/
+  F:	include/uapi/drm/sis_drm.h
+ =20
+ -DRM DRIVER FOR SITRONIX ST7701 PANELS
+ -M:	Jagan Teki <jagan@amarulasolutions.com>
+ -S:	Maintained
+ -F:	drivers/gpu/drm/panel/panel-sitronix-st7701.c
+ -F:	Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+ -
+  DRM DRIVER FOR SITRONIX ST7586 PANELS
+  M:	David Lechner <david@lechnology.com>
+ -T:	git git://anongit.freedesktop.org/drm/drm-misc
+  S:	Maintained
+ -F:	drivers/gpu/drm/tiny/st7586.c
+ +T:	git git://anongit.freedesktop.org/drm/drm-misc
+  F:	Documentation/devicetree/bindings/display/sitronix,st7586.txt
+ +F:	drivers/gpu/drm/tiny/st7586.c
+ +
+ +DRM DRIVER FOR SITRONIX ST7701 PANELS
+ +M:	Jagan Teki <jagan@amarulasolutions.com>
+ +S:	Maintained
+- F:	Documentation/devicetree/bindings/display/panel/sitronix,st7701.txt
+++F:	Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+ +F:	drivers/gpu/drm/panel/panel-sitronix-st7701.c
+ =20
+  DRM DRIVER FOR SITRONIX ST7735R PANELS
+  M:	David Lechner <david@lechnology.com>
 
-  
-#### Warnings ####
+--Sig_/9prFsjk7hua=0QSd8qYIwww
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][3] ([fdo#109271]) -> [FAIL][4] ([i915#62])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8305/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17319/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+-----BEGIN PGP SIGNATURE-----
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6Xs/8ACgkQAVBC80lX
+0Gwacwf/W45yTeyMp54HAyhilFqoLAVJta3sJ7yPhY0ihcAiZaB9wOwmjPuLG4bW
+yum5ONzupXmrY8InFS+OLYZ7ScnW09guLLcBzfvyeDGK9+EglZ1XQEzWsCAH7PsH
+hFYt9/A/2enl49aZywuNscOkcvLAH1Mcxq1kGHyT1yq6rj9q9pDfUU4T6Le7dDgH
+Y9jMf4GBjQ0sVGyvKA4yVs4sOOJBi0as3lXdHR2sNkgURw1sG2XkK2YQhOx6yi1o
+Yj4WYZP8QAWNcqLiSzb5klM79fcZFXEoBzjwMo6nXN7GYNLs9O1gNC4ip6LKnpUz
+pp1qy98NsmihCl7rJmWiU1YBhA2Ufg==
+=aNN5
+-----END PGP SIGNATURE-----
 
+--Sig_/9prFsjk7hua=0QSd8qYIwww--
 
-Participating hosts (51 -> 45)
-------------------------------
+--===============0839622330==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8305 -> Patchwork_17319
-
-  CI-20190529: 20190529
-  CI_DRM_8305: 6f16366a3061bc52af7a7ab423b08cc8cb8bf039 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5591: f57b7fdbe8d04ce3edf0433a03c7d9d5c3d96680 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17319: 6e0eb59bceddb6427bad5934c8664b8c19f3765c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6e0eb59bcedd drm/i915: Use single set of AUX powerwell ops for gen11+
-91ebcb9b39b9 drm/i915/tgl: TBT AUX should use TC power well ops
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17319/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0839622330==--
