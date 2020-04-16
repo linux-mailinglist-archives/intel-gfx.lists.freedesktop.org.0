@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 378641AC067
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 13:56:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C47841AC074
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 13:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A74106EB48;
-	Thu, 16 Apr 2020 11:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863C66E2E9;
+	Thu, 16 Apr 2020 11:58:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F276EB48
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 11:56:19 +0000 (UTC)
-IronPort-SDR: JdJNHxvAC6s1h/nIhT/3BRIvyb/JvAbpdgqlDRTw7JT2uq39Dg2+T/OKTB2QMJePSbzo5rPB5F
- 3mcdsN6zIKWg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2020 04:56:19 -0700
-IronPort-SDR: MckjcOZUUjTcP/QHGKCJz2/GepWFnL9H++Se41jrVz1jzwBAB0TKBm08icoILg1eB17GMz0yc6
- PcM5oMJLVWpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,390,1580803200"; d="scan'208";a="332815059"
-Received: from pberdnik-mobl2.ccr.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.43.234])
- by orsmga001.jf.intel.com with ESMTP; 16 Apr 2020 04:56:16 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Apr 2020 14:56:11 +0300
-Message-Id: <20200416115611.211011-1-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.26.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3CC286E2E8;
+ Thu, 16 Apr 2020 11:58:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3435DA47EA;
+ Thu, 16 Apr 2020 11:58:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/perf: Enable application triggered
- OA reports
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Thu, 16 Apr 2020 11:58:10 -0000
+Message-ID: <158703829018.20887.14413232196190471531@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200416105419.9664-1-uma.shankar@intel.com>
+In-Reply-To: <20200416105419.9664-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Enable_DP_Display_Audio_WA_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,175 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Gen12 brought an important redesign of the OA unit, splitting it in 2
-with a per context part (OAR) and a global part (OAG).
+== Series Details ==
 
-OAR deals with per context counters and implements the
-MI_REPORT_PERF_COUNT command.
+Series: drm/i915/display: Enable DP Display Audio WA (rev6)
+URL   : https://patchwork.freedesktop.org/series/75582/
+State : success
 
-OAG deals with global counters and the OA buffer.
+== Summary ==
 
-Unfortunately some of the counters available in OAG are not available
-in OAR, for instance counters that would report global caches
-utilization.
+CI Bug Log - changes from CI_DRM_8309 -> Patchwork_17324
+====================================================
 
-Since applications making use of this want to access those additional
-OAG counters we can enable them to generate a report from their
-command buffer into the OA buffer. This is somewhat equivalent to
-having them doing their own MI_REPORT_PERF_COUNT. The application then
-parse the OA buffer as they were doing previously, only looking for a
-begin/end OA report with the appropriate reason field in the OA buffer
-instead of using MI_REPORT_PERF_COUNT generated reports for begin/end.
+Summary
+-------
 
-v2: Add OA trigger registers to the pardon list for isolated whitelist (Chris)
+  **SUCCESS**
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> (v1)
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c    | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_workarounds.c |  9 +++++++++
- drivers/gpu/drm/i915/i915_perf.c               | 10 +++++++---
- drivers/gpu/drm/i915/i915_reg.h                |  2 ++
- 4 files changed, 36 insertions(+), 3 deletions(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 5b1a03d2fd25..c3a3e7b9d522 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1127,6 +1127,10 @@ static void gen9_whitelist_build(struct i915_wa_list *w)
- 
- 	/* WaSendPushConstantsFromMMIO:skl,bxt */
- 	whitelist_reg(w, COMMON_SLICE_CHICKEN2);
-+
-+	/* Allow userspace trigger OA report generation in OA buffer. */
-+	whitelist_reg(w, OAREPORTTRIG2);
-+	whitelist_reg(w, OAREPORTTRIG6);
- }
- 
- static void skl_whitelist_build(struct intel_engine_cs *engine)
-@@ -1208,6 +1212,10 @@ static void cnl_whitelist_build(struct intel_engine_cs *engine)
- 
- 	/* WaEnablePreemptionGranularityControlByUMD:cnl */
- 	whitelist_reg(w, GEN8_CS_CHICKEN1);
-+
-+	/* Allow userspace trigger OA report generation in OA buffer. */
-+	whitelist_reg(w, OAREPORTTRIG2);
-+	whitelist_reg(w, OAREPORTTRIG6);
- }
- 
- static void icl_whitelist_build(struct intel_engine_cs *engine)
-@@ -1237,6 +1245,12 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
- 		whitelist_reg_ext(w, PS_INVOCATION_COUNT,
- 				  RING_FORCE_TO_NONPRIV_ACCESS_RD |
- 				  RING_FORCE_TO_NONPRIV_RANGE_4);
-+
-+		/*
-+		 * Allow userspace trigger OA report generation in OA buffer.
-+		 */
-+		whitelist_reg(w, OAREPORTTRIG2);
-+		whitelist_reg(w, OAREPORTTRIG6);
- 		break;
- 
- 	case VIDEO_DECODE_CLASS:
-@@ -1281,6 +1295,10 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
- 
- 		/* Wa_1806527549:tgl */
- 		whitelist_reg(w, HIZ_CHICKEN);
-+
-+		/* Allow userspace trigger OA report generation in OA buffer. */
-+		whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
-+		whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
- 		break;
- 	default:
- 		break;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index 5ed323254ee1..0c05ebf5f55a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -915,6 +915,15 @@ static bool pardon_reg(struct drm_i915_private *i915, i915_reg_t reg)
- 	static const struct regmask pardon[] = {
- 		{ GEN9_CTX_PREEMPT_REG, INTEL_GEN_MASK(9, 9) },
- 		{ GEN8_L3SQCREG4, INTEL_GEN_MASK(9, 9) },
-+
-+		/*
-+		 * These registers are global ones. They are used to trigger
-+		 * OA reports into the global OA buffer.
-+		 */
-+		{ OAREPORTTRIG2, INTEL_GEN_MASK(7, 11) },
-+		{ OAREPORTTRIG6, INTEL_GEN_MASK(7, 11) },
-+		{ GEN12_OAG_OAREPORTTRIG2, INTEL_GEN_MASK(12, 12) },
-+		{ GEN12_OAG_OAREPORTTRIG6, INTEL_GEN_MASK(12, 12) },
- 	};
- 
- 	return find_reg(i915, reg, pardon, ARRAY_SIZE(pardon));
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 5cde3e4e7be6..19bdbda94cfd 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1450,7 +1450,8 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
- 	 *  bit."
- 	 */
- 	intel_uncore_write(uncore, GEN8_OABUFFER, gtt_offset |
--		   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
-+		   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
-+		   GEN8_OABUFFER_EDGE_TRIGGER);
- 	intel_uncore_write(uncore, GEN8_OATAILPTR, gtt_offset & GEN8_OATAILPTR_MASK);
- 
- 	/* Mark that we need updated tail pointers to read from... */
-@@ -1503,7 +1504,8 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
- 	 *  bit."
- 	 */
- 	intel_uncore_write(uncore, GEN12_OAG_OABUFFER, gtt_offset |
--			   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
-+			   OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
-+			   GEN12_OAG_OABUFFER_EDGE_TRIGGER);
- 	intel_uncore_write(uncore, GEN12_OAG_OATAILPTR,
- 			   gtt_offset & GEN12_OAG_OATAILPTR_MASK);
- 
-@@ -4442,8 +4444,10 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
- 	 *    interval for the hrtimer used to check for OA data.
-+	 *
-+	 * 6. Add edge trigger report generation support.
- 	 */
--	return 5;
-+	return 6;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0b39b9abf8a4..e2e65393dcab 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -661,6 +661,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- 
- #define GEN8_OABUFFER_UDW _MMIO(0x23b4)
- #define GEN8_OABUFFER _MMIO(0x2b14)
-+#define  GEN8_OABUFFER_EDGE_TRIGGER         (1 << 2)
- #define  GEN8_OABUFFER_MEM_SELECT_GGTT      (1 << 0)  /* 0: PPGTT, 1: GGTT */
- 
- #define GEN7_OASTATUS1 _MMIO(0x2364)
-@@ -712,6 +713,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GEN12_OAG_OABUFFER  _MMIO(0xdb08)
- #define  GEN12_OAG_OABUFFER_BUFFER_SIZE_MASK  (0x7)
- #define  GEN12_OAG_OABUFFER_BUFFER_SIZE_SHIFT (3)
-+#define  GEN12_OAG_OABUFFER_EDGE_TRIGGER      (1 << 2)
- #define  GEN12_OAG_OABUFFER_MEMORY_SELECT     (1 << 0) /* 0: PPGTT, 1: GGTT */
- 
- #define GEN12_OAG_OAGLBCTXCTRL _MMIO(0x2b28)
--- 
-2.26.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/index.html
 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17324 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][1] -> [DMESG-WARN][2] ([i915#203]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [PASS][3] -> [SKIP][4] ([fdo#109271]) +5 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-skl-6770hq:      [PASS][5] -> [DMESG-WARN][6] ([i915#106])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+#### Possible fixes ####
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1}:
+    - fi-bwr-2160:        [FAIL][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][9] ([fdo#109271]) -> [FAIL][10] ([i915#62])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (52 -> 46)
+------------------------------
+
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8309 -> Patchwork_17324
+
+  CI-20190529: 20190529
+  CI_DRM_8309: 7532b3183c849056c824828bafb4ab0b525e586e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5593: 1c658f5e46598ae93345177d4981ef54704daec6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17324: 824059d46f5a1c38b53c179306d3872f6647df06 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+824059d46f5a drm/i915/display: Enable DP Display Audio WA
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
