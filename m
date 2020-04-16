@@ -1,31 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656E51AC16A
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 14:38:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3145C1AC186
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 14:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00FA36E077;
-	Thu, 16 Apr 2020 12:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 564DB6E0DB;
+	Thu, 16 Apr 2020 12:42:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B2E726E06B;
- Thu, 16 Apr 2020 12:38:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AC3CAA47E1;
- Thu, 16 Apr 2020 12:38:47 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6CD76E06B;
+ Thu, 16 Apr 2020 12:42:01 +0000 (UTC)
+IronPort-SDR: 9mGEUM+35iJpWhfi+fuR+EfQi0Lp8mUk8NGpxZAut0TkLNFcUa3isldwhIsk+dOeF74xdmfGiX
+ nTz+xiPPhR7w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 05:42:01 -0700
+IronPort-SDR: 3w2vhqECzdnpCtsED/10Nzk8+xz25ltsQ+hzcypHdCzM6e8AVGjDOtapHZ10ATCcL6s8mYsEl/
+ Y4Tt8ydRUi3A==
+X-IronPort-AV: E=Sophos;i="5.72,391,1580803200"; d="scan'208";a="427819000"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.235])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 05:41:58 -0700
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 16 Apr 2020 12:38:47 -0000
-Message-ID: <158704072767.20884.11348051496453280807@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200415143911.10244-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200415143911.10244-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev21=29?=
+In-Reply-To: <87imi15gw0.fsf@intel.com>
+References: <efb3d0d9-2cf7-046b-3a9b-2548d086258e@linux.intel.com>
+ <87wo6h5k0d.fsf@intel.com>
+ <CAKMK7uEWkGA2e2ZV9H0m8ParE_9DNtgAhG3FuqPzvgv-xeVcng@mail.gmail.com>
+ <87imi15gw0.fsf@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 16 Apr 2020 15:41:55 +0300
+Message-ID: <158704091547.9336.6038156980180850144@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PULL] topic/phy-compliance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,194 +54,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Jani Nikula (2020-04-15 10:48:15)
+> On Wed, 15 Apr 2020, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > On Wed, Apr 15, 2020 at 8:40 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> >>
+> >> On Wed, 08 Apr 2020, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+> >> > Hey,
+> >> >
+> >> > Here's a pull request to pull in the DP PHY Compliance series.
+> >> > It's based on top of drm/drm-next, and contains all patches for core, amd and i915. :)
+> >>
+> >> Ping, I don't see this merged in any tree yet.
+> >
+> > Generally topic pull requests get pulled into all relevant trees,
+> > which would be drm-misc, drm-intel and drm-amd here. All of the
+> > optional ofc if you do instead maintainer-acks for merging through
+> > another tree.
+> >
+> > Since I wasn't involved in this no idea who requested the topic tree
+> > instead of acks, and the pull isn't addressed to specific people who
+> > should pull it in (I generally add that to avoid confusion like this
+> > here), but this aint something that drm.git needs to pull. Just stuff
+> > it into one of the trees as usual. Also just noticed that amd
+> > maintainers arent even cc'ed, adding Alex. You guys pls figure this
+> > out :-)
+> 
+> It seemed like drm-misc and drm-intel would be out-of-sync for too long
+> before we'd get all of them eventually (back)merged together, so I
+> leaned towards the topic branch. Of course, the point starts to be moot
+> if it has already taken more than a week to merge this anywhere...
+> 
+> And I'm pinging about merging the topic pull to drm-misc and drm-intel;
+> I'm currently not covering drm-intel.
 
-Series: SAGV support for Gen12+ (rev21)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : success
+Pulled to drm-intel-next-queued now.
 
-== Summary ==
+Regards, Joonas
 
-CI Bug Log - changes from CI_DRM_8301_full -> Patchwork_17312_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17312_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_draw_crc@draw-method-rgb565-render-untiled:
-    - shard-glk:          [PASS][1] -> [FAIL][2] ([i915#52] / [i915#54]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-glk9/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-glk2/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
-
-  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
-    - shard-glk:          [PASS][3] -> [FAIL][4] ([i915#79])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-glk1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-glk9/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:
-    - shard-glk:          [PASS][5] -> [FAIL][6] ([i915#34])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-glk8/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-glk7/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [PASS][7] -> [FAIL][8] ([i915#1188])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-skl4/igt@kms_hdr@bpc-switch-dpms.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-iclb:         [FAIL][9] ([i915#454]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-iclb2/igt@i915_pm_dc@dc6-psr.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-iclb1/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@i915_selftest@live@requests:
-    - shard-tglb:         [INCOMPLETE][11] ([i915#1531]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-tglb1/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-tglb8/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@debugfs-reader:
-    - shard-skl:          [INCOMPLETE][13] ([i915#69]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-skl6/igt@i915_suspend@debugfs-reader.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-skl8/igt@i915_suspend@debugfs-reader.html
-
-  * igt@i915_suspend@sysfs-reader:
-    - shard-apl:          [DMESG-WARN][15] ([i915#180]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-apl4/igt@i915_suspend@sysfs-reader.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-apl3/igt@i915_suspend@sysfs-reader.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][17] ([i915#180]) -> [PASS][18] +6 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-kbl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy:
-    - shard-glk:          [FAIL][19] ([i915#1566]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-glk5/igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-glk4/igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy.html
-
-  * igt@kms_flip@2x-plain-flip-fb-recreate:
-    - shard-glk:          [FAIL][21] ([i915#34]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-glk8/igt@kms_flip@2x-plain-flip-fb-recreate.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-glk2/igt@kms_flip@2x-plain-flip-fb-recreate.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [FAIL][23] ([i915#79]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-skl7/igt@kms_flip@flip-vs-expired-vblank.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-skl2/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][25] ([i915#1188]) -> [PASS][26] +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-skl5/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][27] ([fdo#108145] / [i915#265]) -> [PASS][28] +2 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-skl7/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_mmap_cpu:
-    - shard-iclb:         [SKIP][29] ([fdo#109441]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-iclb1/igt@kms_psr@psr2_sprite_mmap_cpu.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_cpu.html
-
-  * igt@kms_setmode@basic:
-    - shard-hsw:          [FAIL][31] ([i915#31]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-hsw8/igt@kms_setmode@basic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-hsw4/igt@kms_setmode@basic.html
-    - shard-kbl:          [FAIL][33] ([i915#31] / [i915#93] / [i915#95]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-kbl6/igt@kms_setmode@basic.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-kbl7/igt@kms_setmode@basic.html
-
-  * {igt@perf@polling-parameterized}:
-    - shard-hsw:          [FAIL][35] ([i915#1542]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-hsw6/igt@perf@polling-parameterized.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-hsw7/igt@perf@polling-parameterized.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@fbc-badstride:
-    - shard-apl:          [FAIL][37] ([i915#49] / [i915#95]) -> [FAIL][38] ([i915#49])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-apl8/igt@kms_frontbuffer_tracking@fbc-badstride.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-apl1/igt@kms_frontbuffer_tracking@fbc-badstride.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [FAIL][39] ([i915#608]) -> [SKIP][40] ([fdo#109642] / [fdo#111068])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8301/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/shard-iclb1/igt@kms_psr2_su@page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1566]: https://gitlab.freedesktop.org/drm/intel/issues/1566
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8301 -> Patchwork_17312
-
-  CI-20190529: 20190529
-  CI_DRM_8301: 7d2bdd2df0d18945bb274de8bc7560e14779e346 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5590: c7b4a43942be32245b1c00b5b4a38401d8ca6e0d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17312: 3c3c3aee4a13b8d753382a38abac2e0e584a289c @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17312/index.html
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+> 
+> > -Daniel
+> >
+> >>
+> >> BR,
+> >> Jani.
+> >>
+> >>
+> >> >
+> >> > Cheers,
+> >> > Maarten
+> >> >
+> >> > topic/phy-compliance-2020-04-08:
+> >> > Topic pull request for topic/phy-compliance:
+> >> > - Standardize DP_PHY_TEST_PATTERN name.
+> >> > - Add support for setting/getting test pattern from sink.
+> >> > - Implement DP PHY compliance to i915.
+> >> > The following changes since commit 12ab316ced2c5f32ced0e6300a054db644b5444a:
+> >> >
+> >> >   Merge tag 'amd-drm-next-5.7-2020-04-01' of git://people.freedesktop.org/~agd5f/linux into drm-next (2020-04-08 09:34:27 +1000)
+> >> >
+> >> > are available in the Git repository at:
+> >> >
+> >> >   git://anongit.freedesktop.org/drm/drm-misc tags/topic/phy-compliance-2020-04-08
+> >> >
+> >> > for you to fetch changes up to 8cdf727119289db3a98835662eb28e1c5ad835f1:
+> >> >
+> >> >   drm/i915/dp: Program vswing, pre-emphasis, test-pattern (2020-04-08 14:41:09 +0200)
+> >> >
+> >> > ----------------------------------------------------------------
+> >> > Topic pull request for topic/phy-compliance:
+> >> > - Standardize DP_PHY_TEST_PATTERN name.
+> >> > - Add support for setting/getting test pattern from sink.
+> >> > - Implement DP PHY compliance to i915.
+> >> >
+> >> > ----------------------------------------------------------------
+> >> > Animesh Manna (7):
+> >> >       drm/amd/display: Align macro name as per DP spec
+> >> >       drm/dp: get/set phy compliance pattern
+> >> >       drm/i915/dp: Made intel_dp_adjust_train() non-static
+> >> >       drm/i915/dp: Preparation for DP phy compliance auto test
+> >> >       drm/i915/dp: Add debugfs entry for DP phy compliance
+> >> >       drm/i915/dp: Register definition for DP compliance register
+> >> >       drm/i915/dp: Program vswing, pre-emphasis, test-pattern
+> >> >
+> >> >  drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c   |   2 +-
+> >> >  drivers/gpu/drm/drm_dp_helper.c                    |  94 +++++++++++
+> >> >  .../gpu/drm/i915/display/intel_display_debugfs.c   |  12 +-
+> >> >  drivers/gpu/drm/i915/display/intel_display_types.h |   1 +
+> >> >  drivers/gpu/drm/i915/display/intel_dp.c            | 171 +++++++++++++++++++++
+> >> >  drivers/gpu/drm/i915/display/intel_dp.h            |   1 +
+> >> >  .../gpu/drm/i915/display/intel_dp_link_training.c  |   9 +-
+> >> >  .../gpu/drm/i915/display/intel_dp_link_training.h  |   4 +
+> >> >  drivers/gpu/drm/i915/i915_reg.h                    |  18 +++
+> >> >  include/drm/drm_dp_helper.h                        |  33 +++-
+> >> >  10 files changed, 337 insertions(+), 8 deletions(-)
+> >>
+> >> --
+> >> Jani Nikula, Intel Open Source Graphics Center
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
