@@ -2,57 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A8F1AB671
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 05:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C671AB66D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2020 05:57:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A126EAC4;
-	Thu, 16 Apr 2020 03:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C23096EAC3;
+	Thu, 16 Apr 2020 03:56:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD646EAC4
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 03:57:36 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id g74so19933078qke.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2020 20:57:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ougL3oWIWpRG5EFY46hodXJQh5WVi7bgjxxZ7TgwneE=;
- b=Ao5ebCWYLh9AQHB4d492wNtwKhd9d+vO07SzpQ2Fe2j+BOgO1I8eP/2GAeoyWt2/za
- Fr2x3cOpkAeu8fvGNA+SYEfR20GUVara+RpK2KZcUoft639j9NcdqObd/HxMRa6Hr1ds
- EsarKCWFKzu70GD8YS+vt2hCmycv2kHCqcE8EBgI5xg29wzFykr2umwfaWknXOc3zyQE
- Ydc56DIkxwoPCyV4KErJYsE7Z6gYXbKOf6DvSyQ7pBlyxXytXjuAVql5iNZNvAtBsq/j
- Tn8UdvzvHpEqb416GYZSKOd+ZS+V2PfRNYQZ28Q/PX47nOBk8yQmCfgxpdh5LXMQxEJi
- HMKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ougL3oWIWpRG5EFY46hodXJQh5WVi7bgjxxZ7TgwneE=;
- b=WDHhzyXtwgWkAAt1Uhs+qftkOwFLdUwOQTN4Hv56WhU0QAxVKwa8cnysUci1vq5y3n
- FHKdpDPOlZCbU32MR8zBnLb4bS7HoeoUusO78gxviZIHpIqN2k/qEDajQPqC1OT7220F
- CVfsFl3F4AeeRyBlQw0pgIMNUU8Gp3/yQYnUtFvSNuBUlqy0giBh6FpBsmwBJdWzQeb4
- T/fx4WVjqvVGw09CLY4RPS0BjEYhW1SgSB3VC44zlQTvaJKP1dvBQ5GsMLbKaM9UV/sO
- N+ZhMvLjhc7+vdDNvQlSQ5K8aAu3YfoQkzoP/l7eKEAVCCMfXmMOlzHPd5hrF+f4VY5f
- ciTw==
-X-Gm-Message-State: AGi0PuZgGHpXGQx8vJicPsE0cJRJV30xdUVqD/KvxbsiqRcEY+yp83mU
- EYM55sDuriUbEw/lAbnyPl2g98zTRnc=
-X-Google-Smtp-Source: APiQypJvqo+8BcTEVD3lqBNxHYvVLcfO5C61buAGuN3BHcMhdi55whmYA47MkZ7mG41lYeYt790Ylw==
-X-Received: by 2002:a37:b03:: with SMTP id 3mr28372629qkl.67.1587009455232;
- Wed, 15 Apr 2020 20:57:35 -0700 (PDT)
-Received: from prosha.fios-router.home
- (pool-72-92-48-173.phlapa.fios.verizon.net. [72.92.48.173])
- by smtp.gmail.com with ESMTPSA id p11sm5883510qki.25.2020.04.15.20.57.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2020 20:57:34 -0700 (PDT)
-From: Alexei Podtelezhnikov <apodtele@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Apr 2020 23:56:11 -0400
-Message-Id: <20200416035611.24604-1-apodtele@gmail.com>
-X-Mailer: git-send-email 2.26.0
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B87C6EAC3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 03:56:58 +0000 (UTC)
+IronPort-SDR: fmng11oVeMoehIyga9+ZZosmqcalRmtmm9PxzThZNOkIrCy7WBbVVLrTNvuhLPKV7HJWmEuW9w
+ o5xAFd9g8RVA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2020 20:56:57 -0700
+IronPort-SDR: 1lFs/VFJfxVhwN3QpIh016j0DCq42xIUXaPDB+Cc3PvVdMT+HgBOK/i0g3jQIbjCbvoYqItQk/
+ 0P1HNGNiu4jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,388,1580803200"; d="scan'208";a="271943611"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga002.jf.intel.com with ESMTP; 15 Apr 2020 20:56:57 -0700
+Date: Wed, 15 Apr 2020 20:56:57 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200416035657.GS2715344@mdroper-desk1.amr.corp.intel.com>
+References: <20200414230442.262092-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch xf86-video-intel] sna: fix --enable-debug=full
+Content-Disposition: inline
+In-Reply-To: <20200414230442.262092-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: Load DP_TP_CTL/STATUS
+ offset before use it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,51 +48,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexei Podtelezhnikov <apotele@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Alexei Podtelezhnikov <apotele@gmail.com>
+On Tue, Apr 14, 2020 at 04:04:40PM -0700, Jos=E9 Roberto de Souza wrote:
+> Right now dp.regs.dp_tp_ctl/status are only set during the encoder
+> pre_enable() hook, what is causing all reads and writes to those
+> registers to go to offset 0x0 before pre_enable() is executed.
+> =
 
-Once a typo is fixed, the debug build triggers an assertion failure.
-Given that the normal build is just fine, the assert might be wrong.
+> So if i915 takes the BIOS state and don't do a modeset any following
+> link retraing will fail.
+> =
 
-Signed-off-by: Alexei Podtelezhnikov <apotele@gmail.com>
----
- src/sna/compiler.h  | 2 +-
- src/sna/sna_accel.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> In the case that i915 needs to do a modeset, the DDI disable sequence
+> will write to a wrong register not disabling DP 'Transport Enable' in
+> DP_TP_CTL, making a HDMI modeset in the same port/transcoder to
+> not light up the monitor.
 
-diff --git a/src/sna/compiler.h b/src/sna/compiler.h
-index 2e579b15..c3d98797 100644
---- a/src/sna/compiler.h
-+++ b/src/sna/compiler.h
-@@ -50,7 +50,7 @@
- #define must_check
- #define constant
- #define pure
--#define tighly_packed
-+#define tightly_packed
- #define flatten
- #define nonnull
- #define page_aligned
-diff --git a/src/sna/sna_accel.c b/src/sna/sna_accel.c
-index ee857a14..bf1edec8 100644
---- a/src/sna/sna_accel.c
-+++ b/src/sna/sna_accel.c
-@@ -17410,7 +17410,7 @@ void sna_accel_flush(struct sna *sna)
- 			assert(!priv->flush);
- 			ret = sna_pixmap_move_to_cpu(priv->pixmap,
- 						     MOVE_READ | MOVE_WRITE);
--			assert(!ret || priv->gpu_bo == NULL);
-+			assert(ret || priv->gpu_bo == NULL);
- 			if (priv->pixmap->refcnt == 0) {
- 				sna_damage_destroy(&priv->cpu_damage);
- 				__sna_free_pixmap(sna, priv->pixmap, priv);
---
-2.26
+So to clarify I understand the problematic sequence properly:
+ * i915 inherits already-enabled display from BIOS; pre_enable is never
+   called
+ * we do a modeset, so we have to disable the display and then try to re-en=
+able
+     - intel_disable_ddi_buf() writes to offset 0 rather than the proper
+       register offset when attempting to reprogram DP_TP_CTL and
+       disable DP
+     - when we re-enable, the old, still-active DP settings in hardware
+       cause problems and the display doesn't light up
+
+A couple clarifying questions:
+ - It seems like we should have seen unclaimed register warnings from
+   the bogus writes to offset 0 during disable.  Any idea why those
+   didn't show up?
+ - In the commit message you mention that it's the DP Transport Enable
+   that's the culprit here, which breaks future attempts to light up
+   HDMI.   I assume this means that we're also switching which pipe
+   we're driving the port with, not just doing any modeset?  Otherwise
+   DP would stay DP, HDMI would stay HDMI, and we wouldn't see this
+   problem with DP being active on an HDMI monitor (although we'd still
+   be writing to an invalid register offset during our first DP disable
+   which might cause other problems).  Might be worth adding a mention
+   of the pipe change to the commit message to clarify.
+
+The changes here look correct to me; we'll ensure the DP registers have
+proper offsets before we do our first modeset, and then the rest of the
+runtime behavior thereafter should be unchanged.  So
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+
+> =
+
+> So here for GENs older than 12, that have those registers fixed at
+> port offset range it is loading at encoder/port init while for GEN12
+> it will keep setting it at encoder pre_enable() and during HW state
+> readout.
+> =
+
+> Fixes: 4444df6e205b ("drm/i915/tgl: move DP_TP_* to transcoder")
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 14 +++++++++++---
+>  drivers/gpu/drm/i915/display/intel_dp.c  |  5 ++---
+>  2 files changed, 13 insertions(+), 6 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index be6c61bcbc9c..1aab93a94f40 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3252,9 +3252,6 @@ static void hsw_ddi_pre_enable_dp(struct intel_atom=
+ic_state *state,
+>  	intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
+>  				 crtc_state->lane_count, is_mst);
+>  =
+
+> -	intel_dp->regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> -	intel_dp->regs.dp_tp_status =3D DP_TP_STATUS(port);
+> -
+>  	intel_edp_panel_on(intel_dp);
+>  =
+
+>  	intel_ddi_clk_select(encoder, crtc_state);
+> @@ -4061,12 +4058,18 @@ void intel_ddi_get_config(struct intel_encoder *e=
+ncoder,
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>  	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
+> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	u32 temp, flags =3D 0;
+>  =
+
+>  	/* XXX: DSI transcoder paranoia */
+>  	if (drm_WARN_ON(&dev_priv->drm, transcoder_is_dsi(cpu_transcoder)))
+>  		return;
+>  =
+
+> +	if (INTEL_GEN(dev_priv) >=3D 12) {
+> +		intel_dp->regs.dp_tp_ctl =3D TGL_DP_TP_CTL(cpu_transcoder);
+> +		intel_dp->regs.dp_tp_status =3D TGL_DP_TP_STATUS(cpu_transcoder);
+> +	}
+> +
+>  	intel_dsc_get_config(encoder, pipe_config);
+>  =
+
+>  	temp =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> @@ -4396,6 +4399,7 @@ static const struct drm_encoder_funcs intel_ddi_fun=
+cs =3D {
+>  static struct intel_connector *
+>  intel_ddi_init_dp_connector(struct intel_digital_port *intel_dig_port)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_dig_port->base.base=
+.dev);
+>  	struct intel_connector *connector;
+>  	enum port port =3D intel_dig_port->base.port;
+>  =
+
+> @@ -4406,6 +4410,10 @@ intel_ddi_init_dp_connector(struct intel_digital_p=
+ort *intel_dig_port)
+>  	intel_dig_port->dp.output_reg =3D DDI_BUF_CTL(port);
+>  	intel_dig_port->dp.prepare_link_retrain =3D
+>  		intel_ddi_prepare_link_retrain;
+> +	if (INTEL_GEN(dev_priv) < 12) {
+> +		intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> +		intel_dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
+> +	}
+>  =
+
+>  	if (!intel_dp_init_connector(intel_dig_port, connector)) {
+>  		kfree(connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index d4fcc9583869..03591ab76b0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2671,9 +2671,6 @@ static void intel_dp_prepare(struct intel_encoder *=
+encoder,
+>  				 intel_crtc_has_type(pipe_config,
+>  						     INTEL_OUTPUT_DP_MST));
+>  =
+
+> -	intel_dp->regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> -	intel_dp->regs.dp_tp_status =3D DP_TP_STATUS(port);
+> -
+>  	/*
+>  	 * There are four kinds of DP registers:
+>  	 *
+> @@ -8470,6 +8467,8 @@ bool intel_dp_init(struct drm_i915_private *dev_pri=
+v,
+>  =
+
+>  	intel_dig_port->dp.output_reg =3D output_reg;
+>  	intel_dig_port->max_lanes =3D 4;
+> +	intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> +	intel_dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
+>  =
+
+>  	intel_encoder->type =3D INTEL_OUTPUT_DP;
+>  	intel_encoder->power_domain =3D intel_port_to_power_domain(port);
+> -- =
+
+> 2.26.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
