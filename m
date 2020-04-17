@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117BF1AD8ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 10:50:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C96F51AD8EC
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 10:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6764D6E3D6;
-	Fri, 17 Apr 2020 08:49:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF726E3D0;
+	Fri, 17 Apr 2020 08:49:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D82F6E3D0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:49:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B986E3D0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:49:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929835-1500050 
- for multiple; Fri, 17 Apr 2020 09:49:32 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929836-1500050 
+ for multiple; Fri, 17 Apr 2020 09:49:33 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 09:49:28 +0100
-Message-Id: <20200417084930.644-3-chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 09:49:29 +0100
+Message-Id: <20200417084930.644-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200417084930.644-1-chris@chris-wilson.co.uk>
 References: <20200417084930.644-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/5] drm/i915/selftests: Check power consumption
- at min/max frequencies
+Subject: [Intel-gfx] [PATCH 4/5] drm/i915: Relinquish forcewake immediately
+ after manual grouping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,103 +40,62 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QSBiYXNpYyBwcmVtaXNlIG9mIFJQUyBpcyB0aGF0IGF0IGxvd2VyIGZyZXF1ZW5jaWVzLCBub3Qg
-b25seSBkbyB3ZSBydW4Kc2xvd2VyLCBidXQgd2Ugc2F2ZSBwb3dlciBjb21wYXJlZCB0byBoaWdo
-ZXIgZnJlcXVlbmNpZXMuIEZvciBleGFtcGxlLAp3aGVuIGlkbGUsIHdlIHNldCB0aGUgbWluaW11
-bSBmcmVxdWVuY3kganVzdCBpbiBjYXNlIHRoZXJlIGlzIHNvbWUKcmVzaWR1YWwgY3VycmVudC4g
-U2luY2UgdGhlIHBvd2VyIGN1cnZlIHNob3VsZCBiZSBhIHBoeXNpY2FsCnJlbGF0aW9uc2hpcCwg
-aWYgd2UgZmluZCBubyBwb3dlciBzYXZpbmcgaXQncyBsaWtlbHkgdGhhdCB3ZSd2ZSBicm9rZW4K
-b3VyIGZyZXF1ZW5jeSBoYW5kbGluZywgc28gdGVzdCEKClNpZ25lZC1vZmYtYnk6IENocmlzIFdp
-bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5r
-dW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVs
-LmNvbT4KUmV2aWV3ZWQtYnk6IEFuZGkgU2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgotLS0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2d0X3BtLmMgfCAgIDEgKwogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMgICB8IDEzOCArKysrKysrKysrKysrKysr
-KysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmggICB8ICAgMSAr
-CiAzIGZpbGVzIGNoYW5nZWQsIDE0MCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZ3RfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L3NlbGZ0ZXN0X2d0X3BtLmMKaW5kZXggYzUwYmI1MDJmZTAzLi4wMTQxYzMzNGYyYWMgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2d0X3BtLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZ3RfcG0uYwpAQCAtNTQsNiArNTQsNyBA
-QCBpbnQgaW50ZWxfZ3RfcG1fbGl2ZV9zZWxmdGVzdHMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUpCiAJc3RhdGljIGNvbnN0IHN0cnVjdCBpOTE1X3N1YnRlc3QgdGVzdHNbXSA9IHsKIAkJ
-U1VCVEVTVChsaXZlX3JjNl9tYW51YWwpLAogCQlTVUJURVNUKGxpdmVfcnBzX2ludGVycnVwdCks
-CisJCVNVQlRFU1QobGl2ZV9ycHNfcG93ZXIpLAogCQlTVUJURVNUKGxpdmVfZ3RfcmVzdW1lKSwK
-IAl9OwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jCmluZGV4IDE5OWQ2MDhh
-YTc2My4uZjBhMDEzZTRlNDVmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9z
-ZWxmdGVzdF9ycHMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMu
-YwpAQCAtMywxMiArMywxNSBAQAogICogQ29weXJpZ2h0IMKpIDIwMjAgSW50ZWwgQ29ycG9yYXRp
-b24KICAqLwogCisjaW5jbHVkZSA8bGludXgvc29ydC5oPgorCiAjaW5jbHVkZSAiaW50ZWxfZW5n
-aW5lX3BtLmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9yYzYu
-aCIKICNpbmNsdWRlICJzZWxmdGVzdF9ycHMuaCIKICNpbmNsdWRlICJzZWxmdGVzdHMvaWd0X2Zs
-dXNoX3Rlc3QuaCIKICNpbmNsdWRlICJzZWxmdGVzdHMvaWd0X3NwaW5uZXIuaCIKKyNpbmNsdWRl
-ICJzZWxmdGVzdHMvbGlicmFwbC5oIgogCiBzdGF0aWMgdm9pZCBkdW1teV9ycHNfd29yayhzdHJ1
-Y3Qgd29ya19zdHJ1Y3QgKndyaykKIHsKQEAgLTIyNSwzICsyMjgsMTM4IEBAIGludCBsaXZlX3Jw
-c19pbnRlcnJ1cHQodm9pZCAqYXJnKQogCiAJcmV0dXJuIGVycjsKIH0KKworc3RhdGljIHU2NCBf
-X21lYXN1cmVfcG93ZXIoaW50IGR1cmF0aW9uX21zKQoreworCXU2NCBkRSwgZHQ7CisKKwlkdCA9
-IGt0aW1lX2dldCgpOworCWRFID0gbGlicmFwbF9lbmVyZ3lfdUooKTsKKwl1c2xlZXBfcmFuZ2Uo
-MTAwMCAqIGR1cmF0aW9uX21zLCAyMDAwICogZHVyYXRpb25fbXMpOworCWRFID0gbGlicmFwbF9l
-bmVyZ3lfdUooKSAtIGRFOworCWR0ID0ga3RpbWVfZ2V0KCkgLSBkdDsKKworCXJldHVybiBkaXY2
-NF91NjQoMTAwMCAqIDEwMDAgKiBkRSwgZHQpOworfQorCitzdGF0aWMgaW50IGNtcF91NjQoY29u
-c3Qgdm9pZCAqQSwgY29uc3Qgdm9pZCAqQikKK3sKKwljb25zdCB1NjQgKmEgPSBBLCAqYiA9IEI7
-CisKKwlpZiAoYSA8IGIpCisJCXJldHVybiAtMTsKKwllbHNlIGlmIChhID4gYikKKwkJcmV0dXJu
-IDE7CisJZWxzZQorCQlyZXR1cm4gMDsKK30KKworc3RhdGljIHU2NCBtZWFzdXJlX3Bvd2VyX2F0
-KHN0cnVjdCBpbnRlbF9ycHMgKnJwcywgaW50IGZyZXEpCit7CisJdTY0IHhbNV07CisJaW50IGk7
-CisKKwltdXRleF9sb2NrKCZycHMtPmxvY2spOworCUdFTV9CVUdfT04oIXJwcy0+YWN0aXZlKTsK
-KwlpbnRlbF9ycHNfc2V0KHJwcywgZnJlcSk7CisJbXV0ZXhfdW5sb2NrKCZycHMtPmxvY2spOwor
-CisJbXNsZWVwKDIwKTsgLyogbW9yZSB0aGFuIGVub3VnaCB0aW1lIHRvIHN0YWJpbGlzZSEgKi8K
-KworCWkgPSByZWFkX2NhZ2YocnBzKTsKKwlpZiAoaSAhPSBmcmVxKQorCQlwcl9ub3RpY2UoIlJ1
-bm5pbmcgYXQgJXggWyV1TUh6XSwgbm90IHRhcmdldCAleCBbJXVNSHpdXG4iLAorCQkJICBpLCBp
-bnRlbF9ncHVfZnJlcShycHMsIGkpLAorCQkJICBmcmVxLCBpbnRlbF9ncHVfZnJlcShycHMsIGZy
-ZXEpKTsKKworCWZvciAoaSA9IDA7IGkgPCA1OyBpKyspCisJCXhbaV0gPSBfX21lYXN1cmVfcG93
-ZXIoNSk7CisKKwkvKiBBIHNpbXBsZSB0cmlhbmdsZSBmaWx0ZXIgZm9yIGJldHRlciByZXN1bHQg
-c3RhYmlsaXR5ICovCisJc29ydCh4LCA1LCBzaXplb2YoKngpLCBjbXBfdTY0LCBOVUxMKTsKKwly
-ZXR1cm4gZGl2X3U2NCh4WzFdICsgMiAqIHhbMl0gKyB4WzNdLCA0KTsKK30KKworaW50IGxpdmVf
-cnBzX3Bvd2VyKHZvaWQgKmFyZykKK3sKKwlzdHJ1Y3QgaW50ZWxfZ3QgKmd0ID0gYXJnOworCXN0
-cnVjdCBpbnRlbF9ycHMgKnJwcyA9ICZndC0+cnBzOworCXZvaWQgKCpzYXZlZF93b3JrKShzdHJ1
-Y3Qgd29ya19zdHJ1Y3QgKndyayk7CisJc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lOwor
-CWVudW0gaW50ZWxfZW5naW5lX2lkIGlkOworCXN0cnVjdCBpZ3Rfc3Bpbm5lciBzcGluOworCWlu
-dCBlcnIgPSAwOworCisJLyoKKwkgKiBPdXIgZnVuZGFtZW50YWwgYXNzdW1wdGlvbiBpcyB0aGF0
-IHJ1bm5pbmcgYXQgbG93ZXIgZnJlcXVlbmN5CisJICogYWN0dWFsbHkgc2F2ZXMgcG93ZXIuIExl
-dCdzIHNlZSBpZiBvdXIgUkFQTCBtZWFzdXJlbWVudCBzdXBwb3J0CisJICogdGhhdCB0aGVvcnku
-CisJICovCisKKwlpZiAoIXJwcy0+ZW5hYmxlZCB8fCBycHMtPm1heF9mcmVxIDw9IHJwcy0+bWlu
-X2ZyZXEpCisJCXJldHVybiAwOworCisJaWYgKCFsaWJyYXBsX2VuZXJneV91SigpKQorCQlyZXR1
-cm4gMDsKKworCWlmIChpZ3Rfc3Bpbm5lcl9pbml0KCZzcGluLCBndCkpCisJCXJldHVybiAtRU5P
-TUVNOworCisJaW50ZWxfZ3RfcG1fd2FpdF9mb3JfaWRsZShndCk7CisJc2F2ZWRfd29yayA9IHJw
-cy0+d29yay5mdW5jOworCXJwcy0+d29yay5mdW5jID0gZHVtbXlfcnBzX3dvcms7CisKKwlmb3Jf
-ZWFjaF9lbmdpbmUoZW5naW5lLCBndCwgaWQpIHsKKwkJc3RydWN0IGk5MTVfcmVxdWVzdCAqcnE7
-CisJCXU2NCBtaW4sIG1heDsKKworCQlpZiAoIWludGVsX2VuZ2luZV9jYW5fc3RvcmVfZHdvcmQo
-ZW5naW5lKSkKKwkJCWNvbnRpbnVlOworCisJCXJxID0gaWd0X3NwaW5uZXJfY3JlYXRlX3JlcXVl
-c3QoJnNwaW4sCisJCQkJCQllbmdpbmUtPmtlcm5lbF9jb250ZXh0LAorCQkJCQkJTUlfTk9PUCk7
-CisJCWlmIChJU19FUlIocnEpKSB7CisJCQllcnIgPSBQVFJfRVJSKHJxKTsKKwkJCWJyZWFrOwor
-CQl9CisKKwkJaTkxNV9yZXF1ZXN0X2FkZChycSk7CisKKwkJaWYgKCFpZ3Rfd2FpdF9mb3Jfc3Bp
-bm5lcigmc3BpbiwgcnEpKSB7CisJCQlwcl9lcnIoIiVzOiBSUFMgc3Bpbm5lciBkaWQgbm90IHN0
-YXJ0XG4iLAorCQkJICAgICAgIGVuZ2luZS0+bmFtZSk7CisJCQlpbnRlbF9ndF9zZXRfd2VkZ2Vk
-KGVuZ2luZS0+Z3QpOworCQkJZXJyID0gLUVJTzsKKwkJCWJyZWFrOworCQl9CisKKwkJbWF4ID0g
-bWVhc3VyZV9wb3dlcl9hdChycHMsIHJwcy0+bWF4X2ZyZXEpOworCQltaW4gPSBtZWFzdXJlX3Bv
-d2VyX2F0KHJwcywgcnBzLT5taW5fZnJlcSk7CisKKwkJaWd0X3NwaW5uZXJfZW5kKCZzcGluKTsK
-KworCQlwcl9pbmZvKCIlczogbWluOiVsbHVtVyBAICV1TUh6LCBtYXg6JWxsdW1XIEAgJXVNSHpc
-biIsCisJCQllbmdpbmUtPm5hbWUsCisJCQltaW4sIGludGVsX2dwdV9mcmVxKHJwcywgcnBzLT5t
-aW5fZnJlcSksCisJCQltYXgsIGludGVsX2dwdV9mcmVxKHJwcywgcnBzLT5tYXhfZnJlcSkpOwor
-CQlpZiAobWluID49IG1heCkgeworCQkJcHJfZXJyKCIlczogZGlkIG5vdCBjb25zZXJ2ZSBwb3dl
-ciB3aGVuIHNldHRpbmcgbG93ZXIgZnJlcXVlbmN5IVxuIiwKKwkJCSAgICAgICBlbmdpbmUtPm5h
-bWUpOworCQkJZXJyID0gLUVJTlZBTDsKKwkJCWJyZWFrOworCQl9CisKKwkJaWYgKGlndF9mbHVz
-aF90ZXN0KGd0LT5pOTE1KSkgeworCQkJZXJyID0gLUVJTzsKKwkJCWJyZWFrOworCQl9CisJfQor
-CisJaWd0X3NwaW5uZXJfZmluaSgmc3Bpbik7CisKKwlpbnRlbF9ndF9wbV93YWl0X2Zvcl9pZGxl
-KGd0KTsKKwlycHMtPndvcmsuZnVuYyA9IHNhdmVkX3dvcms7CisKKwlyZXR1cm4gZXJyOworfQpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmggYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuaAppbmRleCBhYmJhNjY0MjA5OTYuLmNh
-ZDUxNWE3ZjBlNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3Rf
-cnBzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmgKQEAgLTcs
-NSArNyw2IEBACiAjZGVmaW5lIFNFTEZURVNUX1JQU19ICiAKIGludCBsaXZlX3Jwc19pbnRlcnJ1
-cHQodm9pZCAqYXJnKTsKK2ludCBsaXZlX3Jwc19wb3dlcih2b2lkICphcmcpOwogCiAjZW5kaWYg
-LyogU0VMRlRFU1RfUlBTX0ggKi8KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Our forcewake utilisation is split into categories: automatic and
+manual. Around bare register reads, we look up the right forcewake
+domain and automatically acquire and release [upon a timer] the
+forcewake domain. For other access, where we know we require the
+forcewake across a group of register reads, we manually acquire the
+forcewake domain and release it at the end. Again, this currently arms
+the domain timer for a later release.
+
+However, looking at some energy utilisation profiles, we have tried to
+avoid using forcewake [and rely on the natural wake up to post register
+updates] due to that even keep the fw active for a brief period
+contributes to a significant power draw [i.e. when the gpu is sleeping
+with rc6 at high clocks]. But as it turns out, not posting the writes
+immediately also has unintended consequences, such as not reducing the
+clocks and so conserving power while busy.
+
+As a compromise, let us only arm the domain timer for automatic
+forcewake usage around bare register access, but immediately release the
+forcewake when manually acquired by intel_uncore_forcewake_get/_put.
+
+The corollary to this is that we may instead have to take forcewake more
+often, and so incur a latency penalty in doing so. For Sandybridge this
+was significant, and even on the latest machines, taking forcewake at
+interrupt frequency is a huge impact. [So we don't do that anymore!
+Hopefully, this will spare us from still needing the mitigation of the
+timer for steady state execution.]
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/intel_uncore.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index fa86b7ab2d99..199cccac8020 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -709,7 +709,7 @@ static void __intel_uncore_forcewake_put(struct intel_uncore *uncore,
+ 			continue;
+ 		}
+ 
+-		fw_domain_arm_timer(domain);
++		uncore->funcs.force_wake_put(uncore, domain->mask);
+ 	}
+ }
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
