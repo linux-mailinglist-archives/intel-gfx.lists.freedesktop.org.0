@@ -1,40 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A721AD674
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 08:51:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DCD61AD733
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 09:17:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F13EE6E33D;
-	Fri, 17 Apr 2020 06:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73D286E3A6;
+	Fri, 17 Apr 2020 07:17:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 781586E33D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 06:51:39 +0000 (UTC)
-IronPort-SDR: LqdjDLn8kn7tu8u05XZCwcz7Os8HnUN2wr6Fpr09tqfMGH5QWpW3ZGfTcyLu8+lzFNd/AVY6Da
- f67aZMgk812w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2020 23:51:38 -0700
-IronPort-SDR: 8/jy2Tka0WUKqObb//HXtur3vAX1Dem123VRUietZoe35f5umQZNXy4g+Sk92kETsOpOyvFbUN
- rHViMIzVZd7w==
-X-IronPort-AV: E=Sophos;i="5.72,394,1580803200"; d="scan'208";a="428133304"
-Received: from mcintra-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.44.191])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2020 23:51:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8100C6E394
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 07:17:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929009-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:17:01 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 09:51:32 +0300
-Message-Id: <20200417065132.23048-1-jani.nikula@intel.com>
+Date: Fri, 17 Apr 2020 08:16:57 +0100
+Message-Id: <20200417071700.22234-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH] drm/i915/audio: error log non-zero audio power
- refcount after unbind
+Subject: [Intel-gfx] [CI 1/4] drm/i915/selftests: Delay spinner before
+ waiting for an interrupt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,38 +37,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We have some module unload/reload tests hitting an issue with i915
-unbinding the component interface before the audio driver has properly
-put the power. Log an error about it for ease of debugging. (Normally
-this leads to a wakeref debug splat on the power well.)
+It seems that although (perhaps because of the memory stall?) the
+spinner has signaled that it has started, it still takes some time to
+spin up to 100% utilisation of the HW. Since the test depends on the
+full utilisation of the HW to trigger the RPS interrupt, wait a little
+bit and flush the interrupt status to be sure that the event we see if
+from the spinner.
 
-Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 28 +++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 57b80971ae78..793db13fcf25 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -1138,6 +1138,10 @@ static void i915_audio_component_unbind(struct device *i915_kdev,
- 	drm_modeset_unlock_all(&dev_priv->drm);
- 
- 	device_link_remove(hda_kdev, i915_kdev);
-+
-+	if (dev_priv->audio_power_refcount)
-+		drm_err(&dev_priv->drm, "audio power refcount %d after unbind\n",
-+			dev_priv->audio_power_refcount);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 26aadc2ae3be..199d608aa763 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -14,6 +14,20 @@ static void dummy_rps_work(struct work_struct *wrk)
+ {
  }
  
- static const struct component_ops i915_audio_component_bind_ops = {
++static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
++{
++	/* Flush any previous EI */
++	usleep_range(timeout_us, 2 * timeout_us);
++
++	/* Reset the interrupt status */
++	rps_disable_interrupts(rps);
++	GEM_BUG_ON(rps->pm_iir);
++	rps_enable_interrupts(rps);
++
++	/* And then wait for the timeout, for real this time */
++	usleep_range(2 * timeout_us, 3 * timeout_us);
++}
++
+ static int __rps_up_interrupt(struct intel_rps *rps,
+ 			      struct intel_engine_cs *engine,
+ 			      struct igt_spinner *spin)
+@@ -28,7 +42,6 @@ static int __rps_up_interrupt(struct intel_rps *rps,
+ 	intel_gt_pm_wait_for_idle(engine->gt);
+ 	GEM_BUG_ON(rps->active);
+ 
+-	rps->pm_iir = 0;
+ 	rps->cur_freq = rps->min_freq;
+ 
+ 	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
+@@ -71,7 +84,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
+ 	timeout = intel_uncore_read(uncore, GEN6_RP_UP_EI);
+ 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
+ 
+-	usleep_range(2 * timeout, 3 * timeout);
++	sleep_for_ei(rps, timeout);
+ 	GEM_BUG_ON(i915_request_completed(rq));
+ 
+ 	igt_spinner_end(spin);
+@@ -122,16 +135,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
+ 	timeout = intel_uncore_read(uncore, GEN6_RP_DOWN_EI);
+ 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
+ 
+-	/* Flush any previous EI */
+-	usleep_range(timeout, 2 * timeout);
+-
+-	/* Reset the interrupt status */
+-	rps_disable_interrupts(rps);
+-	GEM_BUG_ON(rps->pm_iir);
+-	rps_enable_interrupts(rps);
+-
+-	/* And then wait for the timeout, for real this time */
+-	usleep_range(2 * timeout, 3 * timeout);
++	sleep_for_ei(rps, timeout);
+ 
+ 	if (rps->cur_freq != rps->max_freq) {
+ 		pr_err("%s: Frequency unexpectedly changed [down], now %d!\n",
 -- 
 2.20.1
 
