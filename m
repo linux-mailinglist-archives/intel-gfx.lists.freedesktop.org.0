@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05DE1ADD0B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 14:18:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B9A1ADD59
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 14:32:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60166E402;
-	Fri, 17 Apr 2020 12:18:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47A686EBCD;
+	Fri, 17 Apr 2020 12:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C24D6E402
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 12:18:09 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20932610-1500050 for multiple; Fri, 17 Apr 2020 13:18:07 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 93A566E3F5;
+ Fri, 17 Apr 2020 12:32:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8DBC3A41FB;
+ Fri, 17 Apr 2020 12:32:18 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <3a6ec509-055a-8dde-4daf-d168eb12e548@linux.intel.com>
-References: <20200416114117.3460-1-chris@chris-wilson.co.uk>
- <3a6ec509-055a-8dde-4daf-d168eb12e548@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158712588584.5570.10530494997719732777@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 13:18:05 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Scrub execlists state on resume
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 12:32:18 -0000
+Message-ID: <158712673855.10467.13255544286370640143@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417071700.22234-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200417071700.22234-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/4=5D_drm/i915/selftests=3A_D?=
+ =?utf-8?q?elay_spinner_before_waiting_for_an_interrupt_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,35 +39,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-04-17 13:09:52)
-> 
-> On 16/04/2020 12:41, Chris Wilson wrote:
-> > Before we resume, we reset the HW so we restart from a known good state.
-> > However, as a part of the reset process, we drain our pending CS event
-> > queue -- and if we are resuming that does not correspond to internal
-> > state. On setup, we are scrubbing the CS pointers, but alas only on
-> > setup.
-> > 
-> > Apply the sanitization not just to setup, but to all resumes.
-> > 
-> > Reported-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > ---
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Tvrtko mentioned on irc that we could do some poisoning of assumed state
-(like the HWSP here) in order to better catch these errors.
--Chris
+Series: series starting with [CI,1/4] drm/i915/selftests: Delay spinner before waiting for an interrupt (rev2)
+URL   : https://patchwork.freedesktop.org/series/76074/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+bb39f2b2f365 drm/i915/selftests: Delay spinner before waiting for an interrupt
+e2c365498c92 drm/i915/selftests: Move gpu energy measurement into its own little lib
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+97bccc0fea21 drm/i915/selftests: Check power consumption at min/max frequencies
+da7b9eb2b50e drm/i915/gt: Always take fw around RPS frequency changes
+-:7: WARNING:TYPO_SPELLING: 'occuring' may be misspelled - perhaps 'occurring'?
+#7: 
+simply not occuring [within a 20ms period]. The assumption was that with
+
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
