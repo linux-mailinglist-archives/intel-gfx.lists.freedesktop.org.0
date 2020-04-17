@@ -1,33 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64971AE665
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:58:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD921AE6A3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 22:19:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44DAD6EA23;
-	Fri, 17 Apr 2020 19:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5943A6EA2E;
+	Fri, 17 Apr 2020 20:19:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2026EA23;
- Fri, 17 Apr 2020 19:58:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2086EA2E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 20:19:33 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20938236-1500050 for multiple; Fri, 17 Apr 2020 20:58:21 +0100
-MIME-Version: 1.0
-In-Reply-To: <158715338057.10467.8702495067706573035@emeril.freedesktop.org>
-References: <20200417141555.12028-1-chris@chris-wilson.co.uk>
- <158715338057.10467.8702495067706573035@emeril.freedesktop.org>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20938336-1500050 
+ for multiple; Fri, 17 Apr 2020 21:19:14 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] ✗ Fi.CI.BAT: failure for drm/i915/gt: Poison residual state [HWSP] across resume.
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158715349956.2062.3869802463739303133@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 20:58:19 +0100
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Apr 2020 21:19:12 +0100
+Message-Id: <20200417201912.5015-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Poison residual state [HWSP]
+ across resume.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,22 +37,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Patchwork (2020-04-17 20:56:20)
-> Participating hosts (51 -> 12)
-> ------------------------------
-> 
->   ERROR: It appears as if the changes made in Patchwork_17352 prevented too many machines from booting.
-> 
->   Missing    (39): fi-kbl-soraka fi-skl-6770hq fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-icl-y fi-skl-lmem fi-icl-guc fi-icl-dsi fi-skl-6600u fi-cml-u2 fi-tgl-u fi-bdw-5557u fi-cml-s fi-bxt-dsi fi-bsw-n3050 fi-glk-dsi fi-kbl-7500u fi-ctg-p8600 fi-tgl-y fi-bsw-nick fi-skl-6700k2 fi-kbl-r fi-ehl-1 fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-whl-u fi-kbl-x1275 fi-cfl-8109u fi-kbl-8809g fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+Since we may lose the content of any buffer when we relinquish control
+of the system (e.g. suspend/resume), we have to be careful not to rely
+on regaining control. A good method to detect when we might be using
+garbage is by always injecting that garbage prior to first use on
+load/resume/etc.
 
-Ok. I'll go hide under the rock.
--Chris
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 34f67eb9bfa1..7b3eaa1148df 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3647,9 +3647,37 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+ 			       &execlists->csb_status[reset_value]);
+ }
+ 
++static void timeline_reset_seqno(const struct intel_timeline *tl)
++{
++	/* Must be pinned to be writable, and no requests in flight. */
++	GEM_BUG_ON(!atomic_read(&tl->pin_count));
++	GEM_BUG_ON(atomic_read(&tl->active_count));
++
++	WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
++}
++
+ static void execlists_sanitize(struct intel_engine_cs *engine)
+ {
++	/*
++	 * Poison residual state on resume, in case the suspend didn't!
++	 *
++	 * We have to assume that across suspend/resume (or other loss
++	 * of control) that the contents of our pinned buffers has been
++	 * lost, replaced by garbage. Since this doesn't always happen,
++	 * let's poison such state so that we more quickly spot when
++	 * we falsely assume it has been preserved.
++	 */
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
++
+ 	reset_csb_pointers(engine);
++
++	/*
++	 * The kernel_context HWSP is stored in the status_page. As above,
++	 * that may be lost on resume/initialisation, and so we need to
++	 * reset the value in the HWSP.
++	 */
++	timeline_reset_seqno(engine->kernel_context->timeline);
+ }
+ 
+ static void enable_error_interrupt(struct intel_engine_cs *engine)
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
