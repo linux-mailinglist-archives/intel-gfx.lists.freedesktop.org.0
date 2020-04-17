@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D301AE3BE
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 19:23:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83361AE3E5
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 19:38:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB416E241;
-	Fri, 17 Apr 2020 17:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4592A6E2AF;
+	Fri, 17 Apr 2020 17:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB6286E241
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 17:22:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20936717-1500050 for multiple; Fri, 17 Apr 2020 18:22:55 +0100
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6476E2AF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 17:38:38 +0000 (UTC)
+IronPort-SDR: F47QsfcjP7/E/7C9ytlVCv37fGkBpuXSyIRTjkYMcxkam0oko5eP/c230FR8IgkC1/w1iKco1Y
+ tXYoSVb5CMBQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 10:38:37 -0700
+IronPort-SDR: TIaD888zyM5jQkYK7dBFrSqD78nWGwaas+5E+o3pZzx4aOSAi0UTIKNR43mmqdAAPl1gYzMj7M
+ rWAgkzMN9VQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="299671485"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Apr 2020 10:38:36 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Apr 2020 22:58:35 +0530
+Message-Id: <20200417172835.15461-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-In-Reply-To: <14063C7AD467DE4B82DEDB5C278E86630102122D8E@FMSMSX108.amr.corp.intel.com>
-References: <20200417152244.77623-1-michael.j.ruhl@intel.com>
- <158713809922.2062.18026137702042561111@build.alporthouse.com>
- <14063C7AD467DE4B82DEDB5C278E86630102121C8A@FMSMSX108.amr.corp.intel.com>
- <158714019161.2062.5864722017291721274@build.alporthouse.com>
- <14063C7AD467DE4B82DEDB5C278E86630102122D8E@FMSMSX108.amr.corp.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <158714417361.2062.5827641973080459185@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 18:22:53 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Refactor dma mask usage to a
- common helper
+Subject: [Intel-gfx] [PATCH] drm/i915: Add ICL PG3 PW ID for EHL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,33 +49,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ruhl, Michael J (2020-04-17 18:14:24)
-> Ahh, I just remembered why I did not put the work arounds in the new
-> helper.
-> 
-> I discovered that the  intel_gmch_probe() code is in the char/agp directory,
-> so the path is:
-> 
-> i915 set dma_mask
-> < gen5 set dma_mask
-> i915 < gen 5 work arounds
-> 
-> If I put the workarounds in the set dma mask, I lose the workaround.
-> 
-> Hmmm, intel_gmch_probe() has  "gpu_pdev" to indicate that it is being
-> inited from i915.  I could use this to skip the dma mask setting for this
-> path.
-> 
-> Is that reasonable?
+Gen11 onwards PG3 contains functions for pipe B,
+external displays, and VGA. Add missing ICL_DISP_PW_3
+for ehl_power_wells.
 
-If this is the straw the breaks the camel's back to pull in the gmch
-code under gt/, let me add a pile of hay!
+Cc: Animesh Manna <animesh.manna@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1737
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Honestly, I would set the dma masks as we think they should be here and
-if they are being overridden in char/agp, so be it. When we do pull the
-code out, it will remain correct; and overall with the refactoring you
-are doing the driver will be much more consistent across all gen.
--Chris
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 1d01c79fb9db..e9ced41fe7e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -3804,7 +3804,7 @@ static const struct i915_power_well_desc ehl_power_wells[] = {
+ 		.name = "power well 3",
+ 		.domains = ICL_PW_3_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+-		.id = DISP_PW_ID_NONE,
++		.id = ICL_DISP_PW_3,
+ 		{
+ 			.hsw.regs = &hsw_power_well_regs,
+ 			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
+-- 
+2.26.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
