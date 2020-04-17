@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752CA1ADD93
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 14:49:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2001ADD94
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 14:49:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 731036E41A;
-	Fri, 17 Apr 2020 12:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A729D6EBD1;
+	Fri, 17 Apr 2020 12:49:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8362F6E41A
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 12:49:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20932983-1500050 
- for multiple; Fri, 17 Apr 2020 13:49:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 13:49:19 +0100
-Message-Id: <20200417124919.1075-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200417115939.32677-1-chris@chris-wilson.co.uk>
-References: <20200417115939.32677-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 141F96EBD2;
+ Fri, 17 Apr 2020 12:49:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E0D1BA47DA;
+ Fri, 17 Apr 2020 12:49:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Expose an option to flush the
- tasklets via debugfs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 12:49:48 -0000
+Message-ID: <158712778891.10465.13764154227301161672@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417071700.22234-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200417071700.22234-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C1/4=5D_drm/i915/selftests=3A_Delay_s?=
+ =?utf-8?q?pinner_before_waiting_for_an_interrupt_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,95 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arjun Melkaveri <arjun.melkaveri@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In some IGT we have quite strict timing requirements that are trying to
-measure workloads and not the latency of execution. For these, ksoftirqd
-can cause quite a bit of mischief with long and unpredictable scheduling
-delays, so lets explicitly flush the softirq tasklets via the
-local_bh_enable() trick. This has to be done on_each_cpu() as the
-tasklets when scheduled are local to a CPU.
+== Series Details ==
 
-v2: Work around the warnings around the lack of a direct means to flush
-tasklets.
+Series: series starting with [CI,1/4] drm/i915/selftests: Delay spinner before waiting for an interrupt (rev2)
+URL   : https://patchwork.freedesktop.org/series/76074/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Arjun Melkaveri <arjun.melkaveri@intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs.c | 31 ++++++++++++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index aa35a59f1c7d..abb56406b9dc 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1429,6 +1429,7 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
- #define DROP_RESET_ACTIVE	BIT(7)
- #define DROP_RESET_SEQNO	BIT(8)
- #define DROP_RCU	BIT(9)
-+#define DROP_TASKLETS	BIT(10)
- #define DROP_ALL (DROP_UNBOUND	| \
- 		  DROP_BOUND	| \
- 		  DROP_RETIRE	| \
-@@ -1438,7 +1439,8 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
- 		  DROP_IDLE	| \
- 		  DROP_RESET_ACTIVE | \
- 		  DROP_RESET_SEQNO | \
--		  DROP_RCU)
-+		  DROP_RCU	| \
-+		  DROP_TASKLETS)
- static int
- i915_drop_caches_get(void *data, u64 *val)
- {
-@@ -1476,6 +1478,30 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
- 	return 0;
- }
- 
-+static void kick_softirq_tasklets(void *arg)
-+{
-+	int hardirq = in_irq();
-+
-+	/* Lies, lies, and damn lies */
-+	preempt_count_inc();
-+	preempt_count_sub(hardirq);
-+
-+	/* Execute the softirq tasklets immediately */
-+	local_bh_disable();
-+	_local_bh_enable();
-+
-+	/* Some tasklets may have queued others, so double check */
-+	local_bh_disable();
-+	_local_bh_enable();
-+
-+	/* Third time's the charm. I don't think we recurse any deeper! */
-+	local_bh_disable();
-+	_local_bh_enable();
-+
-+	preempt_count_add(hardirq);
-+	preempt_count_dec();
-+}
-+
- static int
- i915_drop_caches_set(void *data, u64 val)
- {
-@@ -1485,6 +1511,9 @@ i915_drop_caches_set(void *data, u64 val)
- 	DRM_DEBUG("Dropping caches: 0x%08llx [0x%08llx]\n",
- 		  val, val & DROP_ALL);
- 
-+	if (val & DROP_TASKLETS)
-+		on_each_cpu(kick_softirq_tasklets, NULL, true);
-+
- 	ret = gt_drop_caches(&i915->gt, val);
- 	if (ret)
- 		return ret;
--- 
-2.20.1
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
