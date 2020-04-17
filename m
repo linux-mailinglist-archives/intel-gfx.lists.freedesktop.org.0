@@ -2,31 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09DB61AE573
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD55A1AE5B3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:20:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE146E542;
-	Fri, 17 Apr 2020 19:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68E416E120;
+	Fri, 17 Apr 2020 19:20:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BDDD6E542;
- Fri, 17 Apr 2020 19:08:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8F90A47EA;
- Fri, 17 Apr 2020 19:08:24 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE1236E120
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 19:20:29 +0000 (UTC)
+IronPort-SDR: 54N6n+frtlv9lM0fmnoEeK3OhuOvHBv1eIMCDZK4L1l1BReUV15ZmE603GN322hWF3bQfsntrL
+ V+d1J+gcME6w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 12:20:28 -0700
+IronPort-SDR: 6nieYOZHY2/DwgZpvTyYAu1u3E6ZMtr5+M9Lqx4z0WEPDew2/yinnSgxhLAMk5tPoKuP84UBDZ
+ vQcr3Nm7N5mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="257674671"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 17 Apr 2020 12:20:26 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Apr 2020 22:20:25 +0300
+Date: Fri, 17 Apr 2020 22:20:25 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20200417192025.GT6112@intel.com>
+References: <20200417152734.464-1-ville.syrjala@linux.intel.com>
+ <20200417152734.464-2-ville.syrjala@linux.intel.com>
+ <e4b4d38ede3548f1c4c0b78fa67bcf0cf562cba7.camel@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Fri, 17 Apr 2020 19:08:24 -0000
-Message-ID: <158715050492.10464.9383998592385139755@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-user_af?=
- =?utf-8?q?ter_completely_unlocking_all_locks=2C_v3=2E?=
+Content-Disposition: inline
+In-Reply-To: <e4b4d38ede3548f1c4c0b78fa67bcf0cf562cba7.camel@redhat.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Push MST link retraining to
+ the hotplug work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,191 +53,366 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Apr 17, 2020 at 02:50:39PM -0400, Lyude Paul wrote:
+> On Fri, 2020-04-17 at 18:27 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
-URL   : https://patchwork.freedesktop.org/series/76096/
-State : failure
+> > We shouldn't try to do link retraining from the short hpd handler.
+> > We can't take any modeset locks there so this is racy as hell.
+> > Push the whole thing into the hotplug work like we do with SST.
+> > =
 
-== Summary ==
+> > We'll just have to adjust the SST retraining code to deal with
+> > the MST encoders and multiple pipes.
+> > =
 
-CI Bug Log - changes from CI_DRM_8319 -> Patchwork_17349
-====================================================
+> > TODO: I have a feeling we should just rip this all out and
+> > do a full modeset instead. Stuff like port sync and the tgl+
+> > MST master transcoder stuff maybe doesn't work well if we
+> > try to retrain without following the proper modeset sequence.
+> > So far haven't done any actual tests to confirm that though.
+> =
 
-Summary
--------
+> To answer your feeling here: yes-we should, I have some branches for doing
+> this sort of thing with i915 but they are ancient at this point. Once I g=
+et to
+> fallback link retraining we should be able to use this in i915 to handle
+> figuring out what all needs to be reset for an MST training.
 
-  **FAILURE**
+Not sure what else we'd have to do but set connectors_changed=3Dtrue on
+all the relevant connectors and commit.
 
-  Serious unknown changes coming with Patchwork_17349 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17349, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/index.html
+> fwiw - If you have some need for fallback link retraining soon I can move=
+ it
+> up on my todo list for MST. I've got the hard design parts already figure=
+d out
+> from the last time I tried implementing it, so writing new patches should=
+n't
+> be too difficult.
+> =
 
-Possible new issues
--------------------
+> (note - this patch is still worth merging I'd imagine, since this looks l=
+ike
+> it should at least handle retraining an MST topology at the same link rate
+> just fine)
+> =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17349:
+> > =
 
-### IGT changes ###
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 165 ++++++++++++++++++------
+> >  1 file changed, 122 insertions(+), 43 deletions(-)
+> > =
 
-#### Possible regressions ####
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 4d4898db38e9..556371338aa9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -5628,6 +5628,7 @@ static int
+> >  intel_dp_check_mst_status(struct intel_dp *intel_dp)
+> >  {
+> >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > +	bool need_retrain =3D false;
+> >  =
 
-  * igt@gem_render_tiled_blits@basic:
-    - fi-pnv-d510:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-pnv-d510/igt@gem_render_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-pnv-d510/igt@gem_render_tiled_blits@basic.html
-    - fi-gdg-551:         [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
-    - fi-blb-e6850:       [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-blb-e6850/igt@gem_render_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-blb-e6850/igt@gem_render_tiled_blits@basic.html
+> >  	if (!intel_dp->is_mst)
+> >  		return -EINVAL;
+> > @@ -5647,16 +5648,11 @@ intel_dp_check_mst_status(struct intel_dp *inte=
+l_dp)
+> >  		}
+> >  =
 
-  * igt@i915_module_load@reload:
-    - fi-hsw-4770:        [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-hsw-4770/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-hsw-4770/igt@i915_module_load@reload.html
+> >  		/* check link status - esi[10] =3D 0x200c */
+> > -		/*
+> > -		 * FIXME kill this and use the SST retraining approach
+> > -		 * for MST as well.
+> > -		 */
+> > -		if (intel_dp->active_mst_links > 0 &&
+> > +		if (intel_dp->active_mst_links > 0 && !need_retrain &&
+> >  		    !drm_dp_channel_eq_ok(&esi[10], intel_dp->lane_count)) {
+> >  			drm_dbg_kms(&i915->drm,
+> >  				    "channel EQ not ok, retraining\n");
+> > -			intel_dp_start_link_train(intel_dp);
+> > -			intel_dp_stop_link_train(intel_dp);
+> > +			need_retrain =3D true;
+> >  		}
+> >  =
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
+> >  		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
+> > @@ -5676,7 +5672,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_=
+dp)
+> >  		}
+> >  	}
+> >  =
 
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-bsw-nick:        [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-bsw-nick/igt@i915_selftest@live@gt_timelines.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-bsw-nick/igt@i915_selftest@live@gt_timelines.html
+> > -	return 0;
+> > +	return need_retrain;
+> >  }
+> >  =
 
-  * igt@kms_busy@basic@flip:
-    - fi-bwr-2160:        [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-bwr-2160/igt@kms_busy@basic@flip.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-bwr-2160/igt@kms_busy@basic@flip.html
+> >  static bool
+> > @@ -5713,20 +5709,102 @@ intel_dp_needs_link_retrain(struct intel_dp
+> > *intel_dp)
+> >  	return !drm_dp_channel_eq_ok(link_status, intel_dp->lane_count);
+> >  }
+> >  =
 
-  * igt@runner@aborted:
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][15]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-hsw-peppy/igt@runner@aborted.html
-    - fi-bsw-nick:        NOTRUN -> [FAIL][16]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-bsw-nick/igt@runner@aborted.html
+> > +static bool intel_dp_has_connector(struct intel_dp *intel_dp,
+> > +				   const struct drm_connector_state
+> > *conn_state)
+> > +{
+> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > +	struct intel_encoder *encoder;
+> > +	enum pipe pipe;
+> > +
+> > +	if (!conn_state->best_encoder)
+> > +		return false;
+> > +
+> > +	/* SST */
+> > +	encoder =3D &dp_to_dig_port(intel_dp)->base;
+> > +	if (conn_state->best_encoder =3D=3D &encoder->base)
+> > +		return true;
+> > +
+> > +	/* MST */
+> > +	for_each_pipe(i915, pipe) {
+> > +		encoder =3D &intel_dp->mst_encoders[pipe]->base;
+> > +		if (conn_state->best_encoder =3D=3D &encoder->base)
+> > +			return true;
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > +
+> > +static int intel_dp_prep_link_retrain(struct intel_dp *intel_dp,
+> > +				      struct drm_modeset_acquire_ctx *ctx,
+> > +				      u32 *crtc_mask)
+> > +{
+> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > +	struct drm_connector_list_iter conn_iter;
+> > +	struct intel_connector *connector;
+> > +	int ret =3D 0;
+> > +
+> > +	*crtc_mask =3D 0;
+> > +
+> > +	if (!intel_dp_needs_link_retrain(intel_dp))
+> > +		return 0;
+> > +
+> > +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> > +	for_each_intel_connector_iter(connector, &conn_iter) {
+> > +		struct drm_connector_state *conn_state =3D
+> > +			connector->base.state;
+> > +		struct intel_crtc_state *crtc_state;
+> > +		struct intel_crtc *crtc;
+> > +
+> > +		if (!intel_dp_has_connector(intel_dp, conn_state))
+> > +			continue;
+> > +
+> > +		crtc =3D to_intel_crtc(conn_state->crtc);
+> > +		if (!crtc)
+> > +			continue;
+> > +
+> > +		ret =3D drm_modeset_lock(&crtc->base.mutex, ctx);
+> > +		if (ret)
+> > +			break;
+> > +
+> > +		crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > +
+> > +		drm_WARN_ON(&i915->drm,
+> > !intel_crtc_has_dp_encoder(crtc_state));
+> > +
+> > +		if (!crtc_state->hw.active)
+> > +			continue;
+> > +
+> > +		if (conn_state->commit &&
+> > +		    !try_wait_for_completion(&conn_state->commit->hw_done))
+> > +			continue;
+> > +
+> > +		*crtc_mask |=3D drm_crtc_mask(&crtc->base);
+> > +	}
+> > +	drm_connector_list_iter_end(&conn_iter);
+> > +
+> > +	if (!intel_dp_needs_link_retrain(intel_dp))
+> > +		*crtc_mask =3D 0;
+> =
 
-  
-#### Suppressed ####
+> Also fwiw ^ this is the kind of logic I was thinking for the MST helpers =
+(e.g.
+> having helpers (+ setting link_status for each affected connector, etc. e=
+t.).
+> again though-it's fine if this stays in i915 for now, but we should move =
+it in
+> the future.
+> =
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static bool intel_dp_is_connected(struct intel_dp *intel_dp)
+> > +{
+> > +	struct intel_connector *connector =3D intel_dp->attached_connector;
+> > +
+> > +	return connector->base.status =3D=3D connector_status_connected ||
+> > +		intel_dp->is_mst;
+> > +}
+> > +
+> >  int intel_dp_retrain_link(struct intel_encoder *encoder,
+> >  			  struct drm_modeset_acquire_ctx *ctx)
+> >  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > -	struct intel_connector *connector =3D intel_dp->attached_connector;
+> > -	struct drm_connector_state *conn_state;
+> > -	struct intel_crtc_state *crtc_state;
+> >  	struct intel_crtc *crtc;
+> > +	u32 crtc_mask;
+> >  	int ret;
+> >  =
 
-  * {igt@gem_exec_parallel@engines@basic}:
-    - fi-kbl-r:           [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-kbl-r/igt@gem_exec_parallel@engines@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-kbl-r/igt@gem_exec_parallel@engines@basic.html
-    - {fi-kbl-7560u}:     NOTRUN -> [INCOMPLETE][19]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-kbl-7560u/igt@gem_exec_parallel@engines@basic.html
-    - fi-skl-6600u:       [PASS][20] -> [INCOMPLETE][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-skl-6600u/igt@gem_exec_parallel@engines@basic.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-skl-6600u/igt@gem_exec_parallel@engines@basic.html
-    - fi-kbl-x1275:       [PASS][22] -> [INCOMPLETE][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-kbl-x1275/igt@gem_exec_parallel@engines@basic.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-kbl-x1275/igt@gem_exec_parallel@engines@basic.html
-    - fi-bdw-5557u:       [PASS][24] -> [INCOMPLETE][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-bdw-5557u/igt@gem_exec_parallel@engines@basic.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-bdw-5557u/igt@gem_exec_parallel@engines@basic.html
-    - fi-kbl-soraka:      [PASS][26] -> [INCOMPLETE][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-kbl-soraka/igt@gem_exec_parallel@engines@basic.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-kbl-soraka/igt@gem_exec_parallel@engines@basic.html
+> > -	/* FIXME handle the MST connectors as well */
+> > -
+> > -	if (!connector || connector->base.status !=3D
+> > connector_status_connected)
+> > +	if (!intel_dp_is_connected(intel_dp))
+> >  		return 0;
+> >  =
 
-  * {igt@gem_exec_parallel@engines@contexts}:
-    - fi-skl-lmem:        [PASS][28] -> [INCOMPLETE][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-skl-lmem/igt@gem_exec_parallel@engines@contexts.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-skl-lmem/igt@gem_exec_parallel@engines@contexts.html
-    - fi-hsw-peppy:       [PASS][30] -> [INCOMPLETE][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-hsw-peppy/igt@gem_exec_parallel@engines@contexts.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-hsw-peppy/igt@gem_exec_parallel@engines@contexts.html
+> >  	ret =3D drm_modeset_lock(&dev_priv->drm.mode_config.connection_mutex,
+> > @@ -5734,46 +5812,42 @@ int intel_dp_retrain_link(struct intel_encoder
+> > *encoder,
+> >  	if (ret)
+> >  		return ret;
+> >  =
 
-  * {igt@gem_exec_parallel@engines@fds}:
-    - fi-icl-dsi:         [PASS][32] -> [INCOMPLETE][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-icl-dsi/igt@gem_exec_parallel@engines@fds.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-icl-dsi/igt@gem_exec_parallel@engines@fds.html
-    - fi-bxt-dsi:         [PASS][34] -> [INCOMPLETE][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-bxt-dsi/igt@gem_exec_parallel@engines@fds.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/fi-bxt-dsi/igt@gem_exec_parallel@engines@fds.html
+> > -	conn_state =3D connector->base.state;
+> > -
+> > -	crtc =3D to_intel_crtc(conn_state->crtc);
+> > -	if (!crtc)
+> > -		return 0;
+> > -
+> > -	ret =3D drm_modeset_lock(&crtc->base.mutex, ctx);
+> > +	ret =3D intel_dp_prep_link_retrain(intel_dp, ctx, &crtc_mask);
+> >  	if (ret)
+> >  		return ret;
+> >  =
 
-  
-Known issues
-------------
+> > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > -
+> > -	drm_WARN_ON(&dev_priv->drm, !intel_crtc_has_dp_encoder(crtc_state));
+> > -
+> > -	if (!crtc_state->hw.active)
+> > +	if (crtc_mask =3D=3D 0)
+> >  		return 0;
+> >  =
 
-  Here are the changes found in Patchwork_17349 that come from known issues:
+> > -	if (conn_state->commit &&
+> > -	    !try_wait_for_completion(&conn_state->commit->hw_done))
+> > -		return 0;
+> > +	drm_dbg_kms(&dev_priv->drm, "[ENCODER:%d:%s] retraining link\n",
+> > +		    encoder->base.base.id, encoder->base.name);
+> >  =
 
-### IGT changes ###
+> > -	if (!intel_dp_needs_link_retrain(intel_dp))
+> > -		return 0;
+> > +	for_each_intel_crtc_mask(&dev_priv->drm, crtc, crtc_mask) {
+> > +		const struct intel_crtc_state *crtc_state =3D
+> > +			to_intel_crtc_state(crtc->base.state);
+> >  =
 
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> > -	/* Suppress underruns caused by re-training */
+> > -	intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
+> > -	if (crtc_state->has_pch_encoder)
+> > -		intel_set_pch_fifo_underrun_reporting(dev_priv,
+> > -						      intel_crtc_pch_transcode
+> > r(crtc), false);
+> > +		/* Suppress underruns caused by re-training */
+> > +		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe,
+> > false);
+> > +		if (crtc_state->has_pch_encoder)
+> > +			intel_set_pch_fifo_underrun_reporting(dev_priv,
+> > +							      intel_crtc_pch_t
+> > ranscoder(crtc), false);
+> > +	}
+> >  =
 
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
-  [i915#88]: https://gitlab.freedesktop.org/drm/intel/issues/88
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+> >  	intel_dp_start_link_train(intel_dp);
+> >  	intel_dp_stop_link_train(intel_dp);
+> >  =
 
+> > -	/* Keep underrun reporting disabled until things are stable */
+> > -	intel_wait_for_vblank(dev_priv, crtc->pipe);
+> > +	for_each_intel_crtc_mask(&dev_priv->drm, crtc, crtc_mask) {
+> > +		const struct intel_crtc_state *crtc_state =3D
+> > +			to_intel_crtc_state(crtc->base.state);
+> >  =
 
-Participating hosts (51 -> 46)
-------------------------------
+> > -	intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, true);
+> > -	if (crtc_state->has_pch_encoder)
+> > -		intel_set_pch_fifo_underrun_reporting(dev_priv,
+> > -						      intel_crtc_pch_transcode
+> > r(crtc), true);
+> > +		/* Keep underrun reporting disabled until things are stable */
+> > +		intel_wait_for_vblank(dev_priv, crtc->pipe);
+> > +
+> > +		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe,
+> > true);
+> > +		if (crtc_state->has_pch_encoder)
+> > +			intel_set_pch_fifo_underrun_reporting(dev_priv,
+> > +							      intel_crtc_pch_t
+> > ranscoder(crtc), true);
+> > +	}
+> >  =
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+> >  	return 0;
+> >  }
+> > @@ -7415,7 +7489,8 @@ intel_dp_hpd_pulse(struct intel_digital_port
+> > *intel_dig_port, bool long_hpd)
+> >  	}
+> >  =
 
+> >  	if (intel_dp->is_mst) {
+> > -		if (intel_dp_check_mst_status(intel_dp) =3D=3D -EINVAL) {
+> > +		switch (intel_dp_check_mst_status(intel_dp)) {
+> > +		case -EINVAL:
+> >  			/*
+> >  			 * If we were in MST mode, and device is not
+> >  			 * there, get out of MST mode
+> > @@ -7429,6 +7504,10 @@ intel_dp_hpd_pulse(struct intel_digital_port
+> > *intel_dig_port, bool long_hpd)
+> >  							intel_dp->is_mst);
+> >  =
 
-Build changes
--------------
+> >  			return IRQ_NONE;
+> > +		case 1:
+> > +			return IRQ_NONE;
+> > +		default:
+> > +			break;
+> >  		}
+> >  	}
+> >  =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8319 -> Patchwork_17349
+> -- =
 
-  CI-20190529: 20190529
-  CI_DRM_8319: 18043327e8a9cba095bca9f80cdc70900a51f92c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17349: 4020a1a6ee367fa98569d13ffc22189562d56a83 @ git://anongit.freedesktop.org/gfx-ci/linux
+> Cheers,
+> 	Lyude Paul (she/her)
+> 	Associate Software Engineer at Red Hat
 
+-- =
 
-== Linux commits ==
-
-4020a1a6ee36 drm/i915: Ensure we hold the pin mutex
-d6904362a6ce drm/i915: Add ww locking to pin_to_display_plane
-ea84a0c54701 drm/i915: Add ww locking to vm_fault_gtt
-4f2f4dd1dc89 drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
-5dd61a2e5601 drm/i915: Use ww pinning for intel_context_create_request()
-6a1366bfdbfd drm/i915/selftests: Fix locking inversion in lrc selftest.
-7090cc8880f1 drm/i915: Dirty hack to fix selftests locking inversion
-aba9cc8e87ff drm/i915: Convert i915_perf to ww locking as well
-26df1bbc28b0 drm/i915: Kill last user of intel_context_create_request outside of selftests
-0177c8a29336 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
-6822ff18c288 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-c92b2540f0bd drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
-67a517dd1f51 drm/i915: Pin engine before pinning all objects, v3.
-1f28a398cfa7 drm/i915: Nuke arguments to eb_pin_engine
-10c1773ccd10 drm/i915: Add ww context handling to context_barrier_task
-ad97b3a07fb3 drm/i915: Use ww locking in intel_renderstate.
-380c532e5cfb drm/i915: Use per object locking in execbuf, v7.
-434cd3192a8f Revert "drm/i915/gem: Split eb_vma into its own allocation"
-117538ce7e6c drm/i915: Parse command buffer earlier in eb_relocate(slow)
-998413e3cfb7 drm/i915: Remove locking from i915_gem_object_prepare_read/write
-26f5b6d94aa1 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-69262497009f Revert "drm/i915/gem: Drop relocation slowpath"
-0f9301e7d5f1 drm/i915/gt: Move the batch buffer pool from the engine to the gt
-ff1eb751fb43 perf/core: Only copy-to-user after completely unlocking all locks, v3.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
