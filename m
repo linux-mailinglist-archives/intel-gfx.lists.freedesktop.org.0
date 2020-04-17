@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3345C1AE64F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 138F71AE65B
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:55:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 644B46E9D5;
-	Fri, 17 Apr 2020 19:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B14E6EA05;
+	Fri, 17 Apr 2020 19:55:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CE36E9D5
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 19:53:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68B2F6EA05
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 19:55:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20938195-1500050 for multiple; Fri, 17 Apr 2020 20:53:08 +0100
+ 20938209-1500050 for multiple; Fri, 17 Apr 2020 20:55:11 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200417134720.16654-2-ville.syrjala@linux.intel.com>
-References: <20200417134720.16654-1-ville.syrjala@linux.intel.com>
- <20200417134720.16654-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200417195107.68732-1-michael.j.ruhl@intel.com>
+References: <20200417195107.68732-1-michael.j.ruhl@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <158715318727.2062.5482656497103455336@build.alporthouse.com>
+Message-ID: <158715330999.2062.12066493041843592892@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 20:53:07 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Move the TRANS_DDI_FUNC_CTL
- enable to a later point
+Date: Fri, 17 Apr 2020 20:55:09 +0100
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Refactor setting dma info to a
+ common helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,22 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTA0LTE3IDE0OjQ3OjE4KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gTm8gcmVhc29u
-IHRoYXQgSSBjYW4gc2VlIHdoeSB3ZSBzaG91bGQgZW5hYmxlIFRSQU5TX0RESV9GVU5DX0NUTAo+
-IGJlZm9yZSB3ZSBzZXQgdXAgdGhlIHdhdGVybWFya3Mgb2YgY29uZm9naXVyZSB0aGUgbWJ1cyBz
-dHVmZi4KPiBJbiBmYWN0IHJlb3JkZXJpbmcgdGhlc2Ugc2VlbXMgdG8gbWF0Y2ggdGhlIGJzcGVj
-IHNlcXVlbmNlIGJldHRlciwKPiBhbmQgY3JpY3VhbGx5IHdpbGwgYWxsb3cgdXMgdG8gcHVzaCB0
-aGUgVFJBTlNfRERJX0ZVTkNfQ1RMIGVuYWJsZQo+IGludG8gdGhlIGVuY29kZXIgZW5hYmxlIGhv
-b2sgYXMgYSBmb2xsb3d1cC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgoKSSBzaG91bGQgbm90IGNvbW1lbnQgYmV5b25k
-IHRoZSBjb2RlIGFwcGVhcnMgdG8gd29yaywKQWNrZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNA
-Y2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Michael J. Ruhl (2020-04-17 20:51:07)
+> DMA_MASK bit values are different for different generations.
+> 
+> This will become more difficult to manage over time with the open
+> coded usage of different versions of the device.
+> 
+> Fix by:
+>   disallow setting of dma mask in AGP path (< GEN(5) for i915,
+>   add dma_mask_size to the device info configuration,
+>   updating open code call sequence to the latest interface,
+>   refactoring into a common function for setting the dma segment
+>   and mask info
+> 
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> cc: Brian Welty <brian.welty@intel.com>
+> cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> 
+> ---
+> v1: removed i915 depenancy from agp path for dma mask
+>     Consolidated segment size and work arounds to the helper
+> v2: added r-b
+
+You don't need to resend for adding r-b by itself, patchwork will do
+that, and the committer should be checking the output from pw. dim then
+double checks that we haven't missed anything vital.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
