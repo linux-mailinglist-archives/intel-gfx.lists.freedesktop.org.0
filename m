@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489A81AE4BE
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:28:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 488891AE4E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:38:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C77C6E50E;
-	Fri, 17 Apr 2020 18:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 023BD6E126;
+	Fri, 17 Apr 2020 18:38:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02CC86E4B3;
- Fri, 17 Apr 2020 18:28:38 +0000 (UTC)
-IronPort-SDR: g6cw2N+c1wx3khx9fyvFxpFR4kZmCfbLHfXkwlvDJEUKTQjj0djNihfZjcs4ta96mjO8in+xuU
- ZObI/ItjL9VQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 11:28:38 -0700
-IronPort-SDR: V9FV1aztj3YODmKpHxiQG+8utpy9tAVRywC/JHnthL/wcvoiaOSryR5C+MH4l6QITld3joGzUx
- BxTPKP26LMlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="244777861"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 17 Apr 2020 11:28:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Apr 2020 21:28:34 +0300
-Date: Fri, 17 Apr 2020 21:28:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200417182834.GS6112@intel.com>
-References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
- <20200417152310.GQ3456981@phenom.ffwll.local>
- <20200417154313.GO6112@intel.com>
- <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6498F6E125;
+ Fri, 17 Apr 2020 18:38:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5CD30A432F;
+ Fri, 17 Apr 2020 18:38:15 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 17 Apr 2020 18:38:15 -0000
+Message-ID: <158714869534.10464.15402707884065495360@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-?=
+ =?utf-8?q?user_after_completely_unlocking_all_locks=2C_v3=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,198 +39,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable <stable@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 17, 2020 at 08:10:26PM +0200, Daniel Vetter wrote:
-> On Fri, Apr 17, 2020 at 5:43 PM Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > On Fri, Apr 17, 2020 at 05:23:10PM +0200, Daniel Vetter wrote:
-> > > On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > >
-> > > > Revert back to comparing fb->format->format instead fb->format for =
-the
-> > > > page flip ioctl. This check was originally only here to disallow pi=
-xel
-> > > > format changes, but when we changed it to do the pointer comparison
-> > > > we potentially started to reject some (but definitely not all) modi=
-fier
-> > > > changes as well. In fact the current behaviour depends on whether t=
-he
-> > > > driver overrides the format info for a specific format+modifier com=
-bo.
-> > > > Eg. on i915 this now rejects compression vs. no compression changes=
- but
-> > > > does not reject any other tiling changes. That's just inconsistent
-> > > > nonsense.
-> > > >
-> > > > The main reason we have to go back to the old behaviour is to fix p=
-age
-> > > > flipping with Xorg. At some point Xorg got its atomic rights taken =
-away
-> > > > and since then we can't page flip between compressed and non-compre=
-ssed
-> > > > fbs on i915. Currently we get no page flipping for any games pretty=
- much
-> > > > since Mesa likes to use compressed buffers. Not sure how compositor=
-s are
-> > > > working around this (don't use one myself). I guess they must be do=
-ing
-> > > > something to get non-compressed buffers instead. Either that or
-> > > > somehow no one noticed the tearing from the blit fallback.
-> > >
-> > > Mesa only uses compressed buffers if you enable modifiers, and there'=
-s a
-> > > _loooooooooooot_ more that needs to be fixed in Xorg to enable that f=
-or
-> > > real. Like real atomic support.
-> >
-> > Why would you need atomic for modifiers? Xorg doesn't even have
-> > any sensible framework for atomic and I suspect it never will.
-> =
+== Series Details ==
 
-> Frankly if no one cares about atomic in X I don't think we should do
-> work-arounds for lack of atomic in X.
-> =
+Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
+URL   : https://patchwork.freedesktop.org/series/76096/
+State : warning
 
-> > > Without modifiers all you get is X tiling,
-> > > and that works just fine.
-> > >
-> > > Which would also fix this issue here you're papering over.
-> > >
-> > > So if this is the entire reason for this, I'm inclined to not do this.
-> > > Current Xorg is toast wrt modifiers, that's not news.
-> >
-> > Works just fine. Also pretty sure modifiers are even enabled by
-> > default now in modesetting.
-> =
+== Summary ==
 
-> Y/CSS is harder to scan out, you need to verify with TEST_ONLY whether
-> it works. Otherwise good chances for some oddball black screens on
-> configurations that worked before. Which is why all non-atomic
-> compositors reverted modifiers by default again.
+$ dim checkpatch origin/drm-tip
+ff1eb751fb43 perf/core: Only copy-to-user after completely unlocking all locks, v3.
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
 
-Y alone is hard to scanout also, and yet we do nothing to reject that.
-It's just an inconsistent mess.
+-:106: WARNING:BAD_SIGN_OFF: Duplicate signature
+#106: 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-If we really want to keep this check then we should rewrite it
-to be explicit:
+-:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#180: FILE: kernel/events/core.c:5174:
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
 
-if (old_fb->format->format !=3D new_fb->format->format ||
-    is_ccs(old_fb->modifier) !=3D is_ccs(new_fb->modifier))
-    return -EINVAL;
+total: 0 errors, 2 warnings, 1 checks, 106 lines checked
+0f9301e7d5f1 drm/i915/gt: Move the batch buffer pool from the engine to the gt
+-:293: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#293: 
+deleted file mode 100644
 
-Now it's just a random thing that may even stop doing what it's
-currently doing if anyone touches their .get_format_info()
-implementation.
+-:607: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#607: FILE: drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h:1:
++/*
 
-> =
+-:608: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#608: FILE: drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h:2:
++ * SPDX-License-Identifier: MIT
 
-> > And as stated the current check doesn't have consistent behaviour
-> > anyway. You can still flip between different modifiers as long a the
-> > driver doesn't override .get_format_info() for one of them. The *only*
-> > case where that happens is CCS on i915. There is no valid reason to
-> > special case that one.
-> =
+total: 0 errors, 3 warnings, 0 checks, 583 lines checked
+69262497009f Revert "drm/i915/gem: Drop relocation slowpath"
+-:78: WARNING:LINE_SPACING: Missing a blank line after declarations
+#78: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1628:
++		int err = __get_user(c, addr);
++		if (err)
 
-> The thing is, you need atomic to make CCS work reliably enough for
-> compositors and distros to dare enabling it by default.
+total: 0 errors, 1 warnings, 0 checks, 257 lines checked
+26f5b6d94aa1 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:506: WARNING:LONG_LINE: line over 100 characters
+#506: FILE: drivers/gpu/drm/i915/i915_gem.c:1341:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
 
-If it's not enabled by default then there is no harm in letting people
-explicitly enable it and get better performance.
+total: 0 errors, 1 warnings, 0 checks, 481 lines checked
+998413e3cfb7 drm/i915: Remove locking from i915_gem_object_prepare_read/write
+117538ce7e6c drm/i915: Parse command buffer earlier in eb_relocate(slow)
+434cd3192a8f Revert "drm/i915/gem: Split eb_vma into its own allocation"
+380c532e5cfb drm/i915: Use per object locking in execbuf, v7.
+ad97b3a07fb3 drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
 
-> CCS flipping
-> works with atomic. I really see no point in baking this in with as
-> uapi.
+total: 0 errors, 1 warnings, 0 checks, 209 lines checked
+10c1773ccd10 drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line over 100 characters
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1099:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
 
-It's just going back to the original intention of the check.
-Heck, the debug message doesn't even match what it's doing now.
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+1f28a398cfa7 drm/i915: Nuke arguments to eb_pin_engine
+67a517dd1f51 drm/i915: Pin engine before pinning all objects, v3.
+c92b2540f0bd drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
++
++
 
-> Just fix Xorg.
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3180:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
 
-Be serious. No one is going to rewrite all the randr code to be atomic.
+total: 0 errors, 0 warnings, 2 checks, 435 lines checked
+6822ff18c288 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:591:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
 
-> -Daniel
-> =
+-:203: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#203: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2221:
++	 * hsw should have this fixed, but bdw mucks it up again. */
 
-> >
-> > > -Daniel
-> > >
-> > > >
-> > > > Looking back at the original discussion on this change we pretty mu=
-ch
-> > > > just did it in the name of skipping a few extra pointer dereference=
-s.
-> > > > However, I've decided not to revert the whole thing in case someone
-> > > > has since started to depend on these changes. None of the other che=
-cks
-> > > > are relevant for i915 anyways.
-> > > >
-> > > > Cc: stable@vger.kernel.org
-> > > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > Fixes: dbd4d5761e1f ("drm: Replace 'format->format' comparisons to =
-just 'format' comparisons")
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_plane.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plan=
-e.c
-> > > > index d6ad60ab0d38..f2ca5315f23b 100644
-> > > > --- a/drivers/gpu/drm/drm_plane.c
-> > > > +++ b/drivers/gpu/drm/drm_plane.c
-> > > > @@ -1153,7 +1153,7 @@ int drm_mode_page_flip_ioctl(struct drm_devic=
-e *dev,
-> > > >     if (ret)
-> > > >             goto out;
-> > > >
-> > > > -   if (old_fb->format !=3D fb->format) {
-> > > > +   if (old_fb->format->format !=3D fb->format->format) {
-> > > >             DRM_DEBUG_KMS("Page flip is not allowed to change frame=
- buffer format.\n");
-> > > >             ret =3D -EINVAL;
-> > > >             goto out;
-> > > > --
-> > > > 2.24.1
-> > > >
-> > > > _______________________________________________
-> > > > dri-devel mailing list
-> > > > dri-devel@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> > >
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> >
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
-> =
+total: 0 errors, 1 warnings, 1 checks, 827 lines checked
+0177c8a29336 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+26df1bbc28b0 drm/i915: Kill last user of intel_context_create_request outside of selftests
+aba9cc8e87ff drm/i915: Convert i915_perf to ww locking as well
+7090cc8880f1 drm/i915: Dirty hack to fix selftests locking inversion
+6a1366bfdbfd drm/i915/selftests: Fix locking inversion in lrc selftest.
+5dd61a2e5601 drm/i915: Use ww pinning for intel_context_create_request()
+4f2f4dd1dc89 drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
+ea84a0c54701 drm/i915: Add ww locking to vm_fault_gtt
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-> =
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+d6904362a6ce drm/i915: Add ww locking to pin_to_display_plane
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-> =
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+4020a1a6ee36 drm/i915: Ensure we hold the pin mutex
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-> -- =
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
