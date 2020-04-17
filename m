@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483071AE03B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 16:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DD31AE046
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 16:56:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA8A6EA92;
-	Fri, 17 Apr 2020 14:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E58B6EC23;
+	Fri, 17 Apr 2020 14:56:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7E4B46E839;
- Fri, 17 Apr 2020 14:52:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77D69A47EA;
- Fri, 17 Apr 2020 14:52:24 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C5C6EC23
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 14:56:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20934697-1500050 for multiple; Fri, 17 Apr 2020 15:56:00 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Apr 2020 14:52:24 -0000
-Message-ID: <158713514446.10464.4439295576323487297@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417093928.17822-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200417093928.17822-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Delay_?=
- =?utf-8?q?spinner_before_waiting_for_an_interrupt?=
+In-Reply-To: <20200417144429.20575-3-mika.kuoppala@linux.intel.com>
+References: <20200417144429.20575-1-mika.kuoppala@linux.intel.com>
+ <20200417144429.20575-3-mika.kuoppala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158713535858.2062.1876075603397663881@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 17 Apr 2020 15:55:58 +0100
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use indirect ctx bb to mend
+ CMD_BUF_CCTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +41,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Mika Kuoppala (2020-04-17 15:44:29)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> index bb444614f33b..6c81a3a815ac 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> @@ -27,6 +27,7 @@
+>  #define CTX_PDP0_UDW                   (0x30 + 1)
+>  #define CTX_PDP0_LDW                   (0x32 + 1)
+>  #define CTX_R_PWR_CLK_STATE            (0x42 + 1)
+> +#define CTX_CMD_BUF_CCTL               (0xB6 + 1)
 
-Series: series starting with [1/2] drm/i915/selftests: Delay spinner before waiting for an interrupt
-URL   : https://patchwork.freedesktop.org/series/76079/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-c95657753237 drm/i915/selftests: Delay spinner before waiting for an interrupt
-5dfcad289d72 drm/i915/selftests: Take the engine wakeref around __rps_up_interrupt
--:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#14: 
-<4> [379.686805] WARNING: CPU: 7 PID: 4869 at ./drivers/gpu/drm/i915/intel_runtime_pm.h:115 gen12_fwtable_read32+0x233/0x300 [i915]
-
-total: 0 errors, 1 warnings, 0 checks, 37 lines checked
-
+Can you add this to live_lrc_layout to confirm its location?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
