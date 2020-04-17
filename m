@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661081ADC01
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 13:16:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC241ADC11
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 13:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 927726EB94;
-	Fri, 17 Apr 2020 11:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1887C6EB91;
+	Fri, 17 Apr 2020 11:21:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA2A6EB94;
- Fri, 17 Apr 2020 11:16:01 +0000 (UTC)
-IronPort-SDR: 7OjamDzvbm1egl6ATjPxHsx5PqFgrhPmEDoKNjJ8U8JqWoJpKMvUPHEq+CAqb/ie638Sr2zR6m
- 24nD/izUi8jg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 04:16:01 -0700
-IronPort-SDR: fCrUybo0Db7f36DZfxKycK1u9jaeZcU37LrlVfh5CG9t/Pf5+KH78Q9Plo4nv6SMCxoYjQHRI9
- Zl8lFTRIVXDw==
-X-IronPort-AV: E=Sophos;i="5.72,394,1580803200"; d="scan'208";a="428196068"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.214.228.24])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 04:15:51 -0700
-Date: Fri, 17 Apr 2020 14:15:48 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200417111548.GA15033@jlahtine-desk.ger.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B5F36EB91;
+ Fri, 17 Apr 2020 11:21:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82D92A47DA;
+ Fri, 17 Apr 2020 11:21:52 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Fri, 17 Apr 2020 11:21:52 -0000
+Message-ID: <158712251250.10467.7369160952495769985@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200416105419.9664-1-uma.shankar@intel.com>
+In-Reply-To: <20200416105419.9664-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Enable_DP_Display_Audio_WA_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,844 +38,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
-
-This pull contains a backmerge of drm-next and pulls the phy-compliance
-branch from Maarten.
-
-On the uAPI front, drop some machine generated perf OA configs from
-915 now that they mostly passed from userspace. Add new perf OA interfaces
-to limit CPU overhead and to allow benchmarking full EU performance (instead
-of always limiting to half EUs for media compatibility).
-
-Missing workarounds for Elkhartlake, more Tigerlake PCI IDs, workarounds
-and fixes.
-
-Fix for 5k dual DP displays on Skylake, support for Apple 15" BMP 2017 (v3)
-display. Type-C display hot plug made more resilent. YUV444 for SKL+.
-
-Improvements to soft-RC6 mitigation, general power management and yielding
-a GPU timeslice when on user semaphore.
-
-An audio fixes for Gen9+ and one targeting JSL.
-
-Then the usual refactorings, and fixes to CI found issues.
-
-Regards, Joonas
-
-***
-
-drm-intel-next-2020-04-17:
-
-UAPI Changes:
-
-- drm/i915/perf: introduce global sseu pinning
-  Allow userspace to request at perf/OA open full SSEU configuration
-  on the system to be able to benchmark 3D workloads, at the cost of not
-  being able to run media workloads. (Lionel)
-
-  Userspace changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_reque=
-sts/4021
-
-- drm/i915/perf: add new open param to configure polling of OA buffer
-  Let application choose how often the OA buffer should be checked on
-  the CPU side for data availability for choosig between CPU overhead
-  and realtime nature of data.
-
-  Userspace changes: https://patchwork.freedesktop.org/series/74655/
-
-  (i915 perf recorder is a tool to capture i915 perf data for viewing
-  in GPUVis.)
-
-- drm/i915/perf: remove generated code
-  Removal of the machine generated perf/OA test configurations from i915.
-  Used by Mesa v17.1-18.0, and shortly replaced by userspace supplied OA
-  configurations. Removal of configs causes affected Mesa versions to
-  fall back to earlier kernel behaviour (potentially missing metrics).
-  (Lionel)
-
-Cross-subsystem Changes:
-
-- Backmerge of drm-next
-
-- Includes tag 'topic/phy-compliance-2020-04-08' from
-  git://anongit.freedesktop.org/drm/drm-misc
-
-Driver Changes:
-
-- Fix for GitLab issue #27: Support 5k tiled dual DP display on SKL (Ville)
-- Fix https://github.com/thesofproject/linux/issues/1719: Broken audio after
-  S3 resume on JSL platforms. (Kai)
-- Add new Tigerlake PCI IDs (Swathi D.)
-- Add missing Tigerlake W/As (Matt R.)
-- Extended Wa_2006604312 to EHL (Matt A)
-- Add DPCD link_rate quirk for Apple 15" MBP 2017 (v3) (Mario)
-- Make Wa_14010229206 apply to all Tigerlake steppings (Swathi d)
-- Extend hotplug detect retry on TypeC connectors to 5 seconds (Imre)
-- Yield the timeslice if caught waiting on a user semaphore (Chris)
-- Limit the residual W/A batch to Haswell due to instability on IVB/BYT (Ch=
-ris)
-- TBT AUX should use TC power well ops on Tigerlake (Matt R)
-- Update PMINTRMSK holding fw to make it effective for RPS (Francisco, Chri=
-s)
-- Add YUV444 packed format support for skl+ (Stanislav)
-- Invalidate OA TLB when closing perf stream to avoid corruption (Umesh)
-- HDCP: fix Ri prime check done during link check (Oliver)
-- Rearm heartbeat on sysfs interval change (Chris)
-- Fix crtc nv12 etc. plane bitmasks for DPMS off (Ville)
-- Treat idling as a RPS downclock event (Chris)
-- Leave rps->cur_freq on unpark (Chris)
-- Ignore short pulse when EDP panel powered off (Anshuman)
-- Keep the engine awake until the next jiffie, to avoid ping-pong on
-  moderate load (Chris)
-- Select the deepest available parking mode for rc6 on IVB (Chris)
-- Optimizations to direct submission execlist path (Chris)
-- Avoid NULL pointer dereference at intel_read_infoframe() (Chris)
-- Fix mode private_flags comparison at atomic_check (Uma, Ville)
-- Use forced codec wake on all gen9+ platforms (Kai)
-- Schedule oa_config after modifying the contexts (Chris, Lionel)
-- Explicitly reset both reg and context runtime on GPU reset (Chris)
-- Don't enable DDI IO power on a TypeC port in TBT mode (Imre)
-- Fixes to TGL, ICL and EHL vswing tables (Jose)
-- Fill all the unused space in the GGTT (Chris, imre)
-- Ignore readonly failures when updating relocs (Chris)
-- Attempt to find free space earlier for non-pinned VMAs (Chris)
-- Only wait for GPU activity before unbinding a GGTT fence (Chris)
-- Avoid data loss on small userspace perf OA polling (Ashutosh)
-- Watch out for unevictable nodes during eviction (Matt A)
-- Reinforce the barrier after GTT updates for Ironlake (Chris)
-
-- Convert various parts of driver to use drm_device based logging (Wambui, =
-Jani)
-- Avoid dereferencing already closed context for engine (Chris)
-- Enable non-contiguous pipe fusing (Anshuman)
-- Add HW readout of Gamma LUT on ICL (Swati S.)
-- Use explicit flag to mark unreachable intel_context (Chris)
-- Cancel a hung context if already closed (Chris)
-- Add DP VSC/HDR SDP data structures and write routines (Gwan-gyeong)
-- Report context-is-closed prior to pinning at execbuf (Chris)
-- Mark timeline->cacheline as destroyed after rcu grace period (Chris)
-- Avoid live-lock with i915_vma_parked() (Chris)
-- Avoid gem_context->mutex for simple vma lookup (Chris)
-- Rely on direct submission to the queue (Chris)
-- Configure DSI transcoder to operate in TE GATE command mode (Vandita)
-- Add DI vblank calculation for command mode (Vandita)
-- Disable periodic command mode if programmed by GOP (Vandita)
-- Use private flags to indicate TE in cmd mode (Vandita)
-- Make fences a nice-to-have for FBC on GEN9+ (Jose)
-- Fix work queuing issue with mixed virtual engine/physical engine
-  submissions (Chris)
-- Drop final few uses of drm_i915_private.engine (Chris)
-- Return early after MISSING_CASE for write_dp_sdp (Chris)
-- Include port sync state in the state dump (Ville)
-- ELSP workaround switching back to a completed context (Chris)
-- Include priority info in trace_ports (Chris)
-- Allow for different modes of interruptible i915_active_wait (Chris)
-- Split eb_vma into its own allocation (Chris)
-- Don't read perf head/tail pointers outside critical section (Lionel)
-- Pause CS flow before execlists reset (Chris)
-- Make fence revocation unequivocal (Chris)
-- Drop cached obj->bind_count (Chris)
-- Peek at the next submission for error interrupts (Chris)
-- Utilize rcu iteration of context engines (Chris)
-- Keep a per-engine request pool for power management ops (Chris)
-- Refactor port sync code into normal modeset flow (Ville)
-- Check current i915_vma.pin_count status first on unbind (Chris)
-- Free request pool from virtual engines (Chris)
-- Flush all the reloc_gpu batch (Chris)
-- Make exclusive awaits on i915_active optional and allow async waits (Chri=
-s)
-- Wait until the context is finally retired before releasing engines (Chris)
-
-- Prefer '%ps' for printing function symbol names (Chris)
-- Allow setting generic data pointer on intel GT debugfs (Andi)
-- Constify DP link computation code more (Ville)
-- Simplify MST master transcoder computation (Ville)
-- Move TRANS_DDI_FUNC_CTL2 programming where it belongs (Ville)
-- Move icl_get_trans_port_sync_config() into the DDI code (Ville)
-- Add definitions for VRR registers and bits (Aditya)
-- Refactor hardware fence code (Chris)
-- Start passing latency as parameter to WM calculation (Stanislav)
-- Kernel selftest and debug tracing improvements (Matt A, Chris, Mika)
-- Fixes to CI found corner cases and lockdep splats (Chris)
-- Overall fixes and refactoring to GEM code (Chris)
-- Overall fixes and refactoring to display code (Ville)
-- GuC/HuC code improvements (Daniele, Michal Wa)
-- Static code checker fixes (Nathan, Ville, Colin, Chris)
-- Fix spelling mistake (Chen)
-The following changes since commit 8f3d9f354286745c751374f5f1fcafee6b3f3136:
-
-  Linux 5.7-rc1 (2020-04-12 12:35:55 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2020-04-17
-
-for you to fetch changes up to b06ef327e26367b9286a2079b31cde8d2161c0d8:
-
-  drm/i915: Update DRIVER_DATE to 20200417 (2020-04-17 09:35:00 +0300)
-
-----------------------------------------------------------------
-UAPI Changes:
-
-- drm/i915/perf: introduce global sseu pinning
-  Allow userspace to request at perf/OA open full SSEU configuration
-  on the system to be able to benchmark 3D workloads, at the cost of not
-  being able to run media workloads. (Lionel)
-
-  Userspace changes: https://gitlab.freedesktop.org/mesa/mesa/-/merge_reque=
-sts/4021
-
-- drm/i915/perf: add new open param to configure polling of OA buffer
-  Let application choose how often the OA buffer should be checked on
-  the CPU side for data availability for choosig between CPU overhead
-  and realtime nature of data.
-
-  Userspace changes: https://patchwork.freedesktop.org/series/74655/
-
-  (i915 perf recorder is a tool to capture i915 perf data for viewing
-  in GPUVis.)
-
-- drm/i915/perf: remove generated code
-  Removal of the machine generated perf/OA test configurations from i915.
-  Used by Mesa v17.1-18.0, and shortly replaced by userspace supplied OA
-  configurations. Removal of configs causes affected Mesa versions to
-  fall back to earlier kernel behaviour (potentially missing metrics).
-  (Lionel)
-
-Cross-subsystem Changes:
-
-- Backmerge of drm-next
-
-- Includes tag 'topic/phy-compliance-2020-04-08' from
-  git://anongit.freedesktop.org/drm/drm-misc
-
-Driver Changes:
-
-- Fix for GitLab issue #27: Support 5k tiled dual DP display on SKL (Ville)
-- Fix https://github.com/thesofproject/linux/issues/1719: Broken audio after
-  S3 resume on JSL platforms. (Kai)
-- Add new Tigerlake PCI IDs (Swathi D.)
-- Add missing Tigerlake W/As (Matt R.)
-- Extended Wa_2006604312 to EHL (Matt A)
-- Add DPCD link_rate quirk for Apple 15" MBP 2017 (v3) (Mario)
-- Make Wa_14010229206 apply to all Tigerlake steppings (Swathi d)
-- Extend hotplug detect retry on TypeC connectors to 5 seconds (Imre)
-- Yield the timeslice if caught waiting on a user semaphore (Chris)
-- Limit the residual W/A batch to Haswell due to instability on IVB/BYT (Ch=
-ris)
-- TBT AUX should use TC power well ops on Tigerlake (Matt R)
-- Update PMINTRMSK holding fw to make it effective for RPS (Francisco, Chri=
-s)
-- Add YUV444 packed format support for skl+ (Stanislav)
-- Invalidate OA TLB when closing perf stream to avoid corruption (Umesh)
-- HDCP: fix Ri prime check done during link check (Oliver)
-- Rearm heartbeat on sysfs interval change (Chris)
-- Fix crtc nv12 etc. plane bitmasks for DPMS off (Ville)
-- Treat idling as a RPS downclock event (Chris)
-- Leave rps->cur_freq on unpark (Chris)
-- Ignore short pulse when EDP panel powered off (Anshuman)
-- Keep the engine awake until the next jiffie, to avoid ping-pong on
-  moderate load (Chris)
-- Select the deepest available parking mode for rc6 on IVB (Chris)
-- Optimizations to direct submission execlist path (Chris)
-- Avoid NULL pointer dereference at intel_read_infoframe() (Chris)
-- Fix mode private_flags comparison at atomic_check (Uma, Ville)
-- Use forced codec wake on all gen9+ platforms (Kai)
-- Schedule oa_config after modifying the contexts (Chris, Lionel)
-- Explicitly reset both reg and context runtime on GPU reset (Chris)
-- Don't enable DDI IO power on a TypeC port in TBT mode (Imre)
-- Fixes to TGL, ICL and EHL vswing tables (Jose)
-- Fill all the unused space in the GGTT (Chris, imre)
-- Ignore readonly failures when updating relocs (Chris)
-- Attempt to find free space earlier for non-pinned VMAs (Chris)
-- Only wait for GPU activity before unbinding a GGTT fence (Chris)
-- Avoid data loss on small userspace perf OA polling (Ashutosh)
-- Watch out for unevictable nodes during eviction (Matt A)
-- Reinforce the barrier after GTT updates for Ironlake (Chris)
-
-- Convert various parts of driver to use drm_device based logging (Wambui, =
-Jani)
-- Avoid dereferencing already closed context for engine (Chris)
-- Enable non-contiguous pipe fusing (Anshuman)
-- Add HW readout of Gamma LUT on ICL (Swati S.)
-- Use explicit flag to mark unreachable intel_context (Chris)
-- Cancel a hung context if already closed (Chris)
-- Add DP VSC/HDR SDP data structures and write routines (Gwan-gyeong)
-- Report context-is-closed prior to pinning at execbuf (Chris)
-- Mark timeline->cacheline as destroyed after rcu grace period (Chris)
-- Avoid live-lock with i915_vma_parked() (Chris)
-- Avoid gem_context->mutex for simple vma lookup (Chris)
-- Rely on direct submission to the queue (Chris)
-- Configure DSI transcoder to operate in TE GATE command mode (Vandita)
-- Add DI vblank calculation for command mode (Vandita)
-- Disable periodic command mode if programmed by GOP (Vandita)
-- Use private flags to indicate TE in cmd mode (Vandita)
-- Make fences a nice-to-have for FBC on GEN9+ (Jose)
-- Fix work queuing issue with mixed virtual engine/physical engine
-  submissions (Chris)
-- Drop final few uses of drm_i915_private.engine (Chris)
-- Return early after MISSING_CASE for write_dp_sdp (Chris)
-- Include port sync state in the state dump (Ville)
-- ELSP workaround switching back to a completed context (Chris)
-- Include priority info in trace_ports (Chris)
-- Allow for different modes of interruptible i915_active_wait (Chris)
-- Split eb_vma into its own allocation (Chris)
-- Don't read perf head/tail pointers outside critical section (Lionel)
-- Pause CS flow before execlists reset (Chris)
-- Make fence revocation unequivocal (Chris)
-- Drop cached obj->bind_count (Chris)
-- Peek at the next submission for error interrupts (Chris)
-- Utilize rcu iteration of context engines (Chris)
-- Keep a per-engine request pool for power management ops (Chris)
-- Refactor port sync code into normal modeset flow (Ville)
-- Check current i915_vma.pin_count status first on unbind (Chris)
-- Free request pool from virtual engines (Chris)
-- Flush all the reloc_gpu batch (Chris)
-- Make exclusive awaits on i915_active optional and allow async waits (Chri=
-s)
-- Wait until the context is finally retired before releasing engines (Chris)
-
-- Prefer '%ps' for printing function symbol names (Chris)
-- Allow setting generic data pointer on intel GT debugfs (Andi)
-- Constify DP link computation code more (Ville)
-- Simplify MST master transcoder computation (Ville)
-- Move TRANS_DDI_FUNC_CTL2 programming where it belongs (Ville)
-- Move icl_get_trans_port_sync_config() into the DDI code (Ville)
-- Add definitions for VRR registers and bits (Aditya)
-- Refactor hardware fence code (Chris)
-- Start passing latency as parameter to WM calculation (Stanislav)
-- Kernel selftest and debug tracing improvements (Matt A, Chris, Mika)
-- Fixes to CI found corner cases and lockdep splats (Chris)
-- Overall fixes and refactoring to GEM code (Chris)
-- Overall fixes and refactoring to display code (Ville)
-- GuC/HuC code improvements (Daniele, Michal Wa)
-- Static code checker fixes (Nathan, Ville, Colin, Chris)
-- Fix spelling mistake (Chen)
-
-----------------------------------------------------------------
-Aditya Swarup (1):
-      drm/i915/tgl: Add definitions for VRR registers and bits
-
-Andi Shyti (1):
-      drm/i915/gt: allow setting generic data pointer
-
-Animesh Manna (7):
-      drm/amd/display: Align macro name as per DP spec
-      drm/dp: get/set phy compliance pattern
-      drm/i915/dp: Made intel_dp_adjust_train() non-static
-      drm/i915/dp: Preparation for DP phy compliance auto test
-      drm/i915/dp: Add debugfs entry for DP phy compliance
-      drm/i915/dp: Register definition for DP compliance register
-      drm/i915/dp: Program vswing, pre-emphasis, test-pattern
-
-Anshuman Gupta (2):
-      drm/i915: Enable non-contiguous pipe fusing
-      drm/i915/edp: Ignore short pulse when panel powered off
-
-Ashutosh Dixit (1):
-      drm/i915/perf: Do not clear pollin for small user read buffers
-
-Chen Zhou (1):
-      drm/i915/gt: fix spelling mistake "undeflow" -> "underflow"
-
-Chris Wilson (80):
-      drm/i915/gt: Restrict gen7 w/a batch to Haswell
-      drm/i915: Move GGTT fence registers under gt/
-      drm/i915/gt: Pull restoration of GGTT fences underneath the GT
-      drm/i915: Remove manual save/resume of fence register state
-      drm/i915/gt: Allocate i915_fence_reg array
-      drm/i915/gt: Restore check for invalid vma for fencing
-      drm/i915/gem: Check for a closed context when looking up an engine
-      drm/i915: Fix up documentation paths after file moving
-      drm/i915/gt: Always reschedule the new heartbeat
-      drm/i915: Prefer '%ps' for printing function symbol names
-      drm/i915: Use explicit flag to mark unreachable intel_context
-      drm/i915/gt: Cancel a hung context if already closed
-      drm/i915/gt: Report context-is-closed prior to pinning
-      drm/i915/gt: Use the correct err_unlock unwind path for a closed cont=
-ext
-      drm/i915/gt: Treat idling as a RPS downclock event
-      drm/i915/gt: Leave rps->cur_freq on unpark
-      drm/i915/gt: Mark timeline->cacheline as destroyed after rcu grace pe=
-riod
-      drm/i915: Avoid live-lock with i915_vma_parked()
-      drm/i915/gem: Avoid gem_context->mutex for simple vma lookup
-      drm/i915: Rely on direct submission to the queue
-      drm/i915: Extend intel_wakeref to support delayed puts
-      drm/i915/gt: Delay release of engine-pm after last retirement
-      drm/i915/gt: Only delay the context barrier pm
-      drm/i915/gt: Select the deepest available parking mode for rc6
-      drm/i915/execlists: Drop setting sibling priority hint on virtual eng=
-ines
-      drm/i915/selftests: Measure the energy consumed while in RC6
-      drm/i915/execlists: Pull tasklet interrupt-bh local to direct submiss=
-ion
-      drm/i915: Immediately execute the fenced work
-      drm/i915/gt: Stage the transfer of the virtual breadcrumb
-      drm/i915: Drop final few uses of drm_i915_private.engine
-      drm/i915/display: Remove useless but deadly local
-      drm/i915/display: Return early after MISSING_CASE for write_dp_sdp
-      drm/i915: Differentiate between aliasing-ppgtt and ggtt pinning
-      drm/i915/execlists: Workaround switching back to a completed context
-      drm/i915/execlists: Include priority info in trace_ports
-      drm/i915/selftests: Check timeout before flush and cond checks
-      drm/i915: Allow for different modes of interruptible i915_active_wait
-      drm/i915: Wrap i915_active in a simple kreffed struct
-      drm/i915/perf: Schedule oa_config after modifying the contexts
-      drm/i915/gem: Split eb_vma into its own allocation
-      drm/i915/execlists: Explicitly reset both reg and context runtime
-      drm/i915/execlists: Double check breadcrumb before crying foul
-      drm/i915: Defer kicking the tasklet until all rescheduling is complete
-      drm/i915/gt: Include a few tracek for timeslicing
-      drm/i915/selftests: Tidy up an error message for live_error_interrupt
-      drm/i915/execlists: Pause CS flow before reset
-      drm/i915/gt: Include the execlists CCID of each port in the engine du=
-mp
-      drm/i915/gt: Fill all the unused space in the GGTT
-      drm/i915/gem: Ignore readonly failures when updating relocs
-      drm/i915/gt: Align engine dump active/pending
-      drm/i915/gem: Try allocating va from free space
-      drm/i915/gt: Only wait for GPU activity before unbinding a GGTT fence
-      drm/i915/gt: Store the fence details on the fence
-      drm/i915/gt: Make fence revocation unequivocal
-      drm/i915/gem: Drop cached obj->bind_count
-      drm/i915/uc: Cleanup kerneldoc warnings
-      drm/i915/execlists: Peek at the next submission for error interrupts
-      drm/i915/gem: Utilize rcu iteration of context engines
-      drm/i915/selftests: Check for has-reset before testing hostile contex=
-ts
-      drm/i915: Keep a per-engine request pool
-      drm/i915: Avoid setting timer->expires to 0
-      drm/i915: Revoke mmap before fence
-      drm/i915: Check current i915_vma.pin_count status first on unbind
-      drm/i915/selftests: Wait until we start timeslicing after a submit
-      drm/i915/gt: Free request pool from virtual engines
-      drm/i915/gem: Flush all the reloc_gpu batch
-      drm/i915/gem: Take DBG_FORCE_RELOC into account prior to using reloc_=
-gpu
-      drm/i915: Make exclusive awaits on i915_active optional
-      drm/i915: Allow asynchronous waits on the i915_active barriers
-      drm/i915/gem: Wait until the context is finally retired before releas=
-ing engines
-      drm/i915/gem: Promote 'remain' to unsigned long
-      drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
-      drm/i915/selftests: Drop vestigal timeslicing assert
-      drm/i915/gt: Mark up racy read of intel_ring.head
-      drm/i915/gt: Mark up racy check of breadcrumb irq enabled
-      drm/i915/selftests: Take an explicit ref for rq->batch
-      drm/i915/selftests: Check for an already completed timeslice
-      agp/intel: Reinforce the barrier after GTT updates
-      drm/i915/selftests: Exercise basic RPS interrupt generation
-      drm/i915/gt: Update PMINTRMSK holding fw
-
-Colin Ian King (1):
-      drm/i915: remove redundant assignment to variable err
-
-Daniele Ceraolo Spurio (5):
-      drm/i915/guc: drop stage_pool debugfs
-      drm/i915/huc: make "support huc" reflect HW capabilities
-      drm/i915/debugfs: move uC printers and update debugfs file names
-      drm/i915/uc: Move uC debugfs to its own folder under GT
-      drm/i915/uc: do not free err log on uc_fini
-
-Gwan-gyeong Mun (4):
-      drm: Add DP1.4 VSC SDP Payload related Data Structures
-      drm/i915/dp: Add compute routine for DP VSC SDP
-      drm/i915/dp: Add compute routine for DP HDR Metadata Infoframe SDP
-      drm/i915/dp: Add writing of DP SDPs
-
-Imre Deak (3):
-      drm/i915/icl+: Don't enable DDI IO power on a TypeC port in TBT mode
-      drm/i915: Add a retry counter for hotplug detect retries
-      drm/i915: Extend hotplug detect retry on TypeC connectors to 5 seconds
-
-Jani Nikula (30):
-      drm/i915/ddi: use struct drm_device based logging
-      drm/i915/display_power: use struct drm_device based logging
-      drm/i915/dp_aux_backlight: use struct drm_device based logging
-      drm/i915/dp_mst: use struct drm_device based logging
-      drm/i915/dsi: use struct drm_device based logging
-      drm/i915/hdmi: use struct drm_device based logging
-      drm/i915/dsi: use struct drm_device based logging
-      drm/i915/connector: use MISSING_CASE instead of logging
-      drm/i915/tv: use struct drm_device based logging
-      drm/i915/display: clean up intel_PLL_is_valid()
-      drm/i915/display: use struct drm_device based logging
-      drm/i915/psr: use struct drm_device based logging
-      drm/i915/wopcm: convert to drm device based logging
-      drm/i915/audio: use struct drm_device based logging
-      drm/i915/panel: use struct drm_device based logging
-      drm/i915/tc: use struct drm_device based logging
-      drm/i915/dp: use struct drm_device based logging
-      drm/i915/crt: use struct drm_device based logging
-      drm/i915/debugfs: use struct drm_device based logging
-      drm/i915/bw: use struct drm_device based logging
-      drm/i915/state: use struct drm_device based logging
-      drm/i915/switcheroo: use struct drm_device based logging
-      drm/i915/uc: prefer struct drm_device based logging
-      drm/i915/error: prefer struct drm_device based logging
-      drm/i915/pmu: prefer struct drm_device based logging
-      drm/i915/dram: prefer struct drm_device based logging
-      drm/i915/uncore: prefer struct drm_device based logging
-      drm/i915/stolen: prefer struct drm_device based logging
-      drm/i915/gt: prefer struct drm_device based logging
-      drm/i915/uc: prefer struct drm_device based logging
-
-Joonas Lahtinen (3):
-      Merge drm/drm-next into drm-intel-next-queued
-      Merge tag 'topic/phy-compliance-2020-04-08' of git://anongit.freedesk=
-top.org/drm/drm-misc into drm-intel-next-queued
-      drm/i915: Update DRIVER_DATE to 20200417
-
-Jos=E9 Roberto de Souza (4):
-      drm/i915/display/fbc: Make fences a nice-to-have for GEN9+
-      drm/i915/dp: Return the right vswing tables
-      drm/i915/dp/ehl: Update vswing table for HBR and RBR
-      drm/i915/tc/icl: Update TC vswing tables
-
-Kai Vehmanen (2):
-      drm/i915: use forced codec wake on all gen9+ platforms
-      drm/i915: do AUD_FREQ_CNTRL state save on all gen9+ platforms
-
-Lionel Landwerlin (7):
-      drm/i915/perf: remove generated code
-      drm/i915/perf: remove redundant power configuration register override
-      drm/i915/perf: introduce global sseu pinning
-      drm/i915/perf: rework aging tail workaround
-      drm/i915/perf: move pollin setup to non hw specific code
-      drm/i915/perf: add new open param to configure polling of OA buffer
-      drm/i915/perf: don't read head/tail pointers outside critical section
-
-Mario Kleiner (1):
-      drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017 (v3)
-
-Matt Atwood (1):
-      drm/i915/ehl: extended Wa_2006604312 to ehl
-
-Matt Roper (4):
-      drm/i915/tgl: Add Wa_14010477008:tgl
-      drm/i915/tgl: Extend Wa_1409767108:tgl to B0 stepping
-      drm/i915/tgl: Initialize multicast register steering for workarounds
-      drm/i915/tgl: TBT AUX should use TC power well ops
-
-Matthew Auld (3):
-      drm/i915/selftests/perf: watch out for stolen objects
-      drm/i915/selftests: mark huge_gem_object as not shrinkable
-      drm/i915/evict: watch out for unevictable nodes
-
-Michal Wajdeczko (2):
-      drm/i915/huc: Add more errors for I915_PARAM_HUC_STATUS
-      drm/i915/huc: Fix HuC register used in debugfs
-
-Mika Kuoppala (1):
-      drm/i915: Report all failed registers for ctx isolation
-
-Nathan Chancellor (1):
-      drm/i915: Cast remain to unsigned long in eb_relocate_vma
-
-Oliver Barta (1):
-      drm/i915: HDCP: fix Ri prime check done during link check
-
-Stanislav Lisovskiy (2):
-      drm/i915: Start passing latency as parameter
-      drm/i915: Add YUV444 packed format support for skl+
-
-Swathi Dhanavanthri (2):
-      drm/i915/tgl: Add new PCI IDs to TGL
-      drm/i915/tgl: Make Wa_14010229206 permanent
-
-Swati Sharma (1):
-      drm/i915/color: Extract icl_read_luts()
-
-Uma Shankar (1):
-      drm/i915/display: Fix mode private_flags comparison at atomic_check
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/perf: Invalidate OA TLB on when closing perf stream
-
-Vandita Kulkarni (5):
-      drm/i915/dsi: Configure transcoder operation for command mode.
-      drm/i915/dsi: Add vblank calculation for command mode
-      drm/i915/dsi: Add cmd mode flags in display mode private flags
-      drm/i915/dsi: Add check for periodic command mode
-      drm/i915/dsi: Use private flags to indicate TE in cmd mode
-
-Ville Syrj=E4l=E4 (16):
-      drm/i915: Fix crtc nv12 etc. plane bitmasks for DPMS off
-      drm/i915: Get rid of silly void* from MST code
-      drm: Constify adjusted_mode a bit
-      drm/i915/mst: Use .compute_config_late() to compute master transcoder
-      drm/i915: Move TRANS_DDI_FUNC_CTL2 programming where it belongs
-      drm/i915: Drop usless master_transcoder assignments
-      drm/i915: Move icl_get_trans_port_sync_config() into the DDI code
-      drm/i915: Use REG_FIELD_PREP() & co. for TRANS_DDI_FUNC_CTL2
-      drm/i915: Include port sync state in the state dump
-      drm/i915: Store cpu_transcoder_mask in device info
-      drm/i915: Implement port sync for SKL+
-      drm/i915: Eliminate port sync copy pasta
-      drm/i915: Fix port sync code to work with >2 pipes
-      drm/i915: Do pipe updates after enables for everyone
-      drm/i915: Pass atomic state to encoder hooks
-      drm/i915: Move the port sync DP_TP_CTL stuff to the encoder hook
-
-Wambui Karuga (10):
-      drm/i915/fbc: convert to drm_device based logging macros.
-      drm/i915/fbdev: convert to drm_device based logging.
-      drm/i915/hdcp: convert to struct drm_device based logging.
-      drm/i915/ggtt: convert to drm_device based logging macros.
-      drm/i915/lrc: convert to struct drm_device based logging macros.
-      drm/i915/rc6: convert to struct drm_device based logging macros.
-      drm/i915/renderstate: use struct drm_device based logging macros.
-      drm/i915/ring_submission: use drm_device based logging macros.
-      drm/i915/rps: use struct drm_device based logging macros.
-      drm/i915/workarounds: convert to drm_device based logging macros.
-
- Documentation/gpu/i915.rst                         |   6 +-
- drivers/char/agp/intel-gtt.c                       |   4 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c   |   2 +-
- drivers/gpu/drm/drm_dp_helper.c                    |  96 +++
- drivers/gpu/drm/i915/Makefile                      |  23 +-
- drivers/gpu/drm/i915/display/icl_dsi.c             | 167 +++-
- drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  21 +-
- drivers/gpu/drm/i915/display/intel_atomic_plane.h  |   2 +
- drivers/gpu/drm/i915/display/intel_audio.c         |  18 +-
- drivers/gpu/drm/i915/display/intel_bw.c            |   9 +-
- drivers/gpu/drm/i915/display/intel_color.c         | 121 ++-
- drivers/gpu/drm/i915/display/intel_connector.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_crt.c           |  36 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           | 522 ++++++++----
- drivers/gpu/drm/i915/display/intel_ddi.h           |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c       | 470 +++--------
- drivers/gpu/drm/i915/display/intel_display.h       |   8 +-
- .../gpu/drm/i915/display/intel_display_debugfs.c   |  12 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |  36 +-
- drivers/gpu/drm/i915/display/intel_display_types.h |  39 +-
- drivers/gpu/drm/i915/display/intel_dp.c            | 932 +++++++++++++++++=
-----
- drivers/gpu/drm/i915/display/intel_dp.h            |   4 +
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  84 +-
- .../gpu/drm/i915/display/intel_dp_link_training.c  |   9 +-
- .../gpu/drm/i915/display/intel_dp_link_training.h  |   4 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c        | 153 ++--
- drivers/gpu/drm/i915/display/intel_dsi.c           |   9 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |  11 +-
- drivers/gpu/drm/i915/display/intel_dvo.c           |   9 +-
- drivers/gpu/drm/i915/display/intel_fbc.c           |  84 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c         |  96 ++-
- drivers/gpu/drm/i915/display/intel_global_state.c  |   5 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |   6 +-
- drivers/gpu/drm/i915/display/intel_hdcp.h          |   4 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c          | 256 ++++--
- drivers/gpu/drm/i915/display/intel_hotplug.c       |  16 +-
- drivers/gpu/drm/i915/display/intel_hotplug.h       |   3 +-
- drivers/gpu/drm/i915/display/intel_lvds.c          |  22 +-
- drivers/gpu/drm/i915/display/intel_overlay.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_panel.c         |  22 +-
- drivers/gpu/drm/i915/display/intel_panel.h         |   3 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  47 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  22 +-
- drivers/gpu/drm/i915/display/intel_sprite.c        |  25 +-
- drivers/gpu/drm/i915/display/intel_tc.c            |  47 +-
- drivers/gpu/drm/i915/display/intel_tv.c            |  15 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |  15 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |  85 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.h        |   4 +
- drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 365 ++++----
- drivers/gpu/drm/i915/gem/i915_gem_object.c         |   1 -
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   3 -
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          |   2 -
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |  18 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   4 +-
- .../gpu/drm/i915/gem/selftests/huge_gem_object.c   |   3 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |   2 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |   4 -
- .../gpu/drm/i915/gem/selftests/i915_gem_object.c   |   2 +-
- drivers/gpu/drm/i915/gt/debugfs_engines.c          |   2 +-
- drivers/gpu/drm/i915/gt/debugfs_gt.c               |  15 +-
- drivers/gpu/drm/i915/gt/debugfs_gt.h               |   9 +-
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c            |  10 +-
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |   6 +-
- drivers/gpu/drm/i915/gt/intel_context.c            |   5 +
- drivers/gpu/drm/i915/gt/intel_engine.h             |   2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          | 127 +--
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c   |   2 +-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   2 +-
- drivers/gpu/drm/i915/gt/intel_engine_pm.h          |   6 +
- drivers/gpu/drm/i915/gt/intel_engine_types.h       |  12 +
- drivers/gpu/drm/i915/gt/intel_ggtt.c               |  52 +-
- .../intel_ggtt_fencing.c}                          | 170 ++--
- .../intel_ggtt_fencing.h}                          |  17 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                 |   3 +-
- drivers/gpu/drm/i915/gt/intel_gt_irq.c             |  15 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c              |   5 +-
- drivers/gpu/drm/i915/gt/intel_gt_requests.c        |   2 +-
- drivers/gpu/drm/i915/gt/intel_gtt.h                |   5 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                | 252 ++++--
- drivers/gpu/drm/i915/gt/intel_rc6.c                |  39 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c        |   2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c              |  16 +-
- drivers/gpu/drm/i915/gt/intel_ring.h               |   5 +-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |  33 +-
- drivers/gpu/drm/i915/gt/intel_rps.c                | 105 +--
- drivers/gpu/drm/i915/gt/intel_sseu.c               |  33 +-
- drivers/gpu/drm/i915/gt/intel_timeline.c           |  12 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |  21 +-
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   2 +
- drivers/gpu/drm/i915/gt/selftest_lrc.c             | 117 ++-
- drivers/gpu/drm/i915/gt/selftest_rc6.c             |  45 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c             | 223 +++++
- drivers/gpu/drm/i915/gt/selftest_rps.h             |  11 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  46 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h             |   7 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c     |  42 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.h     |  14 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  14 -
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h          |   1 -
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |  97 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.h         |   4 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c | 124 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.h |  15 +
- drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  53 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc.h             |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.c     |  36 +
- drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.h     |  14 +
- drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c          |  17 -
- drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h          |   1 -
- drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  35 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.h              |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |  30 +
- drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.h      |  14 +
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  56 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |   3 +-
- drivers/gpu/drm/i915/gvt/aperture_gm.c             |   2 +-
- drivers/gpu/drm/i915/i915_active.c                 | 137 ++-
- drivers/gpu/drm/i915/i915_active.h                 |  14 +-
- drivers/gpu/drm/i915/i915_debugfs.c                | 298 +------
- drivers/gpu/drm/i915/i915_drv.c                    |   4 -
- drivers/gpu/drm/i915/i915_drv.h                    |  13 +-
- drivers/gpu/drm/i915/i915_gem.c                    |  20 +-
- drivers/gpu/drm/i915/i915_gem_evict.c              |   7 +-
- drivers/gpu/drm/i915/i915_gpu_error.c              |   2 +-
- drivers/gpu/drm/i915/i915_irq.c                    |   8 +-
- drivers/gpu/drm/i915/i915_pci.c                    |  23 +-
- drivers/gpu/drm/i915/i915_perf.c                   | 628 +++++++-------
- drivers/gpu/drm/i915/i915_perf_types.h             |  46 +-
- drivers/gpu/drm/i915/i915_pmu.c                    |   4 +-
- drivers/gpu/drm/i915/i915_reg.h                    | 130 ++-
- drivers/gpu/drm/i915/i915_request.c                |  29 +-
- drivers/gpu/drm/i915/i915_request.h                |   2 +
- drivers/gpu/drm/i915/i915_scheduler.c              |  10 +
- drivers/gpu/drm/i915/i915_sw_fence.c               |   2 +-
- drivers/gpu/drm/i915/i915_sw_fence_work.c          |   5 +-
- drivers/gpu/drm/i915/i915_sw_fence_work.h          |  23 +
- drivers/gpu/drm/i915/i915_switcheroo.c             |   4 +-
- drivers/gpu/drm/i915/i915_utils.c                  |   3 +-
- drivers/gpu/drm/i915/i915_vma.c                    |  93 +-
- drivers/gpu/drm/i915/i915_vma.h                    |   4 +-
- drivers/gpu/drm/i915/intel_device_info.c           |  41 +-
- drivers/gpu/drm/i915/intel_device_info.h           |   1 +
- drivers/gpu/drm/i915/intel_dram.c                  |   3 +-
- drivers/gpu/drm/i915/intel_pm.c                    |  12 +-
- drivers/gpu/drm/i915/intel_uncore.c                |  24 +-
- drivers/gpu/drm/i915/intel_uncore.h                |   6 +-
- drivers/gpu/drm/i915/intel_wakeref.c               |  12 +-
- drivers/gpu/drm/i915/intel_wakeref.h               |  22 +-
- drivers/gpu/drm/i915/intel_wopcm.c                 |  22 +-
- drivers/gpu/drm/i915/oa/i915_oa_bdw.c              |  90 --
- drivers/gpu/drm/i915/oa/i915_oa_bdw.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_bxt.c              |  88 --
- drivers/gpu/drm/i915/oa/i915_oa_bxt.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_cflgt2.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_cflgt2.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_cflgt3.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_cflgt3.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_chv.c              |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_chv.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_cnl.c              | 101 ---
- drivers/gpu/drm/i915/oa/i915_oa_cnl.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_glk.c              |  88 --
- drivers/gpu/drm/i915/oa/i915_oa_glk.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_hsw.c              | 118 ---
- drivers/gpu/drm/i915/oa/i915_oa_hsw.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_icl.c              |  98 ---
- drivers/gpu/drm/i915/oa/i915_oa_icl.h              |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_kblgt2.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_kblgt2.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_kblgt3.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_kblgt3.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_sklgt2.c           |  88 --
- drivers/gpu/drm/i915/oa/i915_oa_sklgt2.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_sklgt3.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_sklgt3.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_sklgt4.c           |  89 --
- drivers/gpu/drm/i915/oa/i915_oa_sklgt4.h           |  16 -
- drivers/gpu/drm/i915/oa/i915_oa_tgl.c              | 121 ---
- drivers/gpu/drm/i915/oa/i915_oa_tgl.h              |  16 -
- drivers/gpu/drm/i915/selftests/i915_active.c       |  12 +-
- drivers/gpu/drm/i915/selftests/i915_gem.c          |   2 -
- drivers/gpu/drm/i915/selftests/i915_gem_evict.c    |  26 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   1 -
- drivers/gpu/drm/i915/selftests/i915_perf.c         |  98 ++-
- drivers/gpu/drm/i915/selftests/i915_request.c      |  16 +-
- .../gpu/drm/i915/selftests/intel_memory_region.c   |   5 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |   6 +-
- include/drm/drm_dp_helper.h                        | 170 +++-
- include/drm/i915_pciids.h                          |   8 +-
- include/uapi/drm/i915_drm.h                        |  24 +
- 192 files changed, 5326 insertions(+), 4357 deletions(-)
- rename drivers/gpu/drm/i915/{i915_gem_fence_reg.c =3D> gt/intel_ggtt_fenci=
-ng.c} (88%)
- rename drivers/gpu/drm/i915/{i915_gem_fence_reg.h =3D> gt/intel_ggtt_fenci=
-ng.h} (86%)
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_rps.c
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_rps.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_bdw.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_bdw.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_bxt.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_bxt.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cflgt2.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cflgt2.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cflgt3.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cflgt3.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_chv.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_chv.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cnl.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_cnl.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_glk.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_glk.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_hsw.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_hsw.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_icl.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_icl.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_kblgt2.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_kblgt2.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_kblgt3.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_kblgt3.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt2.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt2.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt3.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt3.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt4.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_sklgt4.h
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_tgl.c
- delete mode 100644 drivers/gpu/drm/i915/oa/i915_oa_tgl.h
+== Series Details ==
+
+Series: drm/i915/display: Enable DP Display Audio WA (rev6)
+URL   : https://patchwork.freedesktop.org/series/75582/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8309_full -> Patchwork_17324_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17324_full:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@kms_flip@flip-vs-suspend@a-edp1}:
+    - shard-skl:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl7/igt@kms_flip@flip-vs-suspend@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl8/igt@kms_flip@flip-vs-suspend@a-edp1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17324_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd:
+    - shard-apl:          [PASS][3] -> [FAIL][4] ([i915#1528])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-apl2/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-apl6/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd.html
+
+  * igt@gem_exec_params@invalid-bsd-ring:
+    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#109276])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb4/igt@gem_exec_params@invalid-bsd-ring.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb5/igt@gem_exec_params@invalid-bsd-ring.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen:
+    - shard-kbl:          [PASS][7] -> [FAIL][8] ([i915#54] / [i915#93] / [i915#95])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-kbl3/igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen.html
+    - shard-apl:          [PASS][9] -> [FAIL][10] ([i915#54] / [i915#95])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-apl6/igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-apl7/igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-kbl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-kbl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-kbl4/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109349])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb6/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+
+  * igt@kms_hdr@bpc-switch:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#1188])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl2/igt@kms_hdr@bpc-switch.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl10/igt@kms_hdr@bpc-switch.html
+
+  * igt@kms_psr@psr2_sprite_blt:
+    - shard-iclb:         [PASS][17] -> [SKIP][18] ([fdo#109441]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb3/igt@kms_psr@psr2_sprite_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_persistence@legacy-engines-mixed-process@render:
+    - shard-skl:          [FAIL][19] ([i915#1528]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl4/igt@gem_ctx_persistence@legacy-engines-mixed-process@render.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl9/igt@gem_ctx_persistence@legacy-engines-mixed-process@render.html
+
+  * igt@gem_ppgtt@blt-vs-render-ctx0:
+    - shard-tglb:         [INCOMPLETE][21] -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-tglb3/igt@gem_ppgtt@blt-vs-render-ctx0.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-tglb1/igt@gem_ppgtt@blt-vs-render-ctx0.html
+
+  * igt@i915_selftest@live@requests:
+    - shard-tglb:         [INCOMPLETE][23] ([i915#1531] / [i915#1658]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-tglb1/igt@i915_selftest@live@requests.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-tglb1/igt@i915_selftest@live@requests.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-iclb:         [INCOMPLETE][25] ([i915#1185]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb3/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb8/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-skl:          [FAIL][27] ([IGT#5]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_cursor_legacy@pipe-b-torture-bo:
+    - shard-kbl:          [DMESG-WARN][29] ([i915#128]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-kbl1/igt@kms_cursor_legacy@pipe-b-torture-bo.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-kbl2/igt@kms_cursor_legacy@pipe-b-torture-bo.html
+
+  * igt@kms_draw_crc@draw-method-rgb565-render-untiled:
+    - shard-glk:          [FAIL][31] ([i915#52] / [i915#54]) -> [PASS][32] +1 similar issue
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-glk2/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-glk7/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
+
+  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
+    - shard-kbl:          [DMESG-WARN][33] ([i915#180]) -> [PASS][34] +7 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-kbl4/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-kbl2/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+
+  * igt@kms_frontbuffer_tracking@fbc-suspend:
+    - shard-kbl:          [DMESG-WARN][35] ([i915#180] / [i915#93] / [i915#95]) -> [PASS][36] +1 similar issue
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-kbl6/igt@kms_frontbuffer_tracking@fbc-suspend.html
+    - shard-apl:          [DMESG-WARN][37] ([i915#180] / [i915#95]) -> [PASS][38] +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-apl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-apl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][39] ([fdo#108145] / [i915#265]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_sprite_plane_move:
+    - shard-iclb:         [SKIP][41] ([fdo#109441]) -> [PASS][42] +2 similar issues
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb1/igt@kms_psr@psr2_sprite_plane_move.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
+
+  * igt@kms_setmode@basic:
+    - shard-skl:          [FAIL][43] ([i915#31]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-skl3/igt@kms_setmode@basic.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-skl9/igt@kms_setmode@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc3co-vpb-simulation:
+    - shard-iclb:         [SKIP][45] ([i915#658]) -> [SKIP][46] ([i915#588])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-iclb1/igt@i915_pm_dc@dc3co-vpb-simulation.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [FAIL][47] ([i915#31] / [i915#95]) -> [FAIL][48] ([i915#31])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-apl1/igt@kms_setmode@basic.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-apl8/igt@kms_setmode@basic.html
+
+  * igt@kms_vblank@pipe-c-ts-continuation-dpms-suspend:
+    - shard-tglb:         [INCOMPLETE][49] ([i915#456] / [i915#460]) -> [INCOMPLETE][50] ([i915#456])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8309/shard-tglb5/igt@kms_vblank@pipe-c-ts-continuation-dpms-suspend.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/shard-tglb8/igt@kms_vblank@pipe-c-ts-continuation-dpms-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#1185]: https://gitlab.freedesktop.org/drm/intel/issues/1185
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#128]: https://gitlab.freedesktop.org/drm/intel/issues/128
+  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
+  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#1658]: https://gitlab.freedesktop.org/drm/intel/issues/1658
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#456]: https://gitlab.freedesktop.org/drm/intel/issues/456
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8309 -> Patchwork_17324
+
+  CI-20190529: 20190529
+  CI_DRM_8309: 7532b3183c849056c824828bafb4ab0b525e586e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5593: 1c658f5e46598ae93345177d4981ef54704daec6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17324: 824059d46f5a1c38b53c179306d3872f6647df06 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17324/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
