@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 148611AE5DE
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:35:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFC11AE5E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 21:37:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62E566E823;
-	Fri, 17 Apr 2020 19:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAD3D6E12C;
+	Fri, 17 Apr 2020 19:37:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 95CF26E823;
- Fri, 17 Apr 2020 19:35:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 92A8BA0138;
- Fri, 17 Apr 2020 19:35:00 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 496D86E12C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 19:37:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20938023-1500050 for multiple; Fri, 17 Apr 2020 20:37:12 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 17 Apr 2020 19:35:00 -0000
-Message-ID: <158715210059.10467.7701356998591031230@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417134720.16654-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200417134720.16654-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i195=3A_Pass_encoder_to_intel?=
- =?utf-8?b?X2RkaV9lbmFibGVfcGlwZV9jbG9jaygp?=
+In-Reply-To: <14063C7AD467DE4B82DEDB5C278E86630102123147@FMSMSX108.amr.corp.intel.com>
+References: <20200417185134.47401-1-michael.j.ruhl@intel.com>
+ <158715031025.2062.239714179327017572@build.alporthouse.com>
+ <14063C7AD467DE4B82DEDB5C278E86630102123147@FMSMSX108.amr.corp.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <158715223110.2062.10256376923112336875@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 17 Apr 2020 20:37:11 +0100
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Refactor setting dma info to a
+ common helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +42,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Ruhl, Michael J (2020-04-17 20:31:52)
+> >-----Original Message-----
+> >From: Chris Wilson <chris@chris-wilson.co.uk>
+> >> diff --git a/drivers/char/agp/intel-gtt.c b/drivers/char/agp/intel-gtt.c
+> >> index 3d42fc4290bc..4b34a5195c65 100644
+> >> --- a/drivers/char/agp/intel-gtt.c
+> >> +++ b/drivers/char/agp/intel-gtt.c
+> >> @@ -1407,13 +1407,16 @@ int intel_gmch_probe(struct pci_dev
+> >*bridge_pdev, struct pci_dev *gpu_pdev,
+> >>
+> >>         dev_info(&bridge_pdev->dev, "Intel %s Chipset\n",
+> >intel_gtt_chipsets[i].name);
+> >>
+> >> -       mask = intel_private.driver->dma_mask_size;
+> >> -       if (pci_set_dma_mask(intel_private.pcidev, DMA_BIT_MASK(mask)))
+> >> -               dev_err(&intel_private.pcidev->dev,
+> >> -                       "set gfx device dma mask %d-bit failed!\n", mask);
+> >> -       else
+> >> -               pci_set_consistent_dma_mask(intel_private.pcidev,
+> >> -                                           DMA_BIT_MASK(mask));
+> >> +       if (bridge) {
+> >> +               mask = intel_private.driver->dma_mask_size;
+> >> +               if (pci_set_dma_mask(intel_private.pcidev,
+> >DMA_BIT_MASK(mask)))
+> >> +                       dev_err(&intel_private.pcidev->dev,
+> >> +                               "set gfx device dma mask %d-bit failed!\n",
+> >> +                               mask);
+> >> +               else
+> >> +                       pci_set_consistent_dma_mask(intel_private.pcidev,
+> >> +                                                   DMA_BIT_MASK(mask));
+> >> +       }
+> >
+> >This could even go under IS_ENABLED(CONFIG_AGP_INTEL)
+> 
+> I was going to, but then I was going to have to add:
+> 
+> #if IS_ENABLED(CONFIG_AGP_INTEL)
+>         int mask;
+> #endif
+> 
+> as well...so I stopped while I was a ahead.  If you would like the #if I will
+> add it.
 
-Series: series starting with [1/4] drm/i195: Pass encoder to intel_ddi_enable_pipe_clock()
-URL   : https://patchwork.freedesktop.org/series/76097/
-State : success
+Nope. If it ends up making the code much harder to read, then its not
+worth the hassle.
 
-== Summary ==
+> >> @@ -685,6 +698,7 @@ static const struct intel_device_info skl_gt4_info = {
+> >>         .has_logical_ring_contexts = 1, \
+> >>         .has_logical_ring_preemption = 1, \
+> >>         .has_gt_uc = 1, \
+> >> +       .dma_mask_size = 39, \
+> >>         .ppgtt_type = INTEL_PPGTT_FULL, \
+> >>         .ppgtt_size = 48, \
+> >>         .has_reset_engine = 1, \
+> >
+> >Diff making a hash of this file again, but they all looked correct.
+> >
+> >> diff --git a/drivers/gpu/drm/i915/intel_device_info.h
+> >b/drivers/gpu/drm/i915/intel_device_info.h
+> >> index cce6a72c5ebc..69c9257c6c6a 100644
+> >> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> >> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> >> @@ -158,6 +158,8 @@ struct intel_device_info {
+> >>
+> >>         enum intel_platform platform;
+> >>
+> >> +       unsigned int dma_mask_size; /* available DMA address bits */
+> >
+> >One day we should pack this struct and see how much .data we can save.
+> 
+> Hmm, this value could be a u8. However, placement for optimal usage is a
+> bit more difficult...
+> 
+> I can update if you would like.
 
-CI Bug Log - changes from CI_DRM_8319 -> Patchwork_17350
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17350/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17350 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17350/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-
-
-Participating hosts (51 -> 45)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8319 -> Patchwork_17350
-
-  CI-20190529: 20190529
-  CI_DRM_8319: 18043327e8a9cba095bca9f80cdc70900a51f92c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17350: 0cf01a5dabf796c1438b394844567e70d59749f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0cf01a5dabf7 drm/i915: Pass encoder all the way to intel_ddi_transcoder_func_reg_val_get()
-7948852d83fc drm/i915: Push TRANS_DDI_FUNC_CTL into the encoder->enable() hook
-97ad2767af80 drm/i915: Move the TRANS_DDI_FUNC_CTL enable to a later point
-061836a62d28 drm/i195: Pass encoder to intel_ddi_enable_pipe_clock()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17350/index.html
+Rainy day task. To make any savings we need to look at all the fields
+and pahole. Plus if we do more at once, it feels like we accomplished
+something :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
