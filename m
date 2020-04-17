@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FE31AE7AE
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 23:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C191AE7B9
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 23:43:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D83C66EC14;
-	Fri, 17 Apr 2020 21:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E106EC0E;
+	Fri, 17 Apr 2020 21:43:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB0796EC0E;
- Fri, 17 Apr 2020 21:38:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3347B6EABC;
+ Fri, 17 Apr 2020 21:43:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E4C0FA0BA8;
- Fri, 17 Apr 2020 21:38:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D4EBA0019;
+ Fri, 17 Apr 2020 21:43:45 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Apr 2020 21:38:08 -0000
-Message-ID: <158715948893.10467.8979243723037341617@emeril.freedesktop.org>
+Date: Fri, 17 Apr 2020 21:43:45 -0000
+Message-ID: <158715982518.10466.9387220040123528833@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200417152018.13079-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200417152018.13079-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
  =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/selftests=3A_Move_gpu?=
  =?utf-8?q?_energy_measurement_into_its_own_little_lib?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -50,7 +50,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: series starting with [CI,1/2] drm/i915/selftests: Move gpu energy measurement into its own little lib
 URL   : https://patchwork.freedesktop.org/series/76103/
-State : failure
+State : success
 
 == Summary ==
 
@@ -60,32 +60,28 @@ CI Bug Log - changes from CI_DRM_8319 -> Patchwork_17354
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_17354 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17354, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17354/index.html
 
-Possible new issues
--------------------
+Known issues
+------------
 
-  Here are the unknown changes that may have been introduced in Patchwork_17354:
+  Here are the changes found in Patchwork_17354 that come from known issues:
 
 ### IGT changes ###
 
-#### Possible regressions ####
+#### Issues hit ####
 
   * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2]
+    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#1744])
    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8319/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17354/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
 
   
+  [i915#1744]: https://gitlab.freedesktop.org/drm/intel/issues/1744
 
 
 Participating hosts (51 -> 45)
