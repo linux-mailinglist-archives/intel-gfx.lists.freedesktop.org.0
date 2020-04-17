@@ -2,57 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D941AE0F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B0F1AE118
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:27:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77CB36EC3D;
-	Fri, 17 Apr 2020 15:23:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EEFD6EC3E;
+	Fri, 17 Apr 2020 15:27:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998896EC3D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 15:23:14 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id o81so3309543wmo.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:23:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=xwvBBGP6XODNxylPgMW6KMF6+zxJ6hauRpgc8isQ/s0=;
- b=jJ4sDmvxu2xQFEut1aJaSw96vpmEq7h0CmEEYHWKJeC8kmcGxVFO29D0KBh8/cbZmh
- QHpbRkCt0b0oQJz3QtDmz25A9R7rtGyVAFGDcqKBSIJbDkKIbGfkaAFHhSI8fK8eXZ0F
- 6hnlqqERqB4VLXAZ5M0yABZUokDb55O/sXJlM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=xwvBBGP6XODNxylPgMW6KMF6+zxJ6hauRpgc8isQ/s0=;
- b=fwI3e+/u5BpaoMnrbIGQ+pxdM2DfNcAsktIJCXI8XO+ijZ106ryXVYSFUN+IeizKto
- Q3pcenv8edvI+ZMG2TrddszdT+FZsMZ+57xShLlJQjOjFzSSKHrvY/DINRm5TvsrBcvI
- A+0fcacxczHF9M2VIRIAF5py+k0SDJll8Vu6LF55GhGKth4UgUP7tdPb2NVPmtEOVQxH
- Q3+ru+s+fNyhe7oTmwtljIYfntoK5ovuUFDlFEqEamKVtBFtRhhbI5yXS2mD/1YUHLcT
- ya2J9Ny5PNGrDcSpJcLdYkThCmipVqHAHAjBb5zU41vXsyG4TDILMCQvT0F/W6ta4HXv
- mLog==
-X-Gm-Message-State: AGi0PuZTqJLvyR9OkvmSaVVuxmd0EEA5Cn8A7Fba3ZbBLqzqOP3APrPZ
- CDVkpRdNTyeJ2onihaZwiEq0hw==
-X-Google-Smtp-Source: APiQypK7SNGOEdkYiufxXCGrkdhTlxCyEf/fSyck9qXER30rJkfzIOOTp560RnTadMQaEcQI5CVh6g==
-X-Received: by 2002:a1c:a7c4:: with SMTP id q187mr4213973wme.56.1587136993223; 
- Fri, 17 Apr 2020 08:23:13 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c20sm8699843wmd.36.2020.04.17.08.23.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Apr 2020 08:23:12 -0700 (PDT)
-Date: Fri, 17 Apr 2020 17:23:10 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200417152310.GQ3456981@phenom.ffwll.local>
-References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6F026EC3E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 15:27:37 +0000 (UTC)
+IronPort-SDR: QMYefjrTf+dU8KcSfwJEyCFWkoCLIuFXLnGj46aZDhkySg5abrvdjnLcnCWZCOjFpeuoXE/nL5
+ G5sUCFKgc30g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 08:27:37 -0700
+IronPort-SDR: UUZ+AOwrrQ36g10lzDQAF9SIeFMd8CfRBdcRKgDCHeYweIVwig5U2tjmLJ5bgtW9oJiK7s4ABJ
+ oLRFBko6O5sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="243039857"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 17 Apr 2020 08:27:35 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Apr 2020 18:27:34 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Apr 2020 18:27:33 +0300
+Message-Id: <20200417152734.464-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Flatten
+ intel_dp_check_mst_status() a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,99 +47,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Revert back to comparing fb->format->format instead fb->format for the
-> page flip ioctl. This check was originally only here to disallow pixel
-> format changes, but when we changed it to do the pointer comparison
-> we potentially started to reject some (but definitely not all) modifier
-> changes as well. In fact the current behaviour depends on whether the
-> driver overrides the format info for a specific format+modifier combo.
-> Eg. on i915 this now rejects compression vs. no compression changes but
-> does not reject any other tiling changes. That's just inconsistent
-> nonsense.
-> =
-
-> The main reason we have to go back to the old behaviour is to fix page
-> flipping with Xorg. At some point Xorg got its atomic rights taken away
-> and since then we can't page flip between compressed and non-compressed
-> fbs on i915. Currently we get no page flipping for any games pretty much
-> since Mesa likes to use compressed buffers. Not sure how compositors are
-> working around this (don't use one myself). I guess they must be doing
-> something to get non-compressed buffers instead. Either that or
-> somehow no one noticed the tearing from the blit fallback.
-
-Mesa only uses compressed buffers if you enable modifiers, and there's a
-_loooooooooooot_ more that needs to be fixed in Xorg to enable that for
-real. Like real atomic support. Without modifiers all you get is X tiling,
-and that works just fine.
-
-Which would also fix this issue here you're papering over.
-
-So if this is the entire reason for this, I'm inclined to not do this.
-Current Xorg is toast wrt modifiers, that's not news.
--Daniel
-
-> =
-
-> Looking back at the original discussion on this change we pretty much
-> just did it in the name of skipping a few extra pointer dereferences.
-> However, I've decided not to revert the whole thing in case someone
-> has since started to depend on these changes. None of the other checks
-> are relevant for i915 anyways.
-> =
-
-> Cc: stable@vger.kernel.org
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Fixes: dbd4d5761e1f ("drm: Replace 'format->format' comparisons to just '=
-format' comparisons")
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/drm_plane.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> index d6ad60ab0d38..f2ca5315f23b 100644
-> --- a/drivers/gpu/drm/drm_plane.c
-> +++ b/drivers/gpu/drm/drm_plane.c
-> @@ -1153,7 +1153,7 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
->  	if (ret)
->  		goto out;
->  =
-
-> -	if (old_fb->format !=3D fb->format) {
-> +	if (old_fb->format->format !=3D fb->format->format) {
->  		DRM_DEBUG_KMS("Page flip is not allowed to change frame buffer format.=
-\n");
->  		ret =3D -EINVAL;
->  		goto out;
-> -- =
-
-> 2.24.1
-> =
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCk1h
+a2UgaW50ZWxfZHBfY2hlY2tfbXN0X3N0YXR1cygpIHNvbWV3aGF0IGxlZ2libGUgYnkgaHVtYW5z
+LgoKTm90ZSB0aGF0IHRoZSByZXR1cm4gdmFsdWUgb2YgZHJtX2RwX21zdF9ocGRfaXJxKCkgaXMg
+YWx3YXlzCmVpdGhlciAwIG9yIC1FTk9NRU0sIGFuZCB3ZSBuZXZlciBkaWQgYW55dGhpbmcgd2l0
+aCB0aGUgbGF0dGVyCnNvIHdlIGNhbiBqdXN0IGlnbm9yZSB0aGUgd2hvbGUgdGhpbmcuCgpXZSBj
+YW4gYWxzbyBnZXQgcmlkIG9mIHRoZSBkaXJlY3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3Jfc2V0
+X21zdChmYWxzZSkKY2FsbCBzaW5jZSByZXR1cm5pbmcgLUVJTlZBTCBjYXVzZXMgdGhlIGNhbGxl
+ciB0byBkbyB0aGUgdmVyeSBzYW1lIGNhbGwKZm9yIHVzLgoKQ2M6IEx5dWRlIFBhdWwgPGx5dWRl
+QHJlZGhhdC5jb20+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jIHwgODggKysrKysrKysrKysrLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQx
+IGluc2VydGlvbnMoKyksIDQ3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHAuYwppbmRleCA0ODM5N2IyYzA4Y2YuLjRkNDg5OGRiMzhlOSAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwpAQCAtNTYyOCw2MSArNTYyOCw1NSBAQCBz
+dGF0aWMgaW50CiBpbnRlbF9kcF9jaGVja19tc3Rfc3RhdHVzKHN0cnVjdCBpbnRlbF9kcCAqaW50
+ZWxfZHApCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGlu
+dGVsX2RwKTsKLQlib29sIGJyZXQ7CiAKLQlpZiAoaW50ZWxfZHAtPmlzX21zdCkgewotCQl1OCBl
+c2lbRFBfRFBSWF9FU0lfTEVOXSA9IHsgMCB9OwotCQlpbnQgcmV0ID0gMDsKKwlpZiAoIWludGVs
+X2RwLT5pc19tc3QpCisJCXJldHVybiAtRUlOVkFMOworCisJV0FSTl9PTl9PTkNFKGludGVsX2Rw
+LT5hY3RpdmVfbXN0X2xpbmtzIDwgMCk7CisKKwlmb3IgKDs7KSB7CisJCXU4IGVzaVtEUF9EUFJY
+X0VTSV9MRU5dID0ge307CisJCWJvb2wgYnJldCwgaGFuZGxlZDsKIAkJaW50IHJldHJ5OwotCQli
+b29sIGhhbmRsZWQ7CiAKLQkJV0FSTl9PTl9PTkNFKGludGVsX2RwLT5hY3RpdmVfbXN0X2xpbmtz
+IDwgMCk7CiAJCWJyZXQgPSBpbnRlbF9kcF9nZXRfc2lua19pcnFfZXNpKGludGVsX2RwLCBlc2kp
+OwotZ29fYWdhaW46Ci0JCWlmIChicmV0ID09IHRydWUpIHsKLQotCQkJLyogY2hlY2sgbGluayBz
+dGF0dXMgLSBlc2lbMTBdID0gMHgyMDBjICovCi0JCQlpZiAoaW50ZWxfZHAtPmFjdGl2ZV9tc3Rf
+bGlua3MgPiAwICYmCi0JCQkgICAgIWRybV9kcF9jaGFubmVsX2VxX29rKCZlc2lbMTBdLCBpbnRl
+bF9kcC0+bGFuZV9jb3VudCkpIHsKLQkJCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAotCQkJCQkg
+ICAgImNoYW5uZWwgRVEgbm90IG9rLCByZXRyYWluaW5nXG4iKTsKLQkJCQlpbnRlbF9kcF9zdGFy
+dF9saW5rX3RyYWluKGludGVsX2RwKTsKLQkJCQlpbnRlbF9kcF9zdG9wX2xpbmtfdHJhaW4oaW50
+ZWxfZHApOwotCQkJfQotCi0JCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiZ290IGVzaSAlM3Bo
+XG4iLCBlc2kpOwotCQkJcmV0ID0gZHJtX2RwX21zdF9ocGRfaXJxKCZpbnRlbF9kcC0+bXN0X21n
+ciwgZXNpLCAmaGFuZGxlZCk7Ci0KLQkJCWlmIChoYW5kbGVkKSB7Ci0JCQkJZm9yIChyZXRyeSA9
+IDA7IHJldHJ5IDwgMzsgcmV0cnkrKykgewotCQkJCQlpbnQgd3JldDsKLQkJCQkJd3JldCA9IGRy
+bV9kcF9kcGNkX3dyaXRlKCZpbnRlbF9kcC0+YXV4LAotCQkJCQkJCQkgRFBfU0lOS19DT1VOVF9F
+U0krMSwKLQkJCQkJCQkJICZlc2lbMV0sIDMpOwotCQkJCQlpZiAod3JldCA9PSAzKSB7Ci0JCQkJ
+CQlicmVhazsKLQkJCQkJfQotCQkJCX0KLQotCQkJCWJyZXQgPSBpbnRlbF9kcF9nZXRfc2lua19p
+cnFfZXNpKGludGVsX2RwLCBlc2kpOwotCQkJCWlmIChicmV0ID09IHRydWUpIHsKLQkJCQkJZHJt
+X2RiZ19rbXMoJmk5MTUtPmRybSwKLQkJCQkJCSAgICAiZ290IGVzaTIgJTNwaFxuIiwgZXNpKTsK
+LQkJCQkJZ290byBnb19hZ2FpbjsKLQkJCQl9Ci0JCQl9IGVsc2UKLQkJCQlyZXQgPSAwOwotCi0J
+CQlyZXR1cm4gcmV0OwotCQl9IGVsc2UgeworCQlpZiAoIWJyZXQpIHsKIAkJCWRybV9kYmdfa21z
+KCZpOTE1LT5kcm0sCiAJCQkJICAgICJmYWlsZWQgdG8gZ2V0IEVTSSAtIGRldmljZSBtYXkgaGF2
+ZSBmYWlsZWRcbiIpOwotCQkJaW50ZWxfZHAtPmlzX21zdCA9IGZhbHNlOwotCQkJZHJtX2RwX21z
+dF90b3BvbG9neV9tZ3Jfc2V0X21zdCgmaW50ZWxfZHAtPm1zdF9tZ3IsCi0JCQkJCQkJaW50ZWxf
+ZHAtPmlzX21zdCk7CisJCQlyZXR1cm4gLUVJTlZBTDsKKwkJfQorCisJCS8qIGNoZWNrIGxpbmsg
+c3RhdHVzIC0gZXNpWzEwXSA9IDB4MjAwYyAqLworCQkvKgorCQkgKiBGSVhNRSBraWxsIHRoaXMg
+YW5kIHVzZSB0aGUgU1NUIHJldHJhaW5pbmcgYXBwcm9hY2gKKwkJICogZm9yIE1TVCBhcyB3ZWxs
+LgorCQkgKi8KKwkJaWYgKGludGVsX2RwLT5hY3RpdmVfbXN0X2xpbmtzID4gMCAmJgorCQkgICAg
+IWRybV9kcF9jaGFubmVsX2VxX29rKCZlc2lbMTBdLCBpbnRlbF9kcC0+bGFuZV9jb3VudCkpIHsK
+KwkJCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sCisJCQkJICAgICJjaGFubmVsIEVRIG5vdCBvaywg
+cmV0cmFpbmluZ1xuIik7CisJCQlpbnRlbF9kcF9zdGFydF9saW5rX3RyYWluKGludGVsX2RwKTsK
+KwkJCWludGVsX2RwX3N0b3BfbGlua190cmFpbihpbnRlbF9kcCk7CisJCX0KKworCQlkcm1fZGJn
+X2ttcygmaTkxNS0+ZHJtLCAiZ290IGVzaSAlM3BoXG4iLCBlc2kpOworCisJCWRybV9kcF9tc3Rf
+aHBkX2lycSgmaW50ZWxfZHAtPm1zdF9tZ3IsIGVzaSwgJmhhbmRsZWQpOworCQlpZiAoIWhhbmRs
+ZWQpCisJCQlicmVhazsKKworCQlmb3IgKHJldHJ5ID0gMDsgcmV0cnkgPCAzOyByZXRyeSsrKSB7
+CisJCQlpbnQgd3JldDsKKworCQkJd3JldCA9IGRybV9kcF9kcGNkX3dyaXRlKCZpbnRlbF9kcC0+
+YXV4LAorCQkJCQkJIERQX1NJTktfQ09VTlRfRVNJKzEsCisJCQkJCQkgJmVzaVsxXSwgMyk7CisJ
+CQlpZiAod3JldCA9PSAzKQorCQkJCWJyZWFrOwogCQl9CiAJfQotCXJldHVybiAtRUlOVkFMOwor
+CisJcmV0dXJuIDA7CiB9CiAKIHN0YXRpYyBib29sCi0tIAoyLjI0LjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
