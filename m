@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275391ADA24
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 11:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCE71ADA23
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 11:39:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46CF46E3E5;
-	Fri, 17 Apr 2020 09:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 370A46E3E3;
+	Fri, 17 Apr 2020 09:39:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D81F16E3E5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7CC96E3E3
  for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 09:39:36 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20930464-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20930465-1500050 
  for multiple; Fri, 17 Apr 2020 10:39:30 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 10:39:27 +0100
-Message-Id: <20200417093928.17822-1-chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 10:39:28 +0100
+Message-Id: <20200417093928.17822-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200417093928.17822-1-chris@chris-wilson.co.uk>
+References: <20200417093928.17822-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/selftests: Delay spinner before
- waiting for an interrupt
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: Take the engine wakeref
+ around __rps_up_interrupt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,78 +45,89 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It seems that although (perhaps because of the memory stall?) the
-spinner has signaled that it has started, it still takes some time to
-spin up to 100% utilisation of the HW. Since the test depends on the
-full utilisation of the HW to trigger the RPS interrupt, wait a little
-bit and flush the interrupt status to be sure that the event we see if
-from the spinner.
+Since we are touching the device to read the registers, we are required
+to ensure the device is awake at the time. Currently, we believe
+ourselves to be inside the active request [thus an active engine
+wakeref], but since that may be retired in the background, we can
+spontaneously lose the wakeref and the ability to probe the HW.
+
+<4> [379.686703] RPM wakelock ref not held during HW access
+<4> [379.686805] WARNING: CPU: 7 PID: 4869 at ./drivers/gpu/drm/i915/intel_runtime_pm.h:115 gen12_fwtable_read32+0x233/0x300 [i915]
+<4> [379.686808] Modules linked in: i915(+) vgem snd_hda_codec_hdmi mei_hdcp x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ax88179_178a usbnet mii ghash_clmulni_intel snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm e1000e mei_me ptp mei pps_core intel_lpss_pci prime_numbers [last unloaded: i915]
+<4> [379.686827] CPU: 7 PID: 4869 Comm: i915_selftest Tainted: G     U            5.7.0-rc1-CI-CI_DRM_8313+ #1
+<4> [379.686830] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.2457.A13.1912190237 12/19/2019
+<4> [379.686883] RIP: 0010:gen12_fwtable_read32+0x233/0x300 [i915]
+<4> [379.686887] Code: d8 ea e0 0f 0b e9 19 fe ff ff 80 3d ad 12 2d 00 00 0f 85 17 fe ff ff 48 c7 c7 b0 32 3e a0 c6 05 99 12 2d 00 01 e8 2d d8 ea e0 <0f> 0b e9 fd fd ff ff 8b 05 c4 75 56 e2 85 c0 0f 85 84 00 00 00 48
+<4> [379.686889] RSP: 0018:ffffc90000727970 EFLAGS: 00010286
+<4> [379.686892] RAX: 0000000000000000 RBX: ffff88848cc20ee8 RCX: 0000000000000001
+<4> [379.686894] RDX: 0000000080000001 RSI: ffff88843b1f0900 RDI: 00000000ffffffff
+<4> [379.686896] RBP: 0000000000000000 R08: ffff88843b1f0900 R09: 0000000000000000
+<4> [379.686898] R10: 0000000000000000 R11: 0000000000000000 R12: 000000000000a058
+<4> [379.686900] R13: 0000000000000001 R14: ffff88848cc2bf30 R15: 00000000ffffffea
+<4> [379.686902] FS:  00007f7d63f5e300(0000) GS:ffff8884a0180000(0000) knlGS:0000000000000000
+<4> [379.686904] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [379.686907] CR2: 000055e5c30f4988 CR3: 000000042e190002 CR4: 0000000000760ee0
+<4> [379.686910] PKRU: 55555554
+<4> [379.686911] Call Trace:
+<4> [379.686986]  live_rps_interrupt+0xb14/0xc10 [i915]
+<4> [379.687051]  ? intel_rps_unpark+0xb0/0xb0 [i915]
+<4> [379.687057]  ? __trace_bprintk+0x57/0x80
+<4> [379.687143]  __i915_subtests+0xb8/0x210 [i915]
+<4> [379.687222]  ? __i915_live_teardown+0x50/0x50 [i915]
+<4> [379.687291]  ? __intel_gt_live_setup+0x30/0x30 [i915]
+<4> [379.687361]  __run_selftests+0x112/0x170 [i915]
+<4> [379.687431]  i915_live_selftests+0x2c/0x60 [i915]
+<4> [379.687491]  i915_pci_probe+0x93/0x1b0 [i915]
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_rps.c | 28 +++++++++++++++-----------
- 1 file changed, 16 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 26aadc2ae3be..199d608aa763 100644
+index 199d608aa763..e60600d14937 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -14,6 +14,20 @@ static void dummy_rps_work(struct work_struct *wrk)
- {
- }
+@@ -39,10 +39,10 @@ static int __rps_up_interrupt(struct intel_rps *rps,
+ 	if (!intel_engine_can_store_dword(engine))
+ 		return 0;
  
-+static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
-+{
-+	/* Flush any previous EI */
-+	usleep_range(timeout_us, 2 * timeout_us);
-+
-+	/* Reset the interrupt status */
-+	rps_disable_interrupts(rps);
-+	GEM_BUG_ON(rps->pm_iir);
-+	rps_enable_interrupts(rps);
-+
-+	/* And then wait for the timeout, for real this time */
-+	usleep_range(2 * timeout_us, 3 * timeout_us);
-+}
-+
- static int __rps_up_interrupt(struct intel_rps *rps,
- 			      struct intel_engine_cs *engine,
- 			      struct igt_spinner *spin)
-@@ -28,7 +42,6 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	intel_gt_pm_wait_for_idle(engine->gt);
- 	GEM_BUG_ON(rps->active);
- 
--	rps->pm_iir = 0;
- 	rps->cur_freq = rps->min_freq;
+-	intel_gt_pm_wait_for_idle(engine->gt);
+-	GEM_BUG_ON(rps->active);
+-
+-	rps->cur_freq = rps->min_freq;
++	mutex_lock(&rps->lock);
++	GEM_BUG_ON(!rps->active);
++	intel_rps_set(rps, rps->min_freq);
++	mutex_unlock(&rps->lock);
  
  	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
-@@ -71,7 +84,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_UP_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
+ 	if (IS_ERR(rq))
+@@ -105,7 +105,6 @@ static int __rps_up_interrupt(struct intel_rps *rps,
+ 		return -EINVAL;
+ 	}
  
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
- 	GEM_BUG_ON(i915_request_completed(rq));
+-	intel_gt_pm_wait_for_idle(engine->gt);
+ 	return 0;
+ }
  
- 	igt_spinner_end(spin);
-@@ -122,16 +135,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_DOWN_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
+@@ -195,9 +194,16 @@ int live_rps_interrupt(void *arg)
+ 	for_each_engine(engine, gt, id) {
+ 		/* Keep the engine busy with a spinner; expect an UP! */
+ 		if (pm_events & GEN6_PM_RP_UP_THRESHOLD) {
++			intel_gt_pm_wait_for_idle(engine->gt);
++			GEM_BUG_ON(rps->active);
++
++			intel_engine_pm_get(engine);
+ 			err = __rps_up_interrupt(rps, engine, &spin);
++			intel_engine_pm_put(engine);
+ 			if (err)
+ 				goto out;
++
++			intel_gt_pm_wait_for_idle(engine->gt);
+ 		}
  
--	/* Flush any previous EI */
--	usleep_range(timeout, 2 * timeout);
--
--	/* Reset the interrupt status */
--	rps_disable_interrupts(rps);
--	GEM_BUG_ON(rps->pm_iir);
--	rps_enable_interrupts(rps);
--
--	/* And then wait for the timeout, for real this time */
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
- 
- 	if (rps->cur_freq != rps->max_freq) {
- 		pr_err("%s: Frequency unexpectedly changed [down], now %d!\n",
+ 		/* Keep the engine awake but idle and check for DOWN */
 -- 
 2.20.1
 
