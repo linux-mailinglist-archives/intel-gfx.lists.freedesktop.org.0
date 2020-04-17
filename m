@@ -1,54 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB3D31AE44F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:10:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A774F1AE4BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:28:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48AA56E42A;
-	Fri, 17 Apr 2020 18:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9BAB6E4B5;
+	Fri, 17 Apr 2020 18:28:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
- [IPv6:2607:f8b0:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D546E40D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 18:10:39 +0000 (UTC)
-Received: by mail-ot1-x343.google.com with SMTP id z17so2188930oto.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 11:10:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=AVdZUd+aoV5hglGQdjkmyI25h/pfLO7UOhCP4bcSCiE=;
- b=hdNZikSMdnvITOdr5idNKrN1s6X3JhvTpoAifWfbNI8OucJyUTsbdw4aOT5mJ17OnY
- 21Iz5+JZrcLXxR3RohsYUaExGaGqD9GpC5XAzSGFVi3BxO+jxfUpcJFM8scSN2gQ9/V7
- 208IpIlcZahgGU9VLcoi9P+mf6EquFx5SuEro=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=AVdZUd+aoV5hglGQdjkmyI25h/pfLO7UOhCP4bcSCiE=;
- b=fPqnrZyE+cKczVxyPohlUiOB3NWZ2lXapQF8vW7v/5pIdxJ49Gc9MSGlI/DdpMcBc/
- /jrCNueIcKHEMiiLHYDtDw3QGWh0FJidHpjvYfYRMFx7yJdOuDicNI7/A7r0QohyKHXM
- hzJ+qeciL+EKXZupilwW2gTEB1YlDExnnpSGcE+OiOLUxm/si9N3URhCRiKPrW8txpJ6
- PfU9JGkhAlOQaD2rVZxisgoedlIJe63Aa9Arfzqxg0mhrdBEPQOvOJF8QKgZa1aNAe4i
- /HTWxCdnZ9WwqzzbU5kIKlaCU032tMKLHDiux2Q8M2oNYILngSFjqFPkdQBs/aApmIos
- S1iA==
-X-Gm-Message-State: AGi0PuZc/qWE8LT8uT3iAsW6P3Zd2+JlvkO1cZahDFnj7z+PgkPLZ1ZE
- WDBishlmUnGd4D6BUYmCB2iuYVCjINrHp1oElaCJVFFj
-X-Google-Smtp-Source: APiQypLLEOl8ehPIa48TecTfBenMgM8WAuWmMT4h2itoYv51EVbbTPBbvw8pH+ub2oiqM6RgU+tkCpSAKtTF1/xpCLw=
-X-Received: by 2002:a05:6830:1d0:: with SMTP id
- r16mr26334ota.303.1587147038949; 
- Fri, 17 Apr 2020 11:10:38 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7E66E4B5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 18:28:03 +0000 (UTC)
+IronPort-SDR: oAcSJ3EGeSsWkkZhuC2iwku4Ah+mf5uCrsemkkvRqG2/eB2Ixbr4Vyu2v0Dsm80ml+U1zVG6R6
+ zpWBLA1pIG/g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 11:28:02 -0700
+IronPort-SDR: IKDSyVchAMSbUe5QNXmB9razbu3AVu5Lr/QcErvLCKO/K2Gl72Oc6hJp3qa541vy1gTqnXFoDf
+ WUg9YCUMqkew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="254290907"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+ by orsmga003.jf.intel.com with ESMTP; 17 Apr 2020 11:28:02 -0700
+Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
+ ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 17 Apr 2020 11:28:03 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.204]) by
+ ORSMSX116.amr.corp.intel.com ([169.254.7.87]) with mapi id 14.03.0439.000;
+ Fri, 17 Apr 2020 11:28:02 -0700
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Atwood, Matthew S" <matthew.s.atwood@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
+ ranges
+Thread-Index: AQHWFA5sA1iA7P/KEUiy6dThG6EZEqh95E6A//+/RGA=
+Date: Fri, 17 Apr 2020 18:28:01 +0000
+Message-ID: <8C2593290C2B3E488D763E819AF1F02E160AE9E0@ORSMSX101.amr.corp.intel.com>
+References: <20200416164610.15422-1-radhakrishna.sripada@intel.com>
+ <20200417151907.GA22948@msatwood-mobl>
+In-Reply-To: <20200417151907.GA22948@msatwood-mobl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjRkYzkyNTktZTRhZS00MDAzLTgzZWQtY2RhY2NjYzBiYmU2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWXM4Y2txQkVZVlh4Qlc4MG93Tk5CK05MZ2VhaDlYUzlKUnF3ZHV1UGFXcWRGRzFNZXhTcjNVdUVlb2k5ZmloXC8ifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
- <20200417152310.GQ3456981@phenom.ffwll.local>
- <20200417154313.GO6112@intel.com>
-In-Reply-To: <20200417154313.GO6112@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 17 Apr 2020 20:10:26 +0200
-Message-ID: <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
+ ranges
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +67,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable <stable@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBBcHIgMTcsIDIwMjAgYXQgNTo0MyBQTSBWaWxsZSBTeXJqw6Rsw6QKPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIEZyaSwgQXByIDE3LCAyMDIwIGF0
-IDA1OjIzOjEwUE0gKzAyMDAsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPiBPbiBUaHUsIEFwciAx
-NiwgMjAyMCBhdCAwODowNDoyMFBNICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+ID4gPiBG
-cm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4g
-Pgo+ID4gPiBSZXZlcnQgYmFjayB0byBjb21wYXJpbmcgZmItPmZvcm1hdC0+Zm9ybWF0IGluc3Rl
-YWQgZmItPmZvcm1hdCBmb3IgdGhlCj4gPiA+IHBhZ2UgZmxpcCBpb2N0bC4gVGhpcyBjaGVjayB3
-YXMgb3JpZ2luYWxseSBvbmx5IGhlcmUgdG8gZGlzYWxsb3cgcGl4ZWwKPiA+ID4gZm9ybWF0IGNo
-YW5nZXMsIGJ1dCB3aGVuIHdlIGNoYW5nZWQgaXQgdG8gZG8gdGhlIHBvaW50ZXIgY29tcGFyaXNv
-bgo+ID4gPiB3ZSBwb3RlbnRpYWxseSBzdGFydGVkIHRvIHJlamVjdCBzb21lIChidXQgZGVmaW5p
-dGVseSBub3QgYWxsKSBtb2RpZmllcgo+ID4gPiBjaGFuZ2VzIGFzIHdlbGwuIEluIGZhY3QgdGhl
-IGN1cnJlbnQgYmVoYXZpb3VyIGRlcGVuZHMgb24gd2hldGhlciB0aGUKPiA+ID4gZHJpdmVyIG92
-ZXJyaWRlcyB0aGUgZm9ybWF0IGluZm8gZm9yIGEgc3BlY2lmaWMgZm9ybWF0K21vZGlmaWVyIGNv
-bWJvLgo+ID4gPiBFZy4gb24gaTkxNSB0aGlzIG5vdyByZWplY3RzIGNvbXByZXNzaW9uIHZzLiBu
-byBjb21wcmVzc2lvbiBjaGFuZ2VzIGJ1dAo+ID4gPiBkb2VzIG5vdCByZWplY3QgYW55IG90aGVy
-IHRpbGluZyBjaGFuZ2VzLiBUaGF0J3MganVzdCBpbmNvbnNpc3RlbnQKPiA+ID4gbm9uc2Vuc2Uu
-Cj4gPiA+Cj4gPiA+IFRoZSBtYWluIHJlYXNvbiB3ZSBoYXZlIHRvIGdvIGJhY2sgdG8gdGhlIG9s
-ZCBiZWhhdmlvdXIgaXMgdG8gZml4IHBhZ2UKPiA+ID4gZmxpcHBpbmcgd2l0aCBYb3JnLiBBdCBz
-b21lIHBvaW50IFhvcmcgZ290IGl0cyBhdG9taWMgcmlnaHRzIHRha2VuIGF3YXkKPiA+ID4gYW5k
-IHNpbmNlIHRoZW4gd2UgY2FuJ3QgcGFnZSBmbGlwIGJldHdlZW4gY29tcHJlc3NlZCBhbmQgbm9u
-LWNvbXByZXNzZWQKPiA+ID4gZmJzIG9uIGk5MTUuIEN1cnJlbnRseSB3ZSBnZXQgbm8gcGFnZSBm
-bGlwcGluZyBmb3IgYW55IGdhbWVzIHByZXR0eSBtdWNoCj4gPiA+IHNpbmNlIE1lc2EgbGlrZXMg
-dG8gdXNlIGNvbXByZXNzZWQgYnVmZmVycy4gTm90IHN1cmUgaG93IGNvbXBvc2l0b3JzIGFyZQo+
-ID4gPiB3b3JraW5nIGFyb3VuZCB0aGlzIChkb24ndCB1c2Ugb25lIG15c2VsZikuIEkgZ3Vlc3Mg
-dGhleSBtdXN0IGJlIGRvaW5nCj4gPiA+IHNvbWV0aGluZyB0byBnZXQgbm9uLWNvbXByZXNzZWQg
-YnVmZmVycyBpbnN0ZWFkLiBFaXRoZXIgdGhhdCBvcgo+ID4gPiBzb21laG93IG5vIG9uZSBub3Rp
-Y2VkIHRoZSB0ZWFyaW5nIGZyb20gdGhlIGJsaXQgZmFsbGJhY2suCj4gPgo+ID4gTWVzYSBvbmx5
-IHVzZXMgY29tcHJlc3NlZCBidWZmZXJzIGlmIHlvdSBlbmFibGUgbW9kaWZpZXJzLCBhbmQgdGhl
-cmUncyBhCj4gPiBfbG9vb29vb29vb29vb3RfIG1vcmUgdGhhdCBuZWVkcyB0byBiZSBmaXhlZCBp
-biBYb3JnIHRvIGVuYWJsZSB0aGF0IGZvcgo+ID4gcmVhbC4gTGlrZSByZWFsIGF0b21pYyBzdXBw
-b3J0Lgo+Cj4gV2h5IHdvdWxkIHlvdSBuZWVkIGF0b21pYyBmb3IgbW9kaWZpZXJzPyBYb3JnIGRv
-ZXNuJ3QgZXZlbiBoYXZlCj4gYW55IHNlbnNpYmxlIGZyYW1ld29yayBmb3IgYXRvbWljIGFuZCBJ
-IHN1c3BlY3QgaXQgbmV2ZXIgd2lsbC4KCkZyYW5rbHkgaWYgbm8gb25lIGNhcmVzIGFib3V0IGF0
-b21pYyBpbiBYIEkgZG9uJ3QgdGhpbmsgd2Ugc2hvdWxkIGRvCndvcmstYXJvdW5kcyBmb3IgbGFj
-ayBvZiBhdG9taWMgaW4gWC4KCj4gPiBXaXRob3V0IG1vZGlmaWVycyBhbGwgeW91IGdldCBpcyBY
-IHRpbGluZywKPiA+IGFuZCB0aGF0IHdvcmtzIGp1c3QgZmluZS4KPiA+Cj4gPiBXaGljaCB3b3Vs
-ZCBhbHNvIGZpeCB0aGlzIGlzc3VlIGhlcmUgeW91J3JlIHBhcGVyaW5nIG92ZXIuCj4gPgo+ID4g
-U28gaWYgdGhpcyBpcyB0aGUgZW50aXJlIHJlYXNvbiBmb3IgdGhpcywgSSdtIGluY2xpbmVkIHRv
-IG5vdCBkbyB0aGlzLgo+ID4gQ3VycmVudCBYb3JnIGlzIHRvYXN0IHdydCBtb2RpZmllcnMsIHRo
-YXQncyBub3QgbmV3cy4KPgo+IFdvcmtzIGp1c3QgZmluZS4gQWxzbyBwcmV0dHkgc3VyZSBtb2Rp
-ZmllcnMgYXJlIGV2ZW4gZW5hYmxlZCBieQo+IGRlZmF1bHQgbm93IGluIG1vZGVzZXR0aW5nLgoK
-WS9DU1MgaXMgaGFyZGVyIHRvIHNjYW4gb3V0LCB5b3UgbmVlZCB0byB2ZXJpZnkgd2l0aCBURVNU
-X09OTFkgd2hldGhlcgppdCB3b3Jrcy4gT3RoZXJ3aXNlIGdvb2QgY2hhbmNlcyBmb3Igc29tZSBv
-ZGRiYWxsIGJsYWNrIHNjcmVlbnMgb24KY29uZmlndXJhdGlvbnMgdGhhdCB3b3JrZWQgYmVmb3Jl
-LiBXaGljaCBpcyB3aHkgYWxsIG5vbi1hdG9taWMKY29tcG9zaXRvcnMgcmV2ZXJ0ZWQgbW9kaWZp
-ZXJzIGJ5IGRlZmF1bHQgYWdhaW4uCgo+IEFuZCBhcyBzdGF0ZWQgdGhlIGN1cnJlbnQgY2hlY2sg
-ZG9lc24ndCBoYXZlIGNvbnNpc3RlbnQgYmVoYXZpb3VyCj4gYW55d2F5LiBZb3UgY2FuIHN0aWxs
-IGZsaXAgYmV0d2VlbiBkaWZmZXJlbnQgbW9kaWZpZXJzIGFzIGxvbmcgYSB0aGUKPiBkcml2ZXIg
-ZG9lc24ndCBvdmVycmlkZSAuZ2V0X2Zvcm1hdF9pbmZvKCkgZm9yIG9uZSBvZiB0aGVtLiBUaGUg
-Km9ubHkqCj4gY2FzZSB3aGVyZSB0aGF0IGhhcHBlbnMgaXMgQ0NTIG9uIGk5MTUuIFRoZXJlIGlz
-IG5vIHZhbGlkIHJlYXNvbiB0bwo+IHNwZWNpYWwgY2FzZSB0aGF0IG9uZS4KClRoZSB0aGluZyBp
-cywgeW91IG5lZWQgYXRvbWljIHRvIG1ha2UgQ0NTIHdvcmsgcmVsaWFibHkgZW5vdWdoIGZvcgpj
-b21wb3NpdG9ycyBhbmQgZGlzdHJvcyB0byBkYXJlIGVuYWJsaW5nIGl0IGJ5IGRlZmF1bHQuIEND
-UyBmbGlwcGluZwp3b3JrcyB3aXRoIGF0b21pYy4gSSByZWFsbHkgc2VlIG5vIHBvaW50IGluIGJh
-a2luZyB0aGlzIGluIHdpdGggYXMKdWFwaS4gSnVzdCBmaXggWG9yZy4KLURhbmllbAoKPgo+ID4g
-LURhbmllbAo+ID4KPiA+ID4KPiA+ID4gTG9va2luZyBiYWNrIGF0IHRoZSBvcmlnaW5hbCBkaXNj
-dXNzaW9uIG9uIHRoaXMgY2hhbmdlIHdlIHByZXR0eSBtdWNoCj4gPiA+IGp1c3QgZGlkIGl0IGlu
-IHRoZSBuYW1lIG9mIHNraXBwaW5nIGEgZmV3IGV4dHJhIHBvaW50ZXIgZGVyZWZlcmVuY2VzLgo+
-ID4gPiBIb3dldmVyLCBJJ3ZlIGRlY2lkZWQgbm90IHRvIHJldmVydCB0aGUgd2hvbGUgdGhpbmcg
-aW4gY2FzZSBzb21lb25lCj4gPiA+IGhhcyBzaW5jZSBzdGFydGVkIHRvIGRlcGVuZCBvbiB0aGVz
-ZSBjaGFuZ2VzLiBOb25lIG9mIHRoZSBvdGhlciBjaGVja3MKPiA+ID4gYXJlIHJlbGV2YW50IGZv
-ciBpOTE1IGFueXdheXMuCj4gPiA+Cj4gPiA+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4g
-PiA+IENjOiBMYXVyZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5j
-b20+Cj4gPiA+IEZpeGVzOiBkYmQ0ZDU3NjFlMWYgKCJkcm06IFJlcGxhY2UgJ2Zvcm1hdC0+Zm9y
-bWF0JyBjb21wYXJpc29ucyB0byBqdXN0ICdmb3JtYXQnIGNvbXBhcmlzb25zIikKPiA+ID4gU2ln
-bmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
-bT4KPiA+ID4gLS0tCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX3BsYW5lLmMgfCAyICstCj4g
-PiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiA+ID4K
-PiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fcGxhbmUuYwo+ID4gPiBpbmRleCBkNmFkNjBhYjBkMzguLmYyY2E1MzE1ZjIz
-YiAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9wbGFuZS5jCj4gPiA+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYwo+ID4gPiBAQCAtMTE1Myw3ICsxMTUzLDcg
-QEAgaW50IGRybV9tb2RlX3BhZ2VfZmxpcF9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+
-ID4gPiAgICAgaWYgKHJldCkKPiA+ID4gICAgICAgICAgICAgZ290byBvdXQ7Cj4gPiA+Cj4gPiA+
-IC0gICBpZiAob2xkX2ZiLT5mb3JtYXQgIT0gZmItPmZvcm1hdCkgewo+ID4gPiArICAgaWYgKG9s
-ZF9mYi0+Zm9ybWF0LT5mb3JtYXQgIT0gZmItPmZvcm1hdC0+Zm9ybWF0KSB7Cj4gPiA+ICAgICAg
-ICAgICAgIERSTV9ERUJVR19LTVMoIlBhZ2UgZmxpcCBpcyBub3QgYWxsb3dlZCB0byBjaGFuZ2Ug
-ZnJhbWUgYnVmZmVyIGZvcm1hdC5cbiIpOwo+ID4gPiAgICAgICAgICAgICByZXQgPSAtRUlOVkFM
-Owo+ID4gPiAgICAgICAgICAgICBnb3RvIG91dDsKPiA+ID4gLS0KPiA+ID4gMi4yNC4xCj4gPiA+
-Cj4gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
-PiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiA+ID4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+ID4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2RyaS1kZXZlbAo+ID4KPiA+IC0tCj4gPiBEYW5pZWwgVmV0dGVyCj4gPiBTb2Z0d2FyZSBF
-bmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KPiA+IGh0dHA6Ly9ibG9nLmZmd2xsLmNoCj4KPiAt
-LQo+IFZpbGxlIFN5cmrDpGzDpAo+IEludGVsCgoKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJl
-IEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgorNDEgKDApIDc5IDM2NSA1NyA0OCAtIGh0dHA6
-Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+Thanks for the review Matt :)
+
+> -----Original Message-----
+> From: Atwood, Matthew S <matthew.s.atwood@intel.com>
+> Sent: Friday, April 17, 2020 8:19 AM
+> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
+> ranges
+> 
+> On Thu, Apr 16, 2020 at 09:46:10AM -0700, Radhakrishna Sripada wrote:
+> > Some workarounds are not sticking across suspend resume cycles. The
+> > forcewake ranges table has been updated and would reflect the hardware
+> > appropriately.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1222
+> >
+> > v2: Simplify the table and use 0 for some unused ranges(Matt)
+> >
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_uncore.c | 31
+> > ++++++++++++++++-------------
+> >  1 file changed, 17 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_uncore.c
+> > b/drivers/gpu/drm/i915/intel_uncore.c
+> > index fa86b7ab2d99..078f5b2eb8a4 100644
+> > --- a/drivers/gpu/drm/i915/intel_uncore.c
+> > +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> > @@ -1092,8 +1092,7 @@ static const struct intel_forcewake_range
+> > __gen9_fw_ranges[] = {
+> >
+> >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+> > static const struct intel_forcewake_range __gen11_fw_ranges[] = {
+> > -	GEN_FW_RANGE(0x0, 0xaff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0xb00, 0x1fff, 0), /* uncore range */
+> > +	GEN_FW_RANGE(0x0, 0x1fff, 0), /* uncore range */
+> >  	GEN_FW_RANGE(0x2000, 0x26ff, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0x2700, 0x2fff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x3000, 0x3fff, FORCEWAKE_RENDER), @@ -1103,27
+> +1102,31
+> > @@ static const struct intel_forcewake_range __gen11_fw_ranges[] = {
+> >  	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0x8160, 0x82ff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x8500, 0x8bff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8500, 0x87ff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8800, 0x8bff, 0),
+> >  	GEN_FW_RANGE(0x8c00, 0x8cff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x8d00, 0x93ff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0x9400, 0x97ff, FORCEWAKE_ALL),
+> > -	GEN_FW_RANGE(0x9800, 0xafff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x8d00, 0x94cf, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x9560, 0x95ff, 0),
+> > +	GEN_FW_RANGE(0x9600, 0xafff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0xb000, 0xb47f, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0xb480, 0xdeff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0xdf00, 0xe8ff, FORCEWAKE_RENDER),
+> >  	GEN_FW_RANGE(0xe900, 0x16dff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x16e00, 0x19fff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x1a000, 0x243ff, FORCEWAKE_BLITTER),
+> > -	GEN_FW_RANGE(0x24400, 0x247ff, FORCEWAKE_RENDER),
+> > -	GEN_FW_RANGE(0x24800, 0x3ffff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1a000, 0x23fff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24000, 0x2407f, 0),
+> > +	GEN_FW_RANGE(0x24080, 0x2417f, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24180, 0x242ff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x24300, 0x243ff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x24400, 0x24fff, FORCEWAKE_RENDER),
+> > +	GEN_FW_RANGE(0x25000, 0x3ffff, FORCEWAKE_BLITTER),
+> >  	GEN_FW_RANGE(0x40000, 0x1bffff, 0),
+> >  	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
+> > -	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
+> > -	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
+> > -	GEN_FW_RANGE(0x1cc000, 0x1cffff, FORCEWAKE_BLITTER),
+> > +	GEN_FW_RANGE(0x1c4000, 0x1c7fff, 0),
+> > +	GEN_FW_RANGE(0x1c8000, 0x1cffff, FORCEWAKE_MEDIA_VEBOX0),
+> >  	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
+> > -	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
+> > -	GEN_FW_RANGE(0x1d8000, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
+> > +	GEN_FW_RANGE(0x1d4000, 0x1dbfff, 0)
+> >  };
+> >
+> >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+> > --
+> > 2.20.1
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
