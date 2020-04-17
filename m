@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF15E1ADDC1
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 15:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 682581ADE1C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 15:17:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A6F6EBD2;
-	Fri, 17 Apr 2020 13:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C85316E283;
+	Fri, 17 Apr 2020 13:17:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A763F6EBD2
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 13:01:15 +0000 (UTC)
-IronPort-SDR: UV51oWx44BfmLt8Qbo30D1eXrl3BQhUkaxwQ/WQ+T7nrLpMZqTUnsT5W39jckF4Wliwp035PSY
- zb7xgKRFVHFw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 06:01:14 -0700
-IronPort-SDR: FmCb8c3XvF9sPgwITx4v+5gd2TWVz3KdlGsClkks4RlZKgvHbX/rmsHET53PqHh63hqZohaHpH
- etl/NUla58xA==
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="428220457"
-Received: from mcintra-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.44.191])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 06:01:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 16:01:09 +0300
-Message-Id: <20200417130109.12791-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C23266E225;
+ Fri, 17 Apr 2020 13:17:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BC020A0088;
+ Fri, 17 Apr 2020 13:17:34 +0000 (UTC)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH] drm/i915: fix Sphinx build duplicate label
- warning
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 13:17:34 -0000
+Message-ID: <158712945476.10467.6647100495661782369@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417084930.644-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200417084930.644-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/5=5D_drm/i915/selftests=3A_Delay_spinne?=
+ =?utf-8?q?r_before_waiting_for_an_interrupt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,46 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the warning caused by enabling the autosectionlabel extension in the
-kernel Sphinx build:
+== Series Details ==
 
-Documentation/gpu/i915.rst:610: WARNING: duplicate label
-gpu/i915:layout, other instance in Documentation/gpu/i915.rst
+Series: series starting with [1/5] drm/i915/selftests: Delay spinner before waiting for an interrupt
+URL   : https://patchwork.freedesktop.org/series/76075/
+State : warning
 
-In the warning message, Sphinx is unable to reference the labels in
-their true locations in the kernel-doc comments in source. In this case,
-there's "Layout" sections in both gt/intel_workarounds.c and
-i915_reg.h. Rename the section in the latter to "File Layout".
+== Summary ==
 
-Fixes: 58ad30cf91f0 ("docs: fix reference to core-api/namespaces.rst")
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a24e23e9b3d0..04123a96c979 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -34,8 +34,8 @@
-  * Follow the style described here for new macros, and while changing existing
-  * macros. Do **not** mass change existing definitions just to update the style.
-  *
-- * Layout
-- * ~~~~~~
-+ * File Layout
-+ * ~~~~~~~~~~~
-  *
-  * Keep helper macros near the top. For example, _PIPE() and friends.
-  *
--- 
-2.20.1
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
