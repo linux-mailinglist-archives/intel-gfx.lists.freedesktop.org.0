@@ -2,33 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653721AE0A9
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 979F41AE0CE
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:15:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B29246EC32;
-	Fri, 17 Apr 2020 15:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E34906EC34;
+	Fri, 17 Apr 2020 15:15:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 961346EC32
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 15:13:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20935004-1500050 for multiple; Fri, 17 Apr 2020 16:13:22 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AE5B36EC34;
+ Fri, 17 Apr 2020 15:15:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6E5FA0138;
+ Fri, 17 Apr 2020 15:15:21 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200417144429.20575-2-mika.kuoppala@linux.intel.com>
-References: <20200417144429.20575-1-mika.kuoppala@linux.intel.com>
- <20200417144429.20575-2-mika.kuoppala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158713640049.2062.15423457575842474241@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 16:13:20 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Add live selftests for
- indirect ctx batchbuffers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Liwei Song" <liwei.song@windriver.com>
+Date: Fri, 17 Apr 2020 15:15:21 -0000
+Message-ID: <158713652165.10465.4174332154049644343@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417082957.2974-1-liwei.song@windriver.com>
+In-Reply-To: <20200417082957.2974-1-liwei.song@windriver.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
+ =?utf-8?q?ync_i915=5Fpciids_upto_8717c6b7414f_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,25 +38,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-04-17 15:44:28)
-> Add live selftest for indirect ctx context batchbuffers
+== Series Details ==
 
-A quick why about what you want to achieve. (Or just pull into the user
-as proof that it works.)
+Series: Sync i915_pciids upto 8717c6b7414f (rev2)
+URL   : https://patchwork.freedesktop.org/series/76080/
+State : failure
 
-> +static int __per_ctx_bb(struct intel_engine_cs *engine)
-> +{
-> +       struct intel_context *ce1, *ce2;
-> +       int err = 0;
+== Summary ==
 
-Either here or live_lrc_indirect_ctx_bb a quick summary of operations.
-What you are testing and how.
--Chris
+Applying: Sync i915_pciids upto 8717c6b7414f
+Using index info to reconstruct a base tree...
+A	src/i915_pciids.h
+Falling back to patching base and 3-way merge...
+Auto-merging include/drm/i915_pciids.h
+CONFLICT (content): Merge conflict in include/drm/i915_pciids.h
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 Sync i915_pciids upto 8717c6b7414f
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
