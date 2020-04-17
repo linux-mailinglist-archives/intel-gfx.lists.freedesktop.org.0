@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D32A21AD8E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 10:49:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6C81AD9E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 11:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 992776E106;
-	Fri, 17 Apr 2020 08:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFCE6E3E1;
+	Fri, 17 Apr 2020 09:30:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD796E106
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:49:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929837-1500050 
- for multiple; Fri, 17 Apr 2020 09:49:33 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B54D6E3E1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 09:30:49 +0000 (UTC)
+IronPort-SDR: qDdiOQq9r1xD1Ac+smZATgDKj6TYVa9TJIB3+DYFMLnWDV/EQQPDtbuXGUEMdBdOn1sIDqumkL
+ 9GZBnAY2H/TQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 02:30:48 -0700
+IronPort-SDR: SOV4g73JRhB5FQvNHK1c+pozMpuTDnQ5WT4qPsf6f8CxtCXW3WEQtC3KBP10gvysUA96Tfz8n8
+ kZ+ZB+Z4rNTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,394,1580803200"; d="scan'208";a="454671790"
+Received: from yklein1-mobl1.ger.corp.intel.com (HELO
+ mwahaha-bdw.ger.corp.intel.com) ([10.249.90.245])
+ by fmsmga005.fm.intel.com with ESMTP; 17 Apr 2020 02:30:46 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 09:49:30 +0100
-Message-Id: <20200417084930.644-5-chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 10:30:46 +0100
+Message-Id: <20200417093046.102979-1-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200417084930.644-1-chris@chris-wilson.co.uk>
-References: <20200417084930.644-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/gt: Always take fw around RPS
- frequency changes
+Subject: [Intel-gfx] [PATCH] drm/i915/pages: some more unsigned long
+ conversions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,84 +46,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the selftest, we are observing that requests to change frequency are
-simply not occuring [within a 20ms period]. The assumption was that with
-an active GPU, these writes would be flush naturally; this appears to be
-false.
+unsigned long is always preferred when indexing a page, especially when
+the caller expects it.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 33 ++++++++++++++---------------
- 1 file changed, 16 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.h       |  6 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c        | 11 ++++++-----
+ 3 files changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 4dcfae16a7ce..3c68358040dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -698,18 +698,32 @@ static int rps_set(struct intel_rps *rps, u8 val, bool update)
- 	if (val == rps->last_freq)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 2faa481cc18f..49f88a3409b7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -252,15 +252,15 @@ int i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
  
-+	/*
-+	 * The punit delays the write of the frequency and voltage until it
-+	 * determines the GPU is awake. During normal usage we don't want to
-+	 * waste power changing the frequency if the GPU is sleeping (rc6).
-+	 * However, the GPU and driver is now idle and we do not want to delay
-+	 * switching to minimum voltage (reducing power whilst idle) as we do
-+	 * not expect to be woken in the near future and so must flush the
-+	 * change by waking the device.
-+	 */
-+	intel_uncore_forcewake_get(rps_to_uncore(rps), FORCEWAKE_ALL);
-+
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
- 		err = vlv_rps_set(rps, val);
- 	else
- 		err = gen6_rps_set(rps, val);
- 	if (err)
--		return err;
-+		goto out_fw;
+ struct scatterlist *
+ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+-		       unsigned int n, unsigned int *offset);
++		       unsigned long n, unsigned int *offset);
  
- 	if (update)
- 		gen6_rps_set_thresholds(rps, val);
-+
- 	rps->last_freq = val;
+ struct page *
+ i915_gem_object_get_page(struct drm_i915_gem_object *obj,
+-			 unsigned int n);
++			 unsigned long n);
  
--	return 0;
-+out_fw:
-+	intel_uncore_forcewake_put(rps_to_uncore(rps), FORCEWAKE_ALL);
-+	return err;
+ struct page *
+ i915_gem_object_get_dirty_page(struct drm_i915_gem_object *obj,
+-			       unsigned int n);
++			       unsigned long n);
+ 
+ dma_addr_t
+ i915_gem_object_get_dma_address_len(struct drm_i915_gem_object *obj,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index 54ee658bb168..0399940fff94 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -236,7 +236,7 @@ struct drm_i915_gem_object {
+ 
+ 		struct i915_gem_object_page_iter {
+ 			struct scatterlist *sg_pos;
+-			unsigned int sg_idx; /* in pages, but 32bit eek! */
++			unsigned long sg_idx; /* in pages */
+ 
+ 			struct radix_tree_root radix;
+ 			struct mutex lock; /* protects this cache */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 5d855fcd5c0f..cb215a0d7efb 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -409,12 +409,13 @@ void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
+ 
+ struct scatterlist *
+ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+-		       unsigned int n,
++		       unsigned long n,
+ 		       unsigned int *offset)
+ {
+ 	struct i915_gem_object_page_iter *iter = &obj->mm.get_page;
+ 	struct scatterlist *sg;
+-	unsigned int idx, count;
++	unsigned long idx;
++	unsigned int count;
+ 
+ 	might_sleep();
+ 	GEM_BUG_ON(n >= obj->base.size >> PAGE_SHIFT);
+@@ -445,7 +446,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 
+ 	while (idx + count <= n) {
+ 		void *entry;
+-		unsigned long i;
++		unsigned int i;
+ 		int ret;
+ 
+ 		/* If we cannot allocate and insert this entry, or the
+@@ -521,7 +522,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
  }
  
- void intel_rps_unpark(struct intel_rps *rps)
-@@ -755,22 +769,7 @@ void intel_rps_park(struct intel_rps *rps)
- 	if (rps->last_freq <= rps->idle_freq)
- 		return;
+ struct page *
+-i915_gem_object_get_page(struct drm_i915_gem_object *obj, unsigned int n)
++i915_gem_object_get_page(struct drm_i915_gem_object *obj, unsigned long n)
+ {
+ 	struct scatterlist *sg;
+ 	unsigned int offset;
+@@ -535,7 +536,7 @@ i915_gem_object_get_page(struct drm_i915_gem_object *obj, unsigned int n)
+ /* Like i915_gem_object_get_page(), but mark the returned page dirty */
+ struct page *
+ i915_gem_object_get_dirty_page(struct drm_i915_gem_object *obj,
+-			       unsigned int n)
++			       unsigned long n)
+ {
+ 	struct page *page;
  
--	/*
--	 * The punit delays the write of the frequency and voltage until it
--	 * determines the GPU is awake. During normal usage we don't want to
--	 * waste power changing the frequency if the GPU is sleeping (rc6).
--	 * However, the GPU and driver is now idle and we do not want to delay
--	 * switching to minimum voltage (reducing power whilst idle) as we do
--	 * not expect to be woken in the near future and so must flush the
--	 * change by waking the device.
--	 *
--	 * We choose to take the media powerwell (either would do to trick the
--	 * punit into committing the voltage change) as that takes a lot less
--	 * power than the render powerwell.
--	 */
--	intel_uncore_forcewake_get(rps_to_uncore(rps), FORCEWAKE_MEDIA);
- 	rps_set(rps, rps->idle_freq, false);
--	intel_uncore_forcewake_put(rps_to_uncore(rps), FORCEWAKE_MEDIA);
- 
- 	/*
- 	 * Since we will try and restart from the previously requested
 -- 
 2.20.1
 
