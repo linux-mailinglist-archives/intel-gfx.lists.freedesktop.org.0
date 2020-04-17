@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1190F1AD418
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 03:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 751CF1AD435
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 03:39:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 515DC6E20C;
-	Fri, 17 Apr 2020 01:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4120C6E02F;
+	Fri, 17 Apr 2020 01:39:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BFCB56E0C6;
- Fri, 17 Apr 2020 01:27:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A0921A47DA;
- Fri, 17 Apr 2020 01:27:25 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F59D6E02F;
+ Fri, 17 Apr 2020 01:39:37 +0000 (UTC)
+IronPort-SDR: ht5CkTrPb9diqKI76mkvogBjpYRjVxvI+xbrWYk5PLXI8lqqSVW7Di2nxRqEQqBrejV2SYlx2b
+ JWOOMcxLLoNQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2020 18:39:36 -0700
+IronPort-SDR: XHgJfoJB9xJ/bDfTI/0tU9Kn9/lMzSpo4lRB+eMk8DVkRMq8PMOOrBs3jL2RnLW1Yz3JdUGqkq
+ t+AVCB2KWbbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,393,1580803200"; d="scan'208";a="257424632"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 16 Apr 2020 18:39:35 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+ (envelope-from <lkp@intel.com>)
+ id 1jPFyg-000FHr-DI; Fri, 17 Apr 2020 09:39:34 +0800
+Date: Fri, 17 Apr 2020 09:38:40 +0800
+From: kbuild test robot <lkp@intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <202004170938.8GXieSzC%lkp@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Apr 2020 01:27:25 -0000
-Message-ID: <158708684562.10464.2923473407271045857@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417002942.4394-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200417002942.4394-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/5=5D_drm/i915/selftests=3A_Delay_sp?=
- =?utf-8?q?inner_before_waiting_for_an_interrupt?=
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 2/20]
+ kernel/locking/lockdep.c:2744:49: sparse: sparse: cast truncates bits from
+ constant value (a0000 becomes 0)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,107 +50,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
+head:   d0435a9b45070b945578c093dcd363b6b73a502c
+commit: cbc1ad45be43de36150fd98dae644fc89a69a5a0 [2/20] lockdep: Up MAX_LOCKDEP_CHAINS
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-191-gc51a0382-dirty
+        git checkout cbc1ad45be43de36150fd98dae644fc89a69a5a0
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
 
-Series: series starting with [CI,1/5] drm/i915/selftests: Delay spinner before waiting for an interrupt
-URL   : https://patchwork.freedesktop.org/series/76055/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8311 -> Patchwork_17338
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17338 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17338, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17338:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-r:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8311/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
-    - fi-skl-guc:         [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8311/fi-skl-guc/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/fi-skl-guc/igt@i915_selftest@live@gt_pm.html
-    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8311/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17338 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-bwr-2160:        [FAIL][7] ([i915#489]) -> [SKIP][8] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8311/fi-bwr-2160/igt@amdgpu/amd_prime@i915-to-amd.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/fi-bwr-2160/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kbuild test robot <lkp@intel.com>
 
 
-Participating hosts (51 -> 45)
-------------------------------
+sparse warnings: (new ones prefixed by >>)
 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+>> kernel/locking/lockdep.c:2744:49: sparse: sparse: cast truncates bits from constant value (a0000 becomes 0)
+>> kernel/locking/lockdep.c:2744:49: sparse: sparse: cast truncates bits from constant value (a0000 becomes 0)
 
+vim +2744 kernel/locking/lockdep.c
 
-Build changes
--------------
+810507fe6fd5ff Waiman Long 2020-02-06  2736  
+810507fe6fd5ff Waiman Long 2020-02-06  2737  static inline void init_chain_block(int offset, int next, int bucket, int size)
+810507fe6fd5ff Waiman Long 2020-02-06  2738  {
+810507fe6fd5ff Waiman Long 2020-02-06  2739  	chain_hlocks[offset] = (next >> 16) | CHAIN_BLK_FLAG;
+810507fe6fd5ff Waiman Long 2020-02-06  2740  	chain_hlocks[offset + 1] = (u16)next;
+810507fe6fd5ff Waiman Long 2020-02-06  2741  
+810507fe6fd5ff Waiman Long 2020-02-06  2742  	if (size && !bucket) {
+810507fe6fd5ff Waiman Long 2020-02-06  2743  		chain_hlocks[offset + 2] = size >> 16;
+810507fe6fd5ff Waiman Long 2020-02-06 @2744  		chain_hlocks[offset + 3] = (u16)size;
+810507fe6fd5ff Waiman Long 2020-02-06  2745  	}
+810507fe6fd5ff Waiman Long 2020-02-06  2746  }
+810507fe6fd5ff Waiman Long 2020-02-06  2747  
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8311 -> Patchwork_17338
+:::::: The code at line 2744 was first introduced by commit
+:::::: 810507fe6fd5ff3de429121adff49523fabb643a locking/lockdep: Reuse freed chain_hlocks entries
 
-  CI-20190529: 20190529
-  CI_DRM_8311: 19367bb5e65eaf0719597b3ff244fd1c2ea12bda @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5593: 1c658f5e46598ae93345177d4981ef54704daec6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17338: 9bf31402e7bd605cb63ecbcc6c12ea4d7900edb2 @ git://anongit.freedesktop.org/gfx-ci/linux
+:::::: TO: Waiman Long <longman@redhat.com>
+:::::: CC: Ingo Molnar <mingo@kernel.org>
 
-
-== Linux commits ==
-
-9bf31402e7bd drm/i915/selftests: Check power consumption at min/max frequencies
-19f5c73e9693 drm/i915/selftests: Move gpu energy measurement into its own little lib
-14195cf9296d drm/i915/gt: Use the RPM config register to determine clk frequencies
-6727bb3359e8 drm/i915/gt: Trace RPS events
-840a974dda70 drm/i915/selftests: Delay spinner before waiting for an interrupt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17338/index.html
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
