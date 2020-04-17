@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49EED1ADF06
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 16:08:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 148651ADF9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 16:15:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52EBE6EC1E;
-	Fri, 17 Apr 2020 14:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2956EBE8;
+	Fri, 17 Apr 2020 14:15:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9346EC1B
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 14:08:22 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20934013-1500050 for multiple; Fri, 17 Apr 2020 15:08:20 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D1136EBE8;
+ Fri, 17 Apr 2020 14:15:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 556DBA00E6;
+ Fri, 17 Apr 2020 14:15:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200417130109.12791-1-jani.nikula@intel.com>
-References: <20200417130109.12791-1-jani.nikula@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <158713249868.2062.16583016796681686099@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 15:08:18 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix Sphinx build duplicate label
- warning
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 17 Apr 2020 14:15:47 -0000
+Message-ID: <158713294732.10465.16377542546467187396@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417093046.102979-1-matthew.auld@intel.com>
+In-Reply-To: <20200417093046.102979-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/pages=3A_some_more_unsigned_long_conversions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,32 +38,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2020-04-17 14:01:09)
-> Fix the warning caused by enabling the autosectionlabel extension in the
-> kernel Sphinx build:
-> 
-> Documentation/gpu/i915.rst:610: WARNING: duplicate label
-> gpu/i915:layout, other instance in Documentation/gpu/i915.rst
-> 
-> In the warning message, Sphinx is unable to reference the labels in
-> their true locations in the kernel-doc comments in source. In this case,
-> there's "Layout" sections in both gt/intel_workarounds.c and
-> i915_reg.h. Rename the section in the latter to "File Layout".
-> 
-> Fixes: 58ad30cf91f0 ("docs: fix reference to core-api/namespaces.rst")
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed is probably too strong, but I comprehend your problem
-statement, if not entirely grokking Sphinx,
+Series: drm/i915/pages: some more unsigned long conversions
+URL   : https://patchwork.freedesktop.org/series/76078/
+State : warning
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
