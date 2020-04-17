@@ -2,59 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A774F1AE4BA
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 489A81AE4BE
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:28:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9BAB6E4B5;
-	Fri, 17 Apr 2020 18:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C77C6E50E;
+	Fri, 17 Apr 2020 18:28:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7E66E4B5
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 18:28:03 +0000 (UTC)
-IronPort-SDR: oAcSJ3EGeSsWkkZhuC2iwku4Ah+mf5uCrsemkkvRqG2/eB2Ixbr4Vyu2v0Dsm80ml+U1zVG6R6
- zpWBLA1pIG/g==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02CC86E4B3;
+ Fri, 17 Apr 2020 18:28:38 +0000 (UTC)
+IronPort-SDR: g6cw2N+c1wx3khx9fyvFxpFR4kZmCfbLHfXkwlvDJEUKTQjj0djNihfZjcs4ta96mjO8in+xuU
+ ZObI/ItjL9VQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 11:28:02 -0700
-IronPort-SDR: IKDSyVchAMSbUe5QNXmB9razbu3AVu5Lr/QcErvLCKO/K2Gl72Oc6hJp3qa541vy1gTqnXFoDf
- WUg9YCUMqkew==
+ 17 Apr 2020 11:28:38 -0700
+IronPort-SDR: V9FV1aztj3YODmKpHxiQG+8utpy9tAVRywC/JHnthL/wcvoiaOSryR5C+MH4l6QITld3joGzUx
+ BxTPKP26LMlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="254290907"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
- by orsmga003.jf.intel.com with ESMTP; 17 Apr 2020 11:28:02 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
- ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 17 Apr 2020 11:28:03 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.204]) by
- ORSMSX116.amr.corp.intel.com ([169.254.7.87]) with mapi id 14.03.0439.000;
- Fri, 17 Apr 2020 11:28:02 -0700
-From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-To: "Atwood, Matthew S" <matthew.s.atwood@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
- ranges
-Thread-Index: AQHWFA5sA1iA7P/KEUiy6dThG6EZEqh95E6A//+/RGA=
-Date: Fri, 17 Apr 2020 18:28:01 +0000
-Message-ID: <8C2593290C2B3E488D763E819AF1F02E160AE9E0@ORSMSX101.amr.corp.intel.com>
-References: <20200416164610.15422-1-radhakrishna.sripada@intel.com>
- <20200417151907.GA22948@msatwood-mobl>
-In-Reply-To: <20200417151907.GA22948@msatwood-mobl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjRkYzkyNTktZTRhZS00MDAzLTgzZWQtY2RhY2NjYzBiYmU2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWXM4Y2txQkVZVlh4Qlc4MG93Tk5CK05MZ2VhaDlYUzlKUnF3ZHV1UGFXcWRGRzFNZXhTcjNVdUVlb2k5ZmloXC8ifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.140]
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="244777861"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 17 Apr 2020 11:28:35 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Apr 2020 21:28:34 +0300
+Date: Fri, 17 Apr 2020 21:28:34 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200417182834.GS6112@intel.com>
+References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
+ <20200417152310.GQ3456981@phenom.ffwll.local>
+ <20200417154313.GO6112@intel.com>
+ <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
- ranges
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,106 +53,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: stable <stable@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks for the review Matt :)
+On Fri, Apr 17, 2020 at 08:10:26PM +0200, Daniel Vetter wrote:
+> On Fri, Apr 17, 2020 at 5:43 PM Ville Syrj=E4l=E4
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > On Fri, Apr 17, 2020 at 05:23:10PM +0200, Daniel Vetter wrote:
+> > > On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > >
+> > > > Revert back to comparing fb->format->format instead fb->format for =
+the
+> > > > page flip ioctl. This check was originally only here to disallow pi=
+xel
+> > > > format changes, but when we changed it to do the pointer comparison
+> > > > we potentially started to reject some (but definitely not all) modi=
+fier
+> > > > changes as well. In fact the current behaviour depends on whether t=
+he
+> > > > driver overrides the format info for a specific format+modifier com=
+bo.
+> > > > Eg. on i915 this now rejects compression vs. no compression changes=
+ but
+> > > > does not reject any other tiling changes. That's just inconsistent
+> > > > nonsense.
+> > > >
+> > > > The main reason we have to go back to the old behaviour is to fix p=
+age
+> > > > flipping with Xorg. At some point Xorg got its atomic rights taken =
+away
+> > > > and since then we can't page flip between compressed and non-compre=
+ssed
+> > > > fbs on i915. Currently we get no page flipping for any games pretty=
+ much
+> > > > since Mesa likes to use compressed buffers. Not sure how compositor=
+s are
+> > > > working around this (don't use one myself). I guess they must be do=
+ing
+> > > > something to get non-compressed buffers instead. Either that or
+> > > > somehow no one noticed the tearing from the blit fallback.
+> > >
+> > > Mesa only uses compressed buffers if you enable modifiers, and there'=
+s a
+> > > _loooooooooooot_ more that needs to be fixed in Xorg to enable that f=
+or
+> > > real. Like real atomic support.
+> >
+> > Why would you need atomic for modifiers? Xorg doesn't even have
+> > any sensible framework for atomic and I suspect it never will.
+> =
 
-> -----Original Message-----
-> From: Atwood, Matthew S <matthew.s.atwood@intel.com>
-> Sent: Friday, April 17, 2020 8:19 AM
-> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/icl: Update forcewake firmware
-> ranges
-> 
-> On Thu, Apr 16, 2020 at 09:46:10AM -0700, Radhakrishna Sripada wrote:
-> > Some workarounds are not sticking across suspend resume cycles. The
-> > forcewake ranges table has been updated and would reflect the hardware
-> > appropriately.
+> Frankly if no one cares about atomic in X I don't think we should do
+> work-arounds for lack of atomic in X.
+> =
+
+> > > Without modifiers all you get is X tiling,
+> > > and that works just fine.
+> > >
+> > > Which would also fix this issue here you're papering over.
+> > >
+> > > So if this is the entire reason for this, I'm inclined to not do this.
+> > > Current Xorg is toast wrt modifiers, that's not news.
 > >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1222
+> > Works just fine. Also pretty sure modifiers are even enabled by
+> > default now in modesetting.
+> =
+
+> Y/CSS is harder to scan out, you need to verify with TEST_ONLY whether
+> it works. Otherwise good chances for some oddball black screens on
+> configurations that worked before. Which is why all non-atomic
+> compositors reverted modifiers by default again.
+
+Y alone is hard to scanout also, and yet we do nothing to reject that.
+It's just an inconsistent mess.
+
+If we really want to keep this check then we should rewrite it
+to be explicit:
+
+if (old_fb->format->format !=3D new_fb->format->format ||
+    is_ccs(old_fb->modifier) !=3D is_ccs(new_fb->modifier))
+    return -EINVAL;
+
+Now it's just a random thing that may even stop doing what it's
+currently doing if anyone touches their .get_format_info()
+implementation.
+
+> =
+
+> > And as stated the current check doesn't have consistent behaviour
+> > anyway. You can still flip between different modifiers as long a the
+> > driver doesn't override .get_format_info() for one of them. The *only*
+> > case where that happens is CCS on i915. There is no valid reason to
+> > special case that one.
+> =
+
+> The thing is, you need atomic to make CCS work reliably enough for
+> compositors and distros to dare enabling it by default.
+
+If it's not enabled by default then there is no harm in letting people
+explicitly enable it and get better performance.
+
+> CCS flipping
+> works with atomic. I really see no point in baking this in with as
+> uapi.
+
+It's just going back to the original intention of the check.
+Heck, the debug message doesn't even match what it's doing now.
+
+> Just fix Xorg.
+
+Be serious. No one is going to rewrite all the randr code to be atomic.
+
+> -Daniel
+> =
+
 > >
-> > v2: Simplify the table and use 0 for some unused ranges(Matt)
+> > > -Daniel
+> > >
+> > > >
+> > > > Looking back at the original discussion on this change we pretty mu=
+ch
+> > > > just did it in the name of skipping a few extra pointer dereference=
+s.
+> > > > However, I've decided not to revert the whole thing in case someone
+> > > > has since started to depend on these changes. None of the other che=
+cks
+> > > > are relevant for i915 anyways.
+> > > >
+> > > > Cc: stable@vger.kernel.org
+> > > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > Fixes: dbd4d5761e1f ("drm: Replace 'format->format' comparisons to =
+just 'format' comparisons")
+> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_plane.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plan=
+e.c
+> > > > index d6ad60ab0d38..f2ca5315f23b 100644
+> > > > --- a/drivers/gpu/drm/drm_plane.c
+> > > > +++ b/drivers/gpu/drm/drm_plane.c
+> > > > @@ -1153,7 +1153,7 @@ int drm_mode_page_flip_ioctl(struct drm_devic=
+e *dev,
+> > > >     if (ret)
+> > > >             goto out;
+> > > >
+> > > > -   if (old_fb->format !=3D fb->format) {
+> > > > +   if (old_fb->format->format !=3D fb->format->format) {
+> > > >             DRM_DEBUG_KMS("Page flip is not allowed to change frame=
+ buffer format.\n");
+> > > >             ret =3D -EINVAL;
+> > > >             goto out;
+> > > > --
+> > > > 2.24.1
+> > > >
+> > > > _______________________________________________
+> > > > dri-devel mailing list
+> > > > dri-devel@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
 > >
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/intel_uncore.c | 31
-> > ++++++++++++++++-------------
-> >  1 file changed, 17 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/intel_uncore.c
-> > b/drivers/gpu/drm/i915/intel_uncore.c
-> > index fa86b7ab2d99..078f5b2eb8a4 100644
-> > --- a/drivers/gpu/drm/i915/intel_uncore.c
-> > +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> > @@ -1092,8 +1092,7 @@ static const struct intel_forcewake_range
-> > __gen9_fw_ranges[] = {
-> >
-> >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
-> > static const struct intel_forcewake_range __gen11_fw_ranges[] = {
-> > -	GEN_FW_RANGE(0x0, 0xaff, FORCEWAKE_BLITTER),
-> > -	GEN_FW_RANGE(0xb00, 0x1fff, 0), /* uncore range */
-> > +	GEN_FW_RANGE(0x0, 0x1fff, 0), /* uncore range */
-> >  	GEN_FW_RANGE(0x2000, 0x26ff, FORCEWAKE_RENDER),
-> >  	GEN_FW_RANGE(0x2700, 0x2fff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0x3000, 0x3fff, FORCEWAKE_RENDER), @@ -1103,27
-> +1102,31
-> > @@ static const struct intel_forcewake_range __gen11_fw_ranges[] = {
-> >  	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),
-> >  	GEN_FW_RANGE(0x8160, 0x82ff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),
-> > -	GEN_FW_RANGE(0x8500, 0x8bff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x8500, 0x87ff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x8800, 0x8bff, 0),
-> >  	GEN_FW_RANGE(0x8c00, 0x8cff, FORCEWAKE_RENDER),
-> > -	GEN_FW_RANGE(0x8d00, 0x93ff, FORCEWAKE_BLITTER),
-> > -	GEN_FW_RANGE(0x9400, 0x97ff, FORCEWAKE_ALL),
-> > -	GEN_FW_RANGE(0x9800, 0xafff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x8d00, 0x94cf, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),
-> > +	GEN_FW_RANGE(0x9560, 0x95ff, 0),
-> > +	GEN_FW_RANGE(0x9600, 0xafff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0xb000, 0xb47f, FORCEWAKE_RENDER),
-> >  	GEN_FW_RANGE(0xb480, 0xdeff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0xdf00, 0xe8ff, FORCEWAKE_RENDER),
-> >  	GEN_FW_RANGE(0xe900, 0x16dff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0x16e00, 0x19fff, FORCEWAKE_RENDER),
-> > -	GEN_FW_RANGE(0x1a000, 0x243ff, FORCEWAKE_BLITTER),
-> > -	GEN_FW_RANGE(0x24400, 0x247ff, FORCEWAKE_RENDER),
-> > -	GEN_FW_RANGE(0x24800, 0x3ffff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x1a000, 0x23fff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x24000, 0x2407f, 0),
-> > +	GEN_FW_RANGE(0x24080, 0x2417f, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x24180, 0x242ff, FORCEWAKE_RENDER),
-> > +	GEN_FW_RANGE(0x24300, 0x243ff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x24400, 0x24fff, FORCEWAKE_RENDER),
-> > +	GEN_FW_RANGE(0x25000, 0x3ffff, FORCEWAKE_BLITTER),
-> >  	GEN_FW_RANGE(0x40000, 0x1bffff, 0),
-> >  	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0),
-> > -	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1),
-> > -	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0),
-> > -	GEN_FW_RANGE(0x1cc000, 0x1cffff, FORCEWAKE_BLITTER),
-> > +	GEN_FW_RANGE(0x1c4000, 0x1c7fff, 0),
-> > +	GEN_FW_RANGE(0x1c8000, 0x1cffff, FORCEWAKE_MEDIA_VEBOX0),
-> >  	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2),
-> > -	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3),
-> > -	GEN_FW_RANGE(0x1d8000, 0x1dbfff, FORCEWAKE_MEDIA_VEBOX1)
-> > +	GEN_FW_RANGE(0x1d4000, 0x1dbfff, 0)
-> >  };
-> >
-> >  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
 > > --
-> > 2.20.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > Ville Syrj=E4l=E4
+> > Intel
+> =
+
+> =
+
+> =
+
+> -- =
+
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
