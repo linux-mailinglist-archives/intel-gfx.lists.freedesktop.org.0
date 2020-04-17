@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CA8A1AE433
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:02:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611B21AE438
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 20:06:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1C886E265;
-	Fri, 17 Apr 2020 18:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F7BC6E397;
+	Fri, 17 Apr 2020 18:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C54B6E265
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 18:01:59 +0000 (UTC)
-IronPort-SDR: UMwbvGHKvtebri/ZZbJYaah+WhhWsOQUu+HeZlEKx6y4Yh+p1zg/2p25UB6WwCKT3ZNBbZzVq8
- XyNxkVnKhcyg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 11:01:59 -0700
-IronPort-SDR: SxsYXBC/zkv8WAJ8uOXWmUr1vj6CpKOm0SPXT3g5yhFkMPIhJmXW8zW172aB4os/AVbvz/8QrQ
- gOX/nLD2oWMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="272495376"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 17 Apr 2020 11:01:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Apr 2020 21:01:56 +0300
-Date: Fri, 17 Apr 2020 21:01:56 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200417180156.GR6112@intel.com>
-References: <20200414230442.262092-1-jose.souza@intel.com>
- <CAKi4VAKioYoXtZE8H9=feCDN3ToV4xwQ6O0ORnp=-Q8qr5_BcA@mail.gmail.com>
- <d4e308c36bcc7c8cf0081ccc28e0d20cfee6f5aa.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 73DD56E397;
+ Fri, 17 Apr 2020 18:06:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6D6E4A0138;
+ Fri, 17 Apr 2020 18:06:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <d4e308c36bcc7c8cf0081ccc28e0d20cfee6f5aa.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: Load DP_TP_CTL/STATUS
- offset before use it
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Fri, 17 Apr 2020 18:06:09 -0000
+Message-ID: <158714676941.10466.8118877368311972707@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417212408.19649-1-shawn.c.lee@intel.com>
+In-Reply-To: <20200417212408.19649-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mst=3A_filter_out_the_display_mode_exceed_sink=27s_capabi?=
+ =?utf-8?q?lity?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,97 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2020 at 04:53:19PM +0000, Souza, Jose wrote:
-> On Tue, 2020-04-14 at 22:33 -0700, Lucas De Marchi wrote:
-> > On Tue, Apr 14, 2020 at 4:03 PM Jos=E9 Roberto de Souza
-> > <jose.souza@intel.com> wrote:
-> > > Right now dp.regs.dp_tp_ctl/status are only set during the encoder
-> > > pre_enable() hook, what is causing all reads and writes to those
-> > > registers to go to offset 0x0 before pre_enable() is executed.
-> > > =
+== Series Details ==
 
-> > > So if i915 takes the BIOS state and don't do a modeset any
-> > > following
-> > > link retraing will fail.
-> > > =
+Series: drm/i915/mst: filter out the display mode exceed sink's capability
+URL   : https://patchwork.freedesktop.org/series/76095/
+State : success
 
-> > > In the case that i915 needs to do a modeset, the DDI disable
-> > > sequence
-> > > will write to a wrong register not disabling DP 'Transport Enable'
-> > > in
-> > > DP_TP_CTL, making a HDMI modeset in the same port/transcoder to
-> > > not light up the monitor.
-> > > =
+== Summary ==
 
-> > > So here for GENs older than 12, that have those registers fixed at
-> > > port offset range it is loading at encoder/port init while for
-> > > GEN12
-> > > it will keep setting it at encoder pre_enable() and during HW state
-> > > readout.
-> > > =
+CI Bug Log - changes from CI_DRM_8318 -> Patchwork_17348
+====================================================
 
-> > > Fixes: 4444df6e205b ("drm/i915/tgl: move DP_TP_* to transcoder")
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 14 +++++++++++---
-> > >  drivers/gpu/drm/i915/display/intel_dp.c  |  5 ++---
-> > >  2 files changed, 13 insertions(+), 6 deletions(-)
-> > > =
+Summary
+-------
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index be6c61bcbc9c..1aab93a94f40 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -3252,9 +3252,6 @@ static void hsw_ddi_pre_enable_dp(struct
-> > > intel_atomic_state *state,
-> > >         intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
-> > >                                  crtc_state->lane_count, is_mst);
-> > > =
+  **SUCCESS**
 
-> > > -       intel_dp->regs.dp_tp_ctl =3D DP_TP_CTL(port);
-> > > -       intel_dp->regs.dp_tp_status =3D DP_TP_STATUS(port);
-> > =
+  No regressions found.
 
-> > reason to be where it was is because of MST. I think what you are
-> > doing here will break it since now this is set for the port and not
-> > transcoder.
-> > intel_mst_pre_enable_dp() would call here only for the first stream,
-> > so all the others would use this same transcoder.
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17348/index.html
 
-> For TGL+ it moved to transcoder but for other it is still on port and
-> it is kept in this patch. The fix here for TGL+ is load those 2 during
-> HW state readout.
-> Inside MST code it will continue to get from
-> intel_mst->primary.dp.
+Known issues
+------------
 
-FYI looks like I have a reasonable way to get rid of this by finally =
+  Here are the changes found in Patchwork_17348 that come from known issues:
 
-plumbing the crtc_state all the way down into link training code
-(has been on the TODO list for years). This should also allow us to
-elminate the encoder->type mess in the ddi_buf_trans code. And we
-get rid of some crtc->config stuff as well.
+### IGT changes ###
 
-MST retraining was the main obstacle left. I think I mostly solved
-it with the patch I just sent today. The one remaining issue I
-recall is the lane_mask for drm_dp_channel_eq_ok(). So far I don't
-have a better plan than to keep intel_dp->lane_count. But most of
-the other ad-hoc state under intel_dp can hopefully be nuked.
+#### Warnings ####
 
--- =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8318/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17348/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
 
-Ville Syrj=E4l=E4
-Intel
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (51 -> 45)
+------------------------------
+
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8318 -> Patchwork_17348
+
+  CI-20190529: 20190529
+  CI_DRM_8318: 9bca43263f42b286d5b761437854909817c6ff3b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17348: 769dba11f1d742f15e134059634023f1a747e7fa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+769dba11f1d7 drm/i915/mst: filter out the display mode exceed sink's capability
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17348/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
