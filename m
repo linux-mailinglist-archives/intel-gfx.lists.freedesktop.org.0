@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE981AE164
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0A31AE16D
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 17:45:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120FE6EC49;
-	Fri, 17 Apr 2020 15:43:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8A86EC4A;
+	Fri, 17 Apr 2020 15:45:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5828F6EC4E;
- Fri, 17 Apr 2020 15:43:19 +0000 (UTC)
-IronPort-SDR: xVOmT3jIEUeITTS4DL6pxDe4/36jG7LfZq+iQOmdMJ0Hu7OBX/K/fsLTzMn2oIoJchpTNHWUfe
- 5kHzwD4i062A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2020 08:43:18 -0700
-IronPort-SDR: WcLv1QNWJl57GpWwDOAQ9iRfQku3rP52s0EbmCy4dQKp4LuHb7WplwbGupvBzYE8a8Inajk0zA
- V1umjrf8bp8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="244737378"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 17 Apr 2020 08:43:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Apr 2020 18:43:13 +0300
-Date: Fri, 17 Apr 2020 18:43:13 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200417154313.GO6112@intel.com>
-References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
- <20200417152310.GQ3456981@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 438B56EC4A;
+ Fri, 17 Apr 2020 15:45:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D69CA432F;
+ Fri, 17 Apr 2020 15:45:49 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200417152310.GQ3456981@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 17 Apr 2020 15:45:49 -0000
+Message-ID: <158713834921.10465.17859928868336737645@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW4g?=
+ =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
+ =?utf-8?q?=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,125 +39,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 17, 2020 at 05:23:10PM +0200, Daniel Vetter wrote:
-> On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+== Series Details ==
 
-> > Revert back to comparing fb->format->format instead fb->format for the
-> > page flip ioctl. This check was originally only here to disallow pixel
-> > format changes, but when we changed it to do the pointer comparison
-> > we potentially started to reject some (but definitely not all) modifier
-> > changes as well. In fact the current behaviour depends on whether the
-> > driver overrides the format info for a specific format+modifier combo.
-> > Eg. on i915 this now rejects compression vs. no compression changes but
-> > does not reject any other tiling changes. That's just inconsistent
-> > nonsense.
-> > =
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev10)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : success
 
-> > The main reason we have to go back to the old behaviour is to fix page
-> > flipping with Xorg. At some point Xorg got its atomic rights taken away
-> > and since then we can't page flip between compressed and non-compressed
-> > fbs on i915. Currently we get no page flipping for any games pretty much
-> > since Mesa likes to use compressed buffers. Not sure how compositors are
-> > working around this (don't use one myself). I guess they must be doing
-> > something to get non-compressed buffers instead. Either that or
-> > somehow no one noticed the tearing from the blit fallback.
-> =
+== Summary ==
 
-> Mesa only uses compressed buffers if you enable modifiers, and there's a
-> _loooooooooooot_ more that needs to be fixed in Xorg to enable that for
-> real. Like real atomic support.
+CI Bug Log - changes from CI_DRM_8316 -> Patchwork_17345
+====================================================
 
-Why would you need atomic for modifiers? Xorg doesn't even have
-any sensible framework for atomic and I suspect it never will.
+Summary
+-------
 
-> Without modifiers all you get is X tiling,
-> and that works just fine.
-> =
+  **SUCCESS**
 
-> Which would also fix this issue here you're papering over.
-> =
+  No regressions found.
 
-> So if this is the entire reason for this, I'm inclined to not do this.
-> Current Xorg is toast wrt modifiers, that's not news.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/index.html
 
-Works just fine. Also pretty sure modifiers are even enabled by
-default now in modesetting.
+Known issues
+------------
 
-And as stated the current check doesn't have consistent behaviour
-anyway. You can still flip between different modifiers as long a the
-driver doesn't override .get_format_info() for one of them. The *only*
-case where that happens is CCS on i915. There is no valid reason to
-special case that one.
+  Here are the changes found in Patchwork_17345 that come from known issues:
 
-> -Daniel
-> =
+### IGT changes ###
 
-> > =
+#### Possible fixes ####
 
-> > Looking back at the original discussion on this change we pretty much
-> > just did it in the name of skipping a few extra pointer dereferences.
-> > However, I've decided not to revert the whole thing in case someone
-> > has since started to depend on these changes. None of the other checks
-> > are relevant for i915 anyways.
-> > =
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [DMESG-WARN][1] ([i915#203]) -> [PASS][2] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/fi-skl-6770hq/igt@i915_module_load@reload.html
 
-> > Cc: stable@vger.kernel.org
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Fixes: dbd4d5761e1f ("drm: Replace 'format->format' comparisons to just=
- 'format' comparisons")
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_plane.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > =
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-n3050:       [INCOMPLETE][3] ([i915#1382]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
 
-> > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> > index d6ad60ab0d38..f2ca5315f23b 100644
-> > --- a/drivers/gpu/drm/drm_plane.c
-> > +++ b/drivers/gpu/drm/drm_plane.c
-> > @@ -1153,7 +1153,7 @@ int drm_mode_page_flip_ioctl(struct drm_device *d=
-ev,
-> >  	if (ret)
-> >  		goto out;
-> >  =
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [SKIP][5] ([fdo#109271]) -> [PASS][6] +5 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
 
-> > -	if (old_fb->format !=3D fb->format) {
-> > +	if (old_fb->format->format !=3D fb->format->format) {
-> >  		DRM_DEBUG_KMS("Page flip is not allowed to change frame buffer forma=
-t.\n");
-> >  		ret =3D -EINVAL;
-> >  		goto out;
-> > -- =
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-skl-6770hq:      [DMESG-WARN][7] ([i915#106]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
 
-> > 2.24.1
-> > =
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#1382]: https://gitlab.freedesktop.org/drm/intel/issues/1382
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> =
 
-> -- =
+Participating hosts (51 -> 44)
+------------------------------
 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-byt-clapper fi-bdw-samus 
 
--- =
 
-Ville Syrj=E4l=E4
-Intel
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8316 -> Patchwork_17345
+
+  CI-20190529: 20190529
+  CI_DRM_8316: 46a1c0844597f783a297136218689431ad104355 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17345: 683a7302b245606193c3cb31e088e3b3ed52aa21 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+683a7302b245 drm/i915/psr: Use new DP VSC SDP compute routine on PSR
+ca6476d66567 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+b1e535972161 drm/i915: Stop sending DP SDPs on ddi disable
+4a022e8fc205 drm/i915: Program DP SDPs on pipe updates
+65c3865381d1 drm/i915: Fix enabled infoframe states of lspcon
+b47e402f86e9 drm/i915: Add state readout for DP VSC SDP
+22a5e5bca724 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+0754e9ee06df drm/i915: Program DP SDPs with computed configs
+578da91e2148 drm/i915: Include DP VSC SDP in the crtc state dump
+8ec365f17f48 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+808aab8c443c drm/i915: Include HDMI DRM infoframe in the crtc state dump
+69460e7ad9d1 drm: Add logging function for DP VSC SDP
+89d92042f6da drm/i915/dp: Read out DP SDPs
+04a7a12971b4 video/hdmi: Add Unpack only function for DRM infoframe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17345/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
