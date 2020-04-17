@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710511ADEA3
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 15:45:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 313821ADEAB
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 15:47:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78E76EBEC;
-	Fri, 17 Apr 2020 13:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719306E408;
+	Fri, 17 Apr 2020 13:47:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E196EBEC
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 13:45:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20933736-1500050 for multiple; Fri, 17 Apr 2020 14:45:51 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4BF26E408
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 13:47:23 +0000 (UTC)
+IronPort-SDR: /dDw4HHJTbaHSDq/k1r5J8cb1Exhei6lOK6uJz5ba7KFPXlsGztOb/uPrTDFy70P/vLJXXpVYC
+ +Po1XVGwzSnA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2020 06:47:23 -0700
+IronPort-SDR: 3ZtB8n/78QDFHu2sb6BRXWSNYD8H7odn//KUGYLh2CxLiqI7wvsZWF+I2cROVe7X3tLgTudOY4
+ zDdCNepBz1nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,395,1580803200"; d="scan'208";a="244712241"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 17 Apr 2020 06:47:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Apr 2020 16:47:20 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Apr 2020 16:47:17 +0300
+Message-Id: <20200417134720.16654-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-In-Reply-To: <20200417094940.37744-1-liwei.song@windriver.com>
-References: <20200417094940.37744-1-liwei.song@windriver.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Liwei Song <liwei.song@windriver.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <158713114959.2062.884298694974315914@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 17 Apr 2020 14:45:49 +0100
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel v2] Sync i915_pciids upto
- 8717c6b7414f
+Subject: [Intel-gfx] [PATCH 1/4] drm/i195: Pass encoder to
+ intel_ddi_enable_pipe_clock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,501 +47,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Liwei Song (2020-04-17 10:49:40)
-> Import the kernel's i915_pciids.h, up to:
-> 
-> commit 8717c6b7414ffb890672276dccc284c23078ac0e
-> Author: Lee Shawn C <shawn.c.lee@intel.com>
-> Date:   Tue Dec 10 23:04:15 2019 +0800
-> 
->     drm/i915/cml: Separate U series pci id from origianl list.
-> 
-> Signed-off-by: Liwei Song <liwei.song@windriver.com>
-> ---
-> Change since V1:
->   replace old definition in intel_module.c and dri3-test.c
-> ---
->  src/i915_pciids.h  | 265 ++++++++++++++++++++++++++++++++++-----------
->  src/intel_module.c |   2 +-
->  test/dri3-test.c   |   2 +-
->  3 files changed, 206 insertions(+), 63 deletions(-)
-> 
-> diff --git a/src/i915_pciids.h b/src/i915_pciids.h
-> index fd965ffbb92e..1d2c12219f44 100644
-> --- a/src/i915_pciids.h
-> +++ b/src/i915_pciids.h
-> @@ -108,8 +108,10 @@
->         INTEL_VGA_DEVICE(0x2e42, info), /* B43_G */ \
->         INTEL_VGA_DEVICE(0x2e92, info)  /* B43_G.1 */
->  
-> -#define INTEL_PINEVIEW_IDS(info)                       \
-> -       INTEL_VGA_DEVICE(0xa001, info),                 \
-> +#define INTEL_PINEVIEW_G_IDS(info) \
-> +       INTEL_VGA_DEVICE(0xa001, info)
-> +
-> +#define INTEL_PINEVIEW_M_IDS(info) \
->         INTEL_VGA_DEVICE(0xa011, info)
->  
->  #define INTEL_IRONLAKE_D_IDS(info) \
-> @@ -166,7 +168,18 @@
->  #define INTEL_IVB_Q_IDS(info) \
->         INTEL_QUANTA_VGA_DEVICE(info) /* Quanta transcode */
->  
-> +#define INTEL_HSW_ULT_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x0A02, info), /* ULT GT1 desktop */ \
-> +       INTEL_VGA_DEVICE(0x0A0A, info), /* ULT GT1 server */ \
-> +       INTEL_VGA_DEVICE(0x0A0B, info), /* ULT GT1 reserved */ \
-> +       INTEL_VGA_DEVICE(0x0A06, info)  /* ULT GT1 mobile */
-> +
-> +#define INTEL_HSW_ULX_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x0A0E, info) /* ULX GT1 mobile */
-> +
->  #define INTEL_HSW_GT1_IDS(info) \
-> +       INTEL_HSW_ULT_GT1_IDS(info), \
-> +       INTEL_HSW_ULX_GT1_IDS(info), \
->         INTEL_VGA_DEVICE(0x0402, info), /* GT1 desktop */ \
->         INTEL_VGA_DEVICE(0x040a, info), /* GT1 server */ \
->         INTEL_VGA_DEVICE(0x040B, info), /* GT1 reserved */ \
-> @@ -175,20 +188,26 @@
->         INTEL_VGA_DEVICE(0x0C0A, info), /* SDV GT1 server */ \
->         INTEL_VGA_DEVICE(0x0C0B, info), /* SDV GT1 reserved */ \
->         INTEL_VGA_DEVICE(0x0C0E, info), /* SDV GT1 reserved */ \
-> -       INTEL_VGA_DEVICE(0x0A02, info), /* ULT GT1 desktop */ \
-> -       INTEL_VGA_DEVICE(0x0A0A, info), /* ULT GT1 server */ \
-> -       INTEL_VGA_DEVICE(0x0A0B, info), /* ULT GT1 reserved */ \
->         INTEL_VGA_DEVICE(0x0D02, info), /* CRW GT1 desktop */ \
->         INTEL_VGA_DEVICE(0x0D0A, info), /* CRW GT1 server */ \
->         INTEL_VGA_DEVICE(0x0D0B, info), /* CRW GT1 reserved */ \
->         INTEL_VGA_DEVICE(0x0D0E, info), /* CRW GT1 reserved */ \
->         INTEL_VGA_DEVICE(0x0406, info), /* GT1 mobile */ \
->         INTEL_VGA_DEVICE(0x0C06, info), /* SDV GT1 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A06, info), /* ULT GT1 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A0E, info), /* ULX GT1 mobile */ \
->         INTEL_VGA_DEVICE(0x0D06, info)  /* CRW GT1 mobile */
->  
-> +#define INTEL_HSW_ULT_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x0A12, info), /* ULT GT2 desktop */ \
-> +       INTEL_VGA_DEVICE(0x0A1A, info), /* ULT GT2 server */ \
-> +       INTEL_VGA_DEVICE(0x0A1B, info), /* ULT GT2 reserved */ \
-> +       INTEL_VGA_DEVICE(0x0A16, info)  /* ULT GT2 mobile */
-> +
-> +#define INTEL_HSW_ULX_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x0A1E, info) /* ULX GT2 mobile */ \
-> +
->  #define INTEL_HSW_GT2_IDS(info) \
-> +       INTEL_HSW_ULT_GT2_IDS(info), \
-> +       INTEL_HSW_ULX_GT2_IDS(info), \
->         INTEL_VGA_DEVICE(0x0412, info), /* GT2 desktop */ \
->         INTEL_VGA_DEVICE(0x041a, info), /* GT2 server */ \
->         INTEL_VGA_DEVICE(0x041B, info), /* GT2 reserved */ \
-> @@ -197,9 +216,6 @@
->         INTEL_VGA_DEVICE(0x0C1A, info), /* SDV GT2 server */ \
->         INTEL_VGA_DEVICE(0x0C1B, info), /* SDV GT2 reserved */ \
->         INTEL_VGA_DEVICE(0x0C1E, info), /* SDV GT2 reserved */ \
-> -       INTEL_VGA_DEVICE(0x0A12, info), /* ULT GT2 desktop */ \
-> -       INTEL_VGA_DEVICE(0x0A1A, info), /* ULT GT2 server */ \
-> -       INTEL_VGA_DEVICE(0x0A1B, info), /* ULT GT2 reserved */ \
->         INTEL_VGA_DEVICE(0x0D12, info), /* CRW GT2 desktop */ \
->         INTEL_VGA_DEVICE(0x0D1A, info), /* CRW GT2 server */ \
->         INTEL_VGA_DEVICE(0x0D1B, info), /* CRW GT2 reserved */ \
-> @@ -207,11 +223,17 @@
->         INTEL_VGA_DEVICE(0x0416, info), /* GT2 mobile */ \
->         INTEL_VGA_DEVICE(0x0426, info), /* GT2 mobile */ \
->         INTEL_VGA_DEVICE(0x0C16, info), /* SDV GT2 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A16, info), /* ULT GT2 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A1E, info), /* ULX GT2 mobile */ \
->         INTEL_VGA_DEVICE(0x0D16, info)  /* CRW GT2 mobile */
->  
-> +#define INTEL_HSW_ULT_GT3_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x0A22, info), /* ULT GT3 desktop */ \
-> +       INTEL_VGA_DEVICE(0x0A2A, info), /* ULT GT3 server */ \
-> +       INTEL_VGA_DEVICE(0x0A2B, info), /* ULT GT3 reserved */ \
-> +       INTEL_VGA_DEVICE(0x0A26, info), /* ULT GT3 mobile */ \
-> +       INTEL_VGA_DEVICE(0x0A2E, info)  /* ULT GT3 reserved */
-> +
->  #define INTEL_HSW_GT3_IDS(info) \
-> +       INTEL_HSW_ULT_GT3_IDS(info), \
->         INTEL_VGA_DEVICE(0x0422, info), /* GT3 desktop */ \
->         INTEL_VGA_DEVICE(0x042a, info), /* GT3 server */ \
->         INTEL_VGA_DEVICE(0x042B, info), /* GT3 reserved */ \
-> @@ -220,16 +242,11 @@
->         INTEL_VGA_DEVICE(0x0C2A, info), /* SDV GT3 server */ \
->         INTEL_VGA_DEVICE(0x0C2B, info), /* SDV GT3 reserved */ \
->         INTEL_VGA_DEVICE(0x0C2E, info), /* SDV GT3 reserved */ \
-> -       INTEL_VGA_DEVICE(0x0A22, info), /* ULT GT3 desktop */ \
-> -       INTEL_VGA_DEVICE(0x0A2A, info), /* ULT GT3 server */ \
-> -       INTEL_VGA_DEVICE(0x0A2B, info), /* ULT GT3 reserved */ \
->         INTEL_VGA_DEVICE(0x0D22, info), /* CRW GT3 desktop */ \
->         INTEL_VGA_DEVICE(0x0D2A, info), /* CRW GT3 server */ \
->         INTEL_VGA_DEVICE(0x0D2B, info), /* CRW GT3 reserved */ \
->         INTEL_VGA_DEVICE(0x0D2E, info), /* CRW GT3 reserved */ \
->         INTEL_VGA_DEVICE(0x0C26, info), /* SDV GT3 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A26, info), /* ULT GT3 mobile */ \
-> -       INTEL_VGA_DEVICE(0x0A2E, info), /* ULT GT3 reserved */ \
->         INTEL_VGA_DEVICE(0x0D26, info)  /* CRW GT3 mobile */
->  
->  #define INTEL_HSW_IDS(info) \
-> @@ -245,35 +262,59 @@
->         INTEL_VGA_DEVICE(0x0157, info), \
->         INTEL_VGA_DEVICE(0x0155, info)
->  
-> -#define INTEL_BDW_GT1_IDS(info)  \
-> -       INTEL_VGA_DEVICE(0x1602, info), /* GT1 ULT */ \
-> +#define INTEL_BDW_ULT_GT1_IDS(info) \
->         INTEL_VGA_DEVICE(0x1606, info), /* GT1 ULT */ \
-> -       INTEL_VGA_DEVICE(0x160B, info), /* GT1 Iris */ \
-> -       INTEL_VGA_DEVICE(0x160E, info), /* GT1 ULX */ \
-> +       INTEL_VGA_DEVICE(0x160B, info)  /* GT1 Iris */
-> +
-> +#define INTEL_BDW_ULX_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x160E, info) /* GT1 ULX */
-> +
-> +#define INTEL_BDW_GT1_IDS(info) \
-> +       INTEL_BDW_ULT_GT1_IDS(info), \
-> +       INTEL_BDW_ULX_GT1_IDS(info), \
-> +       INTEL_VGA_DEVICE(0x1602, info), /* GT1 ULT */ \
->         INTEL_VGA_DEVICE(0x160A, info), /* GT1 Server */ \
->         INTEL_VGA_DEVICE(0x160D, info)  /* GT1 Workstation */
->  
-> -#define INTEL_BDW_GT2_IDS(info)  \
-> -       INTEL_VGA_DEVICE(0x1612, info), /* GT2 Halo */  \
-> +#define INTEL_BDW_ULT_GT2_IDS(info) \
->         INTEL_VGA_DEVICE(0x1616, info), /* GT2 ULT */ \
-> -       INTEL_VGA_DEVICE(0x161B, info), /* GT2 ULT */ \
-> -       INTEL_VGA_DEVICE(0x161E, info), /* GT2 ULX */ \
-> +       INTEL_VGA_DEVICE(0x161B, info)  /* GT2 ULT */
-> +
-> +#define INTEL_BDW_ULX_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x161E, info) /* GT2 ULX */
-> +
-> +#define INTEL_BDW_GT2_IDS(info) \
-> +       INTEL_BDW_ULT_GT2_IDS(info), \
-> +       INTEL_BDW_ULX_GT2_IDS(info), \
-> +       INTEL_VGA_DEVICE(0x1612, info), /* GT2 Halo */  \
->         INTEL_VGA_DEVICE(0x161A, info), /* GT2 Server */ \
->         INTEL_VGA_DEVICE(0x161D, info)  /* GT2 Workstation */
->  
-> +#define INTEL_BDW_ULT_GT3_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x1626, info), /* ULT */ \
-> +       INTEL_VGA_DEVICE(0x162B, info)  /* Iris */ \
-> +
-> +#define INTEL_BDW_ULX_GT3_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x162E, info)  /* ULX */
-> +
->  #define INTEL_BDW_GT3_IDS(info) \
-> +       INTEL_BDW_ULT_GT3_IDS(info), \
-> +       INTEL_BDW_ULX_GT3_IDS(info), \
->         INTEL_VGA_DEVICE(0x1622, info), /* ULT */ \
-> -       INTEL_VGA_DEVICE(0x1626, info), /* ULT */ \
-> -       INTEL_VGA_DEVICE(0x162B, info), /* Iris */ \
-> -       INTEL_VGA_DEVICE(0x162E, info),  /* ULX */\
->         INTEL_VGA_DEVICE(0x162A, info), /* Server */ \
->         INTEL_VGA_DEVICE(0x162D, info)  /* Workstation */
->  
-> +#define INTEL_BDW_ULT_RSVD_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x1636, info), /* ULT */ \
-> +       INTEL_VGA_DEVICE(0x163B, info)  /* Iris */
-> +
-> +#define INTEL_BDW_ULX_RSVD_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x163E, info) /* ULX */
-> +
->  #define INTEL_BDW_RSVD_IDS(info) \
-> +       INTEL_BDW_ULT_RSVD_IDS(info), \
-> +       INTEL_BDW_ULX_RSVD_IDS(info), \
->         INTEL_VGA_DEVICE(0x1632, info), /* ULT */ \
-> -       INTEL_VGA_DEVICE(0x1636, info), /* ULT */ \
-> -       INTEL_VGA_DEVICE(0x163B, info), /* Iris */ \
-> -       INTEL_VGA_DEVICE(0x163E, info), /* ULX */ \
->         INTEL_VGA_DEVICE(0x163A, info), /* Server */ \
->         INTEL_VGA_DEVICE(0x163D, info)  /* Workstation */
->  
-> @@ -289,25 +330,40 @@
->         INTEL_VGA_DEVICE(0x22b2, info), \
->         INTEL_VGA_DEVICE(0x22b3, info)
->  
-> +#define INTEL_SKL_ULT_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
-> +
-> +#define INTEL_SKL_ULX_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
-> +
->  #define INTEL_SKL_GT1_IDS(info)        \
-> -       INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
-> -       INTEL_VGA_DEVICE(0x190E, info), /* ULX GT1 */ \
-> +       INTEL_SKL_ULT_GT1_IDS(info), \
-> +       INTEL_SKL_ULX_GT1_IDS(info), \
->         INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
->         INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
->         INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
->  
-> -#define INTEL_SKL_GT2_IDS(info)        \
-> +#define INTEL_SKL_ULT_GT2_IDS(info) \
->         INTEL_VGA_DEVICE(0x1916, info), /* ULT GT2 */ \
-> -       INTEL_VGA_DEVICE(0x1921, info), /* ULT GT2F */ \
-> -       INTEL_VGA_DEVICE(0x191E, info), /* ULX GT2 */ \
-> +       INTEL_VGA_DEVICE(0x1921, info)  /* ULT GT2F */
-> +
-> +#define INTEL_SKL_ULX_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x191E, info) /* ULX GT2 */
-> +
-> +#define INTEL_SKL_GT2_IDS(info)        \
-> +       INTEL_SKL_ULT_GT2_IDS(info), \
-> +       INTEL_SKL_ULX_GT2_IDS(info), \
->         INTEL_VGA_DEVICE(0x1912, info), /* DT  GT2 */ \
->         INTEL_VGA_DEVICE(0x191B, info), /* Halo GT2 */ \
->         INTEL_VGA_DEVICE(0x191A, info), /* SRV GT2 */ \
->         INTEL_VGA_DEVICE(0x191D, info)  /* WKS GT2 */
->  
-> +#define INTEL_SKL_ULT_GT3_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x1926, info) /* ULT GT3 */
-> +
->  #define INTEL_SKL_GT3_IDS(info) \
-> +       INTEL_SKL_ULT_GT3_IDS(info), \
->         INTEL_VGA_DEVICE(0x1923, info), /* ULT GT3 */ \
-> -       INTEL_VGA_DEVICE(0x1926, info), /* ULT GT3 */ \
->         INTEL_VGA_DEVICE(0x1927, info), /* ULT GT3 */ \
->         INTEL_VGA_DEVICE(0x192B, info), /* Halo GT3 */ \
->         INTEL_VGA_DEVICE(0x192D, info)  /* SRV GT3 */
-> @@ -336,45 +392,91 @@
->         INTEL_VGA_DEVICE(0x3184, info), \
->         INTEL_VGA_DEVICE(0x3185, info)
->  
-> -#define INTEL_KBL_GT1_IDS(info)        \
-> -       INTEL_VGA_DEVICE(0x5913, info), /* ULT GT1.5 */ \
-> -       INTEL_VGA_DEVICE(0x5915, info), /* ULX GT1.5 */ \
-> +#define INTEL_KBL_ULT_GT1_IDS(info) \
->         INTEL_VGA_DEVICE(0x5906, info), /* ULT GT1 */ \
-> +       INTEL_VGA_DEVICE(0x5913, info)  /* ULT GT1.5 */
-> +
-> +#define INTEL_KBL_ULX_GT1_IDS(info) \
->         INTEL_VGA_DEVICE(0x590E, info), /* ULX GT1 */ \
-> +       INTEL_VGA_DEVICE(0x5915, info)  /* ULX GT1.5 */
-> +
-> +#define INTEL_KBL_GT1_IDS(info)        \
-> +       INTEL_KBL_ULT_GT1_IDS(info), \
-> +       INTEL_KBL_ULX_GT1_IDS(info), \
->         INTEL_VGA_DEVICE(0x5902, info), /* DT  GT1 */ \
->         INTEL_VGA_DEVICE(0x5908, info), /* Halo GT1 */ \
->         INTEL_VGA_DEVICE(0x590B, info), /* Halo GT1 */ \
->         INTEL_VGA_DEVICE(0x590A, info) /* SRV GT1 */
->  
-> -#define INTEL_KBL_GT2_IDS(info)        \
-> +#define INTEL_KBL_ULT_GT2_IDS(info) \
->         INTEL_VGA_DEVICE(0x5916, info), /* ULT GT2 */ \
-> +       INTEL_VGA_DEVICE(0x5921, info)  /* ULT GT2F */
-> +
-> +#define INTEL_KBL_ULX_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x591E, info)  /* ULX GT2 */
-> +
-> +#define INTEL_KBL_GT2_IDS(info)        \
-> +       INTEL_KBL_ULT_GT2_IDS(info), \
-> +       INTEL_KBL_ULX_GT2_IDS(info), \
->         INTEL_VGA_DEVICE(0x5917, info), /* Mobile GT2 */ \
-> -       INTEL_VGA_DEVICE(0x5921, info), /* ULT GT2F */ \
-> -       INTEL_VGA_DEVICE(0x591E, info), /* ULX GT2 */ \
->         INTEL_VGA_DEVICE(0x5912, info), /* DT  GT2 */ \
->         INTEL_VGA_DEVICE(0x591B, info), /* Halo GT2 */ \
->         INTEL_VGA_DEVICE(0x591A, info), /* SRV GT2 */ \
->         INTEL_VGA_DEVICE(0x591D, info) /* WKS GT2 */
->  
-> +#define INTEL_KBL_ULT_GT3_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x5926, info) /* ULT GT3 */
-> +
->  #define INTEL_KBL_GT3_IDS(info) \
-> +       INTEL_KBL_ULT_GT3_IDS(info), \
->         INTEL_VGA_DEVICE(0x5923, info), /* ULT GT3 */ \
-> -       INTEL_VGA_DEVICE(0x5926, info), /* ULT GT3 */ \
->         INTEL_VGA_DEVICE(0x5927, info) /* ULT GT3 */
->  
->  #define INTEL_KBL_GT4_IDS(info) \
->         INTEL_VGA_DEVICE(0x593B, info) /* Halo GT4 */
->  
->  /* AML/KBL Y GT2 */
-> -#define INTEL_AML_GT2_IDS(info) \
-> +#define INTEL_AML_KBL_GT2_IDS(info) \
->         INTEL_VGA_DEVICE(0x591C, info),  /* ULX GT2 */ \
->         INTEL_VGA_DEVICE(0x87C0, info) /* ULX GT2 */
->  
-> +/* AML/CFL Y GT2 */
-> +#define INTEL_AML_CFL_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x87CA, info)
-> +
-> +/* CML GT1 */
-> +#define INTEL_CML_GT1_IDS(info)        \
-> +       INTEL_VGA_DEVICE(0x9BA5, info), \
-> +       INTEL_VGA_DEVICE(0x9BA8, info), \
-> +       INTEL_VGA_DEVICE(0x9BA4, info), \
-> +       INTEL_VGA_DEVICE(0x9BA2, info)
-> +
-> +#define INTEL_CML_U_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x9B21, info), \
-> +       INTEL_VGA_DEVICE(0x9BAA, info), \
-> +       INTEL_VGA_DEVICE(0x9BAC, info)
-> +
-> +/* CML GT2 */
-> +#define INTEL_CML_GT2_IDS(info)        \
-> +       INTEL_VGA_DEVICE(0x9BC5, info), \
-> +       INTEL_VGA_DEVICE(0x9BC8, info), \
-> +       INTEL_VGA_DEVICE(0x9BC4, info), \
-> +       INTEL_VGA_DEVICE(0x9BC2, info), \
-> +       INTEL_VGA_DEVICE(0x9BC6, info), \
-> +       INTEL_VGA_DEVICE(0x9BE6, info), \
-> +       INTEL_VGA_DEVICE(0x9BF6, info)
-> +
-> +#define INTEL_CML_U_GT2_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x9B41, info), \
-> +       INTEL_VGA_DEVICE(0x9BCA, info), \
-> +       INTEL_VGA_DEVICE(0x9BCC, info)
-> +
->  #define INTEL_KBL_IDS(info) \
->         INTEL_KBL_GT1_IDS(info), \
->         INTEL_KBL_GT2_IDS(info), \
->         INTEL_KBL_GT3_IDS(info), \
->         INTEL_KBL_GT4_IDS(info), \
-> -       INTEL_AML_GT2_IDS(info)
-> +       INTEL_AML_KBL_GT2_IDS(info)
->  
->  /* CFL S */
->  #define INTEL_CFL_S_GT1_IDS(info) \
-> @@ -390,6 +492,9 @@
->         INTEL_VGA_DEVICE(0x3E9A, info)  /* SRV GT2 */
->  
->  /* CFL H */
-> +#define INTEL_CFL_H_GT1_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x3E9C, info)
-> +
->  #define INTEL_CFL_H_GT2_IDS(info) \
->         INTEL_VGA_DEVICE(0x3E9B, info), /* Halo GT2 */ \
->         INTEL_VGA_DEVICE(0x3E94, info)  /* Halo GT2 */
-> @@ -407,30 +512,43 @@
->  
->  /* WHL/CFL U GT1 */
->  #define INTEL_WHL_U_GT1_IDS(info) \
-> -       INTEL_VGA_DEVICE(0x3EA1, info)
-> +       INTEL_VGA_DEVICE(0x3EA1, info), \
-> +       INTEL_VGA_DEVICE(0x3EA4, info)
->  
->  /* WHL/CFL U GT2 */
->  #define INTEL_WHL_U_GT2_IDS(info) \
-> -       INTEL_VGA_DEVICE(0x3EA0, info)
-> +       INTEL_VGA_DEVICE(0x3EA0, info), \
-> +       INTEL_VGA_DEVICE(0x3EA3, info)
->  
->  /* WHL/CFL U GT3 */
->  #define INTEL_WHL_U_GT3_IDS(info) \
-> -       INTEL_VGA_DEVICE(0x3EA2, info), \
-> -       INTEL_VGA_DEVICE(0x3EA3, info), \
-> -       INTEL_VGA_DEVICE(0x3EA4, info)
-> +       INTEL_VGA_DEVICE(0x3EA2, info)
->  
->  #define INTEL_CFL_IDS(info)       \
->         INTEL_CFL_S_GT1_IDS(info), \
->         INTEL_CFL_S_GT2_IDS(info), \
-> +       INTEL_CFL_H_GT1_IDS(info), \
->         INTEL_CFL_H_GT2_IDS(info), \
->         INTEL_CFL_U_GT2_IDS(info), \
->         INTEL_CFL_U_GT3_IDS(info), \
->         INTEL_WHL_U_GT1_IDS(info), \
->         INTEL_WHL_U_GT2_IDS(info), \
-> -       INTEL_WHL_U_GT3_IDS(info)
-> +       INTEL_WHL_U_GT3_IDS(info), \
-> +       INTEL_AML_CFL_GT2_IDS(info), \
-> +       INTEL_CML_GT1_IDS(info), \
-> +       INTEL_CML_GT2_IDS(info), \
-> +       INTEL_CML_U_GT1_IDS(info), \
-> +       INTEL_CML_U_GT2_IDS(info)
->  
->  /* CNL */
-> +#define INTEL_CNL_PORT_F_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x5A54, info), \
-> +       INTEL_VGA_DEVICE(0x5A5C, info), \
-> +       INTEL_VGA_DEVICE(0x5A44, info), \
-> +       INTEL_VGA_DEVICE(0x5A4C, info)
-> +
->  #define INTEL_CNL_IDS(info) \
-> +       INTEL_CNL_PORT_F_IDS(info), \
->         INTEL_VGA_DEVICE(0x5A51, info), \
->         INTEL_VGA_DEVICE(0x5A59, info), \
->         INTEL_VGA_DEVICE(0x5A41, info), \
-> @@ -440,22 +558,47 @@
->         INTEL_VGA_DEVICE(0x5A42, info), \
->         INTEL_VGA_DEVICE(0x5A4A, info), \
->         INTEL_VGA_DEVICE(0x5A50, info), \
-> -       INTEL_VGA_DEVICE(0x5A40, info), \
-> -       INTEL_VGA_DEVICE(0x5A54, info), \
-> -       INTEL_VGA_DEVICE(0x5A5C, info), \
-> -       INTEL_VGA_DEVICE(0x5A44, info), \
-> -       INTEL_VGA_DEVICE(0x5A4C, info)
-> +       INTEL_VGA_DEVICE(0x5A40, info)
->  
->  /* ICL */
-> -#define INTEL_ICL_11_IDS(info) \
-> +#define INTEL_ICL_PORT_F_IDS(info) \
->         INTEL_VGA_DEVICE(0x8A50, info), \
-> -       INTEL_VGA_DEVICE(0x8A51, info), \
->         INTEL_VGA_DEVICE(0x8A5C, info), \
-> -       INTEL_VGA_DEVICE(0x8A5D, info), \
-> +       INTEL_VGA_DEVICE(0x8A59, info), \
-> +       INTEL_VGA_DEVICE(0x8A58, info), \
->         INTEL_VGA_DEVICE(0x8A52, info), \
->         INTEL_VGA_DEVICE(0x8A5A, info), \
->         INTEL_VGA_DEVICE(0x8A5B, info), \
-> +       INTEL_VGA_DEVICE(0x8A57, info), \
-> +       INTEL_VGA_DEVICE(0x8A56, info), \
->         INTEL_VGA_DEVICE(0x8A71, info), \
-> -       INTEL_VGA_DEVICE(0x8A70, info)
-> +       INTEL_VGA_DEVICE(0x8A70, info), \
-> +       INTEL_VGA_DEVICE(0x8A53, info), \
-> +       INTEL_VGA_DEVICE(0x8A54, info)
-> +
-> +#define INTEL_ICL_11_IDS(info) \
-> +       INTEL_ICL_PORT_F_IDS(info), \
-> +       INTEL_VGA_DEVICE(0x8A51, info), \
-> +       INTEL_VGA_DEVICE(0x8A5D, info)
-> +
-> +/* EHL/JSL */
-> +#define INTEL_EHL_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x4500, info), \
-> +       INTEL_VGA_DEVICE(0x4571, info), \
-> +       INTEL_VGA_DEVICE(0x4551, info), \
-> +       INTEL_VGA_DEVICE(0x4541, info), \
-> +       INTEL_VGA_DEVICE(0x4E71, info), \
-> +       INTEL_VGA_DEVICE(0x4E61, info), \
-> +       INTEL_VGA_DEVICE(0x4E51, info)
-> +
-> +/* TGL */
-> +#define INTEL_TGL_12_IDS(info) \
-> +       INTEL_VGA_DEVICE(0x9A49, info), \
-> +       INTEL_VGA_DEVICE(0x9A40, info), \
-> +       INTEL_VGA_DEVICE(0x9A59, info), \
-> +       INTEL_VGA_DEVICE(0x9A60, info), \
-> +       INTEL_VGA_DEVICE(0x9A68, info), \
-> +       INTEL_VGA_DEVICE(0x9A70, info), \
-> +       INTEL_VGA_DEVICE(0x9A78, info)
->  
->  #endif /* _I915_PCIIDS_H */
-> diff --git a/src/intel_module.c b/src/intel_module.c
-> index a71c2e40b774..e0b94c190254 100644
-> --- a/src/intel_module.c
-> +++ b/src/intel_module.c
-> @@ -357,7 +357,7 @@ static const struct pci_id_match intel_device_match[] = {
->         INTEL_I945GM_IDS(&intel_i945_info),
->  
->         INTEL_G33_IDS(&intel_g33_info),
-> -       INTEL_PINEVIEW_IDS(&intel_g33_info),
-> +       INTEL_PINEVIEW_G_IDS(&intel_g33_info),
->  
->         INTEL_I965G_IDS(&intel_i965_info),
->         INTEL_I965GM_IDS(&intel_i965_info),
-
-But no new info blocks?
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNp
+bmNlIGludGVsX2RkaV9lbmFibGVfcGlwZV9jbG9jaygpIHBhc3MgcHVzaGVkIGRvd24gaW50byB0
+aGUKZW5jb2RlciBob29rcyB3ZSBjYW4gcGFzcyBvbiB0aGUgZW5jb2RlciBpbnN0ZWFkIG9mIGhh
+dmluZwp0byB1c2UgaW50ZWxfZGRpX2dldF9jcnRjX2VuY29kZXIoKS4KClNpZ25lZC1vZmYtYnk6
+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jcnQuYyAgICB8ICAyICstCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgIHwgMTAgKysrKystLS0tLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuaCAgICB8ICAzICsrLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyB8ICAyICstCiA0IGZpbGVzIGNo
+YW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9jcnQuYwppbmRleCBhNTllY2JlZDAwMDQuLmNiZjg0MDg1MzdjZiAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jcnQuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydC5jCkBAIC0yOTQsNyArMjk0
+LDcgQEAgc3RhdGljIHZvaWQgaHN3X3ByZV9lbmFibGVfY3J0KHN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLAogCiAJaHN3X2ZkaV9saW5rX3RyYWluKGVuY29kZXIsIGNydGNfc3RhdGUp
+OwogCi0JaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKGNydGNfc3RhdGUpOworCWludGVsX2Rk
+aV9lbmFibGVfcGlwZV9jbG9jayhlbmNvZGVyLCBjcnRjX3N0YXRlKTsKIH0KIAogc3RhdGljIHZv
+aWQgaHN3X2VuYWJsZV9jcnQoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwppbmRleCBiZTZjNjFiY2JjOWMuLjJi
+ZDQxNGJiZTgyYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBA
+IC0xOTg2LDExICsxOTg2LDExIEBAIHN0YXRpYyB2b2lkIGludGVsX2RkaV9nZXRfcG93ZXJfZG9t
+YWlucyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCQkJaW50ZWxfZHNjX3Bvd2Vy
+X2RvbWFpbihjcnRjX3N0YXRlKSk7CiB9CiAKLXZvaWQgaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Ns
+b2NrKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQordm9pZCBpbnRl
+bF9kZGlfZW5hYmxlX3BpcGVfY2xvY2soc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJ
+CQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogewogCXN0cnVj
+dCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51YXBpLmNydGMp
+OwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFz
+ZS5kZXYpOwotCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyID0gaW50ZWxfZGRpX2dldF9j
+cnRjX2VuY29kZXIoY3J0Yyk7CiAJZW51bSBwb3J0IHBvcnQgPSBlbmNvZGVyLT5wb3J0OwogCWVu
+dW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2RlciA9IGNydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVy
+OwogCkBAIC0zMTU4LDcgKzMxNTgsNyBAQCBzdGF0aWMgdm9pZCB0Z2xfZGRpX3ByZV9lbmFibGVf
+ZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJICogNy5hIENvbmZpZ3VyZSBU
+cmFuc2NvZGVyIENsb2NrIFNlbGVjdCB0byBkaXJlY3QgdGhlIFBvcnQgY2xvY2sgdG8gdGhlCiAJ
+ICogVHJhbnNjb2Rlci4KIAkgKi8KLQlpbnRlbF9kZGlfZW5hYmxlX3BpcGVfY2xvY2soY3J0Y19z
+dGF0ZSk7CisJaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKGVuY29kZXIsIGNydGNfc3RhdGUp
+OwogCiAJLyoKIAkgKiA3LmIgQ29uZmlndXJlIFRSQU5TX0RESV9GVU5DX0NUTCBEREkgU2VsZWN0
+LCBEREkgTW9kZSBTZWxlY3QgJiBNU1QKQEAgLTMyOTksNyArMzI5OSw3IEBAIHN0YXRpYyB2b2lk
+IGhzd19kZGlfcHJlX2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwK
+IAlpbnRlbF9kZGlfZW5hYmxlX2ZlYyhlbmNvZGVyLCBjcnRjX3N0YXRlKTsKIAogCWlmICghaXNf
+bXN0KQotCQlpbnRlbF9kZGlfZW5hYmxlX3BpcGVfY2xvY2soY3J0Y19zdGF0ZSk7CisJCWludGVs
+X2RkaV9lbmFibGVfcGlwZV9jbG9jayhlbmNvZGVyLCBjcnRjX3N0YXRlKTsKIAogCWludGVsX2Rz
+Y19lbmFibGUoZW5jb2RlciwgY3J0Y19zdGF0ZSk7CiB9CkBAIC0zMzYwLDcgKzMzNjAsNyBAQCBz
+dGF0aWMgdm9pZCBpbnRlbF9kZGlfcHJlX2VuYWJsZV9oZG1pKHN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLAogCWlmIChJU19HRU45X0JDKGRldl9wcml2KSkKIAkJc2tsX2RkaV9zZXRf
+aWJvb3N0KGVuY29kZXIsIGxldmVsLCBJTlRFTF9PVVRQVVRfSERNSSk7CiAKLQlpbnRlbF9kZGlf
+ZW5hYmxlX3BpcGVfY2xvY2soY3J0Y19zdGF0ZSk7CisJaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Ns
+b2NrKGVuY29kZXIsIGNydGNfc3RhdGUpOwogCiAJaW50ZWxfZGlnX3BvcnQtPnNldF9pbmZvZnJh
+bWVzKGVuY29kZXIsCiAJCQkJICAgICAgIGNydGNfc3RhdGUtPmhhc19pbmZvZnJhbWUsCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuaAppbmRleCBkZTRjZDg3N2MwMDIuLjcz
+ZGFkNDhmOTM1NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5oCkBA
+IC0yNyw3ICsyNyw4IEBAIHZvaWQgaW50ZWxfZGRpX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2LCBlbnVtIHBvcnQgcG9ydCk7CiBib29sIGludGVsX2RkaV9nZXRfaHdfc3Rh
+dGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsIGVudW0gcGlwZSAqcGlwZSk7CiB2b2lk
+IGludGVsX2RkaV9lbmFibGVfdHJhbnNjb2Rlcl9mdW5jKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpjcnRjX3N0YXRlKTsKIHZvaWQgaW50ZWxfZGRpX2Rpc2FibGVfdHJhbnNjb2Rlcl9m
+dW5jKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKLXZvaWQgaW50
+ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
+cnRjX3N0YXRlKTsKK3ZvaWQgaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKHN0cnVjdCBpbnRl
+bF9lbmNvZGVyICplbmNvZGVyLAorCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
+Y3J0Y19zdGF0ZSk7CiB2b2lkIGludGVsX2RkaV9kaXNhYmxlX3BpcGVfY2xvY2soY29uc3QgIHN0
+cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHZvaWQgaW50ZWxfZGRpX3NldF9k
+cF9tc2EoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkgIGNv
+bnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKTsKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCmluZGV4IGE4M2Y5MTBkOGUxNS4uY2M2
+ZDRkYWYwM2EwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RwX21zdC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0
+LmMKQEAgLTQ4OSw3ICs0ODksNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9tc3RfcHJlX2VuYWJsZV9k
+cChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkgKiBoZXJlIGZvciB0aGUgZm9s
+bG93aW5nIG9uZXMuCiAJICovCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPCAxMiB8fCAhZmly
+c3RfbXN0X3N0cmVhbSkKLQkJaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKHBpcGVfY29uZmln
+KTsKKwkJaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKGVuY29kZXIsIHBpcGVfY29uZmlnKTsK
+IAogCWludGVsX2RkaV9zZXRfZHBfbXNhKHBpcGVfY29uZmlnLCBjb25uX3N0YXRlKTsKIAotLSAK
+Mi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
