@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E013A1AD8EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 10:49:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359161AD8EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2020 10:49:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33E4B6E3CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E056E3D3;
 	Fri, 17 Apr 2020 08:49:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C40586E3CE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD1316E3D0
  for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 08:49:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929832-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20929834-1500050 
  for multiple; Fri, 17 Apr 2020 09:49:32 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Apr 2020 09:49:26 +0100
-Message-Id: <20200417084930.644-1-chris@chris-wilson.co.uk>
+Date: Fri, 17 Apr 2020 09:49:27 +0100
+Message-Id: <20200417084930.644-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200417084930.644-1-chris@chris-wilson.co.uk>
+References: <20200417084930.644-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/5] drm/i915/selftests: Delay spinner before
- waiting for an interrupt
+Subject: [Intel-gfx] [PATCH 2/5] drm/i915/selftests: Move gpu energy
+ measurement into its own little lib
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,87 +40,76 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It seems that although (perhaps because of the memory stall?) the
-spinner has signaled that it has started, it still takes some time to
-spin up to 100% utilisation of the HW. Since the test depends on the
-full utilisation of the HW to trigger the RPS interrupt, wait a little
-bit and flush the interrupt status to be sure that the event we see if
-from the spinner.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_rps.c | 28 +++++++++++++++-----------
- 1 file changed, 16 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 26aadc2ae3be..199d608aa763 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -14,6 +14,20 @@ static void dummy_rps_work(struct work_struct *wrk)
- {
- }
- 
-+static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
-+{
-+	/* Flush any previous EI */
-+	usleep_range(timeout_us, 2 * timeout_us);
-+
-+	/* Reset the interrupt status */
-+	rps_disable_interrupts(rps);
-+	GEM_BUG_ON(rps->pm_iir);
-+	rps_enable_interrupts(rps);
-+
-+	/* And then wait for the timeout, for real this time */
-+	usleep_range(2 * timeout_us, 3 * timeout_us);
-+}
-+
- static int __rps_up_interrupt(struct intel_rps *rps,
- 			      struct intel_engine_cs *engine,
- 			      struct igt_spinner *spin)
-@@ -28,7 +42,6 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	intel_gt_pm_wait_for_idle(engine->gt);
- 	GEM_BUG_ON(rps->active);
- 
--	rps->pm_iir = 0;
- 	rps->cur_freq = rps->min_freq;
- 
- 	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
-@@ -71,7 +84,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_UP_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
- 
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
- 	GEM_BUG_ON(i915_request_completed(rq));
- 
- 	igt_spinner_end(spin);
-@@ -122,16 +135,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
- 	timeout = intel_uncore_read(uncore, GEN6_RP_DOWN_EI);
- 	timeout = GT_PM_INTERVAL_TO_US(engine->i915, timeout);
- 
--	/* Flush any previous EI */
--	usleep_range(timeout, 2 * timeout);
--
--	/* Reset the interrupt status */
--	rps_disable_interrupts(rps);
--	GEM_BUG_ON(rps->pm_iir);
--	rps_enable_interrupts(rps);
--
--	/* And then wait for the timeout, for real this time */
--	usleep_range(2 * timeout, 3 * timeout);
-+	sleep_for_ei(rps, timeout);
- 
- 	if (rps->cur_freq != rps->max_freq) {
- 		pr_err("%s: Frequency unexpectedly changed [down], now %d!\n",
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+TW92ZSB0aGUgaGFuZHkgdXRpbGl0eSB0byBtZWFzdXJlIHRoZSBHUFUgZW5lcmd5IGNvbnN1bXB0
+aW9uIHVzaW5nIFJBUEwKbXNyIGludG8gYSBjb21tb24gbGliIHNvIHRoYXQgaXQgY2FuIGJlIHJl
+dXNlZCBlYXNpbHkuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
+bHNvbi5jby51az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAg
+IHwgIDMgKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9yYzYuYyAgIHwgMjUg
+KysrKystLS0tLS0tLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMv
+bGlicmFwbC5jIHwgMjQgKysrKysrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L3NlbGZ0ZXN0cy9saWJyYXBsLmggfCAxMyArKysrKysrKysrKysKIDQgZmlsZXMgY2hhbmdl
+ZCwgNDQgaW5zZXJ0aW9ucygrKSwgMjEgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2xpYnJhcGwuYwogY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9saWJyYXBsLmgKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01h
+a2VmaWxlCmluZGV4IDQ0YzUwNmI3ZTExNy4uNmYxMTJkOGY4MGNhIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
+ZmlsZQpAQCAtMjU3LDcgKzI1Nyw4IEBAIGk5MTUtJChDT05GSUdfRFJNX0k5MTVfU0VMRlRFU1Qp
+ICs9IFwKIAlzZWxmdGVzdHMvaWd0X2xpdmVfdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0X21tYXAu
+byBcCiAJc2VsZnRlc3RzL2lndF9yZXNldC5vIFwKLQlzZWxmdGVzdHMvaWd0X3NwaW5uZXIubwor
+CXNlbGZ0ZXN0cy9pZ3Rfc3Bpbm5lci5vIFwKKwlzZWxmdGVzdHMvbGlicmFwbC5vCiAKICMgdmly
+dHVhbCBncHUgY29kZQogaTkxNS15ICs9IGk5MTVfdmdwdS5vCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9yYzYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3NlbGZ0ZXN0X3JjNi5jCmluZGV4IDA4YzNkYmQ0MWIxMi4uMmRjNDYwNjI0YmJjIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9yYzYuYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9yYzYuYwpAQCAtMTEsMjIgKzExLDcgQEAKICNpbmNs
+dWRlICJzZWxmdGVzdF9yYzYuaCIKIAogI2luY2x1ZGUgInNlbGZ0ZXN0cy9pOTE1X3JhbmRvbS5o
+IgotCi1zdGF0aWMgdTY0IGVuZXJneV91SihzdHJ1Y3QgaW50ZWxfcmM2ICpyYzYpCi17Ci0JdW5z
+aWduZWQgbG9uZyBsb25nIHBvd2VyOwotCXUzMiB1bml0czsKLQotCWlmIChyZG1zcmxfc2FmZShN
+U1JfUkFQTF9QT1dFUl9VTklULCAmcG93ZXIpKQotCQlyZXR1cm4gMDsKLQotCXVuaXRzID0gKHBv
+d2VyICYgMHgxZjAwKSA+PiA4OwotCi0JaWYgKHJkbXNybF9zYWZlKE1TUl9QUDFfRU5FUkdZX1NU
+QVRVUywgJnBvd2VyKSkKLQkJcmV0dXJuIDA7Ci0KLQlyZXR1cm4gKDEwMDAwMDAgKiBwb3dlcikg
+Pj4gdW5pdHM7IC8qIGNvbnZlcnQgdG8gdUogKi8KLX0KKyNpbmNsdWRlICJzZWxmdGVzdHMvbGli
+cmFwbC5oIgogCiBzdGF0aWMgdTY0IHJjNl9yZXNpZGVuY3koc3RydWN0IGludGVsX3JjNiAqcmM2
+KQogewpAQCAtNzQsOSArNTksOSBAQCBpbnQgbGl2ZV9yYzZfbWFudWFsKHZvaWQgKmFyZykKIAly
+ZXNbMF0gPSByYzZfcmVzaWRlbmN5KHJjNik7CiAKIAlkdCA9IGt0aW1lX2dldCgpOwotCXJjMF9w
+b3dlciA9IGVuZXJneV91SihyYzYpOworCXJjMF9wb3dlciA9IGxpYnJhcGxfZW5lcmd5X3VKKCk7
+CiAJbXNsZWVwKDI1MCk7Ci0JcmMwX3Bvd2VyID0gZW5lcmd5X3VKKHJjNikgLSByYzBfcG93ZXI7
+CisJcmMwX3Bvd2VyID0gbGlicmFwbF9lbmVyZ3lfdUooKSAtIHJjMF9wb3dlcjsKIAlkdCA9IGt0
+aW1lX3N1YihrdGltZV9nZXQoKSwgZHQpOwogCXJlc1sxXSA9IHJjNl9yZXNpZGVuY3kocmM2KTsK
+IAlpZiAoKHJlc1sxXSAtIHJlc1swXSkgPj4gMTApIHsKQEAgLTk5LDkgKzg0LDkgQEAgaW50IGxp
+dmVfcmM2X21hbnVhbCh2b2lkICphcmcpCiAJcmVzWzBdID0gcmM2X3Jlc2lkZW5jeShyYzYpOwog
+CWludGVsX3VuY29yZV9mb3JjZXdha2VfZmx1c2gocmM2X3RvX3VuY29yZShyYzYpLCBGT1JDRVdB
+S0VfQUxMKTsKIAlkdCA9IGt0aW1lX2dldCgpOwotCXJjNl9wb3dlciA9IGVuZXJneV91SihyYzYp
+OworCXJjNl9wb3dlciA9IGxpYnJhcGxfZW5lcmd5X3VKKCk7CiAJbXNsZWVwKDEwMCk7Ci0JcmM2
+X3Bvd2VyID0gZW5lcmd5X3VKKHJjNikgLSByYzZfcG93ZXI7CisJcmM2X3Bvd2VyID0gbGlicmFw
+bF9lbmVyZ3lfdUooKSAtIHJjNl9wb3dlcjsKIAlkdCA9IGt0aW1lX3N1YihrdGltZV9nZXQoKSwg
+ZHQpOwogCXJlc1sxXSA9IHJjNl9yZXNpZGVuY3kocmM2KTsKIAlpZiAocmVzWzFdID09IHJlc1sw
+XSkgewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2xpYnJhcGwu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9saWJyYXBsLmMKbmV3IGZpbGUgbW9k
+ZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi41ODcxMGFjM2Y5NzkKLS0tIC9kZXYvbnVsbAor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvbGlicmFwbC5jCkBAIC0wLDAgKzEs
+MjQgQEAKKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKKy8qCisgKiBDb3B5cmlnaHQg
+wqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisKKyNpbmNsdWRlIDxhc20vbXNyLmg+CisK
+KyNpbmNsdWRlICJsaWJyYXBsLmgiCisKK3U2NCBsaWJyYXBsX2VuZXJneV91Sih2b2lkKQorewor
+CXVuc2lnbmVkIGxvbmcgbG9uZyBwb3dlcjsKKwl1MzIgdW5pdHM7CisKKwlpZiAocmRtc3JsX3Nh
+ZmUoTVNSX1JBUExfUE9XRVJfVU5JVCwgJnBvd2VyKSkKKwkJcmV0dXJuIDA7CisKKwl1bml0cyA9
+IChwb3dlciAmIDB4MWYwMCkgPj4gODsKKworCWlmIChyZG1zcmxfc2FmZShNU1JfUFAxX0VORVJH
+WV9TVEFUVVMsICZwb3dlcikpCisJCXJldHVybiAwOworCisJcmV0dXJuICgxMDAwMDAwICogcG93
+ZXIpID4+IHVuaXRzOyAvKiBjb252ZXJ0IHRvIHVKICovCit9CmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvbGlicmFwbC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+c2VsZnRlc3RzL2xpYnJhcGwuaApuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAw
+MDAuLjg4N2YzZTkxZGQwNQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L3NlbGZ0ZXN0cy9saWJyYXBsLmgKQEAgLTAsMCArMSwxMyBAQAorLyogU1BEWC1MaWNlbnNlLUlk
+ZW50aWZpZXI6IE1JVCAqLworLyoKKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0
+aW9uCisgKi8KKworI2lmbmRlZiBTRUxGVEVTVF9MSUJSQVBMX0gKKyNkZWZpbmUgU0VMRlRFU1Rf
+TElCUkFQTF9ICisKKyNpbmNsdWRlIDxsaW51eC90eXBlcy5oPgorCit1NjQgbGlicmFwbF9lbmVy
+Z3lfdUoodm9pZCk7CisKKyNlbmRpZiAvKiBTRUxGVEVTVF9MSUJSQVBMX0ggKi8KLS0gCjIuMjAu
+MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
