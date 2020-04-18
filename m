@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A8C1AF25E
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 18:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F3F1AF294
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 19:12:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8C26ECB3;
-	Sat, 18 Apr 2020 16:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6C226ECB8;
+	Sat, 18 Apr 2020 17:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86CC36ECB2
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 16:33:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20945068-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 17:33:34 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 18 Apr 2020 17:33:33 +0100
-Message-Id: <20200418163333.19239-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200418163333.19239-1-chris@chris-wilson.co.uk>
-References: <20200418163333.19239-1-chris@chris-wilson.co.uk>
+Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
+ [79.96.170.134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0186ECB6;
+ Sat, 18 Apr 2020 17:11:57 +0000 (UTC)
+Received: from 185.80.35.16 (185.80.35.16) (HELO kreacher.localnet)
+ by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.415)
+ id a76c4f0d6061ffcc; Sat, 18 Apr 2020 19:11:52 +0200
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+To: Linux PM <linux-pm@vger.kernel.org>, Alan Stern <stern@rowland.harvard.edu>
+Date: Sat, 18 Apr 2020 18:53:01 +0200
+Message-ID: <2011970.oZpq0QmfcQ@kreacher>
+In-Reply-To: <5673945.BT02kTCndr@kreacher>
+References: <1888197.j9z7NJ8yPn@kreacher> <5673945.BT02kTCndr@kreacher>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915/selftests: Check RPS controls
+Subject: [Intel-gfx] [PATCH v2 7/9] PM: sleep: core: Rename
+ DPM_FLAG_NEVER_SKIP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,282 +37,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI-devel <dri-devel@lists.freedesktop.org>,
+ Linux ACPI <linux-acpi@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+ Linux PCI <linux-pci@vger.kernel.org>, intel-wired-lan@lists.osuosl.org,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check that the GPU does respond to our RPS frequency requests by setting
-our desired frequency.
+From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Rename DPM_FLAG_NEVER_SKIP to DPM_FLAG_NO_DIRECT_COMPLETE which
+matches its purpose more closely.
+
+No functional impact.
+
+Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Acked-by: Bjorn Helgaas <bhelgaas@google.com> # for PCI parts
+Acked-by: Jeff Kirsher <jeffrey.t.kirsher@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   1 +
- drivers/gpu/drm/i915/gt/selftest_rps.c   | 192 ++++++++++++++++++++---
- drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
- 3 files changed, 170 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 4b2733967c42..de3eaef40596 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -53,6 +53,7 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_rc6_manual),
-+		SUBTEST(live_rps_control),
- 		SUBTEST(live_rps_frequency),
- 		SUBTEST(live_rps_power),
- 		SUBTEST(live_rps_interrupt),
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 680296407874..22381e5e1c9e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -107,6 +107,168 @@ create_spin_counter(struct intel_engine_cs *engine,
- 	return vma;
+-> v2:
+   * Rebased.
+   * Added tags received so far.
+
+---
+ Documentation/driver-api/pm/devices.rst    |  6 +++---
+ Documentation/power/pci.rst                | 10 +++++-----
+ drivers/base/power/main.c                  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c    |  2 +-
+ drivers/gpu/drm/radeon/radeon_kms.c        |  2 +-
+ drivers/misc/mei/pci-me.c                  |  2 +-
+ drivers/misc/mei/pci-txe.c                 |  2 +-
+ drivers/net/ethernet/intel/e1000e/netdev.c |  2 +-
+ drivers/net/ethernet/intel/igb/igb_main.c  |  2 +-
+ drivers/net/ethernet/intel/igc/igc_main.c  |  2 +-
+ drivers/pci/pcie/portdrv_pci.c             |  2 +-
+ include/linux/pm.h                         |  6 +++---
+ 13 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/Documentation/driver-api/pm/devices.rst b/Documentation/driver-api/pm/devices.rst
+index f66c7b9126ea..4ace0eba4506 100644
+--- a/Documentation/driver-api/pm/devices.rst
++++ b/Documentation/driver-api/pm/devices.rst
+@@ -361,9 +361,9 @@ the phases are: ``prepare``, ``suspend``, ``suspend_late``, ``suspend_noirq``.
+ 	runtime PM disabled.
+ 
+ 	This feature also can be controlled by device drivers by using the
+-	``DPM_FLAG_NEVER_SKIP`` and ``DPM_FLAG_SMART_PREPARE`` driver power
+-	management flags.  [Typically, they are set at the time the driver is
+-	probed against the device in question by passing them to the
++	``DPM_FLAG_NO_DIRECT_COMPLETE`` and ``DPM_FLAG_SMART_PREPARE`` driver
++	power management flags.  [Typically, they are set at the time the driver
++	is probed against the device in question by passing them to the
+ 	:c:func:`dev_pm_set_driver_flags` helper function.]  If the first of
+ 	these flags is set, the PM core will not apply the direct-complete
+ 	procedure described above to the given device and, consequenty, to any
+diff --git a/Documentation/power/pci.rst b/Documentation/power/pci.rst
+index aa1c7fce6cd0..9e1408121bea 100644
+--- a/Documentation/power/pci.rst
++++ b/Documentation/power/pci.rst
+@@ -1004,11 +1004,11 @@ including the PCI bus type.  The flags should be set once at the driver probe
+ time with the help of the dev_pm_set_driver_flags() function and they should not
+ be updated directly afterwards.
+ 
+-The DPM_FLAG_NEVER_SKIP flag prevents the PM core from using the direct-complete
+-mechanism allowing device suspend/resume callbacks to be skipped if the device
+-is in runtime suspend when the system suspend starts.  That also affects all of
+-the ancestors of the device, so this flag should only be used if absolutely
+-necessary.
++The DPM_FLAG_NO_DIRECT_COMPLETE flag prevents the PM core from using the
++direct-complete mechanism allowing device suspend/resume callbacks to be skipped
++if the device is in runtime suspend when the system suspend starts.  That also
++affects all of the ancestors of the device, so this flag should only be used if
++absolutely necessary.
+ 
+ The DPM_FLAG_SMART_PREPARE flag instructs the PCI bus type to only return a
+ positive value from pci_pm_prepare() if the ->prepare callback provided by the
+diff --git a/drivers/base/power/main.c b/drivers/base/power/main.c
+index 3170d93e29f9..dbc1e5e7346b 100644
+--- a/drivers/base/power/main.c
++++ b/drivers/base/power/main.c
+@@ -1844,7 +1844,7 @@ static int device_prepare(struct device *dev, pm_message_t state)
+ 	spin_lock_irq(&dev->power.lock);
+ 	dev->power.direct_complete = state.event == PM_EVENT_SUSPEND &&
+ 		(ret > 0 || dev->power.no_pm_callbacks) &&
+-		!dev_pm_test_driver_flags(dev, DPM_FLAG_NEVER_SKIP);
++		!dev_pm_test_driver_flags(dev, DPM_FLAG_NO_DIRECT_COMPLETE);
+ 	spin_unlock_irq(&dev->power.lock);
+ 	return 0;
  }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index fd1dc3236eca..a9086ea1ab60 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -191,7 +191,7 @@ int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags)
+ 	}
  
-+static u8 rps_set_check(struct intel_rps *rps, u8 freq)
-+{
-+	u8 history[64], i;
-+	unsigned long end;
-+	int sleep;
-+
-+	mutex_lock(&rps->lock);
-+	GEM_BUG_ON(!rps->active);
-+	intel_rps_set(rps, freq);
-+	GEM_BUG_ON(rps->last_freq != freq);
-+	mutex_unlock(&rps->lock);
-+
-+	i = 0;
-+	memset(history, freq, sizeof(history));
-+	sleep = 20;
-+
-+	/* The PCU does not change instantly, but drifts towards the goal? */
-+	end = jiffies + msecs_to_jiffies(50);
-+	do {
-+		u8 act;
-+
-+		act = read_cagf(rps);
-+		if (time_after(jiffies, end))
-+			return act;
-+
-+		/* Target acquired */
-+		if (act == freq)
-+			return act;
-+
-+		/* Any change witin the last N samples? */
-+		if (!memchr_inv(history, act, sizeof(history)))
-+			return act;
-+
-+		history[i] = act;
-+		i = (i + 1) % ARRAY_SIZE(history);
-+
-+		usleep_range(sleep, 2 * sleep);
-+		sleep *= 2;
-+		if (sleep > 1000)
-+			sleep = 1000;
-+	} while (1);
-+}
-+
-+int live_rps_control(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rps *rps = &gt->rps;
-+	void (*saved_work)(struct work_struct *wrk);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	struct igt_spinner spin;
-+	int err = 0;
-+
-+	/*
-+	 * Check that the actual frequency matches our requested frequency,
-+	 * to verify our control mechanism. We have to be careful that the
-+	 * PCU may throttle the GPU in which case the actual frequency used
-+	 * will be lowered than requested.
-+	 */
-+
-+	if (!rps->enabled || rps->max_freq <= rps->min_freq)
-+		return 0;
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	saved_work = rps->work.func;
-+	rps->work.func = dummy_rps_work;
-+
-+	intel_gt_pm_get(gt);
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+		ktime_t min_dt, max_dt;
-+		int act, f, limit;
-+		int min, max;
-+
-+		if (!intel_engine_can_store_dword(engine))
-+			continue;
-+
-+		rq = igt_spinner_create_request(&spin,
-+						engine->kernel_context,
-+						MI_NOOP);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_add(rq);
-+
-+		if (!igt_wait_for_spinner(&spin, rq)) {
-+			pr_err("%s: RPS spinner did not start\n",
-+			       engine->name);
-+			intel_gt_set_wedged(engine->gt);
-+			err = -EIO;
-+			break;
-+		}
-+
-+		if (rps_set_check(rps, rps->min_freq) != rps->min_freq) {
-+			pr_err("%s: could not set minimum frequency [%x], only %x!\n",
-+			       engine->name, rps->min_freq, read_cagf(rps));
-+			igt_spinner_end(&spin);
-+			err = -EINVAL;
-+			break;
-+		}
-+
-+		for (f = rps->min_freq + 1; f < rps->max_freq; f++) {
-+			act = rps_set_check(rps, f);
-+			if (act < f)
-+				break;
-+		}
-+
-+		limit = rps_set_check(rps, f);
-+
-+		if (rps_set_check(rps, rps->min_freq) != rps->min_freq) {
-+			pr_err("%s: could not restore minimum frequency [%x], only %x!\n",
-+			       engine->name, rps->min_freq, read_cagf(rps));
-+			igt_spinner_end(&spin);
-+			err = -EINVAL;
-+			break;
-+		}
-+
-+		max_dt = ktime_get();
-+		max = rps_set_check(rps, limit);
-+		max_dt = ktime_sub(ktime_get(), max_dt);
-+
-+		min_dt = ktime_get();
-+		min = rps_set_check(rps, rps->min_freq);
-+		min_dt = ktime_sub(ktime_get(), min_dt);
-+
-+		igt_spinner_end(&spin);
-+
-+		pr_info("%s: range:[%x:%uMHz, %x:%uMHz] actual:[ %x:%uMHz, %x:%uMHz], %x:%x response %lluns:%lluns\n",
-+			engine->name,
-+			rps->min_freq, intel_gpu_freq(rps, rps->min_freq),
-+			rps->max_freq, intel_gpu_freq(rps, rps->max_freq),
-+			act, intel_gpu_freq(rps, act),
-+			limit, intel_gpu_freq(rps, limit),
-+			min, max, ktime_to_ns(min_dt), ktime_to_ns(max_dt));
-+
-+		if (limit == rps->min_freq) {
-+			pr_err("%s: GPU throttled to minimum!\n",
-+			       engine->name);
-+			err = -ENODEV;
-+			break;
-+		}
-+
-+		if (igt_flush_test(gt->i915)) {
-+			err = -EIO;
-+			break;
-+		}
-+	}
-+	intel_gt_pm_put(gt);
-+
-+	igt_spinner_fini(&spin);
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	rps->work.func = saved_work;
-+
-+	return err;
-+}
-+
- static u64 __measure_frequency(u32 *cntr, int duration_ms)
- {
- 	u64 dc, dt;
-@@ -125,16 +287,10 @@ static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
- 	u64 x[5];
- 	int i;
+ 	if (adev->runpm) {
+-		dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NEVER_SKIP);
++		dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
+ 		pm_runtime_use_autosuspend(dev->dev);
+ 		pm_runtime_set_autosuspend_delay(dev->dev, 5000);
+ 		pm_runtime_set_active(dev->dev);
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index ad719c9602af..9cb2d7548daa 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -549,7 +549,7 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+ 	 * becaue the HDA driver may require us to enable the audio power
+ 	 * domain during system suspend.
+ 	 */
+-	dev_pm_set_driver_flags(kdev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(kdev, DPM_FLAG_NO_DIRECT_COMPLETE);
  
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, *freq);
--	mutex_unlock(&rps->lock);
--
--	msleep(20); /* more than enough time to stabilise! */
--
-+	*freq = rps_set_check(rps, *freq);
- 	for (i = 0; i < 5; i++)
- 		x[i] = __measure_frequency(cntr, 2);
--	*freq = read_cagf(rps);
-+	*freq = (*freq + read_cagf(rps)) / 2;
+ 	pm_runtime_set_autosuspend_delay(kdev, 10000); /* 10s */
+ 	pm_runtime_mark_last_busy(kdev);
+diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
+index 58176db85952..372962358a18 100644
+--- a/drivers/gpu/drm/radeon/radeon_kms.c
++++ b/drivers/gpu/drm/radeon/radeon_kms.c
+@@ -158,7 +158,7 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
+ 	}
  
- 	/* A simple triangle filter for better result stability */
- 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-@@ -276,10 +432,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	if (!intel_engine_can_store_dword(engine))
- 		return 0;
+ 	if (radeon_is_px(dev)) {
+-		dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NEVER_SKIP);
++		dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
+ 		pm_runtime_use_autosuspend(dev->dev);
+ 		pm_runtime_set_autosuspend_delay(dev->dev, 5000);
+ 		pm_runtime_set_active(dev->dev);
+diff --git a/drivers/misc/mei/pci-me.c b/drivers/misc/mei/pci-me.c
+index 3d21c38e2dbb..53f16f3bd091 100644
+--- a/drivers/misc/mei/pci-me.c
++++ b/drivers/misc/mei/pci-me.c
+@@ -240,7 +240,7 @@ static int mei_me_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	 * MEI requires to resume from runtime suspend mode
+ 	 * in order to perform link reset flow upon system suspend.
+ 	 */
+-	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
  
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, rps->min_freq);
--	mutex_unlock(&rps->lock);
-+	rps_set_check(rps, rps->min_freq);
+ 	/*
+ 	 * ME maps runtime suspend/resume to D0i states,
+diff --git a/drivers/misc/mei/pci-txe.c b/drivers/misc/mei/pci-txe.c
+index beacf2a2f2b5..4bf26ce61044 100644
+--- a/drivers/misc/mei/pci-txe.c
++++ b/drivers/misc/mei/pci-txe.c
+@@ -128,7 +128,7 @@ static int mei_txe_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	 * MEI requires to resume from runtime suspend mode
+ 	 * in order to perform link reset flow upon system suspend.
+ 	 */
+-	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
  
- 	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
- 	if (IS_ERR(rq))
-@@ -351,10 +504,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
- 	struct intel_uncore *uncore = engine->uncore;
- 	u32 timeout;
+ 	/*
+ 	 * TXE maps runtime suspend/resume to own power gating states,
+diff --git a/drivers/net/ethernet/intel/e1000e/netdev.c b/drivers/net/ethernet/intel/e1000e/netdev.c
+index 177c6da80c57..2730b1c7dddb 100644
+--- a/drivers/net/ethernet/intel/e1000e/netdev.c
++++ b/drivers/net/ethernet/intel/e1000e/netdev.c
+@@ -7549,7 +7549,7 @@ static int e1000_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, rps->max_freq);
--	mutex_unlock(&rps->lock);
-+	rps_set_check(rps, rps->max_freq);
+ 	e1000_print_device_info(adapter);
  
- 	if (!(rps->pm_events & GEN6_PM_RP_DOWN_THRESHOLD)) {
- 		pr_err("%s: RPS did not register DOWN interrupt\n",
-@@ -487,16 +637,10 @@ static u64 measure_power_at(struct intel_rps *rps, int *freq)
- 	u64 x[5];
- 	int i;
+-	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
  
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, *freq);
--	mutex_unlock(&rps->lock);
--
--	msleep(20); /* more than enough time to stabilise! */
--
-+	*freq = rps_set_check(rps, *freq);
- 	for (i = 0; i < 5; i++)
- 		x[i] = __measure_power(5);
--	*freq = read_cagf(rps);
-+	*freq = (*freq + read_cagf(rps)) / 2;
+ 	if (pci_dev_run_wake(pdev) && hw->mac.type < e1000_pch_cnp)
+ 		pm_runtime_put_noidle(&pdev->dev);
+diff --git a/drivers/net/ethernet/intel/igb/igb_main.c b/drivers/net/ethernet/intel/igb/igb_main.c
+index b46bff8fe056..8bb3db2cbd41 100644
+--- a/drivers/net/ethernet/intel/igb/igb_main.c
++++ b/drivers/net/ethernet/intel/igb/igb_main.c
+@@ -3445,7 +3445,7 @@ static int igb_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		}
+ 	}
  
- 	/* A simple triangle filter for better result stability */
- 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
-index 07c2bddf8899..be0bf8e3f639 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
-@@ -6,6 +6,7 @@
- #ifndef SELFTEST_RPS_H
- #define SELFTEST_RPS_H
+-	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
  
-+int live_rps_control(void *arg);
- int live_rps_frequency(void *arg);
- int live_rps_interrupt(void *arg);
- int live_rps_power(void *arg);
+ 	pm_runtime_put_noidle(&pdev->dev);
+ 	return 0;
+diff --git a/drivers/net/ethernet/intel/igc/igc_main.c b/drivers/net/ethernet/intel/igc/igc_main.c
+index 69fa1ce1f927..59fc0097438f 100644
+--- a/drivers/net/ethernet/intel/igc/igc_main.c
++++ b/drivers/net/ethernet/intel/igc/igc_main.c
+@@ -4825,7 +4825,7 @@ static int igc_probe(struct pci_dev *pdev,
+ 	pcie_print_link_status(pdev);
+ 	netdev_info(netdev, "MAC: %pM\n", netdev->dev_addr);
+ 
+-	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NEVER_SKIP);
++	dev_pm_set_driver_flags(&pdev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
+ 
+ 	pm_runtime_put_noidle(&pdev->dev);
+ 
+diff --git a/drivers/pci/pcie/portdrv_pci.c b/drivers/pci/pcie/portdrv_pci.c
+index 160d67c59310..3acf151ae015 100644
+--- a/drivers/pci/pcie/portdrv_pci.c
++++ b/drivers/pci/pcie/portdrv_pci.c
+@@ -115,7 +115,7 @@ static int pcie_portdrv_probe(struct pci_dev *dev,
+ 
+ 	pci_save_state(dev);
+ 
+-	dev_pm_set_driver_flags(&dev->dev, DPM_FLAG_NEVER_SKIP |
++	dev_pm_set_driver_flags(&dev->dev, DPM_FLAG_NO_DIRECT_COMPLETE |
+ 					   DPM_FLAG_SMART_SUSPEND);
+ 
+ 	if (pci_bridge_d3_possible(dev)) {
+diff --git a/include/linux/pm.h b/include/linux/pm.h
+index 8c59a7f0bcf4..cdb8fbd6ab18 100644
+--- a/include/linux/pm.h
++++ b/include/linux/pm.h
+@@ -544,7 +544,7 @@ struct pm_subsys_data {
+  * These flags can be set by device drivers at the probe time.  They need not be
+  * cleared by the drivers as the driver core will take care of that.
+  *
+- * NEVER_SKIP: Do not skip all system suspend/resume callbacks for the device.
++ * NO_DIRECT_COMPLETE: Do not apply direct-complete optimization to the device.
+  * SMART_PREPARE: Check the return value of the driver's ->prepare callback.
+  * SMART_SUSPEND: No need to resume the device from runtime suspend.
+  * LEAVE_SUSPENDED: Avoid resuming the device during system resume if possible.
+@@ -554,7 +554,7 @@ struct pm_subsys_data {
+  * their ->prepare callbacks if the driver's ->prepare callback returns 0 (in
+  * other words, the system suspend/resume callbacks can only be skipped for the
+  * device if its driver doesn't object against that).  This flag has no effect
+- * if NEVER_SKIP is set.
++ * if NO_DIRECT_COMPLETE is set.
+  *
+  * Setting SMART_SUSPEND instructs bus types and PM domains which may want to
+  * runtime resume the device upfront during system suspend that doing so is not
+@@ -565,7 +565,7 @@ struct pm_subsys_data {
+  * Setting LEAVE_SUSPENDED informs the PM core and middle-layer code that the
+  * driver prefers the device to be left in suspend after system resume.
+  */
+-#define DPM_FLAG_NEVER_SKIP		BIT(0)
++#define DPM_FLAG_NO_DIRECT_COMPLETE	BIT(0)
+ #define DPM_FLAG_SMART_PREPARE		BIT(1)
+ #define DPM_FLAG_SMART_SUSPEND		BIT(2)
+ #define DPM_FLAG_LEAVE_SUSPENDED	BIT(3)
 -- 
-2.20.1
+2.16.4
+
+
+
 
 _______________________________________________
 Intel-gfx mailing list
