@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EFD31AEA9E
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 09:54:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384BF1AEA9F
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 09:55:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 103F06E16D;
-	Sat, 18 Apr 2020 07:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1736E0A0;
+	Sat, 18 Apr 2020 07:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 50A1B6E0A0;
- Sat, 18 Apr 2020 07:54:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43266A47EA;
- Sat, 18 Apr 2020 07:54:33 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D668B6E0A0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 07:55:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20940781-1500050 
+ for multiple; Sat, 18 Apr 2020 08:55:42 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 18 Apr 2020 08:55:40 +0100
+Message-Id: <20200418075540.16902-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 18 Apr 2020 07:54:33 -0000
-Message-ID: <158719647324.419.13575893242193025905@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200418071430.6779-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200418071430.6779-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
- =?utf-8?q?ries_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Trace_RPS_even?=
- =?utf-8?q?ts?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Move the late flush_submission in
+ retire to the end
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,23 +37,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Avoid flushing the submission queue (of others) under the client's
+timeline lock, but instead move it to the end so that we may catch more.
 
-Series: series starting with [CI,1/2] drm/i915/gt: Trace RPS events
-URL   : https://patchwork.freedesktop.org/series/76129/
-State : warning
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1066
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-$ make htmldocs 2>&1 > /dev/null | grep i915
-/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+index 835ec184763e..dec96a731a77 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+@@ -162,7 +162,7 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 			}
+ 		}
+ 
+-		if (!retire_requests(tl) || flush_submission(gt))
++		if (!retire_requests(tl))
+ 			active_count++;
+ 		mutex_unlock(&tl->mutex);
+ 
+@@ -185,6 +185,9 @@ out_active:	spin_lock(&timelines->lock);
+ 	list_for_each_entry_safe(tl, tn, &free, link)
+ 		__intel_timeline_free(&tl->kref);
+ 
++	if (flush_submission(gt)) /* Wait, there's more! */
++		active_count++;
++
+ 	return active_count ? timeout : 0;
+ }
+ 
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
