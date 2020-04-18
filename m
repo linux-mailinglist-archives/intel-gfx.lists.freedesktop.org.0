@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0DA1AF557
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 00:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A741AF582
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 00:42:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 387646ECC0;
-	Sat, 18 Apr 2020 22:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467366E11A;
+	Sat, 18 Apr 2020 22:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCDD06E02E
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 22:23:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20946479-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 23:23:28 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 18 Apr 2020 23:23:27 +0100
-Message-Id: <20200418222327.23199-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200418222327.23199-1-chris@chris-wilson.co.uk>
-References: <20200418222327.23199-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4E4C76E063;
+ Sat, 18 Apr 2020 22:42:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 45460A363B;
+ Sat, 18 Apr 2020 22:42:40 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915/selftests: Check RPS controls
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 18 Apr 2020 22:42:40 -0000
+Message-ID: <158724976025.422.5220856244949010148@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417093928.17822-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200417093928.17822-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Delay_spinner?=
+ =?utf-8?q?_before_waiting_for_an_interrupt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,286 +39,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check that the GPU does respond to our RPS frequency requests by setting
-our desired frequency.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   1 +
- drivers/gpu/drm/i915/gt/selftest_rps.c   | 195 ++++++++++++++++++++---
- drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
- 3 files changed, 173 insertions(+), 24 deletions(-)
+Series: series starting with [1/2] drm/i915/selftests: Delay spinner before waiting for an interrupt
+URL   : https://patchwork.freedesktop.org/series/76079/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 4b2733967c42..de3eaef40596 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -53,6 +53,7 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_rc6_manual),
-+		SUBTEST(live_rps_control),
- 		SUBTEST(live_rps_frequency),
- 		SUBTEST(live_rps_power),
- 		SUBTEST(live_rps_interrupt),
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 680296407874..fa777ba71f16 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -107,6 +107,171 @@ create_spin_counter(struct intel_engine_cs *engine,
- 	return vma;
- }
- 
-+static u8 rps_set_check(struct intel_rps *rps, u8 freq)
-+{
-+	u8 history[64], i;
-+	unsigned long end;
-+	int sleep;
-+
-+	mutex_lock(&rps->lock);
-+	GEM_BUG_ON(!rps->active);
-+	intel_rps_set(rps, freq);
-+	GEM_BUG_ON(rps->last_freq != freq);
-+	mutex_unlock(&rps->lock);
-+
-+	i = 0;
-+	memset(history, freq, sizeof(history));
-+	sleep = 20;
-+
-+	/* The PCU does not change instantly, but drifts towards the goal? */
-+	end = jiffies + msecs_to_jiffies(50);
-+	do {
-+		u8 act;
-+
-+		act = read_cagf(rps);
-+		if (time_after(jiffies, end))
-+			return act;
-+
-+		/* Target acquired */
-+		if (act == freq)
-+			return act;
-+
-+		/* Any change witin the last N samples? */
-+		if (!memchr_inv(history, act, sizeof(history)))
-+			return act;
-+
-+		history[i] = act;
-+		i = (i + 1) % ARRAY_SIZE(history);
-+
-+		usleep_range(sleep, 2 * sleep);
-+		sleep *= 2;
-+		if (sleep > 1000)
-+			sleep = 1000;
-+	} while (1);
-+}
-+
-+int live_rps_control(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rps *rps = &gt->rps;
-+	void (*saved_work)(struct work_struct *wrk);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	struct igt_spinner spin;
-+	int err = 0;
-+
-+	/*
-+	 * Check that the actual frequency matches our requested frequency,
-+	 * to verify our control mechanism. We have to be careful that the
-+	 * PCU may throttle the GPU in which case the actual frequency used
-+	 * will be lowered than requested.
-+	 */
-+
-+	if (!rps->enabled || rps->max_freq <= rps->min_freq)
-+		return 0;
-+
-+	if (IS_CHERRYVIEW(gt->i915)) /* indirect PCU */
-+		return 0;
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	saved_work = rps->work.func;
-+	rps->work.func = dummy_rps_work;
-+
-+	intel_gt_pm_get(gt);
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+		ktime_t min_dt, max_dt;
-+		int act, f, limit;
-+		int min, max;
-+
-+		if (!intel_engine_can_store_dword(engine))
-+			continue;
-+
-+		rq = igt_spinner_create_request(&spin,
-+						engine->kernel_context,
-+						MI_NOOP);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_add(rq);
-+
-+		if (!igt_wait_for_spinner(&spin, rq)) {
-+			pr_err("%s: RPS spinner did not start\n",
-+			       engine->name);
-+			intel_gt_set_wedged(engine->gt);
-+			err = -EIO;
-+			break;
-+		}
-+
-+		if (rps_set_check(rps, rps->min_freq) != rps->min_freq) {
-+			pr_err("%s: could not set minimum frequency [%x], only %x!\n",
-+			       engine->name, rps->min_freq, read_cagf(rps));
-+			igt_spinner_end(&spin);
-+			err = -EINVAL;
-+			break;
-+		}
-+
-+		for (f = rps->min_freq + 1; f < rps->max_freq; f++) {
-+			act = rps_set_check(rps, f);
-+			if (act < f)
-+				break;
-+		}
-+
-+		limit = rps_set_check(rps, f);
-+
-+		if (rps_set_check(rps, rps->min_freq) != rps->min_freq) {
-+			pr_err("%s: could not restore minimum frequency [%x], only %x!\n",
-+			       engine->name, rps->min_freq, read_cagf(rps));
-+			igt_spinner_end(&spin);
-+			err = -EINVAL;
-+			break;
-+		}
-+
-+		max_dt = ktime_get();
-+		max = rps_set_check(rps, limit);
-+		max_dt = ktime_sub(ktime_get(), max_dt);
-+
-+		min_dt = ktime_get();
-+		min = rps_set_check(rps, rps->min_freq);
-+		min_dt = ktime_sub(ktime_get(), min_dt);
-+
-+		igt_spinner_end(&spin);
-+
-+		pr_info("%s: range:[%x:%uMHz, %x:%uMHz] actual:[ %x:%uMHz, %x:%uMHz], %x:%x response %lluns:%lluns\n",
-+			engine->name,
-+			rps->min_freq, intel_gpu_freq(rps, rps->min_freq),
-+			rps->max_freq, intel_gpu_freq(rps, rps->max_freq),
-+			act, intel_gpu_freq(rps, act),
-+			limit, intel_gpu_freq(rps, limit),
-+			min, max, ktime_to_ns(min_dt), ktime_to_ns(max_dt));
-+
-+		if (limit == rps->min_freq) {
-+			pr_err("%s: GPU throttled to minimum!\n",
-+			       engine->name);
-+			err = -ENODEV;
-+			break;
-+		}
-+
-+		if (igt_flush_test(gt->i915)) {
-+			err = -EIO;
-+			break;
-+		}
-+	}
-+	intel_gt_pm_put(gt);
-+
-+	igt_spinner_fini(&spin);
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	rps->work.func = saved_work;
-+
-+	return err;
-+}
-+
- static u64 __measure_frequency(u32 *cntr, int duration_ms)
- {
- 	u64 dc, dt;
-@@ -125,16 +290,10 @@ static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
- 	u64 x[5];
- 	int i;
- 
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, *freq);
--	mutex_unlock(&rps->lock);
--
--	msleep(20); /* more than enough time to stabilise! */
--
-+	*freq = rps_set_check(rps, *freq);
- 	for (i = 0; i < 5; i++)
- 		x[i] = __measure_frequency(cntr, 2);
--	*freq = read_cagf(rps);
-+	*freq = (*freq + read_cagf(rps)) / 2;
- 
- 	/* A simple triangle filter for better result stability */
- 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-@@ -276,10 +435,7 @@ static int __rps_up_interrupt(struct intel_rps *rps,
- 	if (!intel_engine_can_store_dword(engine))
- 		return 0;
- 
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, rps->min_freq);
--	mutex_unlock(&rps->lock);
-+	rps_set_check(rps, rps->min_freq);
- 
- 	rq = igt_spinner_create_request(spin, engine->kernel_context, MI_NOOP);
- 	if (IS_ERR(rq))
-@@ -351,10 +507,7 @@ static int __rps_down_interrupt(struct intel_rps *rps,
- 	struct intel_uncore *uncore = engine->uncore;
- 	u32 timeout;
- 
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, rps->max_freq);
--	mutex_unlock(&rps->lock);
-+	rps_set_check(rps, rps->max_freq);
- 
- 	if (!(rps->pm_events & GEN6_PM_RP_DOWN_THRESHOLD)) {
- 		pr_err("%s: RPS did not register DOWN interrupt\n",
-@@ -487,16 +640,10 @@ static u64 measure_power_at(struct intel_rps *rps, int *freq)
- 	u64 x[5];
- 	int i;
- 
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, *freq);
--	mutex_unlock(&rps->lock);
--
--	msleep(20); /* more than enough time to stabilise! */
--
-+	*freq = rps_set_check(rps, *freq);
- 	for (i = 0; i < 5; i++)
- 		x[i] = __measure_power(5);
--	*freq = read_cagf(rps);
-+	*freq = (*freq + read_cagf(rps)) / 2;
- 
- 	/* A simple triangle filter for better result stability */
- 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
-index 07c2bddf8899..be0bf8e3f639 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
-@@ -6,6 +6,7 @@
- #ifndef SELFTEST_RPS_H
- #define SELFTEST_RPS_H
- 
-+int live_rps_control(void *arg);
- int live_rps_frequency(void *arg);
- int live_rps_interrupt(void *arg);
- int live_rps_power(void *arg);
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8316_full -> Patchwork_17343_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17343_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@bcs0:
+    - shard-tglb:         [PASS][1] -> [FAIL][2] ([i915#1528])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-tglb8/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-tglb1/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+
+  * igt@i915_suspend@sysfs-reader:
+    - shard-apl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-apl2/igt@i915_suspend@sysfs-reader.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-apl6/igt@i915_suspend@sysfs-reader.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-random:
+    - shard-kbl:          [PASS][5] -> [FAIL][6] ([i915#54] / [i915#93] / [i915#95])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-128x42-random.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-128x42-random.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-offscreen:
+    - shard-apl:          [PASS][7] -> [FAIL][8] ([i915#54] / [i915#95])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-apl6/igt@kms_cursor_crc@pipe-a-cursor-256x85-offscreen.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-256x85-offscreen.html
+
+  * igt@kms_draw_crc@draw-method-rgb565-render-untiled:
+    - shard-glk:          [PASS][9] -> [FAIL][10] ([i915#52] / [i915#54])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-glk8/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-glk6/igt@kms_draw_crc@draw-method-rgb565-render-untiled.html
+
+  * igt@kms_mmap_write_crc@main:
+    - shard-kbl:          [PASS][11] -> [FAIL][12] ([i915#93] / [i915#95])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-kbl1/igt@kms_mmap_write_crc@main.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-kbl1/igt@kms_mmap_write_crc@main.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - shard-kbl:          [PASS][13] -> [DMESG-WARN][14] ([i915#180]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([fdo#108145] / [i915#265]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-x:
+    - shard-glk:          [PASS][17] -> [FAIL][18] ([i915#899])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-glk1/igt@kms_plane_lowres@pipe-a-tiling-x.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-glk2/igt@kms_plane_lowres@pipe-a-tiling-x.html
+
+  * igt@kms_psr@psr2_sprite_mmap_gtt:
+    - shard-iclb:         [PASS][19] -> [SKIP][20] ([fdo#109441]) +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-iclb8/igt@kms_psr@psr2_sprite_mmap_gtt.html
+
+  * igt@kms_setmode@basic:
+    - shard-kbl:          [PASS][21] -> [FAIL][22] ([i915#31])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-kbl7/igt@kms_setmode@basic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-kbl7/igt@kms_setmode@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_workarounds@suspend-resume-context:
+    - shard-glk:          [INCOMPLETE][23] ([i915#58] / [k.org#198133]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-glk4/igt@gem_workarounds@suspend-resume-context.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-glk6/igt@gem_workarounds@suspend-resume-context.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x21-sliding:
+    - shard-skl:          [FAIL][25] ([i915#54]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-skl9/igt@kms_cursor_crc@pipe-a-cursor-64x21-sliding.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-skl5/igt@kms_cursor_crc@pipe-a-cursor-64x21-sliding.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28] +4 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [SKIP][29] ([fdo#109349]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-iclb3/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+
+  * {igt@kms_flip@flip-vs-rmfb-interruptible@b-dp1}:
+    - shard-apl:          [INCOMPLETE][31] -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-apl1/igt@kms_flip@flip-vs-rmfb-interruptible@b-dp1.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-apl7/igt@kms_flip@flip-vs-rmfb-interruptible@b-dp1.html
+
+  * {igt@kms_flip@flip-vs-suspend@a-dp1}:
+    - shard-apl:          [DMESG-WARN][33] ([i915#180]) -> [PASS][34] +3 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-apl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-apl7/igt@kms_flip@flip-vs-suspend@a-dp1.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [FAIL][35] ([fdo#108145] / [i915#265]) -> [PASS][36] +1 similar issue
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_psr2_su@frontbuffer:
+    - shard-iclb:         [SKIP][37] ([fdo#109642] / [fdo#111068]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-iclb5/igt@kms_psr2_su@frontbuffer.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
+
+  * igt@kms_psr@psr2_dpms:
+    - shard-iclb:         [SKIP][39] ([fdo#109441]) -> [PASS][40] +1 similar issue
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-iclb3/igt@kms_psr@psr2_dpms.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-iclb2/igt@kms_psr@psr2_dpms.html
+
+  
+#### Warnings ####
+
+  * igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:
+    - shard-apl:          [FAIL][41] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][42] ([fdo#108145] / [i915#265])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8316/shard-apl4/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/shard-apl2/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8316 -> Patchwork_17343
+
+  CI-20190529: 20190529
+  CI_DRM_8316: 46a1c0844597f783a297136218689431ad104355 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17343: 5dfcad289d72ffc242626fd34f4fce4a0bc41451 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17343/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
