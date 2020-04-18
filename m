@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29741AF25D
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 18:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 666511AF25F
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 18:33:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8DD6ECB2;
-	Sat, 18 Apr 2020 16:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F7806ECB4;
+	Sat, 18 Apr 2020 16:33:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C906ECB2
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 16:33:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 684D56ECB3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 16:33:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20945066-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20945067-1500050 
  for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 17:33:34 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 18 Apr 2020 17:33:31 +0100
-Message-Id: <20200418163333.19239-1-chris@chris-wilson.co.uk>
+Date: Sat, 18 Apr 2020 17:33:32 +0100
+Message-Id: <20200418163333.19239-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200418163333.19239-1-chris@chris-wilson.co.uk>
+References: <20200418163333.19239-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/3] drm/i915/selftests: Verify frequency scaling
- with RPS
+Subject: [Intel-gfx] [CI 2/3] drm/i915/selftests: Skip energy consumption
+ tests if not controlling freq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,316 +44,95 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-One of the core tenents of reclocking the GPU is that its throughput
-scales with the clock frequency. We can observe this by incrementing a
-loop counter on the GPU, and compare the different execution rates at
-the notional RPS frequencies.
+If we can not manipulate the frequency with RPS, then comparing min/max
+power consumption is pointless / misleading. We will leave the warning
+about not being able to control the frequency selection via RPS to other
+tests so as not to confuse this more specialised check.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c   | 246 +++++++++++++++++++++--
- drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
- 3 files changed, 237 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 37 ++++++++++++++++----------
+ 1 file changed, 23 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 0141c334f2ac..4b2733967c42 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -53,8 +53,9 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_rc6_manual),
--		SUBTEST(live_rps_interrupt),
-+		SUBTEST(live_rps_frequency),
- 		SUBTEST(live_rps_power),
-+		SUBTEST(live_rps_interrupt),
- 		SUBTEST(live_gt_resume),
- 	};
- 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 360f56aa4b82..a5b139076e06 100644
+index a5b139076e06..680296407874 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -6,6 +6,7 @@
- #include <linux/sort.h>
- 
- #include "intel_engine_pm.h"
-+#include "intel_gpu_commands.h"
- #include "intel_gt_pm.h"
- #include "intel_rc6.h"
- #include "selftest_rps.h"
-@@ -17,6 +18,239 @@ static void dummy_rps_work(struct work_struct *wrk)
- {
- }
- 
-+static int cmp_u64(const void *A, const void *B)
-+{
-+	const u64 *a = A, *b = B;
-+
-+	if (a < b)
-+		return -1;
-+	else if (a > b)
-+		return 1;
-+	else
-+		return 0;
-+}
-+
-+static struct i915_vma *
-+create_spin_counter(struct intel_engine_cs *engine,
-+		    struct i915_address_space *vm,
-+		    u32 **cancel,
-+		    u32 **counter)
-+{
-+	enum {
-+		COUNT,
-+		INC,
-+		__NGPR__,
-+	};
-+#define CS_GPR(x) GEN8_RING_CS_GPR(engine->mmio_base, x)
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	u32 *base, *cs;
-+	int loop, i;
-+	int err;
-+
-+	obj = i915_gem_object_create_internal(vm->i915, 4096);
-+	if (IS_ERR(obj))
-+		return ERR_CAST(obj);
-+
-+	vma = i915_vma_instance(obj, vm, NULL);
-+	if (IS_ERR(vma)) {
-+		i915_gem_object_put(obj);
-+		return vma;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-+	if (err) {
-+		i915_vma_put(vma);
-+		return ERR_PTR(err);
-+	}
-+
-+	base = i915_gem_object_pin_map(obj, I915_MAP_WC);
-+	if (IS_ERR(base)) {
-+		i915_gem_object_put(obj);
-+		return ERR_CAST(base);
-+	}
-+	cs = base;
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM(__NGPR__ * 2);
-+	for (i = 0; i < __NGPR__; i++) {
-+		*cs++ = i915_mmio_reg_offset(CS_GPR(i));
-+		*cs++ = 0;
-+		*cs++ = i915_mmio_reg_offset(CS_GPR(i)) + 4;
-+		*cs++ = 0;
-+	}
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = i915_mmio_reg_offset(CS_GPR(INC));
-+	*cs++ = 1;
-+
-+	loop = cs - base;
-+
-+	*cs++ = MI_MATH(4);
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
-+	*cs++ = MI_MATH_ADD;
-+	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
-+
-+	*cs++ = MI_STORE_REGISTER_MEM_GEN8;
-+	*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
-+	*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
-+	*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
-+
-+	*cs++ = MI_BATCH_BUFFER_START_GEN8;
-+	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
-+	*cs++ = upper_32_bits(vma->node.start + loop * sizeof(*cs));
-+
-+	i915_gem_object_flush_map(obj);
-+
-+	*cancel = base + loop;
-+	*counter = memset32(base + 1000, 0, 1);
-+	return vma;
-+}
-+
-+static u64 __measure_frequency(u32 *cntr, int duration_ms)
-+{
-+	u64 dc, dt;
-+
-+	dt = ktime_get();
-+	dc = READ_ONCE(*cntr);
-+	usleep_range(1000 * duration_ms, 2000 * duration_ms);
-+	dc = READ_ONCE(*cntr) - dc;
-+	dt = ktime_get() - dt;
-+
-+	return div64_u64(1000 * 1000 * dc, dt);
-+}
-+
-+static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
-+{
-+	u64 x[5];
-+	int i;
-+
-+	mutex_lock(&rps->lock);
-+	GEM_BUG_ON(!rps->active);
-+	intel_rps_set(rps, *freq);
-+	mutex_unlock(&rps->lock);
-+
-+	msleep(20); /* more than enough time to stabilise! */
-+
-+	for (i = 0; i < 5; i++)
-+		x[i] = __measure_frequency(cntr, 2);
-+	*freq = read_cagf(rps);
-+
-+	/* A simple triangle filter for better result stability */
-+	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-+	return div_u64(x[1] + 2 * x[2] + x[3], 4);
-+}
-+
-+int live_rps_frequency(void *arg)
-+{
-+	void (*saved_work)(struct work_struct *wrk);
-+	struct intel_gt *gt = arg;
-+	struct intel_rps *rps = &gt->rps;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * The premise is that the GPU does change freqency at our behest.
-+	 * Let's check there is a correspondence between the requested
-+	 * frequency, the actual frequency, and the observed clock rate.
-+	 */
-+
-+	if (!rps->enabled || rps->max_freq <= rps->min_freq)
-+		return 0;
-+
-+	if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
-+		return 0;
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	saved_work = rps->work.func;
-+	rps->work.func = dummy_rps_work;
-+
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+		struct i915_vma *vma;
-+		u32 *cancel, *cntr;
-+		struct {
-+			u64 count;
-+			int freq;
-+		} min, max;
-+
-+		if (INTEL_GEN(gt->i915) < 9 && engine->class != RENDER_CLASS)
-+			continue; /* need CS_GPR */
-+
-+		vma = create_spin_counter(engine,
-+					  engine->kernel_context->vm,
-+					  &cancel, &cntr);
-+		if (IS_ERR(vma)) {
-+			err = PTR_ERR(vma);
-+			break;
-+		}
-+
-+		rq = intel_engine_create_kernel_request(engine);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_vma;
-+		}
-+
-+		i915_vma_lock(vma);
-+		err = i915_request_await_object(rq, vma->obj, false);
-+		if (!err)
-+			err = i915_vma_move_to_active(vma, rq, 0);
-+		if (!err)
-+			err = rq->engine->emit_bb_start(rq,
-+							vma->node.start,
-+							PAGE_SIZE, 0);
-+		i915_vma_unlock(vma);
-+		i915_request_add(rq);
-+		if (err)
-+			goto err_vma;
-+
-+		if (wait_for(READ_ONCE(*cntr), 10)) {
-+			pr_err("%s: timed loop did not start\n",
-+			       engine->name);
-+			goto err_vma;
-+		}
-+
-+		min.freq = rps->min_freq;
-+		min.count = measure_frequency_at(rps, cntr, &min.freq);
-+
-+		max.freq = rps->max_freq;
-+		max.count = measure_frequency_at(rps, cntr, &max.freq);
-+
-+		pr_info("%s: min:%lluKHz @ %uMHz, max:%lluKHz @ %uMHz [%d%%]\n",
-+			engine->name,
-+			min.count, intel_gpu_freq(rps, min.freq),
-+			max.count, intel_gpu_freq(rps, max.freq),
-+			(int)DIV64_U64_ROUND_CLOSEST(100 * min.freq * max.count,
-+						     max.freq * min.count));
-+
-+		if (2 * max.freq * min.count > 3 * min.freq * max.count ||
-+		    3 * max.freq * min.count < 2 * min.freq * max.count) {
-+			pr_err("%s: CS did not scale with frequency! scaled min:%llu, max:%llu\n",
-+			       engine->name,
-+			       max.freq * min.count,
-+			       min.freq * max.count);
-+			err = -EINVAL;
-+		}
-+
-+err_vma:
-+		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_unpin_map(vma->obj);
-+		i915_vma_unpin(vma);
-+		i915_vma_put(vma);
-+
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			break;
-+	}
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	rps->work.func = saved_work;
-+
-+	return err;
-+}
-+
- static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
- {
- 	/* Flush any previous EI */
-@@ -248,18 +482,6 @@ static u64 __measure_power(int duration_ms)
+@@ -482,26 +482,21 @@ static u64 __measure_power(int duration_ms)
  	return div64_u64(1000 * 1000 * dE, dt);
  }
  
--static int cmp_u64(const void *A, const void *B)
--{
--	const u64 *a = A, *b = B;
--
--	if (a < b)
--		return -1;
--	else if (a > b)
--		return 1;
--	else
--		return 0;
--}
--
- static u64 measure_power_at(struct intel_rps *rps, int freq)
+-static u64 measure_power_at(struct intel_rps *rps, int freq)
++static u64 measure_power_at(struct intel_rps *rps, int *freq)
  {
  	u64 x[5];
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
-index cad515a7f0e5..07c2bddf8899 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
-@@ -6,6 +6,7 @@
- #ifndef SELFTEST_RPS_H
- #define SELFTEST_RPS_H
+ 	int i;
  
-+int live_rps_frequency(void *arg);
- int live_rps_interrupt(void *arg);
- int live_rps_power(void *arg);
+ 	mutex_lock(&rps->lock);
+ 	GEM_BUG_ON(!rps->active);
+-	intel_rps_set(rps, freq);
++	intel_rps_set(rps, *freq);
+ 	mutex_unlock(&rps->lock);
  
+ 	msleep(20); /* more than enough time to stabilise! */
+ 
+-	i = read_cagf(rps);
+-	if (i != freq)
+-		pr_notice("Running at %x [%uMHz], not target %x [%uMHz]\n",
+-			  i, intel_gpu_freq(rps, i),
+-			  freq, intel_gpu_freq(rps, freq));
+-
+ 	for (i = 0; i < 5; i++)
+ 		x[i] = __measure_power(5);
++	*freq = read_cagf(rps);
+ 
+ 	/* A simple triangle filter for better result stability */
+ 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
+@@ -539,7 +534,10 @@ int live_rps_power(void *arg)
+ 
+ 	for_each_engine(engine, gt, id) {
+ 		struct i915_request *rq;
+-		u64 min, max;
++		struct {
++			u64 power;
++			int freq;
++		} min, max;
+ 
+ 		if (!intel_engine_can_store_dword(engine))
+ 			continue;
+@@ -562,16 +560,27 @@ int live_rps_power(void *arg)
+ 			break;
+ 		}
+ 
+-		max = measure_power_at(rps, rps->max_freq);
+-		min = measure_power_at(rps, rps->min_freq);
++		max.freq = rps->max_freq;
++		max.power = measure_power_at(rps, &max.freq);
++
++		min.freq = rps->min_freq;
++		min.power = measure_power_at(rps, &min.freq);
+ 
+ 		igt_spinner_end(&spin);
+ 
+ 		pr_info("%s: min:%llumW @ %uMHz, max:%llumW @ %uMHz\n",
+ 			engine->name,
+-			min, intel_gpu_freq(rps, rps->min_freq),
+-			max, intel_gpu_freq(rps, rps->max_freq));
+-		if (11 * min > 10 * max) {
++			min.power, intel_gpu_freq(rps, min.freq),
++			max.power, intel_gpu_freq(rps, max.freq));
++
++		if (10 * min.freq >= 9 * max.freq) {
++			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
++				  min.freq, intel_gpu_freq(rps, min.freq),
++				  max.freq, intel_gpu_freq(rps, max.freq));
++			continue;
++		}
++
++		if (11 * min.power > 10 * max.power) {
+ 			pr_err("%s: did not conserve power when setting lower frequency!\n",
+ 			       engine->name);
+ 			err = -EINVAL;
 -- 
 2.20.1
 
