@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92C01AE8D8
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 02:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCCD41AE8E9
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 02:18:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 382BD890B8;
-	Sat, 18 Apr 2020 00:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 872B26E152;
+	Sat, 18 Apr 2020 00:18:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3172D6EC50;
- Sat, 18 Apr 2020 00:01:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5121E6E152;
+ Sat, 18 Apr 2020 00:18:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2A7CBA47DA;
- Sat, 18 Apr 2020 00:01:19 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4B39AA432F;
+ Sat, 18 Apr 2020 00:18:23 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Sat, 18 Apr 2020 00:01:19 -0000
-Message-ID: <158716807914.422.10677084243505582769@emeril.freedesktop.org>
+Date: Sat, 18 Apr 2020 00:18:23 -0000
+Message-ID: <158716910327.420.3546241181933709280@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200417152734.464-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20200417152734.464-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Flatten_intel=5F?=
- =?utf-8?b?ZHBfY2hlY2tfbXN0X3N0YXR1cygpIGEgYml0?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915=3A_Flatten_intel=5Fdp=5Fc?=
+ =?utf-8?q?heck=5Fmst=5Fstatus=28=29_a_bit?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,24 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-d7fc81461f35 drm/i915: Flatten intel_dp_check_mst_status() a bit
--:117: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#117: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5669:
-+						 DP_SINK_COUNT_ESI+1,
- 						                  ^
-
-total: 0 errors, 0 warnings, 1 checks, 101 lines checked
-bdd0a32afab1 drm/i915: Push MST link retraining to the hotplug work
--:219: WARNING:LONG_LINE: line over 100 characters
-#219: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5830:
-+							      intel_crtc_pch_transcoder(crtc), false);
-
--:241: WARNING:LONG_LINE: line over 100 characters
-#241: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5846:
-+							      intel_crtc_pch_transcoder(crtc), true);
-
-total: 0 errors, 2 warnings, 0 checks, 230 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
