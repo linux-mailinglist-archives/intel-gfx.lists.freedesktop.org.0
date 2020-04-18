@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9D161AEC39
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 13:51:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A3321AEC6B
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Apr 2020 14:30:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8656EC73;
-	Sat, 18 Apr 2020 11:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD15B6E0D1;
+	Sat, 18 Apr 2020 12:30:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D503D6E454
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 11:51:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20942999-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Apr 2020 12:51:30 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 18 Apr 2020 12:51:29 +0100
-Message-Id: <20200418115129.28200-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200418115129.28200-1-chris@chris-wilson.co.uk>
-References: <20200418115129.28200-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 66AB16E0B7;
+ Sat, 18 Apr 2020 12:30:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5F88DA41FB;
+ Sat, 18 Apr 2020 12:30:42 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/selftests: Skip energy consumption
- tests if not controlling freq
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 18 Apr 2020 12:30:42 -0000
+Message-ID: <158721304236.420.5459016167882557828@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200418115129.28200-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200418115129.28200-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C1/2=5D_drm/i915/selftests=3A_Verify_?=
+ =?utf-8?q?frequency_scaling_with_RPS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we can not manipulate the frequency with RPS, then comparing min/max
-power consumption is pointless / misleading. We will leave the warning
-about not being able to control the frequency selection via RPS to other
-tests so as not to confuse this more specialised check.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_rps.c | 37 ++++++++++++++++----------
- 1 file changed, 23 insertions(+), 14 deletions(-)
+Series: series starting with [CI,1/2] drm/i915/selftests: Verify frequency scaling with RPS
+URL   : https://patchwork.freedesktop.org/series/76150/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 0e82e91f17bb..d5382f89a34d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -477,26 +477,21 @@ static u64 __measure_power(int duration_ms)
- 	return div64_u64(1000 * 1000 * dE, dt);
- }
- 
--static u64 measure_power_at(struct intel_rps *rps, int freq)
-+static u64 measure_power_at(struct intel_rps *rps, int *freq)
- {
- 	u64 x[5];
- 	int i;
- 
- 	mutex_lock(&rps->lock);
- 	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, freq);
-+	intel_rps_set(rps, *freq);
- 	mutex_unlock(&rps->lock);
- 
- 	msleep(20); /* more than enough time to stabilise! */
- 
--	i = read_cagf(rps);
--	if (i != freq)
--		pr_notice("Running at %x [%uMHz], not target %x [%uMHz]\n",
--			  i, intel_gpu_freq(rps, i),
--			  freq, intel_gpu_freq(rps, freq));
--
- 	for (i = 0; i < 5; i++)
- 		x[i] = __measure_power(5);
-+	*freq = read_cagf(rps);
- 
- 	/* A simple triangle filter for better result stability */
- 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-@@ -534,7 +529,10 @@ int live_rps_power(void *arg)
- 
- 	for_each_engine(engine, gt, id) {
- 		struct i915_request *rq;
--		u64 min, max;
-+		struct {
-+			u64 power;
-+			int freq;
-+		} min, max;
- 
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
-@@ -557,16 +555,27 @@ int live_rps_power(void *arg)
- 			break;
- 		}
- 
--		max = measure_power_at(rps, rps->max_freq);
--		min = measure_power_at(rps, rps->min_freq);
-+		max.freq = rps->max_freq;
-+		max.power = measure_power_at(rps, &max.freq);
-+
-+		min.freq = rps->min_freq;
-+		min.power = measure_power_at(rps, &min.freq);
- 
- 		igt_spinner_end(&spin);
- 
- 		pr_info("%s: min:%llumW @ %uMHz, max:%llumW @ %uMHz\n",
- 			engine->name,
--			min, intel_gpu_freq(rps, rps->min_freq),
--			max, intel_gpu_freq(rps, rps->max_freq));
--		if (11 * min > 10 * max) {
-+			min.power, intel_gpu_freq(rps, min.freq),
-+			max.power, intel_gpu_freq(rps, max.freq));
-+
-+		if (10 * min.freq >= 9 * max.freq) {
-+			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
-+				  min.freq, intel_gpu_freq(rps, min.freq),
-+				  max.freq, intel_gpu_freq(rps, max.freq));
-+			continue;
-+		}
-+
-+		if (11 * min.power > 10 * max.power) {
- 			pr_err("%s: did not conserve power when setting lower frequency!\n",
- 			       engine->name);
- 			err = -EINVAL;
--- 
-2.20.1
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
