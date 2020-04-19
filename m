@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0408D1AF90F
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 11:46:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CB91AF945
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 12:14:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12AE6E451;
-	Sun, 19 Apr 2020 09:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6826E45F;
+	Sun, 19 Apr 2020 10:14:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFF606E451
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Apr 2020 09:46:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20949142-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Apr 2020 10:46:12 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 19 Apr 2020 10:46:11 +0100
-Message-Id: <20200419094611.20575-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200419094611.20575-1-chris@chris-wilson.co.uk>
-References: <20200419094611.20575-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 304AC6E45E;
+ Sun, 19 Apr 2020 10:14:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 296A9A00E6;
+ Sun, 19 Apr 2020 10:14:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 4/4] drm/i915/gt: Convert gen9+ frequency range to
- 50MHz increments
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sun, 19 Apr 2020 10:14:25 -0000
+Message-ID: <158729126514.15013.4713282642819657088@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200419094611.20575-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200419094611.20575-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C1/4=5D_drm/i915/selftests=3A_Verify_?=
+ =?utf-8?q?frequency_scaling_with_RPS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The RPS bins are in units of 33MHz, so if we want 50MHz increments, we
-need 2/3, not 1/3!
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_llc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Series: series starting with [CI,1/4] drm/i915/selftests: Verify frequency scaling with RPS
+URL   : https://patchwork.freedesktop.org/series/76157/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_llc.c b/drivers/gpu/drm/i915/gt/intel_llc.c
-index e3f637b3650e..474d82a52859 100644
---- a/drivers/gpu/drm/i915/gt/intel_llc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_llc.c
-@@ -67,8 +67,10 @@ static bool get_ia_constants(struct intel_llc *llc,
- 	consts->max_gpu_freq = rps->max_freq;
- 	if (INTEL_GEN(i915) >= 9) {
- 		/* Convert GT frequency to 50 HZ units */
--		consts->min_gpu_freq /= GEN9_FREQ_SCALER;
--		consts->max_gpu_freq /= GEN9_FREQ_SCALER;
-+		consts->min_gpu_freq =
-+			mult_frac(consts->min_gpu_freq, 2, GEN9_FREQ_SCALER);
-+		consts->max_gpu_freq =
-+			mult_frac(consts->max_gpu_freq, 2, GEN9_FREQ_SCALER);
- 	}
- 
- 	return true;
--- 
-2.20.1
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+/home/cidrm/kernel/Documentation/gpu/i915.rst:610: WARNING: duplicate label gpu/i915:layout, other instance in /home/cidrm/kernel/Documentation/gpu/i915.rst
 
 _______________________________________________
 Intel-gfx mailing list
