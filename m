@@ -2,31 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8A11AF985
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 13:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B457A1AFA40
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Apr 2020 14:56:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4A0B6E03C;
-	Sun, 19 Apr 2020 11:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31E156E053;
+	Sun, 19 Apr 2020 12:56:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F30236E039;
- Sun, 19 Apr 2020 11:04:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EC93FA47E0;
- Sun, 19 Apr 2020 11:04:42 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1D5F6E053;
+ Sun, 19 Apr 2020 12:55:59 +0000 (UTC)
+IronPort-SDR: eKmZVh87WQRJMnWUymowLF71DSNmb6icKAq1u8zSVFFc69VRIb9eY1i9nf5nGN/y9zYrMwd2GN
+ 6vVEjKN2a73Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2020 05:55:58 -0700
+IronPort-SDR: i9RWU8pjIotvn4/PfQqPfT1rbpEDlzN+D7ovvC7YsqjarNbTzcpozTZjV/hebtdYaHSKJUOUV6
+ I5EHgewg5XMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,403,1580803200"; d="scan'208";a="455230241"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga005.fm.intel.com with ESMTP; 19 Apr 2020 05:55:58 -0700
+Received: from fmsmsx119.amr.corp.intel.com (10.18.124.207) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 19 Apr 2020 05:55:57 -0700
+Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
+ FMSMSX119.amr.corp.intel.com (10.18.124.207) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 19 Apr 2020 05:55:57 -0700
+Received: from bgsmsx105.gar.corp.intel.com ([169.254.3.54]) by
+ BGSMSX101.gar.corp.intel.com ([169.254.1.75]) with mapi id 14.03.0439.000;
+ Sun, 19 Apr 2020 18:25:54 +0530
+From: "Melkaveri, Arjun" <arjun.melkaveri@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH i-g-t] i915/gem_exec_balancer: Kick tasklets harder
+Thread-Index: AQHWFLevAJqDdJEYb0eJpBwNLdDt/aiAaVaQ
+Date: Sun, 19 Apr 2020 12:55:53 +0000
+Message-ID: <CA3CE573A55781488FA37084931071AB14DF8E31@BGSMSX105.gar.corp.intel.com>
+References: <20200417125645.3176650-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200417125645.3176650-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 19 Apr 2020 11:04:42 -0000
-Message-ID: <158729428293.15013.9063501880784923255@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200419103214.28866-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200419103214.28866-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/4=5D_drm/i915/selftests=3A_Verify_f?=
- =?utf-8?q?requency_scaling_with_RPS?=
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Kick tasklets
+ harder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,141 +66,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+HI Chris , 
+As Discussed , are you planning to change the load %age for full-* subtests ? 
+igt_assert_f(load > 0.90 to 66 % ? 
 
-Series: series starting with [CI,1/4] drm/i915/selftests: Verify frequency scaling with RPS
-URL   : https://patchwork.freedesktop.org/series/76158/
-State : failure
+Thanks 
+Arjun M
 
-== Summary ==
+-----Original Message-----
+From: Chris Wilson <chris@chris-wilson.co.uk> 
+Sent: Friday, April 17, 2020 6:27 PM
+To: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org; Melkaveri, Arjun <arjun.melkaveri@intel.com>; Ursulin, Tvrtko <tvrtko.ursulin@intel.com>; Chris Wilson <chris@chris-wilson.co.uk>
+Subject: [PATCH i-g-t] i915/gem_exec_balancer: Kick tasklets harder
 
-CI Bug Log - changes from CI_DRM_8323 -> Patchwork_17372
-====================================================
+Tasklet scheduling can unfortunately be quite predicated. Where we are only caring about workload distribution and not initial execution latency (see kick_kthreads), make that kick more precise.
 
-Summary
--------
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ lib/igt_debugfs.h              |  7 +++++++
+ tests/i915/gem_exec_balancer.c | 28 +++++++++++++++++-----------
+ 2 files changed, 24 insertions(+), 11 deletions(-)
 
-  **FAILURE**
+diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h index 7d1a6175e..768341387 100644
+--- a/lib/igt_debugfs.h
++++ b/lib/igt_debugfs.h
+@@ -181,6 +181,13 @@ void igt_require_hpd_storm_ctl(int fd);
+  * which will flush any RCU callbacks and deferred tasks.
+  */
+ #define DROP_RCU 0x200
++/**
++ * DROP_TASKLETS:
++ *
++ * Flushes the softirq tasklets on each CPU, such as used by the 
++execution
++ * threads.
++ */
++#define DROP_TASKLETS 0x400
+ /**
+  * DROP_ALL:
+  *
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c index e9a893e90..9ec5a146e 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -24,6 +24,7 @@
+ #include <sched.h>
+ 
+ #include "igt.h"
++#include "igt_debugfs.h"
+ #include "igt_gt.h"
+ #include "igt_perf.h"
+ #include "i915/gem_ring.h"
+@@ -405,17 +406,20 @@ static void invalid_bonds(int i915)
+ 	gem_context_destroy(i915, p.ctx_id);
+ }
+ 
+-static void kick_kthreads(void)
++static void kick_kthreads(int i915)
+ {
+-	usleep(20 * 1000); /* 20ms should be enough for ksoftirqd! */
++	if (igt_drop_caches_has(i915, DROP_TASKLETS))
++		igt_drop_caches_set(i915, DROP_TASKLETS);
++	else
++		usleep(20 * 1000); /* 20ms should be enough for ksoftirqd! */
+ }
+ 
+-static double measure_load(int pmu, int period_us)
++static double measure_load(int i915, int pmu, int period_us)
+ {
+ 	uint64_t data[2];
+ 	uint64_t d_t, d_v;
+ 
+-	kick_kthreads();
++	kick_kthreads(i915);
+ 
+ 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
+ 	d_v = -data[0];
+@@ -430,13 +434,14 @@ static double measure_load(int pmu, int period_us)
+ 	return d_v / (double)d_t;
+ }
+ 
+-static double measure_min_load(int pmu, unsigned int num, int period_us)
++static double
++measure_min_load(int i915, int pmu, unsigned int num, int period_us)
+ {
+ 	uint64_t data[2 + num];
+ 	uint64_t d_t, d_v[num];
+ 	uint64_t min = -1, max = 0;
+ 
+-	kick_kthreads();
++	kick_kthreads(i915);
+ 
+ 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
+ 	for (unsigned int n = 0; n < num; n++) @@ -464,12 +469,13 @@ static double measure_min_load(int pmu, unsigned int num, int period_us)
+ 	return min / (double)d_t;
+ }
+ 
+-static void measure_all_load(int pmu, double *v, unsigned int num, int period_us)
++static void
++measure_all_load(int i915, int pmu, double *v, unsigned int num, int 
++period_us)
+ {
+ 	uint64_t data[2 + num];
+ 	uint64_t d_t, d_v[num];
+ 
+-	kick_kthreads();
++	kick_kthreads(i915);
+ 
+ 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
+ 	for (unsigned int n = 0; n < num; n++) @@ -527,7 +533,7 @@ static void check_individual_engine(int i915,
+ 						  ci[idx].engine_instance));
+ 
+ 	spin = igt_spin_new(i915, .ctx = ctx, .engine = idx + 1);
+-	load = measure_load(pmu, 10000);
++	load = measure_load(i915, pmu, 10000);
+ 	igt_spin_free(i915, spin);
+ 
+ 	close(pmu);
+@@ -676,7 +682,7 @@ static void bonded(int i915, unsigned int flags)
+ 				igt_spin_free(i915, plug);
+ 			}
+ 
+-			measure_all_load(pmu[0], v, limit + 1, 10000);
++			measure_all_load(i915, pmu[0], v, limit + 1, 10000);
+ 			igt_spin_free(i915, spin);
+ 
+ 			igt_assert_f(v[bond] > 0.90,
+@@ -1512,7 +1518,7 @@ static void full(int i915, unsigned int flags)
+ 			close(fence);
+ 		}
+ 
+-		load = measure_min_load(pmu[0], count, 10000);
++		load = measure_min_load(i915, pmu[0], count, 10000);
+ 		igt_spin_free(i915, spin);
+ 
+ 		close(pmu[0]);
+--
+2.26.0
 
-  Serious unknown changes coming with Patchwork_17372 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17372, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17372:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-icl-y/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-icl-y/igt@i915_selftest@live@gt_pm.html
-    - fi-skl-6600u:       [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-y:           [DMESG-FAIL][7] ([i915#1725]) -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
-    - fi-kbl-soraka:      [DMESG-FAIL][9] ([i915#1744]) -> [DMESG-FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@gt_pm:
-    - {fi-tgl-dsi}:       [DMESG-FAIL][11] ([i915#1725]) -> [DMESG-FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
-    - {fi-tgl-u}:         [DMESG-FAIL][13] ([i915#1725]) -> [DMESG-FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17372 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@perf:
-    - fi-bwr-2160:        [INCOMPLETE][15] ([i915#489]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-bwr-2160/igt@i915_selftest@live@perf.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-bwr-2160/igt@i915_selftest@live@perf.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-skl-6770hq:      [FAIL][17] ([fdo#103375]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8323/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#1725]: https://gitlab.freedesktop.org/drm/intel/issues/1725
-  [i915#1744]: https://gitlab.freedesktop.org/drm/intel/issues/1744
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (51 -> 44)
-------------------------------
-
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8323 -> Patchwork_17372
-
-  CI-20190529: 20190529
-  CI_DRM_8323: 65545bfa1e4f92bb86462bf7226b8a33d13715a1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17372: 01124d8d19e6331c69cd8431f885ba78851beb4a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-01124d8d19e6 drm/i915/selftests: Split RPS frequency measurement
-dacb2246e2d7 drm/i915/selftests: Check RPS controls
-7d22c0011418 drm/i915/selftests: Skip energy consumption tests if not controlling freq
-9effe3e03e0c drm/i915/selftests: Verify frequency scaling with RPS
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17372/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
