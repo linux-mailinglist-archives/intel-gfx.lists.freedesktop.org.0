@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224AA1B0E3A
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 16:22:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B76EF1B0E4E
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 16:27:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80C0D6E59D;
-	Mon, 20 Apr 2020 14:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D056E20E;
+	Mon, 20 Apr 2020 14:27:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 728A06E59D
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:22:04 +0000 (UTC)
-IronPort-SDR: BSja1TOF6SDXKJZAfhp4ccV/0bwwUZTZOT2bVWSjHma/ppKpEJQyKyaBxudE6I4hXDUaqYB1xt
- oYovLfyFmnCw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 07:20:31 -0700
-IronPort-SDR: t98cGpIBnWCwW2c8GTBVsbvFUlyMef0xFv5SIJ+nokWjvqquZutGfTDmbTg+gT7RV3IwreeDxp
- gz6am2T2Mx/Q==
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="401846137"
-Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.63.229])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 07:20:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Apr 2020 17:20:20 +0300
-Message-Id: <20200420142020.27340-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200420142020.27340-1-jani.nikula@intel.com>
-References: <20200420142020.27340-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E01C6E20E;
+ Mon, 20 Apr 2020 14:27:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 27867A00E6;
+ Mon, 20 Apr 2020 14:27:27 +0000 (UTC)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [CI 2/2] drm/i915/dsc: configure hardware using
- specified rc_model_size
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Mon, 20 Apr 2020 14:27:27 -0000
+Message-ID: <158739284713.29876.12738385084761172306@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-user_af?=
+ =?utf-8?q?ter_completely_unlocking_all_locks=2C_v3=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,43 +39,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The rc_model_size is specified in the DSC config, and the hardware
-programming should respect that instead of hard coding a value of 8192.
+== Series Details ==
 
-Regardless, the rc_model_size in DSC config is currently hard coded to
-the same value, so this should have no impact, other than allowing the
-use of other sizes as needed.
+Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
+URL   : https://patchwork.freedesktop.org/series/76096/
+State : failure
 
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 95ad87d4ccb3..1f74b0174b1a 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -740,7 +740,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
- 
- 	/* Populate PICTURE_PARAMETER_SET_9 registers */
- 	pps_val = 0;
--	pps_val |= DSC_RC_MODEL_SIZE(DSC_RC_MODEL_SIZE_CONST) |
-+	pps_val |= DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
- 		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
- 	drm_info(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
- 	if (!is_pipe_dsc(crtc_state)) {
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_8319_full -> Patchwork_17349_full
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17349_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17349_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (10 -> 2)
+------------------------------
+
+  ERROR: It appears as if the changes made in Patchwork_17349_full prevented too many machines from booting.
+
+  Missing    (8): shard-skl shard-tglb shard-iclb shard-apl shard-glk shard-hsw shard-kbl shard-snb 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * IGT: IGT_5599 -> None
+  * Linux: CI_DRM_8319 -> Patchwork_17349
+
+  CI-20190529: 20190529
+  CI_DRM_8319: 18043327e8a9cba095bca9f80cdc70900a51f92c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17349: 4020a1a6ee367fa98569d13ffc22189562d56a83 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
