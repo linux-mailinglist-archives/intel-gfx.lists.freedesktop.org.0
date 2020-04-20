@@ -1,61 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F26C1B1299
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 19:06:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE52A1B01A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 08:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88EBC89244;
-	Mon, 20 Apr 2020 17:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93CA86E17A;
+	Mon, 20 Apr 2020 06:38:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 410 seconds by postgrey-1.36 at gabe;
- Mon, 20 Apr 2020 05:51:01 UTC
-Received: from fudan.edu.cn (mail.fudan.edu.cn [202.120.224.10])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03AB86E176;
- Mon, 20 Apr 2020 05:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id; bh=Kde4d4Iskv/eESUo3kW89uQutTL1AA81UbKX+DBEwr0=; b=W
- edNlbtZZjgiW2Kq8k8ac+CLyF4EGP7+i19/4xZApaEBNO3Wx9fyOFXDL9ZUPnIJ9
- tCPlGpUr8EKV9xrHIQy436U9ijsoldMg+xFYHIGRiReOY82ID4wcnuLFOwkaCy4i
- tdHmo+PT5icLN+7Fde4Y5v1nIBa83Xe9ysLpaFh88o=
-Received: from localhost.localdomain (unknown [120.229.255.67])
- by app1 (Coremail) with SMTP id XAUFCgD3_8dsNp1eenwWAA--.8407S3;
- Mon, 20 Apr 2020 13:43:09 +0800 (CST)
-From: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Imre Deak <imre.deak@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 20 Apr 2020 13:41:54 +0800
-Message-Id: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
-X-Mailer: git-send-email 2.7.4
-X-CM-TRANSID: XAUFCgD3_8dsNp1eenwWAA--.8407S3
-X-Coremail-Antispam: 1UD129KBjvJXoW7KF43Gry7CFy3Jw4xArW3trb_yoW8Cw13pr
- 45Ca4Iyr90yw47ta9Fvws5W3WfA3WxKay8Cr1kWwn5Gr1UJa4Skr1Sgry5JFWUCrWfXry2
- vrW2kFWava4FkaDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9E14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26rxl
- 6s0DM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8Jw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
- YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkIecxEwVAFwVW8WwCF04k20xvY0x0EwIxGrw
- CFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE
- 14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2
- IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAv
- wI8IcIk0rVW3JVWrJr1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
- AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbfOz3UUUUU==
-X-CM-SenderInfo: irzsiiysuqikmy6i3vldqovvfxof0/
-X-Mailman-Approved-At: Mon, 20 Apr 2020 17:06:14 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix i915_address_space
- refcnt leak
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A76C16E17A;
+ Mon, 20 Apr 2020 06:38:24 +0000 (UTC)
+IronPort-SDR: hZvM5kkfBMUYD5mixv+p1wuG0njNzKz4r9XyjZDKkRiqCJjEB4yPpYf5ro1p2gdT+ldFu4eERa
+ bm2WJioqKJ6Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2020 23:38:24 -0700
+IronPort-SDR: VqXD211QAZJQ3zpsTOyH5HXnvobtaIYA2bXucuz8FngXeJqaUI1SXQ8VgagJ19MIhM6j41E+Cf
+ iPWYL/X5yKHg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="258244658"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 19 Apr 2020 23:38:22 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+ (envelope-from <lkp@intel.com>)
+ id 1jQQ4T-000EJh-LB; Mon, 20 Apr 2020 14:38:21 +0800
+Date: Mon, 20 Apr 2020 14:38:00 +0800
+From: kbuild test robot <lkp@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <202004201447.vY97AUaU%lkp@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 18/20] init/Kconfig:80:
+ symbol BROKEN is selected by DRM_I915_DEBUG
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +49,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn, kjlu@umn.edu,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>
-MIME-Version: 1.0
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-igt_ppgtt_pin_update() invokes i915_gem_context_get_vm_rcu(), which
-returns a reference of the i915_address_space object to "vm" with
-increased refcount.
+tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
+head:   d0435a9b45070b945578c093dcd363b6b73a502c
+commit: 198db0fc276cdf8e1bb66a4a03473dbea1400d18 [18/20] Revert "drm/i915: Don't select BROKEN"
+config: powerpc-mvme5100_defconfig
+compiler: powerpc-linux-gcc (GCC) 9.3.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git checkout 198db0fc276cdf8e1bb66a4a03473dbea1400d18
+        COMPILER_INSTALL_PATH=$HOME/0day GCC_VERSION=9.3.0 make.cross ARCH=powerpc  mvme5100_defconfig
+        COMPILER_INSTALL_PATH=$HOME/0day GCC_VERSION=9.3.0 make.cross ARCH=powerpc 
 
-When igt_ppgtt_pin_update() returns, "vm" becomes invalid, so the
-refcount should be decreased to keep refcount balanced.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kbuild test robot <lkp@intel.com>
 
-The reference counting issue happens in two exception handling paths of
-igt_ppgtt_pin_update(). When i915_gem_object_create_internal() returns
-IS_ERR, the refcnt increased by i915_gem_context_get_vm_rcu() is not
-decreased, causing a refcnt leak.
+All errors (new ones prefixed by >>):
 
-Fix this issue by jumping to "out_vm" label when
-i915_gem_object_create_internal() returns IS_ERR.
+>> arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
+   arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
+>> init/Kconfig:83: symbol BROKEN_ON_SMP depends on BROKEN
+>> init/Kconfig:80: symbol BROKEN is selected by DRM_I915_DEBUG
+>> drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
+>> drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
+>> drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
+>> drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
+   drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
+>> drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
+>> drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
+   arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
+   For a resolution refer to Documentation/kbuild/kconfig-language.rst
+   subsection "Kconfig recursive dependency limitations"
 
-Fixes: 4049866f0913 ("drm/i915/selftests: huge page tests")
-Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
+vim +80 init/Kconfig
+
+^1da177e4c3f41 Linus Torvalds 2005-04-16  79  
+^1da177e4c3f41 Linus Torvalds 2005-04-16 @80  config BROKEN
+^1da177e4c3f41 Linus Torvalds 2005-04-16  81  	bool
+^1da177e4c3f41 Linus Torvalds 2005-04-16  82  
+^1da177e4c3f41 Linus Torvalds 2005-04-16 @83  config BROKEN_ON_SMP
+^1da177e4c3f41 Linus Torvalds 2005-04-16  84  	bool
+^1da177e4c3f41 Linus Torvalds 2005-04-16  85  	depends on BROKEN || !SMP
+^1da177e4c3f41 Linus Torvalds 2005-04-16  86  	default y
+^1da177e4c3f41 Linus Torvalds 2005-04-16  87  
+
+:::::: The code at line 80 was first introduced by commit
+:::::: 1da177e4c3f41524e886b7f1b8a0c1fc7321cac2 Linux-2.6.12-rc2
+
+:::::: TO: Linus Torvalds <torvalds@ppc970.osdl.org>
+:::::: CC: Linus Torvalds <torvalds@ppc970.osdl.org>
+
 ---
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 9311250d7d6f..7a7763be6b2e 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1578,8 +1578,10 @@ static int igt_ppgtt_pin_update(void *arg)
- 		unsigned int page_size = BIT(first);
- 
- 		obj = i915_gem_object_create_internal(dev_priv, page_size);
--		if (IS_ERR(obj))
--			return PTR_ERR(obj);
-+		if (IS_ERR(obj)) {
-+			err = PTR_ERR(obj);
-+			goto out_vm;
-+		}
- 
- 		vma = i915_vma_instance(obj, vm, NULL);
- 		if (IS_ERR(vma)) {
-@@ -1632,8 +1634,10 @@ static int igt_ppgtt_pin_update(void *arg)
- 	}
- 
- 	obj = i915_gem_object_create_internal(dev_priv, PAGE_SIZE);
--	if (IS_ERR(obj))
--		return PTR_ERR(obj);
-+	if (IS_ERR(obj)) {
-+		err = PTR_ERR(obj);
-+		goto out_vm;
-+	}
- 
- 	vma = i915_vma_instance(obj, vm, NULL);
- 	if (IS_ERR(vma)) {
--- 
-2.7.4
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
