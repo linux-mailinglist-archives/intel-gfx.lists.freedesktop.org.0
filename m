@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156E61B0B6C
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 14:56:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE7E1B0C45
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 15:08:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE816E546;
-	Mon, 20 Apr 2020 12:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1750B6E554;
+	Mon, 20 Apr 2020 13:08:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3C036E546
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 12:56:17 +0000 (UTC)
-IronPort-SDR: DJsRyypzWGK8Z8UembMe58oevUN+9Wa2Nh2FESaqnVSoAvID88By50mBu75OwZzpd894e/yp50
- O66yeQM1wJrQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 05:56:17 -0700
-IronPort-SDR: r4j8tDz2XhCNPnZHQ1Qrt3VBMp+cCDh70ZR0LW8W/GkAXUW9lca+Vfa3SD7/nk9UKuFooIqlES
- FNdjRSC3Xrzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="290078287"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga002.fm.intel.com with ESMTP; 20 Apr 2020 05:56:15 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id BFA5E5C3A0F; Mon, 20 Apr 2020 15:54:21 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158738057131.19285.14967910014530902851@build.alporthouse.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82BDA6E554
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 13:08:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20959688-1500050 for multiple; Mon, 20 Apr 2020 14:08:37 +0100
+MIME-Version: 1.0
+In-Reply-To: <87r1wimi6a.fsf@gaia.fi.intel.com>
 References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
  <87y2qqmnpt.fsf@gaia.fi.intel.com>
  <158738057131.19285.14967910014530902851@build.alporthouse.com>
-Date: Mon, 20 Apr 2020 15:54:21 +0300
-Message-ID: <87r1wimi6a.fsf@gaia.fi.intel.com>
-MIME-Version: 1.0
+ <87r1wimi6a.fsf@gaia.fi.intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158738811562.19285.9133389877070234191@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 20 Apr 2020 14:08:35 +0100
 Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Verify frequency
  scaling with RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -55,277 +48,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Quoting Mika Kuoppala (2020-04-20 13:54:21)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > Quoting Mika Kuoppala (2020-04-20 11:54:38)
+> >> Further, intel_runtime_pm_get is missing.
+> >
+> > For what? We acquire the wakeref via the request on the engine.
+> >
+> > We don't talk to intel_runtime_pm directly, everything we should be
+> > doing is engine specific, which knows which gt and the power management
+> > for that.
+> 
+> I was worried about the read_cagf().
+> 
+> But as it is implied that the request will be running
+> and we have total control of it during reading th cagf,
+> it will work like this.
 
-> Quoting Mika Kuoppala (2020-04-20 11:54:38)
->> Chris Wilson <chris@chris-wilson.co.uk> writes:
->> 
->> > One of the core tenents of reclocking the GPU is that its throughput
->> > scales with the clock frequency. We can observe this by incrementing a
->> > loop counter on the GPU, and compare the different execution rates at
->> > the notional RPS frequencies.
->> >
->> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> > ---
->> >  drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
->> >  drivers/gpu/drm/i915/gt/selftest_rps.c   | 249 +++++++++++++++++++++--
->> >  drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
->> >  3 files changed, 240 insertions(+), 13 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
->> > index 0141c334f2ac..4b2733967c42 100644
->> > --- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
->> > +++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
->> > @@ -53,8 +53,9 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
->> >  {
->> >       static const struct i915_subtest tests[] = {
->> >               SUBTEST(live_rc6_manual),
->> > -             SUBTEST(live_rps_interrupt),
->> > +             SUBTEST(live_rps_frequency),
->> >               SUBTEST(live_rps_power),
->> > +             SUBTEST(live_rps_interrupt),
->> >               SUBTEST(live_gt_resume),
->> >       };
->> >  
->> > diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
->> > index 360f56aa4b82..b1a435db1edc 100644
->> > --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
->> > +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
->> > @@ -6,6 +6,7 @@
->> >  #include <linux/sort.h>
->> >  
->> >  #include "intel_engine_pm.h"
->> > +#include "intel_gpu_commands.h"
->> >  #include "intel_gt_pm.h"
->> >  #include "intel_rc6.h"
->> >  #include "selftest_rps.h"
->> > @@ -17,6 +18,242 @@ static void dummy_rps_work(struct work_struct *wrk)
->> >  {
->> >  }
->> >  
->> > +static int cmp_u64(const void *A, const void *B)
->> > +{
->> > +     const u64 *a = A, *b = B;
->> > +
->> > +     if (a < b)
->> > +             return -1;
->> > +     else if (a > b)
->> > +             return 1;
->> > +     else
->> > +             return 0;
->> > +}
->> > +
->> > +static struct i915_vma *
->> > +create_spin_counter(struct intel_engine_cs *engine,
->> > +                 struct i915_address_space *vm,
->> > +                 u32 **cancel,
->> > +                 u32 **counter)
->> > +{
->> > +     enum {
->> > +             COUNT,
->> 
->> ok, it starts from zero.
->> 
->> > +             INC,
->> > +             __NGPR__,
->> > +     };
->> > +#define CS_GPR(x) GEN8_RING_CS_GPR(engine->mmio_base, x)
->> > +     struct drm_i915_gem_object *obj;
->> > +     struct i915_vma *vma;
->> > +     u32 *base, *cs;
->> > +     int loop, i;
->> > +     int err;
->> > +
->> > +     obj = i915_gem_object_create_internal(vm->i915, 4096);
->> > +     if (IS_ERR(obj))
->> > +             return ERR_CAST(obj);
->> > +
->> > +     vma = i915_vma_instance(obj, vm, NULL);
->> > +     if (IS_ERR(vma)) {
->> > +             i915_gem_object_put(obj);
->> > +             return vma;
->> > +     }
->> > +
->> > +     err = i915_vma_pin(vma, 0, 0, PIN_USER);
->> > +     if (err) {
->> > +             i915_vma_put(vma);
->> 
->> You forgot to put the obj.
->
-> The i915_vma_put() is i915_gem_object_put().
->
-> I know, I am in for a reckoning when I have to fix all the allocations
-> for i915_vma.kref being independent of the object.
->
->> 
->> > +             return ERR_PTR(err);
->> > +     }
->> > +
->> > +     base = i915_gem_object_pin_map(obj, I915_MAP_WC);
->> > +     if (IS_ERR(base)) {
->> > +             i915_gem_object_put(obj);
->> 
->> You forgot to put the vma?
->
-> One and the same :)
->
->> 
->> > +             return ERR_CAST(base);
->> > +     }
->> > +     cs = base;
->> > +
->> > +     *cs++ = MI_LOAD_REGISTER_IMM(__NGPR__ * 2);
->> > +     for (i = 0; i < __NGPR__; i++) {
->> > +             *cs++ = i915_mmio_reg_offset(CS_GPR(i));
->> > +             *cs++ = 0;
->> > +             *cs++ = i915_mmio_reg_offset(CS_GPR(i)) + 4;
->> > +             *cs++ = 0;
->> > +     }
->> > +
->> > +     *cs++ = MI_LOAD_REGISTER_IMM(1);
->> > +     *cs++ = i915_mmio_reg_offset(CS_GPR(INC));
->> > +     *cs++ = 1;
->> > +
->> > +     loop = cs - base;
->> > +
->> > +     *cs++ = MI_MATH(4);
->> > +     *cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
->> > +     *cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
->> > +     *cs++ = MI_MATH_ADD;
->> > +     *cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
->> > +
->> > +     *cs++ = MI_STORE_REGISTER_MEM_GEN8;
->> > +     *cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
->> > +     *cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
->> > +     *cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
->> > +
->> > +     *cs++ = MI_BATCH_BUFFER_START_GEN8;
->> > +     *cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
->> > +     *cs++ = upper_32_bits(vma->node.start + loop * sizeof(*cs));
->> > +
->> > +     i915_gem_object_flush_map(obj);
->> > +
->> > +     *cancel = base + loop;
->> > +     *counter = memset32(base + 1000, 0, 1);
->> > +     return vma;
->> > +}
->> > +
->> > +static u64 __measure_frequency(u32 *cntr, int duration_ms)
->> > +{
->> > +     u64 dc, dt;
->> > +
->> > +     dt = ktime_get();
->> > +     dc = READ_ONCE(*cntr);
->> > +     usleep_range(1000 * duration_ms, 2000 * duration_ms);
->> > +     dc = READ_ONCE(*cntr) - dc;
->> > +     dt = ktime_get() - dt;
->> > +
->> > +     return div64_u64(1000 * 1000 * dc, dt);
->> > +}
->> > +
->> > +static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
->> > +{
->> > +     u64 x[5];
->> > +     int i;
->> > +
->> > +     mutex_lock(&rps->lock);
->> > +     GEM_BUG_ON(!rps->active);
->> > +     intel_rps_set(rps, *freq);
->> > +     mutex_unlock(&rps->lock);
->> > +
->> > +     msleep(20); /* more than enough time to stabilise! */
->> > +
->> > +     for (i = 0; i < 5; i++)
->> > +             x[i] = __measure_frequency(cntr, 2);
->> > +     *freq = read_cagf(rps);
->> > +
->> > +     /* A simple triangle filter for better result stability */
->> > +     sort(x, 5, sizeof(*x), cmp_u64, NULL);
->> > +     return div_u64(x[1] + 2 * x[2] + x[3], 4);
->> > +}
->> > +
->> > +static bool scaled_within(u64 x, u64 y, u32 f_n, u32 f_d)
->> > +{
->> > +     return f_d * x > f_n * y && f_n * x < f_d * y;
->> > +}
->> > +
->> > +int live_rps_frequency(void *arg)
->> > +{
->> > +     void (*saved_work)(struct work_struct *wrk);
->> > +     struct intel_gt *gt = arg;
->> > +     struct intel_rps *rps = &gt->rps;
->> > +     struct intel_engine_cs *engine;
->> > +     enum intel_engine_id id;
->> > +     int err = 0;
->> > +
->> > +     /*
->> > +      * The premise is that the GPU does change freqency at our behest.
->> > +      * Let's check there is a correspondence between the requested
->> > +      * frequency, the actual frequency, and the observed clock rate.
->> > +      */
->> > +
->> > +     if (!rps->enabled || rps->max_freq <= rps->min_freq)
->> > +             return 0;
->> > +
->> > +     if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
->> > +             return 0;
->> > +
->> > +     intel_gt_pm_wait_for_idle(gt);
->> > +     saved_work = rps->work.func;
->> > +     rps->work.func = dummy_rps_work;
->> > +
->> > +     for_each_engine(engine, gt, id) {
->> > +             struct i915_request *rq;
->> > +             struct i915_vma *vma;
->> > +             u32 *cancel, *cntr;
->> > +             struct {
->> > +                     u64 count;
->> > +                     int freq;
->> > +             } min, max;
->> > +
->> > +             vma = create_spin_counter(engine,
->> > +                                       engine->kernel_context->vm,
->> > +                                       &cancel, &cntr);
->> > +             if (IS_ERR(vma)) {
->> > +                     err = PTR_ERR(vma);
->> > +                     break;
->> > +             }
->> > +
->> > +             rq = intel_engine_create_kernel_request(engine);
->> > +             if (IS_ERR(rq)) {
->> > +                     err = PTR_ERR(rq);
->> > +                     goto err_vma;
->> > +             }
->> > +
->> > +             i915_vma_lock(vma);
->> > +             err = i915_request_await_object(rq, vma->obj, false);
->> 
->> I am puzzled what we need to wait asynchronously in here.
->
-> To bind the vma, mostly. Yes that is now hidden away by
-> i915_vma_move_to_active(), but we established the pattern to always add
-> the waits even if we expect them to be no-ops -- because it's a hard
-> task to find a missing one later.
->  
->> Further, intel_runtime_pm_get is missing.
->
-> For what? We acquire the wakeref via the request on the engine.
->
-> We don't talk to intel_runtime_pm directly, everything we should be
-> doing is engine specific, which knows which gt and the power management
-> for that.
-
-I was worried about the read_cagf().
-
-But as it is implied that the request will be running
-and we have total control of it during reading th cagf,
-it will work like this.
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-
-
-> -Chris
+Yes, we are only looking at the HW inside either the request or explicit
+pm_gt. And our mmio debug is good enough to warn if we do attempt to
+read cagf without the rpm wakeref.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
