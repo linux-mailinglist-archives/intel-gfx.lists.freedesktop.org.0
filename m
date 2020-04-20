@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B76EF1B0E4E
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 16:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD681B0EC9
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 16:45:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D056E20E;
-	Mon, 20 Apr 2020 14:27:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99EC76E5A9;
+	Mon, 20 Apr 2020 14:45:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2E01C6E20E;
- Mon, 20 Apr 2020 14:27:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 27867A00E6;
- Mon, 20 Apr 2020 14:27:27 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F7A96E5A9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:45:06 +0000 (UTC)
+IronPort-SDR: /maKQqhEXLn3iQenNcFSetChfa+DPDvHYOCYzY9D5xQDgX3mZ46MaHTUnAMroCTLUDGw1U+xoo
+ laH1520a4a7A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 07:45:05 -0700
+IronPort-SDR: POw6JN37Qf/uJWSMolJYtyR90u8fCYDGQ8PdQFWnZEbTzzpw1RowAZ3XkwjzjByVvLFM1rbywP
+ ApTrBKTRqs8g==
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429149490"
+Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.63.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 07:45:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200417134720.16654-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200417134720.16654-1-ville.syrjala@linux.intel.com>
+ <20200417134720.16654-2-ville.syrjala@linux.intel.com>
+Date: Mon, 20 Apr 2020 17:45:01 +0300
+Message-ID: <87mu761aj6.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Mon, 20 Apr 2020 14:27:27 -0000
-Message-ID: <158739284713.29876.12738385084761172306@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200417133937.1980239-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-user_af?=
- =?utf-8?q?ter_completely_unlocking_all_locks=2C_v3=2E?=
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Move the TRANS_DDI_FUNC_CTL
+ enable to a later point
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +50,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
-URL   : https://patchwork.freedesktop.org/series/76096/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8319_full -> Patchwork_17349_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17349_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17349_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (10 -> 2)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_17349_full prevented too many machines from booting.
-
-  Missing    (8): shard-skl shard-tglb shard-iclb shard-apl shard-glk shard-hsw shard-kbl shard-snb 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_5599 -> None
-  * Linux: CI_DRM_8319 -> Patchwork_17349
-
-  CI-20190529: 20190529
-  CI_DRM_8319: 18043327e8a9cba095bca9f80cdc70900a51f92c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5599: cdb07101dda33e2fcb0f4c2aa199c47159d88f35 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17349: 4020a1a6ee367fa98569d13ffc22189562d56a83 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17349/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAxNyBBcHIgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBObyByZWFzb24gdGhhdCBJIGNhbiBzZWUgd2h5IHdlIHNob3Vs
+ZCBlbmFibGUgVFJBTlNfRERJX0ZVTkNfQ1RMCj4gYmVmb3JlIHdlIHNldCB1cCB0aGUgd2F0ZXJt
+YXJrcyBvZiBjb25mb2dpdXJlIHRoZSBtYnVzIHN0dWZmLgo+IEluIGZhY3QgcmVvcmRlcmluZyB0
+aGVzZSBzZWVtcyB0byBtYXRjaCB0aGUgYnNwZWMgc2VxdWVuY2UgYmV0dGVyLAo+IGFuZCBjcmlj
+dWFsbHkgd2lsbCBhbGxvdyB1cyB0byBwdXNoIHRoZSBUUkFOU19ERElfRlVOQ19DVEwgZW5hYmxl
+CiAgICAgIF5eXl5eXl5eXgoKVGhlIGVudGlyZSBzZXJpZXMgaXMgbmljZSwgYnV0IEkgZXNwZWNp
+YWxseSBsaWtlIHRoaXMgImNydWNpYWxseSIKdHlwby4gSXQgbG9va3MgcHJlemFjdGx5IGxpa2Ug
+YSBtaXggb2YgY3J1Y2lhbGx5IGFuZCBjcml0aWNhbGx5LgoKRldJVyB0aGUgc2VyaWVzIGlzIEFj
+a2VkLWJ5IG1lLCBhcyBDaHJpcyBiZWF0IG1lIHRvIHJldmlldy4gSSBhbHNvCmRpZG4ndCBzcG90
+IGFueXRoaW5nIG9idmlvdXNseSB3cm9uZy4KCkJSLApKYW5pLgoKCj4gaW50byB0aGUgZW5jb2Rl
+ciBlbmFibGUgaG9vayBhcyBhIGZvbGxvd3VwLgo+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3ly
+asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA2ICsrKy0tLQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiBpbmRleCBhZjViNDA1NWIzOGEu
+LjdhMWU3YjVhZTg0ZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jCj4gQEAgLTcwNzEsMTUgKzcwNzEsMTUgQEAgc3RhdGljIHZvaWQgaHN3X2Ny
+dGNfZW5hYmxlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ICAJaWYgKElOVEVM
+X0dFTihkZXZfcHJpdikgPj0gMTEpCj4gIAkJaWNsX3NldF9waXBlX2NoaWNrZW4oY3J0Yyk7Cj4g
+IAo+IC0JaWYgKCF0cmFuc2NvZGVyX2lzX2RzaShjcHVfdHJhbnNjb2RlcikpCj4gLQkJaW50ZWxf
+ZGRpX2VuYWJsZV90cmFuc2NvZGVyX2Z1bmMobmV3X2NydGNfc3RhdGUpOwo+IC0KPiAgCWlmIChk
+ZXZfcHJpdi0+ZGlzcGxheS5pbml0aWFsX3dhdGVybWFya3MpCj4gIAkJZGV2X3ByaXYtPmRpc3Bs
+YXkuaW5pdGlhbF93YXRlcm1hcmtzKHN0YXRlLCBjcnRjKTsKPiAgCj4gIAlpZiAoSU5URUxfR0VO
+KGRldl9wcml2KSA+PSAxMSkKPiAgCQlpY2xfcGlwZV9tYnVzX2VuYWJsZShjcnRjKTsKPiAgCj4g
+KwlpZiAoIXRyYW5zY29kZXJfaXNfZHNpKGNwdV90cmFuc2NvZGVyKSkKPiArCQlpbnRlbF9kZGlf
+ZW5hYmxlX3RyYW5zY29kZXJfZnVuYyhuZXdfY3J0Y19zdGF0ZSk7Cj4gKwo+ICAJaW50ZWxfZW5j
+b2RlcnNfZW5hYmxlKHN0YXRlLCBjcnRjKTsKPiAgCj4gIAlpZiAocHNsX2Nsa2dhdGVfd2EpIHsK
+Ci0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
