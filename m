@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA791B06ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 12:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C3A1B06EF
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 12:56:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C176E29E;
-	Mon, 20 Apr 2020 10:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4B2489F45;
+	Mon, 20 Apr 2020 10:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52BE66E29E
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 10:54:27 +0000 (UTC)
-IronPort-SDR: gF00klaOtHP1GxZalHw4APMFocAMVU4+ejg+gmC085R4Z4lCYd1z+VtgkumvWHpfX2NDUGEn09
- EqWExcvApJgA==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06E9889F45
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 10:56:33 +0000 (UTC)
+IronPort-SDR: 2t6FzxNIy0uo4N3lGzM5iO0vc9PthkZDNJxn0aWFKpRKH7PrkQ0QattmKi3HC9wHcdo+iF0dri
+ Z2jOVTxq19NA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 03:54:26 -0700
-IronPort-SDR: LH8GDeJH+ZjKCwlQ9kA5i+HPXUKBwMqj9meKDyFR1pbdHfN5r4WNvYwsVLVsWMJuaX+mCoC23p
- 9O8qka9GBaZw==
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429079272"
-Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.213.70.225])
- ([10.213.70.225])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 03:54:25 -0700
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200417172835.15461-1-anshuman.gupta@intel.com>
-From: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <607794c7-3ed7-5842-02b8-9ce30b407b07@intel.com>
-Date: Mon, 20 Apr 2020 16:24:20 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 03:56:33 -0700
+IronPort-SDR: 183nrUzySOvXeVgrlJze091IMwTKSu2qYkVuN7vYLEjvsBLJsVNYxN3efhzA9yWlYnG1OfeMPV
+ JdhZxV8DxBUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="456345417"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga006.fm.intel.com with ESMTP; 20 Apr 2020 03:56:32 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 951D75C3A0F; Mon, 20 Apr 2020 13:54:38 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+Date: Mon, 20 Apr 2020 13:54:38 +0300
+Message-ID: <87y2qqmnpt.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200417172835.15461-1-anshuman.gupta@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add ICL PG3 PW ID for EHL
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Verify frequency
+ scaling with RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,41 +48,350 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-On 17-04-2020 22:58, Anshuman Gupta wrote:
-> Gen11 onwards PG3 contains functions for pipe B,
-> external displays, and VGA. Add missing ICL_DISP_PW_3
-> for ehl_power_wells.
+> One of the core tenents of reclocking the GPU is that its throughput
+> scales with the clock frequency. We can observe this by incrementing a
+> loop counter on the GPU, and compare the different execution rates at
+> the notional RPS frequencies.
 >
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1737
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-
-Looks ok to me.
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
-
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
+>  drivers/gpu/drm/i915/gt/selftest_rps.c   | 249 +++++++++++++++++++++--
+>  drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
+>  3 files changed, 240 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 1d01c79fb9db..e9ced41fe7e3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -3804,7 +3804,7 @@ static const struct i915_power_well_desc ehl_power_wells[] = {
->   		.name = "power well 3",
->   		.domains = ICL_PW_3_POWER_DOMAINS,
->   		.ops = &hsw_power_well_ops,
-> -		.id = DISP_PW_ID_NONE,
-> +		.id = ICL_DISP_PW_3,
->   		{
->   			.hsw.regs = &hsw_power_well_regs,
->   			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> index 0141c334f2ac..4b2733967c42 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> @@ -53,8 +53,9 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
+>  {
+>  	static const struct i915_subtest tests[] = {
+>  		SUBTEST(live_rc6_manual),
+> -		SUBTEST(live_rps_interrupt),
+> +		SUBTEST(live_rps_frequency),
+>  		SUBTEST(live_rps_power),
+> +		SUBTEST(live_rps_interrupt),
+>  		SUBTEST(live_gt_resume),
+>  	};
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> index 360f56aa4b82..b1a435db1edc 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/sort.h>
+>  
+>  #include "intel_engine_pm.h"
+> +#include "intel_gpu_commands.h"
+>  #include "intel_gt_pm.h"
+>  #include "intel_rc6.h"
+>  #include "selftest_rps.h"
+> @@ -17,6 +18,242 @@ static void dummy_rps_work(struct work_struct *wrk)
+>  {
+>  }
+>  
+> +static int cmp_u64(const void *A, const void *B)
+> +{
+> +	const u64 *a = A, *b = B;
+> +
+> +	if (a < b)
+> +		return -1;
+> +	else if (a > b)
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+> +
+> +static struct i915_vma *
+> +create_spin_counter(struct intel_engine_cs *engine,
+> +		    struct i915_address_space *vm,
+> +		    u32 **cancel,
+> +		    u32 **counter)
+> +{
+> +	enum {
+> +		COUNT,
+
+ok, it starts from zero.
+
+> +		INC,
+> +		__NGPR__,
+> +	};
+> +#define CS_GPR(x) GEN8_RING_CS_GPR(engine->mmio_base, x)
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma;
+> +	u32 *base, *cs;
+> +	int loop, i;
+> +	int err;
+> +
+> +	obj = i915_gem_object_create_internal(vm->i915, 4096);
+> +	if (IS_ERR(obj))
+> +		return ERR_CAST(obj);
+> +
+> +	vma = i915_vma_instance(obj, vm, NULL);
+> +	if (IS_ERR(vma)) {
+> +		i915_gem_object_put(obj);
+> +		return vma;
+> +	}
+> +
+> +	err = i915_vma_pin(vma, 0, 0, PIN_USER);
+> +	if (err) {
+> +		i915_vma_put(vma);
+
+You forgot to put the obj.
+
+> +		return ERR_PTR(err);
+> +	}
+> +
+> +	base = i915_gem_object_pin_map(obj, I915_MAP_WC);
+> +	if (IS_ERR(base)) {
+> +		i915_gem_object_put(obj);
+
+You forgot to put the vma?
+
+> +		return ERR_CAST(base);
+> +	}
+> +	cs = base;
+> +
+> +	*cs++ = MI_LOAD_REGISTER_IMM(__NGPR__ * 2);
+> +	for (i = 0; i < __NGPR__; i++) {
+> +		*cs++ = i915_mmio_reg_offset(CS_GPR(i));
+> +		*cs++ = 0;
+> +		*cs++ = i915_mmio_reg_offset(CS_GPR(i)) + 4;
+> +		*cs++ = 0;
+> +	}
+> +
+> +	*cs++ = MI_LOAD_REGISTER_IMM(1);
+> +	*cs++ = i915_mmio_reg_offset(CS_GPR(INC));
+> +	*cs++ = 1;
+> +
+> +	loop = cs - base;
+> +
+> +	*cs++ = MI_MATH(4);
+> +	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
+> +	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
+> +	*cs++ = MI_MATH_ADD;
+> +	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
+> +
+> +	*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+> +	*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
+> +	*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> +	*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> +
+> +	*cs++ = MI_BATCH_BUFFER_START_GEN8;
+> +	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
+> +	*cs++ = upper_32_bits(vma->node.start + loop * sizeof(*cs));
+> +
+> +	i915_gem_object_flush_map(obj);
+> +
+> +	*cancel = base + loop;
+> +	*counter = memset32(base + 1000, 0, 1);
+> +	return vma;
+> +}
+> +
+> +static u64 __measure_frequency(u32 *cntr, int duration_ms)
+> +{
+> +	u64 dc, dt;
+> +
+> +	dt = ktime_get();
+> +	dc = READ_ONCE(*cntr);
+> +	usleep_range(1000 * duration_ms, 2000 * duration_ms);
+> +	dc = READ_ONCE(*cntr) - dc;
+> +	dt = ktime_get() - dt;
+> +
+> +	return div64_u64(1000 * 1000 * dc, dt);
+> +}
+> +
+> +static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
+> +{
+> +	u64 x[5];
+> +	int i;
+> +
+> +	mutex_lock(&rps->lock);
+> +	GEM_BUG_ON(!rps->active);
+> +	intel_rps_set(rps, *freq);
+> +	mutex_unlock(&rps->lock);
+> +
+> +	msleep(20); /* more than enough time to stabilise! */
+> +
+> +	for (i = 0; i < 5; i++)
+> +		x[i] = __measure_frequency(cntr, 2);
+> +	*freq = read_cagf(rps);
+> +
+> +	/* A simple triangle filter for better result stability */
+> +	sort(x, 5, sizeof(*x), cmp_u64, NULL);
+> +	return div_u64(x[1] + 2 * x[2] + x[3], 4);
+> +}
+> +
+> +static bool scaled_within(u64 x, u64 y, u32 f_n, u32 f_d)
+> +{
+> +	return f_d * x > f_n * y && f_n * x < f_d * y;
+> +}
+> +
+> +int live_rps_frequency(void *arg)
+> +{
+> +	void (*saved_work)(struct work_struct *wrk);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_rps *rps = &gt->rps;
+> +	struct intel_engine_cs *engine;
+> +	enum intel_engine_id id;
+> +	int err = 0;
+> +
+> +	/*
+> +	 * The premise is that the GPU does change freqency at our behest.
+> +	 * Let's check there is a correspondence between the requested
+> +	 * frequency, the actual frequency, and the observed clock rate.
+> +	 */
+> +
+> +	if (!rps->enabled || rps->max_freq <= rps->min_freq)
+> +		return 0;
+> +
+> +	if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
+> +		return 0;
+> +
+> +	intel_gt_pm_wait_for_idle(gt);
+> +	saved_work = rps->work.func;
+> +	rps->work.func = dummy_rps_work;
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		struct i915_request *rq;
+> +		struct i915_vma *vma;
+> +		u32 *cancel, *cntr;
+> +		struct {
+> +			u64 count;
+> +			int freq;
+> +		} min, max;
+> +
+> +		vma = create_spin_counter(engine,
+> +					  engine->kernel_context->vm,
+> +					  &cancel, &cntr);
+> +		if (IS_ERR(vma)) {
+> +			err = PTR_ERR(vma);
+> +			break;
+> +		}
+> +
+> +		rq = intel_engine_create_kernel_request(engine);
+> +		if (IS_ERR(rq)) {
+> +			err = PTR_ERR(rq);
+> +			goto err_vma;
+> +		}
+> +
+> +		i915_vma_lock(vma);
+> +		err = i915_request_await_object(rq, vma->obj, false);
+
+I am puzzled what we need to wait asynchronously in here.
+
+Further, intel_runtime_pm_get is missing.
+
+-Mika
+
+> +		if (!err)
+> +			err = i915_vma_move_to_active(vma, rq, 0);
+> +		if (!err)
+> +			err = rq->engine->emit_bb_start(rq,
+> +							vma->node.start,
+> +							PAGE_SIZE, 0);
+> +		i915_vma_unlock(vma);
+> +		i915_request_add(rq);
+> +		if (err)
+> +			goto err_vma;
+> +
+> +		if (wait_for(READ_ONCE(*cntr), 10)) {
+> +			pr_err("%s: timed loop did not start\n",
+> +			       engine->name);
+> +			goto err_vma;
+> +		}
+> +
+> +		min.freq = rps->min_freq;
+> +		min.count = measure_frequency_at(rps, cntr, &min.freq);
+> +
+> +		max.freq = rps->max_freq;
+> +		max.count = measure_frequency_at(rps, cntr, &max.freq);
+> +
+> +		pr_info("%s: min:%lluKHz @ %uMHz, max:%lluKHz @ %uMHz [%d%%]\n",
+> +			engine->name,
+> +			min.count, intel_gpu_freq(rps, min.freq),
+> +			max.count, intel_gpu_freq(rps, max.freq),
+> +			(int)DIV64_U64_ROUND_CLOSEST(100 * min.freq * max.count,
+> +						     max.freq * min.count));
+> +
+> +		if (!scaled_within(max.freq * min.count,
+> +				   min.freq * max.count,
+> +				   1, 2)) {
+> +			pr_err("%s: CS did not scale with frequency! scaled min:%llu, max:%llu\n",
+> +			       engine->name,
+> +			       max.freq * min.count,
+> +			       min.freq * max.count);
+> +			err = -EINVAL;
+> +		}
+> +
+> +err_vma:
+> +		*cancel = MI_BATCH_BUFFER_END;
+> +		i915_gem_object_unpin_map(vma->obj);
+> +		i915_vma_unpin(vma);
+> +		i915_vma_put(vma);
+> +
+> +		if (igt_flush_test(gt->i915))
+> +			err = -EIO;
+> +		if (err)
+> +			break;
+> +	}
+> +
+> +	intel_gt_pm_wait_for_idle(gt);
+> +	rps->work.func = saved_work;
+> +
+> +	return err;
+> +}
+> +
+>  static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
+>  {
+>  	/* Flush any previous EI */
+> @@ -248,18 +485,6 @@ static u64 __measure_power(int duration_ms)
+>  	return div64_u64(1000 * 1000 * dE, dt);
+>  }
+>  
+> -static int cmp_u64(const void *A, const void *B)
+> -{
+> -	const u64 *a = A, *b = B;
+> -
+> -	if (a < b)
+> -		return -1;
+> -	else if (a > b)
+> -		return 1;
+> -	else
+> -		return 0;
+> -}
+> -
+>  static u64 measure_power_at(struct intel_rps *rps, int freq)
+>  {
+>  	u64 x[5];
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
+> index cad515a7f0e5..07c2bddf8899 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
+> @@ -6,6 +6,7 @@
+>  #ifndef SELFTEST_RPS_H
+>  #define SELFTEST_RPS_H
+>  
+> +int live_rps_frequency(void *arg);
+>  int live_rps_interrupt(void *arg);
+>  int live_rps_power(void *arg);
+>  
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
