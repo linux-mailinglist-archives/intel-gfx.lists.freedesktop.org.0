@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1854F1B1046
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 17:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 271CD1B1296
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 19:06:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373806E5BE;
-	Mon, 20 Apr 2020 15:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3176E828;
+	Mon, 20 Apr 2020 17:06:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6446E5BE
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 15:34:59 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id p28so6252656vsg.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 08:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Px0HYpKiuFjYgTfvxByPaySJ9c4dWAHCP+jBl1JzULs=;
- b=Khx5+YxADnVhIoCLxhOz+9v+y9QQnTPzpDdxPrOqMgcA0fT1Vq+XHDgdPyHuixTEL3
- wXntUOhrGdNbg3eZhjbm5O6x3ypncLuuIyvk72tByPN0EFibzTG1PFSpKH6+FZ+ureFE
- l53YHz8mMcrBVsuQdTn271ROZOJxmddYsWD83IMx81lon9L23jjekQuoVUGxgX9QBb4J
- WxeouApeIUEeC48s/TeqB5YNPfn/g6uWMaps4a3ozcXCgVQ4IpqIXEm6Ksi0zq52oWJs
- dWMJx7P+juYbG0FFkRv+k0fhSqa3YvqjT/ZeDLTMi3kHqMXjyLbGCb6UzHXvq/9NGyBE
- us6g==
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
+ [209.85.215.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D5C589D9B;
+ Mon, 20 Apr 2020 15:42:20 +0000 (UTC)
+Received: by mail-pg1-f195.google.com with SMTP id o15so4671189pgi.1;
+ Mon, 20 Apr 2020 08:42:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Px0HYpKiuFjYgTfvxByPaySJ9c4dWAHCP+jBl1JzULs=;
- b=SGl+Q0qGtanmmQJ2aA5fNOWW1EIUopPnpUQoc2xJQdtD2w9eau47vPjqIqH31k9AvK
- mVeMiqsHwh1pz61i2qSlluvc0HgmXgJ/HYlosluTUh/MvGh2v8vCCCXl5AfV8SRh0Pbl
- Yf1bJ/01UlzIhZJNma7vOntHWCDwU0BAX6iA4+yU3FE5vPAM91kumOQD68SBvK+pAkzT
- KKg5sovVq4TKBJsFVR3CLJUFGL53Zl2B0+ZMS6cvw4+XmNvXS+K9vNaoOF+v+oxBlmlv
- TZ22Tpe3NO6v9QRpajSxhDYXiQWgQrkc5tzU5NQBpUcZI0oEmaYDyYmVsfEPBNmMILvi
- rdZw==
-X-Gm-Message-State: AGi0PuYlEBGkxAc50P/DMEfwJAMWqsmzeMzWaXeexwKduNxbb1b6gXN/
- mkaMcw6zr/PPYpKW+BkhFqHVw557XwYnwHnutkI=
-X-Google-Smtp-Source: APiQypLWc8kvDoUIY6RX+VLfdvH0s0DIYL8xDLWxm8enfBxIwPDwBOngTmHvpYfA0jb0DMM97TVreql+gDfSZds/iWo=
-X-Received: by 2002:a67:2e45:: with SMTP id u66mr12065358vsu.178.1587396898557; 
- Mon, 20 Apr 2020 08:34:58 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=urvVKwhYFVo9YmQiRyB75pp00JNNKb1DATs7THuAxM0=;
+ b=dmaktFAjAVHGKFEaXRD3dTgDGIzfJWbXPgTFW3qq+ToMQG3qAsaBNiTvf4k/U0FTAP
+ 8csRiuyEpIza0cLOaV3PUGn0EuPrQhtJ//zL5OuTRnZmiTCS0al3e8n86U3680Bj/c4f
+ WaWZNMUrZsYziIpwqnLFRtV28n4LMuZ3EKeS7/GGu45mH8DwsBvSu5Pxi02MwKRss9cL
+ aEkcm4l53s2VQYf2LtRjRKU34vdeNtwtaweXtxkpPHiN7p29xtKZW2EyWOhe9qhVHRe/
+ qtdg1l68NCPGwbgAe2q6NKOqwtXweyUea22FCwKtkmx9Kxnr6s/K1Rdu7LuP8KvxpcYR
+ 24iQ==
+X-Gm-Message-State: AGi0PuZvPI8IdAKTg0dHfZkLQ4yBP3CeIDX0tUCzAfGVxjY1yZlN7XDn
+ 8ahlobSP0y/pyiYbiqmKmxo=
+X-Google-Smtp-Source: APiQypJd+fuBqEfot8z8i+/En/kswujqoCNHKitTBMgG/Ivm4ah5wWFtimdwR+Mbm6rnh82tN5hnTA==
+X-Received: by 2002:a63:1d4a:: with SMTP id d10mr17258952pgm.188.1587397339635; 
+ Mon, 20 Apr 2020 08:42:19 -0700 (PDT)
+Received: from sultan-box.localdomain ([104.200.129.62])
+ by smtp.gmail.com with ESMTPSA id h5sm10591pjv.4.2020.04.20.08.42.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Apr 2020 08:42:18 -0700 (PDT)
+Date: Mon, 20 Apr 2020 08:42:16 -0700
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20200420154216.GA1963@sultan-box.localdomain>
+References: <20200407065210.GA263852@kroah.com>
+ <20200407071809.3148-1-sultan@kerneltoast.com>
+ <20200410090838.GD1691838@kroah.com>
+ <20200410141738.GB2025@sultan-box.localdomain>
+ <20200411113957.GB2606747@kroah.com>
+ <158685210730.16269.15932754047962572236@build.alporthouse.com>
+ <20200414082344.GA10645@kroah.com>
+ <158737335977.8380.15005528012712372014@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-References: <20200420125356.26614-1-chris@chris-wilson.co.uk>
- <20200420125356.26614-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20200420125356.26614-2-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 20 Apr 2020 16:34:32 +0100
-Message-ID: <CAM0jSHOnYemz_h+TWB5UW8phEMQG3mW-z4x5t7M65W7wWyUOkw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Move the late
- flush_submission in retire to the end
+Content-Disposition: inline
+In-Reply-To: <158737335977.8380.15005528012712372014@jlahtine-desk.ger.corp.intel.com>
+X-Mailman-Approved-At: Mon, 20 Apr 2020 17:06:15 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix ref->mutex deadlock in
+ i915_active_wait()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,21 +65,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Apr 2020 at 13:54, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Avoid flushing the submission queue (of others) under the client's
-> timeline lock, but instead move it to the end so that we may catch more.
->
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1066
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On Mon, Apr 20, 2020 at 12:02:39PM +0300, Joonas Lahtinen wrote:
+> I think the the patch should be dropped for now before the issue is
+> properly addressed. Either by backporting the mainline fixes or if
+> those are too big and there indeed is a smaller alternative patch
+> that is properly reviewed. But the above patch is not, at least yet.
+
+Why should a fix for a bona-fide issue be dropped due to political reasons? This
+doesn't make sense to me. This just hurts miserable i915 users even more. If my
+patch is going to be dropped, it should be replaced by a different fix at the
+same time.
+
+Also, the mainline fixes just *happen* to fix this deadlock by removing the
+mutex lock from the path in question and creating multiple other bugs in the
+process that had to be addressed with "Fixes:" commits. The regression potential
+was too high to include those patches for a "stable" kernel, so I made this
+patch which fixes the issue in the simplest way possible. We put this patch into
+Ubuntu now as well, because praying for a response from i915 maintainers while
+the 20.04 release was on the horizon was not an option.
+
+> There is an another similar thread where there's jumping into
+> conclusions and doing ad-hoc patches for already fixed issues:
+> 
+> https://lore.kernel.org/dri-devel/20200414144309.GB2082@sultan-box.localdomain/
+
+Maybe this wouldn't have happened if I had received a proper response for that
+issue on gitlab from the get-go... Instead I got the run-around from Chris
+claiming that it wasn't an i915 bug:
+
+https://gitlab.freedesktop.org/drm/intel/issues/1599
+
+> I appreciate enthusiasm to provide fixes to i915 but we should
+> continue do the regular due diligence to make sure we're properly
+> fixing bugs in upstream kernels. And when fixing them, to make
+> sure we're not simply papering over them for a single use case.
+> 
+> It would be preferred to file a bug for the seen issues,
+> describing how to reproduce them with vanilla upstream kernels:
+> 
+> https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+
+gitlab.freedesktop.org/drm/intel is where bugs go to be neglected, as noted
+above. I really see no reason to send anything there anymore, when the vast
+majority of community-sourced bug reports go ignored. 
+
+Sultan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
