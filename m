@@ -2,41 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAC11B0263
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 09:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D221B0438
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 10:21:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB486E1CD;
-	Mon, 20 Apr 2020 07:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 916F58982D;
+	Mon, 20 Apr 2020 08:21:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2376E1CD
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 07:11:43 +0000 (UTC)
-IronPort-SDR: /F2G0nqAUFtmaKql7xwiyLoalyl/RPy5NaXIR8/zJA87r9NW5PXD1vIqRpxoijooF5SvVTJUSJ
- mp5rlNDeKwPg==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 465638982D;
+ Mon, 20 Apr 2020 08:21:49 +0000 (UTC)
+IronPort-SDR: 14PXteEBDjzJTrf9pViiMTxjXkZsCESEv2fF/bVc0g1Smw3WfLvzSDukHVcv00HHwM+UVDbIXB
+ MwJr3Gah9B0Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 00:11:42 -0700
-IronPort-SDR: yoKGQc9AUIUrZlZfQaELfoyCHiZ+zZxH+keabxbcZ7U3GWegBwhC/tswh5g4Eu/U58lmp5b8dZ
- WERh3X0IRgUw==
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429020644"
-Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.63.229])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 01:21:48 -0700
+IronPort-SDR: VftcpKwtEeA3P5jAsD0qeY0JUB3b0ewMhuRIXm8KrqnlVNM9jTn3h1VsNeDUl2x/j132iy1XLW
+ c5WLlUsKUUCA==
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429041855"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.49])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 00:11:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-In-Reply-To: <alpine.DEB.2.21.2004171103100.2957@eliteleevi.tm.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200417065132.23048-1-jani.nikula@intel.com>
- <alpine.DEB.2.21.2004171103100.2957@eliteleevi.tm.intel.com>
-Date: Mon, 20 Apr 2020 10:11:37 +0300
-Message-ID: <875zdu3a3a.fsf@intel.com>
+ 20 Apr 2020 01:21:45 -0700
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/audio: error log non-zero audio
- power refcount after unbind
+In-Reply-To: <20200420052419.GA40250@sultan-box.localdomain>
+References: <20200404024156.GA10382@sultan-box.localdomain>
+ <20200407064007.7599-1-sultan@kerneltoast.com>
+ <20200414061312.GA90768@sultan-box.localdomain>
+ <158685263618.16269.9317893477736764675@build.alporthouse.com>
+ <20200414144309.GB2082@sultan-box.localdomain>
+ <20200420052419.GA40250@sultan-box.localdomain>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Sultan Alsawaf <sultan@kerneltoast.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Mon, 20 Apr 2020 11:21:42 +0300
+Message-ID: <158737090265.8380.6644489879531344891@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Synchronize active and retire
+ callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,63 +55,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Apr 2020, Kai Vehmanen <kai.vehmanen@linux.intel.com> wrote:
-> Hi Jani,
->
-> On Fri, 17 Apr 2020, Jani Nikula wrote:
->
->> We have some module unload/reload tests hitting an issue with i915
->> unbinding the component interface before the audio driver has properly
->> put the power. Log an error about it for ease of debugging. (Normally
->
-> thanks, this is a good addition:
-> Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Quoting Sultan Alsawaf (2020-04-20 08:24:19)
+> Chris,
+> 
+> Could you please look at this in earnest? This is a real bug that crashes my
+> laptop without any kind of provocation. It is undeniably a bug in i915, and I've
+> clearly described it in my patch. If you dont like the patch, I'm open to any
+> suggestions you have for an alternative solution. My goal here is to make i915
+> better, but it's difficult when communication only goes one way.
 
-Thanks for the review, pushed to drm-intel-next-queued.
+Hi Sultan,
 
-> Maybe one point to consider is whether to take the next step and just 
-> block the unload. On audio side, once acomp binding is done to i915 
-> driver, it is only released at hda driver unload. So any test case where 
-> audio driver is bound to i915, and test unloads i915 without unloading 
-> the audio driver first, will not work. Even if no immediate failure is 
-> seen at unload, functionality will be impacted after i915 is loaded 
-> again.
->
-> Not sure how to do this though. Normally module refcounts would take care
-> of this (and block i915 unload), but now that we have the component 
-> framework in between, something else is needed.
+The patch Chris pointed out was not part of 5.4 release. The commit
+message describes that it fixes the functions to be tolerant to
+running simultaneously. In doing that zeroing of ring->vaddr is
+removed so the test to do mdelay(1) and "ring->vaddr = NULL;" is
+not correct.
 
-Heh, had I known what to do, I'd have posted that. So I just opted for
-logging to make the failure mode obvious.
+I think you might have used the wrong git command for checking the
+patch history:
 
-I admit I didn't check what having an unbalanced get will actually
-do. If we go ahead and power down the power well, I assume it'll cripple
-the audio driver. I think our refcounting and power well handling should
-read the hardware state and set up everything properly on load, but the
-audio driver will have lost its marbles in the mean time. Even if by
-some chance it doesn't lose its power during i915 unload/load cycle, it
-won't have the component interface and can't ensure i915 doesn't go
-ahead and cut power later.
+$ git describe a266bf420060
+v5.4-rc7-1996-ga266bf420060 # after -rc7 tag
 
-BR,
-Jani.
+$ git describe --contains a266bf420060
+v5.6-rc1~34^2~21^2~326 # included in v5.6-rc1
 
+And git log to double check:
 
->
-> PS Audio driver also doesn't implement component unbind(), but I don't
->    immediately see what it could do there. It can't return an error
->    and the audio framework is not really prepared for invidual codec
->    drivers to disappear at runtime. We can handle hotplug of complete 
->    cards (like USB), but individual codec drivers are expected to stay loaded.
+$ git log --format=oneline kernel.org/stable/linux-5.4.y --grep="drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint"
+$ git log --format=oneline kernel.org/stable/linux-5.5.y --grep="drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint"
+0725d9a31869e6c80630e99da366ede2848295cc drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint
+$ git log --format=oneline kernel.org/stable/linux-5.6.y --grep="drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint"
+a754012b9f2323a5d640da7eb7b095ac3b8cd012 drm/i915/execlists: Leave resetting ring to intel_ring
+0725d9a31869e6c80630e99da366ede2848295cc drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint
+a266bf42006004306dd48a9082c35dfbff153307 drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+So it seems that the patch got pulled into v5.6 and has been backported
+to v5.5 but not v5.4.
+
+Could you try applying the patch to 5.4 and seeing if the problem
+persists?
+
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
