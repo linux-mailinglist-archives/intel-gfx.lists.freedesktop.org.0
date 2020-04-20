@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F031B158F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 21:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 991E71B1613
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 21:43:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD096E850;
-	Mon, 20 Apr 2020 19:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 548C989DC2;
+	Mon, 20 Apr 2020 19:43:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7112D6E84C;
- Mon, 20 Apr 2020 19:13:58 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20963990-1500050 for multiple; Mon, 20 Apr 2020 20:13:47 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0731F8997C;
+ Mon, 20 Apr 2020 19:43:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F422CA3C0D;
+ Mon, 20 Apr 2020 19:43:07 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xiyu Yang" <xiyuyang19@fudan.edu.cn>
+Date: Mon, 20 Apr 2020 19:43:07 -0000
+Message-ID: <158741178797.29875.17164306525289896991@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
-To: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Xiyu Yang <xiyuyang19@fudan.edu.cn>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158741002592.19285.15203193760043173103@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 20 Apr 2020 20:13:45 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Fix i915_address_space
- refcnt leak
+In-Reply-To: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Fix_i915=5Faddress=5Fspace_refcnt_leak?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,40 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn, kjlu@umn.edu,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Xiyu Yang (2020-04-20 06:41:54)
-> igt_ppgtt_pin_update() invokes i915_gem_context_get_vm_rcu(), which
-> returns a reference of the i915_address_space object to "vm" with
-> increased refcount.
-> 
-> When igt_ppgtt_pin_update() returns, "vm" becomes invalid, so the
-> refcount should be decreased to keep refcount balanced.
-> 
-> The reference counting issue happens in two exception handling paths of
-> igt_ppgtt_pin_update(). When i915_gem_object_create_internal() returns
-> IS_ERR, the refcnt increased by i915_gem_context_get_vm_rcu() is not
-> decreased, causing a refcnt leak.
-> 
-> Fix this issue by jumping to "out_vm" label when
-> i915_gem_object_create_internal() returns IS_ERR.
-> 
-> Fixes: 4049866f0913 ("drm/i915/selftests: huge page tests")
+== Series Details ==
 
-Actually,
-Fixes: a4e7ccdac38e ("drm/i915: Move context management under GEM")
+Series: drm/i915/selftests: Fix i915_address_space refcnt leak
+URL   : https://patchwork.freedesktop.org/series/76209/
+State : success
 
-> Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-> Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
+== Summary ==
 
-Other than that,
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+CI Bug Log - changes from CI_DRM_8333 -> Patchwork_17388
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17388 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8333 -> Patchwork_17388
+
+  CI-20190529: 20190529
+  CI_DRM_8333: 41471e3371f54d862860285f272a5c945520b546 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17388: 6677639835f4940d880cc8c411940198401b3ec2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6677639835f4 drm/i915/selftests: Fix i915_address_space refcnt leak
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
