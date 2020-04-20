@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7238C1B070C
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 13:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D041B0711
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 13:12:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D7F6E0D0;
-	Mon, 20 Apr 2020 11:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 548B16E509;
+	Mon, 20 Apr 2020 11:12:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B29D16E0D0
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 11:06:55 +0000 (UTC)
-IronPort-SDR: 73ref+9HXS8OBKbXFYFB4oftqxOYUSNhmCVA4z8Yj8UWoIzikvoV8ThMgbFNa72SXfAcoehqBJ
- 0BYmpHBpbPOg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 04:06:55 -0700
-IronPort-SDR: Fw8b0FCNGKTj+NAbyyTSMudoh6AtghcSnoxip9xm5J6f1RpJFfYpeU7aJYuDwGGGMCevHDNio/
- yrEpDaTfebrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="254906828"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga003.jf.intel.com with ESMTP; 20 Apr 2020 04:06:54 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 4484A5C3A0F; Mon, 20 Apr 2020 14:05:00 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200420090914.14679-2-chris@chris-wilson.co.uk>
-References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
- <20200420090914.14679-2-chris@chris-wilson.co.uk>
-Date: Mon, 20 Apr 2020 14:05:00 +0300
-Message-ID: <87v9lumn8j.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A49556E506;
+ Mon, 20 Apr 2020 11:12:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E880A3C0D;
+ Mon, 20 Apr 2020 11:12:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/selftests: Skip energy
- consumption tests if not controlling freq
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 20 Apr 2020 11:12:48 -0000
+Message-ID: <158738116861.29874.5897865883068735644@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/selftests=3A_Verify_freque?=
+ =?utf-8?q?ncy_scaling_with_RPS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,115 +39,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> If we can not manipulate the frequency with RPS, then comparing min/max
-> power consumption is pointless / misleading. We will leave the warning
-> about not being able to control the frequency selection via RPS to other
-> tests so as not to confuse this more specialised check.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_rps.c | 37 ++++++++++++++++----------
->  1 file changed, 23 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> index b1a435db1edc..149a3de86cb9 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> @@ -485,26 +485,21 @@ static u64 __measure_power(int duration_ms)
->  	return div64_u64(1000 * 1000 * dE, dt);
->  }
->  
-> -static u64 measure_power_at(struct intel_rps *rps, int freq)
-> +static u64 measure_power_at(struct intel_rps *rps, int *freq)
->  {
->  	u64 x[5];
->  	int i;
->  
->  	mutex_lock(&rps->lock);
->  	GEM_BUG_ON(!rps->active);
-> -	intel_rps_set(rps, freq);
-> +	intel_rps_set(rps, *freq);
->  	mutex_unlock(&rps->lock);
->  
->  	msleep(20); /* more than enough time to stabilise! */
->  
-> -	i = read_cagf(rps);
-> -	if (i != freq)
-> -		pr_notice("Running at %x [%uMHz], not target %x [%uMHz]\n",
-> -			  i, intel_gpu_freq(rps, i),
-> -			  freq, intel_gpu_freq(rps, freq));
-> -
->  	for (i = 0; i < 5; i++)
->  		x[i] = __measure_power(5);
-> +	*freq = read_cagf(rps);
->  
->  	/* A simple triangle filter for better result stability */
->  	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-> @@ -542,7 +537,10 @@ int live_rps_power(void *arg)
->  
->  	for_each_engine(engine, gt, id) {
->  		struct i915_request *rq;
-> -		u64 min, max;
-> +		struct {
-> +			u64 power;
-> +			int freq;
+Series: series starting with [1/4] drm/i915/selftests: Verify frequency scaling with RPS
+URL   : https://patchwork.freedesktop.org/series/76184/
+State : success
 
-Typelocking the hw reprentation might have some benefits.
+== Summary ==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+CI Bug Log - changes from CI_DRM_8327 -> Patchwork_17376
+====================================================
 
-> +		} min, max;
->  
->  		if (!intel_engine_can_store_dword(engine))
->  			continue;
-> @@ -565,16 +563,27 @@ int live_rps_power(void *arg)
->  			break;
->  		}
->  
-> -		max = measure_power_at(rps, rps->max_freq);
-> -		min = measure_power_at(rps, rps->min_freq);
-> +		max.freq = rps->max_freq;
-> +		max.power = measure_power_at(rps, &max.freq);
-> +
-> +		min.freq = rps->min_freq;
-> +		min.power = measure_power_at(rps, &min.freq);
->  
->  		igt_spinner_end(&spin);
->  
->  		pr_info("%s: min:%llumW @ %uMHz, max:%llumW @ %uMHz\n",
->  			engine->name,
-> -			min, intel_gpu_freq(rps, rps->min_freq),
-> -			max, intel_gpu_freq(rps, rps->max_freq));
-> -		if (11 * min > 10 * max) {
-> +			min.power, intel_gpu_freq(rps, min.freq),
-> +			max.power, intel_gpu_freq(rps, max.freq));
-> +
-> +		if (10 * min.freq >= 9 * max.freq) {
-> +			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
-> +				  min.freq, intel_gpu_freq(rps, min.freq),
-> +				  max.freq, intel_gpu_freq(rps, max.freq));
-> +			continue;
-> +		}
-> +
-> +		if (11 * min.power > 10 * max.power) {
->  			pr_err("%s: did not conserve power when setting lower frequency!\n",
->  			       engine->name);
->  			err = -EINVAL;
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17376:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@a-dsi1}:
+    - {fi-tgl-dsi}:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-wf_vblank@a-dsi1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-wf_vblank@a-dsi1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17376 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#203]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-skl-6770hq/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#1751])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-6600u:       [PASS][7] -> [DMESG-FAIL][8] ([i915#1751])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+    - fi-cfl-8109u:       [PASS][9] -> [DMESG-FAIL][10] ([i915#1751])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+    - fi-whl-u:           [PASS][11] -> [DMESG-FAIL][12] ([i915#1751])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [PASS][13] -> [SKIP][14] ([fdo#109271]) +5 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-skl-6770hq:      [PASS][15] -> [DMESG-WARN][16] ([i915#106])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-tgl-y:           [DMESG-FAIL][17] ([i915#1725]) -> [DMESG-FAIL][18] ([i915#1744])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8327/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#1725]: https://gitlab.freedesktop.org/drm/intel/issues/1725
+  [i915#1744]: https://gitlab.freedesktop.org/drm/intel/issues/1744
+  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+
+
+Participating hosts (49 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bdw-samus fi-byt-clapper fi-skl-6700k2 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8327 -> Patchwork_17376
+
+  CI-20190529: 20190529
+  CI_DRM_8327: 17e0a63ab93b19ea2bfccd9a0425c93e52a65246 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17376: 589884d12beb98e0c84eb0026628ccb93ed0b946 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+589884d12beb drm/i915/selftests: Split RPS frequency measurement
+affab98e14a6 drm/i915/selftests: Check RPS controls
+979f48e06a1c drm/i915/selftests: Skip energy consumption tests if not controlling freq
+27cd01ca67a5 drm/i915/selftests: Verify frequency scaling with RPS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17376/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
