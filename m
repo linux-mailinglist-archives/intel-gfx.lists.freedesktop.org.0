@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8841B0CFD
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 15:42:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 406B61B0DD7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 16:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B9B89FEC;
-	Mon, 20 Apr 2020 13:42:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F516E58E;
+	Mon, 20 Apr 2020 14:04:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA6C889FD1;
- Mon, 20 Apr 2020 13:42:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ABAACA47EA;
- Mon, 20 Apr 2020 13:42:52 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90736E58E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:04:43 +0000 (UTC)
+IronPort-SDR: 2BiFY+UODrjbfcQJYbbmEuLOrmckUWQ5h3iyPIobKZ+cSHaDi/QQ1ML3taEyaJ9BOVUcad9oyh
+ wK6/JE3Ei7tQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 07:04:43 -0700
+IronPort-SDR: /49YWqJQ0/Yl2VMUml1LGByeWRk0r1dXngsCShyBlYpKwJp8473XyCbmhHAfb6jm5IHl91apFo
+ /ALQcV+bx+HA==
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429136102"
+Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.63.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 07:04:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Apr 2020 17:04:37 +0300
+Message-Id: <20200420140438.14672-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 20 Apr 2020 13:42:52 -0000
-Message-ID: <158739017267.29873.16021650742585000593@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200420125356.26614-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200420125356.26614-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/gem=3A_Remove_objec?=
- =?utf-8?q?t=5Fis=5Flocked_assertion_from_unpin=5Ffrom=5Fdisplay=5Fplane?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/hdmi: remove unused
+ intel_hdmi_hdcp2_protocol()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +47,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Unused, hiding from the compiler warnings behind the inline keyword.
 
-Series: series starting with [1/2] drm/i915/gem: Remove object_is_locked assertion from unpin_from_display_plane
-URL   : https://patchwork.freedesktop.org/series/76194/
-State : warning
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-5b3ba577946c drm/i915/gem: Remove object_is_locked assertion from unpin_from_display_plane
--:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#14: 
-<4> [139.942851] WARN_ON(debug_locks && !lock_is_held(&(&((obj)->base.resv)->lock.base)->dep_map))
-
-total: 0 errors, 1 warnings, 0 checks, 20 lines checked
-390a508e9f1e drm/i915/gt: Move the late flush_submission in retire to the end
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9c058f7aa185..54412f79f0c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1750,12 +1750,6 @@ int intel_hdmi_hdcp2_capable(struct intel_digital_port *intel_dig_port,
+ 	return ret;
+ }
+ 
+-static inline
+-enum hdcp_wired_protocol intel_hdmi_hdcp2_protocol(void)
+-{
+-	return HDCP_PROTOCOL_HDMI;
+-}
+-
+ static const struct intel_hdcp_shim intel_hdmi_hdcp_shim = {
+ 	.write_an_aksv = intel_hdmi_hdcp_write_an_aksv,
+ 	.read_bksv = intel_hdmi_hdcp_read_bksv,
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
