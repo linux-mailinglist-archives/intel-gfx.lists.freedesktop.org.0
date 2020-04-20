@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B431B19DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 01:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EAAA1B1A18
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 01:26:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3C136E86A;
-	Mon, 20 Apr 2020 23:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED2E8876A;
+	Mon, 20 Apr 2020 23:26:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6DA786E868;
- Mon, 20 Apr 2020 23:00:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65F27A0099;
- Mon, 20 Apr 2020 23:00:52 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF4A8876A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 23:26:35 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20965406-1500050 
+ for multiple; Tue, 21 Apr 2020 00:26:20 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Apr 2020 00:26:18 +0100
+Message-Id: <20200420232618.10748-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Date: Mon, 20 Apr 2020 23:00:52 -0000
-Message-ID: <158742365238.29874.894275713486578448@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200415193535.14597-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200415193535.14597-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Wa=5F14011059788_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Prefer soft-rc6 over RPS
+ DOWN_TIMEOUT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +37,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The RPS DOWN_TIMEOUT interrupt is signaled after a period of rc6, and
+upon receipt of that interrupt we reprogram the GPU clocks down to the
+next idle notch [to help convserve power during rc6]. However, on
+execlists, we benefit from soft-rc6 immediately parking the GPU and
+setting idle frequencies upon idling [within a jiffie], and here the
+interrupt prevents us from restarting from our last frequency.
 
-Series: drm/i915/tgl: Wa_14011059788 (rev4)
-URL   : https://patchwork.freedesktop.org/series/75990/
-State : success
+In the process, we can simply opt for a static pm_events mask and rely
+on the enable/disable interrupts to flush the worker on parking.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 38 ++++++++++++++---------------
+ 1 file changed, 18 insertions(+), 20 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8335 -> Patchwork_17393
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 4dcfae16a7ce..1c5488f3a8d7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -57,7 +57,7 @@ static u32 rps_pm_mask(struct intel_rps *rps, u8 val)
+ 	if (val < rps->max_freq_softlimit)
+ 		mask |= GEN6_PM_RP_UP_EI_EXPIRED | GEN6_PM_RP_UP_THRESHOLD;
+ 
+-	mask &= READ_ONCE(rps->pm_events);
++	mask &= rps->pm_events;
+ 
+ 	return rps_pm_sanitize_mask(rps, ~mask);
+ }
+@@ -74,15 +74,6 @@ static void rps_enable_interrupts(struct intel_rps *rps)
+ 
+ 	rps_reset_ei(rps);
+ 
+-	if (IS_VALLEYVIEW(gt->i915))
+-		/* WaGsvRC0ResidencyMethod:vlv */
+-		events = GEN6_PM_RP_UP_EI_EXPIRED;
+-	else
+-		events = (GEN6_PM_RP_UP_THRESHOLD |
+-			  GEN6_PM_RP_DOWN_THRESHOLD |
+-			  GEN6_PM_RP_DOWN_TIMEOUT);
+-	WRITE_ONCE(rps->pm_events, events);
+-
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
+ 	spin_unlock_irq(&gt->irq_lock);
+@@ -919,12 +910,10 @@ static bool gen9_rps_enable(struct intel_rps *rps)
+ 		intel_uncore_write_fw(uncore, GEN6_RC_VIDEO_FREQ,
+ 				      GEN9_FREQUENCY(rps->rp1_freq));
+ 
+-	/* 1 second timeout */
+-	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT,
+-			      GT_INTERVAL_FROM_US(i915, 1000000));
+-
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 0xa);
+ 
++	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -935,12 +924,10 @@ static bool gen8_rps_enable(struct intel_rps *rps)
+ 	intel_uncore_write_fw(uncore, GEN6_RC_VIDEO_FREQ,
+ 			      HSW_FREQUENCY(rps->rp1_freq));
+ 
+-	/* NB: Docs say 1s, and 1000000 - which aren't equivalent */
+-	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT,
+-			      100000000 / 128); /* 1 second timeout */
+-
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
+ 
++	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -952,6 +939,10 @@ static bool gen6_rps_enable(struct intel_rps *rps)
+ 	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT, 50000);
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
+ 
++	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
++			  GEN6_PM_RP_DOWN_THRESHOLD |
++			  GEN6_PM_RP_DOWN_TIMEOUT);
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -1037,6 +1028,10 @@ static bool chv_rps_enable(struct intel_rps *rps)
+ 			      GEN6_RP_UP_BUSY_AVG |
+ 			      GEN6_RP_DOWN_IDLE_AVG);
+ 
++	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
++			  GEN6_PM_RP_DOWN_THRESHOLD |
++			  GEN6_PM_RP_DOWN_TIMEOUT);
++
+ 	/* Setting Fixed Bias */
+ 	vlv_punit_get(i915);
+ 
+@@ -1135,6 +1130,9 @@ static bool vlv_rps_enable(struct intel_rps *rps)
+ 			      GEN6_RP_UP_BUSY_AVG |
+ 			      GEN6_RP_DOWN_IDLE_CONT);
+ 
++	/* WaGsvRC0ResidencyMethod:vlv */
++	rps->pm_events = GEN6_PM_RP_UP_EI_EXPIRED;
++
+ 	vlv_punit_get(i915);
+ 
+ 	/* Setting Fixed Bias */
+@@ -1469,7 +1467,7 @@ static void rps_work(struct work_struct *work)
+ 	u32 pm_iir = 0;
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+-	pm_iir = fetch_and_zero(&rps->pm_iir) & READ_ONCE(rps->pm_events);
++	pm_iir = fetch_and_zero(&rps->pm_iir) & rps->pm_events;
+ 	client_boost = atomic_read(&rps->num_waiters);
+ 	spin_unlock_irq(&gt->irq_lock);
+ 
+@@ -1572,7 +1570,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	struct intel_gt *gt = rps_to_gt(rps);
+ 	u32 events;
+ 
+-	events = pm_iir & READ_ONCE(rps->pm_events);
++	events = pm_iir & rps->pm_events;
+ 	if (events) {
+ 		spin_lock(&gt->irq_lock);
+ 
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17393/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17393 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [INCOMPLETE][1] ([i915#1580]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8335/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17393/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-
-
-Participating hosts (51 -> 43)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8335 -> Patchwork_17393
-
-  CI-20190529: 20190529
-  CI_DRM_8335: ad015a5ae83e52e4eac4975e27c0db4d633345ce @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17393: 538b756324678b9b392e2b7edc1fe6e1e67194c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-538b75632467 drm/i915/tgl: Wa_14011059788
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17393/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
