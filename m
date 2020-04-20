@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07B51B0544
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 11:09:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14E01B054D
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 11:13:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5D76E48E;
-	Mon, 20 Apr 2020 09:09:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C407D6E497;
+	Mon, 20 Apr 2020 09:13:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 754FB6E266
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:09:22 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20956443-1500050 
- for multiple; Mon, 20 Apr 2020 10:09:17 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E0E6E497
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:13:23 +0000 (UTC)
+IronPort-SDR: dEY5uHoT3c07xNDABJ++BZQ3YmwN+iDRayqO0FyBBO89+UQ3NdnTk6EuaYYjddr0zGjH9IaOuO
+ JIQ7RjJyxlIg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 02:13:23 -0700
+IronPort-SDR: +jkeAvVhmHtUQWv9yvj3nsai1ACz4yrXEt6Dpq7MDBgLN8lWuosJTnXCRrzc458NF3YXcUSnrG
+ lWjhhyouTTUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="245306420"
+Received: from unknown (HELO delly.ger.corp.intel.com) ([10.252.46.74])
+ by fmsmga007.fm.intel.com with ESMTP; 20 Apr 2020 02:13:22 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Apr 2020 10:09:14 +0100
-Message-Id: <20200420090914.14679-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200420090914.14679-1-chris@chris-wilson.co.uk>
-References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+Date: Mon, 20 Apr 2020 12:13:20 +0300
+Message-Id: <20200420091320.427777-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/selftests: Split RPS frequency
- measurement
+Subject: [Intel-gfx] [PATCH v3] drm/i915: store HW tagging information into
+ tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,247 +51,119 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split the frequency measurement into two modes, so that we can judge the
-impact of the llc setup on top of the pure CS frequency scaling.
+In Gpuvis [1] we added matching of the OA report tags against i915
+tracepoints fields to figure what workload was submitted by what
+process. It doesn't matter much whether HW tags get reused for a
+single request, as it gets preempted for example. All we need is link
+between the OA report and seqno/engine over a short period of time.
+That is enough to find the relationship between the different elements
+on a timeline.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+The tags got removed from the tracepoints in 2935ed5339c4 ("drm/i915:
+Remove logical HW ID"). I was fine with the idea of reuse and dropping
+them from most tracepoints, but we still need it at execlist port
+insertion.
+
+This change brings the hw_id back just for the i915_request_in
+tracepoint.
+
+TODO: someone figures what Guc's putting in the upper 32bits of the
+      execlist port
+
+v2: s/hw_tag/hw_id/ to keep the old gpuvis code going
+
+v3: Don't store anything on i915_request
+
+[1] : https://github.com/mikesart/gpuvis/wiki/TechDocs-Intel#gpu-generated-countersevents
+
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: 2935ed5339c4 ("drm/i915: Remove logical HW ID")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c   | 157 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/gt/selftest_rps.h   |   3 +-
- 3 files changed, 154 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c               | 6 +++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
+ drivers/gpu/drm/i915/i915_trace.h                 | 8 +++++---
+ 3 files changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index de3eaef40596..9855e6f0ce7c 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -54,7 +54,8 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_rc6_manual),
- 		SUBTEST(live_rps_control),
--		SUBTEST(live_rps_frequency),
-+		SUBTEST(live_rps_frequency_cs),
-+		SUBTEST(live_rps_frequency_srm),
- 		SUBTEST(live_rps_power),
- 		SUBTEST(live_rps_interrupt),
- 		SUBTEST(live_gt_resume),
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 19fa6a561de3..dbca673519a2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -33,6 +33,7 @@ static int cmp_u64(const void *A, const void *B)
- static struct i915_vma *
- create_spin_counter(struct intel_engine_cs *engine,
- 		    struct i915_address_space *vm,
-+		    bool srm,
- 		    u32 **cancel,
- 		    u32 **counter)
- {
-@@ -91,10 +92,12 @@ create_spin_counter(struct intel_engine_cs *engine,
- 	*cs++ = MI_MATH_ADD;
- 	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 6fbad5e2343f..58970099db25 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1278,7 +1278,6 @@ execlists_schedule_in(struct i915_request *rq, int idx)
+ 	struct intel_engine_cs *old;
  
--	*cs++ = MI_STORE_REGISTER_MEM_GEN8;
--	*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
--	*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
--	*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
-+	if (srm) {
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
-+		*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
-+		*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
-+		*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
-+	}
+ 	GEM_BUG_ON(!intel_engine_pm_is_awake(rq->engine));
+-	trace_i915_request_in(rq, idx);
  
- 	*cs++ = MI_BATCH_BUFFER_START_GEN8;
- 	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
-@@ -103,7 +106,7 @@ create_spin_counter(struct intel_engine_cs *engine,
- 	i915_gem_object_flush_map(obj);
+ 	old = READ_ONCE(ce->inflight);
+ 	do {
+@@ -1288,6 +1287,11 @@ execlists_schedule_in(struct i915_request *rq, int idx)
+ 		}
+ 	} while (!try_cmpxchg(&ce->inflight, &old, ptr_inc(old)));
  
- 	*cancel = base + loop;
--	*counter = memset32(base + 1000, 0, 1);
-+	*counter = srm ? memset32(base + 1000, 0, 1) : NULL;
- 	return vma;
- }
- 
-@@ -301,12 +304,152 @@ static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
- 	return div_u64(x[1] + 2 * x[2] + x[3], 4);
- }
- 
-+static u64 __measure_cs_frequency(struct intel_engine_cs *engine,
-+				  int duration_ms)
-+{
-+	u64 dc, dt;
-+
-+	dt = ktime_get();
-+	dc = intel_uncore_read_fw(engine->uncore, CS_GPR(0));
-+	usleep_range(1000 * duration_ms, 2000 * duration_ms);
-+	dc = intel_uncore_read_fw(engine->uncore, CS_GPR(0)) - dc;
-+	dt = ktime_get() - dt;
-+
-+	return div64_u64(1000 * 1000 * dc, dt);
-+}
-+
-+static u64 measure_cs_frequency_at(struct intel_rps *rps,
-+				   struct intel_engine_cs *engine,
-+				   int *freq)
-+{
-+	u64 x[5];
-+	int i;
-+
-+	*freq = rps_set_check(rps, *freq);
-+	for (i = 0; i < 5; i++)
-+		x[i] = __measure_cs_frequency(engine, 2);
-+	*freq = (*freq + read_cagf(rps)) / 2;
-+
-+	/* A simple triangle filter for better result stability */
-+	sort(x, 5, sizeof(*x), cmp_u64, NULL);
-+	return div_u64(x[1] + 2 * x[2] + x[3], 4);
-+}
-+
- static bool scaled_within(u64 x, u64 y, u32 f_n, u32 f_d)
- {
- 	return f_d * x > f_n * y && f_n * x < f_d * y;
- }
- 
--int live_rps_frequency(void *arg)
-+int live_rps_frequency_cs(void *arg)
-+{
-+	void (*saved_work)(struct work_struct *wrk);
-+	struct intel_gt *gt = arg;
-+	struct intel_rps *rps = &gt->rps;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
 +	/*
-+	 * The premise is that the GPU does change freqency at our behest.
-+	 * Let's check there is a correspondence between the requested
-+	 * frequency, the actual frequency, and the observed clock rate.
++	 * Emit the tracepoint once the ce->lrc_desc has been updated.
 +	 */
++	trace_i915_request_in(rq, idx, ce->lrc_desc >> 32);
 +
-+	if (!rps->enabled || rps->max_freq <= rps->min_freq)
-+		return 0;
-+
-+	if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
-+		return 0;
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	saved_work = rps->work.func;
-+	rps->work.func = dummy_rps_work;
-+
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+		struct i915_vma *vma;
-+		u32 *cancel, *cntr;
-+		struct {
-+			u64 count;
-+			int freq;
-+		} min, max;
-+
-+		vma = create_spin_counter(engine,
-+					  engine->kernel_context->vm, false,
-+					  &cancel, &cntr);
-+		if (IS_ERR(vma)) {
-+			err = PTR_ERR(vma);
-+			break;
-+		}
-+
-+		rq = intel_engine_create_kernel_request(engine);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_vma;
-+		}
-+
-+		i915_vma_lock(vma);
-+		err = i915_request_await_object(rq, vma->obj, false);
-+		if (!err)
-+			err = i915_vma_move_to_active(vma, rq, 0);
-+		if (!err)
-+			err = rq->engine->emit_bb_start(rq,
-+							vma->node.start,
-+							PAGE_SIZE, 0);
-+		i915_vma_unlock(vma);
-+		i915_request_add(rq);
-+		if (err)
-+			goto err_vma;
-+
-+		if (wait_for(intel_uncore_read(engine->uncore, CS_GPR(0)),
-+			     10)) {
-+			pr_err("%s: timed loop did not start\n",
-+			       engine->name);
-+			goto err_vma;
-+		}
-+
-+		min.freq = rps->min_freq;
-+		min.count = measure_cs_frequency_at(rps, engine, &min.freq);
-+
-+		max.freq = rps->max_freq;
-+		max.count = measure_cs_frequency_at(rps, engine, &max.freq);
-+
-+		pr_info("%s: min:%lluKHz @ %uMHz, max:%lluKHz @ %uMHz [%d%%]\n",
-+			engine->name,
-+			min.count, intel_gpu_freq(rps, min.freq),
-+			max.count, intel_gpu_freq(rps, max.freq),
-+			(int)DIV64_U64_ROUND_CLOSEST(100 * min.freq * max.count,
-+						     max.freq * min.count));
-+
-+		if (!scaled_within(max.freq * min.count,
-+				   min.freq * max.count,
-+				   2, 3)) {
-+			pr_err("%s: CS did not scale with frequency! scaled min:%llu, max:%llu\n",
-+			       engine->name,
-+			       max.freq * min.count,
-+			       min.freq * max.count);
-+			err = -EINVAL;
-+		}
-+
-+err_vma:
-+		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_unpin_map(vma->obj);
-+		i915_vma_unpin(vma);
-+		i915_vma_put(vma);
-+
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			break;
-+	}
-+
-+	intel_gt_pm_wait_for_idle(gt);
-+	rps->work.func = saved_work;
-+
-+	return err;
-+}
-+
-+int live_rps_frequency_srm(void *arg)
+ 	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
+ 	return i915_request_get(rq);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index fe7778c28d2d..fd3d63d720d9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -263,7 +263,8 @@ static inline int rq_prio(const struct i915_request *rq)
+ 
+ static struct i915_request *schedule_in(struct i915_request *rq, int idx)
  {
- 	void (*saved_work)(struct work_struct *wrk);
- 	struct intel_gt *gt = arg;
-@@ -341,7 +484,7 @@ int live_rps_frequency(void *arg)
- 		} min, max;
+-	trace_i915_request_in(rq, idx);
++	trace_i915_request_in(rq, idx,
++			      0 /* TODO: figure out what value GuC chooses */);
  
- 		vma = create_spin_counter(engine,
--					  engine->kernel_context->vm,
-+					  engine->kernel_context->vm, true,
- 					  &cancel, &cntr);
- 		if (IS_ERR(vma)) {
- 			err = PTR_ERR(vma);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
-index be0bf8e3f639..22e46c5341c5 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
-@@ -7,7 +7,8 @@
- #define SELFTEST_RPS_H
+ 	/*
+ 	 * Currently we are not tracking the rq->context being inflight
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index bc854ad60954..3a36adb8094b 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -790,7 +790,7 @@ DEFINE_EVENT(i915_request, i915_request_execute,
+ );
  
- int live_rps_control(void *arg);
--int live_rps_frequency(void *arg);
-+int live_rps_frequency_cs(void *arg);
-+int live_rps_frequency_srm(void *arg);
- int live_rps_interrupt(void *arg);
- int live_rps_power(void *arg);
+ TRACE_EVENT(i915_request_in,
+-	    TP_PROTO(struct i915_request *rq, unsigned int port),
++	    TP_PROTO(struct i915_request *rq, unsigned int port, u32 hw_id),
+ 	    TP_ARGS(rq, port),
  
+ 	    TP_STRUCT__entry(
+@@ -801,6 +801,7 @@ TRACE_EVENT(i915_request_in,
+ 			     __field(u32, seqno)
+ 			     __field(u32, port)
+ 			     __field(s32, prio)
++			     __field(u32, hw_id)
+ 			    ),
+ 
+ 	    TP_fast_assign(
+@@ -811,12 +812,13 @@ TRACE_EVENT(i915_request_in,
+ 			   __entry->seqno = rq->fence.seqno;
+ 			   __entry->prio = rq->sched.attr.priority;
+ 			   __entry->port = port;
++			   __entry->hw_id = hw_id;
+ 			   ),
+ 
+-	    TP_printk("dev=%u, engine=%u:%u, ctx=%llu, seqno=%u, prio=%d, port=%u",
++	    TP_printk("dev=%u, engine=%u:%u, ctx=%llu, seqno=%u, prio=%d, port=%u hw_id=%u",
+ 		      __entry->dev, __entry->class, __entry->instance,
+ 		      __entry->ctx, __entry->seqno,
+-		      __entry->prio, __entry->port)
++		      __entry->prio, __entry->port, __entry->hw_id)
+ );
+ 
+ TRACE_EVENT(i915_request_out,
 -- 
-2.20.1
+2.26.1
 
 _______________________________________________
 Intel-gfx mailing list
