@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30ED31B000E
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 05:00:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C93A31B0012
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 05:01:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A11A6E132;
-	Mon, 20 Apr 2020 03:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBB26E13F;
+	Mon, 20 Apr 2020 03:01:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2258 seconds by postgrey-1.36 at gabe;
- Mon, 20 Apr 2020 03:00:22 UTC
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50DEC6E132
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 03:00:22 +0000 (UTC)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
- [147.11.189.40])
- by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03K2Lj1k000897
- (version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
- Sun, 19 Apr 2020 19:22:06 -0700
-Received: from [128.224.162.157] (128.224.162.157) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0;
- Sun, 19 Apr 2020 19:21:47 -0700
-Message-ID: <5E9D073A.2080002@windriver.com>
-Date: Mon, 20 Apr 2020 10:21:46 +0800
-From: Liwei Song <liwei.song@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 544506E139;
+ Mon, 20 Apr 2020 03:01:26 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 495BKr4jMzz9sR4;
+ Mon, 20 Apr 2020 13:01:19 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1587351684;
+ bh=EXvHwasEn6ueQoK02J1mxsjP8ImqNeLDZvYXLJk2orA=;
+ h=Date:From:To:Cc:Subject:From;
+ b=emt3bcMEsDH5vmmqPQiBP3gcl4rZHI2up2/XiFFrXibOgLWmBkjo+PkAj1R8ZlrAd
+ 1RMeRnfmHGBvQdZPtQtH8G8Utleb4/HOXfPQQJTod4Zmv3eup++c3+RNNCDE9+z+Aq
+ 755auWX6RjVrl6kbA/GF8KE6h8F28n2BTiBzPzX//KSZQY/mv7VANCGECvrtSujneH
+ zcErS5NPGkztXzUutCEdkdZYVJ4YRWiWvmK9lkHmFt6JCNq4P84jr6NoxHALEhxlDV
+ Zy3gCI1iJJY+fLDdmE6e35l1wf9AwTFrsiqBUHoLzIHQ3VuZrQO1fQMr1vIxsVMooN
+ ew1DR6lx31usQ==
+Date: Mon, 20 Apr 2020 13:01:18 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200420130118.7a866fd5@canb.auug.org.au>
 MIME-Version: 1.0
-To: Chris Wilson <chris@chris-wilson.co.uk>, <intel-gfx@lists.freedesktop.org>
-References: <20200417094940.37744-1-liwei.song@windriver.com>
- <158713114959.2062.884298694974315914@build.alporthouse.com>
-In-Reply-To: <158713114959.2062.884298694974315914@build.alporthouse.com>
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel v2] Sync i915_pciids upto
- 8717c6b7414f
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,37 +48,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Content-Type: multipart/mixed; boundary="===============0611781532=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0611781532==
+Content-Type: multipart/signed; boundary="Sig_/TQAAgXi.j+9sTT+m4qv9GoZ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
+--Sig_/TQAAgXi.j+9sTT+m4qv9GoZ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On 04/17/2020 09:45 PM, Chris Wilson wrote:
->> diff --git a/src/intel_module.c b/src/intel_module.c
->> > index a71c2e40b774..e0b94c190254 100644
->> > --- a/src/intel_module.c
->> > +++ b/src/intel_module.c
->> > @@ -357,7 +357,7 @@ static const struct pci_id_match intel_device_match[] = {
->> >         INTEL_I945GM_IDS(&intel_i945_info),
->> >  
->> >         INTEL_G33_IDS(&intel_g33_info),
->> > -       INTEL_PINEVIEW_IDS(&intel_g33_info),
->> > +       INTEL_PINEVIEW_G_IDS(&intel_g33_info),
->> >  
->> >         INTEL_I965G_IDS(&intel_i965_info),
->> >         INTEL_I965GM_IDS(&intel_i965_info),
-> But no new info blocks?
+Hi all,
 
-Got it, will add them according i915_pciids.h in V3.
+After merging the drm-misc tree, today's linux-next build (powerpc
+allyesconfig) failed like this:
 
-Thanks,
-Liwei.
+drivers/video/fbdev/controlfb.c: In function 'controlfb_mmap':
+drivers/video/fbdev/controlfb.c:756:23: error: implicit declaration of func=
+tion 'pgprot_cached_wthru'; did you mean 'pgprot_cached'? [-Werror=3Dimplic=
+it-function-declaration]
+  756 |   vma->vm_page_prot =3D pgprot_cached_wthru(vma->vm_page_prot);
+      |                       ^~~~~~~~~~~~~~~~~~~
+      |                       pgprot_cached
+drivers/video/fbdev/controlfb.c:756:23: error: incompatible types when assi=
+gning to type 'pgprot_t' {aka 'struct <anonymous>'} from type 'int'
 
+Presumably exposed by commit
 
-> -Chris
+  a07a63b0e24d ("video: fbdev: controlfb: add COMPILE_TEST support")
+
+I just turned off COMPILE_TEST again for today.  Please let me know when
+this is fixed.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/TQAAgXi.j+9sTT+m4qv9GoZ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6dEH4ACgkQAVBC80lX
+0GzkQAf+NYTRus1sYkOm7D8jCQ3yofQuSbktV19Rv+ynryJTfHkb6cncymKSaDyM
+u/nzABHVAnKABm7hjUQrJTTmXD7j5irg0YcFgTlwM4mTTNol7vMQvVio7lDfS2bm
+4F7rdrvgzTQWn8sMrKhc5QLDzdVOUZJl30Z2Iov3ddDoZ+g4JAGIej6tSJGX6Gs+
+xMnI3MowjKR1eU+3rp2r+mtQpahSBQYI9uFFaSQasS1PEq955Zc7ifGi6laYjHfQ
+ozoTfzEK934KVOG1vCCQt44XacBr6ek9o2wHcn3ZAuf0Eco4n1DUI6qzAvi9P5XX
+YtoxihgKOyJtuHOi7E+w7cwvs8oM5w==
+=2xmG
+-----END PGP SIGNATURE-----
+
+--Sig_/TQAAgXi.j+9sTT+m4qv9GoZ--
+
+--===============0611781532==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0611781532==--
