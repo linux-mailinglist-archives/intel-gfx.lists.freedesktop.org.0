@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7E01B0601
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 11:52:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA8CC1B0619
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 12:00:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1316E4BA;
-	Mon, 20 Apr 2020 09:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0A26E4B7;
+	Mon, 20 Apr 2020 10:00:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4226E4C1
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:52:56 +0000 (UTC)
-IronPort-SDR: E6oBMxENCB766r8b/mDpsl4l06wsRYZ7x0DQ9KOZFffTLLjAyoUeT4uAJsIY2eUK/HdFoyRQb4
- sDcSSeo1mAnQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 02:52:55 -0700
-IronPort-SDR: TJ0JS6/44NyBStoR0/5tUf4jCldJO+ylFw/jXd5c2lNbQKmD5v99GmWH7e0M7S93tzxzPf3x3f
- U5rNYCMBGPyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429065164"
-Received: from unknown (HELO karthik-2012-Client-Platform.iind.intel.com)
- ([10.223.74.208])
- by orsmga005.jf.intel.com with ESMTP; 20 Apr 2020 02:52:53 -0700
-From: Karthik B S <karthik.b.s@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Apr 2020 15:17:46 +0530
-Message-Id: <20200420094746.20409-7-karthik.b.s@intel.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200420094746.20409-1-karthik.b.s@intel.com>
-References: <20200420094746.20409-1-karthik.b.s@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E3BF96E1F9;
+ Mon, 20 Apr 2020 10:00:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD825A011A;
+ Mon, 20 Apr 2020 10:00:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915: Do not call
- drm_crtc_arm_vblank_event in async flips
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 20 Apr 2020 10:00:24 -0000
+Message-ID: <158737682487.29874.4293441957745948511@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200420091320.427777-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200420091320.427777-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_store_HW_tagging_information_into_tracepoints_=28rev?=
+ =?utf-8?q?3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,40 +39,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the flip done event will be sent in the flip_done_handler,
-no need to add the event to the list and delay it for later.
-
-v2: -Moved the async check above vblank_get as it
-     was causing issues for PSR.
-
-Signed-off-by: Karthik B S <karthik.b.s@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 0000ec7055f7..9b9f29768336 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -205,7 +205,7 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
- 	 * while ... */
--	if (new_crtc_state->uapi.event) {
-+	if (new_crtc_state->uapi.event && !new_crtc_state->uapi.async_flip) {
- 		drm_WARN_ON(&dev_priv->drm,
- 			    drm_crtc_vblank_get(&crtc->base) != 0);
- 
--- 
-2.22.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IHN0b3JlIEhXIHRhZ2dpbmcg
+aW5mb3JtYXRpb24gaW50byB0cmFjZXBvaW50cyAocmV2MykKVVJMICAgOiBodHRwczovL3BhdGNo
+d29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzc1ODQ5LwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1
+bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3Jp
+cHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAgICAg
+aW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9scmMubwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYzogSW4g
+ZnVuY3Rpb24g4oCYZXhlY2xpc3RzX3NjaGVkdWxlX2lu4oCZOgpkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9scmMuYzoxMjkzOjI6IGVycm9yOiB0b28gbWFueSBhcmd1bWVudHMgdG8gZnVu
+Y3Rpb24g4oCYdHJhY2VfaTkxNV9yZXF1ZXN0X2lu4oCZCiAgdHJhY2VfaTkxNV9yZXF1ZXN0X2lu
+KHJxLCBpZHgsIGNlLT5scmNfZGVzYyA+PiAzMik7CiAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+Cklu
+IGZpbGUgaW5jbHVkZWQgZnJvbSBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYzox
+Mzg6MDoKLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3RyYWNlLmg6ODY0OjE6IG5vdGU6IGRl
+Y2xhcmVkIGhlcmUKIHRyYWNlX2k5MTVfcmVxdWVzdF9pbihzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpy
+cSwgdW5zaWduZWQgaW50IHBvcnQpCiBefn5+fn5+fn5+fn5+fn5+fn5+fn4Kc2NyaXB0cy9NYWtl
+ZmlsZS5idWlsZDoyNjY6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF9scmMubycgZmFpbGVkCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfbHJjLm9dIEVycm9yIDEKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0ODg6IHJlY2lw
+ZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNScgZmFpbGVkCm1ha2VbM106ICoqKiBb
+ZHJpdmVycy9ncHUvZHJtL2k5MTVdIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0ODg6
+IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0nIGZhaWxlZAptYWtlWzJdOiAqKiog
+W2RyaXZlcnMvZ3B1L2RybV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ4ODogcmVj
+aXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1JyBmYWlsZWQKbWFrZVsxXTogKioqIFtkcml2ZXJz
+L2dwdV0gRXJyb3IgMgpNYWtlZmlsZToxNzIyOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycycg
+ZmFpbGVkCm1ha2U6ICoqKiBbZHJpdmVyc10gRXJyb3IgMgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
