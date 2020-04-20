@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE52A1B01A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 08:38:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FCA1B01AF
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 08:40:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93CA86E17A;
-	Mon, 20 Apr 2020 06:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAB66E187;
+	Mon, 20 Apr 2020 06:40:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A76C16E17A;
- Mon, 20 Apr 2020 06:38:24 +0000 (UTC)
-IronPort-SDR: hZvM5kkfBMUYD5mixv+p1wuG0njNzKz4r9XyjZDKkRiqCJjEB4yPpYf5ro1p2gdT+ldFu4eERa
- bm2WJioqKJ6Q==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCED16E187
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 06:40:22 +0000 (UTC)
+IronPort-SDR: YjiloS2EVZcWkCqpSMGmu78t7cZDzVQcppekjtWQAdqPPK8ckPv3kWWvjZ6i+hiaJElDK31v4h
+ 3lnR/9iq4ezQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2020 23:38:24 -0700
-IronPort-SDR: VqXD211QAZJQ3zpsTOyH5HXnvobtaIYA2bXucuz8FngXeJqaUI1SXQ8VgagJ19MIhM6j41E+Cf
- iPWYL/X5yKHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="258244658"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by orsmga006.jf.intel.com with ESMTP; 19 Apr 2020 23:38:22 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1jQQ4T-000EJh-LB; Mon, 20 Apr 2020 14:38:21 +0800
-Date: Mon, 20 Apr 2020 14:38:00 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <202004201447.vY97AUaU%lkp@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2020 23:40:22 -0700
+IronPort-SDR: 7Z1WIDqCXIk9cJcY0cwy1iM4Kqhl0MEFAKKOacGH+tlbKSVfyJH9Xeg9Px7gAxmwY40Ng6DGD0
+ PTHrREsdykLw==
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429011459"
+Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.63.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2020 23:40:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158713249868.2062.16583016796681686099@build.alporthouse.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200417130109.12791-1-jani.nikula@intel.com>
+ <158713249868.2062.16583016796681686099@build.alporthouse.com>
+Date: Mon, 20 Apr 2020 09:40:18 +0300
+Message-ID: <878siq3bjh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 18/20] init/Kconfig:80:
- symbol BROKEN is selected by DRM_I915_DEBUG
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix Sphinx build duplicate label
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,66 +49,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
-head:   d0435a9b45070b945578c093dcd363b6b73a502c
-commit: 198db0fc276cdf8e1bb66a4a03473dbea1400d18 [18/20] Revert "drm/i915: Don't select BROKEN"
-config: powerpc-mvme5100_defconfig
-compiler: powerpc-linux-gcc (GCC) 9.3.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git checkout 198db0fc276cdf8e1bb66a4a03473dbea1400d18
-        COMPILER_INSTALL_PATH=$HOME/0day GCC_VERSION=9.3.0 make.cross ARCH=powerpc  mvme5100_defconfig
-        COMPILER_INSTALL_PATH=$HOME/0day GCC_VERSION=9.3.0 make.cross ARCH=powerpc 
+On Fri, 17 Apr 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Quoting Jani Nikula (2020-04-17 14:01:09)
+>> Fix the warning caused by enabling the autosectionlabel extension in the
+>> kernel Sphinx build:
+>> 
+>> Documentation/gpu/i915.rst:610: WARNING: duplicate label
+>> gpu/i915:layout, other instance in Documentation/gpu/i915.rst
+>> 
+>> In the warning message, Sphinx is unable to reference the labels in
+>> their true locations in the kernel-doc comments in source. In this case,
+>> there's "Layout" sections in both gt/intel_workarounds.c and
+>> i915_reg.h. Rename the section in the latter to "File Layout".
+>> 
+>> Fixes: 58ad30cf91f0 ("docs: fix reference to core-api/namespaces.rst")
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed is probably too strong, but I comprehend your problem
+> statement, if not entirely grokking Sphinx,
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kbuild test robot <lkp@intel.com>
+Thanks for the review, pushed with some more explanation of the exact
+failure mode added to the commit message.
 
-All errors (new ones prefixed by >>):
+BR,
+Jani.
 
->> arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
-   arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
->> init/Kconfig:83: symbol BROKEN_ON_SMP depends on BROKEN
->> init/Kconfig:80: symbol BROKEN is selected by DRM_I915_DEBUG
->> drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
->> drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
->> drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
->> drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
-   drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
->> drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
->> drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
-   arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
-   For a resolution refer to Documentation/kbuild/kconfig-language.rst
-   subsection "Kconfig recursive dependency limitations"
-
-vim +80 init/Kconfig
-
-^1da177e4c3f41 Linus Torvalds 2005-04-16  79  
-^1da177e4c3f41 Linus Torvalds 2005-04-16 @80  config BROKEN
-^1da177e4c3f41 Linus Torvalds 2005-04-16  81  	bool
-^1da177e4c3f41 Linus Torvalds 2005-04-16  82  
-^1da177e4c3f41 Linus Torvalds 2005-04-16 @83  config BROKEN_ON_SMP
-^1da177e4c3f41 Linus Torvalds 2005-04-16  84  	bool
-^1da177e4c3f41 Linus Torvalds 2005-04-16  85  	depends on BROKEN || !SMP
-^1da177e4c3f41 Linus Torvalds 2005-04-16  86  	default y
-^1da177e4c3f41 Linus Torvalds 2005-04-16  87  
-
-:::::: The code at line 80 was first introduced by commit
-:::::: 1da177e4c3f41524e886b7f1b8a0c1fc7321cac2 Linux-2.6.12-rc2
-
-:::::: TO: Linus Torvalds <torvalds@ppc970.osdl.org>
-:::::: CC: Linus Torvalds <torvalds@ppc970.osdl.org>
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
