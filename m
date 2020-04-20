@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1A51B1228
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 18:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 728201B124E
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 18:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9FF46E81B;
-	Mon, 20 Apr 2020 16:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3F66E81A;
+	Mon, 20 Apr 2020 16:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 81FCE6E819;
- Mon, 20 Apr 2020 16:46:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72133A47E0;
- Mon, 20 Apr 2020 16:46:35 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDA246E81A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 16:53:16 +0000 (UTC)
+IronPort-SDR: Qi2xRc7S7yxTODnQ9g+001+d6SnWudDt18XO6k9quUwkY06xRjOuRfAC6d0vkOdr28xxyQhnIl
+ BRqredg26yOw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 09:53:04 -0700
+IronPort-SDR: oMYyGBeZm/ePwOmz052/cuDEo6Dkz4v6iS+u7V3SNFfFcWcFrg1uClIzvXR6xpqPf/F9bHDxUs
+ b4Bptk+ovTeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,407,1580803200"; d="scan'208";a="246944008"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 20 Apr 2020 09:53:03 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id E19D15C3A0F; Mon, 20 Apr 2020 19:51:09 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200420090914.14679-4-chris@chris-wilson.co.uk>
+References: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+ <20200420090914.14679-4-chris@chris-wilson.co.uk>
+Date: Mon, 20 Apr 2020 19:51:09 +0300
+Message-ID: <87lfmqm77m.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 20 Apr 2020 16:46:35 -0000
-Message-ID: <158740119543.29875.7497010823240150728@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200420105846.16287-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200420105846.16287-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Poison_residual_state_=5BHWSP=5D_across_resume=2E_?=
- =?utf-8?b?KHJldjMp?=
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/selftests: Split RPS frequency
+ measurement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,186 +49,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915/gt: Poison residual state [HWSP] across resume. (rev3)
-URL   : https://patchwork.freedesktop.org/series/76100/
-State : success
+> Split the frequency measurement into two modes, so that we can judge the
+> impact of the llc setup on top of the pure CS frequency scaling.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
+>  drivers/gpu/drm/i915/gt/selftest_rps.c   | 157 ++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/gt/selftest_rps.h   |   3 +-
+>  3 files changed, 154 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> index de3eaef40596..9855e6f0ce7c 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> @@ -54,7 +54,8 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
+>  	static const struct i915_subtest tests[] = {
+>  		SUBTEST(live_rc6_manual),
+>  		SUBTEST(live_rps_control),
+> -		SUBTEST(live_rps_frequency),
+> +		SUBTEST(live_rps_frequency_cs),
+> +		SUBTEST(live_rps_frequency_srm),
+>  		SUBTEST(live_rps_power),
+>  		SUBTEST(live_rps_interrupt),
+>  		SUBTEST(live_gt_resume),
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> index 19fa6a561de3..dbca673519a2 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> @@ -33,6 +33,7 @@ static int cmp_u64(const void *A, const void *B)
+>  static struct i915_vma *
+>  create_spin_counter(struct intel_engine_cs *engine,
+>  		    struct i915_address_space *vm,
+> +		    bool srm,
+>  		    u32 **cancel,
+>  		    u32 **counter)
+>  {
+> @@ -91,10 +92,12 @@ create_spin_counter(struct intel_engine_cs *engine,
+>  	*cs++ = MI_MATH_ADD;
+>  	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
+>  
+> -	*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+> -	*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
+> -	*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> -	*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> +	if (srm) {
+> +		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+> +		*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
+> +		*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> +		*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
+> +	}
+>  
+>  	*cs++ = MI_BATCH_BUFFER_START_GEN8;
+>  	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
+> @@ -103,7 +106,7 @@ create_spin_counter(struct intel_engine_cs *engine,
+>  	i915_gem_object_flush_map(obj);
+>  
+>  	*cancel = base + loop;
+> -	*counter = memset32(base + 1000, 0, 1);
+> +	*counter = srm ? memset32(base + 1000, 0, 1) : NULL;
 
-== Summary ==
+Ok hmm you want a blowout on wrong usage. Fair enough.
 
-CI Bug Log - changes from CI_DRM_8328_full -> Patchwork_17380_full
-====================================================
+>  	return vma;
+>  }
+>  
+> @@ -301,12 +304,152 @@ static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
+>  	return div_u64(x[1] + 2 * x[2] + x[3], 4);
+>  }
+>  
+> +static u64 __measure_cs_frequency(struct intel_engine_cs *engine,
+> +				  int duration_ms)
+> +{
+> +	u64 dc, dt;
+> +
+> +	dt = ktime_get();
+> +	dc = intel_uncore_read_fw(engine->uncore, CS_GPR(0));
+> +	usleep_range(1000 * duration_ms, 2000 * duration_ms);
+> +	dc = intel_uncore_read_fw(engine->uncore, CS_GPR(0)) - dc;
 
-Summary
--------
+Ok, again you measure active engine and getwaway with this.
 
-  **SUCCESS**
+On the basis that you want minimal impact on the observed
+engine,
 
-  No regressions found.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17380_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_workarounds@suspend-resume:
-    - shard-skl:          [PASS][1] -> [INCOMPLETE][2] ([i915#69])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-skl5/igt@gem_workarounds@suspend-resume.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-skl3/igt@gem_workarounds@suspend-resume.html
-
-  * igt@kms_big_fb@linear-32bpp-rotate-0:
-    - shard-kbl:          [PASS][3] -> [FAIL][4] ([i915#1119] / [i915#93] / [i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-kbl4/igt@kms_big_fb@linear-32bpp-rotate-0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-kbl3/igt@kms_big_fb@linear-32bpp-rotate-0.html
-    - shard-apl:          [PASS][5] -> [FAIL][6] ([i915#1119] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-apl1/igt@kms_big_fb@linear-32bpp-rotate-0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-apl6/igt@kms_big_fb@linear-32bpp-rotate-0.html
-
-  * igt@kms_cursor_legacy@all-pipes-torture-bo:
-    - shard-tglb:         [PASS][7] -> [DMESG-WARN][8] ([i915#128])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-tglb5/igt@kms_cursor_legacy@all-pipes-torture-bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-tglb8/igt@kms_cursor_legacy@all-pipes-torture-bo.html
-
-  * igt@kms_cursor_legacy@cursor-vs-flip-toggle:
-    - shard-hsw:          [PASS][9] -> [FAIL][10] ([i915#57])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-hsw7/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-hsw6/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
-
-  * igt@kms_cursor_legacy@pipe-b-torture-bo:
-    - shard-kbl:          [PASS][11] -> [DMESG-WARN][12] ([i915#128])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-kbl3/igt@kms_cursor_legacy@pipe-b-torture-bo.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-kbl4/igt@kms_cursor_legacy@pipe-b-torture-bo.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-apl:          [PASS][13] -> [DMESG-WARN][14] ([i915#180]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-apl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-apl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][15] -> [FAIL][16] ([fdo#108145] / [i915#265])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_plane_move:
-    - shard-iclb:         [PASS][17] -> [SKIP][18] ([fdo#109441]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-iclb1/igt@kms_psr@psr2_cursor_plane_move.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_mmap_gtt@flink-race:
-    - shard-tglb:         [INCOMPLETE][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-tglb3/igt@gem_mmap_gtt@flink-race.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-tglb6/igt@gem_mmap_gtt@flink-race.html
-
-  * igt@i915_suspend@fence-restore-tiled2untiled:
-    - shard-apl:          [DMESG-WARN][21] ([i915#180] / [i915#95]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-apl4/igt@i915_suspend@fence-restore-tiled2untiled.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-apl3/igt@i915_suspend@fence-restore-tiled2untiled.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen:
-    - shard-glk:          [FAIL][23] ([i915#54]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-glk8/igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-glk1/igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +4 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-kbl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28] +4 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][29] ([fdo#108145] / [i915#265]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         [SKIP][31] ([fdo#109441]) -> [PASS][32] +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-iclb5/igt@kms_psr@psr2_sprite_plane_move.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc6-dpms:
-    - shard-tglb:         [SKIP][33] ([i915#468]) -> [FAIL][34] ([i915#454])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-tglb2/igt@i915_pm_dc@dc6-dpms.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-tglb5/igt@i915_pm_dc@dc6-dpms.html
-
-  * igt@i915_pm_rpm@system-suspend-devices:
-    - shard-snb:          [SKIP][35] ([fdo#109271]) -> [INCOMPLETE][36] ([i915#82])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-snb1/igt@i915_pm_rpm@system-suspend-devices.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-snb1/igt@i915_pm_rpm@system-suspend-devices.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][37] ([i915#1188]) -> [INCOMPLETE][38] ([i915#198])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8328/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1119]: https://gitlab.freedesktop.org/drm/intel/issues/1119
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#128]: https://gitlab.freedesktop.org/drm/intel/issues/128
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#57]: https://gitlab.freedesktop.org/drm/intel/issues/57
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8328 -> Patchwork_17380
-
-  CI-20190529: 20190529
-  CI_DRM_8328: 77c1f57ceed8844ac2eccde781f540fae4e6604d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17380: 0755d2ee8680587bfa6ad7ebae24e903ac9cce18 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17380/index.html
+> +	dt = ktime_get() - dt;
+> +
+> +	return div64_u64(1000 * 1000 * dc, dt);
+> +}
+> +
+> +static u64 measure_cs_frequency_at(struct intel_rps *rps,
+> +				   struct intel_engine_cs *engine,
+> +				   int *freq)
+> +{
+> +	u64 x[5];
+> +	int i;
+> +
+> +	*freq = rps_set_check(rps, *freq);
+> +	for (i = 0; i < 5; i++)
+> +		x[i] = __measure_cs_frequency(engine, 2);
+> +	*freq = (*freq + read_cagf(rps)) / 2;
+> +
+> +	/* A simple triangle filter for better result stability */
+> +	sort(x, 5, sizeof(*x), cmp_u64, NULL);
+> +	return div_u64(x[1] + 2 * x[2] + x[3], 4);
+> +}
+> +
+>  static bool scaled_within(u64 x, u64 y, u32 f_n, u32 f_d)
+>  {
+>  	return f_d * x > f_n * y && f_n * x < f_d * y;
+>  }
+>  
+> -int live_rps_frequency(void *arg)
+> +int live_rps_frequency_cs(void *arg)
+> +{
+> +	void (*saved_work)(struct work_struct *wrk);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_rps *rps = &gt->rps;
+> +	struct intel_engine_cs *engine;
+> +	enum intel_engine_id id;
+> +	int err = 0;
+> +
+> +	/*
+> +	 * The premise is that the GPU does change freqency at our behest.
+> +	 * Let's check there is a correspondence between the requested
+> +	 * frequency, the actual frequency, and the observed clock rate.
+> +	 */
+> +
+> +	if (!rps->enabled || rps->max_freq <= rps->min_freq)
+> +		return 0;
+> +
+> +	if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
+> +		return 0;
+> +
+> +	intel_gt_pm_wait_for_idle(gt);
+> +	saved_work = rps->work.func;
+> +	rps->work.func = dummy_rps_work;
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		struct i915_request *rq;
+> +		struct i915_vma *vma;
+> +		u32 *cancel, *cntr;
+> +		struct {
+> +			u64 count;
+> +			int freq;
+> +		} min, max;
+> +
+> +		vma = create_spin_counter(engine,
+> +					  engine->kernel_context->vm, false,
+> +					  &cancel, &cntr);
+> +		if (IS_ERR(vma)) {
+> +			err = PTR_ERR(vma);
+> +			break;
+> +		}
+> +
+> +		rq = intel_engine_create_kernel_request(engine);
+> +		if (IS_ERR(rq)) {
+> +			err = PTR_ERR(rq);
+> +			goto err_vma;
+> +		}
+> +
+> +		i915_vma_lock(vma);
+> +		err = i915_request_await_object(rq, vma->obj, false);
+> +		if (!err)
+> +			err = i915_vma_move_to_active(vma, rq, 0);
+> +		if (!err)
+> +			err = rq->engine->emit_bb_start(rq,
+> +							vma->node.start,
+> +							PAGE_SIZE, 0);
+> +		i915_vma_unlock(vma);
+> +		i915_request_add(rq);
+> +		if (err)
+> +			goto err_vma;
+> +
+> +		if (wait_for(intel_uncore_read(engine->uncore, CS_GPR(0)),
+> +			     10)) {
+> +			pr_err("%s: timed loop did not start\n",
+> +			       engine->name);
+> +			goto err_vma;
+> +		}
+> +
+> +		min.freq = rps->min_freq;
+> +		min.count = measure_cs_frequency_at(rps, engine, &min.freq);
+> +
+> +		max.freq = rps->max_freq;
+> +		max.count = measure_cs_frequency_at(rps, engine, &max.freq);
+> +
+> +		pr_info("%s: min:%lluKHz @ %uMHz, max:%lluKHz @ %uMHz [%d%%]\n",
+> +			engine->name,
+> +			min.count, intel_gpu_freq(rps, min.freq),
+> +			max.count, intel_gpu_freq(rps, max.freq),
+> +			(int)DIV64_U64_ROUND_CLOSEST(100 * min.freq * max.count,
+> +						     max.freq * min.count));
+> +
+> +		if (!scaled_within(max.freq * min.count,
+> +				   min.freq * max.count,
+> +				   2, 3)) {
+> +			pr_err("%s: CS did not scale with frequency! scaled min:%llu, max:%llu\n",
+> +			       engine->name,
+> +			       max.freq * min.count,
+> +			       min.freq * max.count);
+> +			err = -EINVAL;
+> +		}
+> +
+> +err_vma:
+> +		*cancel = MI_BATCH_BUFFER_END;
+> +		i915_gem_object_unpin_map(vma->obj);
+> +		i915_vma_unpin(vma);
+> +		i915_vma_put(vma);
+> +
+> +		if (igt_flush_test(gt->i915))
+> +			err = -EIO;
+> +		if (err)
+> +			break;
+> +	}
+> +
+> +	intel_gt_pm_wait_for_idle(gt);
+> +	rps->work.func = saved_work;
+> +
+> +	return err;
+> +}
+> +
+> +int live_rps_frequency_srm(void *arg)
+>  {
+>  	void (*saved_work)(struct work_struct *wrk);
+>  	struct intel_gt *gt = arg;
+> @@ -341,7 +484,7 @@ int live_rps_frequency(void *arg)
+>  		} min, max;
+>  
+>  		vma = create_spin_counter(engine,
+> -					  engine->kernel_context->vm,
+> +					  engine->kernel_context->vm, true,
+>  					  &cancel, &cntr);
+>  		if (IS_ERR(vma)) {
+>  			err = PTR_ERR(vma);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
+> index be0bf8e3f639..22e46c5341c5 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
+> @@ -7,7 +7,8 @@
+>  #define SELFTEST_RPS_H
+>  
+>  int live_rps_control(void *arg);
+> -int live_rps_frequency(void *arg);
+> +int live_rps_frequency_cs(void *arg);
+> +int live_rps_frequency_srm(void *arg);
+>  int live_rps_interrupt(void *arg);
+>  int live_rps_power(void *arg);
+>  
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
