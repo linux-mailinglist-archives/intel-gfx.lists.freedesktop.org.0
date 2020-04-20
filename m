@@ -2,48 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484AA1B0527
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 11:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 971361B0543
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 11:09:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A07F6E270;
-	Mon, 20 Apr 2020 09:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 766B46E48F;
+	Mon, 20 Apr 2020 09:09:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBF376E270;
- Mon, 20 Apr 2020 09:02:45 +0000 (UTC)
-IronPort-SDR: UB0xDzMnNMbiF24KzxRQBuT3E5/rW6QgapyuoVh43La5m+k0PWKPnqcpFIoq8aZCUsCUt1AS/y
- W3BUDfG5B5lA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 02:02:45 -0700
-IronPort-SDR: W43QuHTRN9lzxVVxpdQ/51zBDFMLtoJ72uvQxBoQqvQmZYsFpzmPIHn7amsBqoXBhDPvVGlBwL
- UxS+phTST7ww==
-X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429053088"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.252.46.49])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 02:02:42 -0700
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75C356E48C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:09:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20956440-1500050 
+ for multiple; Mon, 20 Apr 2020 10:09:16 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Apr 2020 10:09:11 +0100
+Message-Id: <20200420090914.14679-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200414082344.GA10645@kroah.com>
-References: <20200407065210.GA263852@kroah.com>
- <20200407071809.3148-1-sultan@kerneltoast.com>
- <20200410090838.GD1691838@kroah.com>
- <20200410141738.GB2025@sultan-box.localdomain>
- <20200411113957.GB2606747@kroah.com>
- <158685210730.16269.15932754047962572236@build.alporthouse.com>
- <20200414082344.GA10645@kroah.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Greg KH <gregkh@linuxfoundation.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 20 Apr 2020 12:02:39 +0300
-Message-ID: <158737335977.8380.15005528012712372014@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix ref->mutex deadlock in
- i915_active_wait()
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Verify frequency
+ scaling with RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,99 +37,328 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- Sultan Alsawaf <sultan@kerneltoast.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Greg KH (2020-04-14 11:23:44)
-> On Tue, Apr 14, 2020 at 09:15:07AM +0100, Chris Wilson wrote:
-> > Quoting Greg KH (2020-04-11 12:39:57)
-> > > On Fri, Apr 10, 2020 at 07:17:38AM -0700, Sultan Alsawaf wrote:
-> > > > On Fri, Apr 10, 2020 at 11:08:38AM +0200, Greg KH wrote:
-> > > > > On Tue, Apr 07, 2020 at 12:18:09AM -0700, Sultan Alsawaf wrote:
-> > > > > > From: Sultan Alsawaf <sultan@kerneltoast.com>
-> > > > > > 
-> > > > > > The following deadlock exists in i915_active_wait() due to a double lock
-> > > > > > on ref->mutex (call chain listed in order from top to bottom):
-> > > > > >  i915_active_wait();
-> > > > > >  mutex_lock_interruptible(&ref->mutex); <-- ref->mutex first acquired
-> > > > > >  i915_active_request_retire();
-> > > > > >  node_retire();
-> > > > > >  active_retire();
-> > > > > >  mutex_lock_nested(&ref->mutex, SINGLE_DEPTH_NESTING); <-- DEADLOCK
-> > > > > > 
-> > > > > > Fix the deadlock by skipping the second ref->mutex lock when
-> > > > > > active_retire() is called through i915_active_request_retire().
-> > > > > > 
-> > > > > > Note that this bug only affects 5.4 and has since been fixed in 5.5.
-> > > > > > Normally, a backport of the fix from 5.5 would be in order, but the
-> > > > > > patch set that fixes this deadlock involves massive changes that are
-> > > > > > neither feasible nor desirable for backporting [1][2][3]. Therefore,
-> > > > > > this small patch was made to address the deadlock specifically for 5.4.
-> > > > > > 
-> > > > > > [1] 274cbf20fd10 ("drm/i915: Push the i915_active.retire into a worker")
-> > > > > > [2] 093b92287363 ("drm/i915: Split i915_active.mutex into an irq-safe spinlock for the rbtree")
-> > > > > > [3] 750bde2fd4ff ("drm/i915: Serialise with remote retirement")
-> > > > > > 
-> > > > > > Fixes: 12c255b5dad1 ("drm/i915: Provide an i915_active.acquire callback")
-> > > > > > Cc: <stable@vger.kernel.org> # 5.4.x
-> > > > > > Signed-off-by: Sultan Alsawaf <sultan@kerneltoast.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/i915_active.c | 27 +++++++++++++++++++++++----
-> > > > > >  drivers/gpu/drm/i915/i915_active.h |  4 ++--
-> > > > > >  2 files changed, 25 insertions(+), 6 deletions(-)
-> > > > > 
-> > > > > Now queued up, thanks.
-> > > > > 
-> > > > > greg k-h
-> > > > 
-> > > > I'm sorry, I meant the v3 [1]. Apologies for the confusion. The v3 was picked
-> > > > into Ubuntu so that's what we're rolling with.
-> > > 
-> > > Ok, thanks, hopefully now I picked upthe right one...
-> > 
-> > The patch does not fix a deadlock. Greg, this patch is not a backport of
-> > a bugfix, why is it in stable?
-> 
-> Because it says it can't be a backport as the 3 above mentioned patches
-> do the same thing instead?
+One of the core tenents of reclocking the GPU is that its throughput
+scales with the clock frequency. We can observe this by incrementing a
+loop counter on the GPU, and compare the different execution rates at
+the notional RPS frequencies.
 
-Apologies for jumping late to the thread.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c   | 249 +++++++++++++++++++++--
+ drivers/gpu/drm/i915/gt/selftest_rps.h   |   1 +
+ 3 files changed, 240 insertions(+), 13 deletions(-)
 
-> I will be glad to drop this, but I need some kind of direction here, and
-> given that at least one distro is already shipping this, it felt like
-> the correct thing to do.
->
-> So, what do you want me to do?
+diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+index 0141c334f2ac..4b2733967c42 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+@@ -53,8 +53,9 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(live_rc6_manual),
+-		SUBTEST(live_rps_interrupt),
++		SUBTEST(live_rps_frequency),
+ 		SUBTEST(live_rps_power),
++		SUBTEST(live_rps_interrupt),
+ 		SUBTEST(live_gt_resume),
+ 	};
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 360f56aa4b82..b1a435db1edc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -6,6 +6,7 @@
+ #include <linux/sort.h>
+ 
+ #include "intel_engine_pm.h"
++#include "intel_gpu_commands.h"
+ #include "intel_gt_pm.h"
+ #include "intel_rc6.h"
+ #include "selftest_rps.h"
+@@ -17,6 +18,242 @@ static void dummy_rps_work(struct work_struct *wrk)
+ {
+ }
+ 
++static int cmp_u64(const void *A, const void *B)
++{
++	const u64 *a = A, *b = B;
++
++	if (a < b)
++		return -1;
++	else if (a > b)
++		return 1;
++	else
++		return 0;
++}
++
++static struct i915_vma *
++create_spin_counter(struct intel_engine_cs *engine,
++		    struct i915_address_space *vm,
++		    u32 **cancel,
++		    u32 **counter)
++{
++	enum {
++		COUNT,
++		INC,
++		__NGPR__,
++	};
++#define CS_GPR(x) GEN8_RING_CS_GPR(engine->mmio_base, x)
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++	u32 *base, *cs;
++	int loop, i;
++	int err;
++
++	obj = i915_gem_object_create_internal(vm->i915, 4096);
++	if (IS_ERR(obj))
++		return ERR_CAST(obj);
++
++	vma = i915_vma_instance(obj, vm, NULL);
++	if (IS_ERR(vma)) {
++		i915_gem_object_put(obj);
++		return vma;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err) {
++		i915_vma_put(vma);
++		return ERR_PTR(err);
++	}
++
++	base = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	if (IS_ERR(base)) {
++		i915_gem_object_put(obj);
++		return ERR_CAST(base);
++	}
++	cs = base;
++
++	*cs++ = MI_LOAD_REGISTER_IMM(__NGPR__ * 2);
++	for (i = 0; i < __NGPR__; i++) {
++		*cs++ = i915_mmio_reg_offset(CS_GPR(i));
++		*cs++ = 0;
++		*cs++ = i915_mmio_reg_offset(CS_GPR(i)) + 4;
++		*cs++ = 0;
++	}
++
++	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = i915_mmio_reg_offset(CS_GPR(INC));
++	*cs++ = 1;
++
++	loop = cs - base;
++
++	*cs++ = MI_MATH(4);
++	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
++	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
++	*cs++ = MI_MATH_ADD;
++	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
++
++	*cs++ = MI_STORE_REGISTER_MEM_GEN8;
++	*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
++	*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
++	*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
++
++	*cs++ = MI_BATCH_BUFFER_START_GEN8;
++	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
++	*cs++ = upper_32_bits(vma->node.start + loop * sizeof(*cs));
++
++	i915_gem_object_flush_map(obj);
++
++	*cancel = base + loop;
++	*counter = memset32(base + 1000, 0, 1);
++	return vma;
++}
++
++static u64 __measure_frequency(u32 *cntr, int duration_ms)
++{
++	u64 dc, dt;
++
++	dt = ktime_get();
++	dc = READ_ONCE(*cntr);
++	usleep_range(1000 * duration_ms, 2000 * duration_ms);
++	dc = READ_ONCE(*cntr) - dc;
++	dt = ktime_get() - dt;
++
++	return div64_u64(1000 * 1000 * dc, dt);
++}
++
++static u64 measure_frequency_at(struct intel_rps *rps, u32 *cntr, int *freq)
++{
++	u64 x[5];
++	int i;
++
++	mutex_lock(&rps->lock);
++	GEM_BUG_ON(!rps->active);
++	intel_rps_set(rps, *freq);
++	mutex_unlock(&rps->lock);
++
++	msleep(20); /* more than enough time to stabilise! */
++
++	for (i = 0; i < 5; i++)
++		x[i] = __measure_frequency(cntr, 2);
++	*freq = read_cagf(rps);
++
++	/* A simple triangle filter for better result stability */
++	sort(x, 5, sizeof(*x), cmp_u64, NULL);
++	return div_u64(x[1] + 2 * x[2] + x[3], 4);
++}
++
++static bool scaled_within(u64 x, u64 y, u32 f_n, u32 f_d)
++{
++	return f_d * x > f_n * y && f_n * x < f_d * y;
++}
++
++int live_rps_frequency(void *arg)
++{
++	void (*saved_work)(struct work_struct *wrk);
++	struct intel_gt *gt = arg;
++	struct intel_rps *rps = &gt->rps;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++	int err = 0;
++
++	/*
++	 * The premise is that the GPU does change freqency at our behest.
++	 * Let's check there is a correspondence between the requested
++	 * frequency, the actual frequency, and the observed clock rate.
++	 */
++
++	if (!rps->enabled || rps->max_freq <= rps->min_freq)
++		return 0;
++
++	if (INTEL_GEN(gt->i915) < 8) /* for CS simplicity */
++		return 0;
++
++	intel_gt_pm_wait_for_idle(gt);
++	saved_work = rps->work.func;
++	rps->work.func = dummy_rps_work;
++
++	for_each_engine(engine, gt, id) {
++		struct i915_request *rq;
++		struct i915_vma *vma;
++		u32 *cancel, *cntr;
++		struct {
++			u64 count;
++			int freq;
++		} min, max;
++
++		vma = create_spin_counter(engine,
++					  engine->kernel_context->vm,
++					  &cancel, &cntr);
++		if (IS_ERR(vma)) {
++			err = PTR_ERR(vma);
++			break;
++		}
++
++		rq = intel_engine_create_kernel_request(engine);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto err_vma;
++		}
++
++		i915_vma_lock(vma);
++		err = i915_request_await_object(rq, vma->obj, false);
++		if (!err)
++			err = i915_vma_move_to_active(vma, rq, 0);
++		if (!err)
++			err = rq->engine->emit_bb_start(rq,
++							vma->node.start,
++							PAGE_SIZE, 0);
++		i915_vma_unlock(vma);
++		i915_request_add(rq);
++		if (err)
++			goto err_vma;
++
++		if (wait_for(READ_ONCE(*cntr), 10)) {
++			pr_err("%s: timed loop did not start\n",
++			       engine->name);
++			goto err_vma;
++		}
++
++		min.freq = rps->min_freq;
++		min.count = measure_frequency_at(rps, cntr, &min.freq);
++
++		max.freq = rps->max_freq;
++		max.count = measure_frequency_at(rps, cntr, &max.freq);
++
++		pr_info("%s: min:%lluKHz @ %uMHz, max:%lluKHz @ %uMHz [%d%%]\n",
++			engine->name,
++			min.count, intel_gpu_freq(rps, min.freq),
++			max.count, intel_gpu_freq(rps, max.freq),
++			(int)DIV64_U64_ROUND_CLOSEST(100 * min.freq * max.count,
++						     max.freq * min.count));
++
++		if (!scaled_within(max.freq * min.count,
++				   min.freq * max.count,
++				   1, 2)) {
++			pr_err("%s: CS did not scale with frequency! scaled min:%llu, max:%llu\n",
++			       engine->name,
++			       max.freq * min.count,
++			       min.freq * max.count);
++			err = -EINVAL;
++		}
++
++err_vma:
++		*cancel = MI_BATCH_BUFFER_END;
++		i915_gem_object_unpin_map(vma->obj);
++		i915_vma_unpin(vma);
++		i915_vma_put(vma);
++
++		if (igt_flush_test(gt->i915))
++			err = -EIO;
++		if (err)
++			break;
++	}
++
++	intel_gt_pm_wait_for_idle(gt);
++	rps->work.func = saved_work;
++
++	return err;
++}
++
+ static void sleep_for_ei(struct intel_rps *rps, int timeout_us)
+ {
+ 	/* Flush any previous EI */
+@@ -248,18 +485,6 @@ static u64 __measure_power(int duration_ms)
+ 	return div64_u64(1000 * 1000 * dE, dt);
+ }
+ 
+-static int cmp_u64(const void *A, const void *B)
+-{
+-	const u64 *a = A, *b = B;
+-
+-	if (a < b)
+-		return -1;
+-	else if (a > b)
+-		return 1;
+-	else
+-		return 0;
+-}
+-
+ static u64 measure_power_at(struct intel_rps *rps, int freq)
+ {
+ 	u64 x[5];
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
+index cad515a7f0e5..07c2bddf8899 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.h
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
+@@ -6,6 +6,7 @@
+ #ifndef SELFTEST_RPS_H
+ #define SELFTEST_RPS_H
+ 
++int live_rps_frequency(void *arg);
+ int live_rps_interrupt(void *arg);
+ int live_rps_power(void *arg);
+ 
+-- 
+2.20.1
 
-I think the the patch should be dropped for now before the issue is
-properly addressed. Either by backporting the mainline fixes or if
-those are too big and there indeed is a smaller alternative patch
-that is properly reviewed. But the above patch is not, at least yet.
-
-There is an another similar thread where there's jumping into
-conclusions and doing ad-hoc patches for already fixed issues:
-
-https://lore.kernel.org/dri-devel/20200414144309.GB2082@sultan-box.localdomain/
-
-I appreciate enthusiasm to provide fixes to i915 but we should
-continue do the regular due diligence to make sure we're properly
-fixing bugs in upstream kernels. And when fixing them, to make
-sure we're not simply papering over them for a single use case.
-
-It would be preferred to file a bug for the seen issues,
-describing how to reproduce them with vanilla upstream kernels:
-
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
-
-That way we have enough information to assess the severity of the
-bug and to prioritize the work accordingly.
-
-Best Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
