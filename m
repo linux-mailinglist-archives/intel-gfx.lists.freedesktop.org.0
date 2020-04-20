@@ -1,31 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9001B0FF5
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 17:26:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1854F1B1046
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 17:35:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F296E5C0;
-	Mon, 20 Apr 2020 15:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 373806E5BE;
+	Mon, 20 Apr 2020 15:35:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EEB9E6E5BF;
- Mon, 20 Apr 2020 15:26:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8500A3C0D;
- Mon, 20 Apr 2020 15:26:07 +0000 (UTC)
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
+ [IPv6:2607:f8b0:4864:20::e42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6446E5BE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 15:34:59 +0000 (UTC)
+Received: by mail-vs1-xe42.google.com with SMTP id p28so6252656vsg.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 08:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Px0HYpKiuFjYgTfvxByPaySJ9c4dWAHCP+jBl1JzULs=;
+ b=Khx5+YxADnVhIoCLxhOz+9v+y9QQnTPzpDdxPrOqMgcA0fT1Vq+XHDgdPyHuixTEL3
+ wXntUOhrGdNbg3eZhjbm5O6x3ypncLuuIyvk72tByPN0EFibzTG1PFSpKH6+FZ+ureFE
+ l53YHz8mMcrBVsuQdTn271ROZOJxmddYsWD83IMx81lon9L23jjekQuoVUGxgX9QBb4J
+ WxeouApeIUEeC48s/TeqB5YNPfn/g6uWMaps4a3ozcXCgVQ4IpqIXEm6Ksi0zq52oWJs
+ dWMJx7P+juYbG0FFkRv+k0fhSqa3YvqjT/ZeDLTMi3kHqMXjyLbGCb6UzHXvq/9NGyBE
+ us6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Px0HYpKiuFjYgTfvxByPaySJ9c4dWAHCP+jBl1JzULs=;
+ b=SGl+Q0qGtanmmQJ2aA5fNOWW1EIUopPnpUQoc2xJQdtD2w9eau47vPjqIqH31k9AvK
+ mVeMiqsHwh1pz61i2qSlluvc0HgmXgJ/HYlosluTUh/MvGh2v8vCCCXl5AfV8SRh0Pbl
+ Yf1bJ/01UlzIhZJNma7vOntHWCDwU0BAX6iA4+yU3FE5vPAM91kumOQD68SBvK+pAkzT
+ KKg5sovVq4TKBJsFVR3CLJUFGL53Zl2B0+ZMS6cvw4+XmNvXS+K9vNaoOF+v+oxBlmlv
+ TZ22Tpe3NO6v9QRpajSxhDYXiQWgQrkc5tzU5NQBpUcZI0oEmaYDyYmVsfEPBNmMILvi
+ rdZw==
+X-Gm-Message-State: AGi0PuYlEBGkxAc50P/DMEfwJAMWqsmzeMzWaXeexwKduNxbb1b6gXN/
+ mkaMcw6zr/PPYpKW+BkhFqHVw557XwYnwHnutkI=
+X-Google-Smtp-Source: APiQypLWc8kvDoUIY6RX+VLfdvH0s0DIYL8xDLWxm8enfBxIwPDwBOngTmHvpYfA0jb0DMM97TVreql+gDfSZds/iWo=
+X-Received: by 2002:a67:2e45:: with SMTP id u66mr12065358vsu.178.1587396898557; 
+ Mon, 20 Apr 2020 08:34:58 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Date: Mon, 20 Apr 2020 15:26:07 -0000
-Message-ID: <158739636794.29873.6658569945478392134@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200420133425.30289-1-uma.shankar@intel.com>
-In-Reply-To: <20200420133425.30289-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Fixed_kernel_taint_in_audio_codec_init?=
+References: <20200420125356.26614-1-chris@chris-wilson.co.uk>
+ <20200420125356.26614-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200420125356.26614-2-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 20 Apr 2020 16:34:32 +0100
+Message-ID: <CAM0jSHOnYemz_h+TWB5UW8phEMQG3mW-z4x5t7M65W7wWyUOkw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Move the late
+ flush_submission in retire to the end
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,100 +62,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/display: Fixed kernel taint in audio codec init
-URL   : https://patchwork.freedesktop.org/series/76195/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8329 -> Patchwork_17383
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17383 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [PASS][1] -> [DMESG-WARN][2] ([i915#203]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8329/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/fi-skl-6770hq/igt@i915_module_load@reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-bwr-2160:        [INCOMPLETE][3] ([i915#489]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8329/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-skl-6770hq:      [SKIP][5] ([fdo#109271]) -> [PASS][6] +13 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8329/fi-skl-6770hq/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/fi-skl-6770hq/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [SKIP][7] ([fdo#109271]) -> [DMESG-WARN][8] ([i915#106])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8329/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (51 -> 43)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8329 -> Patchwork_17383
-
-  CI-20190529: 20190529
-  CI_DRM_8329: 4865c68b0072e9a8846b6ca08d651e7e10278036 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17383: 6d99650f1d97b6be675c8e79b81f8bd9cfd9a837 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6d99650f1d97 drm/i915/display: Fixed kernel taint in audio codec init
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17383/index.html
+On Mon, 20 Apr 2020 at 13:54, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Avoid flushing the submission queue (of others) under the client's
+> timeline lock, but instead move it to the end so that we may catch more.
+>
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1066
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
