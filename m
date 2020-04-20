@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18F31B12F4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 19:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0EF1B136A
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 19:44:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6DF86E832;
-	Mon, 20 Apr 2020 17:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C2E6E0F4;
+	Mon, 20 Apr 2020 17:43:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 507786E7FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 17:27:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20963023-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 18:27:41 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Apr 2020 18:27:39 +0100
-Message-Id: <20200420172739.11620-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200420172739.11620-1-chris@chris-wilson.co.uk>
-References: <20200420172739.11620-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DE9556E0F4;
+ Mon, 20 Apr 2020 17:43:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D7D1DA0019;
+ Mon, 20 Apr 2020 17:43:56 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/6] drm/i915/selftests: Exercise dynamic
- reclocking with RPS
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 20 Apr 2020 17:43:56 -0000
+Message-ID: <158740463685.29873.13111875190308409943@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200420142020.27340-1-jani.nikula@intel.com>
+In-Reply-To: <20200420142020.27340-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/dsc=3A_use_rc=5Fmodel=5Fsi?=
+ =?utf-8?q?ze_from_DSC_config_for_PPS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,200 +39,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After having testing all the RPS controls individually, we need to take
-a step back and check how our RPS worker integrates them to perform
-dynamic GPU reclocking. So do that by submitting a spinner and wait and
-see what happens.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   1 +
- drivers/gpu/drm/i915/gt/selftest_rps.c   | 112 +++++++++++++++++++++--
- drivers/gpu/drm/i915/gt/selftest_rps.h   |   3 +-
- 3 files changed, 105 insertions(+), 11 deletions(-)
+Series: series starting with [CI,1/2] drm/dsc: use rc_model_size from DSC config for PPS
+URL   : https://patchwork.freedesktop.org/series/76202/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 9855e6f0ce7c..e02fdec58826 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -58,6 +58,7 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_rps_frequency_srm),
- 		SUBTEST(live_rps_power),
- 		SUBTEST(live_rps_interrupt),
-+		SUBTEST(live_rps_dynamic),
- 		SUBTEST(live_gt_resume),
- 	};
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 9ecf694ed08b..6202e1564393 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -110,24 +110,18 @@ create_spin_counter(struct intel_engine_cs *engine,
- 	return vma;
- }
- 
--static u8 rps_set_check(struct intel_rps *rps, u8 freq)
-+static u8 wait_for_freq(struct intel_rps *rps, u8 freq, int timeout_ms)
- {
- 	u8 history[64], i;
- 	unsigned long end;
- 	int sleep;
- 
--	mutex_lock(&rps->lock);
--	GEM_BUG_ON(!rps->active);
--	intel_rps_set(rps, freq);
--	GEM_BUG_ON(rps->last_freq != freq);
--	mutex_unlock(&rps->lock);
--
- 	i = 0;
- 	memset(history, freq, sizeof(history));
- 	sleep = 20;
- 
- 	/* The PCU does not change instantly, but drifts towards the goal? */
--	end = jiffies + msecs_to_jiffies(50);
-+	end = jiffies + msecs_to_jiffies(timeout_ms);
- 	do {
- 		u8 act;
- 
-@@ -148,11 +142,22 @@ static u8 rps_set_check(struct intel_rps *rps, u8 freq)
- 
- 		usleep_range(sleep, 2 * sleep);
- 		sleep *= 2;
--		if (sleep > 1000)
--			sleep = 1000;
-+		if (sleep > timeout_ms * 20)
-+			sleep = timeout_ms * 20;
- 	} while (1);
- }
- 
-+static u8 rps_set_check(struct intel_rps *rps, u8 freq)
-+{
-+	mutex_lock(&rps->lock);
-+	GEM_BUG_ON(!rps->active);
-+	intel_rps_set(rps, freq);
-+	GEM_BUG_ON(rps->last_freq != freq);
-+	mutex_unlock(&rps->lock);
-+
-+	return wait_for_freq(rps, freq, 50);
-+}
-+
- static void show_pstate_limits(struct intel_rps *rps)
- {
- 	struct drm_i915_private *i915 = rps_to_i915(rps);
-@@ -951,3 +956,90 @@ int live_rps_power(void *arg)
- 
- 	return err;
- }
-+
-+int live_rps_dynamic(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rps *rps = &gt->rps;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	struct igt_spinner spin;
-+	int err = 0;
-+
-+	/*
-+	 * We've looked at the bascs, and have established that we
-+	 * can change the clock frequency and that the HW will generate
-+	 * interrupts based on load. Now we check how we integrate those
-+	 * moving parts into dynamic reclocking based on load.
-+	 */
-+
-+	if (!rps->enabled || rps->max_freq <= rps->min_freq)
-+		return 0;
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+		struct {
-+			ktime_t dt;
-+			u8 freq;
-+		} min,max;
-+
-+		if (!intel_engine_can_store_dword(engine))
-+			continue;
-+
-+		intel_gt_pm_wait_for_idle(gt);
-+		GEM_BUG_ON(rps->active);
-+		rps->cur_freq = rps->min_freq;
-+
-+		intel_engine_pm_get(engine);
-+		intel_rc6_disable(&gt->rc6);
-+		GEM_BUG_ON(rps->last_freq != rps->min_freq);
-+
-+		rq = igt_spinner_create_request(&spin,
-+						engine->kernel_context,
-+						MI_NOOP);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err;
-+		}
-+
-+		i915_request_add(rq);
-+
-+		max.dt = ktime_get();
-+		max.freq = wait_for_freq(rps, rps->max_freq, 500);
-+		max.dt = ktime_sub(ktime_get(), max.dt);
-+
-+		igt_spinner_end(&spin);
-+
-+		min.dt = ktime_get();
-+		min.freq = wait_for_freq(rps, rps->min_freq, 2000);
-+		min.dt = ktime_sub(ktime_get(), min.dt);
-+
-+		pr_info("%s: dynamically reclocked to %u:%uMHz while busy in %lluns, and %u:%uMHz while idle in %lluns\n",
-+			engine->name,
-+			max.freq, intel_gpu_freq(rps, max.freq),
-+			ktime_to_ns(max.dt),
-+			min.freq, intel_gpu_freq(rps, min.freq),
-+			ktime_to_ns(min.dt));
-+		if (min.freq >= max.freq) {
-+			pr_err("%s: dynamic reclocking of spinner failed\n!",
-+			       engine->name);
-+			err = -EINVAL;
-+		}
-+
-+err:
-+		intel_rc6_enable(&gt->rc6);
-+		intel_engine_pm_put(engine);
-+
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			break;
-+	}
-+
-+	igt_spinner_fini(&spin);
-+
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.h b/drivers/gpu/drm/i915/gt/selftest_rps.h
-index 22e46c5341c5..76c4b19553e6 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.h
-@@ -9,7 +9,8 @@
- int live_rps_control(void *arg);
- int live_rps_frequency_cs(void *arg);
- int live_rps_frequency_srm(void *arg);
--int live_rps_interrupt(void *arg);
- int live_rps_power(void *arg);
-+int live_rps_interrupt(void *arg);
-+int live_rps_dynamic(void *arg);
- 
- #endif /* SELFTEST_RPS_H */
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8331 -> Patchwork_17386
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17386 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [PASS][1] -> [DMESG-WARN][2] ([i915#203]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8331/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/fi-skl-6770hq/igt@i915_module_load@reload.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [PASS][3] -> [SKIP][4] ([fdo#109271]) +4 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8331/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-skl-6770hq:      [PASS][5] -> [DMESG-WARN][6] ([i915#106])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8331/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [SKIP][7] ([fdo#109271]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8331/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Missing    (6): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8331 -> Patchwork_17386
+
+  CI-20190529: 20190529
+  CI_DRM_8331: dbb0eeee754edb61295efb4f7473fb17deb49a73 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17386: 1db3472af38ce4b87c84fb17a4db8e66b5c2cb3f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1db3472af38c drm/i915/dsc: configure hardware using specified rc_model_size
+4b558f632a45 drm/dsc: use rc_model_size from DSC config for PPS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17386/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
