@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82B61B0633
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 12:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E059E1B0693
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 12:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCDA89DFC;
-	Mon, 20 Apr 2020 10:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66366E29A;
+	Mon, 20 Apr 2020 10:28:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F15F89DFC;
- Mon, 20 Apr 2020 10:06:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5830AA363B;
- Mon, 20 Apr 2020 10:06:37 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02FF36E29A;
+ Mon, 20 Apr 2020 10:28:53 +0000 (UTC)
+IronPort-SDR: gHQV3vVPmjLqfLCHFcceX84xjnZlBqFGvmsHf+2bgbp8kLbg95yPEbaTAKFDvGiahAoaWvMCyu
+ GvH4weyBdOMw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 03:28:53 -0700
+IronPort-SDR: nBw9rc0cJTSj1Prd6W+PnY6lodt0rR2nfxouUPx6OV+8KPmiFVeHwvzUZutezUrxz5yGCZ9ICH
+ +B7+OdhoT1zQ==
+X-IronPort-AV: E=Sophos;i="5.72,406,1580803200"; d="scan'208";a="429073035"
+Received: from iastakh-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.63.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 03:28:49 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200413214407.1851002-1-lyude@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200413214407.1851002-1-lyude@redhat.com>
+Date: Mon, 20 Apr 2020 13:28:46 +0300
+Message-ID: <87sggy1me9.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik B S" <karthik.b.s@intel.com>
-Date: Mon, 20 Apr 2020 10:06:37 -0000
-Message-ID: <158737719735.29873.10089823011567381579@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200420094746.20409-1-karthik.b.s@intel.com>
-In-Reply-To: <20200420094746.20409-1-karthik.b.s@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Asynchronous_flip_implementation_for_i915_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dpcd_bl: Unbreak
+ enable_dpcd_backlight modparam
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,47 +48,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Adam Jackson <ajax@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Asynchronous flip implementation for i915 (rev2)
-URL   : https://patchwork.freedesktop.org/series/74386/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-ae7aa012537f drm/i915: Add enable/disable flip done and flip done handler
-3c944ffc2524 drm/i915: Add support for async flips in I915
-5c51d5526531 drm/i915: Enable async flips in i915
-65949de8f695 drm/i915: Make commit call blocking in case of async flips
-bf1d60193151 drm/i915: Add checks specific to async flips
--:61: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_plane_state->color_plane[0].x !=
- 		     new_plane_state->color_plane[0].x'
-#61: FILE: drivers/gpu/drm/i915/display/intel_display.c:14706:
-+		if ((old_plane_state->color_plane[0].x !=
-+		     new_plane_state->color_plane[0].x) ||
-+		    (old_plane_state->color_plane[0].y !=
-+		     new_plane_state->color_plane[0].y)) {
-
--:61: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_plane_state->color_plane[0].y !=
- 		     new_plane_state->color_plane[0].y'
-#61: FILE: drivers/gpu/drm/i915/display/intel_display.c:14706:
-+		if ((old_plane_state->color_plane[0].x !=
-+		     new_plane_state->color_plane[0].x) ||
-+		    (old_plane_state->color_plane[0].y !=
-+		     new_plane_state->color_plane[0].y)) {
-
-total: 0 errors, 0 warnings, 2 checks, 71 lines checked
-c2228f5dc3a5 drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAxMyBBcHIgMjAyMCwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6
+Cj4gTG9va3MgbGlrZSBJIGFjY2lkZW50YWxseSBtYWRlIGl0IHNvIHlvdSBjb3VsZG4ndCBmb3Jj
+ZSBEUENEIGJhY2tsaWdodAo+IHN1cHBvcnQgb24sIHdob29wcy4gRml4IHRoYXQuCgpUaGFua3Ms
+IHB1c2hlZC4KCkJSLApKYW5pLgoKCgo+Cj4gU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1
+ZGVAcmVkaGF0LmNvbT4KPiBGaXhlczogMTdmNWQ1NzkxNWJlICgiZHJtL2k5MTU6IEZvcmNlIERQ
+Q0QgYmFja2xpZ2h0IG1vZGUgb24gWDEgRXh0cmVtZSAybmQgR2VuIDRLIEFNT0xFRCBwYW5lbCIp
+Cj4gQ2M6IEFkYW0gSmFja3NvbiA8YWpheEByZWRoYXQuY29tPgo+IENjOiBKYW5pIE5pa3VsYSA8
+amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgo+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25h
+cy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMgfCAxICsKPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQuYwo+IGluZGV4IDRiOTE2NDY4NTQwZi4uMDcyMjU0
+MGQ2NGFkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfYXV4X2JhY2tsaWdodC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMKPiBAQCAtMzU4LDYgKzM1OCw3IEBAIGludCBpbnRlbF9k
+cF9hdXhfaW5pdF9iYWNrbGlnaHRfZnVuY3Moc3RydWN0IGludGVsX2Nvbm5lY3RvciAqaW50ZWxf
+Y29ubmVjdG9yKQo+ICAJICovCj4gIAlpZiAoaTkxNS0+dmJ0LmJhY2tsaWdodC50eXBlICE9Cj4g
+IAkgICAgSU5URUxfQkFDS0xJR0hUX1ZFU0FfRURQX0FVWF9JTlRFUkZBQ0UgJiYKPiArCSAgICBp
+OTE1X21vZHBhcmFtcy5lbmFibGVfZHBjZF9iYWNrbGlnaHQgIT0gMSAmJgo+ICAJICAgICFkcm1f
+ZHBfaGFzX3F1aXJrKCZpbnRlbF9kcC0+ZGVzYywgaW50ZWxfZHAtPmVkaWRfcXVpcmtzLAo+ICAJ
+CQkgICAgICBEUF9RVUlSS19GT1JDRV9EUENEX0JBQ0tMSUdIVCkpIHsKPiAgCQlkcm1faW5mbygm
+aTkxNS0+ZHJtLAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBD
+ZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
