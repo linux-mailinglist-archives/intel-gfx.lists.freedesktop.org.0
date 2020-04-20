@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DEC1B0443
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 10:23:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2F31B04B7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2020 10:43:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B805289CD9;
-	Mon, 20 Apr 2020 08:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4540989DA7;
+	Mon, 20 Apr 2020 08:43:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE3689CD9
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 08:23:17 +0000 (UTC)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
- [147.11.189.40])
- by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03K8MBru013167
- (version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
- Mon, 20 Apr 2020 01:22:33 -0700
-Received: from pek-lpggp3.wrs.com (128.224.153.76) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.40) with Microsoft SMTP Server id 14.3.487.0;
- Mon, 20 Apr 2020 01:22:10 -0700
-From: Liwei Song <liwei.song@windriver.com>
-To: Chris <chris@chris-wilson.co.uk>, <intel-gfx@lists.freedesktop.org>
-Date: Mon, 20 Apr 2020 16:22:07 +0800
-Message-ID: <20200420082207.25581-1-liwei.song@windriver.com>
-X-Mailer: git-send-email 2.17.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C81E89DA7;
+ Mon, 20 Apr 2020 08:43:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93263A363B;
+ Mon, 20 Apr 2020 08:43:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH xf86-video-intel v3] Sync i915_pciids upto
- 8717c6b7414f
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 20 Apr 2020 08:43:45 -0000
+Message-ID: <158737222557.29874.2408179674064486841@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200419134627.359025-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200419134627.359025-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_store_HW_tagging_information_into_tracepoints_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,707 +39,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Import the kernel's i915_pciids.h, up to:
+== Series Details ==
 
-commit 8717c6b7414ffb890672276dccc284c23078ac0e
-Author: Lee Shawn C <shawn.c.lee@intel.com>
-Date:   Tue Dec 10 23:04:15 2019 +0800
+Series: drm/i915: store HW tagging information into tracepoints (rev2)
+URL   : https://patchwork.freedesktop.org/series/75849/
+State : success
 
-    drm/i915/cml: Separate U series pci id from origianl list.
+== Summary ==
 
-Signed-off-by: Liwei Song <liwei.song@windriver.com>
----
-V2 -> V3:
-   Add 4 new info blocks and add sound support for them.
+CI Bug Log - changes from CI_DRM_8324_full -> Patchwork_17373_full
+====================================================
 
-Change since V1:
-  replace old definition in intel_module.c and dri3-test.c
----
- src/i915_pciids.h     | 265 ++++++++++++++++++++++++++++++++----------
- src/intel_module.c    |  92 ++++++++++++++-
- src/sna/gen9_render.c |  48 ++++++++
- test/dri3-test.c      |   2 +-
- 4 files changed, 344 insertions(+), 63 deletions(-)
+Summary
+-------
 
-diff --git a/src/i915_pciids.h b/src/i915_pciids.h
-index fd965ffbb92e..1d2c12219f44 100644
---- a/src/i915_pciids.h
-+++ b/src/i915_pciids.h
-@@ -108,8 +108,10 @@
- 	INTEL_VGA_DEVICE(0x2e42, info), /* B43_G */ \
- 	INTEL_VGA_DEVICE(0x2e92, info)	/* B43_G.1 */
- 
--#define INTEL_PINEVIEW_IDS(info)			\
--	INTEL_VGA_DEVICE(0xa001, info),			\
-+#define INTEL_PINEVIEW_G_IDS(info) \
-+	INTEL_VGA_DEVICE(0xa001, info)
-+
-+#define INTEL_PINEVIEW_M_IDS(info) \
- 	INTEL_VGA_DEVICE(0xa011, info)
- 
- #define INTEL_IRONLAKE_D_IDS(info) \
-@@ -166,7 +168,18 @@
- #define INTEL_IVB_Q_IDS(info) \
- 	INTEL_QUANTA_VGA_DEVICE(info) /* Quanta transcode */
- 
-+#define INTEL_HSW_ULT_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x0A02, info), /* ULT GT1 desktop */ \
-+	INTEL_VGA_DEVICE(0x0A0A, info), /* ULT GT1 server */ \
-+	INTEL_VGA_DEVICE(0x0A0B, info), /* ULT GT1 reserved */ \
-+	INTEL_VGA_DEVICE(0x0A06, info)  /* ULT GT1 mobile */
-+
-+#define INTEL_HSW_ULX_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x0A0E, info) /* ULX GT1 mobile */
-+
- #define INTEL_HSW_GT1_IDS(info) \
-+	INTEL_HSW_ULT_GT1_IDS(info), \
-+	INTEL_HSW_ULX_GT1_IDS(info), \
- 	INTEL_VGA_DEVICE(0x0402, info), /* GT1 desktop */ \
- 	INTEL_VGA_DEVICE(0x040a, info), /* GT1 server */ \
- 	INTEL_VGA_DEVICE(0x040B, info), /* GT1 reserved */ \
-@@ -175,20 +188,26 @@
- 	INTEL_VGA_DEVICE(0x0C0A, info), /* SDV GT1 server */ \
- 	INTEL_VGA_DEVICE(0x0C0B, info), /* SDV GT1 reserved */ \
- 	INTEL_VGA_DEVICE(0x0C0E, info), /* SDV GT1 reserved */ \
--	INTEL_VGA_DEVICE(0x0A02, info), /* ULT GT1 desktop */ \
--	INTEL_VGA_DEVICE(0x0A0A, info), /* ULT GT1 server */ \
--	INTEL_VGA_DEVICE(0x0A0B, info), /* ULT GT1 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D02, info), /* CRW GT1 desktop */ \
- 	INTEL_VGA_DEVICE(0x0D0A, info), /* CRW GT1 server */ \
- 	INTEL_VGA_DEVICE(0x0D0B, info), /* CRW GT1 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D0E, info), /* CRW GT1 reserved */ \
- 	INTEL_VGA_DEVICE(0x0406, info), /* GT1 mobile */ \
- 	INTEL_VGA_DEVICE(0x0C06, info), /* SDV GT1 mobile */ \
--	INTEL_VGA_DEVICE(0x0A06, info), /* ULT GT1 mobile */ \
--	INTEL_VGA_DEVICE(0x0A0E, info), /* ULX GT1 mobile */ \
- 	INTEL_VGA_DEVICE(0x0D06, info)  /* CRW GT1 mobile */
- 
-+#define INTEL_HSW_ULT_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x0A12, info), /* ULT GT2 desktop */ \
-+	INTEL_VGA_DEVICE(0x0A1A, info), /* ULT GT2 server */ \
-+	INTEL_VGA_DEVICE(0x0A1B, info), /* ULT GT2 reserved */ \
-+	INTEL_VGA_DEVICE(0x0A16, info)  /* ULT GT2 mobile */
-+
-+#define INTEL_HSW_ULX_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x0A1E, info) /* ULX GT2 mobile */ \
-+
- #define INTEL_HSW_GT2_IDS(info) \
-+	INTEL_HSW_ULT_GT2_IDS(info), \
-+	INTEL_HSW_ULX_GT2_IDS(info), \
- 	INTEL_VGA_DEVICE(0x0412, info), /* GT2 desktop */ \
- 	INTEL_VGA_DEVICE(0x041a, info), /* GT2 server */ \
- 	INTEL_VGA_DEVICE(0x041B, info), /* GT2 reserved */ \
-@@ -197,9 +216,6 @@
- 	INTEL_VGA_DEVICE(0x0C1A, info), /* SDV GT2 server */ \
- 	INTEL_VGA_DEVICE(0x0C1B, info), /* SDV GT2 reserved */ \
- 	INTEL_VGA_DEVICE(0x0C1E, info), /* SDV GT2 reserved */ \
--	INTEL_VGA_DEVICE(0x0A12, info), /* ULT GT2 desktop */ \
--	INTEL_VGA_DEVICE(0x0A1A, info), /* ULT GT2 server */ \
--	INTEL_VGA_DEVICE(0x0A1B, info), /* ULT GT2 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D12, info), /* CRW GT2 desktop */ \
- 	INTEL_VGA_DEVICE(0x0D1A, info), /* CRW GT2 server */ \
- 	INTEL_VGA_DEVICE(0x0D1B, info), /* CRW GT2 reserved */ \
-@@ -207,11 +223,17 @@
- 	INTEL_VGA_DEVICE(0x0416, info), /* GT2 mobile */ \
- 	INTEL_VGA_DEVICE(0x0426, info), /* GT2 mobile */ \
- 	INTEL_VGA_DEVICE(0x0C16, info), /* SDV GT2 mobile */ \
--	INTEL_VGA_DEVICE(0x0A16, info), /* ULT GT2 mobile */ \
--	INTEL_VGA_DEVICE(0x0A1E, info), /* ULX GT2 mobile */ \
- 	INTEL_VGA_DEVICE(0x0D16, info)  /* CRW GT2 mobile */
- 
-+#define INTEL_HSW_ULT_GT3_IDS(info) \
-+	INTEL_VGA_DEVICE(0x0A22, info), /* ULT GT3 desktop */ \
-+	INTEL_VGA_DEVICE(0x0A2A, info), /* ULT GT3 server */ \
-+	INTEL_VGA_DEVICE(0x0A2B, info), /* ULT GT3 reserved */ \
-+	INTEL_VGA_DEVICE(0x0A26, info), /* ULT GT3 mobile */ \
-+	INTEL_VGA_DEVICE(0x0A2E, info)  /* ULT GT3 reserved */
-+
- #define INTEL_HSW_GT3_IDS(info) \
-+	INTEL_HSW_ULT_GT3_IDS(info), \
- 	INTEL_VGA_DEVICE(0x0422, info), /* GT3 desktop */ \
- 	INTEL_VGA_DEVICE(0x042a, info), /* GT3 server */ \
- 	INTEL_VGA_DEVICE(0x042B, info), /* GT3 reserved */ \
-@@ -220,16 +242,11 @@
- 	INTEL_VGA_DEVICE(0x0C2A, info), /* SDV GT3 server */ \
- 	INTEL_VGA_DEVICE(0x0C2B, info), /* SDV GT3 reserved */ \
- 	INTEL_VGA_DEVICE(0x0C2E, info), /* SDV GT3 reserved */ \
--	INTEL_VGA_DEVICE(0x0A22, info), /* ULT GT3 desktop */ \
--	INTEL_VGA_DEVICE(0x0A2A, info), /* ULT GT3 server */ \
--	INTEL_VGA_DEVICE(0x0A2B, info), /* ULT GT3 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D22, info), /* CRW GT3 desktop */ \
- 	INTEL_VGA_DEVICE(0x0D2A, info), /* CRW GT3 server */ \
- 	INTEL_VGA_DEVICE(0x0D2B, info), /* CRW GT3 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D2E, info), /* CRW GT3 reserved */ \
- 	INTEL_VGA_DEVICE(0x0C26, info), /* SDV GT3 mobile */ \
--	INTEL_VGA_DEVICE(0x0A26, info), /* ULT GT3 mobile */ \
--	INTEL_VGA_DEVICE(0x0A2E, info), /* ULT GT3 reserved */ \
- 	INTEL_VGA_DEVICE(0x0D26, info)  /* CRW GT3 mobile */
- 
- #define INTEL_HSW_IDS(info) \
-@@ -245,35 +262,59 @@
- 	INTEL_VGA_DEVICE(0x0157, info), \
- 	INTEL_VGA_DEVICE(0x0155, info)
- 
--#define INTEL_BDW_GT1_IDS(info)  \
--	INTEL_VGA_DEVICE(0x1602, info), /* GT1 ULT */ \
-+#define INTEL_BDW_ULT_GT1_IDS(info) \
- 	INTEL_VGA_DEVICE(0x1606, info), /* GT1 ULT */ \
--	INTEL_VGA_DEVICE(0x160B, info), /* GT1 Iris */ \
--	INTEL_VGA_DEVICE(0x160E, info), /* GT1 ULX */ \
-+	INTEL_VGA_DEVICE(0x160B, info)  /* GT1 Iris */
-+
-+#define INTEL_BDW_ULX_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x160E, info) /* GT1 ULX */
-+
-+#define INTEL_BDW_GT1_IDS(info) \
-+	INTEL_BDW_ULT_GT1_IDS(info), \
-+	INTEL_BDW_ULX_GT1_IDS(info), \
-+	INTEL_VGA_DEVICE(0x1602, info), /* GT1 ULT */ \
- 	INTEL_VGA_DEVICE(0x160A, info), /* GT1 Server */ \
- 	INTEL_VGA_DEVICE(0x160D, info)  /* GT1 Workstation */
- 
--#define INTEL_BDW_GT2_IDS(info)  \
--	INTEL_VGA_DEVICE(0x1612, info), /* GT2 Halo */	\
-+#define INTEL_BDW_ULT_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x1616, info), /* GT2 ULT */ \
--	INTEL_VGA_DEVICE(0x161B, info), /* GT2 ULT */ \
--	INTEL_VGA_DEVICE(0x161E, info), /* GT2 ULX */ \
-+	INTEL_VGA_DEVICE(0x161B, info)  /* GT2 ULT */
-+
-+#define INTEL_BDW_ULX_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x161E, info) /* GT2 ULX */
-+
-+#define INTEL_BDW_GT2_IDS(info) \
-+	INTEL_BDW_ULT_GT2_IDS(info), \
-+	INTEL_BDW_ULX_GT2_IDS(info), \
-+	INTEL_VGA_DEVICE(0x1612, info), /* GT2 Halo */	\
- 	INTEL_VGA_DEVICE(0x161A, info), /* GT2 Server */ \
- 	INTEL_VGA_DEVICE(0x161D, info)  /* GT2 Workstation */
- 
-+#define INTEL_BDW_ULT_GT3_IDS(info) \
-+	INTEL_VGA_DEVICE(0x1626, info), /* ULT */ \
-+	INTEL_VGA_DEVICE(0x162B, info)  /* Iris */ \
-+
-+#define INTEL_BDW_ULX_GT3_IDS(info) \
-+	INTEL_VGA_DEVICE(0x162E, info)  /* ULX */
-+
- #define INTEL_BDW_GT3_IDS(info) \
-+	INTEL_BDW_ULT_GT3_IDS(info), \
-+	INTEL_BDW_ULX_GT3_IDS(info), \
- 	INTEL_VGA_DEVICE(0x1622, info), /* ULT */ \
--	INTEL_VGA_DEVICE(0x1626, info), /* ULT */ \
--	INTEL_VGA_DEVICE(0x162B, info), /* Iris */ \
--	INTEL_VGA_DEVICE(0x162E, info),  /* ULX */\
- 	INTEL_VGA_DEVICE(0x162A, info), /* Server */ \
- 	INTEL_VGA_DEVICE(0x162D, info)  /* Workstation */
- 
-+#define INTEL_BDW_ULT_RSVD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x1636, info), /* ULT */ \
-+	INTEL_VGA_DEVICE(0x163B, info)  /* Iris */
-+
-+#define INTEL_BDW_ULX_RSVD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x163E, info) /* ULX */
-+
- #define INTEL_BDW_RSVD_IDS(info) \
-+	INTEL_BDW_ULT_RSVD_IDS(info), \
-+	INTEL_BDW_ULX_RSVD_IDS(info), \
- 	INTEL_VGA_DEVICE(0x1632, info), /* ULT */ \
--	INTEL_VGA_DEVICE(0x1636, info), /* ULT */ \
--	INTEL_VGA_DEVICE(0x163B, info), /* Iris */ \
--	INTEL_VGA_DEVICE(0x163E, info), /* ULX */ \
- 	INTEL_VGA_DEVICE(0x163A, info), /* Server */ \
- 	INTEL_VGA_DEVICE(0x163D, info)  /* Workstation */
- 
-@@ -289,25 +330,40 @@
- 	INTEL_VGA_DEVICE(0x22b2, info), \
- 	INTEL_VGA_DEVICE(0x22b3, info)
- 
-+#define INTEL_SKL_ULT_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
-+
-+#define INTEL_SKL_ULX_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
-+
- #define INTEL_SKL_GT1_IDS(info)	\
--	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
--	INTEL_VGA_DEVICE(0x190E, info), /* ULX GT1 */ \
-+	INTEL_SKL_ULT_GT1_IDS(info), \
-+	INTEL_SKL_ULX_GT1_IDS(info), \
- 	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
- 	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
- 	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
- 
--#define INTEL_SKL_GT2_IDS(info)	\
-+#define INTEL_SKL_ULT_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x1916, info), /* ULT GT2 */ \
--	INTEL_VGA_DEVICE(0x1921, info), /* ULT GT2F */ \
--	INTEL_VGA_DEVICE(0x191E, info), /* ULX GT2 */ \
-+	INTEL_VGA_DEVICE(0x1921, info)  /* ULT GT2F */
-+
-+#define INTEL_SKL_ULX_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x191E, info) /* ULX GT2 */
-+
-+#define INTEL_SKL_GT2_IDS(info)	\
-+	INTEL_SKL_ULT_GT2_IDS(info), \
-+	INTEL_SKL_ULX_GT2_IDS(info), \
- 	INTEL_VGA_DEVICE(0x1912, info), /* DT  GT2 */ \
- 	INTEL_VGA_DEVICE(0x191B, info), /* Halo GT2 */ \
- 	INTEL_VGA_DEVICE(0x191A, info), /* SRV GT2 */ \
- 	INTEL_VGA_DEVICE(0x191D, info)  /* WKS GT2 */
- 
-+#define INTEL_SKL_ULT_GT3_IDS(info) \
-+	INTEL_VGA_DEVICE(0x1926, info) /* ULT GT3 */
-+
- #define INTEL_SKL_GT3_IDS(info) \
-+	INTEL_SKL_ULT_GT3_IDS(info), \
- 	INTEL_VGA_DEVICE(0x1923, info), /* ULT GT3 */ \
--	INTEL_VGA_DEVICE(0x1926, info), /* ULT GT3 */ \
- 	INTEL_VGA_DEVICE(0x1927, info), /* ULT GT3 */ \
- 	INTEL_VGA_DEVICE(0x192B, info), /* Halo GT3 */ \
- 	INTEL_VGA_DEVICE(0x192D, info)  /* SRV GT3 */
-@@ -336,45 +392,91 @@
- 	INTEL_VGA_DEVICE(0x3184, info), \
- 	INTEL_VGA_DEVICE(0x3185, info)
- 
--#define INTEL_KBL_GT1_IDS(info)	\
--	INTEL_VGA_DEVICE(0x5913, info), /* ULT GT1.5 */ \
--	INTEL_VGA_DEVICE(0x5915, info), /* ULX GT1.5 */ \
-+#define INTEL_KBL_ULT_GT1_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5906, info), /* ULT GT1 */ \
-+	INTEL_VGA_DEVICE(0x5913, info)  /* ULT GT1.5 */
-+
-+#define INTEL_KBL_ULX_GT1_IDS(info) \
- 	INTEL_VGA_DEVICE(0x590E, info), /* ULX GT1 */ \
-+	INTEL_VGA_DEVICE(0x5915, info)  /* ULX GT1.5 */
-+
-+#define INTEL_KBL_GT1_IDS(info)	\
-+	INTEL_KBL_ULT_GT1_IDS(info), \
-+	INTEL_KBL_ULX_GT1_IDS(info), \
- 	INTEL_VGA_DEVICE(0x5902, info), /* DT  GT1 */ \
- 	INTEL_VGA_DEVICE(0x5908, info), /* Halo GT1 */ \
- 	INTEL_VGA_DEVICE(0x590B, info), /* Halo GT1 */ \
- 	INTEL_VGA_DEVICE(0x590A, info) /* SRV GT1 */
- 
--#define INTEL_KBL_GT2_IDS(info)	\
-+#define INTEL_KBL_ULT_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5916, info), /* ULT GT2 */ \
-+	INTEL_VGA_DEVICE(0x5921, info)  /* ULT GT2F */
-+
-+#define INTEL_KBL_ULX_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x591E, info)  /* ULX GT2 */
-+
-+#define INTEL_KBL_GT2_IDS(info)	\
-+	INTEL_KBL_ULT_GT2_IDS(info), \
-+	INTEL_KBL_ULX_GT2_IDS(info), \
- 	INTEL_VGA_DEVICE(0x5917, info), /* Mobile GT2 */ \
--	INTEL_VGA_DEVICE(0x5921, info), /* ULT GT2F */ \
--	INTEL_VGA_DEVICE(0x591E, info), /* ULX GT2 */ \
- 	INTEL_VGA_DEVICE(0x5912, info), /* DT  GT2 */ \
- 	INTEL_VGA_DEVICE(0x591B, info), /* Halo GT2 */ \
- 	INTEL_VGA_DEVICE(0x591A, info), /* SRV GT2 */ \
- 	INTEL_VGA_DEVICE(0x591D, info) /* WKS GT2 */
- 
-+#define INTEL_KBL_ULT_GT3_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5926, info) /* ULT GT3 */
-+
- #define INTEL_KBL_GT3_IDS(info) \
-+	INTEL_KBL_ULT_GT3_IDS(info), \
- 	INTEL_VGA_DEVICE(0x5923, info), /* ULT GT3 */ \
--	INTEL_VGA_DEVICE(0x5926, info), /* ULT GT3 */ \
- 	INTEL_VGA_DEVICE(0x5927, info) /* ULT GT3 */
- 
- #define INTEL_KBL_GT4_IDS(info) \
- 	INTEL_VGA_DEVICE(0x593B, info) /* Halo GT4 */
- 
- /* AML/KBL Y GT2 */
--#define INTEL_AML_GT2_IDS(info) \
-+#define INTEL_AML_KBL_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x591C, info),  /* ULX GT2 */ \
- 	INTEL_VGA_DEVICE(0x87C0, info) /* ULX GT2 */
- 
-+/* AML/CFL Y GT2 */
-+#define INTEL_AML_CFL_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x87CA, info)
-+
-+/* CML GT1 */
-+#define INTEL_CML_GT1_IDS(info)	\
-+	INTEL_VGA_DEVICE(0x9BA5, info), \
-+	INTEL_VGA_DEVICE(0x9BA8, info), \
-+	INTEL_VGA_DEVICE(0x9BA4, info), \
-+	INTEL_VGA_DEVICE(0x9BA2, info)
-+
-+#define INTEL_CML_U_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x9B21, info), \
-+	INTEL_VGA_DEVICE(0x9BAA, info), \
-+	INTEL_VGA_DEVICE(0x9BAC, info)
-+
-+/* CML GT2 */
-+#define INTEL_CML_GT2_IDS(info)	\
-+	INTEL_VGA_DEVICE(0x9BC5, info), \
-+	INTEL_VGA_DEVICE(0x9BC8, info), \
-+	INTEL_VGA_DEVICE(0x9BC4, info), \
-+	INTEL_VGA_DEVICE(0x9BC2, info), \
-+	INTEL_VGA_DEVICE(0x9BC6, info), \
-+	INTEL_VGA_DEVICE(0x9BE6, info), \
-+	INTEL_VGA_DEVICE(0x9BF6, info)
-+
-+#define INTEL_CML_U_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x9B41, info), \
-+	INTEL_VGA_DEVICE(0x9BCA, info), \
-+	INTEL_VGA_DEVICE(0x9BCC, info)
-+
- #define INTEL_KBL_IDS(info) \
- 	INTEL_KBL_GT1_IDS(info), \
- 	INTEL_KBL_GT2_IDS(info), \
- 	INTEL_KBL_GT3_IDS(info), \
- 	INTEL_KBL_GT4_IDS(info), \
--	INTEL_AML_GT2_IDS(info)
-+	INTEL_AML_KBL_GT2_IDS(info)
- 
- /* CFL S */
- #define INTEL_CFL_S_GT1_IDS(info) \
-@@ -390,6 +492,9 @@
- 	INTEL_VGA_DEVICE(0x3E9A, info)  /* SRV GT2 */
- 
- /* CFL H */
-+#define INTEL_CFL_H_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x3E9C, info)
-+
- #define INTEL_CFL_H_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x3E9B, info), /* Halo GT2 */ \
- 	INTEL_VGA_DEVICE(0x3E94, info)  /* Halo GT2 */
-@@ -407,30 +512,43 @@
- 
- /* WHL/CFL U GT1 */
- #define INTEL_WHL_U_GT1_IDS(info) \
--	INTEL_VGA_DEVICE(0x3EA1, info)
-+	INTEL_VGA_DEVICE(0x3EA1, info), \
-+	INTEL_VGA_DEVICE(0x3EA4, info)
- 
- /* WHL/CFL U GT2 */
- #define INTEL_WHL_U_GT2_IDS(info) \
--	INTEL_VGA_DEVICE(0x3EA0, info)
-+	INTEL_VGA_DEVICE(0x3EA0, info), \
-+	INTEL_VGA_DEVICE(0x3EA3, info)
- 
- /* WHL/CFL U GT3 */
- #define INTEL_WHL_U_GT3_IDS(info) \
--	INTEL_VGA_DEVICE(0x3EA2, info), \
--	INTEL_VGA_DEVICE(0x3EA3, info), \
--	INTEL_VGA_DEVICE(0x3EA4, info)
-+	INTEL_VGA_DEVICE(0x3EA2, info)
- 
- #define INTEL_CFL_IDS(info)	   \
- 	INTEL_CFL_S_GT1_IDS(info), \
- 	INTEL_CFL_S_GT2_IDS(info), \
-+	INTEL_CFL_H_GT1_IDS(info), \
- 	INTEL_CFL_H_GT2_IDS(info), \
- 	INTEL_CFL_U_GT2_IDS(info), \
- 	INTEL_CFL_U_GT3_IDS(info), \
- 	INTEL_WHL_U_GT1_IDS(info), \
- 	INTEL_WHL_U_GT2_IDS(info), \
--	INTEL_WHL_U_GT3_IDS(info)
-+	INTEL_WHL_U_GT3_IDS(info), \
-+	INTEL_AML_CFL_GT2_IDS(info), \
-+	INTEL_CML_GT1_IDS(info), \
-+	INTEL_CML_GT2_IDS(info), \
-+	INTEL_CML_U_GT1_IDS(info), \
-+	INTEL_CML_U_GT2_IDS(info)
- 
- /* CNL */
-+#define INTEL_CNL_PORT_F_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5A54, info), \
-+	INTEL_VGA_DEVICE(0x5A5C, info), \
-+	INTEL_VGA_DEVICE(0x5A44, info), \
-+	INTEL_VGA_DEVICE(0x5A4C, info)
-+
- #define INTEL_CNL_IDS(info) \
-+	INTEL_CNL_PORT_F_IDS(info), \
- 	INTEL_VGA_DEVICE(0x5A51, info), \
- 	INTEL_VGA_DEVICE(0x5A59, info), \
- 	INTEL_VGA_DEVICE(0x5A41, info), \
-@@ -440,22 +558,47 @@
- 	INTEL_VGA_DEVICE(0x5A42, info), \
- 	INTEL_VGA_DEVICE(0x5A4A, info), \
- 	INTEL_VGA_DEVICE(0x5A50, info), \
--	INTEL_VGA_DEVICE(0x5A40, info), \
--	INTEL_VGA_DEVICE(0x5A54, info), \
--	INTEL_VGA_DEVICE(0x5A5C, info), \
--	INTEL_VGA_DEVICE(0x5A44, info), \
--	INTEL_VGA_DEVICE(0x5A4C, info)
-+	INTEL_VGA_DEVICE(0x5A40, info)
- 
- /* ICL */
--#define INTEL_ICL_11_IDS(info) \
-+#define INTEL_ICL_PORT_F_IDS(info) \
- 	INTEL_VGA_DEVICE(0x8A50, info), \
--	INTEL_VGA_DEVICE(0x8A51, info), \
- 	INTEL_VGA_DEVICE(0x8A5C, info), \
--	INTEL_VGA_DEVICE(0x8A5D, info), \
-+	INTEL_VGA_DEVICE(0x8A59, info),	\
-+	INTEL_VGA_DEVICE(0x8A58, info),	\
- 	INTEL_VGA_DEVICE(0x8A52, info), \
- 	INTEL_VGA_DEVICE(0x8A5A, info), \
- 	INTEL_VGA_DEVICE(0x8A5B, info), \
-+	INTEL_VGA_DEVICE(0x8A57, info), \
-+	INTEL_VGA_DEVICE(0x8A56, info), \
- 	INTEL_VGA_DEVICE(0x8A71, info), \
--	INTEL_VGA_DEVICE(0x8A70, info)
-+	INTEL_VGA_DEVICE(0x8A70, info), \
-+	INTEL_VGA_DEVICE(0x8A53, info), \
-+	INTEL_VGA_DEVICE(0x8A54, info)
-+
-+#define INTEL_ICL_11_IDS(info) \
-+	INTEL_ICL_PORT_F_IDS(info), \
-+	INTEL_VGA_DEVICE(0x8A51, info), \
-+	INTEL_VGA_DEVICE(0x8A5D, info)
-+
-+/* EHL/JSL */
-+#define INTEL_EHL_IDS(info) \
-+	INTEL_VGA_DEVICE(0x4500, info),	\
-+	INTEL_VGA_DEVICE(0x4571, info), \
-+	INTEL_VGA_DEVICE(0x4551, info), \
-+	INTEL_VGA_DEVICE(0x4541, info), \
-+	INTEL_VGA_DEVICE(0x4E71, info), \
-+	INTEL_VGA_DEVICE(0x4E61, info), \
-+	INTEL_VGA_DEVICE(0x4E51, info)
-+
-+/* TGL */
-+#define INTEL_TGL_12_IDS(info) \
-+	INTEL_VGA_DEVICE(0x9A49, info), \
-+	INTEL_VGA_DEVICE(0x9A40, info), \
-+	INTEL_VGA_DEVICE(0x9A59, info), \
-+	INTEL_VGA_DEVICE(0x9A60, info), \
-+	INTEL_VGA_DEVICE(0x9A68, info), \
-+	INTEL_VGA_DEVICE(0x9A70, info), \
-+	INTEL_VGA_DEVICE(0x9A78, info)
- 
- #endif /* _I915_PCIIDS_H */
-diff --git a/src/intel_module.c b/src/intel_module.c
-index a71c2e40b774..f58744c528e8 100644
---- a/src/intel_module.c
-+++ b/src/intel_module.c
-@@ -142,6 +142,22 @@ static const struct intel_device_info intel_coffeelake_info = {
- 	.gen = 0114,
- };
- 
-+static const struct intel_device_info intel_cannonlake_info = {
-+	.gen = 0115,
-+};
-+
-+static const struct intel_device_info intel_icelake_info = {
-+	.gen = 0116,
-+};
-+
-+static const struct intel_device_info intel_elkhartlake_info = {
-+	.gen = 0117,
-+};
-+
-+static const struct intel_device_info intel_tigerlake_info = {
-+	.gen = 0120,
-+};
-+
- static const SymTabRec intel_chipsets[] = {
- 	{PCI_CHIP_I810,				"i810"},
- 	{PCI_CHIP_I810_DC100,			"i810-dc100"},
-@@ -315,6 +331,7 @@ static const SymTabRec intel_chipsets[] = {
- 	{0x3E92, "HD Graphics"},
- 	{0x3E96, "HD Graphics"},
- 	{0x3E9A, "HD Graphics"},
-+	{0x3E9C, "HD Graphics"},
- 	{0x3E9B, "HD Graphics"},
- 	{0x3E94, "HD Graphics"},
- 	{0x3EA1, "HD Graphics"},
-@@ -327,6 +344,75 @@ static const SymTabRec intel_chipsets[] = {
- 	{0x3EA6, "HD Graphics"},
- 	{0x3EA7, "HD Graphics"},
- 	{0x3EA8, "HD Graphics"},
-+	{0x87CA, "HD Graphics"},
-+	{0x9BA5, "HD Graphics"},
-+	{0x9BA8, "HD Graphics"},
-+	{0x9BA4, "HD Graphics"},
-+	{0x9BA2, "HD Graphics"},
-+	{0x9BC5, "HD Graphics"},
-+	{0x9BC8, "HD Graphics"},
-+	{0x9BC4, "HD Graphics"},
-+	{0x9BC2, "HD Graphics"},
-+	{0x9BC6, "HD Graphics"},
-+	{0x9BE6, "HD Graphics"},
-+	{0x9BF6, "HD Graphics"},
-+	{0x9B21, "HD Graphics"},
-+	{0x9BAA, "HD Graphics"},
-+	{0x9BAC, "HD Graphics"},
-+	{0x9B41, "HD Graphics"},
-+	{0x9BCA, "HD Graphics"},
-+	{0x9BCC, "HD Graphics"},
-+
-+	/*CannonLake */
-+	{0x5A54, "HD Graphics"},
-+	{0x5A5C, "HD Graphics"},
-+	{0x5A44, "HD Graphics"},
-+	{0x5A4C, "HD Graphics"},
-+	{0x5A51, "HD Graphics"},
-+	{0x5A59, "HD Graphics"},
-+	{0x5A41, "HD Graphics"},
-+	{0x5A49, "HD Graphics"},
-+	{0x5A52, "HD Graphics"},
-+	{0x5A5A, "HD Graphics"},
-+	{0x5A42, "HD Graphics"},
-+	{0x5A4A, "HD Graphics"},
-+	{0x5A50, "HD Graphics"},
-+	{0x5A40, "HD Graphics"},
-+
-+	/*IceLake*/
-+	{0x8A50, "HD Graphics"},
-+	{0x8A5C, "HD Graphics"},
-+	{0x8A59, "HD Graphics"},
-+	{0x8A58, "HD Graphics"},
-+	{0x8A52, "HD Graphics"},
-+	{0x8A5A, "HD Graphics"},
-+	{0x8A5B, "HD Graphics"},
-+	{0x8A57, "HD Graphics"},
-+	{0x8A56, "HD Graphics"},
-+	{0x8A71, "HD Graphics"},
-+	{0x8A70, "HD Graphics"},
-+	{0x8A53, "HD Graphics"},
-+	{0x8A54, "HD Graphics"},
-+	{0x8A51, "HD Graphics"},
-+	{0x8A5D, "HD Graphics"},
-+
-+	/*ElkhartLake*/
-+	{0x4500, "HD Graphics"},
-+	{0x4571, "HD Graphics"},
-+	{0x4551, "HD Graphics"},
-+	{0x4541, "HD Graphics"},
-+	{0x4E71, "HD Graphics"},
-+	{0x4E61, "HD Graphics"},
-+	{0x4E51, "HD Graphics"},
-+
-+	/*TigerLake*/
-+	{0x9A49, "HD Graphics"},
-+	{0x9A40, "HD Graphics"},
-+	{0x9A59, "HD Graphics"},
-+	{0x9A60, "HD Graphics"},
-+	{0x9A68, "HD Graphics"},
-+	{0x9A70, "HD Graphics"},
-+	{0x9A78, "HD Graphics"},
- 
- 	/* When adding new identifiers, also update:
- 	 * 1. intel_identify()
-@@ -357,7 +443,7 @@ static const struct pci_id_match intel_device_match[] = {
- 	INTEL_I945GM_IDS(&intel_i945_info),
- 
- 	INTEL_G33_IDS(&intel_g33_info),
--	INTEL_PINEVIEW_IDS(&intel_g33_info),
-+	INTEL_PINEVIEW_G_IDS(&intel_g33_info),
- 
- 	INTEL_I965G_IDS(&intel_i965_info),
- 	INTEL_I965GM_IDS(&intel_i965_info),
-@@ -384,6 +470,10 @@ static const struct pci_id_match intel_device_match[] = {
- 	INTEL_GLK_IDS(&intel_geminilake_info),
- 
- 	INTEL_CFL_IDS(&intel_coffeelake_info),
-+	INTEL_CNL_IDS(&intel_cannonlake_info),
-+	INTEL_ICL_11_IDS(&intel_icelake_info),
-+	INTEL_EHL_IDS(&intel_elkhartlake_info),
-+	INTEL_TGL_12_IDS(&intel_tigerlake_info),
- 
- 	INTEL_VGA_DEVICE(PCI_MATCH_ANY, &intel_generic_info),
- #endif
-diff --git a/src/sna/gen9_render.c b/src/sna/gen9_render.c
-index 06c1f9a32145..d901307a95cd 100644
---- a/src/sna/gen9_render.c
-+++ b/src/sna/gen9_render.c
-@@ -297,6 +297,26 @@ static const struct gt_info cfl_gt_info = {
- 	.urb = { .max_vs_entries = 960 },
- };
- 
-+static const struct gt_info cnl_gt_info = {
-+	.name = "Cannonlake",
-+	.urb = { .max_vs_entries = 960 },
-+};
-+
-+static const struct gt_info icl_gt_info = {
-+	.name = "Icelake",
-+	.urb = { .max_vs_entries = 960 },
-+};
-+
-+static const struct gt_info ehl_gt_info = {
-+	.name = "Elkhartlake",
-+	.urb = { .max_vs_entries = 960 },
-+};
-+
-+static const struct gt_info tgl_gt_info = {
-+	.name = "Tigerlake",
-+	.urb = { .max_vs_entries = 960 },
-+};
-+
- static bool is_skl(struct sna *sna)
- {
- 	return sna->kgem.gen == 0110;
-@@ -322,6 +342,26 @@ static bool is_cfl(struct sna *sna)
- 	return sna->kgem.gen == 0114;
- }
- 
-+static bool is_cnl(struct sna *sna)
-+{
-+	return sna->kgem.gen == 0115;
-+}
-+
-+static bool is_icl(struct sna *sna)
-+{
-+	return sna->kgem.gen == 0116;
-+}
-+
-+static bool is_ehl(struct sna *sna)
-+{
-+	return sna->kgem.gen == 0117;
-+}
-+
-+static bool is_tgl(struct sna *sna)
-+{
-+	return sna->kgem.gen == 0120;
-+}
-+
- static inline bool too_large(int width, int height)
- {
- 	return width > GEN9_MAX_SIZE || height > GEN9_MAX_SIZE;
-@@ -4119,6 +4159,14 @@ static bool gen9_render_setup(struct sna *sna)
- 		state->info = &glk_gt_info;
- 	if (is_cfl(sna))
- 		state->info = &cfl_gt_info;
-+	if (is_cnl(sna))
-+		state->info = &cnl_gt_info;
-+	if (is_icl(sna))
-+		state->info = &icl_gt_info;
-+	if (is_ehl(sna))
-+		state->info = &ehl_gt_info;
-+	if (is_tgl(sna))
-+		state->info = &tgl_gt_info;
- 
- 	sna_static_stream_init(&general);
- 
-diff --git a/test/dri3-test.c b/test/dri3-test.c
-index 78e105a8b64a..5265a30cea1b 100644
---- a/test/dri3-test.c
-+++ b/test/dri3-test.c
-@@ -76,7 +76,7 @@ static const struct pci_id_match ids[] = {
- 	INTEL_I945GM_IDS(031),
- 
- 	INTEL_G33_IDS(033),
--	INTEL_PINEVIEW_IDS(033),
-+	INTEL_PINEVIEW_G_IDS(033),
- 
- 	INTEL_I965G_IDS(040),
- 	INTEL_I965GM_IDS(040),
--- 
-2.17.1
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17373_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_suspend@debugfs-reader:
+    - shard-apl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-apl7/igt@i915_suspend@debugfs-reader.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-apl6/igt@i915_suspend@debugfs-reader.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#1188])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-skl3/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_mmap_write_crc@main:
+    - shard-kbl:          [PASS][5] -> [FAIL][6] ([i915#93] / [i915#95])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-kbl6/igt@kms_mmap_write_crc@main.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-kbl7/igt@kms_mmap_write_crc@main.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
+    - shard-skl:          [PASS][7] -> [FAIL][8] ([fdo#108145] / [i915#265])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+
+  * igt@kms_psr@no_drrs:
+    - shard-iclb:         [PASS][9] -> [FAIL][10] ([i915#173])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-iclb5/igt@kms_psr@no_drrs.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-iclb1/igt@kms_psr@no_drrs.html
+
+  * igt@kms_psr@psr2_no_drrs:
+    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#109441]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-iclb2/igt@kms_psr@psr2_no_drrs.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-iclb6/igt@kms_psr@psr2_no_drrs.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_params@invalid-bsd-ring:
+    - shard-iclb:         [SKIP][13] ([fdo#109276]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-iclb8/igt@gem_exec_params@invalid-bsd-ring.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-iclb4/igt@gem_exec_params@invalid-bsd-ring.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle:
+    - shard-snb:          [FAIL][15] ([i915#1066]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-snb6/igt@i915_pm_rc6_residency@rc6-idle.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-snb5/igt@i915_pm_rc6_residency@rc6-idle.html
+
+  * igt@i915_selftest@live@requests:
+    - shard-tglb:         [INCOMPLETE][17] ([i915#1531] / [i915#1658]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-tglb1/igt@i915_selftest@live@requests.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-tglb8/igt@i915_selftest@live@requests.html
+
+  * igt@kms_draw_crc@draw-method-rgb565-mmap-wc-untiled:
+    - shard-glk:          [FAIL][19] ([i915#52] / [i915#54]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-glk4/igt@kms_draw_crc@draw-method-rgb565-mmap-wc-untiled.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-glk9/igt@kms_draw_crc@draw-method-rgb565-mmap-wc-untiled.html
+
+  * {igt@kms_flip@2x-flip-vs-blocking-wf-vblank@ab-hdmi-a1-hdmi-a2}:
+    - shard-glk:          [FAIL][21] ([i915#34]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-glk6/igt@kms_flip@2x-flip-vs-blocking-wf-vblank@ab-hdmi-a1-hdmi-a2.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-glk4/igt@kms_flip@2x-flip-vs-blocking-wf-vblank@ab-hdmi-a1-hdmi-a2.html
+
+  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
+    - shard-kbl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +3 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-kbl4/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-kbl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+
+  * {igt@kms_flip@flip-vs-suspend@a-dp1}:
+    - shard-apl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +1 similar issue
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-apl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-apl7/igt@kms_flip@flip-vs-suspend@a-dp1.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [FAIL][27] ([i915#1188]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-skl1/igt@kms_hdr@bpc-switch-suspend.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-skl2/igt@kms_hdr@bpc-switch-suspend.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][29] ([fdo#108145] / [i915#265]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-skl4/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_cursor_blt:
+    - shard-iclb:         [SKIP][31] ([fdo#109441]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-iclb8/igt@kms_psr@psr2_cursor_blt.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc5-psr:
+    - shard-snb:          [INCOMPLETE][33] ([i915#82]) -> [SKIP][34] ([fdo#109271])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-snb5/igt@i915_pm_dc@dc5-psr.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-snb6/igt@i915_pm_dc@dc5-psr.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-tglb:         [FAIL][35] ([i915#454]) -> [SKIP][36] ([i915#468])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-tglb5/igt@i915_pm_dc@dc6-psr.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-alpha-basic:
+    - shard-apl:          [FAIL][37] ([fdo#108145] / [i915#265]) -> [FAIL][38] ([fdo#108145] / [i915#265] / [i915#95])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-apl8/igt@kms_plane_alpha_blend@pipe-b-alpha-basic.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-apl6/igt@kms_plane_alpha_blend@pipe-b-alpha-basic.html
+    - shard-kbl:          [FAIL][39] ([fdo#108145] / [i915#265]) -> [FAIL][40] ([fdo#108145] / [i915#265] / [i915#93] / [i915#95])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8324/shard-kbl6/igt@kms_plane_alpha_blend@pipe-b-alpha-basic.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/shard-kbl4/igt@kms_plane_alpha_blend@pipe-b-alpha-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#1066]: https://gitlab.freedesktop.org/drm/intel/issues/1066
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#1658]: https://gitlab.freedesktop.org/drm/intel/issues/1658
+  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8324 -> Patchwork_17373
+
+  CI-20190529: 20190529
+  CI_DRM_8324: 279672c3e0717ef7047b97b49d98636ef2242a91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5600: 363bdd3e5bf06f5c964a12ccec71d7684cf46847 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17373: be955ab0bea376a36b10a28afc85d4aac5bd6f97 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17373/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
