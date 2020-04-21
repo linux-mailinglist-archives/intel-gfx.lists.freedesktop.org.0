@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69931B216B
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED091B2184
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:24:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D9D6E41D;
-	Tue, 21 Apr 2020 08:19:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7993E6E038;
+	Tue, 21 Apr 2020 08:24:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DAE1B6E41D;
- Tue, 21 Apr 2020 08:19:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D1A22A008A;
- Tue, 21 Apr 2020 08:19:08 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A27576E897;
+ Tue, 21 Apr 2020 08:24:45 +0000 (UTC)
+IronPort-SDR: BvG6Pi4BzYMp+OAKdrLLe62Zjzv7g8EzcuFFM/JYFP+vBwhEJyu8FyvLFME2koAUhOopifwzzK
+ ebMbCM+/9zpA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 01:24:45 -0700
+IronPort-SDR: H5mndwxhmC2bj+Hg8hCaz6DgGaCgB8vJcG2K97w7WIXG4F3KZ1q47xHNjTr8HQwGzzSreYcGj/
+ qrQLqc+lBVbQ==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="429450840"
+Received: from parkernx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.46.80])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 01:24:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>
+In-Reply-To: <20200406112800.23762-16-pankaj.laxminarayan.bharadiya@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-16-pankaj.laxminarayan.bharadiya@intel.com>
+Date: Tue, 21 Apr 2020 11:24:39 +0300
+Message-ID: <87o8rlz1o8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Tue, 21 Apr 2020 08:19:08 -0000
-Message-ID: <158745714882.17662.6487888097145532839@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?q?=28rev11=29?=
+Subject: Re: [Intel-gfx] [PATCH 15/18] drm/i915/i915_drv: Prefer drm_WARN_ON
+ over WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,117 +52,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> struct drm_device specific drm_WARN* macros include device information
+> in the backtrace, so we know what device the warnings originate from.
+>
+> Prefer drm_WARN_ON over WARN_ON.
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index e9ee4daa9320..be33cab6403d 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1647,7 +1647,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->pipe_mask != 0)
+>  
+>  /* Only valid when HAS_DISPLAY() is true */
+> -#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> +#define INTEL_DISPLAY_ENABLED(dev_priv) \
+> +		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev11)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : failure
+Needs parens around the dev_priv macro argument.
 
-== Summary ==
+BR,
+Jani.
 
-CI Bug Log - changes from CI_DRM_8339 -> Patchwork_17395
-====================================================
+>  
+>  static inline bool intel_vtd_active(void)
+>  {
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17395 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17395, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17395:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@mman:
-    - fi-snb-2600:        [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-snb-2600/igt@i915_selftest@live@mman.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-snb-2600/igt@i915_selftest@live@mman.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17395 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4] ([i915#1751])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-icl-u2:          [DMESG-FAIL][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-
-  
-  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
-
-
-Participating hosts (48 -> 41)
-------------------------------
-
-  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-hsw-4770 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8339 -> Patchwork_17395
-
-  CI-20190529: 20190529
-  CI_DRM_8339: aff3f45feee4ed28b07e06bacac28c72c5315e37 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17395: a5db16ec932c85ce6de749e953448d54a6b5e40f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a5db16ec932c drm/i915/psr: Use new DP VSC SDP compute routine on PSR
-9a2ad5a32a45 drm/i915/dp: Add compute routine for DP PSR VSC SDP
-07856a13f253 drm/i915: Stop sending DP SDPs on ddi disable
-b8c74d06c9ea drm/i915: Program DP SDPs on pipe updates
-e78863a17e96 drm/i915: Fix enabled infoframe states of lspcon
-3f0c456bcfa9 drm/i915: Add state readout for DP VSC SDP
-beeabdf3a48b drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-baa9bbad6bef drm/i915: Program DP SDPs with computed configs
-673d595572d2 drm/i915: Include DP VSC SDP in the crtc state dump
-ca01029436e6 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-6cccd45e8119 drm/i915: Include HDMI DRM infoframe in the crtc state dump
-3df2cc567e5a drm: Add logging function for DP VSC SDP
-5eae0ec2d8ae drm/i915/dp: Read out DP SDPs
-33516c7eda02 video/hdmi: Add Unpack only function for DRM infoframe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
