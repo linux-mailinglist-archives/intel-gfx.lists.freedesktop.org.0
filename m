@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AF31B2B04
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 17:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 638521B2B0C
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 17:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42AD6E9A0;
-	Tue, 21 Apr 2020 15:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA32B6E9A5;
+	Tue, 21 Apr 2020 15:21:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FF8C6E9A0;
- Tue, 21 Apr 2020 15:20:44 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 025C66E9A3;
+ Tue, 21 Apr 2020 15:21:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2D542A008A;
- Tue, 21 Apr 2020 15:20:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F3F0DA008A;
+ Tue, 21 Apr 2020 15:21:03 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Tue, 21 Apr 2020 15:20:44 -0000
-Message-ID: <158748244418.17663.10370212618247292877@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 21 Apr 2020 15:21:03 -0000
+Message-ID: <158748246399.17661.5478399235340917224@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/i915=3A_Make_define_for_?=
- =?utf-8?q?lrc_state_offset_=28rev3=29?=
+References: <20200421142236.8614-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200421142236.8614-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Disable_C-states_when_measuring_RPS_frequenc?=
+ =?utf-8?q?y_response?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,71 +48,137 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/5] drm/i915: Make define for lrc state offset (rev3)
-URL   : https://patchwork.freedesktop.org/series/76262/
-State : warning
+Series: drm/i915/selftests: Disable C-states when measuring RPS frequency response
+URL   : https://patchwork.freedesktop.org/series/76272/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ebd226e97eaa drm/i915: Make define for lrc state offset
-91d36088a541 drm/i915: Add per ctx batchbuffer wa for timestamp
--:51: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#51: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:141:
-+#define   MI_LRI_LRM_CS_MMIO		(1<<19)
-                             		  ^
+CI Bug Log - changes from CI_DRM_8343 -> Patchwork_17407
+====================================================
 
--:59: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#59: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:158:
-+#define   MI_LRM_ASYNC			(1<<21)
-                       			  ^
+Summary
+-------
 
--:200: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#200: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3256:
-+			 (I915_GTT_PAGE_SIZE - 4)/sizeof(*cs));
- 			                         ^
+  **FAILURE**
 
--:253: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#253: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3321:
-+
-+	}
+  Serious unknown changes coming with Patchwork_17407 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17407, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-total: 0 errors, 0 warnings, 4 checks, 273 lines checked
-4dde93b94a27 drm/i915: Add live selftests for indirect ctx batchbuffers
--:52: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#52: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5387:
-+#define CTX_BB_CANARY_OFFSET (3*1024)
-                                ^
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/index.html
 
--:53: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#53: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5388:
-+#define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET/sizeof(u32))
-                                                   ^
+Possible new issues
+-------------------
 
--:167: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#167: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5502:
-+	for_each_engine(engine, gt, id) {
-+
+  Here are the unknown changes that may have been introduced in Patchwork_17407:
 
-total: 0 errors, 0 warnings, 3 checks, 171 lines checked
-3eb707784988 drm/i915: Use indirect ctx bb to mend CMD_BUF_CCTL
--:24: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#24: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:517:
-+#define END(total_state_size) 0, (total_state_size)
+### IGT changes ###
 
--:32: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#32: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:925:
-+	NOP(3+9+1),
- 	     ^
+#### Possible regressions ####
 
--:32: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#32: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:925:
-+	NOP(3+9+1),
- 	       ^
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-icl-y/igt@i915_selftest@live@execlists.html
 
-total: 1 errors, 0 warnings, 2 checks, 118 lines checked
-43625946de06 drm/i915: Split ctx timestamp selftest into two
+  
+Known issues
+------------
 
+  Here are the changes found in Patchwork_17407 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#1751])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-6700k2:      [PASS][5] -> [DMESG-FAIL][6] ([i915#1751])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-skl-6700k2/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-skl-6700k2/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-r:           [PASS][7] -> [DMESG-FAIL][8] ([i915#1751])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-kbl-r/igt@i915_selftest@live@gt_pm.html
+    - fi-whl-u:           [PASS][9] -> [DMESG-FAIL][10] ([i915#1751])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-u2:          [PASS][11] -> [INCOMPLETE][12] ([i915#1531] / [i915#1581])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-icl-u2/igt@i915_selftest@live@requests.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-icl-u2/igt@i915_selftest@live@requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cfl-8109u:       [DMESG-FAIL][13] ([i915#1751]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+    - fi-apl-guc:         [DMESG-FAIL][15] ([i915#1751]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-7500u:       [FAIL][17] ([i915#976]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][19] ([i915#62]) -> [SKIP][20] ([fdo#109271])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-u2:          [DMESG-FAIL][21] -> [DMESG-FAIL][22] ([i915#1754])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
+  [i915#1581]: https://gitlab.freedesktop.org/drm/intel/issues/1581
+  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
+  [i915#1754]: https://gitlab.freedesktop.org/drm/intel/issues/1754
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-bwr-2160 
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8343 -> Patchwork_17407
+
+  CI-20190529: 20190529
+  CI_DRM_8343: a5f7098d36b9370b08717c04d894d01c7cb4320b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17407: e7d2ed39c41c9203e2c41b460eada4be5f426d5f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e7d2ed39c41c drm/i915/selftests: Disable C-states when measuring RPS frequency response
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17407/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
