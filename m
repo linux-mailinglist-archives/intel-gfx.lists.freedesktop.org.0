@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90B11B2A73
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:47:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EAE1B2A72
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:47:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 368196E9A1;
-	Tue, 21 Apr 2020 14:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C69AA6E99F;
+	Tue, 21 Apr 2020 14:47:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAD966E9A1
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 14:47:21 +0000 (UTC)
-IronPort-SDR: EzFHdnkUsW9s0IZw8XXStyHv9QTew4zPe2/gD9jUC8avcoSlLMYaFNDyupx8G2ad8VrPsNA4im
- eEJnBDMH7L5A==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC46F6E99F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 14:47:19 +0000 (UTC)
+IronPort-SDR: w+nJjcTFn5JNVuX4T9APKQCkxfW7y3PZP2lH93uUG4S6782YAH7Ru0lsqP8Kz2y0t5ogBY9iIH
+ wBVrMXpaDZ+w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 07:47:21 -0700
-IronPort-SDR: ghW0EU1G/h6zbsRXu746fVSsN6nnT3/PdZwX3tqzCpN9mASNqHJd2mEVF/ty9V5xT/Rva1fhQu
- 4ExCDRpJSSDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="365368051"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga001.fm.intel.com with ESMTP; 21 Apr 2020 07:47:20 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id EDB925C1DA7; Tue, 21 Apr 2020 17:45:25 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+ 21 Apr 2020 07:47:13 -0700
+IronPort-SDR: r7Jd9zm51s5hnBZRDGK4WvL4mFVW2jiEwnzmFFQeuiQG6BPBnAsf4XkWP/6ROckNHULemFIqGY
+ UpZFSlR9dQrg==
+X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="429551833"
+Received: from wwojtkie-mobl.ger.corp.intel.com (HELO [10.252.50.229])
+ ([10.252.50.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 07:47:12 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200421142236.8614-1-chris@chris-wilson.co.uk>
-References: <20200421142236.8614-1-chris@chris-wilson.co.uk>
-Date: Tue, 21 Apr 2020 17:45:25 +0300
-Message-ID: <871rognbi2.fsf@gaia.fi.intel.com>
+References: <20200421085939.31410-1-chris@chris-wilson.co.uk>
+ <20200421092504.7416-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3aa1e192-02cc-107d-f0f6-a78d6f08a0e4@linux.intel.com>
+Date: Tue, 21 Apr 2020 15:47:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Disable C-states when
- measuring RPS frequency response
+In-Reply-To: <20200421092504.7416-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gt: Poison residual state
+ [HWSP] across resume.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +52,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gTGV0J3Mg
-aXNvbGF0ZSB0aGUgaW1wYWN0IG9mIGNwdSBmcmVxdWVuY3kgc2VsZWN0aW9uIG9uIGRldGVybWlu
-ZyB0aGUgR1BVCj4gdGhyb3VnaHB1dCBpbiByZXNwb25zZSB0byBzZWxlY3Rpb24gb2YgUlBTIGZy
-ZXF1ZW5jaWVzLgo+Cj4gRm9yIHJlYWwgc3lzdGVtcywgd2UgZG8gaGF2ZSB0byBiZSBjb25jZXJu
-ZWQgd2l0aCB0aGUgaW1wYWN0IG9mCj4gaW50ZWdyYXRpbmcgYy1zdGF0ZXMsIHAtc3RhdGVzIGFu
-ZCBycC1zdGF0ZXMsIGJ1dCBmb3IgdGhlIHNha2Ugb2YKPiBwcm92aW5nIHdoZXRoZXIgb3Igbm90
-IFJQUyB3b3Jrcywgb25lIGJhYnkgc3RlcCBhdCBhIHRpbWUuCj4KPiBTaWduZWQtb2ZmLWJ5OiBD
-aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogTWlrYSBLdW9wcGFs
-YSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogTWlrYSBLdW9w
-cGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CgoKPiAtLS0KPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMgfCAxOCArKysrKysrKysrKysrKysrKysKPiAg
-MSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L3NlbGZ0ZXN0X3Jwcy5jCj4gaW5kZXggMzk1MjY1MTIxZTQzLi5lMmFmYzIwMDNjYWEgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuYwo+IEBAIC0zLDYgKzMsNyBAQAo+
-ICAgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgo+ICAgKi8KPiAgCj4gKyNp
-bmNsdWRlIDxsaW51eC9wbV9xb3MuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L3NvcnQuaD4KPiAgCj4g
-ICNpbmNsdWRlICJpbnRlbF9lbmdpbmVfcG0uaCIKPiBAQCAtMTQsNiArMTUsOSBAQAo+ICAjaW5j
-bHVkZSAic2VsZnRlc3RzL2lndF9zcGlubmVyLmgiCj4gICNpbmNsdWRlICJzZWxmdGVzdHMvbGli
-cmFwbC5oIgo+ICAKPiArLyogVHJ5IHRvIGlzb2xhdGUgdGhlIGltcGFjdCBvZiBjc3RhdGVzIGZy
-b20gZGV0ZXJtaW5nIGZyZXF1ZW5jeSByZXNwb25zZSAqLwo+ICsjZGVmaW5lIENQVV9MQVRFTkNZ
-IDAgLyogLTEgdG8gZGlzYWJsZSBwbV9xb3MsIDAgdG8gZGlzYWJsZSBjc3RhdGVzICovCj4gKwo+
-ICBzdGF0aWMgdm9pZCBkdW1teV9ycHNfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndyaykKPiAg
-ewo+ICB9Cj4gQEAgLTQwNiw2ICs0MTAsNyBAQCBpbnQgbGl2ZV9ycHNfZnJlcXVlbmN5X2NzKHZv
-aWQgKmFyZykKPiAgCXN0cnVjdCBpbnRlbF9ndCAqZ3QgPSBhcmc7Cj4gIAlzdHJ1Y3QgaW50ZWxf
-cnBzICpycHMgPSAmZ3QtPnJwczsKPiAgCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsK
-PiArCXN0cnVjdCBwbV9xb3NfcmVxdWVzdCBxb3M7Cj4gIAllbnVtIGludGVsX2VuZ2luZV9pZCBp
-ZDsKPiAgCWludCBlcnIgPSAwOwo+ICAKPiBAQCAtNDIxLDYgKzQyNiw5IEBAIGludCBsaXZlX3Jw
-c19mcmVxdWVuY3lfY3Modm9pZCAqYXJnKQo+ICAJaWYgKElOVEVMX0dFTihndC0+aTkxNSkgPCA4
-KSAvKiBmb3IgQ1Mgc2ltcGxpY2l0eSAqLwo+ICAJCXJldHVybiAwOwo+ICAKPiArCWlmIChDUFVf
-TEFURU5DWSA+PSAwKQo+ICsJCWNwdV9sYXRlbmN5X3Fvc19hZGRfcmVxdWVzdCgmcW9zLCBDUFVf
-TEFURU5DWSk7Cj4gKwo+ICAJaW50ZWxfZ3RfcG1fd2FpdF9mb3JfaWRsZShndCk7Cj4gIAlzYXZl
-ZF93b3JrID0gcnBzLT53b3JrLmZ1bmM7Cj4gIAlycHMtPndvcmsuZnVuYyA9IGR1bW15X3Jwc193
-b3JrOwo+IEBAIC01MjcsNiArNTM1LDkgQEAgaW50IGxpdmVfcnBzX2ZyZXF1ZW5jeV9jcyh2b2lk
-ICphcmcpCj4gIAlpbnRlbF9ndF9wbV93YWl0X2Zvcl9pZGxlKGd0KTsKPiAgCXJwcy0+d29yay5m
-dW5jID0gc2F2ZWRfd29yazsKPiAgCj4gKwlpZiAoQ1BVX0xBVEVOQ1kgPj0gMCkKPiArCQljcHVf
-bGF0ZW5jeV9xb3NfcmVtb3ZlX3JlcXVlc3QoJnFvcyk7Cj4gKwo+ICAJcmV0dXJuIGVycjsKPiAg
-fQo+ICAKPiBAQCAtNTM2LDYgKzU0Nyw3IEBAIGludCBsaXZlX3Jwc19mcmVxdWVuY3lfc3JtKHZv
-aWQgKmFyZykKPiAgCXN0cnVjdCBpbnRlbF9ndCAqZ3QgPSBhcmc7Cj4gIAlzdHJ1Y3QgaW50ZWxf
-cnBzICpycHMgPSAmZ3QtPnJwczsKPiAgCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsK
-PiArCXN0cnVjdCBwbV9xb3NfcmVxdWVzdCBxb3M7Cj4gIAllbnVtIGludGVsX2VuZ2luZV9pZCBp
-ZDsKPiAgCWludCBlcnIgPSAwOwo+ICAKPiBAQCAtNTUxLDYgKzU2Myw5IEBAIGludCBsaXZlX3Jw
-c19mcmVxdWVuY3lfc3JtKHZvaWQgKmFyZykKPiAgCWlmIChJTlRFTF9HRU4oZ3QtPmk5MTUpIDwg
-OCkgLyogZm9yIENTIHNpbXBsaWNpdHkgKi8KPiAgCQlyZXR1cm4gMDsKPiAgCj4gKwlpZiAoQ1BV
-X0xBVEVOQ1kgPj0gMCkKPiArCQljcHVfbGF0ZW5jeV9xb3NfYWRkX3JlcXVlc3QoJnFvcywgQ1BV
-X0xBVEVOQ1kpOwo+ICsKPiAgCWludGVsX2d0X3BtX3dhaXRfZm9yX2lkbGUoZ3QpOwo+ICAJc2F2
-ZWRfd29yayA9IHJwcy0+d29yay5mdW5jOwo+ICAJcnBzLT53b3JrLmZ1bmMgPSBkdW1teV9ycHNf
-d29yazsKPiBAQCAtNjU2LDYgKzY3MSw5IEBAIGludCBsaXZlX3Jwc19mcmVxdWVuY3lfc3JtKHZv
-aWQgKmFyZykKPiAgCWludGVsX2d0X3BtX3dhaXRfZm9yX2lkbGUoZ3QpOwo+ICAJcnBzLT53b3Jr
-LmZ1bmMgPSBzYXZlZF93b3JrOwo+ICAKPiArCWlmIChDUFVfTEFURU5DWSA+PSAwKQo+ICsJCWNw
-dV9sYXRlbmN5X3Fvc19yZW1vdmVfcmVxdWVzdCgmcW9zKTsKPiArCj4gIAlyZXR1cm4gZXJyOwo+
-ICB9Cj4gIAo+IC0tIAo+IDIuMjAuMQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+
+On 21/04/2020 10:25, Chris Wilson wrote:
+> Since we may lose the content of any buffer when we relinquish control
+> of the system (e.g. suspend/resume), we have to be careful not to rely
+> on regaining control. A good method to detect when we might be using
+> garbage is by always injecting that garbage prior to first use on
+> load/resume/etc.
+> 
+> v2: Drop sanitize callback on cleanup
+> v3: Move seqno reset to timeline enter, so we reset all timelines.
+> However, this is done on every activation during runtime and not reset.
+> The similar level of paranoia we apply to correcting context state after
+> a period of inactivity.
+> 
+> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+> Reset in sanitize, for we may attempt to park the engine before using
+> any timelines.
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c      | 23 ++++++++++++++++++++++-
+>   drivers/gpu/drm/i915/gt/intel_timeline.c | 17 ++++++++++++++++-
+>   drivers/gpu/drm/i915/gt/intel_timeline.h |  2 ++
+>   3 files changed, 40 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 34f67eb9bfa1..d42a9d6767d4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -3649,7 +3649,26 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+>   
+>   static void execlists_sanitize(struct intel_engine_cs *engine)
+>   {
+> +	/*
+> +	 * Poison residual state on resume, in case the suspend didn't!
+> +	 *
+> +	 * We have to assume that across suspend/resume (or other loss
+> +	 * of control) that the contents of our pinned buffers has been
+> +	 * lost, replaced by garbage. Since this doesn't always happen,
+> +	 * let's poison such state so that we more quickly spot when
+> +	 * we falsely assume it has been preserved.
+> +	 */
+> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> +		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
+> +
+>   	reset_csb_pointers(engine);
+> +
+> +	/*
+> +	 * The kernel_context HWSP is stored in the status_page. As above,
+> +	 * that may be lost on resume/initialisation, and so we need to
+> +	 * reset the value in the HWSP.
+> +	 */
+> +	intel_timeline_reset_seqno(engine->kernel_context->timeline);
+>   }
+>   
+>   static void enable_error_interrupt(struct intel_engine_cs *engine)
+> @@ -4539,6 +4558,8 @@ static void execlists_shutdown(struct intel_engine_cs *engine)
+>   
+>   static void execlists_release(struct intel_engine_cs *engine)
+>   {
+> +	engine->sanitize = NULL; /* no longer in control, nothing to sanitize */
+> +
+>   	execlists_shutdown(engine);
+>   
+>   	intel_engine_cleanup_common(engine);
+> @@ -4550,7 +4571,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+>   {
+>   	/* Default vfuncs which can be overriden by each engine. */
+>   
+> -	engine->sanitize = execlists_sanitize;
+>   	engine->resume = execlists_resume;
+>   
+>   	engine->cops = &execlists_context_ops;
+> @@ -4666,6 +4686,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+>   		execlists->csb_size = GEN11_CSB_ENTRIES;
+>   
+>   	/* Finally, take ownership and responsibility for cleanup! */
+> +	engine->sanitize = execlists_sanitize;
+>   	engine->release = execlists_release;
+>   
+>   	return 0;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index 3779c2ae0d65..29a39e44fa36 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -337,6 +337,13 @@ int intel_timeline_pin(struct intel_timeline *tl)
+>   	return 0;
+>   }
+>   
+> +void intel_timeline_reset_seqno(const struct intel_timeline *tl)
+> +{
+> +	/* Must be pinned to be writable, and no requests in flight. */
+> +	GEM_BUG_ON(!atomic_read(&tl->pin_count));
+> +	WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
+> +}
+> +
+>   void intel_timeline_enter(struct intel_timeline *tl)
+>   {
+>   	struct intel_gt_timelines *timelines = &tl->gt->timelines;
+> @@ -365,8 +372,16 @@ void intel_timeline_enter(struct intel_timeline *tl)
+>   		return;
+>   
+>   	spin_lock(&timelines->lock);
+> -	if (!atomic_fetch_inc(&tl->active_count))
+> +	if (!atomic_fetch_inc(&tl->active_count)) {
+> +		/*
+> +		 * The HWSP is volatile, and may have been lost while inactive,
+> +		 * e.g. across suspend/resume. Be paranoid, and ensure that
+> +		 * the HWSP value matches our seqno so we don't proclaim
+> +		 * the next request as already complete.
+> +		 */
+> +		intel_timeline_reset_seqno(tl);
+>   		list_add_tail(&tl->link, &timelines->active_list);
+> +	}
+>   	spin_unlock(&timelines->lock);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+> index f5b7eade3809..c8e59a333182 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+> @@ -84,6 +84,8 @@ int intel_timeline_get_seqno(struct intel_timeline *tl,
+>   void intel_timeline_exit(struct intel_timeline *tl);
+>   void intel_timeline_unpin(struct intel_timeline *tl);
+>   
+> +void intel_timeline_reset_seqno(const struct intel_timeline *tl);
+> +
+>   int intel_timeline_read_hwsp(struct i915_request *from,
+>   			     struct i915_request *until,
+>   			     u32 *hwsp_offset);
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
