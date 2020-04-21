@@ -2,57 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D65C41B1FFF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 09:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9FFA1B205F
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 09:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6735B6E8DD;
-	Tue, 21 Apr 2020 07:39:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE59A6E21F;
+	Tue, 21 Apr 2020 07:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 164746E8DC
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 07:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1587454750;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=VpWGToBxpxenwDmk0niLgys1EHGa77wS5VtCKB4YaWc=;
- b=eDuw9u4G3nxQtWxkvYDS2Mj2SMoVJYFkXcBiwS1/9e2BK0IVND7M1FHxwSdSA/rrT1QySn
- roe4hpgEC7tns4yhHKIwBIG/aLlqbhtOJYGEIV5CcsldKWZCf9MLrkUogNBI/f6PxUZNRu
- 8i07z3Hsy/OyEPh2Jwru4I53QsRsuvk=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-249-EnioNs_OOd6G84KjVCOLSw-1; Tue, 21 Apr 2020 03:39:05 -0400
-X-MC-Unique: EnioNs_OOd6G84KjVCOLSw-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5E606DB24;
- Tue, 21 Apr 2020 07:39:04 +0000 (UTC)
-Received: from sirius.home.kraxel.org (ovpn-113-193.ams2.redhat.com
- [10.36.113.193])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 103F160C88;
- Tue, 21 Apr 2020 07:39:04 +0000 (UTC)
-Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
- id 36A6416E16; Tue, 21 Apr 2020 09:39:00 +0200 (CEST)
-Date: Tue, 21 Apr 2020 09:39:00 +0200
-From: Gerd Hoffmann <kraxel@redhat.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200421073900.mc2mknilgp3lxd6h@sirius.home.kraxel.org>
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-60-daniel.vetter@ffwll.ch>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C87886E21F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 07:53:17 +0000 (UTC)
+IronPort-SDR: WE+JbZE6b7SdBHh2w0OH8Ud9uvFfws7YR2ZNCuvsKEC2DFDkBbAhtu++dPJNafnxe9mjNcgqP2
+ FCLtFesTZGmA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 00:53:17 -0700
+IronPort-SDR: xHVsIVKYGkRHgyXeoMGdyFB8j9PDYeNh11CGLR3cczl0E2JnoR2hlC8yYsX8zBdAWdSPFgPNa4
+ 3LtdGRQyUYeg==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="429439811"
+Received: from parkernx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.46.80])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 00:53:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
+ intel-gfx@lists.freedesktop.org, Imre Deak <imre.deak@intel.com>
+In-Reply-To: <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
+Date: Tue, 21 Apr 2020 10:53:12 +0300
+Message-ID: <87tv1dz34n.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200415074034.175360-60-daniel.vetter@ffwll.ch>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-Subject: Re: [Intel-gfx] [PATCH 59/59] drm/bochs: Remove explicit
- drm_connector_register
+Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/display/display: Prefer
+ drm_WARN_ON over WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,26 +50,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2020 at 09:40:34AM +0200, Daniel Vetter wrote:
-> This is leftovers from the old drm_driver->load callback
-> upside-down issues. It doesn't do anything for not-hotplugged
-> connectors since drm_dev_register takes care of that.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: virtualization@lists.linux-foundation.org
 
-Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+Pankaj, the subject line is identical to patch 4, please update.
 
+Imre, one question inline for you.
+
+On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 433e5a81dd4d..5475f989df4c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1850,22 +1850,29 @@ static u64 __async_put_domains_mask(struct i915_power_domains *power_domains)
+>  static bool
+>  assert_async_put_domain_masks_disjoint(struct i915_power_domains *power_domains)
+>  {
+> -	return !WARN_ON(power_domains->async_put_domains[0] &
+> -			power_domains->async_put_domains[1]);
+> +	struct drm_i915_private *i915 = container_of(power_domains,
+> +						     struct drm_i915_private,
+> +						     power_domains);
+> +	return !drm_WARN_ON(&i915->drm, power_domains->async_put_domains[0] &
+> +			    power_domains->async_put_domains[1]);
+>  }
+
+Do we want to depend on struct i915_power_domains being a struct
+drm_i915_private member via container_of?
+
+BR,
+Jani.
+
+>  
+>  static bool
+>  __async_put_domains_state_ok(struct i915_power_domains *power_domains)
+>  {
+> +	struct drm_i915_private *i915 = container_of(power_domains,
+> +						     struct drm_i915_private,
+> +						     power_domains);
+>  	enum intel_display_power_domain domain;
+>  	bool err = false;
+>  
+>  	err |= !assert_async_put_domain_masks_disjoint(power_domains);
+> -	err |= WARN_ON(!!power_domains->async_put_wakeref !=
+> -		       !!__async_put_domains_mask(power_domains));
+> +	err |= drm_WARN_ON(&i915->drm, !!power_domains->async_put_wakeref !=
+> +			   !!__async_put_domains_mask(power_domains));
+>  
+>  	for_each_power_domain(domain, __async_put_domains_mask(power_domains))
+> -		err |= WARN_ON(power_domains->domain_use_count[domain] != 1);
+> +		err |= drm_WARN_ON(&i915->drm,
+> +				   power_domains->domain_use_count[domain] != 1);
+>  
+>  	return !err;
+>  }
+> @@ -2107,11 +2114,14 @@ static void
+>  queue_async_put_domains_work(struct i915_power_domains *power_domains,
+>  			     intel_wakeref_t wakeref)
+>  {
+> -	WARN_ON(power_domains->async_put_wakeref);
+> +	struct drm_i915_private *i915 = container_of(power_domains,
+> +						     struct drm_i915_private,
+> +						     power_domains);
+> +	drm_WARN_ON(&i915->drm, power_domains->async_put_wakeref);
+>  	power_domains->async_put_wakeref = wakeref;
+> -	WARN_ON(!queue_delayed_work(system_unbound_wq,
+> -				    &power_domains->async_put_work,
+> -				    msecs_to_jiffies(100)));
+> +	drm_WARN_ON(&i915->drm, !queue_delayed_work(system_unbound_wq,
+> +						    &power_domains->async_put_work,
+> +						    msecs_to_jiffies(100)));
+>  }
+>  
+>  static void
+> @@ -4318,6 +4328,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
+>  		  const struct i915_power_well_desc *power_well_descs,
+>  		  int power_well_count)
+>  {
+> +	struct drm_i915_private *i915 = container_of(power_domains,
+> +						     struct drm_i915_private,
+> +						     power_domains);
+>  	u64 power_well_ids = 0;
+>  	int i;
+>  
+> @@ -4337,8 +4350,8 @@ __set_power_wells(struct i915_power_domains *power_domains,
+>  		if (id == DISP_PW_ID_NONE)
+>  			continue;
+>  
+> -		WARN_ON(id >= sizeof(power_well_ids) * 8);
+> -		WARN_ON(power_well_ids & BIT_ULL(id));
+> +		drm_WARN_ON(&i915->drm, id >= sizeof(power_well_ids) * 8);
+> +		drm_WARN_ON(&i915->drm, power_well_ids & BIT_ULL(id));
+>  		power_well_ids |= BIT_ULL(id);
+>  	}
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
