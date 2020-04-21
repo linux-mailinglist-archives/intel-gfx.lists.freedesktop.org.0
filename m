@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902E21B2309
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0981B2332
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:49:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 117806E8F0;
-	Tue, 21 Apr 2020 09:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D19B26E8F4;
+	Tue, 21 Apr 2020 09:49:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9246E235;
- Tue, 21 Apr 2020 09:40:53 +0000 (UTC)
-IronPort-SDR: 75jN8i15JGs/F264/djg4rbX5ugwT0mvBaehm86w2WQvHCl28ire30gWlxUsEGFRzRIeAyJFIL
- TyfBAWSWGkKw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7DA16E8F4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:49:04 +0000 (UTC)
+IronPort-SDR: mOmwecl9NYTh31YbY3+idi56uDPiEslSAFFVRq/r1tgDZWKijzJmLVfAjKgCJdYReVYpM35kwK
+ EoQNq64nZyLQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 02:40:52 -0700
-IronPort-SDR: u8ol5o/TJvdrz+JuCd1JoxaMversbFwNGF7YlLPdR2pZ/zMUQFQdCM9V6C4GU5qGBcsXBEeH97
- AgdyVvRykhyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="456041871"
-Received: from unknown (HELO intel.com) ([10.223.74.85])
- by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2020 02:40:50 -0700
-Date: Tue, 21 Apr 2020 15:07:21 +0530
-From: Jeevan B <jeevan.b@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200421093720.GB13664@intel.com>
-References: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
- <1586242207-23214-2-git-send-email-jeevan.b@intel.com>
- <874ktl5ap4.fsf@intel.com>
+ 21 Apr 2020 02:49:04 -0700
+IronPort-SDR: VUiOMeJS9MhKrbqN2ONsWWtyoejVxhJVjjdHVLjkhJXNFimgYsZ9uDRDcwKFGWEDlaj6oGtVcX
+ 4Ikx+zfp4rxw==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="279578776"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 02:49:02 -0700
+Date: Tue, 21 Apr 2020 12:48:09 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200421094809.GB29723@ideak-desk.fi.intel.com>
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-19-pankaj.laxminarayan.bharadiya@intel.com>
+ <87imhtz1hz.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <874ktl5ap4.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: utilize subconnector property
- for DP
+In-Reply-To: <87imhtz1hz.fsf@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 18/18] drm/i915/runtime_pm: Prefer drm_WARN*
+ over WARN*
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,51 +50,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Oleg Vasilev <oleg.vasilev@intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wNC0xNSBhdCAxMzowMTo1OSArMDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4gT24g
-VHVlLCAwNyBBcHIgMjAyMCwgSmVldmFuIEIgPGplZXZhbi5iQGludGVsLmNvbT4gd3JvdGU6Cj4g
-PiBGcm9tOiBPbGVnIFZhc2lsZXYgPG9sZWcudmFzaWxldkBpbnRlbC5jb20+Cj4gPgo+ID4gU2lu
-Y2UgRFAtc3BlY2lmaWMgaW5mb3JtYXRpb24gaXMgc3RvcmVkIGluIGRyaXZlcidzIHN0cnVjdHVy
-ZXMsIGV2ZXJ5Cj4gPiBkcml2ZXIgbmVlZHMgdG8gaW1wbGVtZW50IHN1YmNvbm5lY3RvciBwcm9w
-ZXJ0eSBieSBpdHNlbGYuCj4gPgo+ID4gdjI6IHVwZGF0ZXMgdG8gbWF0Y2ggcHJldmlvdXMgY29t
-bWl0IGNoYW5nZXMKPiA+Cj4gPiB2MzogcmViYXNlCj4gPgo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzD
-pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogaW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+ID4gU2lnbmVkLW9mZi1ieTogSmVldmFuIEIgPGplZXZhbi5iQGlu
-dGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IE9sZWcgVmFzaWxldiA8b2xlZy52YXNpbGV2QGlu
-dGVsLmNvbT4KPiA+IFJldmlld2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xs
-YWJvcmEuY29tPgo+ID4gVGVzdGVkLWJ5OiBPbGVnIFZhc2lsZXYgPG9sZWcudmFzaWxldkBpbnRl
-bC5jb20+Cj4gPiBMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gv
-bXNnaWQvMjAxOTA4MjkxMTQ4NTQuMTUzOS00LW9sZWcudmFzaWxldkBpbnRlbC5jb20KPiAKPiBZ
-b3UncmUgbm90IHN1cHBvc2VkIHRvIGFkZCB0aGUgTGluazogdGFnIHlvdXJzZWxmLgpJIHdpbGwg
-ZG8gdGhlIG5lY2Vzc2FyeSBjaGFuZ2UuIAo+IAo+IFJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8
-amFuaS5uaWt1bGFAaW50ZWwuY29tPgpUaGFua3MKSmVldmFuIEIKPiAKPgo+ID4gLS0tCj4gPiAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgOCArKysrKysrKwo+ID4g
-IDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKykKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gPiBpbmRleCBkYjZhZThlLi5iYTQ0M2UxIDEwMDY0NAo+
-ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiA+IEBAIC02MTU1LDYg
-KzYxNTUsMTEgQEAgaW50ZWxfZHBfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
-b3IsCj4gPiAgCSAqLwo+ID4gIAlpbnRlbF9kaXNwbGF5X3Bvd2VyX2ZsdXNoX3dvcmsoZGV2X3By
-aXYpOwo+ID4gIAo+ID4gKwlpZiAoIWludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkpCj4gPiArCQlk
-cm1fZHBfc2V0X3N1YmNvbm5lY3Rvcl9wcm9wZXJ0eShjb25uZWN0b3IsCj4gPiArCQkJCQkJIHN0
-YXR1cywKPiA+ICsJCQkJCQkgaW50ZWxfZHAtPmRwY2QsCj4gPiArCQkJCQkJIGludGVsX2RwLT5k
-b3duc3RyZWFtX3BvcnRzKTsKPiA+ICAJcmV0dXJuIHN0YXR1czsKPiA+ICB9Cj4gPiAgCj4gPiBA
-QCAtNzIxMSw2ICs3MjE2LDkgQEAgaW50ZWxfZHBfYWRkX3Byb3BlcnRpZXMoc3RydWN0IGludGVs
-X2RwICppbnRlbF9kcCwgc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3QKPiA+ICAJc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjb25uZWN0b3ItPmRldik7Cj4g
-PiAgCWVudW0gcG9ydCBwb3J0ID0gZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApLT5iYXNlLnBvcnQ7
-Cj4gPiAgCj4gPiArCWlmICghaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkKPiA+ICsJCWRybV9t
-b2RlX2FkZF9kcF9zdWJjb25uZWN0b3JfcHJvcGVydHkoY29ubmVjdG9yKTsKPiA+ICsKPiA+ICAJ
-aWYgKCFJU19HNFgoZGV2X3ByaXYpICYmIHBvcnQgIT0gUE9SVF9BKQo+ID4gIAkJaW50ZWxfYXR0
-YWNoX2ZvcmNlX2F1ZGlvX3Byb3BlcnR5KGNvbm5lY3Rvcik7Cj4gCj4gLS0gCj4gSmFuaSBOaWt1
-bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Apr 21, 2020 at 11:28:24AM +0300, Jani Nikula wrote:
+> 
+> Imre, please check the one question inline.
+> 
+> On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> > struct drm_device specific drm_WARN* macros include device information
+> > in the backtrace, so we know what device the warnings originate from.
+> >
+> > Prefer drm_WARN* over WARN*.
+> >
+> > Conversion is done with below semantic patch:
+> >
+> > @@
+> > identifier func, T;
+> > @@
+> > func(struct intel_runtime_pm *T,...) {
+> > + struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, runtime_pm);
+> > <+...
+> > (
+> > -WARN(
+> > +drm_WARN(&i915->drm,
+> > ...)
+> > |
+> > -WARN_ON(
+> > +drm_WARN_ON(&i915->drm,
+> > ...)
+> > |
+> > -WARN_ONCE(
+> > +drm_WARN_ONCE(&i915->drm,
+> > ...)
+> > |
+> > -WARN_ON_ONCE(
+> > +drm_WARN_ON_ONCE(&i915->drm,
+> > ...)
+> > )
+> > ...+>
+> >
+> > }
+> >
+> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_runtime_pm.c | 39 ++++++++++++++++++-------
+> >  1 file changed, 28 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > index ad719c9602af..31ccd0559c55 100644
+> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > @@ -116,6 +116,9 @@ track_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+> >  static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+> >  					     depot_stack_handle_t stack)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(rpm,
+> > +						     struct drm_i915_private,
+> > +						     runtime_pm);
+> 
+> Is this a dependency we want to add? Should struct intel_runtime_pm be
+> allowed to be elsewhere than struct i915?
+
+For convenience a pointer to intel_runtime_pm is stored in intel_uncore
+and intel_wakeref, but there is only one instance of it. So looks ok to
+me to use container_of() on the pointer.
+
+> 
+> BR,
+> Jani.
+> 
+> >  	unsigned long flags, n;
+> >  	bool found = false;
+> >  
+> > @@ -134,9 +137,9 @@ static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+> >  	}
+> >  	spin_unlock_irqrestore(&rpm->debug.lock, flags);
+> >  
+> > -	if (WARN(!found,
+> > -		 "Unmatched wakeref (tracking %lu), count %u\n",
+> > -		 rpm->debug.count, atomic_read(&rpm->wakeref_count))) {
+> > +	if (drm_WARN(&i915->drm, !found,
+> > +		     "Unmatched wakeref (tracking %lu), count %u\n",
+> > +		     rpm->debug.count, atomic_read(&rpm->wakeref_count))) {
+> >  		char *buf;
+> >  
+> >  		buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
+> > @@ -355,10 +358,14 @@ intel_runtime_pm_release(struct intel_runtime_pm *rpm, int wakelock)
+> >  static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rpm,
+> >  					      bool wakelock)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(rpm,
+> > +						     struct drm_i915_private,
+> > +						     runtime_pm);
+> >  	int ret;
+> >  
+> >  	ret = pm_runtime_get_sync(rpm->kdev);
+> > -	WARN_ONCE(ret < 0, "pm_runtime_get_sync() failed: %d\n", ret);
+> > +	drm_WARN_ONCE(&i915->drm, ret < 0,
+> > +		      "pm_runtime_get_sync() failed: %d\n", ret);
+> >  
+> >  	intel_runtime_pm_acquire(rpm, wakelock);
+> >  
+> > @@ -539,6 +546,9 @@ void intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
+> >   */
+> >  void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(rpm,
+> > +						     struct drm_i915_private,
+> > +						     runtime_pm);
+> >  	struct device *kdev = rpm->kdev;
+> >  
+> >  	/*
+> > @@ -565,7 +575,8 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+> >  
+> >  		pm_runtime_dont_use_autosuspend(kdev);
+> >  		ret = pm_runtime_get_sync(kdev);
+> > -		WARN(ret < 0, "pm_runtime_get_sync() failed: %d\n", ret);
+> > +		drm_WARN(&i915->drm, ret < 0,
+> > +			 "pm_runtime_get_sync() failed: %d\n", ret);
+> >  	} else {
+> >  		pm_runtime_use_autosuspend(kdev);
+> >  	}
+> > @@ -580,11 +591,14 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+> >  
+> >  void intel_runtime_pm_disable(struct intel_runtime_pm *rpm)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(rpm,
+> > +						     struct drm_i915_private,
+> > +						     runtime_pm);
+> >  	struct device *kdev = rpm->kdev;
+> >  
+> >  	/* Transfer rpm ownership back to core */
+> > -	WARN(pm_runtime_get_sync(kdev) < 0,
+> > -	     "Failed to pass rpm ownership back to core\n");
+> > +	drm_WARN(&i915->drm, pm_runtime_get_sync(kdev) < 0,
+> > +		 "Failed to pass rpm ownership back to core\n");
+> >  
+> >  	pm_runtime_dont_use_autosuspend(kdev);
+> >  
+> > @@ -594,12 +608,15 @@ void intel_runtime_pm_disable(struct intel_runtime_pm *rpm)
+> >  
+> >  void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(rpm,
+> > +						     struct drm_i915_private,
+> > +						     runtime_pm);
+> >  	int count = atomic_read(&rpm->wakeref_count);
+> >  
+> > -	WARN(count,
+> > -	     "i915 raw-wakerefs=%d wakelocks=%d on cleanup\n",
+> > -	     intel_rpm_raw_wakeref_count(count),
+> > -	     intel_rpm_wakelock_count(count));
+> > +	drm_WARN(&i915->drm, count,
+> > +		 "i915 raw-wakerefs=%d wakelocks=%d on cleanup\n",
+> > +		 intel_rpm_raw_wakeref_count(count),
+> > +		 intel_rpm_wakelock_count(count));
+> >  
+> >  	untrack_all_intel_runtime_pm_wakerefs(rpm);
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
