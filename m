@@ -1,67 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 497A61B2F4D
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 20:42:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F64A1B2F38
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 20:37:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF7FB6E2DE;
-	Tue, 21 Apr 2020 18:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83ED86E320;
+	Tue, 21 Apr 2020 18:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com
- [IPv6:2a00:1450:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182276E31E
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 18:42:26 +0000 (UTC)
-Received: by mail-ed1-x542.google.com with SMTP id r16so4335032edw.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 11:42:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=h2Sxsn5oS4nqpkBX5BqB24mfzH+Rga+VCB+qgnhYUWk=;
- b=EN4eMrfRCQ2BTajrHemVrZRGdfNv+VjF0Hxxcl6iPzUIc4bkpVZwbpHp6Y8qjqbOly
- NQiQcxT3IZhkG8k/a9SX63SzMRhr6smIcOvnSUCBWIYLh5jNRcmyHxwhZdGgJqJWyNtZ
- yrajiBGrLqcdHIip5S59MA6DWpMQ2o4gnwtCo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=h2Sxsn5oS4nqpkBX5BqB24mfzH+Rga+VCB+qgnhYUWk=;
- b=BevKwUg9+32Ya6pUfw+figfq7Cgt5LVBFhbwIOve8DNyXfNiXU4NokZzdOEGH7u5gP
- pjG07AkJfg3hAVvG8T08oBrt6oijHe/vh0mJQSO4sLdXx+NDcz20Jh4Ehy767SQpND/L
- +LTDfAAK/Kx+1HG2VLSgoeT0bjSeOfOPBddUdTBlDXrRzFQtJrvhuzWKEH6Z6S6HDFXW
- dVfgwEdhpWW2KyMroKS45yXBp2QxaVuUnwnzvvqa3ZBAVIDaLGMQQhw96q3mA15MP7/A
- dXftA/9yWJqCg8iwkHDt30gIc+qEShdfXTCPqrizmP9HXfgpjH+spS87sp96OY7L+WM4
- MmYg==
-X-Gm-Message-State: AGi0PuagPJz9UQwNbB8tVOrKWrN29pxuFpQHzUJYoghn9zU5KYYLhKqR
- ogPHS11x/uGopFBBXGBOH/0PLJv5PFs=
-X-Google-Smtp-Source: APiQypIMEoFYWWPVTADgmVp6sf5Yn4DpQTzynM0bMCTKs7DsGk8Qo+VoF+OTeeT5SRG69bUdw0NHXw==
-X-Received: by 2002:aa7:c453:: with SMTP id n19mr20048365edr.218.1587494544268; 
- Tue, 21 Apr 2020 11:42:24 -0700 (PDT)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com.
- [209.85.221.52])
- by smtp.gmail.com with ESMTPSA id f21sm549328ejw.55.2020.04.21.11.42.23
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 21 Apr 2020 11:42:24 -0700 (PDT)
-Received: by mail-wr1-f52.google.com with SMTP id d17so17707719wrg.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 11:42:23 -0700 (PDT)
-X-Received: by 2002:a2e:8512:: with SMTP id j18mr9624239lji.201.1587494060836; 
- Tue, 21 Apr 2020 11:34:20 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 154D96E31E;
+ Tue, 21 Apr 2020 18:37:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F23DA011A;
+ Tue, 21 Apr 2020 18:37:04 +0000 (UTC)
 MIME-Version: 1.0
-References: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
- <42da416106d5c1cf92bda1e058434fe240b35f44.1585898438.git.christophe.leroy@c-s.fr>
- <CAHk-=wh_DY_dysMX0NuvJmMFr3+QDKOZPZqWKwLkkjgZTuyQ+A@mail.gmail.com>
- <20200403205205.GK23230@ZenIV.linux.org.uk>
- <20200421024919.GA23230@ZenIV.linux.org.uk>
-In-Reply-To: <20200421024919.GA23230@ZenIV.linux.org.uk>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 21 Apr 2020 11:34:04 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wiuHxXwuPynLFh-fYjuUE3_HNPh79e_P6MFMbq4Ki+QCw@mail.gmail.com>
-Message-ID: <CAHk-=wiuHxXwuPynLFh-fYjuUE3_HNPh79e_P6MFMbq4Ki+QCw@mail.gmail.com>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Subject: Re: [Intel-gfx] [PATCH v2 5/5] uaccess: Rename
- user_access_begin/end() to user_full_access_begin/end()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 21 Apr 2020 18:37:04 -0000
+Message-ID: <158749422405.17663.5741306662550332333@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200421164130.11135-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200421164130.11135-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUkZD?=
+ =?utf-8?q?_drm/i915/gem=3A_Allow_creation_of_contexts_with_an_=27empty=27?=
+ =?utf-8?q?_VM?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +39,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christophe Leroy <christophe.leroy@c-s.fr>,
- linux-arch <linux-arch@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
- Dave Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- intel-gfx@lists.freedesktop.org, Peter Anvin <hpa@zytor.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Russell King <linux@armlinux.org.uk>, Linux-MM <linux-mm@kvack.org>,
- Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 20, 2020 at 7:49 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
->
->         The only source I'd been able to find speaks of >= 60 cycles
-> (and possibly much more) for non-pipelined coprocessor instructions;
-> the list of such does contain loads and stores to a bunch of registers.
-> However, the register in question (p15/c3) has only store mentioned there,
-> so loads might be cheap; no obvious reasons for those to be slow.
-> That's a question to arm folks, I'm afraid...  rmk?
+== Series Details ==
 
-_If_ it turns out to be expensive, is there any reason we couldn't
-just cache the value in general?
+Series: RFC drm/i915/gem: Allow creation of contexts with an 'empty' VM
+URL   : https://patchwork.freedesktop.org/series/76276/
+State : failure
 
-That's what x86 tends to do with expensive system registers. One
-example would be "msr_misc_features_shadow".
+== Summary ==
 
-But maybe that's something to worry about when/if it turns out to
-actually be a problem?
+CI Bug Log - changes from CI_DRM_8345 -> Patchwork_17409
+====================================================
 
-                 Linus
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17409 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17409, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17409:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cml-s:           [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-cml-s/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17409 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#489])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-bwr-2160/igt@i915_selftest@live@ring_submission.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-bwr-2160/igt@i915_selftest@live@ring_submission.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-snb-2600:        [PASS][5] -> [FAIL][6] ([i915#1763])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-snb-2600/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-snb-2600/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][7] ([i915#541]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][9] ([i915#579]) -> [SKIP][10] ([fdo#109271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][11] ([i915#62]) -> [SKIP][12] ([fdo#109271])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8345/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8345 -> Patchwork_17409
+
+  CI-20190529: 20190529
+  CI_DRM_8345: e1fa8774e58e663bec8257f678c2f8fd17088292 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17409: 49e6f5b75a2f7dec45c3aa15c5b2ca489ab3b693 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+49e6f5b75a2f RFC drm/i915/gem: Allow creation of contexts with an 'empty' VM
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17409/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
