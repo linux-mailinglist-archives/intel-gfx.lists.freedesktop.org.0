@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98171B1ED7
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 08:34:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E371B1EE3
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 08:39:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E06AB6E22D;
-	Tue, 21 Apr 2020 06:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469CA6E29B;
+	Tue, 21 Apr 2020 06:39:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA2ED6E22D
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 06:34:21 +0000 (UTC)
-IronPort-SDR: jNQEb4czDuNMZw4iu+1pqBnhKdlR6XuZXnrF8KvnewBZNW7rm4K1oSjzKD7CwgejybLKvmSJ46
- vPUqU3UnpLuQ==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 051B46E29B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 06:39:16 +0000 (UTC)
+IronPort-SDR: d3EWfqUaUCk9nWpMxcTZr3GFPdS77uote7r6zwKpuyCfaBzm2+OHLfFoOeP9lS3NUk9Vj4gK0j
+ ttQ8GYul+X+A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 23:34:21 -0700
-IronPort-SDR: cCyFwPlv/MjCxXjMayD5Qf33rR9Z13/uCWryHpcRRxR+WlOquF30UDs7BkJttg7BVbDWvYJkQM
- usUBas7yXVrQ==
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="429418524"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 23:39:16 -0700
+IronPort-SDR: kiL6/he0OB9joQ8ukz1EXhpSqVjN1WTOPACOaTcDV+pw1nhKBr7Oe3wUDdJtD5tb6UPAfKGWRU
+ OHhF9l47VhkQ==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="429419407"
 Received: from parkernx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.46.80])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2020 23:34:20 -0700
+ 20 Apr 2020 23:39:14 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20200420170856.GX6112@intel.com>
+To: "Shankar\, Uma" <uma.shankar@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F82487B55@BGSMSX104.gar.corp.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200420140438.14672-1-jani.nikula@intel.com>
- <20200420170856.GX6112@intel.com>
-Date: Tue, 21 Apr 2020 09:34:17 +0300
-Message-ID: <87blnl1h5i.fsf@intel.com>
+References: <20200420131632.23283-1-jani.nikula@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F82487B55@BGSMSX104.gar.corp.intel.com>
+Date: Tue, 21 Apr 2020 09:39:12 +0300
+Message-ID: <878sip1gxb.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdmi: remove unused
- intel_hdmi_hdcp2_protocol()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/audio: fix compressed_bpp check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,37 +49,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMCBBcHIgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gTW9uLCBBcHIgMjAsIDIwMjAgYXQgMDU6MDQ6MzdQTSAr
-MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IFVudXNlZCwgaGlkaW5nIGZyb20gdGhlIGNvbXBp
-bGVyIHdhcm5pbmdzIGJlaGluZCB0aGUgaW5saW5lIGtleXdvcmQuCj4+IAo+PiBTaWduZWQtb2Zm
-LWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+Cj4gUmV2aWV3ZWQtYnk6
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpUaGFua3Ms
-IHB1c2hlZCBib3RoLgoKQlIsCkphbmkuCgoKPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jIHwgNiAtLS0tLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCA2
-IGRlbGV0aW9ucygtKQo+PiAKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfaGRtaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9o
-ZG1pLmMKPj4gaW5kZXggOWMwNThmN2FhMTg1Li41NDQxMmY3OWYwYzUgMTAwNjQ0Cj4+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4+IEBAIC0xNzUwLDEyICsxNzUw
-LDYgQEAgaW50IGludGVsX2hkbWlfaGRjcDJfY2FwYWJsZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9w
-b3J0ICppbnRlbF9kaWdfcG9ydCwKPj4gIAlyZXR1cm4gcmV0Owo+PiAgfQo+PiAgCj4+IC1zdGF0
-aWMgaW5saW5lCj4+IC1lbnVtIGhkY3Bfd2lyZWRfcHJvdG9jb2wgaW50ZWxfaGRtaV9oZGNwMl9w
-cm90b2NvbCh2b2lkKQo+PiAtewo+PiAtCXJldHVybiBIRENQX1BST1RPQ09MX0hETUk7Cj4+IC19
-Cj4+IC0KPj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfaGRjcF9zaGltIGludGVsX2hkbWlf
-aGRjcF9zaGltID0gewo+PiAgCS53cml0ZV9hbl9ha3N2ID0gaW50ZWxfaGRtaV9oZGNwX3dyaXRl
-X2FuX2Frc3YsCj4+ICAJLnJlYWRfYmtzdiA9IGludGVsX2hkbWlfaGRjcF9yZWFkX2Jrc3YsCj4+
-IC0tIAo+PiAyLjIwLjEKPj4gCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCj4+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPj4gSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
-cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Mon, 20 Apr 2020, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@intel.com>
+>> Sent: Monday, April 20, 2020 6:47 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Gupta, Anshuman
+>> <anshuman.gupta@intel.com>; Shankar, Uma <uma.shankar@intel.com>
+>> Subject: [PATCH] drm/i915/audio: fix compressed_bpp check
+>> 
+>> The early check for compressed_bpp being zero is too early, as it is hit also when
+>> DSC is not enabled. Move the checks down to where the values are actually needed.
+>> This is a paranoid check for a situation that should not happen, so we don't really
+>> care about handling it gracefully apart from not oopsing.
+>
+> Looks Good to me. Thanks Jani.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+Thanks for the review, pushed to dinq.
+
+BR,
+Jani.
+
+>
+>> Fixes: 48b8b04c791d ("drm/i915/display: Enable DP Display Audio WA")
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1750
+>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+>> Cc: Uma Shankar <uma.shankar@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_audio.c | 15 +++++----------
+>>  1 file changed, 5 insertions(+), 10 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
+>> b/drivers/gpu/drm/i915/display/intel_audio.c
+>> index 2663e71059af..36aaee8536f1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+>> @@ -542,6 +542,10 @@ static unsigned int get_hblank_early_enable_config(struct
+>> intel_encoder *encoder
+>>  		    h_active, crtc_state->port_clock, crtc_state->lane_count,
+>>  		    vdsc_bpp, cdclk);
+>> 
+>> +	if (WARN_ON(!crtc_state->port_clock || !crtc_state->lane_count ||
+>> +		    !crtc_state->dsc.compressed_bpp || !i915->cdclk.hw.cdclk))
+>> +		return 0;
+>> +
+>>  	link_clks_available = ((((h_total - h_active) *
+>>  			       ((crtc_state->port_clock * ROUNDING_FACTOR) /
+>>  				pixel_clk)) / ROUNDING_FACTOR) - 28); @@ -
+>> 597,21 +601,12 @@ static void enable_audio_dsc_wa(struct intel_encoder
+>> *encoder,
+>>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>>  	enum pipe pipe = crtc->pipe;
+>> -	unsigned int hblank_early_prog, samples_room, h_active;
+>> +	unsigned int hblank_early_prog, samples_room;
+>>  	unsigned int val;
+>> 
+>>  	if (INTEL_GEN(i915) < 11)
+>>  		return;
+>> 
+>> -	h_active = crtc_state->hw.adjusted_mode.hdisplay;
+>> -
+>> -	if (!(h_active && crtc_state->port_clock && crtc_state->lane_count &&
+>> -	      crtc_state->dsc.compressed_bpp && i915->cdclk.hw.cdclk)) {
+>> -		drm_err(&i915->drm, "Null Params rcvd for hblank early
+>> enabling\n");
+>> -		WARN_ON(1);
+>> -		return;
+>> -	}
+>> -
+>>  	val = intel_de_read(i915, AUD_CONFIG_BE);
+>> 
+>>  	if (INTEL_GEN(i915) == 11)
+>> --
+>> 2.20.1
+>
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
