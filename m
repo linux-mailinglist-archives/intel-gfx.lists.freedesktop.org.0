@@ -1,38 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BC71B2378
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:59:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98381B239B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 12:08:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4F5E6E8FD;
-	Tue, 21 Apr 2020 09:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D736E02B;
+	Tue, 21 Apr 2020 10:08:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A01926E8FD
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:59:19 +0000 (UTC)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
- [147.11.189.40])
- by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 03L9x6Ov001698
- (version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
- Tue, 21 Apr 2020 02:59:06 -0700 (PDT)
-Received: from [128.224.162.157] (128.224.162.157) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0;
- Tue, 21 Apr 2020 02:59:05 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, <intel-gfx@lists.freedesktop.org>
-References: <20200421084128.36839-1-liwei.song@windriver.com>
- <158746135414.19285.11110388744126468886@build.alporthouse.com>
-From: Liwei Song <liwei.song@windriver.com>
-Message-ID: <c151481d-ac3f-4bd5-af8c-201dc6123f49@windriver.com>
-Date: Tue, 21 Apr 2020 17:59:04 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:76.0) Gecko/20100101
- Thunderbird/76.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8766E02B;
+ Tue, 21 Apr 2020 10:08:19 +0000 (UTC)
+IronPort-SDR: kYo5uXk6NYgh//0lkCNnTnpeP4cSC3f5MxkopeojqyCaVN1fztNoXVLwfP2Wf3vU9AKPh5d6Zx
+ w/EF1mO/Ydpg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 03:08:18 -0700
+IronPort-SDR: fYSWDSNx4Bs3e1pquewSPz2vHeLjAsG7fctOfmqy3hUMMh4Eh6qsMXct9RyD9uOo2FO9xQvfQO
+ TnNXYk1EvV5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="279584406"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga004.fm.intel.com with ESMTP; 21 Apr 2020 03:08:14 -0700
+Date: Tue, 21 Apr 2020 15:29:49 +0530
+From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200421095949.GA436@plaxmina-desktop.iind.intel.com>
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-16-pankaj.laxminarayan.bharadiya@intel.com>
+ <87o8rlz1o8.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <158746135414.19285.11110388744126468886@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel v4] Sync i915_pciids upto
- 8717c6b7414f
+Content-Disposition: inline
+In-Reply-To: <87o8rlz1o8.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 15/18] drm/i915/i915_drv: Prefer drm_WARN_ON
+ over WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,49 +50,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Apr 21, 2020 at 11:24:39AM +0300, Jani Nikula wrote:
+> On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> > struct drm_device specific drm_WARN* macros include device information
+> > in the backtrace, so we know what device the warnings originate from.
+> >
+> > Prefer drm_WARN_ON over WARN_ON.
+> >
+> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.h | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index e9ee4daa9320..be33cab6403d 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1647,7 +1647,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+> >  #define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->pipe_mask != 0)
+> >  
+> >  /* Only valid when HAS_DISPLAY() is true */
+> > -#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> > +#define INTEL_DISPLAY_ENABLED(dev_priv) \
+> > +		(drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+> 
+> Needs parens around the dev_priv macro argument.
 
-
-On 4/21/20 17:29, Chris Wilson wrote:
-> Quoting Liwei Song (2020-04-21 09:41:28)
->> +static const struct intel_device_info intel_cannonlake_info = {
->> +       .gen = 0115,
-> .gen = 0120 /* 10 */
-> 
->> +};
->> +
->> +static const struct intel_device_info intel_icelake_info = {
->> +       .gen = 0116,
-> .gen = 0130 /* 11 */
-> 
->> +};
->> +
->> +static const struct intel_device_info intel_elkhartlake_info = {
->> +       .gen = 0117,
-> .gen = 0131
-> 
->> +};
->> +
->> +static const struct intel_device_info intel_tigerlake_info = {
->> +       .gen = 0120,
-> .gen = 0140 /* 12 */
-> 
-> You definitely do not want to feed them through the gen9 assembler.
-
-Thanks, will modify it in v5, but could you explain more here how we
-decide the gen number, I really do not have too much knowledge here,
-I use to think it is an increasing number like some other definition.
+Yeah, missed it. Thanks for pointing out.
 
 Thanks,
-Liwei.
-
-
-> -Chris
+Pankaj
 > 
+> BR,
+> Jani.
+> 
+> >  
+> >  static inline bool intel_vtd_active(void)
+> >  {
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
