@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9FFA1B205F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 09:53:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3021B2067
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 09:54:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE59A6E21F;
-	Tue, 21 Apr 2020 07:53:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A956E8B8;
+	Tue, 21 Apr 2020 07:54:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C87886E21F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 07:53:17 +0000 (UTC)
-IronPort-SDR: WE+JbZE6b7SdBHh2w0OH8Ud9uvFfws7YR2ZNCuvsKEC2DFDkBbAhtu++dPJNafnxe9mjNcgqP2
- FCLtFesTZGmA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 00:53:17 -0700
-IronPort-SDR: xHVsIVKYGkRHgyXeoMGdyFB8j9PDYeNh11CGLR3cczl0E2JnoR2hlC8yYsX8zBdAWdSPFgPNa4
- 3LtdGRQyUYeg==
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="429439811"
-Received: from parkernx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.46.80])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 00:53:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
- intel-gfx@lists.freedesktop.org, Imre Deak <imre.deak@intel.com>
-In-Reply-To: <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
-Date: Tue, 21 Apr 2020 10:53:12 +0300
-Message-ID: <87tv1dz34n.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82D016E8A5;
+ Tue, 21 Apr 2020 07:54:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B3C8A0019;
+ Tue, 21 Apr 2020 07:54:09 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/display/display: Prefer
- drm_WARN_ON over WARN_ON
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Tue, 21 Apr 2020 07:54:09 -0000
+Message-ID: <158745564950.17661.676528458732520712@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_In_order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP?=
+ =?utf-8?q?_SDPs_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,106 +39,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Pankaj, the subject line is identical to patch 4, please update.
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev11)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : warning
 
-Imre, one question inline for you.
+== Summary ==
 
-On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 433e5a81dd4d..5475f989df4c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1850,22 +1850,29 @@ static u64 __async_put_domains_mask(struct i915_power_domains *power_domains)
->  static bool
->  assert_async_put_domain_masks_disjoint(struct i915_power_domains *power_domains)
->  {
-> -	return !WARN_ON(power_domains->async_put_domains[0] &
-> -			power_domains->async_put_domains[1]);
-> +	struct drm_i915_private *i915 = container_of(power_domains,
-> +						     struct drm_i915_private,
-> +						     power_domains);
-> +	return !drm_WARN_ON(&i915->drm, power_domains->async_put_domains[0] &
-> +			    power_domains->async_put_domains[1]);
->  }
+$ dim checkpatch origin/drm-tip
+33516c7eda02 video/hdmi: Add Unpack only function for DRM infoframe
+5eae0ec2d8ae drm/i915/dp: Read out DP SDPs
+3df2cc567e5a drm: Add logging function for DP VSC SDP
+6cccd45e8119 drm/i915: Include HDMI DRM infoframe in the crtc state dump
+ca01029436e6 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+673d595572d2 drm/i915: Include DP VSC SDP in the crtc state dump
+baa9bbad6bef drm/i915: Program DP SDPs with computed configs
+beeabdf3a48b drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+3f0c456bcfa9 drm/i915: Add state readout for DP VSC SDP
+-:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#83: FILE: drivers/gpu/drm/i915/display/intel_display.c:13735:
++#define PIPE_CONF_CHECK_DP_VSC_SDP(name) do { \
++	if (!current_config->has_psr && !pipe_config->has_psr && \
++	    !intel_compare_dp_vsc_sdp(&current_config->infoframes.name, \
++				      &pipe_config->infoframes.name)) { \
++		pipe_config_dp_vsc_sdp_mismatch(dev_priv, fastset, __stringify(name), \
++						&current_config->infoframes.name, \
++						&pipe_config->infoframes.name); \
++		ret = false; \
++	} \
++} while (0)
 
-Do we want to depend on struct i915_power_domains being a struct
-drm_i915_private member via container_of?
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+e78863a17e96 drm/i915: Fix enabled infoframe states of lspcon
+b8c74d06c9ea drm/i915: Program DP SDPs on pipe updates
+07856a13f253 drm/i915: Stop sending DP SDPs on ddi disable
+9a2ad5a32a45 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+a5db16ec932c drm/i915/psr: Use new DP VSC SDP compute routine on PSR
 
-BR,
-Jani.
-
->  
->  static bool
->  __async_put_domains_state_ok(struct i915_power_domains *power_domains)
->  {
-> +	struct drm_i915_private *i915 = container_of(power_domains,
-> +						     struct drm_i915_private,
-> +						     power_domains);
->  	enum intel_display_power_domain domain;
->  	bool err = false;
->  
->  	err |= !assert_async_put_domain_masks_disjoint(power_domains);
-> -	err |= WARN_ON(!!power_domains->async_put_wakeref !=
-> -		       !!__async_put_domains_mask(power_domains));
-> +	err |= drm_WARN_ON(&i915->drm, !!power_domains->async_put_wakeref !=
-> +			   !!__async_put_domains_mask(power_domains));
->  
->  	for_each_power_domain(domain, __async_put_domains_mask(power_domains))
-> -		err |= WARN_ON(power_domains->domain_use_count[domain] != 1);
-> +		err |= drm_WARN_ON(&i915->drm,
-> +				   power_domains->domain_use_count[domain] != 1);
->  
->  	return !err;
->  }
-> @@ -2107,11 +2114,14 @@ static void
->  queue_async_put_domains_work(struct i915_power_domains *power_domains,
->  			     intel_wakeref_t wakeref)
->  {
-> -	WARN_ON(power_domains->async_put_wakeref);
-> +	struct drm_i915_private *i915 = container_of(power_domains,
-> +						     struct drm_i915_private,
-> +						     power_domains);
-> +	drm_WARN_ON(&i915->drm, power_domains->async_put_wakeref);
->  	power_domains->async_put_wakeref = wakeref;
-> -	WARN_ON(!queue_delayed_work(system_unbound_wq,
-> -				    &power_domains->async_put_work,
-> -				    msecs_to_jiffies(100)));
-> +	drm_WARN_ON(&i915->drm, !queue_delayed_work(system_unbound_wq,
-> +						    &power_domains->async_put_work,
-> +						    msecs_to_jiffies(100)));
->  }
->  
->  static void
-> @@ -4318,6 +4328,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
->  		  const struct i915_power_well_desc *power_well_descs,
->  		  int power_well_count)
->  {
-> +	struct drm_i915_private *i915 = container_of(power_domains,
-> +						     struct drm_i915_private,
-> +						     power_domains);
->  	u64 power_well_ids = 0;
->  	int i;
->  
-> @@ -4337,8 +4350,8 @@ __set_power_wells(struct i915_power_domains *power_domains,
->  		if (id == DISP_PW_ID_NONE)
->  			continue;
->  
-> -		WARN_ON(id >= sizeof(power_well_ids) * 8);
-> -		WARN_ON(power_well_ids & BIT_ULL(id));
-> +		drm_WARN_ON(&i915->drm, id >= sizeof(power_well_ids) * 8);
-> +		drm_WARN_ON(&i915->drm, power_well_ids & BIT_ULL(id));
->  		power_well_ids |= BIT_ULL(id);
->  	}
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
