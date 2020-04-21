@@ -1,56 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B6C1B2287
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:20:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 750D71B228C
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:20:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E28EC6E44C;
-	Tue, 21 Apr 2020 09:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA7226E44F;
+	Tue, 21 Apr 2020 09:20:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
- Tue, 21 Apr 2020 09:19:59 UTC
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
- [IPv6:2001:4d48:ad52:3201:214:fdff:fe10:1be6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF0346E44C
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YO6F5ObedfU/G1cBVZlRZ9Tclj+oI0shB5VAVt4/Ej0=; b=P1A59HSHX8OqJP5aEdGeiV/B2
- v103CRxWtRZHmqa7NbuMTVDo44ZOmpRq6I05Ol6Qfmk/yPKSw46jyurTZX1KULRynoTJ7DDXfMahT
- ugzkH5msRllUA5/+9l7CtYY3E1Bi+tcQNSXhvvAU9cp1ya9Fqw8E+bJW/lc+8jbvfEnzcR+jDk9Tr
- h6eRjjHdbTlY7Ru4qvHMbf/Jx82P+r29op4ZbmdIDi1H9XLtzQlS7iweG7kPStFXjUaZfYafW9oJk
- q+JXPHTb/cQGKUlhwKX0wRzQ7Xz2naV1pjv9KhcBx58LwqJxxdeUBMFKJGiF5abHjK110/9F+T1s2
- uasQ9fr8g==;
-Received: from shell.armlinux.org.uk
- ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:41518)
- by pandora.armlinux.org.uk with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <linux@armlinux.org.uk>)
- id 1jQoxi-0000Ux-OB; Tue, 21 Apr 2020 10:13:03 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
- (envelope-from <linux@shell.armlinux.org.uk>)
- id 1jQoxc-0006uR-F0; Tue, 21 Apr 2020 10:12:56 +0100
-Date: Tue, 21 Apr 2020 10:12:56 +0100
-From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To: Al Viro <viro@zeniv.linux.org.uk>, Will Deacon <will@kernel.org>
-Message-ID: <20200421091256.GA25745@shell.armlinux.org.uk>
-References: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
- <42da416106d5c1cf92bda1e058434fe240b35f44.1585898438.git.christophe.leroy@c-s.fr>
- <CAHk-=wh_DY_dysMX0NuvJmMFr3+QDKOZPZqWKwLkkjgZTuyQ+A@mail.gmail.com>
- <20200403205205.GK23230@ZenIV.linux.org.uk>
- <20200421024919.GA23230@ZenIV.linux.org.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A342D6E44F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:20:42 +0000 (UTC)
+IronPort-SDR: l/NWx2Nb3lJhc4/VlQul3gOEhqnW/aSzTEe5OM3o1yGovMvxFUOU2LLMi7k72EyLs24I1fou8P
+ HXnabXLc7dFQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 02:20:42 -0700
+IronPort-SDR: soSmUkpk+X9c6Fwt2Xb2rZ6E2ofNyk/vlCqKqLyI+y42vSve81YpvRwpq33XO4RAK2a+aQuZmQ
+ 38Fz/s5hUatA==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="279572902"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 02:20:40 -0700
+Date: Tue, 21 Apr 2020 12:19:47 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200421091947.GA29723@ideak-desk.fi.intel.com>
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
+ <87tv1dz34n.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200421024919.GA23230@ZenIV.linux.org.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 5/5] uaccess: Rename
- user_access_begin/end() to user_full_access_begin/end()
+In-Reply-To: <87tv1dz34n.fsf@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/display/display: Prefer
+ drm_WARN_ON over WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,42 +50,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christophe Leroy <christophe.leroy@c-s.fr>,
- linux-arch <linux-arch@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Kees Cook <keescook@chromium.org>, Dave Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- intel-gfx@lists.freedesktop.org, Peter Anvin <hpa@zytor.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux-MM <linux-mm@kvack.org>, Paul Mackerras <paulus@samba.org>,
- Michael Ellerman <mpe@ellerman.id.au>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2020 at 03:49:19AM +0100, Al Viro wrote:
-> 	The only source I'd been able to find speeks of >= 60 cycles
-> (and possibly much more) for non-pipelined coprocessor instructions;
-> the list of such does contain loads and stores to a bunch of registers.
-> However, the register in question (p15/c3) has only store mentioned there,
-> so loads might be cheap; no obvious reasons for those to be slow.
-> That's a question to arm folks, I'm afraid...  rmk?
+On Tue, Apr 21, 2020 at 10:53:12AM +0300, Jani Nikula wrote:
+> 
+> Pankaj, the subject line is identical to patch 4, please update.
+> 
+> Imre, one question inline for you.
+> 
+> On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 433e5a81dd4d..5475f989df4c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -1850,22 +1850,29 @@ static u64 __async_put_domains_mask(struct i915_power_domains *power_domains)
+> >  static bool
+> >  assert_async_put_domain_masks_disjoint(struct i915_power_domains *power_domains)
+> >  {
+> > -	return !WARN_ON(power_domains->async_put_domains[0] &
+> > -			power_domains->async_put_domains[1]);
+> > +	struct drm_i915_private *i915 = container_of(power_domains,
+> > +						     struct drm_i915_private,
+> > +						     power_domains);
+> > +	return !drm_WARN_ON(&i915->drm, power_domains->async_put_domains[0] &
+> > +			    power_domains->async_put_domains[1]);
+> >  }
+> 
+> Do we want to depend on struct i915_power_domains being a struct
+> drm_i915_private member via container_of?
 
-I have no information on that; instruction timings are not defined
-at architecture level (architecture reference manual), nor do I find
-information in the CPU technical reference manual (which would be
-specific to the CPU). Instruction timings tend to be implementation
-dependent.
+It looks ok to me, there is only one i915_power_domains struct per
+device.
 
-I've always consulted Will Deacon when I've needed to know whether
-an instruction is expensive or not.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 10.2Mbps down 587kbps up
+> BR,
+> Jani.
+> 
+> >  
+> >  static bool
+> >  __async_put_domains_state_ok(struct i915_power_domains *power_domains)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(power_domains,
+> > +						     struct drm_i915_private,
+> > +						     power_domains);
+> >  	enum intel_display_power_domain domain;
+> >  	bool err = false;
+> >  
+> >  	err |= !assert_async_put_domain_masks_disjoint(power_domains);
+> > -	err |= WARN_ON(!!power_domains->async_put_wakeref !=
+> > -		       !!__async_put_domains_mask(power_domains));
+> > +	err |= drm_WARN_ON(&i915->drm, !!power_domains->async_put_wakeref !=
+> > +			   !!__async_put_domains_mask(power_domains));
+> >  
+> >  	for_each_power_domain(domain, __async_put_domains_mask(power_domains))
+> > -		err |= WARN_ON(power_domains->domain_use_count[domain] != 1);
+> > +		err |= drm_WARN_ON(&i915->drm,
+> > +				   power_domains->domain_use_count[domain] != 1);
+> >  
+> >  	return !err;
+> >  }
+> > @@ -2107,11 +2114,14 @@ static void
+> >  queue_async_put_domains_work(struct i915_power_domains *power_domains,
+> >  			     intel_wakeref_t wakeref)
+> >  {
+> > -	WARN_ON(power_domains->async_put_wakeref);
+> > +	struct drm_i915_private *i915 = container_of(power_domains,
+> > +						     struct drm_i915_private,
+> > +						     power_domains);
+> > +	drm_WARN_ON(&i915->drm, power_domains->async_put_wakeref);
+> >  	power_domains->async_put_wakeref = wakeref;
+> > -	WARN_ON(!queue_delayed_work(system_unbound_wq,
+> > -				    &power_domains->async_put_work,
+> > -				    msecs_to_jiffies(100)));
+> > +	drm_WARN_ON(&i915->drm, !queue_delayed_work(system_unbound_wq,
+> > +						    &power_domains->async_put_work,
+> > +						    msecs_to_jiffies(100)));
+> >  }
+> >  
+> >  static void
+> > @@ -4318,6 +4328,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
+> >  		  const struct i915_power_well_desc *power_well_descs,
+> >  		  int power_well_count)
+> >  {
+> > +	struct drm_i915_private *i915 = container_of(power_domains,
+> > +						     struct drm_i915_private,
+> > +						     power_domains);
+> >  	u64 power_well_ids = 0;
+> >  	int i;
+> >  
+> > @@ -4337,8 +4350,8 @@ __set_power_wells(struct i915_power_domains *power_domains,
+> >  		if (id == DISP_PW_ID_NONE)
+> >  			continue;
+> >  
+> > -		WARN_ON(id >= sizeof(power_well_ids) * 8);
+> > -		WARN_ON(power_well_ids & BIT_ULL(id));
+> > +		drm_WARN_ON(&i915->drm, id >= sizeof(power_well_ids) * 8);
+> > +		drm_WARN_ON(&i915->drm, power_well_ids & BIT_ULL(id));
+> >  		power_well_ids |= BIT_ULL(id);
+> >  	}
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
