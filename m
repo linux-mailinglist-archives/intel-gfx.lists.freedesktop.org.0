@@ -1,45 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70EAE1B2A72
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:47:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC371B2A80
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:52:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C69AA6E99F;
-	Tue, 21 Apr 2020 14:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D226E12F;
+	Tue, 21 Apr 2020 14:52:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC46F6E99F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 14:47:19 +0000 (UTC)
-IronPort-SDR: w+nJjcTFn5JNVuX4T9APKQCkxfW7y3PZP2lH93uUG4S6782YAH7Ru0lsqP8Kz2y0t5ogBY9iIH
- wBVrMXpaDZ+w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 07:47:13 -0700
-IronPort-SDR: r7Jd9zm51s5hnBZRDGK4WvL4mFVW2jiEwnzmFFQeuiQG6BPBnAsf4XkWP/6ROckNHULemFIqGY
- UpZFSlR9dQrg==
-X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="429551833"
-Received: from wwojtkie-mobl.ger.corp.intel.com (HELO [10.252.50.229])
- ([10.252.50.229])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 07:47:12 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200421085939.31410-1-chris@chris-wilson.co.uk>
- <20200421092504.7416-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <3aa1e192-02cc-107d-f0f6-a78d6f08a0e4@linux.intel.com>
-Date: Tue, 21 Apr 2020 15:47:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C7A06E09A;
+ Tue, 21 Apr 2020 14:52:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66C04A0BA8;
+ Tue, 21 Apr 2020 14:52:30 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200421092504.7416-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gt: Poison residual state
- [HWSP] across resume.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 21 Apr 2020 14:52:30 -0000
+Message-ID: <158748075038.17660.9525323777928728197@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200421134512.27910-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200421134512.27910-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Make_the_slice=3Aunslice_ratio_request_explicit_for?=
+ =?utf-8?q?_RPS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,152 +39,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 21/04/2020 10:25, Chris Wilson wrote:
-> Since we may lose the content of any buffer when we relinquish control
-> of the system (e.g. suspend/resume), we have to be careful not to rely
-> on regaining control. A good method to detect when we might be using
-> garbage is by always injecting that garbage prior to first use on
-> load/resume/etc.
-> 
-> v2: Drop sanitize callback on cleanup
-> v3: Move seqno reset to timeline enter, so we reset all timelines.
-> However, this is done on every activation during runtime and not reset.
-> The similar level of paranoia we apply to correcting context state after
-> a period of inactivity.
-> 
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
-> Reset in sanitize, for we may attempt to park the engine before using
-> any timelines.
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c      | 23 ++++++++++++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_timeline.c | 17 ++++++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_timeline.h |  2 ++
->   3 files changed, 40 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 34f67eb9bfa1..d42a9d6767d4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -3649,7 +3649,26 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
->   
->   static void execlists_sanitize(struct intel_engine_cs *engine)
->   {
-> +	/*
-> +	 * Poison residual state on resume, in case the suspend didn't!
-> +	 *
-> +	 * We have to assume that across suspend/resume (or other loss
-> +	 * of control) that the contents of our pinned buffers has been
-> +	 * lost, replaced by garbage. Since this doesn't always happen,
-> +	 * let's poison such state so that we more quickly spot when
-> +	 * we falsely assume it has been preserved.
-> +	 */
-> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> +		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
-> +
->   	reset_csb_pointers(engine);
-> +
-> +	/*
-> +	 * The kernel_context HWSP is stored in the status_page. As above,
-> +	 * that may be lost on resume/initialisation, and so we need to
-> +	 * reset the value in the HWSP.
-> +	 */
-> +	intel_timeline_reset_seqno(engine->kernel_context->timeline);
->   }
->   
->   static void enable_error_interrupt(struct intel_engine_cs *engine)
-> @@ -4539,6 +4558,8 @@ static void execlists_shutdown(struct intel_engine_cs *engine)
->   
->   static void execlists_release(struct intel_engine_cs *engine)
->   {
-> +	engine->sanitize = NULL; /* no longer in control, nothing to sanitize */
-> +
->   	execlists_shutdown(engine);
->   
->   	intel_engine_cleanup_common(engine);
-> @@ -4550,7 +4571,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
->   {
->   	/* Default vfuncs which can be overriden by each engine. */
->   
-> -	engine->sanitize = execlists_sanitize;
->   	engine->resume = execlists_resume;
->   
->   	engine->cops = &execlists_context_ops;
-> @@ -4666,6 +4686,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
->   		execlists->csb_size = GEN11_CSB_ENTRIES;
->   
->   	/* Finally, take ownership and responsibility for cleanup! */
-> +	engine->sanitize = execlists_sanitize;
->   	engine->release = execlists_release;
->   
->   	return 0;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> index 3779c2ae0d65..29a39e44fa36 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> @@ -337,6 +337,13 @@ int intel_timeline_pin(struct intel_timeline *tl)
->   	return 0;
->   }
->   
-> +void intel_timeline_reset_seqno(const struct intel_timeline *tl)
-> +{
-> +	/* Must be pinned to be writable, and no requests in flight. */
-> +	GEM_BUG_ON(!atomic_read(&tl->pin_count));
-> +	WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
-> +}
-> +
->   void intel_timeline_enter(struct intel_timeline *tl)
->   {
->   	struct intel_gt_timelines *timelines = &tl->gt->timelines;
-> @@ -365,8 +372,16 @@ void intel_timeline_enter(struct intel_timeline *tl)
->   		return;
->   
->   	spin_lock(&timelines->lock);
-> -	if (!atomic_fetch_inc(&tl->active_count))
-> +	if (!atomic_fetch_inc(&tl->active_count)) {
-> +		/*
-> +		 * The HWSP is volatile, and may have been lost while inactive,
-> +		 * e.g. across suspend/resume. Be paranoid, and ensure that
-> +		 * the HWSP value matches our seqno so we don't proclaim
-> +		 * the next request as already complete.
-> +		 */
-> +		intel_timeline_reset_seqno(tl);
->   		list_add_tail(&tl->link, &timelines->active_list);
-> +	}
->   	spin_unlock(&timelines->lock);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-> index f5b7eade3809..c8e59a333182 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-> @@ -84,6 +84,8 @@ int intel_timeline_get_seqno(struct intel_timeline *tl,
->   void intel_timeline_exit(struct intel_timeline *tl);
->   void intel_timeline_unpin(struct intel_timeline *tl);
->   
-> +void intel_timeline_reset_seqno(const struct intel_timeline *tl);
-> +
->   int intel_timeline_read_hwsp(struct i915_request *from,
->   			     struct i915_request *until,
->   			     u32 *hwsp_offset);
-> 
+Series: drm/i915/gt: Make the slice:unslice ratio request explicit for RPS
+URL   : https://patchwork.freedesktop.org/series/76269/
+State : failure
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_8343 -> Patchwork_17406
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17406 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17406, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17406:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-byt-j1900:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-byt-j1900/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-byt-j1900/igt@i915_selftest@live@requests.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_timelines:
+    - {fi-tgl-u}:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-tgl-u/igt@i915_selftest@live@gt_timelines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-tgl-u/igt@i915_selftest@live@gt_timelines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17406 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cfl-8109u:       [DMESG-FAIL][5] ([i915#1751]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+    - fi-apl-guc:         [DMESG-FAIL][7] ([i915#1751]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-7500u:       [FAIL][9] ([i915#976]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][11] ([i915#62]) -> [SKIP][12] ([fdo#109271])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-u2:          [DMESG-FAIL][13] -> [DMESG-FAIL][14] ([i915#1754])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8343/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
+  [i915#1754]: https://gitlab.freedesktop.org/drm/intel/issues/1754
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-bwr-2160 
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8343 -> Patchwork_17406
+
+  CI-20190529: 20190529
+  CI_DRM_8343: a5f7098d36b9370b08717c04d894d01c7cb4320b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17406: 976b9b93bd0bc34f76f17bd471445674332f4d27 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+976b9b93bd0b drm/i915/gt: Make the slice:unslice ratio request explicit for RPS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17406/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
