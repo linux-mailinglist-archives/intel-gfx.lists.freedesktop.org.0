@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3DC31B24A5
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 13:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 318E41B2518
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 13:30:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4096E911;
-	Tue, 21 Apr 2020 11:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D8E6E919;
+	Tue, 21 Apr 2020 11:30:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C04C46E895;
- Tue, 21 Apr 2020 11:09:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BAFB6A008A;
- Tue, 21 Apr 2020 11:09:44 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C33BF6E919
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 11:30:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20970116-1500050 for multiple; Tue, 21 Apr 2020 12:30:37 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 21 Apr 2020 11:09:44 -0000
-Message-ID: <158746738476.17663.4418411018091878541@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200420232618.10748-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200420232618.10748-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Prefer_soft-rc6_over_RPS_DOWN=5FTIMEOUT_=28rev3=29?=
+In-Reply-To: <20200421101955.15651-1-liwei.song@windriver.com>
+References: <20200421101955.15651-1-liwei.song@windriver.com>
+To: Liwei Song <liwei.song@windriver.com>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158746863572.19285.13815649267212854361@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 21 Apr 2020 12:30:35 +0100
+Subject: Re: [Intel-gfx] [PATCH xf86-video-intel v5] Sync i915_pciids upto
+ 8717c6b7414f
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,98 +39,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Liwei Song (2020-04-21 11:19:55)
+> Import the kernel's i915_pciids.h, up to:
+> 
+> commit 8717c6b7414ffb890672276dccc284c23078ac0e
+> Author: Lee Shawn C <shawn.c.lee@intel.com>
+> Date:   Tue Dec 10 23:04:15 2019 +0800
+> 
+>     drm/i915/cml: Separate U series pci id from origianl list.
+> 
+> Signed-off-by: Liwei Song <liwei.song@windriver.com>
 
-Series: drm/i915/gt: Prefer soft-rc6 over RPS DOWN_TIMEOUT (rev3)
-URL   : https://patchwork.freedesktop.org/series/76216/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8342 -> Patchwork_17400
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17400/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17400 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8342/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17400/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-glk-dsi:         [DMESG-FAIL][3] ([i915#1751]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8342/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17400/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-y:           [DMESG-FAIL][5] ([i915#1744]) -> [DMESG-FAIL][6] ([i915#1759])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8342/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17400/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1744]: https://gitlab.freedesktop.org/drm/intel/issues/1744
-  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8342 -> Patchwork_17400
-
-  CI-20190529: 20190529
-  CI_DRM_8342: 17407a9f61a0ee402254522e391a626acc4375ec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17400: 4ca7f34aac20b70957dc30b6f20d2ca232836b43 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4ca7f34aac20 drm/i915/gt: Prefer soft-rc6 over RPS DOWN_TIMEOUT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17400/index.html
+Fixed the remaining addition of gen10+ to gen9_render.c (we can't reuse
+the same assembler, so we need to rework lots; a decade on and
+extracting those paths from mesa look even less likely.) and pushed.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
