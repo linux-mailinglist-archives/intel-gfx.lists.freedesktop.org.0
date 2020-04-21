@@ -2,49 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398BD1B20F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B69931B216B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:19:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D129689C60;
-	Tue, 21 Apr 2020 08:04:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D9D6E41D;
+	Tue, 21 Apr 2020 08:19:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94CE089C51;
- Tue, 21 Apr 2020 08:04:26 +0000 (UTC)
-IronPort-SDR: Q5VodBK95ngYoBehKOCsCAEUOSMZLHiX7q7ALsT1MCIOOd94yaxp6MgTgfqiRL8RuXTEstJGgn
- wPlKYnHc3MpQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 01:04:25 -0700
-IronPort-SDR: IXYg6SSpX7hdQQVYD8yzR/2w4auXjkQzvqwIEzbZzpYPW8bvZRFwA/pTyh7Xua1RY7e4nWklLV
- I+8o6hz+v5Eg==
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="402113649"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.214.210.219])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 01:04:17 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DAE1B6E41D;
+ Tue, 21 Apr 2020 08:19:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1A22A008A;
+ Tue, 21 Apr 2020 08:19:08 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200420154216.GA1963@sultan-box.localdomain>
-References: <20200407065210.GA263852@kroah.com>
- <20200407071809.3148-1-sultan@kerneltoast.com>
- <20200410090838.GD1691838@kroah.com>
- <20200410141738.GB2025@sultan-box.localdomain>
- <20200411113957.GB2606747@kroah.com>
- <158685210730.16269.15932754047962572236@build.alporthouse.com>
- <20200414082344.GA10645@kroah.com>
- <158737335977.8380.15005528012712372014@jlahtine-desk.ger.corp.intel.com>
- <20200420154216.GA1963@sultan-box.localdomain>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Sultan Alsawaf <sultan@kerneltoast.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 21 Apr 2020 11:04:13 +0300
-Message-ID: <158745625375.5265.15743487643543685929@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix ref->mutex deadlock in
- i915_active_wait()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Tue, 21 Apr 2020 08:19:08 -0000
+Message-ID: <158745714882.17662.6487888097145532839@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW4g?=
+ =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
+ =?utf-8?q?=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,126 +39,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Sultan Alsawaf (2020-04-20 18:42:16)
-> On Mon, Apr 20, 2020 at 12:02:39PM +0300, Joonas Lahtinen wrote:
-> > I think the the patch should be dropped for now before the issue is
-> > properly addressed. Either by backporting the mainline fixes or if
-> > those are too big and there indeed is a smaller alternative patch
-> > that is properly reviewed. But the above patch is not, at least yet.
-> 
-> Why should a fix for a bona-fide issue be dropped due to political reasons? This
-> doesn't make sense to me. This just hurts miserable i915 users even more. If my
-> patch is going to be dropped, it should be replaced by a different fix at the
-> same time.
+== Series Details ==
 
-There's no politics involved. It's all about doing the due diligence
-that we're fixing upstream bugs, and we're fixing them in a way that
-does not cause regressions to other users.
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev11)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : failure
 
-Without being able to reproduce a bug against vanilla kernel, there's
-too high of a risk that the patch that was developed will only work
-on the downstream kernel it was developed for. That happens for the
-best of the developers, and that is exactly why the process is in
-place, to avoid human error. So no politics, just due diligence.
+== Summary ==
 
-If you could provide bug reproduction instructions by filing a bug,
-we can make forward progress in solving this issue. After assessing
-the severity of the bug and the amount of users involved, it will
-be prioritized accordingly. That is the most efficient way to get
-attention to a bug.
+CI Bug Log - changes from CI_DRM_8339 -> Patchwork_17395
+====================================================
 
-> Also, the mainline fixes just *happen* to fix this deadlock by removing the
-> mutex lock from the path in question and creating multiple other bugs in the
-> process that had to be addressed with "Fixes:" commits. The regression potential
-> was too high to include those patches for a "stable" kernel, so I made this
-> patch which fixes the issue in the simplest way possible.
+Summary
+-------
 
-The thing is that it may be that the patch fixes the exact issue you
-have at hand in the downstream kernel you are testing against. But
-in doing so it may as well break other usecases for other users of
-vanilla kernel. That is what we're trying to avoid.
+  **FAILURE**
 
-With the reproduction instructions, it'll be possible to check which
-kernel versions are affected, and after applying a fix to make sure
-that the bug is gone from those version. And if the reproduction can
-be trivialized to a test, we can introduce a regression check to CI.
+  Serious unknown changes coming with Patchwork_17395 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17395, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-A patch that claims to fix a deadlock in upstream kernel should
-include that splat from upstream kernel, not a speculated chain.
-Again, this is just the regular due diligence, because we have
-made errors in the past. It is for those self-made errors we
-know not to merge fixes too quickly before we are able to
-reproduce the error and make sure it is gone.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/index.html
 
-It's not about where the patch came from, it's about avoiding
-errors.
+Possible new issues
+-------------------
 
-> We put this patch into
-> Ubuntu now as well, because praying for a response from i915 maintainers while
-> the 20.04 release was on the horizon was not an option.
-> 
-> > There is an another similar thread where there's jumping into
-> > conclusions and doing ad-hoc patches for already fixed issues:
-> > 
-> > https://lore.kernel.org/dri-devel/20200414144309.GB2082@sultan-box.localdomain/
-> 
-> Maybe this wouldn't have happened if I had received a proper response for that
-> issue on gitlab from the get-go... Instead I got the run-around from Chris
-> claiming that it wasn't an i915 bug:
-> 
-> https://gitlab.freedesktop.org/drm/intel/issues/1599
-> 
-> > I appreciate enthusiasm to provide fixes to i915 but we should
-> > continue do the regular due diligence to make sure we're properly
-> > fixing bugs in upstream kernels. And when fixing them, to make
-> > sure we're not simply papering over them for a single use case.
-> > 
-> > It would be preferred to file a bug for the seen issues,
-> > describing how to reproduce them with vanilla upstream kernels:
-> > 
-> > https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
-> 
-> gitlab.freedesktop.org/drm/intel is where bugs go to be neglected, as noted
-> above. I really see no reason to send anything there anymore, when the vast
-> majority of community-sourced bug reports go ignored.
+  Here are the unknown changes that may have been introduced in Patchwork_17395:
 
-In the above bug, you claim to be booting vanilla kernel but the splat
-clearly says "5.4.28-00007-g64bb42e80256-dirty", so the developer correctly
-requested to bisect the error between 5.4.27 and 5.4.28 vanilla kernels, which
-you seem to have ignored and simply jumped to provide a patch.
+### IGT changes ###
 
-Apologies if it feels like the bugs do not get enough attention, but we
-do our best to act on the reported bugs. You can best guarantee that
-your bug is getting the attention by providing all the details requested
-in the above link.
+#### Possible regressions ####
 
-Without that information, it'll be hard to assess the severity of the
-bug. Above bug is missing critical pieces of information which help us
-in assessing the severity: 1. Is the bug reproducible on drm-tip?
-2. How to reproduce? 3. How often does it reproduce? 4. Which hardware?
+  * igt@i915_selftest@live@mman:
+    - fi-snb-2600:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-snb-2600/igt@i915_selftest@live@mman.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-snb-2600/igt@i915_selftest@live@mman.html
 
-If that information is missing, it means that that some of our
-developers needs to find out all those bits of information before
-we can even assess the severity of the bug. And as we also have
-bugs where the information is present, those are often acted on
-first.
+  
+Known issues
+------------
 
-Again, no politics involved and no praying needed. We just have a
-process to follow to make sure we don't repeat our past mistakes
-as it's only humans who work on the bugs. At times it may feel
-rigid and not suited for the specific case where you feel there
-is a shorter route to produce a fix, but following the bug process
-helps us understand the problem and avoid trivial mistakes.
+  Here are the changes found in Patchwork_17395 that come from known issues:
 
-Regards, Joonas
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4] ([i915#1751])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-u2:          [DMESG-FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8339/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+
+  
+  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
+
+
+Participating hosts (48 -> 41)
+------------------------------
+
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-hsw-4770 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8339 -> Patchwork_17395
+
+  CI-20190529: 20190529
+  CI_DRM_8339: aff3f45feee4ed28b07e06bacac28c72c5315e37 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17395: a5db16ec932c85ce6de749e953448d54a6b5e40f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a5db16ec932c drm/i915/psr: Use new DP VSC SDP compute routine on PSR
+9a2ad5a32a45 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+07856a13f253 drm/i915: Stop sending DP SDPs on ddi disable
+b8c74d06c9ea drm/i915: Program DP SDPs on pipe updates
+e78863a17e96 drm/i915: Fix enabled infoframe states of lspcon
+3f0c456bcfa9 drm/i915: Add state readout for DP VSC SDP
+beeabdf3a48b drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+baa9bbad6bef drm/i915: Program DP SDPs with computed configs
+673d595572d2 drm/i915: Include DP VSC SDP in the crtc state dump
+ca01029436e6 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+6cccd45e8119 drm/i915: Include HDMI DRM infoframe in the crtc state dump
+3df2cc567e5a drm: Add logging function for DP VSC SDP
+5eae0ec2d8ae drm/i915/dp: Read out DP SDPs
+33516c7eda02 video/hdmi: Add Unpack only function for DRM infoframe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17395/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
