@@ -1,32 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261EE1B2D09
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 18:46:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 644841B2DE6
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 19:14:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4FE89590;
-	Tue, 21 Apr 2020 16:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893676E087;
+	Tue, 21 Apr 2020 17:14:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B132389590
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 16:46:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 336D06E087
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 17:14:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20974693-1500050 for multiple; Tue, 21 Apr 2020 17:46:20 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200421164130.11135-1-chris@chris-wilson.co.uk>
-References: <20200421164130.11135-1-chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20975047-1500050 
+ for multiple; Tue, 21 Apr 2020 18:13:53 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158748757900.11203.459560733284643126@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 21 Apr 2020 17:46:19 +0100
-Subject: Re: [Intel-gfx] [PATCH] RFC drm/i915/gem: Allow creation of
- contexts with an 'empty' VM
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Apr 2020 18:13:51 +0100
+Message-Id: <20200421171351.19575-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Unroll the CS frequency loop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +36,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-04-21 17:41:30)
-> Normally when we create a new context, and a new ppGTT to go with it, we
-> point all the unused pages in the ppGTT to a 'safe' scratch page. Any
-> inadvertent access outside of the declared user's area will result in a
-> read/write to scratch instead. However, sometimes it is preferrable to
-> that to cause a fault instead. This does not trap execution of the
-> faulting batch, but it does record the error:
-> 
-> FAULT_TLB_DATA: 0x00000000 0x00000004
->     Address 0x0000000000004000 PPGTT
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> ---
-> The name and value semantics are horrendous. The non-trapping behaviour
-> is also less than ideal. Worth it?
+Having noticed that MI_BB_START is incurring a memory stall (see the
+correlation with uncore frequency), we have to unroll the loop in order
+to diminish the impact of the MI_BB_START on the instruction throughput.
 
-Note that we can ask for an interrupt on a page access error, however it
-is a 'validation' error and we get an interrupt for every single access
-and NOOP fixup (the single bit for all classes of validation errors).
-They were quite frequent.
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 32 +++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index e2afc2003caa..d80c0ee1e654 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -49,14 +49,17 @@ create_spin_counter(struct intel_engine_cs *engine,
+ #define CS_GPR(x) GEN8_RING_CS_GPR(engine->mmio_base, x)
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
++	unsigned long end;
+ 	u32 *base, *cs;
+ 	int loop, i;
+ 	int err;
+ 
+-	obj = i915_gem_object_create_internal(vm->i915, 4096);
++	obj = i915_gem_object_create_internal(vm->i915, 64 << 10);
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
+ 
++	end = obj->base.size / sizeof(u32) - 1;
++
+ 	vma = i915_vma_instance(obj, vm, NULL);
+ 	if (IS_ERR(vma)) {
+ 		i915_gem_object_put(obj);
+@@ -90,27 +93,30 @@ create_spin_counter(struct intel_engine_cs *engine,
+ 
+ 	loop = cs - base;
+ 
+-	*cs++ = MI_MATH(4);
+-	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
+-	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
+-	*cs++ = MI_MATH_ADD;
+-	*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
+-
+-	if (srm) {
+-		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+-		*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
+-		*cs++ = lower_32_bits(vma->node.start + 1000 * sizeof(*cs));
+-		*cs++ = upper_32_bits(vma->node.start + 1000 * sizeof(*cs));
++	for (i = 0; i < 1024; i++) {
++		*cs++ = MI_MATH(4);
++		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(COUNT));
++		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(INC));
++		*cs++ = MI_MATH_ADD;
++		*cs++ = MI_MATH_STORE(MI_MATH_REG(COUNT), MI_MATH_REG_ACCU);
++
++		if (srm) {
++			*cs++ = MI_STORE_REGISTER_MEM_GEN8;
++			*cs++ = i915_mmio_reg_offset(CS_GPR(COUNT));
++			*cs++ = lower_32_bits(vma->node.start + end * sizeof(*cs));
++			*cs++ = upper_32_bits(vma->node.start + end * sizeof(*cs));
++		}
+ 	}
+ 
+ 	*cs++ = MI_BATCH_BUFFER_START_GEN8;
+ 	*cs++ = lower_32_bits(vma->node.start + loop * sizeof(*cs));
+ 	*cs++ = upper_32_bits(vma->node.start + loop * sizeof(*cs));
++	GEM_BUG_ON(cs - base > end);
+ 
+ 	i915_gem_object_flush_map(obj);
+ 
+ 	*cancel = base + loop;
+-	*counter = srm ? memset32(base + 1000, 0, 1) : NULL;
++	*counter = srm ? memset32(base + end, 0, 1) : NULL;
+ 	return vma;
+ }
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
