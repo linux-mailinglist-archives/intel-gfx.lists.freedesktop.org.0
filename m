@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56E8D1B239E
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 12:10:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99ED71B239F
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 12:11:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56FE6E905;
-	Tue, 21 Apr 2020 10:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E591E891DC;
+	Tue, 21 Apr 2020 10:11:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2390B6E904;
- Tue, 21 Apr 2020 10:10:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 13ECAA363B;
- Tue, 21 Apr 2020 10:10:19 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E56E891DC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 10:11:28 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20969034-1500050 
+ for multiple; Tue, 21 Apr 2020 11:11:21 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Apr 2020 11:11:19 +0100
+Message-Id: <20200421101119.8263-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200421082603.30302-1-chris@chris-wilson.co.uk>
+References: <20200421082603.30302-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 21 Apr 2020 10:10:19 -0000
-Message-ID: <158746381907.17660.5993135364732741322@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200421090536.31717-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200421090536.31717-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Trace_RPS_eve?=
- =?utf-8?q?nts?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Prefer soft-rc6 over RPS
+ DOWN_TIMEOUT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,62 +39,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLDEv
-Ml0gZHJtL2k5MTUvZ3Q6IFRyYWNlIFJQUyBldmVudHMKVVJMICAgOiBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzc2MjUxLwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1h
-cnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRz
-L2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAgICAgaW5j
-bHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9ycHMubwpJbiBmaWxlIGluY2x1ZGVkIGZyb20gLi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC91Yy9pbnRlbF9ndWMuaDo5OjAsCiAgICAgICAgICAgICAgICAgZnJvbSAuL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmg6OSwKICAgICAgICAgICAgICAgICBmcm9tIC4v
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfdHlwZXMuaDoxNiwKICAgICAgICAgICAg
-ICAgICBmcm9tIC4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaDo4MiwKICAgICAgICAg
-ICAgICAgICBmcm9tIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jOjk6CmRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jOiBJbiBmdW5jdGlvbiDigJhnZW45X3Jwc19l
-bmFibGXigJk6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jOjk1MToxMDogZXJy
-b3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uIOKAmEdUX0lOVEVSVkFMX0ZST01f
-VVPigJk7IGRpZCB5b3UgbWVhbiDigJhOVFBfSU5URVJWQUxfRlJFUeKAmT8gWy1XZXJyb3I9aW1w
-bGljaXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dCiAgICAgICAgICBHVF9JTlRFUlZBTF9GUk9NX1VT
-KGk5MTUsIDEwMDAwMDApKTsKICAgICAgICAgIF4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF91bmNvcmUuaDozNzg6NTc6IG5vdGU6IGluIGRlZmluaXRpb24gb2YgbWFjcm8g4oCYaW50ZWxf
-dW5jb3JlX3dyaXRlX2Z34oCZCiAjZGVmaW5lIGludGVsX3VuY29yZV93cml0ZV9mdyguLi4pIF9f
-cmF3X3VuY29yZV93cml0ZTMyKF9fVkFfQVJHU19fKQogICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9ycHMuYzo5NTE6MzA6IGVycm9yOiDigJhpOTE14oCZIHVuZGVjbGFy
-ZWQgKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKTsgZGlkIHlvdSBtZWFuIOKAmHRvX2k5MTXi
-gJk/CiAgICAgICAgICBHVF9JTlRFUlZBTF9GUk9NX1VTKGk5MTUsIDEwMDAwMDApKTsKICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgXgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Vu
-Y29yZS5oOjM3ODo1Nzogbm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNybyDigJhpbnRlbF91bmNv
-cmVfd3JpdGVfZnfigJkKICNkZWZpbmUgaW50ZWxfdW5jb3JlX3dyaXRlX2Z3KC4uLikgX19yYXdf
-dW5jb3JlX3dyaXRlMzIoX19WQV9BUkdTX18pCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX3Jwcy5jOjk1MTozMDogbm90ZTogZWFjaCB1bmRlY2xhcmVkIGlkZW50aWZp
-ZXIgaXMgcmVwb3J0ZWQgb25seSBvbmNlIGZvciBlYWNoIGZ1bmN0aW9uIGl0IGFwcGVhcnMgaW4K
-ICAgICAgICAgIEdUX0lOVEVSVkFMX0ZST01fVVMoaTkxNSwgMTAwMDAwMCkpOwogICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBeCi4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfdW5jb3Jl
-Lmg6Mzc4OjU3OiBub3RlOiBpbiBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmGludGVsX3VuY29yZV93
-cml0ZV9md+KAmQogI2RlZmluZSBpbnRlbF91bmNvcmVfd3JpdGVfZncoLi4uKSBfX3Jhd191bmNv
-cmVfd3JpdGUzMihfX1ZBX0FSR1NfXykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn4KY2MxOiBhbGwgd2FybmluZ3MgYmVp
-bmcgdHJlYXRlZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNjY6IHJlY2lwZSBm
-b3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ycHMubycgZmFpbGVkCm1h
-a2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcnBzLm9dIEVycm9yIDEK
-c2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dw
-dS9kcm0vaTkxNScgZmFpbGVkCm1ha2VbM106ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTVdIEVy
-cm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2
-ZXJzL2dwdS9kcm0nIGZhaWxlZAptYWtlWzJdOiAqKiogW2RyaXZlcnMvZ3B1L2RybV0gRXJyb3Ig
-MgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ4ODogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMv
-Z3B1JyBmYWlsZWQKbWFrZVsxXTogKioqIFtkcml2ZXJzL2dwdV0gRXJyb3IgMgpNYWtlZmlsZTox
-NzIyOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycycgZmFpbGVkCm1ha2U6ICoqKiBbZHJpdmVy
-c10gRXJyb3IgMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+The RPS DOWN_TIMEOUT interrupt is signaled after a period of rc6, and
+upon receipt of that interrupt we reprogram the GPU clocks down to the
+next idle notch [to help convserve power during rc6]. However, on
+execlists, we benefit from soft-rc6 immediately parking the GPU and
+setting idle frequencies upon idling [within a jiffie], and here the
+interrupt prevents us from restarting from our last frequency.
+
+In the process, we can simply opt for a static pm_events mask and rely
+on the enable/disable interrupts to flush the worker on parking.
+
+This will reduce the amount of oscillation observed during steady
+workloads with microsleeps, as each time the rc6 timeout occurs we
+immediately follow with a waitboost for a dropped frame.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 41 +++++++++++++----------------
+ 1 file changed, 18 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 4dcfae16a7ce..785cd58fba76 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -57,7 +57,7 @@ static u32 rps_pm_mask(struct intel_rps *rps, u8 val)
+ 	if (val < rps->max_freq_softlimit)
+ 		mask |= GEN6_PM_RP_UP_EI_EXPIRED | GEN6_PM_RP_UP_THRESHOLD;
+ 
+-	mask &= READ_ONCE(rps->pm_events);
++	mask &= rps->pm_events;
+ 
+ 	return rps_pm_sanitize_mask(rps, ~mask);
+ }
+@@ -70,19 +70,9 @@ static void rps_reset_ei(struct intel_rps *rps)
+ static void rps_enable_interrupts(struct intel_rps *rps)
+ {
+ 	struct intel_gt *gt = rps_to_gt(rps);
+-	u32 events;
+ 
+ 	rps_reset_ei(rps);
+ 
+-	if (IS_VALLEYVIEW(gt->i915))
+-		/* WaGsvRC0ResidencyMethod:vlv */
+-		events = GEN6_PM_RP_UP_EI_EXPIRED;
+-	else
+-		events = (GEN6_PM_RP_UP_THRESHOLD |
+-			  GEN6_PM_RP_DOWN_THRESHOLD |
+-			  GEN6_PM_RP_DOWN_TIMEOUT);
+-	WRITE_ONCE(rps->pm_events, events);
+-
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
+ 	spin_unlock_irq(&gt->irq_lock);
+@@ -120,8 +110,6 @@ static void rps_disable_interrupts(struct intel_rps *rps)
+ {
+ 	struct intel_gt *gt = rps_to_gt(rps);
+ 
+-	WRITE_ONCE(rps->pm_events, 0);
+-
+ 	intel_uncore_write(gt->uncore,
+ 			   GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
+ 
+@@ -919,12 +907,10 @@ static bool gen9_rps_enable(struct intel_rps *rps)
+ 		intel_uncore_write_fw(uncore, GEN6_RC_VIDEO_FREQ,
+ 				      GEN9_FREQUENCY(rps->rp1_freq));
+ 
+-	/* 1 second timeout */
+-	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT,
+-			      GT_INTERVAL_FROM_US(i915, 1000000));
+-
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 0xa);
+ 
++	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -935,12 +921,10 @@ static bool gen8_rps_enable(struct intel_rps *rps)
+ 	intel_uncore_write_fw(uncore, GEN6_RC_VIDEO_FREQ,
+ 			      HSW_FREQUENCY(rps->rp1_freq));
+ 
+-	/* NB: Docs say 1s, and 1000000 - which aren't equivalent */
+-	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT,
+-			      100000000 / 128); /* 1 second timeout */
+-
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
+ 
++	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -952,6 +936,10 @@ static bool gen6_rps_enable(struct intel_rps *rps)
+ 	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT, 50000);
+ 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
+ 
++	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
++			  GEN6_PM_RP_DOWN_THRESHOLD |
++			  GEN6_PM_RP_DOWN_TIMEOUT);
++
+ 	return rps_reset(rps);
+ }
+ 
+@@ -1037,6 +1025,10 @@ static bool chv_rps_enable(struct intel_rps *rps)
+ 			      GEN6_RP_UP_BUSY_AVG |
+ 			      GEN6_RP_DOWN_IDLE_AVG);
+ 
++	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
++			  GEN6_PM_RP_DOWN_THRESHOLD |
++			  GEN6_PM_RP_DOWN_TIMEOUT);
++
+ 	/* Setting Fixed Bias */
+ 	vlv_punit_get(i915);
+ 
+@@ -1135,6 +1127,9 @@ static bool vlv_rps_enable(struct intel_rps *rps)
+ 			      GEN6_RP_UP_BUSY_AVG |
+ 			      GEN6_RP_DOWN_IDLE_CONT);
+ 
++	/* WaGsvRC0ResidencyMethod:vlv */
++	rps->pm_events = GEN6_PM_RP_UP_EI_EXPIRED;
++
+ 	vlv_punit_get(i915);
+ 
+ 	/* Setting Fixed Bias */
+@@ -1469,7 +1464,7 @@ static void rps_work(struct work_struct *work)
+ 	u32 pm_iir = 0;
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+-	pm_iir = fetch_and_zero(&rps->pm_iir) & READ_ONCE(rps->pm_events);
++	pm_iir = fetch_and_zero(&rps->pm_iir) & rps->pm_events;
+ 	client_boost = atomic_read(&rps->num_waiters);
+ 	spin_unlock_irq(&gt->irq_lock);
+ 
+@@ -1572,7 +1567,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	struct intel_gt *gt = rps_to_gt(rps);
+ 	u32 events;
+ 
+-	events = pm_iir & READ_ONCE(rps->pm_events);
++	events = pm_iir & rps->pm_events;
+ 	if (events) {
+ 		spin_lock(&gt->irq_lock);
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
