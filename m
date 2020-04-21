@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C9A1B28C5
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 15:58:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BECE91B28A1
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 15:57:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7605E6E98F;
-	Tue, 21 Apr 2020 13:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB186E987;
+	Tue, 21 Apr 2020 13:57:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB28C6E98F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 13:58:42 +0000 (UTC)
-IronPort-SDR: wQaLzcTQLASU+2z6Cu89J8OlbpsSoFq+6lSeQRf5D1yDxzvwHl2LUHP+dju4aTBKhQqhmXoA3m
- c2ZLawgl+hVQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 06:58:42 -0700
-IronPort-SDR: p0GNHrzTuQk0eCErTnZrd9ZJKdZR05/Bp5xt4rfzM6gNs/fX84gH9jXHMIot982IycKcHc95ZN
- 80yffcEz3UQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="402195363"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga004.jf.intel.com with ESMTP; 21 Apr 2020 06:58:41 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id F2EC85C1DA7; Tue, 21 Apr 2020 16:56:46 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158747705196.19285.2111455064932087716@build.alporthouse.com>
-References: <20200421134512.27910-1-chris@chris-wilson.co.uk>
- <158747705196.19285.2111455064932087716@build.alporthouse.com>
-Date: Tue, 21 Apr 2020 16:56:46 +0300
-Message-ID: <877dy9lz6p.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 37DBF6E05F;
+ Tue, 21 Apr 2020 13:57:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 32222A008A;
+ Tue, 21 Apr 2020 13:57:49 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Make the slice:unslice ratio
- request explicit for RPS
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Tue, 21 Apr 2020 13:57:49 -0000
+Message-ID: <158747746917.17662.13718788022499438509@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/i915=3A_Make_define_for_?=
+ =?utf-8?q?lrc_state_offset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,54 +39,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Quoting Chris Wilson (2020-04-21 14:45:12)
->> In RPS, we have the option to only specify the unslice [ring] clock
->> ratio and for the pcu to derive the slice [gpu] clock ratio from its
->> magic table. We also have the option to tell the pcu to use our
->> requested gpu clock ratio, and for it to try and throttle the unslice
->> and slice ratios separately.
->> 
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/intel_rps.c | 11 +++++++----
->>  1 file changed, 7 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
->> index 4dcfae16a7ce..07321e1b22f6 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
->> @@ -662,14 +662,17 @@ static int gen6_rps_set(struct intel_rps *rps, u8 val)
->>         struct drm_i915_private *i915 = rps_to_i915(rps);
->>         u32 swreq;
->>  
->> -       if (INTEL_GEN(i915) >= 9)
->> -               swreq = GEN9_FREQUENCY(val);
->> -       else if (IS_HASWELL(i915) || IS_BROADWELL(i915))
->> +       if (INTEL_GEN(i915) >= 9) {
->> +               swreq = 0x2; /* only throttle slice, not unslice */
->
-> 0x0 == use implicit slice ratio
-> 0x1 == use explicit slice ratio
-> 0x2 == use separate throttling
+Series: series starting with [1/5] drm/i915: Make define for lrc state offset
+URL   : https://patchwork.freedesktop.org/series/76262/
+State : warning
 
-Care to enum/define these and add as parameter to GEN9_FREQUENCY?
+== Summary ==
 
-Also if there is any bspec link, add a reference.
+$ dim checkpatch origin/drm-tip
+52efd944a36d drm/i915: Make define for lrc state offset
+c968fc0ee7cf drm/i915: Add per ctx batchbuffer wa for timestamp
+-:51: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#51: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:141:
++#define   MI_LRI_LRM_CS_MMIO		(1<<19)
+                             		  ^
 
-Thanks,
--Mika
+-:59: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#59: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:158:
++#define   MI_LRM_ASYNC			(1<<21)
+                       			  ^
 
->
-> Not sure if 0x2 actually was implemented in the end.
-> -Chris
+-:200: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#200: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3256:
++			 (I915_GTT_PAGE_SIZE - 4)/sizeof(*cs));
+ 			                         ^
+
+-:253: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#253: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3321:
++
++	}
+
+total: 0 errors, 0 warnings, 4 checks, 273 lines checked
+2f150abce7d5 drm/i915: Add live selftests for indirect ctx batchbuffers
+-:52: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#52: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5387:
++#define CTX_BB_CANARY_OFFSET (3*1024)
+                                ^
+
+-:53: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#53: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5388:
++#define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET/sizeof(u32))
+                                                   ^
+
+-:167: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#167: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5502:
++	for_each_engine(engine, gt, id) {
++
+
+total: 0 errors, 0 warnings, 3 checks, 171 lines checked
+7a108f5f4ddb drm/i915: Use indirect ctx bb to mend CMD_BUF_CCTL
+-:23: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#23: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:517:
++#define END(total_state_size) 0, (total_state_size)
+
+-:31: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#31: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:925:
++	NOP(3+9+1),
+ 	     ^
+
+-:31: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#31: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:925:
++	NOP(3+9+1),
+ 	       ^
+
+total: 1 errors, 0 warnings, 2 checks, 118 lines checked
+c99d6bd66f5b drm/i915: Split ctx timestamp selftest into two
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
