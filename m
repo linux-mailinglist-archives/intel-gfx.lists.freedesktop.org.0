@@ -2,52 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6933D1B242B
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 12:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A1D1B2433
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 12:46:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADED36E2C0;
-	Tue, 21 Apr 2020 10:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65CA16E463;
+	Tue, 21 Apr 2020 10:46:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
- [IPv6:2607:f8b0:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391D36E2C0
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 10:46:01 +0000 (UTC)
-Received: by mail-oi1-x242.google.com with SMTP id s202so11641555oih.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 03:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=SCP00lXL70tQ9YCD5XLSx+mN6BbgZoFDk9kSEmx1puY=;
- b=OLSs1Ux5ij63n32n2PvRLwIw6n+EEFkBW/QPJDncuZoOkUTxA5EC8Yc/Fc4AhA+WBH
- YOSCj0+eX333kPloDj4Rfw7iXzFHstuLfxM1jdGXC2gXULULQqzzCGLwaolrMxIkzhjD
- 5GKU7SXolNQTybwwqvkN1q9CvT1F0niJ7S+/Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=SCP00lXL70tQ9YCD5XLSx+mN6BbgZoFDk9kSEmx1puY=;
- b=P4nk7CDgng5PSeHxYUWiy0Ffs9LjpRoMW1ctY5B7VGHTaet0M8EDLitNXYgM01xh2w
- Mf/bUQMjcaag3oZ21iPTL3SIW58goKVFF8f9ylUqPvqDDWUBEL+eZLkH3WwvY++nK98x
- +VQvb8n8vfeJLBo2T+EmeGzerGBm5KWPaNJqwDdsA/c8oxieO35FIgachwMzgaKwj/rR
- 43+GbE8bop0sqvkcVYLBOdhh7gZ928awa8JfWTCQFWoP6iu2g8eGw2bt7X2+fMlXhfVm
- 7ag4dxqEofXV4uvo8ukXrb2WXxXEZIO4AcghcPlw3AKg+sVb3nYTK014nYQqVu/FLRnA
- jjDQ==
-X-Gm-Message-State: AGi0PuZM26TQmm2D8gZEdbggooBCKt1oiR7bRiwIWpIORtoXq3GdfhXI
- P1LH6pCFfCRsGk3xM0Y8kJIhz1GN14kG4Au4+gbQCg==
-X-Google-Smtp-Source: APiQypJA29b9cdawC28wwSQE8qRTtQhAnBXtyss/nYQ/7ZhMpoIyYYq2C60gL532NFEfhK6+PSPCcQq9V5x31NtvI4E=
-X-Received: by 2002:a54:4801:: with SMTP id j1mr2489445oij.101.1587465960395; 
- Tue, 21 Apr 2020 03:46:00 -0700 (PDT)
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4E796E2C4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 10:46:28 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Apr 2020 12:46:03 +0200
+Message-Id: <20200421104626.1480208-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-2-daniel.vetter@ffwll.ch>
- <4d5229c2-acb4-b76f-13c7-88a5f3de4760@suse.de>
-In-Reply-To: <4d5229c2-acb4-b76f-13c7-88a5f3de4760@suse.de>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 21 Apr 2020 12:45:49 +0200
-Message-ID: <CAKMK7uH2vhrQ7eTTF1B+==UJS9ZxhDv2RDvR0ct4P0vVJobf=w@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 01/59] drm: Add devm_drm_dev_alloc macro
+Subject: [Intel-gfx] [PATCH 01/24] perf/core: Only copy-to-user after
+ completely unlocking all locks, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,130 +32,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBBcHIgMjAsIDIwMjAgYXQgMzozNyBQTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
-cm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4KPiBIaQo+Cj4gQW0gMTUuMDQuMjAgdW0gMDk6Mzkgc2No
-cmllYiBEYW5pZWwgVmV0dGVyOgo+ID4gQWRkIGEgbmV3IG1hY3JvIGhlbHBlciB0byBjb21iaW5l
-IHRoZSB1c3VhbCBpbml0IHNlcXVlbmNlIGluIGRyaXZlcnMsCj4gPiBjb25zaXN0aW5nIG9mIGEg
-a3phbGxvYyArIGRldm1fZHJtX2Rldl9pbml0ICsgZHJtbV9hZGRfZmluYWxfa2ZyZWUKPiA+IHRy
-aXBsZXQuIFRoaXMgYWxsb3dzIHVzIHRvIHJlbW92ZSB0aGUgcmF0aGVyIHVuc2lnaHRseQo+ID4g
-ZHJtbV9hZGRfZmluYWxfa2ZyZWUgZnJvbSBhbGwgY3VycmVudGx5IG1lcmdlZCBkcml2ZXJzLgo+
-ID4KPiA+IFRoZSBrZXJuZWxkb2MgaXMgb25seSBhZGRlZCBmb3IgdGhpcyBuZXcgZnVuY3Rpb24u
-IEV4aXN0aW5nIGtlcm5lbGRvYwo+ID4gYW5kIGV4YW1wbGVzIHdpbGwgYmUgdWRhdGVkIGF0IHRo
-ZSB2ZXJ5IGVuZCwgc2luY2Ugb25jZSBhbGwgZHJpdmVycwo+ID4gYXJlIGNvbnZlcnRlZCBvdmVy
-IHRvIGRldm1fZHJtX2Rldl9hbGxvYyB3ZSBjYW4gdW5leHBvcnQgYSBsb3Qgb2YKPiA+IGludGVy
-aW0gZnVuY3Rpb25zIGFuZCBtYWtlIHRoZSBkb2N1bWVudGF0aW9uIGZvciBkcml2ZXIgYXV0aG9y
-cyBhIGxvdAo+ID4gY2xlYW5lciBhbmQgbGVzcyBjb25mdXNpbmcuIFRoZXJlIHdpbGwgYmUgb25s
-eSBvbmUgdHJ1ZSB3YXkgdG8KPiA+IGluaXRpYWxpemUgYSBkcm1fZGV2aWNlIGF0IHRoZSBlbmQg
-b2YgdGhpcywgd2hpY2ggaXMgZ29pbmcgdG8gYmUKPiA+IGRldm1fZHJtX2Rldl9hbGxvYy4KPiA+
-Cj4gPiB2MjoKPiA+IC0gQWN0dWFsbHkgZXhwbGFpbiB3aGF0IHRoaXMgaXMgZm9yIGluIHRoZSBj
-b21taXQgbWVzc2FnZSAoU2FtKQo+ID4gLSBGaXggY2hlY2twYXRjaCBpc3N1ZXMgKFNhbSkKPiA+
-Cj4gPiBBY2tlZC1ieTogTm9yYWxmIFRyw7hubmVzIDxub3JhbGZAdHJvbm5lcy5vcmc+Cj4gPiBD
-YzogTm9yYWxmIFRyw7hubmVzIDxub3JhbGZAdHJvbm5lcy5vcmc+Cj4gPiBSZXZpZXdlZC1ieTog
-U2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+ID4gQ2M6IFNhbSBSYXZuYm9yZyA8c2Ft
-QHJhdm5ib3JnLm9yZz4KPiA+IENjOiBQYXVsIEtvY2lhbGtvd3NraSA8cGF1bC5rb2NpYWxrb3dz
-a2lAYm9vdGxpbi5jb20+Cj4gPiBDYzogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFy
-dEBpZGVhc29uYm9hcmQuY29tPgo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFu
-aWVsLnZldHRlckBpbnRlbC5jb20+CgpUaGFua3MgZm9yIHRha2luZyBhIGxvb2ssIHNvbWUgcXVl
-c3Rpb25zIG9uIHlvdXIgc3VnZ2VzdGlvbnMgYmVsb3cuCgo+IFNvcnJ5IGZvciBiZWluZyBsYXRl
-LiBBIG51bWJlciBvZiBuaXRzIGFyZSBsaXN0ZWQgYmVsb3cuIEluIGFueSBjYXNlOgo+Cj4gUmV2
-aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgo+Cj4gQmVz
-dCByZWdhcmRzCj4gVGhvbWFzCj4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHJ2
-LmMgfCAyMyArKysrKysrKysrKysrKysrKysrKysrKwo+ID4gIGluY2x1ZGUvZHJtL2RybV9kcnYu
-aCAgICAgfCAzMyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiA+ICAyIGZpbGVz
-IGNoYW5nZWQsIDU2IGluc2VydGlvbnMoKykKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHJ2LmMKPiA+IGluZGV4IDFi
-YjRmNjM2YjgzYy4uOGUxODEzZDJhMTJlIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2RybV9kcnYuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcnYuYwo+ID4gQEAgLTcz
-OSw2ICs3MzksMjkgQEAgaW50IGRldm1fZHJtX2Rldl9pbml0KHN0cnVjdCBkZXZpY2UgKnBhcmVu
-dCwKPiA+ICB9Cj4gPiAgRVhQT1JUX1NZTUJPTChkZXZtX2RybV9kZXZfaW5pdCk7Cj4gPgo+ID4g
-K3ZvaWQgKl9fZGV2bV9kcm1fZGV2X2FsbG9jKHN0cnVjdCBkZXZpY2UgKnBhcmVudCwgc3RydWN0
-IGRybV9kcml2ZXIgKmRyaXZlciwKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICBzaXplX3Qg
-c2l6ZSwgc2l6ZV90IG9mZnNldCkKPgo+IE1heWJlIHJlbmFtZSAnb2Zmc2V0JyBvZiAnZGV2X29m
-ZnNldCcgdG8gbWFrZSB0aGUgcmVsYXRpb25zaGlwIGNsZWFyLgoKSG0sIEkgc2VlIHRoZSBwb2lu
-dCBvZiB0aGlzIChhbmQgdGhlIGRldl9maWVsZCBiZWxvdywgYWx0aG91Z2ggSSdkIGdvCndpdGgg
-ZGV2X21lbWJlciB0aGVyZSBmb3Igc29tZSBjb25zaXN0ZW5jeSB3aXRoIG90aGVyIG1hY3JvcyB1
-c2luZwpvZmZzZXRfb2Ygb3IgY29udGFpbmVyX29mKSwgYnV0IEknbSBub3Qgc3VyZSBhYm91dCB0
-aGUgZGV2XyBwcmVmaXguCkRyaXZlcnMgdXNlIHRoYXQgc29tZXRpbWVzIGZvciB0aGUgc3RydWN0
-IGRldmljZSAqLCBhbmQgdXNhZ2UgZm9yCnN0cnVjdCBkcm1fZGV2aWNlICogaXMgYWxzbyB2ZXJ5
-IGluY29uc2lzdGVudC4gSSd2ZSBzZWVuIGRkZXYsIGRybSwKZGV2IGFuZCBiYXNlICh0aGF0IG9u
-ZSBvbmx5IGZvciBlbWJlZGRlZCBzdHJ1Y3RzIG9mYykuIFNvIG5vdCBzdXJlCndoaWNoIHByZWZp
-eCB0byBwaWNrLCBhc2lkZSBmcm9tIGRldl8gc2VlbXMgdGhlIG1vc3QgY29uZnVzaW5nLiBHb3QK
-aWRlYXM/Cgo+ID4gK3sKPiA+ICsgICAgIHZvaWQgKmNvbnRhaW5lcjsKPiA+ICsgICAgIHN0cnVj
-dCBkcm1fZGV2aWNlICpkcm07Cj4gPiArICAgICBpbnQgcmV0Owo+ID4gKwo+ID4gKyAgICAgY29u
-dGFpbmVyID0ga3phbGxvYyhzaXplLCBHRlBfS0VSTkVMKTsKPiA+ICsgICAgIGlmICghY29udGFp
-bmVyKQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKPiA+ICsKPiA+
-ICsgICAgIGRybSA9IGNvbnRhaW5lciArIG9mZnNldDsKPgo+IFdoaWxlIGNvbnZlbmllbnQsIEkg
-c29tZXdoYXQgZGlzbGlrZSB0aGUgdXNlIG9mIHZvaWQqIHZhcmlhYmxlcy4gSSdkIHVzZQo+IHVu
-c2lnbmVkIGNoYXIqIGZvciBjb250YWluZXIgYW5kIGRvIGFuIGV4cGxpY2l0IGNhc3QgdG8gc3Ry
-dWN0Cj4gZHJtX2RldmljZSogaGVyZS4KCkkgdGhvdWdodCBldmVyIHNpbmNlIEM4OSB0aGUgZXhw
-bGljaXQgcmVjb21tZW5kYXRpb24gZm9yIHVudHlwZWQKcG9pbnRlciBtYXRoIGhhcyBiZWVuIHZv
-aWQgKiwgYW5kIG5vIGxvbmdlciBjaGFyICosIHdpdGggdGhlIHNwZWMKYmVpbmcgZXhwbGljaXQg
-dGhhdCB2b2lkICogcG9pbnRlciBtYXRoIHdvcmtzIGV4YWN0bHkgbGlrZSBjaGFyICouIFNvCm5v
-dCBjbGVhciBvbiB3aHkgeW91IHRoaW5rIGNoYXIgKiBpcyBwcmVmZXJyZWQgaGVyZS4gSSdtIGFs
-c28gbm90CmF3YXJlIG9mIGFueSBvdGhlciBrZXJuZWwgY29kZSB0aGF0IGNhc3RzIHRvIGNoYXIg
-KiBmb3IgdW50eXBlZApwb2ludGVyIG1hdGguIFNvIHVubGVzcyB5b3UgaGF2ZSBzb21lIHN1cHBv
-cnRpbmcgZXZpZGVuY2UsIEknbGwgc2tpcAp0aGlzIG9uZSwgb2s/CgpUaGFua3MsIERhbmllbAoK
-PiA+ICsgICAgIHJldCA9IGRldm1fZHJtX2Rldl9pbml0KHBhcmVudCwgZHJtLCBkcml2ZXIpOwo+
-ID4gKyAgICAgaWYgKHJldCkgewo+ID4gKyAgICAgICAgICAgICBrZnJlZShjb250YWluZXIpOwo+
-ID4gKyAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUihyZXQpOwo+ID4gKyAgICAgfQo+ID4gKyAg
-ICAgZHJtbV9hZGRfZmluYWxfa2ZyZWUoZHJtLCBjb250YWluZXIpOwo+ID4gKwo+ID4gKyAgICAg
-cmV0dXJuIGNvbnRhaW5lcjsKPiA+ICt9Cj4gPiArRVhQT1JUX1NZTUJPTChfX2Rldm1fZHJtX2Rl
-dl9hbGxvYyk7Cj4gPiArCj4gPiAgLyoqCj4gPiAgICogZHJtX2Rldl9hbGxvYyAtIEFsbG9jYXRl
-IG5ldyBEUk0gZGV2aWNlCj4gPiAgICogQGRyaXZlcjogRFJNIGRyaXZlciB0byBhbGxvY2F0ZSBk
-ZXZpY2UgZm9yCj4gPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2Rydi5oIGIvaW5jbHVk
-ZS9kcm0vZHJtX2Rydi5oCj4gPiBpbmRleCBlN2M2ZWEyNjFlZDEuLmYwN2YxNTcyMTI1NCAxMDA2
-NDQKPiA+IC0tLSBhL2luY2x1ZGUvZHJtL2RybV9kcnYuaAo+ID4gKysrIGIvaW5jbHVkZS9kcm0v
-ZHJtX2Rydi5oCj4gPiBAQCAtNjI2LDYgKzYyNiwzOSBAQCBpbnQgZGV2bV9kcm1fZGV2X2luaXQo
-c3RydWN0IGRldmljZSAqcGFyZW50LAo+ID4gICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2LAo+ID4gICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZHJtX2RyaXZlciAq
-ZHJpdmVyKTsKPiA+Cj4gPiArdm9pZCAqX19kZXZtX2RybV9kZXZfYWxsb2Moc3RydWN0IGRldmlj
-ZSAqcGFyZW50LCBzdHJ1Y3QgZHJtX2RyaXZlciAqZHJpdmVyLAo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgIHNpemVfdCBzaXplLCBzaXplX3Qgb2Zmc2V0KTsKPiA+ICsKPiA+ICsvKioKPiA+
-ICsgKiBkZXZtX2RybV9kZXZfYWxsb2MgLSBSZXNvdXJjZSBtYW5hZ2VkIGFsbG9jYXRpb24gb2Yg
-YSAmZHJtX2RldmljZSBpbnN0YW5jZQo+ID4gKyAqIEBwYXJlbnQ6IFBhcmVudCBkZXZpY2Ugb2Jq
-ZWN0Cj4gPiArICogQGRyaXZlcjogRFJNIGRyaXZlcgo+ID4gKyAqIEB0eXBlOiB0aGUgdHlwZSBv
-ZiB0aGUgc3RydWN0IHdoaWNoIGNvbnRhaW5zIHN0cnVjdCAmZHJtX2RldmljZQo+ID4gKyAqIEBt
-ZW1iZXI6IHRoZSBuYW1lIG9mIHRoZSAmZHJtX2RldmljZSB3aXRoaW4gQHR5cGUuCj4gPiArICoK
-PiA+ICsgKiBUaGlzIGFsbG9jYXRlcyBhbmQgaW5pdGlhbGl6ZSBhIG5ldyBEUk0gZGV2aWNlLiBO
-byBkZXZpY2UgcmVnaXN0cmF0aW9uIGlzIGRvbmUuCj4gPiArICogQ2FsbCBkcm1fZGV2X3JlZ2lz
-dGVyKCkgdG8gYWR2ZXJ0aWNlIHRoZSBkZXZpY2UgdG8gdXNlciBzcGFjZSBhbmQgcmVnaXN0ZXIg
-aXQKPiA+ICsgKiB3aXRoIG90aGVyIGNvcmUgc3Vic3lzdGVtcy4gVGhpcyBzaG91bGQgYmUgZG9u
-ZSBsYXN0IGluIHRoZSBkZXZpY2UKPiA+ICsgKiBpbml0aWFsaXphdGlvbiBzZXF1ZW5jZSB0byBt
-YWtlIHN1cmUgdXNlcnNwYWNlIGNhbid0IGFjY2VzcyBhbiBpbmNvbnNpc3RlbnQKPiA+ICsgKiBz
-dGF0ZS4KPiA+ICsgKgo+ID4gKyAqIFRoZSBpbml0aWFsIHJlZi1jb3VudCBvZiB0aGUgb2JqZWN0
-IGlzIDEuIFVzZSBkcm1fZGV2X2dldCgpIGFuZAo+ID4gKyAqIGRybV9kZXZfcHV0KCkgdG8gdGFr
-ZSBhbmQgZHJvcCBmdXJ0aGVyIHJlZi1jb3VudHMuCj4gPiArICoKPiA+ICsgKiBJdCBpcyByZWNv
-bW1lbmRlZCB0aGF0IGRyaXZlcnMgZW1iZWQgJnN0cnVjdCBkcm1fZGV2aWNlIGludG8gdGhlaXIg
-b3duIGRldmljZQo+ID4gKyAqIHN0cnVjdHVyZS4KPiA+ICsgKgo+ID4gKyAqIE5vdGUgdGhhdCB0
-aGlzIG1hbmFnZXMgdGhlIGxpZmV0aW1lIG9mIHRoZSByZXN1bHRpbmcgJmRybV9kZXZpY2UKPiA+
-ICsgKiBhdXRvbWF0aWNhbGx5IHVzaW5nIGRldnJlcy4gVGhlIERSTSBkZXZpY2UgaW5pdGlhbGl6
-ZWQgd2l0aCB0aGlzIGZ1bmN0aW9uIGlzCj4gPiArICogYXV0b21hdGljYWxseSBwdXQgb24gZHJp
-dmVyIGRldGFjaCB1c2luZyBkcm1fZGV2X3B1dCgpLgo+ID4gKyAqCj4gPiArICogUkVUVVJOUzoK
-PiA+ICsgKiBQb2ludGVyIHRvIG5ldyBEUk0gZGV2aWNlLCBvciBFUlJfUFRSIG9uIGZhaWx1cmUu
-Cj4gPiArICovCj4gPiArI2RlZmluZSBkZXZtX2RybV9kZXZfYWxsb2MocGFyZW50LCBkcml2ZXIs
-IHR5cGUsIG1lbWJlcikgXAo+Cj4gSSdkIHJlcGxhY2UgJ21lbWJlcicgd2l0aCAnZGV2X2ZpZWxk
-JyB0byBtYWtlIHRoZSByZWxhdGlvbiBzaGlwIGNsZWFyLgo+Cj4gPiArICAgICAoKHR5cGUgKikg
-X19kZXZtX2RybV9kZXZfYWxsb2MocGFyZW50LCBkcml2ZXIsIHNpemVvZih0eXBlKSwgXAo+ID4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9mZnNldG9mKHR5cGUsIG1lbWJl
-cikpKQo+ID4gKwo+ID4gIHN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2X2FsbG9jKHN0cnVjdCBk
-cm1fZHJpdmVyICpkcml2ZXIsCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3Ry
-dWN0IGRldmljZSAqcGFyZW50KTsKPiA+ICBpbnQgZHJtX2Rldl9yZWdpc3RlcihzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2LCB1bnNpZ25lZCBsb25nIGZsYWdzKTsKPiA+Cj4KPiAtLQo+IFRob21hcyBa
-aW1tZXJtYW5uCj4gR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUgU29s
-dXRpb25zIEdlcm1hbnkgR21iSAo+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2Vy
-bWFueQo+IChIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjogRmVs
-aXggSW1lbmTDtnJmZmVyCj4KCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwg
-SW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5mZnds
-bC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+We inadvertently create a dependency on mmap_sem with a whole chain.
+
+This breaks any user who wants to take a lock and call rcu_barrier(),
+while also taking that lock inside mmap_sem:
+
+<4> [604.892532] ======================================================
+<4> [604.892534] WARNING: possible circular locking dependency detected
+<4> [604.892536] 5.6.0-rc7-CI-Patchwork_17096+ #1 Tainted: G     U
+<4> [604.892537] ------------------------------------------------------
+<4> [604.892538] kms_frontbuffer/2595 is trying to acquire lock:
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
+<4> [604.892547]
+but task is already holding lock:
+<4> [604.892547] ffff888484716050 (reservation_ww_class_mutex){+.+.}, at: i915_gem_object_pin_to_display_plane+0x89/0x270 [i915]
+<4> [604.892592]
+which lock already depends on the new lock.
+<4> [604.892593]
+the existing dependency chain (in reverse order) is:
+<4> [604.892594]
+-> #6 (reservation_ww_class_mutex){+.+.}:
+<4> [604.892597]        __ww_mutex_lock.constprop.15+0xc3/0x1090
+<4> [604.892598]        ww_mutex_lock+0x39/0x70
+<4> [604.892600]        dma_resv_lockdep+0x10e/0x1f5
+<4> [604.892602]        do_one_initcall+0x58/0x300
+<4> [604.892604]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892605]        kernel_init+0x5/0x100
+<4> [604.892606]        ret_from_fork+0x24/0x50
+<4> [604.892607]
+-> #5 (reservation_ww_class_acquire){+.+.}:
+<4> [604.892609]        dma_resv_lockdep+0xec/0x1f5
+<4> [604.892610]        do_one_initcall+0x58/0x300
+<4> [604.892610]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892611]        kernel_init+0x5/0x100
+<4> [604.892612]        ret_from_fork+0x24/0x50
+<4> [604.892613]
+-> #4 (&mm->mmap_sem#2){++++}:
+<4> [604.892615]        __might_fault+0x63/0x90
+<4> [604.892617]        _copy_to_user+0x1e/0x80
+<4> [604.892619]        perf_read+0x200/0x2b0
+<4> [604.892621]        vfs_read+0x96/0x160
+<4> [604.892622]        ksys_read+0x9f/0xe0
+<4> [604.892623]        do_syscall_64+0x4f/0x220
+<4> [604.892624]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892625]
+-> #3 (&cpuctx_mutex){+.+.}:
+<4> [604.892626]        __mutex_lock+0x9a/0x9c0
+<4> [604.892627]        perf_event_init_cpu+0xa4/0x140
+<4> [604.892629]        perf_event_init+0x19d/0x1cd
+<4> [604.892630]        start_kernel+0x362/0x4e4
+<4> [604.892631]        secondary_startup_64+0xa4/0xb0
+<4> [604.892631]
+-> #2 (pmus_lock){+.+.}:
+<4> [604.892633]        __mutex_lock+0x9a/0x9c0
+<4> [604.892633]        perf_event_init_cpu+0x6b/0x140
+<4> [604.892635]        cpuhp_invoke_callback+0x9b/0x9d0
+<4> [604.892636]        _cpu_up+0xa2/0x140
+<4> [604.892637]        do_cpu_up+0x61/0xa0
+<4> [604.892639]        smp_init+0x57/0x96
+<4> [604.892639]        kernel_init_freeable+0x87/0x1dc
+<4> [604.892640]        kernel_init+0x5/0x100
+<4> [604.892642]        ret_from_fork+0x24/0x50
+<4> [604.892642]
+-> #1 (cpu_hotplug_lock.rw_sem){++++}:
+<4> [604.892643]        cpus_read_lock+0x34/0xd0
+<4> [604.892644]        rcu_barrier+0xaa/0x190
+<4> [604.892645]        kernel_init+0x21/0x100
+<4> [604.892647]        ret_from_fork+0x24/0x50
+<4> [604.892647]
+-> #0 (rcu_state.barrier_mutex){+.+.}:
+<4> [604.892649]        __lock_acquire+0x1328/0x15d0
+<4> [604.892650]        lock_acquire+0xa7/0x1c0
+<4> [604.892651]        __mutex_lock+0x9a/0x9c0
+<4> [604.892652]        rcu_barrier+0x23/0x190
+<4> [604.892680]        i915_gem_object_unbind+0x29d/0x3f0 [i915]
+<4> [604.892707]        i915_gem_object_pin_to_display_plane+0x141/0x270 [i915]
+<4> [604.892737]        intel_pin_and_fence_fb_obj+0xec/0x1f0 [i915]
+<4> [604.892767]        intel_plane_pin_fb+0x3f/0xd0 [i915]
+<4> [604.892797]        intel_prepare_plane_fb+0x13b/0x5c0 [i915]
+<4> [604.892798]        drm_atomic_helper_prepare_planes+0x85/0x110
+<4> [604.892827]        intel_atomic_commit+0xda/0x390 [i915]
+<4> [604.892828]        drm_atomic_helper_set_config+0x57/0xa0
+<4> [604.892830]        drm_mode_setcrtc+0x1c4/0x720
+<4> [604.892830]        drm_ioctl_kernel+0xb0/0xf0
+<4> [604.892831]        drm_ioctl+0x2e1/0x390
+<4> [604.892833]        ksys_ioctl+0x7b/0x90
+<4> [604.892835]        __x64_sys_ioctl+0x11/0x20
+<4> [604.892835]        do_syscall_64+0x4f/0x220
+<4> [604.892836]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892837]
+
+Changes since v1:
+- Use (*values)[n++] in perf_read_one().
+Changes since v2:
+- Centrally allocate values.
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+fixup perf patch
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ kernel/events/core.c | 45 +++++++++++++++++++++-----------------------
+ 1 file changed, 21 insertions(+), 24 deletions(-)
+
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index c8f65daee1f9..b33b99fceecb 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -5102,20 +5102,16 @@ static int __perf_read_group_add(struct perf_event *leader,
+ }
+ 
+ static int perf_read_group(struct perf_event *event,
+-				   u64 read_format, char __user *buf)
++				   u64 read_format, char __user *buf,
++				   u64 *values)
+ {
+ 	struct perf_event *leader = event->group_leader, *child;
+ 	struct perf_event_context *ctx = leader->ctx;
+ 	int ret;
+-	u64 *values;
+ 
+ 	lockdep_assert_held(&ctx->mutex);
+ 
+-	values = kzalloc(event->read_size, GFP_KERNEL);
+-	if (!values)
+-		return -ENOMEM;
+-
+-	values[0] = 1 + leader->nr_siblings;
++	*values = 1 + leader->nr_siblings;
+ 
+ 	/*
+ 	 * By locking the child_mutex of the leader we effectively
+@@ -5133,25 +5129,17 @@ static int perf_read_group(struct perf_event *event,
+ 			goto unlock;
+ 	}
+ 
+-	mutex_unlock(&leader->child_mutex);
+-
+ 	ret = event->read_size;
+-	if (copy_to_user(buf, values, event->read_size))
+-		ret = -EFAULT;
+-	goto out;
+-
+ unlock:
+ 	mutex_unlock(&leader->child_mutex);
+-out:
+-	kfree(values);
+ 	return ret;
+ }
+ 
+ static int perf_read_one(struct perf_event *event,
+-				 u64 read_format, char __user *buf)
++				 u64 read_format, char __user *buf,
++				 u64 *values)
+ {
+ 	u64 enabled, running;
+-	u64 values[4];
+ 	int n = 0;
+ 
+ 	values[n++] = __perf_event_read_value(event, &enabled, &running);
+@@ -5162,9 +5150,6 @@ static int perf_read_one(struct perf_event *event,
+ 	if (read_format & PERF_FORMAT_ID)
+ 		values[n++] = primary_event_id(event);
+ 
+-	if (copy_to_user(buf, values, n * sizeof(u64)))
+-		return -EFAULT;
+-
+ 	return n * sizeof(u64);
+ }
+ 
+@@ -5185,7 +5170,8 @@ static bool is_event_hup(struct perf_event *event)
+  * Read the performance event - simple non blocking version for now
+  */
+ static ssize_t
+-__perf_read(struct perf_event *event, char __user *buf, size_t count)
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
+ {
+ 	u64 read_format = event->attr.read_format;
+ 	int ret;
+@@ -5203,9 +5189,9 @@ __perf_read(struct perf_event *event, char __user *buf, size_t count)
+ 
+ 	WARN_ON_ONCE(event->ctx->parent_ctx);
+ 	if (read_format & PERF_FORMAT_GROUP)
+-		ret = perf_read_group(event, read_format, buf);
++		ret = perf_read_group(event, read_format, buf, values);
+ 	else
+-		ret = perf_read_one(event, read_format, buf);
++		ret = perf_read_one(event, read_format, buf, values);
+ 
+ 	return ret;
+ }
+@@ -5215,6 +5201,7 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ {
+ 	struct perf_event *event = file->private_data;
+ 	struct perf_event_context *ctx;
++	u64 *values;
+ 	int ret;
+ 
+ 	ret = security_perf_event_read(event);
+@@ -5222,9 +5209,19 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ 		return ret;
+ 
+ 	ctx = perf_event_ctx_lock(event);
+-	ret = __perf_read(event, buf, count);
++	values = kzalloc(event->read_size, GFP_KERNEL);
++	if (values)
++		ret = __perf_read(event, buf, count, values);
++	else
++		ret = -ENOMEM;
+ 	perf_event_ctx_unlock(event, ctx);
+ 
++	if (ret > 0) {
++		if (copy_to_user(buf, values, ret))
++			ret = -EFAULT;
++	}
++	kfree(values);
++
+ 	return ret;
+ }
+ 
+-- 
+2.26.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
