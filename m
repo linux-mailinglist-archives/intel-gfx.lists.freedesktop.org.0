@@ -2,59 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CF81B2D2D
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 18:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8A51B2BD0
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 18:00:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3234C89148;
-	Tue, 21 Apr 2020 16:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7FEC6E195;
+	Tue, 21 Apr 2020 16:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D66F6E1A2;
- Tue, 21 Apr 2020 15:54:43 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id v2so5380323plp.9;
- Tue, 21 Apr 2020 08:54:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=WA9A83mNO4Jsc2bWW6Z8o2K5ouW7sqEUFm9fDXDQEic=;
- b=oNdcpG3zHXNT16mHwlNiQdoK8fASfEg0hMJCE2RAQSnZrCkV71MLAt02NjL0mZgu2a
- Ynzyi1uW1C2UUGMAnivTWVhZyr1FrWfbR+oMDPTDuxdVjptB/XnbQ/uZDkKu+yuyfgJ+
- tj3kYjkep3gaqNEiIXaNq4GjgNqfVIsrxgUm8AdINJ3LL7GuW4SrY1fdZr0Rx/DDHJox
- inSA1zoHqbw+VwYHN48V4muczE0sLofk9dm8Wr1szc1mJE9MhRnxB2bGyif8zQv/kvFZ
- AI/JHUzJQfg6sP0VAINbUteI5t8FTw+5JPCV57B7sGQ4wliTkOxBFP4xsU35inhro8pO
- EjVw==
-X-Gm-Message-State: AGi0Puagp/zD7yAx4iERPcH6BQDpoHeylMy27+8cJRFHpKmrq6pxCk3r
- FdGjV8mLYIqtfRWnQF7ItYY=
-X-Google-Smtp-Source: APiQypIaMU86jrFKZ3g4JB1E5/X3QoymTNnWg2UjNrJeZc8T2p7/jLVqRto/TPPKBMt8E8Ug9uLBJA==
-X-Received: by 2002:a17:90a:4e81:: with SMTP id
- o1mr6125309pjh.161.1587484483049; 
- Tue, 21 Apr 2020 08:54:43 -0700 (PDT)
-Received: from sultan-box.localdomain ([104.200.129.62])
- by smtp.gmail.com with ESMTPSA id x185sm2770600pfx.155.2020.04.21.08.54.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2020 08:54:42 -0700 (PDT)
-Date: Tue, 21 Apr 2020 08:54:40 -0700
-From: Sultan Alsawaf <sultan@kerneltoast.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20200421155440.GA2289@sultan-box.localdomain>
-References: <20200404024156.GA10382@sultan-box.localdomain>
- <20200407064007.7599-1-sultan@kerneltoast.com>
- <20200414061312.GA90768@sultan-box.localdomain>
- <158685263618.16269.9317893477736764675@build.alporthouse.com>
- <20200414144309.GB2082@sultan-box.localdomain>
- <20200420052419.GA40250@sultan-box.localdomain>
- <158737090265.8380.6644489879531344891@jlahtine-desk.ger.corp.intel.com>
- <20200420161514.GB1963@sultan-box.localdomain>
- <158745189706.5265.10618964185012452715@saswiest-mobl.ger.corp.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A136E195
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 16:00:42 +0000 (UTC)
+IronPort-SDR: 6Tn6artg2tO1smd2dAq9ViCCCyhov4hUSwutju3bKwHtFP+eSmqN2CeFoALzXnq4FvbMgRRXO/
+ RuIFcU35c9qg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 09:00:41 -0700
+IronPort-SDR: 6IPg8BFTLGLqyGtDZ59qp6jf62267XM6p7Hi0lxAhPB4TmtUrlpXFpq0B/4n0n1ARKaLnBs1V8
+ Q9dmZA78QyeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="258751527"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 21 Apr 2020 09:00:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Apr 2020 19:00:38 +0300
+Date: Tue, 21 Apr 2020 19:00:38 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200421160038.GC6112@intel.com>
+References: <20200420111416.23550-1-stanislav.lisovskiy@intel.com>
+ <20200420111416.23550-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <158745189706.5265.10618964185012452715@saswiest-mobl.ger.corp.intel.com>
-X-Mailman-Approved-At: Tue, 21 Apr 2020 16:53:50 +0000
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Synchronize active and retire
- callbacks
+In-Reply-To: <20200420111416.23550-3-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v25 2/8] drm/i915: Use bw state for per crtc
+ SAGV evaluation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,32 +52,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2020 at 09:51:37AM +0300, Joonas Lahtinen wrote:
-> Quoting Sultan Alsawaf (2020-04-20 19:15:14)
-> > On Mon, Apr 20, 2020 at 11:21:42AM +0300, Joonas Lahtinen wrote:
-> > > So it seems that the patch got pulled into v5.6 and has been backported
-> > > to v5.5 but not v5.4.
-> > 
-> > You're right, that's my mistake.
-> 
-> Did applying the patch to v5.4 fix the issue at hand?
+On Mon, Apr 20, 2020 at 02:14:10PM +0300, Stanislav Lisovskiy wrote:
+> Future platforms require per-crtc SAGV evaluation
+> and serializing global state when those are changed
+> from different commits.
+> =
 
-Of course the patch doesn't apply as-is because the code's been shuffled around,
-but yes. The crashes are gone with that patch, and I don't have the motivation
-to check if that patch is actually correct, so hurray, problem solved. I'm not
-going to send the backport myself because I'll probably be ignored, so you can
-go ahead and do that.
+> v2: - Add has_sagv check to intel_crtc_can_enable_sagv
+>       so that it sets bit in reject mask.
+>     - Use bw_state in intel_pre/post_plane_enable_sagv
+>       instead of atomic state
+> =
 
-Sultan
+> v3: - Fixed rebase conflict, now using
+>       intel_atomic_crtc_state_for_each_plane_state in
+>       order to call it from atomic check
+> v4: - Use fb modifier from plane state
+> =
+
+> v5: - Make intel_has_sagv static again(Ville)
+>     - Removed unnecessary NULL assignments(Ville)
+>     - Removed unnecessary SAGV debug(Ville)
+>     - Call intel_compute_sagv_mask only for modesets(Ville)
+>     - Serialize global state only if sagv results change, but
+>       not mask itself(Ville)
+> =
+
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> Cc: James Ausmus <james.ausmus@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.h |   6 ++
+>  drivers/gpu/drm/i915/intel_pm.c         | 113 ++++++++++++++++++------
+>  drivers/gpu/drm/i915/intel_pm.h         |   3 +-
+>  3 files changed, 93 insertions(+), 29 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
+15/display/intel_bw.h
+> index ac004d6f4276..d6df91058223 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -18,6 +18,12 @@ struct intel_crtc_state;
+>  struct intel_bw_state {
+>  	struct intel_global_state base;
+>  =
+
+> +	/*
+> +	 * Contains a bit mask, used to determine, whether correspondent
+> +	 * pipe allows SAGV or not.
+> +	 */
+> +	u8 pipe_sagv_reject;
+> +
+>  	unsigned int data_rate[I915_MAX_PIPES];
+>  	u8 num_active_planes[I915_MAX_PIPES];
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index b0810d76ad47..d06a1a3713ed 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -43,6 +43,7 @@
+>  #include "i915_fixed.h"
+>  #include "i915_irq.h"
+>  #include "i915_trace.h"
+> +#include "display/intel_bw.h"
+>  #include "intel_pm.h"
+>  #include "intel_sideband.h"
+>  #include "../../../platform/x86/intel_ips.h"
+> @@ -3760,34 +3761,75 @@ intel_disable_sagv(struct drm_i915_private *dev_p=
+riv)
+>  void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	const struct intel_bw_state *new_bw_state;
+>  =
+
+> -	if (!intel_can_enable_sagv(state))
+> +	/*
+> +	 * Just return if we can't control SAGV or don't have it.
+> +	 * This is different from situation when we have SAGV but just can't
+> +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> +	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> +	 * as it will throw an error. So have to check it here.
+> +	 */
+> +	if (!intel_has_sagv(dev_priv))
+> +		return;
+> +
+> +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> +	if (!new_bw_state)
+> +		return;
+> +
+> +	if (!intel_can_enable_sagv(new_bw_state))
+>  		intel_disable_sagv(dev_priv);
+>  }
+>  =
+
+>  void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	const struct intel_bw_state *new_bw_state;
+>  =
+
+> -	if (intel_can_enable_sagv(state))
+> +	/*
+> +	 * Just return if we can't control SAGV or don't have it.
+> +	 * This is different from situation when we have SAGV but just can't
+> +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> +	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> +	 * as it will throw an error. So have to check it here.
+> +	 */
+> +	if (!intel_has_sagv(dev_priv))
+> +		return;
+> +
+> +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> +	if (!new_bw_state)
+> +		return;
+> +
+> +	if (intel_can_enable_sagv(new_bw_state))
+>  		intel_enable_sagv(dev_priv);
+>  }
+>  =
+
+>  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *cr=
+tc_state)
+>  {
+> -	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state->=
+uapi.state);
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	struct intel_plane *plane;
+> +	const struct intel_plane_state *plane_state;
+>  	int level, latency;
+>  =
+
+> +	if (!intel_has_sagv(dev_priv))
+> +		return false;
+> +
+>  	if (!crtc_state->hw.active)
+>  		return true;
+>  =
+
+> +	/*
+> +	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> +	 * more then one pipe enabled
+> +	 */
+> +	if (hweight8(state->active_pipes) > 1)
+> +		return false;
+> +
+>  	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+>  		return false;
+>  =
+
+> -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, crtc_s=
+tate) {
+>  		const struct skl_plane_wm *wm =3D
+>  			&crtc_state->wm.skl.optimal.planes[plane->id];
+>  =
+
+> @@ -3803,7 +3845,7 @@ static bool intel_crtc_can_enable_sagv(const struct=
+ intel_crtc_state *crtc_state
+>  		latency =3D dev_priv->wm.skl_latency[level];
+>  =
+
+>  		if (skl_needs_memory_bw_wa(dev_priv) &&
+> -		    plane->base.state->fb->modifier =3D=3D
+> +		    plane_state->uapi.fb->modifier =3D=3D
+>  		    I915_FORMAT_MOD_X_TILED)
+>  			latency +=3D 15;
+>  =
+
+> @@ -3819,35 +3861,44 @@ static bool intel_crtc_can_enable_sagv(const stru=
+ct intel_crtc_state *crtc_state
+>  	return true;
+>  }
+>  =
+
+> -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> +bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+>  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	return bw_state->pipe_sagv_reject =3D=3D 0;
+> +}
+> +
+> +static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+> +{
+> +	int ret;
+>  	struct intel_crtc *crtc;
+> -	const struct intel_crtc_state *crtc_state;
+> -	enum pipe pipe;
+> +	struct intel_crtc_state *new_crtc_state;
+> +	struct intel_bw_state *new_bw_state =3D NULL;
+> +	const struct intel_bw_state *old_bw_state =3D NULL;
+> +	int i;
+>  =
+
+> -	if (!intel_has_sagv(dev_priv))
+> -		return false;
+> +	for_each_new_intel_crtc_in_state(state, crtc,
+> +					 new_crtc_state, i) {
+> +		new_bw_state =3D intel_atomic_get_bw_state(state);
+> +		if (IS_ERR(new_bw_state))
+> +			return PTR_ERR(new_bw_state);
+>  =
+
+> -	/*
+> -	 * If there are no active CRTCs, no additional checks need be performed
+> -	 */
+> -	if (hweight8(state->active_pipes) =3D=3D 0)
+> -		return true;
+> +		old_bw_state =3D intel_atomic_get_old_bw_state(state);
+>  =
+
+> -	/*
+> -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> -	 * more then one pipe enabled
+> -	 */
+> -	if (hweight8(state->active_pipes) > 1)
+> -		return false;
+> +		if (intel_crtc_can_enable_sagv(new_crtc_state))
+> +			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+> +		else
+> +			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> +	}
+>  =
+
+> -	/* Since we're now guaranteed to only have one active CRTC... */
+> -	pipe =3D ffs(state->active_pipes) - 1;
+> -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> +	if (!new_bw_state)
+> +		return 0;
+>  =
+
+> -	return intel_crtc_can_enable_sagv(crtc_state);
+> +	if (intel_can_enable_sagv(new_bw_state) !=3D intel_can_enable_sagv(old_=
+bw_state)) {
+
+Missing the lock_global_state() for the old_maks !=3D new_mask case.
+Otherwise seems fine.
+
+Now I believe we need to separate state->modeset from sag, as I
+mentioned in the previous review. Please take care of that stuff
+before we continue with the rest of this series.
+
+> +		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+>  }
+>  =
+
+>  /*
+> @@ -5860,6 +5911,12 @@ skl_compute_wm(struct intel_atomic_state *state)
+>  	if (ret)
+>  		return ret;
+>  =
+
+> +	if (state->modeset) {
+> +		ret =3D intel_compute_sagv_mask(state);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	/*
+>  	 * skl_compute_ddb() will have adjusted the final watermarks
+>  	 * based on how much ddb is available. Now we can actually
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
+_pm.h
+> index 9a6036ab0f90..fd1dc422e6c5 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/types.h>
+>  =
+
+>  #include "i915_reg.h"
+> +#include "display/intel_bw.h"
+>  =
+
+>  struct drm_device;
+>  struct drm_i915_private;
+> @@ -41,7 +42,7 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+>  			      struct skl_pipe_wm *out);
+>  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+>  void vlv_wm_sanitize(struct drm_i915_private *dev_priv);
+> -bool intel_can_enable_sagv(struct intel_atomic_state *state);
+> +bool intel_can_enable_sagv(const struct intel_bw_state *bw_state);
+>  int intel_enable_sagv(struct drm_i915_private *dev_priv);
+>  int intel_disable_sagv(struct drm_i915_private *dev_priv);
+>  void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
