@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 750D71B228C
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:20:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530901B229E
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 11:25:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7226E44F;
-	Tue, 21 Apr 2020 09:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BE46E881;
+	Tue, 21 Apr 2020 09:25:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A342D6E44F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:20:42 +0000 (UTC)
-IronPort-SDR: l/NWx2Nb3lJhc4/VlQul3gOEhqnW/aSzTEe5OM3o1yGovMvxFUOU2LLMi7k72EyLs24I1fou8P
- HXnabXLc7dFQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 02:20:42 -0700
-IronPort-SDR: soSmUkpk+X9c6Fwt2Xb2rZ6E2ofNyk/vlCqKqLyI+y42vSve81YpvRwpq33XO4RAK2a+aQuZmQ
- 38Fz/s5hUatA==
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="279572902"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 02:20:40 -0700
-Date: Tue, 21 Apr 2020 12:19:47 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200421091947.GA29723@ideak-desk.fi.intel.com>
-References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200406112800.23762-6-pankaj.laxminarayan.bharadiya@intel.com>
- <87tv1dz34n.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB426E881
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 09:25:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20968364-1500050 
+ for multiple; Tue, 21 Apr 2020 10:25:07 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Apr 2020 10:25:04 +0100
+Message-Id: <20200421092504.7416-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200421085939.31410-1-chris@chris-wilson.co.uk>
+References: <20200421085939.31410-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87tv1dz34n.fsf@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/display/display: Prefer
- drm_WARN_ON over WARN_ON
+Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Poison residual state [HWSP]
+ across resume.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,111 +39,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2020 at 10:53:12AM +0300, Jani Nikula wrote:
-> 
-> Pankaj, the subject line is identical to patch 4, please update.
-> 
-> Imre, one question inline for you.
-> 
-> On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 433e5a81dd4d..5475f989df4c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -1850,22 +1850,29 @@ static u64 __async_put_domains_mask(struct i915_power_domains *power_domains)
-> >  static bool
-> >  assert_async_put_domain_masks_disjoint(struct i915_power_domains *power_domains)
-> >  {
-> > -	return !WARN_ON(power_domains->async_put_domains[0] &
-> > -			power_domains->async_put_domains[1]);
-> > +	struct drm_i915_private *i915 = container_of(power_domains,
-> > +						     struct drm_i915_private,
-> > +						     power_domains);
-> > +	return !drm_WARN_ON(&i915->drm, power_domains->async_put_domains[0] &
-> > +			    power_domains->async_put_domains[1]);
-> >  }
-> 
-> Do we want to depend on struct i915_power_domains being a struct
-> drm_i915_private member via container_of?
+Since we may lose the content of any buffer when we relinquish control
+of the system (e.g. suspend/resume), we have to be careful not to rely
+on regaining control. A good method to detect when we might be using
+garbage is by always injecting that garbage prior to first use on
+load/resume/etc.
 
-It looks ok to me, there is only one i915_power_domains struct per
-device.
+v2: Drop sanitize callback on cleanup
+v3: Move seqno reset to timeline enter, so we reset all timelines.
+However, this is done on every activation during runtime and not reset.
+The similar level of paranoia we apply to correcting context state after
+a period of inactivity.
 
-> BR,
-> Jani.
-> 
-> >  
-> >  static bool
-> >  __async_put_domains_state_ok(struct i915_power_domains *power_domains)
-> >  {
-> > +	struct drm_i915_private *i915 = container_of(power_domains,
-> > +						     struct drm_i915_private,
-> > +						     power_domains);
-> >  	enum intel_display_power_domain domain;
-> >  	bool err = false;
-> >  
-> >  	err |= !assert_async_put_domain_masks_disjoint(power_domains);
-> > -	err |= WARN_ON(!!power_domains->async_put_wakeref !=
-> > -		       !!__async_put_domains_mask(power_domains));
-> > +	err |= drm_WARN_ON(&i915->drm, !!power_domains->async_put_wakeref !=
-> > +			   !!__async_put_domains_mask(power_domains));
-> >  
-> >  	for_each_power_domain(domain, __async_put_domains_mask(power_domains))
-> > -		err |= WARN_ON(power_domains->domain_use_count[domain] != 1);
-> > +		err |= drm_WARN_ON(&i915->drm,
-> > +				   power_domains->domain_use_count[domain] != 1);
-> >  
-> >  	return !err;
-> >  }
-> > @@ -2107,11 +2114,14 @@ static void
-> >  queue_async_put_domains_work(struct i915_power_domains *power_domains,
-> >  			     intel_wakeref_t wakeref)
-> >  {
-> > -	WARN_ON(power_domains->async_put_wakeref);
-> > +	struct drm_i915_private *i915 = container_of(power_domains,
-> > +						     struct drm_i915_private,
-> > +						     power_domains);
-> > +	drm_WARN_ON(&i915->drm, power_domains->async_put_wakeref);
-> >  	power_domains->async_put_wakeref = wakeref;
-> > -	WARN_ON(!queue_delayed_work(system_unbound_wq,
-> > -				    &power_domains->async_put_work,
-> > -				    msecs_to_jiffies(100)));
-> > +	drm_WARN_ON(&i915->drm, !queue_delayed_work(system_unbound_wq,
-> > +						    &power_domains->async_put_work,
-> > +						    msecs_to_jiffies(100)));
-> >  }
-> >  
-> >  static void
-> > @@ -4318,6 +4328,9 @@ __set_power_wells(struct i915_power_domains *power_domains,
-> >  		  const struct i915_power_well_desc *power_well_descs,
-> >  		  int power_well_count)
-> >  {
-> > +	struct drm_i915_private *i915 = container_of(power_domains,
-> > +						     struct drm_i915_private,
-> > +						     power_domains);
-> >  	u64 power_well_ids = 0;
-> >  	int i;
-> >  
-> > @@ -4337,8 +4350,8 @@ __set_power_wells(struct i915_power_domains *power_domains,
-> >  		if (id == DISP_PW_ID_NONE)
-> >  			continue;
-> >  
-> > -		WARN_ON(id >= sizeof(power_well_ids) * 8);
-> > -		WARN_ON(power_well_ids & BIT_ULL(id));
-> > +		drm_WARN_ON(&i915->drm, id >= sizeof(power_well_ids) * 8);
-> > +		drm_WARN_ON(&i915->drm, power_well_ids & BIT_ULL(id));
-> >  		power_well_ids |= BIT_ULL(id);
-> >  	}
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+Reset in sanitize, for we may attempt to park the engine before using
+any timelines.
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c      | 23 ++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 17 ++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_timeline.h |  2 ++
+ 3 files changed, 40 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 34f67eb9bfa1..d42a9d6767d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3649,7 +3649,26 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+ 
+ static void execlists_sanitize(struct intel_engine_cs *engine)
+ {
++	/*
++	 * Poison residual state on resume, in case the suspend didn't!
++	 *
++	 * We have to assume that across suspend/resume (or other loss
++	 * of control) that the contents of our pinned buffers has been
++	 * lost, replaced by garbage. Since this doesn't always happen,
++	 * let's poison such state so that we more quickly spot when
++	 * we falsely assume it has been preserved.
++	 */
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
++
+ 	reset_csb_pointers(engine);
++
++	/*
++	 * The kernel_context HWSP is stored in the status_page. As above,
++	 * that may be lost on resume/initialisation, and so we need to
++	 * reset the value in the HWSP.
++	 */
++	intel_timeline_reset_seqno(engine->kernel_context->timeline);
+ }
+ 
+ static void enable_error_interrupt(struct intel_engine_cs *engine)
+@@ -4539,6 +4558,8 @@ static void execlists_shutdown(struct intel_engine_cs *engine)
+ 
+ static void execlists_release(struct intel_engine_cs *engine)
+ {
++	engine->sanitize = NULL; /* no longer in control, nothing to sanitize */
++
+ 	execlists_shutdown(engine);
+ 
+ 	intel_engine_cleanup_common(engine);
+@@ -4550,7 +4571,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ {
+ 	/* Default vfuncs which can be overriden by each engine. */
+ 
+-	engine->sanitize = execlists_sanitize;
+ 	engine->resume = execlists_resume;
+ 
+ 	engine->cops = &execlists_context_ops;
+@@ -4666,6 +4686,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 		execlists->csb_size = GEN11_CSB_ENTRIES;
+ 
+ 	/* Finally, take ownership and responsibility for cleanup! */
++	engine->sanitize = execlists_sanitize;
+ 	engine->release = execlists_release;
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 3779c2ae0d65..29a39e44fa36 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -337,6 +337,13 @@ int intel_timeline_pin(struct intel_timeline *tl)
+ 	return 0;
+ }
+ 
++void intel_timeline_reset_seqno(const struct intel_timeline *tl)
++{
++	/* Must be pinned to be writable, and no requests in flight. */
++	GEM_BUG_ON(!atomic_read(&tl->pin_count));
++	WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
++}
++
+ void intel_timeline_enter(struct intel_timeline *tl)
+ {
+ 	struct intel_gt_timelines *timelines = &tl->gt->timelines;
+@@ -365,8 +372,16 @@ void intel_timeline_enter(struct intel_timeline *tl)
+ 		return;
+ 
+ 	spin_lock(&timelines->lock);
+-	if (!atomic_fetch_inc(&tl->active_count))
++	if (!atomic_fetch_inc(&tl->active_count)) {
++		/*
++		 * The HWSP is volatile, and may have been lost while inactive,
++		 * e.g. across suspend/resume. Be paranoid, and ensure that
++		 * the HWSP value matches our seqno so we don't proclaim
++		 * the next request as already complete.
++		 */
++		intel_timeline_reset_seqno(tl);
+ 		list_add_tail(&tl->link, &timelines->active_list);
++	}
+ 	spin_unlock(&timelines->lock);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index f5b7eade3809..c8e59a333182 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -84,6 +84,8 @@ int intel_timeline_get_seqno(struct intel_timeline *tl,
+ void intel_timeline_exit(struct intel_timeline *tl);
+ void intel_timeline_unpin(struct intel_timeline *tl);
+ 
++void intel_timeline_reset_seqno(const struct intel_timeline *tl);
++
+ int intel_timeline_read_hwsp(struct i915_request *from,
+ 			     struct i915_request *until,
+ 			     u32 *hwsp_offset);
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
