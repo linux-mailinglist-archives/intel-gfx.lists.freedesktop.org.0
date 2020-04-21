@@ -2,29 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005731B2859
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 15:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D47451B2861
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 15:47:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577F46E972;
-	Tue, 21 Apr 2020 13:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 313986E0FB;
+	Tue, 21 Apr 2020 13:47:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 187AD6E972
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 13:45:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20972007-1500050 
- for multiple; Tue, 21 Apr 2020 14:45:13 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Apr 2020 14:45:12 +0100
-Message-Id: <20200421134512.27910-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8717B6E0FB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 13:47:15 +0000 (UTC)
+IronPort-SDR: wKqcoSXCAHnRpNAcqTkEvq6nLfhraHmwsKkuMi/Ud47jrok6oV3jPfd/E81/ijTvD5AHoHqOjA
+ QbjVuJWfHgMg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 06:47:14 -0700
+IronPort-SDR: F626VEPq9AYZwdI9WWn7VMMEqUprq1ncowTUrY+V32tiGckF8I4EFzTisdbnaGJQO7IGY1JrLp
+ t2AuY5p4L7Mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="300610579"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Apr 2020 06:47:13 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 4F59B5C1DA7; Tue, 21 Apr 2020 16:45:19 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158747615980.19285.17681670652527012229@build.alporthouse.com>
+References: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
+ <20200421131633.8246-5-mika.kuoppala@linux.intel.com>
+ <158747615980.19285.17681670652527012229@build.alporthouse.com>
+Date: Tue, 21 Apr 2020 16:45:19 +0300
+Message-ID: <87a735lzps.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Make the slice:unslice ratio
- request explicit for RPS
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Split ctx timestamp selftest
+ into two
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,53 +50,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In RPS, we have the option to only specify the unslice [ring] clock
-ratio and for the pcu to derive the slice [gpu] clock ratio from its
-magic table. We also have the option to tell the pcu to use our
-requested gpu clock ratio, and for it to try and throttle the unslice
-and slice ratios separately.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+> Quoting Mika Kuoppala (2020-04-21 14:16:33)
+>> @@ -4774,6 +4773,12 @@ static int live_lrc_timestamp(void *arg)
+>>                 unsigned long heartbeat;
+>>                 int i, err = 0;
+>>  
+>> +               if (rcs && data.engine->class != RENDER_CLASS)
+>> +                       continue;
+>> +
+>> +               if (!rcs && data.engine->class == RENDER_CLASS)
+>> +                       continue;
+>
+> At least have a bit of finesse and do
+> if (!(class & BIT(data.engine->engine->class)))
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 4dcfae16a7ce..07321e1b22f6 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -662,14 +662,17 @@ static int gen6_rps_set(struct intel_rps *rps, u8 val)
- 	struct drm_i915_private *i915 = rps_to_i915(rps);
- 	u32 swreq;
- 
--	if (INTEL_GEN(i915) >= 9)
--		swreq = GEN9_FREQUENCY(val);
--	else if (IS_HASWELL(i915) || IS_BROADWELL(i915))
-+	if (INTEL_GEN(i915) >= 9) {
-+		swreq = 0x2; /* only throttle slice, not unslice */
-+		swreq |= val << 14; /* slice [gpu] ratio */
-+		swreq |= val << 23; /* unslice [ring] ratio */
-+	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		swreq = HSW_FREQUENCY(val);
--	else
-+	} else {
- 		swreq = (GEN6_FREQUENCY(val) |
- 			 GEN6_OFFSET(0) |
- 			 GEN6_AGGRESSIVE_TURBO);
-+	}
- 	set(uncore, GEN6_RPNSWREQ, swreq);
- 
- 	return 0;
--- 
-2.20.1
+I looked at the engine mask and I knew there must be a better way.
+-Mika
 
+> 	continue;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
