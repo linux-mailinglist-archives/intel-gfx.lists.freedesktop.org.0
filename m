@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62CB1B1CEF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 05:35:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4EDC1B1D34
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 06:05:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95C016E871;
-	Tue, 21 Apr 2020 03:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02E886E872;
+	Tue, 21 Apr 2020 04:05:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE9586E264;
- Tue, 21 Apr 2020 03:35:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FB67A0019;
- Tue, 21 Apr 2020 03:35:50 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 759D86E872
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 04:05:02 +0000 (UTC)
+IronPort-SDR: lIyLlL2I1lIrPjMR0mCBIBcnFUd894GTG4XXD7CIeOwdIcf1rwtUFTPaLvs8bCUZAPBtabnlC6
+ q9DufrJagJqA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2020 21:05:01 -0700
+IronPort-SDR: EqFoot/UhuXAfWqs3OWNQ8lD0/ibtEv03cO/5FDJXJpHPaViGFEhsWAsci6QywenX4w4moHWJx
+ XSIVeU7s2zdA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,408,1580803200"; d="scan'208";a="429379697"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga005.jf.intel.com with ESMTP; 20 Apr 2020 21:05:01 -0700
+Date: Mon, 20 Apr 2020 21:05:01 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200421040501.GK3094447@mdroper-desk1.amr.corp.intel.com>
+References: <20200415233435.3064257-1-matthew.d.roper@intel.com>
+ <20200415233435.3064257-2-matthew.d.roper@intel.com>
+ <93c7133eca4540bad8c49087678fe28529219804.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiyu Yang" <xiyuyang19@fudan.edu.cn>
-Date: Tue, 21 Apr 2020 03:35:50 -0000
-Message-ID: <158744015055.17660.6606663869437597428@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
-In-Reply-To: <1587361342-83494-1-git-send-email-xiyuyang19@fudan.edu.cn>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Fix_i915=5Faddress=5Fspace_refcnt_leak?=
+Content-Disposition: inline
+In-Reply-To: <93c7133eca4540bad8c49087678fe28529219804.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Use single set of AUX
+ powerwell ops for gen11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,199 +50,580 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Apr 20, 2020 at 01:09:05PM -0700, Souza, Jose wrote:
+> On Wed, 2020-04-15 at 16:34 -0700, Matt Roper wrote:
+> > AUX power wells sometimes need additional handling besides just
+> > programming the specific power well registers:
+> >  * Type-C PHY's also require additional Type-C register programming
+> >  * ICL combo PHY's require additional workarounds
+> >  * TGL & EHL combo PHY's can be treated like any other power well
+> > =
 
-Series: drm/i915/selftests: Fix i915_address_space refcnt leak
-URL   : https://patchwork.freedesktop.org/series/76209/
-State : success
+> > Today we have dedicated aux ops for the ICL combo PHY and Type-C
+> > cases.
+> > This works fine, but means that when a new platform shows up with
+> > identical general power well handling, but different types of PHYs on
+> > its outputs, we have to define an entire new power well table for
+> > that
+> > platform and can't just re-use the table from the earlier platform --
+> > as
+> > an example, see ehl_power_wells[], which is a subset of
+> > icl_power_wells[], *except* that we need to specify different AUX ops
+> > for the third display.
+> > =
 
-== Summary ==
+> > If we instead create a single set of top-level aux ops that will
+> > check
+> > the PHY type and then dispatch to the appropriate handlers, we can
+> > get
+> > more reuse out of our power well definitions.  This allows us to
+> > immediately eliminate ehl_power_wells[] and simply reuse the ICL
+> > table;
+> > if future platforms follow the same general power well assignments as
+> > either ICL or TGL, we'll be able to re-use those tables in the same
+> > way.
+> > =
 
-CI Bug Log - changes from CI_DRM_8333_full -> Patchwork_17388_full
-====================================================
+> > Note that I've only changed ICL+ platforms over to using the new
+> > icl_aux
+> > ops; at this point it's unlikely that we'll have any new platforms
+> > that
+> > re-use gen9 or earlier power well configurations.
+> > =
 
-Summary
--------
+> > v2:
+> >  - ICL_AUX_PW_TO_PHY() won't return the proper PHY for TBT AUX power
+> >    wells.  But we know those wells will only used on Type-C outputs
+> >    anyway, so we can just check is is_tc_tbt flag in the condition.
+> >    (Jose).
+> > =
 
-  **SUCCESS**
+> =
 
-  No regressions found.
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17388_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - shard-kbl:          [PASS][1] -> [INCOMPLETE][2] ([i915#1373])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl3/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl3/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live@requests:
-    - shard-tglb:         [PASS][3] -> [INCOMPLETE][4] ([i915#1531] / [i915#1658])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-tglb2/igt@i915_selftest@live@requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-tglb7/igt@i915_selftest@live@requests.html
-
-  * igt@kms_big_fb@linear-32bpp-rotate-0:
-    - shard-kbl:          [PASS][5] -> [FAIL][6] ([i915#1119] / [i915#93] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl7/igt@kms_big_fb@linear-32bpp-rotate-0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl3/igt@kms_big_fb@linear-32bpp-rotate-0.html
-    - shard-apl:          [PASS][7] -> [FAIL][8] ([i915#1119] / [i915#95])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-apl7/igt@kms_big_fb@linear-32bpp-rotate-0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-apl7/igt@kms_big_fb@linear-32bpp-rotate-0.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180] / [i915#93] / [i915#95])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#1188])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-skl9/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         [PASS][17] -> [SKIP][18] ([fdo#109441]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-iclb7/igt@kms_psr@psr2_sprite_plane_move.html
-
-  * igt@kms_setmode@basic:
-    - shard-kbl:          [PASS][19] -> [FAIL][20] ([i915#31])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl7/igt@kms_setmode@basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl4/igt@kms_setmode@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_params@invalid-bsd-ring:
-    - shard-iclb:         [SKIP][21] ([fdo#109276]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-iclb3/igt@gem_exec_params@invalid-bsd-ring.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-iclb2/igt@gem_exec_params@invalid-bsd-ring.html
-
-  * igt@i915_selftest@live@ring_submission:
-    - shard-snb:          [FAIL][23] -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-snb1/igt@i915_selftest@live@ring_submission.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-snb1/igt@i915_selftest@live@ring_submission.html
-
-  * igt@kms_busy@basic-modeset-pipe-b:
-    - shard-snb:          [SKIP][25] ([fdo#109271]) -> [PASS][26] +6 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-snb6/igt@kms_busy@basic-modeset-pipe-b.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-snb6/igt@kms_busy@basic-modeset-pipe-b.html
-
-  * igt@kms_cursor_legacy@cursor-vs-flip-legacy:
-    - shard-hsw:          [INCOMPLETE][27] ([i915#61]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-hsw7/igt@kms_cursor_legacy@cursor-vs-flip-legacy.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-hsw2/igt@kms_cursor_legacy@cursor-vs-flip-legacy.html
-
-  * {igt@kms_flip@2x-flip-vs-blocking-wf-vblank@bc-hdmi-a1-hdmi-a2}:
-    - shard-glk:          [FAIL][29] ([i915#34]) -> [PASS][30] +1 similar issue
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-glk1/igt@kms_flip@2x-flip-vs-blocking-wf-vblank@bc-hdmi-a1-hdmi-a2.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-glk4/igt@kms_flip@2x-flip-vs-blocking-wf-vblank@bc-hdmi-a1-hdmi-a2.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [DMESG-WARN][31] ([i915#180]) -> [PASS][32] +2 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
-    - shard-apl:          [DMESG-WARN][33] ([i915#180]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-apl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-apl8/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [FAIL][35] ([fdo#108145] / [i915#265]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_psr@psr2_primary_mmap_gtt:
-    - shard-iclb:         [SKIP][37] ([fdo#109441]) -> [PASS][38] +1 similar issue
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-iclb3/igt@kms_psr@psr2_primary_mmap_gtt.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-iclb2/igt@kms_psr@psr2_primary_mmap_gtt.html
-
-  * {igt@perf@blocking-parameterized}:
-    - shard-hsw:          [FAIL][39] ([i915#1542]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-hsw1/igt@perf@blocking-parameterized.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-hsw7/igt@perf@blocking-parameterized.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [FAIL][41] ([i915#608]) -> [SKIP][42] ([fdo#109642] / [fdo#111068])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8333/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/shard-iclb6/igt@kms_psr2_su@page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1119]: https://gitlab.freedesktop.org/drm/intel/issues/1119
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1373]: https://gitlab.freedesktop.org/drm/intel/issues/1373
-  [i915#1531]: https://gitlab.freedesktop.org/drm/intel/issues/1531
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1658]: https://gitlab.freedesktop.org/drm/intel/issues/1658
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#61]: https://gitlab.freedesktop.org/drm/intel/issues/61
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Applied to dinq.  Thanks for the review.
 
 
-Participating hosts (10 -> 10)
-------------------------------
+Matt
 
-  No changes in participating hosts
+> =
 
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 244 +++++-----------
+> > --
+> >  1 file changed, 62 insertions(+), 182 deletions(-)
+> > =
 
-Build changes
--------------
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 03bdde19c8c9..f72935146778 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -593,6 +593,40 @@ icl_tc_phy_aux_power_well_disable(struct
+> > drm_i915_private *dev_priv,
+> >  	hsw_power_well_disable(dev_priv, power_well);
+> >  }
+> >  =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8333 -> Patchwork_17388
+> > +static void
+> > +icl_aux_power_well_enable(struct drm_i915_private *dev_priv,
+> > +			  struct i915_power_well *power_well)
+> > +{
+> > +	int pw_idx =3D power_well->desc->hsw.idx;
+> > +	enum phy phy =3D ICL_AUX_PW_TO_PHY(pw_idx);  /* non-TBT only */
+> > +	bool is_tbt =3D power_well->desc->hsw.is_tc_tbt;
+> > +
+> > +	if (is_tbt || intel_phy_is_tc(dev_priv, phy))
+> > +		return icl_tc_phy_aux_power_well_enable(dev_priv,
+> > power_well);
+> > +	else if (IS_ICELAKE(dev_priv))
+> > +		return icl_combo_phy_aux_power_well_enable(dev_priv,
+> > +							   power_well);
+> > +	else
+> > +		return hsw_power_well_enable(dev_priv, power_well);
+> > +}
+> > +
+> > +static void
+> > +icl_aux_power_well_disable(struct drm_i915_private *dev_priv,
+> > +			   struct i915_power_well *power_well)
+> > +{
+> > +	int pw_idx =3D power_well->desc->hsw.idx;
+> > +	enum phy phy =3D ICL_AUX_PW_TO_PHY(pw_idx);  /* non-TBT only */
+> > +	bool is_tbt =3D power_well->desc->hsw.is_tc_tbt;
+> > +
+> > +	if (is_tbt || intel_phy_is_tc(dev_priv, phy))
+> > +		return icl_tc_phy_aux_power_well_disable(dev_priv,
+> > power_well);
+> > +	else if (IS_ICELAKE(dev_priv))
+> > +		return icl_combo_phy_aux_power_well_disable(dev_priv,
+> > +							    power_well)
+> > ;
+> > +	else
+> > +		return hsw_power_well_disable(dev_priv, power_well);
+> > +}
+> > +
+> >  /*
+> >   * We should only use the power well if we explicitly asked the
+> > hardware to
+> >   * enable it, so check if it's enabled and also check if we've
+> > requested it to
+> > @@ -3503,17 +3537,10 @@ static const struct i915_power_well_desc
+> > cnl_power_wells[] =3D {
+> >  	},
+> >  };
+> >  =
 
-  CI-20190529: 20190529
-  CI_DRM_8333: 41471e3371f54d862860285f272a5c945520b546 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5602: a8fcccd15dcc2dd409edd23785a2d6f6e85fb682 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17388: 6677639835f4940d880cc8c411940198401b3ec2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+> > -static const struct i915_power_well_ops
+> > icl_combo_phy_aux_power_well_ops =3D {
+> > -	.sync_hw =3D hsw_power_well_sync_hw,
+> > -	.enable =3D icl_combo_phy_aux_power_well_enable,
+> > -	.disable =3D icl_combo_phy_aux_power_well_disable,
+> > -	.is_enabled =3D hsw_power_well_enabled,
+> > -};
+> > -
+> > -static const struct i915_power_well_ops
+> > icl_tc_phy_aux_power_well_ops =3D {
+> > +static const struct i915_power_well_ops icl_aux_power_well_ops =3D {
+> >  	.sync_hw =3D hsw_power_well_sync_hw,
+> > -	.enable =3D icl_tc_phy_aux_power_well_enable,
+> > -	.disable =3D icl_tc_phy_aux_power_well_disable,
+> > +	.enable =3D icl_aux_power_well_enable,
+> > +	.disable =3D icl_aux_power_well_disable,
+> >  	.is_enabled =3D hsw_power_well_enabled,
+> >  };
+> >  =
 
-== Logs ==
+> > @@ -3643,7 +3670,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX A",
+> >  		.domains =3D ICL_AUX_A_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_combo_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3653,7 +3680,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX B",
+> >  		.domains =3D ICL_AUX_B_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_combo_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3663,7 +3690,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX C TC1",
+> >  		.domains =3D ICL_AUX_C_TC1_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3674,7 +3701,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX D TC2",
+> >  		.domains =3D ICL_AUX_D_TC2_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3685,7 +3712,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX E TC3",
+> >  		.domains =3D ICL_AUX_E_TC3_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3696,7 +3723,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX F TC4",
+> >  		.domains =3D ICL_AUX_F_TC4_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3707,7 +3734,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX C TBT1",
+> >  		.domains =3D ICL_AUX_C_TBT1_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3718,7 +3745,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX D TBT2",
+> >  		.domains =3D ICL_AUX_D_TBT2_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3729,7 +3756,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX E TBT3",
+> >  		.domains =3D ICL_AUX_E_TBT3_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3740,7 +3767,7 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX F TBT4",
+> >  		.domains =3D ICL_AUX_F_TBT4_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -3762,151 +3789,6 @@ static const struct i915_power_well_desc
+> > icl_power_wells[] =3D {
+> >  	},
+> >  };
+> >  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17388/index.html
+> > -static const struct i915_power_well_desc ehl_power_wells[] =3D {
+> > -	{
+> > -		.name =3D "always-on",
+> > -		.always_on =3D true,
+> > -		.domains =3D POWER_DOMAIN_MASK,
+> > -		.ops =3D &i9xx_always_on_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -	},
+> > -	{
+> > -		.name =3D "power well 1",
+> > -		/* Handled by the DMC firmware */
+> > -		.always_on =3D true,
+> > -		.domains =3D 0,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D SKL_DISP_PW_1,
+> > -		{
+> > -			.hsw.regs =3D &hsw_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_PW_1,
+> > -			.hsw.has_fuses =3D true,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "DC off",
+> > -		.domains =3D ICL_DISPLAY_DC_OFF_POWER_DOMAINS,
+> > -		.ops =3D &gen9_dc_off_power_well_ops,
+> > -		.id =3D SKL_DISP_DC_OFF,
+> > -	},
+> > -	{
+> > -		.name =3D "power well 2",
+> > -		.domains =3D ICL_PW_2_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D SKL_DISP_PW_2,
+> > -		{
+> > -			.hsw.regs =3D &hsw_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_PW_2,
+> > -			.hsw.has_fuses =3D true,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "power well 3",
+> > -		.domains =3D ICL_PW_3_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &hsw_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_PW_3,
+> > -			.hsw.irq_pipe_mask =3D BIT(PIPE_B),
+> > -			.hsw.has_vga =3D true,
+> > -			.hsw.has_fuses =3D true,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "DDI A IO",
+> > -		.domains =3D ICL_DDI_IO_A_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_ddi_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_DDI_A,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "DDI B IO",
+> > -		.domains =3D ICL_DDI_IO_B_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_ddi_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_DDI_B,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "DDI C IO",
+> > -		.domains =3D ICL_DDI_IO_C_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_ddi_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_DDI_C,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "DDI D IO",
+> > -		.domains =3D ICL_DDI_IO_D_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_ddi_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_DDI_D,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "AUX A",
+> > -		.domains =3D ICL_AUX_A_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_aux_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_AUX_A,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "AUX B",
+> > -		.domains =3D ICL_AUX_B_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_aux_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_AUX_B,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "AUX C",
+> > -		.domains =3D ICL_AUX_C_TC1_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_aux_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_AUX_C,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "AUX D",
+> > -		.domains =3D ICL_AUX_D_TC2_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &icl_aux_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_AUX_D,
+> > -		},
+> > -	},
+> > -	{
+> > -		.name =3D "power well 4",
+> > -		.domains =3D ICL_PW_4_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > -		{
+> > -			.hsw.regs =3D &hsw_power_well_regs,
+> > -			.hsw.idx =3D ICL_PW_CTL_IDX_PW_4,
+> > -			.hsw.has_fuses =3D true,
+> > -			.hsw.irq_pipe_mask =3D BIT(PIPE_C),
+> > -		},
+> > -	},
+> > -};
+> > -
+> >  static const struct i915_power_well_desc tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "always-on",
+> > @@ -4051,7 +3933,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX A",
+> >  		.domains =3D TGL_AUX_A_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4061,7 +3943,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX B",
+> >  		.domains =3D TGL_AUX_B_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4071,7 +3953,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX C",
+> >  		.domains =3D TGL_AUX_C_IO_POWER_DOMAINS,
+> > -		.ops =3D &hsw_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4081,7 +3963,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX D TC1",
+> >  		.domains =3D TGL_AUX_D_TC1_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4092,7 +3974,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX E TC2",
+> >  		.domains =3D TGL_AUX_E_TC2_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4103,7 +3985,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX F TC3",
+> >  		.domains =3D TGL_AUX_F_TC3_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4114,7 +3996,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX G TC4",
+> >  		.domains =3D TGL_AUX_G_TC4_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4125,7 +4007,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX H TC5",
+> >  		.domains =3D TGL_AUX_H_TC5_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4136,7 +4018,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX I TC6",
+> >  		.domains =3D TGL_AUX_I_TC6_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4147,7 +4029,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX D TBT1",
+> >  		.domains =3D TGL_AUX_D_TBT1_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4158,7 +4040,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX E TBT2",
+> >  		.domains =3D TGL_AUX_E_TBT2_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4169,7 +4051,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX F TBT3",
+> >  		.domains =3D TGL_AUX_F_TBT3_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4180,7 +4062,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX G TBT4",
+> >  		.domains =3D TGL_AUX_G_TBT4_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4191,7 +4073,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX H TBT5",
+> >  		.domains =3D TGL_AUX_H_TBT5_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4202,7 +4084,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  	{
+> >  		.name =3D "AUX I TBT6",
+> >  		.domains =3D TGL_AUX_I_TBT6_IO_POWER_DOMAINS,
+> > -		.ops =3D &icl_tc_phy_aux_power_well_ops,
+> > +		.ops =3D &icl_aux_power_well_ops,
+> >  		.id =3D DISP_PW_ID_NONE,
+> >  		{
+> >  			.hsw.regs =3D &icl_aux_power_well_regs,
+> > @@ -4383,8 +4265,6 @@ int intel_power_domains_init(struct
+> > drm_i915_private *dev_priv)
+> >  	 */
+> >  	if (IS_GEN(dev_priv, 12)) {
+> >  		err =3D set_power_wells(power_domains, tgl_power_wells);
+> > -	} else if (IS_ELKHARTLAKE(dev_priv)) {
+> > -		err =3D set_power_wells(power_domains, ehl_power_wells);
+> >  	} else if (IS_GEN(dev_priv, 11)) {
+> >  		err =3D set_power_wells(power_domains, icl_power_wells);
+> >  	} else if (IS_CANNONLAKE(dev_priv)) {
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
