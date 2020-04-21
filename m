@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBA91B21A7
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:30:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D683B1B21A1
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 10:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B2DC6E8E6;
-	Tue, 21 Apr 2020 08:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D32A6E029;
+	Tue, 21 Apr 2020 08:30:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C795B6E8E6
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 08:30:37 +0000 (UTC)
-IronPort-SDR: X1WvdSFcOB2ZR23tqhuGkOz4GOwFTf7WHJBEZe4iQHv3Gmcpf2CH+O1INR/z5d4B4fPuw/NGyM
- nopDYbDbkAxA==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A09D6E029
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 08:30:20 +0000 (UTC)
+IronPort-SDR: 3URWZssBlpHInSbQigAbNXAKL4vgYYVgEMJ5yX3tuZWVtzNOY/YuQ80ax21xpRVz2Aw1UGMvwb
+ RN5mnCtx7TYQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2020 01:30:37 -0700
-IronPort-SDR: ApGhxHbCZcQyyJ3kn2p/aw5VuU746zJA49wOVKPk/b7JWf03px3Anmgqsw3ynHwzZlzIZdNqQE
- 2zgE6vcj4CSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="365280509"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga001.fm.intel.com with ESMTP; 21 Apr 2020 01:30:36 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 7E2015C1DA7; Tue, 21 Apr 2020 11:28:41 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200420203040.8984-1-chris@chris-wilson.co.uk>
-References: <20200420203040.8984-1-chris@chris-wilson.co.uk>
-Date: Tue, 21 Apr 2020 11:28:41 +0300
-Message-ID: <87imhtmedi.fsf@gaia.fi.intel.com>
+ 21 Apr 2020 01:30:19 -0700
+IronPort-SDR: 5rGT2MyPDWQ10uXRKYvmsXBOGKFQl9grT47YFq46xq47appIiK0YY4BhipCkwrLZFriPFilIbR
+ Ee7AIgqD1a4g==
+X-IronPort-AV: E=Sophos;i="5.72,409,1580803200"; d="scan'208";a="456022877"
+Received: from parkernx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.46.80])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 01:30:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
+ intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200406112800.23762-15-pankaj.laxminarayan.bharadiya@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200406112800.23762-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200406112800.23762-15-pankaj.laxminarayan.bharadiya@intel.com>
+Date: Tue, 21 Apr 2020 11:30:11 +0300
+Message-ID: <87ftcxz1f0.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Show the pstate limits
- on any failure to reset min
+Subject: Re: [Intel-gfx] [PATCH 14/18] drm/i915/gem: Prefer drm_WARN* over
+ WARN*
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,52 +50,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> We want to see the pstate limits whenever we fail to set the minimum
-> frequency as that may help for debugging.
+On Mon, 06 Apr 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> struct drm_device specific drm_WARN* macros include device information
+> in the backtrace, so we know what device the warnings originate from.
 >
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Prefer drm_WARN* over WARN* at places where struct drm_device pointer
+> can be extracted.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+I'd like to have Chris' ack on this.
 
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/selftest_rps.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_phys.c       | 3 ++-
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c    | 2 +-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> index d7cd673550ef..e0a791eac752 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> @@ -238,6 +238,7 @@ int live_rps_control(void *arg)
->  			pr_err("%s: could not set minimum frequency [%x], only %x!\n",
->  			       engine->name, rps->min_freq, read_cagf(rps));
->  			igt_spinner_end(&spin);
-> +			show_pstate_limits(rps);
->  			err = -EINVAL;
->  			break;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 9d11bad74e9a..d910eb9b77ef 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1440,7 +1440,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>  			err = i915_vma_bind(target->vma,
+>  					    target->vma->obj->cache_level,
+>  					    PIN_GLOBAL, NULL);
+> -			if (WARN_ONCE(err,
+> +			if (drm_WARN_ONCE(&i915->drm, err,
+>  				      "Unexpected failure to bind target VMA!"))
+>  				return err;
 >  		}
-> @@ -278,6 +279,7 @@ int live_rps_control(void *arg)
->  		if (limit == rps->min_freq) {
->  			pr_err("%s: GPU throttled to minimum!\n",
->  			       engine->name);
-> +			show_pstate_limits(rps);
->  			err = -ENODEV;
->  			break;
->  		}
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> index 7fe9831aa9ba..4c1c7232b024 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> @@ -27,7 +27,8 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
+>  	void *dst;
+>  	int i;
+>  
+> -	if (WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
+> +	if (drm_WARN_ON(obj->base.dev,
+> +			i915_gem_object_needs_bit17_swizzle(obj)))
+>  		return -EINVAL;
+>  
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index 7ffd7afeb7a5..8b0708708671 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -235,7 +235,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
+>  	if (flags & I915_USERPTR_UNSYNCHRONIZED)
+>  		return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
+>  
+> -	if (WARN_ON(obj->userptr.mm == NULL))
+> +	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+>  		return -EINVAL;
+>  
+>  	mn = i915_mmu_notifier_find(obj->userptr.mm);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
