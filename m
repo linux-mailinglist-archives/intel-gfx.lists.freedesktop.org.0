@@ -2,29 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3E91B295C
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E231B29A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 16:30:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116DF6E12B;
-	Tue, 21 Apr 2020 14:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E04C6E0FC;
+	Tue, 21 Apr 2020 14:30:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 361E76E0FC
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 14:23:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20972512-1500050 
- for multiple; Tue, 21 Apr 2020 15:22:38 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27CA96E0FC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 14:30:04 +0000 (UTC)
+IronPort-SDR: xDsaPjYnratc1lJpNV4MW43YhdIEEwiAj7U6FFX4QuxSEiRBhYtLEJ54LtJ1qCBX+ueU1PXFV9
+ e8J3d24XgZHg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2020 07:30:03 -0700
+IronPort-SDR: JEL++3l1EBHAJ2ZG2WB0BvlEff3SW1tGuz+FTIjBORVr74Gg6ATQhjzol0FaROP2A+UcVSZzoY
+ cQ+xQsrShUzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,410,1580803200"; d="scan'208";a="291615204"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by orsmga008.jf.intel.com with ESMTP; 21 Apr 2020 07:30:02 -0700
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id 50529843785; Tue, 21 Apr 2020 17:29:34 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Apr 2020 15:22:36 +0100
-Message-Id: <20200421142236.8614-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Disable C-states when
- measuring RPS frequency response
+Date: Tue, 21 Apr 2020 17:29:32 +0300
+Message-Id: <20200421142932.8401-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <158747615980.19285.17681670652527012229@build.alporthouse.com>
+References: <158747615980.19285.17681670652527012229@build.alporthouse.com>
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Split ctx timestamp selftest into
+ two
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,60 +48,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGV0J3MgaXNvbGF0ZSB0aGUgaW1wYWN0IG9mIGNwdSBmcmVxdWVuY3kgc2VsZWN0aW9uIG9uIGRl
-dGVybWluZyB0aGUgR1BVCnRocm91Z2hwdXQgaW4gcmVzcG9uc2UgdG8gc2VsZWN0aW9uIG9mIFJQ
-UyBmcmVxdWVuY2llcy4KCkZvciByZWFsIHN5c3RlbXMsIHdlIGRvIGhhdmUgdG8gYmUgY29uY2Vy
-bmVkIHdpdGggdGhlIGltcGFjdCBvZgppbnRlZ3JhdGluZyBjLXN0YXRlcywgcC1zdGF0ZXMgYW5k
-IHJwLXN0YXRlcywgYnV0IGZvciB0aGUgc2FrZSBvZgpwcm92aW5nIHdoZXRoZXIgb3Igbm90IFJQ
-UyB3b3Jrcywgb25lIGJhYnkgc3RlcCBhdCBhIHRpbWUuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eu
-a3VvcHBhbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3Nl
-bGZ0ZXN0X3Jwcy5jIHwgMTggKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTgg
-aW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0
-ZXN0X3Jwcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMKaW5kZXgg
-Mzk1MjY1MTIxZTQzLi5lMmFmYzIwMDNjYWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0
-ZXN0X3Jwcy5jCkBAIC0zLDYgKzMsNyBAQAogICogQ29weXJpZ2h0IMKpIDIwMjAgSW50ZWwgQ29y
-cG9yYXRpb24KICAqLwogCisjaW5jbHVkZSA8bGludXgvcG1fcW9zLmg+CiAjaW5jbHVkZSA8bGlu
-dXgvc29ydC5oPgogCiAjaW5jbHVkZSAiaW50ZWxfZW5naW5lX3BtLmgiCkBAIC0xNCw2ICsxNSw5
-IEBACiAjaW5jbHVkZSAic2VsZnRlc3RzL2lndF9zcGlubmVyLmgiCiAjaW5jbHVkZSAic2VsZnRl
-c3RzL2xpYnJhcGwuaCIKIAorLyogVHJ5IHRvIGlzb2xhdGUgdGhlIGltcGFjdCBvZiBjc3RhdGVz
-IGZyb20gZGV0ZXJtaW5nIGZyZXF1ZW5jeSByZXNwb25zZSAqLworI2RlZmluZSBDUFVfTEFURU5D
-WSAwIC8qIC0xIHRvIGRpc2FibGUgcG1fcW9zLCAwIHRvIGRpc2FibGUgY3N0YXRlcyAqLworCiBz
-dGF0aWMgdm9pZCBkdW1teV9ycHNfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndyaykKIHsKIH0K
-QEAgLTQwNiw2ICs0MTAsNyBAQCBpbnQgbGl2ZV9ycHNfZnJlcXVlbmN5X2NzKHZvaWQgKmFyZykK
-IAlzdHJ1Y3QgaW50ZWxfZ3QgKmd0ID0gYXJnOwogCXN0cnVjdCBpbnRlbF9ycHMgKnJwcyA9ICZn
-dC0+cnBzOwogCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsKKwlzdHJ1Y3QgcG1fcW9z
-X3JlcXVlc3QgcW9zOwogCWVudW0gaW50ZWxfZW5naW5lX2lkIGlkOwogCWludCBlcnIgPSAwOwog
-CkBAIC00MjEsNiArNDI2LDkgQEAgaW50IGxpdmVfcnBzX2ZyZXF1ZW5jeV9jcyh2b2lkICphcmcp
-CiAJaWYgKElOVEVMX0dFTihndC0+aTkxNSkgPCA4KSAvKiBmb3IgQ1Mgc2ltcGxpY2l0eSAqLwog
-CQlyZXR1cm4gMDsKIAorCWlmIChDUFVfTEFURU5DWSA+PSAwKQorCQljcHVfbGF0ZW5jeV9xb3Nf
-YWRkX3JlcXVlc3QoJnFvcywgQ1BVX0xBVEVOQ1kpOworCiAJaW50ZWxfZ3RfcG1fd2FpdF9mb3Jf
-aWRsZShndCk7CiAJc2F2ZWRfd29yayA9IHJwcy0+d29yay5mdW5jOwogCXJwcy0+d29yay5mdW5j
-ID0gZHVtbXlfcnBzX3dvcms7CkBAIC01MjcsNiArNTM1LDkgQEAgaW50IGxpdmVfcnBzX2ZyZXF1
-ZW5jeV9jcyh2b2lkICphcmcpCiAJaW50ZWxfZ3RfcG1fd2FpdF9mb3JfaWRsZShndCk7CiAJcnBz
-LT53b3JrLmZ1bmMgPSBzYXZlZF93b3JrOwogCisJaWYgKENQVV9MQVRFTkNZID49IDApCisJCWNw
-dV9sYXRlbmN5X3Fvc19yZW1vdmVfcmVxdWVzdCgmcW9zKTsKKwogCXJldHVybiBlcnI7CiB9CiAK
-QEAgLTUzNiw2ICs1NDcsNyBAQCBpbnQgbGl2ZV9ycHNfZnJlcXVlbmN5X3NybSh2b2lkICphcmcp
-CiAJc3RydWN0IGludGVsX2d0ICpndCA9IGFyZzsKIAlzdHJ1Y3QgaW50ZWxfcnBzICpycHMgPSAm
-Z3QtPnJwczsKIAlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7CisJc3RydWN0IHBtX3Fv
-c19yZXF1ZXN0IHFvczsKIAllbnVtIGludGVsX2VuZ2luZV9pZCBpZDsKIAlpbnQgZXJyID0gMDsK
-IApAQCAtNTUxLDYgKzU2Myw5IEBAIGludCBsaXZlX3Jwc19mcmVxdWVuY3lfc3JtKHZvaWQgKmFy
-ZykKIAlpZiAoSU5URUxfR0VOKGd0LT5pOTE1KSA8IDgpIC8qIGZvciBDUyBzaW1wbGljaXR5ICov
-CiAJCXJldHVybiAwOwogCisJaWYgKENQVV9MQVRFTkNZID49IDApCisJCWNwdV9sYXRlbmN5X3Fv
-c19hZGRfcmVxdWVzdCgmcW9zLCBDUFVfTEFURU5DWSk7CisKIAlpbnRlbF9ndF9wbV93YWl0X2Zv
-cl9pZGxlKGd0KTsKIAlzYXZlZF93b3JrID0gcnBzLT53b3JrLmZ1bmM7CiAJcnBzLT53b3JrLmZ1
-bmMgPSBkdW1teV9ycHNfd29yazsKQEAgLTY1Niw2ICs2NzEsOSBAQCBpbnQgbGl2ZV9ycHNfZnJl
-cXVlbmN5X3NybSh2b2lkICphcmcpCiAJaW50ZWxfZ3RfcG1fd2FpdF9mb3JfaWRsZShndCk7CiAJ
-cnBzLT53b3JrLmZ1bmMgPSBzYXZlZF93b3JrOwogCisJaWYgKENQVV9MQVRFTkNZID49IDApCisJ
-CWNwdV9sYXRlbmN5X3Fvc19yZW1vdmVfcmVxdWVzdCgmcW9zKTsKKwogCXJldHVybiBlcnI7CiB9
-CiAKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+We use different workarounds for render engine than
+for other engines. Split the selftest according to these
+types so that we get error rates per workaround.
+
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 23 ++++++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 32c4096b627b..dd260496876c 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -4749,10 +4749,9 @@ static int __lrc_timestamp(const struct lrc_timestamp *arg, bool preempt)
+ 	return err;
+ }
+ 
+-static int live_lrc_timestamp(void *arg)
++static int __live_lrc_timestamp(struct intel_gt *gt, unsigned long class_filter)
+ {
+ 	struct lrc_timestamp data = {};
+-	struct intel_gt *gt = arg;
+ 	enum intel_engine_id id;
+ 	const u32 poison[] = {
+ 		0,
+@@ -4774,6 +4773,9 @@ static int live_lrc_timestamp(void *arg)
+ 		unsigned long heartbeat;
+ 		int i, err = 0;
+ 
++		if (!(class_filter & BIT(data.engine->class)))
++			continue;
++
+ 		engine_heartbeat_disable(data.engine, &heartbeat);
+ 
+ 		for (i = 0; i < ARRAY_SIZE(data.ce); i++) {
+@@ -4825,6 +4827,20 @@ static int live_lrc_timestamp(void *arg)
+ 	return 0;
+ }
+ 
++static int live_lrc_timestamp_rcs(void *arg)
++{
++	struct intel_gt *gt = arg;
++
++	return __live_lrc_timestamp(gt, BIT(RENDER_CLASS));
++}
++
++static int live_lrc_timestamp_xcs(void *arg)
++{
++	struct intel_gt *gt = arg;
++
++	return __live_lrc_timestamp(gt, ~BIT(RENDER_CLASS));
++}
++
+ static struct i915_vma *
+ create_user_vma(struct i915_address_space *vm, unsigned long size)
+ {
+@@ -5748,7 +5764,8 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_lrc_state),
+ 		SUBTEST(live_lrc_gpr),
+ 		SUBTEST(live_lrc_indirect_ctx_bb),
+-		SUBTEST(live_lrc_timestamp),
++		SUBTEST(live_lrc_timestamp_rcs),
++		SUBTEST(live_lrc_timestamp_xcs),
+ 		SUBTEST(live_lrc_garbage),
+ 		SUBTEST(live_pphwsp_runtime),
+ 		SUBTEST(live_lrc_isolation),
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
