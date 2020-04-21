@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 597C21B1C26
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 04:48:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624F21B1C29
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 04:49:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A92F26E216;
-	Tue, 21 Apr 2020 02:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0A046E21C;
+	Tue, 21 Apr 2020 02:49:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2F6E6E216
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 02:48:38 +0000 (UTC)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
- [147.11.189.40])
- by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03L2lOnj016850
- (version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
- Mon, 20 Apr 2020 19:47:39 -0700
-Received: from [128.224.162.157] (128.224.162.157) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0;
- Mon, 20 Apr 2020 19:47:13 -0700
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20200420082207.25581-1-liwei.song@windriver.com>
- <20200420162103.GV6112@intel.com>
-From: Liwei Song <liwei.song@windriver.com>
-Message-ID: <06d03e5d-7b0b-528f-5f91-32d604b14443@windriver.com>
-Date: Tue, 21 Apr 2020 10:47:12 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:76.0) Gecko/20100101
- Thunderbird/76.0
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [195.92.253.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F146E21C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 02:49:55 +0000 (UTC)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat
+ Linux)) id 1jQiyN-007Fkh-1u; Tue, 21 Apr 2020 02:49:19 +0000
+Date: Tue, 21 Apr 2020 03:49:19 +0100
+From: Al Viro <viro@zeniv.linux.org.uk>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20200421024919.GA23230@ZenIV.linux.org.uk>
+References: <36e43241c7f043a24b5069e78c6a7edd11043be5.1585898438.git.christophe.leroy@c-s.fr>
+ <42da416106d5c1cf92bda1e058434fe240b35f44.1585898438.git.christophe.leroy@c-s.fr>
+ <CAHk-=wh_DY_dysMX0NuvJmMFr3+QDKOZPZqWKwLkkjgZTuyQ+A@mail.gmail.com>
+ <20200403205205.GK23230@ZenIV.linux.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20200420162103.GV6112@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel v3] Sync i915_pciids upto
- 8717c6b7414f
+Content-Disposition: inline
+In-Reply-To: <20200403205205.GK23230@ZenIV.linux.org.uk>
+Subject: Re: [Intel-gfx] [PATCH v2 5/5] uaccess: Rename
+ user_access_begin/end() to user_full_access_begin/end()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,45 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Christophe Leroy <christophe.leroy@c-s.fr>,
+ linux-arch <linux-arch@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
+ Dave Airlie <airlied@linux.ie>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ intel-gfx@lists.freedesktop.org, Peter Anvin <hpa@zytor.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Russell King <linux@armlinux.org.uk>, Linux-MM <linux-mm@kvack.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA0LzIxLzIwIDAwOjIxLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gTW9uLCBBcHIg
-MjAsIDIwMjAgYXQgMDQ6MjI6MDdQTSArMDgwMCwgTGl3ZWkgU29uZyB3cm90ZToKPj4gSW1wb3J0
-IHRoZSBrZXJuZWwncyBpOTE1X3BjaWlkcy5oLCB1cCB0bzoKPj4KPj4gY29tbWl0IDg3MTdjNmI3
-NDE0ZmZiODkwNjcyMjc2ZGNjYzI4NGMyMzA3OGFjMGUKPj4gQXV0aG9yOiBMZWUgU2hhd24gQyA8
-c2hhd24uYy5sZWVAaW50ZWwuY29tPgo+PiBEYXRlOiAgIFR1ZSBEZWMgMTAgMjM6MDQ6MTUgMjAx
-OSArMDgwMAo+Pgo+PiAgICAgZHJtL2k5MTUvY21sOiBTZXBhcmF0ZSBVIHNlcmllcyBwY2kgaWQg
-ZnJvbSBvcmlnaWFubCBsaXN0Lgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBMaXdlaSBTb25nIDxsaXdl
-aS5zb25nQHdpbmRyaXZlci5jb20+Cj4+IC0tLQo+PiBWMiAtPiBWMzoKPj4gICAgQWRkIDQgbmV3
-IGluZm8gYmxvY2tzIGFuZCBhZGQgc291bmQgc3VwcG9ydCBmb3IgdGhlbS4KPj4KPj4gQ2hhbmdl
-IHNpbmNlIFYxOgo+PiAgIHJlcGxhY2Ugb2xkIGRlZmluaXRpb24gaW4gaW50ZWxfbW9kdWxlLmMg
-YW5kIGRyaTMtdGVzdC5jCj4+IC0tLQo+PiAgc3JjL2k5MTVfcGNpaWRzLmggICAgIHwgMjY1ICsr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLQo+PiAgc3JjL2ludGVsX21v
-ZHVsZS5jICAgIHwgIDkyICsrKysrKysrKysrKysrLQo+PiAgc3JjL3NuYS9nZW45X3JlbmRlci5j
-IHwgIDQ4ICsrKysrKysrCj4+ICB0ZXN0L2RyaTMtdGVzdC5jICAgICAgfCAgIDIgKy0KPj4gIDQg
-ZmlsZXMgY2hhbmdlZCwgMzQ0IGluc2VydGlvbnMoKyksIDYzIGRlbGV0aW9ucygtKQo+Pgo+PiBk
-aWZmIC0tZ2l0IGEvc3JjL2k5MTVfcGNpaWRzLmggYi9zcmMvaTkxNV9wY2lpZHMuaAo+PiBpbmRl
-eCBmZDk2NWZmYmI5MmUuLjFkMmMxMjIxOWY0NCAxMDA2NDQKPj4gLS0tIGEvc3JjL2k5MTVfcGNp
-aWRzLmgKPj4gKysrIGIvc3JjL2k5MTVfcGNpaWRzLmgKPj4gQEAgLTEwOCw4ICsxMDgsMTAgQEAK
-Pj4gIAlJTlRFTF9WR0FfREVWSUNFKDB4MmU0MiwgaW5mbyksIC8qIEI0M19HICovIFwKPj4gIAlJ
-TlRFTF9WR0FfREVWSUNFKDB4MmU5MiwgaW5mbykJLyogQjQzX0cuMSAqLwo+PiAgCj4+IC0jZGVm
-aW5lIElOVEVMX1BJTkVWSUVXX0lEUyhpbmZvKQkJCVwKPj4gLQlJTlRFTF9WR0FfREVWSUNFKDB4
-YTAwMSwgaW5mbyksCQkJXAo+PiArI2RlZmluZSBJTlRFTF9QSU5FVklFV19HX0lEUyhpbmZvKSBc
-Cj4+ICsJSU5URUxfVkdBX0RFVklDRSgweGEwMDEsIGluZm8pCj4+ICsKPj4gKyNkZWZpbmUgSU5U
-RUxfUElORVZJRVdfTV9JRFMoaW5mbykgXAo+PiAgCUlOVEVMX1ZHQV9ERVZJQ0UoMHhhMDExLCBp
-bmZvKQo+PiAgCj4+ICAjZGVmaW5lIElOVEVMX0lST05MQUtFX0RfSURTKGluZm8pIFwKPj4gQEAg
-LTE2Niw3ICsxNjgsMTggQEAKPiA8c25pcD4KPj4gQEAgLTM1Nyw3ICs0NDMsNyBAQCBzdGF0aWMg
-Y29uc3Qgc3RydWN0IHBjaV9pZF9tYXRjaCBpbnRlbF9kZXZpY2VfbWF0Y2hbXSA9IHsKPj4gIAlJ
-TlRFTF9JOTQ1R01fSURTKCZpbnRlbF9pOTQ1X2luZm8pLAo+PiAgCj4+ICAJSU5URUxfRzMzX0lE
-UygmaW50ZWxfZzMzX2luZm8pLAo+PiAtCUlOVEVMX1BJTkVWSUVXX0lEUygmaW50ZWxfZzMzX2lu
-Zm8pLAo+PiArCUlOVEVMX1BJTkVWSUVXX0dfSURTKCZpbnRlbF9nMzNfaW5mbyksCj4gCj4gTG9z
-dCB0aGUgb3RoZXIgUE5WLgoKR290IGl0LCB0aGFua3MsIHdpbGwgYWRkIGl0IGluIFY0LgoKTGl3
-ZWkuCgoKPiAKPj4gIAo+PiAgCUlOVEVMX0k5NjVHX0lEUygmaW50ZWxfaTk2NV9pbmZvKSwKPj4g
-IAlJTlRFTF9JOTY1R01fSURTKCZpbnRlbF9pOTY1X2luZm8pLAo+IApfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+[rmk Cc'd]
+On Fri, Apr 03, 2020 at 09:52:05PM +0100, Al Viro wrote:
+
+> I can do a 5.7-rc1-based branch with that; depending upon what we end
+> up doing for arm and s390 we can always change the calling conventions
+> come next cycle ;-/
+> 
+> My impressions after digging through arm side of things:
+> 
+> 1) the only instance of nesting I'd found there (so far) is a mistake.
+> The rule should be "no fucking nesting, TYVM".
+
+OK, after quite a bit of digging:
+	1) everything outside of arm is quite happy with not passing
+anything to user_access_end().  s390 is a red herring in that respect.
+	2) on arm we definitely can get rid of nesting.  However,
+there are some unpleasant sides of the logics in there.  What we have
+is an MMU register; everything except for two 2bit fields in it is
+constant.  One of those fields is a function of get_fs(), another might
+serve an analogue of x86 EFLAGS.AC.  Rules:
+
+	DACR.USER is 0 if CONFIG_SW_DOMAIN_PAN is enabled and we are
+*not* in uaccess section; otherwise it's 1.
+	DACR.KERNEL is 3 if CONFIG_USE_DOMAINS is enabled and we are
+under KERNEL_DS; otherwise it's 1.
+
+[USE_DOMAINS is forced to "yes" on v5 and earlier, configurable on v6+]
+[SW_DOMAIN_PAN is forced to "no" on v7 if we want support of huge physical
+space, configurable with default to "yes" otherwise]
+
+	On entry into kernel we get into USER_DS state before we get
+out of asm glue.  Original settings are restored on return.  That goes
+both for ->addr_limit (get_fs() value) and for DACR.KERNEL contents.
+DACR.USER ("uaccess allowed") is switched to "disabled" state before
+we reach C code and restored on return from kernel.
+
+	The costs are interesting; setting the register is costly, in
+the same manner STAC/CLAC is.  Reading it... hell knows; I don't see any
+explicit information about that.  As it is, both set_fs() and starting
+uaccess block (uaccess_save_and_enable() - the thing that would've
+gone into user_access_begin()) do both read and write to register; with
+minimal massage we could get rid of reading the damn thing in set_fs().
+user_access_end() candidate does a plain write to register, with value
+kept around since the beginning of uaccess block.
+
+	*IF* read from that register is cheap, we can trivially get rid
+of passing the cookie there - it's a matter of reading the register
+and clearing one bit in it before writing it back.  If that is costly,
+though...  We can easily calculate it from ->addr_limit, which we already
+have in cache at that point, or will need shortly anyway.  In that
+case it would probably make sense to do the same to user_access_begin()
+and set_fs().  Note that I'm not suggesting to do anything of that sort
+in switch_to() - existing mechanism doesn't need any changes, and neither
+does the asm glue in entry*.S.
+
+	The only source I'd been able to find speeks of >= 60 cycles
+(and possibly much more) for non-pipelined coprocessor instructions;
+the list of such does contain loads and stores to a bunch of registers.
+However, the register in question (p15/c3) has only store mentioned there,
+so loads might be cheap; no obvious reasons for those to be slow.
+That's a question to arm folks, I'm afraid...  rmk?
+
+	Note that we can keep the current variant (i.e.
+user_access_begin() being just the check for access_ok(), user_access_end()
+being empty and uaccess_save_and_enable()/uaccess_restore() done manually
+inside the primitives); after all, a lot of architectures don't _have_
+anything of that sort.  It's just that decisions regarding the calling
+conventions for these primitives will be much harder to change later on...
+
+	Again, arm (32bit one) is the only architectures that has something
+of that sort and needs to pass cookie from beginning to the end of uaccess
+blocks.  Everything else splits into several classes:
+
+1) has MMU, shared address space for kernel/userland, no stac analogues.
+        alpha, arc, csky, hexagon, itanic, nds32, nios32, openrisc, sh,
+        sparc32, unicore32, xtensa/MMU, microblaze/MMU, mips/MMU,
+        m68k/MMU/COLDFIRE.
+No way to do anything other than plain access_ok() for user_access_begin().
+
+2) has MMU, shared address space for kernel/userland, has stac analogue,
+possibly with separate "for read" and "for write" variants.  Can live
+without passing any cookies.
+        arm64, powerpc, riscv, x86
+Current variant with changes in this patchset covers those.
+
+3) non-MMU, uses memcpy() for everything, or at least ought to:
+        c6x, h8300, m68k/!MMU, xtensa/!MMU(?), microblaze/!MMU(?), mips/!MMU(?),
+        arm/!MMU
+No memory protection of any sort...
+
+4) sparc-like: MMU, separate address spaces for userland and kernel,
+has explicit insns for uaccess + some register(s) to choose what those
+insns actually hit.
+        sparc64, parisc, m68k/MMU/!COLDFIRE
+No stac/clac analogue would make sense.
+
+5) s390: weird one - there is an stac analogue as far the hardware is
+        concerned, but it can't be separated from inline asm where
+        actual uaccess insns are.  From the kernel POV it's sparc-like.
+Nothing that would reasonably map to user_access_begin/user_access_end
+
+6) um: no uaccess, in a sense of dereferencing non-kernel pointers.  What
+it does is simulation of page table walk + explicit call of #PF handler
+on missing pages + kmap_atomic() to get a kernel alias.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
