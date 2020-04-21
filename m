@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D951B31CA
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 23:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED7A1B3269
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2020 23:57:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C02689F73;
-	Tue, 21 Apr 2020 21:19:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 887756E0E4;
+	Tue, 21 Apr 2020 21:57:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD33B89F53
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 21:19:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20976878-1500050 
- for multiple; Tue, 21 Apr 2020 22:19:02 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Apr 2020 22:18:57 +0100
-Message-Id: <20200421211858.5721-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 85DA76E0E0;
+ Tue, 21 Apr 2020 21:57:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FB3BA0BA8;
+ Tue, 21 Apr 2020 21:57:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Try to detect rollback
- during batchbuffer preemption
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 21 Apr 2020 21:57:08 -0000
+Message-ID: <158750622849.17660.8437137747541475494@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200421211858.5721-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200421211858.5721-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Try_to_detect_rollback_during_batchbuffer_pr?=
+ =?utf-8?q?eemption?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,375 +39,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since batch buffers dominant execution time, most preemption requests
-should naturally occur during execution of a batch buffer. We wish to
-verify that should a preemption occur within a batch buffer, when we
-come to restart that batch buffer, it occurs at the interrupted
-instruction and most importantly does not rollback to an earlier point.
+== Series Details ==
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 322 ++++++++++++++++++++++++-
- 1 file changed, 321 insertions(+), 1 deletion(-)
+Series: drm/i915/selftests: Try to detect rollback during batchbuffer preemption
+URL   : https://patchwork.freedesktop.org/series/76279/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 6f5e35afe1b2..5ff8f0d5f3c9 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -21,7 +21,8 @@
- #include "gem/selftests/mock_context.h"
- 
- #define CS_GPR(engine, n) ((engine)->mmio_base + 0x600 + (n) * 4)
--#define NUM_GPR_DW (16 * 2) /* each GPR is 2 dwords */
-+#define NUM_GPR 16
-+#define NUM_GPR_DW (NUM_GPR * 2) /* each GPR is 2 dwords */
- 
- static struct i915_vma *create_scratch(struct intel_gt *gt)
- {
-@@ -2791,6 +2792,324 @@ static int live_preempt_gang(void *arg)
- 	return 0;
- }
- 
-+static struct i915_vma *
-+create_gpr_user(struct intel_engine_cs *engine,
-+		struct i915_vma *result,
-+		unsigned int offset)
-+{
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	u32 *cs;
-+	int err;
-+	int i;
-+
-+	obj = i915_gem_object_create_internal(engine->i915, 4096);
-+	if (IS_ERR(obj))
-+		return ERR_CAST(obj);
-+
-+	vma = i915_vma_instance(obj, result->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		i915_gem_object_put(obj);
-+		return vma;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-+	if (err) {
-+		i915_vma_put(vma);
-+		return ERR_PTR(err);
-+	}
-+
-+	cs = i915_gem_object_pin_map(obj, I915_MAP_WC);
-+	if (IS_ERR(cs)) {
-+		i915_vma_put(vma);
-+		return ERR_CAST(cs);
-+	}
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM(NUM_GPR_DW);
-+	*cs++ = CS_GPR(engine, 0);
-+	*cs++ = 1;
-+	for (i = 1; i < NUM_GPR_DW; i++) {
-+		*cs++ = CS_GPR(engine, i);
-+		*cs++ = 0;
-+	}
-+
-+	for (i = 1; i < NUM_GPR; i++) {
-+		u64 addr;
-+
-+		*cs++ = MI_MATH(4);
-+		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(i));
-+		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(0));
-+		*cs++ = MI_MATH_ADD;
-+		*cs++ = MI_MATH_STORE(MI_MATH_REG(i), MI_MATH_REG_ACCU);
-+
-+		addr = result->node.start + offset + i * sizeof(*cs);
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
-+		*cs++ = CS_GPR(engine, 2 * i);
-+		*cs++ = lower_32_bits(addr);
-+		*cs++ = upper_32_bits(addr);
-+
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_GTE_SDD;
-+		*cs++ = i;
-+		*cs++ = lower_32_bits(result->node.start);
-+		*cs++ = upper_32_bits(result->node.start);
-+	}
-+
-+	*cs++ = MI_BATCH_BUFFER_END;
-+	i915_gem_object_flush_map(obj);
-+	i915_gem_object_unpin_map(obj);
-+
-+	return vma;
-+}
-+
-+static struct i915_vma *create_global(struct intel_gt *gt, size_t sz)
-+{
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	int err;
-+
-+	obj = i915_gem_object_create_internal(gt->i915, sz);
-+	if (IS_ERR(obj))
-+		return ERR_CAST(obj);
-+
-+	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		i915_gem_object_put(obj);
-+		return vma;
-+	}
-+
-+	err = i915_ggtt_pin(vma, 0, 0);
-+	if (err) {
-+		i915_vma_put(vma);
-+		return ERR_PTR(err);
-+	}
-+
-+	return vma;
-+}
-+
-+static struct i915_request *
-+create_gpr_client(struct intel_engine_cs *engine,
-+		  struct i915_vma *global,
-+		  unsigned int offset)
-+{
-+	struct i915_vma *batch, *vma;
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	int err;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return ERR_CAST(ce);
-+
-+	vma = i915_vma_instance(global->obj, ce->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		err = PTR_ERR(vma);
-+		goto out_ce;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-+	if (err)
-+		goto out_ce;
-+
-+	batch = create_gpr_user(engine, vma, offset);
-+	if (IS_ERR(batch)) {
-+		err = PTR_ERR(batch);
-+		goto out_vma;
-+	}
-+
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_batch;
-+	}
-+
-+	i915_vma_lock(vma);
-+	err = i915_request_await_object(rq, vma->obj, false);
-+	if (!err)
-+		err = i915_vma_move_to_active(vma, rq, 0);
-+	i915_vma_unlock(vma);
-+
-+	i915_vma_lock(batch);
-+	if (!err)
-+		err = i915_request_await_object(rq, batch->obj, false);
-+	if (!err)
-+		err = i915_vma_move_to_active(batch, rq, 0);
-+	if (!err)
-+		err = rq->engine->emit_bb_start(rq,
-+						batch->node.start,
-+						PAGE_SIZE, 0);
-+	i915_vma_unlock(batch);
-+	i915_vma_unpin(batch);
-+
-+	if (!err)
-+		i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+out_batch:
-+	i915_vma_put(batch);
-+out_vma:
-+	i915_vma_unpin(vma);
-+out_ce:
-+	intel_context_put(ce);
-+	return err ? ERR_PTR(err) : rq;
-+}
-+
-+static int preempt_user(struct intel_engine_cs *engine,
-+			struct i915_vma *global,
-+			int id)
-+{
-+	struct i915_sched_attr attr = {
-+		.priority = I915_PRIORITY_MAX
-+	};
-+	struct i915_request *rq;
-+	int err = 0;
-+	u32 *cs;
-+
-+	rq = intel_engine_create_kernel_request(engine);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	cs = intel_ring_begin(rq, 4);
-+	if (IS_ERR(cs)) {
-+		i915_request_add(rq);
-+		return PTR_ERR(cs);
-+	}
-+
-+	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-+	*cs++ = i915_ggtt_offset(global);
-+	*cs++ = 0;
-+	*cs++ = id;
-+
-+	intel_ring_advance(rq, cs);
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+	engine->schedule(rq, &attr);
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0)
-+		err = -ETIME;
-+	i915_request_put(rq);
-+
-+	return err;
-+}
-+
-+static int live_preempt_user(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	struct i915_vma *global;
-+	enum intel_engine_id id;
-+	u32 *result;
-+	int err = 0;
-+
-+	if (!HAS_LOGICAL_RING_PREEMPTION(gt->i915))
-+		return 0;
-+
-+	/*
-+	 * In our other tests, we look at preemption in carefully
-+	 * controlled conditions in the ringbuffer. Since most of the
-+	 * time is spent in user batches, most of our preemptions naturally
-+	 * occur there. We want to verify that when we preempt inside a batch
-+	 * we continue on from the current instruction and do not roll back
-+	 * to the start, or another earlier arbitration point.
-+	 *
-+	 * To verify this, we create a batch which is a mixture of
-+	 * MI_MATH (gpr++) MI_SRM (gpr) and preemption points. Then with
-+	 * a few preempting contexts thrown into the mix, we look for any
-+	 * repeated instructions (which show up as incorrect values).
-+	 */
-+
-+	global = create_global(gt, 4096);
-+	if (IS_ERR(global))
-+		return PTR_ERR(global);
-+
-+	result = i915_gem_object_pin_map(global->obj, I915_MAP_WC);
-+	if (IS_ERR(result)) {
-+		i915_vma_unpin_and_release(&global, 0);
-+		return PTR_ERR(result);
-+	}
-+
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *client[3] = {};
-+		struct igt_live_test t;
-+		int i;
-+
-+		if (!intel_engine_has_preemption(engine))
-+			continue;
-+
-+		if (igt_live_test_begin(&t, gt->i915, __func__, engine->name)) {
-+			err = -EIO;
-+			break;
-+		}
-+
-+		memset(result, 0, 4096);
-+
-+		for (i = 0; i < ARRAY_SIZE(client); i++) {
-+			struct i915_request *rq;
-+
-+			rq = create_gpr_client(engine, global,
-+					       NUM_GPR * i * sizeof(u32));
-+			if (IS_ERR(rq))
-+				goto end_test;
-+
-+			client[i] = rq;
-+		}
-+
-+		/* Continuously preempt the set of 3 running contexts */
-+		for (i = 1; i <= NUM_GPR; i++) {
-+			err = preempt_user(engine, global, i);
-+			if (err)
-+				goto end_test;
-+		}
-+
-+		if (READ_ONCE(result[0]) != NUM_GPR) {
-+			pr_err("%s: Failed to release semaphore\n",
-+			       engine->name);
-+			err = -EIO;
-+			goto end_test;
-+		}
-+
-+		for (i = 0; i < ARRAY_SIZE(client); i++) {
-+			int gpr;
-+
-+			if (i915_request_wait(client[i], 0, HZ / 2) < 0) {
-+				err = -ETIME;
-+				goto end_test;
-+			}
-+
-+			for (gpr = 1; gpr < NUM_GPR; gpr++) {
-+				if (result[NUM_GPR * i + gpr] != 1) {
-+					pr_err("%s: Invalid result, client %d, gpr %d, result: %d\n",
-+					       engine->name,
-+					       i, gpr, result[NUM_GPR * i + gpr]);
-+					err = -EINVAL;
-+					goto end_test;
-+				}
-+			}
-+		}
-+
-+end_test:
-+		for (i = 0; i < ARRAY_SIZE(client); i++) {
-+			if (!client[i])
-+				break;
-+
-+			i915_request_put(client[i]);
-+		}
-+
-+		/* Flush the semaphores on error */
-+		smp_store_mb(result[0], -1);
-+		if (igt_live_test_end(&t))
-+			err = -EIO;
-+		if (err)
-+			break;
-+	}
-+
-+	i915_vma_unpin_and_release(&global, I915_VMA_RELEASE_MAP);
-+	return err;
-+}
-+
- static int live_preempt_timeout(void *arg)
- {
- 	struct intel_gt *gt = arg;
-@@ -3998,6 +4317,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_chain_preempt),
- 		SUBTEST(live_preempt_gang),
- 		SUBTEST(live_preempt_timeout),
-+		SUBTEST(live_preempt_user),
- 		SUBTEST(live_preempt_smoke),
- 		SUBTEST(live_virtual_engine),
- 		SUBTEST(live_virtual_mask),
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8346 -> Patchwork_17411
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17411/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17411 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-snb-2600:        [PASS][1] -> [FAIL][2] ([i915#1763])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8346/fi-snb-2600/igt@i915_selftest@live@ring_submission.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17411/fi-snb-2600/igt@i915_selftest@live@ring_submission.html
+
+  * igt@i915_selftest@live@uncore:
+    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#489])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8346/fi-bwr-2160/igt@i915_selftest@live@uncore.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17411/fi-bwr-2160/igt@i915_selftest@live@uncore.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (50 -> 41)
+------------------------------
+
+  Missing    (9): fi-cml-u2 fi-tgl-u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8346 -> Patchwork_17411
+
+  CI-20190529: 20190529
+  CI_DRM_8346: 3668f2adb82ad7888e4954832479604ea2c846fb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5604: 18cc19ece602ba552a8386222b49e7e82820f9aa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17411: 5f0c0f0a609aa2d8a58a0aecb43f025b5b3068dc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5f0c0f0a609a drm/i915/selftests: Try to detect rollback during batchbuffer preemption
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17411/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
