@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B761B5076
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 00:44:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2653C1B50D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 01:23:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C7989FFD;
-	Wed, 22 Apr 2020 22:44:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA40589E86;
+	Wed, 22 Apr 2020 23:23:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8EB5889FFD;
- Wed, 22 Apr 2020 22:44:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 890A1A00FD;
- Wed, 22 Apr 2020 22:44:16 +0000 (UTC)
+X-Greylist: delayed 1799 seconds by postgrey-1.36 at gabe;
+ Wed, 22 Apr 2020 23:23:43 UTC
+Received: from 1.mo1.mail-out.ovh.net (1.mo1.mail-out.ovh.net [178.32.127.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4C4B89E86
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 23:23:43 +0000 (UTC)
+Received: from player690.ha.ovh.net (unknown [10.108.57.245])
+ by mo1.mail-out.ovh.net (Postfix) with ESMTP id 25B7D1BBEAF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 00:45:33 +0200 (CEST)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player690.ha.ovh.net (Postfix) with ESMTPSA id C8836118B3722;
+ Wed, 22 Apr 2020 22:45:30 +0000 (UTC)
+Date: Thu, 23 Apr 2020 01:45:29 +0300
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200422224529.GA444751@jack.zhora.eu>
+References: <20200422073715.11770-1-chris@chris-wilson.co.uk>
+ <20200422074203.9799-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 22 Apr 2020 22:44:16 -0000
-Message-ID: <158759545653.5177.4849231594431631587@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/6=5D_drm/i915=3A_Fix_skl+_non-scale?=
- =?utf-8?q?d_pfit_modes?=
+Content-Disposition: inline
+In-Reply-To: <20200422074203.9799-1-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 14487235579482456585
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrgeekgddutdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieeltddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Add request throughput
+ measurement to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,196 +48,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Chris,
 
-Series: series starting with [v3,1/6] drm/i915: Fix skl+ non-scaled pfit modes
-URL   : https://patchwork.freedesktop.org/series/76346/
-State : success
+[...]
 
-== Summary ==
+> +static int s_many(void *arg)
+> +{
+> +	struct perf_series *ps = arg;
 
-CI Bug Log - changes from CI_DRM_8350_full -> Patchwork_17426_full
-====================================================
+why do we need to go through void... all functions are taking a
+perf_series structure.
 
-Summary
--------
+> +	IGT_TIMEOUT(end_time);
+> +	unsigned int idx = 0;
+> +
 
-  **SUCCESS**
+[...]
 
-  No regressions found.
+> +		for (idx = 0; idx < nengines; idx++) {
+> +			struct perf_stats *p =
+> +				memset(&stats[idx], 0, sizeof(stats[idx]));
+> +			struct intel_context *ce = ps->ce[idx];
+> +
+> +			p->engine = ps->ce[idx]->engine;
+> +			intel_engine_pm_get(p->engine);
+> +
+> +			if (intel_engine_supports_stats(p->engine) &&
+> +			    !intel_enable_engine_stats(p->engine))
+> +				p->busy = intel_engine_get_busy_time(p->engine) + 1;
+> +			p->runtime = -intel_context_get_total_runtime_ns(ce);
+> +			p->time = ktime_get();
+> +		}
+> +
+> +		err = (*fn)(ps);
+> +		if (igt_live_test_end(&t))
+> +			err = -EIO;
+> +
+> +		for (idx = 0; idx < nengines; idx++) {
+> +			struct perf_stats *p = &stats[idx];
+> +			struct intel_context *ce = ps->ce[idx];
+> +			int integer, decimal;
+> +			u64 busy, dt;
+> +
+> +			p->time = ktime_sub(ktime_get(), p->time);
+> +			if (p->busy) {
+> +				p->busy = ktime_sub(intel_engine_get_busy_time(p->engine),
+> +						    p->busy - 1);
+> +				intel_disable_engine_stats(p->engine);
+> +			}
+> +
+> +			err = switch_to_kernel_sync(ce, err);
 
-  
+how about err?
 
-Known issues
-------------
+> +			p->runtime += intel_context_get_total_runtime_ns(ce);
 
-  Here are the changes found in Patchwork_17426_full that come from known issues:
+assigning a negative value to an unsigned so that you can add it
+later? looks nice but odd :)
 
-### IGT changes ###
+It's easier to understand if we do
 
-#### Issues hit ####
+p->runtime = intel_context_get_total_runtime_ns(ce) - p->runtime;
 
-  * igt@gem_exec_whisper@basic-queues-forked:
-    - shard-kbl:          [PASS][1] -> [FAIL][2] ([i915#1479] / [i915#1772])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl1/igt@gem_exec_whisper@basic-queues-forked.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-kbl4/igt@gem_exec_whisper@basic-queues-forked.html
+if you like it, no need to change, though.
 
-  * igt@i915_selftest@live@execlists:
-    - shard-snb:          [PASS][3] -> [FAIL][4] ([i915#1763])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-snb1/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-snb1/igt@i915_selftest@live@execlists.html
+[...]
 
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-kbl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+> +static int p_many(void *arg)
+> +{
+> +	struct perf_stats *p = arg;
+> +	struct intel_engine_cs *engine = p->engine;
+> +	struct intel_context *ce;
+> +	IGT_TIMEOUT(end_time);
+> +	unsigned long count;
+> +	int err = 0;
+> +	bool busy;
+> +
+> +	ce = intel_context_create(engine);
+> +	if (IS_ERR(ce))
+> +		return PTR_ERR(ce);
+> +
+> +	err = intel_context_pin(ce);
+> +	if (err) {
+> +		intel_context_put(ce);
+> +		return err;
+> +	}
+> +
+> +	busy = false;
+> +	if (intel_engine_supports_stats(engine) &&
+> +	    !intel_enable_engine_stats(engine)) {
+> +		p->busy = intel_engine_get_busy_time(engine);
+> +		busy = true;
+> +	}
+> +
+> +	count = 0;
+> +	p->time = ktime_get();
+> +	do {
+> +		struct i915_request *rq;
+> +
+> +		rq = i915_request_create(ce);
+> +		if (IS_ERR(rq)) {
+> +			err = PTR_ERR(rq);
+> +			break;
+> +		}
+> +
+> +		i915_request_add(rq);
 
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [PASS][7] -> [DMESG-WARN][8] ([i915#180]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+do we need a request_put as well?
 
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([fdo#108145] / [i915#265]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+> +		count++;
+> +	} while (!__igt_timeout(end_time, NULL));
+> +	p->time = ktime_sub(ktime_get(), p->time);
+> +
+> +	if (busy) {
+> +		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+> +				    p->busy);
+> +		intel_disable_engine_stats(engine);
+> +	}
+> +
+> +	err = switch_to_kernel_sync(ce, err);
+> +	p->runtime = intel_context_get_total_runtime_ns(ce);
+> +	p->count = count;
+> +
+> +	intel_context_unpin(ce);
+> +	intel_context_put(ce);
+> +	return err;
+> +}
 
-  * igt@kms_psr2_su@frontbuffer:
-    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#109642] / [fdo#111068])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb1/igt@kms_psr2_su@frontbuffer.html
+[...]
 
-  * igt@kms_psr@no_drrs:
-    - shard-iclb:         [PASS][13] -> [FAIL][14] ([i915#173])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@kms_psr@no_drrs.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb1/igt@kms_psr@no_drrs.html
+> +		for_each_uabi_engine(engine, i915) {
+> +			int status;
+> +
+> +			if (IS_ERR(engines[idx].tsk))
+> +				break;
 
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109441])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb1/igt@kms_psr@psr2_primary_mmap_cpu.html
+if we break here aren't we missing engine_pm_put and put_task?
 
-  
-#### Possible fixes ####
+Andi
 
-  * igt@i915_pm_rpm@system-suspend:
-    - shard-skl:          [INCOMPLETE][17] ([i915#151] / [i915#69]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl10/igt@i915_pm_rpm@system-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl9/igt@i915_pm_rpm@system-suspend.html
-
-  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1}:
-    - shard-skl:          [FAIL][19] ([i915#46]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl10/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-
-  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1}:
-    - shard-skl:          [FAIL][21] ([i915#79]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl10/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
-    - shard-kbl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +6 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-kbl7/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@b-edp1}:
-    - shard-skl:          [INCOMPLETE][25] ([i915#198]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl3/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl5/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][27] ([i915#1188]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl6/igt@kms_hdr@bpc-switch.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl4/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][29] ([fdo#108145] / [i915#265]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-skl9/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_mmap_gtt:
-    - shard-iclb:         [SKIP][31] ([fdo#109441]) -> [PASS][32] +2 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb5/igt@kms_psr@psr2_sprite_mmap_gtt.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][33] ([i915#31]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-apl6/igt@kms_setmode@basic.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-apl2/igt@kms_setmode@basic.html
-
-  * {igt@perf@polling-small-buf}:
-    - shard-iclb:         [FAIL][35] ([i915#1722]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@perf@polling-small-buf.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb1/igt@perf@polling-small-buf.html
-
-  
-#### Warnings ####
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-kbl:          [INCOMPLETE][37] ([i915#155] / [i915#1687]) -> [INCOMPLETE][38] ([i915#155] / [i915#1687] / [i915#180])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl7/igt@gem_workarounds@suspend-resume-context.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-kbl2/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [SKIP][39] ([fdo#109642] / [fdo#111068]) -> [FAIL][40] ([i915#608])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb5/igt@kms_psr2_su@page_flip.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/shard-iclb2/igt@kms_psr2_su@page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1479]: https://gitlab.freedesktop.org/drm/intel/issues/1479
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1687]: https://gitlab.freedesktop.org/drm/intel/issues/1687
-  [i915#1722]: https://gitlab.freedesktop.org/drm/intel/issues/1722
-  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
-  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
-  [i915#1772]: https://gitlab.freedesktop.org/drm/intel/issues/1772
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#46]: https://gitlab.freedesktop.org/drm/intel/issues/46
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8350 -> Patchwork_17426
-
-  CI-20190529: 20190529
-  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17426: 422ff0ac891b0a528b74487d23fb280317bf1831 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17426/index.html
+> +
+> +			status = kthread_stop(engines[idx].tsk);
+> +			if (status && !err)
+> +				err = status;
+> +
+> +			intel_engine_pm_put(engine);
+> +			put_task_struct(engines[idx++].tsk);
+> +		}
+> +
+> +		if (igt_live_test_end(&t))
+> +			err = -EIO;
+> +		if (err)
+> +			break;
+> +
+> +		idx = 0;
+> +		for_each_uabi_engine(engine, i915) {
+> +			struct perf_stats *p = &engines[idx].p;
+> +			u64 busy = 100 * ktime_to_ns(p->busy);
+> +			u64 dt = ktime_to_ns(p->time);
+> +			int integer, decimal;
+> +
+> +			if (dt) {
+> +				integer = div64_u64(busy, dt);
+> +				busy -= integer * dt;
+> +				decimal = div64_u64(100 * busy, dt);
+> +			} else {
+> +				integer = 0;
+> +				decimal = 0;
+> +			}
+> +
+> +			GEM_BUG_ON(engine != p->engine);
+> +			pr_info("%s %5s: { count:%lu, busy:%d.%02d%%, runtime:%lldms, walltime:%lldms }\n",
+> +				name, engine->name, p->count, integer, decimal,
+> +				div_u64(p->runtime, 1000 * 1000),
+> +				div_u64(ktime_to_ns(p->time), 1000 * 1000));
+> +			idx++;
+> +		}
+> +	}
+> +
+> +	cpu_latency_qos_remove_request(&qos);
+> +	kfree(engines);
+> +	return err;
+> +}
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
