@@ -1,62 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14E81B5FED
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:53:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE3F1B4D20
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 21:13:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCE76E90F;
-	Thu, 23 Apr 2020 15:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1E46E082;
+	Wed, 22 Apr 2020 19:13:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 900 seconds by postgrey-1.36 at gabe;
- Wed, 22 Apr 2020 19:24:11 UTC
-Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
- [216.228.121.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 802E06E07D
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 19:24:11 +0000 (UTC)
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5ea095e20001>; Wed, 22 Apr 2020 12:07:14 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate102.nvidia.com (PGP Universal service);
- Wed, 22 Apr 2020 12:09:10 -0700
-X-PGP-Universal: processed;
- by hqpgpgate102.nvidia.com on Wed, 22 Apr 2020 12:09:10 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 22 Apr
- 2020 19:09:10 +0000
-Received: from rcampbell-dev.nvidia.com (172.20.13.39) by
- DRHQMAIL107.nvidia.com (10.27.9.16) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Wed, 22 Apr 2020 19:09:09 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>
-References: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
-X-Nvconfidentiality: public
-From: Ralph Campbell <rcampbell@nvidia.com>
-Message-ID: <17ce2fdc-4f9f-7772-c10c-6f339a4183e8@nvidia.com>
-Date: Wed, 22 Apr 2020 12:09:09 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 016826E082;
+ Wed, 22 Apr 2020 19:13:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EDE9EA0BA8;
+ Wed, 22 Apr 2020 19:13:49 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1587582434; bh=Ibr26mSSlFN5k8tPbVlsbPzYkk2ONJQVn8RAtNIyK9E=;
- h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=SYRCFRSghsuA1oPUGpaSrThd5bs4yjq3+gWlxe7OKwNdoqB2UOa004VsS8/Lr697y
- CWlieyjD7XPQ253DIjhDdL01VtVsGtzGEvoQqDO6lPiZ5CYv0eWmptUvjs6CnBqvRa
- 4hoTO4QeEmS2vafuYzVQSMQMrQxnk3yoAyIRHCI99P9Mgj2uvXuKNUDzqFBGyVCZml
- JGQm9m8ACFaaebFyqUIUXiOiwj4oGw/DQEJJc0XtF3If903YGzmV0z3IE+sqd6zM9+
- KnxSL5/RF+iYX9gU+gjf3WtClWhx9GpAdGYAifxagOljqMjx/EX9krpg30i0tS21KU
- UXh/u9XgjPkgw==
-X-Mailman-Approved-At: Thu, 23 Apr 2020 15:53:41 +0000
-Subject: Re: [Intel-gfx] [PATCH hmm 0/5] Adjust hmm_range_fault() API
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Wed, 22 Apr 2020 19:13:49 -0000
+Message-ID: <158758282994.5177.7700797711899102639@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20200421131633.8246-1-mika.kuoppala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Make_define_for_lrc_sta?=
+ =?utf-8?q?te_offset_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +39,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, John Hubbard <jhubbard@nvidia.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 4/21/20 5:21 PM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> The API is a bit complicated for the uses we actually have, and
-> disucssions for simplifying have come up a number of times.
-> 
-> This small series removes the customizable pfn format and simplifies the
-> return code of hmm_range_fault()
-> 
-> All the drivers are adjusted to process in the simplified format.
-> I would appreciated tested-by's for the two drivers, thanks!
+Series: series starting with [1/5] drm/i915: Make define for lrc state offset (rev4)
+URL   : https://patchwork.freedesktop.org/series/76262/
+State : success
 
-For nouveau you can add:
-Tested-by: Ralph Campbell <rcampbell@nvidia.com>
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8350 -> Patchwork_17427
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17427/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17427 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@vma:
+    - fi-ivb-3770:        [PASS][1] -> [FAIL][2] ([i915#1763])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-ivb-3770/igt@i915_selftest@live@vma.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17427/fi-ivb-3770/igt@i915_selftest@live@vma.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][3] ([i915#62]) -> [SKIP][4] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17427/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-icl-dsi 
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8350 -> Patchwork_17427
+
+  CI-20190529: 20190529
+  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17427: 59f9b8f7d8123fa150ece73377ff7a47999086fa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+59f9b8f7d812 drm/i915: Split ctx timestamp selftest into two
+1e6c4b4767e2 drm/i915: Use indirect ctx bb to mend CMD_BUF_CCTL
+8d954c6be360 drm/i915: Add live selftests for indirect ctx batchbuffers
+47e9e54a1306 drm/i915: Add per ctx batchbuffer wa for timestamp
+c89bc59fae80 drm/i915: Make define for lrc state offset
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17427/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
