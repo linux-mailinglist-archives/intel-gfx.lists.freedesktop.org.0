@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4BE1B3936
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:42:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A09201B3972
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:53:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A50706E347;
-	Wed, 22 Apr 2020 07:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 055536E9E8;
+	Wed, 22 Apr 2020 07:53:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F351C6E347
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:42:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20979318-1500050 
- for multiple; Wed, 22 Apr 2020 08:42:04 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Apr 2020 08:42:03 +0100
-Message-Id: <20200422074203.9799-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200422073715.11770-1-chris@chris-wilson.co.uk>
-References: <20200422073715.11770-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 782F36E9E8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:53:54 +0000 (UTC)
+IronPort-SDR: HaRDtHjji4vKlIoOYtbCBqE7p8oz9ckmVLwwvTIZU94U2lvi7k2Ug4c7JuBNAWJeMdQwl4D3bd
+ uN6iB7tj7i3g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 00:53:53 -0700
+IronPort-SDR: PKQofkSVPCrgbtYjPkpq2wSRjHo0t8WvrgqKi14D7rB17NXmraykAQ/1uyWrahcwQpiEZpDAFE
+ qZTx+ZtuO2ew==
+X-IronPort-AV: E=Sophos;i="5.72,412,1580803200"; d="scan'208";a="429820914"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 00:53:52 -0700
+Date: Wed, 22 Apr 2020 10:50:22 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200422075022.GA28628@intel.com>
+References: <20200420111416.23550-1-stanislav.lisovskiy@intel.com>
+ <20200420111416.23550-3-stanislav.lisovskiy@intel.com>
+ <20200421160038.GC6112@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Add request throughput
- measurement to perf
+Content-Disposition: inline
+In-Reply-To: <20200421160038.GC6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v25 2/8] drm/i915: Use bw state for per crtc
+ SAGV evaluation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,640 +50,365 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Under ideal circumstances, the driver should be able to keep the GPU
-fully saturated with work. Measure how close to ideal we get under the
-harshest of conditions with no user payload.
+On Tue, Apr 21, 2020 at 07:00:38PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Mon, Apr 20, 2020 at 02:14:10PM +0300, Stanislav Lisovskiy wrote:
+> > Future platforms require per-crtc SAGV evaluation
+> > and serializing global state when those are changed
+> > from different commits.
+> > =
 
-v2: Also measure throughput using only one thread.
+> > v2: - Add has_sagv check to intel_crtc_can_enable_sagv
+> >       so that it sets bit in reject mask.
+> >     - Use bw_state in intel_pre/post_plane_enable_sagv
+> >       instead of atomic state
+> > =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
- drivers/gpu/drm/i915/selftests/i915_request.c | 580 +++++++++++++++++-
- 2 files changed, 580 insertions(+), 1 deletion(-)
+> > v3: - Fixed rebase conflict, now using
+> >       intel_atomic_crtc_state_for_each_plane_state in
+> >       order to call it from atomic check
+> > v4: - Use fb modifier from plane state
+> > =
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-index 3bf7f53e9924..d8da142985eb 100644
---- a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-+++ b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-@@ -16,5 +16,6 @@
-  * Tests are executed in order by igt/i915_selftest
-  */
- selftest(engine_cs, intel_engine_cs_perf_selftests)
-+selftest(request, i915_request_perf_selftests)
- selftest(blt, i915_gem_object_blt_perf_selftests)
- selftest(region, intel_memory_region_perf_selftests)
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 1dab0360f76a..3b319c0953cb 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <linux/prime_numbers.h>
-+#include <linux/pm_qos.h>
- 
- #include "gem/i915_gem_pm.h"
- #include "gem/selftests/mock_context.h"
-@@ -1239,7 +1240,7 @@ static int live_parallel_engines(void *arg)
- 		struct igt_live_test t;
- 		unsigned int idx;
- 
--		snprintf(name, sizeof(name), "%ps", fn);
-+		snprintf(name, sizeof(name), "%ps", *fn);
- 		err = igt_live_test_begin(&t, i915, __func__, name);
- 		if (err)
- 			break;
-@@ -1476,3 +1477,580 @@ int i915_request_live_selftests(struct drm_i915_private *i915)
- 
- 	return i915_subtests(tests, i915);
- }
-+
-+static int switch_to_kernel_sync(struct intel_context *ce, int err)
-+{
-+	struct i915_request *rq;
-+	struct dma_fence *fence;
-+
-+	rq = intel_engine_create_kernel_request(ce->engine);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	fence = i915_active_fence_get(&ce->timeline->last_request);
-+	if (fence) {
-+		i915_request_await_dma_fence(rq, fence);
-+		dma_fence_put(fence);
-+	}
-+
-+	rq = i915_request_get(rq);
-+	i915_request_add(rq);
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0 && !err)
-+		err = -ETIME;
-+	i915_request_put(rq);
-+
-+	while (!err && !intel_engine_is_idle(ce->engine))
-+		intel_engine_flush_submission(ce->engine);
-+
-+	return err;
-+}
-+
-+struct perf_stats {
-+	struct intel_engine_cs *engine;
-+	unsigned long count;
-+	ktime_t time;
-+	ktime_t busy;
-+	u64 runtime;
-+};
-+
-+struct perf_series {
-+	struct drm_i915_private *i915;
-+	unsigned int nengines;
-+	struct intel_context *ce[];
-+};
-+
-+static int s_sync0(void *arg)
-+{
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
-+	unsigned int idx = 0;
-+	int err = 0;
-+
-+	GEM_BUG_ON(!ps->nengines);
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ps->ce[idx]);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(rq);
-+		if (err)
-+			break;
-+
-+		if (++idx == ps->nengines)
-+			idx = 0;
-+	} while (!__igt_timeout(end_time, NULL));
-+
-+	return err;
-+}
-+
-+static int s_sync1(void *arg)
-+{
-+	struct perf_series *ps = arg;
-+	struct i915_request *prev = NULL;
-+	IGT_TIMEOUT(end_time);
-+	unsigned int idx = 0;
-+	int err = 0;
-+
-+	GEM_BUG_ON(!ps->nengines);
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ps->ce[idx]);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		if (prev && i915_request_wait(prev, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(prev);
-+		prev = rq;
-+		if (err)
-+			break;
-+
-+		if (++idx == ps->nengines)
-+			idx = 0;
-+	} while (!__igt_timeout(end_time, NULL));
-+	i915_request_put(prev);
-+
-+	return err;
-+}
-+
-+static int s_many(void *arg)
-+{
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
-+	unsigned int idx = 0;
-+
-+	GEM_BUG_ON(!ps->nengines);
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ps->ce[idx]);
-+		if (IS_ERR(rq))
-+			return PTR_ERR(rq);
-+
-+		i915_request_add(rq);
-+
-+		if (++idx == ps->nengines)
-+			idx = 0;
-+	} while (!__igt_timeout(end_time, NULL));
-+
-+	return 0;
-+}
-+
-+static int perf_series_engines(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-+		s_sync0,
-+		s_sync1,
-+		s_many,
-+		NULL,
-+	};
-+	const unsigned int nengines = num_uabi_engines(i915);
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-+	struct pm_qos_request qos;
-+	struct perf_stats *stats;
-+	struct perf_series *ps;
-+	unsigned int idx;
-+	int err = 0;
-+
-+	stats = kcalloc(nengines, sizeof(*stats), GFP_KERNEL);
-+	if (!stats)
-+		return -ENOMEM;
-+
-+	ps = kzalloc(struct_size(ps, ce, nengines), GFP_KERNEL);
-+	if (!ps) {
-+		kfree(stats);
-+		return -ENOMEM;
-+	}
-+
-+	cpu_latency_qos_add_request(&qos, 0); /* disable cstates */
-+
-+	ps->i915 = i915;
-+	ps->nengines = nengines;
-+
-+	idx = 0;
-+	for_each_uabi_engine(engine, i915) {
-+		struct intel_context *ce;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			goto out;
-+
-+		err = intel_context_pin(ce);
-+		if (err) {
-+			intel_context_put(ce);
-+			goto out;
-+		}
-+
-+		ps->ce[idx++] = ce;
-+	}
-+	GEM_BUG_ON(idx != ps->nengines);
-+
-+	for (fn = func; *fn && !err; fn++) {
-+		char name[KSYM_NAME_LEN];
-+		struct igt_live_test t;
-+
-+		snprintf(name, sizeof(name), "%ps", *fn);
-+		err = igt_live_test_begin(&t, i915, __func__, name);
-+		if (err)
-+			break;
-+
-+		for (idx = 0; idx < nengines; idx++) {
-+			struct perf_stats *p =
-+				memset(&stats[idx], 0, sizeof(stats[idx]));
-+			struct intel_context *ce = ps->ce[idx];
-+
-+			p->engine = ps->ce[idx]->engine;
-+			intel_engine_pm_get(p->engine);
-+
-+			if (intel_engine_supports_stats(p->engine) &&
-+			    !intel_enable_engine_stats(p->engine))
-+				p->busy = intel_engine_get_busy_time(p->engine) + 1;
-+			p->runtime = -intel_context_get_total_runtime_ns(ce);
-+			p->time = ktime_get();
-+		}
-+
-+		err = (*fn)(ps);
-+		if (igt_live_test_end(&t))
-+			err = -EIO;
-+
-+		for (idx = 0; idx < nengines; idx++) {
-+			struct perf_stats *p = &stats[idx];
-+			struct intel_context *ce = ps->ce[idx];
-+			int integer, decimal;
-+			u64 busy, dt;
-+
-+			p->time = ktime_sub(ktime_get(), p->time);
-+			if (p->busy) {
-+				p->busy = ktime_sub(intel_engine_get_busy_time(p->engine),
-+						    p->busy - 1);
-+				intel_disable_engine_stats(p->engine);
-+			}
-+
-+			err = switch_to_kernel_sync(ce, err);
-+			p->runtime += intel_context_get_total_runtime_ns(ce);
-+			intel_engine_pm_put(p->engine);
-+
-+			busy = 100 * ktime_to_ns(p->busy);
-+			dt = ktime_to_ns(p->time);
-+			if (dt) {
-+				integer = div64_u64(busy, dt);
-+				busy -= integer * dt;
-+				decimal = div64_u64(100 * busy, dt);
-+			} else {
-+				integer = 0;
-+				decimal = 0;
-+			}
-+
-+			pr_info("%s %5s: { seqno:%d, busy:%d.%02d%%, runtime:%lldms, walltime:%lldms }\n",
-+				name, p->engine->name, ce->timeline->seqno,
-+				integer, decimal,
-+				div_u64(p->runtime, 1000 * 1000),
-+				div_u64(ktime_to_ns(p->time), 1000 * 1000));
-+		}
-+	}
-+
-+out:
-+	for (idx = 0; idx < nengines; idx++) {
-+		if (IS_ERR_OR_NULL(ps->ce[idx]))
-+			break;
-+
-+		intel_context_unpin(ps->ce[idx]);
-+		intel_context_put(ps->ce[idx]);
-+	}
-+	kfree(ps);
-+
-+	cpu_latency_qos_remove_request(&qos);
-+	kfree(stats);
-+	return err;
-+}
-+
-+static int p_sync0(void *arg)
-+{
-+	struct perf_stats *p = arg;
-+	struct intel_engine_cs *engine = p->engine;
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-+	unsigned long count;
-+	bool busy;
-+	int err = 0;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	err = intel_context_pin(ce);
-+	if (err) {
-+		intel_context_put(ce);
-+		return err;
-+	}
-+
-+	busy = false;
-+	if (intel_engine_supports_stats(engine) &&
-+	    !intel_enable_engine_stats(engine)) {
-+		p->busy = intel_engine_get_busy_time(engine);
-+		busy = true;
-+	}
-+
-+	p->time = ktime_get();
-+	count = 0;
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		err = 0;
-+		if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(rq);
-+		if (err)
-+			break;
-+
-+		count++;
-+	} while (!__igt_timeout(end_time, NULL));
-+	p->time = ktime_sub(ktime_get(), p->time);
-+
-+	if (busy) {
-+		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
-+				    p->busy);
-+		intel_disable_engine_stats(engine);
-+	}
-+
-+	err = switch_to_kernel_sync(ce, err);
-+	p->runtime = intel_context_get_total_runtime_ns(ce);
-+	p->count = count;
-+
-+	intel_context_unpin(ce);
-+	intel_context_put(ce);
-+	return err;
-+}
-+
-+static int p_sync1(void *arg)
-+{
-+	struct perf_stats *p = arg;
-+	struct intel_engine_cs *engine = p->engine;
-+	struct i915_request *prev = NULL;
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-+	unsigned long count;
-+	bool busy;
-+	int err = 0;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	err = intel_context_pin(ce);
-+	if (err) {
-+		intel_context_put(ce);
-+		return err;
-+	}
-+
-+	busy = false;
-+	if (intel_engine_supports_stats(engine) &&
-+	    !intel_enable_engine_stats(engine)) {
-+		p->busy = intel_engine_get_busy_time(engine);
-+		busy = true;
-+	}
-+
-+	p->time = ktime_get();
-+	count = 0;
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		err = 0;
-+		if (prev && i915_request_wait(prev, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(prev);
-+		prev = rq;
-+		if (err)
-+			break;
-+
-+		count++;
-+	} while (!__igt_timeout(end_time, NULL));
-+	i915_request_put(prev);
-+	p->time = ktime_sub(ktime_get(), p->time);
-+
-+	if (busy) {
-+		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
-+				    p->busy);
-+		intel_disable_engine_stats(engine);
-+	}
-+
-+	err = switch_to_kernel_sync(ce, err);
-+	p->runtime = intel_context_get_total_runtime_ns(ce);
-+	p->count = count;
-+
-+	intel_context_unpin(ce);
-+	intel_context_put(ce);
-+	return err;
-+}
-+
-+static int p_many(void *arg)
-+{
-+	struct perf_stats *p = arg;
-+	struct intel_engine_cs *engine = p->engine;
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-+	unsigned long count;
-+	int err = 0;
-+	bool busy;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	err = intel_context_pin(ce);
-+	if (err) {
-+		intel_context_put(ce);
-+		return err;
-+	}
-+
-+	busy = false;
-+	if (intel_engine_supports_stats(engine) &&
-+	    !intel_enable_engine_stats(engine)) {
-+		p->busy = intel_engine_get_busy_time(engine);
-+		busy = true;
-+	}
-+
-+	count = 0;
-+	p->time = ktime_get();
-+	do {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_add(rq);
-+		count++;
-+	} while (!__igt_timeout(end_time, NULL));
-+	p->time = ktime_sub(ktime_get(), p->time);
-+
-+	if (busy) {
-+		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
-+				    p->busy);
-+		intel_disable_engine_stats(engine);
-+	}
-+
-+	err = switch_to_kernel_sync(ce, err);
-+	p->runtime = intel_context_get_total_runtime_ns(ce);
-+	p->count = count;
-+
-+	intel_context_unpin(ce);
-+	intel_context_put(ce);
-+	return err;
-+}
-+
-+static int perf_parallel_engines(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-+		p_sync0,
-+		p_sync1,
-+		p_many,
-+		NULL,
-+	};
-+	const unsigned int nengines = num_uabi_engines(i915);
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-+	struct pm_qos_request qos;
-+	struct {
-+		struct perf_stats p;
-+		struct task_struct *tsk;
-+	} *engines;
-+	int err = 0;
-+
-+	engines = kcalloc(nengines, sizeof(*engines), GFP_KERNEL);
-+	if (!engines)
-+		return -ENOMEM;
-+
-+	cpu_latency_qos_add_request(&qos, 0);
-+
-+	for (fn = func; *fn; fn++) {
-+		char name[KSYM_NAME_LEN];
-+		struct igt_live_test t;
-+		unsigned int idx;
-+
-+		snprintf(name, sizeof(name), "%ps", *fn);
-+		err = igt_live_test_begin(&t, i915, __func__, name);
-+		if (err)
-+			break;
-+
-+		atomic_set(&i915->selftest.counter, nengines);
-+
-+		idx = 0;
-+		for_each_uabi_engine(engine, i915) {
-+			intel_engine_pm_get(engine);
-+
-+			memset(&engines[idx].p, 0, sizeof(engines[idx].p));
-+			engines[idx].p.engine = engine;
-+
-+			engines[idx].tsk = kthread_run(*fn, &engines[idx].p,
-+						       "igt:%s", engine->name);
-+			if (IS_ERR(engines[idx].tsk)) {
-+				err = PTR_ERR(engines[idx].tsk);
-+				intel_engine_pm_put(engine);
-+				break;
-+			}
-+			get_task_struct(engines[idx++].tsk);
-+		}
-+
-+		yield(); /* start all threads before we kthread_stop() */
-+
-+		idx = 0;
-+		for_each_uabi_engine(engine, i915) {
-+			int status;
-+
-+			if (IS_ERR(engines[idx].tsk))
-+				break;
-+
-+			status = kthread_stop(engines[idx].tsk);
-+			if (status && !err)
-+				err = status;
-+
-+			intel_engine_pm_put(engine);
-+			put_task_struct(engines[idx++].tsk);
-+		}
-+
-+		if (igt_live_test_end(&t))
-+			err = -EIO;
-+		if (err)
-+			break;
-+
-+		idx = 0;
-+		for_each_uabi_engine(engine, i915) {
-+			struct perf_stats *p = &engines[idx].p;
-+			u64 busy = 100 * ktime_to_ns(p->busy);
-+			u64 dt = ktime_to_ns(p->time);
-+			int integer, decimal;
-+
-+			if (dt) {
-+				integer = div64_u64(busy, dt);
-+				busy -= integer * dt;
-+				decimal = div64_u64(100 * busy, dt);
-+			} else {
-+				integer = 0;
-+				decimal = 0;
-+			}
-+
-+			GEM_BUG_ON(engine != p->engine);
-+			pr_info("%s %5s: { count:%lu, busy:%d.%02d%%, runtime:%lldms, walltime:%lldms }\n",
-+				name, engine->name, p->count, integer, decimal,
-+				div_u64(p->runtime, 1000 * 1000),
-+				div_u64(ktime_to_ns(p->time), 1000 * 1000));
-+			idx++;
-+		}
-+	}
-+
-+	cpu_latency_qos_remove_request(&qos);
-+	kfree(engines);
-+	return err;
-+}
-+
-+int i915_request_perf_selftests(struct drm_i915_private *i915)
-+{
-+	static const struct i915_subtest tests[] = {
-+		SUBTEST(perf_series_engines),
-+		SUBTEST(perf_parallel_engines),
-+	};
-+
-+	if (intel_gt_is_wedged(&i915->gt))
-+		return 0;
-+
-+	return i915_subtests(tests, i915);
-+}
--- 
-2.20.1
+> > v5: - Make intel_has_sagv static again(Ville)
+> >     - Removed unnecessary NULL assignments(Ville)
+> >     - Removed unnecessary SAGV debug(Ville)
+> >     - Call intel_compute_sagv_mask only for modesets(Ville)
+> >     - Serialize global state only if sagv results change, but
+> >       not mask itself(Ville)
+> > =
 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> > Cc: James Ausmus <james.ausmus@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.h |   6 ++
+> >  drivers/gpu/drm/i915/intel_pm.c         | 113 ++++++++++++++++++------
+> >  drivers/gpu/drm/i915/intel_pm.h         |   3 +-
+> >  3 files changed, 93 insertions(+), 29 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/=
+i915/display/intel_bw.h
+> > index ac004d6f4276..d6df91058223 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > @@ -18,6 +18,12 @@ struct intel_crtc_state;
+> >  struct intel_bw_state {
+> >  	struct intel_global_state base;
+> >  =
+
+> > +	/*
+> > +	 * Contains a bit mask, used to determine, whether correspondent
+> > +	 * pipe allows SAGV or not.
+> > +	 */
+> > +	u8 pipe_sagv_reject;
+> > +
+> >  	unsigned int data_rate[I915_MAX_PIPES];
+> >  	u8 num_active_planes[I915_MAX_PIPES];
+> >  };
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
+el_pm.c
+> > index b0810d76ad47..d06a1a3713ed 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -43,6 +43,7 @@
+> >  #include "i915_fixed.h"
+> >  #include "i915_irq.h"
+> >  #include "i915_trace.h"
+> > +#include "display/intel_bw.h"
+> >  #include "intel_pm.h"
+> >  #include "intel_sideband.h"
+> >  #include "../../../platform/x86/intel_ips.h"
+> > @@ -3760,34 +3761,75 @@ intel_disable_sagv(struct drm_i915_private *dev=
+_priv)
+> >  void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +	const struct intel_bw_state *new_bw_state;
+> >  =
+
+> > -	if (!intel_can_enable_sagv(state))
+> > +	/*
+> > +	 * Just return if we can't control SAGV or don't have it.
+> > +	 * This is different from situation when we have SAGV but just can't
+> > +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> > +	 * disabled in a BIOS, we are not even allowed to send a PCode reques=
+t,
+> > +	 * as it will throw an error. So have to check it here.
+> > +	 */
+> > +	if (!intel_has_sagv(dev_priv))
+> > +		return;
+> > +
+> > +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> > +	if (!new_bw_state)
+> > +		return;
+> > +
+> > +	if (!intel_can_enable_sagv(new_bw_state))
+> >  		intel_disable_sagv(dev_priv);
+> >  }
+> >  =
+
+> >  void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +	const struct intel_bw_state *new_bw_state;
+> >  =
+
+> > -	if (intel_can_enable_sagv(state))
+> > +	/*
+> > +	 * Just return if we can't control SAGV or don't have it.
+> > +	 * This is different from situation when we have SAGV but just can't
+> > +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> > +	 * disabled in a BIOS, we are not even allowed to send a PCode reques=
+t,
+> > +	 * as it will throw an error. So have to check it here.
+> > +	 */
+> > +	if (!intel_has_sagv(dev_priv))
+> > +		return;
+> > +
+> > +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> > +	if (!new_bw_state)
+> > +		return;
+> > +
+> > +	if (intel_can_enable_sagv(new_bw_state))
+> >  		intel_enable_sagv(dev_priv);
+> >  }
+> >  =
+
+> >  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *=
+crtc_state)
+> >  {
+> > -	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> > -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state=
+->uapi.state);
+> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> >  	struct intel_plane *plane;
+> > +	const struct intel_plane_state *plane_state;
+> >  	int level, latency;
+> >  =
+
+> > +	if (!intel_has_sagv(dev_priv))
+> > +		return false;
+> > +
+> >  	if (!crtc_state->hw.active)
+> >  		return true;
+> >  =
+
+> > +	/*
+> > +	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > +	 * more then one pipe enabled
+> > +	 */
+> > +	if (hweight8(state->active_pipes) > 1)
+> > +		return false;
+> > +
+> >  	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> >  		return false;
+> >  =
+
+> > -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> > +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, crtc=
+_state) {
+> >  		const struct skl_plane_wm *wm =3D
+> >  			&crtc_state->wm.skl.optimal.planes[plane->id];
+> >  =
+
+> > @@ -3803,7 +3845,7 @@ static bool intel_crtc_can_enable_sagv(const stru=
+ct intel_crtc_state *crtc_state
+> >  		latency =3D dev_priv->wm.skl_latency[level];
+> >  =
+
+> >  		if (skl_needs_memory_bw_wa(dev_priv) &&
+> > -		    plane->base.state->fb->modifier =3D=3D
+> > +		    plane_state->uapi.fb->modifier =3D=3D
+> >  		    I915_FORMAT_MOD_X_TILED)
+> >  			latency +=3D 15;
+> >  =
+
+> > @@ -3819,35 +3861,44 @@ static bool intel_crtc_can_enable_sagv(const st=
+ruct intel_crtc_state *crtc_state
+> >  	return true;
+> >  }
+> >  =
+
+> > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > +bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+> >  {
+> > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +	return bw_state->pipe_sagv_reject =3D=3D 0;
+> > +}
+> > +
+> > +static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+> > +{
+> > +	int ret;
+> >  	struct intel_crtc *crtc;
+> > -	const struct intel_crtc_state *crtc_state;
+> > -	enum pipe pipe;
+> > +	struct intel_crtc_state *new_crtc_state;
+> > +	struct intel_bw_state *new_bw_state =3D NULL;
+> > +	const struct intel_bw_state *old_bw_state =3D NULL;
+> > +	int i;
+> >  =
+
+> > -	if (!intel_has_sagv(dev_priv))
+> > -		return false;
+> > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > +					 new_crtc_state, i) {
+> > +		new_bw_state =3D intel_atomic_get_bw_state(state);
+> > +		if (IS_ERR(new_bw_state))
+> > +			return PTR_ERR(new_bw_state);
+> >  =
+
+> > -	/*
+> > -	 * If there are no active CRTCs, no additional checks need be perform=
+ed
+> > -	 */
+> > -	if (hweight8(state->active_pipes) =3D=3D 0)
+> > -		return true;
+> > +		old_bw_state =3D intel_atomic_get_old_bw_state(state);
+> >  =
+
+> > -	/*
+> > -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > -	 * more then one pipe enabled
+> > -	 */
+> > -	if (hweight8(state->active_pipes) > 1)
+> > -		return false;
+> > +		if (intel_crtc_can_enable_sagv(new_crtc_state))
+> > +			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+> > +		else
+> > +			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> > +	}
+> >  =
+
+> > -	/* Since we're now guaranteed to only have one active CRTC... */
+> > -	pipe =3D ffs(state->active_pipes) - 1;
+> > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > +	if (!new_bw_state)
+> > +		return 0;
+> >  =
+
+> > -	return intel_crtc_can_enable_sagv(crtc_state);
+> > +	if (intel_can_enable_sagv(new_bw_state) !=3D intel_can_enable_sagv(ol=
+d_bw_state)) {
+> =
+
+> Missing the lock_global_state() for the old_maks !=3D new_mask case.
+> Otherwise seems fine.
+
+Yep, however most likely if SAGV state had changed, allowed qgv points will=
+ change
+and then you'll have to serialize commits anyway.
+
+> =
+
+> Now I believe we need to separate state->modeset from sag, as I
+> mentioned in the previous review. Please take care of that stuff
+> before we continue with the rest of this series.
+
+Ah it's this active_pipes discussion again.. So the problem is that
+we set active_pipes only for modeset commits as I understand.
+
+One thing which worries me here, is that duplication of active_pipes
+in semantically different states seems redundant imo, i.e the more
+states like bw_state, cdclk_state, dbuf_state and etc you are going
+to introduce - the more this duplication will happen. =
+
+
+I think what is missing here(I mentioned this also in dbuf review)
+is that we need a separate state containing active pipes, which can
+be then queried, each time we need to get active_pipes.
+
+In order to separate SAGV from modeset to use active_pipes, we basically
+need to populate active pipes in a non-modeset commits, as we can't just
+read it from dev_priv right away, we simply need one more global state
+object containing this, which we can query just the same way we do for
+cdclk_state and bw_state. I.e you just have one crtc lock grabbed and
+copy this old global state to new state.
+
+This would eliminate the need in duplicating that field in other states,
+also reducing probability of some issues with that duplication.
+
+Not sure, may be there are some arguments, why we have to duplicate it
+-  at least would like to know those then :D
+
+IMO idea to split global state into a pool of separately maintainable objec=
+ts
+was great - this brings much more flexibility to driver code, so lets
+utilize this.
+
+
+
+Stan
+
+
+> =
+
+> > +		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> >  }
+> >  =
+
+> >  /*
+> > @@ -5860,6 +5911,12 @@ skl_compute_wm(struct intel_atomic_state *state)
+> >  	if (ret)
+> >  		return ret;
+> >  =
+
+> > +	if (state->modeset) {
+> > +		ret =3D intel_compute_sagv_mask(state);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >  	/*
+> >  	 * skl_compute_ddb() will have adjusted the final watermarks
+> >  	 * based on how much ddb is available. Now we can actually
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/int=
+el_pm.h
+> > index 9a6036ab0f90..fd1dc422e6c5 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.h
+> > +++ b/drivers/gpu/drm/i915/intel_pm.h
+> > @@ -9,6 +9,7 @@
+> >  #include <linux/types.h>
+> >  =
+
+> >  #include "i915_reg.h"
+> > +#include "display/intel_bw.h"
+> >  =
+
+> >  struct drm_device;
+> >  struct drm_i915_private;
+> > @@ -41,7 +42,7 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+> >  			      struct skl_pipe_wm *out);
+> >  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+> >  void vlv_wm_sanitize(struct drm_i915_private *dev_priv);
+> > -bool intel_can_enable_sagv(struct intel_atomic_state *state);
+> > +bool intel_can_enable_sagv(const struct intel_bw_state *bw_state);
+> >  int intel_enable_sagv(struct drm_i915_private *dev_priv);
+> >  int intel_disable_sagv(struct drm_i915_private *dev_priv);
+> >  void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
+> > -- =
+
+> > 2.24.1.485.gad05a3d8e5
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
