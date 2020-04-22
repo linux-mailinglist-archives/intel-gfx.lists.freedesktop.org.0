@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3DE1B3FD6
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 12:41:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4491B3FD4
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 12:41:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 412FD6E3C7;
-	Wed, 22 Apr 2020 10:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDF86E3C1;
+	Wed, 22 Apr 2020 10:41:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFE76E3C1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F6106E3C6
  for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 10:41:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20981799-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20981800-1500050 
  for multiple; Wed, 22 Apr 2020 11:41:03 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Apr 2020 11:41:01 +0100
-Message-Id: <20200422104102.3598368-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Apr 2020 11:41:02 +0100
+Message-Id: <20200422104102.3598368-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200422104102.3598368-1-chris@chris-wilson.co.uk>
+References: <20200422104102.3598368-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_exec_balancer: Kick tasklets
- harder
+Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/gem_ctx_persistence: Give the
+ CPU scheduler a kick on timeouts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,131 +45,143 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tasklet scheduling can unfortunately be quite predicated. Where we are
-only caring about workload distribution and not initial execution
-latency (see kick_kthreads), make that kick more precise.
+We have allowed the CPU 2s to process the hang and cleanup; but clearly
+this is not always enough. Let's just give the CPU one last kick before
+declaring that we have an issue, to try and be sure that we have a bug
+to fix before worrying.
 
+References: https://gitlab.freedesktop.org/drm/intel/issues/1528
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- lib/igt_debugfs.h              |  7 +++++++
- tests/i915/gem_exec_balancer.c | 28 +++++++++++++++++-----------
- 2 files changed, 24 insertions(+), 11 deletions(-)
+ tests/i915/gem_ctx_persistence.c | 43 ++++++++++++++++++++++----------
+ 1 file changed, 30 insertions(+), 13 deletions(-)
 
-diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h
-index 7d1a6175e..768341387 100644
---- a/lib/igt_debugfs.h
-+++ b/lib/igt_debugfs.h
-@@ -181,6 +181,13 @@ void igt_require_hpd_storm_ctl(int fd);
-  * which will flush any RCU callbacks and deferred tasks.
-  */
- #define DROP_RCU 0x200
-+/**
-+ * DROP_TASKLETS:
-+ *
-+ * Flushes the softirq tasklets on each CPU, such as used by the execution
-+ * threads.
-+ */
-+#define DROP_TASKLETS 0x400
- /**
-  * DROP_ALL:
-  *
-diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-index e9a893e90..9ec5a146e 100644
---- a/tests/i915/gem_exec_balancer.c
-+++ b/tests/i915/gem_exec_balancer.c
-@@ -24,6 +24,7 @@
- #include <sched.h>
- 
- #include "igt.h"
-+#include "igt_debugfs.h"
- #include "igt_gt.h"
- #include "igt_perf.h"
- #include "i915/gem_ring.h"
-@@ -405,17 +406,20 @@ static void invalid_bonds(int i915)
- 	gem_context_destroy(i915, p.ctx_id);
+diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+index 3d52987d1..dea62fa38 100644
+--- a/tests/i915/gem_ctx_persistence.c
++++ b/tests/i915/gem_ctx_persistence.c
+@@ -55,11 +55,21 @@ static void cleanup(int i915)
+ 	igt_require_gem(i915);
  }
  
--static void kick_kthreads(void)
+-static int wait_for_status(int fence, int timeout)
 +static void kick_kthreads(int i915)
++{
++	/* Give the *CPU* scheduler a kick! */
++	igt_drop_caches_set(i915, DROP_TASKLETS);
++}
++
++static int wait_for_status(int i915, int fence, int timeout)
  {
--	usleep(20 * 1000); /* 20ms should be enough for ksoftirqd! */
-+	if (igt_drop_caches_has(i915, DROP_TASKLETS))
-+		igt_drop_caches_set(i915, DROP_TASKLETS);
-+	else
-+		usleep(20 * 1000); /* 20ms should be enough for ksoftirqd! */
- }
+ 	int err;
  
--static double measure_load(int pmu, int period_us)
-+static double measure_load(int i915, int pmu, int period_us)
- {
- 	uint64_t data[2];
- 	uint64_t d_t, d_v;
+ 	err = sync_fence_wait(fence, timeout);
++	if (err == -ETIME) {
++		kick_kthreads(i915);
++		err = sync_fence_wait(fence, timeout);
++	}
+ 	if (err)
+ 		return err;
  
--	kick_kthreads();
-+	kick_kthreads(i915);
+@@ -250,8 +260,8 @@ static void test_nonpersistent_mixed(int i915, unsigned int engine)
+ 	}
  
- 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
- 	d_v = -data[0];
-@@ -430,13 +434,14 @@ static double measure_load(int pmu, int period_us)
- 	return d_v / (double)d_t;
- }
+ 	/* Outer pair of contexts were non-persistent and killed */
+-	igt_assert_eq(wait_for_status(fence[0], reset_timeout_ms), -EIO);
+-	igt_assert_eq(wait_for_status(fence[2], reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, fence[0], reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, fence[2], reset_timeout_ms), -EIO);
  
--static double measure_min_load(int pmu, unsigned int num, int period_us)
-+static double
-+measure_min_load(int i915, int pmu, unsigned int num, int period_us)
- {
- 	uint64_t data[2 + num];
- 	uint64_t d_t, d_v[num];
- 	uint64_t min = -1, max = 0;
+ 	/* But the middle context is still running */
+ 	igt_assert_eq(sync_fence_wait(fence[1], 0), -ETIME);
+@@ -440,7 +450,8 @@ static void test_nonpersistent_file(int i915)
+ 	close(i915);
+ 	flush_delayed_fput(debugfs);
  
--	kick_kthreads();
-+	kick_kthreads(i915);
+-	igt_assert_eq(wait_for_status(spin->out_fence, reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, spin->out_fence, reset_timeout_ms),
++		      -EIO);
  
- 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
- 	for (unsigned int n = 0; n < num; n++)
-@@ -464,12 +469,13 @@ static double measure_min_load(int pmu, unsigned int num, int period_us)
- 	return min / (double)d_t;
- }
+ 	spin->handle = 0;
+ 	igt_spin_free(-1, spin);
+@@ -478,8 +489,10 @@ static void test_nonpersistent_queued(int i915, unsigned int engine)
  
--static void measure_all_load(int pmu, double *v, unsigned int num, int period_us)
-+static void
-+measure_all_load(int i915, int pmu, double *v, unsigned int num, int period_us)
- {
- 	uint64_t data[2 + num];
- 	uint64_t d_t, d_v[num];
+ 	gem_context_destroy(i915, ctx);
  
--	kick_kthreads();
-+	kick_kthreads(i915);
+-	igt_assert_eq(wait_for_status(spin->out_fence, reset_timeout_ms), -EIO);
+-	igt_assert_eq(wait_for_status(fence, reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, spin->out_fence, reset_timeout_ms),
++		      -EIO);
++	igt_assert_eq(wait_for_status(i915, fence, reset_timeout_ms),
++		      -EIO);
  
- 	igt_assert_eq(read(pmu, data, sizeof(data)), sizeof(data));
- 	for (unsigned int n = 0; n < num; n++)
-@@ -527,7 +533,7 @@ static void check_individual_engine(int i915,
- 						  ci[idx].engine_instance));
- 
- 	spin = igt_spin_new(i915, .ctx = ctx, .engine = idx + 1);
--	load = measure_load(pmu, 10000);
-+	load = measure_load(i915, pmu, 10000);
  	igt_spin_free(i915, spin);
+ }
+@@ -554,7 +567,7 @@ static void test_process(int i915)
+ 	fence = recvfd(sv[1]);
+ 	close(sv[1]);
  
- 	close(pmu);
-@@ -676,7 +682,7 @@ static void bonded(int i915, unsigned int flags)
- 				igt_spin_free(i915, plug);
- 			}
+-	igt_assert_eq(wait_for_status(fence, reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, fence, reset_timeout_ms), -EIO);
+ 	close(fence);
  
--			measure_all_load(pmu[0], v, limit + 1, 10000);
-+			measure_all_load(i915, pmu[0], v, limit + 1, 10000);
- 			igt_spin_free(i915, spin);
+ 	/* We have to manually clean up the orphaned spinner */
+@@ -607,7 +620,7 @@ static void test_process_mixed(int pfd, unsigned int engine)
+ 	close(sv[1]);
  
- 			igt_assert_f(v[bond] > 0.90,
-@@ -1512,7 +1518,7 @@ static void full(int i915, unsigned int flags)
- 			close(fence);
- 		}
+ 	/* First fence is non-persistent, so should be reset */
+-	igt_assert_eq(wait_for_status(fence[0], reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(pfd, fence[0], reset_timeout_ms), -EIO);
+ 	close(fence[0]);
  
--		load = measure_min_load(pmu[0], count, 10000);
-+		load = measure_min_load(i915, pmu[0], count, 10000);
- 		igt_spin_free(i915, spin);
+ 	/* Second fence is persistent, so should be still spinning */
+@@ -677,11 +690,12 @@ test_saturated_hostile(int i915, const struct intel_execution_engine2 *engine)
+ 	gem_context_destroy(i915, ctx);
  
- 		close(pmu[0]);
+ 	/* Hostile request requires a GPU reset to terminate */
+-	igt_assert_eq(wait_for_status(spin->out_fence, reset_timeout_ms), -EIO);
++	igt_assert_eq(wait_for_status(i915, spin->out_fence, reset_timeout_ms),
++		      -EIO);
+ 
+ 	/* All other spinners should be left unharmed */
+ 	gem_quiescent_gpu(i915);
+-	igt_assert_eq(wait_for_status(fence, reset_timeout_ms), 1);
++	igt_assert_eq(wait_for_status(i915, fence, reset_timeout_ms), 1);
+ 	close(fence);
+ }
+ 
+@@ -746,7 +760,7 @@ static void test_processes(int i915)
+ 
+ 		if (i == 0) {
+ 			/* First fence is non-persistent, so should be reset */
+-			igt_assert_eq(wait_for_status(fence, reset_timeout_ms),
++			igt_assert_eq(wait_for_status(i915, fence, reset_timeout_ms),
+ 				      -EIO);
+ 		} else {
+ 			/* Second fence is persistent, so still spinning */
+@@ -790,10 +804,12 @@ static void __smoker(int i915,
+ 
+ 	igt_spin_end(spin);
+ 
+-	igt_assert_eq(wait_for_status(spin->out_fence, timeout), expected);
++	igt_assert_eq(wait_for_status(i915, spin->out_fence, timeout),
++		      expected);
+ 
+ 	if (fence != -1) {
+-		igt_assert_eq(wait_for_status(fence, timeout), expected);
++		igt_assert_eq(wait_for_status(i915, fence, timeout),
++			      expected);
+ 		close(fence);
+ 	}
+ 
+@@ -987,6 +1003,7 @@ static void close_replace_race(int i915)
+ 	close(out[1]);
+ 
+ 	if (sync_fence_wait(fence, MSEC_PER_SEC / 2)) {
++		kick_kthreads(i915);
+ 		igt_debugfs_dump(i915, "i915_engine_info");
+ 		igt_assert(sync_fence_wait(fence, MSEC_PER_SEC / 2) == 0);
+ 	}
 -- 
 2.26.2
 
