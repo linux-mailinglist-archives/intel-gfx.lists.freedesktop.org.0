@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002401B4A69
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 18:26:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7983C1B4AAF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 18:38:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 517756EA36;
-	Wed, 22 Apr 2020 16:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296936EA2D;
+	Wed, 22 Apr 2020 16:38:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B6B4F6EA32;
- Wed, 22 Apr 2020 16:26:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AFD82A0019;
- Wed, 22 Apr 2020 16:26:13 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60C66E0B9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 16:38:15 +0000 (UTC)
+IronPort-SDR: mI2nvLVDUBqbIUr2JXb2foxi3EctEd+vL0Nbjk10uRuMTybtLrMnmvkUAHIiUmETrGVGbS75b/
+ 2lW1tQbO3qrg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 09:38:14 -0700
+IronPort-SDR: U/EwGaMqNsBN9tIXsr1gof/O5w4/b5pbGzbfP6zS5aMSMHbF6PW9DH4JRdnnVphawxDA0Lsg9U
+ wLBqdEW+IKwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,304,1583222400"; d="scan'208";a="334680997"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 22 Apr 2020 09:38:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 Apr 2020 19:38:10 +0300
+Date: Wed, 22 Apr 2020 19:38:10 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200422163810.GD6112@intel.com>
+References: <20200420111416.23550-1-stanislav.lisovskiy@intel.com>
+ <20200420111416.23550-3-stanislav.lisovskiy@intel.com>
+ <20200421160038.GC6112@intel.com>
+ <20200422075022.GA28628@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: bhanuprakash.modem@intel.com
-Date: Wed, 22 Apr 2020 16:26:13 -0000
-Message-ID: <158757277369.5178.2867217614990485996@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422110733.28635-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20200422110733.28635-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv5=2C1/3=5D_drm/dp=3A_DRM_DP_helper_for_re?=
- =?utf-8?q?ading_Ignore_MSA_from_DPCD?=
+Content-Disposition: inline
+In-Reply-To: <20200422075022.GA28628@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v25 2/8] drm/i915: Use bw state for per crtc
+ SAGV evaluation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,201 +54,321 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 22, 2020 at 10:50:22AM +0300, Lisovskiy, Stanislav wrote:
+> On Tue, Apr 21, 2020 at 07:00:38PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Mon, Apr 20, 2020 at 02:14:10PM +0300, Stanislav Lisovskiy wrote:
+> > > Future platforms require per-crtc SAGV evaluation
+> > > and serializing global state when those are changed
+> > > from different commits.
+> > > =
 
-Series: series starting with [v5,1/3] drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-URL   : https://patchwork.freedesktop.org/series/76328/
-State : success
+> > > v2: - Add has_sagv check to intel_crtc_can_enable_sagv
+> > >       so that it sets bit in reject mask.
+> > >     - Use bw_state in intel_pre/post_plane_enable_sagv
+> > >       instead of atomic state
+> > > =
 
-== Summary ==
+> > > v3: - Fixed rebase conflict, now using
+> > >       intel_atomic_crtc_state_for_each_plane_state in
+> > >       order to call it from atomic check
+> > > v4: - Use fb modifier from plane state
+> > > =
 
-CI Bug Log - changes from CI_DRM_8348_full -> Patchwork_17419_full
-====================================================
+> > > v5: - Make intel_has_sagv static again(Ville)
+> > >     - Removed unnecessary NULL assignments(Ville)
+> > >     - Removed unnecessary SAGV debug(Ville)
+> > >     - Call intel_compute_sagv_mask only for modesets(Ville)
+> > >     - Serialize global state only if sagv results change, but
+> > >       not mask itself(Ville)
+> > > =
 
-Summary
--------
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> > > Cc: James Ausmus <james.ausmus@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_bw.h |   6 ++
+> > >  drivers/gpu/drm/i915/intel_pm.c         | 113 ++++++++++++++++++----=
+--
+> > >  drivers/gpu/drm/i915/intel_pm.h         |   3 +-
+> > >  3 files changed, 93 insertions(+), 29 deletions(-)
+> > > =
 
-  **SUCCESS**
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/dr=
+m/i915/display/intel_bw.h
+> > > index ac004d6f4276..d6df91058223 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > > @@ -18,6 +18,12 @@ struct intel_crtc_state;
+> > >  struct intel_bw_state {
+> > >  	struct intel_global_state base;
+> > >  =
 
-  No regressions found.
+> > > +	/*
+> > > +	 * Contains a bit mask, used to determine, whether correspondent
+> > > +	 * pipe allows SAGV or not.
+> > > +	 */
+> > > +	u8 pipe_sagv_reject;
+> > > +
+> > >  	unsigned int data_rate[I915_MAX_PIPES];
+> > >  	u8 num_active_planes[I915_MAX_PIPES];
+> > >  };
+> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/i=
+ntel_pm.c
+> > > index b0810d76ad47..d06a1a3713ed 100644
+> > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > @@ -43,6 +43,7 @@
+> > >  #include "i915_fixed.h"
+> > >  #include "i915_irq.h"
+> > >  #include "i915_trace.h"
+> > > +#include "display/intel_bw.h"
+> > >  #include "intel_pm.h"
+> > >  #include "intel_sideband.h"
+> > >  #include "../../../platform/x86/intel_ips.h"
+> > > @@ -3760,34 +3761,75 @@ intel_disable_sagv(struct drm_i915_private *d=
+ev_priv)
+> > >  void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > +	const struct intel_bw_state *new_bw_state;
+> > >  =
 
-  
+> > > -	if (!intel_can_enable_sagv(state))
+> > > +	/*
+> > > +	 * Just return if we can't control SAGV or don't have it.
+> > > +	 * This is different from situation when we have SAGV but just can't
+> > > +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> > > +	 * disabled in a BIOS, we are not even allowed to send a PCode requ=
+est,
+> > > +	 * as it will throw an error. So have to check it here.
+> > > +	 */
+> > > +	if (!intel_has_sagv(dev_priv))
+> > > +		return;
+> > > +
+> > > +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> > > +	if (!new_bw_state)
+> > > +		return;
+> > > +
+> > > +	if (!intel_can_enable_sagv(new_bw_state))
+> > >  		intel_disable_sagv(dev_priv);
+> > >  }
+> > >  =
 
-Known issues
-------------
+> > >  void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > +	const struct intel_bw_state *new_bw_state;
+> > >  =
 
-  Here are the changes found in Patchwork_17419_full that come from known issues:
+> > > -	if (intel_can_enable_sagv(state))
+> > > +	/*
+> > > +	 * Just return if we can't control SAGV or don't have it.
+> > > +	 * This is different from situation when we have SAGV but just can't
+> > > +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> > > +	 * disabled in a BIOS, we are not even allowed to send a PCode requ=
+est,
+> > > +	 * as it will throw an error. So have to check it here.
+> > > +	 */
+> > > +	if (!intel_has_sagv(dev_priv))
+> > > +		return;
+> > > +
+> > > +	new_bw_state =3D intel_atomic_get_new_bw_state(state);
+> > > +	if (!new_bw_state)
+> > > +		return;
+> > > +
+> > > +	if (intel_can_enable_sagv(new_bw_state))
+> > >  		intel_enable_sagv(dev_priv);
+> > >  }
+> > >  =
 
-### IGT changes ###
+> > >  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state=
+ *crtc_state)
+> > >  {
+> > > -	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> > > -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_sta=
+te->uapi.state);
+> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > >  	struct intel_plane *plane;
+> > > +	const struct intel_plane_state *plane_state;
+> > >  	int level, latency;
+> > >  =
 
-#### Issues hit ####
+> > > +	if (!intel_has_sagv(dev_priv))
+> > > +		return false;
+> > > +
+> > >  	if (!crtc_state->hw.active)
+> > >  		return true;
+> > >  =
 
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-hsw:          [PASS][1] -> [WARN][2] ([i915#1519])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-hsw2/igt@i915_pm_rc6_residency@rc6-idle.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-hsw6/igt@i915_pm_rc6_residency@rc6-idle.html
+> > > +	/*
+> > > +	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > > +	 * more then one pipe enabled
+> > > +	 */
+> > > +	if (hweight8(state->active_pipes) > 1)
+> > > +		return false;
+> > > +
+> > >  	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> > >  		return false;
+> > >  =
 
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-random:
-    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#54])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl7/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl8/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
+> > > -	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> > > +	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, cr=
+tc_state) {
+> > >  		const struct skl_plane_wm *wm =3D
+> > >  			&crtc_state->wm.skl.optimal.planes[plane->id];
+> > >  =
 
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen:
-    - shard-kbl:          [PASS][5] -> [FAIL][6] ([i915#54] / [i915#93] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen.html
+> > > @@ -3803,7 +3845,7 @@ static bool intel_crtc_can_enable_sagv(const st=
+ruct intel_crtc_state *crtc_state
+> > >  		latency =3D dev_priv->wm.skl_latency[level];
+> > >  =
 
-  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
-    - shard-apl:          [PASS][7] -> [DMESG-WARN][8] ([i915#180]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-apl7/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-apl4/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+> > >  		if (skl_needs_memory_bw_wa(dev_priv) &&
+> > > -		    plane->base.state->fb->modifier =3D=3D
+> > > +		    plane_state->uapi.fb->modifier =3D=3D
+> > >  		    I915_FORMAT_MOD_X_TILED)
+> > >  			latency +=3D 15;
+> > >  =
 
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([IGT#5])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+> > > @@ -3819,35 +3861,44 @@ static bool intel_crtc_can_enable_sagv(const =
+struct intel_crtc_state *crtc_state
+> > >  	return true;
+> > >  }
+> > >  =
 
-  * igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-untiled:
-    - shard-glk:          [PASS][11] -> [FAIL][12] ([i915#52] / [i915#54])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-glk5/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-untiled.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-glk4/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-untiled.html
+> > > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > +bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+> > >  {
+> > > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > +	return bw_state->pipe_sagv_reject =3D=3D 0;
+> > > +}
+> > > +
+> > > +static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+> > > +{
+> > > +	int ret;
+> > >  	struct intel_crtc *crtc;
+> > > -	const struct intel_crtc_state *crtc_state;
+> > > -	enum pipe pipe;
+> > > +	struct intel_crtc_state *new_crtc_state;
+> > > +	struct intel_bw_state *new_bw_state =3D NULL;
+> > > +	const struct intel_bw_state *old_bw_state =3D NULL;
+> > > +	int i;
+> > >  =
 
-  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#49])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl7/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl8/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc.html
+> > > -	if (!intel_has_sagv(dev_priv))
+> > > -		return false;
+> > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > +					 new_crtc_state, i) {
+> > > +		new_bw_state =3D intel_atomic_get_bw_state(state);
+> > > +		if (IS_ERR(new_bw_state))
+> > > +			return PTR_ERR(new_bw_state);
+> > >  =
 
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [PASS][15] -> [FAIL][16] ([fdo#108145] / [i915#265]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+> > > -	/*
+> > > -	 * If there are no active CRTCs, no additional checks need be perfo=
+rmed
+> > > -	 */
+> > > -	if (hweight8(state->active_pipes) =3D=3D 0)
+> > > -		return true;
+> > > +		old_bw_state =3D intel_atomic_get_old_bw_state(state);
+> > >  =
 
-  
-#### Possible fixes ####
+> > > -	/*
+> > > -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > > -	 * more then one pipe enabled
+> > > -	 */
+> > > -	if (hweight8(state->active_pipes) > 1)
+> > > -		return false;
+> > > +		if (intel_crtc_can_enable_sagv(new_crtc_state))
+> > > +			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+> > > +		else
+> > > +			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> > > +	}
+> > >  =
 
-  * igt@gem_exec_balancer@bonded-slice:
-    - shard-kbl:          [FAIL][17] ([i915#1292] / [i915#93] / [i915#95]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-kbl4/igt@gem_exec_balancer@bonded-slice.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-kbl3/igt@gem_exec_balancer@bonded-slice.html
+> > > -	/* Since we're now guaranteed to only have one active CRTC... */
+> > > -	pipe =3D ffs(state->active_pipes) - 1;
+> > > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> > > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > > +	if (!new_bw_state)
+> > > +		return 0;
+> > >  =
 
-  * igt@gem_exec_params@invalid-bsd-ring:
-    - shard-iclb:         [SKIP][19] ([fdo#109276]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-iclb3/igt@gem_exec_params@invalid-bsd-ring.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-iclb2/igt@gem_exec_params@invalid-bsd-ring.html
+> > > -	return intel_crtc_can_enable_sagv(crtc_state);
+> > > +	if (intel_can_enable_sagv(new_bw_state) !=3D intel_can_enable_sagv(=
+old_bw_state)) {
+> > =
 
-  * igt@i915_selftest@live@hangcheck:
-    - shard-iclb:         [INCOMPLETE][21] ([i915#1580]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-iclb5/igt@i915_selftest@live@hangcheck.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-iclb7/igt@i915_selftest@live@hangcheck.html
+> > Missing the lock_global_state() for the old_maks !=3D new_mask case.
+> > Otherwise seems fine.
+> =
 
-  * igt@kms_draw_crc@draw-method-xrgb2101010-pwrite-ytiled:
-    - shard-skl:          [FAIL][23] ([i915#52] / [i915#54]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl3/igt@kms_draw_crc@draw-method-xrgb2101010-pwrite-ytiled.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl4/igt@kms_draw_crc@draw-method-xrgb2101010-pwrite-ytiled.html
+> Yep, however most likely if SAGV state had changed, allowed qgv points wi=
+ll change
+> and then you'll have to serialize commits anyway.
+> =
 
-  * {igt@kms_flip@flip-vs-expired-vblank@c-edp1}:
-    - shard-skl:          [FAIL][25] ([i915#79]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl3/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl2/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+> > =
 
-  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
-    - shard-apl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+> > Now I believe we need to separate state->modeset from sag, as I
+> > mentioned in the previous review. Please take care of that stuff
+> > before we continue with the rest of this series.
+> =
 
-  * {igt@kms_flip@flip-vs-suspend@c-dp1}:
-    - shard-kbl:          [DMESG-WARN][29] ([i915#180]) -> [PASS][30] +6 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-kbl3/igt@kms_flip@flip-vs-suspend@c-dp1.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-kbl1/igt@kms_flip@flip-vs-suspend@c-dp1.html
+> Ah it's this active_pipes discussion again.. So the problem is that
+> we set active_pipes only for modeset commits as I understand.
+> =
 
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][31] ([i915#1188]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl3/igt@kms_hdr@bpc-switch.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl2/igt@kms_hdr@bpc-switch.html
+> One thing which worries me here, is that duplication of active_pipes
+> in semantically different states seems redundant imo, i.e the more
+> states like bw_state, cdclk_state, dbuf_state and etc you are going
+> to introduce - the more this duplication will happen. =
 
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][33] ([fdo#108145] / [i915#265]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+> =
 
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [SKIP][35] ([fdo#109441]) -> [PASS][36] +2 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-iclb8/igt@kms_psr@psr2_cursor_render.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
+> I think what is missing here(I mentioned this also in dbuf review)
+> is that we need a separate state containing active pipes, which can
+> be then queried, each time we need to get active_pipes.
+> =
 
-  * igt@kms_setmode@basic:
-    - shard-kbl:          [FAIL][37] ([i915#31] / [i915#93] / [i915#95]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-kbl6/igt@kms_setmode@basic.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-kbl2/igt@kms_setmode@basic.html
+> In order to separate SAGV from modeset to use active_pipes, we basically
+> need to populate active pipes in a non-modeset commits, as we can't just
+> read it from dev_priv right away, we simply need one more global state
+> object containing this, which we can query just the same way we do for
+> cdclk_state and bw_state. I.e you just have one crtc lock grabbed and
+> copy this old global state to new state.
+> =
 
-  * {igt@perf@blocking-parameterized}:
-    - shard-hsw:          [FAIL][39] ([i915#1542]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-hsw6/igt@perf@blocking-parameterized.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-hsw4/igt@perf@blocking-parameterized.html
+> This would eliminate the need in duplicating that field in other states,
+> also reducing probability of some issues with that duplication.
+> =
 
-  
-#### Warnings ####
+> Not sure, may be there are some arguments, why we have to duplicate it
+> -  at least would like to know those then :D
+> =
 
-  * igt@i915_pm_rpm@cursor-dpms:
-    - shard-snb:          [INCOMPLETE][41] ([i915#82]) -> [SKIP][42] ([fdo#109271])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/shard-snb6/igt@i915_pm_rpm@cursor-dpms.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/shard-snb2/igt@i915_pm_rpm@cursor-dpms.html
+> IMO idea to split global state into a pool of separately maintainable obj=
+ects
+> was great - this brings much more flexibility to driver code, so lets
+> utilize this.
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+Introducing yet another state just for this little thing couples
+everything together which I don't like. IMO duplicating is fine unless
+we start to accumulate a more singificant chunk of state that also
+needs to be shared across a lot of other places.
 
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1292]: https://gitlab.freedesktop.org/drm/intel/issues/1292
-  [i915#1519]: https://gitlab.freedesktop.org/drm/intel/issues/1519
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+-- =
 
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8348 -> Patchwork_17419
-
-  CI-20190529: 20190529
-  CI_DRM_8348: 71482e0c1b4ce12ad43e790a0c03d671caf1eb54 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5604: 18cc19ece602ba552a8386222b49e7e82820f9aa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17419: 6790cbe6f7e682d16b9a620be8130d6a2b5ace89 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17419/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
