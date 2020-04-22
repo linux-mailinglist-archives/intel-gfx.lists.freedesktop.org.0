@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CD61B3913
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4BE1B3936
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:42:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D67C86E34B;
-	Wed, 22 Apr 2020 07:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A50706E347;
+	Wed, 22 Apr 2020 07:42:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 457F76E34B
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:37:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F351C6E347
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:42:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20979278-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 08:37:16 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20979318-1500050 
+ for multiple; Wed, 22 Apr 2020 08:42:04 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Apr 2020 08:37:15 +0100
-Message-Id: <20200422073715.11770-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Apr 2020 08:42:03 +0100
+Message-Id: <20200422074203.9799-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200422073715.11770-1-chris@chris-wilson.co.uk>
+References: <20200422073715.11770-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/selftests: Add request throughput
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Add request throughput
  measurement to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,6 +39,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -51,8 +54,8 @@ v2: Also measure throughput using only one thread.
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
  .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
- drivers/gpu/drm/i915/selftests/i915_request.c | 590 +++++++++++++++++-
- 2 files changed, 590 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/selftests/i915_request.c | 580 +++++++++++++++++-
+ 2 files changed, 580 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
 index 3bf7f53e9924..d8da142985eb 100644
@@ -66,7 +69,7 @@ index 3bf7f53e9924..d8da142985eb 100644
  selftest(blt, i915_gem_object_blt_perf_selftests)
  selftest(region, intel_memory_region_perf_selftests)
 diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 1dab0360f76a..750ced92141b 100644
+index 1dab0360f76a..3b319c0953cb 100644
 --- a/drivers/gpu/drm/i915/selftests/i915_request.c
 +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
 @@ -23,6 +23,7 @@
@@ -86,7 +89,7 @@ index 1dab0360f76a..750ced92141b 100644
  		err = igt_live_test_begin(&t, i915, __func__, name);
  		if (err)
  			break;
-@@ -1476,3 +1477,590 @@ int i915_request_live_selftests(struct drm_i915_private *i915)
+@@ -1476,3 +1477,580 @@ int i915_request_live_selftests(struct drm_i915_private *i915)
  
  	return i915_subtests(tests, i915);
  }
@@ -236,7 +239,7 @@ index 1dab0360f76a..750ced92141b 100644
 +	const unsigned int nengines = num_uabi_engines(i915);
 +	struct intel_engine_cs *engine;
 +	int (* const *fn)(void *arg);
-+	struct pm_qos_request *qos;
++	struct pm_qos_request qos;
 +	struct perf_stats *stats;
 +	struct perf_series *ps;
 +	unsigned int idx;
@@ -246,15 +249,13 @@ index 1dab0360f76a..750ced92141b 100644
 +	if (!stats)
 +		return -ENOMEM;
 +
-+	qos = kzalloc(sizeof(*qos), GFP_KERNEL);
-+	if (qos)
-+		cpu_latency_qos_add_request(qos, 0);
-+
 +	ps = kzalloc(struct_size(ps, ce, nengines), GFP_KERNEL);
 +	if (!ps) {
 +		kfree(stats);
 +		return -ENOMEM;
 +	}
++
++	cpu_latency_qos_add_request(&qos, 0); /* disable cstates */
 +
 +	ps->i915 = i915;
 +	ps->nengines = nengines;
@@ -351,10 +352,7 @@ index 1dab0360f76a..750ced92141b 100644
 +	}
 +	kfree(ps);
 +
-+	if (qos) {
-+		cpu_latency_qos_remove_request(qos);
-+		kfree(qos);
-+	}
++	cpu_latency_qos_remove_request(&qos);
 +	kfree(stats);
 +	return err;
 +}
@@ -566,7 +564,7 @@ index 1dab0360f76a..750ced92141b 100644
 +	const unsigned int nengines = num_uabi_engines(i915);
 +	struct intel_engine_cs *engine;
 +	int (* const *fn)(void *arg);
-+	struct pm_qos_request *qos;
++	struct pm_qos_request qos;
 +	struct {
 +		struct perf_stats p;
 +		struct task_struct *tsk;
@@ -577,9 +575,7 @@ index 1dab0360f76a..750ced92141b 100644
 +	if (!engines)
 +		return -ENOMEM;
 +
-+	qos = kzalloc(sizeof(*qos), GFP_KERNEL);
-+	if (qos)
-+		cpu_latency_qos_add_request(qos, 0);
++	cpu_latency_qos_add_request(&qos, 0);
 +
 +	for (fn = func; *fn; fn++) {
 +		char name[KSYM_NAME_LEN];
@@ -657,10 +653,7 @@ index 1dab0360f76a..750ced92141b 100644
 +		}
 +	}
 +
-+	if (qos) {
-+		cpu_latency_qos_remove_request(qos);
-+		kfree(qos);
-+	}
++	cpu_latency_qos_remove_request(&qos);
 +	kfree(engines);
 +	return err;
 +}
