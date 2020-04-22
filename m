@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979191B44DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 14:22:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB731B452C
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 14:29:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC9976E512;
-	Wed, 22 Apr 2020 12:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A66966E9EE;
+	Wed, 22 Apr 2020 12:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 826456E512;
- Wed, 22 Apr 2020 12:22:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7C367A0088;
- Wed, 22 Apr 2020 12:22:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D5C6E9E9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 12:29:43 +0000 (UTC)
+IronPort-SDR: q6Nr9pko+vv0NPMwGBZnhqMny2Eb5QOVw50ntJe5YQmpZlS/5vHKJotqZt/Cai+wMLTyI11ujH
+ 73wD25CvCIEg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 05:29:42 -0700
+IronPort-SDR: yzurP79OwCn7rCKr7fhdZSSZ1f85fLNA8m2VUncYQvEgQ3tPfwah0rmmuaWNFKjdzI46Y9yvAS
+ r7QXQ3qbqCNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,414,1580803200"; d="scan'208";a="255624380"
+Received: from invictus.jf.intel.com ([10.165.21.212])
+ by orsmga003.jf.intel.com with ESMTP; 22 Apr 2020 05:29:42 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Apr 2020 05:30:36 -0700
+Message-Id: <20200422123037.25414-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: bhanuprakash.modem@intel.com
-Date: Wed, 22 Apr 2020 12:22:04 -0000
-Message-ID: <158755812450.5179.5765044334866409561@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422110733.28635-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20200422110733.28635-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv5=2C1/3=5D_drm/dp=3A_DRM_DP_helper?=
- =?utf-8?q?_for_reading_Ignore_MSA_from_DPCD?=
+Subject: [Intel-gfx] [PATCH 0/1] Apply Wa_1406680159 as a clk_gating
+ workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +45,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is a one patch series that moves the WA from RCS WA's list to 
+clock gating WA's in intel_pm.c
 
-Series: series starting with [v5,1/3] drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-URL   : https://patchwork.freedesktop.org/series/76328/
-State : warning
+Test-with: 20200228104340.2895082-2-chris@chris-wilson.co.uk
 
-== Summary ==
+Radhakrishna Sripada (1):
+  drm/i915: Apply Wa_1406680159 as a clk_gating workaround
 
-$ dim checkpatch origin/drm-tip
-1e772a99285c drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-0e006133eca5 drm/i915/dp: Attach and set drm connector VRR property
-6790cbe6f7e6 drm/i915/dp: Expose connector VRR info via debugfs
--:74: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
-#74: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2241:
-+			debugfs_create_file("vrr_range", S_IRUGO, root,
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 -----
+ drivers/gpu/drm/i915/intel_pm.c             | 4 ++++
+ 2 files changed, 4 insertions(+), 5 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
