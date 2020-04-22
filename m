@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D72F1B4D33
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 21:19:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC3B1B4D31
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 21:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72D756E0A6;
-	Wed, 22 Apr 2020 19:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35E7D89F77;
+	Wed, 22 Apr 2020 19:18:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 639B26E07D;
- Wed, 22 Apr 2020 19:18:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5CFD5A0019;
- Wed, 22 Apr 2020 19:18:59 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E78B489F77
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 19:18:53 +0000 (UTC)
+IronPort-SDR: JC0JJPuL2YdER5KLlwRV1F9fCwmLSb52NlEb0vMRV0uri2Tp1EXcqmaDU1TuXRnpbVkAB3OGNe
+ gF+81D8SCP/w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 12:18:47 -0700
+IronPort-SDR: i0u4I33bTLkaydorh1vQfUUcrrdQbjKjfQCl0eQ+kYscUKuIoXuDsh/o3MSuj5DGZGHJkoYPzc
+ gPUMb4o2PL0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,304,1583222400"; d="scan'208";a="402658053"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga004.jf.intel.com with ESMTP; 22 Apr 2020 12:18:46 -0700
+Date: Wed, 22 Apr 2020 12:20:06 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200422192005.GA28167@intel.com>
+References: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
+ <20200422161917.17389-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "tip-bot2 for Alexey Budankov" <tip-bot2@linutronix.de>
-Date: Wed, 22 Apr 2020 19:18:59 -0000
-Message-ID: <158758313937.5180.5800118286583109518@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_CAP=5FPERFMON_to_secure_system_performance_monito?=
- =?utf-8?q?ring_and_observability_=28rev18=29?=
+Content-Disposition: inline
+In-Reply-To: <20200422161917.17389-3-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v3 3/6] drm/i915: Use drm_rect to store the
+ pfit window pos/size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,171 +50,367 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 22, 2020 at 07:19:14PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev18)
-URL   : https://patchwork.freedesktop.org/series/72273/
-State : warning
+> Make things a bit more abstract by replacing the pch_pfit.pos/size
+> raw register values with a drm_rect. Makes it slighly more convenient
+> to eg. compute the scaling factors.
+> =
 
-== Summary ==
+> v2: Use drm_rect_init()
+> =
 
-$ dim checkpatch origin/drm-tip
-f036c99151ab capabilities: Introduce CAP_PERFMON to kernel and user space
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("96d77665c15889c36")'
-#8: 
-Commit-ID:     980737282232b752bb14dab96d77665c15889c36
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 101 +++++++++++-------
+>  .../drm/i915/display/intel_display_types.h    |   3 +-
+>  drivers/gpu/drm/i915/display/intel_panel.c    |  13 ++-
+>  3 files changed, 67 insertions(+), 50 deletions(-)
+> =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/980737282232b752bb14dab96d77665c15889c36
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 96d0768ecf5d..6bb87965801e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6096,10 +6096,8 @@ static int skl_update_scaler_crtc(struct intel_crt=
+c_state *crtc_state)
+>  	int width, height;
+>  =
 
--:137: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  	if (crtc_state->pch_pfit.enabled) {
+> -		u32 pfit_size =3D crtc_state->pch_pfit.size;
+> -
+> -		width =3D pfit_size >> 16;
+> -		height =3D pfit_size & 0xffff;
+> +		width =3D drm_rect_width(&crtc_state->pch_pfit.dst);
+> +		height =3D drm_rect_height(&crtc_state->pch_pfit.dst);
+>  	} else {
+>  		width =3D adjusted_mode->crtc_hdisplay;
+>  		height =3D adjusted_mode->crtc_vdisplay;
+> @@ -6219,11 +6217,20 @@ static void skl_pfit_enable(const struct intel_cr=
+tc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	enum pipe pipe =3D crtc->pipe;
+>  	const struct intel_crtc_scaler_state *scaler_state =3D
+>  		&crtc_state->scaler_state;
+> +	struct drm_rect src =3D {
+> +		.x2 =3D crtc_state->pipe_src_w << 16,
+> +		.y2 =3D crtc_state->pipe_src_h << 16,
 
-total: 1 errors, 2 warnings, 0 checks, 36 lines checked
-64cddb3c59c7 perf/core: Open access to the core for CAP_PERFMON privileged process
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("9b835314d2b071cc2")'
-#9: 
-Commit-ID:     18aa18566218d4a46d940049b835314d2b071cc2
+Its not clear to me why we left shift by 16 for both src_w and src_h? Where=
+ can I find the format of
+how this is stored?
 
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/18aa18566218d4a46d940049b835314d2b071cc2
+Other than that everything else looks good in terms of replacing with drm_r=
+ect()
 
--:100: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+Manasi
 
-total: 1 errors, 2 warnings, 0 checks, 32 lines checked
-0bb591638827 perf/core: open access to probes for CAP_PERFMON privileged process
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("3ff8722e79ecf4088")'
-#9: 
-Commit-ID:     c9e0924e5c2b59365f9c0d43ff8722e79ecf4088
+> +	};
+> +	const struct drm_rect *dst =3D &crtc_state->pch_pfit.dst;
+>  	u16 uv_rgb_hphase, uv_rgb_vphase;
+> -	int pfit_w, pfit_h, hscale, vscale;
+> +	enum pipe pipe =3D crtc->pipe;
+> +	int width =3D drm_rect_width(dst);
+> +	int height =3D drm_rect_height(dst);
+> +	int x =3D dst->x1;
+> +	int y =3D dst->y1;
+> +	int hscale, vscale;
+>  	unsigned long irqflags;
+>  	int id;
+>  =
 
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/c9e0924e5c2b59365f9c0d43ff8722e79ecf4088
+> @@ -6234,11 +6241,8 @@ static void skl_pfit_enable(const struct intel_crt=
+c_state *crtc_state)
+>  			crtc_state->scaler_state.scaler_id < 0))
+>  		return;
+>  =
 
--:83: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+> -	pfit_w =3D (crtc_state->pch_pfit.size >> 16) & 0xFFFF;
+> -	pfit_h =3D crtc_state->pch_pfit.size & 0xFFFF;
+> -
+> -	hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
+> -	vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
+> +	hscale =3D drm_rect_calc_hscale(&src, dst, 0, INT_MAX);
+> +	vscale =3D drm_rect_calc_vscale(&src, dst, 0, INT_MAX);
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 16 lines checked
-9ded613d59ba perf tools: Support CAP_PERFMON capability
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("fa1dd1fcb84f2504c")'
-#8: 
-Commit-ID:     6b3e0e2e04615df128b2d38fa1dd1fcb84f2504c
+>  	uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
+>  	uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+> @@ -6254,9 +6258,9 @@ static void skl_pfit_enable(const struct intel_crtc=
+_state *crtc_state)
+>  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
+>  			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
+> -			  crtc_state->pch_pfit.pos);
+> +			  x << 16 | y);
+>  	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
+> -			  crtc_state->pch_pfit.size);
+> +			  width << 16 | height);
+>  =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/6b3e0e2e04615df128b2d38fa1dd1fcb84f2504c
+>  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+>  }
+> @@ -6265,7 +6269,12 @@ static void ilk_pfit_enable(const struct intel_crt=
+c_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	const struct drm_rect *dst =3D &crtc_state->pch_pfit.dst;
+>  	enum pipe pipe =3D crtc->pipe;
+> +	int width =3D drm_rect_width(dst);
+> +	int height =3D drm_rect_height(dst);
+> +	int x =3D dst->x1;
+> +	int y =3D dst->y1;
+>  =
 
--:41: ERROR:DIFF_IN_COMMIT_MSG: Avoid using diff content in the commit message - patch(1) might not work
-#41: 
-  --- a/libcap/include/uapi/linux/capability.h
+>  	if (!crtc_state->pch_pfit.enabled)
+>  		return;
+> @@ -6280,10 +6289,8 @@ static void ilk_pfit_enable(const struct intel_crt=
+c_state *crtc_state)
+>  	else
+>  		intel_de_write(dev_priv, PF_CTL(pipe), PF_ENABLE |
+>  			       PF_FILTER_MED_3x3);
+> -	intel_de_write(dev_priv, PF_WIN_POS(pipe),
+> -		       crtc_state->pch_pfit.pos);
+> -	intel_de_write(dev_priv, PF_WIN_SZ(pipe),
+> -		       crtc_state->pch_pfit.size);
+> +	intel_de_write(dev_priv, PF_WIN_POS(pipe), x << 16 | y);
+> +	intel_de_write(dev_priv, PF_WIN_SZ(pipe), width << 16 | height);
+>  }
+>  =
 
--:248: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  void hsw_enable_ips(const struct intel_crtc_state *crtc_state)
+> @@ -7936,8 +7943,7 @@ static bool intel_crtc_supports_double_wide(const s=
+truct intel_crtc *crtc)
+>  static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+>  {
+>  	u32 pixel_rate =3D crtc_state->hw.adjusted_mode.crtc_clock;
+> -	u32 pfit_size =3D crtc_state->pch_pfit.size;
+> -	u64 pipe_w, pipe_h, pfit_w, pfit_h;
+> +	unsigned int pipe_w, pipe_h, pfit_w, pfit_h;
+>  =
 
-total: 2 errors, 2 warnings, 0 checks, 56 lines checked
-d2eaa8483797 drm/i915/perf: Open access for CAP_PERFMON privileged process
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("d7c5309b814281ae3")'
-#8: 
-Commit-ID:     4e3d3456b78fa5a70e65de0d7c5309b814281ae3
+>  	/*
+>  	 * We only use IF-ID interlacing. If we ever use
+> @@ -7950,8 +7956,9 @@ static u32 ilk_pipe_pixel_rate(const struct intel_c=
+rtc_state *crtc_state)
+>  	pipe_w =3D crtc_state->pipe_src_w;
+>  	pipe_h =3D crtc_state->pipe_src_h;
+>  =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/4e3d3456b78fa5a70e65de0d7c5309b814281ae3
+> -	pfit_w =3D (pfit_size >> 16) & 0xFFFF;
+> -	pfit_h =3D pfit_size & 0xFFFF;
+> +	pfit_w =3D drm_rect_width(&crtc_state->pch_pfit.dst);
+> +	pfit_h =3D drm_rect_height(&crtc_state->pch_pfit.dst);
+> +
+>  	if (pipe_w < pfit_w)
+>  		pipe_w =3D pfit_w;
+>  	if (pipe_h < pfit_h)
+> @@ -10400,6 +10407,14 @@ static void ilk_get_fdi_m_n_config(struct intel_=
+crtc *crtc,
+>  				     &pipe_config->fdi_m_n, NULL);
+>  }
+>  =
 
--:101: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+> +static void ilk_get_pfit_pos_size(struct intel_crtc_state *crtc_state,
+> +				  u32 pos, u32 size)
+> +{
+> +	drm_rect_init(&crtc_state->pch_pfit.dst,
+> +		      pos >> 16, pos & 0xffff,
+> +		      size >> 16, size & 0xffff);
+> +}
+> +
+>  static void skl_get_pfit_config(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -10410,18 +10425,20 @@ static void skl_get_pfit_config(struct intel_cr=
+tc_state *crtc_state)
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 39 lines checked
-14afa15c555f trace/bpf_trace: Open access for CAP_PERFMON privileged process
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("3ab0abe10a7e68ea1")'
-#9: 
-Commit-ID:     031258da05956646c5606023ab0abe10a7e68ea1
+>  	/* find scaler attached to this pipe */
+>  	for (i =3D 0; i < crtc->num_scalers; i++) {
+> -		u32 tmp;
+> +		u32 ctl, pos, size;
+>  =
 
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/031258da05956646c5606023ab0abe10a7e68ea1
+> -		tmp =3D intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
+> -		if ((tmp & (PS_SCALER_EN | PS_PLANE_SEL_MASK)) !=3D PS_SCALER_EN)
+> +		ctl =3D intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
+> +		if ((ctl & (PS_SCALER_EN | PS_PLANE_SEL_MASK)) !=3D PS_SCALER_EN)
+>  			continue;
+>  =
 
--:67: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  		id =3D i;
+>  		crtc_state->pch_pfit.enabled =3D true;
+> -		crtc_state->pch_pfit.pos =3D
+> -			intel_de_read(dev_priv, SKL_PS_WIN_POS(crtc->pipe, i));
+> -		crtc_state->pch_pfit.size =3D
+> -			intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
+> +
+> +		pos =3D intel_de_read(dev_priv, SKL_PS_WIN_POS(crtc->pipe, i));
+> +		size =3D intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
+> +
+> +		ilk_get_pfit_pos_size(crtc_state, pos, size);
+> +
+>  		scaler_state->scalers[i].in_use =3D true;
+>  		break;
+>  	}
+> @@ -10570,17 +10587,18 @@ static void ilk_get_pfit_config(struct intel_cr=
+tc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	u32 tmp;
+> +	u32 ctl, pos, size;
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 8 lines checked
-092f35fb8dec powerpc/perf: open access for CAP_PERFMON privileged process
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("3e6ead32843999511")'
-#8: 
-Commit-ID:     ff46758313e688fca7d762b3e6ead32843999511
+> -	tmp =3D intel_de_read(dev_priv, PF_CTL(crtc->pipe));
+> -	if ((tmp & PF_ENABLE) =3D=3D 0)
+> +	ctl =3D intel_de_read(dev_priv, PF_CTL(crtc->pipe));
+> +	if ((ctl & PF_ENABLE) =3D=3D 0)
+>  		return;
+>  =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/ff46758313e688fca7d762b3e6ead32843999511
+>  	crtc_state->pch_pfit.enabled =3D true;
+> -	crtc_state->pch_pfit.pos =3D
+> -		intel_de_read(dev_priv, PF_WIN_POS(crtc->pipe));
+> -	crtc_state->pch_pfit.size =3D
+> -		intel_de_read(dev_priv, PF_WIN_SZ(crtc->pipe));
+> +
+> +	pos =3D intel_de_read(dev_priv, PF_WIN_POS(crtc->pipe));
+> +	size =3D intel_de_read(dev_priv, PF_WIN_SZ(crtc->pipe));
+> +
+> +	ilk_get_pfit_pos_size(crtc_state, pos, size);
+>  =
 
--:75: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  	/*
+>  	 * We currently do not free assignements of panel fitters on
+> @@ -10588,7 +10606,7 @@ static void ilk_get_pfit_config(struct intel_crtc=
+_state *crtc_state)
+>  	 * differentiates them) so just WARN about this case for now.
+>  	 */
+>  	drm_WARN_ON(&dev_priv->drm, IS_GEN(dev_priv, 7) &&
+> -		    (tmp & PF_PIPE_SEL_MASK_IVB) !=3D PF_PIPE_SEL_IVB(crtc->pipe));
+> +		    (ctl & PF_PIPE_SEL_MASK_IVB) !=3D PF_PIPE_SEL_IVB(crtc->pipe));
+>  }
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 16 lines checked
-2b530591caa3 parisc/perf: open access for CAP_PERFMON privileged process
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("21ed0e4bb1ab3b382")'
-#8: 
-Commit-ID:     cf91baf3f7f39a0cd29072e21ed0e4bb1ab3b382
+>  static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+> @@ -13036,9 +13054,8 @@ static void intel_dump_pipe_config(const struct i=
+ntel_crtc_state *pipe_config,
+>  			    pipe_config->gmch_pfit.lvds_border_bits);
+>  	else
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "pch pfit: pos: 0x%08x, size: 0x%08x, %s, force thru: %s\n",
+> -			    pipe_config->pch_pfit.pos,
+> -			    pipe_config->pch_pfit.size,
+> +			    "pch pfit: " DRM_RECT_FMT ", %s, force thru: %s\n",
+> +			    DRM_RECT_ARG(&pipe_config->pch_pfit.dst),
+>  			    enableddisabled(pipe_config->pch_pfit.enabled),
+>  			    yesno(pipe_config->pch_pfit.force_thru));
+>  =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/cf91baf3f7f39a0cd29072e21ed0e4bb1ab3b382
+> @@ -13780,8 +13797,10 @@ intel_pipe_config_compare(const struct intel_crt=
+c_state *current_config,
+>  =
 
--:66: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  		PIPE_CONF_CHECK_BOOL(pch_pfit.enabled);
+>  		if (current_config->pch_pfit.enabled) {
+> -			PIPE_CONF_CHECK_X(pch_pfit.pos);
+> -			PIPE_CONF_CHECK_X(pch_pfit.size);
+> +			PIPE_CONF_CHECK_I(pch_pfit.dst.x1);
+> +			PIPE_CONF_CHECK_I(pch_pfit.dst.y1);
+> +			PIPE_CONF_CHECK_I(pch_pfit.dst.x2);
+> +			PIPE_CONF_CHECK_I(pch_pfit.dst.y2);
+>  		}
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 8 lines checked
-10e972d65247 drivers/perf: Open access for CAP_PERFMON privileged process
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("7130b4c06ab4d412f")'
-#8: 
-Commit-ID:     cea7d0d4a59b4efd0e1fe067130b4c06ab4d412f
+>  		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index ba8c08145c88..dc75f26f60de 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -974,8 +974,7 @@ struct intel_crtc_state {
+>  =
 
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Gitweb:        https://git.kernel.org/tip/cea7d0d4a59b4efd0e1fe067130b4c06ab4d412f
+>  	/* Panel fitter placement and size for Ironlake+ */
+>  	struct {
+> -		u32 pos;
+> -		u32 size;
+> +		struct drm_rect dst;
+>  		bool enabled;
+>  		bool force_thru;
+>  	} pch_pfit;
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
+/i915/display/intel_panel.c
+> index bcd2cc1aba90..3e370888ecef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -182,13 +182,13 @@ intel_pch_panel_fitting(struct intel_crtc *intel_cr=
+tc,
+>  			int fitting_mode)
+>  {
+>  	const struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjus=
+ted_mode;
+> -	int x =3D 0, y =3D 0, width =3D 0, height =3D 0;
+> +	int x, y, width, height;
+>  =
 
--:75: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+>  	/* Native modes don't need fitting */
+>  	if (adjusted_mode->crtc_hdisplay =3D=3D pipe_config->pipe_src_w &&
+>  	    adjusted_mode->crtc_vdisplay =3D=3D pipe_config->pipe_src_h &&
+>  	    pipe_config->output_format !=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> -		goto done;
+> +		return;
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 16 lines checked
-33c94226c35f drivers/oprofile: Open access for CAP_PERFMON privileged process
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("68387f4373a58c949")'
-#9: 
-Commit-ID:     ab76878bb720cbd35a05ae868387f4373a58c949
+>  	switch (fitting_mode) {
+>  	case DRM_MODE_SCALE_CENTER:
+> @@ -234,14 +234,13 @@ intel_pch_panel_fitting(struct intel_crtc *intel_cr=
+tc,
+>  		break;
+>  =
 
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/ab76878bb720cbd35a05ae868387f4373a58c949
+>  	default:
+> -		WARN(1, "bad panel fit mode: %d\n", fitting_mode);
+> +		MISSING_CASE(fitting_mode);
+>  		return;
+>  	}
+>  =
 
--:66: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
+> -done:
+> -	pipe_config->pch_pfit.pos =3D (x << 16) | y;
+> -	pipe_config->pch_pfit.size =3D (width << 16) | height;
+> -	pipe_config->pch_pfit.enabled =3D pipe_config->pch_pfit.size !=3D 0;
+> +	drm_rect_init(&pipe_config->pch_pfit.dst,
+> +		      x, y, width, height);
+> +	pipe_config->pch_pfit.enabled =3D true;
+>  }
+>  =
 
-total: 1 errors, 2 warnings, 0 checks, 8 lines checked
-b3c0c8dc3225 doc/admin-guide: Update perf-security.rst with CAP_PERFMON information
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("06b01be2f0f7ef2e4")'
-#9: 
-Commit-ID:     902a8dcc5ba6c5dc3332e8806b01be2f0f7ef2e4
+>  static void
+> -- =
 
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/902a8dcc5ba6c5dc3332e8806b01be2f0f7ef2e4
+> 2.24.1
+> =
 
--:231: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
-
-total: 1 errors, 2 warnings, 0 checks, 144 lines checked
-d13256e76cf3 doc/admin-guide: update kernel.rst with CAP_PERFMON information
--:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fatal: bad o ("399d669438c63b6ce")'
-#9: 
-Commit-ID:     025b16f81dd7f51f29d0109399d669438c63b6ce
-
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Gitweb:        https://git.kernel.org/tip/025b16f81dd7f51f29d0109399d669438c63b6ce
-
--:78: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'tip-bot2 for Alexey Budankov <tip-bot2@linutronix.de>'
-
-total: 1 errors, 2 warnings, 0 checks, 31 lines checked
-
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
