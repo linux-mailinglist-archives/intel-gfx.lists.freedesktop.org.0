@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36DB1B460B
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 15:14:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18491B465F
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 15:39:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B726E9F5;
-	Wed, 22 Apr 2020 13:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A57556E283;
+	Wed, 22 Apr 2020 13:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D6A516E9F5;
- Wed, 22 Apr 2020 13:14:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF4D9A00E6;
- Wed, 22 Apr 2020 13:14:18 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCBAF6E283
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 13:39:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20984675-1500050 
+ for multiple; Wed, 22 Apr 2020 14:39:17 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Apr 2020 14:39:16 +0100
+Message-Id: <20200422133916.26945-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Date: Wed, 22 Apr 2020 13:14:18 -0000
-Message-ID: <158756125884.5177.15002824631056788444@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422123037.25414-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20200422123037.25414-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQXBw?=
- =?utf-8?q?ly_Wa=5F1406680159_as_a_clk=5Fgating_workaround?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Verify context isolation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,86 +36,408 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+No unprivileged context should ever be allowed to modify state that is
+visible to another; there should be no backchannels available or control
+leakage for malicious actors.
 
-Series: Apply Wa_1406680159 as a clk_gating workaround
-URL   : https://patchwork.freedesktop.org/series/76334/
-State : success
+This test tries to write to a set of random registers using
+non-privileged instructions (ala userspace). It should only be allowed
+to write into its context state, and all writes should not be visible to
+a second context. To verify this, we store the value of the register
+before writing to it in context A (as this should be the default value
+inherited from the golden context state) and do a read back from context
+B of the same register. The reads from both contexts should be identical,
+the default value, except for a few free running counters (either global
+or local).
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 355 ++++++++++++++++++
+ 1 file changed, 355 insertions(+)
 
-CI Bug Log - changes from CI_DRM_8348 -> Patchwork_17420
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index f4f933240b39..3ef542c52d85 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1865,6 +1865,360 @@ static int igt_vm_isolation(void *arg)
+ 	return err;
+ }
+ 
++static struct i915_vma *create_vma(struct i915_address_space *vm, size_t sz)
++{
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++
++	obj = i915_gem_object_create_internal(vm->i915, sz);
++	if (IS_ERR(obj))
++		return ERR_CAST(obj);
++
++	vma = i915_vma_instance(obj, vm, NULL);
++	if (IS_ERR(vma))
++		i915_gem_object_put(obj);
++
++	return vma;
++}
++
++static int iso_in(struct i915_gem_context *ctx,
++		  struct intel_engine_cs *engine,
++		  struct drm_i915_gem_object *obj,
++		  u32 *ctl)
++{
++	struct i915_vma *batch, *vma;
++	struct i915_request *rq;
++	u32 *cs;
++	int err;
++	int i;
++
++	batch = create_vma(ctx->vm, 64 << 10);
++	if (IS_ERR(batch))
++		return PTR_ERR(batch);
++
++	vma = i915_vma_instance(obj, ctx->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto err_batch;
++	}
++
++	err = i915_vma_pin(batch, 0, 0, PIN_USER);
++	if (err)
++		goto err_batch;
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err)
++		goto err_unpin_batch;
++
++	cs = i915_gem_object_pin_map(batch->obj, I915_MAP_WC);
++	if (IS_ERR(cs)) {
++		err = PTR_ERR(cs);
++		goto err_vma;
++	}
++
++	for (i = 0; i < 1024; i++) {
++		u64 addr = vma->node.start + (4 * i + 2) * sizeof(u32);
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
++		*cs++ = ctl[4 * i + 0];
++		*cs++ = lower_32_bits(addr);
++		*cs++ = upper_32_bits(addr);
++
++		*cs++ = MI_LOAD_REGISTER_IMM(1);
++		*cs++ = ctl[4 * i + 0];
++		*cs++ = ctl[4 * i + 1];
++	}
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	i915_gem_object_flush_map(obj);
++	i915_gem_object_unpin_map(obj);
++
++	rq = igt_request_alloc(ctx, engine);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto err_vma;
++	}
++
++	i915_vma_lock(vma);
++	err = i915_request_await_object(rq, vma->obj, true);
++	if (err == 0)
++		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
++	i915_vma_unlock(vma);
++	if (err)
++		goto err_rq;
++
++	i915_vma_lock(vma);
++	err = i915_request_await_object(rq, batch->obj, false);
++	if (err == 0)
++		err = i915_vma_move_to_active(batch, rq, 0);
++	i915_vma_unlock(vma);
++	if (err)
++		goto err_rq;
++
++	err = engine->emit_bb_start(rq, batch->node.start, batch->node.size, 0);
++
++err_rq:
++	i915_request_add(rq);
++err_vma:
++	i915_vma_unpin(vma);
++err_unpin_batch:
++	i915_vma_unpin(batch);
++err_batch:
++	i915_vma_put(batch);
++	return err;
++}
++
++static int iso_out(struct i915_gem_context *ctx,
++		   struct intel_engine_cs *engine,
++		   struct drm_i915_gem_object *obj,
++		   u32 *ctl)
++{
++	struct i915_vma *batch, *vma;
++	struct i915_request *rq;
++	u32 *cs;
++	int err;
++	int i;
++
++	batch = create_vma(ctx->vm, 64 << 10);
++	if (IS_ERR(batch))
++		return PTR_ERR(batch);
++
++	vma = i915_vma_instance(obj, ctx->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto err_batch;
++	}
++
++	err = i915_vma_pin(batch, 0, 0, PIN_USER);
++	if (err)
++		goto err_batch;
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err)
++		goto err_unpin_batch;
++
++	cs = i915_gem_object_pin_map(batch->obj, I915_MAP_WC);
++	if (IS_ERR(cs)) {
++		err = PTR_ERR(cs);
++		goto err_vma;
++	}
++
++	for (i = 0; i < 1024; i++) {
++		u64 addr = vma->node.start + (4 * i + 3) * sizeof(u32);
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
++		*cs++ = ctl[4 * i + 0];
++		*cs++ = lower_32_bits(addr);
++		*cs++ = upper_32_bits(addr);
++	}
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	i915_gem_object_flush_map(obj);
++	i915_gem_object_unpin_map(obj);
++
++	rq = igt_request_alloc(ctx, engine);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto err_vma;
++	}
++
++	i915_vma_lock(vma);
++	err = i915_request_await_object(rq, vma->obj, true);
++	if (err == 0)
++		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
++	i915_vma_unlock(vma);
++	if (err)
++		goto err_rq;
++
++	i915_vma_lock(vma);
++	err = i915_request_await_object(rq, batch->obj, false);
++	if (err == 0)
++		err = i915_vma_move_to_active(batch, rq, 0);
++	i915_vma_unlock(vma);
++	if (err)
++		goto err_rq;
++
++	err = engine->emit_bb_start(rq, batch->node.start, batch->node.size, 0);
++
++err_rq:
++	i915_request_add(rq);
++err_vma:
++	i915_vma_unpin(vma);
++err_unpin_batch:
++	i915_vma_unpin(batch);
++err_batch:
++	i915_vma_put(batch);
++	return err;
++}
++
++static bool is_timestamp(struct drm_i915_private *i915, u32 x)
++{
++	struct intel_engine_cs *engine;
++
++	for_each_uabi_engine(engine, i915) {
++		if (x == engine->mmio_base + 0x358)
++			return true;
++
++		if (x == engine->mmio_base + 0x35c)
++			return true;
++
++		if (x == engine->mmio_base + 0x3a8)
++			return true;
++	}
++
++	return false;
++}
++
++static bool is_whitelist(struct drm_i915_private *i915, u32 x)
++{
++	struct intel_engine_cs *engine;
++
++	for_each_uabi_engine(engine, i915) {
++		const struct i915_wa_list *w = &engine->whitelist;
++		int i;
++
++		for (i = 0; i < w->count; i++) {
++			if (x == i915_mmio_reg_offset(w->list[i].reg))
++				return true;
++		}
++	}
++
++	return false;
++}
++
++static u32 random_reg(struct drm_i915_private *i915,
++		      struct rnd_state *prng)
++{
++	u32 x;
++
++	/*
++	 * Pick any u32 aligned value that is not known to a free running
++	 * counter (e.g. a timestamp).
++	 */
++	do {
++		x = prandom_u32_state(prng) % 10000 * sizeof(u32);
++		if (!is_timestamp(i915, x) && !is_whitelist(i915, x))
++			return x;
++	} while (1);
++}
++
++static int igt_reg_isolation(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	struct i915_gem_context *ctx_a, *ctx_b;
++	struct drm_i915_gem_object *obj;
++	struct intel_engine_cs *engine;
++	struct igt_live_test t;
++	I915_RND_STATE(prng);
++	struct file *file;
++	u32 *ctl;
++	int err;
++	int i;
++
++	if (INTEL_GEN(i915) < 8) /* for LRM/SRM */
++		return 0;
++
++	/*
++	 * No state that we can write to from our context should be
++	 * observable by another.
++	 */
++
++	file = mock_file(i915);
++	if (IS_ERR(file))
++		return PTR_ERR(file);
++
++	err = igt_live_test_begin(&t, i915, __func__, "");
++	if (err)
++		goto out_file;
++
++	ctx_a = live_context(i915, file);
++	if (IS_ERR(ctx_a)) {
++		err = PTR_ERR(ctx_a);
++		goto out_file;
++	}
++
++	ctx_b = live_context(i915, file);
++	if (IS_ERR(ctx_b)) {
++		err = PTR_ERR(ctx_b);
++		goto out_file;
++	}
++
++	obj = i915_gem_object_create_internal(i915, 16 * 1024);
++	if (IS_ERR(obj)) {
++		err = PTR_ERR(obj);
++		goto out_file;
++	}
++
++	ctl = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	if (IS_ERR(ctl))  {
++		err = PTR_ERR(ctl);
++		goto out_obj;
++	}
++
++	for (i = 0; i < 1024; i++) {
++		ctl[4 * i + 0] = random_reg(i915, &prng);
++		ctl[4 * i + 1] = prandom_u32_state(&prng); /* poison */
++		ctl[4 * i + 2] = 0; /* before, ctx_a */
++		ctl[4 * i + 3] = 0; /* after, ctx_b */
++	}
++	i915_gem_object_flush_map(obj);
++
++	for_each_uabi_engine(engine, i915) {
++		if (!engine->default_state)
++			continue;
++
++		err = iso_in(ctx_a, engine, obj, ctl);
++		if (err)
++			break;
++
++		err = iso_out(ctx_b, engine, obj, ctl);
++		if (err)
++			break;
++
++		err = i915_gem_object_wait(obj,
++					   I915_WAIT_ALL |
++					   I915_WAIT_INTERRUPTIBLE,
++					   HZ / 2);
++		if (err)
++			break;
++
++		for (i = 0; i < 1024; i++) {
++			u32 in, out;
++
++			if (ctl[4 * i + 2] == ctl[4 * i + 3])
++				continue;
++
++			/*
++			 * If there are more bits in common with the poison
++			 * than the original, declare victory!
++			 */
++			in = ctl[4 * i + 2] ^ ctl[4 * i + 1];
++			out = ctl[4 * i + 3] ^ ctl[4 * i + 1];
++			if (hweight32(out) < hweight32(in)) {
++				pr_err("%s[%d]: poisoned? reg %x with %08x, in:%08x, out:%08x\n",
++				       engine->name, i,
++				       ctl[4 * i + 0],
++				       ctl[4 * i + 1],
++				       ctl[4 * i + 2],
++				       ctl[4 * i + 3]);
++				err = -EINVAL;
++			}
++		}
++		if (err)
++			break;
++	}
++
++	i915_gem_object_unpin_map(obj);
++	if (igt_live_test_end(&t))
++		err = -EIO;
++
++out_obj:
++	i915_gem_object_put(obj);
++out_file:
++	fput(file);
++	return err;
++}
++
+ static bool skip_unused_engines(struct intel_context *ce, void *data)
+ {
+ 	return !ce->state;
+@@ -2000,6 +2354,7 @@ int i915_gem_context_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_ctx_sseu),
+ 		SUBTEST(igt_shared_ctx_exec),
+ 		SUBTEST(igt_vm_isolation),
++		SUBTEST(igt_reg_isolation),
+ 	};
+ 
+ 	if (intel_gt_is_wedged(&i915->gt))
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17420/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17420 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@mman:
-    - fi-snb-2600:        [PASS][1] -> [FAIL][2] ([i915#1763])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/fi-snb-2600/igt@i915_selftest@live@mman.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17420/fi-snb-2600/igt@i915_selftest@live@mman.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-snb-2600:        [FAIL][3] ([i915#1763]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8348/fi-snb-2600/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17420/fi-snb-2600/igt@i915_selftest@live@hugepages.html
-
-  
-  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
-
-
-Participating hosts (48 -> 40)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-hsw-4200u fi-bdw-gvtdvm fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_5604 -> IGTPW_4238
-  * Linux: CI_DRM_8348 -> Patchwork_17420
-
-  CI-20190529: 20190529
-  CI_DRM_8348: 71482e0c1b4ce12ad43e790a0c03d671caf1eb54 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_4238: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4238/index.html
-  IGT_5604: 18cc19ece602ba552a8386222b49e7e82820f9aa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17420: 678cbd8d33b743b7312a20652f15e8c368cbb917 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-678cbd8d33b7 drm/i915: Apply Wa_1406680159 as a clk_gating workaround
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17420/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
