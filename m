@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BB91B38CE
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:21:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB641B38F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 09:28:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 348A76E33D;
-	Wed, 22 Apr 2020 07:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF60A6E353;
+	Wed, 22 Apr 2020 07:28:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E36926E33D
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:21:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39026E353
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 07:28:26 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20979112-1500050 
- for multiple; Wed, 22 Apr 2020 08:20:38 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20979191-1500050 
+ for multiple; Wed, 22 Apr 2020 08:28:06 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Apr 2020 08:20:37 +0100
-Message-Id: <20200422072037.17163-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Apr 2020 08:28:05 +0100
+Message-Id: <20200422072805.17340-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200422072037.17163-1-chris@chris-wilson.co.uk>
+References: <20200422072037.17163-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gem: Hold obj->vma.lock over
  for_each_ggtt_vma()
@@ -102,15 +104,15 @@ Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
 Cc: <stable@vger.kernel.org> # v5.5+
 ---
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 15 ++++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 20 ++++++++++++++++++--
  drivers/gpu/drm/i915/i915_vma.c            | 10 ++++++----
- 2 files changed, 20 insertions(+), 5 deletions(-)
+ 2 files changed, 24 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-index 37f77aee1212..0deb66d2858e 100644
+index 37f77aee1212..0158e49bf9bb 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-@@ -182,21 +182,32 @@ i915_gem_object_fence_prepare(struct drm_i915_gem_object *obj,
+@@ -182,21 +182,35 @@ i915_gem_object_fence_prepare(struct drm_i915_gem_object *obj,
  			      int tiling_mode, unsigned int stride)
  {
  	struct i915_ggtt *ggtt = &to_i915(obj->base.dev)->ggtt;
@@ -137,14 +139,18 @@ index 37f77aee1212..0deb66d2858e 100644
 +
 +	list_for_each_entry_safe(vma, vn, &unbind, vm_link) {
  		ret = __i915_vma_unbind(vma);
- 		if (ret)
+-		if (ret)
++		if (ret) {
++			/* Restore the remaining vma on an error */
++			list_splice(&unbind, &ggtt->vm.bound_list);
  			break;
++		}
  	}
 +
  	mutex_unlock(&ggtt->vm.mutex);
  
  	return ret;
-@@ -268,6 +279,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
+@@ -268,6 +282,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
  	}
  	mutex_unlock(&obj->mm.lock);
  
@@ -152,7 +158,7 @@ index 37f77aee1212..0deb66d2858e 100644
  	for_each_ggtt_vma(vma, obj) {
  		vma->fence_size =
  			i915_gem_fence_size(i915, vma->size, tiling, stride);
-@@ -278,6 +290,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
+@@ -278,6 +293,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
  		if (vma->fence)
  			vma->fence->dirty = true;
  	}
