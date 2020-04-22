@@ -1,35 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D321B438F
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 13:54:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 866831B4AFB
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 18:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E756E436;
-	Wed, 22 Apr 2020 11:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C19806EA38;
+	Wed, 22 Apr 2020 16:55:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DC3AB6E436;
- Wed, 22 Apr 2020 11:54:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4E80A0099;
- Wed, 22 Apr 2020 11:54:07 +0000 (UTC)
+Received: from Galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09B86E9F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 12:34:12 +0000 (UTC)
+Received: from [5.158.153.53] (helo=tip-bot2.lab.linutronix.de)
+ by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+ (Exim 4.80) (envelope-from <tip-bot2@linutronix.de>)
+ id 1jREJu-000800-QX; Wed, 22 Apr 2020 14:17:39 +0200
+Received: from [127.0.1.1] (localhost [IPv6:::1])
+ by tip-bot2.lab.linutronix.de (Postfix) with ESMTP id 071D21C081A;
+ Wed, 22 Apr 2020 14:17:32 +0200 (CEST)
+Date: Wed, 22 Apr 2020 12:17:31 -0000
+From: "tip-bot2 for Alexey Budankov" <tip-bot2@linutronix.de>
+To: linux-tip-commits@vger.kernel.org
+In-Reply-To: <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
+References: <84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 22 Apr 2020 11:54:07 -0000
-Message-ID: <158755644784.5177.2348830743761952809@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422110429.1998551-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200422110429.1998551-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_perf/core=3A_Only_copy-to-user_after_completely_unlocking_a?=
- =?utf-8?q?ll_locks=2C_v3=2E?=
+Message-ID: <158755785160.28353.3846364615857444421.tip-bot2@tip-bot2>
+X-Mailer: tip-git-log-daemon
+Robot-ID: <tip-bot2.linutronix.de>
+Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from
+ these emails
+Precedence: bulk
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required, ALL_TRUSTED=-1,
+ SHORTCIRCUIT=-0.0001
+X-Mailman-Approved-At: Wed, 22 Apr 2020 16:53:58 +0000
+Subject: [Intel-gfx] [tip: perf/core] doc/admin-guide: update kernel.rst
+ with CAP_PERFMON information
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
-Precedence: list
 List-Id: Intel graphics driver community testing & development
  <intel-gfx.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
@@ -39,38 +50,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: linux-kernel@vger.kernel.org
+Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
+ Andi Kleen <ak@linux.intel.com>, linux-doc@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
+ Arnaldo Carvalho de Melo <acme@redhat.com>, selinux@vger.kernel.org,
+ linux-security-module@vger.kernel.org, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Jiri Olsa <jolsa@redhat.com>,
+ intel-gfx@lists.freedesktop.org, x86 <x86@kernel.org>,
+ Serge Hallyn <serge@hallyn.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The following commit has been merged into the perf/core branch of tip:
 
-Series: perf/core: Only copy-to-user after completely unlocking all locks, v3.
-URL   : https://patchwork.freedesktop.org/series/76325/
-State : warning
+Commit-ID:     025b16f81dd7f51f29d0109399d669438c63b6ce
+Gitweb:        https://git.kernel.org/tip/025b16f81dd7f51f29d0109399d669438c63b6ce
+Author:        Alexey Budankov <alexey.budankov@linux.intel.com>
+AuthorDate:    Thu, 02 Apr 2020 11:54:39 +03:00
+Committer:     Arnaldo Carvalho de Melo <acme@redhat.com>
+CommitterDate: Thu, 16 Apr 2020 12:19:12 -03:00
 
-== Summary ==
+doc/admin-guide: update kernel.rst with CAP_PERFMON information
 
-$ dim checkpatch origin/drm-tip
-1eec2217d858 perf/core: Only copy-to-user after completely unlocking all locks, v3.
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
+Update the kernel.rst documentation file with the information related to
+usage of CAP_PERFMON capability to secure performance monitoring and
+observability operations in system.
 
--:106: WARNING:BAD_SIGN_OFF: Duplicate signature
-#106: 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+Cc: Alexei Starovoitov <ast@kernel.org>
+Cc: Andi Kleen <ak@linux.intel.com>
+Cc: Igor Lubashev <ilubashe@akamai.com>
+Cc: James Morris <jmorris@namei.org>
+Cc: Jiri Olsa <jolsa@redhat.com>
+Cc: Namhyung Kim <namhyung@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Serge Hallyn <serge@hallyn.com>
+Cc: Song Liu <songliubraving@fb.com>
+Cc: Stephane Eranian <eranian@google.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-doc@vger.kernel.org
+Cc: linux-man@vger.kernel.org
+Cc: linux-security-module@vger.kernel.org
+Cc: selinux@vger.kernel.org
+Link: http://lore.kernel.org/lkml/84c32383-14a2-fa35-16b6-f9e59bd37240@linux.intel.com
+Signed-off-by: Arnaldo Carvalho de Melo <acme@redhat.com>
+---
+ Documentation/admin-guide/sysctl/kernel.rst | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
--:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#180: FILE: kernel/events/core.c:5174:
-+__perf_read(struct perf_event *event, char __user *buf,
-+		    size_t count, u64 *values)
-
-total: 0 errors, 2 warnings, 1 checks, 106 lines checked
-
+diff --git a/Documentation/admin-guide/sysctl/kernel.rst b/Documentation/admin-guide/sysctl/kernel.rst
+index 39c95c0..7e4c28d 100644
+--- a/Documentation/admin-guide/sysctl/kernel.rst
++++ b/Documentation/admin-guide/sysctl/kernel.rst
+@@ -730,7 +730,13 @@ perf_event_paranoid
+ ===================
+ 
+ Controls use of the performance events system by unprivileged
+-users (without CAP_SYS_ADMIN).  The default value is 2.
++users (without CAP_PERFMON).  The default value is 2.
++
++For backward compatibility reasons access to system performance
++monitoring and observability remains open for CAP_SYS_ADMIN
++privileged processes but CAP_SYS_ADMIN usage for secure system
++performance monitoring and observability operations is discouraged
++with respect to CAP_PERFMON use cases.
+ 
+ ===  ==================================================================
+  -1  Allow use of (almost) all events by all users.
+@@ -739,13 +745,13 @@ users (without CAP_SYS_ADMIN).  The default value is 2.
+      ``CAP_IPC_LOCK``.
+ 
+ >=0  Disallow ftrace function tracepoint by users without
+-     ``CAP_SYS_ADMIN``.
++     ``CAP_PERFMON``.
+ 
+-     Disallow raw tracepoint access by users without ``CAP_SYS_ADMIN``.
++     Disallow raw tracepoint access by users without ``CAP_PERFMON``.
+ 
+->=1  Disallow CPU event access by users without ``CAP_SYS_ADMIN``.
++>=1  Disallow CPU event access by users without ``CAP_PERFMON``.
+ 
+->=2  Disallow kernel profiling by users without ``CAP_SYS_ADMIN``.
++>=2  Disallow kernel profiling by users without ``CAP_PERFMON``.
+ ===  ==================================================================
+ 
+ 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
