@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EC51B4D8E
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 21:43:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C1C1B4DFD
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 22:07:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5263289FF9;
-	Wed, 22 Apr 2020 19:43:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4498D6E084;
+	Wed, 22 Apr 2020 20:07:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 64C9989F99;
- Wed, 22 Apr 2020 19:43:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5DD80A008A;
- Wed, 22 Apr 2020 19:43:07 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 158DE6E084
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 20:07:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20989123-1500050 
+ for multiple; Wed, 22 Apr 2020 21:07:11 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Apr 2020 21:07:09 +0100
+Message-Id: <20200422200709.7122-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "tip-bot2 for Alexey Budankov" <tip-bot2@linutronix.de>
-Date: Wed, 22 Apr 2020 19:43:07 -0000
-Message-ID: <158758458738.5177.2938091256053973896@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW50?=
- =?utf-8?q?roduce_CAP=5FPERFMON_to_secure_system_performance_monitoring_an?=
- =?utf-8?q?d_observability_=28rev18=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Warn more clearly if the context
+ state is still pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,118 +37,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When recording the default context state, we submit an ordinary context
+and then steal the context image for our defaults. To be able to steal
+the state, we must have total ownership of the context. During CI we
+want to make this error extremely obvious, as otherwise we will fail the
+user's module load.
 
-Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev18)
-URL   : https://patchwork.freedesktop.org/series/72273/
-State : failure
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1763
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 1c99cc72305a..c263f2e94703 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -379,6 +379,11 @@ static int __intel_context_flush_retire(struct intel_context *ce)
+ 		return PTR_ERR(tl);
+ 
+ 	intel_context_timeline_unlock(tl);
++
++	/* Wait for the barrier */
++	if (i915_active_wait(&ce->active))
++		return -EINTR;
++
+ 	return 0;
+ }
+ 
+@@ -472,6 +477,7 @@ static int __engines_record_defaults(struct intel_gt *gt)
+ 
+ 		/* We want to be able to unbind the state from the GGTT */
+ 		GEM_BUG_ON(intel_context_is_pinned(rq->context));
++		GEM_BUG_ON(i915_vma_is_pinned(state));
+ 
+ 		/*
+ 		 * As we will hold a reference to the logical state, it will
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8350 -> Patchwork_17428
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17428 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17428, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17428/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17428:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-byt-j1900:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-byt-j1900/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17428/fi-byt-j1900/igt@i915_selftest@live@gt_engines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17428 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@coherency:
-    - fi-ivb-3770:        [PASS][3] -> [FAIL][4] ([i915#1763])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-ivb-3770/igt@i915_selftest@live@coherency.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17428/fi-ivb-3770/igt@i915_selftest@live@coherency.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][5] ([i915#62]) -> [SKIP][6] ([fdo#109271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17428/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Additional (1): fi-icl-dsi 
-  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8350 -> Patchwork_17428
-
-  CI-20190529: 20190529
-  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17428: d13256e76cf361a2b4e954ce8790725c3021cc62 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d13256e76cf3 doc/admin-guide: update kernel.rst with CAP_PERFMON information
-b3c0c8dc3225 doc/admin-guide: Update perf-security.rst with CAP_PERFMON information
-33c94226c35f drivers/oprofile: Open access for CAP_PERFMON privileged process
-10e972d65247 drivers/perf: Open access for CAP_PERFMON privileged process
-2b530591caa3 parisc/perf: open access for CAP_PERFMON privileged process
-092f35fb8dec powerpc/perf: open access for CAP_PERFMON privileged process
-14afa15c555f trace/bpf_trace: Open access for CAP_PERFMON privileged process
-d2eaa8483797 drm/i915/perf: Open access for CAP_PERFMON privileged process
-9ded613d59ba perf tools: Support CAP_PERFMON capability
-0bb591638827 perf/core: open access to probes for CAP_PERFMON privileged process
-64cddb3c59c7 perf/core: Open access to the core for CAP_PERFMON privileged process
-f036c99151ab capabilities: Introduce CAP_PERFMON to kernel and user space
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17428/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
