@@ -1,44 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E471B46B9
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 15:59:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141501B46F9
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 16:16:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81EC789739;
-	Wed, 22 Apr 2020 13:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF79A6E3FB;
+	Wed, 22 Apr 2020 14:16:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14B2789739
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 13:59:23 +0000 (UTC)
-IronPort-SDR: 0Kk3I6OYkdgleMxe3SfPZlupHbplao9YXsQxuePGX1F5WhEUxBDj56pDSm5wabuokm/AWKzTEL
- KPFBQeusNpHw==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB5F26E3FB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 14:16:32 +0000 (UTC)
+IronPort-SDR: jlxe95kTLEfTPiEqj4n6OY8SR/kmjp1tff6ZkvAvCHEGz+r37oaOMF3z1kBE5+ixOfQ3GNs4tw
+ sJWKSWiRTGDg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2020 06:59:23 -0700
-IronPort-SDR: u2Bc9WnsLgVNdIu06HcH3y3JZ+/WU228aFLeRAXXp/OTe6ZFq3MagKwuZPdX0a8ZlSeEk8LM9h
- sgM9378c8k4w==
-X-IronPort-AV: E=Sophos;i="5.72,414,1580803200"; d="scan'208";a="429919621"
-Received: from morangux-mobl.ger.corp.intel.com (HELO [10.214.194.47])
- ([10.214.194.47])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2020 06:59:21 -0700
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 07:16:31 -0700
+IronPort-SDR: uMnuONk8sjTAE3QZA1p2iMVQZJFftXvCNpWBOa8LmCpIWptwNzjXhPnOfJtq5XghnE7jwZyTmz
+ 6cpNKqbnsfig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,414,1580803200"; d="scan'208";a="259080935"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga006.jf.intel.com with ESMTP; 22 Apr 2020 07:16:30 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 50B465C1D8E; Wed, 22 Apr 2020 17:14:35 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200422072037.17163-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <f721d687-8e43-a14e-1e91-befd7f96d49e@linux.intel.com>
-Date: Wed, 22 Apr 2020 14:59:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+In-Reply-To: <20200422100903.25216-1-chris@chris-wilson.co.uk>
+References: <20200422100903.25216-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Apr 2020 17:14:35 +0300
+Message-ID: <87v9lrli9g.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200422072037.17163-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Hold obj->vma.lock over
- for_each_ggtt_vma()
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests: Try to detect
+ rollback during batchbuffer preemption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,183 +48,393 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, stable@vger.kernel.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-On 22/04/2020 08:20, Chris Wilson wrote:
-> While the ggtt vma are protected by their object lifetime, the list
-> continues until it hits a non-ggtt vma, and that vma is not protected
-> and may be freed as we inspect it. Hence, we require the obj->vma.lock
-> to protect the list as we iterate.
-> 
-> An example of forgetting to hold the obj->vma.lock is
-> 
-> [1642834.464973] general protection fault, probably for non-canonical address 0xdead000000000122: 0000 [#1] SMP PTI
-> [1642834.464977] CPU: 3 PID: 1954 Comm: Xorg Not tainted 5.6.0-300.fc32.x86_64 #1
-> [1642834.464979] Hardware name: LENOVO 20ARS25701/20ARS25701, BIOS GJET94WW (2.44 ) 09/14/2017
-> [1642834.465021] RIP: 0010:i915_gem_object_set_tiling+0x2c0/0x3e0 [i915]
-> [1642834.465024] Code: 8b 84 24 18 01 00 00 f6 c4 80 74 59 49 8b 94 24 a0 00 00 00 49 8b 84 24 e0 00 00 00 49 8b 74 24 10 48 8b 92 30 01 00 00 89 c7 <80> ba 0a 06 00 00 03 0f 87 86 00 00 00 ba 00 00 08 00 b9 00 00 10
-> [1642834.465025] RSP: 0018:ffffa98780c77d60 EFLAGS: 00010282
-> [1642834.465028] RAX: ffff8d232bfb2578 RBX: 0000000000000002 RCX: ffff8d25873a0000
-> [1642834.465029] RDX: dead000000000122 RSI: fffff0af8ac6e408 RDI: 000000002bfb2578
-> [1642834.465030] RBP: ffff8d25873a0000 R08: ffff8d252bfb5638 R09: 0000000000000000
-> [1642834.465031] R10: 0000000000000000 R11: ffff8d252bfb5640 R12: ffffa987801cb8f8
-> [1642834.465032] R13: 0000000000001000 R14: ffff8d233e972e50 R15: ffff8d233e972d00
-> [1642834.465034] FS:  00007f6a3d327f00(0000) GS:ffff8d25926c0000(0000) knlGS:0000000000000000
-> [1642834.465036] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [1642834.465037] CR2: 00007f6a2064d000 CR3: 00000002fb57c001 CR4: 00000000001606e0
-> [1642834.465038] Call Trace:
-> [1642834.465083]  i915_gem_set_tiling_ioctl+0x122/0x230 [i915]
-> [1642834.465121]  ? i915_gem_object_set_tiling+0x3e0/0x3e0 [i915]
-> [1642834.465151]  drm_ioctl_kernel+0x86/0xd0 [drm]
-> [1642834.465156]  ? avc_has_perm+0x3b/0x160
-> [1642834.465178]  drm_ioctl+0x206/0x390 [drm]
-> [1642834.465216]  ? i915_gem_object_set_tiling+0x3e0/0x3e0 [i915]
-> [1642834.465221]  ? selinux_file_ioctl+0x122/0x1c0
-> [1642834.465226]  ? __do_munmap+0x24b/0x4d0
-> [1642834.465231]  ksys_ioctl+0x82/0xc0
-> [1642834.465235]  __x64_sys_ioctl+0x16/0x20
-> [1642834.465238]  do_syscall_64+0x5b/0xf0
-> [1642834.465243]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [1642834.465245] RIP: 0033:0x7f6a3d7b047b
-> [1642834.465247] Code: 0f 1e fa 48 8b 05 1d aa 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d ed a9 0c 00 f7 d8 64 89 01 48
-> [1642834.465249] RSP: 002b:00007ffe71adba28 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-> [1642834.465251] RAX: ffffffffffffffda RBX: 000055f99048fa40 RCX: 00007f6a3d7b047b
-> [1642834.465253] RDX: 00007ffe71adba30 RSI: 00000000c0106461 RDI: 000000000000000e
-> [1642834.465254] RBP: 0000000000000002 R08: 000055f98f3f1798 R09: 0000000000000002
-> [1642834.465255] R10: 0000000000001000 R11: 0000000000000246 R12: 0000000000000080
-> [1642834.465257] R13: 000055f98f3f1690 R14: 00000000c0106461 R15: 00007ffe71adba30
-> 
-> Now to take the spinlock during the list iteration, we need to break it
-> down into two phases. In the first phase under the lock, we cannot sleep
-> and so must defer the actual work to a second list, protected by the
-> ggtt->mutex.
-> 
-> We also need to hold the spinlock during creation of a new spinlock to
-
-s/new spinlock/new vma/
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
-> serialise updates of the tiling on the object.
-> 
-> Reported-by: Dave Airlie <airlied@redhat.com>
-> Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
+> Since batch buffers dominant execution time, most preemption requests
+> should naturally occur during execution of a batch buffer. We wish to
+> verify that should a preemption occur within a batch buffer, when we
+> come to restart that batch buffer, it occurs at the interrupted
+> instruction and most importantly does not rollback to an earlier point.
+>
+> v2: Do not clear the GPR at the start of the batch, but rely on them
+> being clear for new contexts.
+>
+> Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: <stable@vger.kernel.org> # v5.5+
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 15 ++++++++++++++-
->   drivers/gpu/drm/i915/i915_vma.c            | 10 ++++++----
->   2 files changed, 20 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> index 37f77aee1212..0deb66d2858e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> @@ -182,21 +182,32 @@ i915_gem_object_fence_prepare(struct drm_i915_gem_object *obj,
->   			      int tiling_mode, unsigned int stride)
->   {
->   	struct i915_ggtt *ggtt = &to_i915(obj->base.dev)->ggtt;
-> -	struct i915_vma *vma;
-> +	struct i915_vma *vma, *vn;
-> +	LIST_HEAD(unbind);
->   	int ret = 0;
->   
->   	if (tiling_mode == I915_TILING_NONE)
->   		return 0;
->   
->   	mutex_lock(&ggtt->vm.mutex);
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 329 ++++++++++++++++++++++++-
+>  1 file changed, 328 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 6f5e35afe1b2..fc3f9a248764 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -21,7 +21,8 @@
+>  #include "gem/selftests/mock_context.h"
+>  
+>  #define CS_GPR(engine, n) ((engine)->mmio_base + 0x600 + (n) * 4)
+> -#define NUM_GPR_DW (16 * 2) /* each GPR is 2 dwords */
+> +#define NUM_GPR 16
+> +#define NUM_GPR_DW (NUM_GPR * 2) /* each GPR is 2 dwords */
+>  
+>  static struct i915_vma *create_scratch(struct intel_gt *gt)
+>  {
+> @@ -2791,6 +2792,331 @@ static int live_preempt_gang(void *arg)
+>  	return 0;
+>  }
+>  
+> +static struct i915_vma *
+> +create_gpr_user(struct intel_engine_cs *engine,
+> +		struct i915_vma *result,
+> +		unsigned int offset)
+> +{
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma;
+> +	u32 *cs;
+> +	int err;
+> +	int i;
 > +
-> +	spin_lock(&obj->vma.lock);
->   	for_each_ggtt_vma(vma, obj) {
-> +		GEM_BUG_ON(vma->vm != &ggtt->vm);
+> +	obj = i915_gem_object_create_internal(engine->i915, 4096);
+> +	if (IS_ERR(obj))
+> +		return ERR_CAST(obj);
 > +
->   		if (i915_vma_fence_prepare(vma, tiling_mode, stride))
->   			continue;
->   
-> +		list_move(&vma->vm_link, &unbind);
+> +	vma = i915_vma_instance(obj, result->vm, NULL);
+> +	if (IS_ERR(vma)) {
+> +		i915_gem_object_put(obj);
+> +		return vma;
 > +	}
-> +	spin_unlock(&obj->vma.lock);
 > +
-> +	list_for_each_entry_safe(vma, vn, &unbind, vm_link) {
->   		ret = __i915_vma_unbind(vma);
->   		if (ret)
->   			break;
->   	}
+> +	err = i915_vma_pin(vma, 0, 0, PIN_USER);
+> +	if (err) {
+> +		i915_vma_put(vma);
+> +		return ERR_PTR(err);
+> +	}
 > +
->   	mutex_unlock(&ggtt->vm.mutex);
->   
->   	return ret;
-> @@ -268,6 +279,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
->   	}
->   	mutex_unlock(&obj->mm.lock);
->   
-> +	spin_lock(&obj->vma.lock);
->   	for_each_ggtt_vma(vma, obj) {
->   		vma->fence_size =
->   			i915_gem_fence_size(i915, vma->size, tiling, stride);
-> @@ -278,6 +290,7 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
->   		if (vma->fence)
->   			vma->fence->dirty = true;
->   	}
-> +	spin_unlock(&obj->vma.lock);
->   
->   	obj->tiling_and_stride = tiling | stride;
->   	i915_gem_object_unlock(obj);
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index f0383a68c981..20fe5a134d92 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -158,16 +158,18 @@ vma_create(struct drm_i915_gem_object *obj,
->   
->   	GEM_BUG_ON(!IS_ALIGNED(vma->size, I915_GTT_PAGE_SIZE));
->   
-> +	spin_lock(&obj->vma.lock);
+> +	cs = i915_gem_object_pin_map(obj, I915_MAP_WC);
+> +	if (IS_ERR(cs)) {
+> +		i915_vma_put(vma);
+> +		return ERR_CAST(cs);
+> +	}
 > +
->   	if (i915_is_ggtt(vm)) {
->   		if (unlikely(overflows_type(vma->size, u32)))
-> -			goto err_vma;
-> +			goto err_unlock;
->   
->   		vma->fence_size = i915_gem_fence_size(vm->i915, vma->size,
->   						      i915_gem_object_get_tiling(obj),
->   						      i915_gem_object_get_stride(obj));
->   		if (unlikely(vma->fence_size < vma->size || /* overflow */
->   			     vma->fence_size > vm->total))
-> -			goto err_vma;
-> +			goto err_unlock;
->   
->   		GEM_BUG_ON(!IS_ALIGNED(vma->fence_size, I915_GTT_MIN_ALIGNMENT));
->   
-> @@ -179,8 +181,6 @@ vma_create(struct drm_i915_gem_object *obj,
->   		__set_bit(I915_VMA_GGTT_BIT, __i915_vma_flags(vma));
->   	}
->   
-> -	spin_lock(&obj->vma.lock);
-> -
->   	rb = NULL;
->   	p = &obj->vma.tree.rb_node;
->   	while (*p) {
-> @@ -225,6 +225,8 @@ vma_create(struct drm_i915_gem_object *obj,
->   
->   	return vma;
->   
-> +err_unlock:
-> +	spin_unlock(&obj->vma.lock);
->   err_vma:
->   	i915_vma_free(vma);
->   	return ERR_PTR(-E2BIG);
-> 
+> +	/* All GPR are clear for new contexts. We use GPR(0) as a constant */
+> +	*cs++ = MI_LOAD_REGISTER_IMM(1);
+> +	*cs++ = CS_GPR(engine, 0);
+> +	*cs++ = 1;
+> +
+> +	for (i = 1; i < NUM_GPR; i++) {
+> +		u64 addr;
+> +
+> +		/*
+> +		 * Perform: GPR[i]++
+> +		 *
+> +		 * As we read and write into the context saved GPR[i], if
+> +		 * we restart this batch buffer from an earlier point, we
+> +		 * will repeat the increment and store a value > 1.
+> +		 */
+
+Yes, this should show restarting from wrong spot.
+I did ponder to put a conditional batch buffer start in the
+end to replay the last addition to smoketest the test.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> +		*cs++ = MI_MATH(4);
+> +		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(i));
+> +		*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(0));
+> +		*cs++ = MI_MATH_ADD;
+> +		*cs++ = MI_MATH_STORE(MI_MATH_REG(i), MI_MATH_REG_ACCU);
+> +
+> +		addr = result->node.start + offset + i * sizeof(*cs);
+> +		*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+> +		*cs++ = CS_GPR(engine, 2 * i);
+> +		*cs++ = lower_32_bits(addr);
+> +		*cs++ = upper_32_bits(addr);
+> +
+> +		*cs++ = MI_SEMAPHORE_WAIT |
+> +			MI_SEMAPHORE_POLL |
+> +			MI_SEMAPHORE_SAD_GTE_SDD;
+> +		*cs++ = i;
+> +		*cs++ = lower_32_bits(result->node.start);
+> +		*cs++ = upper_32_bits(result->node.start);
+> +	}
+> +
+> +	*cs++ = MI_BATCH_BUFFER_END;
+> +	i915_gem_object_flush_map(obj);
+> +	i915_gem_object_unpin_map(obj);
+> +
+> +	return vma;
+> +}
+> +
+> +static struct i915_vma *create_global(struct intel_gt *gt, size_t sz)
+> +{
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma;
+> +	int err;
+> +
+> +	obj = i915_gem_object_create_internal(gt->i915, sz);
+> +	if (IS_ERR(obj))
+> +		return ERR_CAST(obj);
+> +
+> +	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
+> +	if (IS_ERR(vma)) {
+> +		i915_gem_object_put(obj);
+> +		return vma;
+> +	}
+> +
+> +	err = i915_ggtt_pin(vma, 0, 0);
+> +	if (err) {
+> +		i915_vma_put(vma);
+> +		return ERR_PTR(err);
+> +	}
+> +
+> +	return vma;
+> +}
+> +
+> +static struct i915_request *
+> +create_gpr_client(struct intel_engine_cs *engine,
+> +		  struct i915_vma *global,
+> +		  unsigned int offset)
+> +{
+> +	struct i915_vma *batch, *vma;
+> +	struct intel_context *ce;
+> +	struct i915_request *rq;
+> +	int err;
+> +
+> +	ce = intel_context_create(engine);
+> +	if (IS_ERR(ce))
+> +		return ERR_CAST(ce);
+> +
+> +	vma = i915_vma_instance(global->obj, ce->vm, NULL);
+> +	if (IS_ERR(vma)) {
+> +		err = PTR_ERR(vma);
+> +		goto out_ce;
+> +	}
+> +
+> +	err = i915_vma_pin(vma, 0, 0, PIN_USER);
+> +	if (err)
+> +		goto out_ce;
+> +
+> +	batch = create_gpr_user(engine, vma, offset);
+> +	if (IS_ERR(batch)) {
+> +		err = PTR_ERR(batch);
+> +		goto out_vma;
+> +	}
+> +
+> +	rq = intel_context_create_request(ce);
+> +	if (IS_ERR(rq)) {
+> +		err = PTR_ERR(rq);
+> +		goto out_batch;
+> +	}
+> +
+> +	i915_vma_lock(vma);
+> +	err = i915_request_await_object(rq, vma->obj, false);
+> +	if (!err)
+> +		err = i915_vma_move_to_active(vma, rq, 0);
+> +	i915_vma_unlock(vma);
+> +
+> +	i915_vma_lock(batch);
+> +	if (!err)
+> +		err = i915_request_await_object(rq, batch->obj, false);
+> +	if (!err)
+> +		err = i915_vma_move_to_active(batch, rq, 0);
+> +	if (!err)
+> +		err = rq->engine->emit_bb_start(rq,
+> +						batch->node.start,
+> +						PAGE_SIZE, 0);
+> +	i915_vma_unlock(batch);
+> +	i915_vma_unpin(batch);
+> +
+> +	if (!err)
+> +		i915_request_get(rq);
+> +	i915_request_add(rq);
+> +
+> +out_batch:
+> +	i915_vma_put(batch);
+> +out_vma:
+> +	i915_vma_unpin(vma);
+> +out_ce:
+> +	intel_context_put(ce);
+> +	return err ? ERR_PTR(err) : rq;
+> +}
+> +
+> +static int preempt_user(struct intel_engine_cs *engine,
+> +			struct i915_vma *global,
+> +			int id)
+> +{
+> +	struct i915_sched_attr attr = {
+> +		.priority = I915_PRIORITY_MAX
+> +	};
+> +	struct i915_request *rq;
+> +	int err = 0;
+> +	u32 *cs;
+> +
+> +	rq = intel_engine_create_kernel_request(engine);
+> +	if (IS_ERR(rq))
+> +		return PTR_ERR(rq);
+> +
+> +	cs = intel_ring_begin(rq, 4);
+> +	if (IS_ERR(cs)) {
+> +		i915_request_add(rq);
+> +		return PTR_ERR(cs);
+> +	}
+> +
+> +	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+> +	*cs++ = i915_ggtt_offset(global);
+> +	*cs++ = 0;
+> +	*cs++ = id;
+> +
+> +	intel_ring_advance(rq, cs);
+> +
+> +	i915_request_get(rq);
+> +	i915_request_add(rq);
+> +
+> +	engine->schedule(rq, &attr);
+> +
+> +	if (i915_request_wait(rq, 0, HZ / 2) < 0)
+> +		err = -ETIME;
+> +	i915_request_put(rq);
+> +
+> +	return err;
+> +}
+> +
+> +static int live_preempt_user(void *arg)
+> +{
+> +	struct intel_gt *gt = arg;
+> +	struct intel_engine_cs *engine;
+> +	struct i915_vma *global;
+> +	enum intel_engine_id id;
+> +	u32 *result;
+> +	int err = 0;
+> +
+> +	if (!HAS_LOGICAL_RING_PREEMPTION(gt->i915))
+> +		return 0;
+> +
+> +	/*
+> +	 * In our other tests, we look at preemption in carefully
+> +	 * controlled conditions in the ringbuffer. Since most of the
+> +	 * time is spent in user batches, most of our preemptions naturally
+> +	 * occur there. We want to verify that when we preempt inside a batch
+> +	 * we continue on from the current instruction and do not roll back
+> +	 * to the start, or another earlier arbitration point.
+> +	 *
+> +	 * To verify this, we create a batch which is a mixture of
+> +	 * MI_MATH (gpr++) MI_SRM (gpr) and preemption points. Then with
+> +	 * a few preempting contexts thrown into the mix, we look for any
+> +	 * repeated instructions (which show up as incorrect values).
+> +	 */
+> +
+> +	global = create_global(gt, 4096);
+> +	if (IS_ERR(global))
+> +		return PTR_ERR(global);
+> +
+> +	result = i915_gem_object_pin_map(global->obj, I915_MAP_WC);
+> +	if (IS_ERR(result)) {
+> +		i915_vma_unpin_and_release(&global, 0);
+> +		return PTR_ERR(result);
+> +	}
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		struct i915_request *client[3] = {};
+> +		struct igt_live_test t;
+> +		int i;
+> +
+> +		if (!intel_engine_has_preemption(engine))
+> +			continue;
+> +
+> +		if (IS_GEN(gt->i915, 8) && engine->class != RENDER_CLASS)
+> +			continue; /* we need per-context GPR */
+> +
+> +		if (igt_live_test_begin(&t, gt->i915, __func__, engine->name)) {
+> +			err = -EIO;
+> +			break;
+> +		}
+> +
+> +		memset(result, 0, 4096);
+> +
+> +		for (i = 0; i < ARRAY_SIZE(client); i++) {
+> +			struct i915_request *rq;
+> +
+> +			rq = create_gpr_client(engine, global,
+> +					       NUM_GPR * i * sizeof(u32));
+> +			if (IS_ERR(rq))
+> +				goto end_test;
+> +
+> +			client[i] = rq;
+> +		}
+> +
+> +		/* Continuously preempt the set of 3 running contexts */
+> +		for (i = 1; i <= NUM_GPR; i++) {
+> +			err = preempt_user(engine, global, i);
+> +			if (err)
+> +				goto end_test;
+> +		}
+> +
+> +		if (READ_ONCE(result[0]) != NUM_GPR) {
+> +			pr_err("%s: Failed to release semaphore\n",
+> +			       engine->name);
+> +			err = -EIO;
+> +			goto end_test;
+> +		}
+> +
+> +		for (i = 0; i < ARRAY_SIZE(client); i++) {
+> +			int gpr;
+> +
+> +			if (i915_request_wait(client[i], 0, HZ / 2) < 0) {
+> +				err = -ETIME;
+> +				goto end_test;
+> +			}
+> +
+> +			for (gpr = 1; gpr < NUM_GPR; gpr++) {
+> +				if (result[NUM_GPR * i + gpr] != 1) {
+> +					pr_err("%s: Invalid result, client %d, gpr %d, result: %d\n",
+> +					       engine->name,
+> +					       i, gpr, result[NUM_GPR * i + gpr]);
+> +					err = -EINVAL;
+> +					goto end_test;
+> +				}
+> +			}
+> +		}
+> +
+> +end_test:
+> +		for (i = 0; i < ARRAY_SIZE(client); i++) {
+> +			if (!client[i])
+> +				break;
+> +
+> +			i915_request_put(client[i]);
+> +		}
+> +
+> +		/* Flush the semaphores on error */
+> +		smp_store_mb(result[0], -1);
+> +		if (igt_live_test_end(&t))
+> +			err = -EIO;
+> +		if (err)
+> +			break;
+> +	}
+> +
+> +	i915_vma_unpin_and_release(&global, I915_VMA_RELEASE_MAP);
+> +	return err;
+> +}
+> +
+>  static int live_preempt_timeout(void *arg)
+>  {
+>  	struct intel_gt *gt = arg;
+> @@ -3998,6 +4324,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+>  		SUBTEST(live_chain_preempt),
+>  		SUBTEST(live_preempt_gang),
+>  		SUBTEST(live_preempt_timeout),
+> +		SUBTEST(live_preempt_user),
+>  		SUBTEST(live_preempt_smoke),
+>  		SUBTEST(live_virtual_engine),
+>  		SUBTEST(live_virtual_mask),
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
