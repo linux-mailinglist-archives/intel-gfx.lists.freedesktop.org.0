@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127331B4ED1
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 23:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EE711B4F6D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 23:34:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04EA56E094;
-	Wed, 22 Apr 2020 21:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A246E0E5;
+	Wed, 22 Apr 2020 21:34:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F5F56E064;
- Wed, 22 Apr 2020 21:09:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50BE6A008A;
- Wed, 22 Apr 2020 21:09:45 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2613A6E0E5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 21:34:11 +0000 (UTC)
+IronPort-SDR: N65lSmvXpDr5XDmdq7wuEL4y0/HNQyVTYrhjzEOWGeaPkedqm95n8ddWA4M2ukWEP7TSmkJN+D
+ pAdR1ZQfGWfw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 14:34:10 -0700
+IronPort-SDR: xnVqLTGyf/qoz1aZGGCQvaG5c66GwaqvwvHHj3LSE+6O2L1/zgYcrm3Hruz0pOeO2aElIyICFb
+ 2KcGhayQAYjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,304,1583222400"; d="scan'208";a="290976103"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Apr 2020 14:34:10 -0700
+Date: Wed, 22 Apr 2020 14:35:29 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200422213529.GC28167@intel.com>
+References: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
+ <20200422161917.17389-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 22 Apr 2020 21:09:45 -0000
-Message-ID: <158758978530.5177.11364118972885522699@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200422200709.7122-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200422200709.7122-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Warn_more_clearly_if_the_context_state_is_still_pin?=
- =?utf-8?q?ned?=
+Content-Disposition: inline
+In-Reply-To: <20200422161917.17389-5-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915: Pass connector state to
+ pfit calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,130 +50,328 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 22, 2020 at 07:19:16PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: drm/i915/gt: Warn more clearly if the context state is still pinned
-URL   : https://patchwork.freedesktop.org/series/76351/
-State : failure
+> Pass the entire connector state to intel_{gmch,pch}_panel_fitting().
+> For now we just need to get at .scaling_mode but in the future we'll
+> want access to the margin properties as well.
+> =
 
-== Summary ==
+> v2: Deal with intel_dp_ycbcr420_config()
+> =
 
-CI Bug Log - changes from CI_DRM_8350 -> Patchwork_17431
-====================================================
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Summary
--------
+Looks good to me,
 
-  **FAILURE**
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-  Serious unknown changes coming with Patchwork_17431 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17431, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Manasi
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/index.html
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c    | 17 ++++++++---------
+>  drivers/gpu/drm/i915/display/intel_hdmi.c  | 11 ++++++-----
+>  drivers/gpu/drm/i915/display/intel_lvds.c  |  7 ++-----
+>  drivers/gpu/drm/i915/display/intel_panel.c | 17 ++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_panel.h |  4 ++--
+>  drivers/gpu/drm/i915/display/vlv_dsi.c     |  6 ++----
+>  7 files changed, 31 insertions(+), 33 deletions(-)
+> =
 
-Possible new issues
--------------------
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index fb9291de55d0..6650590f18fd 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1532,7 +1532,7 @@ static int gen11_dsi_compute_config(struct intel_en=
+coder *encoder,
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17431:
+>  	pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+>  	intel_fixed_panel_mode(fixed_mode, adjusted_mode);
+> -	intel_pch_panel_fitting(pipe_config, conn_state->scaling_mode);
+> +	intel_pch_panel_fitting(pipe_config, conn_state);
+>  =
 
-### IGT changes ###
+>  	adjusted_mode->flags =3D 0;
+>  =
 
-#### Possible regressions ####
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index b9a760012b3f..7c4c9a4f4238 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2339,9 +2339,10 @@ intel_dp_compute_link_config(struct intel_encoder =
+*encoder,
+>  =
 
-  * igt@i915_selftest@live@active:
-    - fi-snb-2520m:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-snb-2520m/igt@i915_selftest@live@active.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-snb-2520m/igt@i915_selftest@live@active.html
+>  static int
+>  intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+> -			 struct drm_connector *connector,
+> -			 struct intel_crtc_state *crtc_state)
+> +			 struct intel_crtc_state *crtc_state,
+> +			 const struct drm_connector_state *conn_state)
+>  {
+> +	struct drm_connector *connector =3D conn_state->connector;
+>  	const struct drm_display_info *info =3D &connector->display_info;
+>  	const struct drm_display_mode *adjusted_mode =3D
+>  		&crtc_state->hw.adjusted_mode;
+> @@ -2353,7 +2354,7 @@ intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+>  =
 
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-bwr-2160/igt@i915_selftest@live@late_gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-bwr-2160/igt@i915_selftest@live@late_gt_pm.html
+>  	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+>  =
 
-  * igt@runner@aborted:
-    - fi-snb-2520m:       NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-snb-2520m/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-elk-e7500/igt@runner@aborted.html
+> -	intel_pch_panel_fitting(crtc_state, DRM_MODE_SCALE_FULLSCREEN);
+> +	intel_pch_panel_fitting(crtc_state, conn_state);
+>  =
 
-  
-Known issues
-------------
+>  	return 0;
+>  }
+> @@ -2549,8 +2550,8 @@ intel_dp_compute_config(struct intel_encoder *encod=
+er,
+>  	if (lspcon->active)
+>  		lspcon_ycbcr420_config(&intel_connector->base, pipe_config);
+>  	else
+> -		ret =3D intel_dp_ycbcr420_config(intel_dp, &intel_connector->base,
+> -					       pipe_config);
+> +		ret =3D intel_dp_ycbcr420_config(intel_dp, pipe_config,
+> +					       conn_state);
+>  	if (ret)
+>  		return ret;
+>  =
 
-  Here are the changes found in Patchwork_17431 that come from known issues:
+> @@ -2567,11 +2568,9 @@ intel_dp_compute_config(struct intel_encoder *enco=
+der,
+>  				       adjusted_mode);
+>  =
 
-### IGT changes ###
+>  		if (HAS_GMCH(dev_priv))
+> -			intel_gmch_panel_fitting(pipe_config,
+> -						 conn_state->scaling_mode);
+> +			intel_gmch_panel_fitting(pipe_config, conn_state);
+>  		else
+> -			intel_pch_panel_fitting(pipe_config,
+> -						conn_state->scaling_mode);
+> +			intel_pch_panel_fitting(pipe_config, conn_state);
+>  	}
+>  =
 
-#### Issues hit ####
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 275a676c7b08..0edbdd39f462 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2322,9 +2322,10 @@ static bool hdmi_deep_color_possible(const struct =
+intel_crtc_state *crtc_state,
+>  }
+>  =
 
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-snb-2600:        [PASS][7] -> [INCOMPLETE][8] ([i915#82])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-snb-2600/igt@i915_selftest@live@gt_mocs.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-snb-2600/igt@i915_selftest@live@gt_mocs.html
+>  static bool
+> -intel_hdmi_ycbcr420_config(struct drm_connector *connector,
+> -			   struct intel_crtc_state *config)
+> +intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
+> +			   const struct drm_connector_state *conn_state)
+>  {
+> +	struct drm_connector *connector =3D conn_state->connector;
+>  	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+>  =
 
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-byt-j1900:       [PASS][9] -> [INCOMPLETE][10] ([i915#45])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-byt-j1900/igt@i915_selftest@live@sanitycheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-byt-j1900/igt@i915_selftest@live@sanitycheck.html
+>  	if (!connector->ycbcr_420_allowed) {
+> @@ -2333,9 +2334,9 @@ intel_hdmi_ycbcr420_config(struct drm_connector *co=
+nnector,
+>  		return false;
+>  	}
+>  =
 
-  * igt@i915_selftest@live@workarounds:
-    - fi-elk-e7500:       [PASS][11] -> [INCOMPLETE][12] ([i915#66])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-elk-e7500/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-elk-e7500/igt@i915_selftest@live@workarounds.html
+> -	config->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+> +	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+>  =
 
-  
-#### Warnings ####
+> -	intel_pch_panel_fitting(config, DRM_MODE_SCALE_FULLSCREEN);
+> +	intel_pch_panel_fitting(crtc_state, conn_state);
+>  =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][13] ([i915#62]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+>  	return true;
+>  }
+> @@ -2466,7 +2467,7 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  		pipe_config->pixel_multiplier =3D 2;
+>  =
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#66]: https://gitlab.freedesktop.org/drm/intel/issues/66
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+>  	if (drm_mode_is_420_only(&connector->display_info, adjusted_mode)) {
+> -		if (!intel_hdmi_ycbcr420_config(connector, pipe_config)) {
+> +		if (!intel_hdmi_ycbcr420_config(pipe_config, conn_state)) {
+>  			drm_err(&dev_priv->drm,
+>  				"Can't support YCBCR420 output\n");
+>  			return -EINVAL;
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/=
+i915/display/intel_lvds.c
+> index 276db41b95ef..ae658d9354b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -439,12 +439,9 @@ static int intel_lvds_compute_config(struct intel_en=
+coder *intel_encoder,
+>  	if (HAS_PCH_SPLIT(dev_priv)) {
+>  		pipe_config->has_pch_encoder =3D true;
+>  =
 
+> -		intel_pch_panel_fitting(pipe_config,
+> -					conn_state->scaling_mode);
+> +		intel_pch_panel_fitting(pipe_config, conn_state);
+>  	} else {
+> -		intel_gmch_panel_fitting(pipe_config,
+> -					 conn_state->scaling_mode);
+> -
+> +		intel_gmch_panel_fitting(pipe_config, conn_state);
+>  	}
+>  =
 
-Participating hosts (48 -> 41)
-------------------------------
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
+/i915/display/intel_panel.c
+> index 3ea1704277a8..b4bb1cfc54a9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -178,7 +178,7 @@ intel_panel_vbt_fixed_mode(struct intel_connector *co=
+nnector)
+>  /* adjusted_mode has been preset to be the panel's fixed mode */
+>  void
+>  intel_pch_panel_fitting(struct intel_crtc_state *crtc_state,
+> -			int fitting_mode)
+> +			const struct drm_connector_state *conn_state)
+>  {
+>  	const struct drm_display_mode *adjusted_mode =3D
+>  		&crtc_state->hw.adjusted_mode;
+> @@ -190,7 +190,7 @@ intel_pch_panel_fitting(struct intel_crtc_state *crtc=
+_state,
+>  	    crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+>  		return;
+>  =
 
-  Additional (1): fi-icl-dsi 
-  Missing    (8): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ivb-3770 fi-byt-clapper fi-bdw-samus 
+> -	switch (fitting_mode) {
+> +	switch (conn_state->scaling_mode) {
+>  	case DRM_MODE_SCALE_CENTER:
+>  		width =3D crtc_state->pipe_src_w;
+>  		height =3D crtc_state->pipe_src_h;
+> @@ -227,6 +227,10 @@ intel_pch_panel_fitting(struct intel_crtc_state *crt=
+c_state,
+>  		}
+>  		break;
+>  =
 
+> +	case DRM_MODE_SCALE_NONE:
+> +		WARN_ON(adjusted_mode->crtc_hdisplay !=3D crtc_state->pipe_src_w);
+> +		WARN_ON(adjusted_mode->crtc_vdisplay !=3D crtc_state->pipe_src_h);
+> +		/* fall through */
+>  	case DRM_MODE_SCALE_FULLSCREEN:
+>  		x =3D y =3D 0;
+>  		width =3D adjusted_mode->crtc_hdisplay;
+> @@ -234,7 +238,7 @@ intel_pch_panel_fitting(struct intel_crtc_state *crtc=
+_state,
+>  		break;
+>  =
 
-Build changes
--------------
+>  	default:
+> -		MISSING_CASE(fitting_mode);
+> +		MISSING_CASE(conn_state->scaling_mode);
+>  		return;
+>  	}
+>  =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8350 -> Patchwork_17431
+> @@ -378,7 +382,7 @@ static void i9xx_scale_aspect(struct intel_crtc_state=
+ *crtc_state,
+>  }
+>  =
 
-  CI-20190529: 20190529
-  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17431: f3b4cb2337241ed72073d06d4bf92b89f99c5acd @ git://anongit.freedesktop.org/gfx-ci/linux
+>  void intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+> -			      int fitting_mode)
+> +			      const struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> @@ -390,7 +394,7 @@ void intel_gmch_panel_fitting(struct intel_crtc_state=
+ *crtc_state,
+>  	    adjusted_mode->crtc_vdisplay =3D=3D crtc_state->pipe_src_h)
+>  		goto out;
+>  =
 
+> -	switch (fitting_mode) {
+> +	switch (conn_state->scaling_mode) {
+>  	case DRM_MODE_SCALE_CENTER:
+>  		/*
+>  		 * For centered modes, we have to calculate border widths &
+> @@ -426,8 +430,7 @@ void intel_gmch_panel_fitting(struct intel_crtc_state=
+ *crtc_state,
+>  		}
+>  		break;
+>  	default:
+> -		drm_WARN(&dev_priv->drm, 1, "bad panel fit mode: %d\n",
+> -			 fitting_mode);
+> +		MISSING_CASE(conn_state->scaling_mode);
+>  		return;
+>  	}
+>  =
 
-== Linux commits ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm=
+/i915/display/intel_panel.h
+> index 92dcb773763c..a26db895038e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.h
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+> @@ -26,9 +26,9 @@ void intel_panel_fini(struct intel_panel *panel);
+>  void intel_fixed_panel_mode(const struct drm_display_mode *fixed_mode,
+>  			    struct drm_display_mode *adjusted_mode);
+>  void intel_pch_panel_fitting(struct intel_crtc_state *crtc_state,
+> -			     int fitting_mode);
+> +			     const struct drm_connector_state *conn_state);
+>  void intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+> -			      int fitting_mode);
+> +			      const struct drm_connector_state *conn_state);
+>  void intel_panel_set_backlight_acpi(const struct drm_connector_state *co=
+nn_state,
+>  				    u32 level, u32 max);
+>  int intel_panel_setup_backlight(struct drm_connector *connector,
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index fe7c9d3ec418..9c9ea89d2107 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -278,11 +278,9 @@ static int intel_dsi_compute_config(struct intel_enc=
+oder *encoder,
+>  		intel_fixed_panel_mode(fixed_mode, adjusted_mode);
+>  =
 
-f3b4cb233724 drm/i915/gt: Warn more clearly if the context state is still pinned
+>  		if (HAS_GMCH(dev_priv))
+> -			intel_gmch_panel_fitting(pipe_config,
+> -						 conn_state->scaling_mode);
+> +			intel_gmch_panel_fitting(pipe_config, conn_state);
+>  		else
+> -			intel_pch_panel_fitting(pipe_config,
+> -						conn_state->scaling_mode);
+> +			intel_pch_panel_fitting(pipe_config, conn_state);
+>  	}
+>  =
 
-== Logs ==
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> -- =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17431/index.html
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
