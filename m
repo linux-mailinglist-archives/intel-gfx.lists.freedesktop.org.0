@@ -1,30 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCBB1B4701
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 16:18:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686E21B4714
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2020 16:20:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA866E408;
-	Wed, 22 Apr 2020 14:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF196E9FF;
+	Wed, 22 Apr 2020 14:20:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0556E408
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 14:18:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20985213-1500050 
- for multiple; Wed, 22 Apr 2020 15:17:50 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Apr 2020 15:17:49 +0100
-Message-Id: <20200422141749.28709-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D96956E9FF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 14:20:41 +0000 (UTC)
+IronPort-SDR: 1qiU9MUyZH1yL2YlYL08dShXS5WIzqg8urC6fwUJc7VsaLQw/Cop90lldX3me2p0+G7Zx9b54m
+ m6/+0+wBvcBQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 07:20:41 -0700
+IronPort-SDR: otiJUcSFMZch51VKfJETIzPmAtFg0V+vLV0fhgI+w82JwER7YkNkUITy3aNpTxEPTenrghnbxe
+ tcQRXeAMXdUg==
+X-IronPort-AV: E=Sophos;i="5.72,414,1580803200"; d="scan'208";a="429927464"
+Received: from morangux-mobl.ger.corp.intel.com (HELO [10.214.194.47])
+ ([10.214.194.47])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2020 07:20:40 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200421164130.11135-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <6298d6d6-d88c-8186-496d-7538f545f48c@linux.intel.com>
+Date: Wed, 22 Apr 2020 15:20:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Drop request-before-CS
- assertion
+In-Reply-To: <20200421164130.11135-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] RFC drm/i915/gem: Allow creation of
+ contexts with an 'empty' VM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,89 +51,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we migrated to execlists, one of the conditions we wanted to test
-for was whether the breadcrumb seqno was being written before the
-breadcumb interrupt was delivered. This was following on from issues
-observed on previous generations which were not so strong ordered. With
-the removal of the missed interrupt detection, we have not reliable
-means of detecting the out-of-order seqno/interupt but instead tried to
-assert that the relationship between the CS event interrupt and the
-breadwrite should be strongly ordered. However, Icelake proves it is
-possible for the HW implementation to forget about minor little details
-such as write ordering and so we the order between *processing* the CS
-event and the breadcrumb is unreliable.
 
-Remove the unreliable assertion, but leave a debug telltale in case we
-have reason to suspect.
+On 21/04/2020 17:41, Chris Wilson wrote:
+> Normally when we create a new context, and a new ppGTT to go with it, we
+> point all the unused pages in the ppGTT to a 'safe' scratch page. Any
+> inadvertent access outside of the declared user's area will result in a
+> read/write to scratch instead. However, sometimes it is preferrable to
+> that to cause a fault instead. This does not trap execution of the
+> faulting batch, but it does record the error:
+> 
+> FAULT_TLB_DATA: 0x00000000 0x00000004
+>      Address 0x0000000000004000 PPGTT
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+> The name and value semantics are horrendous. The non-trapping behaviour
+> is also less than ideal. Worth it?
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1658
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 27 ++-------------------------
- 1 file changed, 2 insertions(+), 25 deletions(-)
+Empty VM definitely sounds misleading.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index d42a9d6767d4..eb0d6f1964f4 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2384,13 +2384,6 @@ gen8_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
- 	return *csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
- }
- 
--static inline void flush_hwsp(const struct i915_request *rq)
--{
--	mb();
--	clflush((void *)READ_ONCE(rq->hwsp_seqno));
--	mb();
--}
--
- static void process_csb(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -2506,19 +2499,8 @@ static void process_csb(struct intel_engine_cs *engine)
- 				const u32 *regs __maybe_unused =
- 					rq->context->lrc_reg_state;
- 
--				/*
--				 * Flush the breadcrumb before crying foul.
--				 *
--				 * Since we have hit this on icl and seen the
--				 * breadcrumb advance as we print out the debug
--				 * info (so the problem corrected itself without
--				 * lasting damage), and we know that icl suffers
--				 * from missing global observation points in
--				 * execlists, presume that affects even more
--				 * coherency.
--				 */
--				flush_hwsp(rq);
--
-+				ENGINE_TRACE(engine,
-+					     "context completed before request!\n");
- 				ENGINE_TRACE(engine,
- 					     "ring:{start:0x%08x, head:%04x, tail:%04x, ctl:%08x, mode:%08x}\n",
- 					     ENGINE_READ(engine, RING_START),
-@@ -2538,11 +2520,6 @@ static void process_csb(struct intel_engine_cs *engine)
- 					     regs[CTX_RING_START],
- 					     regs[CTX_RING_HEAD],
- 					     regs[CTX_RING_TAIL]);
--
--				/* Still? Declare it caput! */
--				if (!i915_request_completed(rq) &&
--				    !reset_in_progress(execlists))
--					GEM_BUG_ON("context completed before request");
- 			}
- 
- 			execlists_schedule_out(*execlists->active++);
--- 
-2.20.1
+Is there any argument to require root for this?
 
+And why not a context create flag? 
+I915_CONTEXT_CREATE_NO_VM_OUT_OF_BOUNDS_PROTECTION?
+
+Flag feels simpler for the purpose, plus it can be handled post 
+extension processing to remove the question of interleaved set_vm and 
+set_empty_vm extension.
+
+Regards,
+
+Tvrtko
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 48 +++++++++++++++++++++
+>   include/uapi/drm/i915_drm.h                 |  2 +
+>   2 files changed, 50 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 1c4afa864bfe..f981269e883d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1191,6 +1191,33 @@ static int set_ringsize(struct i915_gem_context *ctx,
+>   				 __intel_context_ring_size(args->value));
+>   }
+>   
+> +static int set_empty_vm(struct i915_gem_context *ctx,
+> +			struct drm_i915_gem_context_param *args)
+> +{
+> +	struct i915_address_space *vm = ctx->vm;
+> +	int i;
+> +
+> +	if (!vm || INTEL_GEN(ctx->i915) < 8)
+> +		return -ENODEV;
+> +
+> +	if (args->size || args->value)
+> +		return -EINVAL;
+> +
+> +	if (!vm->scratch[0].encode)
+> +		return 0;
+> +
+> +	if (vm->mm.head_node.hole_size != vm->total)
+> +		return -EBUSY;
+> +
+> +	free_scratch(vm);
+> +
+> +	fill_page_dma(px_base(i915_vm_to_ppgtt(vm)->pd), 0, 512);
+> +	for (i = 0; i <= vm->top; i++)
+> +		vm->scratch[i].encode = 0;
+> +
+> +	return 0;
+> +}
+> +
+>   static int __get_ringsize(struct intel_context *ce, void *arg)
+>   {
+>   	long sz;
+> @@ -1220,6 +1247,19 @@ static int get_ringsize(struct i915_gem_context *ctx,
+>   	return 0;
+>   }
+>   
+> +static int get_empty_vm(struct i915_gem_context *ctx,
+> +			struct drm_i915_gem_context_param *args)
+> +{
+> +	if (!ctx->vm || INTEL_GEN(ctx->i915) < 8)
+> +		return -ENODEV;
+> +
+> +	if (args->size)
+> +		return -EINVAL;
+> +
+> +	args->value = !ctx->vm->scratch[0].encode;
+> +	return 0;
+> +}
+> +
+>   int
+>   i915_gem_user_to_context_sseu(struct drm_i915_private *i915,
+>   			      const struct drm_i915_gem_context_param_sseu *user,
+> @@ -1896,6 +1936,10 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>   		ret = set_ringsize(ctx, args);
+>   		break;
+>   
+> +	case I915_CONTEXT_PARAM_EMPTY_VM:
+> +		ret = set_empty_vm(ctx, args);
+> +		break;
+> +
+>   	case I915_CONTEXT_PARAM_BAN_PERIOD:
+>   	default:
+>   		ret = -EINVAL;
+> @@ -2348,6 +2392,10 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
+>   		ret = get_ringsize(ctx, args);
+>   		break;
+>   
+> +	case I915_CONTEXT_PARAM_EMPTY_VM:
+> +		ret = get_empty_vm(ctx, args);
+> +		break;
+> +
+>   	case I915_CONTEXT_PARAM_BAN_PERIOD:
+>   	default:
+>   		ret = -EINVAL;
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 14b67cd6b54b..b18215a61332 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1640,6 +1640,8 @@ struct drm_i915_gem_context_param {
+>    * Default is 16 KiB.
+>    */
+>   #define I915_CONTEXT_PARAM_RINGSIZE	0xc
+> +
+> +#define I915_CONTEXT_PARAM_EMPTY_VM	0xd
+>   /* Must be kept compact -- no holes and well documented */
+>   
+>   	__u64 value;
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
