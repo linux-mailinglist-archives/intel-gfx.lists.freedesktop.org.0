@@ -2,33 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B85F1B54F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 08:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B321B5582
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 09:22:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7942689F9F;
-	Thu, 23 Apr 2020 06:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03BC089CA0;
+	Thu, 23 Apr 2020 07:22:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E7789F9F
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 06:52:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20991575-1500050 for multiple; Thu, 23 Apr 2020 07:52:18 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1765C89AB2;
+ Thu, 23 Apr 2020 07:22:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 104D7A47DB;
+ Thu, 23 Apr 2020 07:22:31 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200422224529.GA444751@jack.zhora.eu>
-References: <20200422073715.11770-1-chris@chris-wilson.co.uk>
- <20200422074203.9799-1-chris@chris-wilson.co.uk>
- <20200422224529.GA444751@jack.zhora.eu>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andi Shyti <andi@etezian.org>
-Message-ID: <158762473638.5423.16680019485903753123@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 23 Apr 2020 07:52:16 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Add request throughput
- measurement to perf
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 23 Apr 2020 07:22:31 -0000
+Message-ID: <158762655103.26749.9333012851864295782@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200423062905.7615-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200423062905.7615-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Check_carefully_for_an_idle_engine_in_wait-for-idle?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,169 +38,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-04-22 23:45:29)
-> Hi Chris,
-> 
-> [...]
-> 
-> > +static int s_many(void *arg)
-> > +{
-> > +     struct perf_series *ps = arg;
-> 
-> why do we need to go through void... all functions are taking a
-> perf_series structure.
+== Series Details ==
 
-The kthread API defines the function pointer as int (*fn)(void *arg);
+Series: drm/i915/gt: Check carefully for an idle engine in wait-for-idle
+URL   : https://patchwork.freedesktop.org/series/76362/
+State : success
 
-> 
-> > +     IGT_TIMEOUT(end_time);
-> > +     unsigned int idx = 0;
-> > +
-> 
-> [...]
-> 
-> > +             for (idx = 0; idx < nengines; idx++) {
-> > +                     struct perf_stats *p =
-> > +                             memset(&stats[idx], 0, sizeof(stats[idx]));
-> > +                     struct intel_context *ce = ps->ce[idx];
-> > +
-> > +                     p->engine = ps->ce[idx]->engine;
-> > +                     intel_engine_pm_get(p->engine);
-> > +
-> > +                     if (intel_engine_supports_stats(p->engine) &&
-> > +                         !intel_enable_engine_stats(p->engine))
-> > +                             p->busy = intel_engine_get_busy_time(p->engine) + 1;
-> > +                     p->runtime = -intel_context_get_total_runtime_ns(ce);
-> > +                     p->time = ktime_get();
-> > +             }
-> > +
-> > +             err = (*fn)(ps);
-> > +             if (igt_live_test_end(&t))
-> > +                     err = -EIO;
-> > +
-> > +             for (idx = 0; idx < nengines; idx++) {
-> > +                     struct perf_stats *p = &stats[idx];
-> > +                     struct intel_context *ce = ps->ce[idx];
-> > +                     int integer, decimal;
-> > +                     u64 busy, dt;
-> > +
-> > +                     p->time = ktime_sub(ktime_get(), p->time);
-> > +                     if (p->busy) {
-> > +                             p->busy = ktime_sub(intel_engine_get_busy_time(p->engine),
-> > +                                                 p->busy - 1);
-> > +                             intel_disable_engine_stats(p->engine);
-> > +                     }
-> > +
-> > +                     err = switch_to_kernel_sync(ce, err);
-> 
-> how about err?
+== Summary ==
 
-It's a case of where we need to flush all the engines regardless of the
-error, so we wait until the end.
+CI Bug Log - changes from CI_DRM_8350 -> Patchwork_17433
+====================================================
 
-> > +                     p->runtime += intel_context_get_total_runtime_ns(ce);
-> 
-> assigning a negative value to an unsigned so that you can add it
-> later? looks nice but odd :)
-> 
-> It's easier to understand if we do
-> 
-> p->runtime = intel_context_get_total_runtime_ns(ce) - p->runtime;
-> 
-> if you like it, no need to change, though.
+Summary
+-------
 
-I've done both. I'm fond of the unsigned addition of a negative number.
-It's a few instructions less. :-p
+  **SUCCESS**
 
-> 
-> [...]
-> 
-> > +static int p_many(void *arg)
-> > +{
-> > +     struct perf_stats *p = arg;
-> > +     struct intel_engine_cs *engine = p->engine;
-> > +     struct intel_context *ce;
-> > +     IGT_TIMEOUT(end_time);
-> > +     unsigned long count;
-> > +     int err = 0;
-> > +     bool busy;
-> > +
-> > +     ce = intel_context_create(engine);
-> > +     if (IS_ERR(ce))
-> > +             return PTR_ERR(ce);
-> > +
-> > +     err = intel_context_pin(ce);
-> > +     if (err) {
-> > +             intel_context_put(ce);
-> > +             return err;
-> > +     }
-> > +
-> > +     busy = false;
-> > +     if (intel_engine_supports_stats(engine) &&
-> > +         !intel_enable_engine_stats(engine)) {
-> > +             p->busy = intel_engine_get_busy_time(engine);
-> > +             busy = true;
-> > +     }
-> > +
-> > +     count = 0;
-> > +     p->time = ktime_get();
-> > +     do {
-> > +             struct i915_request *rq;
-> > +
-> > +             rq = i915_request_create(ce);
-> > +             if (IS_ERR(rq)) {
-> > +                     err = PTR_ERR(rq);
-> > +                     break;
-> > +             }
-> > +
-> > +             i915_request_add(rq);
-> 
-> do we need a request_put as well?
+  No regressions found.
 
-No. Nasty API, add consumes the reference. It's on the list to update
-now that we have a ~majority of cases that want to keep a reference to
-their request.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17433 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
-> 
-> > +             count++;
-> > +     } while (!__igt_timeout(end_time, NULL));
-> > +     p->time = ktime_sub(ktime_get(), p->time);
-> > +
-> > +     if (busy) {
-> > +             p->busy = ktime_sub(intel_engine_get_busy_time(engine),
-> > +                                 p->busy);
-> > +             intel_disable_engine_stats(engine);
-> > +     }
-> > +
-> > +     err = switch_to_kernel_sync(ce, err);
-> > +     p->runtime = intel_context_get_total_runtime_ns(ce);
-> > +     p->count = count;
-> > +
-> > +     intel_context_unpin(ce);
-> > +     intel_context_put(ce);
-> > +     return err;
-> > +}
-> 
-> [...]
-> 
-> > +             for_each_uabi_engine(engine, i915) {
-> > +                     int status;
-> > +
-> > +                     if (IS_ERR(engines[idx].tsk))
-> > +                             break;
-> 
-> if we break here aren't we missing engine_pm_put and put_task?
+Participating hosts (48 -> 42)
+------------------------------
 
-No. We broke in the earlier loop as well, so the ERR_PTR is the
-sentinel, indicating the end of the assignments.
--Chris
+  Additional (1): fi-icl-dsi 
+  Missing    (7): fi-cml-u2 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8350 -> Patchwork_17433
+
+  CI-20190529: 20190529
+  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17433: f4f991b2acc57f880fd995d3c1ba6a732d55b600 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f4f991b2acc5 drm/i915/gt: Check carefully for an idle engine in wait-for-idle
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
