@@ -1,31 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A571B5F21
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:28:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ADD61B5F87
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B954F6E8D4;
-	Thu, 23 Apr 2020 15:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2D376E8DE;
+	Thu, 23 Apr 2020 15:38:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 643426E8D4;
- Thu, 23 Apr 2020 15:28:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5C559A47E2;
- Thu, 23 Apr 2020 15:28:05 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D616E8DE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 15:38:52 +0000 (UTC)
+IronPort-SDR: be+nl/OkF6BuNgNgU1hl7r/9HI9TpZLtxu6cCQ2f2i/OlvNmFQKP/yghl7cdBTZPSA8uPSf/pR
+ BNEOW1yBRDyg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 08:38:52 -0700
+IronPort-SDR: 00GJvyX2W5A4Y1QnHv05sKnlWJhK1GTqMEMmjF7QzQw/6AxHTSL/Cj46wOwsCgMUWKvwps+Ecm
+ 4sl5rNFebmOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="274268663"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 23 Apr 2020 08:38:46 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Apr 2020 18:38:46 +0300
+Date: Thu, 23 Apr 2020 18:38:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200423153846.GE6112@intel.com>
+References: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
+ <20200422161917.17389-3-ville.syrjala@linux.intel.com>
+ <20200422192005.GA28167@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 23 Apr 2020 15:28:05 -0000
-Message-ID: <158765568534.26751.4738818049062690509@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/edid=3A_Fix_off-by-one_in_DispID_DTD_pixel_clock?=
+Content-Disposition: inline
+In-Reply-To: <20200422192005.GA28167@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 3/6] drm/i915: Use drm_rect to store the
+ pfit window pos/size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,23 +53,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2VkaWQ6IEZpeCBvZmYtYnktb25lIGlu
-IERpc3BJRCBEVEQgcGl4ZWwgY2xvY2sKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVz
-a3RvcC5vcmcvc2VyaWVzLzc2Mzk5LwpTdGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCiQg
-ZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2RybS10aXAKNzI5ODRiNDlkYTU2IGRybS9lZGlkOiBGaXgg
-b2ZmLWJ5LW9uZSBpbiBEaXNwSUQgRFREIHBpeGVsIGNsb2NrCi06MTA6IFdBUk5JTkc6Q09NTUlU
-X0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQgZGVzY3JpcHRpb24gKHBy
-ZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxpbmUpCiMxMDogCiIwMCAwMCAwMCBoIOKGkiBG
-RiBGRiBGRiBoIHwgUGl4ZWwgY2xvY2sgw7cgMTAsMDAwIDAuMDEg4oaSIDE2Nyw3NzIuMTYgTWVn
-YSBQaXhlbHMgcGVyIFNlYyIKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3Ms
-IDggbGluZXMgY2hlY2tlZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Wed, Apr 22, 2020 at 12:20:06PM -0700, Manasi Navare wrote:
+> On Wed, Apr 22, 2020 at 07:19:14PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > Make things a bit more abstract by replacing the pch_pfit.pos/size
+> > raw register values with a drm_rect. Makes it slighly more convenient
+> > to eg. compute the scaling factors.
+> > =
+
+> > v2: Use drm_rect_init()
+> > =
+
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 101 +++++++++++-------
+> >  .../drm/i915/display/intel_display_types.h    |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_panel.c    |  13 ++-
+> >  3 files changed, 67 insertions(+), 50 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 96d0768ecf5d..6bb87965801e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -6096,10 +6096,8 @@ static int skl_update_scaler_crtc(struct intel_c=
+rtc_state *crtc_state)
+> >  	int width, height;
+> >  =
+
+> >  	if (crtc_state->pch_pfit.enabled) {
+> > -		u32 pfit_size =3D crtc_state->pch_pfit.size;
+> > -
+> > -		width =3D pfit_size >> 16;
+> > -		height =3D pfit_size & 0xffff;
+> > +		width =3D drm_rect_width(&crtc_state->pch_pfit.dst);
+> > +		height =3D drm_rect_height(&crtc_state->pch_pfit.dst);
+> >  	} else {
+> >  		width =3D adjusted_mode->crtc_hdisplay;
+> >  		height =3D adjusted_mode->crtc_vdisplay;
+> > @@ -6219,11 +6217,20 @@ static void skl_pfit_enable(const struct intel_=
+crtc_state *crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > -	enum pipe pipe =3D crtc->pipe;
+> >  	const struct intel_crtc_scaler_state *scaler_state =3D
+> >  		&crtc_state->scaler_state;
+> > +	struct drm_rect src =3D {
+> > +		.x2 =3D crtc_state->pipe_src_w << 16,
+> > +		.y2 =3D crtc_state->pipe_src_h << 16,
+> =
+
+> Its not clear to me why we left shift by 16 for both src_w and src_h? Whe=
+re can I find the format of
+> how this is stored?
+> =
+
+> Other than that everything else looks good in terms of replacing with drm=
+_rect()
+> =
+
+> Manasi
+> =
+
+<snip>
+> > -	hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
+> > -	vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
+
+Same <<16 was here already. skl_scaler_calc_phase() wants
+the scaling factor in .16 binary fixed point. Also =
+
+drm_rect_calc_{h,v}scale() assumes the src coordinates
+to be .16 and returns the result in .16 as well.
+
+> > +	hscale =3D drm_rect_calc_hscale(&src, dst, 0, INT_MAX);
+> > +	vscale =3D drm_rect_calc_vscale(&src, dst, 0, INT_MAX);
+> >  =
+
+> >  	uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
+> >  	uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
