@@ -1,44 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9AA51B6406
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 20:50:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9AE1B6428
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 21:03:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0F26E0BC;
-	Thu, 23 Apr 2020 18:50:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7E526E99E;
+	Thu, 23 Apr 2020 19:03:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E10566E0BC
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 18:50:19 +0000 (UTC)
-IronPort-SDR: PFc8UnzV1mGCondD+5L0qtq6mfVf/Kmz2ie4JElD6gWRYwk2z3LecNHL6yiT674CHH0zTosFTY
- X0IGv7qxpqhg==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9F76E0C2;
+ Thu, 23 Apr 2020 19:03:28 +0000 (UTC)
+IronPort-SDR: X3IiRJVQtT6qwI0lGXCPOnKr2Orh+zVvtWkeCwBBzqrxcScasPlMXOGJ3xLxfcY7S7Jco2tdLL
+ Yfe7kJ+MfULA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 11:50:19 -0700
-IronPort-SDR: VEcRb1L2aSgKR1ucQYuVKaAc2B14SKHTaHZA1D+E+3b2oOg2BPll9RdYKjeRgYY0FohJ2/sTbe
- oJ67pMTzhYvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="247830781"
-Received: from unknown (HELO intel.com) ([10.165.21.211])
- by fmsmga008.fm.intel.com with ESMTP; 23 Apr 2020 11:50:18 -0700
-Date: Thu, 23 Apr 2020 11:51:39 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200423185139.GB12177@intel.com>
-References: <20200422161917.17389-1-ville.syrjala@linux.intel.com>
- <20200422161917.17389-3-ville.syrjala@linux.intel.com>
- <20200422192005.GA28167@intel.com>
- <20200423153846.GE6112@intel.com>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 12:03:26 -0700
+IronPort-SDR: DA9sUIdXpdpc5lNdPtpGnXY5+8tOmXzTMIAsH5z3rwhPgEPA95qMmEeAlLfM8yS/sQz9ee3s6V
+ 2Usg91WICijg==
+X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="457608451"
+Received: from unknown (HELO intel.com) ([10.165.21.202])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 12:03:24 -0700
+Date: Thu, 23 Apr 2020 12:02:46 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200423190246.GA1710303@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200423153846.GE6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3 3/6] drm/i915: Use drm_rect to store the
- pfit window pos/size
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,112 +44,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 23, 2020 at 06:38:46PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Apr 22, 2020 at 12:20:06PM -0700, Manasi Navare wrote:
-> > On Wed, Apr 22, 2020 at 07:19:14PM +0300, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
+Hi Dave and Daniel,
 
-> > > Make things a bit more abstract by replacing the pch_pfit.pos/size
-> > > raw register values with a drm_rect. Makes it slighly more convenient
-> > > to eg. compute the scaling factors.
-> > > =
+Here goes drm-intel-fixes-2020-04-23:
 
-> > > v2: Use drm_rect_init()
-> > > =
+- Tigerlake Workaround - disabling media recompression (Matt)
+- Fix RPS interrupts for right GPU frequency (Chris)
+- HDCP fix prime check (Oliver)
+- Tigerlake Thunderbolt power well fix (Matt)
+- Tigerlake DP link training fixes (Jose)
+- Documentation sphinx build fix (Jani)
+- Fix enable_dpcd_backlight modparam (Lyude)
 
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 101 +++++++++++-----=
+Thanks,
+Rodrigo.
+
+The following changes since commit 5809e8f8ee42db54c283c3a6bcfcbbdbfd888f5c:
+
+  Merge tag 'gvt-fixes-2020-04-14' of https://github.com/intel/gvt-linux in=
+to drm-intel-fixes (2020-04-14 06:02:53 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-04-=
+23
+
+for you to fetch changes up to d082119f4277ff4a63e44d293864aa9f2112b217:
+
+  drm/i915/dpcd_bl: Unbreak enable_dpcd_backlight modparam (2020-04-20 10:1=
+2:58 -0700)
+
+----------------------------------------------------------------
+- Tigerlake Workaround - disabling media recompression (Matt)
+- Fix RPS interrupts for right GPU frequency (Chris)
+- HDCP fix prime check (Oliver)
+- Tigerlake Thunderbolt power well fix (Matt)
+- Tigerlake DP link training fixes (Jose)
+- Documentation sphinx build fix (Jani)
+- Fix enable_dpcd_backlight modparam (Lyude)
+
+----------------------------------------------------------------
+Chris Wilson (1):
+      drm/i915/gt: Update PMINTRMSK holding fw
+
+Jani Nikula (1):
+      drm/i915: fix Sphinx build duplicate label warning
+
+Jos=E9 Roberto de Souza (1):
+      drm/i915/display: Load DP_TP_CTL/STATUS offset before use it
+
+Lyude Paul (1):
+      drm/i915/dpcd_bl: Unbreak enable_dpcd_backlight modparam
+
+Matt Roper (2):
+      drm/i915/tgl: Add Wa_14010477008:tgl
+      drm/i915/tgl: TBT AUX should use TC power well ops
+
+Oliver Barta (1):
+      drm/i915: HDCP: fix Ri prime check done during link check
+
+ drivers/gpu/drm/i915/display/intel_ddi.c              | 14 +++++++++++---
+ drivers/gpu/drm/i915/display/intel_display_power.c    | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_dp.c               |  5 ++---
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c |  1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c             |  3 ++-
+ drivers/gpu/drm/i915/display/intel_sprite.c           | 17 ++++++++++++---=
 --
-> > >  .../drm/i915/display/intel_display_types.h    |   3 +-
-> > >  drivers/gpu/drm/i915/display/intel_panel.c    |  13 ++-
-> > >  3 files changed, 67 insertions(+), 50 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 96d0768ecf5d..6bb87965801e 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -6096,10 +6096,8 @@ static int skl_update_scaler_crtc(struct intel=
-_crtc_state *crtc_state)
-> > >  	int width, height;
-> > >  =
-
-> > >  	if (crtc_state->pch_pfit.enabled) {
-> > > -		u32 pfit_size =3D crtc_state->pch_pfit.size;
-> > > -
-> > > -		width =3D pfit_size >> 16;
-> > > -		height =3D pfit_size & 0xffff;
-> > > +		width =3D drm_rect_width(&crtc_state->pch_pfit.dst);
-> > > +		height =3D drm_rect_height(&crtc_state->pch_pfit.dst);
-> > >  	} else {
-> > >  		width =3D adjusted_mode->crtc_hdisplay;
-> > >  		height =3D adjusted_mode->crtc_vdisplay;
-> > > @@ -6219,11 +6217,20 @@ static void skl_pfit_enable(const struct inte=
-l_crtc_state *crtc_state)
-> > >  {
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > -	enum pipe pipe =3D crtc->pipe;
-> > >  	const struct intel_crtc_scaler_state *scaler_state =3D
-> > >  		&crtc_state->scaler_state;
-> > > +	struct drm_rect src =3D {
-> > > +		.x2 =3D crtc_state->pipe_src_w << 16,
-> > > +		.y2 =3D crtc_state->pipe_src_h << 16,
-> > =
-
-> > Its not clear to me why we left shift by 16 for both src_w and src_h? W=
-here can I find the format of
-> > how this is stored?
-> > =
-
-> > Other than that everything else looks good in terms of replacing with d=
-rm_rect()
-> > =
-
-> > Manasi
-> > =
-
-> <snip>
-> > > -	hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
-> > > -	vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
-> =
-
-> Same <<16 was here already. skl_scaler_calc_phase() wants
-> the scaling factor in .16 binary fixed point. Also =
-
-> drm_rect_calc_{h,v}scale() assumes the src coordinates
-> to be .16 and returns the result in .16 as well.
-
-Ah okay, thanks for the clarification, is it perhaps a good idea to add this
-in the comment somewhere?
-
-In either case though,
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
-
-> =
-
-> > > +	hscale =3D drm_rect_calc_hscale(&src, dst, 0, INT_MAX);
-> > > +	vscale =3D drm_rect_calc_vscale(&src, dst, 0, INT_MAX);
-> > >  =
-
-> > >  	uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
-> > >  	uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+ drivers/gpu/drm/i915/gt/intel_rps.c                   |  9 ++++++---
+ drivers/gpu/drm/i915/i915_drv.h                       |  2 ++
+ drivers/gpu/drm/i915/i915_reg.h                       |  4 ++--
+ 9 files changed, 44 insertions(+), 23 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
