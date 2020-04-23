@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3141B5EBE
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:11:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6471B5EE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:16:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 010926E8AE;
-	Thu, 23 Apr 2020 15:11:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27806E88C;
+	Thu, 23 Apr 2020 15:16:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D194E6E88C
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 15:11:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60246E88C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 15:16:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20997591-1500050 for multiple; Thu, 23 Apr 2020 16:11:51 +0100
+ 20997621-1500050 for multiple; Thu, 23 Apr 2020 16:16:11 +0100
 MIME-Version: 1.0
-In-Reply-To: <4db490d5-9155-2991-67af-ee6962cdb034@linux.intel.com>
-References: <20200423115839.27972-1-chris@chris-wilson.co.uk>
- <4db490d5-9155-2991-67af-ee6962cdb034@linux.intel.com>
+In-Reply-To: <a39636b2-8e42-6eef-1e9e-c13a2b7af5c3@linux.intel.com>
+References: <20200423085940.28168-1-chris@chris-wilson.co.uk>
+ <20200423085940.28168-2-chris@chris-wilson.co.uk>
+ <a39636b2-8e42-6eef-1e9e-c13a2b7af5c3@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158765470949.9772.2505613959138344519@build.alporthouse.com>
+Message-ID: <158765496993.9772.5796288344060758150@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Thu, 23 Apr 2020 16:11:49 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark up racy read of rq->engine
+Date: Thu, 23 Apr 2020 16:16:09 +0100
+Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/gt: Warn more clearly if the
+ context state is still pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,37 +47,39 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-04-23 15:53:44)
+Quoting Tvrtko Ursulin (2020-04-23 15:47:58)
 > 
-> On 23/04/2020 12:58, Chris Wilson wrote:
-> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> > index 22635bbabf06..e9fd20242438 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.c
-> > +++ b/drivers/gpu/drm/i915/i915_request.c
-> > @@ -1660,7 +1660,7 @@ long i915_request_wait(struct i915_request *rq,
-> >                       break;
-> >               }
-> >   
-> > -             intel_engine_flush_submission(rq->engine);
-> > +             intel_engine_flush_submission(READ_ONCE(rq->engine));
-> >   
-> >               if (signal_pending_state(state, current)) {
-> >                       timeout = -ERESTARTSYS;
+> On 23/04/2020 09:59, Chris Wilson wrote:
+> > When recording the default context state, we submit an ordinary context
+> > and then steal the context image for our defaults. To be able to steal
+> > the state, we must have total ownership of the context. During CI we
+> > want to make this error extremely obvious, as otherwise we will fail the
+> > user's module load.
 > > 
+> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/1763
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_gt.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > index 1c99cc72305a..379eb39e7979 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > @@ -472,6 +472,7 @@ static int __engines_record_defaults(struct intel_gt *gt)
+> >   
+> >               /* We want to be able to unbind the state from the GGTT */
+> >               GEM_BUG_ON(intel_context_is_pinned(rq->context));
+> > +             GEM_BUG_ON(i915_vma_is_pinned(state));
 > 
-> What with the mutex_acquire/release in this case? No practical effect 
-> but they are also dereferencing rq->engine... Take a copy of engine for 
-> lockdep at start and another read for engine flushing in the loop?
+> Not sure - context->state ownership is in the context pinned status and 
+> then there is the unbind below which will fail if vma is pinned. Which 
+> sounds better than a bug on. Is it difficult to figure out what is 
+> failing in practice? A debug message on the unbind failure path might be 
+> more friendly in that case.
 
-No practical difference [today], since the lockmap is on the gt.
-
-Well that will be interesting in the future. Hmm, we could replace it
-with a static [global] lockmap and then link all gt->reset.mutex to.
-The only danger then is that we link a wait on one gt with a wait on
-another -- except that if we allow it, that will happen naturally.
-So I don't see a loss in generality in using a global lockmap.
-
-Make a note for the future.
+I was able to recognise the failure :) I thought this might be more
+explicit.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
