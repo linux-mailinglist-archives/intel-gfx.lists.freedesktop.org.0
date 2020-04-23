@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CBFF1B6344
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 20:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5EA1B6347
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 20:24:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB1996E975;
-	Thu, 23 Apr 2020 18:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABB436E990;
+	Thu, 23 Apr 2020 18:24:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F1FF6E98A
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 18:24:29 +0000 (UTC)
-IronPort-SDR: GvK3l5BVApnJTtXy0HO9sDBzD7Ydk/UDvhG/8/sfemarpvpeAGLamWzBKon5mDWx30QHkJZu5O
- ry79W4jRhwJA==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BC156E98A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 18:24:31 +0000 (UTC)
+IronPort-SDR: fcD3ga2Q3z8WEXrnzQNIjT8DrMUFRkWPNIvg5/8x3eH3HyJLMpMI29L0pVvP12zt0LxCc35JPl
+ EszQqHdJzrXA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 11:24:27 -0700
-IronPort-SDR: OvgRXORyYUqqfTvXM6fl3UHLl9rsl7JZXgA79AeJuSPFyTPOUONDRvTHTmrLF2ZCkHDKx+JI9c
- C53WxAbUgd9w==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 11:24:28 -0700
+IronPort-SDR: aYHTm+Ob84XgX/TNzzRpz1IYZre6NnpL/VmuJ/Jp5Jn0FJc7vh3TgcOe68k3hGzKfz614pXcxP
+ bduv9xUkd6EA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="247825228"
+X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="403003237"
 Received: from rosetta.fi.intel.com ([10.237.72.194])
- by fmsmga008.fm.intel.com with ESMTP; 23 Apr 2020 11:24:26 -0700
+ by orsmga004.jf.intel.com with ESMTP; 23 Apr 2020 11:24:26 -0700
 Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id 22533843AD4; Thu, 23 Apr 2020 21:23:57 +0300 (EEST)
+ id 27FAE843AD5; Thu, 23 Apr 2020 21:23:57 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Apr 2020 21:23:52 +0300
-Message-Id: <20200423182355.21837-3-mika.kuoppala@linux.intel.com>
+Date: Thu, 23 Apr 2020 21:23:53 +0300
+Message-Id: <20200423182355.21837-4-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200423182355.21837-1-mika.kuoppala@linux.intel.com>
 References: <20200423182355.21837-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] [PATCH 3/6] drm/i915: Make define for lrc state offset
+Subject: [Intel-gfx] [PATCH 4/6] drm/i915: Add per ctx batchbuffer wa for
+ timestamp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,168 +48,306 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-More often than not, we need a byte offset into lrc
-register state from the start of the hw state. Make it so.
+Restoration of a previous timestamp can collide
+with updating the timestamp, causing a value corruption.
 
+Combat this issue by using indirect ctx bb to
+modify the context image during restoring process.
+
+We can preload value into scratch register. From which
+we then do the actual write with LRR. LRR is faster and
+thus less error prone as probability of race drops.
+
+v2: tidying (Chris)
+v3: lrr for all engines
+
+References: HSDES#16010904313
+Testcase: igt/i915_selftest/gt_lrc
+Suggested-by: Joseph Koston <joseph.koston@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context_sseu.c |  3 +--
- drivers/gpu/drm/i915/gt/intel_lrc.c          |  8 ++++----
- drivers/gpu/drm/i915/gt/intel_lrc.h          |  1 +
- drivers/gpu/drm/i915/gt/selftest_lrc.c       | 14 +++++++-------
- drivers/gpu/drm/i915/i915_perf.c             |  2 +-
- 5 files changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   4 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 185 ++++++++++++++----
+ 3 files changed, 154 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_sseu.c b/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-index 57a30956c922..487299cb91f2 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-@@ -25,8 +25,7 @@ static int gen8_emit_rpcs_config(struct i915_request *rq,
- 		return PTR_ERR(cs);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 07cb83a0d017..c7573d565f58 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -70,6 +70,9 @@ struct intel_context {
  
- 	offset = i915_ggtt_offset(ce->state) +
--		 LRC_STATE_PN * PAGE_SIZE +
--		 CTX_R_PWR_CLK_STATE * 4;
-+		 LRC_STATE_OFFSET + CTX_R_PWR_CLK_STATE * 4;
+ 	u32 *lrc_reg_state;
+ 	u64 lrc_desc;
++
++	u32 ctx_bb_offset;
++
+ 	u32 tag; /* cookie passed to HW to track this context on submission */
  
- 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 	*cs++ = lower_32_bits(offset);
+ 	/* Time on GPU as tracked by the hw. */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index f04214a54f75..3618f3362e1d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -138,7 +138,7 @@
+  */
+ #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
+ /* Gen11+. addr = base + (ctx_restore ? offset & GENMASK(12,2) : offset) */
+-#define   MI_LRI_CS_MMIO		(1<<19)
++#define   MI_LRI_LRM_CS_MMIO		(1<<19)
+ #define   MI_LRI_FORCE_POSTED		(1<<12)
+ #define MI_LOAD_REGISTER_IMM_MAX_REGS (126)
+ #define MI_STORE_REGISTER_MEM        MI_INSTR(0x24, 1)
+@@ -155,7 +155,9 @@
+ #define   MI_FLUSH_DW_USE_PPGTT		(0<<2)
+ #define MI_LOAD_REGISTER_MEM	   MI_INSTR(0x29, 1)
+ #define MI_LOAD_REGISTER_MEM_GEN8  MI_INSTR(0x29, 2)
++#define   MI_LRM_ASYNC			(1<<21)
+ #define MI_LOAD_REGISTER_REG    MI_INSTR(0x2A, 1)
++#define   MI_LRR_SOURCE_CS_MMIO		BIT(18)
+ #define MI_BATCH_BUFFER		MI_INSTR(0x30, 1)
+ #define   MI_BATCH_NON_SECURE		(1)
+ /* for snb/ivb/vlv this also means "batch in ppgtt" when ppgtt is enabled. */
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 660f8c033e98..f1e0927c55e8 100644
+index f1e0927c55e8..e49f0e03e159 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1161,7 +1161,7 @@ static void restore_default_state(struct intel_context *ce,
+@@ -234,7 +234,7 @@ static void execlists_init_reg_state(u32 *reg_state,
+ 				     const struct intel_ring *ring,
+ 				     bool close);
+ static void
+-__execlists_update_reg_state(const struct intel_context *ce,
++__execlists_update_reg_state(struct intel_context *ce,
+ 			     const struct intel_engine_cs *engine,
+ 			     u32 head);
  
- 	if (engine->pinned_default_state)
- 		memcpy(regs, /* skip restoring the vanilla PPHWSP */
--		       engine->pinned_default_state + LRC_STATE_PN * PAGE_SIZE,
-+		       engine->pinned_default_state + LRC_STATE_OFFSET,
- 		       engine->context_size - PAGE_SIZE);
+@@ -537,7 +537,7 @@ static void set_offsets(u32 *regs,
+ 		if (flags & POSTED)
+ 			*regs |= MI_LRI_FORCE_POSTED;
+ 		if (INTEL_GEN(engine->i915) >= 11)
+-			*regs |= MI_LRI_CS_MMIO;
++			*regs |= MI_LRI_LRM_CS_MMIO;
+ 		regs++;
  
- 	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
-@@ -3117,7 +3117,7 @@ check_redzone(const void *vaddr, const struct intel_engine_cs *engine)
- 
- static void execlists_context_unpin(struct intel_context *ce)
- {
--	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_PN * PAGE_SIZE,
-+	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_OFFSET,
- 		      ce->engine);
- 
+ 		GEM_BUG_ON(!count);
+@@ -3123,8 +3123,141 @@ static void execlists_context_unpin(struct intel_context *ce)
  	i915_gem_object_unpin_map(ce->state->obj);
-@@ -3164,7 +3164,7 @@ __execlists_context_pin(struct intel_context *ce,
- 		return PTR_ERR(vaddr);
+ }
  
- 	ce->lrc_desc = lrc_descriptor(ce, engine) | CTX_DESC_FORCE_RESTORE;
--	ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
-+	ce->lrc_reg_state = vaddr + LRC_STATE_OFFSET;
- 	__execlists_update_reg_state(ce, engine, ce->ring->tail);
++static u32 intel_lr_indirect_ctx_offset(const struct intel_engine_cs *engine)
++{
++	u32 indirect_ctx_offset;
++
++	switch (INTEL_GEN(engine->i915)) {
++	default:
++		MISSING_CASE(INTEL_GEN(engine->i915));
++		fallthrough;
++	case 12:
++		indirect_ctx_offset =
++			GEN12_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
++		break;
++	case 11:
++		indirect_ctx_offset =
++			GEN11_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
++		break;
++	case 10:
++		indirect_ctx_offset =
++			GEN10_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
++		break;
++	case 9:
++		indirect_ctx_offset =
++			GEN9_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
++		break;
++	case 8:
++		indirect_ctx_offset =
++			GEN8_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
++		break;
++	}
++
++	return indirect_ctx_offset;
++}
++
++static u32 *
++gen12_emit_timestamp_wa(struct intel_context *ce, u32 *cs)
++{
++	const u32 lrc_offset = i915_ggtt_offset(ce->state) +
++		LRC_STATE_OFFSET;
++	const u32 scratch_reg = i915_mmio_reg_offset(GEN8_RING_CS_GPR(0, 0));
++
++	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 |
++		MI_SRM_LRM_GLOBAL_GTT | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = lrc_offset + CTX_TIMESTAMP * sizeof(u32);
++	*cs++ = 0;
++
++	*cs++ = MI_LOAD_REGISTER_REG |
++		MI_LRR_SOURCE_CS_MMIO | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = i915_mmio_reg_offset(RING_CTX_TIMESTAMP(0));
++
++	*cs++ = MI_LOAD_REGISTER_REG |
++		MI_LRR_SOURCE_CS_MMIO | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = i915_mmio_reg_offset(RING_CTX_TIMESTAMP(0));
++
++	return cs;
++}
++
++static u32 *
++gen12_emit_restore_scratch(struct intel_context *ce, u32 *cs)
++{
++	const u32 lrc_offset = i915_ggtt_offset(ce->state) +
++		LRC_STATE_OFFSET;
++	const u32 scratch_reg = i915_mmio_reg_offset(GEN8_RING_CS_GPR(0, 0));
++
++	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 |
++		MI_SRM_LRM_GLOBAL_GTT | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = lrc_offset + CTX_CS_GPR_0 * sizeof(u32);
++	*cs++ = 0;
++
++	return cs;
++}
++
++static u32 *
++gen12_emit_indirect_ctx_xcs(struct intel_context *ce, u32 *cs)
++{
++	cs = gen12_emit_timestamp_wa(ce, cs);
++	cs = gen12_emit_restore_scratch(ce, cs);
++
++	return cs;
++}
++
++static u32 *context_indirect_bb(struct intel_context *ce)
++{
++	void *ptr;
++
++	GEM_BUG_ON(!ce->ctx_bb_offset);
++
++	ptr = ce->lrc_reg_state;
++	ptr -= LRC_STATE_OFFSET; /* back to start of context image */
++	ptr += ce->ctx_bb_offset;
++
++	return ptr;
++}
++
++static u32 *
++execlists_emit_indirect_ctx_bb(struct intel_context *ce,
++			       u32 *(*emit)(struct intel_context *, u32 *))
++{
++	u32 *cs = context_indirect_bb(ce);
++	const u32 * const batch_start = cs;
++
++	cs = emit(ce, cs);
++
++	GEM_DEBUG_BUG_ON(cs - batch_start >
++			 I915_GTT_PAGE_SIZE/sizeof(*cs));
++
++	return cs;
++}
++
+ static void
+-__execlists_update_reg_state(const struct intel_context *ce,
++setup_indirect_ctx_bb(struct intel_context *ce,
++		      u32 *(*emit)(struct intel_context *, u32 *))
++{
++	const u32 * const start = context_indirect_bb(ce);
++	u32 *cs;
++
++	cs = execlists_emit_indirect_ctx_bb(ce, emit);
++
++	while ((unsigned long)cs % CACHELINE_BYTES)
++		*cs++ = MI_NOOP;
++
++	ce->lrc_reg_state[CTX_INDIRECT_PTR(ce->engine)] =
++		(i915_ggtt_offset(ce->state) + ce->ctx_bb_offset) |
++		(cs - start) * sizeof(*cs) /
++		CACHELINE_BYTES;
++
++	ce->lrc_reg_state[CTX_INDIRECT_OFFSET(ce->engine)] =
++		intel_lr_indirect_ctx_offset(ce->engine) << 6;
++}
++
++static void
++__execlists_update_reg_state(struct intel_context *ce,
+ 			     const struct intel_engine_cs *engine,
+ 			     u32 head)
+ {
+@@ -3145,6 +3278,13 @@ __execlists_update_reg_state(const struct intel_context *ce,
+ 			intel_sseu_make_rpcs(engine->i915, &ce->sseu);
  
- 	return 0;
-@@ -4844,7 +4844,7 @@ populate_lr_context(struct intel_context *ce,
- 	 * The second page of the context object contains some registers which
- 	 * must be set up prior to the first execution.
- 	 */
--	execlists_init_reg_state(vaddr + LRC_STATE_PN * PAGE_SIZE,
-+	execlists_init_reg_state(vaddr + LRC_STATE_OFFSET,
- 				 ce, engine, ring, inhibit);
- 
- 	ret = 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index dfbc214e14f5..91fd8e452d9b 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -90,6 +90,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine);
- #define LRC_PPHWSP_SZ	(1)
- /* After the PPHWSP we have the logical state for the context */
- #define LRC_STATE_PN	(LRC_PPHWSP_PN + LRC_PPHWSP_SZ)
-+#define LRC_STATE_OFFSET (LRC_STATE_PN * PAGE_SIZE)
- 
- /* Space within PPHWSP reserved to be used as scratch */
- #define LRC_PPHWSP_SCRATCH		0x34
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 9ebd8694cc1c..44115819a6fe 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4458,7 +4458,7 @@ static int live_lrc_layout(void *arg)
- 			err = PTR_ERR(hw);
- 			break;
- 		}
--		hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+		hw += LRC_STATE_OFFSET / sizeof(*hw);
- 
- 		execlists_init_reg_state(memset(lrc, POISON_INUSE, PAGE_SIZE),
- 					 engine->kernel_context,
-@@ -4631,7 +4631,7 @@ static int live_lrc_fixed(void *arg)
- 			err = PTR_ERR(hw);
- 			break;
- 		}
--		hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+		hw += LRC_STATE_OFFSET / sizeof(*hw);
- 
- 		for (t = tbl; t->name; t++) {
- 			int dw = find_offset(hw, t->reg);
-@@ -5217,7 +5217,7 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
- 	x = 0;
- 	dw = 0;
- 	hw = ce->engine->pinned_default_state;
--	hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
- 
-@@ -5370,7 +5370,7 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
- 
- 	dw = 0;
- 	hw = ce->engine->pinned_default_state;
--	hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
- 
-@@ -5494,12 +5494,12 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 		err = PTR_ERR(lrc);
- 		goto err_B1;
+ 		i915_oa_init_reg_state(ce, engine);
++
++	}
++
++	if (ce->ctx_bb_offset) {
++		/* Mutually exclusive wrt to global indirect bb */
++		GEM_BUG_ON(engine->wa_ctx.indirect_ctx.size);
++		setup_indirect_ctx_bb(ce, gen12_emit_indirect_ctx_xcs);
  	}
--	lrc += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+	lrc += LRC_STATE_OFFSET / sizeof(*hw);
+ }
  
- 	x = 0;
- 	dw = 0;
- 	hw = engine->pinned_default_state;
--	hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
-+	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
+@@ -4673,40 +4813,6 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 	return 0;
+ }
  
-@@ -5741,7 +5741,7 @@ static struct i915_request *garbage(struct intel_context *ce,
- 	prandom_bytes_state(prng,
- 			    ce->lrc_reg_state,
- 			    ce->engine->context_size -
--			    LRC_STATE_PN * PAGE_SIZE);
-+			    LRC_STATE_OFFSET);
+-static u32 intel_lr_indirect_ctx_offset(const struct intel_engine_cs *engine)
+-{
+-	u32 indirect_ctx_offset;
+-
+-	switch (INTEL_GEN(engine->i915)) {
+-	default:
+-		MISSING_CASE(INTEL_GEN(engine->i915));
+-		/* fall through */
+-	case 12:
+-		indirect_ctx_offset =
+-			GEN12_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
+-		break;
+-	case 11:
+-		indirect_ctx_offset =
+-			GEN11_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
+-		break;
+-	case 10:
+-		indirect_ctx_offset =
+-			GEN10_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
+-		break;
+-	case 9:
+-		indirect_ctx_offset =
+-			GEN9_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
+-		break;
+-	case 8:
+-		indirect_ctx_offset =
+-			GEN8_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT;
+-		break;
+-	}
+-
+-	return indirect_ctx_offset;
+-}
+-
+-
+ static void init_common_reg_state(u32 * const regs,
+ 				  const struct intel_engine_cs *engine,
+ 				  const struct intel_ring *ring,
+@@ -4869,6 +4975,11 @@ static int __execlists_context_alloc(struct intel_context *ce,
+ 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+ 		context_size += I915_GTT_PAGE_SIZE; /* for redzone */
  
- 	rq = intel_context_create_request(ce);
- 	if (IS_ERR(rq)) {
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 5cde3e4e7be6..dec1b33e4da8 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2098,7 +2098,7 @@ gen8_store_flex(struct i915_request *rq,
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	offset = i915_ggtt_offset(ce->state) + LRC_STATE_PN * PAGE_SIZE;
-+	offset = i915_ggtt_offset(ce->state) + LRC_STATE_OFFSET;
- 	do {
- 		*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 		*cs++ = offset + flex->offset * sizeof(u32);
++	if (INTEL_GEN(engine->i915) == 12) {
++		ce->ctx_bb_offset = context_size;
++		context_size += PAGE_SIZE;
++	}
++
+ 	ctx_obj = i915_gem_object_create_shmem(engine->i915, context_size);
+ 	if (IS_ERR(ctx_obj))
+ 		return PTR_ERR(ctx_obj);
 -- 
 2.17.1
 
