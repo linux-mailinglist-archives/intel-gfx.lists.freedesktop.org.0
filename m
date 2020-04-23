@@ -2,30 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02771B5FE9
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 940AB1B6071
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 18:12:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7A089D1D;
-	Thu, 23 Apr 2020 15:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64CE6E8F2;
+	Thu, 23 Apr 2020 16:12:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D633689D1D;
- Thu, 23 Apr 2020 15:53:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF71AA47DB;
- Thu, 23 Apr 2020 15:53:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0EB6E91A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 16:12:23 +0000 (UTC)
+IronPort-SDR: f7vU+FgdAazAk3KL8jaHlLvTQoAh4ujciXVFEiaFPkPZoTCG+KBnwBUhK5uuXCdqjHegkZH08u
+ nJ7jUv7ps3Ow==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 09:12:22 -0700
+IronPort-SDR: 9ZkWEq7R66F96tov+BVbagKh6bO2Mv9QfdW0F2uM78dfRO9R/TZLWOLTj/TIuMqL3kMnn/S+yl
+ c54pFyL8PVhQ==
+X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="430377258"
+Received: from dytagah-mobl.amr.corp.intel.com (HELO [10.252.51.48])
+ ([10.252.51.48])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2020 09:12:22 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200423085940.28168-1-chris@chris-wilson.co.uk>
+ <20200423085940.28168-2-chris@chris-wilson.co.uk>
+ <a39636b2-8e42-6eef-1e9e-c13a2b7af5c3@linux.intel.com>
+ <158765496993.9772.5796288344060758150@build.alporthouse.com>
+ <158765506895.9772.11624276209789432084@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <57843114-6815-4cb8-a311-93533ba9cd08@linux.intel.com>
+Date: Thu, 23 Apr 2020 17:12:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 23 Apr 2020 15:53:05 -0000
-Message-ID: <158765718584.26750.9797126817923876300@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/edid=3A_Fix_off-by-one_in_DispID_DTD_pixel_clock?=
+In-Reply-To: <158765506895.9772.11624276209789432084@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/gt: Warn more clearly if the
+ context state is still pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,97 +55,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/edid: Fix off-by-one in DispID DTD pixel clock
-URL   : https://patchwork.freedesktop.org/series/76399/
-State : failure
+On 23/04/2020 16:17, Chris Wilson wrote:
+> Quoting Chris Wilson (2020-04-23 16:16:09)
+>> Quoting Tvrtko Ursulin (2020-04-23 15:47:58)
+>>>
+>>> On 23/04/2020 09:59, Chris Wilson wrote:
+>>>> When recording the default context state, we submit an ordinary context
+>>>> and then steal the context image for our defaults. To be able to steal
+>>>> the state, we must have total ownership of the context. During CI we
+>>>> want to make this error extremely obvious, as otherwise we will fail the
+>>>> user's module load.
+>>>>
+>>>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1763
+>>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/gt/intel_gt.c | 1 +
+>>>>    1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>>> index 1c99cc72305a..379eb39e7979 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>>> @@ -472,6 +472,7 @@ static int __engines_record_defaults(struct intel_gt *gt)
+>>>>    
+>>>>                /* We want to be able to unbind the state from the GGTT */
+>>>>                GEM_BUG_ON(intel_context_is_pinned(rq->context));
+>>>> +             GEM_BUG_ON(i915_vma_is_pinned(state));
+>>>
+>>> Not sure - context->state ownership is in the context pinned status and
+>>> then there is the unbind below which will fail if vma is pinned. Which
+>>> sounds better than a bug on. Is it difficult to figure out what is
+>>> failing in practice? A debug message on the unbind failure path might be
+>>> more friendly in that case.
+>>
+>> I was able to recognise the failure :) I thought this might be more
+>> explicit.
+> 
+> One thing in the GEM_BUG_ON()'s favour is that in the unbind we do have
+> one more wait, which gives a small saving grace and we have fewer
+> EAGAINs than BUG_ONs. So the BUG_ON were more sensitive and so useful
+> for testing.
 
-== Summary ==
+Okay.. :)
 
-CI Bug Log - changes from CI_DRM_8352 -> Patchwork_17442
-====================================================
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Summary
--------
+Regards,
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17442 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17442, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17442/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17442:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-elk-e7500:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8352/fi-elk-e7500/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17442/fi-elk-e7500/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17442 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-snb-2600:        [FAIL][3] ([i915#1763]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8352/fi-snb-2600/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17442/fi-snb-2600/igt@i915_selftest@live@gt_lrc.html
-
-  
-  [i915#1763]: https://gitlab.freedesktop.org/drm/intel/issues/1763
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (2): fi-bsw-kefka fi-kbl-7560u 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8352 -> Patchwork_17442
-
-  CI-20190529: 20190529
-  CI_DRM_8352: 248cbab28d58c203de956df1db4cdeb53ea97a89 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5608: e7bcaf1dd251d454706c7cd64282f531aec50183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17442: 72984b49da5674d86acafb706d678ee4828287d0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-72984b49da56 drm/edid: Fix off-by-one in DispID DTD pixel clock
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17442/index.html
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
