@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704391B572F
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 10:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E88FC1B5732
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 10:28:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E6B6E405;
-	Thu, 23 Apr 2020 08:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E66A6E16D;
+	Thu, 23 Apr 2020 08:28:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E69FE6E16D;
- Thu, 23 Apr 2020 08:26:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D626AA010F;
- Thu, 23 Apr 2020 08:26:18 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D8E56E16D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 08:28:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20992617-1500050 
+ for multiple; Thu, 23 Apr 2020 09:27:55 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Apr 2020 09:27:53 +0100
+Message-Id: <20200423082753.3899018-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 23 Apr 2020 08:26:18 -0000
-Message-ID: <158763037884.26748.12220469092411813032@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423062905.7615-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200423062905.7615-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Check_carefully_for_an_idle_engine_in_wait-for-idle?=
+Subject: [Intel-gfx] [PATCH] pci/msi: Stop warning for MSI enabling failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,168 +36,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If the MSI is already enabled, trying to enable it again results in an
+-EINVAL and on the first attempt a WARN. That WARN causes our CI to
+abort the run [on each first attempt to suspend]:
 
-Series: drm/i915/gt: Check carefully for an idle engine in wait-for-idle
-URL   : https://patchwork.freedesktop.org/series/76362/
-State : success
+<4> [463.142025] WARNING: CPU: 0 PID: 2225 at drivers/pci/msi.c:1074 __pci_enable_msi_range+0x3cb/0x420
+<4> [463.142026] Modules linked in: snd_hda_intel i915 snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic mei_hdcp x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul snd_intel_dspcfg ghash_clmulni_intel snd_hda_codec btusb btrtl btbcm btintel e1000e bluetooth snd_hwdep snd_hda_core ptp ecdh_generic snd_pcm ecc pps_core mei_me mei prime_numbers [last unloaded: i915]
+<4> [463.142045] CPU: 0 PID: 2225 Comm: kworker/u8:14 Tainted: G     U            5.7.0-rc2-CI-CI_DRM_8350+ #1
+<4> [463.142046] Hardware name: Intel Corporation NUC7i5BNH/NUC7i5BNB, BIOS BNKBL357.86A.0060.2017.1214.2013 12/14/2017
+<4> [463.142049] Workqueue: events_unbound async_run_entry_fn
+<4> [463.142051] RIP: 0010:__pci_enable_msi_range+0x3cb/0x420
+<4> [463.142053] Code: 76 58 49 8d 56 48 48 89 df e8 31 73 fd ff e9 20 fe ff ff 31 f6 48 89 df e8 c2 e9 fd ff e9 d6 fe ff ff 45 89 fc e9 1a ff ff ff <0f> 0b 41 bc ea ff ff ff e9 0d ff ff ff 41 bc ea ff ff ff e9 02 ff
+<4> [463.142054] RSP: 0018:ffffc90000593cd0 EFLAGS: 00010202
+<4> [463.142056] RAX: 0000000000000010 RBX: ffff888274051000 RCX: 0000000000000000
+<4> [463.142057] RDX: 0000000000000001 RSI: 0000000000000001 RDI: ffff888274051000
+<4> [463.142058] RBP: ffff888238aa1018 R08: 0000000000000001 R09: 0000000000000001
+<4> [463.142060] R10: ffffc90000593d90 R11: 00000000c79cdfd5 R12: ffff8882740510b0
+<4> [463.142061] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+<4> [463.142062] FS:  0000000000000000(0000) GS:ffff888276c00000(0000) knlGS:0000000000000000
+<4> [463.142064] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [463.142065] CR2: 000055706f347d80 CR3: 0000000005610003 CR4: 00000000003606f0
+<4> [463.142066] Call Trace:
+<4> [463.142073]  pci_enable_msi+0x11/0x20
+<4> [463.142077]  azx_resume+0x1ab/0x200 [snd_hda_intel]
+<4> [463.142080]  ? pci_pm_thaw+0x80/0x80
+<4> [463.142084]  dpm_run_callback+0x64/0x280
+<4> [463.142089]  device_resume+0xd4/0x1c0
+<4> [463.142093]  ? dpm_watchdog_set+0x60/0
 
-== Summary ==
+Downgrade the warning to an info, like the other already-enabled error.
 
-CI Bug Log - changes from CI_DRM_8350_full -> Patchwork_17433_full
-====================================================
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1687
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/pci/msi.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Summary
--------
+diff --git a/drivers/pci/msi.c b/drivers/pci/msi.c
+index 6b43a5455c7a..41eba0fdd450 100644
+--- a/drivers/pci/msi.c
++++ b/drivers/pci/msi.c
+@@ -1071,8 +1071,10 @@ static int __pci_enable_msi_range(struct pci_dev *dev, int minvec, int maxvec,
+ 	if (maxvec < minvec)
+ 		return -ERANGE;
+ 
+-	if (WARN_ON_ONCE(dev->msi_enabled))
++	if (dev->msi_enabled) {
++		pci_info(dev, "can't enable MSI, already enabled\n");
+ 		return -EINVAL;
++	}
+ 
+ 	nvec = pci_msi_vec_count(dev);
+ 	if (nvec < 0)
+-- 
+2.26.2
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17433_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][5] -> [FAIL][6] ([fdo#108145] / [i915#265]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-skl4/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr2_su@frontbuffer:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109642] / [fdo#111068])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-iclb4/igt@kms_psr2_su@frontbuffer.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109441])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-iclb6/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-iclb:         [WARN][11] ([i915#1515]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb6/igt@i915_pm_rc6_residency@rc6-idle.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-iclb2/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@i915_pm_rpm@system-suspend:
-    - shard-skl:          [INCOMPLETE][13] ([i915#151] / [i915#69]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl10/igt@i915_pm_rpm@system-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-skl10/igt@i915_pm_rpm@system-suspend.html
-
-  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1}:
-    - shard-skl:          [FAIL][15] ([i915#46]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-
-  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1}:
-    - shard-skl:          [FAIL][17] ([i915#79]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
-    - shard-kbl:          [DMESG-WARN][19] ([i915#180]) -> [PASS][20] +3 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * igt@kms_psr@psr2_primary_page_flip:
-    - shard-iclb:         [SKIP][21] ([fdo#109441]) -> [PASS][22] +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb6/igt@kms_psr@psr2_primary_page_flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
-
-  * {igt@perf@polling-small-buf}:
-    - shard-iclb:         [FAIL][23] ([i915#1722]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-iclb2/igt@perf@polling-small-buf.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-iclb4/igt@perf@polling-small-buf.html
-
-  
-#### Warnings ####
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-kbl:          [INCOMPLETE][25] ([i915#155] / [i915#1687]) -> [INCOMPLETE][26] ([i915#155] / [i915#1687] / [i915#180])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-kbl7/igt@gem_workarounds@suspend-resume-context.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-kbl2/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@i915_pm_dc@dc3co-vpb-simulation:
-    - shard-snb:          [SKIP][27] ([fdo#109271]) -> [INCOMPLETE][28] ([i915#82])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-snb5/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-snb5/igt@i915_pm_dc@dc3co-vpb-simulation.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-tglb:         [FAIL][29] ([i915#454]) -> [SKIP][30] ([i915#468])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/shard-tglb5/igt@i915_pm_dc@dc6-psr.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#1515]: https://gitlab.freedesktop.org/drm/intel/issues/1515
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1687]: https://gitlab.freedesktop.org/drm/intel/issues/1687
-  [i915#1722]: https://gitlab.freedesktop.org/drm/intel/issues/1722
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#46]: https://gitlab.freedesktop.org/drm/intel/issues/46
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8350 -> Patchwork_17433
-
-  CI-20190529: 20190529
-  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17433: f4f991b2acc57f880fd995d3c1ba6a732d55b600 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17433/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
