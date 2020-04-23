@@ -1,63 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869441B57FF
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 11:20:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8281B5833
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 11:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 657916E478;
-	Thu, 23 Apr 2020 09:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEE996E4A5;
+	Thu, 23 Apr 2020 09:30:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E6E6E478
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 09:20:38 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id u127so5756740wmg.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 02:20:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=YlakRXlVVbSOqCFC3kOOGCPGNfzSZXjoj0rNmgz6JGM=;
- b=U1qjm/QVHI2Y9dwiNoTJmKsb9YPhRYHXTAWLYLkGIH/SzTUHXhbhd14spJ/p+AT+Kz
- 1Y3UiQNE/wP3N7RTf4ky5usp+Z+mzVCP190WHmnxktH3svJLYkjaL3DnqcnYWyn+tTES
- aNp7OWzhG5ks/pe0LW9zyWINJtLQI4MlevZfR0iXD9/OAKd+w09KY8drrZYOsVUqflLD
- FUNx2smvIqNEyt9TfZ71n4B2ItG2+PhQqtMo15ebAvjQ3N8DWLA6fftKBFjKruiHCrrq
- e7dZjCRRvXZ2OBVmaDRK4zx1pLfBAUHhRG9DKAM3T4DhG5QlNb++e1QX45/61gr8REDD
- uuAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=YlakRXlVVbSOqCFC3kOOGCPGNfzSZXjoj0rNmgz6JGM=;
- b=QyEkEPIzZl58LmrsKm6i6q3wLjMSDuJ9w0SChrW7USAwU4cDKl9vbUqNTXbfB/IrW5
- tK/hvS7ew6l9rnJwioCOoJSzgNjxd8jGnB7jKLIQFUKxm+ZXwdV38QfrWqV/pNPyAFyT
- hp3mHjYDBLO9qgLiBU1sg1sRx2bWYNcPkumQc0QAKhk7jRRZB5FPKCPxVRqQROHtz6Jn
- dHvknvjQrSryNwppQOcRqFhdx53GBteSY2sfJayyRi5wuOBxP5GmJkOezjnns5eq1Az8
- AO9S+WOx4vql5H2LbbOw2/blA1QHeQe05Azy8jrT+Z8rkjXL4pjzUCZ2dZzpBSSxXRkr
- JOOw==
-X-Gm-Message-State: AGi0Pubq0o9NaIU2NmAOxn/GEaKwWtz+O4wabNVCESAd2Exg/LYOpNax
- 30Tq8ZcS2Sm04/8EHTg9IawBIg==
-X-Google-Smtp-Source: APiQypKxzJUFiraEGAMa9DKmpYFhbShKwe/xf4XMAY+FxNiGq6f3nSom2gJQinfqyhDKdWHVW8Vq7Q==
-X-Received: by 2002:a1c:678a:: with SMTP id b132mr3112235wmc.107.1587633637495; 
- Thu, 23 Apr 2020 02:20:37 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net.
- [86.9.19.6])
- by smtp.gmail.com with ESMTPSA id h10sm2738108wrq.33.2020.04.23.02.20.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Apr 2020 02:20:36 -0700 (PDT)
-Date: Thu, 23 Apr 2020 10:20:34 +0100
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Guru Das Srinagesh <gurus@codeaurora.org>
-Message-ID: <20200423092034.2yrzbuiay66fizkx@holly.lan>
-References: <cover.1587523702.git.gurus@codeaurora.org>
- <20200422084934.ajh6yzs5mkzzvop4@holly.lan>
- <20200422233755.GA11597@codeaurora.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 805BD6E4A5;
+ Thu, 23 Apr 2020 09:30:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79DFFA3ECB;
+ Thu, 23 Apr 2020 09:30:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200422233755.GA11597@codeaurora.org>
-Subject: Re: [Intel-gfx] [PATCH v13 00/11] Convert PWM period and duty cycle
- to u64
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 23 Apr 2020 09:30:50 -0000
+Message-ID: <158763425046.26749.16636448330081396287@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU0FH?=
+ =?utf-8?q?V_support_for_Gen12+_=28rev27=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,64 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, linux-fbdev@vger.kernel.org,
- David Collins <collinsd@codeaurora.org>, Liam Girdwood <lgirdwood@gmail.com>,
- David Airlie <airlied@linux.ie>, Michael Turquette <mturquette@baylibre.com>,
- Kamil Debski <kamil@wypas.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Atish Patra <atish.patra@wdc.com>,
- linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- linux-clk@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alexander Shiyan <shc_work@mail.ru>, Lee Jones <lee.jones@linaro.org>,
- Chen-Yu Tsai <wens@csie.org>, NXP Linux Team <linux-imx@nxp.com>,
- Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>,
- Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
- linux-pwm@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Alexandre Torgue <alexandre.torgue@st.com>, Arnd Bergmann <arnd@arndb.de>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Mark Brown <broonie@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
- Thomas Gleixner <tglx@linutronix.de>, Fabrice Gasnier <fabrice.gasnier@st.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Allison Randal <allison@lohutok.net>, linux-hwmon@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Fontana <rfontana@redhat.com>, Stephen Boyd <sboyd@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, linux-kernel@vger.kernel.org,
- Yash Shah <yash.shah@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Dan Carpenter <dan.carpenter@oracle.com>, Joe Perches <joe@perches.com>,
- Shawn Guo <shawnguo@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2020 at 04:37:55PM -0700, Guru Das Srinagesh wrote:
-> On Wed, Apr 22, 2020 at 09:49:34AM +0100, Daniel Thompson wrote:
-> > On Tue, Apr 21, 2020 at 07:57:12PM -0700, Guru Das Srinagesh wrote:
-> > > [REQUEST]
-> > > 
-> > > Would it be possible for the patches that have already received Acked-by's in
-> > > this series to be accepted and applied to the tree? I lost an Acked-by (in
-> > > intel-panel.c) because it had a merge conflict with a new change that came in
-> > > after I rebased to tip. I wasn't sure earlier about accepting single patches as
-> > > opposed to the entire series en masse, but this event has got me thinking.
-> > 
-> > Has there been a positive maintainer review of patch 11 at any point in
-> > the thread (most of the people you are asking to commit patches have
-> > not been able to see the discussion about the actual feature these
-> > patches are preparing for)?
-> 
-> Yes. Uwe had this to say [1] about a previous patchset (v5) of patch 11
-> which is essentially unchanged in this patchset save the dropping of the
-> pwm_capture change.
-> 
-> [1] https://www.spinics.net/lists/linux-pwm/msg11536.html
+== Series Details ==
 
-Excellent. Thanks!
+Series: SAGV support for Gen12+ (rev27)
+URL   : https://patchwork.freedesktop.org/series/75129/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8350 -> Patchwork_17434
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17434/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17434 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8350/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17434/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
-Daniel.
+Participating hosts (48 -> 44)
+------------------------------
+
+  Additional (1): fi-icl-dsi 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8350 -> Patchwork_17434
+
+  CI-20190529: 20190529
+  CI_DRM_8350: 018bab6d1c4ac37bff9306384383fab59750e140 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5606: 678afb3954bec6227c8762756a0ad6d9946d49b2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17434: f1e652ab88416c2f154b474bce71a23d4e3ae3ee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f1e652ab8841 drm/i915: Enable SAGV support for Gen12
+c8050b966b6e drm/i915: Restrict qgv points which don't have enough bandwidth.
+a7b5caac439f drm/i915: Rename bw_state to new_bw_state
+2eadba427c66 drm/i915: Added required new PCode commands
+44aab96e8376 drm/i915: Add TGL+ SAGV support
+38d87c8a7846 drm/i915: Separate icl and skl SAGV checking
+b0cc5c6eec63 drm/i915: Track active_pipes in bw_state
+75ab029a2591 drm/i915: Use bw state for per crtc SAGV evaluation
+f963df93cc7d drm/i915: Introduce skl_plane_wm_level accessor.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17434/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
