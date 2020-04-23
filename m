@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830791B5974
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 12:42:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2201E1B59B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 12:55:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C95E16E183;
-	Thu, 23 Apr 2020 10:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61FFC6E1B2;
+	Thu, 23 Apr 2020 10:55:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60CF06E183
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 10:42:15 +0000 (UTC)
-IronPort-SDR: AZVCEMUvSeSC8br37BVlT18I4ZEngoJhGsaSe0lhBV12dxAjHBF5OdHRz4gk4c1uqxAz5mqKi2
- pX2k5s4C0tjw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 03:42:14 -0700
-IronPort-SDR: hCmYLdQFedueeOarJz+FGGSida9Li/o02CLXdVWS43gISHqGx86NQxelzF/fzI04BxCWttw8qB
- A600222pFJAg==
-X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="402879147"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 03:42:13 -0700
-Date: Thu, 23 Apr 2020 13:41:48 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200423104148.GA9592@ideak-desk.fi.intel.com>
-References: <20200422194002.206744-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5E066E1A8;
+ Thu, 23 Apr 2020 10:55:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF08FA3ECB;
+ Thu, 23 Apr 2020 10:55:34 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200422194002.206744-1-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdmi: Get digital_port only
- once in intel_ddi_pre_enable_hdmi()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 23 Apr 2020 10:55:34 -0000
+Message-ID: <158763933481.26750.2106809802420028847@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200423085940.28168-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200423085940.28168-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Check_carefully?=
+ =?utf-8?q?_for_an_idle_engine_in_wait-for-idle?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,76 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2020 at 12:40:01PM -0700, Jos=E9 Roberto de Souza wrote:
-> Getting it only once also removing intel_hdmi that is used only once
-> and can be easily accessed by dig_port->hdmi.
-> =
+== Series Details ==
 
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+Series: series starting with [CI,1/2] drm/i915/gt: Check carefully for an idle engine in wait-for-idle
+URL   : https://patchwork.freedesktop.org/series/76384/
+State : success
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 11 ++++-------
->  1 file changed, 4 insertions(+), 7 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_8351 -> Patchwork_17436
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index c086ae5eb12f..255dc796ede5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3310,13 +3310,11 @@ static void intel_ddi_pre_enable_hdmi(struct inte=
-l_atomic_state *state,
->  				      const struct intel_crtc_state *crtc_state,
->  				      const struct drm_connector_state *conn_state)
->  {
-> -	struct intel_digital_port *intel_dig_port =3D enc_to_dig_port(encoder);
-> -	struct intel_hdmi *intel_hdmi =3D &intel_dig_port->hdmi;
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	int level =3D intel_ddi_hdmi_level(encoder);
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> +	int level =3D intel_ddi_hdmi_level(encoder);
->  =
+Summary
+-------
 
-> -	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
-> +	intel_dp_dual_mode_set_tmds_output(&dig_port->hdmi, true);
->  	intel_ddi_clk_select(encoder, crtc_state);
->  =
+  **SUCCESS**
 
->  	intel_display_power_get(dev_priv, dig_port->ddi_io_power_domain);
-> @@ -3341,9 +3339,8 @@ static void intel_ddi_pre_enable_hdmi(struct intel_=
-atomic_state *state,
->  =
+  No regressions found.
 
->  	intel_ddi_enable_pipe_clock(encoder, crtc_state);
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17436/index.html
 
-> -	intel_dig_port->set_infoframes(encoder,
-> -				       crtc_state->has_infoframe,
-> -				       crtc_state, conn_state);
-> +	dig_port->set_infoframes(encoder, crtc_state->has_infoframe, crtc_state,
-> +				 conn_state);
->  }
->  =
+Known issues
+------------
 
->  static void intel_ddi_pre_enable(struct intel_atomic_state *state,
-> -- =
+  Here are the changes found in Patchwork_17436 that come from known issues:
 
-> 2.26.2
-> =
+### IGT changes ###
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_timelines:
+    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8351/fi-bwr-2160/igt@i915_selftest@live@gt_timelines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17436/fi-bwr-2160/igt@i915_selftest@live@gt_timelines.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8351 -> Patchwork_17436
+
+  CI-20190529: 20190529
+  CI_DRM_8351: 63580ab8ee4dc3b1b824be6637085ac6b2c8ba6d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5608: e7bcaf1dd251d454706c7cd64282f531aec50183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17436: 1b48a6b4746b4f8add5cff9100d5ac6db4b1d9e6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1b48a6b4746b drm/i915/gt: Warn more clearly if the context state is still pinned
+b43db6e62d63 drm/i915/gt: Check carefully for an idle engine in wait-for-idle
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17436/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
