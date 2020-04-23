@@ -2,39 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C0C1B5EEE
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F07441B5EEF
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 17:17:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B5C96E8AC;
-	Thu, 23 Apr 2020 15:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48D246E8CC;
+	Thu, 23 Apr 2020 15:17:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 762D16E88D;
- Thu, 23 Apr 2020 15:17:47 +0000 (UTC)
-IronPort-SDR: VSj4dTBGTJgXuWLNk9s3dSS0ep65B12GNw/gXi4ajA8Fld/WSjH2suI1x5suqyV/aS983zubX2
- 0S+F0+TVdtlg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 08:17:47 -0700
-IronPort-SDR: fy7yKvh7T2zNzZNCVaQq2XQHqN9fxWosy5gium/Inm9vptlj2UhOGg1ng+p0Ifj2mcXyt5m0T8
- 0kPhmGDSrXXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="244896817"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 23 Apr 2020 08:17:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Apr 2020 18:17:43 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 23 Apr 2020 18:17:43 +0300
-Message-Id: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D17DE6E89D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 15:17:52 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20997638-1500050 for multiple; Thu, 23 Apr 2020 16:17:50 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/edid: Fix off-by-one in DispID DTD pixel
- clock
+In-Reply-To: <158765496993.9772.5796288344060758150@build.alporthouse.com>
+References: <20200423085940.28168-1-chris@chris-wilson.co.uk>
+ <20200423085940.28168-2-chris@chris-wilson.co.uk>
+ <a39636b2-8e42-6eef-1e9e-c13a2b7af5c3@linux.intel.com>
+ <158765496993.9772.5796288344060758150@build.alporthouse.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158765506895.9772.11624276209789432084@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 23 Apr 2020 16:17:48 +0100
+Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/gt: Warn more clearly if the
+ context state is still pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,37 +43,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBEaXNwSUQgRFREIHBpeGVsIGNsb2NrIGlzIGRvY3VtZW50ZWQgYXM6CiIwMCAwMCAwMCBoIOKG
-kiBGRiBGRiBGRiBoIHwgUGl4ZWwgY2xvY2sgw7cgMTAsMDAwIDAuMDEg4oaSIDE2Nyw3NzIuMTYg
-TWVnYSBQaXhlbHMgcGVyIFNlYyIKV2hpY2ggc2VlbXMgdG8gaW1wbHkgdGhhdCB3ZSB0byBhZGQg
-b25lIHRvIHRoZSByYXcgdmFsdWUuCgpSZWFsaXR5IHNlZW1zIHRvIGFncmVlIGFzIHRoZXJlIGFy
-ZSB0aWxlZCBkaXNwbGF5cyBpbiB0aGUgd2lsZAp3aGljaCBjdXJyZW50bHkgc2hvdyBhIDEwa0h6
-IGRpZmZlcmVuY2UgaW4gdGhlIHBpeGVsIGNsb2NrCmJldHdlZW4gdGhlIHRpbGVzIChvbmUgdGls
-ZSBnZXRzIGl0cyBtb2RlIGZyb20gdGhlIGJhc2UgRURJRCwKdGhlIG90aGVyIGZyb20gdGhlIERp
-c3BJRCBibG9jaykuCgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwpSZWZlcmVuY2VzOiBodHRw
-czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI3ClNpZ25lZC1v
-ZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBp
-bnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX2VkaWQuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCmluZGV4IDQzYjZjYTM2NGRh
-YS4uNTQ0ZDI2MDNmNWZjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYwpAQCAtNTEyMCw3ICs1MTIwLDcgQEAgc3Rh
-dGljIHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICpkcm1fbW9kZV9kaXNwbGF5aWRfZGV0YWlsZWQo
-c3RydWN0IGRybV9kZXZpY2UgKmQKIAlzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqbW9kZTsKIAl1
-bnNpZ25lZCBwaXhlbF9jbG9jayA9ICh0aW1pbmdzLT5waXhlbF9jbG9ja1swXSB8CiAJCQkJKHRp
-bWluZ3MtPnBpeGVsX2Nsb2NrWzFdIDw8IDgpIHwKLQkJCQkodGltaW5ncy0+cGl4ZWxfY2xvY2tb
-Ml0gPDwgMTYpKTsKKwkJCQkodGltaW5ncy0+cGl4ZWxfY2xvY2tbMl0gPDwgMTYpKSArIDE7CiAJ
-dW5zaWduZWQgaGFjdGl2ZSA9ICh0aW1pbmdzLT5oYWN0aXZlWzBdIHwgdGltaW5ncy0+aGFjdGl2
-ZVsxXSA8PCA4KSArIDE7CiAJdW5zaWduZWQgaGJsYW5rID0gKHRpbWluZ3MtPmhibGFua1swXSB8
-IHRpbWluZ3MtPmhibGFua1sxXSA8PCA4KSArIDE7CiAJdW5zaWduZWQgaHN5bmMgPSAodGltaW5n
-cy0+aHN5bmNbMF0gfCAodGltaW5ncy0+aHN5bmNbMV0gJiAweDdmKSA8PCA4KSArIDE7Ci0tIAoy
-LjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Quoting Chris Wilson (2020-04-23 16:16:09)
+> Quoting Tvrtko Ursulin (2020-04-23 15:47:58)
+> > 
+> > On 23/04/2020 09:59, Chris Wilson wrote:
+> > > When recording the default context state, we submit an ordinary context
+> > > and then steal the context image for our defaults. To be able to steal
+> > > the state, we must have total ownership of the context. During CI we
+> > > want to make this error extremely obvious, as otherwise we will fail the
+> > > user's module load.
+> > > 
+> > > References: https://gitlab.freedesktop.org/drm/intel/-/issues/1763
+> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > ---
+> > >   drivers/gpu/drm/i915/gt/intel_gt.c | 1 +
+> > >   1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > index 1c99cc72305a..379eb39e7979 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > @@ -472,6 +472,7 @@ static int __engines_record_defaults(struct intel_gt *gt)
+> > >   
+> > >               /* We want to be able to unbind the state from the GGTT */
+> > >               GEM_BUG_ON(intel_context_is_pinned(rq->context));
+> > > +             GEM_BUG_ON(i915_vma_is_pinned(state));
+> > 
+> > Not sure - context->state ownership is in the context pinned status and 
+> > then there is the unbind below which will fail if vma is pinned. Which 
+> > sounds better than a bug on. Is it difficult to figure out what is 
+> > failing in practice? A debug message on the unbind failure path might be 
+> > more friendly in that case.
+> 
+> I was able to recognise the failure :) I thought this might be more
+> explicit.
+
+One thing in the GEM_BUG_ON()'s favour is that in the unbind we do have
+one more wait, which gives a small saving grace and we have fewer
+EAGAINs than BUG_ONs. So the BUG_ON were more sensitive and so useful
+for testing.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
