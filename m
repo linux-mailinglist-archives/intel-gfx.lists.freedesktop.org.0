@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4CF1B69C0
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 01:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E83471B6A1B
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 01:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3166EA3A;
-	Thu, 23 Apr 2020 23:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 336406EA5B;
+	Thu, 23 Apr 2020 23:48:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 170576E137;
- Thu, 23 Apr 2020 23:26:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0EB76A363D;
- Thu, 23 Apr 2020 23:26:06 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 587B26EA5B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 23:48:03 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21001920-1500050 
+ for multiple; Fri, 24 Apr 2020 00:47:31 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Apr 2020 00:47:29 +0100
+Message-Id: <20200423234729.7993-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 23 Apr 2020 23:26:06 -0000
-Message-ID: <158768436603.26748.17634090779017114070@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423182440.21876-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200423182440.21876-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Add_context_batchbuffers_registers_to_live?=
- =?utf-8?b?X2xyY19maXhlZCAocmV2NCk=?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Add engine scratch register to
+ live_lrc_fixed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,94 +37,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Series: drm/i915/selftests: Add context batchbuffers registers to live_lrc_fixed (rev4)
-URL   : https://patchwork.freedesktop.org/series/76407/
-State : failure
+General purpose registers are per engine and
+in a fixed location. Add to live_lrc_fixed.
 
-== Summary ==
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 12 ++++++++++++
+ drivers/gpu/drm/i915/gt/selftest_lrc.c |  5 +++++
+ 2 files changed, 17 insertions(+)
 
-CI Bug Log - changes from CI_DRM_8354 -> Patchwork_17449
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 090be5981b55..dba6af7a6fe8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -250,6 +250,18 @@ static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
+ 		return -1;
+ }
+ 
++static int lrc_ring_gpr0(const struct intel_engine_cs *engine)
++{
++	if (INTEL_GEN(engine->i915) >= 12)
++		return 0x74;
++	else if (INTEL_GEN(engine->i915) >= 9)
++		return 0x68;
++	else if (engine->class == RENDER_CLASS)
++		return 0xd8;
++	else
++		return -1;
++}
++
+ static int lrc_ring_wa_bb_per_ctx(const struct intel_engine_cs *engine)
+ {
+ 	if (INTEL_GEN(engine->i915) >= 12)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index ae0a0a692498..6e47c88c4b74 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -4613,6 +4613,11 @@ static int live_lrc_fixed(void *arg)
+ 				CTX_TIMESTAMP - 1,
+ 				"RING_CTX_TIMESTAMP"
+ 			},
++			{
++				i915_mmio_reg_offset(GEN8_RING_CS_GPR(engine->mmio_base, 0)),
++				lrc_ring_gpr0(engine),
++				"RING_CS_GPR0"
++			},
+ 			{ },
+ 		}, *t;
+ 		u32 *hw;
+-- 
+2.20.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17449 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17449, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17449/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17449:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17449/fi-bsw-nick/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@gem_exec_parallel@engines@fds}:
-    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8354/fi-bsw-nick/igt@gem_exec_parallel@engines@fds.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17449/fi-bsw-nick/igt@gem_exec_parallel@engines@fds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (2): fi-kbl-7560u fi-bwr-2160 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8354 -> Patchwork_17449
-
-  CI-20190529: 20190529
-  CI_DRM_8354: 6ec6eeeda39e1733777f9115ba813a992a47b5fe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5608: e7bcaf1dd251d454706c7cd64282f531aec50183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17449: 22d0fd6a3d3fcfd63dbbde1858fd0ff348e01e55 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-22d0fd6a3d3f drm/i915/selftests: Add context batchbuffers registers to live_lrc_fixed
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17449/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
