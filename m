@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9AE1B6428
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 21:03:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7011B6434
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2020 21:04:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E526E99E;
-	Thu, 23 Apr 2020 19:03:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77C3C6E9B1;
+	Thu, 23 Apr 2020 19:04:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9F76E0C2;
- Thu, 23 Apr 2020 19:03:28 +0000 (UTC)
-IronPort-SDR: X3IiRJVQtT6qwI0lGXCPOnKr2Orh+zVvtWkeCwBBzqrxcScasPlMXOGJ3xLxfcY7S7Jco2tdLL
- Yfe7kJ+MfULA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 12:03:26 -0700
-IronPort-SDR: DA9sUIdXpdpc5lNdPtpGnXY5+8tOmXzTMIAsH5z3rwhPgEPA95qMmEeAlLfM8yS/sQz9ee3s6V
- 2Usg91WICijg==
-X-IronPort-AV: E=Sophos;i="5.73,307,1583222400"; d="scan'208";a="457608451"
-Received: from unknown (HELO intel.com) ([10.165.21.202])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2020 12:03:24 -0700
-Date: Thu, 23 Apr 2020 12:02:46 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200423190246.GA1710303@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D574D6E0C2;
+ Thu, 23 Apr 2020 19:03:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CDE8EA0099;
+ Thu, 23 Apr 2020 19:03:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 23 Apr 2020 19:03:59 -0000
+Message-ID: <158766863983.26749.184364498113000519@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200423181937.25176-1-imre.deak@intel.com>
+In-Reply-To: <20200423181937.25176-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/icl+=3A_Prevent_using_non-TypeC_AUX_channels_on_TypeC_por?=
+ =?utf-8?q?ts?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,83 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+== Series Details ==
 
-Here goes drm-intel-fixes-2020-04-23:
+Series: drm/i915/icl+: Prevent using non-TypeC AUX channels on TypeC ports
+URL   : https://patchwork.freedesktop.org/series/76405/
+State : success
 
-- Tigerlake Workaround - disabling media recompression (Matt)
-- Fix RPS interrupts for right GPU frequency (Chris)
-- HDCP fix prime check (Oliver)
-- Tigerlake Thunderbolt power well fix (Matt)
-- Tigerlake DP link training fixes (Jose)
-- Documentation sphinx build fix (Jani)
-- Fix enable_dpcd_backlight modparam (Lyude)
+== Summary ==
 
-Thanks,
-Rodrigo.
+CI Bug Log - changes from CI_DRM_8354 -> Patchwork_17444
+====================================================
 
-The following changes since commit 5809e8f8ee42db54c283c3a6bcfcbbdbfd888f5c:
+Summary
+-------
 
-  Merge tag 'gvt-fixes-2020-04-14' of https://github.com/intel/gvt-linux in=
-to drm-intel-fixes (2020-04-14 06:02:53 -0700)
+  **SUCCESS**
 
-are available in the Git repository at:
+  No regressions found.
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-04-=
-23
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17444/index.html
 
-for you to fetch changes up to d082119f4277ff4a63e44d293864aa9f2112b217:
+Known issues
+------------
 
-  drm/i915/dpcd_bl: Unbreak enable_dpcd_backlight modparam (2020-04-20 10:1=
-2:58 -0700)
+  Here are the changes found in Patchwork_17444 that come from known issues:
 
-----------------------------------------------------------------
-- Tigerlake Workaround - disabling media recompression (Matt)
-- Fix RPS interrupts for right GPU frequency (Chris)
-- HDCP fix prime check (Oliver)
-- Tigerlake Thunderbolt power well fix (Matt)
-- Tigerlake DP link training fixes (Jose)
-- Documentation sphinx build fix (Jani)
-- Fix enable_dpcd_backlight modparam (Lyude)
+### IGT changes ###
 
-----------------------------------------------------------------
-Chris Wilson (1):
-      drm/i915/gt: Update PMINTRMSK holding fw
+#### Issues hit ####
 
-Jani Nikula (1):
-      drm/i915: fix Sphinx build duplicate label warning
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#976])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8354/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17444/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
 
-Jos=E9 Roberto de Souza (1):
-      drm/i915/display: Load DP_TP_CTL/STATUS offset before use it
+  
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
 
-Lyude Paul (1):
-      drm/i915/dpcd_bl: Unbreak enable_dpcd_backlight modparam
 
-Matt Roper (2):
-      drm/i915/tgl: Add Wa_14010477008:tgl
-      drm/i915/tgl: TBT AUX should use TC power well ops
+Participating hosts (48 -> 44)
+------------------------------
 
-Oliver Barta (1):
-      drm/i915: HDCP: fix Ri prime check done during link check
+  Additional (2): fi-kbl-7560u fi-bwr-2160 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
- drivers/gpu/drm/i915/display/intel_ddi.c              | 14 +++++++++++---
- drivers/gpu/drm/i915/display/intel_display_power.c    | 12 ++++++------
- drivers/gpu/drm/i915/display/intel_dp.c               |  5 ++---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c |  1 +
- drivers/gpu/drm/i915/display/intel_hdmi.c             |  3 ++-
- drivers/gpu/drm/i915/display/intel_sprite.c           | 17 ++++++++++++---=
---
- drivers/gpu/drm/i915/gt/intel_rps.c                   |  9 ++++++---
- drivers/gpu/drm/i915/i915_drv.h                       |  2 ++
- drivers/gpu/drm/i915/i915_reg.h                       |  4 ++--
- 9 files changed, 44 insertions(+), 23 deletions(-)
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8354 -> Patchwork_17444
+
+  CI-20190529: 20190529
+  CI_DRM_8354: 6ec6eeeda39e1733777f9115ba813a992a47b5fe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5608: e7bcaf1dd251d454706c7cd64282f531aec50183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17444: bf5e56c5f4fe0da1b56e14c0b6247fefe501fec2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bf5e56c5f4fe drm/i915/icl+: Prevent using non-TypeC AUX channels on TypeC ports
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17444/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
