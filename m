@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D685D1B825E
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 01:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5611B825F
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 01:14:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8D4E6E0F6;
-	Fri, 24 Apr 2020 23:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB4F6E119;
+	Fri, 24 Apr 2020 23:14:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1E396E0F6
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 23:14:05 +0000 (UTC)
-IronPort-SDR: EIARc3ixYDzV6v+y9b/cuccPWHGUVUx5szAXWpSXWp6nWhKz23XM+xlAMwuqtsOJIOLSPD4H+q
- nkH1GHn/etmA==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 797BD6E119
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 23:14:27 +0000 (UTC)
+IronPort-SDR: KQe/byv+oeiFEyXESrPP66leXAK+xRffj+/5faI12lwUsSS9uNOEO50mRMMb45WImryBBOibur
+ RF0dT46fAyNQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2020 16:14:05 -0700
-IronPort-SDR: e1COPzwb7GJHh0577j+cSea2+xPL0jU0DQtI39JU6Gg2uW0UmfvrY+dLdJxZsZESpEhXGAaoDp
- 5iDwMpatyEnw==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2020 16:14:27 -0700
+IronPort-SDR: XjRq0omjcFCYTzYqAmYCNTwkJjByj4bHFHfEA6sXiNXwI+8zUY2BxMaXCf4eIII9PVi1fDb2Mp
+ Pjo9iS227mVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,313,1583222400"; d="scan'208";a="259995956"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 24 Apr 2020 16:14:04 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D69295C1D8E; Sat, 25 Apr 2020 02:12:06 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200424083303.19226-2-chris@chris-wilson.co.uk>
-References: <20200424083303.19226-1-chris@chris-wilson.co.uk>
- <20200424083303.19226-2-chris@chris-wilson.co.uk>
-Date: Sat, 25 Apr 2020 02:12:06 +0300
-Message-ID: <87eesclbqx.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,313,1583222400"; d="scan'208";a="291738987"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by fmsmga002.fm.intel.com with ESMTP; 24 Apr 2020 16:14:27 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Apr 2020 16:14:23 -0700
+Message-Id: <20200424231423.4065231-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/selftets: Check random hang
- recovery
+Subject: [Intel-gfx] [PATCH] drm/i915: Use proper fault mask in interrupt
+ postinstall too
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,215 +45,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> Userspace is untrusted and allowed to submit anything to the GPU for
-> execution, including random garbage. Our recovery should do the right
-> thing.
->
-
-Subject:
-s/tets/tests
-
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
->  .../drm/i915/gem/selftests/i915_gem_context.c | 157 ++++++++++++++++++
->  1 file changed, 157 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index c5c3433174dc..4cda46cfbe2a 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -2305,6 +2305,162 @@ static int igt_reg_isolation(void *arg)
->  	return err;
->  }
->  
-> +static struct i915_request *
-> +exec_obj(struct i915_gem_context *ctx,
-> +	 struct intel_engine_cs *engine,
-> +	 struct drm_i915_gem_object *obj)
-> +{
-> +	struct intel_context *ce;
-> +	struct i915_request *rq;
-> +	struct i915_vma *vma;
-> +	int err;
-> +
-> +	ce = i915_gem_context_get_engine(ctx, engine->legacy_idx);
-> +	if (IS_ERR(ce))
-> +		return ERR_CAST(ce);
-> +
-> +	vma = i915_vma_instance(obj, ce->vm, NULL);
-> +	if (IS_ERR(vma)) {
-> +		err = PTR_ERR(vma);
-> +		goto err_ce;
-> +	}
-> +
-> +	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-> +	if (err)
-> +		goto err_ce;
-> +
-> +	rq = intel_context_create_request(ce);
-> +	if (IS_ERR(rq))
-> +		goto err_unpin;
-> +
-> +	if (engine->emit_init_breadcrumb) {
-> +		err = engine->emit_init_breadcrumb(rq);
-> +		if (err)
-> +			goto err_rq;
-> +	}
-> +
-> +	i915_vma_lock(vma);
-> +	err = i915_request_await_object(rq, vma->obj, false);
-> +	if (err == 0)
-> +		err = i915_vma_move_to_active(vma, rq, 0);
-> +	i915_vma_unlock(vma);
-> +	if (err)
-> +		goto err_rq;
-> +
-> +	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
-> +
-> +err_rq:
-> +	if (!err)
-> +		i915_request_get(rq);
-> +	else
-> +		i915_request_set_error_once(rq, err);
-> +	i915_request_add(rq);
-> +
-> +err_unpin:
-> +	i915_vma_unpin(vma);
-> +err_ce:
-> +	intel_context_put(ce);
-> +	return err ? ERR_PTR(err) : rq;
-> +}
-> +
-> +static int randomise_object(struct drm_i915_gem_object *obj,
-> +			    struct rnd_state *prng)
-> +{
-> +	unsigned long i;
-> +	u32 *cs;
-> +
-> +	cs = i915_gem_object_pin_map(obj, I915_MAP_WC);
-> +	if (IS_ERR(cs))
-> +		return PTR_ERR(cs);
-> +
-> +	for (i = 0; i < obj->base.size / sizeof(*cs); i++)
-> +		cs[i] = prandom_u32_state(prng);
-> +
-> +	i915_gem_object_flush_map(obj);
-> +	i915_gem_object_unpin_map(obj);
-> +
-> +	return 0;
-> +}
-> +
-> +static bool skip_garbage(const struct intel_engine_cs *engine)
-> +{
-> +	if (IS_GEN(engine->i915, 6))
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +static int igt_ctx_garbage(void *arg)
-> +{
-> +	struct drm_i915_private *i915 = arg;
-> +	struct drm_i915_gem_object *obj;
-> +	struct intel_engine_cs *engine;
-> +	struct i915_gem_context *ctx;
-> +	I915_RND_STATE(prng);
-> +	struct file *file;
-> +	int err;
-> +
-> +	/*
-> +	 * Imagine if userspace went crazy and submitted a batch of nothing
-> +	 * but random junk. The GPU may hang and we may be forced to kill
-> +	 * the context; but the driver will go on!
-> +	 */
-> +
-> +	file = mock_file(i915);
-> +	if (IS_ERR(file))
-> +		return PTR_ERR(file);
-> +
-> +	ctx = live_context(i915, file);
-> +	if (IS_ERR(ctx)) {
-> +		err = PTR_ERR(ctx);
-> +		goto out_file;
-> +	}
-> +
-> +	obj = i915_gem_object_create_internal(i915, 4096);
-> +	if (IS_ERR(obj)) {
-> +		err = PTR_ERR(obj);
-> +		goto out_file;
-> +	}
-> +
-> +	err = randomise_object(obj, &prng);
-> +	if (err)
-> +		goto out_obj;
-> +
-> +	i915_gem_context_clear_bannable(ctx);
-> +	for_each_uabi_engine(engine, i915) {
-> +		struct i915_request *rq;
-> +
-> +		if (!IS_ENABLED(CONFIG_DRM_I915_SELFTEST_BROKEN) &&
-> +		    skip_garbage(engine))
-> +			continue;
-> +
-> +		rq = exec_obj(ctx, engine, obj);
-> +		if (IS_ERR(rq)) {
-> +			err = PTR_ERR(rq);
-> +			break;
-> +		}
-> +
-> +		if (i915_request_wait(rq,
-> +				      I915_WAIT_INTERRUPTIBLE,
-> +				      HZ / 2) < 0) {
-> +			intel_gt_handle_error(engine->gt,
-> +					      engine->mask, 0,
-> +					      NULL);
-> +		}
-> +
-> +		i915_request_put(rq);
-> +	}
-> +
-> +	if (igt_flush_test(i915))
-> +		err = -EIO;
-> +
-> +out_obj:
-> +	i915_gem_object_put(obj);
-> +out_file:
-> +	fput(file);
-> +	return err;
-> +}
-> +
->  static bool skip_unused_engines(struct intel_context *ce, void *data)
->  {
->  	return !ce->state;
-> @@ -2441,6 +2597,7 @@ int i915_gem_context_live_selftests(struct drm_i915_private *i915)
->  		SUBTEST(igt_shared_ctx_exec),
->  		SUBTEST(igt_vm_isolation),
->  		SUBTEST(igt_reg_isolation),
-> +		SUBTEST(igt_ctx_garbage),
-
-igt_exec_garbage?
-
-Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
->  	};
->  
->  	if (intel_gt_is_wedged(&i915->gt))
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIElSUSBwb3N0aW5zdGFsbCBoYW5kbGluZyBoYWQgb3Blbi1jb2RlZCBwaXBlIGZhdWx0IG1h
+c2sgc2VsZWN0aW9uCnRoYXQgbmV2ZXIgZ290IHVwZGF0ZWQgZm9yIGdlbjExLiAgU3dpdGNoIGl0
+IHRvIHVzZQpnZW44X2RlX3BpcGVfZmF1bHRfbWFzaygpIHRvIGVuc3VyZSB3ZSBkb24ndCBtaXNz
+IHVwZGF0ZXMgZm9yIG5ldwpwbGF0Zm9ybXMuCgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
+am9zZS5zb3V6YUBpbnRlbC5jb20+CkZpeGVzOiBkNTA2YTY1ZDU2ZmQgKCJkcm0vaTkxNTogQ2F0
+Y2ggR1RUIGZhdWx0IGVycm9ycyBmb3IgZ2VuMTErIHBsYW5lcyIpClNpZ25lZC1vZmYtYnk6IE1h
+dHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9pcnEuYyB8IDYgKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25z
+KCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCmluZGV4IDE1MDJhYjQ0
+ZjFhNS4uYmQ3MjJkMDY1MGM4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2lycS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKQEAgLTMzNTgsNyAr
+MzM1OCw4IEBAIHN0YXRpYyB2b2lkIGdlbjhfZGVfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdikKIHsKIAlzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUg
+PSAmZGV2X3ByaXYtPnVuY29yZTsKIAotCXUzMiBkZV9waXBlX21hc2tlZCA9IEdFTjhfUElQRV9D
+RENMS19DUkNfRE9ORTsKKwl1MzIgZGVfcGlwZV9tYXNrZWQgPSBnZW44X2RlX3BpcGVfZmF1bHRf
+bWFzayhkZXZfcHJpdikgfAorCQlHRU44X1BJUEVfQ0RDTEtfQ1JDX0RPTkU7CiAJdTMyIGRlX3Bp
+cGVfZW5hYmxlczsKIAl1MzIgZGVfcG9ydF9tYXNrZWQgPSBHRU44X0FVWF9DSEFOTkVMX0E7CiAJ
+dTMyIGRlX3BvcnRfZW5hYmxlczsKQEAgLTMzNjksMTMgKzMzNzAsMTAgQEAgc3RhdGljIHZvaWQg
+Z2VuOF9kZV9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
+KQogCQlkZV9taXNjX21hc2tlZCB8PSBHRU44X0RFX01JU0NfR1NFOwogCiAJaWYgKElOVEVMX0dF
+TihkZXZfcHJpdikgPj0gOSkgewotCQlkZV9waXBlX21hc2tlZCB8PSBHRU45X0RFX1BJUEVfSVJR
+X0ZBVUxUX0VSUk9SUzsKIAkJZGVfcG9ydF9tYXNrZWQgfD0gR0VOOV9BVVhfQ0hBTk5FTF9CIHwg
+R0VOOV9BVVhfQ0hBTk5FTF9DIHwKIAkJCQkgIEdFTjlfQVVYX0NIQU5ORUxfRDsKIAkJaWYgKElT
+X0dFTjlfTFAoZGV2X3ByaXYpKQogCQkJZGVfcG9ydF9tYXNrZWQgfD0gQlhUX0RFX1BPUlRfR01C
+VVM7Ci0JfSBlbHNlIHsKLQkJZGVfcGlwZV9tYXNrZWQgfD0gR0VOOF9ERV9QSVBFX0lSUV9GQVVM
+VF9FUlJPUlM7CiAJfQogCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpCi0tIAoyLjI0
+LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
