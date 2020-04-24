@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73F31B7CD9
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 19:33:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9211B7CDB
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 19:34:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5626A6E0AD;
-	Fri, 24 Apr 2020 17:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBE76EAE5;
+	Fri, 24 Apr 2020 17:34:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C522B6E0AD;
- Fri, 24 Apr 2020 17:32:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C24FDA363B;
- Fri, 24 Apr 2020 17:32:58 +0000 (UTC)
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2126EAE4;
+ Fri, 24 Apr 2020 17:34:13 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id AFD1E80453;
+ Fri, 24 Apr 2020 19:34:10 +0200 (CEST)
+Date: Fri, 24 Apr 2020 19:34:09 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200424173409.GA7074@ravnborg.org>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-43-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 24 Apr 2020 17:32:58 -0000
-Message-ID: <158774957879.10801.9865104999708340765@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm=3A_Put_drm=5Fdisplay=5Fmode_on_diet_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200415074034.175360-43-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=jIQo8A4GAAAA:8 a=7gkXJVJtAAAA:8
+ a=e5mUnYsNAAAA:8 a=A5Kf5yaaldvMve3tuPkA:9 a=CjuIK1q_8ugA:10
+ a=Lf5xNeLK5dgiOs8hzIjU:22 a=E9Po1WZjFZOl8hwRPBS3:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 42/59] drm/arc: Embedded a
+ drm_simple_display_pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +48,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtOiBQdXQgZHJtX2Rpc3BsYXlfbW9kZSBv
-biBkaWV0IChyZXYzKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
-ZXJpZXMvNzM2NzQvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3Jp
-cHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21p
-Y3Muc2gKICBERVNDRU5EICBvYmp0b29sCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRlZC9jb21w
-aWxlLmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8u
-bwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLmM6IEluIGZ1bmN0aW9u
-IOKAmGdldF9oYmxhbmtfZWFybHlfZW5hYmxlX2NvbmZpZ+KAmToKZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jOjUzNDo0NTogZXJyb3I6IOKAmGNvbnN0IHN0cnVjdCBk
-cm1fZGlzcGxheV9tb2Rl4oCZIGhhcyBubyBtZW1iZXIgbmFtZWQg4oCYdnJlZnJlc2jigJkKICBy
-ZWZyZXNoX3JhdGUgPSBjcnRjX3N0YXRlLT5ody5hZGp1c3RlZF9tb2RlLnZyZWZyZXNoOwogICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBeCnNjcmlwdHMvTWFrZWZp
-bGUuYnVpbGQ6MjY2OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9hdWRpby5vJyBmYWlsZWQKbWFrZVs0XTogKioqIFtkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLm9dIEVycm9yIDEKc2NyaXB0cy9NYWtlZmlsZS5idWls
-ZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNScgZmFpbGVkCm1h
-a2VbM106ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTVdIEVycm9yIDIKc2NyaXB0cy9NYWtlZmls
-ZS5idWlsZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0nIGZhaWxlZApt
-YWtlWzJdOiAqKiogW2RyaXZlcnMvZ3B1L2RybV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1
-aWxkOjQ4ODogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1JyBmYWlsZWQKbWFrZVsxXTog
-KioqIFtkcml2ZXJzL2dwdV0gRXJyb3IgMgpNYWtlZmlsZToxNzIyOiByZWNpcGUgZm9yIHRhcmdl
-dCAnZHJpdmVycycgZmFpbGVkCm1ha2U6ICoqKiBbZHJpdmVyc10gRXJyb3IgMgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Apr 15, 2020 at 09:40:17AM +0200, Daniel Vetter wrote:
+> This is a prep step to convert arc over to the simple kms helpers, for
+> now we just use this as an embedding container to drop all the various
+> allocations. Big change is the removal of the various devm_kzalloc,
+> which have the wrong lifetimes anyway.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Alexey Brodkin <abrodkin@synopsys.com>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+>  drivers/gpu/drm/arc/arcpgu.h      | 7 ++++---
+>  drivers/gpu/drm/arc/arcpgu_crtc.c | 9 +++------
+>  drivers/gpu/drm/arc/arcpgu_drv.c  | 2 +-
+>  drivers/gpu/drm/arc/arcpgu_hdmi.c | 5 ++---
+>  drivers/gpu/drm/arc/arcpgu_sim.c  | 5 ++---
+>  5 files changed, 12 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/arc/arcpgu.h b/drivers/gpu/drm/arc/arcpgu.h
+> index ed77dd5dd5cb..52afd638a4d2 100644
+> --- a/drivers/gpu/drm/arc/arcpgu.h
+> +++ b/drivers/gpu/drm/arc/arcpgu.h
+> @@ -8,17 +8,18 @@
+>  #ifndef _ARCPGU_H_
+>  #define _ARCPGU_H_
+>  
+> +#include <drm/drm_simple_kms_helper.h>
+> +
+>  struct arcpgu_drm_private {
+>  	struct drm_device	drm;
+>  	void __iomem		*regs;
+>  	struct clk		*clk;
+> -	struct drm_crtc		crtc;
+> -	struct drm_plane	*plane;
+> +	struct drm_simple_display_pipe pipe;
+>  };
+>  
+>  #define dev_to_arcpgu(x) container_of(x, struct arcpgu_drm_private, drm)
+>  
+> -#define crtc_to_arcpgu_priv(x) container_of(x, struct arcpgu_drm_private, crtc)
+> +#define crtc_to_arcpgu_priv(x) container_of(x, struct arcpgu_drm_private, pipe.crtc)
+>  
+>  static inline void arc_pgu_write(struct arcpgu_drm_private *arcpgu,
+>  				 unsigned int reg, u32 value)
+> diff --git a/drivers/gpu/drm/arc/arcpgu_crtc.c b/drivers/gpu/drm/arc/arcpgu_crtc.c
+> index ba796a216244..88ba2e284fc0 100644
+> --- a/drivers/gpu/drm/arc/arcpgu_crtc.c
+> +++ b/drivers/gpu/drm/arc/arcpgu_crtc.c
+> @@ -182,9 +182,7 @@ static struct drm_plane *arc_pgu_plane_init(struct drm_device *drm)
+>  	struct drm_plane *plane = NULL;
+>  	int ret;
+>  
+> -	plane = devm_kzalloc(drm->dev, sizeof(*plane), GFP_KERNEL);
+> -	if (!plane)
+> -		return ERR_PTR(-ENOMEM);
+> +	plane = &arcpgu->pipe.plane;
+>  
+>  	ret = drm_universal_plane_init(drm, plane, 0xff, &arc_pgu_plane_funcs,
+>  				       arc_pgu_supported_formats,
+> @@ -195,7 +193,6 @@ static struct drm_plane *arc_pgu_plane_init(struct drm_device *drm)
+>  		return ERR_PTR(ret);
+>  
+>  	drm_plane_helper_add(plane, &arc_pgu_plane_helper_funcs);
+> -	arcpgu->plane = plane;
+>  
+>  	return plane;
+>  }
+> @@ -210,13 +207,13 @@ int arc_pgu_setup_crtc(struct drm_device *drm)
+>  	if (IS_ERR(primary))
+>  		return PTR_ERR(primary);
+>  
+> -	ret = drm_crtc_init_with_planes(drm, &arcpgu->crtc, primary, NULL,
+> +	ret = drm_crtc_init_with_planes(drm, &arcpgu->pipe.crtc, primary, NULL,
+>  					&arc_pgu_crtc_funcs, NULL);
+>  	if (ret) {
+>  		arc_pgu_plane_destroy(primary);
+>  		return ret;
+>  	}
+>  
+> -	drm_crtc_helper_add(&arcpgu->crtc, &arc_pgu_crtc_helper_funcs);
+> +	drm_crtc_helper_add(&arcpgu->pipe.crtc, &arc_pgu_crtc_helper_funcs);
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/arc/arcpgu_drv.c
+> index 81b8d7ae6623..a419f279e129 100644
+> --- a/drivers/gpu/drm/arc/arcpgu_drv.c
+> +++ b/drivers/gpu/drm/arc/arcpgu_drv.c
+> @@ -120,7 +120,7 @@ static int arcpgu_show_pxlclock(struct seq_file *m, void *arg)
+>  	struct drm_device *drm = node->minor->dev;
+>  	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+>  	unsigned long clkrate = clk_get_rate(arcpgu->clk);
+> -	unsigned long mode_clock = arcpgu->crtc.mode.crtc_clock * 1000;
+> +	unsigned long mode_clock = arcpgu->pipe.crtc.mode.crtc_clock * 1000;
+>  
+>  	seq_printf(m, "hw  : %lu\n", clkrate);
+>  	seq_printf(m, "mode: %lu\n", mode_clock);
+> diff --git a/drivers/gpu/drm/arc/arcpgu_hdmi.c b/drivers/gpu/drm/arc/arcpgu_hdmi.c
+> index 52839934f2fb..dbad2c9237fe 100644
+> --- a/drivers/gpu/drm/arc/arcpgu_hdmi.c
+> +++ b/drivers/gpu/drm/arc/arcpgu_hdmi.c
+> @@ -18,14 +18,13 @@ static struct drm_encoder_funcs arcpgu_drm_encoder_funcs = {
+>  
+>  int arcpgu_drm_hdmi_init(struct drm_device *drm, struct device_node *np)
+>  {
+> +	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+>  	struct drm_encoder *encoder;
+>  	struct drm_bridge *bridge;
+>  
+>  	int ret = 0;
+>  
+> -	encoder = devm_kzalloc(drm->dev, sizeof(*encoder), GFP_KERNEL);
+> -	if (encoder == NULL)
+> -		return -ENOMEM;
+> +	encoder = &arcpgu->pipe.encoder;
+>  
+>  	/* Locate drm bridge from the hdmi encoder DT node */
+>  	bridge = of_drm_find_bridge(np);
+> diff --git a/drivers/gpu/drm/arc/arcpgu_sim.c b/drivers/gpu/drm/arc/arcpgu_sim.c
+> index 37d961668dfe..134afb9fa625 100644
+> --- a/drivers/gpu/drm/arc/arcpgu_sim.c
+> +++ b/drivers/gpu/drm/arc/arcpgu_sim.c
+> @@ -56,14 +56,13 @@ static struct drm_encoder_funcs arcpgu_drm_encoder_funcs = {
+>  
+>  int arcpgu_drm_sim_init(struct drm_device *drm, struct device_node *np)
+>  {
+> +	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
+>  	struct arcpgu_drm_connector *arcpgu_connector;
+>  	struct drm_encoder *encoder;
+>  	struct drm_connector *connector;
+>  	int ret;
+>  
+> -	encoder = devm_kzalloc(drm->dev, sizeof(*encoder), GFP_KERNEL);
+> -	if (encoder == NULL)
+> -		return -ENOMEM;
+> +	encoder = &arcpgu->pipe.encoder;
+>  
+>  	encoder->possible_crtcs = 1;
+>  	encoder->possible_clones = 0;
+> -- 
+> 2.25.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
