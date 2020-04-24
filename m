@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575751B7EAD
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 21:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 261EC1B7F52
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 21:48:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8586EB0C;
-	Fri, 24 Apr 2020 19:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125226EB11;
+	Fri, 24 Apr 2020 19:48:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19BE16EB0C
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 19:14:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21012760-1500050 
- for multiple; Fri, 24 Apr 2020 20:14:10 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Apr 2020 20:14:10 +0100
-Message-Id: <20200424191410.27570-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3EC906EB0F;
+ Fri, 24 Apr 2020 19:48:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39388A0BC6;
+ Fri, 24 Apr 2020 19:48:20 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Drop rq->ring->vma peeking from error
- capture
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 24 Apr 2020 19:48:20 -0000
+Message-ID: <158775770023.10800.2962235852959253292@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200424191410.27570-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200424191410.27570-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Drop_rq-=3Ering-=3Evma_peeking_from_error_capture?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,107 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We only hold the active spinlock while dumping the error state, and this
-does not prevent another thread from retiring the request -- as it is
-quite possible that despite us capturing the current state, the GPU has
-completed the request. As such, it is dangerous to dereference state
-below the request as it may already be freed, and the simplest way to
-avoid the danger is not include it in the error state.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1788
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 18 ++++++++++++------
- drivers/gpu/drm/i915/i915_gpu_error.h |  1 -
- 2 files changed, 12 insertions(+), 7 deletions(-)
+Series: drm/i915: Drop rq->ring->vma peeking from error capture
+URL   : https://patchwork.freedesktop.org/series/76448/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 424ad975a360..6dd2fc0b0d47 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -467,14 +467,14 @@ static void error_print_request(struct drm_i915_error_state_buf *m,
- 	if (!erq->seqno)
- 		return;
- 
--	err_printf(m, "%s pid %d, seqno %8x:%08x%s%s, prio %d, start %08x, head %08x, tail %08x\n",
-+	err_printf(m, "%s pid %d, seqno %8x:%08x%s%s, prio %d, head %08x, tail %08x\n",
- 		   prefix, erq->pid, erq->context, erq->seqno,
- 		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
- 			    &erq->flags) ? "!" : "",
- 		   test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
- 			    &erq->flags) ? "+" : "",
- 		   erq->sched_attr.priority,
--		   erq->start, erq->head, erq->tail);
-+		   erq->head, erq->tail);
- }
- 
- static void error_print_context(struct drm_i915_error_state_buf *m,
-@@ -1204,16 +1204,18 @@ static void engine_record_registers(struct intel_engine_coredump *ee)
- 	}
- }
- 
--static void record_request(const struct i915_request *request,
-+static bool record_request(const struct i915_request *request,
- 			   struct i915_request_coredump *erq)
- {
- 	const struct i915_gem_context *ctx;
- 
-+	if (i915_request_completed(request))
-+		return false;
-+
- 	erq->flags = request->fence.flags;
- 	erq->context = request->fence.context;
- 	erq->seqno = request->fence.seqno;
- 	erq->sched_attr = request->sched.attr;
--	erq->start = i915_ggtt_offset(request->ring->vma);
- 	erq->head = request->head;
- 	erq->tail = request->tail;
- 
-@@ -1223,6 +1225,8 @@ static void record_request(const struct i915_request *request,
- 	if (ctx)
- 		erq->pid = pid_nr(ctx->pid);
- 	rcu_read_unlock();
-+
-+	return true;
- }
- 
- static void engine_record_execlists(struct intel_engine_coredump *ee)
-@@ -1231,8 +1235,10 @@ static void engine_record_execlists(struct intel_engine_coredump *ee)
- 	struct i915_request * const *port = el->active;
- 	unsigned int n = 0;
- 
--	while (*port)
--		record_request(*port++, &ee->execlist[n++]);
-+	while (*port) {
-+		if (record_request(*port++, &ee->execlist[n]))
-+			n++;
-+	}
- 
- 	ee->num_ports = n;
- }
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 0d1f6c8ff355..fa2d82a6de04 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -50,7 +50,6 @@ struct i915_request_coredump {
- 	pid_t pid;
- 	u32 context;
- 	u32 seqno;
--	u32 start;
- 	u32 head;
- 	u32 tail;
- 	struct i915_sched_attr sched_attr;
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8362 -> Patchwork_17459
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17459 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17459, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17459:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-x1275:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17459 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cml-s:           [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+    - fi-bsw-nick:        [DMESG-FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-bsw-nick/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-bsw-nick/igt@i915_selftest@live@gt_pm.html
+    - fi-skl-lmem:        [DMESG-FAIL][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-8809g:       [DMESG-FAIL][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-kbl-8809g/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-kbl-8809g/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-7500u:       [DMESG-FAIL][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8362/fi-kbl-7500u/igt@i915_selftest@live@gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/fi-kbl-7500u/igt@i915_selftest@live@gt_pm.html
+
+  
+
+
+Participating hosts (49 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8362 -> Patchwork_17459
+
+  CI-20190529: 20190529
+  CI_DRM_8362: b278b006fd6af2d5c0e7dd3b7057160c8cfbe445 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17459: 9b34e2293d36e0f120f277cb650b484c9691bd2c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9b34e2293d36 drm/i915: Drop rq->ring->vma peeking from error capture
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17459/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
