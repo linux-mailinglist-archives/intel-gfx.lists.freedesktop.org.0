@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F081B7BCC
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 18:39:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 860771B7BCA
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 18:39:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CDA96EAC8;
-	Fri, 24 Apr 2020 16:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8E3A6E0D5;
+	Fri, 24 Apr 2020 16:39:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54E956E0D5
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 16:39:16 +0000 (UTC)
-IronPort-SDR: MBaS3rv9QUI2zklvOsyV5NrDxa7u6karABPSy3VUu/M3zdFpOvTxjIUbZwRGbAm4S11N7uNJR7
- YIo2fldE7VxQ==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96BC16E0D5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 16:39:15 +0000 (UTC)
+IronPort-SDR: WzEaMqtIuINPMC9vdGqq5lnh423bC9yyS/LTgW+g5ye2YVEn/3tMn4ZRjckrx3s5MF0unuIvQY
+ EtobBewR2EUw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2020 09:39:15 -0700
-IronPort-SDR: ++vxgkm9tGLHLETNVBlykLeEFxuIsep//xjco3Z0fF8IX4fkqWBr3XClhhlPCU/3u6NV0ZhNOh
- PtWV5EW7/aCg==
+IronPort-SDR: KUXOC+szYhcU6X8rS4bZQLETOMHB5fIaoALcKfQUfyCqQZuqrIdhaVgMtn/dRz0LsiiusKa9LV
+ ucIWedbbr+cQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,311,1583222400"; d="scan'208";a="292687451"
+X-IronPort-AV: E=Sophos;i="5.73,311,1583222400"; d="scan'208";a="280855675"
 Received: from rosetta.fi.intel.com ([10.237.72.194])
- by orsmga008.jf.intel.com with ESMTP; 24 Apr 2020 09:39:14 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 24 Apr 2020 09:39:14 -0700
 Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id CBCE8843AD4; Fri, 24 Apr 2020 19:38:44 +0300 (EEST)
+ id D1D50843AD5; Fri, 24 Apr 2020 19:38:44 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Apr 2020 19:38:42 +0300
-Message-Id: <20200424163843.16585-3-mika.kuoppala@linux.intel.com>
+Date: Fri, 24 Apr 2020 19:38:43 +0300
+Message-Id: <20200424163843.16585-4-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200424163843.16585-1-mika.kuoppala@linux.intel.com>
 References: <20200424163843.16585-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Add live selftests for indirect
- ctx batchbuffers
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Use indirect ctx bb to mend
+ CMD_BUF_CCTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,199 +54,201 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Indirect ctx batchbuffers are a hw feature of which
-batch can be run, by hardware, during context restoration stage.
-Driver can setup a batchbuffer and also an offset into the
-context image. When context image is marshalled from
-memory to registers, and when the offset from the start of
-context register state is equal of what driver pre-determined,
-batch will run. So one can manipulate context restoration
-process at cacheline granularity, given some limitations,
-as you need to have rudimentaries in place before you can
-run a batch.
+Use indirect ctx bb to load cmd buffer control value
+from context image to avoid corruption.
 
-Add selftest which will write the ring start register
-to a canary spot. This will test that hardware will run a
-batchbuffer for the context in question.
+v2: add to lrc layout (Chris)
+v3: end to a cacheline (Chris)
+v4: add to lrc fixed (Chris)
 
-v2: request wait fix, naming (Chris)
-v3: test order (Chris)
-
+Testcase: igt/i915_selftest/gt_lrc
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 151 +++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 109 ++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c |   5 ++
+ drivers/gpu/drm/i915/i915_reg.h        |   1 +
+ 3 files changed, 112 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index d10c38aec500..beeb4b7cd161 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -5710,6 +5710,156 @@ static int live_lrc_isolation(void *arg)
- 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index d24fddc2ade0..1b25237d0833 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -294,6 +294,14 @@ static int lrc_ring_indirect_offset(const struct intel_engine_cs *engine)
+ 	return x + 2;
  }
  
-+static int indirect_ctx_submit_req(struct intel_context *ce)
++static int lrc_ring_cmd_buf_cctl(const struct intel_engine_cs *engine)
 +{
-+	struct i915_request *rq;
-+	int err = 0;
++	if (engine->class != RENDER_CLASS)
++		return -1;
 +
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+	if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+		err = -ETIME;
-+
-+	i915_request_put(rq);
-+
-+	return err;
++	return 0xb6;
 +}
 +
-+#define CTX_BB_CANARY_OFFSET (3*1024)
-+#define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET/sizeof(u32))
+ static u32
+ lrc_ring_indirect_offset_default(const struct intel_engine_cs *engine)
+ {
+@@ -608,7 +616,7 @@ static void set_offsets(u32 *regs,
+ #define REG16(x) \
+ 	(((x) >> 9) | BIT(7) | BUILD_BUG_ON_ZERO(x >= 0x10000)), \
+ 	(((x) >> 2) & 0x7f)
+-#define END(x) 0, (x)
++#define END(total_state_size) 0, (total_state_size)
+ {
+ 	const u32 base = engine->mmio_base;
+ 
+@@ -1016,8 +1024,63 @@ static const u8 gen12_rcs_offsets[] = {
+ 	NOP(6),
+ 	LRI(1, 0),
+ 	REG(0x0c8),
++	NOP(3+9+1),
 +
++	LRI(51, POSTED),
++	REG16(0x588),
++	REG16(0x588),
++	REG16(0x588),
++	REG16(0x588),
++	REG16(0x588),
++	REG16(0x588),
++	REG(0x028),
++	REG(0x09c),
++	REG(0x0c0),
++	REG(0x178),
++	REG(0x17c),
++	REG16(0x358),
++	REG(0x170),
++	REG(0x150),
++	REG(0x154),
++	REG(0x158),
++	REG16(0x41c),
++	REG16(0x600),
++	REG16(0x604),
++	REG16(0x608),
++	REG16(0x60c),
++	REG16(0x610),
++	REG16(0x614),
++	REG16(0x618),
++	REG16(0x61c),
++	REG16(0x620),
++	REG16(0x624),
++	REG16(0x628),
++	REG16(0x62c),
++	REG16(0x630),
++	REG16(0x634),
++	REG16(0x638),
++	REG16(0x63c),
++	REG16(0x640),
++	REG16(0x644),
++	REG16(0x648),
++	REG16(0x64c),
++	REG16(0x650),
++	REG16(0x654),
++	REG16(0x658),
++	REG16(0x65c),
++	REG16(0x660),
++	REG16(0x664),
++	REG16(0x668),
++	REG16(0x66c),
++	REG16(0x670),
++	REG16(0x674),
++	REG16(0x678),
++	REG16(0x67c),
++	REG(0x068),
++	REG(0x084),
++	NOP(1),
+ 
+-	END(80)
++	END(192)
+ };
+ 
+ #undef END
+@@ -3249,6 +3312,39 @@ gen12_emit_restore_scratch(struct intel_context *ce, u32 *cs)
+ 	return cs;
+ }
+ 
 +static u32 *
-+emit_indirect_ctx_bb_canary(struct intel_context *ce, u32 *cs)
++gen12_emit_cmd_buf_wa(struct intel_context *ce, u32 *cs)
 +{
-+	const u32 ring_start_reg = i915_mmio_reg_offset(RING_START(0));
-+	const u32 srm = MI_STORE_REGISTER_MEM_GEN8 |
-+		MI_SRM_LRM_GLOBAL_GTT | MI_LRI_LRM_CS_MMIO;
++	const u32 lrc_offset = i915_ggtt_offset(ce->state) +
++		LRC_STATE_OFFSET;
++	const u32 scratch_reg = i915_mmio_reg_offset(GEN8_RING_CS_GPR(0, 0));
 +
-+	*cs++ = srm;
-+	*cs++ = ring_start_reg;
-+	*cs++ = i915_ggtt_offset(ce->state) +
-+		ce->ctx_bb_offset + CTX_BB_CANARY_OFFSET;
++	GEM_BUG_ON(lrc_ring_cmd_buf_cctl(ce->engine) == -1);
++
++	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 |
++		MI_SRM_LRM_GLOBAL_GTT | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = lrc_offset + lrc_ring_cmd_buf_cctl(ce->engine) * sizeof(u32);
 +	*cs++ = 0;
++
++	*cs++ = MI_LOAD_REGISTER_REG |
++		MI_LRR_SOURCE_CS_MMIO | MI_LRI_LRM_CS_MMIO;
++	*cs++ = scratch_reg;
++	*cs++ = i915_mmio_reg_offset(RING_CMD_BUF_CCTL(0));
 +
 +	return cs;
 +}
 +
-+static void
-+indirect_ctx_bb_setup(struct intel_context *ce)
++static u32 *
++gen12_emit_indirect_ctx_rcs(struct intel_context *ce, u32 *cs)
 +{
-+	u32 *cs = context_indirect_bb(ce);
++	cs = gen12_emit_timestamp_wa(ce, cs);
++	cs = gen12_emit_cmd_buf_wa(ce, cs);
++	cs = gen12_emit_restore_scratch(ce, cs);
 +
-+	cs[CTX_BB_CANARY_INDEX] = 0xdeadf00d;
-+
-+	setup_indirect_ctx_bb(ce, emit_indirect_ctx_bb_canary);
++	return cs;
 +}
 +
-+static bool check_ring_start(struct intel_context *ce)
-+{
-+	const u32 * const ctx_bb = (void *)(ce->lrc_reg_state) -
-+		LRC_STATE_OFFSET + ce->ctx_bb_offset;
-+
-+	if (ctx_bb[CTX_BB_CANARY_INDEX] == ce->lrc_reg_state[CTX_RING_START])
-+		return true;
-+
-+	pr_err("ring start mismatch: canary 0x%08x vs state 0x%08x\n",
-+	       ctx_bb[CTX_BB_CANARY_INDEX],
-+	       ce->lrc_reg_state[CTX_RING_START]);
-+
-+	return false;
-+}
-+
-+static int indirect_ctx_bb_check(struct intel_context *ce)
-+{
-+	int err;
-+
-+	err = indirect_ctx_submit_req(ce);
-+	if (err)
-+		return err;
-+
-+	if (!check_ring_start(ce))
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
-+{
-+	struct intel_context *a, *b;
-+	int err = 0;
-+
-+	a = intel_context_create(engine);
-+	b = intel_context_create(engine);
-+
-+	err = intel_context_pin(a);
-+	if (err)
-+		return err;
-+
-+	err = intel_context_pin(b);
-+	if (err) {
-+		intel_context_put(a);
-+		return err;
-+	}
-+
-+	/* We use the already reserved extra page in context state */
-+	if (!a->ctx_bb_offset) {
-+		GEM_BUG_ON(b->ctx_bb_offset);
-+		GEM_BUG_ON(INTEL_GEN(engine->i915) == 12);
-+		goto out;
-+	}
-+
-+	/* In order to test that our per context bb is truly per context,
-+	 * and executes at the intended spot on context restoring process,
-+	 * make the batch store the ring start value to memory.
-+	 * As ring start is restored apriori of starting the indirect ctx bb and
-+	 * as it will be different for each context, it fits to this purpose.
-+	 */
-+	indirect_ctx_bb_setup(a);
-+	indirect_ctx_bb_setup(b);
-+
-+	err = indirect_ctx_bb_check(a);
-+	if (err)
-+		goto out;
-+
-+	err = indirect_ctx_bb_check(b);
-+out:
-+	intel_context_unpin(b);
-+	intel_context_put(b);
-+
-+	intel_context_unpin(a);
-+	intel_context_put(a);
-+
-+	return err;
-+}
-+
-+static int live_lrc_indirect_ctx_bb(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	for_each_engine(engine, gt, id) {
-+
-+		intel_engine_pm_get(engine);
-+		err = __live_lrc_indirect_ctx_bb(engine);
-+		intel_engine_pm_put(engine);
-+
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+
-+		if (err)
-+			break;
-+	}
-+
-+	return err;
-+}
-+
- static void garbage_reset(struct intel_engine_cs *engine,
- 			  struct i915_request *rq)
+ static u32 *
+ gen12_emit_indirect_ctx_xcs(struct intel_context *ce, u32 *cs)
  {
-@@ -5945,6 +6095,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_timestamp),
- 		SUBTEST(live_lrc_garbage),
- 		SUBTEST(live_pphwsp_runtime),
-+		SUBTEST(live_lrc_indirect_ctx_bb),
- 	};
+@@ -3330,9 +3426,16 @@ __execlists_update_reg_state(struct intel_context *ce,
+ 	}
  
- 	if (!HAS_LOGICAL_RING_CONTEXTS(i915))
+ 	if (ce->ctx_bb_offset) {
++		u32 *(*fn)(struct intel_context *ce, u32 *cs);
++
++		if (ce->engine->class == RENDER_CLASS)
++			fn = gen12_emit_indirect_ctx_rcs;
++		else
++			fn = gen12_emit_indirect_ctx_xcs;
++
+ 		/* Mutually exclusive wrt to global indirect bb */
+ 		GEM_BUG_ON(engine->wa_ctx.indirect_ctx.size);
+-		setup_indirect_ctx_bb(ce, gen12_emit_indirect_ctx_xcs);
++		setup_indirect_ctx_bb(ce, fn);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index beeb4b7cd161..db56b6af2bb2 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -4618,6 +4618,11 @@ static int live_lrc_fixed(void *arg)
+ 				lrc_ring_gpr0(engine),
+ 				"RING_CS_GPR0"
+ 			},
++			{
++				i915_mmio_reg_offset(RING_CMD_BUF_CCTL(engine->mmio_base)),
++				lrc_ring_cmd_buf_cctl(engine),
++				"RING_CMD_BUF_CCTL"
++			},
+ 			{ },
+ 		}, *t;
+ 		u32 *hw;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 4a1965467374..0ef30e3cdd3f 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2657,6 +2657,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define RING_DMA_FADD_UDW(base)	_MMIO((base) + 0x60) /* gen8+ */
+ #define RING_INSTPM(base)	_MMIO((base) + 0xc0)
+ #define RING_MI_MODE(base)	_MMIO((base) + 0x9c)
++#define RING_CMD_BUF_CCTL(base) _MMIO((base) + 0x84)
+ #define INSTPS		_MMIO(0x2070) /* 965+ only */
+ #define GEN4_INSTDONE1	_MMIO(0x207c) /* 965+ only, aka INSTDONE_2 on SNB */
+ #define ACTHD_I965	_MMIO(0x2074)
 -- 
 2.17.1
 
