@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565CA1B7C2A
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 18:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 885C81B78A3
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 16:56:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D7B6EACA;
-	Fri, 24 Apr 2020 16:50:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 369456E471;
+	Fri, 24 Apr 2020 14:56:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 457 seconds by postgrey-1.36 at gabe;
- Fri, 24 Apr 2020 14:59:18 UTC
-Received: from out0.migadu.com (out0.migadu.com [IPv6:2001:41d0:2:267::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60976E158;
- Fri, 24 Apr 2020 14:59:18 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kl.wtf; s=default;
- t=1587739897;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=tHLb5whu+vFCKke6nEUPe5E8A9CPDUQ62H1gzkmyk/w=;
- b=e/x4Y5bFvtZyOCOGDeNPcBRraQswy/KvCGQjZfIunXsFwc+oHCzC9DGlYvhVi++llb15as
- ccYVOSoyxETFOQKHsZcaCFIAii7rW2VJPAiN0e3KPS7VGClJf8LMN1n17BueEtZyyfdMQ7
- z7TNr1x7S5Y/AjQBDiP0D5QAFlj28Jc=
-From: Kenny Levinsen <kl@kl.wtf>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 24 Apr 2020 16:51:03 +0200
-Message-Id: <20200424145103.3048-1-kl@kl.wtf>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4457F6E471;
+ Fri, 24 Apr 2020 14:56:07 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 0815420035;
+ Fri, 24 Apr 2020 16:56:02 +0200 (CEST)
+Date: Fri, 24 Apr 2020 16:55:56 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200424145556.GA20856@ravnborg.org>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-12-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-X-Spam-Score: 4.90
-X-Mailman-Approved-At: Fri, 24 Apr 2020 16:50:07 +0000
-Subject: [Intel-gfx] [PATCH] drm: make drm_file use keyed wakeups
+Content-Disposition: inline
+In-Reply-To: <20200415074034.175360-12-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=ULXz4hXy c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=8nJEP1OIZ-IA:10 a=7gkXJVJtAAAA:8 a=QyXUC8HyAAAA:8 a=SJz97ENfAAAA:8
+ a=20KFwNOVAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8 a=2YAvaSaLqpQgbBnbYXwA:9
+ a=wPNLvfGTeEIA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=vFet0B0WnEQeilDPIY6i:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 11/59] drm/udl: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,52 +47,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, linux-kernel@vger.kernel.org, mripard@kernel.org,
- Kenny Levinsen <kl@kl.wtf>, tzimmermann@suse.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some processes, such as systemd, are only polling for EPOLLERR|EPOLLHUP.
-As drm_file uses unkeyed wakeups, such a poll receives many spurious
-wakeups from uninteresting events.
+Hi Daniel.
 
-Use keyed wakeups to allow the wakeup target to more efficiently discard
-these uninteresting events.
+On Wed, Apr 15, 2020 at 09:39:46AM +0200, Daniel Vetter wrote:
+> Also init the fbdev emulation before we register the device, that way
+> we can rely on the auto-cleanup and simplify the probe error code even
+> more.
+> =
 
-Signed-off-by: Kenny Levinsen <kl@kl.wtf>
----
- drivers/gpu/drm/drm_file.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+> v2: Rebase on top of Thomas' patches to remove the return value from
+> drm_fbdev_generic_setup()
 
-diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-index c4c704e01961..ec25b3d979d9 100644
---- a/drivers/gpu/drm/drm_file.c
-+++ b/drivers/gpu/drm/drm_file.c
-@@ -608,7 +608,8 @@ ssize_t drm_read(struct file *filp, char __user *buffer,
- 				file_priv->event_space -= length;
- 				list_add(&e->link, &file_priv->event_list);
- 				spin_unlock_irq(&dev->event_lock);
--				wake_up_interruptible(&file_priv->event_wait);
-+				wake_up_interruptible_poll(&file_priv->event_wait,
-+					EPOLLIN | EPOLLRDNORM);
- 				break;
- 			}
- 
-@@ -804,7 +805,8 @@ void drm_send_event_locked(struct drm_device *dev, struct drm_pending_event *e)
- 	list_del(&e->pending_link);
- 	list_add_tail(&e->link,
- 		      &e->file_priv->event_list);
--	wake_up_interruptible(&e->file_priv->event_wait);
-+	wake_up_interruptible_poll(&e->file_priv->event_wait,
-+		EPOLLIN | EPOLLRDNORM);
- }
- EXPORT_SYMBOL(drm_send_event_locked);
- 
--- 
-2.26.1
+with the rebase the changelog in confusing as this patch does nothing of
+what is described in the changelog.
+Only the title (that is in convinently not available when replying to
+email) describes what this patch does.
 
+With the changelog properly adjusted:
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+> =
+
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Emil Velikov <emil.l.velikov@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> ---
+>  drivers/gpu/drm/udl/udl_drv.c | 26 +++++++-------------------
+>  1 file changed, 7 insertions(+), 19 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
+> index 9cc6d075cb40..523f60e02a85 100644
+> --- a/drivers/gpu/drm/udl/udl_drv.c
+> +++ b/drivers/gpu/drm/udl/udl_drv.c
+> @@ -57,27 +57,20 @@ static struct udl_device *udl_driver_create(struct us=
+b_interface *interface)
+>  	struct udl_device *udl;
+>  	int r;
+>  =
+
+> -	udl =3D kzalloc(sizeof(*udl), GFP_KERNEL);
+> -	if (!udl)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	r =3D drm_dev_init(&udl->drm, &driver, &interface->dev);
+> -	if (r) {
+> -		kfree(udl);
+> -		return ERR_PTR(r);
+> -	}
+> +	udl =3D devm_drm_dev_alloc(&interface->dev, &driver,
+> +				 struct udl_device, drm);
+> +	if (IS_ERR(udl))
+> +		return udl;
+>  =
+
+>  	udl->udev =3D udev;
+>  	udl->drm.dev_private =3D udl;
+> -	drmm_add_final_kfree(&udl->drm, udl);
+>  =
+
+>  	r =3D udl_init(udl);
+> -	if (r) {
+> -		drm_dev_put(&udl->drm);
+> +	if (r)
+>  		return ERR_PTR(r);
+> -	}
+>  =
+
+>  	usb_set_intfdata(interface, udl);
+> +
+>  	return udl;
+>  }
+>  =
+
+> @@ -93,17 +86,13 @@ static int udl_usb_probe(struct usb_interface *interf=
+ace,
+>  =
+
+>  	r =3D drm_dev_register(&udl->drm, 0);
+>  	if (r)
+> -		goto err_free;
+> +		return r;
+>  =
+
+>  	DRM_INFO("Initialized udl on minor %d\n", udl->drm.primary->index);
+>  =
+
+>  	drm_fbdev_generic_setup(&udl->drm, 0);
+>  =
+
+>  	return 0;
+> -
+> -err_free:
+> -	drm_dev_put(&udl->drm);
+> -	return r;
+>  }
+>  =
+
+>  static void udl_usb_disconnect(struct usb_interface *interface)
+> @@ -113,7 +102,6 @@ static void udl_usb_disconnect(struct usb_interface *=
+interface)
+>  	drm_kms_helper_poll_fini(dev);
+>  	udl_drop_usb(dev);
+>  	drm_dev_unplug(dev);
+> -	drm_dev_put(dev);
+>  }
+>  =
+
+>  /*
+> -- =
+
+> 2.25.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
