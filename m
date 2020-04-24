@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3C71B81BB
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 23:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6C81B81DC
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 00:05:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C68866E0D6;
-	Fri, 24 Apr 2020 21:49:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 876796E111;
+	Fri, 24 Apr 2020 22:05:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1E56E0C4
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 21:49:14 +0000 (UTC)
-IronPort-SDR: icxif1fINjfUxhtNr9guDveEKkCPXvlvEf7vHmxExLM4w16FdCU362huTQ+xNmqGUleq0AHN2a
- ndzpBxJ0BRkQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2020 14:49:13 -0700
-IronPort-SDR: Q2sjzL/A4S5ZA6f4cRA7eaGNUpJQqnqC9KSKeCoc3Bnjl+NMh1e8vFBMWMNzIizP8jIi+IHquM
- xDGxXcehZ2Rg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,313,1583222400"; d="scan'208";a="458066248"
-Received: from rosetta.fi.intel.com ([10.237.72.194])
- by fmsmga006.fm.intel.com with ESMTP; 24 Apr 2020 14:49:13 -0700
-Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id 666FD843AD5; Sat, 25 Apr 2020 00:48:43 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 25 Apr 2020 00:48:41 +0300
-Message-Id: <20200424214841.28076-4-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200424214841.28076-1-mika.kuoppala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 675566E111;
+ Fri, 24 Apr 2020 22:05:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 59A3AA363D;
+ Fri, 24 Apr 2020 22:05:06 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Fri, 24 Apr 2020 22:05:06 -0000
+Message-ID: <158776590633.10803.15716171992527842889@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200424214841.28076-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Use indirect ctx bb to mend
- CMD_BUF_CCTL
+In-Reply-To: <20200424214841.28076-1-mika.kuoppala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_Add_engine_scrat?=
+ =?utf-8?q?ch_register_to_live=5Flrc=5Ffixed?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,215 +39,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use indirect ctx bb to load cmd buffer control value
-from context image to avoid corruption.
+== Series Details ==
 
-v2: add to lrc layout (Chris)
-v3: end to a cacheline (Chris)
-v4: add to lrc fixed (Chris)
-v5: value in offset+1
+Series: series starting with [1/4] drm/i915: Add engine scratch register to live_lrc_fixed
+URL   : https://patchwork.freedesktop.org/series/76460/
+State : warning
 
-Testcase: igt/i915_selftest/gt_lrc
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c    | 114 ++++++++++++++++++++++++-
- drivers/gpu/drm/i915/gt/selftest_lrc.c |   5 ++
- drivers/gpu/drm/i915/i915_reg.h        |   1 +
- 3 files changed, 117 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index ee3bff61c681..127ea40d62ae 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -294,6 +294,19 @@ static int lrc_ring_indirect_offset(const struct intel_engine_cs *engine)
- 	return x + 2;
- }
- 
-+static int lrc_ring_cmd_buf_cctl(const struct intel_engine_cs *engine)
-+{
-+	if (engine->class != RENDER_CLASS)
-+		return -1;
-+
-+	if (INTEL_GEN(engine->i915) >= 12)
-+		return 0xb6;
-+	else if (INTEL_GEN(engine->i915) == 11)
-+		return 0xaa;
-+	else
-+		return -1;
-+}
-+
- static u32
- lrc_ring_indirect_offset_default(const struct intel_engine_cs *engine)
- {
-@@ -606,7 +619,7 @@ static void set_offsets(u32 *regs,
- #define REG16(x) \
- 	(((x) >> 9) | BIT(7) | BUILD_BUG_ON_ZERO(x >= 0x10000)), \
- 	(((x) >> 2) & 0x7f)
--#define END(x) 0, (x)
+$ dim checkpatch origin/drm-tip
+d5008c5aac16 drm/i915: Add engine scratch register to live_lrc_fixed
+70ee6bcc1e36 drm/i915: Add per ctx batchbuffer wa for timestamp
+-:259: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#259: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:5029:
++		ce->wa_bb_page = context_size/PAGE_SIZE;
+ 		                             ^
+
+total: 0 errors, 0 warnings, 1 checks, 215 lines checked
+4c47318cc563 drm/i915: Add live selftests for indirect ctx batchbuffers
+5a28ec4512da drm/i915: Use indirect ctx bb to mend CMD_BUF_CCTL
+-:47: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#47: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:622:
 +#define END(total_state_size) 0, (total_state_size)
- {
- 	const u32 base = engine->mmio_base;
- 
-@@ -1014,8 +1027,63 @@ static const u8 gen12_rcs_offsets[] = {
- 	NOP(6),
- 	LRI(1, 0),
- 	REG(0x0c8),
-+	NOP(3 + 9 + 1),
-+
-+	LRI(51, POSTED),
-+	REG16(0x588),
-+	REG16(0x588),
-+	REG16(0x588),
-+	REG16(0x588),
-+	REG16(0x588),
-+	REG16(0x588),
-+	REG(0x028),
-+	REG(0x09c),
-+	REG(0x0c0),
-+	REG(0x178),
-+	REG(0x17c),
-+	REG16(0x358),
-+	REG(0x170),
-+	REG(0x150),
-+	REG(0x154),
-+	REG(0x158),
-+	REG16(0x41c),
-+	REG16(0x600),
-+	REG16(0x604),
-+	REG16(0x608),
-+	REG16(0x60c),
-+	REG16(0x610),
-+	REG16(0x614),
-+	REG16(0x618),
-+	REG16(0x61c),
-+	REG16(0x620),
-+	REG16(0x624),
-+	REG16(0x628),
-+	REG16(0x62c),
-+	REG16(0x630),
-+	REG16(0x634),
-+	REG16(0x638),
-+	REG16(0x63c),
-+	REG16(0x640),
-+	REG16(0x644),
-+	REG16(0x648),
-+	REG16(0x64c),
-+	REG16(0x650),
-+	REG16(0x654),
-+	REG16(0x658),
-+	REG16(0x65c),
-+	REG16(0x660),
-+	REG16(0x664),
-+	REG16(0x668),
-+	REG16(0x66c),
-+	REG16(0x670),
-+	REG16(0x674),
-+	REG16(0x678),
-+	REG16(0x67c),
-+	REG(0x068),
-+	REG(0x084),
-+	NOP(1),
- 
--	END(80)
-+	END(192)
- };
- 
- #undef END
-@@ -3247,6 +3315,39 @@ gen12_emit_restore_scratch(const struct intel_context *ce, u32 *cs)
- 	return cs;
- }
- 
-+static u32 *
-+gen12_emit_cmd_buf_wa(const struct intel_context *ce, u32 *cs)
-+{
-+	const u32 lrc_offset = i915_ggtt_offset(ce->state) +
-+		LRC_STATE_OFFSET;
-+	const u32 scratch_reg = i915_mmio_reg_offset(GEN8_RING_CS_GPR(0, 0));
-+
-+	GEM_BUG_ON(lrc_ring_cmd_buf_cctl(ce->engine) == -1);
-+
-+	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 |
-+		MI_SRM_LRM_GLOBAL_GTT | MI_LRI_LRM_CS_MMIO;
-+	*cs++ = scratch_reg;
+
+-:132: CHECK:SPACING: spaces preferred around that '*' (ctx:VxW)
+#132: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3330:
 +	*cs++ = lrc_offset + (lrc_ring_cmd_buf_cctl(ce->engine) + 1)* sizeof(u32);
-+	*cs++ = 0;
-+
-+	*cs++ = MI_LOAD_REGISTER_REG |
-+		MI_LRR_SOURCE_CS_MMIO | MI_LRI_LRM_CS_MMIO;
-+	*cs++ = scratch_reg;
-+	*cs++ = i915_mmio_reg_offset(RING_CMD_BUF_CCTL(0));
-+
-+	return cs;
-+}
-+
-+static u32 *
-+gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
-+{
-+	cs = gen12_emit_timestamp_wa(ce, cs);
-+	cs = gen12_emit_cmd_buf_wa(ce, cs);
-+	cs = gen12_emit_restore_scratch(ce, cs);
-+
-+	return cs;
-+}
-+
- static u32 *
- gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
- {
-@@ -3334,9 +3435,16 @@ __execlists_update_reg_state(const struct intel_context *ce,
- 	}
- 
- 	if (ce->wa_bb_page) {
-+		u32 *(*fn)(const struct intel_context *ce, u32 *cs);
-+
-+		if (ce->engine->class == RENDER_CLASS)
-+			fn = gen12_emit_indirect_ctx_rcs;
-+		else
-+			fn = gen12_emit_indirect_ctx_xcs;
-+
- 		/* Mutually exclusive wrt to global indirect bb */
- 		GEM_BUG_ON(engine->wa_ctx.indirect_ctx.size);
--		setup_indirect_ctx_bb(ce, engine, gen12_emit_indirect_ctx_xcs);
-+		setup_indirect_ctx_bb(ce, engine, fn);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 9730df434067..7897aaeab508 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4618,6 +4618,11 @@ static int live_lrc_fixed(void *arg)
- 				lrc_ring_gpr0(engine),
- 				"RING_CS_GPR0"
- 			},
-+			{
-+				i915_mmio_reg_offset(RING_CMD_BUF_CCTL(engine->mmio_base)),
-+				lrc_ring_cmd_buf_cctl(engine),
-+				"RING_CMD_BUF_CCTL"
-+			},
- 			{ },
- 		}, *t;
- 		u32 *hw;
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 981b52aa5ed8..96d9f8853343 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2657,6 +2657,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define RING_DMA_FADD_UDW(base)	_MMIO((base) + 0x60) /* gen8+ */
- #define RING_INSTPM(base)	_MMIO((base) + 0xc0)
- #define RING_MI_MODE(base)	_MMIO((base) + 0x9c)
-+#define RING_CMD_BUF_CCTL(base) _MMIO((base) + 0x84)
- #define INSTPS		_MMIO(0x2070) /* 965+ only */
- #define GEN4_INSTDONE1	_MMIO(0x207c) /* 965+ only, aka INSTDONE_2 on SNB */
- #define ACTHD_I965	_MMIO(0x2074)
--- 
-2.17.1
+ 	                                                            ^
+
+total: 1 errors, 0 warnings, 1 checks, 165 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
