@@ -2,38 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC871B7C2B
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 18:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD9E1B7B92
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 18:28:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FFA36EAD5;
-	Fri, 24 Apr 2020 16:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7F5B6EACE;
+	Fri, 24 Apr 2020 16:28:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 5684 seconds by postgrey-1.36 at gabe;
- Fri, 24 Apr 2020 16:26:27 UTC
-Received: from out0.migadu.com (out0.migadu.com [94.23.1.103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85E6389F41;
- Fri, 24 Apr 2020 16:26:27 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kl.wtf; s=default;
- t=1587745584;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=8mdi2DQZnKTxhiyh5ltJlv4SJnThbSF3Vb3HnH3+DYU=;
- b=EM1KJp2Tn3uJ4k4JmB8agIjC8AO5zxy2CWr3tlHRh/VeOutwbf6EbybYXiabug4NXaOv77
- BmPHjcchgF4NBvEy2nDq6iOpOQA/vS1egSLhZXHyZZ2Uy+ybaxnW5ShJJuD9anR0B///Dv
- 21x+3Ntcfp+3U0c6XL8z8yAnOuuNeJ0=
-From: Kenny Levinsen <kl@kl.wtf>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 24 Apr 2020 18:26:15 +0200
-Message-Id: <20200424162615.10461-1-kl@kl.wtf>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680396EACE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 16:28:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21010935-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 17:28:06 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Apr 2020 17:28:04 +0100
+Message-Id: <20200424162805.25920-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Spam-Score: 4.90
-X-Mailman-Approved-At: Fri, 24 Apr 2020 16:50:07 +0000
-Subject: [Intel-gfx] [PATCH v2] drm: make drm_file use keyed wakeups
+Subject: [Intel-gfx] [CI 1/2] drm/i915/gt: Trace RPS events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,54 +36,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, linux-kernel@vger.kernel.org, mripard@kernel.org,
- Kenny Levinsen <kl@kl.wtf>, tzimmermann@suse.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some processes, such as systemd, are only polling for EPOLLERR|EPOLLHUP.
-As drm_file uses unkeyed wakeups, such a poll can receive many spurious
-wakeups from uninteresting events if, for example, the file description
-is subscribed to vblank events. This is the case with systemd, as it
-polls a file description from logind that is shared with the users'
-compositor.
+Add tracek to the RPS events (interrupts, worker, enabling, threshold
+selection, frequency setting), so that if we have to debug reticent HW
+we have some traces to start from.
 
-Use keyed wakeups to allow the wakeup target to more efficiently discard
-these uninteresting events.
-
-Signed-off-by: Kenny Levinsen <kl@kl.wtf>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/drm_file.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 48 ++++++++++++++++++++++++++---
+ 1 file changed, 44 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-index c4c704e01961..ec25b3d979d9 100644
---- a/drivers/gpu/drm/drm_file.c
-+++ b/drivers/gpu/drm/drm_file.c
-@@ -608,7 +608,8 @@ ssize_t drm_read(struct file *filp, char __user *buffer,
- 				file_priv->event_space -= length;
- 				list_add(&e->link, &file_priv->event_list);
- 				spin_unlock_irq(&dev->event_lock);
--				wake_up_interruptible(&file_priv->event_wait);
-+				wake_up_interruptible_poll(&file_priv->event_wait,
-+					EPOLLIN | EPOLLRDNORM);
- 				break;
- 			}
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 785cd58fba76..ff088702c873 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -71,6 +71,9 @@ static void rps_enable_interrupts(struct intel_rps *rps)
+ {
+ 	struct intel_gt *gt = rps_to_gt(rps);
  
-@@ -804,7 +805,8 @@ void drm_send_event_locked(struct drm_device *dev, struct drm_pending_event *e)
- 	list_del(&e->pending_link);
- 	list_add_tail(&e->link,
- 		      &e->file_priv->event_list);
--	wake_up_interruptible(&e->file_priv->event_wait);
-+	wake_up_interruptible_poll(&e->file_priv->event_wait,
-+		EPOLLIN | EPOLLRDNORM);
++	GT_TRACE(gt, "interrupts:on rps->pm_events: %x, rps_pm_mask:%x\n",
++		 rps->pm_events, rps_pm_mask(rps, rps->last_freq));
++
+ 	rps_reset_ei(rps);
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+@@ -128,6 +131,7 @@ static void rps_disable_interrupts(struct intel_rps *rps)
+ 	cancel_work_sync(&rps->work);
+ 
+ 	rps_reset_interrupts(rps);
++	GT_TRACE(gt, "interrupts:off\n");
  }
- EXPORT_SYMBOL(drm_send_event_locked);
+ 
+ static const struct cparams {
+@@ -569,6 +573,10 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 	if (IS_VALLEYVIEW(i915))
+ 		goto skip_hw_write;
+ 
++	GT_TRACE(rps_to_gt(rps),
++		 "changing power mode [%d], up %d%% @ %dus, down %d%% @ %dus\n",
++		 new_power, threshold_up, ei_up, threshold_down, ei_down);
++
+ 	set(uncore, GEN6_RP_UP_EI, GT_INTERVAL_FROM_US(i915, ei_up));
+ 	set(uncore, GEN6_RP_UP_THRESHOLD,
+ 	    GT_INTERVAL_FROM_US(i915, ei_up * threshold_up / 100));
+@@ -633,6 +641,8 @@ static void gen6_rps_set_thresholds(struct intel_rps *rps, u8 val)
+ 
+ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive)
+ {
++	GT_TRACE(rps_to_gt(rps), "mark interactive: %s\n", yesno(interactive));
++
+ 	mutex_lock(&rps->power.mutex);
+ 	if (interactive) {
+ 		if (!rps->power.interactive++ && READ_ONCE(rps->active))
+@@ -660,6 +670,9 @@ static int gen6_rps_set(struct intel_rps *rps, u8 val)
+ 			 GEN6_AGGRESSIVE_TURBO);
+ 	set(uncore, GEN6_RPNSWREQ, swreq);
+ 
++	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d, swreq:%x\n",
++		 val, intel_gpu_freq(rps, val), swreq);
++
+ 	return 0;
+ }
+ 
+@@ -672,6 +685,9 @@ static int vlv_rps_set(struct intel_rps *rps, u8 val)
+ 	err = vlv_punit_write(i915, PUNIT_REG_GPU_FREQ_REQ, val);
+ 	vlv_punit_put(i915);
+ 
++	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d\n",
++		 val, intel_gpu_freq(rps, val));
++
+ 	return err;
+ }
+ 
+@@ -705,6 +721,8 @@ void intel_rps_unpark(struct intel_rps *rps)
+ 	if (!rps->enabled)
+ 		return;
+ 
++	GT_TRACE(rps_to_gt(rps), "unpark:%x\n", rps->cur_freq);
++
+ 	/*
+ 	 * Use the user's desired frequency as a guide, but for better
+ 	 * performance, jump directly to RPe as our starting frequency.
+@@ -772,6 +790,8 @@ void intel_rps_park(struct intel_rps *rps)
+ 	 */
+ 	rps->cur_freq =
+ 		max_t(int, round_down(rps->cur_freq - 1, 2), rps->min_freq);
++
++	GT_TRACE(rps_to_gt(rps), "park:%x\n", rps->cur_freq);
+ }
+ 
+ void intel_rps_boost(struct i915_request *rq)
+@@ -788,6 +808,9 @@ void intel_rps_boost(struct i915_request *rq)
+ 	    !dma_fence_is_signaled_locked(&rq->fence)) {
+ 		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
+ 
++		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
++			 rq->fence.context, rq->fence.seqno);
++
+ 		if (!atomic_fetch_inc(&rps->num_waiters) &&
+ 		    READ_ONCE(rps->cur_freq) < rps->boost_freq)
+ 			schedule_work(&rps->work);
+@@ -883,6 +906,7 @@ static void gen6_rps_init(struct intel_rps *rps)
+ static bool rps_reset(struct intel_rps *rps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
++
+ 	/* force a reset */
+ 	rps->power.mode = -1;
+ 	rps->last_freq = -1;
+@@ -1210,11 +1234,17 @@ void intel_rps_enable(struct intel_rps *rps)
+ 	if (!rps->enabled)
+ 		return;
+ 
+-	drm_WARN_ON(&i915->drm, rps->max_freq < rps->min_freq);
+-	drm_WARN_ON(&i915->drm, rps->idle_freq > rps->max_freq);
++	GT_TRACE(rps_to_gt(rps),
++		 "min:%x, max:%x, freq:[%d, %d]\n",
++		 rps->min_freq, rps->max_freq,
++		 intel_gpu_freq(rps, rps->min_freq),
++		 intel_gpu_freq(rps, rps->max_freq));
+ 
+-	drm_WARN_ON(&i915->drm, rps->efficient_freq < rps->min_freq);
+-	drm_WARN_ON(&i915->drm, rps->efficient_freq > rps->max_freq);
++	GEM_BUG_ON(rps->max_freq < rps->min_freq);
++	GEM_BUG_ON(rps->idle_freq > rps->max_freq);
++
++	GEM_BUG_ON(rps->efficient_freq < rps->min_freq);
++	GEM_BUG_ON(rps->efficient_freq > rps->max_freq);
+ }
+ 
+ static void gen6_rps_disable(struct intel_rps *rps)
+@@ -1482,6 +1512,12 @@ static void rps_work(struct work_struct *work)
+ 	max = rps->max_freq_softlimit;
+ 	if (client_boost)
+ 		max = rps->max_freq;
++
++	GT_TRACE(gt,
++		 "pm_iir:%x, client_boost:%s, last:%d, cur:%x, min:%x, max:%x\n",
++		 pm_iir, yesno(client_boost),
++		 adj, new_freq, min, max);
++
+ 	if (client_boost && new_freq < rps->boost_freq) {
+ 		new_freq = rps->boost_freq;
+ 		adj = 0;
+@@ -1556,6 +1592,8 @@ void gen11_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	if (unlikely(!events))
+ 		return;
+ 
++	GT_TRACE(gt, "irq events:%x\n", events);
++
+ 	gen6_gt_pm_mask_irq(gt, events);
+ 
+ 	rps->pm_iir |= events;
+@@ -1571,6 +1609,8 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 	if (events) {
+ 		spin_lock(&gt->irq_lock);
+ 
++		GT_TRACE(gt, "irq events:%x\n", events);
++
+ 		gen6_gt_pm_mask_irq(gt, events);
+ 		rps->pm_iir |= events;
  
 -- 
-2.26.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
