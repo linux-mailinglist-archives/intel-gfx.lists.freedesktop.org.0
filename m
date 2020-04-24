@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493DA1B7D84
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 20:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A9741B7D92
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 20:10:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 953686EAF7;
-	Fri, 24 Apr 2020 18:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C06EB02;
+	Fri, 24 Apr 2020 18:10:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F391B6EAF7;
- Fri, 24 Apr 2020 18:06:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ECFE4A3ECB;
- Fri, 24 Apr 2020 18:06:54 +0000 (UTC)
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83C536EAFF;
+ Fri, 24 Apr 2020 18:10:05 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 5651220035;
+ Fri, 24 Apr 2020 20:10:03 +0200 (CEST)
+Date: Fri, 24 Apr 2020 20:10:02 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200424181002.GL7074@ravnborg.org>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-57-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Fri, 24 Apr 2020 18:06:54 -0000
-Message-ID: <158775161493.10800.2864110039183516915@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200424163843.16585-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20200424163843.16585-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_Add_engine_scrat?=
- =?utf-8?q?ch_register_to_live=5Flrc=5Ffixed_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200415074034.175360-57-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=ULXz4hXy c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=voM4FWlXAAAA:8 a=JfrnYn6hAAAA:8
+ a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=CSi-g0QDi58lmbhQoQkA:9
+ a=CjuIK1q_8ugA:10 a=IC2XNlieTeVoXbcui8wp:22 a=1CNFftbPRP8L7MoqJWF3:22
+ a=E9Po1WZjFZOl8hwRPBS3:22 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 56/59] drm/aspeed: Use managed
+ drmm_mode_config_cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +48,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Joel Stanley <joel@jms.id.au>, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 15, 2020 at 09:40:31AM +0200, Daniel Vetter wrote:
+> Since aspeed doesn't use devm_kzalloc anymore we can use the managed
+> mode config cleanup.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: linux-aspeed@lists.ozlabs.org
+> Cc: linux-arm-kernel@lists.infradead.org
 
-Series: series starting with [1/4] drm/i915: Add engine scratch register to live_lrc_fixed (rev3)
-URL   : https://patchwork.freedesktop.org/series/76443/
-State : warning
+Hmm, the helper function makes no sense, maybe embed it?
 
-== Summary ==
+One Q below. Whith Q addressed:
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-$ dim checkpatch origin/drm-tip
-48f89e7502e0 drm/i915: Add engine scratch register to live_lrc_fixed
-c24957004e6a drm/i915: Add per ctx batchbuffer wa for timestamp
--:152: CHECK:SPACING: spaces preferred around that '*' (ctx:VxW)
-#152: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3246:
-+	*cs++ = lrc_offset + (lrc_ring_gpr0(ce->engine) + 1)* sizeof(u32);
- 	                                                    ^
+> ---
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> index 6b27242b9ee3..6e464b84a256 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> @@ -63,15 +63,15 @@ static const struct drm_mode_config_funcs aspeed_gfx_mode_config_funcs = {
+>  	.atomic_commit		= drm_atomic_helper_commit,
+>  };
+>  
+> -static void aspeed_gfx_setup_mode_config(struct drm_device *drm)
+> +static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
+>  {
+> -	drm_mode_config_init(drm);
+> -
+>  	drm->mode_config.min_width = 0;
+>  	drm->mode_config.min_height = 0;
+>  	drm->mode_config.max_width = 800;
+>  	drm->mode_config.max_height = 600;
+>  	drm->mode_config.funcs = &aspeed_gfx_mode_config_funcs;
+> +
+> +	return drmm_mode_config_init(drm);
 
--:190: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#190: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3284:
-+			 I915_GTT_PAGE_SIZE/sizeof(*cs));
- 			                   ^
+I do not see anything that documents that it is OK to init min/max
+width/heigh not funcs before drmm_mode_config_init() is called.
+Maybe drmm_mode_config_init() gain an memset(drm->mode_config),
+and we loose all the assingments from before the call to init().
 
--:224: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#224: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3330:
-+
-+	}
+Also most (all?) other users of drmm_mode_config_init()
+set them after the call to drmm_mode_config_init().
+So re-order here and then embed while you are touching the code again.
 
-total: 0 errors, 0 warnings, 3 checks, 249 lines checked
-433caccc67a1 drm/i915: Add live selftests for indirect ctx batchbuffers
--:55: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#55: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5733:
-+#define CTX_BB_CANARY_OFFSET (3*1024)
-                                ^
+	Sam
 
--:56: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#56: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5734:
-+#define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET/sizeof(u32))
-                                                   ^
-
--:170: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#170: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5848:
-+	for_each_engine(engine, gt, id) {
-+
-
-total: 0 errors, 0 warnings, 3 checks, 163 lines checked
-b9ae36b10e73 drm/i915: Use indirect ctx bb to mend CMD_BUF_CCTL
--:42: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#42: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:619:
-+#define END(total_state_size) 0, (total_state_size)
-
--:50: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#50: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1027:
-+	NOP(3+9+1),
- 	     ^
-
--:50: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#50: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1027:
-+	NOP(3+9+1),
- 	       ^
-
--:127: CHECK:SPACING: spaces preferred around that '*' (ctx:VxW)
-#127: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3327:
-+	*cs++ = lrc_offset + (lrc_ring_cmd_buf_cctl(ce->engine) + 1)* sizeof(u32);
- 	                                                            ^
-
-total: 1 errors, 0 warnings, 3 checks, 160 lines checked
-
+>  }
+>  
+>  static irqreturn_t aspeed_gfx_irq_handler(int irq, void *data)
+> @@ -144,7 +144,9 @@ static int aspeed_gfx_load(struct drm_device *drm)
+>  	writel(0, priv->base + CRT_CTRL1);
+>  	writel(0, priv->base + CRT_CTRL2);
+>  
+> -	aspeed_gfx_setup_mode_config(drm);
+> +	ret = aspeed_gfx_setup_mode_config(drm);
+> +	if (ret < 0)
+> +		return ret;
+>  
+>  	ret = drm_vblank_init(drm, 1);
+>  	if (ret < 0) {
+> @@ -181,7 +183,6 @@ static int aspeed_gfx_load(struct drm_device *drm)
+>  static void aspeed_gfx_unload(struct drm_device *drm)
+>  {
+>  	drm_kms_helper_poll_fini(drm);
+> -	drm_mode_config_cleanup(drm);
+>  }
+>  
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+> -- 
+> 2.25.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
