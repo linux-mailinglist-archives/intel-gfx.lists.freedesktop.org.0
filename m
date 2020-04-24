@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B1811B762B
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 15:04:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6173F1B764A
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 15:08:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB308911A;
-	Fri, 24 Apr 2020 13:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16CE89C6B;
+	Fri, 24 Apr 2020 13:08:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3DFD48911A;
- Fri, 24 Apr 2020 13:04:51 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4848689C6B;
+ Fri, 24 Apr 2020 13:08:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35536A47E6;
- Fri, 24 Apr 2020 13:04:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 425E6A47DB;
+ Fri, 24 Apr 2020 13:08:46 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jeevan B" <jeevan.b@intel.com>
-Date: Fri, 24 Apr 2020 13:04:51 -0000
-Message-ID: <158773349119.10803.10529732904980808495@emeril.freedesktop.org>
+Date: Fri, 24 Apr 2020 13:08:46 -0000
+Message-ID: <158773372624.10801.15996458668389913182@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <1587732655-17544-1-git-send-email-jeevan.b@intel.com>
 In-Reply-To: <1587732655-17544-1-git-send-email-jeevan.b@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm=3A_report_dp_downstream_?=
- =?utf-8?q?port_type_as_a_subconnector_property?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/5=5D_drm=3A_report_dp_downstream_port?=
+ =?utf-8?q?_type_as_a_subconnector_property?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,80 +54,79 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-3b34502050b6 drm: report dp downstream port type as a subconnector property
--:57: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Unknown>
-#57: FILE: drivers/gpu/drm/drm_connector.c:847:
-+	{ DRM_MODE_SUBCONNECTOR_Unknown,   "Unknown"   }, /* DVI-I, TV-out and DP */
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm: report dp downstream port type as a subconnector property
+Okay!
 
--:79: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_DisplayPort>
-#79: FILE: drivers/gpu/drm/drm_connector.c:878:
-+	{ DRM_MODE_SUBCONNECTOR_DisplayPort, "DP"        }, /* DP */
+Commit: drm/i915: utilize subconnector property for DP
+Okay!
 
--:80: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Wireless>
-#80: FILE: drivers/gpu/drm/drm_connector.c:879:
-+	{ DRM_MODE_SUBCONNECTOR_Wireless,    "Wireless"  }, /* DP */
+Commit: drm/nouveau: utilize subconnector property for DP
+Okay!
 
--:81: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Native>
-#81: FILE: drivers/gpu/drm/drm_connector.c:880:
-+	{ DRM_MODE_SUBCONNECTOR_Native,	     "Native"    }, /* DP */
+Commit: drm/amdgpu: utilize subconnector property for DP through atombios
+Okay!
 
--:122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#122: FILE: drivers/gpu/drm/drm_connector.c:1311:
-+			drm_property_create_enum(connector->dev,
-+				DRM_MODE_PROP_IMMUTABLE,
-
--:153: WARNING:LINE_SPACING: Missing a blank line after declarations
-#153: FILE: drivers/gpu/drm/drm_dp_helper.c:606:
-+	int type;
-+	if (!drm_dp_is_branch(dpcd))
-
--:210: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#210: FILE: drivers/gpu/drm/drm_dp_helper.c:663:
-+	drm_object_property_set_value(&connector->base,
-+			connector->dev->mode_config.dp_subconnector_property,
-
--:295: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Automatic>
-#295: FILE: include/uapi/drm/drm_mode.h:335:
-+	DRM_MODE_SUBCONNECTOR_Automatic   = 0,  /* DVI-I, TV     */
-
--:300: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Composite>
-#300: FILE: include/uapi/drm/drm_mode.h:340:
-+	DRM_MODE_SUBCONNECTOR_Composite   = 5,  /*        TV     */
-
--:302: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Component>
-#302: FILE: include/uapi/drm/drm_mode.h:342:
-+	DRM_MODE_SUBCONNECTOR_Component   = 8,  /*        TV     */
-
-total: 0 errors, 1 warnings, 9 checks, 228 lines checked
-5540c9591905 drm/i915: utilize subconnector property for DP
-0bac12dd1549 drm/nouveau: utilize subconnector property for DP
--:27: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Unknown>
-#27: FILE: drivers/gpu/drm/nouveau/nouveau_connector.c:653:
-+		enum drm_mode_subconnector subconnector = DRM_MODE_SUBCONNECTOR_Unknown;
-
--:32: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#32: FILE: drivers/gpu/drm/nouveau/nouveau_connector.c:658:
-+		drm_object_property_set_value(&connector->base,
-+			connector->dev->mode_config.dp_subconnector_property,
-
-total: 0 errors, 0 warnings, 2 checks, 53 lines checked
-e4922d3602ac drm/amdgpu: utilize subconnector property for DP through atombios
-df174f027acd drm/amdgpu: utilize subconnector property for DP through DisplayManager
--:40: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Native>
-#40: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:128:
-+		return DRM_MODE_SUBCONNECTOR_Native;
-
--:51: CHECK:CAMELCASE: Avoid CamelCase: <DRM_MODE_SUBCONNECTOR_Unknown>
-#51: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:139:
-+		return DRM_MODE_SUBCONNECTOR_Unknown;
-
--:68: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#68: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:156:
-+	drm_object_property_set_value(&connector->base,
-+			connector->dev->mode_config.dp_subconnector_property,
-
-total: 0 errors, 0 warnings, 3 checks, 80 lines checked
+Commit: drm/amdgpu: utilize subconnector property for DP through DisplayManager
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1154:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1159:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1161:36: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1228:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1234:37: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1260:41: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1262:39: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1266:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1267:17: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2511:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2529:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5311:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:750:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:805:25: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:809:23: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:810:23: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:813:30: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:816:28: warning: cast to restricted __le32
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8647:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
+-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8651:50: warning: missing braces around initializer
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1190:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1195:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1197:36: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1270:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1296:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1298:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1302:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1303:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2548:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2566:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5350:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:786:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:841:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:845:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:846:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:849:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:852:28: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8686:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8690:50: warning: missing braces around initializer
 
 _______________________________________________
 Intel-gfx mailing list
