@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7841B76F3
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 15:28:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E003F1B7715
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 15:37:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B2189DA8;
-	Fri, 24 Apr 2020 13:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0514D89E3E;
+	Fri, 24 Apr 2020 13:37:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 686D689DA8;
- Fri, 24 Apr 2020 13:27:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6335FA0099;
- Fri, 24 Apr 2020 13:27:58 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B209089E3E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 13:37:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21008733-1500050 for multiple; Fri, 24 Apr 2020 14:37:32 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jeevan B" <jeevan.b@intel.com>
-Date: Fri, 24 Apr 2020 13:27:58 -0000
-Message-ID: <158773487838.10800.994478310565803187@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1587732655-17544-1-git-send-email-jeevan.b@intel.com>
-In-Reply-To: <1587732655-17544-1-git-send-email-jeevan.b@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm=3A_report_dp_downstream_port_ty?=
- =?utf-8?q?pe_as_a_subconnector_property?=
+In-Reply-To: <20200424125040.GE460760@jack.zhora.eu>
+References: <20200422001703.1697-1-chris@chris-wilson.co.uk>
+ <20200424125040.GE460760@jack.zhora.eu>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Andi Shyti <andi@etezian.org>
+Message-ID: <158773545156.27391.13050238109113756223@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 24 Apr 2020 14:37:31 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Prefer soft-rc6 over RPS
+ DOWN_TIMEOUT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,86 +40,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Andi Shyti (2020-04-24 13:50:40)
+> Hi Chris,
+> 
+> On Wed, Apr 22, 2020 at 01:17:01AM +0100, Chris Wilson wrote:
+> > The RPS DOWN_TIMEOUT interrupt is signaled after a period of rc6, and
+> > upon receipt of that interrupt we reprogram the GPU clocks down to the
+> > next idle notch [to help convserve power during rc6]. However, on
+> > execlists, we benefit from soft-rc6 immediately parking the GPU and
+> > setting idle frequencies upon idling [within a jiffie], and here the
+> > interrupt prevents us from restarting from our last frequency.
+> > 
+> > In the process, we can simply opt for a static pm_events mask and rely
+> > on the enable/disable interrupts to flush the worker on parking.
+> > 
+> > This will reduce the amount of oscillation observed during steady
+> > workloads with microsleeps, as each time the rc6 timeout occurs we
+> > immediately follow with a waitboost for a dropped frame.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_rps.c | 41 +++++++++++++----------------
+> >  1 file changed, 18 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> > index 4dcfae16a7ce..785cd58fba76 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> > @@ -57,7 +57,7 @@ static u32 rps_pm_mask(struct intel_rps *rps, u8 val)
+> >       if (val < rps->max_freq_softlimit)
+> >               mask |= GEN6_PM_RP_UP_EI_EXPIRED | GEN6_PM_RP_UP_THRESHOLD;
+> >  
+> > -     mask &= READ_ONCE(rps->pm_events);
+> > +     mask &= rps->pm_events;
+> 
+> we are giving up the read/write ordering here because we thing
+> that removing the down interval we won't have anymore
+> inconsistent reads?
 
-Series: series starting with [1/5] drm: report dp downstream port type as a subconnector property
-URL   : https://patchwork.freedesktop.org/series/76430/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8358 -> Patchwork_17452
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17452/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17452 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-hsw-4770:        [SKIP][1] ([fdo#109271]) -> [PASS][2] +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8358/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17452/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live@uncore:
-    - fi-bwr-2160:        [INCOMPLETE][3] ([i915#489]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8358/fi-bwr-2160/igt@i915_selftest@live@uncore.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17452/fi-bwr-2160/igt@i915_selftest@live@uncore.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8358 -> Patchwork_17452
-
-  CI-20190529: 20190529
-  CI_DRM_8358: 03d069b768bdd8a6382b296152a676422a4859a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5609: c100fe19f7b144538549415e8503093053883ec6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17452: df174f027acd0927ca25a5e4f1ec6b68312ed184 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-df174f027acd drm/amdgpu: utilize subconnector property for DP through DisplayManager
-e4922d3602ac drm/amdgpu: utilize subconnector property for DP through atombios
-0bac12dd1549 drm/nouveau: utilize subconnector property for DP
-5540c9591905 drm/i915: utilize subconnector property for DP
-3b34502050b6 drm: report dp downstream port type as a subconnector property
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17452/index.html
+Correct. Since we are now only setting rps->pm_events during
+initialisation, it remains constant at runtime, and we do not need to
+worry about read tearing or repeated reads.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
