@@ -1,74 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 355761B80A6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 22:27:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA861B810A
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2020 22:40:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84F706EB33;
-	Fri, 24 Apr 2020 20:27:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB0276EB35;
+	Fri, 24 Apr 2020 20:40:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA126EB33
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 20:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1587760023;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XuJYM68JuC33MbRlH/ZKNAFLO6+0JXxBzLzeIf64Dr4=;
- b=GZtM13eGxbOUByib0CMfmIowvgUnWcOxB67538HHT1+I14OIsTNzfQdhZLMeobgDDH8QLs
- dgIaHoFF2yTCSO+DFF+c+nZvOw7ASV0Yf3iiy+P2MkdXWdxmezuH51k1f13Tb34B3tlP/3
- KExLsxPJfpb1p12+78q14mxSoWCCgLc=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-423-_6ar1ctUPIeBtecKUlkfFw-1; Fri, 24 Apr 2020 16:26:59 -0400
-X-MC-Unique: _6ar1ctUPIeBtecKUlkfFw-1
-Received: by mail-qk1-f199.google.com with SMTP id y64so11848786qkb.12
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 13:26:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=97gmuLJIWUrw7n2RPTFMerjaah182tMJzR9SVxCz0R8=;
- b=e2ZMnNe35cL92FeBjUhu7tVhYSyEwT4BvCFWb3DJE6ybN6tXX6EXNpEQgHkDz6Mxgj
- vSWUGFU6XlCZS1dwPT/CEUKqqG7JQhAmMFxirVfkvO4232vAu938rLHaa9w+XCgnbx/n
- uva5fqRcUYONVoS7emIybOJUgDZc7p6vsnDSAIeoBNngfneSJZtDeZMtSwA5r0/ogDam
- 338+YZqyz85/oZDOemWPfONZxf5UvP9bqea2ABkx3wYo9FyiYH/7J3DH1OnDMH5lI7Qs
- G/+++S0T6hTBYT//6gMxB1/EIVi6VRUCu9wfYlUaGHffXzK5sucR55nkiWDIovA8Ixn2
- NViQ==
-X-Gm-Message-State: AGi0PuZb1KUTJW15UeWiVlCLMHJ856r+F8W1lcMxvvM3/gpZF0r4GFWM
- rDYMP/xeDR2V4IHiMdlAXRqLUyTrzMulFQhvTtjIwPC8bSzufdpQ8o65TVoSVbI0JqBpdtwJ5Fa
- 6ctX9MGaPiJQjh4g7qbAdxe1U/NRY
-X-Received: by 2002:a05:620a:228:: with SMTP id
- u8mr11094091qkm.309.1587760019171; 
- Fri, 24 Apr 2020 13:26:59 -0700 (PDT)
-X-Google-Smtp-Source: APiQypKKXfAI+iwr1Y4WPE33sn53kKnaoVHa8Uzh+srOwDBVhxLCO6q6uh1TI2QvKLBQud1Mzqnptg==
-X-Received: by 2002:a05:620a:228:: with SMTP id
- u8mr11094070qkm.309.1587760018891; 
- Fri, 24 Apr 2020 13:26:58 -0700 (PDT)
-Received: from Ruby.lyude.net (static-173-76-190-23.bstnma.ftas.verizon.net.
- [173.76.190.23])
- by smtp.gmail.com with ESMTPSA id j25sm4485511qtn.21.2020.04.24.13.26.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Apr 2020 13:26:58 -0700 (PDT)
-Message-ID: <078627d6dff5e01868771b5b2158b75446200fd9.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Apr 2020 16:26:57 -0400
-In-Reply-To: <20200417212408.19649-1-shawn.c.lee@intel.com>
-References: <20200417212408.19649-1-shawn.c.lee@intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59F3F6EB35
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Apr 2020 20:40:23 +0000 (UTC)
+IronPort-SDR: VRIErg4SHstIoWOM1pYb96u4IQqxP0bjGhsV4WlKHHhZo1Oh+XayQQVfiRfyyfluhVOMlyVQUK
+ PbtSa4+d8Qhw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2020 13:40:23 -0700
+IronPort-SDR: 10ZUiJy/6z+mBltON+ZEwHK+lqxuTxCJlc+ilr8PWVwQhSM6KRF5Vr5yuxfpciKX2tVgwr9P5Q
+ LfqOAIV9hd6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,313,1583222400"; d="scan'208";a="280946993"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga004.fm.intel.com with ESMTP; 24 Apr 2020 13:40:21 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id A40315C1DA7; Fri, 24 Apr 2020 23:38:24 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200424191410.27570-1-chris@chris-wilson.co.uk>
+References: <20200424191410.27570-1-chris@chris-wilson.co.uk>
+Date: Fri, 24 Apr 2020 23:38:24 +0300
+Message-ID: <87k124liv3.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: filter out the display mode
- exceed sink's capability
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop rq->ring->vma peeking from
+ error capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,92 +48,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkhIFNvcnJ5IHRoaXMgdG9vayBtZSBhIGxpdHRsZSB3aGlsZSB0byBnZXQgYmFjayB0bywgSSBo
-YWQgYSBjb3VwbGUgb2YgTVNUCnJlZ3Jlc3Npb25zIHRoYXQgSSBoYWQgdG8gbG9vayBpbnRvCgpP
-biBTYXQsIDIwMjAtMDQtMTggYXQgMDU6MjQgKzA4MDAsIExlZSBTaGF3biBDIHdyb3RlOgo+IFNv
-IGZhciwgbWF4IGRvdCBjbG9jayByYXRlIGZvciBNU1QgbW9kZSByZWx5IG9uIHBoeXNjaWFsCj4g
-YmFuZHdpZHRoIGxpbWl0YXRpb24uIEl0IHdvdWxkIGNhdXNlZCBjb21wYXRpYmlsaXR5IGlzc3Vl
-Cj4gaWYgc291cmNlIGRpc3BsYXkgcmVzb2x1dGlvbiBleGNlZWQgTVNUIGh1YiBvdXRwdXQgYWJp
-bGl0eS4KPiAKPiBGb3IgZXhhbXBsZSwgc291cmNlIERVVCBoYWQgRFAgMS4yIG91dHB1dCBjYXBh
-YmlsaXR5Lgo+IEFuZCBNU1QgZG9ja2luZyBqdXN0IHN1cHBvcnQgSERNSSAxLjQgc3BlYy4gV2hl
-biBhIEhETUkgMi4wCj4gbW9uaXRvciBjb25uZWN0ZWQuIFNvdXJjZSB3b3VsZCByZXRyaWV2ZSBF
-RElEIGZyb20gZXh0ZXJuYWwKPiBhbmQgZ2V0IG1heCByZXNvbHV0aW9uIDRrQDYwZnBzLiBEUCAx
-LjIgY2FuIHN1cHBvcnQgNEtANjBmcHMKPiBiZWNhdXNlIGl0IGRpZCBub3Qgc3VycGFzcyBEUCBw
-aHlzaWNhbCBiYW5kd2lkdGggbGltaXRhdGlvbi4KPiBEbyBtb2Rlc2V0IHRvIDRrQDYwZnBzLCBz
-b3VyY2Ugb3V0cHV0IGRpc3BsYXkgZGF0YSBidXQgTVNUCj4gZG9ja2luZyBjYW4ndCBvdXRwdXQg
-SERNSSBwcm9wZXJseSBkdWUgdG8gdGhpcyByZXNvbHV0aW9uCj4gYWxyZWFkeSBvdmVyIEhETUkg
-MS40IHNwZWMuCj4gCj4gUmVmZXIgdG8gY29tbWl0IDxmY2Y0NjM4MDc1OTY+ICgiZHJtL2RwX21z
-dDogVXNlIGZ1bGxfcGJuCj4gaW5zdGVhZCBvZiBhdmFpbGFibGVfcGJuIGZvciBiYW5kd2lkdGgg
-Y2hlY2tzIikuCj4gU291cmNlIGRyaXZlciBzaG91bGQgcmVmZXIgdG8gZnVsbF9wYm4gdG8gZXZh
-bHVhdGUgc2luawo+IG91dHB1dCBjYXBhYmlsaXR5LiBBbmQgZmlsdGVyIG91dCB0aGUgcmVzb2x1
-dGlvbiBzdXJwYXNzCj4gc2luayBvdXRwdXQgbGltaXRhdGlvbi4KPiAKPiBDYzogTWFuYXNpIE5h
-dmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KPiBDYzogSmFuaSBOaWt1bGEgPGphbmku
-bmlrdWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IENvb3BlciBDaGlvdSA8Y29vcGVyLmNoaW91QGludGVs
-LmNvbT4KPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiBTaWduZWQtb2ZmLWJ5
-OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgMjQgKysrKysrKysrKysrKysrKysr
-KystCj4gIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4g
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0
-LmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKPiBpbmRl
-eCA2MTYwNWViOGMyYWYuLjY4Njk3ZjQ2M2RhYiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+IEBAIC02MDksNiArNjA5LDI2IEBAIHN0YXRpYyBp
-bnQgaW50ZWxfZHBfbXN0X2dldF9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcgo+ICpjb25uZWN0
-b3IpCj4gIAlyZXR1cm4gaW50ZWxfZHBfbXN0X2dldF9kZGNfbW9kZXMoY29ubmVjdG9yKTsKPiAg
-fQo+ICAKPiArc3RhdGljIGJvb2wKPiAraW50ZWxfZHBfbXN0X21vZGVfY2xvY2tfZXhjZWVkX3Bi
-bl9iYW5kd2lkdGgoc3RydWN0IGRybV9jb25uZWN0b3IKPiAqY29ubmVjdG9yLCBpbnQgY2xvY2ss
-IGludCBicHApCj4gK3sKPiArCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nvbm5lY3Rv
-ciA9Cj4gdG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7Cj4gKwlzdHJ1Y3QgaW50ZWxfZHAg
-KmludGVsX2RwID0gaW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydDsKPiArCXN0cnVjdCBkcm1fZHBf
-bXN0X3RvcG9sb2d5X21nciAqbWdyID0gJmludGVsX2RwLT5tc3RfbWdyOwo+ICsJc3RydWN0IGRy
-bV9kcF9tc3RfcG9ydCAqcG9ydCA9ICh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9yKSktPnBv
-cnQ7Cj4gKwlib29sIHJldCA9IGZhbHNlOwo+ICsKPiArCWlmICghbWdyKQo+ICsJCXJldHVybiBy
-ZXQ7Cj4gKwo+ICsJbXV0ZXhfbG9jaygmbWdyLT5sb2NrKTsKClRoaXMgaXNuJ3QgdGhlIHJpZ2h0
-IGxvY2sgZm9yIHRoaXMgLSBtZ3ItPmxvY2sgcHJvdGVjdHMgdGhlIHRvcG9sb2d5IGxheW91dAoo
-ZS5nLiBkcm1fZHBfbXN0X3BvcnQubXN0YiwgZHJtX2RwX21zdF9wb3J0Lm5leHQsIGFuZApkcm1f
-ZHBfbXN0X2JyYW5jaC5wb3J0cykuIHBvcnQtPmZ1bGxfcGJuIGlzIHByb3RlY3RlZCB1bmRlcgom
-ZHJtX2RwX21zdF90b3BvbG9neV9tZ3IuYmFzZS5sb2NrIChub3QgZHJtX2RwX21zdF90b3BvbG9n
-eV9tZ3IubG9jayksIHNvIHlvdQpuZWVkIHRvIGZpcnN0IGFkZCBhIHZlcnNpb24gb2YgLm1vZGVf
-dmFsaWQoKSB0byBzdHJ1Y3QKZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MgdGhhdCBhY2NlcHRz
-IGEgZHJtX21vZGVzZXRfYWNxdWlyZV9jdHggc28geW91IGNhbgp1c2UgdGhhdCB0byBzYWZlbHkg
-Z3JhYiAmZHJtX2RwX21zdF90b3BvbG9neV9tZ3IuYmFzZS5sb2NrLgoKPiArCWlmIChwb3J0LT5m
-dWxsX3BibikKCkFsc28gLSB0aGVyZSdzIG5vIHJlYXNvbiB0byBjaGVjayBpZiAocG9ydC0+ZnVs
-bF9wYm4pIGhlcmUsIHNvIGxvbmcgYXMgeW91J3JlCmhvbGRpbmcgdGhlIHJpZ2h0IGxvY2tzIHRo
-aXMgc2hvdWxkIGFsd2F5cyBiZSBwb3B1bGF0ZWQgYnkgdGhlIHRpbWUgd2UgY3JlYXRlCnRoZSBk
-cm1fY29ubmVjdG9yIGZvciB0aGUgTVNUIHBvcnQgKGlmIGl0J3Mgbm90LCB0aGF0J3MgYSBidWcg
-dGhhdCBuZWVkcyB0byBiZQpmaXhlZCkuCgo+ICsJCXJldCA9IChkcm1fZHBfY2FsY19wYm5fbW9k
-ZShjbG9jaywgYnBwLCBmYWxzZSkgPiBwb3J0LQo+ID5mdWxsX3Bibik7CgpGaW5hbGx5IC0gSSdk
-IHNheSB3ZSBzaG91bGQgcHJvYmFibHkgaGF2ZSBhIHNlcGFyYXRlIHBhdGNoIHRvIGFkZCBhIGhl
-bHBlciBmb3IKY2FsY3VsYXRpbmcgdGhlIFBCTiBhbmQgY2hlY2tpbmcgaXQgYWdhaW5zdCBwb3J0
-LT5mdWxsX3Bibi4gTWF5YmUgc29tZXRoaW5nCnRoYXQgbG9va3MgbGlrZSB0aGlzOgoKaW50IGRy
-bV9kcF9tc3RfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2RwX21zdF9wb3J0ICpwb3J0LCBzdHJ1Y3QK
-ZHJtX21vZGVzZXRfYWNxdWlyZV9jdHggKmN0eCwgaW50IGNsb2NrLCBpbnQgYnBwKSB7CglpbnQg
-cmV0ID0gTU9ERV9WQUxJRDsKCS8qIFRPRE86IERTQyBzdXBwb3J0ICovCgoJLyog4oCmdHJ5IGdy
-YWJiaW5nIGxvY2tzIGhlcmXigKYqLwoJaWYgKGRybV9kcF9jYWxjX3Bibl9tb2RlKGNsb2NrLCBi
-cHAsIGZhbHNlKSA+IHBvcnQtPmZ1bGxfcGJuKQoJCXJldCA9IE1PREVfQ0xPQ0tfSElHSDsKCgly
-ZXR1cm4gcmV0Owp9CgpUaGF0IHdheSB3ZSBtaWdodCBiZSBhYmxlIHRvIGFkZCBzb21lIGNoZWNr
-cyBmb3IgRFNDIGNhcGFibGUgY29ubmVjdG9ycyBsYXRlcgpvbmNlIEkndmUgbWlncmF0ZWQgbW9z
-dCBvZiB0aGUgRFNDIGNvZGUgZnJvbSBhbWRncHUgaW50byB0aGUgTVNUIGhlbHBlcnMKPiArCW11
-dGV4X3VubG9jaygmbWdyLT5sb2NrKTsKPiArCj4gKwlyZXR1cm4gcmV0Owo+ICt9Cj4gKwo+ICBz
-dGF0aWMgZW51bSBkcm1fbW9kZV9zdGF0dXMKPiAgaW50ZWxfZHBfbXN0X21vZGVfdmFsaWQoc3Ry
-dWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiAgCQkJc3RydWN0IGRybV9kaXNwbGF5X21v
-ZGUgKm1vZGUpCj4gQEAgLTYzMSw3ICs2NTEsOSBAQCBpbnRlbF9kcF9tc3RfbW9kZV92YWxpZChz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICAJbWF4X3JhdGUgPSBpbnRlbF9kcF9t
-YXhfZGF0YV9yYXRlKG1heF9saW5rX2Nsb2NrLCBtYXhfbGFuZXMpOwo+ICAJbW9kZV9yYXRlID0g
-aW50ZWxfZHBfbGlua19yZXF1aXJlZChtb2RlLT5jbG9jaywgMTgpOwo+ICAKPiAtCS8qIFRPRE8g
-LSB2YWxpZGF0ZSBtb2RlIGFnYWluc3QgYXZhaWxhYmxlIFBCTiBmb3IgbGluayAqLwo+ICsJaWYg
-KGludGVsX2RwX21zdF9tb2RlX2Nsb2NrX2V4Y2VlZF9wYm5fYmFuZHdpZHRoKGNvbm5lY3Rvciwg
-bW9kZS0KPiA+Y2xvY2ssIDI0KSkKPiArCQlyZXR1cm4gTU9ERV9DTE9DS19ISUdIOwo+ICsKPiAg
-CWlmIChtb2RlLT5jbG9jayA8IDEwMDAwKQo+ICAJCXJldHVybiBNT0RFX0NMT0NLX0xPVzsKPiAg
-Ci0tIApDaGVlcnMsCglMeXVkZSBQYXVsIChzaGUvaGVyKQoJQXNzb2NpYXRlIFNvZnR3YXJlIEVu
-Z2luZWVyIGF0IFJlZCBIYXQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> We only hold the active spinlock while dumping the error state, and this
+> does not prevent another thread from retiring the request -- as it is
+> quite possible that despite us capturing the current state, the GPU has
+> completed the request. As such, it is dangerous to dereference state
+> below the request as it may already be freed, and the simplest way to
+> avoid the danger is not include it in the error state.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1788
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 18 ++++++++++++------
+>  drivers/gpu/drm/i915/i915_gpu_error.h |  1 -
+>  2 files changed, 12 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 424ad975a360..6dd2fc0b0d47 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -467,14 +467,14 @@ static void error_print_request(struct drm_i915_error_state_buf *m,
+>  	if (!erq->seqno)
+>  		return;
+>  
+> -	err_printf(m, "%s pid %d, seqno %8x:%08x%s%s, prio %d, start %08x, head %08x, tail %08x\n",
+> +	err_printf(m, "%s pid %d, seqno %8x:%08x%s%s, prio %d, head %08x, tail %08x\n",
+>  		   prefix, erq->pid, erq->context, erq->seqno,
+>  		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+>  			    &erq->flags) ? "!" : "",
+>  		   test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+>  			    &erq->flags) ? "+" : "",
+>  		   erq->sched_attr.priority,
+> -		   erq->start, erq->head, erq->tail);
+> +		   erq->head, erq->tail);
+>  }
+>  
+>  static void error_print_context(struct drm_i915_error_state_buf *m,
+> @@ -1204,16 +1204,18 @@ static void engine_record_registers(struct intel_engine_coredump *ee)
+>  	}
+>  }
+>  
+> -static void record_request(const struct i915_request *request,
+> +static bool record_request(const struct i915_request *request,
+>  			   struct i915_request_coredump *erq)
+>  {
+>  	const struct i915_gem_context *ctx;
+>  
+> +	if (i915_request_completed(request))
+> +		return false;
+> +
+>  	erq->flags = request->fence.flags;
+>  	erq->context = request->fence.context;
+>  	erq->seqno = request->fence.seqno;
+>  	erq->sched_attr = request->sched.attr;
+> -	erq->start = i915_ggtt_offset(request->ring->vma);
+>  	erq->head = request->head;
+>  	erq->tail = request->tail;
+>  
+> @@ -1223,6 +1225,8 @@ static void record_request(const struct i915_request *request,
+>  	if (ctx)
+>  		erq->pid = pid_nr(ctx->pid);
+>  	rcu_read_unlock();
+> +
+> +	return true;
+>  }
+>  
+>  static void engine_record_execlists(struct intel_engine_coredump *ee)
+> @@ -1231,8 +1235,10 @@ static void engine_record_execlists(struct intel_engine_coredump *ee)
+>  	struct i915_request * const *port = el->active;
+>  	unsigned int n = 0;
+>  
+> -	while (*port)
+> -		record_request(*port++, &ee->execlist[n++]);
+> +	while (*port) {
+> +		if (record_request(*port++, &ee->execlist[n]))
+> +			n++;
+> +	}
+>  
+>  	ee->num_ports = n;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+> index 0d1f6c8ff355..fa2d82a6de04 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+> @@ -50,7 +50,6 @@ struct i915_request_coredump {
+>  	pid_t pid;
+>  	u32 context;
+>  	u32 seqno;
+> -	u32 start;
+>  	u32 head;
+>  	u32 tail;
+>  	struct i915_sched_attr sched_attr;
+> -- 
+> 2.20.1
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
