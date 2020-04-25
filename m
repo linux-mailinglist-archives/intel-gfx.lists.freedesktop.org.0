@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2349A1B8855
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 19:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A25851B889D
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 20:52:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75CF76E29E;
-	Sat, 25 Apr 2020 17:58:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 103616E24E;
+	Sat, 25 Apr 2020 18:52:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8426E0DD
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2020 17:58:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 475BA6E24E
+ for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2020 18:52:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21020889-1500050 
- for multiple; Sat, 25 Apr 2020 18:57:54 +0100
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21021136-1500050 for multiple; Sat, 25 Apr 2020 19:51:29 +0100
+MIME-Version: 1.0
+In-Reply-To: <20200425175751.30358-4-chris@chris-wilson.co.uk>
+References: <20200425175751.30358-1-chris@chris-wilson.co.uk>
+ <20200425175751.30358-4-chris@chris-wilson.co.uk>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 25 Apr 2020 18:57:51 +0100
-Message-Id: <20200425175751.30358-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200425175751.30358-1-chris@chris-wilson.co.uk>
-References: <20200425175751.30358-1-chris@chris-wilson.co.uk>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Restore aggressive post-boost
- downclocking
+Message-ID: <158784068731.27391.8108147455405975102@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Sat, 25 Apr 2020 19:51:27 +0100
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/gt: Switch to manual
+ evaluation of RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +40,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We reduced the clocks slowly after a boost event based on the
-observation that the smoothness of animations suffered. However, since
-reducing the evalution intervals, we should be able to respond to the
-rapidly fluctuating workload of a simple desktop animation and so
-restore the more aggressive downclocking.
+Quoting Chris Wilson (2020-04-25 18:57:49)
+> +static bool has_busy_stats(struct intel_rps *rps)
+> +{
+> +       struct intel_engine_cs *engine;
+> +       enum intel_engine_id id;
+> +
+> +       for_each_engine(engine, rps_to_gt(rps), id) {
+> +               if (!intel_engine_supports_stats(engine))
 
-References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index f6eec6e67a84..0e16666775c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1626,30 +1626,18 @@ static void rps_work(struct work_struct *work)
- 		adj = 0;
- 	}
- 
--	rps->last_adj = adj;
--
- 	/*
--	 * Limit deboosting and boosting to keep ourselves at the extremes
--	 * when in the respective power modes (i.e. slowly decrease frequencies
--	 * while in the HIGH_POWER zone and slowly increase frequencies while
--	 * in the LOW_POWER zone). On idle, we will hit the timeout and drop
--	 * to the next level quickly, and conversely if busy we expect to
--	 * hit a waitboost and rapidly switch into max power.
--	 */
--	if ((adj < 0 && rps->power.mode == HIGH_POWER) ||
--	    (adj > 0 && rps->power.mode == LOW_POWER))
--		rps->last_adj = 0;
--
--	/* sysfs frequency interfaces may have snuck in while servicing the
--	 * interrupt
-+	 * sysfs frequency limits may have snuck in while
-+	 * servicing the interrupt
- 	 */
- 	new_freq += adj;
- 	new_freq = clamp_t(int, new_freq, min, max);
- 
- 	if (intel_rps_set(rps, new_freq)) {
- 		drm_dbg(&i915->drm, "Failed to set new GPU frequency\n");
--		rps->last_adj = 0;
-+		adj = 0;
- 	}
-+	rps->last_adj = adj;
- 
- 	mutex_unlock(&rps->lock);
- 
--- 
-2.20.1
-
+Bah. The engines are not setup by this point. For the moment, I can just
+hardcode it :(
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
