@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 279F71B88DB
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 21:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D39751B88E1
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2020 21:24:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6006E48E;
-	Sat, 25 Apr 2020 19:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A836E48F;
+	Sat, 25 Apr 2020 19:24:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5A4ED6E48D;
- Sat, 25 Apr 2020 19:21:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BD6A6E48D;
+ Sat, 25 Apr 2020 19:24:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 585C3A363D;
- Sat, 25 Apr 2020 19:21:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 009BEA363D;
+ Sat, 25 Apr 2020 19:24:54 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 25 Apr 2020 19:21:14 -0000
-Message-ID: <158784247435.28453.12452474686544750758@emeril.freedesktop.org>
+Date: Sat, 25 Apr 2020 19:24:54 -0000
+Message-ID: <158784269497.28454.8400096494606953188@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200425175751.30358-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200425175751.30358-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/6=5D_drm/i915/gt=3A_Always_enable?=
- =?utf-8?q?_busy-stats_for_execlists_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/6=5D_drm/i915/gt=3A_Always_enable_bus?=
+ =?utf-8?q?y-stats_for_execlists_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,27 +54,28 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-bd5217caba42 drm/i915/gt: Always enable busy-stats for execlists
-580c6e4c2a06 drm/i915/gt: Move rps.enabled/active to flags
-40d0b5f06de0 drm/i915/gt: Track use of RPS interrupts in flags
-45476008bc61 drm/i915/gt: Switch to manual evaluation of RPS
-50df497d84b8 drm/i915/gt: Apply the aggressive downclocking to parking
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915/gt: Always enable busy-stats for execlists
++drivers/gpu/drm/i915/gt/sysfs_engines.c:73:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:74:10: error: bad integer constant expression
+-O:drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
+-O:drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
 
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")'
-#12: 
-References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+Commit: drm/i915/gt: Move rps.enabled/active to flags
+Okay!
 
-total: 1 errors, 1 warnings, 0 checks, 31 lines checked
-5720afa836ee drm/i915/gt: Restore aggressive post-boost downclocking
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2a8862d2f3da ("drm/i915: Reduce the RPS shock")'
-#12: 
-References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
+Commit: drm/i915/gt: Track use of RPS interrupts in flags
+Okay!
 
-total: 1 errors, 0 warnings, 0 checks, 34 lines checked
+Commit: drm/i915/gt: Switch to manual evaluation of RPS
+Okay!
+
+Commit: drm/i915/gt: Apply the aggressive downclocking to parking
+Okay!
+
+Commit: drm/i915/gt: Restore aggressive post-boost downclocking
+Okay!
 
 _______________________________________________
 Intel-gfx mailing list
