@@ -2,30 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11471B9469
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 00:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B141F1B947E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 00:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C8E89DC2;
-	Sun, 26 Apr 2020 22:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42CEF6E064;
+	Sun, 26 Apr 2020 22:24:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24E0889DBC;
- Sun, 26 Apr 2020 22:12:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1EBFAA432F;
- Sun, 26 Apr 2020 22:12:46 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nick Desaulniers" <ndesaulniers@google.com>
-Date: Sun, 26 Apr 2020 22:12:46 -0000
-Message-ID: <158793916609.14662.5362789657221013216@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32C446E064;
+ Sun, 26 Apr 2020 22:24:49 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id c3so23016950otp.8;
+ Sun, 26 Apr 2020 15:24:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=OBLAv3ala95rLSVXUcIkojndaShuLPu2zPwvFjdEly8=;
+ b=cyO2ULobk7znDxC6KxHmNYBOG8F34LOm5QsZQN4riz0cSshLBBxKuzZ8QcmZ5PFors
+ PZCraducRpH4ipa9oRdPoj3+4WMVnWIv2Mqwr45riIyJcQijn/Vz5wwBAiE6rCUgVXeK
+ 8SxsWWOVquMy40TRsWRjM7YrECZYobI/7+7GE0QK5hVpDjBWMaDvBaH8zoXWEYIwC9QQ
+ /MXNdWpRiTiVBcBB4LgFlwTy4244jbqnKMH+wruxuOkvRGL/9CG80RC6Gl1W1e8q56AQ
+ /+MWUTu6UsG12uqEKz/Vp3F3MTBjUBt4xVKNHsmRoM34khsOWh89IGdVu767Sv++PB/q
+ y7UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=OBLAv3ala95rLSVXUcIkojndaShuLPu2zPwvFjdEly8=;
+ b=TPTNFMqUOXbf7PSqUuRAwKcmdvft4zwF0Dnn49KVTKSmJakTkAxH7bP/imiVxK7iaw
+ Y94DBhyI6bco2I/z+IlJLh6IhEtmKaEaDpVZKw5j7vE4l3fynuSQ8Bj3206KiZeUl0ld
+ /h5SErTeiI73X6QRmZj7Qq11+EbGDboCifmJ3xFAy8rhP4KIbk5WXOZA++KtWFo62Ho3
+ or8wlzVKWIoaWGycCtkljsF1v6T2qRRdo9lx02Qu+T5+3tmqYnO7up/EDoPOkbkXfAtq
+ UWTcMywYOvkp3RljjN6jxvlQLFnCzpjLNfGMNX5R+j6VwgGWkRwbx+ItO4usKYExmAyh
+ wgEg==
+X-Gm-Message-State: AGi0PuYPE4VAVcoRt6r/L6NdqPVki24VpYbWmd8DG7uQsj9z49rec1YH
+ mIeqiiBsJJnJ5vplXOGnC88=
+X-Google-Smtp-Source: APiQypK0w4cqdzOM1cLQvyiHhJBMZlmEVBW9AS4qqoKOjtdRySFx9GQ6g/nVLyX3ojl/dRuIf3YKeA==
+X-Received: by 2002:aca:31ce:: with SMTP id
+ x197mr14434706oix.157.1587939886194; 
+ Sun, 26 Apr 2020 15:24:46 -0700 (PDT)
+Received: from ubuntu-s3-xlarge-x86 ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id h12sm2273441oou.43.2020.04.26.15.24.45
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Sun, 26 Apr 2020 15:24:45 -0700 (PDT)
+Date: Sun, 26 Apr 2020 15:24:44 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Nick Desaulniers <ndesaulniers@google.com>
+Message-ID: <20200426222444.GA24867@ubuntu-s3-xlarge-x86>
 References: <20200426214215.139435-1-ndesaulniers@google.com>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20200426214215.139435-1-ndesaulniers@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_re-disable_-Wframe-address?=
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: re-disable -Wframe-address
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,101 +68,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sun, Apr 26, 2020 at 02:42:15PM -0700, 'Nick Desaulniers' via Clang Built Linux wrote:
+> The top level Makefile disables this warning. When building an
+> i386_defconfig with Clang, this warning is triggered a whole bunch via
+> includes of headers from perf.
+> 
+> Link: https://github.com/ClangBuiltLinux/continuous-integration/pull/182
+> Signed-off-by: Nick Desaulniers <ndesaulniers@google.com>
 
-Series: drm/i915: re-disable -Wframe-address
-URL   : https://patchwork.freedesktop.org/series/76510/
-State : success
+This is not technically a clang specific warning but I assume it is only
+visible with clang so this location is probably fine.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8370 -> Patchwork_17469
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17469 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-bdw-5557u:       [DMESG-FAIL][3] ([i915#1791]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-    - fi-cml-u2:          [DMESG-FAIL][5] ([i915#1791]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-whl-u:           [DMESG-FAIL][7] ([i915#1791]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][9] ([fdo#109271]) -> [FAIL][10] ([i915#62])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan fi-byt-squawks fi-hsw-4200u fi-kbl-7500u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8370 -> Patchwork_17469
-
-  CI-20190529: 20190529
-  CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17469: 02137cb98b448a9ca41466f3162d5d09c50c5191 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-02137cb98b44 drm/i915: re-disable -Wframe-address
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17469/index.html
+Reviewed-by: Nathan Chancellor <natechancellor@gmail.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
