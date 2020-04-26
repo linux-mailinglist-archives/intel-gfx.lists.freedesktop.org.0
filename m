@@ -1,30 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C879A1B9105
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Apr 2020 17:02:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F601B910B
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Apr 2020 17:03:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E34EC8951E;
-	Sun, 26 Apr 2020 15:02:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F09589C61;
+	Sun, 26 Apr 2020 15:03:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
- [79.96.170.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA688951E
- for <intel-gfx@lists.freedesktop.org>; Sun, 26 Apr 2020 15:02:15 +0000 (UTC)
-Received: from 185.80.35.16 (185.80.35.16) (HELO kreacher.localnet)
- by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.415)
- id 2c4431b5b229701a; Sun, 26 Apr 2020 17:02:13 +0200
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Date: Sun, 26 Apr 2020 17:02:12 +0200
-Message-ID: <15275956.dygttixizy@kreacher>
-In-Reply-To: <20200410192629.6779-1-chris@chris-wilson.co.uk>
-References: <20200410192629.6779-1-chris@chris-wilson.co.uk>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] cpufreq/pstate: Only mention the BIOS
- disabling turbo mode once
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A39489C61;
+ Sun, 26 Apr 2020 15:03:45 +0000 (UTC)
+Received: from localhost (unknown [137.135.114.1])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 83D41206D4;
+ Sun, 26 Apr 2020 15:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1587913424;
+ bh=OYn9EWDsVU0Gxpi78Ra8Eo9cK7lzLOzy03OcHbfFtnQ=;
+ h=Date:From:To:To:To:To:Cc:Cc:Cc:Subject:In-Reply-To:References:
+ From;
+ b=NtpEXsYMmivgdHCEOTZCHgD7mE0XdzGYDOC9R298tbghWRP+yS+3qGjxHJjW7UaIK
+ nmfK4B6dBDhFSW43zuRyPJkH2jPSeUKPtUSIKAM8xOZrPChtKzyEDwRQz9CltKYQ/9
+ QNud9WCKM+4w7m6KJZAdlhAAZoxWGfJxp4TonIn4=
+Date: Sun, 26 Apr 2020 15:03:43 +0000
+From: Sasha Levin <sashal@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: Ville Syrjälä <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+In-Reply-To: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
+References: <20200423151743.18767-1-ville.syrjala@linux.intel.com>
+Message-Id: <20200426150344.83D41206D4@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/edid: Fix off-by-one in DispID DTD
+ pixel clock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,49 +48,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>, intel-gfx@lists.freedesktop.org,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Len Brown <lenb@kernel.org>, linux-pm@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Friday, April 10, 2020 9:26:29 PM CEST Chris Wilson wrote:
-> Make a note of the first time we discover the turbo mode has been
-> disabled by the BIOS, as otherwise we complain every time we try to
-> update the mode.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
-> Cc: Len Brown <lenb@kernel.org>
-> Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-> Cc: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  drivers/cpufreq/intel_pstate.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/cpufreq/intel_pstate.c b/drivers/cpufreq/intel_pstate.c
-> index c81e1ff29069..b4c014464a20 100644
-> --- a/drivers/cpufreq/intel_pstate.c
-> +++ b/drivers/cpufreq/intel_pstate.c
-> @@ -1058,7 +1058,7 @@ static ssize_t store_no_turbo(struct kobject *a, struct kobj_attribute *b,
->  
->  	update_turbo_state();
->  	if (global.turbo_disabled) {
-> -		pr_warn("Turbo disabled by BIOS or unavailable on processor\n");
-> +		pr_notice_once("Turbo disabled by BIOS or unavailable on processor\n");
->  		mutex_unlock(&intel_pstate_limits_lock);
->  		mutex_unlock(&intel_pstate_driver_lock);
->  		return -EPERM;
-> 
+Hi
 
-Applied as a fix for 5.7-rc4, sorry for the delay.
+[This is an automated email]
 
-Thanks!
+This commit has been processed because it contains a -stable tag.
+The stable tag indicates that it's relevant for the following trees: all
+
+The bot has tested the following trees: v5.6.7, v5.4.35, v4.19.118, v4.14.177, v4.9.220, v4.4.220.
+
+v5.6.7: Build OK!
+v5.4.35: Build OK!
+v4.19.118: Build OK!
+v4.14.177: Build OK!
+v4.9.220: Build OK!
+v4.4.220: Failed to apply! Possible dependencies:
+    3a4a2ea39f86 ("drm/displayid: Iterate over all DisplayID blocks")
+    5e546cd5b3bc ("drm/edid: move displayid tiled block parsing into separate function.")
+    a39ed680bddb ("drm/edid: add displayid detailed 1 timings to the modelist. (v1.1)")
+    c97291774c1b ("drm/edid: move displayid validation to it's own function.")
 
 
+NOTE: The patch will not be queued to stable trees until it is upstream.
 
+How should we proceed with this patch?
+
+-- 
+Thanks
+Sasha
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
