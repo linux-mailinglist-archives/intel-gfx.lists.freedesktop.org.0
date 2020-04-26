@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C141B9495
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 01:11:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009921B94FC
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 03:42:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0769E6E090;
-	Sun, 26 Apr 2020 23:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8D189D58;
+	Mon, 27 Apr 2020 01:42:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BD2F6E08C;
- Sun, 26 Apr 2020 23:11:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75159A47DB;
- Sun, 26 Apr 2020 23:11:12 +0000 (UTC)
+X-Greylist: delayed 7800 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Apr 2020 01:41:59 UTC
+Received: from 17.mo6.mail-out.ovh.net (17.mo6.mail-out.ovh.net
+ [46.105.36.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E40D89D58
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 01:41:59 +0000 (UTC)
+Received: from player756.ha.ovh.net (unknown [10.108.42.170])
+ by mo6.mail-out.ovh.net (Postfix) with ESMTP id 9199320BE33
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 01:16:00 +0200 (CEST)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player756.ha.ovh.net (Postfix) with ESMTPSA id DD4C810EF95D0;
+ Sun, 26 Apr 2020 23:15:57 +0000 (UTC)
+Date: Mon, 27 Apr 2020 02:15:56 +0300
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200426231556.GA13001@jack.zhora.eu>
+References: <20200425175751.30358-1-chris@chris-wilson.co.uk>
+ <20200425175751.30358-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 26 Apr 2020 23:11:12 -0000
-Message-ID: <158794267245.14660.15017518503802505830@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200426222918.14892-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200426222918.14892-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Fix_up_clock_frequency?=
+Content-Disposition: inline
+In-Reply-To: <20200425175751.30358-2-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 1598777867902894601
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrheekgddulecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeehiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/gt: Move rps.enabled/active to
+ flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,91 +49,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Chris,
 
-Series: drm/i915/gt: Fix up clock frequency
-URL   : https://patchwork.freedesktop.org/series/76512/
-State : success
+>  	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>  	if (IS_CHERRYVIEW(i915))
+> -		rps->enabled = chv_rps_enable(rps);
+> +		enabled = chv_rps_enable(rps);
+>  	else if (IS_VALLEYVIEW(i915))
+> -		rps->enabled = vlv_rps_enable(rps);
+> +		enabled = vlv_rps_enable(rps);
+>  	else if (INTEL_GEN(i915) >= 9)
+> -		rps->enabled = gen9_rps_enable(rps);
+> +		enabled = gen9_rps_enable(rps);
+>  	else if (INTEL_GEN(i915) >= 8)
+> -		rps->enabled = gen8_rps_enable(rps);
+> +		enabled = gen8_rps_enable(rps);
+>  	else if (INTEL_GEN(i915) >= 6)
+> -		rps->enabled = gen6_rps_enable(rps);
+> +		enabled = gen6_rps_enable(rps);
+>  	else if (IS_IRONLAKE_M(i915))
+> -		rps->enabled = gen5_rps_enable(rps);
+> +		enabled = gen5_rps_enable(rps);
+>  	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+> -	if (!rps->enabled)
+> +	if (!enabled || rps->max_freq <= rps->min_freq)
 
-== Summary ==
+isn't this a bit out of context? I don't think the above
+functions have any effect on max_freq and min freq.
 
-CI Bug Log - changes from CI_DRM_8370 -> Patchwork_17470
-====================================================
+just if (!enable) should do.
 
-Summary
--------
+Andi
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17470 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2] ([i915#1580])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-bdw-5557u:       [DMESG-FAIL][3] ([i915#1791]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-    - fi-cml-u2:          [DMESG-FAIL][5] ([i915#1791]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-whl-u:           [DMESG-FAIL][7] ([i915#1791]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-
-  
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
-
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan fi-byt-squawks fi-hsw-4200u fi-kbl-7500u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8370 -> Patchwork_17470
-
-  CI-20190529: 20190529
-  CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17470: ee56ef2b675c5ca55694a0acdd4b5069c2a1ac0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ee56ef2b675c drm/i915/gt: Fix up clock frequency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/index.html
+>  		return;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
