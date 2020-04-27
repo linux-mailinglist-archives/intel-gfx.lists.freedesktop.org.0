@@ -2,30 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E911B94FF
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 03:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A5A1B955E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 05:23:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C3D96E046;
-	Mon, 27 Apr 2020 01:50:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5461289FBC;
+	Mon, 27 Apr 2020 03:23:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 79AD06E041;
- Mon, 27 Apr 2020 01:50:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 64C67A00FD;
- Mon, 27 Apr 2020 01:50:49 +0000 (UTC)
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
+ [IPv6:2607:f8b0:4864:20::832])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 645F589FBC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 03:23:23 +0000 (UTC)
+Received: by mail-qt1-x832.google.com with SMTP id c23so12659181qtp.11
+ for <intel-gfx@lists.freedesktop.org>; Sun, 26 Apr 2020 20:23:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3+fumRnMtF8lWaukoALHZIBEnVC6h1xNs5bb16WfXyI=;
+ b=BAIn2ORUNc/bpil30EsIr0HRAbOKGng4fTXig1axDVYSL4J9Fyh8sefonvsI0xYUvu
+ 4rxzhfMwG6xL7qLe06c8IJvIZUCoeNlsL/aHGAIYAjqIofXLCp0U32mISxdc3hSciafi
+ WhcypdfPLs4Q6zSjEkIgowlvWJAZHs2NYiBM7LIyYPuWSuZa4DiswgQX6aBOVA6GByF1
+ zq/QEtBPd6ErtUDesNBtieiavLOAeWyja5WYa8qUm6cj6uPgMiFIhx2yTnrtrRoAuWK/
+ H2j4NJtZqzpnc0hHtwx1Oem8e7Hi/8MNtqCxFpx/TZYjGiuA3kmQvVTS0Wvt8HZ7f8Ni
+ mv3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3+fumRnMtF8lWaukoALHZIBEnVC6h1xNs5bb16WfXyI=;
+ b=hBCXhaFc43ZvPdBcE6g6eYer8gz2hOygnG2eUDsT+PcgATcZ94eBeUR1/gO0UB6ZK5
+ e/1FR3j1YPmRqEdO1CT9rJeH2bcjdOBHzVW0YPGODA4x3nI5brgvf14euBqSVysruQlk
+ luuixAz40x7K9Qm7imp8xJiGF+IsaBGG2L3OAr/aqG4MXhKvmIbgQaVX/2J+ZtAY6WUm
+ losRxJt6I3JRfQKrWCQfKfP/quDxHyMs3JQVZ5ByFIYZ2x7YWr/VjtryTgPNp1e+6z5k
+ VIm8icf0laT8tLgVn5ufYjrsHPVI3NSDh+fcHIkdrkKKvUeo2X8EUAucyENIAeS9YiLD
+ Rvpw==
+X-Gm-Message-State: AGi0PuYp79H4e7U0jiOe+af5MFO2wzpx8FTGj++6HQgHhglx0mKU3/nT
+ NorMaUE7RKiABgVyxYKf+QHQlO5QEjE=
+X-Google-Smtp-Source: APiQypLK7SXggi8Dr6fY1r9y/QYED/ftmO6md5SPl/GoAUCqQHumztdcpyQ7brr/Noq98vx4dnfHMw==
+X-Received: by 2002:ac8:4e88:: with SMTP id 8mr20978961qtp.82.1587957802016;
+ Sun, 26 Apr 2020 20:23:22 -0700 (PDT)
+Received: from prosha.fios-router.home
+ (pool-72-92-48-173.phlapa.fios.verizon.net. [72.92.48.173])
+ by smtp.gmail.com with ESMTPSA id p22sm9686965qte.2.2020.04.26.20.23.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 26 Apr 2020 20:23:21 -0700 (PDT)
+From: Alexei Podtelezhnikov <apodtele@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 26 Apr 2020 23:22:32 -0400
+Message-Id: <20200427032232.4307-1-apodtele@gmail.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 27 Apr 2020 01:50:49 -0000
-Message-ID: <158795224938.30986.6057767012762237827@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200426222918.14892-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200426222918.14892-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Fix_up_clock_frequency?=
+Subject: [Intel-gfx] [patch] PCI ID review
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,179 +65,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In reverse order:
+- Add SKL GT1.5
+- Remove wrong and non-existant devices
+- Add Gen3/Gen4 twin IGDs
+- Amend historic records 
 
-Series: drm/i915/gt: Fix up clock frequency
-URL   : https://patchwork.freedesktop.org/series/76512/
-State : success
+Signed-off-by: Alexei Podtelezhnikov <apodtele@gmail.com>
+---
+ src/i915_pciids.h | 72 +++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 49 insertions(+), 23 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8370_full -> Patchwork_17470_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17470_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180] / [i915#93] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-kbl3/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-render:
-    - shard-tglb:         [PASS][3] -> [SKIP][4] ([i915#668]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-render.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-render.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - shard-kbl:          [PASS][5] -> [FAIL][6] ([i915#53] / [i915#93] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl7/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-kbl2/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-    - shard-apl:          [PASS][7] -> [FAIL][8] ([i915#53] / [i915#95])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl2/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-apl7/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-skl:          [PASS][9] -> [INCOMPLETE][10] ([i915#69])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl5/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-skl10/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
-    - shard-apl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-apl8/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
-    - shard-kbl:          [PASS][13] -> [DMESG-WARN][14] ([i915#180]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-
-  * igt@perf@short-reads:
-    - shard-apl:          [PASS][15] -> [FAIL][16] ([i915#51])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl6/igt@perf@short-reads.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-apl6/igt@perf@short-reads.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-apl:          [DMESG-WARN][17] ([i915#180]) -> [PASS][18] +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl6/igt@gem_workarounds@suspend-resume-context.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-apl4/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding:
-    - shard-skl:          [FAIL][19] ([i915#54]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-skl4/igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][21] ([i915#1188]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl2/igt@kms_hdr@bpc-switch.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-skl8/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-kbl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][25] ([fdo#108145] / [i915#265]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [SKIP][27] ([fdo#109441]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-iclb4/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  * {igt@sysfs_heartbeat_interval@mixed@bcs0}:
-    - shard-skl:          [INCOMPLETE][29] ([i915#198]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl1/igt@sysfs_heartbeat_interval@mixed@bcs0.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-skl10/igt@sysfs_heartbeat_interval@mixed@bcs0.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@system-suspend-modeset:
-    - shard-snb:          [SKIP][31] ([fdo#109271]) -> [INCOMPLETE][32] ([i915#82])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-snb6/igt@i915_pm_rpm@system-suspend-modeset.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-snb4/igt@i915_pm_rpm@system-suspend-modeset.html
-
-  * igt@i915_suspend@sysfs-reader:
-    - shard-kbl:          [INCOMPLETE][33] ([CI#80]) -> [DMESG-WARN][34] ([i915#180])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl6/igt@i915_suspend@sysfs-reader.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-kbl7/igt@i915_suspend@sysfs-reader.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-alpha-basic:
-    - shard-apl:          [FAIL][35] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][36] ([fdo#108145] / [i915#265])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl7/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/shard-apl8/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#51]: https://gitlab.freedesktop.org/drm/intel/issues/51
-  [i915#53]: https://gitlab.freedesktop.org/drm/intel/issues/53
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8370 -> Patchwork_17470
-
-  CI-20190529: 20190529
-  CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17470: ee56ef2b675c5ca55694a0acdd4b5069c2a1ac0a @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17470/index.html
+diff --git a/src/i915_pciids.h b/src/i915_pciids.h
+index 1d2c1221..a9c88eab 100644
+--- a/src/i915_pciids.h
++++ b/src/i915_pciids.h
+@@ -47,7 +47,11 @@ Amend historic records
+ 	0x030000, 0xff0000,			\
+ 	(unsigned long) info }
+ 
++#define INTEL_I740_IDS(info)					\
++	INTEL_VGA_DEVICE(0x7800, info)  /* I740 */
++
+ #define INTEL_I810_IDS(info)					\
++	INTEL_VGA_DEVICE(0x1240, info), /* I752 */		\
+ 	INTEL_VGA_DEVICE(0x7121, info), /* I810 */		\
+ 	INTEL_VGA_DEVICE(0x7123, info), /* I810_DC100 */	\
+ 	INTEL_VGA_DEVICE(0x7125, info)  /* I810_E */
+@@ -62,57 +66,79 @@ Add Gen3/Gen4 twin IGDs
+ 	INTEL_VGA_DEVICE(0x2562, info)
+ 
+ #define INTEL_I85X_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x3582, info), /* I855_GM */ \
+-	INTEL_VGA_DEVICE(0x358e, info)
++	INTEL_VGA_DEVICE(0x3582, info), /* I855_GM */   \
++	INTEL_VGA_DEVICE(0x358e, info)  /* I854 */
+ 
+ #define INTEL_I865G_IDS(info)				\
+ 	INTEL_VGA_DEVICE(0x2572, info) /* I865_G */
+ 
+ #define INTEL_I915G_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2582, info), /* I915_G */ \
++	INTEL_VGA_DEVICE(0x2582, info), /* I915_G */    \
++	INTEL_VGA_DEVICE(0x2782, info), /* I915_G */    \
+ 	INTEL_VGA_DEVICE(0x258a, info)  /* E7221_G */
+ 
+ #define INTEL_I915GM_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2592, info) /* I915_GM */
++	INTEL_VGA_DEVICE(0x2592, info), /* I915_GM */   \
++	INTEL_VGA_DEVICE(0x2792, info)  /* I915_GM */
+ 
+ #define INTEL_I945G_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2772, info) /* I945_G */
++	INTEL_VGA_DEVICE(0x2772, info), /* I945_G */    \
++	INTEL_VGA_DEVICE(0x2776, info)  /* I945_G */
+ 
+ #define INTEL_I945GM_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x27a2, info), /* I945_GM */ \
++	INTEL_VGA_DEVICE(0x27a2, info), /* I945_GM */   \
++	INTEL_VGA_DEVICE(0x27a6, info), /* I945_GM */   \
+ 	INTEL_VGA_DEVICE(0x27ae, info)  /* I945_GME */
+ 
+ #define INTEL_I965G_IDS(info)				\
+ 	INTEL_VGA_DEVICE(0x2972, info), /* I946_GZ */	\
++	INTEL_VGA_DEVICE(0x2973, info), /* I946_GZ */	\
+ 	INTEL_VGA_DEVICE(0x2982, info),	/* G35_G */	\
++	INTEL_VGA_DEVICE(0x2983, info),	/* G35_G */	\
+ 	INTEL_VGA_DEVICE(0x2992, info),	/* I965_Q */	\
+-	INTEL_VGA_DEVICE(0x29a2, info)	/* I965_G */
++	INTEL_VGA_DEVICE(0x2993, info),	/* I965_Q */	\
++	INTEL_VGA_DEVICE(0x29a2, info),	/* I965_G */    \
++	INTEL_VGA_DEVICE(0x29a3, info)	/* I965_G */
+ 
+ #define INTEL_G33_IDS(info)				\
+ 	INTEL_VGA_DEVICE(0x29b2, info), /* Q35_G */ \
++	INTEL_VGA_DEVICE(0x29b3, info), /* Q35_G */ \
+ 	INTEL_VGA_DEVICE(0x29c2, info),	/* G33_G */ \
+-	INTEL_VGA_DEVICE(0x29d2, info)	/* Q33_G */
++	INTEL_VGA_DEVICE(0x29c3, info),	/* G33_G */ \
++	INTEL_VGA_DEVICE(0x29d2, info),	/* Q33_G */ \
++	INTEL_VGA_DEVICE(0x29d3, info)	/* Q33_G */
+ 
+ #define INTEL_I965GM_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2a02, info),	/* I965_GM */ \
+-	INTEL_VGA_DEVICE(0x2a12, info)  /* I965_GME */
++	INTEL_VGA_DEVICE(0x2a02, info),	/* I965_GM */   \
++	INTEL_VGA_DEVICE(0x2a03, info),	/* I965_GM */   \
++	INTEL_VGA_DEVICE(0x2a12, info), /* I965_GME */  \
++	INTEL_VGA_DEVICE(0x2a13, info)  /* I965_GME */
+ 
+ #define INTEL_GM45_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2a42, info) /* GM45_G */
++	INTEL_VGA_DEVICE(0x2a42, info), /* GM45_G */    \
++	INTEL_VGA_DEVICE(0x2a43, info)  /* GM45_G */
+ 
+ #define INTEL_G45_IDS(info)				\
+-	INTEL_VGA_DEVICE(0x2e02, info), /* IGD_E_G */ \
+-	INTEL_VGA_DEVICE(0x2e12, info), /* Q45_G */ \
+-	INTEL_VGA_DEVICE(0x2e22, info), /* G45_G */ \
+-	INTEL_VGA_DEVICE(0x2e32, info), /* G41_G */ \
+-	INTEL_VGA_DEVICE(0x2e42, info), /* B43_G */ \
+-	INTEL_VGA_DEVICE(0x2e92, info)	/* B43_G.1 */
++	INTEL_VGA_DEVICE(0x2e02, info), /* IGD_E_G */   \
++	INTEL_VGA_DEVICE(0x2e03, info), /* IGD_E_G */   \
++	INTEL_VGA_DEVICE(0x2e12, info), /* Q45_G */     \
++	INTEL_VGA_DEVICE(0x2e13, info), /* Q45_G */     \
++	INTEL_VGA_DEVICE(0x2e22, info), /* G45_G */     \
++	INTEL_VGA_DEVICE(0x2e23, info), /* G45_G */     \
++	INTEL_VGA_DEVICE(0x2e32, info), /* G41_G */     \
++	INTEL_VGA_DEVICE(0x2e33, info), /* G41_G */     \
++	INTEL_VGA_DEVICE(0x2e42, info), /* B43_G */     \
++	INTEL_VGA_DEVICE(0x2e43, info), /* B43_G */     \
++	INTEL_VGA_DEVICE(0x2e92, info),	/* B43_G.1 */   \
++	INTEL_VGA_DEVICE(0x2e93, info)	/* B43_G.1 */
+ 
+ #define INTEL_PINEVIEW_G_IDS(info) \
+-	INTEL_VGA_DEVICE(0xa001, info)
++	INTEL_VGA_DEVICE(0xa001, info), \
++	INTEL_VGA_DEVICE(0xa002, info)
+ 
+ #define INTEL_PINEVIEW_M_IDS(info) \
+-	INTEL_VGA_DEVICE(0xa011, info)
++	INTEL_VGA_DEVICE(0xa011, info), \
++	INTEL_VGA_DEVICE(0xa012, info)
+ 
+ #define INTEL_IRONLAKE_D_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x0042, info)
+@@ -258,9 +284,7 @@ Remove wrong and non-existant devices
+ 	INTEL_VGA_DEVICE(0x0f30, info), \
+ 	INTEL_VGA_DEVICE(0x0f31, info), \
+ 	INTEL_VGA_DEVICE(0x0f32, info), \
+-	INTEL_VGA_DEVICE(0x0f33, info), \
+-	INTEL_VGA_DEVICE(0x0157, info), \
+-	INTEL_VGA_DEVICE(0x0155, info)
++	INTEL_VGA_DEVICE(0x0f33, info)
+ 
+ #define INTEL_BDW_ULT_GT1_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x1606, info), /* GT1 ULT */ \
+@@ -331,7 +355,8 @@ Add SKL GT1.5
+ 	INTEL_VGA_DEVICE(0x22b3, info)
+ 
+ #define INTEL_SKL_ULT_GT1_IDS(info) \
+-	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
++	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
++	INTEL_VGA_DEVICE(0x1913, info) /* ULT GT1.5 */
+ 
+ #define INTEL_SKL_ULX_GT1_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
+@@ -340,6 +365,7 @@ Add SKL GT1.5
+ 	INTEL_SKL_ULT_GT1_IDS(info), \
+ 	INTEL_SKL_ULX_GT1_IDS(info), \
+ 	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
++	INTEL_VGA_DEVICE(0x1917, info), /* DT  GT1.5 */ \
+ 	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
+ 	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
+ 
+--
+2.26.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
