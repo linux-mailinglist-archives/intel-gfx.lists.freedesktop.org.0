@@ -2,33 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE521BA3BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 14:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7225E1BA3D0
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 14:50:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF5646E29D;
-	Mon, 27 Apr 2020 12:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F3289EFF;
+	Mon, 27 Apr 2020 12:50:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1D816E29D
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 12:40:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21034984-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 13:40:47 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 80F5689E5A;
+ Mon, 27 Apr 2020 12:50:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D9B9A47EB;
+ Mon, 27 Apr 2020 12:50:03 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200427085408.13879-9-chris@chris-wilson.co.uk>
-References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
- <20200427085408.13879-9-chris@chris-wilson.co.uk>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <158799124667.17035.5417544090527568555@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 27 Apr 2020 13:40:46 +0100
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915/gt: Restore aggressive
- post-boost downclocking
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 12:50:03 -0000
+Message-ID: <158799180335.26356.3137428427582078338@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200427120207.13212-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200427120207.13212-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Fix_up_clock_frequency_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,87 +38,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-04-27 09:54:08)
-> We reduced the clocks slowly after a boost event based on the
-> observation that the smoothness of animations suffered. However, since
-> reducing the evalution intervals, we should be able to respond to the
-> rapidly fluctuating workload of a simple desktop animation and so
-> restore the more aggressive downclocking.
-> 
-> References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+== Series Details ==
 
-*** ANECDOTAL ***
+Series: drm/i915/gt: Fix up clock frequency (rev2)
+URL   : https://patchwork.freedesktop.org/series/76512/
+State : failure
 
-In measurements on Icelake, the chrome power test [frankly a horrible
-test that is mostly idle, and has no feedback on UX quality metrics]:
+== Summary ==
 
-before:
-7214.52,Joules,power/energy-pkg/,2302922017998,100.00,,
-2927.24,Joules,power/energy-cores/,2302922022934,100.00,,
-840.42,Joules,power/energy-gpu/,2302922024419,100.00,,
-166620,M,i915/actual-frequency/,2302922026977,100.00,,
-1905549106177,ns,i915/rc6-residency/,2302922028812,100.00,,
-290532899942,ns,i915/rcs0-busy/,2302922032428,100.00,,
-0,ns,i915/bcs0-busy/,2302922034987,100.00,,
-0,ns,i915/vcs0-busy/,2302922034237,100.00,,
+CI Bug Log - changes from CI_DRM_8372 -> Patchwork_17476
+====================================================
 
-after:
-6713.43,Joules,power/energy-pkg/,2228832095923,100.00,,
-2802.07,Joules,power/energy-cores/,2228832104461,100.00,,
-587.04,Joules,power/energy-gpu/,2228832106940,100.00,,
-132124,M,i915/actual-frequency/,2228832095439,100.00,,
-1957236452947,ns,i915/rc6-residency/,2228832089455,100.00,,
-265365231893,ns,i915/rcs0-busy/,2228832089043,100.00,,
-0,ns,i915/bcs0-busy/,2228832085764,100.00,,
-0,ns,i915/vcs0-busy/,2228832084838,100.00,,
+Summary
+-------
 
-Some video playback (which is mostly pushing GL textures through to the
-compositor, nothing uses libva):
+  **FAILURE**
 
-before:
-9512.58,Joules,power/energy-pkg/,995287278884,100.00,,
-2631.12,Joules,power/energy-cores/,995287289129,100.00,,
-3661.46,Joules,power/energy-gpu/,995287294283,100.00,,
-715924,M,i915/actual-frequency/,995287298748,100.00,,
-389009635708,ns,i915/rc6-residency/,995287303131,100.00,,
-409781702935,ns,i915/rcs0-busy/,995287305584,100.00,,
-0,ns,i915/bcs0-busy/,995287310428,100.00,,
-0,ns,i915/vcs0-busy/,995287314214,100.00,,
+  Serious unknown changes coming with Patchwork_17476 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17476, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-after:
-8013.46,Joules,power/energy-pkg/,994173360392,100.00,,
-2077.22,Joules,power/energy-cores/,994173366417,100.00,,
-2518.69,Joules,power/energy-gpu/,994173370072,100.00,,
-464025,M,i915/actual-frequency/,994173363951,100.00,,
-351530351036,ns,i915/rc6-residency/,994173363398,100.00,,
-632114323426,ns,i915/rcs0-busy/,994173364895,100.00,,
-0,ns,i915/bcs0-busy/,994173367723,100.00,,
-0,ns,i915/vcs0-busy/,994173369162,100.00,,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/index.html
 
-I spot checked a few games during scenes where the GPU was not capped
-out, and it was drawing about ~100MHz less for ~1W less.
+Possible new issues
+-------------------
 
-*** ANECDOTAL ***
+  Here are the unknown changes that may have been introduced in Patchwork_17476:
 
-The other data point is a happy user in #1698 who was wise enough to
-demand both smooth UX and low power.
+### IGT changes ###
 
-We do have a huge issue in that we have no insight into P&P in CI.
-Not even a single machine running a desktop config and playing back a
-move and reporting power usage vs dropped frames. Nor even running the
-battery tests to check that we do suspend in S3.
+#### Possible regressions ####
 
-I spent some time trying to find some benchmarks we could use to measure
-jank and power used and found nothing useful. The closest would be
-wrapping rapl around gnome-shell-perf-tool, but that is still a long way
-from capturing enough use cases.
--Chris
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+    - fi-icl-u2:          [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-tgl-y:           [DMESG-FAIL][5] ([i915#1759]) -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][7] ([i915#1759]) -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-tgl-dsi/igt@i915_selftest@live@gt_pm.html
+    - {fi-tgl-u}:         [DMESG-FAIL][9] ([i915#1759]) -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-tgl-u/igt@i915_selftest@live@gt_pm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17476 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cfl-8109u:       [DMESG-FAIL][11] ([i915#1791]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8372/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/fi-cfl-8109u/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
+  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8372 -> Patchwork_17476
+
+  CI-20190529: 20190529
+  CI_DRM_8372: 82c11b773e7d77543950ff67b2561cd984032d14 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5612: c8dc1fd926a550308b971ca7d83fe0a927a38152 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17476: b1c6c060d6ebf4ad9110ae3b160733afb5c83413 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b1c6c060d6eb drm/i915/gt: Fix up clock frequency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17476/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
