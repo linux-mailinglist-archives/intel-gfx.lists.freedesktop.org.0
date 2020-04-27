@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5893B1B9A6D
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 10:40:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34EF51B9AD6
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 10:54:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EE986E0CB;
-	Mon, 27 Apr 2020 08:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94CE56E133;
+	Mon, 27 Apr 2020 08:54:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFAD6E0CB
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 08:40:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E95EE6E12A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 08:54:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032097-1500050 
- for multiple; Mon, 27 Apr 2020 09:40:02 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032259-1500050 
+ for multiple; Mon, 27 Apr 2020 09:54:10 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Apr 2020 09:40:00 +0100
-Message-Id: <20200427084000.10999-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 09:54:00 +0100
+Message-Id: <20200427085408.13879-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Sanitize GT first
+Subject: [Intel-gfx] [PATCH 1/9] drm/i915/gt: Sanitize GT first
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
