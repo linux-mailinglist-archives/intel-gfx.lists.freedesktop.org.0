@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74B01B9FE0
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5AE1B9FED
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:31:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA7A6E15F;
-	Mon, 27 Apr 2020 09:29:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A37C899D4;
+	Mon, 27 Apr 2020 09:31:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE306E15F
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 09:29:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C72988FFA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 09:31:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032762-1500050 
- for multiple; Mon, 27 Apr 2020 10:29:33 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032780-1500050 
+ for multiple; Mon, 27 Apr 2020 10:30:39 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Apr 2020 10:29:31 +0100
-Message-Id: <20200427092931.29097-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 10:30:38 +0100
+Message-Id: <20200427093038.29219-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200427092931.29097-1-chris@chris-wilson.co.uk>
+References: <20200427092931.29097-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gt: Check cacheline is valid before
  acquiring
@@ -37,7 +39,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -85,7 +87,10 @@ cacheline.
 <4>[  547.210567]  ? __await_execution.constprop.51+0x2e0/0x570 [i915]
 <4>[  547.210706]  i915_request_await_dma_fence+0x8f7/0xc70 [i915]
 
+Fixes: 85bedbf191e8 ("drm/i915/gt: Eliminate the trylock for reading a timeline's hwsp")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v5.6+
 ---
  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 ++
  1 file changed, 2 insertions(+)
