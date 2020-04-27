@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D675E1BAA18
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 18:32:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0601BAA31
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 18:39:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4601589CA2;
-	Mon, 27 Apr 2020 16:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95FAA6E338;
+	Mon, 27 Apr 2020 16:39:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9041389C56;
- Mon, 27 Apr 2020 16:32:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8956CA0099;
- Mon, 27 Apr 2020 16:32:27 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 733EF6E338
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 16:39:24 +0000 (UTC)
+IronPort-SDR: kFFYswfTN+eQr21XsiGtUq8QDec9jz31hdXTcAWLPx/7uXq0VdZSRFVGq3APEueUlL2PIzb3Gr
+ uFfj5B8KGhRg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 09:39:23 -0700
+IronPort-SDR: 9PNOLF3PSuoMfICKS2pCXOM54c7HozCH+ng+qzsBUQb+wxdUdtqpXl9zHcm9aZR5a++tJejFr6
+ XEUhdfAJLNdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,324,1583222400"; d="scan'208";a="458920273"
+Received: from nsowell-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.82.159])
+ by fmsmga006.fm.intel.com with ESMTP; 27 Apr 2020 09:39:22 -0700
+Date: Mon, 27 Apr 2020 19:39:02 +0300
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200427163902.GD1862@intel.intel>
+References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
+ <20200427085408.13879-7-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 27 Apr 2020 16:32:27 -0000
-Message-ID: <158800514753.26356.7994261652402320759@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200427154554.12736-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200427154554.12736-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Fix_up_clock_frequency_=28rev5=29?=
+Content-Disposition: inline
+In-Reply-To: <20200427085408.13879-7-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/gt: Switch to manual
+ evaluation of RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,109 +49,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Chris,
 
-Series: drm/i915/gt: Fix up clock frequency (rev5)
-URL   : https://patchwork.freedesktop.org/series/76512/
-State : success
+On Mon, Apr 27, 2020 at 09:54:06AM +0100, Chris Wilson wrote:
+> As with the realisation for soft-rc6, we respond to idling the engines
+> within microseconds, far faster than the response times for HW RC6 and
+> RPS. Furthermore, our fast parking upon idle, prevents HW RPS from
+> running for many desktop workloads, as the RPS evaluation intervals are
+> on the order of tens of milliseconds, but the typical workload is just a
+> couple of milliseconds, but yet we still need to determine the best
+> frequency for user latency versus power.
+> 
+> Recognising that the HW evaluation intervals are a poor fit, and that
+> they were deprecated [in bspec at least] from gen10, start to wean
+> ourselves off them and replace the EI with a timer and our accurate
+> busy-stats. The principle benefit of manually evaluating RPS intervals
+> is that we can be more responsive for better performance and powersaving
+> for both spiky workloads and steady-state.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1698
+> Fixes: 98479ada421a ("drm/i915/gt: Treat idling as a RPS downclock event")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@intel.com>
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-CI Bug Log - changes from CI_DRM_8373 -> Patchwork_17481
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17481 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-bwr-2160/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-bwr-2160/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-x1275:       [DMESG-FAIL][3] ([i915#1791]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
-    - fi-icl-u2:          [DMESG-FAIL][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-skl-lmem:        [DMESG-FAIL][7] ([i915#1791]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [FAIL][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([i915#227]) -> [PASS][12] +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][13] ([fdo#109271]) -> [FAIL][14] ([i915#62])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8373/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
-  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (49 -> 41)
-------------------------------
-
-  Missing    (8): fi-cml-s fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-cfl-8109u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8373 -> Patchwork_17481
-
-  CI-20190529: 20190529
-  CI_DRM_8373: 9d63a10e83b2d271007e281fe875d6f650a1849e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5612: c8dc1fd926a550308b971ca7d83fe0a927a38152 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17481: 0411865923e7ac26cda739830d80717451927d8d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0411865923e7 drm/i915/gt: Fix up clock frequency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17481/index.html
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
