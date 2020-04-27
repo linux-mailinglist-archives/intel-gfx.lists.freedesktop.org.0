@@ -1,64 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62951B97A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 08:44:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7468B1BAB05
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 19:19:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA4CE6E02F;
-	Mon, 27 Apr 2020 06:44:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E921A89B84;
+	Mon, 27 Apr 2020 17:19:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991DF6E02F
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 06:44:39 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id v4so15133641wme.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 26 Apr 2020 23:44:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=KV8mI704c4wnDXRIu02UleUgTYiEbhwe5QBwP8rLPnY=;
- b=sV8r9iH1IJ/wa4MRY/0iLtmG7uVrvHaehubuctbTatS+Pb88tUDgnjuc3Z+FRFFtXy
- JtQia0BqQ54Pr4bsanZcTfztjLLEU2ODwd2rTnmQlAahy6gXtDrxU56TxqJJomjzH1lN
- XyJ3OKQkeNZ2deawteL/pmRgatbd6MhibKdKHSlPCbQog5Z09gkWUUd47TH/K7T3hBTv
- 0+P7WalZiDkyAYSHPv/Noz0bulxQ7Pkap6N6AH2pURIhb6uUGra20Q1eoEyr1nOEzfgH
- i6cOs9vv1xw/JQooHzOLfo0pWFmb7istdgO8npVVIsqGMD1QH+/ytCLc9tB65Eh0SD5n
- ob3g==
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com
+ [IPv6:2a00:1450:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C6589F99;
+ Mon, 27 Apr 2020 08:14:02 +0000 (UTC)
+Received: by mail-lf1-x143.google.com with SMTP id f8so13050581lfe.12;
+ Mon, 27 Apr 2020 01:14:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=FdfIU2NSLi88tCR7YZD3MsDxdEuhmbVZJnaYrUyg/FE=;
+ b=USImTHS+2kjnjzTvZI+vUWJujyfWRDkv01ERhF34UHkbrkyZuD1txWGzcFXSWY+YDK
+ CIQAOQ2rJrPhgm8dk2ZRlT5u/vPMqogGCQJe+KL9HGR3aLw14Vo+0f8NEieK72B0Eh2c
+ UaPBxPidYjOZpx4IvXrgM4/EWxxXIjAxbDGX/+FQmOggRC+eFb9RiQ6srgiQ8n0U6uch
+ pDO5IB9Stv9HwGtgkKeOh6s7t1ADYFsA/NVZYEiMyZoxHAAZjVh6jxOboqcTBsfvbgiV
+ HRhH72dexIXWO28Mh7cHYZKjQxuNbQt5P0tGKTWSNDs1adrH/A+ONgelIHXSCEJAXl4/
+ l3NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=KV8mI704c4wnDXRIu02UleUgTYiEbhwe5QBwP8rLPnY=;
- b=dIbgBmZVvcVsdTh4eJJckIxtPHy61yCXm6PYdXSrQArmWrUJJjge7/T7LrLbpHHO9J
- FAGYIB7lpxXFFraiXdjmZ1sXVFrQyvp6ChRAGqWHZqoM+jVTaxMw0YsfkyaweVU8Rmts
- jIMnrR6voaXgEh/ECzRu+DO/bxCw1W8IDZsWlAqoR8OxzCQVRUUOhGipCIrgkRRil0yG
- CoHmKsy2IzvsXPuraz0KBD/RmpXAKx2LG0ippA4aAELVxml/nTilJoLTEg0FDfscZdC4
- Ecm2CAkbz21OVSvVCY/1DDnXwvSoaM/2Bt/lZ6PLoGwnjstXfwJTLt9Dqnrg4k6DXmiI
- WWkg==
-X-Gm-Message-State: AGi0PubD4MWtYBvc4oJP+rIvwgfNmo6qKJDjJosCPiW8GWxFB8SiKi91
- 9plwEwkLG3/0eN35ec+m6X8Sew==
-X-Google-Smtp-Source: APiQypJl184c+VzbwdnwkKBGPEWNJ1KlwA2PV4ZKB6XncsflDQL5MrVEpinCWeWiGNtr2IxJxFDRVw==
-X-Received: by 2002:a1c:1d92:: with SMTP id d140mr24421897wmd.67.1587969878117; 
- Sun, 26 Apr 2020 23:44:38 -0700 (PDT)
-Received: from dell ([2.31.163.63])
- by smtp.gmail.com with ESMTPSA id 185sm16425524wmc.32.2020.04.26.23.44.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Apr 2020 23:44:37 -0700 (PDT)
-Date: Mon, 27 Apr 2020 07:44:34 +0100
-From: Lee Jones <lee.jones@linaro.org>
-To: Guru Das Srinagesh <gurus@codeaurora.org>
-Message-ID: <20200427064434.GA3559@dell>
-References: <cover.1587523702.git.gurus@codeaurora.org>
- <20200423114857.GG3612@dell> <20200423215306.GA8670@codeaurora.org>
- <20200424064303.GJ3612@dell>
- <20200424221422.GA31118@codeaurora.org>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200424221422.GA31118@codeaurora.org>
-Subject: Re: [Intel-gfx] [PATCH v13 00/11] Convert PWM period and duty cycle
- to u64
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=FdfIU2NSLi88tCR7YZD3MsDxdEuhmbVZJnaYrUyg/FE=;
+ b=rpdxq1fWE29CwghVc3FEBleEQyAlNucYcZr+MS6cJ1ez2Me6taIVdLnOh+TS+dcExG
+ ZhLgZQjkL+jOGoq1PhFF1ssH4wdnlMfolyu159mNHNbXx2h5EmePO522A2gM7YHnqCWu
+ jN7pAVkxEN5MQ7JBH2Z2AQ2D0C7TpqaE9/7ikMPGzUIYWuHtm17OQF2T8UkqISJMpRIF
+ nL5cO14+qS06Vkh7oO3X89MoxVvXW5KBXSBzICIV7VnGFJd/9RWjXTRaOloC8KkxQstm
+ CTveTrv/lxJ7fAXZCeZlDK69QbH+hZ3/3zDGFssL+WQxOUWRmSqbv3xYTacyUBzcMjJG
+ W+sA==
+X-Gm-Message-State: AGi0Pub5LGiK36iUFM9i81huOtEnj+4jn9WonJETCRYUNv7MDEACB92D
+ DKypJVlM4IthvsPFF3nZrFY=
+X-Google-Smtp-Source: APiQypJb8u+s2Yxiz9lf4eiIRKY3+cYu2Oqfifby+TcDNTNf2cVOtw+SmKfnqQEiTDVq3TME2jyUEQ==
+X-Received: by 2002:a19:e04a:: with SMTP id g10mr14556853lfj.164.1587975240426; 
+ Mon, 27 Apr 2020 01:14:00 -0700 (PDT)
+Received: from e123311-lin.cambridge.arm.com
+ (static-91-225-135-18.devs.futuro.pl. [91.225.135.18])
+ by smtp.gmail.com with ESMTPSA id i20sm11209907lfe.15.2020.04.27.01.13.58
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 27 Apr 2020 01:13:59 -0700 (PDT)
+From: Michal Orzel <michalorzel.eng@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ ville.syrjala@linux.intel.com, chris@chris-wilson.co.uk,
+ jose.souza@intel.com
+Date: Mon, 27 Apr 2020 10:05:17 +0200
+Message-Id: <1587974717-14599-1-git-send-email-michalorzel.eng@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Mailman-Approved-At: Mon, 27 Apr 2020 17:19:39 +0000
+Subject: [Intel-gfx] [PATCH] Remove drm_display_mode.hsync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,77 +67,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, linux-fbdev@vger.kernel.org,
- David Collins <collinsd@codeaurora.org>, Liam Girdwood <lgirdwood@gmail.com>,
- David Airlie <airlied@linux.ie>, Michael Turquette <mturquette@baylibre.com>,
- Kamil Debski <kamil@wypas.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Atish Patra <atish.patra@wdc.com>,
- linux-riscv@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- linux-clk@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alexander Shiyan <shc_work@mail.ru>, Chen-Yu Tsai <wens@csie.org>,
- NXP Linux Team <linux-imx@nxp.com>,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>,
- Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
- linux-pwm@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Alexandre Torgue <alexandre.torgue@st.com>, Arnd Bergmann <arnd@arndb.de>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Mark Brown <broonie@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
- Thomas Gleixner <tglx@linutronix.de>, Fabrice Gasnier <fabrice.gasnier@st.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Allison Randal <allison@lohutok.net>, linux-hwmon@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Fontana <rfontana@redhat.com>, Stephen Boyd <sboyd@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, linux-kernel@vger.kernel.org,
- Yash Shah <yash.shah@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Dan Carpenter <dan.carpenter@oracle.com>, Joe Perches <joe@perches.com>,
- Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Michal Orzel <michalorzel.eng@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyNCBBcHIgMjAyMCwgR3VydSBEYXMgU3JpbmFnZXNoIHdyb3RlOgoKPiBPbiBGcmks
-IEFwciAyNCwgMjAyMCBhdCAwNzo0MzowM0FNICswMTAwLCBMZWUgSm9uZXMgd3JvdGU6Cj4gPiBB
-IGdyZWF0IGRlYWwgb2YgbWFpbGluZyBsaXN0cyBjb250YWluIG51bWVyb3VzIHByb3RlY3Rpb25z
-IGFnYWluc3QKPiA+IHRoaW5ncyBsaWtlIGZsb29kaW5nIGFuZCBzcGFtbWluZy4gIE9uZSBvZiB0
-aG9zZSBwcm90ZWN0aW9ucyBpcyBhCj4gPiBjaGVjayBmb3IgIlRvbyBtYW55IHJlY2lwaWVudHMg
-dG8gdGhlIG1lc3NhZ2UiLiAgTW9zdCBvZiB0aGUgdGltZSB0aGlzCj4gPiBzaW1wbHkgcmVxdWly
-ZXMgbW9kZXJhdG9yIGludGVydmVudGlvbiBieSB3YXkgb2YgcmV2aWV3IGFuZCBhcHByb3ZhbCwK
-PiA+IGJ1dCB0aGlzIHVsdGltYXRlbHkgZGVwZW5kcyBvbiB0aGUgTUwncyBjb25maWd1cmF0aW9u
-Lgo+ID4gCj4gPiBUaGUgZmlyc3QgdGhpbmcgdG8gYXNjZXJ0YWluIGlzIHdoeSB5b3VyIHJlY2lw
-aWVudHMgbGlzdCBpcyBzbyBsYXJnZS4KPiA+IEhhdmUgeW91IGFkZGVkIGV2ZXJ5IHJldmlld2Vy
-LCBzdWJzeXN0ZW0tbWFpbnRhaW5lciwgbWFpbnRhaW5lciBhbmQKPiA+IGNvbnRyaWJ1dG9yIHN1
-Z2dlc3RlZCBieSBnZXQtbWFpbnRhaW5lci5wbD8gIElmIHNvLCBjb25zaWRlciBwcnVuaW5nCj4g
-PiB0aGF0IGEgbGl0dGxlLiAgQ29udHJpYnV0b3JzIGRvIG5vdCB0ZW5kIHRvIGNhcmUgYWJvdXQg
-c3Vic2VxdWVudAo+ID4gY2hhbmdlcyB0byBhIGZpbGUuICBBcyBzb21lb25lIHdobyByZWNlaXZl
-cyBhIGxvdCBvZiBwYXRjaGVzLCBJIHRlbmQKPiA+IHRvIGdldCBmZWQtdXAgd2hlbiByZWNlaXZp
-bmcgcGF0Y2hlcyBzaW1wbHkgYmVjYXVzZSBJIG1hZGUgYSBjaGFuZ2UgWAo+ID4geWVhcnMgYWdv
-LiAgU3RpY2sgdG8gbGlzdGVkIG1haW50YWluZXJzL3Jldmlld2VycyBpbiB0aGUgZmlyc3QKPiA+
-IGluc3RhbmNlIGFuZCBzZWUgaG93IGZhciB0aGF0IHRha2VzIHlvdS4KPiAKPiBUaGFuayB5b3Ug
-Zm9yIHRoZSBkZXRhaWxlZCByZXBseS4gSSBkaWQgdGhpcyBpbiB0aGUgZmlyc3QgZmV3IHBhdGNo
-c2V0cwo+IGFuZCB0aGVuIHdoZW4gYSBmZXcgcGF0Y2hlcyBkaWRuJ3QgZ2V0IGFueSBhdHRlbnRp
-b24sIGV4cGFuZGVkIHRoZQo+IGF1ZGllbmNlIHRodXMuIFN0aWxsLCBhcm91bmQgNTAlIG9mIHRo
-ZSBwYXRjaGVzIGluIHRoaXMgc2VyaWVzIHJlbWFpbgo+IHVucmV2aWV3ZWQgYnkgYW55b25lLgoK
-VGhpcyBpc24ndCBhIHJlYXNvbiB0byBhZGQgbW9yZSByZWNpcGllbnRzICh3aG8gYXJlIGxpa2Vs
-eSB0byBjYXJlCmV2ZW4gbGVzcyB0aGFuIHlvdXIgb3JpZ2luYWwgZ3JvdXApLiAgSG93ZXZlciBp
-dCAqaXMqIGEgZ29vZCBhcmd1bWVudApmb3IgaW5jbHVkaW5nIGFsbCBvZiB0aGUgc3BlY2lmaWVk
-IG1haW50YWluZXJzL3Jldmlld2VycyBpbiBvbiBhbGwgb2YKdGhlIHBhdGNoZXMuCgo+ID4gSWYg
-eW91ciByZWNpcGllbnRzIGxpc3QgaXMgYXMgc3VjY2luY3QgYXMgcmVhc29uYWJseSBwb3NzaWJs
-ZSwgbWF5YmUKPiA+IGp1c3QgYWNjZXB0IHRoYXQgZXZlcnkgdmVyc2lvbiBpc24ndCBnb2luZyB0
-byBiZSBhcmNoaXZlZCBieSBldmVyeQo+ID4gTUwuICBJdCdzIHN0aWxsIG11Y2ggbW9yZSB1c2Vm
-dWwgZm9yIHRoZSBjb3JyZWN0IHBlb3BsZSB0byBoYXZlCj4gPiB2aXNpYmlsaXR5IGludG8gdGhl
-IHNldCB0aGFuIGZvciBpdCB0byBiZSBhcmNoaXZlZCBtdWx0aXBsZSB0aW1lcy4KPiAKPiBUaGFu
-ayB5b3UsIHdpbGwgcHJ1bmUgdGhlIGxpc3QgYW5kIHJlbW92ZSBwYXN0IGNvbnRyaWJ1dG9ycyBm
-cm9tIHRoZQo+IENjLWxpc3QgYW5kIGFkZCBhbGwgcGFydGllcyB0byBhbGwgcGF0Y2hlcy4KCkdy
-ZWF0LiAgT25jZSB5b3UndmUgZG9uZSB0aGF0LCB3ZSBjYW4gc3RhcnQgdG8gaGVscCB5b3UgYWNx
-dWlyZSB0aGUKQWNrcyB5b3UgbmVlZCBvbiB5b3VyIHJlbWFpbmluZyBwYXRjaGVzLgoKLS0gCkxl
-ZSBKb25lcyBb5p2O55C85pavXQpMaW5hcm8gU2VydmljZXMgVGVjaG5pY2FsIExlYWQKTGluYXJv
-Lm9yZyDilIIgT3BlbiBzb3VyY2Ugc29mdHdhcmUgZm9yIEFSTSBTb0NzCkZvbGxvdyBMaW5hcm86
-IEZhY2Vib29rIHwgVHdpdHRlciB8IEJsb2cKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+As suggested by the TODO list of DRM subsystem:
+-remove the member hsync of drm_display_mode
+-convert code using hsync member to use drm_mode_hsync()
+
+Signed-off-by: Michal Orzel <michalorzel.eng@gmail.com>
+---
+ drivers/gpu/drm/drm_modes.c                  |  6 +-----
+ drivers/gpu/drm/i915/display/intel_display.c |  1 -
+ include/drm/drm_modes.h                      | 10 ----------
+ 3 files changed, 1 insertion(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+index d4d6451..0340079 100644
+--- a/drivers/gpu/drm/drm_modes.c
++++ b/drivers/gpu/drm/drm_modes.c
+@@ -752,16 +752,12 @@ EXPORT_SYMBOL(drm_mode_set_name);
+  * @mode: mode
+  *
+  * Returns:
+- * @modes's hsync rate in kHz, rounded to the nearest integer. Calculates the
+- * value first if it is not yet set.
++ * @modes's hsync rate in kHz, rounded to the nearest integer.
+  */
+ int drm_mode_hsync(const struct drm_display_mode *mode)
+ {
+ 	unsigned int calc_val;
+ 
+-	if (mode->hsync)
+-		return mode->hsync;
+-
+ 	if (mode->htotal <= 0)
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 3468466..ec7e943 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8891,7 +8891,6 @@ void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+ 
+ 	mode->clock = pipe_config->hw.adjusted_mode.crtc_clock;
+ 
+-	mode->hsync = drm_mode_hsync(mode);
+ 	mode->vrefresh = drm_mode_vrefresh(mode);
+ 	drm_mode_set_name(mode);
+ }
+diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
+index 99134d4..7dab7f1 100644
+--- a/include/drm/drm_modes.h
++++ b/include/drm/drm_modes.h
+@@ -391,16 +391,6 @@ struct drm_display_mode {
+ 	int vrefresh;
+ 
+ 	/**
+-	 * @hsync:
+-	 *
+-	 * Horizontal refresh rate, for debug output in human readable form. Not
+-	 * used in a functional way.
+-	 *
+-	 * This value is in kHz.
+-	 */
+-	int hsync;
+-
+-	/**
+ 	 * @picture_aspect_ratio:
+ 	 *
+ 	 * Field for setting the HDMI picture aspect ratio of a mode.
+-- 
+2.7.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
