@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CA51BA4D3
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 15:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 184561BA55C
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 15:48:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7D638986D;
-	Mon, 27 Apr 2020 13:36:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067966E2D1;
+	Mon, 27 Apr 2020 13:48:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0E189805
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 13:36:23 +0000 (UTC)
-IronPort-SDR: elUGbzIqKJtwIstxU8nNZNmGKgl+CHanXirGYCc+CViHZZqiY4FGCna1lmi79zLboQrFFJ+0H3
- GtO4eFrQFqxA==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40E1B6E2D1;
+ Mon, 27 Apr 2020 13:48:48 +0000 (UTC)
+IronPort-SDR: UmbBYrB5pnh3VZadTIxb1z5TW7JijVw0pMSbvZ15kMz+sf6SuuDVHrT83lvgIouIlSkVTklwp5
+ KberYFZVEc0Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2020 06:36:23 -0700
-IronPort-SDR: qFklAHwWtHQmQn1bBOyatO7IzuFs4uRNFiwHiF3N+h+RZ87XF+hgwTbP/LDZC2OOs04iFVdzlX
- nVQ9RwBz/mxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,324,1583222400"; d="scan'208";a="246143917"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 27 Apr 2020 06:36:19 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 27 Apr 2020 16:36:19 +0300
-Date: Mon, 27 Apr 2020 16:36:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200427133619.GF6112@intel.com>
-References: <20200424231423.4065231-1-matthew.d.roper@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 06:48:47 -0700
+IronPort-SDR: s4oIVuVu3USfWnW80U/6zKOUmltoh8xzO52WmN/+qPMXyWhsz+Of1qcrWEQBhYSq2o6YbT/La6
+ mPxnhwx3hxBg==
+X-IronPort-AV: E=Sophos;i="5.73,324,1583222400"; d="scan'208";a="431781142"
+Received: from mbrowarx-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.47.15])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 06:48:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Guru Das Srinagesh <gurus@codeaurora.org>
+In-Reply-To: <20200424221756.GB31118@codeaurora.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1587523702.git.gurus@codeaurora.org>
+ <4a3acf8673c08308848fb7ae73d992b6feb758d3.1587523702.git.gurus@codeaurora.org>
+ <87ftctbe5l.fsf@intel.com> <20200424221756.GB31118@codeaurora.org>
+Date: Mon, 27 Apr 2020 16:48:39 +0300
+Message-ID: <87y2qh9gzs.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200424231423.4065231-1-matthew.d.roper@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use proper fault mask in
- interrupt postinstall too
+Subject: Re: [Intel-gfx] [PATCH v13 01/11] drm/i915: Use 64-bit division
+ macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,79 +50,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-pwm@vger.kernel.org, David Collins <collinsd@codeaurora.org>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 24, 2020 at 04:14:23PM -0700, Matt Roper wrote:
-> The IRQ postinstall handling had open-coded pipe fault mask selection
-> that never got updated for gen11.  Switch it to use
-> gen8_de_pipe_fault_mask() to ensure we don't miss updates for new
-> platforms.
-> =
-
-> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Fixes: d506a65d56fd ("drm/i915: Catch GTT fault errors for gen11+ planes")
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index 1502ab44f1a5..bd722d0650c8 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -3358,7 +3358,8 @@ static void gen8_de_irq_postinstall(struct drm_i915=
-_private *dev_priv)
->  {
->  	struct intel_uncore *uncore =3D &dev_priv->uncore;
->  =
-
-> -	u32 de_pipe_masked =3D GEN8_PIPE_CDCLK_CRC_DONE;
-> +	u32 de_pipe_masked =3D gen8_de_pipe_fault_mask(dev_priv) |
-> +		GEN8_PIPE_CDCLK_CRC_DONE;
->  	u32 de_pipe_enables;
->  	u32 de_port_masked =3D GEN8_AUX_CHANNEL_A;
->  	u32 de_port_enables;
-> @@ -3369,13 +3370,10 @@ static void gen8_de_irq_postinstall(struct drm_i9=
-15_private *dev_priv)
->  		de_misc_masked |=3D GEN8_DE_MISC_GSE;
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 9) {
-> -		de_pipe_masked |=3D GEN9_DE_PIPE_IRQ_FAULT_ERRORS;
->  		de_port_masked |=3D GEN9_AUX_CHANNEL_B | GEN9_AUX_CHANNEL_C |
->  				  GEN9_AUX_CHANNEL_D;
->  		if (IS_GEN9_LP(dev_priv))
->  			de_port_masked |=3D BXT_DE_PORT_GMBUS;
-> -	} else {
-> -		de_pipe_masked |=3D GEN8_DE_PIPE_IRQ_FAULT_ERRORS;
->  	}
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 11)
-> -- =
-
-> 2.24.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyNCBBcHIgMjAyMCwgR3VydSBEYXMgU3JpbmFnZXNoIDxndXJ1c0Bjb2RlYXVyb3Jh
+Lm9yZz4gd3JvdGU6Cj4gT24gRnJpLCBBcHIgMjQsIDIwMjAgYXQgMDk6MTc6NThBTSArMDMwMCwg
+SmFuaSBOaWt1bGEgd3JvdGU6Cj4+IE9uIFR1ZSwgMjEgQXByIDIwMjAsIEd1cnUgRGFzIFNyaW5h
+Z2VzaCA8Z3VydXNAY29kZWF1cm9yYS5vcmc+IHdyb3RlOgo+PiA+IFNpbmNlIHRoZSBQV00gZnJh
+bWV3b3JrIGlzIHN3aXRjaGluZyBzdHJ1Y3QgcHdtX3N0YXRlLmR1dHlfY3ljbGUncwo+PiA+IGRh
+dGF0eXBlIHRvIHU2NCwgcHJlcGFyZSBmb3IgdGhpcyB0cmFuc2l0aW9uIGJ5IHVzaW5nIERJVl9S
+T1VORF9VUF9VTEwKPj4gPiB0byBoYW5kbGUgYSA2NC1iaXQgZGl2aWRlbmQuCj4+ID4KPj4gPiBU
+bzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4KPj4gPiBDYzogSm9v
+bmFzIExhaHRpbmVuIDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPgo+PiA+IENjOiBE
+YXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+Cj4+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRh
+bmllbEBmZndsbC5jaD4KPj4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24u
+Y28udWs+Cj4+ID4gQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
+dGVsLmNvbT4KPj4gPiBDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+IENj
+OiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+ID4KPj4gCj4+IFN1cGVyZmx1b3Vz
+IGJsYW5rIGxpbmUuCj4KPiBXaWxsIHJlbW92ZS4KPgo+PiAKPj4gQW55d2F5LCBwbGVhc2UgcHJl
+c2VydmUgdGhlIGV4aXN0aW5nIGFja3MgYW5kIHJldmlld3MgWzFdIHNvIHBlb3BsZQo+PiBkb24n
+dCBoYXZlIHRvIGRvIGl0IGFnYWluLgo+PiAKPj4gQlIsCj4+IEphbmkuCj4+IAo+PiBbMV0gaHR0
+cDovL2xvcmUua2VybmVsLm9yZy9yLzg3aDd5bGViMGkuZnNmQGludGVsLmNvbQo+Cj4gSSBkcm9w
+cGVkIHlvdXIgQWNrZWQtYnkgYXMgdGhlIHBhdGNoIGhhZCB0byBjaGFuZ2VkIHRvIHJlc29sdmUg
+YSBtZXJnZQo+IGNvbmZsaWN0IHdoZW4gSSByZWJhc2VkIHRvIHRpcC4gQ291bGQgeW91IHBsZWFz
+ZSByZS1yZXZpZXcgdGhpcyBwYXRjaD8KClJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5u
+aWt1bGFAaW50ZWwuY29tPgpBY2tlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVs
+LmNvbT4KCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
+cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
