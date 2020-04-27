@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A2C1BA1D9
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 13:01:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 464351BA1FC
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 13:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D066E222;
-	Mon, 27 Apr 2020 11:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F786E223;
+	Mon, 27 Apr 2020 11:10:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A9706E222;
- Mon, 27 Apr 2020 11:01:55 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DAD2489F71;
+ Mon, 27 Apr 2020 11:10:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 142ACA363D;
- Mon, 27 Apr 2020 11:01:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC830A0019;
+ Mon, 27 Apr 2020 11:10:31 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Mon, 27 Apr 2020 11:01:55 -0000
-Message-ID: <158798531505.26356.8977885954759213093@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 11:10:31 -0000
+Message-ID: <158798583180.26357.9203044968228232388@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200417120040.3432332-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?q?=28rev12=29?=
+References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200427085408.13879-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/9=5D_drm/i915/gt=3A_Sanitize_GT_first?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,87 +47,207 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev12)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : success
+Series: series starting with [1/9] drm/i915/gt: Sanitize GT first
+URL   : https://patchwork.freedesktop.org/series/76542/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8370 -> Patchwork_17475
+CI Bug Log - changes from CI_DRM_8370_full -> Patchwork_17473_full
 ====================================================
 
 Summary
 -------
 
-  **SUCCESS**
+  **FAILURE**
 
-  No regressions found.
+  Serious unknown changes coming with Patchwork_17473_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17473_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17475/index.html
+  
 
-Known issues
-------------
+Possible new issues
+-------------------
 
-  Here are the changes found in Patchwork_17475 that come from known issues:
+  Here are the unknown changes that may have been introduced in Patchwork_17473_full:
 
 ### IGT changes ###
 
-#### Possible fixes ####
+#### Possible regressions ####
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-bdw-5557u:       [DMESG-FAIL][1] ([i915#1791]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17475/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-    - fi-cml-u2:          [DMESG-FAIL][3] ([i915#1791]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17475/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-whl-u:           [DMESG-FAIL][5] ([i915#1791]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17475/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+  * igt@perf@gen8-unprivileged-single-ctx-counters:
+    - shard-glk:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-glk2/igt@perf@gen8-unprivileged-single-ctx-counters.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-glk1/igt@perf@gen8-unprivileged-single-ctx-counters.html
 
   
-  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17473_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_workarounds@suspend-resume:
+    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl1/igt@gem_workarounds@suspend-resume.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-kbl3/igt@gem_workarounds@suspend-resume.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-iclb:         [PASS][5] -> [FAIL][6] ([i915#454])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-iclb3/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@i915_suspend@sysfs-reader:
+    - shard-skl:          [PASS][7] -> [INCOMPLETE][8] ([i915#69])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl10/igt@i915_suspend@sysfs-reader.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-skl10/igt@i915_suspend@sysfs-reader.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:
+    - shard-kbl:          [PASS][9] -> [FAIL][10] ([i915#54] / [i915#93] / [i915#95]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-kbl1/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
+
+  * igt@kms_frontbuffer_tracking@psr-suspend:
+    - shard-skl:          [PASS][11] -> [INCOMPLETE][12] ([i915#123] / [i915#69])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl7/igt@kms_frontbuffer_tracking@psr-suspend.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-skl6/igt@kms_frontbuffer_tracking@psr-suspend.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
+    - shard-kbl:          [PASS][13] -> [FAIL][14] ([i915#53] / [i915#93] / [i915#95])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl7/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-kbl3/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+    - shard-apl:          [PASS][15] -> [FAIL][16] ([i915#53] / [i915#95])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl2/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-apl7/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
+    - shard-apl:          [PASS][17] -> [DMESG-WARN][18] ([i915#180]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl8/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][19] -> [FAIL][20] ([fdo#108145] / [i915#265])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-x:
+    - shard-glk:          [PASS][21] -> [FAIL][22] ([i915#899])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-glk9/igt@kms_plane_lowres@pipe-a-tiling-x.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-glk6/igt@kms_plane_lowres@pipe-a-tiling-x.html
+
+  * igt@kms_psr@psr2_cursor_plane_move:
+    - shard-iclb:         [PASS][23] -> [SKIP][24] ([fdo#109441]) +3 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-iclb6/igt@kms_psr@psr2_cursor_plane_move.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_workarounds@suspend-resume-context:
+    - shard-apl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +4 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl6/igt@gem_workarounds@suspend-resume-context.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-apl8/igt@gem_workarounds@suspend-resume-context.html
+
+  * igt@i915_pm_rps@min-max-config-loaded:
+    - shard-tglb:         [FAIL][27] ([i915#413]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-tglb5/igt@i915_pm_rps@min-max-config-loaded.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-tglb8/igt@i915_pm_rps@min-max-config-loaded.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding:
+    - shard-skl:          [FAIL][29] ([i915#54]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding.html
+
+  * igt@kms_cursor_legacy@cursor-vs-flip-toggle:
+    - shard-hsw:          [FAIL][31] ([i915#57]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-hsw6/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-hsw5/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [SKIP][33] ([fdo#109349]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-iclb5/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
+    - shard-kbl:          [DMESG-WARN][35] ([i915#180]) -> [PASS][36] +4 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [SKIP][37] ([fdo#109441]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-iclb5/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  * {igt@perf@polling-parameterized}:
+    - shard-hsw:          [FAIL][39] ([i915#1542]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-hsw1/igt@perf@polling-parameterized.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-hsw8/igt@perf@polling-parameterized.html
+
+  * {igt@sysfs_heartbeat_interval@mixed@bcs0}:
+    - shard-skl:          [INCOMPLETE][41] ([i915#198]) -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-skl1/igt@sysfs_heartbeat_interval@mixed@bcs0.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-skl1/igt@sysfs_heartbeat_interval@mixed@bcs0.html
+
+  
+#### Warnings ####
+
+  * igt@kms_plane_alpha_blend@pipe-c-alpha-basic:
+    - shard-apl:          [FAIL][43] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][44] ([fdo#108145] / [i915#265])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/shard-apl7/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/shard-apl3/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#123]: https://gitlab.freedesktop.org/drm/intel/issues/123
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#53]: https://gitlab.freedesktop.org/drm/intel/issues/53
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#57]: https://gitlab.freedesktop.org/drm/intel/issues/57
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (45 -> 41)
+Participating hosts (10 -> 10)
 ------------------------------
 
-  Additional (2): fi-icl-y fi-bxt-dsi 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-hsw-4770 fi-kbl-7560u 
+  No changes in participating hosts
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8370 -> Patchwork_17475
+  * Linux: CI_DRM_8370 -> Patchwork_17473
 
   CI-20190529: 20190529
   CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17475: 258521099446d741dff8366046b82a301808fde4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-258521099446 drm/i915/psr: Use new DP VSC SDP compute routine on PSR
-95aa2b123c45 drm/i915/dp: Add compute routine for DP PSR VSC SDP
-2a2871ee95db drm/i915: Stop sending DP SDPs on ddi disable
-3fbb563670cb drm/i915: Program DP SDPs on pipe updates
-9f11ad238c5c drm/i915: Fix enabled infoframe states of lspcon
-dfae32ec1854 drm/i915: Add state readout for DP VSC SDP
-e7ed5c76963b drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-850e74657843 drm/i915: Program DP SDPs with computed configs
-090faf095689 drm/i915: Include DP VSC SDP in the crtc state dump
-959e61cb91e9 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-2d0b0885f34c drm/i915: Include HDMI DRM infoframe in the crtc state dump
-b08459aa2644 drm: Add logging function for DP VSC SDP
-447aea2fe29d drm/i915/dp: Read out DP SDPs
-80724ea91cbd video/hdmi: Add Unpack only function for DRM infoframe
+  Patchwork_17473: 698d557e4e9eda2e9333fe98b6f0302b761cb334 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17475/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17473/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
