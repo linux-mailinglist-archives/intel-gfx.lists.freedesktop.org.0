@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C541BA162
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 12:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 870821BA169
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 12:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00DD66E202;
-	Mon, 27 Apr 2020 10:34:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD3606E213;
+	Mon, 27 Apr 2020 10:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F8A6E202
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 10:33:59 +0000 (UTC)
-IronPort-SDR: zDHcmhn3SEPdGYgWcH9oT1l1CDN8ZyX7l8kUs+sCKb3q4sHQ8oWCF4D1aNGwGD4pQ9iCIM85EX
- 4+hs2FGieFhg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2020 03:33:58 -0700
-IronPort-SDR: SJcHxy/ZSDcFQg6nLK1zVhL2AqX9V1Zs/iYQ9KYpqsTWzLYNZffc/MpzhJkswsfnhY3vw7BK4F
- gk6sO/05Rn0w==
-X-IronPort-AV: E=Sophos;i="5.73,323,1583222400"; d="scan'208";a="431724517"
-Received: from apopescu-mobl1.ger.corp.intel.com (HELO [10.252.53.226])
- ([10.252.53.226])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2020 03:33:58 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200426094231.21995-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <bdb31486-37aa-cc53-5ac3-603941eb8152@linux.intel.com>
-Date: Mon, 27 Apr 2020 11:33:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8238D6E203;
+ Mon, 27 Apr 2020 10:34:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B826A47DB;
+ Mon, 27 Apr 2020 10:34:30 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200426094231.21995-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Check preempt-timeout
- target before submit_ports
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 10:34:30 -0000
+Message-ID: <158798367050.26357.893187737970095257@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200427092931.29097-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200427092931.29097-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Check_cacheline_is_valid_before_acquiring_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,68 +39,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 26/04/2020 10:42, Chris Wilson wrote:
-> We evaluate *active, which is a pointer into execlists->inflight[]
-> during dequeue to decide how long a preempt-timeout we need to apply.
-> However, as soon as we do the submit_ports, the HW may send its ACK
-> interrupt causing us to promote execlists->pending[] tp
-> execlists->inflight[], overwriting the value of *active. We know *active
-> is only stable until we submit (as we only submit when there is no
-> pending promotion).
-> 
-> [   16.102328] BUG: KCSAN: data-race in execlists_dequeue+0x1449/0x1600 [i915]
-> [   16.102356]
-> [   16.102375] race at unknown origin, with read to 0xffff8881e9500488 of 8 bytes by task 429 on cpu 1:
-> [   16.102780]  execlists_dequeue+0x1449/0x1600 [i915]
-> [   16.103160]  __execlists_submission_tasklet+0x48/0x60 [i915]
-> [   16.103540]  execlists_submit_request+0x38e/0x3c0 [i915]
-> [   16.103940]  submit_notify+0x8f/0xc0 [i915]
-> [   16.104308]  __i915_sw_fence_complete+0x61/0x420 [i915]
-> [   16.104683]  i915_sw_fence_complete+0x58/0x80 [i915]
-> [   16.105054]  i915_sw_fence_commit+0x16/0x20 [i915]
-> [   16.105457]  __i915_request_queue+0x60/0x70 [i915]
-> [   16.105843]  i915_gem_do_execbuffer+0x2d6b/0x4230 [i915]
-> [   16.106227]  i915_gem_execbuffer2_ioctl+0x2b0/0x580 [i915]
-> [   16.106257]  drm_ioctl_kernel+0xe9/0x130
-> [   16.106279]  drm_ioctl+0x27d/0x45e
-> [   16.106311]  ksys_ioctl+0x89/0xb0
-> [   16.106336]  __x64_sys_ioctl+0x42/0x60
-> [   16.106370]  do_syscall_64+0x6e/0x2c0
-> [   16.106397]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index c8014c265ffb..cbd04b74ae2a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2438,8 +2438,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   		clear_ports(port + 1, last_port - port);
->   
->   		WRITE_ONCE(execlists->yield, -1);
-> -		execlists_submit_ports(engine);
->   		set_preempt_timeout(engine, *active);
-> +		execlists_submit_ports(engine);
->   	} else {
->   skip_submit:
->   		ring_set_paused(engine, 0);
-> 
+Series: drm/i915/gt: Check cacheline is valid before acquiring (rev2)
+URL   : https://patchwork.freedesktop.org/series/76545/
+State : success
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_8370 -> Patchwork_17474
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17474 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-skl-lmem:        [PASS][1] -> [DMESG-FAIL][2] ([i915#1791])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/fi-skl-lmem/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@uncore:
+    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#489])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bwr-2160/igt@i915_selftest@live@uncore.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/fi-bwr-2160/igt@i915_selftest@live@uncore.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-cml-u2:          [DMESG-FAIL][5] ([i915#1791]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
+    - fi-whl-u:           [DMESG-FAIL][7] ([i915#1791]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/fi-whl-u/igt@i915_selftest@live@gt_pm.html
+
+  
+  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Additional (2): fi-icl-y fi-bxt-dsi 
+  Missing    (4): fi-bsw-cyan fi-byt-squawks fi-hsw-4200u fi-kbl-7500u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8370 -> Patchwork_17474
+
+  CI-20190529: 20190529
+  CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17474: fdcf957ff1a2df3a809bc4c2f92f7cb4c793afca @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fdcf957ff1a2 drm/i915/gt: Check cacheline is valid before acquiring
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17474/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
