@@ -1,45 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E5A1BAAC4
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 19:07:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 551631BAB4B
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 19:30:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 154E36E342;
-	Mon, 27 Apr 2020 17:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21EC46E118;
+	Mon, 27 Apr 2020 17:30:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2996E342
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 17:07:50 +0000 (UTC)
-IronPort-SDR: B4nFe13ctVu4SK6N3pg2pRNGwrBKlNqgQCxSXpTN2EOBjchMgDp93lUXrcXD0ycqxsDRegsS1p
- +O1xVoxnYW9A==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C35AA6E118
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 17:30:13 +0000 (UTC)
+IronPort-SDR: 8+eo6c8ZMwXN3iThkl3bFSz9J07T/TkDc4vQEq4BgQ0xkmm9YcjlXNGuAPwy8oVJUFVELtXsI4
+ OHODgvLptGmg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2020 10:07:50 -0700
-IronPort-SDR: ru8y6koDooEZl6njh7CRx9xtm4i0nDeN66BfF0h0zF9mEGzQdesYszgwjUJyUx9X3FpJpe0iMM
- iaJsj+NgcU+A==
-X-IronPort-AV: E=Sophos;i="5.73,324,1583222400"; d="scan'208";a="293595341"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2020 10:07:50 -0700
-Date: Mon, 27 Apr 2020 10:07:06 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alexei Podtelezhnikov <apodtele@gmail.com>
-Message-ID: <20200427170706.GB3697495@intel.com>
-References: <20200427032232.4307-1-apodtele@gmail.com>
- <20200427140248.GG6112@intel.com>
- <158799689628.17035.14733867368309109586@build.alporthouse.com>
- <CAJU=AjVj6BPrqXgWbooTd2VSs_ZxoSbJR0LguxXWim2qu7Giug@mail.gmail.com>
- <158799871806.17035.9616562654177490399@build.alporthouse.com>
- <CAJU=AjX8Mhy-KG27r_iQOeuRZ3PtPp9F2TUvA7BL+nNsJEzp1Q@mail.gmail.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 10:30:13 -0700
+IronPort-SDR: LXFcd4Gxq9bf9zLwVhomAPxYk8+tbKL9BAkYelE4PpB3MJ7/hK2JGqjdYFlaMgKRnnWU0aBFoP
+ 4wxp5xGFf9+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,324,1583222400"; d="scan'208";a="292570810"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga002.fm.intel.com with ESMTP; 27 Apr 2020 10:30:11 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 52C045C1F9A; Mon, 27 Apr 2020 20:28:12 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200427170513.24019-1-chris@chris-wilson.co.uk>
+References: <20200427170513.24019-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Apr 2020 20:28:12 +0300
+Message-ID: <875zdkltxv.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAJU=AjX8Mhy-KG27r_iQOeuRZ3PtPp9F2TUvA7BL+nNsJEzp1Q@mail.gmail.com>
-Subject: Re: [Intel-gfx] [patch] PCI ID review
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/execlists: Avoid reusing the
+ same logical CC_ID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,48 +48,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 27, 2020 at 11:18:46AM -0400, Alexei Podtelezhnikov wrote:
-> On Mon, Apr 27, 2020 at 10:45 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Quoting Alexei Podtelezhnikov (2020-04-27 15:40:42)
-> > > >
-> > > > These do not exist. They are fake PCI-ID for Windows95 multi monitor.
-> > > > The single device appears twice on the bus as a second function. We
-> > > > never had that restriction and could do multiple monitors on the single
-> > > > device.
-> > >
-> > > Windows 10 drivers list them, they do show up on lspci and I'll quote
-> > > from Atom datasheet.
-> > > "This register is unique in Function 1 (the Function 0 DID is
-> > > separate). This difference in Device ID is necessary for allowing
-> > > distinct Plug and Play enumeration of function 1 when both function 0
-> > > and function 1 have the same class code."
-> > > Whatever this means.
-> >
-> > It means it's a hack for the Window's driver. There is no HW behind it.
-> 
-> Intel talks about two separate engines (threads?)
-> https://www.intel.com/content/www/us/en/support/articles/000005880/graphics-drivers/legacy-graphics.html
-> https://www.intel.com/content/www/us/en/support/articles/000005747/graphics-drivers.html
-> Still not buying?
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Hi Alexei, thanks for these.
+> Fixes: 2935ed5339c4 ("drm/i915: Remove logical HW ID")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.5+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +--
+>  drivers/gpu/drm/i915/gt/intel_lrc.c          | 23 ++++++++++++++------
+>  drivers/gpu/drm/i915/i915_perf.c             |  3 +--
+>  drivers/gpu/drm/i915/selftests/i915_vma.c    |  2 +-
+>  4 files changed, 19 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index bf395227c99f..a9fc3fbbe482 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -304,8 +304,7 @@ struct intel_engine_cs {
+>  	u32 context_size;
+>  	u32 mmio_base;
+>  
+> -	unsigned int context_tag;
+> -#define NUM_CONTEXT_TAG roundup_pow_of_two(2 * EXECLIST_MAX_PORTS)
+> +	unsigned long context_tag;
+>  
+>  	struct rb_node uabi_node;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 93a1b73ad96b..d68a04f2a9d5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1404,13 +1404,16 @@ __execlists_schedule_in(struct i915_request *rq)
+>  	ce->lrc_desc &= ~GENMASK_ULL(47, 37);
+>  	if (ce->tag) {
+>  		/* Use a fixed tag for OA and friends */
+> +		GEM_BUG_ON(ce->tag <= BITS_PER_TYPE(engine->context_tag));
+>  		ce->lrc_desc |= (u64)ce->tag << 32;
 
-With this information in mind it looks very wrong to simply add the PCI ID.
+I see danger here to completely trash the upper part our our lrc_desc.
+Is the ce->tag validated or should we add more enforcement in here?
 
-ADD2 device is not supported by i915. I don't believe it will be as simple
-as just adding the PCI ID here.
+>  	} else {
+>  		/* We don't need a strict matching tag, just different values */
+> -		ce->lrc_desc |=
+> -			(u64)(++engine->context_tag % NUM_CONTEXT_TAG) <<
+> -			GEN11_SW_CTX_ID_SHIFT;
+> -		BUILD_BUG_ON(NUM_CONTEXT_TAG > GEN12_MAX_CONTEXT_HW_ID);
+> +		unsigned int tag = ffs(engine->context_tag);
+> +
+> +		clear_bit(tag - 1, &engine->context_tag);
+> +		ce->lrc_desc |= (u64)tag << GEN11_SW_CTX_ID_SHIFT;
+> +
+> +		BUILD_BUG_ON(BITS_PER_TYPE(engine->context_tag) > GEN12_MAX_CONTEXT_HW_ID);
+>  	}
+>  
+>  	__intel_gt_pm_get(engine->gt);
+> @@ -1452,7 +1455,8 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+>  
+>  static inline void
+>  __execlists_schedule_out(struct i915_request *rq,
+> -			 struct intel_engine_cs * const engine)
+> +			 struct intel_engine_cs * const engine,
+> +			 int tag)
+>  {
+>  	struct intel_context * const ce = rq->context;
+>  
+> @@ -1470,6 +1474,9 @@ __execlists_schedule_out(struct i915_request *rq,
+>  	    i915_request_completed(rq))
+>  		intel_engine_add_retire(engine, ce->timeline);
+>  
+> +	if (tag <= BITS_PER_TYPE(engine->context_tag))
+> +		set_bit(tag - 1, &engine->context_tag);
+> +
+>  	intel_context_update_runtime(ce);
+>  	intel_engine_context_out(engine);
+>  	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
+> @@ -1495,15 +1502,17 @@ execlists_schedule_out(struct i915_request *rq)
+>  {
+>  	struct intel_context * const ce = rq->context;
+>  	struct intel_engine_cs *cur, *old;
+> +	int tag;
+>  
+>  	trace_i915_request_out(rq);
+>  
+> +	tag = upper_32_bits(rq->context->lrc_desc);
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+There is more in the upper part than just a tag (sw field).
+So we need to only set/get a particular masked field.
+
+-Mika
+
+>  	old = READ_ONCE(ce->inflight);
+>  	do
+>  		cur = ptr_unmask_bits(old, 2) ? ptr_dec(old) : NULL;
+>  	while (!try_cmpxchg(&ce->inflight, &old, cur));
+>  	if (!cur)
+> -		__execlists_schedule_out(rq, old);
+> +		__execlists_schedule_out(rq, old, tag);
+>  
+>  	i915_request_put(rq);
+>  }
+> @@ -4002,7 +4011,7 @@ static void enable_execlists(struct intel_engine_cs *engine)
+>  
+>  	enable_error_interrupt(engine);
+>  
+> -	engine->context_tag = 0;
+> +	engine->context_tag = -1u;
+>  }
+>  
+>  static bool unexpected_starting_state(struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index dec1b33e4da8..1863a5c4778d 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -1281,11 +1281,10 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+>  			((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
+>  		/*
+>  		 * Pick an unused context id
+> -		 * 0 - (NUM_CONTEXT_TAG - 1) are used by other contexts
+> +		 * 0 - BITS_PER_LONG are used by other contexts
+>  		 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
+>  		 */
+>  		stream->specific_ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
+> -		BUILD_BUG_ON((GEN12_MAX_CONTEXT_HW_ID - 1) < NUM_CONTEXT_TAG);
+>  		break;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> index 58b5f40a07dd..af89c7fc8f59 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> @@ -173,7 +173,7 @@ static int igt_vma_create(void *arg)
+>  		}
+>  
+>  		nc = 0;
+> -		for_each_prime_number(num_ctx, 2 * NUM_CONTEXT_TAG) {
+> +		for_each_prime_number(num_ctx, 2 * BITS_PER_LONG) {
+>  			for (; nc < num_ctx; nc++) {
+>  				ctx = mock_context(i915, "mock");
+>  				if (!ctx)
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
