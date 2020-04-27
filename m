@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A351BA043
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BAB1BA05E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:50:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F92A6E107;
-	Mon, 27 Apr 2020 09:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 459CC6E106;
+	Mon, 27 Apr 2020 09:50:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DD7A897EF;
- Mon, 27 Apr 2020 09:46:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 178D3A0019;
- Mon, 27 Apr 2020 09:46:31 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0686E106
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 09:50:05 +0000 (UTC)
+IronPort-SDR: m3HzAq6OwGTMKOxL9pi+YIyLvZcsLfqHRL6f2GARQIteQQrYlnS8uqCJ5C+c5pszOZ6O09DFgu
+ o8Y1wQch16Lg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 02:50:04 -0700
+IronPort-SDR: H/d3GeIKEm2Wou7M8CcbtsRQs/Hpm5Rp45SCURL005b/HUFPMuOIqgqRaBZ358gDU/20YuT43V
+ qq8oLeUd6L0A==
+X-IronPort-AV: E=Sophos;i="5.73,323,1583222400"; d="scan'208";a="431704259"
+Received: from apopescu-mobl1.ger.corp.intel.com (HELO [10.252.53.226])
+ ([10.252.53.226])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 02:50:03 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200427084000.10999-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <d1567d95-565f-8520-0e85-d407293c5e9d@linux.intel.com>
+Date: Mon, 27 Apr 2020 10:50:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 27 Apr 2020 09:46:31 -0000
-Message-ID: <158798079109.26356.7570209865792663709@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200427085408.13879-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/9=5D_drm/i915/gt=3A_Sanitize_GT_first?=
+In-Reply-To: <20200427084000.10999-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Sanitize GT first
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,53 +50,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/9] drm/i915/gt: Sanitize GT first
-URL   : https://patchwork.freedesktop.org/series/76542/
-State : warning
+On 27/04/2020 09:40, Chris Wilson wrote:
+> We see that if the HW doesn't actually sleep, the HW may eat the poison
+> we set in its write-only HWSP during sanitize:
+> 
+>    intel_gt_resume.part.8: 0000:00:02.0
+>    __gt_unpark: 0000:00:02.0
+>    gt_sanitize: 0000:00:02.0 force:yes
+>    process_csb: 0000:00:02.0 vcs0: cs-irq head=5, tail=90
+>    process_csb: 0000:00:02.0 vcs0: csb[0]: status=0x5a5a5a5a:0x5a5a5a5a
+>    assert_pending_valid: Nothing pending for promotion!
+> 
+> The CS TAIL pointer should have been reset by reset_csb_pointers(), so
+> in this case it is likely that we have read back from the CPU cache and
+> so we must clflush our control over that page. In doing so, push the
+> sanitisation to the start of the GT sequence so that our poisoning is
+> assuredly before we start talking to the HW.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt_pm.c | 3 ++-
+>   drivers/gpu/drm/i915/gt/intel_lrc.c   | 3 +++
+>   2 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index 4c4c74ef4f21..5097786f4375 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -198,11 +198,12 @@ int intel_gt_resume(struct intel_gt *gt)
+>   	 * Only the kernel contexts should remain pinned over suspend,
+>   	 * allowing us to fixup the user contexts on their first pin.
+>   	 */
+> +	gt_sanitize(gt, true);
+> +
+>   	intel_gt_pm_get(gt);
 
-== Summary ==
+gt_sanitize declares hw access so I thin it should still be after this 
+pm get.
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915/gt: Sanitize GT first
-Okay!
+Regards,
 
-Commit: drm/i915/gt: Fix up clock frequency
-Okay!
+Tvrtko
 
-Commit: drm/i915/execlists: Check preempt-timeout target before submit_ports
-Okay!
-
-Commit: drm/i915/gt: Always enable busy-stats for execlists
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:73:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:74:10: error: bad integer constant expression
--O:drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
--O:drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-
-Commit: drm/i915/gt: Move rps.enabled/active to flags
-Okay!
-
-Commit: drm/i915/gt: Track use of RPS interrupts in flags
-Okay!
-
-Commit: drm/i915/gt: Switch to manual evaluation of RPS
-Okay!
-
-Commit: drm/i915/gt: Apply the aggressive downclocking to parking
-Okay!
-
-Commit: drm/i915/gt: Restore aggressive post-boost downclocking
-Okay!
-
+>   
+>   	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+>   	intel_rc6_sanitize(&gt->rc6);
+> -	gt_sanitize(gt, true);
+>   	if (intel_gt_is_wedged(gt)) {
+>   		err = -EIO;
+>   		goto out_fw;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index c8014c265ffb..cd6afa2cf5fd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -3931,6 +3931,9 @@ static void execlists_sanitize(struct intel_engine_cs *engine)
+>   	 * reset the value in the HWSP.
+>   	 */
+>   	intel_timeline_reset_seqno(engine->kernel_context->timeline);
+> +
+> +	/* And scrub the dirty cachelines for the HWSP */
+> +	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
+>   }
+>   
+>   static void enable_error_interrupt(struct intel_engine_cs *engine)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
