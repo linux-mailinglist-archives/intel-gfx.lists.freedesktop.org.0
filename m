@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434171B9AD1
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 10:54:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FC51B9F3C
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:00:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4B066E0FF;
-	Mon, 27 Apr 2020 08:54:19 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7E56E122
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 08:54:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032267-1500050 
- for multiple; Mon, 27 Apr 2020 09:54:11 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Apr 2020 09:54:08 +0100
-Message-Id: <20200427085408.13879-9-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8DFF6E12F;
+	Mon, 27 Apr 2020 09:00:21 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 412986E12F;
+ Mon, 27 Apr 2020 09:00:20 +0000 (UTC)
+IronPort-SDR: xfPBlNr4aJtBxQus441xMJhtfpo+MypkHPjE+oXQT3/CiaNZU3CJ4mJTECRfU1bj3vqEBq4/Lr
+ S6VhkD5rnzHA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 02:00:19 -0700
+IronPort-SDR: uLW3l7guPMeG6mnRtow7mG5BYRVshg71CLTHxfTrRMvtzZMxsJCl8Tf7fpkCkNlgq4E5d316jI
+ 0jIpoNshnViA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,323,1583222400"; d="scan'208";a="292405546"
+Received: from apopescu-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.53.226])
+ by fmsmga002.fm.intel.com with ESMTP; 27 Apr 2020 02:00:18 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 27 Apr 2020 10:00:14 +0100
+Message-Id: <20200427090014.10041-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200427085408.13879-1-chris@chris-wilson.co.uk>
-References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915/gt: Restore aggressive post-boost
- downclocking
+Subject: [Intel-gfx] [PATCH i-g-t] gem_wsim: Fix preempt period assert
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,63 +45,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We reduced the clocks slowly after a boost event based on the
-observation that the smoothness of animations suffered. However, since
-reducing the evalution intervals, we should be able to respond to the
-rapidly fluctuating workload of a simple desktop animation and so
-restore the more aggressive downclocking.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Recently added assert in a common helper used for calculating batch
+duration and preemption period is harmful when preemption is disabled on a
+context. Split out into low level and high level helper and use the former
+for preemption period queries.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+ benchmarks/gem_wsim.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index a58e08db561f..84bbd64093b0 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1652,30 +1652,18 @@ static void rps_work(struct work_struct *work)
- 		adj = 0;
- 	}
+diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
+index 81f47b86d619..ad4edb936920 100644
+--- a/benchmarks/gem_wsim.c
++++ b/benchmarks/gem_wsim.c
+@@ -1151,7 +1151,7 @@ __get_ctx(struct workload *wrk, const struct w_step *w)
+ }
  
--	rps->last_adj = adj;
--
- 	/*
--	 * Limit deboosting and boosting to keep ourselves at the extremes
--	 * when in the respective power modes (i.e. slowly decrease frequencies
--	 * while in the HIGH_POWER zone and slowly increase frequencies while
--	 * in the LOW_POWER zone). On idle, we will hit the timeout and drop
--	 * to the next level quickly, and conversely if busy we expect to
--	 * hit a waitboost and rapidly switch into max power.
--	 */
--	if ((adj < 0 && rps->power.mode == HIGH_POWER) ||
--	    (adj > 0 && rps->power.mode == LOW_POWER))
--		rps->last_adj = 0;
--
--	/* sysfs frequency interfaces may have snuck in while servicing the
--	 * interrupt
-+	 * sysfs frequency limits may have snuck in while
-+	 * servicing the interrupt
- 	 */
- 	new_freq += adj;
- 	new_freq = clamp_t(int, new_freq, min, max);
+ static unsigned long
+-get_bb_sz(const struct w_step *w, unsigned int duration)
++__get_bb_sz(const struct w_step *w, unsigned int duration)
+ {
+ 	enum intel_engine_id engine = w->engine;
+ 	struct ctx *ctx = __get_ctx(w->wrk, w);
+@@ -1165,6 +1165,15 @@ get_bb_sz(const struct w_step *w, unsigned int duration)
+ 	d = ALIGN(duration * engine_calib_map[engine] * sizeof(uint32_t) /
+ 		  nop_calibration_us,
+ 		  sizeof(uint32_t));
++
++	return d;
++}
++
++static unsigned long
++get_bb_sz(const struct w_step *w, unsigned int duration)
++{
++	unsigned long d = __get_bb_sz(w, duration);
++
+ 	igt_assert(d);
  
- 	if (intel_rps_set(rps, new_freq)) {
- 		drm_dbg(&i915->drm, "Failed to set new GPU frequency\n");
--		rps->last_adj = 0;
-+		adj = 0;
- 	}
-+	rps->last_adj = adj;
+ 	return d;
+@@ -1174,7 +1183,7 @@ static void
+ init_bb(struct w_step *w, unsigned int flags)
+ {
+ 	const unsigned int arb_period =
+-			get_bb_sz(w, w->preempt_us) / sizeof(uint32_t);
++			__get_bb_sz(w, w->preempt_us) / sizeof(uint32_t);
+ 	const unsigned int mmap_len = ALIGN(w->bb_sz, 4096);
+ 	unsigned int i;
+ 	uint32_t *ptr;
+@@ -1395,7 +1404,7 @@ alloc_step_batch(struct workload *wrk, struct w_step *w, unsigned int flags)
  
- 	mutex_unlock(&rps->lock);
- 
+ 	if (w->unbound_duration)
+ 		/* nops + MI_ARB_CHK + MI_BATCH_BUFFER_START */
+-		w->bb_sz = max(PAGE_SIZE, get_bb_sz(w, w->preempt_us)) +
++		w->bb_sz = max(PAGE_SIZE, __get_bb_sz(w, w->preempt_us)) +
+ 			   (1 + 3) * sizeof(uint32_t);
+ 	else
+ 		w->bb_sz = get_bb_sz(w, w->duration.max);
 -- 
 2.20.1
 
