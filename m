@@ -2,38 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7776E1BAEDC
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 22:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C01A1BB190
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 00:37:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8756E0A6;
-	Mon, 27 Apr 2020 20:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7DD6E117;
+	Mon, 27 Apr 2020 22:37:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 19.mo7.mail-out.ovh.net (19.mo7.mail-out.ovh.net
- [178.33.251.118])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA7536E0A6
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 20:09:37 +0000 (UTC)
-Received: from player786.ha.ovh.net (unknown [10.108.54.97])
- by mo7.mail-out.ovh.net (Postfix) with ESMTP id A4C9615FB70
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 21:52:50 +0200 (CEST)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player786.ha.ovh.net (Postfix) with ESMTPSA id B064B11F6F4A6;
- Mon, 27 Apr 2020 19:52:48 +0000 (UTC)
-Date: Mon, 27 Apr 2020 22:52:47 +0300
-From: Andi Shyti <andi@etezian.org>
+Received: from smtpout1.mo804.mail-out.ovh.net
+ (smtpout1.mo804.mail-out.ovh.net [79.137.123.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFCC86E082
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 19:53:45 +0000 (UTC)
+Received: from mxplan6.mail.ovh.net (unknown [10.109.156.26])
+ by mo804.mail-out.ovh.net (Postfix) with ESMTPS id B1FD2389FECA;
+ Mon, 27 Apr 2020 21:53:42 +0200 (CEST)
+Received: from smida.it (37.59.142.98) by DAG4EX1.mxp6.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Mon, 27 Apr
+ 2020 21:53:41 +0200
+Date: Mon, 27 Apr 2020 22:53:40 +0300
+From: Andi Shyti <andi@smida.it>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200427195247.GB3168@jack.zhora.eu>
+Message-ID: <20200427195340.GC3168@jack.zhora.eu>
 References: <20200427085408.13879-1-chris@chris-wilson.co.uk>
- <20200427085408.13879-2-chris@chris-wilson.co.uk>
+ <20200427085408.13879-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200427085408.13879-2-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 4040291819831804425
+In-Reply-To: <20200427085408.13879-5-chris@chris-wilson.co.uk>
+X-Originating-IP: [37.59.142.98]
+X-ClientProxiedBy: DAG4EX1.mxp6.local (172.16.2.31) To DAG4EX1.mxp6.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 595c8246-d74f-4872-8180-7c701263d73c
+X-Ovh-Tracer-Id: 4054928514842023322
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrheelgddugedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeeirdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/gt: Fix up clock frequency
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrheelgddugedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjihesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisehsmhhiuggrrdhitheqnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrdelkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehmgihplhgrnheirdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisehsmhhiuggrrdhithdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+X-Mailman-Approved-At: Mon, 27 Apr 2020 22:37:45 +0000
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/gt: Move rps.enabled/active to
+ flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,13 +60,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-On Mon, Apr 27, 2020 at 09:54:01AM +0100, Chris Wilson wrote:
-> The bspec lists both the clock frequency and the effective interval. The
-> interval corresponds to observed behaviour, so adjust the frequency to
-> match.
+On Mon, Apr 27, 2020 at 09:54:04AM +0100, Chris Wilson wrote:
+> Pull the boolean intel_rps.enabled and intel_rps.active into a single
+> flags field, in preparation for more.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-what is the observed behavior?
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
+Thanks,
 Andi
 _______________________________________________
 Intel-gfx mailing list
