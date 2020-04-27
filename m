@@ -2,31 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 767AE1BB166
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 00:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 391B01BB168
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 00:14:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 658386E116;
-	Mon, 27 Apr 2020 22:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEEE6E0E5;
+	Mon, 27 Apr 2020 22:14:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DADC6E0E5;
- Mon, 27 Apr 2020 22:13:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1ACF5A0099;
- Mon, 27 Apr 2020 22:13:26 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC9086E0E5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 22:14:21 +0000 (UTC)
+IronPort-SDR: 7VlYJ9pRY3ec/JcJUHe3NwowFQQj5uhO87rItMmwdBUxYTrcr3SRf22IpBkvUjiJ4l3AFET919
+ Sou6FLMu60Xw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2020 15:14:21 -0700
+IronPort-SDR: dm32M9NuhHv46qKPEjF6CnTznICfYBxRQtQPOeWMOhq/QCYq5X2YY31rrk71+93YcDPCdnZlfk
+ VtwfvGjBuboA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,325,1583222400"; d="scan'208";a="275627867"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 27 Apr 2020 15:14:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Apr 2020 01:14:16 +0300
+Date: Tue, 28 Apr 2020 01:14:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200427221416.GH6112@intel.com>
+References: <20200427032232.4307-1-apodtele@gmail.com>
+ <20200427140248.GG6112@intel.com>
+ <158799689628.17035.14733867368309109586@build.alporthouse.com>
+ <CAJU=AjVj6BPrqXgWbooTd2VSs_ZxoSbJR0LguxXWim2qu7Giug@mail.gmail.com>
+ <158799871806.17035.9616562654177490399@build.alporthouse.com>
+ <CAJU=AjX8Mhy-KG27r_iQOeuRZ3PtPp9F2TUvA7BL+nNsJEzp1Q@mail.gmail.com>
+ <20200427170706.GB3697495@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 27 Apr 2020 22:13:26 -0000
-Message-ID: <158802560610.26356.17299593113080088990@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200427211006.29138-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200427211006.29138-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/execlists=3A_Avoid_reusing?=
- =?utf-8?q?_the_same_logical_CCID?=
+Content-Disposition: inline
+In-Reply-To: <20200427170706.GB3697495@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [patch] PCI ID review
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,150 +56,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Apr 27, 2020 at 10:07:06AM -0700, Rodrigo Vivi wrote:
+> On Mon, Apr 27, 2020 at 11:18:46AM -0400, Alexei Podtelezhnikov wrote:
+> > On Mon, Apr 27, 2020 at 10:45 AM Chris Wilson <chris@chris-wilson.co.uk=
+> wrote:
+> > >
+> > > Quoting Alexei Podtelezhnikov (2020-04-27 15:40:42)
+> > > > >
+> > > > > These do not exist. They are fake PCI-ID for Windows95 multi moni=
+tor.
+> > > > > The single device appears twice on the bus as a second function. =
+We
+> > > > > never had that restriction and could do multiple monitors on the =
+single
+> > > > > device.
+> > > >
+> > > > Windows 10 drivers list them, they do show up on lspci and I'll quo=
+te
+> > > > from Atom datasheet.
+> > > > "This register is unique in Function 1 (the Function 0 DID is
+> > > > separate). This difference in Device ID is necessary for allowing
+> > > > distinct Plug and Play enumeration of function 1 when both function=
+ 0
+> > > > and function 1 have the same class code."
+> > > > Whatever this means.
+> > >
+> > > It means it's a hack for the Window's driver. There is no HW behind i=
+t.
+> > =
 
-Series: series starting with [1/2] drm/i915/execlists: Avoid reusing the same logical CCID
-URL   : https://patchwork.freedesktop.org/series/76570/
-State : failure
+> > Intel talks about two separate engines (threads?)
+> > https://www.intel.com/content/www/us/en/support/articles/000005880/grap=
+hics-drivers/legacy-graphics.html
+> > https://www.intel.com/content/www/us/en/support/articles/000005747/grap=
+hics-drivers.html
+> > Still not buying?
+> =
 
-== Summary ==
+> Hi Alexei, thanks for these.
+> =
 
-CI Bug Log - changes from CI_DRM_8377 -> Patchwork_17485
-====================================================
+> With this information in mind it looks very wrong to simply add the PCI I=
+D.
+> =
 
-Summary
--------
+> ADD2 device is not supported by i915. I don't believe it will be as simple
+> as just adding the PCI ID here.
 
-  **FAILURE**
+ADD2=3D=3Dsdvo, which is supported just fine. It has nothing to do
+with the second fake PCI function though.
 
-  Serious unknown changes coming with Patchwork_17485 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17485, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+In practice adding the fake PCI IDs shouldn't do any harm as we reject
+anything but function 0 in the driver probe. But it also means that
+there is no point in adding them either.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/index.html
+-- =
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17485:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_close_race@basic-process:
-    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-icl-y/igt@gem_close_race@basic-process.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-icl-y/igt@gem_close_race@basic-process.html
-    - fi-icl-guc:         [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-icl-guc/igt@gem_close_race@basic-process.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-icl-guc/igt@gem_close_race@basic-process.html
-    - fi-icl-u2:          [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-icl-u2/igt@gem_close_race@basic-process.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-icl-u2/igt@gem_close_race@basic-process.html
-    - fi-tgl-y:           [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-tgl-y/igt@gem_close_race@basic-process.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-tgl-y/igt@gem_close_race@basic-process.html
-
-  * igt@runner@aborted:
-    - fi-icl-guc:         NOTRUN -> [FAIL][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-icl-guc/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_close_race@basic-process:
-    - {fi-ehl-1}:         [PASS][10] -> [DMESG-FAIL][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-ehl-1/igt@gem_close_race@basic-process.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-ehl-1/igt@gem_close_race@basic-process.html
-    - {fi-tgl-dsi}:       [PASS][12] -> [DMESG-FAIL][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-tgl-dsi/igt@gem_close_race@basic-process.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-tgl-dsi/igt@gem_close_race@basic-process.html
-
-  * igt@gem_close_race@basic-threads:
-    - {fi-tgl-u}:         [PASS][14] -> [INCOMPLETE][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-tgl-u/igt@gem_close_race@basic-threads.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-tgl-u/igt@gem_close_race@basic-threads.html
-
-  * igt@runner@aborted:
-    - {fi-tgl-dsi}:       NOTRUN -> [FAIL][16]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-tgl-dsi/igt@runner@aborted.html
-    - {fi-tgl-u}:         [FAIL][17] ([i915#1233] / [i915#529]) -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-tgl-u/igt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-tgl-u/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17485 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [SKIP][19] ([fdo#109271]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][21] ([i915#62]) -> [SKIP][22] ([fdo#109271])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8377/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8377 -> Patchwork_17485
-
-  CI-20190529: 20190529
-  CI_DRM_8377: 1c73868f3851a83d78063da68c6e9b2c363b5f36 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5612: c8dc1fd926a550308b971ca7d83fe0a927a38152 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17485: fe0905a53b4e763adf704f73deb1b726b13e795a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fe0905a53b4e drm/i915/execlists: Verify we don't submit two identical CCIDs
-f4f24531cf4e drm/i915/execlists: Avoid reusing the same logical CCID
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17485/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
