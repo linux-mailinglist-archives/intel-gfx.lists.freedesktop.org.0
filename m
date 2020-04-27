@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61271B9F81
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74B01B9FE0
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2020 11:29:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B32486E186;
-	Mon, 27 Apr 2020 09:13:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA7A6E15F;
+	Mon, 27 Apr 2020 09:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 71AB96E167;
- Mon, 27 Apr 2020 09:13:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6B01AA363B;
- Mon, 27 Apr 2020 09:13:40 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE306E15F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 09:29:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21032762-1500050 
+ for multiple; Mon, 27 Apr 2020 10:29:33 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Apr 2020 10:29:31 +0100
+Message-Id: <20200427092931.29097-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 27 Apr 2020 09:13:40 -0000
-Message-ID: <158797882040.26354.3100292859504411024@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200427084000.10999-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200427084000.10999-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Sanitize_GT_first?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Check cacheline is valid before
+ acquiring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,83 +37,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The hwsp_cacheline pointer from i915_request is very, very flimsy. The
+i915_request.timeline (and the hwsp_cacheline) are lost upon retiring
+(after an RCU grace). Therefore we need to confirm that once we have the
+right pointer for the cacheline, it is not in the process of being
+retired and disposed of before we attempt to acquire a reference to the
+cacheline.
 
-Series: drm/i915/gt: Sanitize GT first
-URL   : https://patchwork.freedesktop.org/series/76540/
-State : success
+<3>[  547.208237] BUG: KASAN: use-after-free in active_debug_hint+0x6a/0x70 [i915]
+<3>[  547.208366] Read of size 8 at addr ffff88822a0d2710 by task gem_exec_parall/2536
 
-== Summary ==
+<4>[  547.208547] CPU: 3 PID: 2536 Comm: gem_exec_parall Tainted: G     U            5.7.0-rc2-ged7a286b5d02d-kasan_117+ #1
+<4>[  547.208556] Hardware name: Dell Inc. XPS 13 9350/, BIOS 1.4.12 11/30/2016
+<4>[  547.208564] Call Trace:
+<4>[  547.208579]  dump_stack+0x96/0xdb
+<4>[  547.208707]  ? active_debug_hint+0x6a/0x70 [i915]
+<4>[  547.208719]  print_address_description.constprop.6+0x16/0x310
+<4>[  547.208841]  ? active_debug_hint+0x6a/0x70 [i915]
+<4>[  547.208963]  ? active_debug_hint+0x6a/0x70 [i915]
+<4>[  547.208975]  __kasan_report+0x137/0x190
+<4>[  547.209106]  ? active_debug_hint+0x6a/0x70 [i915]
+<4>[  547.209127]  kasan_report+0x32/0x50
+<4>[  547.209257]  ? i915_gemfs_fini+0x40/0x40 [i915]
+<4>[  547.209376]  active_debug_hint+0x6a/0x70 [i915]
+<4>[  547.209389]  debug_print_object+0xa7/0x220
+<4>[  547.209405]  ? lockdep_hardirqs_on+0x348/0x5f0
+<4>[  547.209426]  debug_object_assert_init+0x297/0x430
+<4>[  547.209449]  ? debug_object_free+0x360/0x360
+<4>[  547.209472]  ? lock_acquire+0x1ac/0x8a0
+<4>[  547.209592]  ? intel_timeline_read_hwsp+0x4f/0x840 [i915]
+<4>[  547.209737]  ? i915_active_acquire_if_busy+0x66/0x120 [i915]
+<4>[  547.209861]  i915_active_acquire_if_busy+0x66/0x120 [i915]
+<4>[  547.209990]  ? __live_alloc.isra.15+0xc0/0xc0 [i915]
+<4>[  547.210005]  ? rcu_read_lock_sched_held+0xd0/0xd0
+<4>[  547.210017]  ? print_usage_bug+0x580/0x580
+<4>[  547.210153]  intel_timeline_read_hwsp+0xbc/0x840 [i915]
+<4>[  547.210284]  __emit_semaphore_wait+0xd5/0x480 [i915]
+<4>[  547.210415]  ? i915_fence_get_timeline_name+0x110/0x110 [i915]
+<4>[  547.210428]  ? lockdep_hardirqs_on+0x348/0x5f0
+<4>[  547.210442]  ? _raw_spin_unlock_irq+0x2a/0x40
+<4>[  547.210567]  ? __await_execution.constprop.51+0x2e0/0x570 [i915]
+<4>[  547.210706]  i915_request_await_dma_fence+0x8f7/0xc70 [i915]
 
-CI Bug Log - changes from CI_DRM_8370 -> Patchwork_17472
-====================================================
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 29a39e44fa36..e1fac1b38f27 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -544,6 +544,8 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 
+ 	rcu_read_lock();
+ 	cl = rcu_dereference(from->hwsp_cacheline);
++	if (i915_request_completed(from)) /* confirm cacheline is valid */
++		goto unlock;
+ 	if (unlikely(!i915_active_acquire_if_busy(&cl->active)))
+ 		goto unlock; /* seqno wrapped and completed! */
+ 	if (unlikely(i915_request_completed(from)))
+-- 
+2.20.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17472/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17472 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-bdw-5557u:       [DMESG-FAIL][1] ([i915#1791]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17472/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-    - fi-cml-u2:          [DMESG-FAIL][3] ([i915#1791]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17472/fi-cml-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-whl-u:           [DMESG-FAIL][5] ([i915#1791]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8370/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17472/fi-whl-u/igt@i915_selftest@live@gt_pm.html
-
-  
-  [i915#1791]: https://gitlab.freedesktop.org/drm/intel/issues/1791
-
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Additional (2): fi-icl-y fi-bxt-dsi 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-kbl-7560u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8370 -> Patchwork_17472
-
-  CI-20190529: 20190529
-  CI_DRM_8370: 1f3ffd7683d5457e14a1f879a8714a74b7b7faeb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5610: 71fed15724898a8f914666093352a964b70a62fc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17472: 2a85d292b81e2a06b7ce4c7b22cecb6e713beff9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2a85d292b81e drm/i915/gt: Sanitize GT first
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17472/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
