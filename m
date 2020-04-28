@@ -1,59 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714461BC06B
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 16:00:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9114C1BC07D
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 16:03:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A54F96E49C;
-	Tue, 28 Apr 2020 14:00:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C91406E478;
+	Tue, 28 Apr 2020 14:03:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B845D6E4A7
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 14:00:15 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id g12so2974989wmh.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 07:00:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Ps7I9Le1y+DBQ90d3polh0iWEICybIDac38fYlXMUHU=;
- b=RTXgbW5JR0qaHgN6xT1CbnFJkWffgxVeYV9PCtA/lHqfLfEeR37BG3yppLYmEhp9Oo
- 9AV97owvuWPTrWYj9o9dDUq8lcxHcw6cctt4Lyj8cSIfxEcL6KbuQesljWupR6oSs9w/
- R8I1b9G4gFRCAbkHMZGlZWQMIxZhYww8BqPxs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Ps7I9Le1y+DBQ90d3polh0iWEICybIDac38fYlXMUHU=;
- b=caMidzqNM/FiXvO/BmSKms/Hn3ZhGEd/mqgVLjlZ9kMi8aoMNHvB9lU4DRpKIB8lsz
- 4Wik5Xq7C4UhDnYzNw07gj52EXudFEYCeeal19lk33S2xshyQr5Sv0MRNdiLXJpsgBES
- gLnJ6jxeiO302OVuIR+TP1kfCzymNqu9EEkrxe7jcxcTt7ccoZ5gBQY1CN4oZAd51+Si
- oG0kF9YuxkFKwEor6fMaFqXy7ZFTK0jaIbOwdHUNQbvofaTr/SrDjU4Vm8Gimk8uiuyM
- +wqQv8hgUKE/HYTIcXJ7wBbvldPkYrEzuWzsq7gkdC6jpddnDtBcRyrd+p37Lo7DcmpX
- I5XQ==
-X-Gm-Message-State: AGi0PuaDyu02H/XmC/pSpzhfuCSRE81lkCe5f/G2o91GYnGM0XH1aQS6
- RQ90wJKiSMInDCIiyIb/LehLqg==
-X-Google-Smtp-Source: APiQypIEnobdueqT/cHpOrriPZZPy/M74lLsyOtUmRObtKxhAJT95KOZC9e05zorxNWpOlR6T77frg==
-X-Received: by 2002:a1c:808c:: with SMTP id b134mr4975620wmd.131.1588082414409; 
- Tue, 28 Apr 2020 07:00:14 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w12sm25030016wrk.56.2020.04.28.07.00.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2020 07:00:13 -0700 (PDT)
-Date: Tue, 28 Apr 2020 16:00:11 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20200428140011.GK3456981@phenom.ffwll.local>
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-27-daniel.vetter@ffwll.ch>
- <20200424150911.GB20856@ravnborg.org>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA9066E443;
+ Tue, 28 Apr 2020 14:03:00 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 7569968CEC; Tue, 28 Apr 2020 16:02:57 +0200 (CEST)
+Date: Tue, 28 Apr 2020 16:02:57 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <20200428140257.GA3433@lst.de>
+References: <CGME20200428132022eucas1p2aa4716cbaca61c432ee8028be15fef7a@eucas1p2.samsung.com>
+ <20200428132005.21424-1-m.szyprowski@samsung.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200424150911.GB20856@ravnborg.org>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 26/59] drm/qxl: Use devm_drm_dev_alloc
+In-Reply-To: <20200428132005.21424-1-m.szyprowski@samsung.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [RFC 00/17] DRM: fix struct sg_table nents vs.
+ orig_nents misuse
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,173 +38,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
- Daniel Vetter <daniel.vetter@intel.com>, spice-devel@lists.freedesktop.org
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ iommu@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 24, 2020 at 05:09:11PM +0200, Sam Ravnborg wrote:
-> Hi Daniel
+On Tue, Apr 28, 2020 at 03:19:48PM +0200, Marek Szyprowski wrote:
+> 1. introduce a dma_{map,sync,unmap}_sgtable() wrappers, which will use
+>    a proper sg_table entries and call respective DMA-mapping functions
+>    and adapt current code to it
+
+That sounds reasonable to me.  Those could be pretty trivial wrappers.
+
+>
 > 
-> On Wed, Apr 15, 2020 at 09:40:01AM +0200, Daniel Vetter wrote:
-> > Also need to remove the drm_dev_put from the remove hook.
-> > 
-> > Acked-by: Gerd Hoffmann <kraxel@redhat.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Gerd Hoffmann <kraxel@redhat.com>
-> > Cc: virtualization@lists.linux-foundation.org
-> > Cc: spice-devel@lists.freedesktop.org
-> > ---
-> >  drivers/gpu/drm/qxl/qxl_drv.c | 15 ++++++++-------
-> >  drivers/gpu/drm/qxl/qxl_drv.h |  3 +--
-> >  drivers/gpu/drm/qxl/qxl_kms.c | 12 +-----------
-> >  3 files changed, 10 insertions(+), 20 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
-> > index 09102e2efabc..6b4ae4c5fb76 100644
-> > --- a/drivers/gpu/drm/qxl/qxl_drv.c
-> > +++ b/drivers/gpu/drm/qxl/qxl_drv.c
-> > @@ -81,13 +81,16 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >  		return -EINVAL; /* TODO: ENODEV ? */
-> >  	}
-> >  
-> > -	qdev = kzalloc(sizeof(struct qxl_device), GFP_KERNEL);
-> > -	if (!qdev)
-> > +	qdev = devm_drm_dev_alloc(&pdev->dev, &qxl_driver,
-> > +				  struct qxl_device, ddev);
-> > +	if (IS_ERR(qdev)) {
-> > +		pr_err("Unable to init drm dev");
-> >  		return -ENOMEM;
-> > +	}
-> 
-> The other patches do not add any error message when devm_drm_dev_alloc()
-> fails and driver core will log that driver init failed.
-> 
-> So the pr_err() above should be dropped.
-> I know it comes from qxl_device_init() but that does not make it a good
-> idea.
+> 2. rename nents and orig_nents to nr_pages, nr_dmas to clearly state
+>    which one refers to which part of the scatterlist; I'm open for
+>    other names for those entries
 
-Hm I know we're inconsistent here, but some drivers have error logging on
-all branches, some dont. I'm just trying to go with the prevailing style.
-
-> With this fixed:
-
-Insisting on this or ok as-is?
--Daniel
-
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> >  
-> >  	ret = pci_enable_device(pdev);
-> >  	if (ret)
-> > -		goto free_dev;
-> > +		return ret;
-> >  
-> >  	ret = drm_fb_helper_remove_conflicting_pci_framebuffers(pdev, "qxl");
-> >  	if (ret)
-> > @@ -101,7 +104,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >  		}
-> >  	}
-> >  
-> > -	ret = qxl_device_init(qdev, &qxl_driver, pdev);
-> > +	ret = qxl_device_init(qdev, pdev);
-> >  	if (ret)
-> >  		goto put_vga;
-> >  
-> > @@ -128,8 +131,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
-> >  disable_pci:
-> >  	pci_disable_device(pdev);
-> > -free_dev:
-> > -	kfree(qdev);
-> > +
-> >  	return ret;
-> >  }
-> >  
-> > @@ -155,7 +157,6 @@ qxl_pci_remove(struct pci_dev *pdev)
-> >  	drm_atomic_helper_shutdown(dev);
-> >  	if (is_vga(pdev))
-> >  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
-> > -	drm_dev_put(dev);
-> >  }
-> >  
-> >  DEFINE_DRM_GEM_FOPS(qxl_fops);
-> > diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
-> > index 435126facc9b..86ac191d9205 100644
-> > --- a/drivers/gpu/drm/qxl/qxl_drv.h
-> > +++ b/drivers/gpu/drm/qxl/qxl_drv.h
-> > @@ -276,8 +276,7 @@ struct qxl_device {
-> >  extern const struct drm_ioctl_desc qxl_ioctls[];
-> >  extern int qxl_max_ioctl;
-> >  
-> > -int qxl_device_init(struct qxl_device *qdev, struct drm_driver *drv,
-> > -		    struct pci_dev *pdev);
-> > +int qxl_device_init(struct qxl_device *qdev, struct pci_dev *pdev);
-> >  void qxl_device_fini(struct qxl_device *qdev);
-> >  
-> >  int qxl_modeset_init(struct qxl_device *qdev);
-> > diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
-> > index 9eed1a375f24..91a34dd835d7 100644
-> > --- a/drivers/gpu/drm/qxl/qxl_kms.c
-> > +++ b/drivers/gpu/drm/qxl/qxl_kms.c
-> > @@ -108,21 +108,13 @@ static void qxl_gc_work(struct work_struct *work)
-> >  }
-> >  
-> >  int qxl_device_init(struct qxl_device *qdev,
-> > -		    struct drm_driver *drv,
-> >  		    struct pci_dev *pdev)
-> >  {
-> >  	int r, sb;
-> >  
-> > -	r = drm_dev_init(&qdev->ddev, drv, &pdev->dev);
-> > -	if (r) {
-> > -		pr_err("Unable to init drm dev");
-> > -		goto error;
-> > -	}
-> > -
-> >  	qdev->ddev.pdev = pdev;
-> >  	pci_set_drvdata(pdev, &qdev->ddev);
-> >  	qdev->ddev.dev_private = qdev;
-> > -	drmm_add_final_kfree(&qdev->ddev, qdev);
-> >  
-> >  	mutex_init(&qdev->gem.mutex);
-> >  	mutex_init(&qdev->update_area_mutex);
-> > @@ -138,8 +130,7 @@ int qxl_device_init(struct qxl_device *qdev,
-> >  	qdev->vram_mapping = io_mapping_create_wc(qdev->vram_base, pci_resource_len(pdev, 0));
-> >  	if (!qdev->vram_mapping) {
-> >  		pr_err("Unable to create vram_mapping");
-> > -		r = -ENOMEM;
-> > -		goto error;
-> > +		return -ENOMEM;
-> >  	}
-> >  
-> >  	if (pci_resource_len(pdev, 4) > 0) {
-> > @@ -293,7 +284,6 @@ int qxl_device_init(struct qxl_device *qdev,
-> >  	io_mapping_free(qdev->surface_mapping);
-> >  vram_mapping_free:
-> >  	io_mapping_free(qdev->vram_mapping);
-> > -error:
-> >  	return r;
-> >  }
-> >  
-> > -- 
-> > 2.25.1
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+nr_cpu_ents and nr_dma_ents might be better names, but it still would be
+a whole lot of churn for little gain.  I think just good wrappers like
+suggested above might be more helpful.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
