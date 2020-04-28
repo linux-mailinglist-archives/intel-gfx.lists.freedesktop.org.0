@@ -1,32 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D3C1BC62D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 19:06:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115F81BC632
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 19:10:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91F816E85A;
-	Tue, 28 Apr 2020 17:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEAB06E85F;
+	Tue, 28 Apr 2020 17:10:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C28FE6E82F;
- Tue, 28 Apr 2020 17:06:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC1D7A0BCB;
- Tue, 28 Apr 2020 17:06:54 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 28 Apr 2020 17:06:54 -0000
-Message-ID: <158809361476.17773.3829976008604456308@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200428114307.5153-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200428114307.5153-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Tweak_the_tolerance_for_clock_ticks_to_12=2E?=
- =?utf-8?q?5=25?=
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
+ [IPv6:2a00:1450:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C7566E85C;
+ Tue, 28 Apr 2020 17:10:24 +0000 (UTC)
+Received: by mail-lf1-x141.google.com with SMTP id l11so17552988lfc.5;
+ Tue, 28 Apr 2020 10:10:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=hcdO585ed6dhWyG//gXm3cGKsbtOyJyZqsLOBSwj2N8=;
+ b=W41tP+JQzdv74uPdFblFj8+m0F8K5wRcvv6oCdjjnmR+B+CUicjNUvh34vFCxEB/Jf
+ ALqzJ7RQLed/rJV/1aag5O65NzBsemSdRq6AMqBBXIsDD4DIrMNZ7lqERk0bxpB65r16
+ EvaRgIbEma5uDXoPW1hvvHNLqUMu/9fW9U7r6OkbODrXfXeWN+Zvmii6hLBcEAI6FBOD
+ 8W55jA9aXTMLVizPuyAhn1r1vFHVP2dSvVAIe2uDCKscUVy3m36m0NKW9M0KcU0xg64q
+ 3FHp4Cehg8jB5fvgpKixnNF6wpSYecWuzLnlEVsUkv2Gi32oh+9k2PopFu9gkFZDEtO/
+ NwFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=hcdO585ed6dhWyG//gXm3cGKsbtOyJyZqsLOBSwj2N8=;
+ b=RozQn9wgi0maaqXMDzXXjPDYBrmKi9shxxb+PoYyMXb0nTfJiWA6gqMZO8ykOtOcTz
+ X++Yv/o8Wtr/SlqnVj4qs6qycpO8XdlfNkDCLjCToMzy8BwF5OrKpzBHec+a9Z5nvPtO
+ lTYaLbNuzKbITXCI5oyNbf3gY0Z4WaZtjeK/kPdl52qiNSTBd/NMgQQATWRHbpGLHcpj
+ GKJjYOIdMBnkLMFtcaVX1I6nIBlsaA2cBDqN0lg0yBnSf2hNFv3tNUonqMCF3niMe9qb
+ gfZRo/KGP32wtbSrHa/dPYYTX7n5vWfBrP9yTRGqllvnQK1qNj8wdbfGbpHpEorO8LLy
+ DFpA==
+X-Gm-Message-State: AGi0Pua2JoFznyBJ3nLv6l7UR2UENhGgnmHTO5ORDZTTZy52kdDVuUcA
+ 3EAzaSoukoYBW3OXTA8qvUM=
+X-Google-Smtp-Source: APiQypIKj7K3jOpFa7ZhGvD1rD2Zy1rtxIlXdZBdq4XuYfv6p6653ZaPjJmlXsWzFPezTKtGBSHOPQ==
+X-Received: by 2002:a19:ee18:: with SMTP id g24mr1708261lfb.67.1588093822773; 
+ Tue, 28 Apr 2020 10:10:22 -0700 (PDT)
+Received: from e123311-lin.cambridge.arm.com
+ (static-91-225-135-18.devs.futuro.pl. [91.225.135.18])
+ by smtp.gmail.com with ESMTPSA id v2sm13064703ljv.86.2020.04.28.10.10.21
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 28 Apr 2020 10:10:22 -0700 (PDT)
+From: Michal Orzel <michalorzel.eng@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch
+Date: Tue, 28 Apr 2020 19:10:04 +0200
+Message-Id: <1588093804-30446-1-git-send-email-michalorzel.eng@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH] drm: Replace drm_modeset_lock/unlock_all with
+ DRM_MODESET_LOCK_ALL_* helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,65 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Michal Orzel <michalorzel.eng@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As suggested by the TODO list for the kernel DRM subsystem, replace
+the deprecated functions that take/drop modeset locks with new helpers.
 
-Series: drm/i915/selftests: Tweak the tolerance for clock ticks to 12.5%
-URL   : https://patchwork.freedesktop.org/series/76593/
-State : success
+Signed-off-by: Michal Orzel <michalorzel.eng@gmail.com>
+---
+ drivers/gpu/drm/drm_mode_object.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode_object.c
+index 35c2719..901b078 100644
+--- a/drivers/gpu/drm/drm_mode_object.c
++++ b/drivers/gpu/drm/drm_mode_object.c
+@@ -402,12 +402,13 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
+ {
+ 	struct drm_mode_obj_get_properties *arg = data;
+ 	struct drm_mode_object *obj;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret = 0;
+ 
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -EOPNOTSUPP;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	obj = drm_mode_object_find(dev, file_priv, arg->obj_id, arg->obj_type);
+ 	if (!obj) {
+@@ -427,7 +428,7 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
+ out_unref:
+ 	drm_mode_object_put(obj);
+ out:
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+ 	return ret;
+ }
+ 
+@@ -449,12 +450,13 @@ static int set_property_legacy(struct drm_mode_object *obj,
+ {
+ 	struct drm_device *dev = prop->dev;
+ 	struct drm_mode_object *ref;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret = -EINVAL;
+ 
+ 	if (!drm_property_change_valid_get(prop, prop_value, &ref))
+ 		return -EINVAL;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	switch (obj->type) {
+ 	case DRM_MODE_OBJECT_CONNECTOR:
+ 		ret = drm_connector_set_obj_prop(obj, prop, prop_value);
+@@ -468,7 +470,7 @@ static int set_property_legacy(struct drm_mode_object *obj,
+ 		break;
+ 	}
+ 	drm_property_change_valid_put(prop, ref);
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+ 
+ 	return ret;
+ }
+-- 
+2.7.4
 
-CI Bug Log - changes from CI_DRM_8383 -> Patchwork_17494
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17494/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (49 -> 42)
-------------------------------
-
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8383 -> Patchwork_17494
-
-  CI-20190529: 20190529
-  CI_DRM_8383: eabaf1c8c936459e3682422353b2c53608700657 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17494: eda53d9cd0705c3a275ec16706221bac70602273 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-eda53d9cd070 drm/i915/selftests: Tweak the tolerance for clock ticks to 12.5%
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17494/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
