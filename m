@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19F21BB986
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 11:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 119611BB984
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 11:08:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AFCC6E162;
-	Tue, 28 Apr 2020 09:09:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64B366E14C;
+	Tue, 28 Apr 2020 09:08:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F164B89BFE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB38A89AC0
  for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 09:08:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21043033-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21043035-1500050 
  for multiple; Tue, 28 Apr 2020 10:08:17 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2020 10:08:13 +0100
-Message-Id: <20200428090814.19352-2-chris@chris-wilson.co.uk>
+Date: Tue, 28 Apr 2020 10:08:14 +0100
+Message-Id: <20200428090814.19352-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200428090814.19352-1-chris@chris-wilson.co.uk>
 References: <20200428090814.19352-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/execlists: Track inflight CCID
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/execlists: Verify we don't submit
+ two identical CCIDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,157 +39,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The presumption is that by using a circular counter that is twice as
-large as the maximum ELSP submission, we would never reuse the same CCID
-for two inflight contexts.
+Check that we do not submit two contexts into ELSP with the same CCID
+[upper portion of the descriptor].
 
-However, if we continually preempt an active context such that it always
-remains inflight, it can be resubmitted with an arbitrary number of
-paired contexts. As each of its paired contexts will use a new CCID,
-eventually it will wrap and submit two ELSP with the same CCID.
-
-Rather than use a simple circular counter, switch over to a small bitmap
-of inflight ids so we can avoid reusing one that is still potentially
-active.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1796
-Fixes: 2935ed5339c4 ("drm/i915: Remove logical HW ID")
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1793
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.5+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +--
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 26 ++++++++++++++------
- drivers/gpu/drm/i915/i915_perf.c             |  3 +--
- drivers/gpu/drm/i915/selftests/i915_vma.c    |  2 +-
- 4 files changed, 22 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 37 ++++++++++++++++++++++-------
+ 1 file changed, 28 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 470bdc73220a..cfe4feaee982 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -309,8 +309,7 @@ struct intel_engine_cs {
- 	u32 context_size;
- 	u32 mmio_base;
- 
--	unsigned int context_tag;
--#define NUM_CONTEXT_TAG roundup_pow_of_two(2 * EXECLIST_MAX_PORTS)
-+	unsigned long context_tag;
- 
- 	struct rb_node uabi_node;
- 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 7d56207276d5..24daacb52411 100644
+index 24daacb52411..35bf3a95854b 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1389,13 +1389,17 @@ __execlists_schedule_in(struct i915_request *rq)
+@@ -1609,9 +1609,12 @@ static __maybe_unused bool
+ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 		     const char *msg)
+ {
++	struct intel_engine_cs *engine =
++		container_of(execlists, typeof(*engine), execlists);
+ 	struct i915_request * const *port, *rq;
+ 	struct intel_context *ce = NULL;
+ 	bool sentinel = false;
++	u32 ccid = -1;
  
- 	if (ce->tag) {
- 		/* Use a fixed tag for OA and friends */
-+		GEM_BUG_ON(ce->tag <= BITS_PER_TYPE(engine->context_tag));
- 		ce->lrc.ccid = ce->tag;
- 	} else {
- 		/* We don't need a strict matching tag, just different values */
--		ce->lrc.ccid =
--			(++engine->context_tag % NUM_CONTEXT_TAG) <<
--			(GEN11_SW_CTX_ID_SHIFT - 32);
--		BUILD_BUG_ON(NUM_CONTEXT_TAG > GEN12_MAX_CONTEXT_HW_ID);
-+		unsigned int tag = ffs(engine->context_tag);
-+
-+		GEM_BUG_ON(tag == 0 || tag >= BITS_PER_LONG);
-+		clear_bit(tag - 1, &engine->context_tag);
-+		ce->lrc.ccid = tag << (GEN11_SW_CTX_ID_SHIFT - 32);
-+
-+		BUILD_BUG_ON(BITS_PER_TYPE(engine->context_tag) > GEN12_MAX_CONTEXT_HW_ID);
+ 	trace_ports(execlists, msg, execlists->pending);
+ 
+@@ -1620,13 +1623,14 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 		return true;
+ 
+ 	if (!execlists->pending[0]) {
+-		GEM_TRACE_ERR("Nothing pending for promotion!\n");
++		GEM_TRACE_ERR("%s: Nothing pending for promotion!\n",
++			      engine->name);
+ 		return false;
  	}
  
- 	ce->lrc.ccid |= engine->execlists.ccid;
-@@ -1439,7 +1443,8 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 	if (execlists->pending[execlists_num_ports(execlists)]) {
+-		GEM_TRACE_ERR("Excess pending[%d] for promotion!\n",
+-			      execlists_num_ports(execlists));
++		GEM_TRACE_ERR("%s: Excess pending[%d] for promotion!\n",
++			      engine->name, execlists_num_ports(execlists));
+ 		return false;
+ 	}
  
- static inline void
- __execlists_schedule_out(struct i915_request *rq,
--			 struct intel_engine_cs * const engine)
-+			 struct intel_engine_cs * const engine,
-+			 unsigned int ccid)
- {
- 	struct intel_context * const ce = rq->context;
+@@ -1638,20 +1642,31 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 		GEM_BUG_ON(!i915_request_is_active(rq));
  
-@@ -1457,6 +1462,11 @@ __execlists_schedule_out(struct i915_request *rq,
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
+ 		if (ce == rq->context) {
+-			GEM_TRACE_ERR("Dup context:%llx in pending[%zd]\n",
++			GEM_TRACE_ERR("%s: Dup context:%llx in pending[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			return false;
+ 		}
+ 		ce = rq->context;
  
-+	ccid >>= GEN11_SW_CTX_ID_SHIFT - 32;
-+	ccid &= GEN12_MAX_CONTEXT_HW_ID;
-+	if (ccid < BITS_PER_TYPE(engine->context_tag))
-+		set_bit(ccid - 1, &engine->context_tag);
++		if (ccid == ce->lrc.ccid) {
++			GEM_TRACE_ERR("%s: Dup ccid:%x context:%llx in pending[%zd]\n",
++				      engine->name,
++				      ccid, ce->timeline->fence_context,
++				      port - execlists->pending);
++			return false;
++		}
++		ccid = ce->lrc.ccid;
 +
- 	intel_context_update_runtime(ce);
- 	intel_engine_context_out(engine);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
-@@ -1482,15 +1492,17 @@ execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
- 	struct intel_engine_cs *cur, *old;
-+	u32 ccid;
- 
- 	trace_i915_request_out(rq);
- 
-+	ccid = rq->context->lrc.ccid;
- 	old = READ_ONCE(ce->inflight);
- 	do
- 		cur = ptr_unmask_bits(old, 2) ? ptr_dec(old) : NULL;
- 	while (!try_cmpxchg(&ce->inflight, &old, cur));
- 	if (!cur)
--		__execlists_schedule_out(rq, old);
-+		__execlists_schedule_out(rq, old, ccid);
- 
- 	i915_request_put(rq);
- }
-@@ -3990,7 +4002,7 @@ static void enable_execlists(struct intel_engine_cs *engine)
- 
- 	enable_error_interrupt(engine);
- 
--	engine->context_tag = 0;
-+	engine->context_tag = GENMASK(BITS_PER_LONG - 2, 0);
- }
- 
- static bool unexpected_starting_state(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 04ad21960688..c533f569dd42 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1280,11 +1280,10 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
- 			((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
  		/*
- 		 * Pick an unused context id
--		 * 0 - (NUM_CONTEXT_TAG - 1) are used by other contexts
-+		 * 0 - BITS_PER_LONG are used by other contexts
- 		 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
+ 		 * Sentinels are supposed to be lonely so they flush the
+ 		 * current exection off the HW. Check that they are the
+ 		 * only request in the pending submission.
  		 */
- 		stream->specific_ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
--		BUILD_BUG_ON((GEN12_MAX_CONTEXT_HW_ID - 1) < NUM_CONTEXT_TAG);
- 		break;
- 	}
+ 		if (sentinel) {
+-			GEM_TRACE_ERR("context:%llx after sentinel in pending[%zd]\n",
++			GEM_TRACE_ERR("%s: context:%llx after sentinel in pending[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			return false;
+@@ -1659,7 +1674,8 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
  
-diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-index 58b5f40a07dd..af89c7fc8f59 100644
---- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-@@ -173,7 +173,7 @@ static int igt_vma_create(void *arg)
+ 		sentinel = i915_request_has_sentinel(rq);
+ 		if (sentinel && port != execlists->pending) {
+-			GEM_TRACE_ERR("sentinel context:%llx not in prime position[%zd]\n",
++			GEM_TRACE_ERR("%s: sentinel context:%llx not in prime position[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			return false;
+@@ -1674,7 +1690,8 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 
+ 		if (i915_active_is_idle(&ce->active) &&
+ 		    !intel_context_is_barrier(ce)) {
+-			GEM_TRACE_ERR("Inactive context:%llx in pending[%zd]\n",
++			GEM_TRACE_ERR("%s: Inactive context:%llx in pending[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			ok = false;
+@@ -1682,7 +1699,8 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
  		}
  
- 		nc = 0;
--		for_each_prime_number(num_ctx, 2 * NUM_CONTEXT_TAG) {
-+		for_each_prime_number(num_ctx, 2 * BITS_PER_LONG) {
- 			for (; nc < num_ctx; nc++) {
- 				ctx = mock_context(i915, "mock");
- 				if (!ctx)
+ 		if (!i915_vma_is_pinned(ce->state)) {
+-			GEM_TRACE_ERR("Unpinned context:%llx in pending[%zd]\n",
++			GEM_TRACE_ERR("%s: Unpinned context:%llx in pending[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			ok = false;
+@@ -1690,7 +1708,8 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 		}
+ 
+ 		if (!i915_vma_is_pinned(ce->ring->vma)) {
+-			GEM_TRACE_ERR("Unpinned ring:%llx in pending[%zd]\n",
++			GEM_TRACE_ERR("%s: Unpinned ring:%llx in pending[%zd]\n",
++				      engine->name,
+ 				      ce->timeline->fence_context,
+ 				      port - execlists->pending);
+ 			ok = false;
 -- 
 2.20.1
 
