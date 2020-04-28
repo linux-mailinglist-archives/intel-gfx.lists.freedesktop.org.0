@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4479B1BCFD0
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 00:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE1CF1BD011
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 00:33:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDA56E9CE;
-	Tue, 28 Apr 2020 22:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012E96EC22;
+	Tue, 28 Apr 2020 22:33:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20F806E9CE
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 22:21:18 +0000 (UTC)
-Received: from capuchin.riseup.net (unknown [10.0.1.176])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 49BbhY68QPzFdXC;
- Tue, 28 Apr 2020 15:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1588112477; bh=sMYyI7Nl8OmbGB5zkCHDkgWoQY7y8DyB1DtmxOeKV5I=;
- h=From:To:Subject:In-Reply-To:References:Date:From;
- b=D6Sxl0jOWwPOA+UwFNtlkDtHTiO+X5Eag1lg4ZA5my+av5BSbUXl8n0pAd2iD3wKK
- 9Cl9Z904BJ8MDWFpLQp1G2c7w8EAPyWYPereqVhZP37CTB9a7IJGE3mriPjI34iTBG
- HlaJPzbdQmowmIWqzRQ0wbNLHhGvQ9Za0TBSiKD4=
-X-Riseup-User-ID: 96650E0F3F82C0572EC06604DAF9FC63BE1021A6C5D8D52901FAA863D8099258
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by capuchin.riseup.net (Postfix) with ESMTPSA id 49BbhY54Y4z8vMp;
- Tue, 28 Apr 2020 15:21:17 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: "wax\[0\]" <wax0@icloud.com>,
- "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <7569FFF2-65E1-4873-9A1D-324553798203@getmailspring.com>
-References: <7569FFF2-65E1-4873-9A1D-324553798203@getmailspring.com>
-Date: Tue, 28 Apr 2020 15:21:25 -0700
-Message-ID: <87ees7w8t6.fsf@riseup.net>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCF366EC1F;
+ Tue, 28 Apr 2020 22:33:37 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 49Bbyf4z3Bz9sSX;
+ Wed, 29 Apr 2020 08:33:29 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1588113214;
+ bh=uF9jTsPem/DV1ITxLtEQfZ0b/1wCIoJnnwNR9iBcZWw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=A6Qr1MDOkhEDmPWqTAmkW6Q4GCkRNiYqvEcp0R+eVDPB3s4A2ccfrpYS1escF2DKU
+ 8GGeCsx8vhGRwLm6aDwXWBbCFRYCmPNy+xDqtVS3uqhXQaGyg648cdJ2b4k5w9dm3b
+ w8JU/EMpuDDkOwk9yVOxL7JBLmeNfpWLuP/jmpPf7cDYtHciCvGkQT7lbyDbHttOAy
+ 9aQ6xyw4Q12NXwgcaa2BAcO1vlZGCiEOP+l731ZH15DddwzQVHjp5LlTjW9wzIznaX
+ W09JJGqULfffE0fpJ/+mvgtjPAwMgU+sV6aCjB50s1x+IMqwdYD8xBbAukEGhHe9G3
+ agG7bQJTFhKgg==
+Date: Wed, 29 Apr 2020 08:33:29 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200429083329.30ff39a1@canb.auug.org.au>
+In-Reply-To: <20200420130118.7a866fd5@canb.auug.org.au>
+References: <20200420130118.7a866fd5@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] Re%3A [RFC] GPU-bound energy efficiency
- improvements for the intel_pstate driver
- (v2).&In-Reply-To=<20200310214203.26459-1-currojerez%40riseup.net>
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,58 +50,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1641922402=="
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Content-Type: multipart/mixed; boundary="===============1687030947=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1641922402==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+--===============1687030947==
+Content-Type: multipart/signed; boundary="Sig_/dDJJ.aCsF+jJXjljCKelcwt";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+--Sig_/dDJJ.aCsF+jJXjljCKelcwt
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Hi all,
 
-wax[0] <wax0@icloud.com> writes:
-
-> Hi Francisco,
-n>
-> I am very interested in installing the patch to improve intel_pstate, I am runing ubuntu 20.04 on a Surface Pro 7 with Ice Lake processor and I get some issues with the computer freezing for few seconds randomly, it is specially annoying because the cursor will also freeze, I believe this issue is related with the processor energy efficency since this computer does not have a fan and also because I never have issues when it is running Windows 10, I have tried different mesa drivers for the video card but nothing seems to fix it, could you please provide me with instructions about how to install this patch, I will be more than happy to give feedback.
-> My native language is Spanish, soplease feel free to reply in spanish in case you are Spanish speaker as well....
-
-Sounds like a GPU hang rather than anything related to energy
-efficiency.  Feel free to file a bug report as instructed in:
-
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
-
-> Thanks !!
+On Mon, 20 Apr 2020 13:01:18 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
 >
+> After merging the drm-misc tree, today's linux-next build (powerpc
+> allyesconfig) failed like this:
+>=20
+> drivers/video/fbdev/controlfb.c: In function 'controlfb_mmap':
+> drivers/video/fbdev/controlfb.c:756:23: error: implicit declaration of fu=
+nction 'pgprot_cached_wthru'; did you mean 'pgprot_cached'? [-Werror=3Dimpl=
+icit-function-declaration]
+>   756 |   vma->vm_page_prot =3D pgprot_cached_wthru(vma->vm_page_prot);
+>       |                       ^~~~~~~~~~~~~~~~~~~
+>       |                       pgprot_cached
+> drivers/video/fbdev/controlfb.c:756:23: error: incompatible types when as=
+signing to type 'pgprot_t' {aka 'struct <anonymous>'} from type 'int'
+>=20
+> Presumably exposed by commit
+>=20
+>   a07a63b0e24d ("video: fbdev: controlfb: add COMPILE_TEST support")
+>=20
+> I just turned off COMPILE_TEST again for today.  Please let me know when
+> this is fixed.
 
-De nada.
+This still appears to have not been addressed.
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+--=20
+Cheers,
+Stephen Rothwell
 
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+--Sig_/dDJJ.aCsF+jJXjljCKelcwt
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXqisZQAKCRCDmTidfVK/
-W9l8AQCAY/bzllNooq/whiqA96SH+wq4UYhUzjK6FslNc9k2sgD/d11EO/5hfZCy
-5R3pUTkBmy9MnMxvNH8urL+CXMuDGmY=
-=p7n+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6orzkACgkQAVBC80lX
+0Gy4Dgf/bbH2FoAF3e4cOY6NEO6bgilUq/iWrSZpE68n8E4vpUYxj8buZrgeqtnw
+EfgJ/oIUvdn7qGotbzGNbolIQYd93tVqDOTuKu6GO9D4zgN8tpg8qATHXRyyD903
+L4b8GRVVmPX/xqLvWV7wjYIwGT8IJHockOSl8KDwcZI1b+CR7U4KicnLQ5+GrREJ
+0w2iTXn7aTYc6A2mybo+eczofNx9JCWkcDVLpxzkLBSGXmIOyMMWPMMQxgGk7zx3
+tvWivMNERFbYLHTkI7u7fm4cF2EH5xtcTHvBfhN/7nw9REymaIfeGSX7HRRaXxO3
+ao3ZJJecZA8Crzo0u15bMogPUSwS7A==
+=pvTD
 -----END PGP SIGNATURE-----
---==-=-=--
 
---===============1641922402==
+--Sig_/dDJJ.aCsF+jJXjljCKelcwt--
+
+--===============1687030947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +125,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1641922402==--
+--===============1687030947==--
