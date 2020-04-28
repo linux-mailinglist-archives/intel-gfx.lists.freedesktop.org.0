@@ -1,34 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6915E1BBE6C
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 14:59:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 659291BBE85
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:06:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41E26894C0;
-	Tue, 28 Apr 2020 12:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F71889D99;
+	Tue, 28 Apr 2020 13:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1EA8894C0
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 12:59:46 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21046131-1500050 for multiple; Tue, 28 Apr 2020 13:59:43 +0100
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E10BF897CD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:06:32 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id u16so2761863wmc.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 06:06:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=GvCnubnVKmIVoSEYhFz+uK0U01NbdfHDTxNrt/s7zTM=;
+ b=IT2kqtnhvzGdmdz5+97kbMxrBEF3M23KSFOw84igRCF3reesSLpKPRVaP0rO5e+YpD
+ 7giH92phiSHnd0MIfLWlZQTTN718o9kErQ+uFjDvIjJ6BzXHWxsIr4sdHfHc1ctTNmSE
+ P0ivJas4Ds9oQCPzSsU0874DgbD0BsJwV4V7Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=GvCnubnVKmIVoSEYhFz+uK0U01NbdfHDTxNrt/s7zTM=;
+ b=BYlM2CnewPEY990VN/5UiUgR9Z/39YpRJa1ETKAUyx07lCSgWZdOvxpiU24tc0R9U3
+ hEeJJRj4zmgJfZV2KhorRnP5VqIfZv1LeM7bvoywmrxuWHXfe/7lpkcKtW91j8Sm99VC
+ GdmxB/WEAj9PYCvojZbn4WGiMUbPr7B/H0aOMiSKtv6Hur399Q5dsxaT8yJuBoy1ZoJD
+ xp5d67Tqkmy7lqXQ4rO9OOAnOy9ndbQlQiyAL3yskD1fWjlFtuOHnyHBS7P7vSqvsEWA
+ WrDe0UCawB08pz1RCr0xORkaDDVYWePZ9RuwkhW6MbjTKika0zvoHR6sGnHpLlBu74A4
+ LRmw==
+X-Gm-Message-State: AGi0Puar+CdZ31ARs5rR1iCtqIX2Ha5J9doi5bj0yJKEKjQJvksenP80
+ ZUCzzaXgqp5gDxp6u/0dQWJJPg==
+X-Google-Smtp-Source: APiQypJ9VrKGxZIPeEzgKtRg4Q1iG6C8ah9yulx2Kv2AdGFCAMOR++Kr7Z0rzxXagK+HWbpFMRQfpg==
+X-Received: by 2002:a1c:a58b:: with SMTP id o133mr4445404wme.5.1588079191545; 
+ Tue, 28 Apr 2020 06:06:31 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id h5sm26169744wrp.97.2020.04.28.06.06.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2020 06:06:30 -0700 (PDT)
+Date: Tue, 28 Apr 2020 15:06:28 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <20200428130628.GH3456981@phenom.ffwll.local>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-2-daniel.vetter@ffwll.ch>
+ <4d5229c2-acb4-b76f-13c7-88a5f3de4760@suse.de>
+ <CAKMK7uH2vhrQ7eTTF1B+==UJS9ZxhDv2RDvR0ct4P0vVJobf=w@mail.gmail.com>
+ <ea9c5a37-118f-1243-26f7-f03a3068dfeb@suse.de>
+ <20200421203245.GA25673@ravnborg.org>
 MIME-Version: 1.0
-In-Reply-To: <64c6797e1031f3f9da8b29cce8553b059b788a31.camel@linux.intel.com>
-References: <20200424152412.5928-1-chris@chris-wilson.co.uk>
- <64c6797e1031f3f9da8b29cce8553b059b788a31.camel@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158807878202.24122.7735670150825044322@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 28 Apr 2020 13:59:42 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Lazily acquire the device
- wakeref for freeing objects
+Content-Disposition: inline
+In-Reply-To: <20200421203245.GA25673@ravnborg.org>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 01/59] drm: Add devm_drm_dev_alloc macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,166 +69,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Janusz Krzysztofik (2020-04-28 13:45:13)
-> Hi Chris,
+On Tue, Apr 21, 2020 at 10:32:45PM +0200, Sam Ravnborg wrote:
+> Hi
 > 
-> On Fri, 2020-04-24 at 16:24 +0100, Chris Wilson wrote:
-> > We only need the device wakeref on freeing the objects if we have to
-> > unbind the object from the global GTT, or otherwise update device
-> > information. If the objects are clean, we never need the wakeref, so
-> > avoid taking until required.
+> > > Hm, I see the point of this (and the dev_field below, although I'd go
+> > > with dev_member there for some consistency with other macros using
+> > > offset_of or container_of), but I'm not sure about the dev_ prefix.
+> > > Drivers use that sometimes for the struct device *, and usage for
+> > > struct drm_device * is also very inconsistent. I've seen ddev, drm,
+> > > dev and base (that one only for embedded structs ofc). So not sure
+> > > which prefix to pick, aside from dev_ seems the most confusing. Got
+> > > ideas?
 > > 
-> > For this to be effective in preventing us from waking the device after
-> > it is unbind, we also need to mark the GGTT as closed on device removal.
-> > The GGTT will be rebuilt from scratch the next time we need to open it
-> > (on binding a new device).
+> > We have pdev for the PCI device, dev for the abstract device, and things
+> > like mdev for struct mga_device in mgag200. So I'd go with ddev. I don't
+> > like drm, because it could be anything in DRM. I guess struct drm_driver
+> > is more 'drm' than struct drm_device.
 > > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_mman.c   | 3 +++
-> >  drivers/gpu/drm/i915/gem/i915_gem_object.c | 3 ---
-> >  drivers/gpu/drm/i915/gt/intel_ggtt.c       | 9 +++++++--
-> >  drivers/gpu/drm/i915/gt/intel_gtt.h        | 1 +
-> >  drivers/gpu/drm/i915/i915_drv.c            | 1 +
-> >  drivers/gpu/drm/i915/i915_vma.c            | 3 ++-
-> >  6 files changed, 14 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > index b39c24dae64e..c6cead6f2b3e 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > @@ -421,6 +421,9 @@ static void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
-> >       struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> >       intel_wakeref_t wakeref;
-> >  
-> > +     if (!atomic_read(&i915->ggtt.vm.open))
-> > +             return;
-> > +
-> >       /*
-> >        * Serialisation between user GTT access and our code depends upon
-> >        * revoking the CPU's PTE whilst the mutex is held. The next user
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> > index 9d1d0131f7c2..99356c00c19e 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> > @@ -162,9 +162,7 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
-> >                                   struct llist_node *freed)
-> >  {
-> >       struct drm_i915_gem_object *obj, *on;
-> > -     intel_wakeref_t wakeref;
-> >  
-> > -     wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> >       llist_for_each_entry_safe(obj, on, freed, freed) {
-> >               struct i915_mmap_offset *mmo, *mn;
-> >  
-> > @@ -224,7 +222,6 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
-> >               call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
-> >               cond_resched();
-> >       }
-> > -     intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> >  }
-> >  
-> >  void i915_gem_flush_free_objects(struct drm_i915_private *i915)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > index 66165b10256e..b65545182ef5 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > @@ -681,8 +681,6 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
-> >  {
-> >       struct i915_vma *vma, *vn;
-> >  
-> > -     atomic_set(&ggtt->vm.open, 0);
-> > -
-> >       rcu_barrier(); /* flush the RCU'ed__i915_vm_release */
-> >       flush_workqueue(ggtt->vm.i915->wq);
-> >  
-> > @@ -709,6 +707,13 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
-> >               io_mapping_fini(&ggtt->iomap);
-> >  }
-> >  
-> > +void i915_ggtt_driver_remove(struct drm_i915_private *i915)
-> > +{
-> > +     struct i915_ggtt *ggtt = &i915->ggtt;
-> > +
-> > +     atomic_set(&ggtt->vm.open, 0);
-> > +}
-> > +
-> >  /**
-> >   * i915_ggtt_driver_release - Clean up GGTT hardware initialization
-> >   * @i915: i915 device
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > index d93ebdf3fa0e..f140ce5c171a 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > @@ -501,6 +501,7 @@ int i915_ggtt_enable_hw(struct drm_i915_private *i915);
-> >  void i915_ggtt_enable_guc(struct i915_ggtt *ggtt);
-> >  void i915_ggtt_disable_guc(struct i915_ggtt *ggtt);
-> >  int i915_init_ggtt(struct drm_i915_private *i915);
-> > +void i915_ggtt_driver_remove(struct drm_i915_private *i915);
-> >  void i915_ggtt_driver_release(struct drm_i915_private *i915);
-> >  
-> >  static inline bool i915_ggtt_has_aperture(const struct i915_ggtt *ggtt)
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> > index 2d62efd9316f..bdf97a1cb7cc 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.c
-> > +++ b/drivers/gpu/drm/i915/i915_drv.c
-> > @@ -768,6 +768,7 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
-> >  
-> >       i915_perf_fini(dev_priv);
-> >  
-> > +     i915_ggtt_driver_remove(dev_priv);
-> >       if (pdev->msi_enabled)
-> >               pci_disable_msi(pdev);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> > index fc14ebf9a0b7..6fe56ad2a542 100644
-> > --- a/drivers/gpu/drm/i915/i915_vma.c
-> > +++ b/drivers/gpu/drm/i915/i915_vma.c
-> > @@ -1319,7 +1319,8 @@ int i915_vma_unbind(struct i915_vma *vma)
-> >               return -EAGAIN;
-> >       }
-> >  
-> > -     if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
-> > +     if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND) &&
-> > +         atomic_read(&vma->vm->open))
-> >               /* XXX not always required: nop_clear_range */
-> >               wakeref = intel_runtime_pm_get(&vm->i915->runtime_pm);
-> >  
+> > But all of this is bikeshedding. It's probably best to keep the patch
+> > as-is, and maybe rename variables later if we ever find consent on the
+> > naming.
 > 
-> Can you please explain why you think it is OK to call
-> mutex_lock_interruptible_nested(&closed_GGTT->mutex, PPGTT_subclass)?
+> bikeshedding - I know.
+> But reading code is is quite natural for me that drm equals the central
+> drm_device data structure. Maybe thats because this was is in the code
+> I started looking at.
+> 
+> So as an example:
+> 
+> 	drm_err(drm, "bla bla\n");
+> 
+> This parses nicely and is easy to type and get right.
+> And matches nicely that drm_device => drm.
+> But bikeshedding  - I will go to bed...
+> (Whatever is the conclusion we should not hold back the patch in
+> questions).
 
-That should be explained in the comments
+Ok, since we can't agree on dev vs ddev vs drm vs something else I just
+left it as-is. We can always repaint this later on.
 
-       /*
-        * Differentiate between user/kernel vma inside the aliasing-ppgtt.
-        *
-        * We conflate the Global GTT with the user's vma when using the
-        * aliasing-ppgtt, but it is still vitally important to try and
-        * keep the use cases distinct. For example, userptr objects are
-        * not allowed inside the Global GTT as that will cause lock
-        * inversions when we have to evict them the mmu_notifier callbacks -
-        * but they are allowed to be part of the user ppGTT which can never
-        * be mapped. As such we try to give the distinct users of the same
-        * mutex, distinct lockclasses [equivalent to how we keep i915_ggtt
-        * and i915_ppgtt separate].
-        *
-        * NB this may cause us to mask real lock inversions -- while the
-        * code is safe today, lockdep may not be able to spot future
-        * transgressions.
-        */
-
-> Can you please also explain why you think it is safe to call
-> __i915_vma_unbind(vma_bound_to_GGTT) even if wakeref is not taken?
-
-Because it has been closed, and only inside strictly serial code.
--Chris
+Thanks everyone for comments and review.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
