@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE131BC774
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 20:04:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E916B1BC486
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 18:08:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 831A66E8C8;
-	Tue, 28 Apr 2020 18:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39BBD6E849;
+	Tue, 28 Apr 2020 16:08:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 99A556E82D;
- Tue, 28 Apr 2020 16:03:02 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 11FB530E;
- Tue, 28 Apr 2020 09:03:02 -0700 (PDT)
-Received: from [10.57.33.170] (unknown [10.57.33.170])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0EE773F305;
- Tue, 28 Apr 2020 09:02:59 -0700 (PDT)
-To: Christoph Hellwig <hch@lst.de>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- intel-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>
-References: <CGME20200428132022eucas1p2aa4716cbaca61c432ee8028be15fef7a@eucas1p2.samsung.com>
- <20200428132005.21424-1-m.szyprowski@samsung.com>
- <20200428140257.GA3433@lst.de> <20200428153202.GY3456981@phenom.ffwll.local>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <c01c9766-9778-fd1f-f36e-2dc7bd376ba4@arm.com>
-Date: Tue, 28 Apr 2020 17:02:58 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 284786E844;
+ Tue, 28 Apr 2020 16:08:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20D5FA00FD;
+ Tue, 28 Apr 2020 16:08:57 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200428153202.GY3456981@phenom.ffwll.local>
-Content-Language: en-GB
-X-Mailman-Approved-At: Tue, 28 Apr 2020 18:04:52 +0000
-Subject: Re: [Intel-gfx] [RFC 00/17] DRM: fix struct sg_table nents vs.
- orig_nents misuse
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 28 Apr 2020 16:08:57 -0000
+Message-ID: <158809013710.17774.18323042443449240326@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200428103344.27796-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200428103344.27796-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/6=5D_drm/i915/gt=3A_Always_e?=
+ =?utf-8?q?nable_busy-stats_for_execlists?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,41 +39,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-04-28 4:32 pm, Daniel Vetter wrote:
-> On Tue, Apr 28, 2020 at 04:02:57PM +0200, Christoph Hellwig wrote:
->> On Tue, Apr 28, 2020 at 03:19:48PM +0200, Marek Szyprowski wrote:
->>> 1. introduce a dma_{map,sync,unmap}_sgtable() wrappers, which will use
->>>     a proper sg_table entries and call respective DMA-mapping functions
->>>     and adapt current code to it
->>
->> That sounds reasonable to me.  Those could be pretty trivial wrappers.
->>
->>>
->>>
->>> 2. rename nents and orig_nents to nr_pages, nr_dmas to clearly state
->>>     which one refers to which part of the scatterlist; I'm open for
->>>     other names for those entries
->>
->> nr_cpu_ents and nr_dma_ents might be better names, but it still would be
->> a whole lot of churn for little gain.  I think just good wrappers like
->> suggested above might be more helpful.
-> 
-> I guess long-term we could aim for both? I.e. roll out better wrappers
-> first, once that's soaked through the tree, rename the last offenders.
+== Series Details ==
 
-Yes, that's what I was thinking too - most of these uses are just 
-passing them in and out of the DMA APIs, and thus would be subsumed into 
-the wrappers anyway, then in the relatively few remaining places where 
-the table is actually iterated for one reason or the other, renaming 
-would stand to help review and maintenance in terms of making it far 
-more obvious when the implementation and the intent don't match.
+Series: series starting with [CI,1/6] drm/i915/gt: Always enable busy-stats for execlists
+URL   : https://patchwork.freedesktop.org/series/76590/
+State : warning
 
-Robin.
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+99b775e3f056 drm/i915/gt: Always enable busy-stats for execlists
+aeea69f32471 drm/i915/gt: Move rps.enabled/active to flags
+-:114: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 68)
+#114: FILE: drivers/gpu/drm/i915/gt/intel_rps.c:1228:
++	if (rps->max_freq <= rps->min_freq)
++		/* leave disabled, no room for dynamic reclocking */;
+
+total: 0 errors, 1 warnings, 0 checks, 296 lines checked
+0b989e258a6a drm/i915/gt: Track use of RPS interrupts in flags
+3cd03bd68327 drm/i915/gt: Switch to manual evaluation of RPS
+0d4ab5dc1f58 drm/i915/gt: Apply the aggressive downclocking to parking
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")'
+#12: 
+References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+
+total: 1 errors, 1 warnings, 0 checks, 31 lines checked
+3fe945d951de drm/i915/gt: Restore aggressive post-boost downclocking
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2a8862d2f3da ("drm/i915: Reduce the RPS shock")'
+#12: 
+References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
+
+total: 1 errors, 0 warnings, 0 checks, 34 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
