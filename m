@@ -2,40 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16801BBAC7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 12:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 446951BBB0B
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 12:19:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB4CE6E277;
-	Tue, 28 Apr 2020 10:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169AE6E362;
+	Tue, 28 Apr 2020 10:19:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CE56E170
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 10:08:32 +0000 (UTC)
-IronPort-SDR: 1DH8RiAmDR34939s39+ps3j6yoGnCOTaFLWO2OcE9HrtiY7prztq9KSW9UqqYywZVKu5sYNPPO
- J7jbVzXZrQjA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2020 03:08:32 -0700
-IronPort-SDR: F8c8SbnQBuEedvXmJGpIieROdjWheV/cNvQ2ftcsZu73M67vxcbC+Qmi4XuurcAmhWhQbXPlLc
- d2akUdegog7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="432128947"
-Received: from pbooyens-mobl1.ger.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.37.143])
- by orsmga005.jf.intel.com with ESMTP; 28 Apr 2020 03:08:31 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2020 13:08:16 +0300
-Message-Id: <20200428100816.951014-5-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200428100816.951014-1-lionel.g.landwerlin@intel.com>
-References: <20200428100816.951014-1-lionel.g.landwerlin@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8AE26E35D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 10:19:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21044271-1500050 for multiple; Tue, 28 Apr 2020 11:19:02 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 4/4] drm/i915/perf: enable filtering on
- multiple contexts
+In-Reply-To: <20200428100816.951014-3-lionel.g.landwerlin@intel.com>
+References: <20200428100816.951014-1-lionel.g.landwerlin@intel.com>
+ <20200428100816.951014-3-lionel.g.landwerlin@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158806914077.24122.4604283459575331296@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 28 Apr 2020 11:19:00 +0100
+Subject: Re: [Intel-gfx] [PATCH v7 2/4] drm/i915/perf: stop using the kernel
+ context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,157 +41,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add 2 new properties to the i915-perf open ioctl to specify an array
-of GEM context handles as well as the length of the array.
+Quoting Lionel Landwerlin (2020-04-28 11:08:14)
+> @@ -2837,6 +2851,7 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>  {
+>         struct drm_i915_private *i915 = stream->perf->i915;
+>         struct i915_perf *perf = stream->perf;
+> +       struct intel_timeline *timeline;
+>         int format_size;
+>         int ret;
+>  
+> @@ -2946,10 +2961,30 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>  
+>         stream->ops = &i915_oa_stream_ops;
+>  
+> +       timeline = intel_timeline_create(stream->engine->gt, NULL);
+> +       if (IS_ERR(timeline)) {
+> +               ret = PTR_ERR(timeline);
+> +               goto err_timeline;
+> +       }
+> +
+> +       stream->config_context = intel_context_create(stream->engine);
+> +       if (IS_ERR(stream->config_context)) {
+> +               intel_timeline_put(timeline);
+> +               ret = PTR_ERR(stream->config_context);
+> +               goto err_timeline;
+> +       }
+> +
+> +       stream->config_context->sseu = props->sseu;
+> +       stream->config_context->timeline = timeline;
 
-This can be used by drivers using multiple GEM contexts to implement a
-single GL context.
+Timeline?
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 58 ++++++++++++++++++++++++++++++--
- include/uapi/drm/i915_drm.h      | 21 ++++++++++++
- 2 files changed, 76 insertions(+), 3 deletions(-)
+> +
+> +       ret = intel_context_pin(stream->config_context);
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 79f68efd7d5b..e236d2a8720b 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3686,7 +3686,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 				    struct perf_open_properties *props)
- {
- 	u64 __user *uprop = uprops;
--	u32 i;
-+	u32 __user *uctx_handles = NULL;
-+	u32 i, n_uctx_handles = 0;
- 	int err;
- 
- 	memset(props, 0, sizeof(struct perf_open_properties));
-@@ -3737,7 +3738,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 
- 		switch ((enum drm_i915_perf_property_id)id) {
- 		case DRM_I915_PERF_PROP_CTX_HANDLE:
--			if (props->n_ctx_handles > 0) {
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
- 				DRM_DEBUG("Context handle specified multiple times\n");
- 				err = -EINVAL;
- 				goto error;
-@@ -3851,6 +3852,38 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 			}
- 			props->poll_oa_period = value;
- 			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY:
-+			/* HSW can only filter in HW and only on a single
-+			 * context.
-+			 */
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			uctx_handles = u64_to_user_ptr(value);
-+			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH:
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
-+				DRM_DEBUG("Context handle specified multiple times\n");
-+				err = -EINVAL;
-+				goto error;
-+			}
-+			props->ctx_handles =
-+				kmalloc_array(value,
-+					      sizeof(*props->ctx_handles),
-+					      GFP_KERNEL);
-+			if (!props->ctx_handles) {
-+				err = -ENOMEM;
-+				goto error;
-+			}
-+			n_uctx_handles = value;
-+			break;
- 		case DRM_I915_PERF_PROP_MAX:
- 			MISSING_CASE(id);
- 			err = -EINVAL;
-@@ -3860,6 +3893,21 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 		uprop += 2;
- 	}
- 
-+	if (n_uctx_handles > 0 && props->n_ctx_handles > 0) {
-+		DRM_DEBUG("Context handle specified multiple times\n");
-+		err = -EINVAL;
-+		goto error;
-+	}
-+
-+	for (i = 0; i < n_uctx_handles; i++) {
-+		err = get_user(props->ctx_handles[i], uctx_handles);
-+		if (err)
-+			goto error;
-+
-+		uctx_handles++;
-+		props->n_ctx_handles++;
-+	}
-+
- 	return 0;
- 
- error:
-@@ -4643,8 +4691,12 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
- 	 *    interval for the hrtimer used to check for OA data.
-+	 *
-+	 * 6: Add DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY &
-+	 *    DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH to allow an
-+	 *    application monitor/pin multiple contexts.
- 	 */
--	return 5;
-+	return 6;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd6b54b..f80e7932d728 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1993,6 +1993,27 @@ enum drm_i915_perf_property_id {
- 	 */
- 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
- 
-+	/**
-+	 * Specifies an array of u32 GEM context handles to filter reports
-+	 * with.
-+	 *
-+	 * Using this parameter is incompatible with using
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE.
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY,
-+
-+	/**
-+	 * Specifies the length of the array specified with
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY.
-+	 *
-+	 * The length must be in the range [1, 4].
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH,
-+
- 	DRM_I915_PERF_PROP_MAX /* non-ABI */
- };
- 
--- 
-2.26.2
+One is created for the context here [via intel_context_alloc].
 
+I was intrigued as I thought you might have had something special planned
+with multiple contexts sharing a timeline
+
+Do we need to permanently pin the context? We can fail the OA config
+change request, right?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
