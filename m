@@ -2,40 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBD31BCA51
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 20:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C05561BCAB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 20:52:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 932696E9DE;
-	Tue, 28 Apr 2020 18:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C096E895;
+	Tue, 28 Apr 2020 18:52:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A831E6E9DE
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 18:51:00 +0000 (UTC)
-IronPort-SDR: SRl2HXnAkVQmShsi+NZ53VJa1auUekDKaM3XKM3JJmQ4CLqUaAZlCVGOO2m765UO+SkOqtroKf
- eXaum9vcHlWQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2020 11:51:00 -0700
-IronPort-SDR: 6hOJBVknerSN2nMiwdCS5jwEt26iZrxVzUCUnc4eUHG40Hb7kO9MNBdOiGgFlGDa5r9cZVbv1l
- ZNeCMH4P5lZA==
-X-IronPort-AV: E=Sophos;i="5.73,328,1583222400"; d="scan'208";a="257707449"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2020 11:50:59 -0700
-Date: Tue, 28 Apr 2020 11:50:14 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-Message-ID: <20200428185014.GA4030801@intel.com>
-References: <20200415193535.14597-1-matthew.s.atwood@intel.com>
- <8C2593290C2B3E488D763E819AF1F02E160B562C@ORSMSX101.amr.corp.intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D34F6E895
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 18:52:21 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id h4so4030209wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 11:52:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=1fk1P+rnDe0umjeDIvp+vfpU9E3PVpmXBSETDQT9r8o=;
+ b=Mbt0ltVAd+1nkTOL8h26e7uBY6VF6ArVCculxTkvpFnX1U4uEm+HYlzCOYyITYsiWx
+ y7L0toiucza0Ht4FuD1NwixLenmGCpavI/EB7q3ZItHy/micvYyWP+/EJcebbdbNkLnX
+ Ki+ITuma4rMuxtqnwmoeF6aTeyCenJpE61BAA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=1fk1P+rnDe0umjeDIvp+vfpU9E3PVpmXBSETDQT9r8o=;
+ b=RF/ybn18K/0A0Lg80m2/nc/0GuPNlLtvcGlL/qRkaLCD+z15zYPvPtqoSnJTPiZsZP
+ 5+vTNzEQsQXDzAHlzgCNsCAQv7L8pncCt6b8wfCqmphQZKpDs+7lIHypvbN7Xwr/pTQH
+ BsGQg83IkwngHI/Heii76MzQv3oddYhdUNtz7eC9McuYptkhao4xN6iGw2JTtjbhpKDu
+ FwYV5UPBjzDOHj0PPf7cnbpGPk01AeIKubSL9CSF1/n9u/cE98ehe5B6kn06QfDOb7w1
+ PeRoUT105yEYnJ00Gxr6Xe4vxfO/qh3z5QSJAzWUeB640lxA8QURFTVMuOSxR+F1ACXf
+ WXtw==
+X-Gm-Message-State: AGi0PuZUIMdpgpRF3Fd9GVVvTIAnNsPNqlnWU5SC/HbSsvjLbOqCmjKS
+ EwrkYXVMlUPBak5XyYeOkiutSv1Ou7A=
+X-Google-Smtp-Source: APiQypJ8DnecuOacY+hmzcazm2b23nwzZL/SMbD2Yz3EV/dnz6F+8jFEupuYznsiAQbC4uqi19QV9g==
+X-Received: by 2002:a1c:ba09:: with SMTP id k9mr5941540wmf.176.1588099939861; 
+ Tue, 28 Apr 2020 11:52:19 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id e2sm26543954wrv.89.2020.04.28.11.52.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2020 11:52:18 -0700 (PDT)
+Date: Tue, 28 Apr 2020 20:52:17 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Message-ID: <20200428185217.GA3456981@phenom.ffwll.local>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-39-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <8C2593290C2B3E488D763E819AF1F02E160B562C@ORSMSX101.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/tgl: Wa_14011059788
+In-Reply-To: <20200415074034.175360-39-daniel.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 38/59] drm/i915: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,68 +65,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 28, 2020 at 03:07:03PM +0000, Sripada, Radhakrishna wrote:
+On Wed, Apr 15, 2020 at 09:40:13AM +0200, Daniel Vetter wrote:
+> Luckily we're already well set up in the main driver, with
+> drm_dev_put() being the last thing in both the unload error case and
+> the pci remove function.
 > 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt
-> > Atwood
-> > Sent: Wednesday, April 15, 2020 12:36 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [Intel-gfx] [PATCH v2] drm/i915/tgl: Wa_14011059788
-> > 
-> > Reflect recent Bspec changes
-> > 
-> > v2: fix whitespace, typo
-> > 
-> > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> Looks good to me.
-> Reviewed-by: Radhakrishna Sripada <Radhakrishna.sripada@intel.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-pushed to dinq.
-Thanks for the patch and review.
+Pushed to drm-misc-next with Jani's irc-ack.
+-Daniel
 
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 17 ++++-------------
+>  drivers/gpu/drm/i915/i915_pci.c |  2 --
+>  2 files changed, 4 insertions(+), 15 deletions(-)
 > 
-> - RK
-> > ---
-> >  drivers/gpu/drm/i915/intel_pm.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index b632b6bb9c3e..3d12a0617c84 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -6854,6 +6854,10 @@ static void tgl_init_clock_gating(struct
-> > drm_i915_private *dev_priv)
-> >  	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
-> >  		I915_WRITE(GEN9_CLKGATE_DIS_3,
-> > I915_READ(GEN9_CLKGATE_DIS_3) |
-> >  			   TGL_VRH_GATING_DIS);
-> > +
-> > +	/* Wa_14011059788:tgl */
-> > +	intel_uncore_rmw(&dev_priv->uncore,
-> > GEN10_DFR_RATIO_EN_AND_CHICKEN,
-> > +			 0, DFR_DISABLE);
-> >  }
-> > 
-> >  static void cnp_init_clock_gating(struct drm_i915_private *dev_priv)
-> > --
-> > 2.21.1
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 641f5e03b661..ff9a5b1b4c6d 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -877,19 +877,11 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		(struct intel_device_info *)ent->driver_data;
+>  	struct intel_device_info *device_info;
+>  	struct drm_i915_private *i915;
+> -	int err;
+>  
+> -	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
+> -	if (!i915)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	err = drm_dev_init(&i915->drm, &driver, &pdev->dev);
+> -	if (err) {
+> -		kfree(i915);
+> -		return ERR_PTR(err);
+> -	}
+> -
+> -	drmm_add_final_kfree(&i915->drm, i915);
+> +	i915 = devm_drm_dev_alloc(&pdev->dev, &driver,
+> +				  struct drm_i915_private, drm);
+> +	if (IS_ERR(i915))
+> +		return i915;
+>  
+>  	i915->drm.pdev = pdev;
+>  	pci_set_drvdata(pdev, i915);
+> @@ -1006,7 +998,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	pci_disable_device(pdev);
+>  out_fini:
+>  	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
+> -	drm_dev_put(&i915->drm);
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 66738f2c4f28..2741fb3e30cb 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -941,8 +941,6 @@ static void i915_pci_remove(struct pci_dev *pdev)
+>  
+>  	i915_driver_remove(i915);
+>  	pci_set_drvdata(pdev, NULL);
+> -
+> -	drm_dev_put(&i915->drm);
+>  }
+>  
+>  /* is device_id present in comma separated list of ids */
+> -- 
+> 2.25.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
