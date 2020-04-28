@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D7D61BD017
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 00:34:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725F21BD01B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 00:38:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9005F6E9DB;
-	Tue, 28 Apr 2020 22:34:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C8B6E9D0;
+	Tue, 28 Apr 2020 22:38:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C6FBD6EC0A;
- Tue, 28 Apr 2020 22:34:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 305716E889;
+ Tue, 28 Apr 2020 22:38:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C038FA0BA8;
- Tue, 28 Apr 2020 22:34:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2978CA47EE;
+ Tue, 28 Apr 2020 22:38:35 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 28 Apr 2020 22:34:51 -0000
-Message-ID: <158811329178.17772.11260210886189972525@emeril.freedesktop.org>
+Date: Tue, 28 Apr 2020 22:38:35 -0000
+Message-ID: <158811351513.17774.2184156738610343352@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200428205520.29559-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200428205520.29559-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Keep_a_no-frills_swappable_copy_of_the_default_cont?=
- =?utf-8?q?ext_state_=28rev3=29?=
+References: <20200428213157.4683-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200428213157.4683-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/6=5D_drm/i915/gt=3A_Always_e?=
+ =?utf-8?q?nable_busy-stats_for_execlists?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,68 +48,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
-URL   : https://patchwork.freedesktop.org/series/76678/
-State : success
+Series: series starting with [CI,1/6] drm/i915/gt: Always enable busy-stats for execlists
+URL   : https://patchwork.freedesktop.org/series/76681/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8388 -> Patchwork_17499
-====================================================
+$ dim checkpatch origin/drm-tip
+14885f35fa1b drm/i915/gt: Always enable busy-stats for execlists
+773138f5b31d drm/i915/gt: Move rps.enabled/active to flags
+-:114: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 68)
+#114: FILE: drivers/gpu/drm/i915/gt/intel_rps.c:1228:
++	if (rps->max_freq <= rps->min_freq)
++		/* leave disabled, no room for dynamic reclocking */;
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 296 lines checked
+96c87271f5e7 drm/i915/gt: Track use of RPS interrupts in flags
+8dacd7926016 drm/i915/gt: Switch to manual evaluation of RPS
+d28c0db89094 drm/i915/gt: Apply the aggressive downclocking to parking
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
 
-  **SUCCESS**
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")'
+#12: 
+References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
 
-  No regressions found.
+total: 1 errors, 1 warnings, 0 checks, 31 lines checked
+7ce090c0dff0 drm/i915/gt: Restore aggressive post-boost downclocking
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2a8862d2f3da ("drm/i915: Reduce the RPS shock")'
+#12: 
+References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17499/index.html
+total: 1 errors, 0 warnings, 0 checks, 34 lines checked
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17499 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-glk-dsi:         [INCOMPLETE][1] ([i915#58] / [k.org#198133]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8388/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17499/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-
-  
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8388 -> Patchwork_17499
-
-  CI-20190529: 20190529
-  CI_DRM_8388: 12346af5b9d3ccf046d5e736c02851eec98e49ff @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17499: 62c3ddeb1d3d39d8e600d2fabeb9b0991b5308a0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-62c3ddeb1d3d drm/i915/gt: Keep a no-frills swappable copy of the default context state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17499/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
