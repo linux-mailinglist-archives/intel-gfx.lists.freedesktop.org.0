@@ -2,40 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E56651BC060
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5061BC062
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F846E462;
-	Tue, 28 Apr 2020 13:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2107F6E484;
+	Tue, 28 Apr 2020 13:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4CF76E34D
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:57:03 +0000 (UTC)
-IronPort-SDR: eupZgMf4mFEKmT+ULl6T9WRWo3U7r3/x7RzHtRLFwotQaL1v3OApFAfhA8r/4mT4pTfKHJa1Yf
- 5CWHD5JfuowA==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4566E484
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:57:47 +0000 (UTC)
+IronPort-SDR: jyhs0Z4FeWNYJGwgVKTj8pJ5eNrU0b9fzwsBXEpG2GWj/7UIoIqBIIZwXIPXekuTbQHX7+Da2O
+ 10+bK0AfGxiA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2020 06:57:03 -0700
-IronPort-SDR: yT42H0noyXnsIRb5wCRRuaU+sLsEhKQVixMkzfgOPN9gChmtgj/6Yc4Tn5CSrDKSxguSLtgsOS
- 8oIz8fgQnLWw==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 06:57:46 -0700
+IronPort-SDR: zNs/PEXBb6f7QE0ZtvbO+JcK8+dHxAk02X5RBzIuiPILZKYc+IeeiYkrZswZ2QQS8py/KeSanJ
+ Yr+O2Nr5DO/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="459240138"
-Received: from pbooyens-mobl1.ger.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.37.143])
- by fmsmga006.fm.intel.com with ESMTP; 28 Apr 2020 06:57:02 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2020 16:56:50 +0300
-Message-Id: <20200428135650.956161-5-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200428135650.956161-1-lionel.g.landwerlin@intel.com>
-References: <20200428135650.956161-1-lionel.g.landwerlin@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="261104452"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 28 Apr 2020 06:57:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Apr 2020 16:57:44 +0300
+Date: Tue, 28 Apr 2020 16:57:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Alexei Podtelezhnikov <apodtele@gmail.com>
+Message-ID: <20200428135744.GI6112@intel.com>
+References: <20200428034705.3907-1-apodtele@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 4/4] drm/i915/perf: enable filtering on
- multiple contexts
+Content-Disposition: inline
+In-Reply-To: <20200428034705.3907-1-apodtele@gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [patch] drm/i915: Add PCI IDs for Skylake GT1.5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,157 +50,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add 2 new properties to the i915-perf open ioctl to specify an array
-of GEM context handles as well as the length of the array.
+On Mon, Apr 27, 2020 at 11:47:05PM -0400, Alexei Podtelezhnikov wrote:
+> These devices are also known as iSKLULTGT15 and iSKLDTGT15.
+> =
 
-This can be used by drivers using multiple GEM contexts to implement a
-single GL context.
+> Signed-off-by: Alexei Podtelezhnikov <apodtele@gmail.com>
+> ---
+>  include/drm/i915_pciids.h | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> =
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 58 ++++++++++++++++++++++++++++++--
- include/uapi/drm/i915_drm.h      | 21 ++++++++++++
- 2 files changed, 76 insertions(+), 3 deletions(-)
+> diff --git a/src/i915_pciids.h b/src/i915_pciids.h
+> index 1d2c1221..a9c88eab 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -331,7 +355,8 @@ Add SKL GT1.5
+>  	INTEL_VGA_DEVICE(0x22b3, info)
+>  =
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index c4eeb7b4b3e7..58389e77beb3 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3711,7 +3711,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 				    struct perf_open_properties *props)
- {
- 	u64 __user *uprop = uprops;
--	u32 i;
-+	u32 __user *uctx_handles = NULL;
-+	u32 i, n_uctx_handles = 0;
- 	int err;
- 
- 	memset(props, 0, sizeof(struct perf_open_properties));
-@@ -3762,7 +3763,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 
- 		switch ((enum drm_i915_perf_property_id)id) {
- 		case DRM_I915_PERF_PROP_CTX_HANDLE:
--			if (props->n_ctx_handles > 0) {
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
- 				DRM_DEBUG("Context handle specified multiple times\n");
- 				err = -EINVAL;
- 				goto error;
-@@ -3876,6 +3877,38 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 			}
- 			props->poll_oa_period = value;
- 			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY:
-+			/* HSW can only filter in HW and only on a single
-+			 * context.
-+			 */
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			uctx_handles = u64_to_user_ptr(value);
-+			break;
-+		case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH:
-+			if (IS_HASWELL(perf->i915)) {
-+				DRM_DEBUG("Multi context filter not supported on HSW\n");
-+				err = -ENODEV;
-+				goto error;
-+			}
-+			if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
-+				DRM_DEBUG("Context handle specified multiple times\n");
-+				err = -EINVAL;
-+				goto error;
-+			}
-+			props->ctx_handles =
-+				kmalloc_array(value,
-+					      sizeof(*props->ctx_handles),
-+					      GFP_KERNEL);
-+			if (!props->ctx_handles) {
-+				err = -ENOMEM;
-+				goto error;
-+			}
-+			n_uctx_handles = value;
-+			break;
- 		case DRM_I915_PERF_PROP_MAX:
- 			MISSING_CASE(id);
- 			err = -EINVAL;
-@@ -3885,6 +3918,21 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 		uprop += 2;
- 	}
- 
-+	if (n_uctx_handles > 0 && props->n_ctx_handles > 0) {
-+		DRM_DEBUG("Context handle specified multiple times\n");
-+		err = -EINVAL;
-+		goto error;
-+	}
-+
-+	for (i = 0; i < n_uctx_handles; i++) {
-+		err = get_user(props->ctx_handles[i], uctx_handles);
-+		if (err)
-+			goto error;
-+
-+		uctx_handles++;
-+		props->n_ctx_handles++;
-+	}
-+
- 	return 0;
- 
- error:
-@@ -4668,8 +4716,12 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
- 	 *    interval for the hrtimer used to check for OA data.
-+	 *
-+	 * 6: Add DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY &
-+	 *    DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH to allow an
-+	 *    application monitor/pin multiple contexts.
- 	 */
--	return 5;
-+	return 6;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd6b54b..f80e7932d728 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1993,6 +1993,27 @@ enum drm_i915_perf_property_id {
- 	 */
- 	DRM_I915_PERF_PROP_POLL_OA_PERIOD,
- 
-+	/**
-+	 * Specifies an array of u32 GEM context handles to filter reports
-+	 * with.
-+	 *
-+	 * Using this parameter is incompatible with using
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE.
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY,
-+
-+	/**
-+	 * Specifies the length of the array specified with
-+	 * DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY.
-+	 *
-+	 * The length must be in the range [1, 4].
-+	 *
-+	 * This property is available in perf revision 6.
-+	 */
-+	DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH,
-+
- 	DRM_I915_PERF_PROP_MAX /* non-ABI */
- };
- 
--- 
-2.26.2
+>  #define INTEL_SKL_ULT_GT1_IDS(info) \
+> -	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
+> +	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
+> +	INTEL_VGA_DEVICE(0x1913, info) /* ULT GT1.5 */
+>  =
 
+>  #define INTEL_SKL_ULX_GT1_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
+
+We also seem to be missing 0x1915 from the ulx list.
+
+Another odd things I noticed in our SKL PCI ID lists is that
+that 0x1923 and 0x1927 are potentially miscategorized. They
+are listed as ULT in some parts of the spec whereas we have
+them in the non-ULT/ULX list. Also 0x1927 is listed as Iris
+graphics 550, and ark.intel.com says that it can be found
+in the i5-6267U CPU, which is ULT. The other one is listed
+as HD Graphics 535 which does give some ULT google hits based
+on the Windows drivers. So looks like we should make these ULT.
+
+The third odd thing is that 0x192a is listed as both GT3 and GT4
+in the spec. Not really able to find corroborating evidence one
+way or the other unfortunately.
+
+> @@ -340,6 +365,7 @@ Add SKL GT1.5
+>  	INTEL_SKL_ULT_GT1_IDS(info), \
+>  	INTEL_SKL_ULX_GT1_IDS(info), \
+>  	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
+> +	INTEL_VGA_DEVICE(0x1917, info), /* DT  GT1.5 */ \
+>  	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
+>  	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
+>  =
+
+> --
+> 2.26.2
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
