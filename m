@@ -2,68 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80431BC771
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 20:04:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1265B1BC2AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 17:18:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3896E8C4;
-	Tue, 28 Apr 2020 18:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 682806E825;
+	Tue, 28 Apr 2020 15:18:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE4F6E824;
- Tue, 28 Apr 2020 15:15:19 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id u127so3292691wmg.1;
- Tue, 28 Apr 2020 08:15:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=6RQa3/Ivl+erv2MC5JIerdVHsjcRsy5jElt25/tvg/I=;
- b=c/rDYXyVx+iz8SQtNmdLLH9jiyFcXnPbgx93UfB9RgZOLHKZjwmjlrpMpBrqvtv6Fw
- e3pdYB7gxw+aEHxM30rDVR+kHPY1rl9jcotFrTRSnlHN/Sy7vvx+LPXJNZwgEggzcTWB
- LuNAmn0HSFJVT70SwHLf3sgYl/Kx3gKsWpMIEQtqM8k0x9ytKRe8td2LPY1rCkMV3dw7
- psiw49gPvhkuxILNWN08yqhHImHmiI27uI55UfLBdsWcku7ZE2NvnEY2pv3lxOw5UkS9
- RV6DV8J10tXn4Za5fUe0JvrTCtHazLo7gOx6UIJnFQwRYybjgD3lh2zZDTK0vKtWyWpe
- IJqQ==
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 411CD6E825
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 15:18:17 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id z6so3308618wml.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 08:18:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=EEU0pxcPFX3KP87PwUmGj9xWjqHNRrDzTBDgsvo+zrE=;
+ b=KTinRLzrNGkjErt0YFPfEjur37+mTjuuNFWKuMYjujj75gJo4JuKBWlLUFpqe21kD8
+ PuGx+XNt9x1outfQa8IQhPFA/zyJi9Ca7Qi5Fkgsb1ZfMD/D/oCBsFlKJqopuqj7OfS6
+ k6tEL0y3Ta8cAOVsRinPJEt7/3vwn6tTL45Tg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=6RQa3/Ivl+erv2MC5JIerdVHsjcRsy5jElt25/tvg/I=;
- b=WXe06aIztxz2ftohZHDdB/mz+QyBAY2PzlDpHJ4D22/KWOTD0+JyGMUeWQ5UVGebMt
- kfm/fPLm5J0jIdk635n7v140AK2o/CW4wwqv+A5BrZyovFNjyKriL3DjfTY6Hh1kJ/at
- eO+gt75f9eYMtYeW4jVB1jMx1sNSpq8sJYTUoTOXrPfvBriSL8uy/U2oH5wozdfyz1Co
- 7YIRYdjtyr6fbHynKzj1bkZIGZcJaWQNqJVl1ts+qXgf9GjvV8mCGR4VytlH61/D59oI
- hiPUa9FRTWknmL+PsOPlxw1lHg811QRmkVdIn7CPsSjA+tNAqQS1yuF9ejHknDmAU2Tx
- qYqQ==
-X-Gm-Message-State: AGi0PuZcXdUt6fOkwq8/pvK8dcaLNO9FJFwmWxFoA+OGe/EtcMI0aCLI
- TZz9zZi91NUpyf3BgFm3ldk=
-X-Google-Smtp-Source: APiQypJXqdagbY7C95ErpdLoYp1uRYumNOUPPDPTkG1JE8zcrJsSYL5DCZa3nXGytS0h2Vy2ksxDbg==
-X-Received: by 2002:a7b:c5d4:: with SMTP id n20mr5373467wmk.92.1588086918255; 
- Tue, 28 Apr 2020 08:15:18 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id 74sm26988379wrk.30.2020.04.28.08.15.17
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 28 Apr 2020 08:15:17 -0700 (PDT)
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
-References: <20200428132005.21424-1-m.szyprowski@samsung.com>
- <CGME20200428132028eucas1p155a84ab14c6a6820b4c8240f01e98905@eucas1p1.samsung.com>
- <20200428132005.21424-11-m.szyprowski@samsung.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <94c45ded-6544-a922-7177-8255b44c4cfa@gmail.com>
-Date: Tue, 28 Apr 2020 17:15:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=EEU0pxcPFX3KP87PwUmGj9xWjqHNRrDzTBDgsvo+zrE=;
+ b=uW5zmP3Awic9EDyVoQVFeCm45tPSHRLM7tECaxMrklWkb5zj0I0s96JX+fKFhPNbM8
+ 3DP331u6n9O55OESx96EUuPOUpwnI8IIgFU1QVNe+vfBTtrSTtunkx4EVHgoGh7mJ3Ig
+ CK0NSuLQjr8J4NvIxYnl1pXvQO6agFr9Zejp539NiMYFzL8VZ1oz7YhHDHR4ydox88oQ
+ Ky0COcoy2h4+lBApznE/jAILqPXtsuOH93P4xmdmn4Boih+xALRFz+ZTTYy48OcmQyT2
+ smhK/7ECDVxlpE0LneaC5Izpg0cVNk1hD5mjW5LdikpDJeoY9A4psOKx+HAt30sfjARZ
+ pVnA==
+X-Gm-Message-State: AGi0PuZRg02lsaRBb2JiDt4seQ7NBz1g6OgaNsrBZsGb+YEM47aJDFlf
+ nSPZMm3znsWFf0cmkuLmHodFpg==
+X-Google-Smtp-Source: APiQypKaVyMHjzYLTLGIxk+gUvL3MgOQUtvKn1okwXGtKQJUbFiYSWur99gy5wbOdKi7ODJQCqZVMA==
+X-Received: by 2002:a1c:ed04:: with SMTP id l4mr5193048wmh.93.1588087095920;
+ Tue, 28 Apr 2020 08:18:15 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f83sm3728864wmf.42.2020.04.28.08.18.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2020 08:18:15 -0700 (PDT)
+Date: Tue, 28 Apr 2020 17:18:13 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Michal Orzel <michalorzel.eng@gmail.com>
+Message-ID: <20200428151813.GW3456981@phenom.ffwll.local>
+Mail-Followup-To: Michal Orzel <michalorzel.eng@gmail.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@linux.ie, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ ville.syrjala@linux.intel.com, chris@chris-wilson.co.uk,
+ jose.souza@intel.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org
+References: <1587974717-14599-1-git-send-email-michalorzel.eng@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200428132005.21424-11-m.szyprowski@samsung.com>
-Content-Language: en-US
-X-Mailman-Approved-At: Tue, 28 Apr 2020 18:04:52 +0000
-Subject: Re: [Intel-gfx] [RFC 10/17] drm: radeon: fix sg_table nents vs.
- orig_nents misuse
+Content-Disposition: inline
+In-Reply-To: <1587974717-14599-1-git-send-email-michalorzel.eng@gmail.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH] Remove drm_display_mode.hsync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,57 +72,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: tzimmermann@suse.de, airlied@linux.ie, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, chris@chris-wilson.co.uk, mripard@kernel.org,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjguMDQuMjAgdW0gMTU6MTkgc2NocmllYiBNYXJlayBTenlwcm93c2tpOgo+IFRoZSBEb2N1
-bWVudGF0aW9uL0RNQS1BUEktSE9XVE8udHh0IHN0YXRlcyB0aGF0IGRtYV9tYXBfc2cgcmV0dXJu
-cyB0aGUKPiBudW1lciBvZiB0aGUgY3JlYXRlZCBlbnRyaWVzIGluIHRoZSBETUEgYWRkcmVzcyBz
-cGFjZS4gSG93ZXZlciB0aGUKPiBzdWJzZXF1ZW50IGNhbGxzIHRvIGRtYV9zeW5jX3NnX2Zvcl97
-ZGV2aWNlLGNwdX0gYW5kIGRtYV91bm1hcF9zZyBtdXN0IGJlCj4gY2FsbGVkIHdpdGggdGhlIG9y
-aWdpbmFsIG51bWJlciBvZiBlbnRyaWVzIHBhc3NlZCB0byBkbWFfbWFwX3NnLiBUaGUKPiBzZ190
-YWJsZS0+bmVudHMgaW4gdHVybiBob2xkcyB0aGUgcmVzdWx0IG9mIHRoZSBkbWFfbWFwX3NnIGNh
-bGwgYXMgc3RhdGVkCj4gaW4gaW5jbHVkZS9saW51eC9zY2F0dGVybGlzdC5oLiBBZGFwdCB0aGUg
-Y29kZSB0byBvYmV5IHRob3NlIHJ1bGVzLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFyZWsgU3p5cHJv
-d3NraSA8bS5zenlwcm93c2tpQHNhbXN1bmcuY29tPgoKUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBL
-w7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KCj4gLS0tCj4gICBkcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl90dG0uYyB8IDEwICsrKysrLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2Vk
-LCA1IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jh
-ZGVvbl90dG0uYwo+IGluZGV4IDVkNTBjOWUuLjQ3NzA4ODAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdHRtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFk
-ZW9uL3JhZGVvbl90dG0uYwo+IEBAIC00ODEsNyArNDgxLDcgQEAgc3RhdGljIGludCByYWRlb25f
-dHRtX3R0X3Bpbl91c2VycHRyKHN0cnVjdCB0dG1fdHQgKnR0bSkKPiAgIHsKPiAgIAlzdHJ1Y3Qg
-cmFkZW9uX2RldmljZSAqcmRldiA9IHJhZGVvbl9nZXRfcmRldih0dG0tPmJkZXYpOwo+ICAgCXN0
-cnVjdCByYWRlb25fdHRtX3R0ICpndHQgPSAodm9pZCAqKXR0bTsKPiAtCXVuc2lnbmVkIHBpbm5l
-ZCA9IDAsIG5lbnRzOwo+ICsJdW5zaWduZWQgcGlubmVkID0gMDsKPiAgIAlpbnQgcjsKPiAgIAo+
-ICAgCWludCB3cml0ZSA9ICEoZ3R0LT51c2VyZmxhZ3MgJiBSQURFT05fR0VNX1VTRVJQVFJfUkVB
-RE9OTFkpOwo+IEBAIC01MjIsOCArNTIyLDggQEAgc3RhdGljIGludCByYWRlb25fdHRtX3R0X3Bp
-bl91c2VycHRyKHN0cnVjdCB0dG1fdHQgKnR0bSkKPiAgIAkJZ290byByZWxlYXNlX3NnOwo+ICAg
-Cj4gICAJciA9IC1FTk9NRU07Cj4gLQluZW50cyA9IGRtYV9tYXBfc2cocmRldi0+ZGV2LCB0dG0t
-PnNnLT5zZ2wsIHR0bS0+c2ctPm5lbnRzLCBkaXJlY3Rpb24pOwo+IC0JaWYgKG5lbnRzID09IDAp
-Cj4gKwl0dG0tPnNnLT5uZW50cyA9IGRtYV9tYXBfc2cocmRldi0+ZGV2LCB0dG0tPnNnLT5zZ2ws
-Cj4gKwlpZiAodHRtLT5zZy0+bmVudHMgPT0gMCkKPiAgIAkJZ290byByZWxlYXNlX3NnOwo+ICAg
-Cj4gICAJZHJtX3ByaW1lX3NnX3RvX3BhZ2VfYWRkcl9hcnJheXModHRtLT5zZywgdHRtLT5wYWdl
-cywKPiBAQCAtNTU0LDkgKzU1NCw5IEBAIHN0YXRpYyB2b2lkIHJhZGVvbl90dG1fdHRfdW5waW5f
-dXNlcnB0cihzdHJ1Y3QgdHRtX3R0ICp0dG0pCj4gICAJCXJldHVybjsKPiAgIAo+ICAgCS8qIGZy
-ZWUgdGhlIHNnIHRhYmxlIGFuZCBwYWdlcyBhZ2FpbiAqLwo+IC0JZG1hX3VubWFwX3NnKHJkZXYt
-PmRldiwgdHRtLT5zZy0+c2dsLCB0dG0tPnNnLT5uZW50cywgZGlyZWN0aW9uKTsKPiArCWRtYV91
-bm1hcF9zZyhyZGV2LT5kZXYsIHR0bS0+c2ctPnNnbCwgdHRtLT5zZy0+b3JpZ19uZW50cywgZGly
-ZWN0aW9uKTsKPiAgIAo+IC0JZm9yX2VhY2hfc2dfcGFnZSh0dG0tPnNnLT5zZ2wsICZzZ19pdGVy
-LCB0dG0tPnNnLT5uZW50cywgMCkgewo+ICsJZm9yX2VhY2hfc2dfcGFnZSh0dG0tPnNnLT5zZ2ws
-ICZzZ19pdGVyLCB0dG0tPnNnLT5vcmlnX25lbnRzLCAwKSB7Cj4gICAJCXN0cnVjdCBwYWdlICpw
-YWdlID0gc2dfcGFnZV9pdGVyX3BhZ2UoJnNnX2l0ZXIpOwo+ICAgCQlpZiAoIShndHQtPnVzZXJm
-bGFncyAmIFJBREVPTl9HRU1fVVNFUlBUUl9SRUFET05MWSkpCj4gICAJCQlzZXRfcGFnZV9kaXJ0
-eShwYWdlKTsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Mon, Apr 27, 2020 at 10:05:17AM +0200, Michal Orzel wrote:
+> As suggested by the TODO list of DRM subsystem:
+> -remove the member hsync of drm_display_mode
+> -convert code using hsync member to use drm_mode_hsync()
+> 
+> Signed-off-by: Michal Orzel <michalorzel.eng@gmail.com>
+
+I think Ville has a bunch of patches doing this, we might have some
+overlap :-/ Adding Ville.
+
+Please sync with him and get either of these patches reviewed.
+
+Thanks, Daniel
+
+> ---
+>  drivers/gpu/drm/drm_modes.c                  |  6 +-----
+>  drivers/gpu/drm/i915/display/intel_display.c |  1 -
+>  include/drm/drm_modes.h                      | 10 ----------
+>  3 files changed, 1 insertion(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index d4d6451..0340079 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -752,16 +752,12 @@ EXPORT_SYMBOL(drm_mode_set_name);
+>   * @mode: mode
+>   *
+>   * Returns:
+> - * @modes's hsync rate in kHz, rounded to the nearest integer. Calculates the
+> - * value first if it is not yet set.
+> + * @modes's hsync rate in kHz, rounded to the nearest integer.
+>   */
+>  int drm_mode_hsync(const struct drm_display_mode *mode)
+>  {
+>  	unsigned int calc_val;
+>  
+> -	if (mode->hsync)
+> -		return mode->hsync;
+> -
+>  	if (mode->htotal <= 0)
+>  		return 0;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 3468466..ec7e943 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8891,7 +8891,6 @@ void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+>  
+>  	mode->clock = pipe_config->hw.adjusted_mode.crtc_clock;
+>  
+> -	mode->hsync = drm_mode_hsync(mode);
+>  	mode->vrefresh = drm_mode_vrefresh(mode);
+>  	drm_mode_set_name(mode);
+>  }
+> diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
+> index 99134d4..7dab7f1 100644
+> --- a/include/drm/drm_modes.h
+> +++ b/include/drm/drm_modes.h
+> @@ -391,16 +391,6 @@ struct drm_display_mode {
+>  	int vrefresh;
+>  
+>  	/**
+> -	 * @hsync:
+> -	 *
+> -	 * Horizontal refresh rate, for debug output in human readable form. Not
+> -	 * used in a functional way.
+> -	 *
+> -	 * This value is in kHz.
+> -	 */
+> -	int hsync;
+> -
+> -	/**
+>  	 * @picture_aspect_ratio:
+>  	 *
+>  	 * Field for setting the HDMI picture aspect ratio of a mode.
+> -- 
+> 2.7.4
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
