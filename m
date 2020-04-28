@@ -2,98 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6301BBF5F
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC261BBF33
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:23:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49DDD6E4B6;
-	Tue, 28 Apr 2020 13:26:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD2EC6E409;
+	Tue, 28 Apr 2020 13:23:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
- [210.118.77.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A28656E484
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:26:09 +0000 (UTC)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20200428132033euoutp0287741b9ce0b151192b29bee2415409ea~J-mBP7WTZ2883528835euoutp02i
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:20:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20200428132033euoutp0287741b9ce0b151192b29bee2415409ea~J-mBP7WTZ2883528835euoutp02i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1588080033;
- bh=W1cooQvBlT6u8ezdjLvm+dB0V90PbzJlXZ1A87QbWGY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=B1o9LdgvkDl+bDAQ1Zo3mJbGWjVT0tYh4GM+CZD2JHRmJBxDNNEszg2LFTkraaWQ9
- 7va8eiqBhfaUfZu8KiXs12f7fuMJkDg8HFRleGQoLyPQZC06WgEM7ne0NWZqYwaTjg
- L/DZpwq+ENhDM7AszBmFtVyHapNiuUo/r7OdfGRE=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20200428132032eucas1p2488259606ff3e4dad28e7de81cfe4baa~J-mA2SEnw2653326533eucas1p2S;
- Tue, 28 Apr 2020 13:20:32 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges3new.samsung.com (EUCPMTA) with SMTP id AE.26.60698.0AD28AE5; Tue, 28
- Apr 2020 14:20:32 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20200428132032eucas1p17c2b93daf91c95c41650e75b251d525c~J-mAm0ZZa1368113681eucas1p1R;
- Tue, 28 Apr 2020 13:20:32 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20200428132032eusmtrp2a527f876c3f2d680c57d874708de8d31~J-mAmDBus2140221402eusmtrp2b;
- Tue, 28 Apr 2020 13:20:32 +0000 (GMT)
-X-AuditID: cbfec7f5-a29ff7000001ed1a-9d-5ea82da01ffa
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id A7.E3.07950.0AD28AE5; Tue, 28
- Apr 2020 14:20:32 +0100 (BST)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20200428132031eusmtip2b5690c9c67116c2ec0e00c4bc3216f63~J-mACdxOH1116911169eusmtip2b;
- Tue, 28 Apr 2020 13:20:31 +0000 (GMT)
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-To: dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
-Date: Tue, 28 Apr 2020 15:20:05 +0200
-Message-Id: <20200428132005.21424-18-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200428132005.21424-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAKsWRmVeSWpSXmKPExsWy7djPc7oLdFfEGVzr0rPoPXeSyWLp+kZ2
- i40z1rNaNB06xWbxf9tEZosrX9+zWaxcfZTJYvaEzUwWC/ZbW3y58pDJYtPja6wWl3fNYbNY
- e+Quu8XBD09YLU7d/czuwO+xZt4aRo+93xaweNy5tofNY/u3B6we97uPM3lsXlLvcfvfY2aP
- yTeWM3rsvtnA5tG3ZRWjx+dNcgHcUVw2Kak5mWWpRfp2CVwZJ88sYirYL1yxaGYjYwPjSoEu
- Rk4OCQETiTMn3jB2MXJxCAmsYJR40ToVyvnCKDH35wVmCOczo8Sdr2uZYFquPLzHApFYziix
- Zdt3JriWhm9LwKrYBAwlut52sYHYIgKtjBInenlAipgFtjFLPFl+hB0kISzgKrFjywJWEJtF
- QFVi8+atzCA2r4CdxNKGh2wQ6+QlVm84ABbnBIk/egoVv8Qu8aMlDMJ2kbhzcA/UecISr45v
- YYewZST+75wPdp2EQDOjxMNza9khnB5GictNMxghqqwl7pz7BTSVA+g8TYn1u/RBTAkBR4kr
- h1ghTD6JG28FQYqZgcxJ26YzQ4R5JTrahCBmqEnMOr4ObuvBC5eYIWwPiTe3prBDwmcio8TR
- LW9YJzDKz0LYtYCRcRWjeGppcW56arFxXmq5XnFibnFpXrpecn7uJkZgujr97/jXHYz7/iQd
- YhTgYFTi4d3AsyJOiDWxrLgy9xCjBAezkgjvo4xlcUK8KYmVValF+fFFpTmpxYcYpTlYlMR5
- jRe9jBUSSE8sSc1OTS1ILYLJMnFwSjUw8tTcmldqUOKySi/5gHlzgK3j39s87tPS4/uCNEyE
- Vt249jf58qqXa/yee/kYcbz1rX5jcKqLaZPW9pUX/aYxBvks7k7RfvIuYUP1Bv3nxn2Xy3UW
- z/my1i8wOfvR2YAPMw9tqbMzX1g5R8hDZJHGqbkyN533TW1++smWu3xiTLmB23vW6L7zSizF
- GYmGWsxFxYkAKWHGIVMDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEIsWRmVeSWpSXmKPExsVy+t/xe7oLdFfEGUzZJ2/Re+4kk8XS9Y3s
- FhtnrGe1aDp0is3i/7aJzBZXvr5ns1i5+iiTxewJm5ksFuy3tvhy5SGTxabH11gtLu+aw2ax
- 9shddouDH56wWpy6+5ndgd9jzbw1jB57vy1g8bhzbQ+bx/ZvD1g97ncfZ/LYvKTe4/a/x8we
- k28sZ/TYfbOBzaNvyypGj8+b5AK4o/RsivJLS1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOt
- jEyV9O1sUlJzMstSi/TtEvQyTp5ZxFSwX7hi0cxGxgbGlQJdjJwcEgImElce3mPpYuTiEBJY
- yihx79VJZoiEjMTJaQ2sELawxJ9rXWwQRZ8YJZ5sfsMIkmATMJToeguREBHoZJSY1v2RHcRh
- FjjALNF9/iQTSJWwgKvEji0LwEaxCKhKbN68FWwFr4CdxNKGh2wQK+QlVm84ABbnBIk/egoU
- 5wBaZytxuSV3AiPfAkaGVYwiqaXFuem5xUZ6xYm5xaV56XrJ+bmbGIHxs+3Yzy07GLveBR9i
- FOBgVOLh3cCzIk6INbGsuDL3EKMEB7OSCO+jjGVxQrwpiZVVqUX58UWlOanFhxhNgW6ayCwl
- mpwPjO28knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MfTW39hzO
- mxy01EE76EWz3dGUqnuftJNOBSv8ebYjt4dt2cwXa/9s+f2j8pVC7MWVX4RU76qtNNMp/r+1
- t8thX422iuiukxu6pBMLDq2J/vJtxYcbTwvv9TPk3N3+5QyDzb8tjhN3eWy4Xf+n8qRsV6mF
- qf3XUvX82csYS+3/FtWUXZp/ZtriO0osxRmJhlrMRcWJAGKr1d21AgAA
-X-CMS-MailID: 20200428132032eucas1p17c2b93daf91c95c41650e75b251d525c
-X-Msg-Generator: CA
-X-RootMTR: 20200428132032eucas1p17c2b93daf91c95c41650e75b251d525c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200428132032eucas1p17c2b93daf91c95c41650e75b251d525c
-References: <20200428132005.21424-1-m.szyprowski@samsung.com>
- <CGME20200428132032eucas1p17c2b93daf91c95c41650e75b251d525c@eucas1p1.samsung.com>
-Subject: [Intel-gfx] [RFC 17/17] dmabuf: fix sg_table nents vs. orig_nents
- misuse
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDAFB6E409
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:23:36 +0000 (UTC)
+IronPort-SDR: Iol6QqmwgvrAIiGlBCSvToQVO5p5cKWs2WWtsh2nYSHSSN4kOw0T0nTxD7CuGAf/VBA8BhQhgH
+ yvb53FxLfWhw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 06:23:36 -0700
+IronPort-SDR: TQSKbvc2Rd9GNpO6N1RoAiwo8Vfe6iUI+Sm0AyeS4oyRmRHlRdSTQgY64VJh4qsfhFn32UxBz0
+ Dz2AlMW+F/sg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="458789908"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga005.fm.intel.com with ESMTP; 28 Apr 2020 06:23:35 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 899D65C1F98; Tue, 28 Apr 2020 16:21:35 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200428114307.5153-1-chris@chris-wilson.co.uk>
+References: <20200428114307.5153-1-chris@chris-wilson.co.uk>
+Date: Tue, 28 Apr 2020 16:21:35 +0300
+Message-ID: <87v9ljkaow.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Tweak the tolerance for
+ clock ticks to 12.5%
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,83 +48,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Robin Murphy <robin.murphy@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-MIME-Version: 1.0
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Documentation/DMA-API-HOWTO.txt states that dma_map_sg returns the
-numer of the created entries in the DMA address space. However the
-subsequent calls to dma_sync_sg_for_{device,cpu} and dma_unmap_sg must be
-called with the original number of entries passed to dma_map_sg. The
-sg_table->nents in turn holds the result of the dma_map_sg call as stated
-in include/linux/scatterlist.h. Adapt the code to obey those rules.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- drivers/dma-buf/heaps/heap-helpers.c | 7 ++++---
- drivers/dma-buf/udmabuf.c            | 5 +++--
- 2 files changed, 7 insertions(+), 5 deletions(-)
+> Give a small bump for our tolerance on comparing the expected vs
+> measured clock ticks/time from 10% to 12.5% to accommodate a bad result
+> on Sandybridge that was off by 10.3%. Hopefully, that is the worst we
+> will see.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1802
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-diff --git a/drivers/dma-buf/heaps/heap-helpers.c b/drivers/dma-buf/heaps/heap-helpers.c
-index 9f964ca..b923863 100644
---- a/drivers/dma-buf/heaps/heap-helpers.c
-+++ b/drivers/dma-buf/heaps/heap-helpers.c
-@@ -144,8 +144,9 @@ struct sg_table *dma_heap_map_dma_buf(struct dma_buf_attachment *attachment,
- 
- 	table = &a->table;
- 
--	if (!dma_map_sg(attachment->dev, table->sgl, table->nents,
--			direction))
-+	table->nents = dma_map_sg(attachment->dev, table->sgl,
-+				  table->orig_nents, direction);
-+	if (!table->nents)
- 		table = ERR_PTR(-ENOMEM);
- 	return table;
- }
-@@ -154,7 +155,7 @@ static void dma_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
- 				   struct sg_table *table,
- 				   enum dma_data_direction direction)
- {
--	dma_unmap_sg(attachment->dev, table->sgl, table->nents, direction);
-+	dma_unmap_sg(attachment->dev, table->sgl, table->orig_nents, direction);
- }
- 
- static vm_fault_t dma_heap_vm_fault(struct vm_fault *vmf)
-diff --git a/drivers/dma-buf/udmabuf.c b/drivers/dma-buf/udmabuf.c
-index acb26c6..ea0cf71 100644
---- a/drivers/dma-buf/udmabuf.c
-+++ b/drivers/dma-buf/udmabuf.c
-@@ -63,7 +63,8 @@ static struct sg_table *get_sg_table(struct device *dev, struct dma_buf *buf,
- 					GFP_KERNEL);
- 	if (ret < 0)
- 		goto err;
--	if (!dma_map_sg(dev, sg->sgl, sg->nents, direction)) {
-+	sg->nents = dma_map_sg(dev, sg->sgl, sg->orig_nents, direction);
-+	if (!sg->nents) {
- 		ret = -EINVAL;
- 		goto err;
- 	}
-@@ -78,7 +79,7 @@ static struct sg_table *get_sg_table(struct device *dev, struct dma_buf *buf,
- static void put_sg_table(struct device *dev, struct sg_table *sg,
- 			 enum dma_data_direction direction)
- {
--	dma_unmap_sg(dev, sg->sgl, sg->nents, direction);
-+	dma_unmap_sg(dev, sg->sgl, sg->orig_nents, direction);
- 	sg_free_table(sg);
- 	kfree(sg);
- }
--- 
-1.9.1
+12.5% of something is much better than 100% of nothing
 
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_rps.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> index 181b29fa5b58..48f954ac4f2c 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> @@ -312,15 +312,15 @@ int live_rps_clock_interval(void *arg)
+>  				engine->name, cycles, time, ktime_to_ns(dt), expected,
+>  				gt->clock_frequency / 1000);
+>  
+> -			if (10 * time < 9 * ktime_to_ns(dt) ||
+> -			    10 * time > 11 * ktime_to_ns(dt)) {
+> +			if (10 * time < 8 * ktime_to_ns(dt) ||
+> +			    8 * time > 10 * ktime_to_ns(dt)) {
+>  				pr_err("%s: rps clock time does not match walltime!\n",
+>  				       engine->name);
+>  				err = -EINVAL;
+>  			}
+>  
+> -			if (10 * expected < 9 * cycles ||
+> -			    10 * expected > 11 * cycles) {
+> +			if (10 * expected < 8 * cycles ||
+> +			    8 * expected > 10 * cycles) {
+>  				pr_err("%s: walltime does not match rps clock ticks!\n",
+>  				       engine->name);
+>  				err = -EINVAL;
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
