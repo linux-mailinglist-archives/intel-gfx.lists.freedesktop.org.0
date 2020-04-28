@@ -2,28 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7971BB96D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 11:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CF11BB972
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 11:05:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9A7989DFC;
-	Tue, 28 Apr 2020 09:03:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2426E154;
+	Tue, 28 Apr 2020 09:05:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF5989DFC
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 09:03:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21042871-1500050 
- for multiple; Tue, 28 Apr 2020 10:02:57 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2020 10:02:55 +0100
-Message-Id: <20200428090255.10035-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D876E13C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 09:05:39 +0000 (UTC)
+IronPort-SDR: JXxIQ7r6vqsKCzrT6CSGfSVxy5mqW5NWc/Mi6zLYNIzIe99jloHr02jshajVB28bxobsdRt2o8
+ xUqAu3zdr4jA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 02:05:39 -0700
+IronPort-SDR: sBIUoa5f7QVYUSw9JJge5opUNy0tEgrvfXdRY6FZJJTnPh0qKjtlG2tDQhyn9+O5J3BTm3Dxdd
+ n9g0S0ExbBCw==
+X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="432112478"
+Received: from ctozerx-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.47.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 02:05:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: imre.deak@intel.com
+In-Reply-To: <20200428083051.GA28634@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200423181937.25176-1-imre.deak@intel.com>
+ <87r1w89h8a.fsf@intel.com> <20200428083051.GA28634@ideak-desk.fi.intel.com>
+Date: Tue, 28 Apr 2020 12:05:35 +0300
+Message-ID: <87o8rc9e00.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Avoid dereferencing a dead context
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl+: Prevent using non-TypeC AUX
+ channels on TypeC ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +49,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Once the intel_context is closed, the GEM context may be freed and so
-the link from intel_context.gem_context is invalid.
+On Tue, 28 Apr 2020, Imre Deak <imre.deak@intel.com> wrote:
+> On Tue, Apr 28, 2020 at 10:55:49AM +0300, Jani Nikula wrote:
+>> On Thu, 23 Apr 2020, Imre Deak <imre.deak@intel.com> wrote:
+>> > Using an AUX channel which by default belongs to a non-TypeC PHY won't
+>> > work on a TypeC PHY, since - as a side-effect besides providing an AUX
+>> > channel - the AUX channel power well affects power manangement specific
+>> > to the TypeC subsystem. Using a TypeC AUX channel on a non-TypeC PHY
+>> > would probably also cause problems, so for simplicity prevent both.
+>> >
+>> > This fixes at least an ICL-Y machine in CI, which has a buggy VBT
+>> > setting AUX-B as an alternative channel for port C.
+>> 
+>> Is it a production machine?
+>
+> Yes.
 
-<3>[  219.782944] BUG: KASAN: use-after-free in intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<3>[  219.782996] Read of size 8 at addr ffff8881d7dff0b8 by task kworker/0:1/12
+*sigh*
 
-<4>[  219.783052] CPU: 0 PID: 12 Comm: kworker/0:1 Tainted: G     U            5.7.0-rc2-g1f3ffd7683d54-kasan_118+ #1
-<4>[  219.783055] Hardware name: System manufacturer System Product Name/Z170 PRO GAMING, BIOS 3402 04/26/2017
-<4>[  219.783105] Workqueue: events heartbeat [i915]
-<4>[  219.783109] Call Trace:
-<4>[  219.783113]  <IRQ>
-<4>[  219.783119]  dump_stack+0x96/0xdb
-<4>[  219.783177]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<4>[  219.783182]  print_address_description.constprop.6+0x16/0x310
-<4>[  219.783239]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<4>[  219.783295]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<4>[  219.783300]  __kasan_report+0x137/0x190
-<4>[  219.783359]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<4>[  219.783366]  kasan_report+0x32/0x50
-<4>[  219.783426]  intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-<4>[  219.783481]  execlists_reset+0x39c/0x13d0 [i915]
-<4>[  219.783494]  ? mark_held_locks+0x9e/0xe0
-<4>[  219.783546]  ? execlists_hold+0xfc0/0xfc0 [i915]
-<4>[  219.783551]  ? lockdep_hardirqs_on+0x348/0x5f0
-<4>[  219.783557]  ? _raw_spin_unlock_irqrestore+0x34/0x60
-<4>[  219.783606]  ? execlists_submission_tasklet+0x118/0x3a0 [i915]
-<4>[  219.783615]  tasklet_action_common.isra.14+0x13b/0x410
-<4>[  219.783623]  ? __do_softirq+0x1e4/0x9a7
-<4>[  219.783630]  __do_softirq+0x226/0x9a7
-<4>[  219.783643]  do_softirq_own_stack+0x2a/0x40
-<4>[  219.783647]  </IRQ>
-<4>[  219.783692]  ? heartbeat+0x3e2/0x10f0 [i915]
-<4>[  219.783696]  do_softirq.part.13+0x49/0x50
-<4>[  219.783700]  __local_bh_enable_ip+0x1a2/0x1e0
-<4>[  219.783748]  heartbeat+0x409/0x10f0 [i915]
-<4>[  219.783801]  ? __live_idle_pulse+0x9f0/0x9f0 [i915]
-<4>[  219.783806]  ? lock_acquire+0x1ac/0x8a0
-<4>[  219.783811]  ? process_one_work+0x811/0x1870
-<4>[  219.783827]  ? rcu_read_lock_sched_held+0x9c/0xd0
-<4>[  219.783832]  ? rcu_read_lock_bh_held+0xb0/0xb0
-<4>[  219.783836]  ? _raw_spin_unlock_irq+0x1f/0x40
-<4>[  219.783845]  process_one_work+0x8ca/0x1870
-<4>[  219.783848]  ? lock_acquire+0x1ac/0x8a0
-<4>[  219.783852]  ? worker_thread+0x1d0/0xb80
-<4>[  219.783864]  ? pwq_dec_nr_in_flight+0x2c0/0x2c0
-<4>[  219.783870]  ? do_raw_spin_lock+0x129/0x290
-<4>[  219.783886]  worker_thread+0x82/0xb80
-<4>[  219.783895]  ? __kthread_parkme+0xaf/0x1b0
-<4>[  219.783902]  ? process_one_work+0x1870/0x1870
-<4>[  219.783906]  kthread+0x34e/0x420
-<4>[  219.783911]  ? kthread_create_on_node+0xc0/0xc0
-<4>[  219.783918]  ret_from_fork+0x3a/0x50
+Yeah I guess that settles it, we'll need this. :/
 
-<3>[  219.783950] Allocated by task 1264:
-<4>[  219.783975]  save_stack+0x19/0x40
-<4>[  219.783978]  __kasan_kmalloc.constprop.3+0xa0/0xd0
-<4>[  219.784029]  i915_gem_create_context+0xa2/0xab8 [i915]
-<4>[  219.784081]  i915_gem_context_create_ioctl+0x1fa/0x450 [i915]
-<4>[  219.784085]  drm_ioctl_kernel+0x1d8/0x270
-<4>[  219.784088]  drm_ioctl+0x676/0x930
-<4>[  219.784092]  ksys_ioctl+0xb7/0xe0
-<4>[  219.784096]  __x64_sys_ioctl+0x6a/0xb0
-<4>[  219.784100]  do_syscall_64+0x94/0x530
-<4>[  219.784103]  entry_SYSCALL_64_after_hwframe+0x49/0xb3
+Ack.
 
-<3>[  219.784120] Freed by task 12:
-<4>[  219.784141]  save_stack+0x19/0x40
-<4>[  219.784145]  __kasan_slab_free+0x130/0x180
-<4>[  219.784148]  kmem_cache_free_bulk+0x1bd/0x500
-<4>[  219.784152]  kfree_rcu_work+0x1d8/0x890
-<4>[  219.784155]  process_one_work+0x8ca/0x1870
-<4>[  219.784158]  worker_thread+0x82/0xb80
-<4>[  219.784162]  kthread+0x34e/0x420
-<4>[  219.784165]  ret_from_fork+0x3a/0x50
+BR,
+Jani.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 4d54dba35302..a976cd67b3b3 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1207,8 +1207,6 @@ static void engine_record_registers(struct intel_engine_coredump *ee)
- static void record_request(const struct i915_request *request,
- 			   struct i915_request_coredump *erq)
- {
--	const struct i915_gem_context *ctx;
--
- 	erq->flags = request->fence.flags;
- 	erq->context = request->fence.context;
- 	erq->seqno = request->fence.seqno;
-@@ -1218,9 +1216,13 @@ static void record_request(const struct i915_request *request,
- 
- 	erq->pid = 0;
- 	rcu_read_lock();
--	ctx = rcu_dereference(request->context->gem_context);
--	if (ctx)
--		erq->pid = pid_nr(ctx->pid);
-+	if (!intel_context_is_closed(request->context)) {
-+		const struct i915_gem_context *ctx;
-+
-+		ctx = rcu_dereference(request->context->gem_context);
-+		if (ctx)
-+			erq->pid = pid_nr(ctx->pid);
-+	}
- 	rcu_read_unlock();
- }
- 
+
+
+>
+>> Not happy about adding stuff for pre-pro machines with buggy VBT.
+>> It'll bite us later. It always has.
+>
+> If there is a buggy VBT with this issue it will cause a problem
+> somewhere down the pipeline which is difficult to track down, power well
+> timeouts, machine hangs etc. I would like to catch this early and avoid
+> having to spend time debugging these other issues.
+>
+>> Also, hate to see VBT code call into intel_display.c (intel_phy_is_tc).
+>
+> That's the way to determine if a port/PHY is TypeC on a platform or not.
+>
+> --Imre
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> >
+>> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_bios.c | 84 +++++++++++++++--------
+>> >  1 file changed, 57 insertions(+), 27 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>> > index 839124647202..10d463723d12 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> > @@ -1538,11 +1538,38 @@ static enum port get_port_by_aux_ch(struct drm_i915_private *i915, u8 aux_ch)
+>> >  	return PORT_NONE;
+>> >  }
+>> >  
+>> > +static enum aux_ch
+>> > +intel_bios_port_info_aux_ch(const struct ddi_vbt_port_info *info)
+>> > +{
+>> > +	switch (info->alternate_aux_channel) {
+>> > +	case DP_AUX_A:
+>> > +		return AUX_CH_A;
+>> > +	case DP_AUX_B:
+>> > +		return AUX_CH_B;
+>> > +	case DP_AUX_C:
+>> > +		return AUX_CH_C;
+>> > +	case DP_AUX_D:
+>> > +		return AUX_CH_D;
+>> > +	case DP_AUX_E:
+>> > +		return AUX_CH_E;
+>> > +	case DP_AUX_F:
+>> > +		return AUX_CH_F;
+>> > +	case DP_AUX_G:
+>> > +		return AUX_CH_G;
+>> > +	default:
+>> > +		MISSING_CASE(info->alternate_aux_channel);
+>> > +		return AUX_CH_A;
+>> > +	}
+>> > +}
+>> > +
+>> >  static void sanitize_aux_ch(struct drm_i915_private *dev_priv,
+>> >  			    enum port port)
+>> >  {
+>> >  	struct ddi_vbt_port_info *info = &dev_priv->vbt.ddi_port_info[port];
+>> >  	enum port p;
+>> > +	enum aux_ch aux_ch;
+>> > +	bool aux_is_tc;
+>> > +	bool phy_is_tc;
+>> >  
+>> >  	if (!info->alternate_aux_channel)
+>> >  		return;
+>> > @@ -1571,6 +1598,35 @@ static void sanitize_aux_ch(struct drm_i915_private *dev_priv,
+>> >  
+>> >  		info->supports_dp = false;
+>> >  		info->alternate_aux_channel = 0;
+>> > +
+>> > +		return;
+>> > +	}
+>> > +
+>> > +	aux_ch = intel_bios_port_info_aux_ch(info);
+>> > +	/* The AUX CH -> default port is a 1:1 mapping. */
+>> > +	aux_is_tc = intel_phy_is_tc(dev_priv,
+>> > +				    intel_port_to_phy(dev_priv,
+>> > +						      (enum port)aux_ch));
+>> > +	phy_is_tc = intel_phy_is_tc(dev_priv,
+>> > +				    intel_port_to_phy(dev_priv, port));
+>> > +	if (aux_is_tc != phy_is_tc) {
+>> > +		/*
+>> > +		 * Using an AUX channel which by default belongs to a TypeC
+>> > +		 * PHY can't be used for non-TypeC PHYs and vice-versa. The
+>> > +		 * reason is that TypeC AUX power wells can only be enabled in
+>> > +		 * the current TypeC mode of the PHY and have an effect on power
+>> > +		 * management specific to the TypeC subsystem.
+>> > +		 */
+>> > +		drm_dbg_kms(&dev_priv->drm,
+>> > +			    "Port %c on a %s PHY is trying to use the %s AUX CH %c, "
+>> > +			    "disabling DP support on this port.\n",
+>> > +			    port_name(port),
+>> > +			    phy_is_tc ? "TypeC" : "non-TypeC",
+>> > +			    aux_is_tc ? "TypeC" : "non-TypeC",
+>> > +			    aux_ch_name(aux_ch));
+>> > +
+>> > +		info->supports_dp = false;
+>> > +		info->alternate_aux_channel = 0;
+>> >  	}
+>> >  }
+>> >  
+>> > @@ -2595,33 +2651,7 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *dev_priv,
+>> >  		return aux_ch;
+>> >  	}
+>> >  
+>> > -	switch (info->alternate_aux_channel) {
+>> > -	case DP_AUX_A:
+>> > -		aux_ch = AUX_CH_A;
+>> > -		break;
+>> > -	case DP_AUX_B:
+>> > -		aux_ch = AUX_CH_B;
+>> > -		break;
+>> > -	case DP_AUX_C:
+>> > -		aux_ch = AUX_CH_C;
+>> > -		break;
+>> > -	case DP_AUX_D:
+>> > -		aux_ch = AUX_CH_D;
+>> > -		break;
+>> > -	case DP_AUX_E:
+>> > -		aux_ch = AUX_CH_E;
+>> > -		break;
+>> > -	case DP_AUX_F:
+>> > -		aux_ch = AUX_CH_F;
+>> > -		break;
+>> > -	case DP_AUX_G:
+>> > -		aux_ch = AUX_CH_G;
+>> > -		break;
+>> > -	default:
+>> > -		MISSING_CASE(info->alternate_aux_channel);
+>> > -		aux_ch = AUX_CH_A;
+>> > -		break;
+>> > -	}
+>> > +	aux_ch = intel_bios_port_info_aux_ch(info);
+>> >  
+>> >  	drm_dbg_kms(&dev_priv->drm, "using AUX %c for port %c (VBT)\n",
+>> >  		    aux_ch_name(aux_ch), port_name(port));
+>> 
+>> -- 
+>> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
