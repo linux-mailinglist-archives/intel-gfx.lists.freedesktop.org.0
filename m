@@ -1,43 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB5061BC062
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 15:57:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714461BC06B
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 16:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2107F6E484;
-	Tue, 28 Apr 2020 13:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A54F96E49C;
+	Tue, 28 Apr 2020 14:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4566E484
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 13:57:47 +0000 (UTC)
-IronPort-SDR: jyhs0Z4FeWNYJGwgVKTj8pJ5eNrU0b9fzwsBXEpG2GWj/7UIoIqBIIZwXIPXekuTbQHX7+Da2O
- 10+bK0AfGxiA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2020 06:57:46 -0700
-IronPort-SDR: zNs/PEXBb6f7QE0ZtvbO+JcK8+dHxAk02X5RBzIuiPILZKYc+IeeiYkrZswZ2QQS8py/KeSanJ
- Yr+O2Nr5DO/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,327,1583222400"; d="scan'208";a="261104452"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 28 Apr 2020 06:57:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Apr 2020 16:57:44 +0300
-Date: Tue, 28 Apr 2020 16:57:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Alexei Podtelezhnikov <apodtele@gmail.com>
-Message-ID: <20200428135744.GI6112@intel.com>
-References: <20200428034705.3907-1-apodtele@gmail.com>
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B845D6E4A7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 14:00:15 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id g12so2974989wmh.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 07:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Ps7I9Le1y+DBQ90d3polh0iWEICybIDac38fYlXMUHU=;
+ b=RTXgbW5JR0qaHgN6xT1CbnFJkWffgxVeYV9PCtA/lHqfLfEeR37BG3yppLYmEhp9Oo
+ 9AV97owvuWPTrWYj9o9dDUq8lcxHcw6cctt4Lyj8cSIfxEcL6KbuQesljWupR6oSs9w/
+ R8I1b9G4gFRCAbkHMZGlZWQMIxZhYww8BqPxs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Ps7I9Le1y+DBQ90d3polh0iWEICybIDac38fYlXMUHU=;
+ b=caMidzqNM/FiXvO/BmSKms/Hn3ZhGEd/mqgVLjlZ9kMi8aoMNHvB9lU4DRpKIB8lsz
+ 4Wik5Xq7C4UhDnYzNw07gj52EXudFEYCeeal19lk33S2xshyQr5Sv0MRNdiLXJpsgBES
+ gLnJ6jxeiO302OVuIR+TP1kfCzymNqu9EEkrxe7jcxcTt7ccoZ5gBQY1CN4oZAd51+Si
+ oG0kF9YuxkFKwEor6fMaFqXy7ZFTK0jaIbOwdHUNQbvofaTr/SrDjU4Vm8Gimk8uiuyM
+ +wqQv8hgUKE/HYTIcXJ7wBbvldPkYrEzuWzsq7gkdC6jpddnDtBcRyrd+p37Lo7DcmpX
+ I5XQ==
+X-Gm-Message-State: AGi0PuaDyu02H/XmC/pSpzhfuCSRE81lkCe5f/G2o91GYnGM0XH1aQS6
+ RQ90wJKiSMInDCIiyIb/LehLqg==
+X-Google-Smtp-Source: APiQypIEnobdueqT/cHpOrriPZZPy/M74lLsyOtUmRObtKxhAJT95KOZC9e05zorxNWpOlR6T77frg==
+X-Received: by 2002:a1c:808c:: with SMTP id b134mr4975620wmd.131.1588082414409; 
+ Tue, 28 Apr 2020 07:00:14 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id w12sm25030016wrk.56.2020.04.28.07.00.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2020 07:00:13 -0700 (PDT)
+Date: Tue, 28 Apr 2020 16:00:11 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <20200428140011.GK3456981@phenom.ffwll.local>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-27-daniel.vetter@ffwll.ch>
+ <20200424150911.GB20856@ravnborg.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200428034705.3907-1-apodtele@gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [patch] drm/i915: Add PCI IDs for Skylake GT1.5
+In-Reply-To: <20200424150911.GB20856@ravnborg.org>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 26/59] drm/qxl: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,74 +66,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, spice-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 27, 2020 at 11:47:05PM -0400, Alexei Podtelezhnikov wrote:
-> These devices are also known as iSKLULTGT15 and iSKLDTGT15.
-> =
+On Fri, Apr 24, 2020 at 05:09:11PM +0200, Sam Ravnborg wrote:
+> Hi Daniel
+> 
+> On Wed, Apr 15, 2020 at 09:40:01AM +0200, Daniel Vetter wrote:
+> > Also need to remove the drm_dev_put from the remove hook.
+> > 
+> > Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Dave Airlie <airlied@redhat.com>
+> > Cc: Gerd Hoffmann <kraxel@redhat.com>
+> > Cc: virtualization@lists.linux-foundation.org
+> > Cc: spice-devel@lists.freedesktop.org
+> > ---
+> >  drivers/gpu/drm/qxl/qxl_drv.c | 15 ++++++++-------
+> >  drivers/gpu/drm/qxl/qxl_drv.h |  3 +--
+> >  drivers/gpu/drm/qxl/qxl_kms.c | 12 +-----------
+> >  3 files changed, 10 insertions(+), 20 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+> > index 09102e2efabc..6b4ae4c5fb76 100644
+> > --- a/drivers/gpu/drm/qxl/qxl_drv.c
+> > +++ b/drivers/gpu/drm/qxl/qxl_drv.c
+> > @@ -81,13 +81,16 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  		return -EINVAL; /* TODO: ENODEV ? */
+> >  	}
+> >  
+> > -	qdev = kzalloc(sizeof(struct qxl_device), GFP_KERNEL);
+> > -	if (!qdev)
+> > +	qdev = devm_drm_dev_alloc(&pdev->dev, &qxl_driver,
+> > +				  struct qxl_device, ddev);
+> > +	if (IS_ERR(qdev)) {
+> > +		pr_err("Unable to init drm dev");
+> >  		return -ENOMEM;
+> > +	}
+> 
+> The other patches do not add any error message when devm_drm_dev_alloc()
+> fails and driver core will log that driver init failed.
+> 
+> So the pr_err() above should be dropped.
+> I know it comes from qxl_device_init() but that does not make it a good
+> idea.
 
-> Signed-off-by: Alexei Podtelezhnikov <apodtele@gmail.com>
-> ---
->  include/drm/i915_pciids.h | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> =
+Hm I know we're inconsistent here, but some drivers have error logging on
+all branches, some dont. I'm just trying to go with the prevailing style.
 
-> diff --git a/src/i915_pciids.h b/src/i915_pciids.h
-> index 1d2c1221..a9c88eab 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -331,7 +355,8 @@ Add SKL GT1.5
->  	INTEL_VGA_DEVICE(0x22b3, info)
->  =
+> With this fixed:
 
->  #define INTEL_SKL_ULT_GT1_IDS(info) \
-> -	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
-> +	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
-> +	INTEL_VGA_DEVICE(0x1913, info) /* ULT GT1.5 */
->  =
+Insisting on this or ok as-is?
+-Daniel
 
->  #define INTEL_SKL_ULX_GT1_IDS(info) \
->  	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> 
+> >  
+> >  	ret = pci_enable_device(pdev);
+> >  	if (ret)
+> > -		goto free_dev;
+> > +		return ret;
+> >  
+> >  	ret = drm_fb_helper_remove_conflicting_pci_framebuffers(pdev, "qxl");
+> >  	if (ret)
+> > @@ -101,7 +104,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  		}
+> >  	}
+> >  
+> > -	ret = qxl_device_init(qdev, &qxl_driver, pdev);
+> > +	ret = qxl_device_init(qdev, pdev);
+> >  	if (ret)
+> >  		goto put_vga;
+> >  
+> > @@ -128,8 +131,7 @@ qxl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> >  disable_pci:
+> >  	pci_disable_device(pdev);
+> > -free_dev:
+> > -	kfree(qdev);
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > @@ -155,7 +157,6 @@ qxl_pci_remove(struct pci_dev *pdev)
+> >  	drm_atomic_helper_shutdown(dev);
+> >  	if (is_vga(pdev))
+> >  		vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> > -	drm_dev_put(dev);
+> >  }
+> >  
+> >  DEFINE_DRM_GEM_FOPS(qxl_fops);
+> > diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
+> > index 435126facc9b..86ac191d9205 100644
+> > --- a/drivers/gpu/drm/qxl/qxl_drv.h
+> > +++ b/drivers/gpu/drm/qxl/qxl_drv.h
+> > @@ -276,8 +276,7 @@ struct qxl_device {
+> >  extern const struct drm_ioctl_desc qxl_ioctls[];
+> >  extern int qxl_max_ioctl;
+> >  
+> > -int qxl_device_init(struct qxl_device *qdev, struct drm_driver *drv,
+> > -		    struct pci_dev *pdev);
+> > +int qxl_device_init(struct qxl_device *qdev, struct pci_dev *pdev);
+> >  void qxl_device_fini(struct qxl_device *qdev);
+> >  
+> >  int qxl_modeset_init(struct qxl_device *qdev);
+> > diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
+> > index 9eed1a375f24..91a34dd835d7 100644
+> > --- a/drivers/gpu/drm/qxl/qxl_kms.c
+> > +++ b/drivers/gpu/drm/qxl/qxl_kms.c
+> > @@ -108,21 +108,13 @@ static void qxl_gc_work(struct work_struct *work)
+> >  }
+> >  
+> >  int qxl_device_init(struct qxl_device *qdev,
+> > -		    struct drm_driver *drv,
+> >  		    struct pci_dev *pdev)
+> >  {
+> >  	int r, sb;
+> >  
+> > -	r = drm_dev_init(&qdev->ddev, drv, &pdev->dev);
+> > -	if (r) {
+> > -		pr_err("Unable to init drm dev");
+> > -		goto error;
+> > -	}
+> > -
+> >  	qdev->ddev.pdev = pdev;
+> >  	pci_set_drvdata(pdev, &qdev->ddev);
+> >  	qdev->ddev.dev_private = qdev;
+> > -	drmm_add_final_kfree(&qdev->ddev, qdev);
+> >  
+> >  	mutex_init(&qdev->gem.mutex);
+> >  	mutex_init(&qdev->update_area_mutex);
+> > @@ -138,8 +130,7 @@ int qxl_device_init(struct qxl_device *qdev,
+> >  	qdev->vram_mapping = io_mapping_create_wc(qdev->vram_base, pci_resource_len(pdev, 0));
+> >  	if (!qdev->vram_mapping) {
+> >  		pr_err("Unable to create vram_mapping");
+> > -		r = -ENOMEM;
+> > -		goto error;
+> > +		return -ENOMEM;
+> >  	}
+> >  
+> >  	if (pci_resource_len(pdev, 4) > 0) {
+> > @@ -293,7 +284,6 @@ int qxl_device_init(struct qxl_device *qdev,
+> >  	io_mapping_free(qdev->surface_mapping);
+> >  vram_mapping_free:
+> >  	io_mapping_free(qdev->vram_mapping);
+> > -error:
+> >  	return r;
+> >  }
+> >  
+> > -- 
+> > 2.25.1
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-We also seem to be missing 0x1915 from the ulx list.
-
-Another odd things I noticed in our SKL PCI ID lists is that
-that 0x1923 and 0x1927 are potentially miscategorized. They
-are listed as ULT in some parts of the spec whereas we have
-them in the non-ULT/ULX list. Also 0x1927 is listed as Iris
-graphics 550, and ark.intel.com says that it can be found
-in the i5-6267U CPU, which is ULT. The other one is listed
-as HD Graphics 535 which does give some ULT google hits based
-on the Windows drivers. So looks like we should make these ULT.
-
-The third odd thing is that 0x192a is listed as both GT3 and GT4
-in the spec. Not really able to find corroborating evidence one
-way or the other unfortunately.
-
-> @@ -340,6 +365,7 @@ Add SKL GT1.5
->  	INTEL_SKL_ULT_GT1_IDS(info), \
->  	INTEL_SKL_ULX_GT1_IDS(info), \
->  	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
-> +	INTEL_VGA_DEVICE(0x1917, info), /* DT  GT1.5 */ \
->  	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
->  	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
->  =
-
-> --
-> 2.26.2
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
