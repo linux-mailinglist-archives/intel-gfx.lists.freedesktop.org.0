@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 260CD1BC5FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 19:03:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D3C1BC62D
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 19:06:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1FC6E852;
-	Tue, 28 Apr 2020 17:03:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91F816E85A;
+	Tue, 28 Apr 2020 17:06:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9AEE6E850;
- Tue, 28 Apr 2020 17:03:33 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 03B7F20022;
- Tue, 28 Apr 2020 19:03:27 +0200 (CEST)
-Date: Tue, 28 Apr 2020 19:03:26 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200428170326.GB27234@ravnborg.org>
-References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
- <20200415074034.175360-57-daniel.vetter@ffwll.ch>
- <20200424181002.GL7074@ravnborg.org>
- <20200428141221.GM3456981@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C28FE6E82F;
+ Tue, 28 Apr 2020 17:06:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BC1D7A0BCB;
+ Tue, 28 Apr 2020 17:06:54 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200428141221.GM3456981@phenom.ffwll.local>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=ULXz4hXy c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=voM4FWlXAAAA:8 a=JfrnYn6hAAAA:8
- a=7gkXJVJtAAAA:8 a=enx1l9sRoPJb_agsY6UA:9 a=zjnPc2nJzrSlpMA7:21
- a=QoBruPAAwtBn6P47:21 a=CjuIK1q_8ugA:10 a=IC2XNlieTeVoXbcui8wp:22
- a=1CNFftbPRP8L7MoqJWF3:22 a=E9Po1WZjFZOl8hwRPBS3:22
- a=pHzHmUro8NiASowvMSCR:22 a=nt3jZW36AmriUCFCBwmW:22
-Subject: Re: [Intel-gfx] [PATCH 56/59] drm/aspeed: Use managed
- drmm_mode_config_cleanup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 28 Apr 2020 17:06:54 -0000
+Message-ID: <158809361476.17773.3829976008604456308@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200428114307.5153-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200428114307.5153-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Tweak_the_tolerance_for_clock_ticks_to_12=2E?=
+ =?utf-8?q?5=25?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,88 +39,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Joel Stanley <joel@jms.id.au>, Daniel Vetter <daniel.vetter@intel.com>,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 28, 2020 at 04:12:21PM +0200, Daniel Vetter wrote:
-> On Fri, Apr 24, 2020 at 08:10:02PM +0200, Sam Ravnborg wrote:
-> > On Wed, Apr 15, 2020 at 09:40:31AM +0200, Daniel Vetter wrote:
-> > > Since aspeed doesn't use devm_kzalloc anymore we can use the managed
-> > > mode config cleanup.
-> > > 
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: Joel Stanley <joel@jms.id.au>
-> > > Cc: Andrew Jeffery <andrew@aj.id.au>
-> > > Cc: linux-aspeed@lists.ozlabs.org
-> > > Cc: linux-arm-kernel@lists.infradead.org
-> > 
-> > Hmm, the helper function makes no sense, maybe embed it?
-> > 
-> > One Q below. Whith Q addressed:
-> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > 
-> > > ---
-> > >  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 11 ++++++-----
-> > >  1 file changed, 6 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> > > index 6b27242b9ee3..6e464b84a256 100644
-> > > --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> > > +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> > > @@ -63,15 +63,15 @@ static const struct drm_mode_config_funcs aspeed_gfx_mode_config_funcs = {
-> > >  	.atomic_commit		= drm_atomic_helper_commit,
-> > >  };
-> > >  
-> > > -static void aspeed_gfx_setup_mode_config(struct drm_device *drm)
-> > > +static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
-> > >  {
-> > > -	drm_mode_config_init(drm);
-> > > -
-> > >  	drm->mode_config.min_width = 0;
-> > >  	drm->mode_config.min_height = 0;
-> > >  	drm->mode_config.max_width = 800;
-> > >  	drm->mode_config.max_height = 600;
-> > >  	drm->mode_config.funcs = &aspeed_gfx_mode_config_funcs;
-> > > +
-> > > +	return drmm_mode_config_init(drm);
-> > 
-> > I do not see anything that documents that it is OK to init min/max
-> > width/heigh not funcs before drmm_mode_config_init() is called.
-> > Maybe drmm_mode_config_init() gain an memset(drm->mode_config),
-> > and we loose all the assingments from before the call to init().
-> > 
-> > Also most (all?) other users of drmm_mode_config_init()
-> > set them after the call to drmm_mode_config_init().
-> > So re-order here and then embed while you are touching the code again.
-> 
-> Only reason I've done it like this is that it saves a few lines of diff
-> compared to other options.
-> 
-> Wrt calling stuff the wrong way round: We pretty much assume throughout
-> that structures are allocated with kzalloc, none of our _init() functions
-> in drm have a memset. We'd break the world if we start doing memset() in
-> random _init() functions I think.
-> 
-> Also the main aspeed_gfx_load() function is quite long already, smashing
-> more random stuff in there won't help it's readability.
-> 
-> Anyway I don't care, if you insist I'm happy to repaint this in whatever
-> color choice you deem best :-)
+== Series Details ==
 
-From the principle of least suprises, you should at least call init and
-then set min_width and friends.
-This is easy to do in the helper, so easy to avoid the inlining I
-suggested.
+Series: drm/i915/selftests: Tweak the tolerance for clock ticks to 12.5%
+URL   : https://patchwork.freedesktop.org/series/76593/
+State : success
 
-	Sam
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8383 -> Patchwork_17494
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17494/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (49 -> 42)
+------------------------------
+
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8383 -> Patchwork_17494
+
+  CI-20190529: 20190529
+  CI_DRM_8383: eabaf1c8c936459e3682422353b2c53608700657 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17494: eda53d9cd0705c3a275ec16706221bac70602273 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+eda53d9cd070 drm/i915/selftests: Tweak the tolerance for clock ticks to 12.5%
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17494/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
