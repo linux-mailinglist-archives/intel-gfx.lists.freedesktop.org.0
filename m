@@ -1,52 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB581BCF0A
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 23:44:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050311BCEB4
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2020 23:32:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25B7F6E8B3;
-	Tue, 28 Apr 2020 21:44:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469B06E90B;
+	Tue, 28 Apr 2020 21:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
- Tue, 28 Apr 2020 21:44:21 UTC
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CBB76E868
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 21:44:20 +0000 (UTC)
-Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.145]) with ESMTPA (Nemesis) id
- 1M9WmQ-1jZ47l0nHo-005W2P; Tue, 28 Apr 2020 23:31:09 +0200
-From: Arnd Bergmann <arnd@arndb.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Tue, 28 Apr 2020 23:30:50 +0200
-Message-Id: <20200428213106.3139170-1-arnd@arndb.de>
-X-Mailer: git-send-email 2.26.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40D8F6E90B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 21:32:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21052150-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 22:31:58 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Apr 2020 22:31:52 +0100
+Message-Id: <20200428213157.4683-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:rYIYDMxCYWRB2eFt+r4bXR0ojs6VRf8cssYFP45eloPQBq3kk1D
- 38AbGpfXilhQ2jU3p6Hjd0QcD2HvV3U+BhpEpeAKZtbVB3ZQ/FfFecRn74a+7glEdjBtxhN
- mCtjym4QUZYwirc3/24PVfET6sA4U1JkY6ymVG2ainX3OdXVUT7FrO8C3wZUz7tT3mANQiP
- 1CtPuSaxk0HHZM5ZPj5zQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fCvYI43h4qw=:zJE86n2XR4/zwbmsqs1PsD
- uWeN4V5QvJ5OfS1qUq+gSGWOVuQFCnCX2CdQJTA3DTdTvCs/0A04ASgSjg7D3IglWEB6oMs3T
- xD5gHABRLhMNvQ38prGDQmJWh298oBemJO6BJicnPmuMJuTCLv50peWcUZluUfp8l340+3fSM
- kTXf3g6O9LQjziB7LahXMwcM4x1hCw/lPaQxQWa7nGWEI1V4lkFzDWDDb5Zx41VyksshiJgF8
- CKxN/mUNUz/aiBh1EUwM+483AAaMd6A3JK+hVtf/4ECfHiglXcx1MwAhzWNuh/G1OnYYEqpVH
- ybdEfViT5K0s6V7rdWFpubIDLFn8MldPvmfkPDk7ySMhv+i4Wh773uMjcHYTv9QwW7d+qXjtY
- S54qK+b37YFv/t3Hena6LRpK4KexgqaKoLjpus0a7jD0raOqPk+ZF2qIQyQsRnOSEzTq5c13N
- 2qK6vxScrRMf+97fTH5gwEvYJJFDAyK9W/Ub5kF6jMEdfQ+jFtKHsPqlTE2BN1c5zGN6aL3cI
- mqbiwsp5m8jQRcSqdyWB+lEbNvZ1F6yKXIriXL6dxjr4xIUy52yQY+/kN5TWNEs9qFgv/GAG7
- 6OkJedi6a4mRrfDURxJAa8YIul61LAPw+8apa4eid7H6ee6+GpLZLhhICfqYSvDe8rUBPAg/+
- 1PCcNZqj54JYPtogAxivyCo/6CMWiDmyHrCsXZXQKamSJRS/NW9R0N7NHHpkrT0foNxyNBnOI
- zXGUEdqQ5JIs23BKKxZCLthcTKLR5/Qo9T6o7XDXy24wzDXYabNNMNa2BkuE+7pZM5g1RblCP
- iXrZu5dccnpJhjFTZL8br97URWb8T5FVlnBVakjoH+kFmWxQ0Y=
-Subject: [Intel-gfx] [PATCH] drm/i915: avoid unused scale_user_to_hw()
- warning
+Subject: [Intel-gfx] [CI 1/6] drm/i915/gt: Always enable busy-stats for
+ execlists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,70 +37,404 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After the function is no longer marked 'inline', there
-is now a new warning pointing out that the only caller
-is inside of an #ifdef:
+In the near future, we will utilize the busy-stats on each engine to
+approximate the C0 cycles of each, and use that as an input to a manual
+RPS mechanism. That entails having busy-stats always enabled and so we
+can remove the enable/disable routines and simplify the pmu setup. As a
+consequence of always having the stats enabled, we can also show the
+current active time via sysfs/engine/xcs/active_time_ns.
 
-drivers/gpu/drm/i915/display/intel_panel.c:493:12: warning: 'scale_user_to_hw' defined but not used [-Wunused-function]
-  493 | static u32 scale_user_to_hw(struct intel_connector *connector,
-      |            ^~~~~~~~~~~~~~~~
-
-Move the function itself into that #ifdef as well.
-
-Fixes: 81b55ef1f47b ("drm/i915: drop a bunch of superfluous inlines")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_panel.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  3 -
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 76 +------------------
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  | 29 +++----
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 44 +++--------
+ drivers/gpu/drm/i915/i915_pmu.c               | 32 +-------
+ drivers/gpu/drm/i915/selftests/i915_request.c | 16 +---
+ 6 files changed, 29 insertions(+), 171 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 4279d2bf884a..92ed67e21c60 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -489,16 +489,6 @@ static u32 scale(u32 source_val,
- 	return target_val;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index d9ee64e2ef79..d10e52ff059f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -310,9 +310,6 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 		       struct drm_printer *m,
+ 		       const char *header, ...);
+ 
+-int intel_enable_engine_stats(struct intel_engine_cs *engine);
+-void intel_disable_engine_stats(struct intel_engine_cs *engine);
+-
+ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine);
+ 
+ struct i915_request *
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 7c3cb5aedfdf..bbc6ad018134 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1589,58 +1589,6 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	intel_engine_print_breadcrumbs(engine, m);
  }
  
--/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
--static u32 scale_user_to_hw(struct intel_connector *connector,
--			    u32 user_level, u32 user_max)
+-/**
+- * intel_enable_engine_stats() - Enable engine busy tracking on engine
+- * @engine: engine to enable stats collection
+- *
+- * Start collecting the engine busyness data for @engine.
+- *
+- * Returns 0 on success or a negative error code.
+- */
+-int intel_enable_engine_stats(struct intel_engine_cs *engine)
 -{
--	struct intel_panel *panel = &connector->panel;
+-	struct intel_engine_execlists *execlists = &engine->execlists;
+-	unsigned long flags;
+-	int err = 0;
 -
--	return scale(user_level, 0, user_max,
--		     panel->backlight.min, panel->backlight.max);
+-	if (!intel_engine_supports_stats(engine))
+-		return -ENODEV;
+-
+-	execlists_active_lock_bh(execlists);
+-	write_seqlock_irqsave(&engine->stats.lock, flags);
+-
+-	if (unlikely(engine->stats.enabled == ~0)) {
+-		err = -EBUSY;
+-		goto unlock;
+-	}
+-
+-	if (engine->stats.enabled++ == 0) {
+-		struct i915_request * const *port;
+-		struct i915_request *rq;
+-
+-		engine->stats.enabled_at = ktime_get();
+-
+-		/* XXX submission method oblivious? */
+-		for (port = execlists->active; (rq = *port); port++)
+-			engine->stats.active++;
+-
+-		for (port = execlists->pending; (rq = *port); port++) {
+-			/* Exclude any contexts already counted in active */
+-			if (!intel_context_inflight_count(rq->context))
+-				engine->stats.active++;
+-		}
+-
+-		if (engine->stats.active)
+-			engine->stats.start = engine->stats.enabled_at;
+-	}
+-
+-unlock:
+-	write_sequnlock_irqrestore(&engine->stats.lock, flags);
+-	execlists_active_unlock_bh(execlists);
+-
+-	return err;
 -}
 -
- /* Scale user_level in range [0..user_max] to [0..hw_max], clamping the result
-  * to [hw_min..hw_max]. */
- static u32 clamp_user_to_hw(struct intel_connector *connector,
-@@ -1255,6 +1245,16 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
- 	return val;
+ static ktime_t __intel_engine_get_busy_time(struct intel_engine_cs *engine)
+ {
+ 	ktime_t total = engine->stats.total;
+@@ -1649,7 +1597,7 @@ static ktime_t __intel_engine_get_busy_time(struct intel_engine_cs *engine)
+ 	 * If the engine is executing something at the moment
+ 	 * add it to the total.
+ 	 */
+-	if (engine->stats.active)
++	if (atomic_read(&engine->stats.active))
+ 		total = ktime_add(total,
+ 				  ktime_sub(ktime_get(), engine->stats.start));
+ 
+@@ -1675,28 +1623,6 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine)
+ 	return total;
  }
  
-+/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
-+static u32 scale_user_to_hw(struct intel_connector *connector,
-+			    u32 user_level, u32 user_max)
-+{
-+	struct intel_panel *panel = &connector->panel;
+-/**
+- * intel_disable_engine_stats() - Disable engine busy tracking on engine
+- * @engine: engine to disable stats collection
+- *
+- * Stops collecting the engine busyness data for @engine.
+- */
+-void intel_disable_engine_stats(struct intel_engine_cs *engine)
+-{
+-	unsigned long flags;
+-
+-	if (!intel_engine_supports_stats(engine))
+-		return;
+-
+-	write_seqlock_irqsave(&engine->stats.lock, flags);
+-	WARN_ON_ONCE(engine->stats.enabled == 0);
+-	if (--engine->stats.enabled == 0) {
+-		engine->stats.total = __intel_engine_get_busy_time(engine);
+-		engine->stats.active = 0;
+-	}
+-	write_sequnlock_irqrestore(&engine->stats.lock, flags);
+-}
+-
+ static bool match_ring(struct i915_request *rq)
+ {
+ 	u32 ring = ENGINE_READ(rq->engine, RING_START);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index cfe4feaee982..c943ab0981f0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -531,28 +531,16 @@ struct intel_engine_cs {
+ 	u32 (*get_cmd_length_mask)(u32 cmd_header);
+ 
+ 	struct {
+-		/**
+-		 * @lock: Lock protecting the below fields.
+-		 */
+-		seqlock_t lock;
+-		/**
+-		 * @enabled: Reference count indicating number of listeners.
+-		 */
+-		unsigned int enabled;
+ 		/**
+ 		 * @active: Number of contexts currently scheduled in.
+ 		 */
+-		unsigned int active;
+-		/**
+-		 * @enabled_at: Timestamp when busy stats were enabled.
+-		 */
+-		ktime_t enabled_at;
++		atomic_t active;
 +
-+	return scale(user_level, 0, user_max,
-+		     panel->backlight.min, panel->backlight.max);
-+}
+ 		/**
+-		 * @start: Timestamp of the last idle to active transition.
+-		 *
+-		 * Idle is defined as active == 0, active is active > 0.
++		 * @lock: Lock protecting the below fields.
+ 		 */
+-		ktime_t start;
++		seqlock_t lock;
 +
- /* set backlight brightness to level in range [0..max], scaling wrt hw min */
- static void intel_panel_set_backlight(const struct drm_connector_state *conn_state,
- 				      u32 user_level, u32 user_max)
+ 		/**
+ 		 * @total: Total time this engine was busy.
+ 		 *
+@@ -560,6 +548,13 @@ struct intel_engine_cs {
+ 		 * where engine is currently busy (active > 0).
+ 		 */
+ 		ktime_t total;
++
++		/**
++		 * @start: Timestamp of the last idle to active transition.
++		 *
++		 * Idle is defined as active == 0, active is active > 0.
++		 */
++		ktime_t start;
+ 	} stats;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 90acc3d2440b..65ed1ed00383 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1198,17 +1198,14 @@ static void intel_engine_context_in(struct intel_engine_cs *engine)
+ {
+ 	unsigned long flags;
+ 
+-	if (READ_ONCE(engine->stats.enabled) == 0)
++	if (atomic_add_unless(&engine->stats.active, 1, 0))
+ 		return;
+ 
+ 	write_seqlock_irqsave(&engine->stats.lock, flags);
+-
+-	if (engine->stats.enabled > 0) {
+-		if (engine->stats.active++ == 0)
+-			engine->stats.start = ktime_get();
+-		GEM_BUG_ON(engine->stats.active == 0);
++	if (!atomic_add_unless(&engine->stats.active, 1, 0)) {
++		engine->stats.start = ktime_get();
++		atomic_inc(&engine->stats.active);
+ 	}
+-
+ 	write_sequnlock_irqrestore(&engine->stats.lock, flags);
+ }
+ 
+@@ -1216,36 +1213,17 @@ static void intel_engine_context_out(struct intel_engine_cs *engine)
+ {
+ 	unsigned long flags;
+ 
+-	if (READ_ONCE(engine->stats.enabled) == 0)
++	GEM_BUG_ON(!atomic_read(&engine->stats.active));
++
++	if (atomic_add_unless(&engine->stats.active, -1, 1))
+ 		return;
+ 
+ 	write_seqlock_irqsave(&engine->stats.lock, flags);
+-
+-	if (engine->stats.enabled > 0) {
+-		ktime_t last;
+-
+-		if (engine->stats.active && --engine->stats.active == 0) {
+-			/*
+-			 * Decrement the active context count and in case GPU
+-			 * is now idle add up to the running total.
+-			 */
+-			last = ktime_sub(ktime_get(), engine->stats.start);
+-
+-			engine->stats.total = ktime_add(engine->stats.total,
+-							last);
+-		} else if (engine->stats.active == 0) {
+-			/*
+-			 * After turning on engine stats, context out might be
+-			 * the first event in which case we account from the
+-			 * time stats gathering was turned on.
+-			 */
+-			last = ktime_sub(ktime_get(), engine->stats.enabled_at);
+-
+-			engine->stats.total = ktime_add(engine->stats.total,
+-							last);
+-		}
++	if (atomic_dec_and_test(&engine->stats.active)) {
++		engine->stats.total =
++			ktime_add(engine->stats.total,
++				  ktime_sub(ktime_get(), engine->stats.start));
+ 	}
+-
+ 	write_sequnlock_irqrestore(&engine->stats.lock, flags);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 230e9256ab30..83c6a8ccd2cb 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -439,29 +439,9 @@ static u64 count_interrupts(struct drm_i915_private *i915)
+ 	return sum;
+ }
+ 
+-static void engine_event_destroy(struct perf_event *event)
+-{
+-	struct drm_i915_private *i915 =
+-		container_of(event->pmu, typeof(*i915), pmu.base);
+-	struct intel_engine_cs *engine;
+-
+-	engine = intel_engine_lookup_user(i915,
+-					  engine_event_class(event),
+-					  engine_event_instance(event));
+-	if (drm_WARN_ON_ONCE(&i915->drm, !engine))
+-		return;
+-
+-	if (engine_event_sample(event) == I915_SAMPLE_BUSY &&
+-	    intel_engine_supports_stats(engine))
+-		intel_disable_engine_stats(engine);
+-}
+-
+ static void i915_pmu_event_destroy(struct perf_event *event)
+ {
+ 	WARN_ON(event->parent);
+-
+-	if (is_engine_event(event))
+-		engine_event_destroy(event);
+ }
+ 
+ static int
+@@ -514,23 +494,13 @@ static int engine_event_init(struct perf_event *event)
+ 	struct drm_i915_private *i915 =
+ 		container_of(event->pmu, typeof(*i915), pmu.base);
+ 	struct intel_engine_cs *engine;
+-	u8 sample;
+-	int ret;
+ 
+ 	engine = intel_engine_lookup_user(i915, engine_event_class(event),
+ 					  engine_event_instance(event));
+ 	if (!engine)
+ 		return -ENODEV;
+ 
+-	sample = engine_event_sample(event);
+-	ret = engine_event_status(engine, sample);
+-	if (ret)
+-		return ret;
+-
+-	if (sample == I915_SAMPLE_BUSY && intel_engine_supports_stats(engine))
+-		ret = intel_enable_engine_stats(engine);
+-
+-	return ret;
++	return engine_event_status(engine, engine_event_sample(event));
+ }
+ 
+ static int i915_pmu_event_init(struct perf_event *event)
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 3b319c0953cb..15b1ca9f7a01 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -1679,8 +1679,7 @@ static int perf_series_engines(void *arg)
+ 			p->engine = ps->ce[idx]->engine;
+ 			intel_engine_pm_get(p->engine);
+ 
+-			if (intel_engine_supports_stats(p->engine) &&
+-			    !intel_enable_engine_stats(p->engine))
++			if (intel_engine_supports_stats(p->engine))
+ 				p->busy = intel_engine_get_busy_time(p->engine) + 1;
+ 			p->runtime = -intel_context_get_total_runtime_ns(ce);
+ 			p->time = ktime_get();
+@@ -1700,7 +1699,6 @@ static int perf_series_engines(void *arg)
+ 			if (p->busy) {
+ 				p->busy = ktime_sub(intel_engine_get_busy_time(p->engine),
+ 						    p->busy - 1);
+-				intel_disable_engine_stats(p->engine);
+ 			}
+ 
+ 			err = switch_to_kernel_sync(ce, err);
+@@ -1762,8 +1760,7 @@ static int p_sync0(void *arg)
+ 	}
+ 
+ 	busy = false;
+-	if (intel_engine_supports_stats(engine) &&
+-	    !intel_enable_engine_stats(engine)) {
++	if (intel_engine_supports_stats(engine)) {
+ 		p->busy = intel_engine_get_busy_time(engine);
+ 		busy = true;
+ 	}
+@@ -1796,7 +1793,6 @@ static int p_sync0(void *arg)
+ 	if (busy) {
+ 		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+ 				    p->busy);
+-		intel_disable_engine_stats(engine);
+ 	}
+ 
+ 	err = switch_to_kernel_sync(ce, err);
+@@ -1830,8 +1826,7 @@ static int p_sync1(void *arg)
+ 	}
+ 
+ 	busy = false;
+-	if (intel_engine_supports_stats(engine) &&
+-	    !intel_enable_engine_stats(engine)) {
++	if (intel_engine_supports_stats(engine)) {
+ 		p->busy = intel_engine_get_busy_time(engine);
+ 		busy = true;
+ 	}
+@@ -1866,7 +1861,6 @@ static int p_sync1(void *arg)
+ 	if (busy) {
+ 		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+ 				    p->busy);
+-		intel_disable_engine_stats(engine);
+ 	}
+ 
+ 	err = switch_to_kernel_sync(ce, err);
+@@ -1899,8 +1893,7 @@ static int p_many(void *arg)
+ 	}
+ 
+ 	busy = false;
+-	if (intel_engine_supports_stats(engine) &&
+-	    !intel_enable_engine_stats(engine)) {
++	if (intel_engine_supports_stats(engine)) {
+ 		p->busy = intel_engine_get_busy_time(engine);
+ 		busy = true;
+ 	}
+@@ -1924,7 +1917,6 @@ static int p_many(void *arg)
+ 	if (busy) {
+ 		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+ 				    p->busy);
+-		intel_disable_engine_stats(engine);
+ 	}
+ 
+ 	err = switch_to_kernel_sync(ce, err);
 -- 
-2.26.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
