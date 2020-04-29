@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763FD1BD932
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 12:11:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC561BD9A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 12:33:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D717E89907;
-	Wed, 29 Apr 2020 10:11:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10DFD6EE62;
+	Wed, 29 Apr 2020 10:33:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DBA4D893CD;
- Wed, 29 Apr 2020 10:11:22 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ED0E06EE62;
+ Wed, 29 Apr 2020 10:33:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4C35A47EB;
- Wed, 29 Apr 2020 10:11:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5800A00FD;
+ Wed, 29 Apr 2020 10:33:56 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bartlomiej Zolnierkiewicz" <b.zolnierkie@samsung.com>
-Date: Wed, 29 Apr 2020 10:11:22 -0000
-Message-ID: <158815508286.6697.978780390716752699@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Wed, 29 Apr 2020 10:33:56 -0000
+Message-ID: <158815643691.6697.2039200981838389553@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200420130118.7a866fd5@canb.auug.org.au>
-In-Reply-To: <20200420130118.7a866fd5@canb.auug.org.au>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_linux-next=3A_build_failure_after_merge_of_the_drm-misc_tre?=
- =?utf-8?q?e?=
+References: <20200429090242.978170-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200429090242.978170-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/perf=3A_Add_support_for_multi_context_perf_queries_=28r?=
+ =?utf-8?q?ev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,25 +48,26 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: linux-next: build failure after merge of the drm-misc tree
-URL   : https://patchwork.freedesktop.org/series/76709/
-State : warning
+Series: drm/i915/perf: Add support for multi context perf queries (rev3)
+URL   : https://patchwork.freedesktop.org/series/76588/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-4cb00cc7b2f7 linux-next: build failure after merge of the drm-misc tree
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-> On Mon, 20 Apr 2020 13:01:18 +1000 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-
--:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a07a63b0e24d ("video: fbdev: controlfb: add COMPILE_TEST support")'
-#25: 
->>   a07a63b0e24d ("video: fbdev: controlfb: add COMPILE_TEST support")
-
--:63: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 2 errors, 1 warnings, 0 checks, 16 lines checked
+Applying: drm/i915/perf: break OA config buffer object in 2
+Applying: drm/i915/perf: stop using the kernel context
+Applying: drm/i915/perf: prepare driver to receive multiple ctx handles
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_perf.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/i915_perf.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_perf.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0003 drm/i915/perf: prepare driver to receive multiple ctx handles
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
