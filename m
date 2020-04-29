@@ -2,67 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2DF21BDD7C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8D31BDD82
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:24:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B785D6E03E;
-	Wed, 29 Apr 2020 13:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A465F6E46B;
+	Wed, 29 Apr 2020 13:24:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9726F6E03E
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 13:23:58 +0000 (UTC)
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
- by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 03TDNND1154370;
- Wed, 29 Apr 2020 13:23:53 GMT
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A74C76E46B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 13:24:46 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 03TDMvXM147969;
+ Wed, 29 Apr 2020 13:24:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
  h=date : from : to : cc
  : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=dPW6iXpknYMjOiXEm/vLyhm7q9A2GeAaPT+I3X41sjg=;
- b=v6inHyjrQCwMdH3PdOY+fquWSzvcMdush6yvwiL7EwTLblstXBgVNnHq4pMVHQO2EfH/
- nS+qssiGFLR0qYA02tVR/NEIFXlZlz48OH6yAlB7lq+wDP9/GzBFJR+xK4IrFCyPP4jJ
- HMiGewCck0fOumooZ/Zu8Mpi5HoJPX/VpmSQH7mrOZr3k2d+fmVzJ+5vcIgn7yCxl0RG
- ht4pZJAUA6OeOh70ppbuaru58Bja+zpfLRaz6rs+MMVq5XjI7eGq9UTFkYwcEzqrwgmg
- BDcADBia7NtQaW5TB9bFwsHfkF5TD4+Nt0oJB6pZ+0kcz7plTbm7B3eAeglRVHKPF8vh Og== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by userp2130.oracle.com with ESMTP id 30p01nv7ds-1
+ bh=x6g25EpMWe+1K09u/M0u1xQtRU9u2bh7rXg7GcumLew=;
+ b=LWDlF2DA4ywiC5fQZoIn1Z7zLfDd9pIO9MGvaum3iFhtpfmrBjJctSpLT88jOL8e6AaN
+ TY3QaRu60r3QKivc+60xXf2/4J/mDQJNE+V2yuRJxx/Hwi0rvjzg7X523oZynmTWw/hf
+ KFcZUTUnb1vHzoGK3xBnud1pfx2naLaPYoCa/1RU/yYofJfXNaRxP2eEUaSzbowkLCJ+
+ SbCkZeslCp5xEVF5eHZQ9zwzbcNQZy012iND0x7FxS1gq8LQ6HOkAVreWZvIZgIEYlK+
+ Ts3vWrLsIFJwK6z5fVIqu8F72Ockwfl56go9rqOUrFxI3aM7ra8yRjKDxbESut1kF4vu XA== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by aserp2120.oracle.com with ESMTP id 30nucg5pm7-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 29 Apr 2020 13:23:52 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 03TDN56v027141;
- Wed, 29 Apr 2020 13:23:52 GMT
+ Wed, 29 Apr 2020 13:24:37 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 03TDMicH107197;
+ Wed, 29 Apr 2020 13:24:36 GMT
 Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
- by aserp3020.oracle.com with ESMTP id 30my0gwrnn-1
+ by userp3030.oracle.com with ESMTP id 30mxpk1aqp-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 29 Apr 2020 13:23:52 +0000
-Received: from abhmp0007.oracle.com (abhmp0007.oracle.com [141.146.116.13])
- by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 03TDNoHJ031789;
- Wed, 29 Apr 2020 13:23:51 GMT
+ Wed, 29 Apr 2020 13:24:36 +0000
+Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
+ by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 03TDOYBO032118;
+ Wed, 29 Apr 2020 13:24:34 GMT
 Received: from mwanda (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Wed, 29 Apr 2020 06:23:50 -0700
-Date: Wed, 29 Apr 2020 16:23:45 +0300
+ with ESMTP ; Wed, 29 Apr 2020 06:24:33 -0700
+Date: Wed, 29 Apr 2020 16:24:25 +0300
 From: Dan Carpenter <dan.carpenter@oracle.com>
-To: chris@chris-wilson.co.uk
-Message-ID: <20200429132345.GC815283@mwanda>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200429132425.GE815283@mwanda>
 MIME-Version: 1.0
 Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9605
  signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- spamscore=0
- suspectscore=3 adultscore=0 mlxlogscore=999 bulkscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ malwarescore=0
+ mlxscore=0 bulkscore=0 adultscore=0 phishscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2003020000 definitions=main-2004290113
 X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9605
  signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- spamscore=0 clxscore=1015
- phishscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501 mlxscore=0
- suspectscore=3 malwarescore=0 lowpriorityscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
- definitions=main-2004290113
-Subject: [Intel-gfx] [bug report] drm/i915/gt: Use the RPM config register
- to determine clk frequencies
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1011
+ priorityscore=1501
+ mlxlogscore=999 impostorscore=0 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 mlxscore=0 spamscore=0 adultscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004290113
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: fix error handling in
+ __live_lrc_indirect_ctx_bb()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,150 +76,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Chris Wilson,
+If intel_context_create() fails then it leads to an error pointer
+dereference.  I shuffled things around to make error handling easier.
 
-The patch 9c878557b1eb: "drm/i915/gt: Use the RPM config register to
-determine clk frequencies" from Apr 24, 2020, leads to the following
-static checker warning:
+Fixes: 1dd47b54baea ("drm/i915: Add live selftests for indirect ctx batchbuffers")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 30 +++++++++++++++-----------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
 
-	drivers/gpu/drm/i915/gt/debugfs_gt_pm.c:407 frequency_show()
-	error: uninitialized symbol 'rpcurupei'.
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index d3fa91aed7dee..c4bfad5c49dea 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -5795,26 +5795,29 @@ static int indirect_ctx_bb_check(struct intel_context *ce)
+ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
+ {
+ 	struct intel_context *a, *b;
+-	int err = 0;
++	int err;
+ 
+ 	a = intel_context_create(engine);
+-	b = intel_context_create(engine);
+-
++	if (IS_ERR(a))
++		return PTR_ERR(a);
+ 	err = intel_context_pin(a);
+ 	if (err)
+-		return err;
++		goto put_a;
+ 
+-	err = intel_context_pin(b);
+-	if (err) {
+-		intel_context_put(a);
+-		return err;
++	b = intel_context_create(engine);
++	if (IS_ERR(b)) {
++		err = PTR_ERR(b);
++		goto unpin_a;
+ 	}
++	err = intel_context_pin(b);
++	if (err)
++		goto put_b;
+ 
+ 	/* We use the already reserved extra page in context state */
+ 	if (!a->wa_bb_page) {
+ 		GEM_BUG_ON(b->wa_bb_page);
+ 		GEM_BUG_ON(INTEL_GEN(engine->i915) == 12);
+-		goto out;
++		goto unpin_b;
+ 	}
+ 
+ 	/*
+@@ -5829,14 +5832,17 @@ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
+ 
+ 	err = indirect_ctx_bb_check(a);
+ 	if (err)
+-		goto out;
++		goto unpin_b;
+ 
+ 	err = indirect_ctx_bb_check(b);
+-out:
++
++unpin_b:
+ 	intel_context_unpin(b);
++put_b:
+ 	intel_context_put(b);
+-
++unpin_a:
+ 	intel_context_unpin(a);
++put_a:
+ 	intel_context_put(a);
+ 
+ 	return err;
+-- 
+2.26.2
 
-drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-   298          } else if (INTEL_GEN(i915) >= 6) {
-   299                  u32 rp_state_limits;
-   300                  u32 gt_perf_status;
-   301                  u32 rp_state_cap;
-   302                  u32 rpmodectl, rpinclimit, rpdeclimit;
-   303                  u32 rpstat, cagf, reqf;
-   304                  u32 rpcurupei, rpcurup, rpprevup;
-                            ^^^^^^^^^
-
-   305                  u32 rpcurdownei, rpcurdown, rpprevdown;
-   306                  u32 rpupei, rpupt, rpdownei, rpdownt;
-   307                  u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
-   308                  int max_freq;
-   309  
-   310                  rp_state_limits = intel_uncore_read(uncore, GEN6_RP_STATE_LIMITS);
-   311                  if (IS_GEN9_LP(i915)) {
-   312                          rp_state_cap = intel_uncore_read(uncore, BXT_RP_STATE_CAP);
-   313                          gt_perf_status = intel_uncore_read(uncore, BXT_GT_PERF_STATUS);
-   314                  } else {
-   315                          rp_state_cap = intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
-   316                          gt_perf_status = intel_uncore_read(uncore, GEN6_GT_PERF_STATUS);
-   317                  }
-   318  
-   319                  /* RPSTAT1 is in the GT power well */
-   320                  intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-   321  
-   322                  reqf = intel_uncore_read(uncore, GEN6_RPNSWREQ);
-   323                  if (INTEL_GEN(i915) >= 9) {
-   324                          reqf >>= 23;
-   325                  } else {
-   326                          reqf &= ~GEN6_TURBO_DISABLE;
-   327                          if (IS_HASWELL(i915) || IS_BROADWELL(i915))
-   328                                  reqf >>= 24;
-   329                          else
-   330                                  reqf >>= 25;
-   331                  }
-   332                  reqf = intel_gpu_freq(rps, reqf);
-   333  
-   334                  rpmodectl = intel_uncore_read(uncore, GEN6_RP_CONTROL);
-   335                  rpinclimit = intel_uncore_read(uncore, GEN6_RP_UP_THRESHOLD);
-   336                  rpdeclimit = intel_uncore_read(uncore, GEN6_RP_DOWN_THRESHOLD);
-   337  
-   338                  rpstat = intel_uncore_read(uncore, GEN6_RPSTAT1);
-   339                  rpupei = intel_uncore_read(uncore, GEN6_RP_CUR_UP_EI) & GEN6_CURICONT_MASK;
-   340                  rpcurup = intel_uncore_read(uncore, GEN6_RP_CUR_UP) & GEN6_CURBSYTAVG_MASK;
-   341                  rpprevup = intel_uncore_read(uncore, GEN6_RP_PREV_UP) & GEN6_CURBSYTAVG_MASK;
-   342                  rpcurdownei = intel_uncore_read(uncore, GEN6_RP_CUR_DOWN_EI) & GEN6_CURIAVG_MASK;
-   343                  rpcurdown = intel_uncore_read(uncore, GEN6_RP_CUR_DOWN) & GEN6_CURBSYTAVG_MASK;
-   344                  rpprevdown = intel_uncore_read(uncore, GEN6_RP_PREV_DOWN) & GEN6_CURBSYTAVG_MASK;
-   345  
-   346                  rpupei = intel_uncore_read(uncore, GEN6_RP_UP_EI);
-   347                  rpupt = intel_uncore_read(uncore, GEN6_RP_UP_THRESHOLD);
-   348  
-   349                  rpdownei = intel_uncore_read(uncore, GEN6_RP_DOWN_EI);
-   350                  rpdownt = intel_uncore_read(uncore, GEN6_RP_DOWN_THRESHOLD);
-   351  
-   352                  cagf = intel_rps_read_actual_frequency(rps);
-   353  
-   354                  intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
-   355  
-   356                  if (INTEL_GEN(i915) >= 11) {
-   357                          pm_ier = intel_uncore_read(uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE);
-   358                          pm_imr = intel_uncore_read(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK);
-   359                          /*
-   360                           * The equivalent to the PM ISR & IIR cannot be read
-   361                           * without affecting the current state of the system
-   362                           */
-   363                          pm_isr = 0;
-   364                          pm_iir = 0;
-   365                  } else if (INTEL_GEN(i915) >= 8) {
-   366                          pm_ier = intel_uncore_read(uncore, GEN8_GT_IER(2));
-   367                          pm_imr = intel_uncore_read(uncore, GEN8_GT_IMR(2));
-   368                          pm_isr = intel_uncore_read(uncore, GEN8_GT_ISR(2));
-   369                          pm_iir = intel_uncore_read(uncore, GEN8_GT_IIR(2));
-   370                  } else {
-   371                          pm_ier = intel_uncore_read(uncore, GEN6_PMIER);
-   372                          pm_imr = intel_uncore_read(uncore, GEN6_PMIMR);
-   373                          pm_isr = intel_uncore_read(uncore, GEN6_PMISR);
-   374                          pm_iir = intel_uncore_read(uncore, GEN6_PMIIR);
-   375                  }
-   376                  pm_mask = intel_uncore_read(uncore, GEN6_PMINTRMSK);
-   377  
-   378                  seq_printf(m, "Video Turbo Mode: %s\n",
-   379                             yesno(rpmodectl & GEN6_RP_MEDIA_TURBO));
-   380                  seq_printf(m, "HW control enabled: %s\n",
-   381                             yesno(rpmodectl & GEN6_RP_ENABLE));
-   382                  seq_printf(m, "SW control enabled: %s\n",
-   383                             yesno((rpmodectl & GEN6_RP_MEDIA_MODE_MASK) ==
-   384                                   GEN6_RP_MEDIA_SW_MODE));
-   385  
-   386                  seq_printf(m, "PM IER=0x%08x IMR=0x%08x, MASK=0x%08x\n",
-   387                             pm_ier, pm_imr, pm_mask);
-   388                  if (INTEL_GEN(i915) <= 10)
-   389                          seq_printf(m, "PM ISR=0x%08x IIR=0x%08x\n",
-   390                                     pm_isr, pm_iir);
-   391                  seq_printf(m, "pm_intrmsk_mbz: 0x%08x\n",
-   392                             rps->pm_intrmsk_mbz);
-   393                  seq_printf(m, "GT_PERF_STATUS: 0x%08x\n", gt_perf_status);
-   394                  seq_printf(m, "Render p-state ratio: %d\n",
-   395                             (gt_perf_status & (INTEL_GEN(i915) >= 9 ? 0x1ff00 : 0xff00)) >> 8);
-   396                  seq_printf(m, "Render p-state VID: %d\n",
-   397                             gt_perf_status & 0xff);
-   398                  seq_printf(m, "Render p-state limit: %d\n",
-   399                             rp_state_limits & 0xff);
-   400                  seq_printf(m, "RPSTAT1: 0x%08x\n", rpstat);
-   401                  seq_printf(m, "RPMODECTL: 0x%08x\n", rpmodectl);
-   402                  seq_printf(m, "RPINCLIMIT: 0x%08x\n", rpinclimit);
-   403                  seq_printf(m, "RPDECLIMIT: 0x%08x\n", rpdeclimit);
-   404                  seq_printf(m, "RPNSWREQ: %dMHz\n", reqf);
-   405                  seq_printf(m, "CAGF: %dMHz\n", cagf);
-   406                  seq_printf(m, "RP CUR UP EI: %d (%dns)\n",
-   407                             rpcurupei,
-                                   ^^^^^^^^^
-   408                             intel_gt_pm_interval_to_ns(gt, rpcurupei));
-                                                                  ^^^^^^^^^
-This is never initialized.
-
-   409                  seq_printf(m, "RP CUR UP: %d (%dns)\n",
-   410                             rpcurup, intel_gt_pm_interval_to_ns(gt, rpcurup));
-   411                  seq_printf(m, "RP PREV UP: %d (%dns)\n",
-   412                             rpprevup, intel_gt_pm_interval_to_ns(gt, rpprevup));
-   413                  seq_printf(m, "Up threshold: %d%%\n",
-   414                             rps->power.up_threshold);
-   415                  seq_printf(m, "RP UP EI: %d (%dns)\n",
-   416                             rpupei, intel_gt_pm_interval_to_ns(gt, rpupei));
-
-regards,
-dan carpenter
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
