@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B38D1BE1AF
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 16:52:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64B01BE1D9
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 16:57:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D908F6EEC3;
-	Wed, 29 Apr 2020 14:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A406EEC1;
+	Wed, 29 Apr 2020 14:57:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0ACBD6EEC1;
- Wed, 29 Apr 2020 14:52:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03E4EA47E6;
- Wed, 29 Apr 2020 14:52:31 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 828036EEC1;
+ Wed, 29 Apr 2020 14:57:43 +0000 (UTC)
+IronPort-SDR: /AMr6pOZplWZrM5rz6GTFyUKuKliUJAPWUoQMp/8PjIaZvn8fMtYnB2xScNvaYzn9meSUtnBCl
+ sMLa/6Pvj2Cw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 07:57:42 -0700
+IronPort-SDR: lPg8D51yfEstXRcswE7WvvGekQhpRjTVqwJ24ECU2jJ/r2BRWIJEVGNwqFwh/6tyS+ABUMDdD4
+ 50c/IAvuZ7+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="459222774"
+Received: from csippelx-mobl1.ger.corp.intel.com (HELO [10.249.47.189])
+ ([10.249.47.189])
+ by fmsmga005.fm.intel.com with ESMTP; 29 Apr 2020 07:57:41 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200429145113.588577-1-chris@chris-wilson.co.uk>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <c989a6dc-152c-7a6f-5ca4-7732c5f66c61@intel.com>
+Date: Wed, 29 Apr 2020 17:57:41 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@oracle.com>
-Date: Wed, 29 Apr 2020 14:52:31 -0000
-Message-ID: <158817195101.6697.14846467760160172758@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200429132425.GE815283@mwanda>
-In-Reply-To: <20200429132425.GE815283@mwanda>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_fix_error_handling_in_=5F=5Flive=5Flrc=5Find?=
- =?utf-8?b?aXJlY3RfY3R4X2JiKCk=?=
+In-Reply-To: <20200429145113.588577-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] perf: Flush the work between rounds
+ of gen8-unprivileged-single-ctx-counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,86 +52,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Oh... Is that on a low end platform?
 
-Series: drm/i915/selftests: fix error handling in __live_lrc_indirect_ctx_bb()
-URL   : https://patchwork.freedesktop.org/series/76727/
-State : success
+Looks alright :
 
-== Summary ==
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
-CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17514
-====================================================
+Thanks,
 
-Summary
--------
+-Lionel
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17514/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17514 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-guc:         [INCOMPLETE][1] ([i915#151]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17514/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][3] ([fdo#109271]) -> [FAIL][4] ([i915#62])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17514/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+On 29/04/2020 17:51, Chris Wilson wrote:
+> Wait until the GPU is idle before starting a fresh round of probing
+> gen8-unprivileged-single-ctx-counter. This avoids building up a huge
+> backlog of render copies, hogging buffers and stale contexts, and
+> invoking the oomkiller.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> ---
+>   tests/perf.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/tests/perf.c b/tests/perf.c
+> index 74fc8fd87..2d23a02c6 100644
+> --- a/tests/perf.c
+> +++ b/tests/perf.c
+> @@ -3787,6 +3787,7 @@ gen8_test_single_ctx_render_target_writes_a_counter(void)
+>   			drm_intel_gem_context_destroy(context1);
+>   			drm_intel_bufmgr_destroy(bufmgr);
+>   			__perf_close(stream_fd);
+> +			gem_quiescent_gpu(drm_fd);
+>   		}
+>   
+>   		child_ret = igt_wait_helper(&child);
 
 
-Participating hosts (48 -> 41)
-------------------------------
-
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8391 -> Patchwork_17514
-
-  CI-20190529: 20190529
-  CI_DRM_8391: 9cada6f702d618458eb6dda220f5cfefe655f475 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17514: 5500fe83d497795edc05add948e67256091c872e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5500fe83d497 drm/i915/selftests: fix error handling in __live_lrc_indirect_ctx_bb()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17514/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
