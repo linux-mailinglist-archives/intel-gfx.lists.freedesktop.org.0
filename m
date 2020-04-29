@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032BB1BE26B
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 17:20:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F0F1BE27B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 17:23:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACC996EF31;
-	Wed, 29 Apr 2020 15:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC096EF21;
+	Wed, 29 Apr 2020 15:23:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A68506EF31;
- Wed, 29 Apr 2020 15:20:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9E8EFA432F;
- Wed, 29 Apr 2020 15:20:06 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D1A6EEC0;
+ Wed, 29 Apr 2020 15:23:37 +0000 (UTC)
+IronPort-SDR: GHSDAElm7sx6rId6JNL7d9ReXqG7lKISHeVOCDn5dOHLV1cVnRzytoafeHy9ZNHtD93CGcwMpp
+ /HGchdEv5SCg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 08:23:36 -0700
+IronPort-SDR: 3Idcc9/6DfnlbaYPioljpkTYYxdI2DpcdNGHTkb70U9CR0taVzeci4I1aNw5gVqRxrSepKUPOp
+ FSp+XpKlfm7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="294205286"
+Received: from michielh-mobl.ger.corp.intel.com (HELO [10.249.47.78])
+ ([10.249.47.78])
+ by orsmga008.jf.intel.com with ESMTP; 29 Apr 2020 08:23:35 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200429145113.588577-1-chris@chris-wilson.co.uk>
+ <20200429150500.588743-1-chris@chris-wilson.co.uk>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <4e867fdf-6ae1-fab8-83bf-b7c02fcf3cc3@intel.com>
+Date: Wed, 29 Apr 2020 18:23:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Wed, 29 Apr 2020 15:20:06 -0000
-Message-ID: <158817360662.6696.16942357327163505229@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200429134555.22106-1-ramalingam.c@intel.com>
-In-Reply-To: <20200429134555.22106-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Fix_the_return_handling_of_drm=5Fhdcp=5Fcheck=5Fk?=
- =?utf-8?q?svs=5Frevoked?=
+In-Reply-To: <20200429150500.588743-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] perf: Flush the work between rounds
+ of gen8-unprivileged-single-ctx-counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,85 +53,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 29/04/2020 18:05, Chris Wilson wrote:
+> Wait until the GPU is idle before starting a fresh round of probing
+> gen8-unprivileged-single-ctx-counter. This avoids building up a huge
+> backlog of render copies, hogging buffers and stale contexts, and
+> invoking the oomkiller.
+>
+> v2: Release everything before starting again.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
-Series: drm/i915/hdcp: Fix the return handling of drm_hdcp_check_ksvs_revoked
-URL   : https://patchwork.freedesktop.org/series/76730/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17515
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17515/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17515 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@uncore:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-bwr-2160/igt@i915_selftest@live@uncore.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17515/fi-bwr-2160/igt@i915_selftest@live@uncore.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-guc:         [INCOMPLETE][3] ([i915#151]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17515/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
 
-Participating hosts (48 -> 41)
-------------------------------
-
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
+Thanks,
 
 
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8391 -> Patchwork_17515
-
-  CI-20190529: 20190529
-  CI_DRM_8391: 9cada6f702d618458eb6dda220f5cfefe655f475 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17515: 86e0d1e31c471181398ea4f2f381bd2d04c4f4c8 @ git://anongit.freedesktop.org/gfx-ci/linux
+-Lionel
 
 
-== Linux commits ==
+> ---
+>   tests/perf.c | 21 +++++++++++----------
+>   1 file changed, 11 insertions(+), 10 deletions(-)
+>
+> diff --git a/tests/perf.c b/tests/perf.c
+> index 74fc8fd87..7bde46af8 100644
+> --- a/tests/perf.c
+> +++ b/tests/perf.c
+> @@ -3762,19 +3762,9 @@ gen8_test_single_ctx_render_target_writes_a_counter(void)
+>   			igt_assert_eq(ret, 0);
+>   
+>   			ret = memcmp(src[0].bo->virtual, dst[0].bo->virtual, 4 * width * height);
+> -			if (ret != 0) {
+> -				accumulator_print(&accumulator, "total");
+> -				/* This needs to be investigated... From time
+> -				 * to time, the work we kick off doesn't seem
+> -				 * to happen. WTH?? */
+> -				exit(EAGAIN);
+> -			}
+> -
+>   			drm_intel_bo_unmap(src[0].bo);
+>   			drm_intel_bo_unmap(dst[0].bo);
+>   
+> -			igt_assert_eq(accumulator.deltas[2 + 26], width * height);
+> -
+>   			for (int i = 0; i < ARRAY_SIZE(src); i++) {
+>   				drm_intel_bo_unreference(src[i].bo);
+>   				drm_intel_bo_unreference(dst[i].bo);
+> @@ -3787,6 +3777,17 @@ gen8_test_single_ctx_render_target_writes_a_counter(void)
+>   			drm_intel_gem_context_destroy(context1);
+>   			drm_intel_bufmgr_destroy(bufmgr);
+>   			__perf_close(stream_fd);
+> +			gem_quiescent_gpu(drm_fd);
+> +
+> +			if (ret != 0) {
+> +				accumulator_print(&accumulator, "total");
+> +				/* This needs to be investigated... From time
+> +				 * to time, the work we kick off doesn't seem
+> +				 * to happen. WTH?? */
+> +				exit(EAGAIN);
+> +			}
+> +
+> +			igt_assert_eq(accumulator.deltas[2 + 26], width * height);
+>   		}
+>   
+>   		child_ret = igt_wait_helper(&child);
 
-86e0d1e31c47 drm/i915/hdcp: Fix the return handling of drm_hdcp_check_ksvs_revoked
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17515/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
