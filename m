@@ -1,30 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4948F1BE643
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 20:31:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 184381BE6AF
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 20:55:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 959306EAD2;
-	Wed, 29 Apr 2020 18:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 306686EADC;
+	Wed, 29 Apr 2020 18:55:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAB7A6EAD2
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 18:31:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21062155-1500050 
- for multiple; Wed, 29 Apr 2020 19:30:48 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9A5E6EADC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 18:55:00 +0000 (UTC)
+IronPort-SDR: fLxhXTCz3IoVI04A5i4750O6+PkV+gmJt2aWwTWrt4B780JXXR+g2mpuqcEUBl5/S6RmsXS60j
+ LDib9eVcQeSg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 11:55:00 -0700
+IronPort-SDR: Vq+Qj04OcryxiboKXZW7fcSkgoOFDOMRyy1QD5+PMMq6oAgSu0daYfvMxQI6ZcMKsfGCSZRjdh
+ GA3zDF8o/Pww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="246938483"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 29 Apr 2020 11:54:57 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 29 Apr 2020 21:54:57 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Apr 2020 19:30:46 +0100
-Message-Id: <20200429183046.6643-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Wed, 29 Apr 2020 21:54:55 +0300
+Message-Id: <20200429185457.26235-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Stop holding onto the
- pinned_default_state
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Nuke mode.vrefresh usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,299 +46,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we only restore the default context state upon banning a context, we
-only need enough of the state to run the ring and nothing more. That is
-we only need our bare protocontext.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 14 +-----
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 -
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 14 ++----
- drivers/gpu/drm/i915/gt/selftest_context.c   | 11 ++--
- drivers/gpu/drm/i915/gt/selftest_lrc.c       | 53 +++++++++++++++-----
- 5 files changed, 47 insertions(+), 46 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index 446e35ac0224..cf46076c59b2 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -22,18 +22,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 	struct intel_engine_cs *engine =
- 		container_of(wf, typeof(*engine), wakeref);
- 	struct intel_context *ce;
--	void *map;
- 
- 	ENGINE_TRACE(engine, "\n");
- 
- 	intel_gt_pm_get(engine->gt);
- 
--	/* Pin the default state for fast resets from atomic context. */
--	map = NULL;
--	if (engine->default_state)
--		map = shmem_pin_map(engine->default_state);
--	engine->pinned_default_state = map;
--
- 	/* Discard stale context state from across idling */
- 	ce = engine->kernel_context;
- 	if (ce) {
-@@ -43,6 +36,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
- 			struct drm_i915_gem_object *obj = ce->state->obj;
- 			int type = i915_coherent_map_type(engine->i915);
-+			void *map;
- 
- 			map = i915_gem_object_pin_map(obj, type);
- 			if (!IS_ERR(map)) {
-@@ -262,12 +256,6 @@ static int __engine_park(struct intel_wakeref *wf)
- 	if (engine->park)
- 		engine->park(engine);
- 
--	if (engine->pinned_default_state) {
--		shmem_unpin_map(engine->default_state,
--				engine->pinned_default_state);
--		engine->pinned_default_state = NULL;
--	}
--
- 	engine->execlists.no_priolist = false;
- 
- 	/* While gt calls i915_vma_parked(), we have to break the lock cycle */
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 483d8ff39a0d..1041c3e6eefb 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -340,7 +340,6 @@ struct intel_engine_cs {
- 	unsigned long wakeref_serial;
- 	struct intel_wakeref wakeref;
- 	struct file *default_state;
--	void *pinned_default_state;
- 
- 	struct {
- 		struct intel_ring *ring;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 7fc4081c34fe..f89dbcd6ead1 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1293,14 +1293,11 @@ execlists_check_context(const struct intel_context *ce,
- static void restore_default_state(struct intel_context *ce,
- 				  struct intel_engine_cs *engine)
- {
--	u32 *regs = ce->lrc_reg_state;
-+	u32 *regs;
- 
--	if (engine->pinned_default_state)
--		memcpy(regs, /* skip restoring the vanilla PPHWSP */
--		       engine->pinned_default_state + LRC_STATE_OFFSET,
--		       engine->context_size - PAGE_SIZE);
-+	regs = memset(ce->lrc_reg_state, 0, engine->context_size - PAGE_SIZE);
-+	execlists_init_reg_state(regs, ce, engine, ce->ring, true);
- 
--	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
- 	ce->runtime.last = intel_context_get_runtime(ce);
- }
- 
-@@ -4188,8 +4185,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	 * image back to the expected values to skip over the guilty request.
- 	 */
- 	__i915_request_reset(rq, stalled);
--	if (!stalled)
--		goto out_replay;
- 
- 	/*
- 	 * We want a simple context + ring to execute the breadcrumb update.
-@@ -4199,9 +4194,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	 * future request will be after userspace has had the opportunity
- 	 * to recreate its own state.
- 	 */
--	GEM_BUG_ON(!intel_context_is_pinned(ce));
--	restore_default_state(ce, engine);
--
- out_replay:
- 	ENGINE_TRACE(engine, "replay {head:%04x, tail:%04x}\n",
- 		     head, ce->ring->tail);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
-index b8ed3cbe1277..a56dff3b157a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_context.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_context.c
-@@ -154,10 +154,7 @@ static int live_context_size(void *arg)
- 	 */
- 
- 	for_each_engine(engine, gt, id) {
--		struct {
--			struct file *state;
--			void *pinned;
--		} saved;
-+		struct file *saved;
- 
- 		if (!engine->context_size)
- 			continue;
-@@ -171,8 +168,7 @@ static int live_context_size(void *arg)
- 		 * active state is sufficient, we are only checking that we
- 		 * don't use more than we planned.
- 		 */
--		saved.state = fetch_and_zero(&engine->default_state);
--		saved.pinned = fetch_and_zero(&engine->pinned_default_state);
-+		saved = fetch_and_zero(&engine->default_state);
- 
- 		/* Overlaps with the execlists redzone */
- 		engine->context_size += I915_GTT_PAGE_SIZE;
-@@ -181,8 +177,7 @@ static int live_context_size(void *arg)
- 
- 		engine->context_size -= I915_GTT_PAGE_SIZE;
- 
--		engine->pinned_default_state = saved.pinned;
--		engine->default_state = saved.state;
-+		engine->default_state = saved;
- 
- 		intel_engine_pm_put(engine);
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 7529df92f6a2..d946c0521dbc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -5206,6 +5206,7 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
- {
- 	struct i915_vma *batch;
- 	u32 dw, x, *cs, *hw;
-+	u32 *defaults;
- 
- 	batch = create_user_vma(ce->vm, SZ_64K);
- 	if (IS_ERR(batch))
-@@ -5217,9 +5218,16 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
- 		return ERR_CAST(cs);
- 	}
- 
-+	defaults = shmem_pin_map(ce->engine->default_state);
-+	if (!defaults) {
-+		i915_gem_object_unpin_map(batch->obj);
-+		i915_vma_put(batch);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
- 	x = 0;
- 	dw = 0;
--	hw = ce->engine->pinned_default_state;
-+	hw = defaults;
- 	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
-@@ -5250,6 +5258,8 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
-+	shmem_unpin_map(ce->engine->default_state, defaults);
-+
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
- 
-@@ -5360,6 +5370,7 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
- {
- 	struct i915_vma *batch;
- 	u32 dw, *cs, *hw;
-+	u32 *defaults;
- 
- 	batch = create_user_vma(ce->vm, SZ_64K);
- 	if (IS_ERR(batch))
-@@ -5371,8 +5382,15 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
- 		return ERR_CAST(cs);
- 	}
- 
-+	defaults = shmem_pin_map(ce->engine->default_state);
-+	if (!defaults) {
-+		i915_gem_object_unpin_map(batch->obj);
-+		i915_vma_put(batch);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
- 	dw = 0;
--	hw = ce->engine->pinned_default_state;
-+	hw = defaults;
- 	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
-@@ -5400,6 +5418,8 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
-+	shmem_unpin_map(ce->engine->default_state, defaults);
-+
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
- 
-@@ -5467,6 +5487,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- {
- 	u32 x, dw, *hw, *lrc;
- 	u32 *A[2], *B[2];
-+	u32 *defaults;
- 	int err = 0;
- 
- 	A[0] = i915_gem_object_pin_map(ref[0]->obj, I915_MAP_WC);
-@@ -5499,9 +5520,15 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	}
- 	lrc += LRC_STATE_OFFSET / sizeof(*hw);
- 
-+	defaults = shmem_pin_map(ce->engine->default_state);
-+	if (!defaults) {
-+		err = -ENOMEM;
-+		goto err_lrc;
-+	}
-+
- 	x = 0;
- 	dw = 0;
--	hw = engine->pinned_default_state;
-+	hw = defaults;
- 	hw += LRC_STATE_OFFSET / sizeof(*hw);
- 	do {
- 		u32 len = hw[dw] & 0x7f;
-@@ -5541,6 +5568,8 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	} while (dw < PAGE_SIZE / sizeof(u32) &&
- 		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
- 
-+	shmem_unpin_map(ce->engine->default_state, defaults);
-+err_lrc:
- 	i915_gem_object_unpin_map(ce->state->obj);
- err_B1:
- 	i915_gem_object_unpin_map(result[1]->obj);
-@@ -5690,18 +5719,16 @@ static int live_lrc_isolation(void *arg)
- 			continue;
- 
- 		intel_engine_pm_get(engine);
--		if (engine->pinned_default_state) {
--			for (i = 0; i < ARRAY_SIZE(poison); i++) {
--				int result;
-+		for (i = 0; i < ARRAY_SIZE(poison); i++) {
-+			int result;
- 
--				result = __lrc_isolation(engine, poison[i]);
--				if (result && !err)
--					err = result;
-+			result = __lrc_isolation(engine, poison[i]);
-+			if (result && !err)
-+				err = result;
- 
--				result = __lrc_isolation(engine, ~poison[i]);
--				if (result && !err)
--					err = result;
--			}
-+			result = __lrc_isolation(engine, ~poison[i]);
-+			if (result && !err)
-+				err = result;
- 		}
- 		intel_engine_pm_put(engine);
- 		if (igt_flush_test(gt->i915)) {
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCm1v
+ZGUudnJlZnJlc2ggaXMgcm91bmRlZCB0byB0aGUgbmVhcmVzdCBpbnRlZ2VyLiBZb3UgZG9uJ3Qg
+d2FudCB0byB1c2UKaXQgYW55d2hlcmUgdGhhdCByZXF1aXJlcyBwcmVjaXNpb24uIEFsc28gSSB3
+YW50IHRvIG51a2UgaXQuCnZ0b3RhbCp2cmVmcmVzaCA9PSAxMDAwKmNsb2NrL2h0b3RhbCwgc28g
+bGV0J3MgdXNlIHRoZSBsYXR0ZXIuCgpDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRh
+QGludGVsLmNvbT4KQ2M6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+ClNpZ25l
+ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jIHwgMTAgKysr
+LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLmMKaW5kZXggMzZhYWVl
+ODUzNmYxLi5mNTY4NmU1MDgzM2YgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfYXVkaW8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2F1ZGlvLmMKQEAgLTUyNCwxNCArNTI0LDEyIEBAIHN0YXRpYyB1bnNpZ25lZCBpbnQgZ2V0
+X2hibGFua19lYXJseV9lbmFibGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
+CiAJdW5zaWduZWQgaW50IGxpbmtfY2xrc19hdmFpbGFibGUsIGxpbmtfY2xrc19yZXF1aXJlZDsK
+IAl1bnNpZ25lZCBpbnQgdHVfZGF0YSwgdHVfbGluZSwgbGlua19jbGtzX2FjdGl2ZTsKIAl1bnNp
+Z25lZCBpbnQgaGJsYW5rX3Jpc2UsIGhibGFua19lYXJseV9wcm9nOwotCXVuc2lnbmVkIGludCBo
+X2FjdGl2ZSwgaF90b3RhbCwgaGJsYW5rX2RlbHRhLCBwaXhlbF9jbGssIHZfdG90YWw7Ci0JdW5z
+aWduZWQgaW50IGZlY19jb2VmZiwgcmVmcmVzaF9yYXRlLCBjZGNsaywgdmRzY19icHA7CisJdW5z
+aWduZWQgaW50IGhfYWN0aXZlLCBoX3RvdGFsLCBoYmxhbmtfZGVsdGEsIHBpeGVsX2NsazsKKwl1
+bnNpZ25lZCBpbnQgZmVjX2NvZWZmLCBjZGNsaywgdmRzY19icHA7CiAKIAloX2FjdGl2ZSA9IGNy
+dGNfc3RhdGUtPmh3LmFkanVzdGVkX21vZGUuY3J0Y19oZGlzcGxheTsKIAloX3RvdGFsID0gY3J0
+Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS5jcnRjX2h0b3RhbDsKLQl2X3RvdGFsID0gY3J0Y19z
+dGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS5jcnRjX3Z0b3RhbDsKIAlwaXhlbF9jbGsgPSBjcnRjX3N0
+YXRlLT5ody5hZGp1c3RlZF9tb2RlLmNydGNfY2xvY2s7Ci0JcmVmcmVzaF9yYXRlID0gY3J0Y19z
+dGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS52cmVmcmVzaDsKIAl2ZHNjX2JwcCA9IGNydGNfc3RhdGUt
+PmRzYy5jb21wcmVzc2VkX2JwcDsKIAljZGNsayA9IGk5MTUtPmNkY2xrLmh3LmNkY2xrOwogCS8q
+IGZlYz0gMC45NzIyNjEsIHVzaW5nIHJvdW5kaW5nIG11bHRpcGxpZXIgb2YgMTAwMDAwMCAqLwpA
+QCAtNTQ5LDkgKzU0Nyw3IEBAIHN0YXRpYyB1bnNpZ25lZCBpbnQgZ2V0X2hibGFua19lYXJseV9l
+bmFibGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyCiAJbGlua19jbGtzX2F2
+YWlsYWJsZSA9ICgoKChoX3RvdGFsIC0gaF9hY3RpdmUpICoKIAkJCSAgICAgICAoKGNydGNfc3Rh
+dGUtPnBvcnRfY2xvY2sgKiBST1VORElOR19GQUNUT1IpIC8KIAkJCQlwaXhlbF9jbGspKSAvIFJP
+VU5ESU5HX0ZBQ1RPUikgLSAyOCk7Ci0KLQlsaW5rX2Nsa3NfcmVxdWlyZWQgPSBESVZfUk9VTkRf
+VVAoMTkyMDAwLCAocmVmcmVzaF9yYXRlICoKLQkJCQkJICB2X3RvdGFsKSkgKiAoKDQ4IC8KKwls
+aW5rX2Nsa3NfcmVxdWlyZWQgPSBESVZfUk9VTkRfVVAoMTkyMDAwLCAoMTAwMCAqIHBpeGVsX2Ns
+ayAvIGhfdG90YWwpKSAqICgoNDggLwogCQkJCQkgIGNydGNfc3RhdGUtPmxhbmVfY291bnQpICsg
+Mik7CiAKIAlpZiAobGlua19jbGtzX2F2YWlsYWJsZSA+IGxpbmtfY2xrc19yZXF1aXJlZCkKLS0g
+CjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
