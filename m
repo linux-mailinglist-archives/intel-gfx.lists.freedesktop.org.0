@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64B01BE1D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 16:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE6B1BE1EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 17:02:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A406EEC1;
-	Wed, 29 Apr 2020 14:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDA656EF2C;
+	Wed, 29 Apr 2020 15:02:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 828036EEC1;
- Wed, 29 Apr 2020 14:57:43 +0000 (UTC)
-IronPort-SDR: /AMr6pOZplWZrM5rz6GTFyUKuKliUJAPWUoQMp/8PjIaZvn8fMtYnB2xScNvaYzn9meSUtnBCl
- sMLa/6Pvj2Cw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2020 07:57:42 -0700
-IronPort-SDR: lPg8D51yfEstXRcswE7WvvGekQhpRjTVqwJ24ECU2jJ/r2BRWIJEVGNwqFwh/6tyS+ABUMDdD4
- 50c/IAvuZ7+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="459222774"
-Received: from csippelx-mobl1.ger.corp.intel.com (HELO [10.249.47.189])
- ([10.249.47.189])
- by fmsmga005.fm.intel.com with ESMTP; 29 Apr 2020 07:57:41 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200429145113.588577-1-chris@chris-wilson.co.uk>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <c989a6dc-152c-7a6f-5ca4-7732c5f66c61@intel.com>
-Date: Wed, 29 Apr 2020 17:57:41 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77ECB6EF2B;
+ Wed, 29 Apr 2020 15:02:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21059723-1500050 for multiple; Wed, 29 Apr 2020 16:02:21 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200429145113.588577-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] perf: Flush the work between rounds
- of gen8-unprivileged-single-ctx-counter
+In-Reply-To: <c989a6dc-152c-7a6f-5ca4-7732c5f66c61@intel.com>
+References: <20200429145113.588577-1-chris@chris-wilson.co.uk>
+ <c989a6dc-152c-7a6f-5ca4-7732c5f66c61@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158817253952.4620.8004487048097223425@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 29 Apr 2020 16:02:19 +0100
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] perf: Flush the work
+ between rounds of gen8-unprivileged-single-ctx-counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,47 +42,23 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Oh... Is that on a low end platform?
+Quoting Lionel Landwerlin (2020-04-29 15:57:41)
+> Oh... Is that on a low end platform?
 
-Looks alright :
+glk. But it was mostly that it got stuck in the rut of hitting -EAGAIN.
 
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+/* This needs to be investigated... From time
+ * to time, the work we kick off doesn't seem
+ * to happen. WTH?? */
 
-Thanks,
-
--Lionel
-
-On 29/04/2020 17:51, Chris Wilson wrote:
-> Wait until the GPU is idle before starting a fresh round of probing
-> gen8-unprivileged-single-ctx-counter. This avoids building up a huge
-> backlog of render copies, hogging buffers and stale contexts, and
-> invoking the oomkiller.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->   tests/perf.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/tests/perf.c b/tests/perf.c
-> index 74fc8fd87..2d23a02c6 100644
-> --- a/tests/perf.c
-> +++ b/tests/perf.c
-> @@ -3787,6 +3787,7 @@ gen8_test_single_ctx_render_target_writes_a_counter(void)
->   			drm_intel_gem_context_destroy(context1);
->   			drm_intel_bufmgr_destroy(bufmgr);
->   			__perf_close(stream_fd);
-> +			gem_quiescent_gpu(drm_fd);
->   		}
->   
->   		child_ret = igt_wait_helper(&child);
-
-
+Hmm. And that's before we release everything, so yes the leak is real
+and not being slow.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
