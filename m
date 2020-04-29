@@ -2,54 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001C31BDB28
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 13:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4121BDB56
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 14:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F349B6EA9B;
-	Wed, 29 Apr 2020 11:54:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C055A6E45D;
+	Wed, 29 Apr 2020 12:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
- [IPv6:2607:f8b0:4864:20::1030])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F01996ED2A
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 11:54:32 +0000 (UTC)
-Received: by mail-pj1-x1030.google.com with SMTP id 7so2264498pjo.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 04:54:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=jKbuVFx3A4jalqhcCJZbI8uF6E2PE+UJuCdXnPv5BxY=;
- b=NkMGHB7mET2ldZWpeoBZBUnmfEBaTUw6Klvt50swchAakxXW/sEre3cHcORmsEG3IH
- /+1vlEI3rAk1zc0zCz+zDlhvrQ9r2Pb9e/7fGlCorWaxQSs2lI1ZtTaus4euWkcReF0u
- J14LiVXOn7EYY/Ipuz7YhrH3Xl4c77FJRfFRgxQiYozIyYVf2UTPnUrkoTa0oibTNFi9
- /Tmr5uVLwVa7MZNnMVuTc1QLtHMQaaapQ0E/TijxZaRw3X44PiEdAiqkT8MLfKOAd0BU
- M3H/uM8PmFX6ZzNDQSuHs0TM1Cp/S8o/vpbCKy56+uKuTrC9YXW7jhcKIdEK8+jCcgeL
- JQzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=jKbuVFx3A4jalqhcCJZbI8uF6E2PE+UJuCdXnPv5BxY=;
- b=MLJdivhE099FhK7y2p60I9kLUOng6oP09Dp+yGFnHwkQKnuboRJmhxZNLjH8FtVw67
- MCgwV+yJfUB/wvWRThI3z9x4cJEFGClxJ/bAe/VKch7BgBcs70WNC//a7cXiO/Xta0kz
- DrinwD6/0FepRTLYz9Jvr0LoLb6B94qev158aWDM3Bx3FTk5OvgSk0XW2aMOz5G9NvFC
- ya6cYERImwx9r0TNYSvrup8xOCf31+aUVrbXVnL+BIYzCeXC2qY6NsNLuaKDE7cKWw9Q
- MzHrRgyANpaJJxhSZX5wQ++5dMsg0wb6C4Cn+eP3aAOXFHywZpJk5B9sti7G5q8ZV3Si
- tg6Q==
-X-Gm-Message-State: AGi0PuaUjCxoRSYSffYDNZ44SqLkUIpYCz0ekW8X7hyQTyKxwVcYEFl7
- whTjhS++7UjgiQ7n6nQE6OJ8DbntECF3CdNqUsO/XH6Ov7c=
-X-Google-Smtp-Source: APiQypKjjR3fMBCwFYtNHvQxOYBHikxzRnmZq9WdycMA3wh0+ZeyBSp0OxKtfCob2Bj7jXjw/daf2nYhsBow6Faw5RQ=
-X-Received: by 2002:a17:902:c40c:: with SMTP id
- k12mr64961plk.238.1588161272159; 
- Wed, 29 Apr 2020 04:54:32 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D12B56E45D;
+ Wed, 29 Apr 2020 12:04:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9779A47E6;
+ Wed, 29 Apr 2020 12:04:23 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200429114048.15227-1-apodtele@gmail.com>
-In-Reply-To: <20200429114048.15227-1-apodtele@gmail.com>
-From: Alexei Podtelezhnikov <apodtele@gmail.com>
-Date: Wed, 29 Apr 2020 07:54:20 -0400
-Message-ID: <CAJU=AjU8c4RCUT3VytHKChEjE2-_=tHnGwrtt3UpxnxgwYBjog@mail.gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [patch] drm/i915: Update Slylake PCI IDs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 29 Apr 2020 12:04:23 -0000
+Message-ID: <158816186379.6698.16069523052172879767@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200428171940.19552-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200428171940.19552-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Put_drm=5Fdisplay=5Fmode_on_diet_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,28 +38,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyOSBBcHIgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhIGF0IGxp
-bnV4LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBBcHIgMjgsIDIwMjAgYXQgMTE6Mjc6NTBQ
-TSAtMDQwMCwgQWxleGVpIFBvZHRlbGV6aG5pa292IHdyb3RlOgo+PiBBZGQgdGhyZWUgbmV3IGRl
-dmljZXMgMHgxNTEzLCAweDE1MTUsIGFuZCAweDE1MTcgYWxzbyBrbm93biBhcwo+Cj4gdHlwbyAw
-eDE1IHZzLiAweDE5Cj4KPj4gaVNLTFVMVEdUMTUsIGlTS0xVTFhHVDE1LCBhbmQgaVNLTERUR1Qx
-NS4gUmVjbGFzc2lmeSAweDE5MjMsIDB4MTkyNywKPj4gYW5kIDB4MTkyQSBhY2NvcmRpbmcgdG8g
-c3BlY2lmaWNhdGlvbnMuCj4KPiBJJ2QgbWFrZSB0aGlzIHRocmVlIHNlcGFyYXRlIHBhdGNoZXMs
-IGp1c3QgaW4gY2FzZSB3ZSBoYXZlIHRvIHJldmVydAo+IHNvbWUgb2YgdGhlc2UgaW4gdGhlIGZ1
-dHVyZS4gTW9zdCB3b3JyaWVkIGFib3V0IHRoZSAweDE5MmEgY2FzZSBzaW5jZQo+IHRoZSBldmlk
-ZW5jZSBpcyByYXRoZXIgcG9vci4KCkkgZml4ZWQgdGhlIHR5cG8uIFRoZSBhYnNlbmNlIG9mIDB4
-MTkyYSBmcm9tIHRoZSBtb3N0IHJlY2VudCBXaW5kb3dzCmRyaXZlcnMgaW5kaWNhdGVzIHRoYXQg
-aXQgd2FzIG5ldmVyIHByaW50ZWQuIFRoZSBhYnNlbmNlIG9mIGV2aWRlbmNlCmlzIHRoZSBldmlk
-ZW5jZSBvZiBhYnNlbmNlLiBUaGUgc2Vjb25kIHRvIGxhc3QgZGlnaXQgaW5kaWNhdGVzIHRoYXQg
-aXQKd2FzIHBsYW5uZWQgYXMgR1QzLiBMYXN0bHksIG1ha2luZyAzIHBhdGNoZXMgZm9yIHNvbWV0
-aGluZwpub24tZXhpc3RlbnQgaXMgc3VjaCBhbiBvdmVya2lsbC4gVGhlc2UgYXJlIHRyaXZpYWwg
-dG8gcmV2ZXJ0CmxpbmUtYnktbGluZSB0b28uIFBsZWFzZSBiZSBjb25zaWRlcmF0ZSB0byBvY2Nh
-c2lvbmFsIGhlbHBlcnMgYW5kIGRvCm5vdCBhc2sgdG8gbXVjaCBvZiB0aGVtLgoKUmVnYXJkcywK
-QWxleGVpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm: Put drm_display_mode on diet (rev6)
+URL   : https://patchwork.freedesktop.org/series/73674/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8390 -> Patchwork_17509
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17509/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17509 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2] ([i915#1580])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8390/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17509/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8390 -> Patchwork_17509
+
+  CI-20190529: 20190529
+  CI_DRM_8390: 89473e10666c78c4df9e92c9caf03d7311c291cb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17509: db0286c4611d0fd85cb14c8d4d8be259f1b8abb5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+db0286c4611d drm: Replace mode->export_head with a boolean
+d4b55166f89f drm: Nuke mode->private_flags
+7ef686ec8216 drm/gma500: Stop using mode->private_flags
+32edf0d94942 drm/i915: Replace I915_MODE_FLAG_INHERITED with a boolean
+d2feee34d331 drm/i915: Stop using mode->private_flags
+cf2c5f9cc994 drm/mcde: Use mode->clock instead of reverse calculating it from the vrefresh
+1bd439876388 drm: pahole struct drm_display_mode
+1b1cbd21b272 drm: Flatten drm_mode_vrefresh()
+1c06ebb25df5 drm: Shrink drm_display_mode timings
+9b86ee3bbf40 drm: Make mode->flags u32
+85fc97e7e8bd drm: Shrink mode->type to u8
+191e00221dec drm: Shrink {width,height}_mm to u16
+37cc5204d554 drm/msm/dpu: Stop copying around mode->private_flags
+fb85f7555a02 drm: Nuke mode->vrefresh
+be723dfd05d8 drm/i915: Introduce some local intel_dp variables
+12add0e7c35a drm: Nuke mode->hsync
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17509/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
