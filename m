@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 049A81BE8D7
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 22:42:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D7F1BE8E5
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 22:46:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 533B16EB1A;
-	Wed, 29 Apr 2020 20:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F84D6EB15;
+	Wed, 29 Apr 2020 20:46:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8FC236EB15;
- Wed, 29 Apr 2020 20:42:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1F5496EB15;
+ Wed, 29 Apr 2020 20:46:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 890CCA363B;
- Wed, 29 Apr 2020 20:42:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 115CCA011A;
+ Wed, 29 Apr 2020 20:46:15 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 29 Apr 2020 20:42:18 -0000
-Message-ID: <158819293853.6696.6598729792557480385@emeril.freedesktop.org>
+To: "Sean Paul" <sean@poorly.run>
+Date: Wed, 29 Apr 2020 20:46:15 -0000
+Message-ID: <158819317504.6698.17797741550076186666@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200429185457.26235-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200429185457.26235-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Nuke_mode=2Evrefresh_us?=
- =?utf-8?q?age?=
+References: <20200429195502.39919-1-sean@poorly.run>
+In-Reply-To: <20200429195502.39919-1-sean@poorly.run>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_connectors_?=
+ =?utf-8?b?KHJldjYp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,85 +48,136 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/3] drm/i915: Nuke mode.vrefresh usage
-URL   : https://patchwork.freedesktop.org/series/76741/
-State : success
+Series: drm/i915: Add support for HDCP 1.4 over MST connectors (rev6)
+URL   : https://patchwork.freedesktop.org/series/70393/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8394 -> Patchwork_17520
-====================================================
+$ dim checkpatch origin/drm-tip
+7c5a77a1d31e drm/i915: Fix sha_text population code
+-:66: WARNING:LINE_SPACING: Missing a blank line after declarations
+#66: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:341:
++			u8 off = ((sizeof(sha_text) - j - 1 - sha_leftovers) * 8);
++			sha_text |= ksv[j] << off;
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+56a12ebb5f87 drm/i915: Clear the repeater bit on HDCP disable
+77560570cb05 drm/i915: WARN if HDCP signalling is enabled upon disable
+5f5874553395 drm/i915: Intercept Aksv writes in the aux hooks
+72c447d80879 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
+cd2f5f723997 drm/i915: Factor out hdcp->value assignments
+-:72: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#72: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:931:
++			intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_ENABLED, true);
 
-  **SUCCESS**
+-:117: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#117: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1800:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
 
-  No regressions found.
+-:129: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#129: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1815:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17520/index.html
+-:141: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#141: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1835:
++		intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_DESIRED, true);
 
-Known issues
-------------
+total: 0 errors, 0 warnings, 4 checks, 138 lines checked
+911130714349 drm/i915: Protect workers against disappearing connectors
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:2195:
++	drm_WARN_ON(connector->base.dev,
++		connector->base.registration_state == DRM_CONNECTOR_REGISTERED);
 
-  Here are the changes found in Patchwork_17520 that come from known issues:
+total: 0 errors, 0 warnings, 1 checks, 71 lines checked
+52711d976c11 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
+2d2715a81d8a drm/i915: Support DP MST in enc_to_dig_port() function
+02cdf8b227d5 drm/i915: Use ddi_update_pipe in intel_dp_mst
+-:69: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#69: FILE: drivers/gpu/drm/i915/display/intel_dp.h:132:
++void intel_ddi_update_pipe(struct intel_atomic_state *state,
++						   struct intel_encoder *encoder,
 
-### IGT changes ###
+total: 0 errors, 0 warnings, 1 checks, 42 lines checked
+05c8e3ab9587 drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
+-:692: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#692: 
+new file mode 100644
 
-#### Issues hit ####
+-:697: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_dp_hdcp.c', please use '//' instead
+#697: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:1:
++/* SPDX-License-Identifier: MIT */
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#151])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8394/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17520/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+-:697: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#697: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:1:
++/* SPDX-License-Identifier: MIT */
 
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#489])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8394/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17520/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
+-:1024: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#1024: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:328:
++
++}
 
-  
-#### Warnings ####
+-:1219: WARNING:LINE_SPACING: Missing a blank line after declarations
+#1219: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:523:
++		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
++		ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][5] ([i915#62]) -> [SKIP][6] ([fdo#109271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8394/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17520/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+total: 0 errors, 4 warnings, 1 checks, 1282 lines checked
+9b2d1bea4bd1 drm/i915: Plumb port through hdcp init
+-:21: WARNING:BAD_SIGN_OFF: Duplicate signature
+#21: 
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+cfcc0a390986 drm/i915: Add connector to hdcp_shim->check_link()
+02a575d5925b drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
+-:75: ERROR:CODE_INDENT: code indent should use tabs where possible
+#75: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:576:
++^I^I^I^I^I^I^I ^I buf[idx]);$
 
+-:75: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#75: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:576:
++^I^I^I^I^I^I^I ^I buf[idx]);$
 
-Participating hosts (48 -> 41)
-------------------------------
+-:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#75: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:576:
++		req->u.enc_status.valid_stream_event = FIELD_GET(BIT(2),
++							 	 buf[idx]);
 
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
+-:106: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#106: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:971:
++drm_dp_sideband_parse_query_stream_enc_status(
 
+-:176: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#176: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:3204:
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
 
-Build changes
--------------
+-:356: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#356: FILE: include/drm/drm_dp_mst_helper.h:836:
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8394 -> Patchwork_17520
+total: 1 errors, 1 warnings, 4 checks, 307 lines checked
+61361de16c42 drm/i915: Print HDCP version info for all connectors
+7ef7fff8d44f drm/i915: Add HDCP 1.4 support for MST connectors
+-:69: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#69: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:638:
++		drm_dbg_kms(&i915->drm, "%s HDCP signalling failed (%d)\n",
++			      enable ? "Enable" : "Disable", ret);
 
-  CI-20190529: 20190529
-  CI_DRM_8394: 532afb6da86a1c6ae10469908814f7a4f46afd88 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5615: 7605cfd9463a6778ebb7ebae294a97c5779a6c7f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17520: 01ba9553032fb839cd1d4e82d1d0e96469968b7c @ git://anongit.freedesktop.org/gfx-ci/linux
+-:208: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#208: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:761:
+ 
++
 
+total: 0 errors, 0 warnings, 2 checks, 171 lines checked
 
-== Linux commits ==
-
-01ba9553032f drm/i915: Streamline the artihmetic
-e45bfe3703e2 drm/i915: Rename variables to be consistent with bspec
-c72890c16d9b drm/i915: Nuke mode.vrefresh usage
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17520/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
