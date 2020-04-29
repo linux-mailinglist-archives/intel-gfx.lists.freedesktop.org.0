@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CEEF1BE939
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 22:55:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3841BE9A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 23:09:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B456EB26;
-	Wed, 29 Apr 2020 20:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54A406EB12;
+	Wed, 29 Apr 2020 21:09:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDD06EB26
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 20:54:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21063323-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 21:54:48 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Apr 2020 21:54:46 +0100
-Message-Id: <20200429205446.3259-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200429205446.3259-1-chris@chris-wilson.co.uk>
-References: <20200429205446.3259-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C60566EB12;
+ Wed, 29 Apr 2020 21:09:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BDC5EA363D;
+ Wed, 29 Apr 2020 21:09:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/6] drm/i915/gt: Restore aggressive post-boost
- downclocking
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sean Paul" <sean@poorly.run>
+Date: Wed, 29 Apr 2020 21:09:39 -0000
+Message-ID: <158819457974.6696.10274463744628048040@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200429195502.39919-1-sean@poorly.run>
+In-Reply-To: <20200429195502.39919-1-sean@poorly.run>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_connectors_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +39,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We reduced the clocks slowly after a boost event based on the
-observation that the smoothness of animations suffered. However, since
-reducing the evalution intervals, we should be able to respond to the
-rapidly fluctuating workload of a simple desktop animation and so
-restore the more aggressive downclocking.
+== Series Details ==
 
-References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+Series: drm/i915: Add support for HDCP 1.4 over MST connectors (rev6)
+URL   : https://patchwork.freedesktop.org/series/70393/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 1716d6d2c76f..c682355ec79e 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1680,30 +1680,18 @@ static void rps_work(struct work_struct *work)
- 		adj = 0;
- 	}
- 
--	rps->last_adj = adj;
--
- 	/*
--	 * Limit deboosting and boosting to keep ourselves at the extremes
--	 * when in the respective power modes (i.e. slowly decrease frequencies
--	 * while in the HIGH_POWER zone and slowly increase frequencies while
--	 * in the LOW_POWER zone). On idle, we will hit the timeout and drop
--	 * to the next level quickly, and conversely if busy we expect to
--	 * hit a waitboost and rapidly switch into max power.
--	 */
--	if ((adj < 0 && rps->power.mode == HIGH_POWER) ||
--	    (adj > 0 && rps->power.mode == LOW_POWER))
--		rps->last_adj = 0;
--
--	/* sysfs frequency interfaces may have snuck in while servicing the
--	 * interrupt
-+	 * sysfs frequency limits may have snuck in while
-+	 * servicing the interrupt
- 	 */
- 	new_freq += adj;
- 	new_freq = clamp_t(int, new_freq, min, max);
- 
- 	if (intel_rps_set(rps, new_freq)) {
- 		drm_dbg(&i915->drm, "Failed to set new GPU frequency\n");
--		rps->last_adj = 0;
-+		adj = 0;
- 	}
-+	rps->last_adj = adj;
- 
- 	mutex_unlock(&rps->lock);
- 
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8394 -> Patchwork_17521
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17521/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17521 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [SKIP][1] ([fdo#109271]) -> [FAIL][2] ([i915#665] / [i915#704])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8394/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17521/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][3] ([i915#62]) -> [SKIP][4] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8394/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17521/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#665]: https://gitlab.freedesktop.org/drm/intel/issues/665
+  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
+
+
+Participating hosts (48 -> 41)
+------------------------------
+
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8394 -> Patchwork_17521
+
+  CI-20190529: 20190529
+  CI_DRM_8394: 532afb6da86a1c6ae10469908814f7a4f46afd88 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5615: 7605cfd9463a6778ebb7ebae294a97c5779a6c7f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17521: 7ef7fff8d44fb997dddf5b37e06ed497717b5c38 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7ef7fff8d44f drm/i915: Add HDCP 1.4 support for MST connectors
+61361de16c42 drm/i915: Print HDCP version info for all connectors
+02a575d5925b drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
+cfcc0a390986 drm/i915: Add connector to hdcp_shim->check_link()
+9b2d1bea4bd1 drm/i915: Plumb port through hdcp init
+05c8e3ab9587 drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
+02cdf8b227d5 drm/i915: Use ddi_update_pipe in intel_dp_mst
+2d2715a81d8a drm/i915: Support DP MST in enc_to_dig_port() function
+52711d976c11 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
+911130714349 drm/i915: Protect workers against disappearing connectors
+cd2f5f723997 drm/i915: Factor out hdcp->value assignments
+72c447d80879 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
+5f5874553395 drm/i915: Intercept Aksv writes in the aux hooks
+77560570cb05 drm/i915: WARN if HDCP signalling is enabled upon disable
+56a12ebb5f87 drm/i915: Clear the repeater bit on HDCP disable
+7c5a77a1d31e drm/i915: Fix sha_text population code
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17521/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
