@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0BB91BD7BA
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 10:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A428C1BD7D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 11:02:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 541B06EA93;
-	Wed, 29 Apr 2020 08:57:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7ABB6EC48;
+	Wed, 29 Apr 2020 09:02:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 732EE6EA6D;
- Wed, 29 Apr 2020 08:57:12 +0000 (UTC)
-IronPort-SDR: VqYSwjKsHDjWyAqt9e/OJUJfLZbl5aEft62HTRQXPLV3g3q6PPvfsDbRjq+yHGBjCYQBsh3yER
- QOj2gR5Rwuug==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 547AF6EC48
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 09:02:46 +0000 (UTC)
+IronPort-SDR: FzARjEyZ0COCymBjXUv29KHrkNlpS43WiAsswVNHnXq77VdJ45j0k/wDHtJWsIwcEiKhkwPg1o
+ LKcbtYCxQiAA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2020 01:57:11 -0700
-IronPort-SDR: G4/d0UbJqdjex9NZ6XaktL1Z/yKFjmRFbM2as3Tz/2G6uUXxKSC069rzY+LenK12JSxhW/Cwv9
- wGjUWjT7kvVg==
-X-IronPort-AV: E=Sophos;i="5.73,331,1583222400"; d="scan'208";a="432490237"
-Received: from jwerner6-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.46.246])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2020 01:57:08 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Orzel <michalorzel.eng@gmail.com>, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch
-In-Reply-To: <1588093804-30446-1-git-send-email-michalorzel.eng@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <1588093804-30446-1-git-send-email-michalorzel.eng@gmail.com>
-Date: Wed, 29 Apr 2020 11:57:05 +0300
-Message-ID: <875zdiacv2.fsf@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 02:02:45 -0700
+IronPort-SDR: F9fghx6q1VyvT4hNVY8j9bXvANmVPY8UynelT2f/gSNvEF1ZeW1a2AUTnfcSVbF3wqHEftiZ2Y
+ /sFVvXLHSxXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,331,1583222400"; d="scan'208";a="246784812"
+Received: from unknown (HELO delly.ger.corp.intel.com) ([10.252.38.205])
+ by orsmga007.jf.intel.com with ESMTP; 29 Apr 2020 02:02:44 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Apr 2020 12:02:38 +0300
+Message-Id: <20200429090242.978170-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm: Replace drm_modeset_lock/unlock_all
- with DRM_MODESET_LOCK_ALL_* helpers
+Subject: [Intel-gfx] [PATCH v9 0/4] drm/i915/perf: Add support for multi
+ context perf queries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,89 +45,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Michal Orzel <michalorzel.eng@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: chris@chris-wilson.co.uk
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Apr 2020, Michal Orzel <michalorzel.eng@gmail.com> wrote:
-> As suggested by the TODO list for the kernel DRM subsystem, replace
-> the deprecated functions that take/drop modeset locks with new helpers.
->
-> Signed-off-by: Michal Orzel <michalorzel.eng@gmail.com>
-> ---
->  drivers/gpu/drm/drm_mode_object.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode_object.c
-> index 35c2719..901b078 100644
-> --- a/drivers/gpu/drm/drm_mode_object.c
-> +++ b/drivers/gpu/drm/drm_mode_object.c
-> @@ -402,12 +402,13 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
->  {
->  	struct drm_mode_obj_get_properties *arg = data;
->  	struct drm_mode_object *obj;
-> +	struct drm_modeset_acquire_ctx ctx;
->  	int ret = 0;
->  
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> -	drm_modeset_lock_all(dev);
-> +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+Hi all,
 
-I cry a little every time I look at the DRM_MODESET_LOCK_ALL_BEGIN and
-DRM_MODESET_LOCK_ALL_END macros. :(
+Just a small change on the key passed to bsearch().
 
-Currently only six users... but there are ~60 calls to
-drm_modeset_lock_all{,_ctx} that I presume are to be replaced. I wonder
-if this will come back and haunt us.
+Cheers,
 
-BR,
-Jani.
+Lionel Landwerlin (4):
+  drm/i915/perf: break OA config buffer object in 2
+  drm/i915/perf: stop using the kernel context
+  drm/i915/perf: prepare driver to receive multiple ctx handles
+  drm/i915/perf: enable filtering on multiple contexts
 
+ drivers/gpu/drm/i915/i915_perf.c       | 930 ++++++++++++++++---------
+ drivers/gpu/drm/i915/i915_perf_types.h |  47 +-
+ include/uapi/drm/i915_drm.h            |  21 +
+ 3 files changed, 661 insertions(+), 337 deletions(-)
 
->  
->  	obj = drm_mode_object_find(dev, file_priv, arg->obj_id, arg->obj_type);
->  	if (!obj) {
-> @@ -427,7 +428,7 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
->  out_unref:
->  	drm_mode_object_put(obj);
->  out:
-> -	drm_modeset_unlock_all(dev);
-> +	DRM_MODESET_LOCK_ALL_END(ctx, ret);
->  	return ret;
->  }
->  
-> @@ -449,12 +450,13 @@ static int set_property_legacy(struct drm_mode_object *obj,
->  {
->  	struct drm_device *dev = prop->dev;
->  	struct drm_mode_object *ref;
-> +	struct drm_modeset_acquire_ctx ctx;
->  	int ret = -EINVAL;
->  
->  	if (!drm_property_change_valid_get(prop, prop_value, &ref))
->  		return -EINVAL;
->  
-> -	drm_modeset_lock_all(dev);
-> +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
->  	switch (obj->type) {
->  	case DRM_MODE_OBJECT_CONNECTOR:
->  		ret = drm_connector_set_obj_prop(obj, prop, prop_value);
-> @@ -468,7 +470,7 @@ static int set_property_legacy(struct drm_mode_object *obj,
->  		break;
->  	}
->  	drm_property_change_valid_put(prop, ref);
-> -	drm_modeset_unlock_all(dev);
-> +	DRM_MODESET_LOCK_ALL_END(ctx, ret);
->  
->  	return ret;
->  }
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--
+2.26.2
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
