@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACC01BDF91
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C36001BDF9F
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:54:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A24326EE82;
-	Wed, 29 Apr 2020 13:51:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C53756E079;
+	Wed, 29 Apr 2020 13:54:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 242A56EE82;
- Wed, 29 Apr 2020 13:51:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 916FA6E079
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 13:54:27 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21058862-1500050 for multiple; Wed, 29 Apr 2020 14:51:40 +0100
+ 21058883-1500050 for multiple; Wed, 29 Apr 2020 14:53:47 +0100
 MIME-Version: 1.0
-In-Reply-To: <158816800968.6699.7293218349531718119@emeril.freedesktop.org>
-References: <20200429112151.5263-1-chris@chris-wilson.co.uk>
- <158816800968.6699.7293218349531718119@emeril.freedesktop.org>
-Subject: Re:  ✗ Fi.CI.BAT: failure for series starting with [CI,1/2] drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
+In-Reply-To: <20200429132425.GE815283@mwanda>
+References: <20200429132425.GE815283@mwanda>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158816829904.4620.8580891622969057753@build.alporthouse.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <158816842543.4620.13969605148556812046@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Wed, 29 Apr 2020 14:51:39 +0100
+Date: Wed, 29 Apr 2020 14:53:45 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: fix error handling in
+ __live_lrc_indirect_ctx_bb()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,78 +40,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Patchwork (2020-04-29 14:46:49)
-> == Series Details ==
+Quoting Dan Carpenter (2020-04-29 14:24:25)
+> If intel_context_create() fails then it leads to an error pointer
+> dereference.  I shuffled things around to make error handling easier.
 > 
-> Series: series starting with [CI,1/2] drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
-> URL   : https://patchwork.freedesktop.org/series/76719/
-> State : failure
+> Fixes: 1dd47b54baea ("drm/i915: Add live selftests for indirect ctx batchbuffers")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 30 +++++++++++++++-----------
+>  1 file changed, 18 insertions(+), 12 deletions(-)
 > 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17511
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_17511 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_17511, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_17511:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@i915_selftest@live@execlists:
->     - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-u2/igt@i915_selftest@live@execlists.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-u2/igt@i915_selftest@live@execlists.html
->     - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-tgl-y/igt@i915_selftest@live@execlists.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-tgl-y/igt@i915_selftest@live@execlists.html
->     - fi-icl-y:           [PASS][5] -> [INCOMPLETE][6]
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-y/igt@i915_selftest@live@execlists.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-y/igt@i915_selftest@live@execlists.html
-> 
->   * igt@i915_selftest@live@hangcheck:
->     - fi-cml-u2:          [PASS][7] -> [INCOMPLETE][8]
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
->     - fi-icl-guc:         [PASS][9] -> [INCOMPLETE][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
->     - fi-cfl-8700k:       [PASS][11] -> [INCOMPLETE][12]
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
->     - fi-whl-u:           [PASS][13] -> [INCOMPLETE][14]
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-whl-u/igt@i915_selftest@live@hangcheck.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-whl-u/igt@i915_selftest@live@hangcheck.html
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index d3fa91aed7dee..c4bfad5c49dea 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -5795,26 +5795,29 @@ static int indirect_ctx_bb_check(struct intel_context *ce)
+>  static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
+>  {
+>         struct intel_context *a, *b;
+> -       int err = 0;
+> +       int err;
+>  
+>         a = intel_context_create(engine);
+> -       b = intel_context_create(engine);
+> -
+> +       if (IS_ERR(a))
+> +               return PTR_ERR(a);
+>         err = intel_context_pin(a);
+>         if (err)
+> -               return err;
+> +               goto put_a;
+>  
+> -       err = intel_context_pin(b);
+> -       if (err) {
+> -               intel_context_put(a);
+> -               return err;
+> +       b = intel_context_create(engine);
+> +       if (IS_ERR(b)) {
+> +               err = PTR_ERR(b);
+> +               goto unpin_a;
+>         }
+> +       err = intel_context_pin(b);
+> +       if (err)
+> +               goto put_b;
+>  
+>         /* We use the already reserved extra page in context state */
+>         if (!a->wa_bb_page) {
+>                 GEM_BUG_ON(b->wa_bb_page);
+>                 GEM_BUG_ON(INTEL_GEN(engine->i915) == 12);
+> -               goto out;
+> +               goto unpin_b;
+>         }
+>  
+>         /*
+> @@ -5829,14 +5832,17 @@ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
+>  
+>         err = indirect_ctx_bb_check(a);
+>         if (err)
+> -               goto out;
+> +               goto unpin_b;
+>  
+>         err = indirect_ctx_bb_check(b);
+> -out:
+> +
+> +unpin_b:
+>         intel_context_unpin(b);
+> +put_b:
+>         intel_context_put(b);
+> -
+> +unpin_a:
+>         intel_context_unpin(a);
+> +put_a:
+>         intel_context_put(a);
 
-I hope this means that our minimal context is not adequate as a
-replacement for a hung context and that we need to scrub some more.
+Onion looks correct, and there should not be any issue with this
+sequence of create/pin.
 
-I did run locally first, so I presume that it's dependent on whatever
-random residual state we have in the context. Hmm. Or it's the trailing
-memset in the setup...
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 -Chris
 _______________________________________________
 Intel-gfx mailing list
