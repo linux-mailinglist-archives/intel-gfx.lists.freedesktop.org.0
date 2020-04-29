@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C191BE93A
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 22:55:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEEF1BE939
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 22:55:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A383F6EB40;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B456EB26;
 	Wed, 29 Apr 2020 20:54:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA3216EB2F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDD06EB26
  for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 20:54:51 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21063322-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21063323-1500050 
  for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 21:54:48 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Apr 2020 21:54:45 +0100
-Message-Id: <20200429205446.3259-5-chris@chris-wilson.co.uk>
+Date: Wed, 29 Apr 2020 21:54:46 +0100
+Message-Id: <20200429205446.3259-6-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200429205446.3259-1-chris@chris-wilson.co.uk>
 References: <20200429205446.3259-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 5/6] drm/i915/gt: Apply the aggressive downclocking
- to parking
+Subject: [Intel-gfx] [CI 6/6] drm/i915/gt: Restore aggressive post-boost
+ downclocking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,57 +44,58 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We treat parking as a manual RPS timeout event, and downclock the GPU
-for the next unpark and batch execution. However, having restored the
-aggressive downclocking and observed that we have very light workloads
-whose only interaction is through the manual parking events, carry over
-the aggressive downclocking to the fake RPS events.
+We reduced the clocks slowly after a boost event based on the
+observation that the smoothness of animations suffered. However, since
+reducing the evalution intervals, we should be able to respond to the
+rapidly fluctuating workload of a simple desktop animation and so
+restore the more aggressive downclocking.
 
-References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 20 ++++----------------
+ 1 file changed, 4 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 8b2991de1c97..1716d6d2c76f 100644
+index 1716d6d2c76f..c682355ec79e 100644
 --- a/drivers/gpu/drm/i915/gt/intel_rps.c
 +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -822,8 +822,6 @@ void intel_rps_unpark(struct intel_rps *rps)
- 			    rps->min_freq_softlimit,
- 			    rps->max_freq_softlimit));
+@@ -1680,30 +1680,18 @@ static void rps_work(struct work_struct *work)
+ 		adj = 0;
+ 	}
  
--	rps->last_adj = 0;
+-	rps->last_adj = adj;
 -
+ 	/*
+-	 * Limit deboosting and boosting to keep ourselves at the extremes
+-	 * when in the respective power modes (i.e. slowly decrease frequencies
+-	 * while in the HIGH_POWER zone and slowly increase frequencies while
+-	 * in the LOW_POWER zone). On idle, we will hit the timeout and drop
+-	 * to the next level quickly, and conversely if busy we expect to
+-	 * hit a waitboost and rapidly switch into max power.
+-	 */
+-	if ((adj < 0 && rps->power.mode == HIGH_POWER) ||
+-	    (adj > 0 && rps->power.mode == LOW_POWER))
+-		rps->last_adj = 0;
+-
+-	/* sysfs frequency interfaces may have snuck in while servicing the
+-	 * interrupt
++	 * sysfs frequency limits may have snuck in while
++	 * servicing the interrupt
+ 	 */
+ 	new_freq += adj;
+ 	new_freq = clamp_t(int, new_freq, min, max);
+ 
+ 	if (intel_rps_set(rps, new_freq)) {
+ 		drm_dbg(&i915->drm, "Failed to set new GPU frequency\n");
+-		rps->last_adj = 0;
++		adj = 0;
+ 	}
++	rps->last_adj = adj;
+ 
  	mutex_unlock(&rps->lock);
  
- 	rps->pm_iir = 0;
-@@ -838,6 +836,8 @@ void intel_rps_unpark(struct intel_rps *rps)
- 
- void intel_rps_park(struct intel_rps *rps)
- {
-+	int adj;
-+
- 	if (!intel_rps_clear_active(rps))
- 		return;
- 
-@@ -876,8 +876,13 @@ void intel_rps_park(struct intel_rps *rps)
- 	 * (Note we accommodate Cherryview's limitation of only using an
- 	 * even bin by applying it to all.)
- 	 */
--	rps->cur_freq =
--		max_t(int, round_down(rps->cur_freq - 1, 2), rps->min_freq);
-+	adj = rps->last_adj;
-+	if (adj < 0)
-+		adj *= 2;
-+	else /* CHV needs even encode values */
-+		adj = -2;
-+	rps->last_adj = adj;
-+	rps->cur_freq = max_t(int, rps->cur_freq + adj, rps->min_freq);
- 
- 	GT_TRACE(rps_to_gt(rps), "park:%x\n", rps->cur_freq);
- }
 -- 
 2.20.1
 
