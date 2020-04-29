@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 474C41BD37F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 06:22:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6171BD4AC
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 08:32:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C776E856;
-	Wed, 29 Apr 2020 04:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF9D46E42B;
+	Wed, 29 Apr 2020 06:32:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 737B46E8E6;
- Wed, 29 Apr 2020 04:22:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6DD53A47DF;
- Wed, 29 Apr 2020 04:22:36 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A506E42B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 06:32:45 +0000 (UTC)
+IronPort-SDR: ySI8GAkPa78IxmJYld1gmTFT+1VmkJVe7RpJAEpyN4oOmsC8kUSW82CD4y+gtzZEfxR97uOUoE
+ kHwUyQEB4Ipw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 23:32:44 -0700
+IronPort-SDR: PytqkgtSVZWag+CDnhmIaavYRkBDmObaGSt/Dwjy5qFKq1kx6OOA47orVMMg4xio3XyQIrtYni
+ 7+o2c8JDTaiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,330,1583222400"; d="scan'208";a="261342775"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 28 Apr 2020 23:32:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 29 Apr 2020 09:32:40 +0300
+Date: Wed, 29 Apr 2020 09:32:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Alexei Podtelezhnikov <apodtele@gmail.com>
+Message-ID: <20200429063240.GL6112@intel.com>
+References: <20200428135744.GI6112@intel.com>
+ <20200429032750.4836-1-apodtele@gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexei Podtelezhnikov" <apodtele@gmail.com>
-Date: Wed, 29 Apr 2020 04:22:36 -0000
-Message-ID: <158813415642.6698.8688796225432510108@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200428034705.3907-1-apodtele@gmail.com>
-In-Reply-To: <20200428034705.3907-1-apodtele@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_PCI_IDs_for_Skylake_GT1=2E5_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200429032750.4836-1-apodtele@gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [patch] drm/i915: Update Slylake PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,86 +51,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Add PCI IDs for Skylake GT1.5 (rev2)
-URL   : https://patchwork.freedesktop.org/series/76577/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8389 -> Patchwork_17504
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17504/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17504 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#1457] / [i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8389/fi-bwr-2160/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17504/fi-bwr-2160/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][3] ([i915#1250]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8389/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17504/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-
-  
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1457]: https://gitlab.freedesktop.org/drm/intel/issues/1457
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+On Tue, Apr 28, 2020 at 11:27:50PM -0400, Alexei Podtelezhnikov wrote:
+> Add three new devices 0x1513, 0x1515, and 0x1517 also known as =
 
 
-Participating hosts (50 -> 43)
-------------------------------
+typo 0x15 vs. 0x19
 
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+> iSKLULTGT15, iSKLULXGT15, and iSKLDTGT15. Reclassify 0x1923, 0x1927, =
 
+> and 0x192A according to specifications.
 
-Build changes
--------------
+I'd make this three separate patches, just in case we have to revert
+some of these in the future. Most worried about the 0x192a case since
+the evidence is rather poor.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8389 -> Patchwork_17504
+Otherwise lgtm.
 
-  CI-20190529: 20190529
-  CI_DRM_8389: 1d38debe80c663ca881860cae696ffd5f02de95e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17504: eb25e0f90136a7a9fc621643440d90f555dd1799 @ git://anongit.freedesktop.org/gfx-ci/linux
+> =
 
+> Signed-off-by: Alexei Podtelezhnikov <apodtele@gmail.com> =
 
-== Linux commits ==
+> ---
+>  include/drm/i915_pciids.h | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+> =
 
-eb25e0f90136 drm/i915: Update Slylake PCI IDs
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index 1d2c1221..c12bce9e 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -331,15 +331,18 @@
+>  	INTEL_VGA_DEVICE(0x22b3, info)
+>  =
 
-== Logs ==
+>  #define INTEL_SKL_ULT_GT1_IDS(info) \
+> -	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
+> +	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
+> +	INTEL_VGA_DEVICE(0x1913, info) /* ULT GT1.5 */
+>  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17504/index.html
+>  #define INTEL_SKL_ULX_GT1_IDS(info) \
+> -	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
+> +	INTEL_VGA_DEVICE(0x190E, info), /* ULX GT1 */ \
+> +	INTEL_VGA_DEVICE(0x1915, info) /* ULX GT1.5 */
+>  =
+
+>  #define INTEL_SKL_GT1_IDS(info)	\
+>  	INTEL_SKL_ULT_GT1_IDS(info), \
+>  	INTEL_SKL_ULX_GT1_IDS(info), \
+>  	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
+> +	INTEL_VGA_DEVICE(0x1917, info), /* DT  GT1.5 */ \
+>  	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
+>  	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
+>  =
+
+> @@ -359,21 +362,21 @@
+>  	INTEL_VGA_DEVICE(0x191D, info)  /* WKS GT2 */
+>  =
+
+>  #define INTEL_SKL_ULT_GT3_IDS(info) \
+> -	INTEL_VGA_DEVICE(0x1926, info) /* ULT GT3 */
+> +	INTEL_VGA_DEVICE(0x1923, info), /* ULT GT3 */ \
+> +	INTEL_VGA_DEVICE(0x1927, info), /* ULT GT3 28W */ \
+> +	INTEL_VGA_DEVICE(0x1926, info) /* ULT GT3e */
+>  =
+
+>  #define INTEL_SKL_GT3_IDS(info) \
+>  	INTEL_SKL_ULT_GT3_IDS(info), \
+> -	INTEL_VGA_DEVICE(0x1923, info), /* ULT GT3 */ \
+> -	INTEL_VGA_DEVICE(0x1927, info), /* ULT GT3 */ \
+> +	INTEL_VGA_DEVICE(0x192A, info), /* SRV GT3 */ \
+>  	INTEL_VGA_DEVICE(0x192B, info), /* Halo GT3 */ \
+> -	INTEL_VGA_DEVICE(0x192D, info)  /* SRV GT3 */
+> +	INTEL_VGA_DEVICE(0x192D, info)  /* SRV GT3e */
+>  =
+
+>  #define INTEL_SKL_GT4_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x1932, info), /* DT GT4 */ \
+>  	INTEL_VGA_DEVICE(0x193B, info), /* Halo GT4 */ \
+>  	INTEL_VGA_DEVICE(0x193D, info), /* WKS GT4 */ \
+> -	INTEL_VGA_DEVICE(0x192A, info), /* SRV GT4 */ \
+> -	INTEL_VGA_DEVICE(0x193A, info)  /* SRV GT4e */
+> +	INTEL_VGA_DEVICE(0x193A, info)  /* SRV GT4 */
+>  =
+
+>  #define INTEL_SKL_IDS(info)	 \
+>  	INTEL_SKL_GT1_IDS(info), \
+> --
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
