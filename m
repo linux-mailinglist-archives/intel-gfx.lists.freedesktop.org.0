@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 011851BE7D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 21:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 624011BE7D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 21:55:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7506F3A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E0E6F39E;
 	Wed, 29 Apr 2020 19:55:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCB876F39D
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 19:55:08 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id 71so2970052qtc.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 12:55:08 -0700 (PDT)
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
+ [IPv6:2607:f8b0:4864:20::744])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36516F3A0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 19:55:11 +0000 (UTC)
+Received: by mail-qk1-x744.google.com with SMTP id k81so642794qke.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 12:55:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=/rJ+qpCTUQ4xRTDli+gllJdywxBhgBDyTSUd0fgyLX8=;
- b=Mx9NV3C62tZ1IgRPUSXfHNa9az0cgkSiXyFECZ6wjMtnIR4qBEBizHekS6UJHBfghU
- 30cy8hGaAtaVUwiAWR+Fx2Dy+ETtzABCFUlxlCnP6W3CHmqLSQgAawEbbhKVmJu38kXE
- 7GFv/I20oWJzhi5ubl52k7Y3o35BC2xJ0zohWproN8ymQ7651X4Dh5uBQ0Sbc95dB5e+
- eWzRkUlz/mUaSESBBLL//uJ4NuV7OZbAr9wkWLtw3KdGXrk2fsqDqaCkZy0uzeOK5Lo4
- UXaJ4re/CRSKnoNFeplw//F5b2BxlbLWt8PkcdjDW/ydSW6pUsi3X3+VIsRgGyELNpB6
- /AOw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=4q6U9bQnNCsGSz0OpbbB1aaXw9FBRB2ZVtrZWl9IhSU=;
+ b=SP/x0BkMwZpqM0y/UROarNzLq5L7flAHJIxrIT6BOkp8iKFksJqYo0PN/rw3Aad7tf
+ 02P+QUbHIICSiO/22dSE+I899n3t0wNdf/t///9lu5mbRC1Ddbe4/j2uwP10O6cFTB6E
+ rZnDKMIwzhe0SE1yKM2JkhEl8mKUZdI7ofkADhz1rbGn92ta6P91p5cSXDJ8V1P4xiHa
+ vKyNVn3QI5kbCQd4ZA/rM7ggNbYbufcwohW1dkS0nM0ZCtJSTLrPHYJABt46aDr6bv2g
+ maWyMX6GCqs3thpy+1mqu2jgl3+63VgFoofF4EYNrHMjyCHpga7cM8JQI0XjIHnKUNkv
+ bROA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=/rJ+qpCTUQ4xRTDli+gllJdywxBhgBDyTSUd0fgyLX8=;
- b=X9KvY2V7HfR1G+yjYpB34gHyUvvY36vXOGep3Nk5hnDM8ystCvYQdYS3WRrsEfAJyY
- 8iXnckOLG6H3tcXHH6YqqlIEhTeQk62NinFTDfmRMK624ZULgb2H76GodDBGp3c97OEf
- dIoVVUSpmQPye1EoSq1oxLF5UU+JMA/Zm4oeDUUdPApFF8nAZouHHTlpxzjrF6WY0fL6
- cWfivP+oNDeCRyGlkDGbf1iOELPuvKOYFlR2IKVSn/ITzrbmVfu0HT9Ft1iw+qEoH4X+
- zynf8cO9wQNUvh42BgSpwKkif2WZabYtHMHZZYCUxmd7/9Ep5GPmud9md9bkG13snw9S
- s2TA==
-X-Gm-Message-State: AGi0Puaqvc3Hbnyl40W2A28yZR7mj0KWHi5s5yjKupUDpvokhuXmEFN2
- 6SIKHAOlDdRMDgvLLoI2BKELPA==
-X-Google-Smtp-Source: APiQypJ8HrNAecGaGJOfAjH5jMMQNuPSSpXp7GJV8WNQJHPCBikcxgu30+Gh/2jz7jfO6lMWuT0UKA==
-X-Received: by 2002:ac8:1a26:: with SMTP id v35mr6440001qtj.332.1588190107918; 
- Wed, 29 Apr 2020 12:55:07 -0700 (PDT)
+ :references:mime-version:content-transfer-encoding;
+ bh=4q6U9bQnNCsGSz0OpbbB1aaXw9FBRB2ZVtrZWl9IhSU=;
+ b=Yd42o8uQOXRfD3V+sCrXkmINhiqK4ZFyj2+2ccFJ0t4TfAjZlXOEPNS1+GATh5e0HE
+ 4qMVHeWzHNzz9EmrarKJZvT1gJqSRzTcxaCsl72uxal4puWADLfeM7zWy06peoVWMllU
+ LKLO4uIQx3vj9XtJRjsUV12DY+zpTI2bxaZlEu+4Vxuj3JNMDSxpOnP0VN9HAH8vD1US
+ wae7E/3ndt4UOJHw2oMN4LnSZ4+K92xI3UJU9ESdSIwDxlDfcCnUvHWaySeIk6ihYfGP
+ /9kboY2cNYm6O56k1ALFeBPop+ZkT93bCt+5ZOK+FVC+4n/FLSo9iEI8goCQqGQ9RmW5
+ /C2Q==
+X-Gm-Message-State: AGi0PuYc7t7DPL11cn99KOWa6nvXl3rTNeKegi7kGEhSbnK6mGP1v+GV
+ BjYO+JoWw300BtoEBCxqWbe99w==
+X-Google-Smtp-Source: APiQypI76PolNXrJ/BpqdWa0H/H9CIVOQqumkq4vgTCAPgV2vCOuRTvedG6UGr+Xe+wYKz6RwVxaRg==
+X-Received: by 2002:a37:62d7:: with SMTP id w206mr106790qkb.406.1588190109538; 
+ Wed, 29 Apr 2020 12:55:09 -0700 (PDT)
 Received: from localhost (mobile-166-170-55-34.mycingular.net. [166.170.55.34])
- by smtp.gmail.com with ESMTPSA id 28sm143805qkp.10.2020.04.29.12.55.07
+ by smtp.gmail.com with ESMTPSA id h6sm158820qtd.79.2020.04.29.12.55.08
  (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 29 Apr 2020 12:55:07 -0700 (PDT)
+ Wed, 29 Apr 2020 12:55:09 -0700 (PDT)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Apr 2020 15:54:48 -0400
-Message-Id: <20200429195502.39919-3-sean@poorly.run>
+Date: Wed, 29 Apr 2020 15:54:49 -0400
+Message-Id: <20200429195502.39919-4-sean@poorly.run>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200429195502.39919-1-sean@poorly.run>
 References: <20200429195502.39919-1-sean@poorly.run>
-Subject: [Intel-gfx] [PATCH v6 02/16] drm/i915: Clear the repeater bit on
- HDCP disable
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v6 03/16] drm/i915: WARN if HDCP signalling is
+ enabled upon disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,82 +68,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>, daniel.vetter@ffwll.ch,
- seanpaul@chromium.org, stable@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: daniel.vetter@ffwll.ch, seanpaul@chromium.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
-
-On HDCP disable, clear the repeater bit. This ensures if we connect a
-non-repeater sink after a repeater, the bit is in the state we expect.
-
-Fixes: ee5e5e7a5e0f (drm/i915: Add HDCP framework + base implementation)
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.17+
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-3-sean@poorly.run #v2
-Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-3-sean@poorly.run #v3
-Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-3-sean@poorly.run #v4
-Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-3-sean@poorly.run #v5
-
-Changes in v2:
--Added to the set
-Changes in v3:
--None
-  I had previously agreed that clearing the rep_ctl bits on enable would
-  also be a good idea. However when I committed that idea to code, it
-  didn't look right. So let's rely on enables and disables being paired
-  and everything outside of that will be considered a bug
-Changes in v4:
--s/I915_(READ|WRITE)/intel_de_(read|write)/
-Changes in v5:
--None
-Changes in v6:
--None
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 525658fd201f..20175a53643d 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -795,6 +795,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	enum port port = intel_dig_port->base.port;
- 	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-+	u32 repeater_ctl;
- 	int ret;
- 
- 	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
-@@ -810,6 +811,11 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 		return -ETIMEDOUT;
- 	}
- 
-+	repeater_ctl = intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder,
-+						   port);
-+	intel_de_write(dev_priv, HDCP_REP_CTL,
-+		       intel_de_read(dev_priv, HDCP_REP_CTL) & ~repeater_ctl);
-+
- 	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
- 	if (ret) {
- 		drm_err(&dev_priv->drm, "Failed to disable HDCP signalling\n");
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+CgpIRENQIHNpZ25hbGxpbmcg
+c2hvdWxkIG5vdCBiZSBsZWZ0IG9uLCBXQVJOIGlmIGl0IGlzCgpDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bC52ZXR0ZXJAZmZ3bGwuY2g+ClJldmlld2VkLWJ5OiBSYW1hbGluZ2FtIEMgPHJhbWFsaW5nYW0u
+Y0BpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0u
+b3JnPgpMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvbXNnaWQv
+MjAxOTEyMTIxOTAyMzAuMTg4NTA1LTQtc2VhbkBwb29ybHkucnVuICN2MgpMaW5rOiBodHRwczov
+L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvbXNnaWQvMjAyMDAxMTcxOTMxMDMuMTU2
+ODIxLTQtc2VhbkBwb29ybHkucnVuICN2MwpMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVz
+a3RvcC5vcmcvcGF0Y2gvbXNnaWQvMjAyMDAyMTgyMjAyNDIuMTA3MjY1LTQtc2VhbkBwb29ybHku
+cnVuICN2NApMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvbXNn
+aWQvMjAyMDAzMDUyMDEyMzYuMTUyMzA3LTQtc2VhbkBwb29ybHkucnVuICN2NQoKQ2hhbmdlcyBp
+biB2MjoKLUFkZGVkIHRvIHRoZSBzZXQgaW4gbGlldSBvZiBqdXN0IGNsZWFyaW5nIHRoZSBiaXQK
+Q2hhbmdlcyBpbiB2MzoKLU5vbmUKQ2hhbmdlcyBpbiB2NDoKLU5vbmUKQ2hhbmdlcyBpbiB2NToK
+LUNoYW5nZSBXQVJOX09OIHRvIGRybV9XQVJOX09OCkNoYW5nZXMgaW4gdjY6Ci1Ob25lCi0tLQog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDIgKysKIDEgZmlsZSBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuYwppbmRleCA1NjAxNjczYzNmMzAuLjA4ODQ0YmE5ZGNiNSAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0xNjYzLDYgKzE2NjMsOCBAQCB2b2lkIGlu
+dGVsX2RkaV9kaXNhYmxlX3RyYW5zY29kZXJfZnVuYyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZQogCiAJY3RsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgVFJBTlNf
+RERJX0ZVTkNfQ1RMKGNwdV90cmFuc2NvZGVyKSk7CiAKKwlkcm1fV0FSTl9PTihjcnRjLT5iYXNl
+LmRldiwgY3RsICYgVFJBTlNfRERJX0hEQ1BfU0lHTkFMTElORyk7CisKIAljdGwgJj0gflRSQU5T
+X0RESV9GVU5DX0VOQUJMRTsKIAogCWlmIChJU19HRU5fUkFOR0UoZGV2X3ByaXYsIDgsIDEwKSkK
+LS0gClNlYW4gUGF1bCwgU29mdHdhcmUgRW5naW5lZXIsIEdvb2dsZSAvIENocm9taXVtIE9TCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
