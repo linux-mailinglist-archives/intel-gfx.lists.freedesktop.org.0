@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C36001BDF9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A3F1BDFA4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:55:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C53756E079;
-	Wed, 29 Apr 2020 13:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B0B86EE9E;
+	Wed, 29 Apr 2020 13:55:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 916FA6E079
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 13:54:27 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21058883-1500050 for multiple; Wed, 29 Apr 2020 14:53:47 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 17D126EE93;
+ Wed, 29 Apr 2020 13:55:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 11BF0A432F;
+ Wed, 29 Apr 2020 13:55:44 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200429132425.GE815283@mwanda>
-References: <20200429132425.GE815283@mwanda>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Dan Carpenter <dan.carpenter@oracle.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <158816842543.4620.13969605148556812046@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 29 Apr 2020 14:53:45 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: fix error handling in
- __live_lrc_indirect_ctx_bb()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 29 Apr 2020 13:55:44 -0000
+Message-ID: <158816854406.6696.4890719669913654049@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200429123047.23108-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200429123047.23108-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Allow_some_leniency_in_PCU_reads?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,91 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Dan Carpenter (2020-04-29 14:24:25)
-> If intel_context_create() fails then it leads to an error pointer
-> dereference.  I shuffled things around to make error handling easier.
-> 
-> Fixes: 1dd47b54baea ("drm/i915: Add live selftests for indirect ctx batchbuffers")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_lrc.c | 30 +++++++++++++++-----------
->  1 file changed, 18 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index d3fa91aed7dee..c4bfad5c49dea 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -5795,26 +5795,29 @@ static int indirect_ctx_bb_check(struct intel_context *ce)
->  static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
->  {
->         struct intel_context *a, *b;
-> -       int err = 0;
-> +       int err;
->  
->         a = intel_context_create(engine);
-> -       b = intel_context_create(engine);
-> -
-> +       if (IS_ERR(a))
-> +               return PTR_ERR(a);
->         err = intel_context_pin(a);
->         if (err)
-> -               return err;
-> +               goto put_a;
->  
-> -       err = intel_context_pin(b);
-> -       if (err) {
-> -               intel_context_put(a);
-> -               return err;
-> +       b = intel_context_create(engine);
-> +       if (IS_ERR(b)) {
-> +               err = PTR_ERR(b);
-> +               goto unpin_a;
->         }
-> +       err = intel_context_pin(b);
-> +       if (err)
-> +               goto put_b;
->  
->         /* We use the already reserved extra page in context state */
->         if (!a->wa_bb_page) {
->                 GEM_BUG_ON(b->wa_bb_page);
->                 GEM_BUG_ON(INTEL_GEN(engine->i915) == 12);
-> -               goto out;
-> +               goto unpin_b;
->         }
->  
->         /*
-> @@ -5829,14 +5832,17 @@ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
->  
->         err = indirect_ctx_bb_check(a);
->         if (err)
-> -               goto out;
-> +               goto unpin_b;
->  
->         err = indirect_ctx_bb_check(b);
-> -out:
-> +
-> +unpin_b:
->         intel_context_unpin(b);
-> +put_b:
->         intel_context_put(b);
-> -
-> +unpin_a:
->         intel_context_unpin(a);
-> +put_a:
->         intel_context_put(a);
+== Series Details ==
 
-Onion looks correct, and there should not be any issue with this
-sequence of create/pin.
+Series: drm/i915: Allow some leniency in PCU reads
+URL   : https://patchwork.freedesktop.org/series/76723/
+State : success
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17512
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17512/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17512 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#1726] / [i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-bwr-2160/igt@i915_selftest@live@gt_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17512/fi-bwr-2160/igt@i915_selftest@live@gt_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-guc:         [INCOMPLETE][3] ([i915#151]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17512/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#1726]: https://gitlab.freedesktop.org/drm/intel/issues/1726
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8391 -> Patchwork_17512
+
+  CI-20190529: 20190529
+  CI_DRM_8391: 9cada6f702d618458eb6dda220f5cfefe655f475 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17512: 9c8b281eb20bc47534d6d123d8252d15a461beb0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9c8b281eb20b drm/i915: Allow some leniency in PCU reads
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17512/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
