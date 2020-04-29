@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B601BDA5B
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 13:09:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7363F1BE389
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 18:14:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF51C6E456;
-	Wed, 29 Apr 2020 11:09:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6FA86EAAB;
+	Wed, 29 Apr 2020 16:14:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C592E6E02C;
- Wed, 29 Apr 2020 11:09:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BD28EA432F;
- Wed, 29 Apr 2020 11:09:01 +0000 (UTC)
+X-Greylist: delayed 449 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Apr 2020 11:26:40 UTC
+Received: from out1.migadu.com (out1.migadu.com [91.121.223.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4816E452
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 11:26:40 +0000 (UTC)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 29 Apr 2020 11:09:01 -0000
-Message-ID: <158815854174.6696.1873689939731818845@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200429103535.27781-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200429103535.27781-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/6=5D_drm/i915/gt=3A_Always_e?=
- =?utf-8?q?nable_busy-stats_for_execlists?=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kl.wtf; s=default;
+ t=1588159147;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=imyH5i/2Y9yMNzm7UXaBN/+s9A++43Lu0do6gm4lZAo=;
+ b=LrdIfbupDauYnhNB/LVW7socv26n2fC4hjUAyHuPXJNEkxTUwwClvoDTrPINu4HaMhyLgo
+ 2rAzNOU032gKGBlrYK/tFlmA75qh/N18BQ6tDUJLLelE+4b/sKqm4B7YwCj+vx8S6HsmSc
+ AY1CCPyS+l3NPDGicr7OJQ8/QFbU5I0=
+Date: Wed, 29 Apr 2020 11:19:07 +0000
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: kl@kl.wtf
+Message-ID: <e8d385dbfbbb09acfe58d716c588722c@kl.wtf>
+To: "Daniel Vetter" <daniel@ffwll.ch>
+In-Reply-To: <20200428151410.GU3456981@phenom.ffwll.local>
+References: <20200428151410.GU3456981@phenom.ffwll.local>
+ <20200424162615.10461-1-kl@kl.wtf>
+X-Spam-Score: -0.10
+X-Mailman-Approved-At: Wed, 29 Apr 2020 16:14:40 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm: make drm_file use keyed wakeups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,49 +49,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ mripard@kernel.org, tzimmermann@suse.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+April 28, 2020 5:14 PM, "Daniel Vetter" <daniel@ffwll.ch> wrote:
 
-Series: series starting with [CI,1/6] drm/i915/gt: Always enable busy-stats for execlists
-URL   : https://patchwork.freedesktop.org/series/76715/
-State : warning
+> On Fri, Apr 24, 2020 at 06:26:15PM +0200, Kenny Levinsen wrote:
+> 
+>> Some processes, such as systemd, are only polling for EPOLLERR|EPOLLHUP.
+>> As drm_file uses unkeyed wakeups, such a poll can receive many spurious
+>> wakeups from uninteresting events if, for example, the file description
+>> is subscribed to vblank events. This is the case with systemd, as it
+>> polls a file description from logind that is shared with the users'
+>> compositor.
+>> 
+>> Use keyed wakeups to allow the wakeup target to more efficiently discard
+>> these uninteresting events.
+>> 
+>> Signed-off-by: Kenny Levinsen <kl@kl.wtf>
+> 
+> Hm I applied v1 and I'm not spotting what's different here, and there's no
+> changelog explaining what changed ...
+> 
+> Please send a fixup if there's anything important missing.
+> -Daniel
+>
 
-== Summary ==
+It's only the summary that differed as you and sravn requested in #dri-devel, so it's probably fine.
 
-$ dim checkpatch origin/drm-tip
-081418e7ad56 drm/i915/gt: Always enable busy-stats for execlists
-1a3beaa34731 drm/i915/gt: Move rps.enabled/active to flags
--:114: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 68)
-#114: FILE: drivers/gpu/drm/i915/gt/intel_rps.c:1228:
-+	if (rps->max_freq <= rps->min_freq)
-+		/* leave disabled, no room for dynamic reclocking */;
+I should have explained the change. I'm still trying to get the hang of the email-based workflow. :)
 
-total: 0 errors, 1 warnings, 0 checks, 296 lines checked
-f24bbcfa0789 drm/i915/gt: Track use of RPS interrupts in flags
-d663447ef62f drm/i915/gt: Switch to manual evaluation of RPS
-c45bc814fafd drm/i915/gt: Apply the aggressive downclocking to parking
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
+Best regards,
+Kenny Levinsen
 
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")'
-#12: 
-References: 21abf0bf168d ("drm/i915/gt: Treat idling as a RPS downclock event")
-
-total: 1 errors, 1 warnings, 0 checks, 31 lines checked
-f62efbcbf8a7 drm/i915/gt: Restore aggressive post-boost downclocking
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2a8862d2f3da ("drm/i915: Reduce the RPS shock")'
-#12: 
-References: 2a8862d2f3da ("drm/i915: Reduce the RPS shock")
-
-total: 1 errors, 0 warnings, 0 checks, 34 lines checked
-
+>> ---
+>> drivers/gpu/drm/drm_file.c | 6 ++++--
+>> 1 file changed, 4 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+>> index c4c704e01961..ec25b3d979d9 100644
+>> --- a/drivers/gpu/drm/drm_file.c
+>> +++ b/drivers/gpu/drm/drm_file.c
+>> @@ -608,7 +608,8 @@ ssize_t drm_read(struct file *filp, char __user *buffer,
+>> file_priv->event_space -= length;
+>> list_add(&e->link, &file_priv->event_list);
+>> spin_unlock_irq(&dev->event_lock);
+>> - wake_up_interruptible(&file_priv->event_wait);
+>> + wake_up_interruptible_poll(&file_priv->event_wait,
+>> + EPOLLIN | EPOLLRDNORM);
+>> break;
+>> }
+>> 
+>> @@ -804,7 +805,8 @@ void drm_send_event_locked(struct drm_device *dev, struct drm_pending_event *e)
+>> list_del(&e->pending_link);
+>> list_add_tail(&e->link,
+>> &e->file_priv->event_list);
+>> - wake_up_interruptible(&e->file_priv->event_wait);
+>> + wake_up_interruptible_poll(&e->file_priv->event_wait,
+>> + EPOLLIN | EPOLLRDNORM);
+>> }
+>> EXPORT_SYMBOL(drm_send_event_locked);
+>> 
+>> --
+>> 2.26.1
+> 
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
