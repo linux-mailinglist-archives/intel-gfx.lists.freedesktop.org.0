@@ -1,42 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D251BDF88
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:50:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ACC01BDF91
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:51:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 478446EE92;
-	Wed, 29 Apr 2020 13:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A24326EE82;
+	Wed, 29 Apr 2020 13:51:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8D46EE92;
- Wed, 29 Apr 2020 13:50:51 +0000 (UTC)
-IronPort-SDR: VYMLkdjKlob/DTdjbbTiiHX7dM1Nh1mxFcu2kjh/2ude0ZlFi2QwZ881Z8dAANHVDeZVQQQXOH
- akZ+9gLPymaA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2020 06:50:50 -0700
-IronPort-SDR: 1xpY+sMdXN4K8fsTC/fMXhwMlGYt9Hs4Nzc0BEwk98DwmPqEtFquc73+EXSKTiOgM8Tp2P5vfU
- OMy3VmCOlK/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="459201296"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga005.fm.intel.com with ESMTP; 29 Apr 2020 06:50:46 -0700
-Date: Wed, 29 Apr 2020 19:20:37 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20200429135037.GF22816@intel.com>
-References: <20200414184835.2878-1-sean@poorly.run>
- <20200414190258.38873-1-sean@poorly.run>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 242A56EE82;
+ Wed, 29 Apr 2020 13:51:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21058862-1500050 for multiple; Wed, 29 Apr 2020 14:51:40 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200414190258.38873-1-sean@poorly.run>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm: Fix HDCP failures when SRM fw is
- missing
+In-Reply-To: <158816800968.6699.7293218349531718119@emeril.freedesktop.org>
+References: <20200429112151.5263-1-chris@chris-wilson.co.uk>
+ <158816800968.6699.7293218349531718119@emeril.freedesktop.org>
+Subject: Re:  ✗ Fi.CI.BAT: failure for series starting with [CI,1/2] drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158816829904.4620.8580891622969057753@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 29 Apr 2020 14:51:39 +0100
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,95 +40,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-04-14 at 15:02:55 -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
+Quoting Patchwork (2020-04-29 14:46:49)
+> == Series Details ==
 > 
-> The SRM cleanup in 79643fddd6eb2 ("drm/hdcp: optimizing the srm
-> handling") inadvertently altered the behavior of HDCP auth when
-> the SRM firmware is missing. Before that patch, missing SRM was
-> interpreted as the device having no revoked keys. With that patch,
-> if the SRM fw file is missing we reject _all_ keys.
+> Series: series starting with [CI,1/2] drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
+> URL   : https://patchwork.freedesktop.org/series/76719/
+> State : failure
 > 
-> This patch fixes that regression by returning success if the file
-> cannot be found. It also checks the return value from request_srm such
-> that we won't end up trying to parse the ksv list if there is an error
-> fetching it.
+> == Summary ==
 > 
-> Fixes: 79643fddd6eb ("drm/hdcp: optimizing the srm handling")
-> Cc: stable@vger.kernel.org
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17511
+> ====================================================
 > 
-> Changes in v2:
-> -Noticed a couple other things to clean up
-> ---
+> Summary
+> -------
 > 
-> Sorry for the quick rev, noticed a couple other loose ends that should
-> be cleaned up.
+>   **FAILURE**
 > 
->  drivers/gpu/drm/drm_hdcp.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>   Serious unknown changes coming with Patchwork_17511 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_17511, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
 > 
-> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
-> index 7f386adcf872..910108ccaae1 100644
-> --- a/drivers/gpu/drm/drm_hdcp.c
-> +++ b/drivers/gpu/drm/drm_hdcp.c
-> @@ -241,8 +241,12 @@ static int drm_hdcp_request_srm(struct drm_device *drm_dev,
->  
->  	ret = request_firmware_direct(&fw, (const char *)fw_name,
->  				      drm_dev->dev);
-> -	if (ret < 0)
-> +	if (ret < 0) {
-> +		*revoked_ksv_cnt = 0;
-> +		*revoked_ksv_list = NULL;
-These two variables are already initialized by the caller.
-> +		ret = 0;
-Missing of this should have been caught by CI. May be CI system always
-having the SRM file from previous execution. Never been removed. IGT
-need a fix to clean the prior SRM files before execution.
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_17511:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_selftest@live@execlists:
+>     - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-u2/igt@i915_selftest@live@execlists.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-u2/igt@i915_selftest@live@execlists.html
+>     - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-tgl-y/igt@i915_selftest@live@execlists.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-tgl-y/igt@i915_selftest@live@execlists.html
+>     - fi-icl-y:           [PASS][5] -> [INCOMPLETE][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-y/igt@i915_selftest@live@execlists.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-y/igt@i915_selftest@live@execlists.html
+> 
+>   * igt@i915_selftest@live@hangcheck:
+>     - fi-cml-u2:          [PASS][7] -> [INCOMPLETE][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
+>     - fi-icl-guc:         [PASS][9] -> [INCOMPLETE][10]
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+>     - fi-cfl-8700k:       [PASS][11] -> [INCOMPLETE][12]
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
+>     - fi-whl-u:           [PASS][13] -> [INCOMPLETE][14]
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-whl-u/igt@i915_selftest@live@hangcheck.html
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-whl-u/igt@i915_selftest@live@hangcheck.html
 
-CI fix shouldn't block this fix.
->  		goto exit;
-> +	}
->  
->  	if (fw->size && fw->data)
->  		ret = drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
-> @@ -287,6 +291,8 @@ int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
->  
->  	ret = drm_hdcp_request_srm(drm_dev, &revoked_ksv_list,
->  				   &revoked_ksv_cnt);
-> +	if (ret)
-> +		return ret;
-This error code also shouldn't effect the caller(i915) hence pushed a
-change https://patchwork.freedesktop.org/series/76730/
+I hope this means that our minimal context is not adequate as a
+replacement for a hung context and that we need to scrub some more.
 
-With these addresed.
-
-LGTM.
-
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
->  
->  	/* revoked_ksv_cnt will be zero when above function failed */
->  	for (i = 0; i < revoked_ksv_cnt; i++)
-> -- 
-> Sean Paul, Software Engineer, Google / Chromium OS
-> 
+I did run locally first, so I presume that it's dependent on whatever
+random residual state we have in the context. Hmm. Or it's the trailing
+memset in the setup...
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
