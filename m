@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5221BDF69
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:46:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D251BDF88
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 15:50:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B246C6EE95;
-	Wed, 29 Apr 2020 13:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478446EE92;
+	Wed, 29 Apr 2020 13:50:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AE5336EE92;
- Wed, 29 Apr 2020 13:46:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A78E4A00E6;
- Wed, 29 Apr 2020 13:46:49 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8D46EE92;
+ Wed, 29 Apr 2020 13:50:51 +0000 (UTC)
+IronPort-SDR: VYMLkdjKlob/DTdjbbTiiHX7dM1Nh1mxFcu2kjh/2ude0ZlFi2QwZ881Z8dAANHVDeZVQQQXOH
+ akZ+9gLPymaA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 06:50:50 -0700
+IronPort-SDR: 1xpY+sMdXN4K8fsTC/fMXhwMlGYt9Hs4Nzc0BEwk98DwmPqEtFquc73+EXSKTiOgM8Tp2P5vfU
+ OMy3VmCOlK/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="459201296"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga005.fm.intel.com with ESMTP; 29 Apr 2020 06:50:46 -0700
+Date: Wed, 29 Apr 2020 19:20:37 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200429135037.GF22816@intel.com>
+References: <20200414184835.2878-1-sean@poorly.run>
+ <20200414190258.38873-1-sean@poorly.run>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 29 Apr 2020 13:46:49 -0000
-Message-ID: <158816800968.6699.7293218349531718119@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200429112151.5263-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200429112151.5263-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Keep_a_no-frill?=
- =?utf-8?q?s_swappable_copy_of_the_default_context_state_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200414190258.38873-1-sean@poorly.run>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm: Fix HDCP failures when SRM fw is
+ missing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,175 +49,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-04-14 at 15:02:55 -0400, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> The SRM cleanup in 79643fddd6eb2 ("drm/hdcp: optimizing the srm
+> handling") inadvertently altered the behavior of HDCP auth when
+> the SRM firmware is missing. Before that patch, missing SRM was
+> interpreted as the device having no revoked keys. With that patch,
+> if the SRM fw file is missing we reject _all_ keys.
+> 
+> This patch fixes that regression by returning success if the file
+> cannot be found. It also checks the return value from request_srm such
+> that we won't end up trying to parse the ksv list if there is an error
+> fetching it.
+> 
+> Fixes: 79643fddd6eb ("drm/hdcp: optimizing the srm handling")
+> Cc: stable@vger.kernel.org
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> 
+> Changes in v2:
+> -Noticed a couple other things to clean up
+> ---
+> 
+> Sorry for the quick rev, noticed a couple other loose ends that should
+> be cleaned up.
+> 
+>  drivers/gpu/drm/drm_hdcp.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+> index 7f386adcf872..910108ccaae1 100644
+> --- a/drivers/gpu/drm/drm_hdcp.c
+> +++ b/drivers/gpu/drm/drm_hdcp.c
+> @@ -241,8 +241,12 @@ static int drm_hdcp_request_srm(struct drm_device *drm_dev,
+>  
+>  	ret = request_firmware_direct(&fw, (const char *)fw_name,
+>  				      drm_dev->dev);
+> -	if (ret < 0)
+> +	if (ret < 0) {
+> +		*revoked_ksv_cnt = 0;
+> +		*revoked_ksv_list = NULL;
+These two variables are already initialized by the caller.
+> +		ret = 0;
+Missing of this should have been caught by CI. May be CI system always
+having the SRM file from previous execution. Never been removed. IGT
+need a fix to clean the prior SRM files before execution.
 
-Series: series starting with [CI,1/2] drm/i915/gt: Keep a no-frills swappable copy of the default context state (rev3)
-URL   : https://patchwork.freedesktop.org/series/76719/
-State : failure
+CI fix shouldn't block this fix.
+>  		goto exit;
+> +	}
+>  
+>  	if (fw->size && fw->data)
+>  		ret = drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
+> @@ -287,6 +291,8 @@ int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
+>  
+>  	ret = drm_hdcp_request_srm(drm_dev, &revoked_ksv_list,
+>  				   &revoked_ksv_cnt);
+> +	if (ret)
+> +		return ret;
+This error code also shouldn't effect the caller(i915) hence pushed a
+change https://patchwork.freedesktop.org/series/76730/
 
-== Summary ==
+With these addresed.
 
-CI Bug Log - changes from CI_DRM_8391 -> Patchwork_17511
-====================================================
+LGTM.
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17511 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17511, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17511:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-u2/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-u2/igt@i915_selftest@live@execlists.html
-    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-tgl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-tgl-y/igt@i915_selftest@live@execlists.html
-    - fi-icl-y:           [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-cml-u2:          [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cml-u2/igt@i915_selftest@live@hangcheck.html
-    - fi-icl-guc:         [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-    - fi-cfl-8700k:       [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cfl-8700k/igt@i915_selftest@live@hangcheck.html
-    - fi-whl-u:           [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-whl-u/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-whl-u/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-u}:         [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-tgl-u/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-tgl-u/igt@i915_selftest@live@execlists.html
-    - {fi-tgl-dsi}:       [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-ehl-1}:         [PASS][19] -> [INCOMPLETE][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-ehl-1/igt@i915_selftest@live@hangcheck.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-ehl-1/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17511 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-skl-6700k2:      [PASS][21] -> [INCOMPLETE][22] ([fdo#108744])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-6700k2/igt@i915_selftest@live@hangcheck.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-skl-6700k2/igt@i915_selftest@live@hangcheck.html
-    - fi-skl-6600u:       [PASS][23] -> [INCOMPLETE][24] ([fdo#108744])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-6600u/igt@i915_selftest@live@hangcheck.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-skl-6600u/igt@i915_selftest@live@hangcheck.html
-    - fi-cfl-8109u:       [PASS][25] -> [INCOMPLETE][26] ([fdo#106070])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-cfl-8109u/igt@i915_selftest@live@hangcheck.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-cfl-8109u/igt@i915_selftest@live@hangcheck.html
-    - fi-kbl-8809g:       [PASS][27] -> [INCOMPLETE][28] ([fdo#108744])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-kbl-8809g/igt@i915_selftest@live@hangcheck.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-kbl-8809g/igt@i915_selftest@live@hangcheck.html
-    - fi-kbl-r:           [PASS][29] -> [INCOMPLETE][30] ([fdo#108744])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-kbl-r/igt@i915_selftest@live@hangcheck.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-kbl-r/igt@i915_selftest@live@hangcheck.html
-    - fi-glk-dsi:         [PASS][31] -> [INCOMPLETE][32] ([i915#58] / [k.org#198133])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html
-    - fi-kbl-x1275:       [PASS][33] -> [INCOMPLETE][34] ([fdo#108744])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-kbl-x1275/igt@i915_selftest@live@hangcheck.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-kbl-x1275/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-guc:         [INCOMPLETE][35] ([i915#151]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8391/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#108744]: https://bugs.freedesktop.org/show_bug.cgi?id=108744
-  [i915#1423]: https://gitlab.freedesktop.org/drm/intel/issues/1423
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8391 -> Patchwork_17511
-
-  CI-20190529: 20190529
-  CI_DRM_8391: 9cada6f702d618458eb6dda220f5cfefe655f475 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5614: d095827add11d4e8158b87683971ee659749d9a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17511: 7bc58c8c06577b30f52c1e5b270a4aff0b90eb1c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7bc58c8c0657 drm/i915/gt: Stop keeping the pinned_default_state
-26b4faff2de3 drm/i915/gt: Keep a no-frills swappable copy of the default context state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17511/index.html
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+>  
+>  	/* revoked_ksv_cnt will be zero when above function failed */
+>  	for (i = 0; i < revoked_ksv_cnt; i++)
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
