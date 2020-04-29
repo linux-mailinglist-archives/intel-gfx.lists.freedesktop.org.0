@@ -1,33 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E811BE06F
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 16:15:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54EE41BE0B8
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2020 16:22:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 966D46EEA2;
-	Wed, 29 Apr 2020 14:15:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF23E6EE84;
+	Wed, 29 Apr 2020 14:22:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6990F6EEA2
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 14:15:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21059211-1500050 for multiple; Wed, 29 Apr 2020 15:15:17 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D23686EE78;
+ Wed, 29 Apr 2020 14:22:34 +0000 (UTC)
+IronPort-SDR: Io+Y1yfvmiM4Vx8xTvsJeTv4/C1wy1VxEnXsVZEzJA/IggwNivFFfx01LPqQahznJhNT0wuo3s
+ Utz/w4Ew7R1w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 07:22:34 -0700
+IronPort-SDR: +Hzi2eWgB5BczDeFvRtdJiKTAFNYW4m37DwADTTV7oXwq8PbysNUU2zLXAmW0o8u9wkSGCazjN
+ pq8Aga9fthow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,332,1583222400"; d="scan'208";a="405051026"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga004.jf.intel.com with ESMTP; 29 Apr 2020 07:22:30 -0700
+Date: Wed, 29 Apr 2020 19:52:21 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200429142221.GG22816@intel.com>
+References: <20200414184835.2878-1-sean@poorly.run>
+ <20200414190258.38873-1-sean@poorly.run>
+ <20200429135037.GF22816@intel.com>
+ <CAMavQKKOKfcJSN1GjKctQp4qw6LyP6WNE9Q3Y4LedkjzcvPXxA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <483e3cea-d4ae-16ef-879a-2b77032fb4b1@linux.intel.com>
-References: <20200428090255.10035-1-chris@chris-wilson.co.uk>
- <483e3cea-d4ae-16ef-879a-2b77032fb4b1@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158816971539.4620.11333482674145068310@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 29 Apr 2020 15:15:15 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid dereferencing a dead context
+Content-Disposition: inline
+In-Reply-To: <CAMavQKKOKfcJSN1GjKctQp4qw6LyP6WNE9Q3Y4LedkjzcvPXxA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm: Fix HDCP failures when SRM fw is
+ missing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,146 +51,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Sean Paul <seanpaul@chromium.org>,
+ stable <stable@vger.kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-04-29 14:42:44)
+On 2020-04-29 at 09:58:16 -0400, Sean Paul wrote:
+> On Wed, Apr 29, 2020 at 9:50 AM Ramalingam C <ramalingam.c@intel.com> wrote:
+> >
+> > On 2020-04-14 at 15:02:55 -0400, Sean Paul wrote:
+> > > From: Sean Paul <seanpaul@chromium.org>
+> > >
+> > > The SRM cleanup in 79643fddd6eb2 ("drm/hdcp: optimizing the srm
+> > > handling") inadvertently altered the behavior of HDCP auth when
+> > > the SRM firmware is missing. Before that patch, missing SRM was
+> > > interpreted as the device having no revoked keys. With that patch,
+> > > if the SRM fw file is missing we reject _all_ keys.
+> > >
+> > > This patch fixes that regression by returning success if the file
+> > > cannot be found. It also checks the return value from request_srm such
+> > > that we won't end up trying to parse the ksv list if there is an error
+> > > fetching it.
+> > >
+> > > Fixes: 79643fddd6eb ("drm/hdcp: optimizing the srm handling")
+> > > Cc: stable@vger.kernel.org
+> > > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > > Cc: Sean Paul <sean@poorly.run>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Maxime Ripard <mripard@kernel.org>
+> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > Cc: David Airlie <airlied@linux.ie>
+> > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > >
+> > > Changes in v2:
+> > > -Noticed a couple other things to clean up
+> > > ---
+> > >
+> > > Sorry for the quick rev, noticed a couple other loose ends that should
+> > > be cleaned up.
+> > >
+> > >  drivers/gpu/drm/drm_hdcp.c | 8 +++++++-
+> > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+> > > index 7f386adcf872..910108ccaae1 100644
+> > > --- a/drivers/gpu/drm/drm_hdcp.c
+> > > +++ b/drivers/gpu/drm/drm_hdcp.c
+> > > @@ -241,8 +241,12 @@ static int drm_hdcp_request_srm(struct drm_device *drm_dev,
+> > >
+> > >       ret = request_firmware_direct(&fw, (const char *)fw_name,
+> > >                                     drm_dev->dev);
+> > > -     if (ret < 0)
+> > > +     if (ret < 0) {
+> > > +             *revoked_ksv_cnt = 0;
+> > > +             *revoked_ksv_list = NULL;
+> > These two variables are already initialized by the caller.
 > 
-> On 28/04/2020 10:02, Chris Wilson wrote:
-> > Once the intel_context is closed, the GEM context may be freed and so
-> > the link from intel_context.gem_context is invalid.
-> > 
-> > <3>[  219.782944] BUG: KASAN: use-after-free in intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <3>[  219.782996] Read of size 8 at addr ffff8881d7dff0b8 by task kworker/0:1/12
-> > 
-> > <4>[  219.783052] CPU: 0 PID: 12 Comm: kworker/0:1 Tainted: G     U            5.7.0-rc2-g1f3ffd7683d54-kasan_118+ #1
-> > <4>[  219.783055] Hardware name: System manufacturer System Product Name/Z170 PRO GAMING, BIOS 3402 04/26/2017
-> > <4>[  219.783105] Workqueue: events heartbeat [i915]
-> > <4>[  219.783109] Call Trace:
-> > <4>[  219.783113]  <IRQ>
-> > <4>[  219.783119]  dump_stack+0x96/0xdb
-> > <4>[  219.783177]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <4>[  219.783182]  print_address_description.constprop.6+0x16/0x310
-> > <4>[  219.783239]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <4>[  219.783295]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <4>[  219.783300]  __kasan_report+0x137/0x190
-> > <4>[  219.783359]  ? intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <4>[  219.783366]  kasan_report+0x32/0x50
-> > <4>[  219.783426]  intel_engine_coredump_alloc+0x1bc3/0x2250 [i915]
-> > <4>[  219.783481]  execlists_reset+0x39c/0x13d0 [i915]
-> > <4>[  219.783494]  ? mark_held_locks+0x9e/0xe0
-> > <4>[  219.783546]  ? execlists_hold+0xfc0/0xfc0 [i915]
-> > <4>[  219.783551]  ? lockdep_hardirqs_on+0x348/0x5f0
-> > <4>[  219.783557]  ? _raw_spin_unlock_irqrestore+0x34/0x60
-> > <4>[  219.783606]  ? execlists_submission_tasklet+0x118/0x3a0 [i915]
-> > <4>[  219.783615]  tasklet_action_common.isra.14+0x13b/0x410
-> > <4>[  219.783623]  ? __do_softirq+0x1e4/0x9a7
-> > <4>[  219.783630]  __do_softirq+0x226/0x9a7
-> > <4>[  219.783643]  do_softirq_own_stack+0x2a/0x40
-> > <4>[  219.783647]  </IRQ>
-> > <4>[  219.783692]  ? heartbeat+0x3e2/0x10f0 [i915]
-> > <4>[  219.783696]  do_softirq.part.13+0x49/0x50
-> > <4>[  219.783700]  __local_bh_enable_ip+0x1a2/0x1e0
-> > <4>[  219.783748]  heartbeat+0x409/0x10f0 [i915]
-> > <4>[  219.783801]  ? __live_idle_pulse+0x9f0/0x9f0 [i915]
-> > <4>[  219.783806]  ? lock_acquire+0x1ac/0x8a0
-> > <4>[  219.783811]  ? process_one_work+0x811/0x1870
-> > <4>[  219.783827]  ? rcu_read_lock_sched_held+0x9c/0xd0
-> > <4>[  219.783832]  ? rcu_read_lock_bh_held+0xb0/0xb0
-> > <4>[  219.783836]  ? _raw_spin_unlock_irq+0x1f/0x40
-> > <4>[  219.783845]  process_one_work+0x8ca/0x1870
-> > <4>[  219.783848]  ? lock_acquire+0x1ac/0x8a0
-> > <4>[  219.783852]  ? worker_thread+0x1d0/0xb80
-> > <4>[  219.783864]  ? pwq_dec_nr_in_flight+0x2c0/0x2c0
-> > <4>[  219.783870]  ? do_raw_spin_lock+0x129/0x290
-> > <4>[  219.783886]  worker_thread+0x82/0xb80
-> > <4>[  219.783895]  ? __kthread_parkme+0xaf/0x1b0
-> > <4>[  219.783902]  ? process_one_work+0x1870/0x1870
-> > <4>[  219.783906]  kthread+0x34e/0x420
-> > <4>[  219.783911]  ? kthread_create_on_node+0xc0/0xc0
-> > <4>[  219.783918]  ret_from_fork+0x3a/0x50
-> > 
-> > <3>[  219.783950] Allocated by task 1264:
-> > <4>[  219.783975]  save_stack+0x19/0x40
-> > <4>[  219.783978]  __kasan_kmalloc.constprop.3+0xa0/0xd0
-> > <4>[  219.784029]  i915_gem_create_context+0xa2/0xab8 [i915]
-> > <4>[  219.784081]  i915_gem_context_create_ioctl+0x1fa/0x450 [i915]
-> > <4>[  219.784085]  drm_ioctl_kernel+0x1d8/0x270
-> > <4>[  219.784088]  drm_ioctl+0x676/0x930
-> > <4>[  219.784092]  ksys_ioctl+0xb7/0xe0
-> > <4>[  219.784096]  __x64_sys_ioctl+0x6a/0xb0
-> > <4>[  219.784100]  do_syscall_64+0x94/0x530
-> > <4>[  219.784103]  entry_SYSCALL_64_after_hwframe+0x49/0xb3
-> > 
-> > <3>[  219.784120] Freed by task 12:
-> > <4>[  219.784141]  save_stack+0x19/0x40
-> > <4>[  219.784145]  __kasan_slab_free+0x130/0x180
-> > <4>[  219.784148]  kmem_cache_free_bulk+0x1bd/0x500
-> > <4>[  219.784152]  kfree_rcu_work+0x1d8/0x890
-> > <4>[  219.784155]  process_one_work+0x8ca/0x1870
-> > <4>[  219.784158]  worker_thread+0x82/0xb80
-> > <4>[  219.784162]  kthread+0x34e/0x420
-> > <4>[  219.784165]  ret_from_fork+0x3a/0x50
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/i915_gpu_error.c | 12 +++++++-----
-> >   1 file changed, 7 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > index 4d54dba35302..a976cd67b3b3 100644
-> > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > @@ -1207,8 +1207,6 @@ static void engine_record_registers(struct intel_engine_coredump *ee)
-> >   static void record_request(const struct i915_request *request,
-> >                          struct i915_request_coredump *erq)
-> >   {
-> > -     const struct i915_gem_context *ctx;
-> > -
-> >       erq->flags = request->fence.flags;
-> >       erq->context = request->fence.context;
-> >       erq->seqno = request->fence.seqno;
-> > @@ -1218,9 +1216,13 @@ static void record_request(const struct i915_request *request,
-> >   
-> >       erq->pid = 0;
-> >       rcu_read_lock();
-> > -     ctx = rcu_dereference(request->context->gem_context);
-> > -     if (ctx)
-> > -             erq->pid = pid_nr(ctx->pid);
-> > +     if (!intel_context_is_closed(request->context)) {
-> > +             const struct i915_gem_context *ctx;
-> > +
-> > +             ctx = rcu_dereference(request->context->gem_context);
-> > +             if (ctx)
-> > +                     erq->pid = pid_nr(ctx->pid);
-> > +     }
-> >       rcu_read_unlock();
-> >   }
-> >   
-> > 
+> Right now it is, but that's not guaranteed. In the ret == 0 case, it's
+> pretty common for a caller to assume the called function has
+> validated/assigned all the function output.
+Ok.
 > 
-> In the client busyness series I move the GEM ctx put to free_engines_rcu 
-> - at which point the closed check here is not needed any more. Should we 
-> delay this put right now to simplify? Maybe not.. I'll remember to tweak 
-> it in my series.
+> > > +             ret = 0;
+> > Missing of this should have been caught by CI. May be CI system always
+> > having the SRM file from previous execution. Never been removed. IGT
+> > need a fix to clean the prior SRM files before execution.
+> >
+> > CI fix shouldn't block this fix.
+> > >               goto exit;
+> > > +     }
+> > >
+> > >       if (fw->size && fw->data)
+> > >               ret = drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
+> > > @@ -287,6 +291,8 @@ int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
+> > >
+> > >       ret = drm_hdcp_request_srm(drm_dev, &revoked_ksv_list,
+> > >                                  &revoked_ksv_cnt);
+> > > +     if (ret)
+> > > +             return ret;
+> > This error code also shouldn't effect the caller(i915)
+> 
+> Why not? I'd assume an invalid SRM revocation list should probably be
+> treated as failure?
+IMHO invalid SRM revocation need not be treated as HDCP authentication
+failure.
 
-Yeah, it's not the right answer and I was hoping that you would have a
-better plan :)
+First of all SRM need not supplied by all players. and incase, supplied
+SRM is not as per the spec, then we dont have any list of revoked ID.
+with this I dont think we need to fail the HDCP authentication. Until we
+have valid list of revoked IDs from SRM, and the receiver ID is matching
+to one of the revoked IDs, I wouldn't want to fail the HDCP
+authentication. 
 
-But it fixes a uaf we see atm, so a temporary bandaid.
-
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+-Ram
 > 
-> Regards,
 > 
-> Tvrtko
-> 
-> P.S. Fixes: 2e46a2a0b0149f951b63be1b5df6514676fed213 ?
-
-Looks to be the culprit, yes.
--Chris
+> > hence pushed a
+> > change https://patchwork.freedesktop.org/series/76730/
+> >
+> > With these addresed.
+> >
+> > LGTM.
+> >
+> > Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+> > >
+> > >       /* revoked_ksv_cnt will be zero when above function failed */
+> > >       for (i = 0; i < revoked_ksv_cnt; i++)
+> > > --
+> > > Sean Paul, Software Engineer, Google / Chromium OS
+> > >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
