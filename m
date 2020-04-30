@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3C41C09E6
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 00:07:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E2C1C1AFE
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 18:58:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 810486E279;
-	Thu, 30 Apr 2020 22:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 384C46ECEA;
+	Fri,  1 May 2020 16:58:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 55D876EA1C;
- Thu, 30 Apr 2020 22:07:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4FAEBA47DB;
- Thu, 30 Apr 2020 22:07:39 +0000 (UTC)
+Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C1F56E27C;
+ Thu, 30 Apr 2020 22:10:50 +0000 (UTC)
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 5b2fc6ad;
+ Thu, 30 Apr 2020 21:58:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=from:to:cc
+ :subject:date:message-id:mime-version:content-transfer-encoding;
+ s=mail; bh=aJFrtx6lQiBbgvKXPLew//Y8Ivk=; b=lHSlfuScgujAfXJtyKYA
+ 1RfqTOsRlND8ZJBESNTBjJ3IbgUyajG5cOXCrHYltelH69//dV1x/XPeXX0CwW+k
+ 71LXbj/jJ2Gin8s/PKsrAEarzTAHG3r05Zr0d8J5ztjLV6r/9/J8jAVclxG9/AmO
+ qZ3vfzKjL59/YIUuSJv9y42mR27ZmItkPkAlpMdz+8FG7km7xNnFbTc89TIpOvR3
+ aaPDDUGNxwP+d2F4hwlEjS6TaRD05C47OxTxwwFssa43xeY+EVn9WzaMYHqxJycL
+ x5ydiSJeP5h3jGy2+hWAoaEV8pvtNtW2yTu4lEqijWGcY5j/AsHNqEdYirvth3iL
+ iQ==
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 4ee62b72
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Thu, 30 Apr 2020 21:58:52 +0000 (UTC)
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, bigeasy@linutronix.de, tglx@linutronix.de,
+ chris@chris-wilson.co.uk
+Date: Thu, 30 Apr 2020 16:10:16 -0600
+Message-Id: <20200430221016.3866-1-Jason@zx2c4.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 30 Apr 2020 22:07:39 -0000
-Message-ID: <158828445932.31919.5878670667639835954@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev32=29?=
+X-Mailman-Approved-At: Fri, 01 May 2020 16:58:41 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers are
+ available before using SIMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,84 +48,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Sometimes it's not okay to use SIMD registers, the conditions for which
+have changed subtly from kernel release to kernel release. Usually the
+pattern is to check for may_use_simd() and then fallback to using
+something slower in the unlikely case SIMD registers aren't available.
+So, this patch fixes up i915's accelerated memcpy routines to fallback
+to boring memcpy if may_use_simd() is false.
 
-Series: SAGV support for Gen12+ (rev32)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : success
+Cc: stable@vger.kernel.org
+Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+---
+ drivers/gpu/drm/i915/i915_memcpy.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
+index fdd550405fd3..7c0e022586bc 100644
+--- a/drivers/gpu/drm/i915/i915_memcpy.c
++++ b/drivers/gpu/drm/i915/i915_memcpy.c
+@@ -24,6 +24,7 @@
+ 
+ #include <linux/kernel.h>
+ #include <asm/fpu/api.h>
++#include <asm/simd.h>
+ 
+ #include "i915_memcpy.h"
+ 
+@@ -38,6 +39,12 @@ static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
+ #ifdef CONFIG_AS_MOVNTDQA
+ static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
+ {
++	if (unlikely(!may_use_simd())) {
++		memcpy(dst, src, len);
++		return;
++	}
++
++
+ 	kernel_fpu_begin();
+ 
+ 	while (len >= 4) {
+@@ -67,6 +74,11 @@ static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
+ 
+ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
+ {
++	if (unlikely(!may_use_simd())) {
++		memcpy(dst, src, len);
++		return;
++	}
++
+ 	kernel_fpu_begin();
+ 
+ 	while (len >= 4) {
+-- 
+2.26.2
 
-CI Bug Log - changes from CI_DRM_8403 -> Patchwork_17531
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17531 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (51 -> 43)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-8809g fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8403 -> Patchwork_17531
-
-  CI-20190529: 20190529
-  CI_DRM_8403: 09978e99929f6e5acfe1e959f6499a134f210887 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5619: 94de923ca8d4cc8f532b8062d87aaad9da6ef956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17531: d476c016bc161fca38b14532185fe96d7cab1e04 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d476c016bc16 drm/i915: Enable SAGV support for Gen12
-d4948b0fe076 drm/i915: Restrict qgv points which don't have enough bandwidth.
-41c561f0dc26 drm/i915: Rename bw_state to new_bw_state
-ce75f7bbf7e7 drm/i915: Added required new PCode commands
-f2b4f78b7f22 drm/i915: Add TGL+ SAGV support
-0cbc47e3c84c drm/i915: Separate icl and skl SAGV checking
-c9d261232770 drm/i915: Track active_pipes in bw_state
-9942ef866255 drm/i915: Use bw state for per crtc SAGV evaluation
-bca922b59afd drm/i915: Introduce skl_plane_wm_level accessor.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
