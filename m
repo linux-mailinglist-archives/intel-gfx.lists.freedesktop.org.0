@@ -2,62 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D8E1C0086
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 17:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B13C1C00BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 17:48:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015436E922;
-	Thu, 30 Apr 2020 15:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE17E6E92C;
+	Thu, 30 Apr 2020 15:48:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC966E922
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 15:38:31 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id q2so3211314qvd.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 08:38:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=P9HhjXHjgQ2uRdTOdCGFRzrISVJUe9hHihb1s6U+pG0=;
- b=EBCfRCyNsTlDJFaRQRt4ZOByXKwsez2d0WVoOUVj0uyzY2FQjjUArA4Cdr92cMp5yy
- 00zTxOzpBt6C0OXx4Ubu0BX+XEnhoymU29QAZiSeYC1TaiquQ6Guo8m/i8tGqEPIt2Yt
- upoTJJeeNPy2dAk4ETUD4kl9Dplk18J7ntJnI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=P9HhjXHjgQ2uRdTOdCGFRzrISVJUe9hHihb1s6U+pG0=;
- b=QHbOl2xDclbPjmHS4SKXxv8FfdIPPEHjbI+YDWeM/oAJL9t9xmujGW3Yl/VkwiXTW8
- cvEqvVR2pTzXlPEn0S9Di+A/TSh6YcC0JEN7oB9FzfVTIAOFusIytbqFyxn0ZBjy2jLs
- +4YvCnCxu0AA/SenmvDRCbSAuwkBDXopDxk165SmBLTBqWFQV5bqflixT5pFTCgxtt7l
- wHI5mNMShylJSmVywXNRhZ03YJBCdefO/+DFRnC425a5p56s+6Ygyb0ZglBMV1IbT0fL
- 005bu9pSu0XpEbN7s7Lt8U3q1nhH4vpRtQQ7Vfi/lCM+KtlSayuIX84/2vuSO9O7bODq
- hdog==
-X-Gm-Message-State: AGi0PubAzb4uHYPM7rBV+I+nrY0EtPq/fgeXrvpSUuG7RXgMAV9YivAR
- CjwtJGKsUzbcY0xN8ZjvXj5BSib8QuM=
-X-Google-Smtp-Source: APiQypJH+tKzQ/BfImV65VINh8jjYrWyaQQUK0aOwPxmBl3MWNENhPMRO2hBLJn+rpN//sdqGXfziw==
-X-Received: by 2002:a0c:efc3:: with SMTP id a3mr3548068qvt.223.1588261109342; 
- Thu, 30 Apr 2020 08:38:29 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com.
- [209.85.219.178])
- by smtp.gmail.com with ESMTPSA id o33sm2434531qtj.62.2020.04.30.08.38.27
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Apr 2020 08:38:28 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id e16so1195768ybn.7
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 08:38:27 -0700 (PDT)
-X-Received: by 2002:a5b:483:: with SMTP id n3mr6464401ybp.519.1588261107424;
- Thu, 30 Apr 2020 08:38:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <1588093804-30446-1-git-send-email-michalorzel.eng@gmail.com>
- <875zdiacv2.fsf@intel.com>
-In-Reply-To: <875zdiacv2.fsf@intel.com>
-From: Sean Paul <seanpaul@chromium.org>
-Date: Thu, 30 Apr 2020 11:37:49 -0400
-X-Gmail-Original-Message-ID: <CAOw6vbK69aWzti9a7MXNmAfVfJXzzC5g74p4ukSE49MhaV_b3g@mail.gmail.com>
-Message-ID: <CAOw6vbK69aWzti9a7MXNmAfVfJXzzC5g74p4ukSE49MhaV_b3g@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm: Replace drm_modeset_lock/unlock_all
- with DRM_MODESET_LOCK_ALL_* helpers
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEAB6E92A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 15:48:15 +0000 (UTC)
+IronPort-SDR: 1FEqf1ffHgCdykgtLU73lYcMOirLsw33/on7h8DDfyZuLab5DucNQmoBv8Bbv77Cbu5ASZaQaf
+ 51j/MY1If6kw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 08:48:14 -0700
+IronPort-SDR: hDSMQNvrKI1OtwvrVCgC/zenTxok8SONUzN3hm+FFJyA+U3gb4ZK/NA+LIb5Keq00tqgTFGJFg
+ 8sgqaIbLYd0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,336,1583222400"; d="scan'208";a="294547858"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by orsmga008.jf.intel.com with ESMTP; 30 Apr 2020 08:48:13 -0700
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id AFF3C84089D; Thu, 30 Apr 2020 18:47:38 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Apr 2020 18:47:27 +0300
+Message-Id: <20200430154735.22434-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH 1/9] Revert "drm/i915/tgl: Include ro parts of
+ l3 to invalidate"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,101 +46,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tzimmermann@suse.de, Dave Airlie <airlied@linux.ie>,
- Michal Orzel <michalorzel.eng@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, mripard@kernel.org,
- dri-devel <dri-devel@lists.freedesktop.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 29, 2020 at 4:57 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Tue, 28 Apr 2020, Michal Orzel <michalorzel.eng@gmail.com> wrote:
-> > As suggested by the TODO list for the kernel DRM subsystem, replace
-> > the deprecated functions that take/drop modeset locks with new helpers.
-> >
-> > Signed-off-by: Michal Orzel <michalorzel.eng@gmail.com>
-> > ---
-> >  drivers/gpu/drm/drm_mode_object.c | 10 ++++++----
-> >  1 file changed, 6 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode_object.c
-> > index 35c2719..901b078 100644
-> > --- a/drivers/gpu/drm/drm_mode_object.c
-> > +++ b/drivers/gpu/drm/drm_mode_object.c
-> > @@ -402,12 +402,13 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
-> >  {
-> >       struct drm_mode_obj_get_properties *arg = data;
-> >       struct drm_mode_object *obj;
-> > +     struct drm_modeset_acquire_ctx ctx;
-> >       int ret = 0;
-> >
-> >       if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> >               return -EOPNOTSUPP;
-> >
-> > -     drm_modeset_lock_all(dev);
-> > +     DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
->
-> I cry a little every time I look at the DRM_MODESET_LOCK_ALL_BEGIN and
-> DRM_MODESET_LOCK_ALL_END macros. :(
->
-> Currently only six users... but there are ~60 calls to
-> drm_modeset_lock_all{,_ctx} that I presume are to be replaced. I wonder
-> if this will come back and haunt us.
->
+This reverts commit 62037ffff229b7d94f1db5ef8d2e2ec819832ef3.
 
-What's the alternative? Seems like the options without the macros is
-to use incorrect scope or have a bunch of retry/backoff cargo-cult
-everywhere (and hope the copy source is done correctly).
+L3 ro cache invalidation is part of the dword0 of pipe
+control. Also it is not relevant to this gen.
 
-Sean
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h | 1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 1 -
+ 2 files changed, 2 deletions(-)
 
-> BR,
-> Jani.
->
->
-> >
-> >       obj = drm_mode_object_find(dev, file_priv, arg->obj_id, arg->obj_type);
-> >       if (!obj) {
-> > @@ -427,7 +428,7 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
-> >  out_unref:
-> >       drm_mode_object_put(obj);
-> >  out:
-> > -     drm_modeset_unlock_all(dev);
-> > +     DRM_MODESET_LOCK_ALL_END(ctx, ret);
-> >       return ret;
-> >  }
-> >
-> > @@ -449,12 +450,13 @@ static int set_property_legacy(struct drm_mode_object *obj,
-> >  {
-> >       struct drm_device *dev = prop->dev;
-> >       struct drm_mode_object *ref;
-> > +     struct drm_modeset_acquire_ctx ctx;
-> >       int ret = -EINVAL;
-> >
-> >       if (!drm_property_change_valid_get(prop, prop_value, &ref))
-> >               return -EINVAL;
-> >
-> > -     drm_modeset_lock_all(dev);
-> > +     DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
-> >       switch (obj->type) {
-> >       case DRM_MODE_OBJECT_CONNECTOR:
-> >               ret = drm_connector_set_obj_prop(obj, prop, prop_value);
-> > @@ -468,7 +470,7 @@ static int set_property_legacy(struct drm_mode_object *obj,
-> >               break;
-> >       }
-> >       drm_property_change_valid_put(prop, ref);
-> > -     drm_modeset_unlock_all(dev);
-> > +     DRM_MODESET_LOCK_ALL_END(ctx, ret);
-> >
-> >       return ret;
-> >  }
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index ee10122a511e..b3cf09657fb2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -236,7 +236,6 @@
+ #define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1<<12) /* gen6+ */
+ #define   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE	(1<<11) /* MBZ on ILK */
+ #define   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE		(1<<10) /* GM45+ only */
+-#define   PIPE_CONTROL_L3_RO_CACHE_INVALIDATE		REG_BIT(10) /* gen12 */
+ #define   PIPE_CONTROL_INDIRECT_STATE_DISABLE		(1<<9)
+ #define   PIPE_CONTROL_HDC_PIPELINE_FLUSH		REG_BIT(9)  /* gen12 */
+ #define   PIPE_CONTROL_NOTIFY				(1<<8)
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4311b12542fb..8f82b960f2a1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4585,7 +4585,6 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 		flags |= PIPE_CONTROL_VF_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
+-		flags |= PIPE_CONTROL_L3_RO_CACHE_INVALIDATE;
+ 
+ 		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
+ 		flags |= PIPE_CONTROL_QW_WRITE;
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
