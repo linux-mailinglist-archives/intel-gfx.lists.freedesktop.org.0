@@ -2,40 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8154D1BF8A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 14:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1031BF8E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 15:05:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72AE76E82B;
-	Thu, 30 Apr 2020 12:58:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946C46E866;
+	Thu, 30 Apr 2020 13:05:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E63D6E837
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 12:58:28 +0000 (UTC)
-IronPort-SDR: bU2aZ/pqofvdtgxy3T9Z7MdSXj7aidIc5iA3EZRIIhkxrEJ6s4kz+2QQOJpbyl7x+j4qxkfMn1
- m5pyzl7DdP1g==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B944F6E866
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 13:05:02 +0000 (UTC)
+IronPort-SDR: 0O34fEO1EQpT6brLdEeCW/bTRJg0oKEIAC7R/0/JEVTQtyipP+kT3itYuC8wTd338jallvSGBG
+ 3P6aQjnuHABg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 05:58:28 -0700
-IronPort-SDR: cbXXiIHVpPz5WiH/LqxKYLRuILWZqGGYZgN5dmQhCJ+wd72cGZbS3ysyOYmS7YZZ/WxrTLAEfK
- P8fXPaFDhWSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="303273225"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 30 Apr 2020 05:58:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Apr 2020 15:58:25 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 15:58:22 +0300
-Message-Id: <20200430125822.21985-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200430125822.21985-1-ville.syrjala@linux.intel.com>
-References: <20200430125822.21985-1-ville.syrjala@linux.intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 06:05:01 -0700
+IronPort-SDR: kRdiAh5W37sBcN+XAh5tnaMjsY8STcIUZ+J3lZlIG1jqQZXoDjHYnYTswg5XNknxrGi95d6o6r
+ J86Eunix1cSA==
+X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="405396553"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.251.83.63])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 06:04:57 -0700
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Remove cnl pre-prod workarounds
+In-Reply-To: <20200428100816.951014-5-lionel.g.landwerlin@intel.com>
+References: <20200428100816.951014-1-lionel.g.landwerlin@intel.com>
+ <20200428100816.951014-5-lionel.g.landwerlin@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 30 Apr 2020 16:04:53 +0300
+Message-ID: <158825189330.103009.17820443295319674218@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PATCH v7 4/4] drm/i915/perf: enable filtering on
+ multiple contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,96 +51,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: chris@chris-wilson.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
-bW92ZSBhbGwgdGhlIHN0ZXBwaW5nIGRlcGVuZGVudCBjbmwgd29ya2Fyb3VuZHMuIEJzcGVjIGxp
-c3RzCm1vcmUgc3RlcHBpbmdzIHRoYW4gdGhpcyBzbyBwcmVzdW1hYmx5IHRoZXNlIGFyZSBjbGFz
-c2VkIGFzCnByZS1wcm9kdWN0aW9uLiBBbmQgdGhpcyBpcyBjbmwgYWZ0ZXIgYWxsIHNvIG5vIG9u
-ZSBzaG91bGQKcmVhbGx5IGNhcmUgYW55d2F5LgoKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOk
-bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9yYzYuYyAgICAgICAgIHwgIDggKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCAxNyAtLS0tLS0tLS0tLS0tLS0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyAgICAgICAgICAgICB8ICA3IC0tLS0tLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3dvcGNtLmMgICAgICAgICAgfCAgMyArLS0KIDQgZmls
-ZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAzMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yYzYuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX3JjNi5jCmluZGV4IDFjMTkyM2VjOGJlNy4uYWI2NzVkMzUwMzBkIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yYzYuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yYzYuYwpAQCAtMTEzLDcgKzExMyw2IEBAIHN0YXRpYyB2
-b2lkIGdlbjlfcmM2X2VuYWJsZShzdHJ1Y3QgaW50ZWxfcmM2ICpyYzYpCiAJc3RydWN0IGludGVs
-X3VuY29yZSAqdW5jb3JlID0gcmM2X3RvX3VuY29yZShyYzYpOwogCXN0cnVjdCBpbnRlbF9lbmdp
-bmVfY3MgKmVuZ2luZTsKIAllbnVtIGludGVsX2VuZ2luZV9pZCBpZDsKLQl1MzIgcmM2X21vZGU7
-CiAKIAkvKiAyYjogUHJvZ3JhbSBSQzYgdGhyZXNob2xkcy4qLwogCWlmIChJTlRFTF9HRU4ocmM2
-X3RvX2k5MTUocmM2KSkgPj0gMTApIHsKQEAgLTE2NSwxNiArMTY0LDExIEBAIHN0YXRpYyB2b2lk
-IGdlbjlfcmM2X2VuYWJsZShzdHJ1Y3QgaW50ZWxfcmM2ICpyYzYpCiAJLyogM2E6IEVuYWJsZSBS
-QzYgKi8KIAlzZXQodW5jb3JlLCBHRU42X1JDNl9USFJFU0hPTEQsIDM3NTAwKTsgLyogMzcuNS8x
-MjVtcyBwZXIgRUkgKi8KIAotCS8qIFdhUnNVc2VUaW1lb3V0TW9kZTpjbmwgKHByZS1wcm9kKSAq
-LwotCWlmIChJU19DTkxfUkVWSUQocmM2X3RvX2k5MTUocmM2KSwgQ05MX1JFVklEX0EwLCBDTkxf
-UkVWSURfQzApKQotCQlyYzZfbW9kZSA9IEdFTjdfUkNfQ1RMX1RPX01PREU7Ci0JZWxzZQotCQly
-YzZfbW9kZSA9IEdFTjZfUkNfQ1RMX0VJX01PREUoMSk7CiAKIAlyYzYtPmN0bF9lbmFibGUgPQog
-CQlHRU42X1JDX0NUTF9IV19FTkFCTEUgfAogCQlHRU42X1JDX0NUTF9SQzZfRU5BQkxFIHwKLQkJ
-cmM2X21vZGU7CisJCUdFTjZfUkNfQ1RMX0VJX01PREUoMSk7CiAKIAkvKgogCSAqIFdhUnNEaXNh
-YmxlQ29hcnNlUG93ZXJHYXRpbmc6c2tsLGNubApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX3dvcmthcm91bmRzLmMKaW5kZXggYWRkZGM1YzkzYjQ4Li5hYTkwZTZiN2ExMTggMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwpAQCAtNDg1LDI1ICs0
-ODUsMTQgQEAgc3RhdGljIHZvaWQgY2ZsX2N0eF93b3JrYXJvdW5kc19pbml0KHN0cnVjdCBpbnRl
-bF9lbmdpbmVfY3MgKmVuZ2luZSwKIHN0YXRpYyB2b2lkIGNubF9jdHhfd29ya2Fyb3VuZHNfaW5p
-dChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCiAJCQkJICAgICBzdHJ1Y3QgaTkxNV93
-YV9saXN0ICp3YWwpCiB7Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBlbmdpbmUt
-Pmk5MTU7Ci0KIAkvKiBXYUZvcmNlQ29udGV4dFNhdmVSZXN0b3JlTm9uQ29oZXJlbnQ6Y25sICov
-CiAJV0FfU0VUX0JJVF9NQVNLRUQoQ05MX0hEQ19DSElDS0VOMCwKIAkJCSAgSERDX0ZPUkNFX0NP
-TlRFWFRfU0FWRV9SRVNUT1JFX05PTl9DT0hFUkVOVCk7CiAKLQkvKiBXYVRocm90dGxlRVVQZXJm
-VG9Bdm9pZFREQmFja1ByZXNzdXJlOmNubChwcmUtcHJvZCkgKi8KLQlpZiAoSVNfQ05MX1JFVklE
-KGk5MTUsIENOTF9SRVZJRF9CMCwgQ05MX1JFVklEX0IwKSkKLQkJV0FfU0VUX0JJVF9NQVNLRUQo
-R0VOOF9ST1dfQ0hJQ0tFTiwgVEhST1RUTEVfMTJfNSk7Ci0KIAkvKiBXYURpc2FibGVSZXBsYXlC
-dWZmZXJCYW5rQXJiaXRyYXRpb25PcHRpbWl6YXRpb246Y25sICovCiAJV0FfU0VUX0JJVF9NQVNL
-RUQoQ09NTU9OX1NMSUNFX0NISUNLRU4yLAogCQkJICBHRU44X1NCRV9ESVNBQkxFX1JFUExBWV9C
-VUZfT1BUSU1JWkFUSU9OKTsKIAotCS8qIFdhRGlzYWJsZUVuaGFuY2VkU0JFVmVydGV4Q2FjaGlu
-ZzpjbmwgKHByZS1wcm9kKSAqLwotCWlmIChJU19DTkxfUkVWSUQoaTkxNSwgMCwgQ05MX1JFVklE
-X0IwKSkKLQkJV0FfU0VUX0JJVF9NQVNLRUQoQ09NTU9OX1NMSUNFX0NISUNLRU4yLAotCQkJCSAg
-R0VOOF9DU0MyX1NCRV9WVUVfQ0FDSEVfQ09OU0VSVkFUSVZFKTsKLQogCS8qIFdhUHVzaENvbnN0
-YW50RGVyZWZlcmVuY2VIb2xkRGlzYWJsZTpjbmwgKi8KIAlXQV9TRVRfQklUX01BU0tFRChHRU43
-X1JPV19DSElDS0VOMiwgUFVTSF9DT05TVEFOVF9ERVJFRl9ESVNBQkxFKTsKIApAQCAtODcyLDEy
-ICs4NjEsNiBAQCBjbmxfZ3Rfd29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqaTkxNSwgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQogewogCXdhX2luaXRfbWNyKGk5MTUs
-IHdhbCk7CiAKLQkvKiBXYURpc2FibGVJMm1DeWNsZU9uV1JQb3J0OmNubCAocHJlLXByb2QpICov
-Ci0JaWYgKElTX0NOTF9SRVZJRChpOTE1LCBDTkxfUkVWSURfQjAsIENOTF9SRVZJRF9CMCkpCi0J
-CXdhX3dyaXRlX29yKHdhbCwKLQkJCSAgICBHQU1UX0NIS05fQklUX1JFRywKLQkJCSAgICBHQU1U
-X0NIS05fRElTQUJMRV9JMk1fQ1lDTEVfT05fV1JfUE9SVCk7Ci0KIAkvKiBXYUluUGxhY2VEZWNv
-bXByZXNzaW9uSGFuZzpjbmwgKi8KIAl3YV93cml0ZV9vcih3YWwsCiAJCSAgICBHRU45X0dBTVRf
-RUNPX1JFR19SV19JQSwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bt
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IDY1YTMyMzZjZTI3Ny4u
-NTNmYjY2Mzk2ZmZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTUxOTgsMTAgKzUxOTgs
-NiBAQCBzdGF0aWMgdm9pZCBza2xfY29tcHV0ZV90cmFuc2l0aW9uX3dtKGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCXRyYW5zX29mZnNldF9iOwogCX0gZWxz
-ZSB7CiAJCXJlc19ibG9ja3MgPSB3bTBfc2VsX3Jlc19iICsgdHJhbnNfb2Zmc2V0X2I7Ci0KLQkJ
-LyogV0EgQlVHOjE5Mzg0NjYgYWRkIG9uZSBibG9jayBmb3Igbm9uIHktdGlsZSBwbGFuZXMgKi8K
-LQkJaWYgKElTX0NOTF9SRVZJRChkZXZfcHJpdiwgQ05MX1JFVklEX0EwLCBDTkxfUkVWSURfQTAp
-KQotCQkJcmVzX2Jsb2NrcyArPSAxOwogCX0KIAogCS8qCkBAIC02OTE3LDkgKzY5MTMsNiBAQCBz
-dGF0aWMgdm9pZCBjbmxfaW5pdF9jbG9ja19nYXRpbmcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2KQogCXZhbCA9IEk5MTVfUkVBRChTTElDRV9VTklUX0xFVkVMX0NMS0dBVEUpOwog
-CS8qIFJlYWRIaXRXcml0ZU9ubHlEaXNhYmxlOmNubCAqLwogCXZhbCB8PSBSQ0NVTklUX0NMS0dB
-VEVfRElTOwotCS8qIFdhU2FyYlVuaXRDbG9ja0dhdGluZ0Rpc2FibGU6Y25sIChwcmUtcHJvZCkg
-Ki8KLQlpZiAoSVNfQ05MX1JFVklEKGRldl9wcml2LCBDTkxfUkVWSURfQTAsIENOTF9SRVZJRF9C
-MCkpCi0JCXZhbCB8PSBTQVJCVU5JVF9DTEtHQVRFX0RJUzsKIAlJOTE1X1dSSVRFKFNMSUNFX1VO
-SVRfTEVWRUxfQ0xLR0FURSwgdmFsKTsKIAogCS8qIFdhXzIyMDE4MzI0MTA6Y25sICovCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF93b3BjbS5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfd29wY20uYwppbmRleCA2OTQyNDg3YzE0YTkuLmVjNzc2NTkxZTFjZiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfd29wY20uYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF93b3BjbS5jCkBAIC0xNDksOCArMTQ5LDcgQEAgc3RhdGlj
-IGJvb2wgY2hlY2tfaHdfcmVzdHJpY3Rpb25zKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-LAogCQkJCQkJICAgICBndWNfd29wY21fc2l6ZSkpCiAJCXJldHVybiBmYWxzZTsKIAotCWlmICgo
-SVNfR0VOKGk5MTUsIDkpIHx8Ci0JICAgICBJU19DTkxfUkVWSUQoaTkxNSwgQ05MX1JFVklEX0Ew
-LCBDTkxfUkVWSURfQTApKSAmJgorCWlmIChJU19HRU4oaTkxNSwgOSkgJiYKIAkgICAgIWdlbjlf
-Y2hlY2tfaHVjX2Z3X2ZpdHMoaTkxNSwgZ3VjX3dvcGNtX3NpemUsIGh1Y19md19zaXplKSkKIAkJ
-cmV0dXJuIGZhbHNlOwogCi0tIAoyLjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+Quoting Lionel Landwerlin (2020-04-28 13:08:16)
+> Add 2 new properties to the i915-perf open ioctl to specify an array
+> of GEM context handles as well as the length of the array.
+> 
+> This can be used by drivers using multiple GEM contexts to implement a
+> single GL context.
+> 
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+
+Do add link to the userspace changes in the actual patch so that it
+is preserved at merge time, not only the cover letter.
+
+Regards, Joonas
+
+> ---
+>  drivers/gpu/drm/i915/i915_perf.c | 58 ++++++++++++++++++++++++++++++--
+>  include/uapi/drm/i915_drm.h      | 21 ++++++++++++
+>  2 files changed, 76 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 79f68efd7d5b..e236d2a8720b 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -3686,7 +3686,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>                                     struct perf_open_properties *props)
+>  {
+>         u64 __user *uprop = uprops;
+> -       u32 i;
+> +       u32 __user *uctx_handles = NULL;
+> +       u32 i, n_uctx_handles = 0;
+>         int err;
+>  
+>         memset(props, 0, sizeof(struct perf_open_properties));
+> @@ -3737,7 +3738,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>  
+>                 switch ((enum drm_i915_perf_property_id)id) {
+>                 case DRM_I915_PERF_PROP_CTX_HANDLE:
+> -                       if (props->n_ctx_handles > 0) {
+> +                       if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
+>                                 DRM_DEBUG("Context handle specified multiple times\n");
+>                                 err = -EINVAL;
+>                                 goto error;
+> @@ -3851,6 +3852,38 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>                         }
+>                         props->poll_oa_period = value;
+>                         break;
+> +               case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY:
+> +                       /* HSW can only filter in HW and only on a single
+> +                        * context.
+> +                        */
+> +                       if (IS_HASWELL(perf->i915)) {
+> +                               DRM_DEBUG("Multi context filter not supported on HSW\n");
+> +                               err = -ENODEV;
+> +                               goto error;
+> +                       }
+> +                       uctx_handles = u64_to_user_ptr(value);
+> +                       break;
+> +               case DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH:
+> +                       if (IS_HASWELL(perf->i915)) {
+> +                               DRM_DEBUG("Multi context filter not supported on HSW\n");
+> +                               err = -ENODEV;
+> +                               goto error;
+> +                       }
+> +                       if (props->n_ctx_handles > 0 || n_uctx_handles > 0) {
+> +                               DRM_DEBUG("Context handle specified multiple times\n");
+> +                               err = -EINVAL;
+> +                               goto error;
+> +                       }
+> +                       props->ctx_handles =
+> +                               kmalloc_array(value,
+> +                                             sizeof(*props->ctx_handles),
+> +                                             GFP_KERNEL);
+> +                       if (!props->ctx_handles) {
+> +                               err = -ENOMEM;
+> +                               goto error;
+> +                       }
+> +                       n_uctx_handles = value;
+> +                       break;
+>                 case DRM_I915_PERF_PROP_MAX:
+>                         MISSING_CASE(id);
+>                         err = -EINVAL;
+> @@ -3860,6 +3893,21 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>                 uprop += 2;
+>         }
+>  
+> +       if (n_uctx_handles > 0 && props->n_ctx_handles > 0) {
+> +               DRM_DEBUG("Context handle specified multiple times\n");
+> +               err = -EINVAL;
+> +               goto error;
+> +       }
+> +
+> +       for (i = 0; i < n_uctx_handles; i++) {
+> +               err = get_user(props->ctx_handles[i], uctx_handles);
+> +               if (err)
+> +                       goto error;
+> +
+> +               uctx_handles++;
+> +               props->n_ctx_handles++;
+> +       }
+> +
+>         return 0;
+>  
+>  error:
+> @@ -4643,8 +4691,12 @@ int i915_perf_ioctl_version(void)
+>          *
+>          * 5: Add DRM_I915_PERF_PROP_POLL_OA_PERIOD parameter that controls the
+>          *    interval for the hrtimer used to check for OA data.
+> +        *
+> +        * 6: Add DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY &
+> +        *    DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH to allow an
+> +        *    application monitor/pin multiple contexts.
+>          */
+> -       return 5;
+> +       return 6;
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 14b67cd6b54b..f80e7932d728 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1993,6 +1993,27 @@ enum drm_i915_perf_property_id {
+>          */
+>         DRM_I915_PERF_PROP_POLL_OA_PERIOD,
+>  
+> +       /**
+> +        * Specifies an array of u32 GEM context handles to filter reports
+> +        * with.
+> +        *
+> +        * Using this parameter is incompatible with using
+> +        * DRM_I915_PERF_PROP_CTX_HANDLE.
+> +        *
+> +        * This property is available in perf revision 6.
+> +        */
+> +       DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY,
+> +
+> +       /**
+> +        * Specifies the length of the array specified with
+> +        * DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY.
+> +        *
+> +        * The length must be in the range [1, 4].
+> +        *
+> +        * This property is available in perf revision 6.
+> +        */
+> +       DRM_I915_PERF_PROP_CTX_HANDLE_ARRAY_LENGTH,
+> +
+>         DRM_I915_PERF_PROP_MAX /* non-ABI */
+>  };
+>  
+> -- 
+> 2.26.2
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
