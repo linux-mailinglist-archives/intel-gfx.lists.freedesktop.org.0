@@ -1,46 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488651BF633
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 13:11:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF57E1BF667
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 13:19:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC476E22C;
-	Thu, 30 Apr 2020 11:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 285936EB92;
+	Thu, 30 Apr 2020 11:18:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC616E22C
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:11:29 +0000 (UTC)
-IronPort-SDR: sRUIlIwMj4KpvZWfHwrWa0EhJ/EcSOiZ3zIb/JZRSSO1bsdbIXmoFProzUXnsWwLWVQFxaApqI
- 1sXiHLPWFfCg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 04:11:28 -0700
-IronPort-SDR: eJHdX3J+xfR+ZDSeMvta4NbmWvds7oHkUi0zXOYknNb8mMTRSMrtMXtIVhvNFxld+dSWcqvF1M
- beqyAF+Cbogw==
-X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="432924994"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 04:11:27 -0700
-Date: Thu, 30 Apr 2020 14:07:02 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200430110702.GA22144@intel.com>
-References: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
- <20200423075902.21892-4-stanislav.lisovskiy@intel.com>
- <20200430092104.GO6112@intel.com> <20200430100515.GA2691@intel.com>
- <20200430103217.GR6112@intel.com>
- <20200430104702.GA31341@intel.com>
- <20200430105559.GT6112@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFB186EB91
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:18:55 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21068959-1500050 
+ for multiple; Thu, 30 Apr 2020 12:18:21 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Apr 2020 12:18:11 +0100
+Message-Id: <20200430111819.10262-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200430105559.GT6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v26 3/9] drm/i915: Track active_pipes in
- bw_state
+Subject: [Intel-gfx] [PATCH 1/9] drm/i915/gt: Stop holding onto the
+ pinned_default_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,291 +37,298 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 30, 2020 at 01:55:59PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Apr 30, 2020 at 01:47:02PM +0300, Lisovskiy, Stanislav wrote:
-> > On Thu, Apr 30, 2020 at 01:32:17PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Thu, Apr 30, 2020 at 01:05:15PM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Thu, Apr 30, 2020 at 12:21:04PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Thu, Apr 23, 2020 at 10:58:56AM +0300, Stanislav Lisovskiy wro=
-te:
-> > > > > > We need to calculate SAGV mask also in a non-modeset
-> > > > > > commit, however currently active_pipes are only calculated
-> > > > > > for modesets in global atomic state, thus now we will be
-> > > > > > tracking those also in bw_state in order to be able to
-> > > > > > properly access global data.
-> > > > > > =
+As we only restore the default context state upon banning a context, we
+only need enough of the state to run the ring and nothing more. That is
+we only need our bare protocontext.
 
-> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.c=
-om>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_bw.h |  3 +++
-> > > > > >  drivers/gpu/drm/i915/intel_pm.c         | 15 ++++++++++-----
-> > > > > >  2 files changed, 13 insertions(+), 5 deletions(-)
-> > > > > > =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 14 +-----
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 14 ++----
+ drivers/gpu/drm/i915/gt/selftest_context.c   | 11 ++--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c       | 53 +++++++++++++++-----
+ 5 files changed, 47 insertions(+), 46 deletions(-)
 
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/=
-gpu/drm/i915/display/intel_bw.h
-> > > > > > index d6df91058223..898b4a85ccab 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> > > > > > @@ -26,6 +26,9 @@ struct intel_bw_state {
-> > > > > >  =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index 446e35ac0224..cf46076c59b2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -22,18 +22,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
+ 	struct intel_context *ce;
+-	void *map;
+ 
+ 	ENGINE_TRACE(engine, "\n");
+ 
+ 	intel_gt_pm_get(engine->gt);
+ 
+-	/* Pin the default state for fast resets from atomic context. */
+-	map = NULL;
+-	if (engine->default_state)
+-		map = shmem_pin_map(engine->default_state);
+-	engine->pinned_default_state = map;
+-
+ 	/* Discard stale context state from across idling */
+ 	ce = engine->kernel_context;
+ 	if (ce) {
+@@ -43,6 +36,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
+ 		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
+ 			struct drm_i915_gem_object *obj = ce->state->obj;
+ 			int type = i915_coherent_map_type(engine->i915);
++			void *map;
+ 
+ 			map = i915_gem_object_pin_map(obj, type);
+ 			if (!IS_ERR(map)) {
+@@ -262,12 +256,6 @@ static int __engine_park(struct intel_wakeref *wf)
+ 	if (engine->park)
+ 		engine->park(engine);
+ 
+-	if (engine->pinned_default_state) {
+-		shmem_unpin_map(engine->default_state,
+-				engine->pinned_default_state);
+-		engine->pinned_default_state = NULL;
+-	}
+-
+ 	engine->execlists.no_priolist = false;
+ 
+ 	/* While gt calls i915_vma_parked(), we have to break the lock cycle */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index f760e2ef285b..68a382229b4a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -340,7 +340,6 @@ struct intel_engine_cs {
+ 	unsigned long wakeref_serial;
+ 	struct intel_wakeref wakeref;
+ 	struct file *default_state;
+-	void *pinned_default_state;
+ 
+ 	struct {
+ 		struct intel_ring *ring;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4311b12542fb..dc5517c85df1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1271,14 +1271,11 @@ execlists_check_context(const struct intel_context *ce,
+ static void restore_default_state(struct intel_context *ce,
+ 				  struct intel_engine_cs *engine)
+ {
+-	u32 *regs = ce->lrc_reg_state;
++	u32 *regs;
+ 
+-	if (engine->pinned_default_state)
+-		memcpy(regs, /* skip restoring the vanilla PPHWSP */
+-		       engine->pinned_default_state + LRC_STATE_OFFSET,
+-		       engine->context_size - PAGE_SIZE);
++	regs = memset(ce->lrc_reg_state, 0, engine->context_size - PAGE_SIZE);
++	execlists_init_reg_state(regs, ce, engine, ce->ring, true);
+ 
+-	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
+ 	ce->runtime.last = intel_context_get_runtime(ce);
+ }
+ 
+@@ -4166,8 +4163,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	 * image back to the expected values to skip over the guilty request.
+ 	 */
+ 	__i915_request_reset(rq, stalled);
+-	if (!stalled)
+-		goto out_replay;
+ 
+ 	/*
+ 	 * We want a simple context + ring to execute the breadcrumb update.
+@@ -4177,9 +4172,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	 * future request will be after userspace has had the opportunity
+ 	 * to recreate its own state.
+ 	 */
+-	GEM_BUG_ON(!intel_context_is_pinned(ce));
+-	restore_default_state(ce, engine);
+-
+ out_replay:
+ 	ENGINE_TRACE(engine, "replay {head:%04x, tail:%04x}\n",
+ 		     head, ce->ring->tail);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+index b8ed3cbe1277..a56dff3b157a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_context.c
++++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+@@ -154,10 +154,7 @@ static int live_context_size(void *arg)
+ 	 */
+ 
+ 	for_each_engine(engine, gt, id) {
+-		struct {
+-			struct file *state;
+-			void *pinned;
+-		} saved;
++		struct file *saved;
+ 
+ 		if (!engine->context_size)
+ 			continue;
+@@ -171,8 +168,7 @@ static int live_context_size(void *arg)
+ 		 * active state is sufficient, we are only checking that we
+ 		 * don't use more than we planned.
+ 		 */
+-		saved.state = fetch_and_zero(&engine->default_state);
+-		saved.pinned = fetch_and_zero(&engine->pinned_default_state);
++		saved = fetch_and_zero(&engine->default_state);
+ 
+ 		/* Overlaps with the execlists redzone */
+ 		engine->context_size += I915_GTT_PAGE_SIZE;
+@@ -181,8 +177,7 @@ static int live_context_size(void *arg)
+ 
+ 		engine->context_size -= I915_GTT_PAGE_SIZE;
+ 
+-		engine->pinned_default_state = saved.pinned;
+-		engine->default_state = saved.state;
++		engine->default_state = saved;
+ 
+ 		intel_engine_pm_put(engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 7529df92f6a2..d946c0521dbc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -5206,6 +5206,7 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ {
+ 	struct i915_vma *batch;
+ 	u32 dw, x, *cs, *hw;
++	u32 *defaults;
+ 
+ 	batch = create_user_vma(ce->vm, SZ_64K);
+ 	if (IS_ERR(batch))
+@@ -5217,9 +5218,16 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 		return ERR_CAST(cs);
+ 	}
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		i915_gem_object_unpin_map(batch->obj);
++		i915_vma_put(batch);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	x = 0;
+ 	dw = 0;
+-	hw = ce->engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5250,6 +5258,8 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 
+ 	*cs++ = MI_BATCH_BUFFER_END;
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
++
+ 	i915_gem_object_flush_map(batch->obj);
+ 	i915_gem_object_unpin_map(batch->obj);
+ 
+@@ -5360,6 +5370,7 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ {
+ 	struct i915_vma *batch;
+ 	u32 dw, *cs, *hw;
++	u32 *defaults;
+ 
+ 	batch = create_user_vma(ce->vm, SZ_64K);
+ 	if (IS_ERR(batch))
+@@ -5371,8 +5382,15 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 		return ERR_CAST(cs);
+ 	}
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		i915_gem_object_unpin_map(batch->obj);
++		i915_vma_put(batch);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	dw = 0;
+-	hw = ce->engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5400,6 +5418,8 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 
+ 	*cs++ = MI_BATCH_BUFFER_END;
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
++
+ 	i915_gem_object_flush_map(batch->obj);
+ 	i915_gem_object_unpin_map(batch->obj);
+ 
+@@ -5467,6 +5487,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ {
+ 	u32 x, dw, *hw, *lrc;
+ 	u32 *A[2], *B[2];
++	u32 *defaults;
+ 	int err = 0;
+ 
+ 	A[0] = i915_gem_object_pin_map(ref[0]->obj, I915_MAP_WC);
+@@ -5499,9 +5520,15 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	}
+ 	lrc += LRC_STATE_OFFSET / sizeof(*hw);
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		err = -ENOMEM;
++		goto err_lrc;
++	}
++
+ 	x = 0;
+ 	dw = 0;
+-	hw = engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5541,6 +5568,8 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	} while (dw < PAGE_SIZE / sizeof(u32) &&
+ 		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
++err_lrc:
+ 	i915_gem_object_unpin_map(ce->state->obj);
+ err_B1:
+ 	i915_gem_object_unpin_map(result[1]->obj);
+@@ -5690,18 +5719,16 @@ static int live_lrc_isolation(void *arg)
+ 			continue;
+ 
+ 		intel_engine_pm_get(engine);
+-		if (engine->pinned_default_state) {
+-			for (i = 0; i < ARRAY_SIZE(poison); i++) {
+-				int result;
++		for (i = 0; i < ARRAY_SIZE(poison); i++) {
++			int result;
+ 
+-				result = __lrc_isolation(engine, poison[i]);
+-				if (result && !err)
+-					err = result;
++			result = __lrc_isolation(engine, poison[i]);
++			if (result && !err)
++				err = result;
+ 
+-				result = __lrc_isolation(engine, ~poison[i]);
+-				if (result && !err)
+-					err = result;
+-			}
++			result = __lrc_isolation(engine, ~poison[i]);
++			if (result && !err)
++				err = result;
+ 		}
+ 		intel_engine_pm_put(engine);
+ 		if (igt_flush_test(gt->i915)) {
+-- 
+2.20.1
 
-> > > > > >  	unsigned int data_rate[I915_MAX_PIPES];
-> > > > > >  	u8 num_active_planes[I915_MAX_PIPES];
-> > > > > > +
-> > > > > > +	/* bitmask of active pipes */
-> > > > > > +	u8 active_pipes;
-> > > > > >  };
-> > > > > >  =
-
-> > > > > >  #define to_intel_bw_state(x) container_of((x), struct intel_bw=
-_state, base)
-> > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/=
-i915/intel_pm.c
-> > > > > > index 7e15cf3368ad..f7249bca3f6f 100644
-> > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > @@ -3874,6 +3874,7 @@ static int intel_compute_sagv_mask(struct=
- intel_atomic_state *state)
-> > > > > >  	struct intel_bw_state *new_bw_state =3D NULL;
-> > > > > >  	const struct intel_bw_state *old_bw_state =3D NULL;
-> > > > > >  	int i;
-> > > > > > +	bool active_pipes_calculated =3D false;
-> > > > > >  =
-
-> > > > > >  	for_each_new_intel_crtc_in_state(state, crtc,
-> > > > > >  					 new_crtc_state, i) {
-> > > > > > @@ -3883,6 +3884,12 @@ static int intel_compute_sagv_mask(struc=
-t intel_atomic_state *state)
-> > > > > >  =
-
-> > > > > >  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
-> > > > > >  =
-
-> > > > > > +		if (!active_pipes_calculated) {
-> > > > > > +			state->active_pipes =3D new_bw_state->active_pipes =3D
-> > > > > =
-
-> > > > > I don't think we should touch state->active_pipes here.
-> > > > =
-
-> > > > Well, that was my question actually here as well. I understand that=
- changing
-> > > > state->active_pipes here feels like some unneeded side effect, howe=
-ver having
-> > > > state->active_pipes and bw_state->active_pipes going out of sync do=
-esn't sound
-> > > > very attractive to me either. That is why I don't like this idea of=
- duplication
-> > > > at all - having constant need to sync those state, bw_state, cdclk_=
-state, because
-> > > > they all might have different active_pipes now.
-> > > =
-
-> > > Having an out of date active_pipes anywhere would be a bug in that
-> > > specific code. Also state->active_pipes is definitely going the way of
-> > > the dodo soon.
-> > > =
-
-> > > > =
-
-> > > > > =
-
-> > > > > > +				intel_calc_active_pipes(state, old_bw_state->active_pipes);
-> > > > > > +			active_pipes_calculated =3D true;
-> > > > > > +		}
-> > > > > =
-
-> > > > > I'd do this after the loop so we don't need this extra boolean. A=
-s far
-> > > > > as the active_pipes check in intel_crtc_can_enable_sagv(), I thin=
-k we
-> > > > > can pull it out into intel_compute_sagv_mask() so that we do the =
-check
-> > > > > after computing the mask. And of course change it to use
-> > > > > bw_state->active_pipes instead.
-> > > > =
-
-> > > > intel_crtc_can_enable_sagv is called per crtc - so can't just pull =
-it out, =
-
-> > > > will have to have to cycles then - one will compute bw_state->activ=
-e_pipes,
-> > > > and another pipe_sagv_mask.
-> > > =
-
-> > > Hmm. Actually I think what we should probably do is keep the
-> > > active_pipes check in intel_can_enable_sagv(). Ie something like this:
-> > > =
-
-> > > intel_can_enable_sagv(bw_state) {
-> > > 	if (active_pipes && !is_power_of_2(active_pipes))
-> > > 	    	return false;
-> > > 	return sagv_reject !=3D 0;
-> > > }
-> > =
-
-> > I need active_pipes check here for skl code only, as it disables SAGV f=
-or multipipe
-> > scenarios. Adding this here would generalize it for other platforms and=
- we
-> > don't want that for ICL+.
-> =
-
-> Which is why I said "We can then make the check conditional on pre-icl
-> (or whatever we want) in a later patch". Why in a later patch? Because
-> currently the check is unconditional and it's generally a good idea to
-> limit the number of functional changes per patch to a minimum.
-
-Moving active_pipes check out of intel_crtc_can_enable_sagv will result
-in wrong SAGV mask calculated.
-
-i.e if you have 2 pipes,
-
-for_each_crtc() {
-	if (crtc_can_sagv())
-		sagv_reject &=3D ~pipe;
-	else
-		sagv_reject |=3D pipe;
-}
-
-will calculate sagv_reject as 0 which is wrong and value will be stored
-in global state. I think active_pipes should always affect the SAGV mask
-otherwise we do get really strange situation: you have SAGV mask as 0,
-but you still reject SAGV. So there is no way even then to track what =
-
-was the previous SAGV state - even if it's 0 it could have been rejected.
-
-IMO that is quite weird side effect. So removing active_pipes from
-intel_crtc_can_enable_sagv doesn't sound like good idea.
-
-I think it is now just a bit too much hassle around simple =
-
-active_pipes_calculated boolean check.
-
-Stan
-
-> =
-
-> > =
-
-> > In fact that is the only reason I need active pipes here - otherwise I =
-think
-> > it was even your comment that we actually don't need those here at all,
-> > as we just iterate through crtcs in state - pretty clearly remember we =
-discussed
-> > this. Just same way how it's done in intel bw check and other places.
-> > =
-
-> > Stan
-> > =
-
-> > > =
-
-> > > compute_sagv() {
-> > > 	for_each_crtc() {
-> > > 		if (crtc_can_sagv())
-> > > 			sagv_reject &=3D ~pipe;
-> > > 		else
-> > > 			sagv_reject |=3D pipe;
-> > > 	}
-> > > 	=
-
-> > > 	active_pipes =3D calc_active_pipes();
-> > > =
-
-> > > 	... lock/serialize etc.
-> > > }
-> > > =
-
-> > > That way we don't have to update sagv_reject at all based on
-> > > active_pipes. I think that even makes more sense since the
-> > > active_pipes check is a global thing and not tied to any specific
-> > > crtc.
-> > > =
-
-> > > We can then make the check conditional on pre-icl (or whatever we wan=
-t)
-> > > in a later patch. And finally we can remove it altogether in a separa=
-te
-> > > patch, since I don't think we should have to do it on any platform.
-> > > =
-
-> > > > =
-
-> > > > > =
-
-> > > > > We're also going to need to lock_global_state() if bw_state->acti=
-ve_pipes
-> > > > > mask changes.
-> > > > =
-
-> > > > Ohh.. right.
-> > > > =
-
-> > > > =
-
-> > > > Stan
-> > > > =
-
-> > > > > =
-
-> > > > > > +
-> > > > > >  		if (intel_crtc_can_enable_sagv(new_crtc_state))
-> > > > > >  			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
-> > > > > >  		else
-> > > > > > @@ -5911,11 +5918,9 @@ skl_compute_wm(struct intel_atomic_state=
- *state)
-> > > > > >  	if (ret)
-> > > > > >  		return ret;
-> > > > > >  =
-
-> > > > > > -	if (state->modeset) {
-> > > > > > -		ret =3D intel_compute_sagv_mask(state);
-> > > > > > -		if (ret)
-> > > > > > -			return ret;
-> > > > > > -	}
-> > > > > > +	ret =3D intel_compute_sagv_mask(state);
-> > > > > > +	if (ret)
-> > > > > > +		return ret;
-> > > > > =
-
-> > > > > We also need to remove the state->modeset checks around
-> > > > > sagv_{pre,post}_update().
-> > > > > =
-
-> > > > > >  =
-
-> > > > > >  	/*
-> > > > > >  	 * skl_compute_ddb() will have adjusted the final watermarks
-> > > > > > -- =
-
-> > > > > > 2.24.1.485.gad05a3d8e5
-> > > > > =
-
-> > > > > -- =
-
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
