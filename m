@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A241BF823
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 14:20:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC651BF850
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 14:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5986E26F;
-	Thu, 30 Apr 2020 12:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF2896E45C;
+	Thu, 30 Apr 2020 12:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 02A016E0D0;
- Thu, 30 Apr 2020 12:20:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EF17CA011A;
- Thu, 30 Apr 2020 12:20:37 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C267D6E45C;
+ Thu, 30 Apr 2020 12:38:54 +0000 (UTC)
+IronPort-SDR: 2PRj69Ef3VIGyKc16PbVjFDuSYy8qj12wXccyEq1bobvkEmniCkPlC+f69sMxpve13GGgI/KCU
+ hDY8xfxDIeXw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 05:38:54 -0700
+IronPort-SDR: cC0XENIOPghyQBCpfA6zgEIJz/kTBQul+Q6i/dTrR+bZ9MquYKqqh6PjRoGpxHq++IZEJrB2BP
+ CTX+7msmKkQw==
+X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="432946879"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.251.83.63])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 05:38:51 -0700
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 30 Apr 2020 12:20:37 -0000
-Message-ID: <158824923794.31919.16542190365970975242@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200430111819.10262-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200430111819.10262-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/9=5D_drm/i915/gt=3A_Stop_holding_onto_th?=
- =?utf-8?q?e_pinned=5Fdefault=5Fstate?=
+In-Reply-To: <20200426024619.GA18545@zhen-hp.sh.intel.com>
+References: <20200422051230.GH11247@zhen-hp.sh.intel.com>
+ <20200426024619.GA18545@zhen-hp.sh.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 30 Apr 2020 15:38:48 +0300
+Message-ID: <158825032839.70042.9192653087149521653@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,105 +50,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Zhenyu Wang (2020-04-26 05:46:19)
+> On 2020.04.22 13:12:30 +0800, Zhenyu Wang wrote:
+> > 
+> > Hi,
+> > 
+> > Here's current gvt-next. This removes left non-upstream xen support bits
+> > which will be kept out of tree instead. And several guest context shadow
+> > optimizations from Yan.
+> > 
+> > Thanks
+> > --
+> 
+> Ping for merge..
 
-Series: series starting with [1/9] drm/i915/gt: Stop holding onto the pinned_default_state
-URL   : https://patchwork.freedesktop.org/series/76771/
-State : success
+Pulled now. Thanks for the PR.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8401 -> Patchwork_17526
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17526/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17526:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-7500u:       NOTRUN -> [{ABORT}][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17526/fi-kbl-7500u/igt@debugfs_test@read_all_entries.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17526 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-bwr-2160:        [INCOMPLETE][2] ([i915#489]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8401/fi-bwr-2160/igt@i915_selftest@live@gem_contexts.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17526/fi-bwr-2160/igt@i915_selftest@live@gem_contexts.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8401 -> Patchwork_17526
-
-  CI-20190529: 20190529
-  CI_DRM_8401: 41fac0e3809be301af095c66e717eb9843b80212 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5617: 807b26292a3f21057ef7865a4028d22c512590df @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17526: 16a3283586a72e2e921fdb2e8646a92f6af32078 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-16a3283586a7 drm/i915/gem: Bind the fence async for execbuf
-0187f28a9b9b drm/i915/gem: Asynchronous GTT unbinding
-e96477842906 drm/i915/gem: Separate the ww_mutex walker into its own list
-24191a6a4fde drm/i915: Export a preallocate variant of i915_active_acquire()
-d5bcc12365db drm/i915/gem: Assign context id for async work
-83f24f70e12c drm/i915/gem: Include PIN_GLOBAL prior to using I915_DISPATCH_SECURE
-fc352b043c47 drm/i915: Always defer fenced work to the worker
-bdbc12ae68bf drm/i915/gt: Move the batch buffer pool from the engine to the gt
-0e9eeaba9f3e drm/i915/gt: Stop holding onto the pinned_default_state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17526/index.html
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
