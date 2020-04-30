@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EAF51C00B5
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 17:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B71DD1C00BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 17:48:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE2F6E92B;
-	Thu, 30 Apr 2020 15:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 730796E92A;
+	Thu, 30 Apr 2020 15:48:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F336E92F
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 15:48:13 +0000 (UTC)
-IronPort-SDR: 7yF9urNHqEeSyOhTOWohZOUUmRJeqeKA6nbOuMTDXrXxdGK71z/FZ5u+whWNwY8+exvrVbGwmN
- /e2/qb5O98Gg==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23D976E928
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 15:48:15 +0000 (UTC)
+IronPort-SDR: yxL5pmWQUvVTaPgx1kVr4bWCBOeJrFaDj54GjGNWtc1MMQD5+rPKA9/wjrUW3rDrfZCskdBXc0
+ js3NN0FkcneA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 08:48:13 -0700
-IronPort-SDR: tx59P+SFRplDZxRQkF8XYTF2PKitNk95xraug5UGqWGFc2ZGTGC6e37SWwq2HqQpZZamRVY+Yh
- 086IFUDXw1KA==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 08:48:14 -0700
+IronPort-SDR: r2fROVQb2tWi+gQwGZOsxavDkkNaTnxekbpwGziOIHdixV1pETJQtqOV85OHF8oXvgzRisZ2VQ
+ q33DdMEXHG4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,336,1583222400"; d="scan'208";a="303311077"
+X-IronPort-AV: E=Sophos;i="5.73,336,1583222400"; d="scan'208";a="293604708"
 Received: from rosetta.fi.intel.com ([10.237.72.194])
- by FMSMGA003.fm.intel.com with ESMTP; 30 Apr 2020 08:48:12 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 30 Apr 2020 08:48:13 -0700
 Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id C73228408A8; Thu, 30 Apr 2020 18:47:38 +0300 (EEST)
+ id CDA5B840D84; Thu, 30 Apr 2020 18:47:38 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 18:47:31 +0300
-Message-Id: <20200430154735.22434-5-mika.kuoppala@linux.intel.com>
+Date: Thu, 30 Apr 2020 18:47:32 +0300
+Message-Id: <20200430154735.22434-6-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200430154735.22434-1-mika.kuoppala@linux.intel.com>
 References: <20200430154735.22434-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-gfx] [PATCH 5/9] drm/i915/gen12: Flush AMFS
+Subject: [Intel-gfx] [PATCH 6/9] drm/i915/gen12: Invalidate indirect state
+ pointers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,47 +54,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To ensure that we have global observation point wrt to
-all data, flush amfs.
+Aim for completeness for invalidating everything
+and mark state pointers stale.
 
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h | 1 +
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 2 ++
- 2 files changed, 3 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-index 98b39e65aed9..69979cc86caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-@@ -223,6 +223,7 @@
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29) /* gen11+ */
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28) /* gen11+ */
- #define   PIPE_CONTROL_FLUSH_L3				(1<<27)
-+#define   PIPE_CONTROL_FLUSH_AMFS			(1<<25) /* gen12+ */
- #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24) /* gen7+ */
- #define   PIPE_CONTROL_MMIO_WRITE			(1<<23)
- #define   PIPE_CONTROL_STORE_DATA_INDEX			(1<<21)
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 0bbce218157f..b47230583494 100644
+index b47230583494..7807f53eae18 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -4555,6 +4555,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
- 		flags |= PIPE_CONTROL_L3_FABRIC_FLUSH;
- 		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
- 		flags |= PIPE_CONTROL_FLUSH_L3;
-+		flags |= PIPE_CONTROL_FLUSH_AMFS;
- 		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
- 		flags |= PIPE_CONTROL_DEPTH_CACHE_FLUSH;
- 		/* Wa_1409600907:tgl */
-@@ -4771,6 +4772,7 @@ gen12_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
- 				       PIPE_CONTROL_L3_FABRIC_FLUSH |
- 				       PIPE_CONTROL_TILE_CACHE_FLUSH |
- 				       PIPE_CONTROL_FLUSH_L3 |
-+				       PIPE_CONTROL_FLUSH_AMFS |
- 				       PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
- 				       PIPE_CONTROL_DEPTH_CACHE_FLUSH |
- 				       /* Wa_1409600907:tgl */
+@@ -4585,6 +4585,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 		flags |= PIPE_CONTROL_TLB_INVALIDATE;
+ 		flags |= PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE;
++		flags |= PIPE_CONTROL_INDIRECT_STATE_DISABLE;
+ 		flags |= PIPE_CONTROL_VF_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
 -- 
 2.17.1
 
