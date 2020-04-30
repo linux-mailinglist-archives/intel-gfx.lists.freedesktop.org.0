@@ -1,32 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFD91BF9CE
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 15:44:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EFC31BFA5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 15:53:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68EAB6E8A8;
-	Thu, 30 Apr 2020 13:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 150306E8B5;
+	Thu, 30 Apr 2020 13:53:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A607D6E8A8;
- Thu, 30 Apr 2020 13:44:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76F9AA363B;
- Thu, 30 Apr 2020 13:44:15 +0000 (UTC)
+Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com
+ [IPv6:2607:f8b0:4864:20::a41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56F886E8B5;
+ Thu, 30 Apr 2020 13:53:10 +0000 (UTC)
+Received: by mail-vk1-xa41.google.com with SMTP id d6so1747594vko.4;
+ Thu, 30 Apr 2020 06:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xLM3Mk937Oh+kSeDjRFBcaol/6OjmOkPDKlDAfcwvms=;
+ b=d/0KYkPsRQZIFji7RHbv+zDuqMn9lY3U5VspdIt6/Qytf7FyHShQqWB5Jst04edgKY
+ MD+RBVoHPHClv0JwWjKokUQGkAQ2ShPGa9xRat0uuyao7ALfBcwH+oRgvFShjDeNH0wv
+ IGpqzWW212ZaEfDkdygW+IMIaKUoELVTjFT/B4JJ3XHvvRqKD4IvXG0JdZf84JTam1a5
+ KEiOEhxhcnmwDZwvn8SKjL7AsDje3FPgcLVFFyS+14DJUHu9oHZD2PDdmiBsz0Ku7eyt
+ A6BuwA2PFLzXUzDD5W7sYvZ2IGwCnFuVUbyFhKJLsZpslb4OeThDgMbViimbUu3RFaE3
+ Gu5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xLM3Mk937Oh+kSeDjRFBcaol/6OjmOkPDKlDAfcwvms=;
+ b=bshKgKUURwxuZnD+69YsfBxHbUPXZS3Xi7pBvk3/9WwjtU+wLfcqQyz8RRcFQFbpQT
+ sE/EAXVabmyoO2M8I4sL6dgbNJi/C4AKbLhqw68RSLzezdz60yFqw5+OneHyO7sMJvap
+ dvtF/JRlpN30YeYSbYQJhRWzu1TNGHGxch1enLkccjjaeZo6hPw1hbCJqtFNMwv5vCda
+ cN0ceMbMzLFDa5LDQeTPytdKjbmKj9bIGpWmOcqtvabJ3cfwuehYrhTqV9sfBspzZ4MZ
+ jc0XJRPGY6pO5vAcZt8jYQr191yhoijtpzXASufb4byMA43yURq+rTKb6JOM6/06ltDb
+ 20hQ==
+X-Gm-Message-State: AGi0PuYu+tSbtXdNPb+LarVPu4tDzqNO3DwVDqjUDkXe8ytWEI0hN0r8
+ maPorXhvk2oMsDuITM53m9y6T6wFD8TTVQLiLNLD9w==
+X-Google-Smtp-Source: APiQypL8FdYx+IepK+fZasytNcJzkFUdJwL9ep2fcm73mD4M8IUe//OPkYH2aip9Pf10044EI7pPLksy8fwXgwaaEB4=
+X-Received: by 2002:a05:6122:12a:: with SMTP id
+ a10mr2526587vko.51.1588254789448; 
+ Thu, 30 Apr 2020 06:53:09 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 30 Apr 2020 13:44:15 -0000
-Message-ID: <158825425545.31918.13994969408747161714@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200430125822.21985-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200430125822.21985-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_glk_watermark_calcu?=
- =?utf-8?q?lations?=
+References: <20200428171940.19552-1-ville.syrjala@linux.intel.com>
+ <20200428171940.19552-17-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200428171940.19552-17-ville.syrjala@linux.intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Thu, 30 Apr 2020 14:50:52 +0100
+Message-ID: <CACvgo50i8sqhDAyWawcaPUSd=GkKLFWJ_DVSHeq8UvJBh3OwRQ@mail.gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 16/16] drm: Replace mode->export_head
+ with a boolean
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,97 +63,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Ville
 
-Series: series starting with [1/2] drm/i915: Fix glk watermark calculations
-URL   : https://patchwork.freedesktop.org/series/76774/
-State : success
+I don't fully grok the i915 changes to provide meaningful review.
+There are couple of small comments below, but regardless of those
 
-== Summary ==
+Patches 01-11 and 14-16 are:
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
 
-CI Bug Log - changes from CI_DRM_8401 -> Patchwork_17527
-====================================================
+On Tue, 28 Apr 2020 at 18:20, Ville Syrjala
+<ville.syrjala@linux.intel.com> wrote:
 
-Summary
--------
+> The downside is that drm_mode_expose_to_userspace() gets to
+> iterate a few more modes. It already was O(n^2), now it's
+> a slightly worse O(n^2).
+>
+Personally I'd drop the O() sentence, or change it to
+It already was O(n^2), now it's slightly worse O((n+y)^2).
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17527/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17527:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-7500u:       NOTRUN -> [{ABORT}][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17527/fi-kbl-7500u/igt@debugfs_test@read_all_entries.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17527 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-bwr-2160:        [PASS][2] -> [INCOMPLETE][3] ([i915#489])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8401/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17527/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+> Another alternative would be a temp bitmask so we wouldn't have
+> to have anything in the mode struct itself. The main issue is
+> how large of a bitmask do we need? I guess we could allocate
+> it dynamically but that means an extra kcalloc() and an extra
+> loop through the modes to count them first (or grow the bitmask
+> with krealloc() as needed).
+>
+If the walk is even remotely close to being an issue, we could
+consider the bitmask.
+I don't think that's the case yet.
 
 
-Participating hosts (50 -> 44)
-------------------------------
+Hmm the original code never discards any entries from export_head.
+I wonder if there's some corner case where we could end with an "old"
+mode showing in the list?
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+For example:
+- creates a user mode via drmModeCreatePropertyBlob()
+- calls drmModeGetConnector() and sees their mode
+- optional (?) does a modeset to and away from said mode
+- removes their blob drmModeDestroyPropertyBlob()
+- calls drmModeGetConnector() and still sees their removed mode.
 
+If this is a bug (?) that we care about, we might want to add an igt
+test for it.
+Conversely, if this is a behaviour we want to keep this patch needs some work.
 
-Build changes
--------------
+HTH
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8401 -> Patchwork_17527
-
-  CI-20190529: 20190529
-  CI_DRM_8401: 41fac0e3809be301af095c66e717eb9843b80212 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5617: 807b26292a3f21057ef7865a4028d22c512590df @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17527: 790b959bc5a3ec7a8820074aec9822ed0118c677 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-790b959bc5a3 drm/i915: Remove cnl pre-prod workarounds
-f0177337991d drm/i915: Fix glk watermark calculations
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17527/index.html
+Emil
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
