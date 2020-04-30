@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499961C044E
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 20:01:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D12C71C04CD
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 20:29:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 926916E138;
-	Thu, 30 Apr 2020 18:01:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BD16E0F3;
+	Thu, 30 Apr 2020 18:29:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1322C6E0F3;
- Thu, 30 Apr 2020 18:01:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEE46E09F;
+ Thu, 30 Apr 2020 18:29:28 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075004-1500050 
- for multiple; Thu, 30 Apr 2020 19:01:04 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075262-1500050 
+ for multiple; Thu, 30 Apr 2020 19:29:01 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 19:01:02 +0100
-Message-Id: <20200430180102.879208-1-chris@chris-wilson.co.uk>
+Date: Thu, 30 Apr 2020 19:28:59 +0100
+Message-Id: <20200430182859.892899-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200430180102.879208-1-chris@chris-wilson.co.uk>
+References: <20200430180102.879208-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH i-g-t] i915/perf_pmu: Attempt to unload i915
  while the PMU is active
@@ -53,7 +55,7 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
  1 file changed, 94 insertions(+), 2 deletions(-)
 
 diff --git a/tests/perf_pmu.c b/tests/perf_pmu.c
-index b9ca6a493..cc475a090 100644
+index b9ca6a493..e08c5635a 100644
 --- a/tests/perf_pmu.c
 +++ b/tests/perf_pmu.c
 @@ -28,6 +28,7 @@
@@ -87,35 +89,24 @@ index b9ca6a493..cc475a090 100644
  
 +static int unload_i915(void)
 +{
-+	/* unbind vt */
 +	bind_fbcon(false);
 +
 +	if (igt_kmod_is_loaded("snd_hda_intel")) {
 +		igt_terminate_process(SIGTERM, "alsactl");
-+
-+		/* unbind snd_hda_intel */
 +		kick_snd_hda_intel();
-+
-+		if (igt_kmod_unload("snd_hda_intel", 0)) {
-+			igt_info("Failed to unload snd_hda_intel\n");
-+			return -EBUSY;
-+		}
++		if (igt_kmod_unload("snd_hda_intel", 0))
++			return -EAGAIN;
 +	}
 +
 +	if (igt_kmod_is_loaded("snd_hdmi_lpe_audio")) {
 +		igt_terminate_process(SIGTERM, "alsactl");
-+
-+		if (igt_kmod_unload("snd_hdmi_lpe_audio", 0)) {
-+			igt_info("Failed to unload snd_hmdi_lpe_audio\n");
-+			return -EBUSY;
-+		}
++		if (igt_kmod_unload("snd_hdmi_lpe_audio", 0))
++			return -EAGAIN;
 +	}
 +
 +	if (igt_kmod_is_loaded("i915")) {
-+		if (igt_kmod_unload("i915", 0)) {
-+			igt_info("Failed to unload i915\n");
++		if (igt_kmod_unload("i915", 0))
 +			return -EBUSY;
-+		}
 +	}
 +
 +	return 0;
@@ -123,45 +114,56 @@ index b9ca6a493..cc475a090 100644
 +
 +static void test_unload(void)
 +{
-+	const struct intel_execution_engine2 *e;
-+	uint64_t *buf;
-+	int count;
-+	int i915;
-+	int fd;
++	igt_fork(child, 1) {
++		const struct intel_execution_engine2 *e;
++		uint64_t *buf;
++		int count;
++		int i915;
++		int fd;
 +
-+	igt_require(unload_i915() == 0);
-+	i915 = __drm_open_driver(DRIVER_INTEL);
++		igt_debug("Unloading and then re-opening i915 device\n");
++		igt_require(unload_i915() == 0);
++		i915 = __drm_open_driver(DRIVER_INTEL);
 +
-+	fd = open_group(i915, I915_PMU_REQUESTED_FREQUENCY, -1);
-+	open_group(fd, I915_PMU_ACTUAL_FREQUENCY, fd);
-+	count = 2;
++		igt_debug("Opening perf events\n");
++		fd = open_group(i915, I915_PMU_REQUESTED_FREQUENCY, -1);
++		open_group(fd, I915_PMU_ACTUAL_FREQUENCY, fd);
++		count = 2;
 +
-+	__for_each_physical_engine(i915, e) {
-+		open_group(i915,
-+			   I915_PMU_ENGINE_BUSY(e->class, e->instance),
-+			   fd);
-+		open_group(i915,
-+			   I915_PMU_ENGINE_SEMA(e->class, e->instance),
-+			   fd);
-+		open_group(i915,
-+			   I915_PMU_ENGINE_WAIT(e->class, e->instance),
-+			   fd);
-+		count += 3;
++		__for_each_physical_engine(i915, e) {
++			open_group(i915,
++					I915_PMU_ENGINE_BUSY(e->class, e->instance),
++					fd);
++			open_group(i915,
++					I915_PMU_ENGINE_SEMA(e->class, e->instance),
++					fd);
++			open_group(i915,
++					I915_PMU_ENGINE_WAIT(e->class, e->instance),
++					fd);
++			count += 3;
++		}
++
++		close(i915);
++
++		buf = calloc(count + 1, sizeof(uint64_t));
++		igt_assert(buf);
++
++		igt_debug("Read %d events from perf and trial unload\n", count);
++		pmu_read_multi(fd, count, buf);
++		igt_assert_eq(unload_i915(), -EBUSY);
++		pmu_read_multi(fd, count, buf);
++		sleep(2);
++
++		igt_debug("Close perf\n");
++		close(fd);
++
++		free(buf);
 +	}
++	igt_waitchildren();
 +
-+	close(i915);
-+
-+	buf = calloc(count + 1, sizeof(uint64_t));
-+	igt_assert(buf);
-+
-+	pmu_read_multi(fd, count, buf);
-+	igt_assert_eq(unload_i915(), -EBUSY);
-+	pmu_read_multi(fd, count, buf);
-+
-+	close(fd);
++	igt_debug("Final unload\n");
++	sleep(5);
 +	igt_assert_eq(unload_i915(), 0);
-+
-+	free(buf);
 +}
 +
  #define test_each_engine(T, i915, e) \
