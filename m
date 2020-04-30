@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A1D1C06A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 21:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75EA01C06A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 21:42:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D5C6E489;
-	Thu, 30 Apr 2020 19:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B37EA6E48F;
+	Thu, 30 Apr 2020 19:42:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0256E489
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 19:41:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82FC26E48F;
+ Thu, 30 Apr 2020 19:41:59 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075947-1500050 
- for multiple; Thu, 30 Apr 2020 20:41:09 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075957-1500050 
+ for multiple; Thu, 30 Apr 2020 20:41:53 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 20:41:07 +0100
-Message-Id: <20200430194107.7073-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Thu, 30 Apr 2020 20:41:51 +0100
+Message-Id: <20200430194151.1003933-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Implement vm_ops->access for gdb
- access into mmaps
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_mmap_gtt: Simulate gdb
+ inspecting a GTT mmap using ptrace()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,88 +37,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Kristian H . Kristensen" <hoegsberg@google.com>,
- Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 gdb uses ptrace() to peek and poke bytes of the target's address space.
-The driver must implement an vm_ops->access() handler or else gdb will
-be unable to inspect the pointer and report it as out-of-bounds.
-Worse than useless as it causes immediate suspicion of the valid GTT
-pointer, distracting the poor programmer trying to find his bug.
+The kernel must implement an vm_ops->access() handler or else gdb will
+be unable to inspect the pointer and report it as out-of-bounds. Worse
+than useless as it causes immediate suspicion of the valid GTT pointer.
 
-Testcase: igt/gem_mmap_gtt/ptrace
-Testcase: igt/gem_mmap_offset/ptrace
-Suggested-by: Kristian H. Kristensen <hoegsberg@google.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: Kristian H. Kristensen <hoegsberg@google.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 31 ++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ tests/i915/gem_mmap_gtt.c | 79 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 78 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index b39c24dae64e..aef917b7f168 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -396,6 +396,35 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 	return i915_error_to_vmf_fault(ret);
+diff --git a/tests/i915/gem_mmap_gtt.c b/tests/i915/gem_mmap_gtt.c
+index 1f4655af4..38b4d02d7 100644
+--- a/tests/i915/gem_mmap_gtt.c
++++ b/tests/i915/gem_mmap_gtt.c
+@@ -34,8 +34,11 @@
+ #include <inttypes.h>
+ #include <pthread.h>
+ #include <errno.h>
+-#include <sys/stat.h>
++#include <signal.h>
+ #include <sys/ioctl.h>
++#include <sys/ptrace.h>
++#include <sys/stat.h>
++#include <sys/wait.h>
+ #include "drm.h"
+ 
+ #include "igt.h"
+@@ -501,6 +504,78 @@ test_write_gtt(int fd)
+ 	munmap(src, OBJECT_SIZE);
  }
  
-+static int
-+vm_access(struct vm_area_struct *area, unsigned long addr,
-+	  void *buf, int len, int write)
++static void *memchr_inv(const void *s, int c, size_t n)
 +{
-+	struct i915_mmap_offset *mmo = area->vm_private_data;
-+	struct drm_i915_gem_object *obj = mmo->obj;
-+	void *vaddr;
++	const uint8_t *us = s;
++	const uint8_t uc = c;
 +
-+	addr -= area->vm_start;
-+	if (addr >= obj->base.size)
-+		return -EINVAL;
-+
-+	/* As this is primarily for debugging, let's focus on simplicity */
-+	vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
-+	if (IS_ERR(vaddr))
-+		return PTR_ERR(vaddr);
-+
-+	if (write) {
-+		memcpy(vaddr + addr, buf, len);
-+		__i915_gem_object_flush_map(obj, addr, len);
-+	} else {
-+		memcpy(buf, vaddr + addr, len);
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wcast-qual"
++	while (n--) {
++		if (*us != uc)
++			return (void *) us;
++		us++;
 +	}
++#pragma GCC diagnostic pop
 +
-+	i915_gem_object_unpin_map(obj);
-+
-+	return len;
++	return NULL;
 +}
 +
- void __i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
++static void
++test_ptrace(int fd)
++{
++	unsigned long AA, CC;
++	unsigned long *gtt, *cpy;
++	uint32_t bo;
++	pid_t pid;
++
++	memset(&AA, 0xaa, sizeof(AA));
++	memset(&CC, 0x55, sizeof(CC));
++
++	cpy = malloc(OBJECT_SIZE);
++	memset(cpy, AA, OBJECT_SIZE);
++
++	bo = gem_create(fd, OBJECT_SIZE);
++	gtt = mmap_bo(fd, bo, OBJECT_SIZE);
++	memset(gtt, CC, OBJECT_SIZE);
++	gem_close(fd, bo);
++
++	igt_assert(!memchr_inv(gtt, CC, OBJECT_SIZE));
++	igt_assert(!memchr_inv(cpy, AA, OBJECT_SIZE));
++
++	igt_fork(child, 1) {
++		ptrace(PTRACE_TRACEME, 0, NULL, NULL);
++		raise(SIGSTOP);
++	}
++
++	/* Wait for the child to ready themselves [SIGSTOP] */
++	pid = wait(NULL);
++
++	ptrace(PTRACE_ATTACH, pid, NULL, NULL);
++	for (int i = 0; i < OBJECT_SIZE / sizeof(long); i++) {
++		long ret;
++
++		ret = ptrace(PTRACE_PEEKDATA, pid, gtt + i);
++		igt_assert_eq_u64(ret, CC);
++		cpy[i] = ret;
++
++		ret = ptrace(PTRACE_POKEDATA, pid, gtt + i, AA);
++		igt_assert_eq(ret, 0l);
++	}
++	ptrace(PTRACE_DETACH, pid, NULL, NULL);
++
++	/* Wakeup the child for it to exit */
++	kill(SIGCONT, pid);
++	igt_waitchildren();
++
++	/* The contents of the two buffers should now be swapped */
++	igt_assert(!memchr_inv(gtt, AA, OBJECT_SIZE));
++	igt_assert(!memchr_inv(cpy, CC, OBJECT_SIZE));
++
++	munmap(gtt, OBJECT_SIZE);
++	free(cpy);
++}
++
+ static bool is_coherent(int i915)
  {
- 	struct i915_vma *vma;
-@@ -745,12 +774,14 @@ static void vm_close(struct vm_area_struct *vma)
- 
- static const struct vm_operations_struct vm_ops_gtt = {
- 	.fault = vm_fault_gtt,
-+	.access = vm_access,
- 	.open = vm_open,
- 	.close = vm_close,
- };
- 
- static const struct vm_operations_struct vm_ops_cpu = {
- 	.fault = vm_fault_cpu,
-+	.access = vm_access,
- 	.open = vm_open,
- 	.close = vm_close,
- };
+ 	int val = 1; /* by default, we assume GTT is coherent, hence the test */
+@@ -1084,6 +1159,8 @@ igt_main
+ 		test_write(fd);
+ 	igt_subtest("basic-write-gtt")
+ 		test_write_gtt(fd);
++	igt_subtest("ptrace")
++		test_ptrace(fd);
+ 	igt_subtest("coherency")
+ 		test_coherency(fd);
+ 	igt_subtest("clflush")
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
