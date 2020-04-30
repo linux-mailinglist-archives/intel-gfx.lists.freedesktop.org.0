@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67DB1BED3D
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 02:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1511BED84
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 03:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91DF76EB32;
-	Thu, 30 Apr 2020 00:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B94F16EB3C;
+	Thu, 30 Apr 2020 01:24:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7D8486EB2E;
- Thu, 30 Apr 2020 00:56:40 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9489A6EB2E;
+ Thu, 30 Apr 2020 01:24:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77B8CA363B;
- Thu, 30 Apr 2020 00:56:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E12BA47DA;
+ Thu, 30 Apr 2020 01:24:24 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 30 Apr 2020 00:56:40 -0000
-Message-ID: <158820820048.31920.2914544972234255098@emeril.freedesktop.org>
+Date: Thu, 30 Apr 2020 01:24:24 -0000
+Message-ID: <158820986455.31921.3720955436593582301@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200430002035.21787-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200430002035.21787-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Add_tiled_blits_selftest?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Add_tiled_blits_selftest?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,21 +49,95 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915/selftests: Add tiled blits selftest
 URL   : https://patchwork.freedesktop.org/series/76746/
-State : warning
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_8397 -> Patchwork_17523
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17523 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17523, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17523:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@client:
+    - fi-bsw-nick:        [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8397/fi-bsw-nick/igt@i915_selftest@live@client.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/fi-bsw-nick/igt@i915_selftest@live@client.html
+    - fi-bsw-kefka:       [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8397/fi-bsw-kefka/igt@i915_selftest@live@client.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/fi-bsw-kefka/igt@i915_selftest@live@client.html
+    - fi-bsw-n3050:       [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8397/fi-bsw-n3050/igt@i915_selftest@live@client.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/fi-bsw-n3050/igt@i915_selftest@live@client.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-guc:         [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8397/fi-icl-guc/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/fi-icl-guc/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17523 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-kbl-guc:         [FAIL][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8397/fi-kbl-guc/igt@kms_setmode@basic-clone-single-crtc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/fi-kbl-guc/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+
+
+Participating hosts (48 -> 40)
+------------------------------
+
+  Missing    (8): fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8397 -> Patchwork_17523
+
+  CI-20190529: 20190529
+  CI_DRM_8397: c46c637c15713b8e4bd42dd47cbe02161318b71d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5615: 7605cfd9463a6778ebb7ebae294a97c5779a6c7f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17523: 94fe0ca107f957a80106a326315af9398be44ed9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 94fe0ca107f9 drm/i915/selftests: Add tiled blits selftest
--:578: WARNING:LINE_SPACING: Missing a blank line after declarations
-#578: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c:671:
-+	struct drm_i915_private *i915 = arg;
-+	I915_RND_STATE(prng);
 
--:623: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author ''
+== Logs ==
 
-total: 0 errors, 2 warnings, 0 checks, 594 lines checked
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17523/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
