@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA5B1C0881
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 22:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 523251C0882
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 22:46:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ABC26E9E2;
-	Thu, 30 Apr 2020 20:45:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 995336E105;
+	Thu, 30 Apr 2020 20:46:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4598A6E959
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 20:45:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57B276E105
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 20:46:21 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075797-1500050 
- for multiple; Thu, 30 Apr 2020 21:44:55 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21075807-1500050 
+ for multiple; Thu, 30 Apr 2020 21:46:10 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 21:44:54 +0100
-Message-Id: <20200430204454.17657-1-chris@chris-wilson.co.uk>
+Date: Thu, 30 Apr 2020 21:46:09 +0100
+Message-Id: <20200430204609.17788-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200430194107.7073-1-chris@chris-wilson.co.uk>
 References: <20200430194107.7073-1-chris@chris-wilson.co.uk>
@@ -121,7 +121,7 @@ index b39c24dae64e..aef917b7f168 100644
  	.close = vm_close,
  };
 diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index ef7abcb3f4ee..401724403cda 100644
+index ef7abcb3f4ee..903022ee6083 100644
 --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
 +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
 @@ -952,6 +952,125 @@ static int igt_mmap(void *arg)
@@ -181,14 +181,14 @@ index ef7abcb3f4ee..401724403cda 100644
 +	}
 +
 +	err = access_process_vm(current, addr, &x, sizeof(x), 0);
-+	if (err < 0) {
++	if (err != sizeof(x)) {
 +		pr_err("%s(%s): access_process_vm() read failed\n",
 +		       obj->mm.region->name, repr_mmap_type(type));
 +		goto out_unmap;
 +	}
 +
 +	err = access_process_vm(current, addr, &B, sizeof(B), FOLL_WRITE);
-+	if (err < 0) {
++	if (err != sizeof(B)) {
 +		pr_err("%s(%s): access_process_vm() write failed\n",
 +		       obj->mm.region->name, repr_mmap_type(type));
 +		goto out_unmap;
