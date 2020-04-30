@@ -1,61 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FC71BF708
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 13:44:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 928E81BF729
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 13:53:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5E86EBA0;
-	Thu, 30 Apr 2020 11:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E07486E24D;
+	Thu, 30 Apr 2020 11:53:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB6436EBA0
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:44:24 +0000 (UTC)
-IronPort-SDR: ufF7dEJxd66yzQdWAs1dpIdvYlwEQzpcLIXh2PRG94U6n06Oe4N/H2VIV0oUwEs/c0+slmWoNi
- cukecRzIo1PA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 298EF6E24D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:53:01 +0000 (UTC)
+IronPort-SDR: m7JD25+FmW88GKjHVZvsMEk0AY02RaZcMfdeHsYIdTWsew693mxxU9m4YvHeh2+rIvQ8LZv4ey
+ E0gJBL/kgZyA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 04:44:24 -0700
-IronPort-SDR: KwfxpeUUsNxb36nKL+ioF5pvhQlR2wJaeWyXaZRweE6ZccfmNoYlkBa8NgDxHcRJGAhpCf04ZK
- TDEy+MRJibGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="294485990"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by orsmga008.jf.intel.com with ESMTP; 30 Apr 2020 04:44:23 -0700
-Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 30 Apr 2020 04:44:23 -0700
-Received: from BGSMSX107.gar.corp.intel.com (10.223.4.191) by
- fmsmsx117.amr.corp.intel.com (10.18.116.17) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 30 Apr 2020 04:44:23 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.58]) by
- BGSMSX107.gar.corp.intel.com ([169.254.9.214]) with mapi id 14.03.0439.000;
- Thu, 30 Apr 2020 17:13:23 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 2/3] drm/i915: Rename variables to be consistent with
- bspec
-Thread-Index: AQHWHle0Hu9QhZwV9E6cMHleem9HOaiRjFOQ
-Date: Thu, 30 Apr 2020 11:43:22 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F824A0E66@BGSMSX104.gar.corp.intel.com>
-References: <20200429185457.26235-1-ville.syrjala@linux.intel.com>
- <20200429185457.26235-2-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200429185457.26235-2-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 04:53:00 -0700
+IronPort-SDR: KG0iy+UsLnqoGfXlAWJfUphkNYT3taw0PXINrbe7kgj/PPbkqV2uO6QXjQw29Vni9ukgDCVu8M
+ njkf4x3Mq6BQ==
+X-IronPort-AV: E=Sophos;i="5.73,334,1583222400"; d="scan'208";a="432935004"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 04:52:59 -0700
+Date: Thu, 30 Apr 2020 14:48:35 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200430114835.GA22319@intel.com>
+References: <20200423075902.21892-4-stanislav.lisovskiy@intel.com>
+ <20200430092104.GO6112@intel.com> <20200430100515.GA2691@intel.com>
+ <20200430103217.GR6112@intel.com>
+ <20200430104702.GA31341@intel.com>
+ <20200430105559.GT6112@intel.com>
+ <20200430110702.GA22144@intel.com>
+ <20200430112202.GU6112@intel.com>
+ <20200430112951.GA22275@intel.com>
+ <20200430114037.GV6112@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Rename variables to be
- consistent with bspec
+Content-Disposition: inline
+In-Reply-To: <20200430114037.GV6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v26 3/9] drm/i915: Track active_pipes in
+ bw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,95 +56,394 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogVmlsbGUgU3lyamFsYSA8
-dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBBcHJpbCAz
-MCwgMjAyMCAxMjoyNSBBTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0K
-PiBDYzogR3VwdGEsIEFuc2h1bWFuIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+OyBTaGFua2Fy
-LCBVbWENCj4gPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gU3ViamVjdDogW1BBVENIIDIvM10g
-ZHJtL2k5MTU6IFJlbmFtZSB2YXJpYWJsZXMgdG8gYmUgY29uc2lzdGVudCB3aXRoIGJzcGVjDQo+
-IA0KPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-Pg0KPiANCj4gU2luY2UgdGhlIGNvZGUgc2VlbXMgaW5zaXN0ZW50IG9uIHVzaW5nIHRoZSB2YXJp
-YWJsZSBuYW1lcyBmcm9tIHRoZSBic3BlYyBmb3JtdWxhdCwNCj4gbGV0J3MgYmUgY29uc2lzdGVu
-dCBhbmQgdXNlIHRob3NlIG5hbWVzIGZvciBhbGwgdGhlIHRoaW5ncy4gRm9yIHNvbWUgcmVhc29u
-ICdsaW5rX2NsaycNCj4gYW5kICdsYW5lcycgd2VyZSBsZWZ0IG91dCBpbiB0aGUgY29kZSB1bnRp
-bCBub3cuDQoNCkxvb2tzIEdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVt
-YS5zaGFua2FyQGludGVsLmNvbT4NCg0KPiBDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1
-cHRhQGludGVsLmNvbT4NCj4gQ2M6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+
-DQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9h
-dWRpby5jIHwgMzAgKysrKysrKysrKysrLS0tLS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDE3
-IGluc2VydGlvbnMoKyksIDEzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYw0KPiBpbmRleCBmNTY4NmU1MDgzM2YuLjAwZjdh
-M2NmOWEwNCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9hdWRpby5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVk
-aW8uYw0KPiBAQCAtNTI2LDYgKzUyNiw3IEBAIHN0YXRpYyB1bnNpZ25lZCBpbnQgZ2V0X2hibGFu
-a19lYXJseV9lbmFibGVfY29uZmlnKHN0cnVjdA0KPiBpbnRlbF9lbmNvZGVyICplbmNvZGVyDQo+
-ICAJdW5zaWduZWQgaW50IGhibGFua19yaXNlLCBoYmxhbmtfZWFybHlfcHJvZzsNCj4gIAl1bnNp
-Z25lZCBpbnQgaF9hY3RpdmUsIGhfdG90YWwsIGhibGFua19kZWx0YSwgcGl4ZWxfY2xrOw0KPiAg
-CXVuc2lnbmVkIGludCBmZWNfY29lZmYsIGNkY2xrLCB2ZHNjX2JwcDsNCj4gKwl1bnNpZ25lZCBp
-bnQgbGlua19jbGssIGxhbmVzOw0KPiANCj4gIAloX2FjdGl2ZSA9IGNydGNfc3RhdGUtPmh3LmFk
-anVzdGVkX21vZGUuY3J0Y19oZGlzcGxheTsNCj4gIAloX3RvdGFsID0gY3J0Y19zdGF0ZS0+aHcu
-YWRqdXN0ZWRfbW9kZS5jcnRjX2h0b3RhbDsNCj4gQEAgLTUzNCw0MCArNTM1LDQwIEBAIHN0YXRp
-YyB1bnNpZ25lZCBpbnQgZ2V0X2hibGFua19lYXJseV9lbmFibGVfY29uZmlnKHN0cnVjdA0KPiBp
-bnRlbF9lbmNvZGVyICplbmNvZGVyDQo+ICAJY2RjbGsgPSBpOTE1LT5jZGNsay5ody5jZGNsazsN
-Cj4gIAkvKiBmZWM9IDAuOTcyMjYxLCB1c2luZyByb3VuZGluZyBtdWx0aXBsaWVyIG9mIDEwMDAw
-MDAgKi8NCj4gIAlmZWNfY29lZmYgPSA5NzIyNjE7DQo+ICsJbGlua19jbGsgPSBjcnRjX3N0YXRl
-LT5wb3J0X2Nsb2NrOw0KPiArCWxhbmVzID0gY3J0Y19zdGF0ZS0+bGFuZV9jb3VudDsNCj4gDQo+
-ICAJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgImhfYWN0aXZlID0gJXUgbGlua19jbGsgPSAldSA6
-Ig0KPiAgCQkgICAgImxhbmVzID0gJXUgdmRzY19icHAgPSAldSBjZGNsayA9ICV1XG4iLA0KPiAt
-CQkgICAgaF9hY3RpdmUsIGNydGNfc3RhdGUtPnBvcnRfY2xvY2ssIGNydGNfc3RhdGUtPmxhbmVf
-Y291bnQsDQo+IC0JCSAgICB2ZHNjX2JwcCwgY2RjbGspOw0KPiArCQkgICAgaF9hY3RpdmUsIGxp
-bmtfY2xrLCBsYW5lcywgdmRzY19icHAsIGNkY2xrKTsNCj4gDQo+IC0JaWYgKFdBUk5fT04oIWNy
-dGNfc3RhdGUtPnBvcnRfY2xvY2sgfHwgIWNydGNfc3RhdGUtPmxhbmVfY291bnQgfHwNCj4gLQkJ
-ICAgICFjcnRjX3N0YXRlLT5kc2MuY29tcHJlc3NlZF9icHAgfHwgIWk5MTUtPmNkY2xrLmh3LmNk
-Y2xrKSkNCj4gKwlpZiAoV0FSTl9PTighbGlua19jbGsgfHwgIWxhbmVzIHx8ICF2ZHNjX2JwcCB8
-fCAhY2RjbGspKQ0KPiAgCQlyZXR1cm4gMDsNCj4gDQo+ICAJbGlua19jbGtzX2F2YWlsYWJsZSA9
-ICgoKChoX3RvdGFsIC0gaF9hY3RpdmUpICoNCj4gLQkJCSAgICAgICAoKGNydGNfc3RhdGUtPnBv
-cnRfY2xvY2sgKiBST1VORElOR19GQUNUT1IpIC8NCj4gKwkJCSAgICAgICAoKGxpbmtfY2xrICog
-Uk9VTkRJTkdfRkFDVE9SKSAvDQo+ICAJCQkJcGl4ZWxfY2xrKSkgLyBST1VORElOR19GQUNUT1Ip
-IC0gMjgpOw0KPiAgCWxpbmtfY2xrc19yZXF1aXJlZCA9IERJVl9ST1VORF9VUCgxOTIwMDAsICgx
-MDAwICogcGl4ZWxfY2xrIC8gaF90b3RhbCkpICoNCj4gKCg0OCAvDQo+IC0JCQkJCSAgY3J0Y19z
-dGF0ZS0+bGFuZV9jb3VudCkgKyAyKTsNCj4gKwkJCQkJICBsYW5lcykgKyAyKTsNCj4gDQo+ICAJ
-aWYgKGxpbmtfY2xrc19hdmFpbGFibGUgPiBsaW5rX2Nsa3NfcmVxdWlyZWQpDQo+ICAJCWhibGFu
-a19kZWx0YSA9IDMyOw0KPiAgCWVsc2UNCj4gIAkJaGJsYW5rX2RlbHRhID0gRElWX1JPVU5EX1VQ
-KCgoKCg1ICogUk9VTkRJTkdfRkFDVE9SKSAvDQo+IC0JCQkJCSAgICBjcnRjX3N0YXRlLT5wb3J0
-X2Nsb2NrKSArICgoNSAqDQo+ICsJCQkJCSAgICBsaW5rX2NsaykgKyAoKDUgKg0KPiAgCQkJCQkg
-ICAgUk9VTkRJTkdfRkFDVE9SKSAvDQo+ICAJCQkJCSAgICBjZGNsaykpICogcGl4ZWxfY2xrKSwN
-Cj4gIAkJCQkJICAgIFJPVU5ESU5HX0ZBQ1RPUik7DQo+IA0KPiAtCXR1X2RhdGEgPSAocGl4ZWxf
-Y2xrICogdmRzY19icHAgKiA4KSAvICgoY3J0Y19zdGF0ZS0+cG9ydF9jbG9jayAqDQo+IC0JCSAg
-IGNydGNfc3RhdGUtPmxhbmVfY291bnQgKiBmZWNfY29lZmYpIC8gMTAwMDAwMCk7DQo+IC0JdHVf
-bGluZSA9ICgoKGhfYWN0aXZlICogY3J0Y19zdGF0ZS0+cG9ydF9jbG9jayAqIGZlY19jb2VmZikg
-Lw0KPiArCXR1X2RhdGEgPSAocGl4ZWxfY2xrICogdmRzY19icHAgKiA4KSAvICgobGlua19jbGsg
-Kg0KPiArCQkgICBsYW5lcyAqIGZlY19jb2VmZikgLyAxMDAwMDAwKTsNCj4gKwl0dV9saW5lID0g
-KCgoaF9hY3RpdmUgKiBsaW5rX2NsayAqIGZlY19jb2VmZikgLw0KPiAgCQkgICAxMDAwMDAwKSAv
-ICg2NCAqIHBpeGVsX2NsaykpOw0KPiAgCWxpbmtfY2xrc19hY3RpdmUgID0gKHR1X2xpbmUgLSAx
-KSAqIDY0ICsgdHVfZGF0YTsNCj4gDQo+ICAJaGJsYW5rX3Jpc2UgPSAoKGxpbmtfY2xrc19hY3Rp
-dmUgKyA2ICogRElWX1JPVU5EX1VQKGxpbmtfY2xrc19hY3RpdmUsDQo+ICAJCQkyNTApICsgNCkg
-KiAoKHBpeGVsX2NsayAqIFJPVU5ESU5HX0ZBQ1RPUikgLw0KPiAtCQkJY3J0Y19zdGF0ZS0+cG9y
-dF9jbG9jaykpIC8gUk9VTkRJTkdfRkFDVE9SOw0KPiArCQkJbGlua19jbGspKSAvIFJPVU5ESU5H
-X0ZBQ1RPUjsNCj4gDQo+ICAJaGJsYW5rX2Vhcmx5X3Byb2cgPSBoX2FjdGl2ZSAtIGhibGFua19y
-aXNlICsgaGJsYW5rX2RlbHRhOw0KPiANCj4gQEAgLTU3NywxNiArNTc4LDE5IEBAIHN0YXRpYyB1
-bnNpZ25lZCBpbnQgZ2V0X2hibGFua19lYXJseV9lbmFibGVfY29uZmlnKHN0cnVjdA0KPiBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyICBzdGF0aWMgdW5zaWduZWQgaW50IGdldF9zYW1wbGVfcm9vbV9y
-ZXFfY29uZmlnKGNvbnN0DQo+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKSAg
-ew0KPiAgCXVuc2lnbmVkIGludCBoX2FjdGl2ZSwgaF90b3RhbCwgcGl4ZWxfY2xrOw0KPiArCXVu
-c2lnbmVkIGludCBsaW5rX2NsaywgbGFuZXM7DQo+ICAJdW5zaWduZWQgaW50IHNhbXBsZXNfcm9v
-bTsNCj4gDQo+ICAJaF9hY3RpdmUgPSBjcnRjX3N0YXRlLT5ody5hZGp1c3RlZF9tb2RlLmhkaXNw
-bGF5Ow0KPiAgCWhfdG90YWwgPSBjcnRjX3N0YXRlLT5ody5hZGp1c3RlZF9tb2RlLmh0b3RhbDsN
-Cj4gIAlwaXhlbF9jbGsgPSBjcnRjX3N0YXRlLT5ody5hZGp1c3RlZF9tb2RlLmNsb2NrOw0KPiAr
-CWxpbmtfY2xrID0gY3J0Y19zdGF0ZS0+cG9ydF9jbG9jazsNCj4gKwlsYW5lcyA9IGNydGNfc3Rh
-dGUtPmxhbmVfY291bnQ7DQo+IA0KPiAtCXNhbXBsZXNfcm9vbSA9ICgoKChoX3RvdGFsIC0gaF9h
-Y3RpdmUpICogKChjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrICoNCj4gKwlzYW1wbGVzX3Jvb20gPSAo
-KCgoaF90b3RhbCAtIGhfYWN0aXZlKSAqICgobGlua19jbGsgKg0KPiAgCQkJUk9VTkRJTkdfRkFD
-VE9SKSAvIHBpeGVsX2NsaykpIC8NCj4gIAkJCVJPVU5ESU5HX0ZBQ1RPUikgLSAxMikgLyAoKDQ4
-IC8NCj4gLQkJCWNydGNfc3RhdGUtPmxhbmVfY291bnQpICsgMik7DQo+ICsJCQlsYW5lcykgKyAy
-KTsNCj4gDQo+ICAJcmV0dXJuIHNhbXBsZXNfcm9vbTsNCj4gIH0NCj4gLS0NCj4gMi4yNC4xDQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Thu, Apr 30, 2020 at 02:40:37PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Apr 30, 2020 at 02:29:51PM +0300, Lisovskiy, Stanislav wrote:
+> > On Thu, Apr 30, 2020 at 02:22:02PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Thu, Apr 30, 2020 at 02:07:02PM +0300, Lisovskiy, Stanislav wrote:
+> > > > On Thu, Apr 30, 2020 at 01:55:59PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > > On Thu, Apr 30, 2020 at 01:47:02PM +0300, Lisovskiy, Stanislav wr=
+ote:
+> > > > > > On Thu, Apr 30, 2020 at 01:32:17PM +0300, Ville Syrj=E4l=E4 wro=
+te:
+> > > > > > > On Thu, Apr 30, 2020 at 01:05:15PM +0300, Lisovskiy, Stanisla=
+v wrote:
+> > > > > > > > On Thu, Apr 30, 2020 at 12:21:04PM +0300, Ville Syrj=E4l=E4=
+ wrote:
+> > > > > > > > > On Thu, Apr 23, 2020 at 10:58:56AM +0300, Stanislav Lisov=
+skiy wrote:
+> > > > > > > > > > We need to calculate SAGV mask also in a non-modeset
+> > > > > > > > > > commit, however currently active_pipes are only calcula=
+ted
+> > > > > > > > > > for modesets in global atomic state, thus now we will be
+> > > > > > > > > > tracking those also in bw_state in order to be able to
+> > > > > > > > > > properly access global data.
+> > > > > > > > > > =
+
+> > > > > > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy=
+@intel.com>
+> > > > > > > > > > ---
+> > > > > > > > > >  drivers/gpu/drm/i915/display/intel_bw.h |  3 +++
+> > > > > > > > > >  drivers/gpu/drm/i915/intel_pm.c         | 15 +++++++++=
++-----
+> > > > > > > > > >  2 files changed, 13 insertions(+), 5 deletions(-)
+> > > > > > > > > > =
+
+> > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/=
+drivers/gpu/drm/i915/display/intel_bw.h
+> > > > > > > > > > index d6df91058223..898b4a85ccab 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > > > > > > > @@ -26,6 +26,9 @@ struct intel_bw_state {
+> > > > > > > > > >  =
+
+> > > > > > > > > >  	unsigned int data_rate[I915_MAX_PIPES];
+> > > > > > > > > >  	u8 num_active_planes[I915_MAX_PIPES];
+> > > > > > > > > > +
+> > > > > > > > > > +	/* bitmask of active pipes */
+> > > > > > > > > > +	u8 active_pipes;
+> > > > > > > > > >  };
+> > > > > > > > > >  =
+
+> > > > > > > > > >  #define to_intel_bw_state(x) container_of((x), struct =
+intel_bw_state, base)
+> > > > > > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/=
+gpu/drm/i915/intel_pm.c
+> > > > > > > > > > index 7e15cf3368ad..f7249bca3f6f 100644
+> > > > > > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > > > > > @@ -3874,6 +3874,7 @@ static int intel_compute_sagv_mas=
+k(struct intel_atomic_state *state)
+> > > > > > > > > >  	struct intel_bw_state *new_bw_state =3D NULL;
+> > > > > > > > > >  	const struct intel_bw_state *old_bw_state =3D NULL;
+> > > > > > > > > >  	int i;
+> > > > > > > > > > +	bool active_pipes_calculated =3D false;
+> > > > > > > > > >  =
+
+> > > > > > > > > >  	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > > > > > > >  					 new_crtc_state, i) {
+> > > > > > > > > > @@ -3883,6 +3884,12 @@ static int intel_compute_sagv_ma=
+sk(struct intel_atomic_state *state)
+> > > > > > > > > >  =
+
+> > > > > > > > > >  		old_bw_state =3D intel_atomic_get_old_bw_state(state=
+);
+> > > > > > > > > >  =
+
+> > > > > > > > > > +		if (!active_pipes_calculated) {
+> > > > > > > > > > +			state->active_pipes =3D new_bw_state->active_pipes =
+=3D
+> > > > > > > > > =
+
+> > > > > > > > > I don't think we should touch state->active_pipes here.
+> > > > > > > > =
+
+> > > > > > > > Well, that was my question actually here as well. I underst=
+and that changing
+> > > > > > > > state->active_pipes here feels like some unneeded side effe=
+ct, however having
+> > > > > > > > state->active_pipes and bw_state->active_pipes going out of=
+ sync doesn't sound
+> > > > > > > > very attractive to me either. That is why I don't like this=
+ idea of duplication
+> > > > > > > > at all - having constant need to sync those state, bw_state=
+, cdclk_state, because
+> > > > > > > > they all might have different active_pipes now.
+> > > > > > > =
+
+> > > > > > > Having an out of date active_pipes anywhere would be a bug in=
+ that
+> > > > > > > specific code. Also state->active_pipes is definitely going t=
+he way of
+> > > > > > > the dodo soon.
+> > > > > > > =
+
+> > > > > > > > =
+
+> > > > > > > > > =
+
+> > > > > > > > > > +				intel_calc_active_pipes(state, old_bw_state->activ=
+e_pipes);
+> > > > > > > > > > +			active_pipes_calculated =3D true;
+> > > > > > > > > > +		}
+> > > > > > > > > =
+
+> > > > > > > > > I'd do this after the loop so we don't need this extra bo=
+olean. As far
+> > > > > > > > > as the active_pipes check in intel_crtc_can_enable_sagv()=
+, I think we
+> > > > > > > > > can pull it out into intel_compute_sagv_mask() so that we=
+ do the check
+> > > > > > > > > after computing the mask. And of course change it to use
+> > > > > > > > > bw_state->active_pipes instead.
+> > > > > > > > =
+
+> > > > > > > > intel_crtc_can_enable_sagv is called per crtc - so can't ju=
+st pull it out, =
+
+> > > > > > > > will have to have to cycles then - one will compute bw_stat=
+e->active_pipes,
+> > > > > > > > and another pipe_sagv_mask.
+> > > > > > > =
+
+> > > > > > > Hmm. Actually I think what we should probably do is keep the
+> > > > > > > active_pipes check in intel_can_enable_sagv(). Ie something l=
+ike this:
+> > > > > > > =
+
+> > > > > > > intel_can_enable_sagv(bw_state) {
+> > > > > > > 	if (active_pipes && !is_power_of_2(active_pipes))
+> > > > > > > 	    	return false;
+> > > > > > > 	return sagv_reject !=3D 0;
+> > > > > > > }
+> > > > > > =
+
+> > > > > > I need active_pipes check here for skl code only, as it disable=
+s SAGV for multipipe
+> > > > > > scenarios. Adding this here would generalize it for other platf=
+orms and we
+> > > > > > don't want that for ICL+.
+> > > > > =
+
+> > > > > Which is why I said "We can then make the check conditional on pr=
+e-icl
+> > > > > (or whatever we want) in a later patch". Why in a later patch? Be=
+cause
+> > > > > currently the check is unconditional and it's generally a good id=
+ea to
+> > > > > limit the number of functional changes per patch to a minimum.
+> > > > =
+
+> > > > Moving active_pipes check out of intel_crtc_can_enable_sagv will re=
+sult
+> > > > in wrong SAGV mask calculated.
+> > > > =
+
+> > > > i.e if you have 2 pipes,
+> > > > =
+
+> > > > for_each_crtc() {
+> > > > 	if (crtc_can_sagv())
+> > > > 		sagv_reject &=3D ~pipe;
+> > > > 	else
+> > > > 		sagv_reject |=3D pipe;
+> > > > }
+> > > > =
+
+> > > > will calculate sagv_reject as 0 which is wrong and value will be st=
+ored
+> > > > in global state.
+> > > =
+
+> > > No, it accurately reflects whether each of those pipes is capable of
+> > > sagv. The single pipe restriction is an additinal constrain on top of
+> > > that. In fact I think adjusting sagv_reject_mask based on this would
+> > > result in the wrong value potentially. Consider for example:
+> > > =
+
+> > > 1. Enable pipe A + B
+> > > 2. sagv_reject would be calculated as 0x3
+> > > 3. Disable pipe B
+> > > 4. sagv_reject will have pipe B removed, leaving its value at 0x1
+> > > 5. No SAGV even though we only have one pipe enabled, which is wrong
+> > =
+
+> > Quite good example. I think it means that pipe_sagv_mask should
+> > be affected not only by per crtc checks, but also by overall active_pip=
+es
+> > state then. I.e ok, I remove active_pipes from intel_crtc_can_enable_sa=
+gv,
+> > however that active_pipes && !is_power_of_2(active_pipes) check should
+> > then also assign pipe_sagv_reject mask to ~0, if it evaluates to true.
+> =
+
+> That would clobber the bits of sagv_reject for all crtcs, not just
+> the ones part of the state currently. Ie. the very same example
+> I gave would still do the wrong thing.
+
+Sounds like we might want to reserve one bit from SAGV mask as "global
+SAGV reject" flag, for non-crtc related checks.
+
+I.e if we have active_pipes > 1 for skl, we just set sagv_mask |=3D 0x80
+for instance - that will make your example work and also we will be storing
+SAGV result in a single variable.
+
+Stan
+
+> =
+
+> > =
+
+> > I.e then we will always have intel_can_enable_sagv result reflected in
+> > sagv mask, which is handy, also intel_can_enable_sagv would still
+> > just evaluate sagv mask.
+> > =
+
+> > Stan
+> > =
+
+> > > =
+
+> > > > I think active_pipes should always affect the SAGV mask
+> > > > otherwise we do get really strange situation: you have SAGV mask as=
+ 0,
+> > > > but you still reject SAGV. So there is no way even then to track wh=
+at =
+
+> > > > was the previous SAGV state - even if it's 0 it could have been rej=
+ected.
+> > > > =
+
+> > > > IMO that is quite weird side effect. So removing active_pipes from
+> > > > intel_crtc_can_enable_sagv doesn't sound like good idea.
+> > > > =
+
+> > > > I think it is now just a bit too much hassle around simple =
+
+> > > > active_pipes_calculated boolean check.
+> > > > =
+
+> > > > Stan
+> > > > =
+
+> > > > > =
+
+> > > > > > =
+
+> > > > > > In fact that is the only reason I need active pipes here - othe=
+rwise I think
+> > > > > > it was even your comment that we actually don't need those here=
+ at all,
+> > > > > > as we just iterate through crtcs in state - pretty clearly reme=
+mber we discussed
+> > > > > > this. Just same way how it's done in intel bw check and other p=
+laces.
+> > > > > > =
+
+> > > > > > Stan
+> > > > > > =
+
+> > > > > > > =
+
+> > > > > > > compute_sagv() {
+> > > > > > > 	for_each_crtc() {
+> > > > > > > 		if (crtc_can_sagv())
+> > > > > > > 			sagv_reject &=3D ~pipe;
+> > > > > > > 		else
+> > > > > > > 			sagv_reject |=3D pipe;
+> > > > > > > 	}
+> > > > > > > 	=
+
+> > > > > > > 	active_pipes =3D calc_active_pipes();
+> > > > > > > =
+
+> > > > > > > 	... lock/serialize etc.
+> > > > > > > }
+> > > > > > > =
+
+> > > > > > > That way we don't have to update sagv_reject at all based on
+> > > > > > > active_pipes. I think that even makes more sense since the
+> > > > > > > active_pipes check is a global thing and not tied to any spec=
+ific
+> > > > > > > crtc.
+> > > > > > > =
+
+> > > > > > > We can then make the check conditional on pre-icl (or whateve=
+r we want)
+> > > > > > > in a later patch. And finally we can remove it altogether in =
+a separate
+> > > > > > > patch, since I don't think we should have to do it on any pla=
+tform.
+> > > > > > > =
+
+> > > > > > > > =
+
+> > > > > > > > > =
+
+> > > > > > > > > We're also going to need to lock_global_state() if bw_sta=
+te->active_pipes
+> > > > > > > > > mask changes.
+> > > > > > > > =
+
+> > > > > > > > Ohh.. right.
+> > > > > > > > =
+
+> > > > > > > > =
+
+> > > > > > > > Stan
+> > > > > > > > =
+
+> > > > > > > > > =
+
+> > > > > > > > > > +
+> > > > > > > > > >  		if (intel_crtc_can_enable_sagv(new_crtc_state))
+> > > > > > > > > >  			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe=
+);
+> > > > > > > > > >  		else
+> > > > > > > > > > @@ -5911,11 +5918,9 @@ skl_compute_wm(struct intel_atom=
+ic_state *state)
+> > > > > > > > > >  	if (ret)
+> > > > > > > > > >  		return ret;
+> > > > > > > > > >  =
+
+> > > > > > > > > > -	if (state->modeset) {
+> > > > > > > > > > -		ret =3D intel_compute_sagv_mask(state);
+> > > > > > > > > > -		if (ret)
+> > > > > > > > > > -			return ret;
+> > > > > > > > > > -	}
+> > > > > > > > > > +	ret =3D intel_compute_sagv_mask(state);
+> > > > > > > > > > +	if (ret)
+> > > > > > > > > > +		return ret;
+> > > > > > > > > =
+
+> > > > > > > > > We also need to remove the state->modeset checks around
+> > > > > > > > > sagv_{pre,post}_update().
+> > > > > > > > > =
+
+> > > > > > > > > >  =
+
+> > > > > > > > > >  	/*
+> > > > > > > > > >  	 * skl_compute_ddb() will have adjusted the final wat=
+ermarks
+> > > > > > > > > > -- =
+
+> > > > > > > > > > 2.24.1.485.gad05a3d8e5
+> > > > > > > > > =
+
+> > > > > > > > > -- =
+
+> > > > > > > > > Ville Syrj=E4l=E4
+> > > > > > > > > Intel
+> > > > > > > =
+
+> > > > > > > -- =
+
+> > > > > > > Ville Syrj=E4l=E4
+> > > > > > > Intel
+> > > > > =
+
+> > > > > -- =
+
+> > > > > Ville Syrj=E4l=E4
+> > > > > Intel
+> > > =
+
+> > > -- =
+
+> > > Ville Syrj=E4l=E4
+> > > Intel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
