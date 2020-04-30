@@ -2,29 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE831C06F9
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 21:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93D431C0739
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2020 22:00:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D371C6E899;
-	Thu, 30 Apr 2020 19:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 724686E430;
+	Thu, 30 Apr 2020 20:00:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4570F6E46F;
- Thu, 30 Apr 2020 19:51:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21076036-1500050 
- for multiple; Thu, 30 Apr 2020 20:51:35 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48B446E430
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 20:00:53 +0000 (UTC)
+IronPort-SDR: 0Vo6TOzt6qVATMtDUZhfw7yg4Gd4m4lOvh+QSadndmmmFlyWlvjFVUcEuIsCRpMZW8/ONHFrsZ
+ +4ZGkAqUwpSQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 13:00:52 -0700
+IronPort-SDR: UJAIVYinThxmU5Mq6eyz6hpO1VfMSB4MIIcGhm8MSiUTPffx66VK48HBj2FdACOB5p2p+nQhhg
+ szVAYW6gUIng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,337,1583222400"; d="scan'208";a="459697524"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga005.fm.intel.com with ESMTP; 30 Apr 2020 13:00:50 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 20:51:34 +0100
-Message-Id: <20200430195134.1044125-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Date: Thu, 30 Apr 2020 22:56:34 +0300
+Message-Id: <20200430195634.7666-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200423075902.21892-4-stanislav.lisovskiy@intel.com>
+References: <20200423075902.21892-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] igt/gem_mmap_offset: Simulate gdb
- inspecting any mmap using ptrace()
+Subject: [Intel-gfx] [PATCH v26 3/9] drm/i915: Track active_pipes in bw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +47,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gdb uses ptrace() to peek and poke bytes of the target's address space.
-The kernel must implement an vm_ops->access() handler or else gdb will
-be unable to inspect the pointer and report it as out-of-bounds. Worse
-than useless as it causes immediate suspicion of the valid GPU pointer.
+We need to calculate SAGV mask also in a non-modeset
+commit, however currently active_pipes are only calculated
+for modesets in global atomic state, thus now we will be
+tracking those also in bw_state in order to be able to
+properly access global data.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+v2: - Removed pre/post plane SAGV updates from modeset(Ville)
+    - Now tracking active pipes in intel_can_enable_sagv(Ville)
+
+v3: - lock global state if active_pipes change as well(Ville)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- tests/i915/gem_mmap_offset.c | 91 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 90 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bw.h      |  3 +++
+ drivers/gpu/drm/i915/display/intel_display.c |  9 +++----
+ drivers/gpu/drm/i915/intel_pm.c              | 27 ++++++++++----------
+ 3 files changed, 21 insertions(+), 18 deletions(-)
 
-diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
-index 1ec963b25..c10cf606f 100644
---- a/tests/i915/gem_mmap_offset.c
-+++ b/tests/i915/gem_mmap_offset.c
-@@ -23,9 +23,12 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index d6df91058223..898b4a85ccab 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -26,6 +26,9 @@ struct intel_bw_state {
  
- #include <errno.h>
- #include <pthread.h>
-+#include <signal.h>
- #include <stdatomic.h>
--#include <sys/stat.h>
- #include <sys/ioctl.h>
-+#include <sys/ptrace.h>
-+#include <sys/stat.h>
-+#include <sys/wait.h>
- #include "drm.h"
+ 	unsigned int data_rate[I915_MAX_PIPES];
+ 	u8 num_active_planes[I915_MAX_PIPES];
++
++	/* bitmask of active pipes */
++	u8 active_pipes;
+ };
  
- #include "igt.h"
-@@ -265,6 +268,89 @@ static void pf_nonblock(int i915)
- 	igt_spin_free(i915, spin);
+ #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index adb08a00bb57..136826edaf49 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -15365,11 +15365,11 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 
+ 		intel_set_cdclk_pre_plane_update(state);
+ 
+-		intel_sagv_pre_plane_update(state);
+-
+ 		intel_modeset_verify_disabled(dev_priv, state);
+ 	}
+ 
++	intel_sagv_pre_plane_update(state);
++
+ 	/* Complete the events for pipes that have now been disabled */
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		bool modeset = needs_modeset(new_crtc_state);
+@@ -15462,11 +15462,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	intel_check_cpu_fifo_underruns(dev_priv);
+ 	intel_check_pch_fifo_underruns(dev_priv);
+ 
+-	if (state->modeset) {
++	if (state->modeset)
+ 		intel_verify_planes(state);
+ 
+-		intel_sagv_post_plane_update(state);
+-	}
++	intel_sagv_post_plane_update(state);
+ 
+ 	drm_atomic_helper_commit_hw_done(&state->base);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 8d458cf0333d..005549d0b778 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -3806,7 +3806,6 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+ 
+ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ {
+-	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	struct intel_plane *plane;
+@@ -3819,13 +3818,6 @@ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state
+ 	if (!crtc_state->hw.active)
+ 		return true;
+ 
+-	/*
+-	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+-	 * more then one pipe enabled
+-	 */
+-	if (hweight8(state->active_pipes) > 1)
+-		return false;
+-
+ 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+ 		return false;
+ 
+@@ -3863,6 +3855,9 @@ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state
+ 
+ bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+ {
++	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pipes))
++		return false;
++
+ 	return bw_state->pipe_sagv_reject == 0;
  }
  
-+static void *memchr_inv(const void *s, int c, size_t n)
-+{
-+	const uint8_t *us = s;
-+	const uint8_t uc = c;
-+
-+#pragma GCC diagnostic push
-+#pragma GCC diagnostic ignored "-Wcast-qual"
-+	while (n--) {
-+		if (*us != uc)
-+			return (void *) us;
-+		us++;
-+	}
-+#pragma GCC diagnostic pop
-+
-+	return NULL;
-+}
-+
-+static void test_ptrace(int i915)
-+{
-+	const unsigned int SZ = 3 * 4096;
-+	unsigned long *ptr, *cpy;
-+	unsigned long AA, CC;
-+	uint32_t bo;
-+
-+	memset(&AA, 0xaa, sizeof(AA));
-+	memset(&CC, 0x55, sizeof(CC));
-+
-+	cpy = malloc(SZ);
-+	bo = gem_create(i915, SZ);
-+
-+	for_each_mmap_offset_type(i915, t) {
-+		igt_dynamic_f("%s", t->name) {
-+			pid_t pid;
-+
-+			ptr = __mmap_offset(i915, bo, 0, SZ,
-+					PROT_READ | PROT_WRITE,
-+					t->type);
-+			if (!ptr)
-+				continue;
-+
-+			memset(cpy, AA, SZ);
-+			memset(ptr, CC, SZ);
-+
-+			igt_assert(!memchr_inv(ptr, CC, SZ));
-+			igt_assert(!memchr_inv(cpy, AA, SZ));
-+
-+			igt_fork(child, 1) {
-+				ptrace(PTRACE_TRACEME, 0, NULL, NULL);
-+				raise(SIGSTOP);
-+			}
-+
-+			/* Wait for the child to ready themselves [SIGSTOP] */
-+			pid = wait(NULL);
-+
-+			ptrace(PTRACE_ATTACH, pid, NULL, NULL);
-+			for (int i = 0; i < SZ / sizeof(long); i++) {
-+				long ret;
-+
-+				ret = ptrace(PTRACE_PEEKDATA, pid, ptr + i);
-+				igt_assert_eq_u64(ret, CC);
-+				cpy[i] = ret;
-+
-+				ret = ptrace(PTRACE_POKEDATA, pid, ptr + i, AA);
-+				igt_assert_eq(ret, 0l);
-+			}
-+			ptrace(PTRACE_DETACH, pid, NULL, NULL);
-+
-+			/* Wakeup the child for it to exit */
-+			kill(SIGCONT, pid);
-+			igt_waitchildren();
-+
-+			/* The two buffers should now be swapped */
-+			igt_assert(!memchr_inv(ptr, AA, SZ));
-+			igt_assert(!memchr_inv(cpy, CC, SZ));
-+
-+			munmap(ptr, SZ);
-+		}
-+	}
-+
-+	gem_close(i915, bo);
-+	free(cpy);
-+}
-+
- static void close_race(int i915, int timeout)
- {
- 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-@@ -530,6 +616,9 @@ igt_main
- 	igt_subtest_f("pf-nonblock")
- 		pf_nonblock(i915);
+@@ -3892,6 +3887,14 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 	if (!new_bw_state)
+ 		return 0;
  
-+	igt_subtest_with_dynamic("ptrace")
-+		test_ptrace(i915);
++	new_bw_state->active_pipes =
++		intel_calc_active_pipes(state, old_bw_state->active_pipes);
++	if (new_bw_state->active_pipes != old_bw_state->active_pipes) {
++		ret = intel_atomic_lock_global_state(&new_bw_state->base);
++		if (ret)
++			return ret;
++	}
 +
- 	igt_describe("Check race between close and mmap offset between threads");
- 	igt_subtest_f("close-race")
- 		close_race(i915, 20);
+ 	if (intel_can_enable_sagv(new_bw_state) != intel_can_enable_sagv(old_bw_state)) {
+ 		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
+ 		if (ret)
+@@ -5915,11 +5918,9 @@ skl_compute_wm(struct intel_atomic_state *state)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (state->modeset) {
+-		ret = intel_compute_sagv_mask(state);
+-		if (ret)
+-			return ret;
+-	}
++	ret = intel_compute_sagv_mask(state);
++	if (ret)
++		return ret;
+ 
+ 	/*
+ 	 * skl_compute_ddb() will have adjusted the final watermarks
 -- 
-2.26.2
+2.24.1.485.gad05a3d8e5
 
 _______________________________________________
 Intel-gfx mailing list
