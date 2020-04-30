@@ -1,40 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096E71C0ADB
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 01:09:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6A21C0ADF
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 01:15:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED016EA3B;
-	Thu, 30 Apr 2020 23:09:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D01116EA44;
+	Thu, 30 Apr 2020 23:15:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D831D6EA43
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 23:08:32 +0000 (UTC)
-IronPort-SDR: RqCZOxS5QFNSuqMnSWYy+2JlLspdNZZhnQEyOB6negCznvqQg8APYHU4m1nelnGGfUKJJ36uPu
- cHjHE2BzE/Gg==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1336EA44
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 23:15:49 +0000 (UTC)
+IronPort-SDR: 4c+vf43yscoYQxARx9LLSYu4b8IYfRG8hcuMiNbH0cctPmDfeBGjD6EBqAR1topzV7ybWwb0pZ
+ p6lmZ5CSiF5A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2020 16:08:31 -0700
-IronPort-SDR: Aj2mJU5cYxzIiWgyboHSIqzCBMmP5ZXuMDQmO2fw8balz9UTKVDHmN3atbLcySn75RnSsEhJ87
- A2K5WjYweisw==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 16:15:48 -0700
+IronPort-SDR: If7DFvWD31EF145PXb+MeaGEOYPFHgjJVAnfnko80BH1cP3P9cm+Mmi5AaJuzYB2a4x/+nOamN
+ /Z00A00aGFkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,337,1583222400"; d="scan'208";a="405581181"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by orsmga004.jf.intel.com with ESMTP; 30 Apr 2020 16:08:30 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,337,1583222400"; d="scan'208";a="293731853"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by fmsmga002.fm.intel.com with ESMTP; 30 Apr 2020 16:15:48 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Apr 2020 16:09:51 -0700
-Message-Id: <20200430230951.2508-12-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20200430230951.2508-1-manasi.d.navare@intel.com>
-References: <20200430230951.2508-1-manasi.d.navare@intel.com>
+Date: Thu, 30 Apr 2020 16:15:25 -0700
+Message-Id: <20200430231529.295556-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 11/11] drm/i915: Add debugfs dumping for
- bigjoiner, v3.
+Subject: [Intel-gfx] [PATCH 0/4] Steer multicast register workaround
+ verification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,90 +45,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris@chris-wilson.co.uk
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+We're seeing some CI errors indicating that a workaround did not apply
+properly on EHL/JSL.  The workaround in question is updating a multicast
+register, the failures are only seen on specific CI machines, and the
+failures only seem to happen on resets and such rather than on initial
+driver load.  It seems likely that the culprit here is failure to steer
+the multicast register readback on a SKU that has slice0 / subslice0
+fused off.
 
-Dump debugfs and planar links as well, this will make it easier to debug
-when things go wrong.
+This series makes a couple changes:
+ * Workaround verification will explicitly steer MCR registers by
+   calling read_subslice_reg rather than a regular read.
+ * New multicast ranges are added for gen11 and gen12.  Sadly this
+   information is still missing from the bspec (just like the updated
+   forcewake tables).  The hardware guys have given us a spreadsheet
+   with both the forcewake and the multicast information while they work
+   on getting the spec properly updated, so that's where the new ranges
+   come from.
 
-v4:
-* Rebase
-Changes since v1:
-- Report planar slaves as such, now that we have the plane_state switch.
-Changes since v2:
-- Rebase on top of the new plane format dumping
+In addition to MCR and forcewake, there's supposed to be some more bspec
+updates coming soon that deal with steering (i.e., different MCR ranges
+should actually be using different registers to steer rather than just
+the 0xFDC register we're familiar with); I don't have the full details
+on that yet, so those updates will have to wait until we actually have
+an updated spec. 
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  | 29 ++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
+References: https://gitlab.freedesktop.org/drm/intel/issues/1222
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 70525623bcdf..c04cad8eb741 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -745,6 +745,17 @@ static void plane_rotation(char *buf, size_t bufsize, unsigned int rotation)
- 		 rotation);
- }
- 
-+static const char *plane_visibility(const struct intel_plane_state *plane_state)
-+{
-+	if (plane_state->uapi.visible)
-+		return "visible";
-+
-+	if (plane_state->planar_slave)
-+		return "planar-slave";
-+
-+	return "hidden";
-+}
-+
- static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- {
- 	const struct intel_plane_state *plane_state =
-@@ -763,12 +774,22 @@ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- 	plane_rotation(rot_str, sizeof(rot_str),
- 		       plane_state->uapi.rotation);
- 
--	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
-+	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
- 		   fb ? fb->base.id : 0, fb ? format_name.str : "n/a",
- 		   fb ? fb->width : 0, fb ? fb->height : 0,
-+		   plane_visibility(plane_state),
- 		   DRM_RECT_FP_ARG(&src),
- 		   DRM_RECT_ARG(&dst),
- 		   rot_str);
-+
-+	if (plane_state->planar_linked_plane)
-+		seq_printf(m, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
-+			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
-+			   plane_state->planar_slave ? "slave" : "master");
-+	if (plane_state->bigjoiner_plane)
-+		seq_printf(m, "\t\tbigjoiner: Linked to [PLANE:%d:%s] as a %s\n",
-+			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
-+			   plane_state->bigjoiner_slave ? "slave" : "master");
- }
- 
- static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
-@@ -864,6 +885,12 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
- 		intel_scaler_info(m, crtc);
- 	}
- 
-+	if (crtc_state->bigjoiner)
-+		seq_printf(m, "\tLinked to [CRTC:%d:%s] as a %s\n",
-+			   crtc_state->bigjoiner_linked_crtc->base.base.id,
-+			   crtc_state->bigjoiner_linked_crtc->base.name,
-+			   crtc_state->bigjoiner_slave ? "slave" : "master");
-+
- 	for_each_intel_encoder_mask(&dev_priv->drm, encoder,
- 				    crtc_state->uapi.encoder_mask)
- 		intel_encoder_info(m, crtc, encoder);
+Matt Roper (4):
+  drm/i915: Setup multicast register steering for all gen >= 10
+  drm/i915: Steer multicast register readback in wa_verify
+  drm/i915: Don't skip verification of MCR engine workarounds
+  drm/i915: Add MCR ranges for gen11 and gen12
+
+ drivers/gpu/drm/i915/gt/intel_engine.h        |   3 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  17 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 146 ++++++++++++------
+ .../gpu/drm/i915/gt/intel_workarounds_types.h |   2 +
+ 4 files changed, 110 insertions(+), 58 deletions(-)
+
 -- 
-2.19.1
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
