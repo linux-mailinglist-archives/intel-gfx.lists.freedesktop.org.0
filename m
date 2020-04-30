@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 203451C0AD0
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 01:06:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7585C1C0AD8
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 01:08:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1436EA1C;
-	Thu, 30 Apr 2020 23:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF276E0E3;
+	Thu, 30 Apr 2020 23:08:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC2346EA1D;
- Thu, 30 Apr 2020 23:06:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A99F6A66C9;
- Thu, 30 Apr 2020 23:06:48 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF626EA23
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 23:08:31 +0000 (UTC)
+IronPort-SDR: Va40ELe5ZXBuZelIWQ3yCZVgQLZ6GAfwmIwZH33liG/vShiE7WKfm+c9P0A6MPq2L1fqcRcOJk
+ +C6YWF9G+87w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 16:08:30 -0700
+IronPort-SDR: gFBB84IZraXSr0u53Ls9GQVYuyrCnQ8J9JInG9W4WmUKfsVE4po4mQGtCNYcjFbat5A1MbQMC/
+ wIe+t0rOjT0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,337,1583222400"; d="scan'208";a="405581149"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by orsmga004.jf.intel.com with ESMTP; 30 Apr 2020 16:08:30 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Apr 2020 16:09:40 -0700
+Message-Id: <20200430230951.2508-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 30 Apr 2020 23:06:48 -0000
-Message-ID: <158828800869.31918.8986958669177775464@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200430194107.7073-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200430194107.7073-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Implement_vm=5Fops-=3Eaccess_for_gdb_access_into_mma?=
- =?utf-8?b?cHMgKHJldjMp?=
+Subject: [Intel-gfx] [PATCH v4 00/11] Rebased Big Joiner patch series for 8K
+ 2p1p
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,50 +45,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IEltcGxlbWVudCB2bV9vcHMt
-PmFjY2VzcyBmb3IgZ2RiIGFjY2VzcyBpbnRvIG1tYXBzIChyZXYzKQpVUkwgICA6IGh0dHBzOi8v
-cGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNzY3ODMvClN0YXRlIDogd2FybmluZwoK
-PT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAg
-IHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJh
-dGVkL2NvbXBpbGUuaAogIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X21tYW4ubwpJbiBmaWxlIGluY2x1ZGVkIGZyb20gLi9pbmNsdWRlL2FzbS1nZW5lcmljL2J1Zy5o
-OjU6MCwKICAgICAgICAgICAgICAgICBmcm9tIC4vYXJjaC94ODYvaW5jbHVkZS9hc20vYnVnLmg6
-ODMsCiAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvYnVnLmg6NSwKICAgICAg
-ICAgICAgICAgICBmcm9tIC4vaW5jbHVkZS9saW51eC9tbWRlYnVnLmg6NSwKICAgICAgICAgICAg
-ICAgICBmcm9tIC4vaW5jbHVkZS9saW51eC9tbS5oOjksCiAgICAgICAgICAgICAgICAgZnJvbSAu
-L2luY2x1ZGUvbGludXgvbW1hbi5oOjUsCiAgICAgICAgICAgICAgICAgZnJvbSBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jOjg6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9zZWxmdGVzdHMvaTkxNV9nZW1fbW1hbi5jOiBJbiBmdW5jdGlvbiDigJhfX2lndF9tbWFwX2Fj
-Y2Vzc+KAmToKLi9pbmNsdWRlL2xpbnV4L2Vyci5oOjIyOjQ5OiBlcnJvcjogY2FzdCB0byBwb2lu
-dGVyIGZyb20gaW50ZWdlciBvZiBkaWZmZXJlbnQgc2l6ZSBbLVdlcnJvcj1pbnQtdG8tcG9pbnRl
-ci1jYXN0XQogI2RlZmluZSBJU19FUlJfVkFMVUUoeCkgdW5saWtlbHkoKHVuc2lnbmVkIGxvbmcp
-KHZvaWQgKikoeCkgPj0gKHVuc2lnbmVkIGxvbmcpLU1BWF9FUlJOTykKICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4KLi9pbmNsdWRlL2xpbnV4L2NvbXBp
-bGVyLmg6Nzg6NDI6IG5vdGU6IGluIGRlZmluaXRpb24gb2YgbWFjcm8g4oCYdW5saWtlbHnigJkK
-ICMgZGVmaW5lIHVubGlrZWx5KHgpIF9fYnVpbHRpbl9leHBlY3QoISEoeCksIDApCiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4KZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9tbWFuLmM6OTk2OjY6IG5vdGU6IGluIGV4cGFuc2lvbiBv
-ZiBtYWNybyDigJhJU19FUlJfVkFMVUXigJkKICBpZiAoSVNfRVJSX1ZBTFVFKGFkZHIpKQogICAg
-ICBefn5+fn5+fn5+fn4KY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJvcnMK
-c2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNjY6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5vJyBmYWlsZWQKbWFrZVs0XTogKioqIFtkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5vXSBFcnJvciAxCnNjcmlwdHMvTWFr
-ZWZpbGUuYnVpbGQ6NDg4OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUn
-IGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlw
-dHMvTWFrZWZpbGUuYnVpbGQ6NDg4OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJt
-JyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9N
-YWtlZmlsZS5idWlsZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVk
-Cm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFrZWZpbGU6MTcyMjogcmVjaXBl
-IGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIK
-Cj09IExvZ3MgPT0KCkZvciBtb3JlIGRldGFpbHMgc2VlOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNzUzMi9idWlsZF8zMmJpdC5sb2cKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+This rebases the big joiner patch series from February:
+https://patchwork.freedesktop.org/series/73014/
+or from Maarten's internal tree:
+https://patchwork.freedesktop.org/series/73014/
+
+This especially needs a thorough review on Patch 10/11 due to
+all the refactoring around commit_modeset_enables
+
+Maarten Lankhorst (11):
+  HAX to make DSC work on the icelake test system
+  drm/i915: Remove hw.mode
+  drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
+  drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
+  drm/i915: Try to make bigjoiner work in atomic check
+  drm/i915: Enable big joiner support in enable and disable sequences.
+  drm/i915: Make hardware readout work on i915.
+  drm/i915: Link planes in a bigjoiner configuration, v3.
+  drm/i915: Add bigjoiner aware plane clipping checks
+  drm/i915: Add intel_update_bigjoiner handling.
+  drm/i915: Add debugfs dumping for bigjoiner, v3.
+
+ drivers/gpu/drm/drm_dp_helper.c               |    4 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |    2 -
+ drivers/gpu/drm/i915/display/intel_atomic.c   |    9 +-
+ drivers/gpu/drm/i915/display/intel_atomic.h   |    3 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  112 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.h |    7 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   81 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 1070 +++++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.h  |   20 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   29 +-
+ .../drm/i915/display/intel_display_types.h    |   32 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  141 ++-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |    2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   16 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   46 +-
+ drivers/gpu/drm/i915/display/intel_sprite.h   |    3 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  199 +--
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |    7 +-
+ drivers/gpu/drm/i915/intel_pm.c               |   92 +-
+ include/drm/drm_dp_helper.h                   |    1 +
+ 20 files changed, 1390 insertions(+), 486 deletions(-)
+
+-- 
+2.19.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
