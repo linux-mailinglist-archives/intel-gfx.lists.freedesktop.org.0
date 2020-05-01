@@ -1,50 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6731C2047
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 00:04:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 671731C2081
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 00:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17A86ED5E;
-	Fri,  1 May 2020 22:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3D0B6ECE5;
+	Fri,  1 May 2020 22:23:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE4536ECE7;
- Fri,  1 May 2020 21:55:26 +0000 (UTC)
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id b79b7d6f;
- Fri, 1 May 2020 21:43:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
- :references:in-reply-to:from:date:message-id:subject:to:cc
- :content-type; s=mail; bh=GBwk1frAmvPVyRR7LTO6C8+MPwQ=; b=FyD4yn
- lg5FFrDdIgRqTVyQvuCQd/D6b31eNZG4cR1WZKbuwF32UJbTtB/x2AqwZ5I5n4MV
- 5bvz9LTBEX3Yen66cNtuT55VKbYvwcTzXuQpvbd41fhdtUs4mMCGVRmYaN1YDWeE
- xBBnnknz7WUQAzEcuPoYFdGYJ6+8NSNf++PFkb04Eic9CaXmVY8pCvBLDTwv2M9V
- AWBl8U4EuO2db51kl2qL2XJxVd96n/XO+gjoOFpMpgfki/kia3FL2GIZqbG7rKVJ
- P90laXF4vjMfMg/SEaqN7xWkk3sKhYTUqCkUgFYGMXmyqICkllPSbJqGJZbrT0pM
- 1kjwQf1Dok2GOteQ==
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 244e58b8
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Fri, 1 May 2020 21:43:21 +0000 (UTC)
-Received: by mail-io1-f45.google.com with SMTP id c2so6215221iow.7;
- Fri, 01 May 2020 14:55:25 -0700 (PDT)
-X-Gm-Message-State: AGi0PuafZxOzT6CHKqJTvcaU1o8fGs2u6DXnEt4h9ufUrGx36RXmPC7V
- VjFKHpsXaxf1HOvnJytlXcgKZeIhnC3bi5MUWBM=
-X-Google-Smtp-Source: APiQypJtn0r3d2QBtiNDkHKo54/QKsvUWyvhMz7w+JkvaOeex9CkkeH4YNxWwVM/8W8LRE48ClMQgV+DndrosQN46FA=
-X-Received: by 2002:a6b:7114:: with SMTP id q20mr5626475iog.79.1588370124889; 
- Fri, 01 May 2020 14:55:24 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 500C76ECE5;
+ Fri,  1 May 2020 22:23:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A077A011A;
+ Fri,  1 May 2020 22:23:23 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200430221016.3866-1-Jason@zx2c4.com>
- <20200501180731.GA2485@infradead.org>
-In-Reply-To: <20200501180731.GA2485@infradead.org>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Fri, 1 May 2020 15:55:14 -0600
-X-Gmail-Original-Message-ID: <CAHmME9pDtoPOwMGZuFAyYyWpOs8cnVO8t3FeOTR+YTeKL6PETg@mail.gmail.com>
-Message-ID: <CAHmME9pDtoPOwMGZuFAyYyWpOs8cnVO8t3FeOTR+YTeKL6PETg@mail.gmail.com>
-To: Christoph Hellwig <hch@infradead.org>
-X-Mailman-Approved-At: Fri, 01 May 2020 22:04:16 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers
- are available before using SIMD
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 01 May 2020 22:23:23 -0000
+Message-ID: <158837180327.18946.15556889116313653337@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200501213701.371443-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200501213701.371443-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/icp=3A_Add_Wa=5F14010685332?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,32 +38,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, stable <stable@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Siewior <bigeasy@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 1, 2020 at 12:07 PM Christoph Hellwig <hch@infradead.org> wrote:
->
-> On Thu, Apr 30, 2020 at 04:10:16PM -0600, Jason A. Donenfeld wrote:
-> > Sometimes it's not okay to use SIMD registers, the conditions for which
-> > have changed subtly from kernel release to kernel release. Usually the
-> > pattern is to check for may_use_simd() and then fallback to using
-> > something slower in the unlikely case SIMD registers aren't available.
-> > So, this patch fixes up i915's accelerated memcpy routines to fallback
-> > to boring memcpy if may_use_simd() is false.
->
-> Err, why does i915 implements its own uncached memcpy instead of relying
-> on core functionality to start with?
+== Series Details ==
 
-I was wondering the same. It sure does seem like this ought to be more
-generalized functionality, with a name that represents the type of
-transfer it's optimized for (wc or similar).
+Series: drm/i915/icp: Add Wa_14010685332
+URL   : https://patchwork.freedesktop.org/series/76841/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8407 -> Patchwork_17547
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17547/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17547 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-guc:         [INCOMPLETE][1] ([i915#1795]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8407/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17547/fi-skl-guc/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1795]: https://gitlab.freedesktop.org/drm/intel/issues/1795
+
+
+Participating hosts (50 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8407 -> Patchwork_17547
+
+  CI-20190529: 20190529
+  CI_DRM_8407: ecb91f743598d9d646fa046c7341058e48494e7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17547: f7dc0952bb4db19d35fabcf0a20047b1f39891cf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f7dc0952bb4d drm/i915/icp: Add Wa_14010685332
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17547/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
