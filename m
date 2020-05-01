@@ -2,29 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1391C121D
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3DD1C1235
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:33:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E10056EC61;
-	Fri,  1 May 2020 12:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE136E2B1;
+	Fri,  1 May 2020 12:33:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 891C86EC61
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 12:23:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21082117-1500050 
- for multiple; Fri, 01 May 2020 13:22:50 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 13:22:49 +0100
-Message-Id: <20200501122249.12417-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5E76E2B1
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 12:33:20 +0000 (UTC)
+IronPort-SDR: gB14a+vd/JvlUTdlKlgg8Lr3SOjJjSD5n8gnYF2YGq8BMe+sfG71sjTGoh+9MIi19lulbn7QDa
+ S23R1TZooGJw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 05:33:19 -0700
+IronPort-SDR: KkFD1pIn8CvmUINb8g5YNIYYM+9aqHQJSRzyXr+tsZwt/+LZukeEmWSedAdth1knREEy87OUmW
+ 58cT27DK3xyQ==
+X-IronPort-AV: E=Sophos;i="5.73,339,1583222400"; d="scan'208";a="283165923"
+Received: from stal1-mobl.ger.corp.intel.com (HELO [10.214.218.50])
+ ([10.214.218.50])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 05:33:17 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200501101900.22543-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <99138c26-b570-4a3b-d48c-a68af08c6e2b@linux.intel.com>
+Date: Fri, 1 May 2020 13:33:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Make timeslicing an explicit
- engine property
+In-Reply-To: <20200501101900.22543-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Use chained reloc batches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,101 +50,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to allow userspace to rely on timeslicing to reorder their
-batches, we must support preemption of those user batches. Declare
-timeslicing as an explicit property that is a combination of having the
-kernel support and HW support.
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine.h       |  9 ---------
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 18 ++++++++++++++----
- drivers/gpu/drm/i915/gt/intel_lrc.c          |  5 ++++-
- 3 files changed, 18 insertions(+), 14 deletions(-)
+On 01/05/2020 11:18, Chris Wilson wrote:
+> The ring is a precious resource: we anticipate to only use a few hundred
+> bytes for a request, and only try to reserve that before we start. If we
+> go beyond our guess in building the request, then instead of waiting at
+> the start of execbuf before we hold any locks or other resources, we
+> may trigger a wait inside a critical region. One example is in using gpu
+> relocations, where currently we emit a new MI_BB_START from the ring
+> every time we overflow a page of relocation entries. However, instead of
+> insert the command into the precious ring, we can chain the next page of
+> relocation entries as MI_BB_START from the end of the previous.
+> 
+> v2: Delay the emit_bb_start until after all the chained vma
+> synchronisation is complete. Since the buffer pool batches are idle, this
+> _should_ be a no-op, but one day we may some fancy async GPU bindings
+> for new vma!
+> 
+> Testcase: igt/gem_exec_reloc/basic-many-active
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 130 +++++++++++++++---
+>   1 file changed, 111 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 414859fa2673..293bf06b65b2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -271,6 +271,7 @@ struct i915_execbuffer {
+>   		struct i915_request *rq;
+>   		u32 *rq_cmd;
+>   		unsigned int rq_size;
+> +		struct i915_vma *rq_vma;
+>   	} reloc_cache;
+>   
+>   	u64 invalid_flags; /** Set of execobj.flags that are invalid */
+> @@ -975,20 +976,111 @@ static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
+>   	return &i915->ggtt;
+>   }
+>   
+> +static int reloc_gpu_chain(struct reloc_cache *cache)
+> +{
+> +	struct intel_gt_buffer_pool_node *pool;
+> +	struct i915_request *rq = cache->rq;
+> +	struct i915_vma *batch;
+> +	u32 *cmd;
+> +	int err;
+> +
+> +	pool = intel_gt_get_buffer_pool(rq->engine->gt, PAGE_SIZE);
+> +	if (IS_ERR(pool))
+> +		return PTR_ERR(pool);
+> +
+> +	batch = i915_vma_instance(pool->obj, rq->context->vm, NULL);
+> +	if (IS_ERR(batch)) {
+> +		err = PTR_ERR(batch);
+> +		goto out_pool;
+> +	}
+> +
+> +	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
+> +	if (err)
+> +		goto out_pool;
+> +
+> +	cmd = cache->rq_cmd + cache->rq_size;
+> +	*cmd++ = MI_ARB_CHECK;
+> +	if (cache->gen >= 8) {
+> +		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
+> +		*cmd++ = lower_32_bits(batch->node.start);
+> +		*cmd++ = upper_32_bits(batch->node.start);
+> +	} else {
+> +		*cmd++ = MI_BATCH_BUFFER_START;
+> +		*cmd++ = lower_32_bits(batch->node.start);
+> +	}
+> +	i915_gem_object_flush_map(cache->rq_vma->obj);
+> +	i915_gem_object_unpin_map(cache->rq_vma->obj);
+> +	cache->rq_vma = NULL;
+> +
+> +	err = intel_gt_buffer_pool_mark_active(pool, rq);
+> +	if (err == 0) {
+> +		i915_vma_lock(batch);
+> +		err = i915_request_await_object(rq, batch->obj, false);
+> +		if (err == 0)
+> +			err = i915_vma_move_to_active(batch, rq, 0);
+> +		i915_vma_unlock(batch);
+> +	}
+> +	i915_vma_unpin(batch);
+> +	if (err)
+> +		goto out_pool;
+> +
+> +	cmd = i915_gem_object_pin_map(pool->obj,
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index d10e52ff059f..19d0b8830905 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -332,13 +332,4 @@ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
- 	return intel_engine_has_preemption(engine);
- }
- 
--static inline bool
--intel_engine_has_timeslices(const struct intel_engine_cs *engine)
--{
--	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
--		return false;
--
--	return intel_engine_has_semaphores(engine);
--}
--
- #endif /* _INTEL_RINGBUFFER_H_ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 3c3225c0332f..6c676774dcd9 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -492,10 +492,11 @@ struct intel_engine_cs {
- #define I915_ENGINE_SUPPORTS_STATS   BIT(1)
- #define I915_ENGINE_HAS_PREEMPTION   BIT(2)
- #define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
--#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(4)
--#define I915_ENGINE_IS_VIRTUAL       BIT(5)
--#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
--#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
-+#define I915_ENGINE_HAS_TIMESLICES   BIT(4)
-+#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(5)
-+#define I915_ENGINE_IS_VIRTUAL       BIT(6)
-+#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
-+#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
- 	unsigned int flags;
- 
- 	/*
-@@ -593,6 +594,15 @@ intel_engine_has_semaphores(const struct intel_engine_cs *engine)
- 	return engine->flags & I915_ENGINE_HAS_SEMAPHORES;
- }
- 
-+static inline bool
-+intel_engine_has_timeslices(const struct intel_engine_cs *engine)
-+{
-+	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
-+		return false;
-+
-+	return engine->flags & I915_ENGINE_HAS_TIMESLICES;
-+}
-+
- static inline bool
- intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 4311b12542fb..d4ef344657b0 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -4801,8 +4801,11 @@ void intel_execlists_set_default_submission(struct intel_engine_cs *engine)
- 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
- 	if (!intel_vgpu_active(engine->i915)) {
- 		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
--		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
-+		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915)) {
- 			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
-+			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
-+				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
-+		}
- 	}
- 
- 	if (INTEL_GEN(engine->i915) >= 12)
--- 
-2.20.1
+batch->obj maybe to be consistent in this block? Few lines above you get 
+to it via batch.
 
+> +				      cache->has_llc ?
+> +				      I915_MAP_FORCE_WB :
+> +				      I915_MAP_FORCE_WC);
+> +	if (IS_ERR(cmd)) {
+> +		err = PTR_ERR(cmd);
+> +		goto out_pool;
+> +	}
+> +
+> +	/* Return with batch mapping (cmd) still pinned */
+> +	cache->rq_cmd = cmd;
+> +	cache->rq_size = 0;
+> +	cache->rq_vma = batch;
+> +
+> +out_pool:
+> +	intel_gt_buffer_pool_put(pool);
+> +	return err;
+> +}
+> +
+> +static unsigned int reloc_bb_flags(const struct reloc_cache *cache)
+> +{
+> +	return cache->gen > 5 ? 0 : I915_DISPATCH_SECURE;
+> +}
+> +
+>   static void reloc_gpu_flush(struct reloc_cache *cache)
+>   {
+> -	struct drm_i915_gem_object *obj = cache->rq->batch->obj;
+> +	struct i915_request *rq;
+> +	int err;
+>   
+> -	GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
+> -	cache->rq_cmd[cache->rq_size] = MI_BATCH_BUFFER_END;
+> +	rq = fetch_and_zero(&cache->rq);
+> +	if (!rq)
+> +		return;
+>   
+> -	__i915_gem_object_flush_map(obj, 0, sizeof(u32) * (cache->rq_size + 1));
+> -	i915_gem_object_unpin_map(obj);
+> +	if (cache->rq_vma) {
+> +		struct drm_i915_gem_object *obj = cache->rq_vma->obj;
+>   
+> -	intel_gt_chipset_flush(cache->rq->engine->gt);
+> +		GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
+> +		cache->rq_cmd[cache->rq_size++] = MI_BATCH_BUFFER_END;
+>   
+> -	i915_request_add(cache->rq);
+> -	cache->rq = NULL;
+> +		__i915_gem_object_flush_map(obj,
+> +					    0, sizeof(u32) * cache->rq_size);
+> +		i915_gem_object_unpin_map(obj);
+> +	}
+> +
+> +	err = 0;
+> +	if (rq->engine->emit_init_breadcrumb)
+> +		err = rq->engine->emit_init_breadcrumb(rq);
+> +	if (!err)
+> +		err = rq->engine->emit_bb_start(rq,
+> +						rq->batch->node.start,
+> +						PAGE_SIZE,
+> +						reloc_bb_flags(cache));
+> +	if (err)
+> +		i915_request_set_error_once(rq, err);
+
+Will this error propagate and fail the execbuf?
+
+> +
+> +	intel_gt_chipset_flush(rq->engine->gt);
+> +	i915_request_add(rq);
+>   }
+>   
+>   static void reloc_cache_reset(struct reloc_cache *cache)
+> @@ -1237,12 +1329,6 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+>   	if (err)
+>   		goto err_request;
+>   
+> -	err = eb->engine->emit_bb_start(rq,
+> -					batch->node.start, PAGE_SIZE,
+> -					cache->gen > 5 ? 0 : I915_DISPATCH_SECURE);
+> -	if (err)
+> -		goto skip_request;
+> -
+>   	i915_vma_lock(batch);
+>   	err = i915_request_await_object(rq, batch->obj, false);
+>   	if (err == 0)
+> @@ -1257,6 +1343,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+>   	cache->rq = rq;
+>   	cache->rq_cmd = cmd;
+>   	cache->rq_size = 0;
+> +	cache->rq_vma = batch;
+>   
+>   	/* Return with batch mapping (cmd) still pinned */
+>   	goto out_pool;
+> @@ -1280,13 +1367,9 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+>   {
+>   	struct reloc_cache *cache = &eb->reloc_cache;
+>   	u32 *cmd;
+> -
+> -	if (cache->rq_size > PAGE_SIZE/sizeof(u32) - (len + 1))
+> -		reloc_gpu_flush(cache);
+> +	int err;
+>   
+>   	if (unlikely(!cache->rq)) {
+> -		int err;
+> -
+>   		if (!intel_engine_can_store_dword(eb->engine))
+>   			return ERR_PTR(-ENODEV);
+>   
+> @@ -1295,6 +1378,15 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+>   			return ERR_PTR(err);
+>   	}
+>   
+> +	if (unlikely(cache->rq_size + len > PAGE_SIZE / sizeof(u32) - 4)) {
+
+4 dwords for the chain, ok.
+
+> +		err = reloc_gpu_chain(cache);
+> +		if (unlikely(err)) {
+> +			i915_request_set_error_once(cache->rq, err);
+> +			return ERR_PTR(err);
+> +		}
+> +	}
+> +
+> +	GEM_BUG_ON(cache->rq_size + len >= PAGE_SIZE  / sizeof(u32));
+>   	cmd = cache->rq_cmd + cache->rq_size;
+>   	cache->rq_size += len;
+>   
+> 
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
