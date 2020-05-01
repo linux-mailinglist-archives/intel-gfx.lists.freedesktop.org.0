@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC601C0FD9
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 10:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E531C0FDA
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 10:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFCFB6EC2E;
-	Fri,  1 May 2020 08:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C1046EC30;
+	Fri,  1 May 2020 08:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4145E6EC2E
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 08:43:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 606656EC32
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 08:43:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21079346-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21079347-1500050 
  for multiple; Fri, 01 May 2020 09:42:56 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 09:42:54 +0100
-Message-Id: <20200501084255.5674-3-chris@chris-wilson.co.uk>
+Date: Fri,  1 May 2020 09:42:55 +0100
+Message-Id: <20200501084255.5674-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200501084255.5674-1-chris@chris-wilson.co.uk>
 References: <20200501084255.5674-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Implement vm_ops->access for gdb
- access into mmaps
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gt: Stop holding onto the
+ pinned_default_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,229 +39,295 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Kristian H . Kristensen" <hoegsberg@google.com>,
- Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gdb uses ptrace() to peek and poke bytes of the target's address space.
-The driver must implement an vm_ops->access() handler or else gdb will
-be unable to inspect the pointer and report it as out-of-bounds.
-Worse than useless as it causes immediate suspicion of the valid GTT
-pointer, distracting the poor programmer trying to find his bug.
+As we only restore the default context state upon banning a context, we
+only need enough of the state to run the ring and nothing more. That is
+we only need our bare protocontext.
 
-Testcase: igt/gem_mmap_gtt/ptrace
-Testcase: igt/gem_mmap_offset/ptrace
-Suggested-by: Kristian H. Kristensen <hoegsberg@google.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: Kristian H. Kristensen <hoegsberg@google.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  31 +++++
- .../drm/i915/gem/selftests/i915_gem_mman.c    | 124 ++++++++++++++++++
- 2 files changed, 155 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 14 +-----
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 14 ++----
+ drivers/gpu/drm/i915/gt/selftest_context.c   | 11 ++--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c       | 53 +++++++++++++++-----
+ 5 files changed, 47 insertions(+), 46 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index b39c24dae64e..aef917b7f168 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -396,6 +396,35 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 	return i915_error_to_vmf_fault(ret);
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index 811debefebc0..d0a1078ef632 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -21,18 +21,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
+ 	struct intel_context *ce;
+-	void *map;
  
-+static int
-+vm_access(struct vm_area_struct *area, unsigned long addr,
-+	  void *buf, int len, int write)
-+{
-+	struct i915_mmap_offset *mmo = area->vm_private_data;
-+	struct drm_i915_gem_object *obj = mmo->obj;
-+	void *vaddr;
-+
-+	addr -= area->vm_start;
-+	if (addr >= obj->base.size)
-+		return -EINVAL;
-+
-+	/* As this is primarily for debugging, let's focus on simplicity */
-+	vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
-+	if (IS_ERR(vaddr))
-+		return PTR_ERR(vaddr);
-+
-+	if (write) {
-+		memcpy(vaddr + addr, buf, len);
-+		__i915_gem_object_flush_map(obj, addr, len);
-+	} else {
-+		memcpy(buf, vaddr + addr, len);
-+	}
-+
-+	i915_gem_object_unpin_map(obj);
-+
-+	return len;
-+}
-+
- void __i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
+ 	ENGINE_TRACE(engine, "\n");
+ 
+ 	intel_gt_pm_get(engine->gt);
+ 
+-	/* Pin the default state for fast resets from atomic context. */
+-	map = NULL;
+-	if (engine->default_state)
+-		map = shmem_pin_map(engine->default_state);
+-	engine->pinned_default_state = map;
+-
+ 	/* Discard stale context state from across idling */
+ 	ce = engine->kernel_context;
+ 	if (ce) {
+@@ -42,6 +35,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
+ 		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
+ 			struct drm_i915_gem_object *obj = ce->state->obj;
+ 			int type = i915_coherent_map_type(engine->i915);
++			void *map;
+ 
+ 			map = i915_gem_object_pin_map(obj, type);
+ 			if (!IS_ERR(map)) {
+@@ -260,12 +254,6 @@ static int __engine_park(struct intel_wakeref *wf)
+ 	if (engine->park)
+ 		engine->park(engine);
+ 
+-	if (engine->pinned_default_state) {
+-		shmem_unpin_map(engine->default_state,
+-				engine->pinned_default_state);
+-		engine->pinned_default_state = NULL;
+-	}
+-
+ 	engine->execlists.no_priolist = false;
+ 
+ 	/* While gt calls i915_vma_parked(), we have to break the lock cycle */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 3c3225c0332f..489deb3b8358 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -339,7 +339,6 @@ struct intel_engine_cs {
+ 	unsigned long wakeref_serial;
+ 	struct intel_wakeref wakeref;
+ 	struct file *default_state;
+-	void *pinned_default_state;
+ 
+ 	struct {
+ 		struct intel_ring *ring;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4311b12542fb..dc5517c85df1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1271,14 +1271,11 @@ execlists_check_context(const struct intel_context *ce,
+ static void restore_default_state(struct intel_context *ce,
+ 				  struct intel_engine_cs *engine)
  {
- 	struct i915_vma *vma;
-@@ -745,12 +774,14 @@ static void vm_close(struct vm_area_struct *vma)
+-	u32 *regs = ce->lrc_reg_state;
++	u32 *regs;
  
- static const struct vm_operations_struct vm_ops_gtt = {
- 	.fault = vm_fault_gtt,
-+	.access = vm_access,
- 	.open = vm_open,
- 	.close = vm_close,
- };
+-	if (engine->pinned_default_state)
+-		memcpy(regs, /* skip restoring the vanilla PPHWSP */
+-		       engine->pinned_default_state + LRC_STATE_OFFSET,
+-		       engine->context_size - PAGE_SIZE);
++	regs = memset(ce->lrc_reg_state, 0, engine->context_size - PAGE_SIZE);
++	execlists_init_reg_state(regs, ce, engine, ce->ring, true);
  
- static const struct vm_operations_struct vm_ops_cpu = {
- 	.fault = vm_fault_cpu,
-+	.access = vm_access,
- 	.open = vm_open,
- 	.close = vm_close,
- };
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index ef7abcb3f4ee..9c7402ce5bf9 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -952,6 +952,129 @@ static int igt_mmap(void *arg)
- 	return 0;
+-	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
+ 	ce->runtime.last = intel_context_get_runtime(ce);
  }
  
-+static const char *repr_mmap_type(enum i915_mmap_type type)
-+{
-+	switch (type) {
-+	case I915_MMAP_TYPE_GTT: return "gtt";
-+	case I915_MMAP_TYPE_WB: return "wb";
-+	case I915_MMAP_TYPE_WC: return "wc";
-+	case I915_MMAP_TYPE_UC: return "uc";
-+	default: return "unknown";
-+	}
-+}
-+
-+static bool can_access(const struct drm_i915_gem_object *obj)
-+{
-+	unsigned int flags =
-+		I915_GEM_OBJECT_HAS_STRUCT_PAGE | I915_GEM_OBJECT_HAS_IOMEM;
-+
-+	return i915_gem_object_type_has(obj, flags);
-+}
-+
-+static int __igt_mmap_access(struct drm_i915_private *i915,
-+			     struct drm_i915_gem_object *obj,
-+			     enum i915_mmap_type type)
-+{
-+	struct i915_mmap_offset *mmo;
-+	unsigned long __user *ptr;
-+	unsigned long A, B;
-+	unsigned long x, y;
-+	unsigned long addr;
-+	int err;
-+
-+	memset(&A, 0xAA, sizeof(A));
-+	memset(&B, 0xBB, sizeof(B));
-+
-+	if (!can_mmap(obj, type) || !can_access(obj))
-+		return 0;
-+
-+	mmo = mmap_offset_attach(obj, type, NULL);
-+	if (IS_ERR(mmo))
-+		return PTR_ERR(mmo);
-+
-+	addr = igt_mmap_node(i915, &mmo->vma_node, 0, PROT_WRITE, MAP_SHARED);
-+	if (IS_ERR_VALUE(addr))
-+		return addr;
-+	ptr = (unsigned long __user *)addr;
-+
-+	err = __put_user(A, ptr);
-+	if (err) {
-+		pr_err("%s(%s): failed to write into user mmap\n",
-+		       obj->mm.region->name, repr_mmap_type(type));
-+		goto out_unmap;
-+	}
-+
-+	intel_gt_flush_ggtt_writes(&i915->gt);
-+
-+	err = access_process_vm(current, addr, &x, sizeof(x), 0);
-+	if (err != sizeof(x)) {
-+		pr_err("%s(%s): access_process_vm() read failed\n",
-+		       obj->mm.region->name, repr_mmap_type(type));
-+		goto out_unmap;
-+	}
-+
-+	err = access_process_vm(current, addr, &B, sizeof(B), FOLL_WRITE);
-+	if (err != sizeof(B)) {
-+		pr_err("%s(%s): access_process_vm() write failed\n",
-+		       obj->mm.region->name, repr_mmap_type(type));
-+		goto out_unmap;
-+	}
-+
-+	intel_gt_flush_ggtt_writes(&i915->gt);
-+
-+	err = __get_user(y, ptr);
-+	if (err) {
-+		pr_err("%s(%s): failed to read from user mmap\n",
-+		       obj->mm.region->name, repr_mmap_type(type));
-+		goto out_unmap;
-+	}
-+
-+	if (x != A || y != B) {
-+		pr_err("%s(%s): failed to read/write values, found (%lx, %lx)\n",
-+		       obj->mm.region->name, repr_mmap_type(type),
-+		       x, y);
-+		err = -EINVAL;
-+		goto out_unmap;
+@@ -4166,8 +4163,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	 * image back to the expected values to skip over the guilty request.
+ 	 */
+ 	__i915_request_reset(rq, stalled);
+-	if (!stalled)
+-		goto out_replay;
+ 
+ 	/*
+ 	 * We want a simple context + ring to execute the breadcrumb update.
+@@ -4177,9 +4172,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	 * future request will be after userspace has had the opportunity
+ 	 * to recreate its own state.
+ 	 */
+-	GEM_BUG_ON(!intel_context_is_pinned(ce));
+-	restore_default_state(ce, engine);
+-
+ out_replay:
+ 	ENGINE_TRACE(engine, "replay {head:%04x, tail:%04x}\n",
+ 		     head, ce->ring->tail);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+index b8ed3cbe1277..a56dff3b157a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_context.c
++++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+@@ -154,10 +154,7 @@ static int live_context_size(void *arg)
+ 	 */
+ 
+ 	for_each_engine(engine, gt, id) {
+-		struct {
+-			struct file *state;
+-			void *pinned;
+-		} saved;
++		struct file *saved;
+ 
+ 		if (!engine->context_size)
+ 			continue;
+@@ -171,8 +168,7 @@ static int live_context_size(void *arg)
+ 		 * active state is sufficient, we are only checking that we
+ 		 * don't use more than we planned.
+ 		 */
+-		saved.state = fetch_and_zero(&engine->default_state);
+-		saved.pinned = fetch_and_zero(&engine->pinned_default_state);
++		saved = fetch_and_zero(&engine->default_state);
+ 
+ 		/* Overlaps with the execlists redzone */
+ 		engine->context_size += I915_GTT_PAGE_SIZE;
+@@ -181,8 +177,7 @@ static int live_context_size(void *arg)
+ 
+ 		engine->context_size -= I915_GTT_PAGE_SIZE;
+ 
+-		engine->pinned_default_state = saved.pinned;
+-		engine->default_state = saved.state;
++		engine->default_state = saved;
+ 
+ 		intel_engine_pm_put(engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 7529df92f6a2..d946c0521dbc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -5206,6 +5206,7 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ {
+ 	struct i915_vma *batch;
+ 	u32 dw, x, *cs, *hw;
++	u32 *defaults;
+ 
+ 	batch = create_user_vma(ce->vm, SZ_64K);
+ 	if (IS_ERR(batch))
+@@ -5217,9 +5218,16 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 		return ERR_CAST(cs);
+ 	}
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		i915_gem_object_unpin_map(batch->obj);
++		i915_vma_put(batch);
++		return ERR_PTR(-ENOMEM);
 +	}
 +
-+out_unmap:
-+	vm_munmap(addr, obj->base.size);
-+	return err;
-+}
+ 	x = 0;
+ 	dw = 0;
+-	hw = ce->engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5250,6 +5258,8 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 
+ 	*cs++ = MI_BATCH_BUFFER_END;
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
 +
-+static int igt_mmap_access(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct intel_memory_region *mr;
-+	enum intel_region_id id;
-+
-+	for_each_memory_region(mr, i915, id) {
-+		struct drm_i915_gem_object *obj;
-+		int err;
-+
-+		obj = i915_gem_object_create_region(mr, PAGE_SIZE, 0);
-+		if (obj == ERR_PTR(-ENODEV))
-+			continue;
-+
-+		if (IS_ERR(obj))
-+			return PTR_ERR(obj);
-+
-+		err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_GTT);
-+		if (err == 0)
-+			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WB);
-+		if (err == 0)
-+			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WC);
-+		if (err == 0)
-+			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_UC);
-+
-+		i915_gem_object_put(obj);
-+		if (err)
-+			return err;
+ 	i915_gem_object_flush_map(batch->obj);
+ 	i915_gem_object_unpin_map(batch->obj);
+ 
+@@ -5360,6 +5370,7 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ {
+ 	struct i915_vma *batch;
+ 	u32 dw, *cs, *hw;
++	u32 *defaults;
+ 
+ 	batch = create_user_vma(ce->vm, SZ_64K);
+ 	if (IS_ERR(batch))
+@@ -5371,8 +5382,15 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 		return ERR_CAST(cs);
+ 	}
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		i915_gem_object_unpin_map(batch->obj);
++		i915_vma_put(batch);
++		return ERR_PTR(-ENOMEM);
 +	}
 +
-+	return 0;
-+}
+ 	dw = 0;
+-	hw = ce->engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5400,6 +5418,8 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 
+ 	*cs++ = MI_BATCH_BUFFER_END;
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
 +
- static int __igt_mmap_gpu(struct drm_i915_private *i915,
- 			  struct drm_i915_gem_object *obj,
- 			  enum i915_mmap_type type)
-@@ -1229,6 +1352,7 @@ int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_smoke_tiling),
- 		SUBTEST(igt_mmap_offset_exhaustion),
- 		SUBTEST(igt_mmap),
-+		SUBTEST(igt_mmap_access),
- 		SUBTEST(igt_mmap_revoke),
- 		SUBTEST(igt_mmap_gpu),
- 	};
+ 	i915_gem_object_flush_map(batch->obj);
+ 	i915_gem_object_unpin_map(batch->obj);
+ 
+@@ -5467,6 +5487,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ {
+ 	u32 x, dw, *hw, *lrc;
+ 	u32 *A[2], *B[2];
++	u32 *defaults;
+ 	int err = 0;
+ 
+ 	A[0] = i915_gem_object_pin_map(ref[0]->obj, I915_MAP_WC);
+@@ -5499,9 +5520,15 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	}
+ 	lrc += LRC_STATE_OFFSET / sizeof(*hw);
+ 
++	defaults = shmem_pin_map(ce->engine->default_state);
++	if (!defaults) {
++		err = -ENOMEM;
++		goto err_lrc;
++	}
++
+ 	x = 0;
+ 	dw = 0;
+-	hw = engine->pinned_default_state;
++	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
+@@ -5541,6 +5568,8 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	} while (dw < PAGE_SIZE / sizeof(u32) &&
+ 		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
+ 
++	shmem_unpin_map(ce->engine->default_state, defaults);
++err_lrc:
+ 	i915_gem_object_unpin_map(ce->state->obj);
+ err_B1:
+ 	i915_gem_object_unpin_map(result[1]->obj);
+@@ -5690,18 +5719,16 @@ static int live_lrc_isolation(void *arg)
+ 			continue;
+ 
+ 		intel_engine_pm_get(engine);
+-		if (engine->pinned_default_state) {
+-			for (i = 0; i < ARRAY_SIZE(poison); i++) {
+-				int result;
++		for (i = 0; i < ARRAY_SIZE(poison); i++) {
++			int result;
+ 
+-				result = __lrc_isolation(engine, poison[i]);
+-				if (result && !err)
+-					err = result;
++			result = __lrc_isolation(engine, poison[i]);
++			if (result && !err)
++				err = result;
+ 
+-				result = __lrc_isolation(engine, ~poison[i]);
+-				if (result && !err)
+-					err = result;
+-			}
++			result = __lrc_isolation(engine, ~poison[i]);
++			if (result && !err)
++				err = result;
+ 		}
+ 		intel_engine_pm_put(engine);
+ 		if (igt_flush_test(gt->i915)) {
 -- 
 2.20.1
 
