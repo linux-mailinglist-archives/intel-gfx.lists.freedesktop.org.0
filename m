@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684981C0C60
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 04:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748891C0CC2
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 05:45:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E09626E447;
-	Fri,  1 May 2020 02:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDB06E49B;
+	Fri,  1 May 2020 03:45:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7386E447;
- Fri,  1 May 2020 02:55:29 +0000 (UTC)
-Received: from localhost (unknown [137.135.114.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id BF48A2186A;
- Fri,  1 May 2020 02:55:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1588301729;
- bh=WU43e9vRsWcB16VKIzlY/JCt6jGPT0q84MHrfdH5oag=;
- h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
- In-Reply-To:References:From;
- b=0kXGwJoUL4M2gfpNoQMWl0Rv6fsP9O6RYdRbo5dCNECRswIMPEJu4wg3N/BISrs7J
- 6Vh3/R3oPdPxfvCgCYGEEKr476vgF60N6euNhmc/VhkzAnzm/y4YlgS8tMe1ElL8Ve
- H1GVMaQHRWaYdnEfLHkPoY9UOqlkSk8SfZ6gZfU4=
-Date: Fri, 01 May 2020 02:55:28 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Sean Paul <sean@poorly.run>
-To: Sean Paul <seanpaul@chromium.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200429195502.39919-3-sean@poorly.run>
-References: <20200429195502.39919-3-sean@poorly.run>
-Message-Id: <20200501025528.BF48A2186A@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v6 02/16] drm/i915: Clear the repeater bit
- on HDCP disable
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C55AE6E21C;
+ Fri,  1 May 2020 03:45:47 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 49Cynx66VLz9sTP;
+ Fri,  1 May 2020 13:45:41 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1588304743;
+ bh=IIPHFxBcj85QE/JOewCEDMMpIUUBvRoR4Qgg9tLU9ys=;
+ h=Date:From:To:Cc:Subject:From;
+ b=n0/oe4aLBYnd0kU17bBSG/shak8TUpLVzsim9vQzP+Gx6ztXNam/bKTtuzxrV2HKK
+ 6FA3u1j+IakNj6a12gt+Mg+FxHtVQS4R+E2T1jxmBQekSIxjjlDzgGqA+j0/V8HSBH
+ oojpNbn3pBGkCEdKE7/Nvnsz4on5WkFq9tc7gLtN52be19NfkQo2Wi4/nHLOAwuomM
+ timJod54omTDV+/j3fwqTGyz4pZH/JhymbHHakAwGuOi1WN1U6UMVZ/1I7scs/9ILe
+ XlHr1A4hVMaWf664Xia/8BTt5BSV0WoTxBGeLi7thqKVGpZ5jWgLVqRzQy45/HFCdG
+ X0IxSalQRXIsA==
+Date: Fri, 1 May 2020 13:45:36 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20200501134536.12468fa1@canb.auug.org.au>
+MIME-Version: 1.0
+Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,63 +49,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <seanpaul@chromium.org>,
- stable@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2060534320=="
+Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>
+Content-Type: multipart/mixed; boundary="===============0292947410=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2060534320==
-Content-Type: text/plain
+--===============0292947410==
+Content-Type: multipart/signed; boundary="Sig_/rd9/1PLkDNX6mHZWGfNHp2o";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Hi
+--Sig_/rd9/1PLkDNX6mHZWGfNHp2o
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-[This is an automated email]
+Hi all,
 
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation").
+Today's linux-next merge of the drm tree got a conflict in:
 
-The bot has tested the following trees: v5.6.7, v5.4.35, v4.19.118.
+  include/linux/dma-buf.h
 
-v5.6.7: Build failed! Errors:
-    drivers/gpu/drm/i915/display/intel_hdcp.c:780:2: error: implicit declaration of function ‘intel_de_write’; did you mean ‘intel_sbi_write’? [-Werror=implicit-function-declaration]
-    drivers/gpu/drm/i915/display/intel_hdcp.c:781:10: error: implicit declaration of function ‘intel_de_read’; did you mean ‘intel_sbi_read’? [-Werror=implicit-function-declaration]
+between commit:
 
-v5.4.35: Failed to apply! Possible dependencies:
-    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
+  6f49c2515e22 ("dma-buf: fix documentation build warnings")
 
-v4.19.118: Failed to apply! Possible dependencies:
-    0e39037b3165 ("drm/i915: Cache the error string")
-    16e4dd0342a8 ("drm/i915: Markup paired operations on wakerefs")
-    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
-    408bd9178666 ("drm/i915: extract intel_hdcp.h from intel_drv.h")
-    52c0fdb25c7c ("drm/i915: Replace global breadcrumbs with per-context interrupt tracking")
-    538ef96b9dae ("drm/i915/gem: Track the rpm wakerefs")
-    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
-    6b048706f407 ("drm/i915: Forcibly flush unwanted requests in drop-caches")
-    87f1ef225242 ("drm/i915: Record the sseu configuration per-context & engine")
-    95fd94a645f7 ("drm/i915: avoid rebuilding i915_gpu_error.o on version string updates")
-    c0a6aa7ec2c3 ("drm/i915: Show actual alongside requested frequency in debugfs/i915_rps_boost_info")
-    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
-    c44301fce614 ("drm/i915: Allow control of PSR at runtime through debugfs, v6")
-    e0516e83640e ("drm/i915: Move sandybride pcode access to intel_sideband.c")
-    e1ef734eaec5 ("drm/i915: make intel_frontbuffer.h self-contained")
-    e6154e4cb8b0 ("drm/i915: Skip the ERR_PTR error state")
-    eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex")
-    fb6f0b64e455 ("drm/i915: Prevent machine hang from Broxton's vtd w/a and error capture")
+from the drm-misc-fixes tree and commit:
 
+  09606b5446c2 ("dma-buf: add peer2peer flag")
 
-NOTE: The patch will not be queued to stable trees until it is upstream.
+from the drm tree.
 
-How should we proceed with this patch?
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
--- 
-Thanks
-Sasha
+--=20
+Cheers,
+Stephen Rothwell
 
---===============2060534320==
+diff --cc include/linux/dma-buf.h
+index 57bcef6f988a,82e0a4a64601..000000000000
+--- a/include/linux/dma-buf.h
++++ b/include/linux/dma-buf.h
+@@@ -333,8 -334,16 +333,16 @@@ struct dma_buf=20
+   * Attachment operations implemented by the importer.
+   */
+  struct dma_buf_attach_ops {
++ 	/**
++ 	 * @allow_peer2peer:
++ 	 *
++ 	 * If this is set to true the importer must be able to handle peer
++ 	 * resources without struct pages.
++ 	 */
++ 	bool allow_peer2peer;
++=20
+  	/**
+ -	 * @move_notify
+ +	 * @move_notify: [optional] notification that the DMA-buf is moving
+  	 *
+  	 * If this callback is provided the framework can avoid pinning the
+  	 * backing store while mappings exists.
+
+--Sig_/rd9/1PLkDNX6mHZWGfNHp2o
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6rm2AACgkQAVBC80lX
+0GxJBwf/coOFFEbY8Z/MwYFICaThvtaMgyS97f1WpYa3Pnj8wCQ7CGfTVQVwKa77
+CNkg/096iwIc/eJVgNbODY+XKh28Q92IA4jVwkJ+rTiFkhcb/JI7A4m4Nvhkrx9X
+RihPQ0BTkoT+oJBUWvzpOoi8lmrHQaxCPmRspjPqk7/7DPFZbRftHGATzziZXHDG
+4Jx+MaFlZj+tygXiJMQoSESiuxRvpPNkG1bBrufr3/4dZ5U/ZcSQPrCfmN288oCV
+pYo3IvWoJLHB4Xd7NTrxgNJYjnCe4Pz+XXSZUji9g0p+jqQU27firEzT2Ot4XDif
+xYpWwAaOARGTWWEUv9uTctLrWv3/cA==
+=84tC
+-----END PGP SIGNATURE-----
+
+--Sig_/rd9/1PLkDNX6mHZWGfNHp2o--
+
+--===============0292947410==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +145,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============2060534320==--
+--===============0292947410==--
