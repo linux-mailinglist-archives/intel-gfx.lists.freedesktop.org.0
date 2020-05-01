@@ -1,27 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106F41C1212
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:21:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1391C121D
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C5E6EC82;
-	Fri,  1 May 2020 12:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E10056EC61;
+	Fri,  1 May 2020 12:23:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0C126E2C0
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 12:20:53 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891C86EC61
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 12:23:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21082117-1500050 
+ for multiple; Fri, 01 May 2020 13:22:50 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 14:20:43 +0200
-Message-Id: <20200501122043.2504429-24-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
-References: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
+Date: Fri,  1 May 2020 13:22:49 +0100
+Message-Id: <20200501122249.12417-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/24] drm/i915: Ensure we hold the pin mutex
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Make timeslicing an explicit
+ engine property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,73 +37,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_renderstate.c | 2 +-
- drivers/gpu/drm/i915/i915_vma.c             | 9 ++++++++-
- drivers/gpu/drm/i915/i915_vma.h             | 1 +
- 3 files changed, 10 insertions(+), 2 deletions(-)
+In order to allow userspace to rely on timeslicing to reorder their
+batches, we must support preemption of those user batches. Declare
+timeslicing as an explicit property that is a combination of having the
+kernel support and HW support.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index e35e17810ac8..2f8bb8c44f90 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -207,7 +207,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
- 	if (err)
- 		goto err_context;
- 
--	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_vma_pin_ww(so->vma, &so->ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
- 		goto err_context;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 164e23e0fc11..837706d28cc5 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -869,6 +869,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- #ifdef CONFIG_PROVE_LOCKING
- 	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
- 		WARN_ON(!ww);
-+	if (debug_locks && ww && vma->resv)
-+		assert_vma_held(vma);
- #endif
- 
- 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
-@@ -1009,8 +1011,13 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 
-+	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
-+
- 	do {
--		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		if (ww)
-+			err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		else
-+			err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
- 		if (err != -ENOSPC) {
- 			if (!err) {
- 				err = i915_vma_wait_for_bind(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 2e3779a8a437..d937ce950481 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -242,6 +242,7 @@ i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- static inline int __must_check
- i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
-+	WARN_ON_ONCE(vma->resv && dma_resv_held(vma->resv));
- 	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h       |  9 ---------
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 18 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |  5 ++++-
+ 3 files changed, 18 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index d10e52ff059f..19d0b8830905 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -332,13 +332,4 @@ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+ 	return intel_engine_has_preemption(engine);
  }
  
+-static inline bool
+-intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+-{
+-	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+-		return false;
+-
+-	return intel_engine_has_semaphores(engine);
+-}
+-
+ #endif /* _INTEL_RINGBUFFER_H_ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 3c3225c0332f..6c676774dcd9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -492,10 +492,11 @@ struct intel_engine_cs {
+ #define I915_ENGINE_SUPPORTS_STATS   BIT(1)
+ #define I915_ENGINE_HAS_PREEMPTION   BIT(2)
+ #define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
+-#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(4)
+-#define I915_ENGINE_IS_VIRTUAL       BIT(5)
+-#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
+-#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
++#define I915_ENGINE_HAS_TIMESLICES   BIT(4)
++#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(5)
++#define I915_ENGINE_IS_VIRTUAL       BIT(6)
++#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
++#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
+ 	unsigned int flags;
+ 
+ 	/*
+@@ -593,6 +594,15 @@ intel_engine_has_semaphores(const struct intel_engine_cs *engine)
+ 	return engine->flags & I915_ENGINE_HAS_SEMAPHORES;
+ }
+ 
++static inline bool
++intel_engine_has_timeslices(const struct intel_engine_cs *engine)
++{
++	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
++		return false;
++
++	return engine->flags & I915_ENGINE_HAS_TIMESLICES;
++}
++
+ static inline bool
+ intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4311b12542fb..d4ef344657b0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4801,8 +4801,11 @@ void intel_execlists_set_default_submission(struct intel_engine_cs *engine)
+ 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+ 	if (!intel_vgpu_active(engine->i915)) {
+ 		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
+-		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
++		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915)) {
+ 			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
++			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
++				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
++		}
+ 	}
+ 
+ 	if (INTEL_GEN(engine->i915) >= 12)
 -- 
-2.26.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
