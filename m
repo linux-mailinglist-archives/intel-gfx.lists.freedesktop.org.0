@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6F11C0F14
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 10:01:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47D81C0F3A
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 10:14:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B4F6E22D;
-	Fri,  1 May 2020 08:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC2E86EC28;
+	Fri,  1 May 2020 08:14:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4DB6E22D
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 08:01:47 +0000 (UTC)
-IronPort-SDR: Jr0bZHmwMLD+IvzwtBBVtWJPknHzXfRcgtUBRmCY1X7S3TbIlf0R1i4F+QiIHHjNShvwFmgAFl
- cT1ETYaoQ5IQ==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F23756EC28
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 08:14:48 +0000 (UTC)
+IronPort-SDR: 2S+kyiMneHcytYtzfv8G6+ZZ+dQZKE8Gg6fhh4/9W1Ucm9JPPBgB8dAM1SYWYQ/RHMy4KIoV1i
+ qSAmrDjnn56g==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 01:01:46 -0700
-IronPort-SDR: iouYQl1i2+QZO2SYLdfNioEJ+n74GcKRpuzXzF6aNdcwaVgOQxw9iF9YO+J9OzA8jvL8jt9fcm
- QD9Fa8en49Iw==
-X-IronPort-AV: E=Sophos;i="5.73,339,1583222400"; d="scan'208";a="247441941"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 01:14:48 -0700
+IronPort-SDR: vo7Ltg8COPziTclbV6FwQnkWCuCfZ7jDHYuSm0AnYUCf/I26BU4vNGAzx/182ekJYQ/K//CB96
+ WiXBbN+uifKA==
+X-IronPort-AV: E=Sophos;i="5.73,339,1583222400"; d="scan'208";a="247444258"
 Received: from stal1-mobl.ger.corp.intel.com (HELO [10.214.218.50])
  ([10.214.218.50])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 01:01:45 -0700
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200430231529.295556-1-matthew.d.roper@intel.com>
+ 01 May 2020 01:14:47 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200430183324.23984-1-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <1470e1a6-34d0-f3f4-1402-cd6e42518a27@linux.intel.com>
-Date: Fri, 1 May 2020 09:01:42 +0100
+Message-ID: <0faabfb0-25f2-ce38-f454-afcd68c039f9@linux.intel.com>
+Date: Fri, 1 May 2020 09:14:44 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200430231529.295556-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200430183324.23984-1-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 0/4] Steer multicast register workaround
- verification
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Keep a reference to module
+ while active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,110 +51,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Hi,
-
-On 01/05/2020 00:15, Matt Roper wrote:
-> We're seeing some CI errors indicating that a workaround did not apply
-> properly on EHL/JSL.  The workaround in question is updating a multicast
-> register, the failures are only seen on specific CI machines, and the
-> failures only seem to happen on resets and such rather than on initial
-> driver load.  It seems likely that the culprit here is failure to steer
-> the multicast register readback on a SKU that has slice0 / subslice0
-> fused off.
+On 30/04/2020 19:33, Chris Wilson wrote:
+> While a perf event is open, keep a reference to the module so we don't
+> remove the driver internals mid-sampling.
 > 
-> This series makes a couple changes:
->   * Workaround verification will explicitly steer MCR registers by
->     calling read_subslice_reg rather than a regular read.
->   * New multicast ranges are added for gen11 and gen12.  Sadly this
->     information is still missing from the bspec (just like the updated
->     forcewake tables).  The hardware guys have given us a spreadsheet
->     with both the forcewake and the multicast information while they work
->     on getting the spec properly updated, so that's where the new ranges
->     come from.
+> Testcase: igt/perf_pmu/module-unload
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: stable@vger.kernel.org
+> ---
+>   drivers/gpu/drm/i915/i915_pmu.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 83c6a8ccd2cb..e991a707bdb7 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -442,6 +442,7 @@ static u64 count_interrupts(struct drm_i915_private *i915)
+>   static void i915_pmu_event_destroy(struct perf_event *event)
+>   {
+>   	WARN_ON(event->parent);
+> +	module_put(THIS_MODULE);
+>   }
+>   
+>   static int
+> @@ -533,8 +534,10 @@ static int i915_pmu_event_init(struct perf_event *event)
+>   	if (ret)
+>   		return ret;
+>   
+> -	if (!event->parent)
+> +	if (!event->parent) {
+> +		__module_get(THIS_MODULE);
+>   		event->destroy = i915_pmu_event_destroy;
+> +	}
+>   
+>   	return 0;
+>   }
+> 
 
-I think there are multiple things here. To begin with, newly discovered 
-ranges are of course a savior.
-
-But I am not sure about the approach of using intel_read_subslice_reg in 
-wa_verify. It is one suspicion that 0xfdc is lost on reset, but we do 
-reprogram it afterwards don't we? And since it is the first register in 
-the list it is supposed to be in place before the rest of verification 
-runs, no?
-
-A year or two I tried figuring this for Icelake and failed, but AFAIR 
-(maybe my experiments can be found somewhere on trybot patchwork), I 
-even tried both applying the affected ones via unicast (for each ss, or 
-l3 where applicable) and also verifying a single register in all enabled 
-ss. AFAIR there were still some issues there. Granted my memory could be 
-leaky.. But I think this multiple write/verify could still be useful.
-
-(Now that I think about it, I think that the problem area back when I 
-experiementing with it was more suspend/resume.. hm..)
-
-My main concern is that with current code we effectively have, after reset:
-
-intel_gt_apply_workarounds:
-    program 0xfdc
-    program the rest of wa
-verify_wa
-    do reads using configured 0xfdc
-
-So MCR should be correct. This series seems to be doing:
-
-intel_gt_apply_workarounds:
-    program 0xfdc
-	* store ss used for MCR configuration
-    program the rest of wa
-verify_wa
-    Do reads but reconfigure 0xfdc before every register in range,
-    but to the same value as in initial configuration.
-
-Is this correct? Is the thinking then simply writing the same value to 
-0xfdc multiple times fixes things?
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
 Tvrtko
-
-P.S. Update, found the experiments, listing some of them:
-
-https://patchwork.freedesktop.org/series/64183/
-https://patchwork.freedesktop.org/series/64013/
-
-It reminded me that there were some unexplained issues with regards of 
-where I used ffs or fls for finding the valid common MCR setting between 
-L3 and SSEU. I think we use a different one than Windows but ours works 
-better for our verification, empirically at least. Usual disclaimer 
-about my leaky memory applies here.
-
-> In addition to MCR and forcewake, there's supposed to be some more bspec
-> updates coming soon that deal with steering (i.e., different MCR ranges
-> should actually be using different registers to steer rather than just
-> the 0xFDC register we're familiar with); I don't have the full details
-> on that yet, so those updates will have to wait until we actually have
-> an updated spec.
-> 
-> References: https://gitlab.freedesktop.org/drm/intel/issues/1222
-> 
-> Matt Roper (4):
->    drm/i915: Setup multicast register steering for all gen >= 10
->    drm/i915: Steer multicast register readback in wa_verify
->    drm/i915: Don't skip verification of MCR engine workarounds
->    drm/i915: Add MCR ranges for gen11 and gen12
-> 
->   drivers/gpu/drm/i915/gt/intel_engine.h        |   3 +
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  17 +-
->   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 146 ++++++++++++------
->   .../gpu/drm/i915/gt/intel_workarounds_types.h |   2 +
->   4 files changed, 110 insertions(+), 58 deletions(-)
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
