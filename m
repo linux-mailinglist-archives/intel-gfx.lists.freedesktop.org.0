@@ -2,31 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9121C127B
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FA5A1C1288
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 15:02:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E476B6E2A5;
-	Fri,  1 May 2020 12:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 783156E2A9;
+	Fri,  1 May 2020 13:02:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A3E16E2A5;
- Fri,  1 May 2020 12:57:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 14082A47EE;
- Fri,  1 May 2020 12:57:35 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D11666E2A9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 13:02:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21082559-1500050 
+ for multiple; Fri, 01 May 2020 14:02:18 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 May 2020 14:02:15 +0100
+Message-Id: <20200501130217.5708-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Fri, 01 May 2020 12:57:35 -0000
-Message-ID: <158833785505.18944.6762195397546725763@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-user_af?=
- =?utf-8?q?ter_completely_unlocking_all_locks=2C_v3=2E?=
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Use chained reloc batches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,138 +36,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The ring is a precious resource: we anticipate to only use a few hundred
+bytes for a request, and only try to reserve that before we start. If we
+go beyond our guess in building the request, then instead of waiting at
+the start of execbuf before we hold any locks or other resources, we
+may trigger a wait inside a critical region. One example is in using gpu
+relocations, where currently we emit a new MI_BB_START from the ring
+every time we overflow a page of relocation entries. However, instead of
+insert the command into the precious ring, we can chain the next page of
+relocation entries as MI_BB_START from the end of the previous.
 
-Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
-URL   : https://patchwork.freedesktop.org/series/76816/
-State : failure
+v2: Delay the emit_bb_start until after all the chained vma
+synchronisation is complete. Since the buffer pool batches are idle, this
+_should_ be a no-op, but one day we may some fancy async GPU bindings
+for new vma!
 
-== Summary ==
+v3: Use pool/batch consitently, once we start thinking in terms of the
+batch vma, use batch->obj.
+v4: Explain the magic number 4.
 
-CI Bug Log - changes from CI_DRM_8405 -> Patchwork_17539
-====================================================
+Tvrtko spotted that we lose propagation of the error for failing to
+submit the relocation request; that's easier to fix up in the next
+patch.
 
-Summary
--------
+Testcase: igt/gem_exec_reloc/basic-many-active
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 134 +++++++++++++++---
+ 1 file changed, 115 insertions(+), 19 deletions(-)
 
-  **FAILURE**
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 414859fa2673..0874976b1cf7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -271,6 +271,7 @@ struct i915_execbuffer {
+ 		struct i915_request *rq;
+ 		u32 *rq_cmd;
+ 		unsigned int rq_size;
++		struct i915_vma *rq_vma;
+ 	} reloc_cache;
+ 
+ 	u64 invalid_flags; /** Set of execobj.flags that are invalid */
+@@ -975,20 +976,114 @@ static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
+ 	return &i915->ggtt;
+ }
+ 
++#define RELOC_TAIL 4
++
++static int reloc_gpu_chain(struct reloc_cache *cache)
++{
++	struct intel_gt_buffer_pool_node *pool;
++	struct i915_request *rq = cache->rq;
++	struct i915_vma *batch;
++	u32 *cmd;
++	int err;
++
++	pool = intel_gt_get_buffer_pool(rq->engine->gt, PAGE_SIZE);
++	if (IS_ERR(pool))
++		return PTR_ERR(pool);
++
++	batch = i915_vma_instance(pool->obj, rq->context->vm, NULL);
++	if (IS_ERR(batch)) {
++		err = PTR_ERR(batch);
++		goto out_pool;
++	}
++
++	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
++	if (err)
++		goto out_pool;
++
++	GEM_BUG_ON(cache->rq_size + RELOC_TAIL > PAGE_SIZE  / sizeof(u32));
++	cmd = cache->rq_cmd + cache->rq_size;
++	*cmd++ = MI_ARB_CHECK;
++	if (cache->gen >= 8) {
++		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
++		*cmd++ = lower_32_bits(batch->node.start);
++		*cmd++ = upper_32_bits(batch->node.start);
++	} else {
++		*cmd++ = MI_BATCH_BUFFER_START;
++		*cmd++ = lower_32_bits(batch->node.start);
++	}
++	i915_gem_object_flush_map(cache->rq_vma->obj);
++	i915_gem_object_unpin_map(cache->rq_vma->obj);
++	cache->rq_vma = NULL;
++
++	err = intel_gt_buffer_pool_mark_active(pool, rq);
++	if (err == 0) {
++		i915_vma_lock(batch);
++		err = i915_request_await_object(rq, batch->obj, false);
++		if (err == 0)
++			err = i915_vma_move_to_active(batch, rq, 0);
++		i915_vma_unlock(batch);
++	}
++	i915_vma_unpin(batch);
++	if (err)
++		goto out_pool;
++
++	cmd = i915_gem_object_pin_map(batch->obj,
++				      cache->has_llc ?
++				      I915_MAP_FORCE_WB :
++				      I915_MAP_FORCE_WC);
++	if (IS_ERR(cmd)) {
++		err = PTR_ERR(cmd);
++		goto out_pool;
++	}
++
++	/* Return with batch mapping (cmd) still pinned */
++	cache->rq_cmd = cmd;
++	cache->rq_size = 0;
++	cache->rq_vma = batch;
++
++out_pool:
++	intel_gt_buffer_pool_put(pool);
++	return err;
++}
++
++static unsigned int reloc_bb_flags(const struct reloc_cache *cache)
++{
++	return cache->gen > 5 ? 0 : I915_DISPATCH_SECURE;
++}
++
+ static void reloc_gpu_flush(struct reloc_cache *cache)
+ {
+-	struct drm_i915_gem_object *obj = cache->rq->batch->obj;
++	struct i915_request *rq;
++	int err;
+ 
+-	GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
+-	cache->rq_cmd[cache->rq_size] = MI_BATCH_BUFFER_END;
++	rq = fetch_and_zero(&cache->rq);
++	if (!rq)
++		return;
+ 
+-	__i915_gem_object_flush_map(obj, 0, sizeof(u32) * (cache->rq_size + 1));
+-	i915_gem_object_unpin_map(obj);
++	if (cache->rq_vma) {
++		struct drm_i915_gem_object *obj = cache->rq_vma->obj;
+ 
+-	intel_gt_chipset_flush(cache->rq->engine->gt);
++		GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
++		cache->rq_cmd[cache->rq_size++] = MI_BATCH_BUFFER_END;
+ 
+-	i915_request_add(cache->rq);
+-	cache->rq = NULL;
++		__i915_gem_object_flush_map(obj,
++					    0, sizeof(u32) * cache->rq_size);
++		i915_gem_object_unpin_map(obj);
++	}
++
++	err = 0;
++	if (rq->engine->emit_init_breadcrumb)
++		err = rq->engine->emit_init_breadcrumb(rq);
++	if (!err)
++		err = rq->engine->emit_bb_start(rq,
++						rq->batch->node.start,
++						PAGE_SIZE,
++						reloc_bb_flags(cache));
++	if (err)
++		i915_request_set_error_once(rq, err);
++
++	intel_gt_chipset_flush(rq->engine->gt);
++	i915_request_add(rq);
+ }
+ 
+ static void reloc_cache_reset(struct reloc_cache *cache)
+@@ -1237,12 +1332,6 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 	if (err)
+ 		goto err_request;
+ 
+-	err = eb->engine->emit_bb_start(rq,
+-					batch->node.start, PAGE_SIZE,
+-					cache->gen > 5 ? 0 : I915_DISPATCH_SECURE);
+-	if (err)
+-		goto skip_request;
+-
+ 	i915_vma_lock(batch);
+ 	err = i915_request_await_object(rq, batch->obj, false);
+ 	if (err == 0)
+@@ -1257,6 +1346,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 	cache->rq = rq;
+ 	cache->rq_cmd = cmd;
+ 	cache->rq_size = 0;
++	cache->rq_vma = batch;
+ 
+ 	/* Return with batch mapping (cmd) still pinned */
+ 	goto out_pool;
+@@ -1280,13 +1370,9 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+ {
+ 	struct reloc_cache *cache = &eb->reloc_cache;
+ 	u32 *cmd;
+-
+-	if (cache->rq_size > PAGE_SIZE/sizeof(u32) - (len + 1))
+-		reloc_gpu_flush(cache);
++	int err;
+ 
+ 	if (unlikely(!cache->rq)) {
+-		int err;
+-
+ 		if (!intel_engine_can_store_dword(eb->engine))
+ 			return ERR_PTR(-ENODEV);
+ 
+@@ -1295,6 +1381,16 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+ 			return ERR_PTR(err);
+ 	}
+ 
++	if (unlikely(cache->rq_size + len >
++		     PAGE_SIZE / sizeof(u32) - RELOC_TAIL)) {
++		err = reloc_gpu_chain(cache);
++		if (unlikely(err)) {
++			i915_request_set_error_once(cache->rq, err);
++			return ERR_PTR(err);
++		}
++	}
++
++	GEM_BUG_ON(cache->rq_size + len >= PAGE_SIZE  / sizeof(u32));
+ 	cmd = cache->rq_cmd + cache->rq_size;
+ 	cache->rq_size += len;
+ 
+-- 
+2.20.1
 
-  Serious unknown changes coming with Patchwork_17539 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17539, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17539:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_render_tiled_blits@basic:
-    - fi-pnv-d510:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-pnv-d510/igt@gem_render_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-pnv-d510/igt@gem_render_tiled_blits@basic.html
-    - fi-gdg-551:         [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-gdg-551/igt@gem_render_tiled_blits@basic.html
-    - fi-blb-e6850:       [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-blb-e6850/igt@gem_render_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-blb-e6850/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-    - fi-skl-lmem:        [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-x1275:       [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-kbl-x1275/igt@i915_selftest@live@gt_pm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17539 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@evict:
-    - fi-bwr-2160:        [PASS][13] -> [INCOMPLETE][14] ([i915#489])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-bwr-2160/igt@i915_selftest@live@evict.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/fi-bwr-2160/igt@i915_selftest@live@evict.html
-
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8405 -> Patchwork_17539
-
-  CI-20190529: 20190529
-  CI_DRM_8405: 83efffba539b475ce7e3fb96aeae7ee744309ff7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5623: 8838c73169ea249e6e86aaed35e5178f60f4ef7d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17539: 2d420146a045549c0759cf0f7ebc984bc09d0dd6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2d420146a045 drm/i915: Ensure we hold the pin mutex
-e7190066c37f drm/i915: Add ww locking to pin_to_display_plane
-56909ff76ec7 drm/i915: Add ww locking to vm_fault_gtt
-6e5953cd8828 drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
-4156a9384b8c drm/i915: Use ww pinning for intel_context_create_request()
-3bd190df8a2e drm/i915/selftests: Fix locking inversion in lrc selftest.
-5b95a6acfd4a drm/i915: Dirty hack to fix selftests locking inversion
-f046ee760a15 drm/i915: Convert i915_perf to ww locking as well
-62e8d8511668 drm/i915: Kill last user of intel_context_create_request outside of selftests
-29441f87c632 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
-7b3ccc070938 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-09c8db4fbd68 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
-030b8005d968 drm/i915: Pin engine before pinning all objects, v4.
-4edaac13184b drm/i915: Nuke arguments to eb_pin_engine
-853dabe4de66 drm/i915: Add ww context handling to context_barrier_task
-81ee09773f68 drm/i915: Use ww locking in intel_renderstate.
-cbaecd19dd78 drm/i915: Use per object locking in execbuf, v9.
-ce37b6d2a7dc drm/i915/gem: Make eb_add_lut interruptible wait on object lock.
-9cd5eb751161 Revert "drm/i915/gem: Split eb_vma into its own allocation"
-acd8e0b1b5dc drm/i915: Parse command buffer earlier in eb_relocate(slow)
-47239de18d02 drm/i915: Remove locking from i915_gem_object_prepare_read/write
-7fd405b049ee drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-767e1d98b897 Revert "drm/i915/gem: Drop relocation slowpath"
-c7e83b1d5e8c perf/core: Only copy-to-user after completely unlocking all locks, v3.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17539/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
