@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3DD1C1235
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD761C1236
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 14:33:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE136E2B1;
-	Fri,  1 May 2020 12:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 733426EC7C;
+	Fri,  1 May 2020 12:33:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5E76E2B1
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 12:33:20 +0000 (UTC)
-IronPort-SDR: gB14a+vd/JvlUTdlKlgg8Lr3SOjJjSD5n8gnYF2YGq8BMe+sfG71sjTGoh+9MIi19lulbn7QDa
- S23R1TZooGJw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 05:33:19 -0700
-IronPort-SDR: KkFD1pIn8CvmUINb8g5YNIYYM+9aqHQJSRzyXr+tsZwt/+LZukeEmWSedAdth1knREEy87OUmW
- 58cT27DK3xyQ==
-X-IronPort-AV: E=Sophos;i="5.73,339,1583222400"; d="scan'208";a="283165923"
-Received: from stal1-mobl.ger.corp.intel.com (HELO [10.214.218.50])
- ([10.214.218.50])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 05:33:17 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200501101900.22543-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <99138c26-b570-4a3b-d48c-a68af08c6e2b@linux.intel.com>
-Date: Fri, 1 May 2020 13:33:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 955D56EC7C;
+ Fri,  1 May 2020 12:33:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8DBEEA00E6;
+ Fri,  1 May 2020 12:33:32 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200501101900.22543-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Use chained reloc batches
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 01 May 2020 12:33:32 -0000
+Message-ID: <158833641257.18946.8179412619487568139@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200501122043.2504429-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/24=5D_perf/core=3A_Only_copy-to-?=
+ =?utf-8?q?user_after_completely_unlocking_all_locks=2C_v3=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,233 +39,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 01/05/2020 11:18, Chris Wilson wrote:
-> The ring is a precious resource: we anticipate to only use a few hundred
-> bytes for a request, and only try to reserve that before we start. If we
-> go beyond our guess in building the request, then instead of waiting at
-> the start of execbuf before we hold any locks or other resources, we
-> may trigger a wait inside a critical region. One example is in using gpu
-> relocations, where currently we emit a new MI_BB_START from the ring
-> every time we overflow a page of relocation entries. However, instead of
-> insert the command into the precious ring, we can chain the next page of
-> relocation entries as MI_BB_START from the end of the previous.
-> 
-> v2: Delay the emit_bb_start until after all the chained vma
-> synchronisation is complete. Since the buffer pool batches are idle, this
-> _should_ be a no-op, but one day we may some fancy async GPU bindings
-> for new vma!
-> 
-> Testcase: igt/gem_exec_reloc/basic-many-active
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 130 +++++++++++++++---
->   1 file changed, 111 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 414859fa2673..293bf06b65b2 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -271,6 +271,7 @@ struct i915_execbuffer {
->   		struct i915_request *rq;
->   		u32 *rq_cmd;
->   		unsigned int rq_size;
-> +		struct i915_vma *rq_vma;
->   	} reloc_cache;
->   
->   	u64 invalid_flags; /** Set of execobj.flags that are invalid */
-> @@ -975,20 +976,111 @@ static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
->   	return &i915->ggtt;
->   }
->   
-> +static int reloc_gpu_chain(struct reloc_cache *cache)
-> +{
-> +	struct intel_gt_buffer_pool_node *pool;
-> +	struct i915_request *rq = cache->rq;
-> +	struct i915_vma *batch;
-> +	u32 *cmd;
-> +	int err;
-> +
-> +	pool = intel_gt_get_buffer_pool(rq->engine->gt, PAGE_SIZE);
-> +	if (IS_ERR(pool))
-> +		return PTR_ERR(pool);
-> +
-> +	batch = i915_vma_instance(pool->obj, rq->context->vm, NULL);
-> +	if (IS_ERR(batch)) {
-> +		err = PTR_ERR(batch);
-> +		goto out_pool;
-> +	}
-> +
-> +	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
-> +	if (err)
-> +		goto out_pool;
-> +
-> +	cmd = cache->rq_cmd + cache->rq_size;
-> +	*cmd++ = MI_ARB_CHECK;
-> +	if (cache->gen >= 8) {
-> +		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
-> +		*cmd++ = lower_32_bits(batch->node.start);
-> +		*cmd++ = upper_32_bits(batch->node.start);
-> +	} else {
-> +		*cmd++ = MI_BATCH_BUFFER_START;
-> +		*cmd++ = lower_32_bits(batch->node.start);
-> +	}
-> +	i915_gem_object_flush_map(cache->rq_vma->obj);
-> +	i915_gem_object_unpin_map(cache->rq_vma->obj);
-> +	cache->rq_vma = NULL;
-> +
-> +	err = intel_gt_buffer_pool_mark_active(pool, rq);
-> +	if (err == 0) {
-> +		i915_vma_lock(batch);
-> +		err = i915_request_await_object(rq, batch->obj, false);
-> +		if (err == 0)
-> +			err = i915_vma_move_to_active(batch, rq, 0);
-> +		i915_vma_unlock(batch);
-> +	}
-> +	i915_vma_unpin(batch);
-> +	if (err)
-> +		goto out_pool;
-> +
-> +	cmd = i915_gem_object_pin_map(pool->obj,
+Series: series starting with [01/24] perf/core: Only copy-to-user after completely unlocking all locks, v3.
+URL   : https://patchwork.freedesktop.org/series/76816/
+State : warning
 
-batch->obj maybe to be consistent in this block? Few lines above you get 
-to it via batch.
+== Summary ==
 
-> +				      cache->has_llc ?
-> +				      I915_MAP_FORCE_WB :
-> +				      I915_MAP_FORCE_WC);
-> +	if (IS_ERR(cmd)) {
-> +		err = PTR_ERR(cmd);
-> +		goto out_pool;
-> +	}
-> +
-> +	/* Return with batch mapping (cmd) still pinned */
-> +	cache->rq_cmd = cmd;
-> +	cache->rq_size = 0;
-> +	cache->rq_vma = batch;
-> +
-> +out_pool:
-> +	intel_gt_buffer_pool_put(pool);
-> +	return err;
-> +}
-> +
-> +static unsigned int reloc_bb_flags(const struct reloc_cache *cache)
-> +{
-> +	return cache->gen > 5 ? 0 : I915_DISPATCH_SECURE;
-> +}
-> +
->   static void reloc_gpu_flush(struct reloc_cache *cache)
->   {
-> -	struct drm_i915_gem_object *obj = cache->rq->batch->obj;
-> +	struct i915_request *rq;
-> +	int err;
->   
-> -	GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
-> -	cache->rq_cmd[cache->rq_size] = MI_BATCH_BUFFER_END;
-> +	rq = fetch_and_zero(&cache->rq);
-> +	if (!rq)
-> +		return;
->   
-> -	__i915_gem_object_flush_map(obj, 0, sizeof(u32) * (cache->rq_size + 1));
-> -	i915_gem_object_unpin_map(obj);
-> +	if (cache->rq_vma) {
-> +		struct drm_i915_gem_object *obj = cache->rq_vma->obj;
->   
-> -	intel_gt_chipset_flush(cache->rq->engine->gt);
-> +		GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
-> +		cache->rq_cmd[cache->rq_size++] = MI_BATCH_BUFFER_END;
->   
-> -	i915_request_add(cache->rq);
-> -	cache->rq = NULL;
-> +		__i915_gem_object_flush_map(obj,
-> +					    0, sizeof(u32) * cache->rq_size);
-> +		i915_gem_object_unpin_map(obj);
-> +	}
-> +
-> +	err = 0;
-> +	if (rq->engine->emit_init_breadcrumb)
-> +		err = rq->engine->emit_init_breadcrumb(rq);
-> +	if (!err)
-> +		err = rq->engine->emit_bb_start(rq,
-> +						rq->batch->node.start,
-> +						PAGE_SIZE,
-> +						reloc_bb_flags(cache));
-> +	if (err)
-> +		i915_request_set_error_once(rq, err);
+$ dim checkpatch origin/drm-tip
+c7e83b1d5e8c perf/core: Only copy-to-user after completely unlocking all locks, v3.
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
 
-Will this error propagate and fail the execbuf?
+-:106: WARNING:BAD_SIGN_OFF: Duplicate signature
+#106: 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-> +
-> +	intel_gt_chipset_flush(rq->engine->gt);
-> +	i915_request_add(rq);
->   }
->   
->   static void reloc_cache_reset(struct reloc_cache *cache)
-> @@ -1237,12 +1329,6 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
->   	if (err)
->   		goto err_request;
->   
-> -	err = eb->engine->emit_bb_start(rq,
-> -					batch->node.start, PAGE_SIZE,
-> -					cache->gen > 5 ? 0 : I915_DISPATCH_SECURE);
-> -	if (err)
-> -		goto skip_request;
-> -
->   	i915_vma_lock(batch);
->   	err = i915_request_await_object(rq, batch->obj, false);
->   	if (err == 0)
-> @@ -1257,6 +1343,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
->   	cache->rq = rq;
->   	cache->rq_cmd = cmd;
->   	cache->rq_size = 0;
-> +	cache->rq_vma = batch;
->   
->   	/* Return with batch mapping (cmd) still pinned */
->   	goto out_pool;
-> @@ -1280,13 +1367,9 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
->   {
->   	struct reloc_cache *cache = &eb->reloc_cache;
->   	u32 *cmd;
-> -
-> -	if (cache->rq_size > PAGE_SIZE/sizeof(u32) - (len + 1))
-> -		reloc_gpu_flush(cache);
-> +	int err;
->   
->   	if (unlikely(!cache->rq)) {
-> -		int err;
-> -
->   		if (!intel_engine_can_store_dword(eb->engine))
->   			return ERR_PTR(-ENODEV);
->   
-> @@ -1295,6 +1378,15 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
->   			return ERR_PTR(err);
->   	}
->   
-> +	if (unlikely(cache->rq_size + len > PAGE_SIZE / sizeof(u32) - 4)) {
+-:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#180: FILE: kernel/events/core.c:5174:
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
 
-4 dwords for the chain, ok.
+total: 0 errors, 2 warnings, 1 checks, 106 lines checked
+767e1d98b897 Revert "drm/i915/gem: Drop relocation slowpath"
+-:78: WARNING:LINE_SPACING: Missing a blank line after declarations
+#78: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1628:
++		int err = __get_user(c, addr);
++		if (err)
 
-> +		err = reloc_gpu_chain(cache);
-> +		if (unlikely(err)) {
-> +			i915_request_set_error_once(cache->rq, err);
-> +			return ERR_PTR(err);
-> +		}
-> +	}
-> +
-> +	GEM_BUG_ON(cache->rq_size + len >= PAGE_SIZE  / sizeof(u32));
->   	cmd = cache->rq_cmd + cache->rq_size;
->   	cache->rq_size += len;
->   
-> 
+total: 0 errors, 1 warnings, 0 checks, 257 lines checked
+7fd405b049ee drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:493: WARNING:LONG_LINE: line over 100 characters
+#493: FILE: drivers/gpu/drm/i915/i915_gem.c:1341:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 473 lines checked
+47239de18d02 drm/i915: Remove locking from i915_gem_object_prepare_read/write
+acd8e0b1b5dc drm/i915: Parse command buffer earlier in eb_relocate(slow)
+9cd5eb751161 Revert "drm/i915/gem: Split eb_vma into its own allocation"
+ce37b6d2a7dc drm/i915/gem: Make eb_add_lut interruptible wait on object lock.
+cbaecd19dd78 drm/i915: Use per object locking in execbuf, v9.
+-:703: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#703: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2761:
++	eb.reloc_pool = eb.batch_pool = NULL;
 
-Tvrtko
+total: 0 errors, 0 warnings, 1 checks, 708 lines checked
+81ee09773f68 drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
+
+total: 0 errors, 1 warnings, 0 checks, 207 lines checked
+853dabe4de66 drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line over 100 characters
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1097:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
+
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+4edaac13184b drm/i915: Nuke arguments to eb_pin_engine
+030b8005d968 drm/i915: Pin engine before pinning all objects, v4.
+09c8db4fbd68 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
++
++
+
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3443:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
+
+total: 0 errors, 0 warnings, 2 checks, 435 lines checked
+7b3ccc070938 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:595:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
+
+-:203: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#203: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2252:
++	 * hsw should have this fixed, but bdw mucks it up again. */
+
+total: 0 errors, 1 warnings, 1 checks, 841 lines checked
+29441f87c632 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+62e8d8511668 drm/i915: Kill last user of intel_context_create_request outside of selftests
+f046ee760a15 drm/i915: Convert i915_perf to ww locking as well
+5b95a6acfd4a drm/i915: Dirty hack to fix selftests locking inversion
+3bd190df8a2e drm/i915/selftests: Fix locking inversion in lrc selftest.
+4156a9384b8c drm/i915: Use ww pinning for intel_context_create_request()
+6e5953cd8828 drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
+56909ff76ec7 drm/i915: Add ww locking to vm_fault_gtt
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+e7190066c37f drm/i915: Add ww locking to pin_to_display_plane
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+2d420146a045 drm/i915: Ensure we hold the pin mutex
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
