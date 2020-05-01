@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7E61C1C26
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B02E41C1C37
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:48:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF9A46ED18;
-	Fri,  1 May 2020 17:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 110FB6ED17;
+	Fri,  1 May 2020 17:48:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD1456ED17;
- Fri,  1 May 2020 17:43:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98EF66ED17;
+ Fri,  1 May 2020 17:48:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B709EA010F;
- Fri,  1 May 2020 17:43:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 928E0A00FD;
+ Fri,  1 May 2020 17:48:01 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Fri, 01 May 2020 17:43:42 -0000
-Message-ID: <158835502272.18946.8031269518252251960@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 01 May 2020 17:48:01 -0000
+Message-ID: <158835528157.18945.3761418499067592580@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200430221016.3866-1-Jason@zx2c4.com>
-In-Reply-To: <20200430221016.3866-1-Jason@zx2c4.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_check_to_see_if_SIMD_registers_are_available_before_us?=
- =?utf-8?q?ing_SIMD?=
+References: <20200501170748.358135-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200501170748.358135-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Rocket_Lake?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,67 +47,110 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: check to see if SIMD registers are available before using SIMD
-URL   : https://patchwork.freedesktop.org/series/76825/
-State : success
+Series: Introduce Rocket Lake
+URL   : https://patchwork.freedesktop.org/series/76826/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8407 -> Patchwork_17544
-====================================================
+$ dim checkpatch origin/drm-tip
+e0c54705a263 drm/i915/rkl: Add RKL platform info and PCI ids
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#34: FILE: drivers/gpu/drm/i915/i915_drv.h:1522:
++#define IS_RKL_REVID(p, since, until) \
++	(IS_ROCKETLAKE(p) && IS_REVID(p, since, until))
 
-Summary
--------
+-:101: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#101: FILE: include/drm/i915_pciids.h:609:
++#define INTEL_RKL_IDS(info) \
++	INTEL_VGA_DEVICE(0x4C80, info), \
++	INTEL_VGA_DEVICE(0x4C8A, info), \
++	INTEL_VGA_DEVICE(0x4C8B, info), \
++	INTEL_VGA_DEVICE(0x4C8C, info), \
++	INTEL_VGA_DEVICE(0x4C90, info), \
++	INTEL_VGA_DEVICE(0x4C9A, info)
 
-  **SUCCESS**
+-:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
+#101: FILE: include/drm/i915_pciids.h:609:
++#define INTEL_RKL_IDS(info) \
++	INTEL_VGA_DEVICE(0x4C80, info), \
++	INTEL_VGA_DEVICE(0x4C8A, info), \
++	INTEL_VGA_DEVICE(0x4C8B, info), \
++	INTEL_VGA_DEVICE(0x4C8C, info), \
++	INTEL_VGA_DEVICE(0x4C90, info), \
++	INTEL_VGA_DEVICE(0x4C9A, info)
 
-  No regressions found.
+total: 1 errors, 0 warnings, 2 checks, 69 lines checked
+247cb564856c x86/gpu: add RKL stolen memory support
+75406d425834 drm/i915/rkl: Re-use TGL GuC/HuC firmware
+9ba10f2f55eb drm/i915/rkl: Load DMC firmware for Rocket Lake
+d3ee665e5a73 drm/i915/rkl: Add PCH support
+02738c459099 drm/i915/rkl: Update memory bandwidth parameters
+bebb0e020bdd drm/i915/rkl: Limit number of universal planes to 5
+57e6334efb40 drm/i915/rkl: Add power well support
+ee76ad50fef4 drm/i915/rkl: Program BW_BUDDY0 registers instead of BW_BUDDY1/2
+-:36: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:5261:
++		min_buddy = max_buddy = 0;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/index.html
+total: 0 errors, 0 warnings, 1 checks, 84 lines checked
+549a5ab2d68d drm/i915/rkl: RKL only uses PHY_MISC for PHY's A and B
+882fcf0349c1 drm/i915/rkl: Add cdclk support
+843c377d0d43 drm/i915/rkl: Handle new DPCLKA_CFGCR0 layout
+-:89: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
+#89: FILE: drivers/gpu/drm/i915/i915_reg.h:10166:
++#define  RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	REG_BIT(phy + 10)
 
-Known issues
-------------
+-:97: WARNING:LONG_LINE: line over 100 characters
+#97: FILE: drivers/gpu/drm/i915/i915_reg.h:10174:
++#define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
 
-  Here are the changes found in Patchwork_17544 that come from known issues:
+-:98: WARNING:LONG_LINE: line over 100 characters
+#98: FILE: drivers/gpu/drm/i915/i915_reg.h:10175:
++#define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
 
-### IGT changes ###
+total: 0 errors, 2 warnings, 1 checks, 73 lines checked
+4ae77e0bd298 drm/i915/rkl: Check proper SDEISR bits for TC1 and TC2 outputs
+83600292a992 drm/i915/rkl: Setup ports/phys
+456084d5a557 drm/i915/rkl: provide port/phy mapping for vbt
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+[drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:275:DDI A]
 
-#### Possible fixes ####
+total: 0 errors, 1 warnings, 0 checks, 104 lines checked
+a1cda3c475a6 drm/i915/rkl: Add DDC pin mapping
+07088eeab0a1 drm/i915/rkl: Don't try to access transcoder D
+3a7da186ddd7 drm/i915/rkl: Don't try to read out DSI transcoders
+501c237f151d drm/i915/rkl: Handle comp master/slave relationships for PHYs
+936464f47f15 drm/i915/rkl: Add DPLL4 support
+24c8c479a130 drm/i915/rkl: Handle HTI
+-:92: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#92: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:274:
++{
++
 
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-guc:         [INCOMPLETE][1] ([i915#1795]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8407/fi-skl-guc/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/fi-skl-guc/igt@i915_selftest@live@execlists.html
+-:154: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#154: FILE: drivers/gpu/drm/i915/i915_reg.h:2903:
++#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2*phy + 2)
+                                  	         ^
 
-  
-  [i915#1795]: https://gitlab.freedesktop.org/drm/intel/issues/1795
+-:154: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
+#154: FILE: drivers/gpu/drm/i915/i915_reg.h:2903:
++#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2*phy + 2)
 
+-:155: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#155: FILE: drivers/gpu/drm/i915/i915_reg.h:2904:
++#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2*phy + 1)
+                                    	         ^
 
-Participating hosts (50 -> 43)
-------------------------------
+-:155: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
+#155: FILE: drivers/gpu/drm/i915/i915_reg.h:2904:
++#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2*phy + 1)
 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+total: 0 errors, 0 warnings, 5 checks, 116 lines checked
+aa6f5ef1a546 drm/i915/rkl: Disable PSR2
+65c6f79b9f54 drm/i915/rkl: Add initial workarounds
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8407 -> Patchwork_17544
-
-  CI-20190529: 20190529
-  CI_DRM_8407: ecb91f743598d9d646fa046c7341058e48494e7c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17544: 962131944f1f279983832e13cdf45517f2abfa06 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-962131944f1f drm/i915: check to see if SIMD registers are available before using SIMD
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
