@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90B21C0DE6
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 07:52:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6F11C0F14
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 10:01:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48C2D6E22E;
-	Fri,  1 May 2020 05:52:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B4F6E22D;
+	Fri,  1 May 2020 08:01:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A869D6E22E;
- Fri,  1 May 2020 05:52:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A2D3AA47EE;
- Fri,  1 May 2020 05:52:10 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4DB6E22D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 08:01:47 +0000 (UTC)
+IronPort-SDR: Jr0bZHmwMLD+IvzwtBBVtWJPknHzXfRcgtUBRmCY1X7S3TbIlf0R1i4F+QiIHHjNShvwFmgAFl
+ cT1ETYaoQ5IQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 01:01:46 -0700
+IronPort-SDR: iouYQl1i2+QZO2SYLdfNioEJ+n74GcKRpuzXzF6aNdcwaVgOQxw9iF9YO+J9OzA8jvL8jt9fcm
+ QD9Fa8en49Iw==
+X-IronPort-AV: E=Sophos;i="5.73,339,1583222400"; d="scan'208";a="247441941"
+Received: from stal1-mobl.ger.corp.intel.com (HELO [10.214.218.50])
+ ([10.214.218.50])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 01:01:45 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200430231529.295556-1-matthew.d.roper@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1470e1a6-34d0-f3f4-1402-cd6e42518a27@linux.intel.com>
+Date: Fri, 1 May 2020 09:01:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 01 May 2020 05:52:10 -0000
-Message-ID: <158831233063.18945.12823601139052339577@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200423075902.21892-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgU0FH?=
- =?utf-8?q?V_support_for_Gen12+_=28rev32=29?=
+In-Reply-To: <20200430231529.295556-1-matthew.d.roper@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 0/4] Steer multicast register workaround
+ verification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,202 +51,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: chris@chris-wilson.co.uk
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: SAGV support for Gen12+ (rev32)
-URL   : https://patchwork.freedesktop.org/series/75129/
-State : success
+Hi,
 
-== Summary ==
+On 01/05/2020 00:15, Matt Roper wrote:
+> We're seeing some CI errors indicating that a workaround did not apply
+> properly on EHL/JSL.  The workaround in question is updating a multicast
+> register, the failures are only seen on specific CI machines, and the
+> failures only seem to happen on resets and such rather than on initial
+> driver load.  It seems likely that the culprit here is failure to steer
+> the multicast register readback on a SKU that has slice0 / subslice0
+> fused off.
+> 
+> This series makes a couple changes:
+>   * Workaround verification will explicitly steer MCR registers by
+>     calling read_subslice_reg rather than a regular read.
+>   * New multicast ranges are added for gen11 and gen12.  Sadly this
+>     information is still missing from the bspec (just like the updated
+>     forcewake tables).  The hardware guys have given us a spreadsheet
+>     with both the forcewake and the multicast information while they work
+>     on getting the spec properly updated, so that's where the new ranges
+>     come from.
 
-CI Bug Log - changes from CI_DRM_8403_full -> Patchwork_17531_full
-====================================================
+I think there are multiple things here. To begin with, newly discovered 
+ranges are of course a savior.
 
-Summary
--------
+But I am not sure about the approach of using intel_read_subslice_reg in 
+wa_verify. It is one suspicion that 0xfdc is lost on reset, but we do 
+reprogram it afterwards don't we? And since it is the first register in 
+the list it is supposed to be in place before the rest of verification 
+runs, no?
 
-  **SUCCESS**
+A year or two I tried figuring this for Icelake and failed, but AFAIR 
+(maybe my experiments can be found somewhere on trybot patchwork), I 
+even tried both applying the affected ones via unicast (for each ss, or 
+l3 where applicable) and also verifying a single register in all enabled 
+ss. AFAIR there were still some issues there. Granted my memory could be 
+leaky.. But I think this multiple write/verify could still be useful.
 
-  No regressions found.
+(Now that I think about it, I think that the problem area back when I 
+experiementing with it was more suspend/resume.. hm..)
 
-  
+My main concern is that with current code we effectively have, after reset:
 
-Known issues
-------------
+intel_gt_apply_workarounds:
+    program 0xfdc
+    program the rest of wa
+verify_wa
+    do reads using configured 0xfdc
 
-  Here are the changes found in Patchwork_17531_full that come from known issues:
+So MCR should be correct. This series seems to be doing:
 
-### IGT changes ###
+intel_gt_apply_workarounds:
+    program 0xfdc
+	* store ss used for MCR configuration
+    program the rest of wa
+verify_wa
+    Do reads but reconfigure 0xfdc before every register in range,
+    but to the same value as in initial configuration.
 
-#### Issues hit ####
+Is this correct? Is the thinking then simply writing the same value to 
+0xfdc multiple times fixes things?
 
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-kbl4/igt@gem_workarounds@suspend-resume-fd.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-kbl4/igt@gem_workarounds@suspend-resume-fd.html
+Regards,
 
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#1436] / [i915#716])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-kbl7/igt@gen9_exec_parse@allowed-all.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-kbl7/igt@gen9_exec_parse@allowed-all.html
+Tvrtko
 
-  * igt@kms_draw_crc@draw-method-xrgb8888-pwrite-xtiled:
-    - shard-skl:          [PASS][5] -> [FAIL][6] ([i915#52] / [i915#54])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-skl2/igt@kms_draw_crc@draw-method-xrgb8888-pwrite-xtiled.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-skl10/igt@kms_draw_crc@draw-method-xrgb8888-pwrite-xtiled.html
+P.S. Update, found the experiments, listing some of them:
 
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-apl:          [PASS][7] -> [DMESG-WARN][8] ([i915#180] / [i915#95])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-apl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-apl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
+https://patchwork.freedesktop.org/series/64183/
+https://patchwork.freedesktop.org/series/64013/
 
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([i915#1188])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-skl7/igt@kms_hdr@bpc-switch-suspend.html
+It reminded me that there were some unexplained issues with regards of 
+where I used ffs or fls for finding the valid common MCR setting between 
+L3 and SSEU. I think we use a different one than Windows but ours works 
+better for our verification, empirically at least. Usual disclaimer 
+about my leaky memory applies here.
 
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][11] -> [FAIL][12] ([fdo#108145] / [i915#265])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-skl3/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109441])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-iclb7/igt@kms_psr@psr2_cursor_render.html
-
-  * igt@kms_vblank@pipe-c-ts-continuation-suspend:
-    - shard-apl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-apl1/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-apl4/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@2x-flip-vs-cursor-legacy:
-    - shard-glk:          [FAIL][17] ([i915#72]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-glk5/igt@kms_cursor_legacy@2x-flip-vs-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-glk1/igt@kms_cursor_legacy@2x-flip-vs-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
-    - shard-hsw:          [FAIL][19] ([IGT#5]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-hsw1/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-hsw7/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][21] ([i915#180]) -> [PASS][22] +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * {igt@kms_flip@flip-vs-suspend@a-dp1}:
-    - shard-kbl:          [INCOMPLETE][23] ([i915#155]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-kbl3/igt@kms_flip@flip-vs-suspend@a-dp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-kbl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][25] ([i915#1188]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-skl5/igt@kms_hdr@bpc-switch.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-skl6/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane_lowres@pipe-a-tiling-x:
-    - shard-glk:          [FAIL][27] ([i915#899]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-glk6/igt@kms_plane_lowres@pipe-a-tiling-x.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-glk9/igt@kms_plane_lowres@pipe-a-tiling-x.html
-
-  * igt@kms_psr@psr2_basic:
-    - shard-iclb:         [SKIP][29] ([fdo#109441]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-iclb8/igt@kms_psr@psr2_basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-iclb2/igt@kms_psr@psr2_basic.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-kbl:          [DMESG-WARN][31] ([i915#180]) -> [PASS][32] +1 similar issue
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-kbl7/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc3co-vpb-simulation:
-    - shard-iclb:         [SKIP][33] ([i915#658]) -> [SKIP][34] ([i915#588])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-iclb8/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-tglb:         [SKIP][35] ([i915#468]) -> [FAIL][36] ([i915#454]) +1 similar issue
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-tglb1/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [DMESG-FAIL][37] ([i915#180] / [i915#95]) -> [FAIL][38] ([i915#93] / [i915#95])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-kbl6/igt@kms_fbcon_fbt@fbc-suspend.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-alpha-7efc:
-    - shard-apl:          [FAIL][39] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][40] ([fdo#108145] / [i915#265])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-apl8/igt@kms_plane_alpha_blend@pipe-a-alpha-7efc.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-apl7/igt@kms_plane_alpha_blend@pipe-a-alpha-7efc.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][41] ([i915#31]) -> [FAIL][42] ([i915#31] / [i915#95])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/shard-apl8/igt@kms_setmode@basic.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/shard-apl7/igt@kms_setmode@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1731]: https://gitlab.freedesktop.org/drm/intel/issues/1731
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#72]: https://gitlab.freedesktop.org/drm/intel/issues/72
-  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8403 -> Patchwork_17531
-
-  CI-20190529: 20190529
-  CI_DRM_8403: 09978e99929f6e5acfe1e959f6499a134f210887 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5619: 94de923ca8d4cc8f532b8062d87aaad9da6ef956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17531: d476c016bc161fca38b14532185fe96d7cab1e04 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17531/index.html
+> In addition to MCR and forcewake, there's supposed to be some more bspec
+> updates coming soon that deal with steering (i.e., different MCR ranges
+> should actually be using different registers to steer rather than just
+> the 0xFDC register we're familiar with); I don't have the full details
+> on that yet, so those updates will have to wait until we actually have
+> an updated spec.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/issues/1222
+> 
+> Matt Roper (4):
+>    drm/i915: Setup multicast register steering for all gen >= 10
+>    drm/i915: Steer multicast register readback in wa_verify
+>    drm/i915: Don't skip verification of MCR engine workarounds
+>    drm/i915: Add MCR ranges for gen11 and gen12
+> 
+>   drivers/gpu/drm/i915/gt/intel_engine.h        |   3 +
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  17 +-
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 146 ++++++++++++------
+>   .../gpu/drm/i915/gt/intel_workarounds_types.h |   2 +
+>   4 files changed, 110 insertions(+), 58 deletions(-)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
