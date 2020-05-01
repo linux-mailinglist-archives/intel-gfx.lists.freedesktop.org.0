@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E2E01C1B27
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:08:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D07B1C1B32
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:08:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 415FF6ECEB;
-	Fri,  1 May 2020 17:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B73D6ECF7;
+	Fri,  1 May 2020 17:08:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 657AF6ECEC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C7C96ECEB
  for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 17:08:00 +0000 (UTC)
-IronPort-SDR: lQvQB+DEjL6XMSurJTwWHftRvUkfYvJOgrroFiwXWsKNlcfwGXEw+CJoBavDji0FzQrnS998Sq
- HJ8JkYjLTsTA==
+IronPort-SDR: rlHyZlj2PqEDWBvC4t6lwCwui4afb2bdwuc+rRiRaXpX5C9eSI6O9dfbqZ9MOzHlBNIbmrJeFg
+ lViwmjboNkgQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2020 10:07:59 -0700
-IronPort-SDR: Z+h2Yh4VO7GotATcZ4u41IQtGv4BIf+C2j1GkmuV2soqdOuWlOXnMc1AkSgPcD5lHhC9cJKy0L
- 23K+snah4Rcw==
+IronPort-SDR: o2LhcBjyYLPY/n6n+MHvCdsUP8+WE57ZM6m6L5sCldzHJvmNFQkTxWjJ3E6jtmpYVU35OWuWiY
+ jtlhzdxV2NYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,340,1583222400"; d="scan'208";a="250062104"
+X-IronPort-AV: E=Sophos;i="5.73,340,1583222400"; d="scan'208";a="250062107"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
  by fmsmga008.fm.intel.com with ESMTP; 01 May 2020 10:07:59 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 10:07:27 -0700
-Message-Id: <20200501170748.358135-3-matthew.d.roper@intel.com>
+Date: Fri,  1 May 2020 10:07:28 -0700
+Message-Id: <20200501170748.358135-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200501170748.358135-1-matthew.d.roper@intel.com>
 References: <20200501170748.358135-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/23] x86/gpu: add RKL stolen memory support
+Subject: [Intel-gfx] [PATCH 03/23] drm/i915/rkl: Re-use TGL GuC/HuC firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,35 +46,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL re-uses the same stolen memory registers as TGL and ICL.
+RKL uses the same GuC and HuC as TGL and should load the same firmwares.
 
-Bspec: 52055
-Bspec: 49589
-Bspec: 49636
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Bspec: 50668
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- arch/x86/kernel/early-quirks.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index 2f9ec14be3b1..a4b5af03dcc1 100644
---- a/arch/x86/kernel/early-quirks.c
-+++ b/arch/x86/kernel/early-quirks.c
-@@ -550,6 +550,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
- 	INTEL_ICL_11_IDS(&gen11_early_ops),
- 	INTEL_EHL_IDS(&gen11_early_ops),
- 	INTEL_TGL_12_IDS(&gen11_early_ops),
-+	INTEL_RKL_IDS(&gen11_early_ops),
- };
- 
- struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index e1caae93996d..9b6218128d09 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -47,8 +47,11 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
+  * TGL 35.2 is interface-compatible with 33.0 for previous Gens. The deltas
+  * between 33.0 and 35.2 are only related to new additions to support new Gen12
+  * features.
++ *
++ * Note that RKL uses the same firmware as TGL.
+  */
+ #define INTEL_UC_FIRMWARE_DEFS(fw_def, guc_def, huc_def) \
++	fw_def(ROCKETLAKE,  0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 0, 12)) \
+ 	fw_def(TIGERLAKE,   0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 0, 12)) \
+ 	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 33, 0, 4), huc_def(ehl,  9, 0, 0)) \
+ 	fw_def(ICELAKE,     0, guc_def(icl, 33, 0, 0), huc_def(icl,  9, 0, 0)) \
 -- 
 2.24.1
 
