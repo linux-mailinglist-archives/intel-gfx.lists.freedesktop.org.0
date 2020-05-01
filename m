@@ -1,32 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972081C1161
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 13:13:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE491C1195
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 13:41:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD95E6EC49;
-	Fri,  1 May 2020 11:13:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCE66E182;
+	Fri,  1 May 2020 11:41:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07C866EC47;
- Fri,  1 May 2020 11:13:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 01285A0099;
- Fri,  1 May 2020 11:13:02 +0000 (UTC)
+X-Greylist: delayed 394 seconds by postgrey-1.36 at gabe;
+ Fri, 01 May 2020 11:41:06 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [146.101.78.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6DA6EC55
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 11:41:06 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-189-ih3s90vDOeiTt87Dj966jA-1; Fri, 01 May 2020 12:34:27 +0100
+X-MC-Unique: ih3s90vDOeiTt87Dj966jA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Fri, 1 May 2020 12:34:26 +0100
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Fri, 1 May 2020 12:34:26 +0100
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Sebastian Andrzej Siewior' <bigeasy@linutronix.de>, "Jason A. Donenfeld"
+ <Jason@zx2c4.com>
+Thread-Topic: [PATCH] drm/i915: check to see if SIMD registers are available
+ before using SIMD
+Thread-Index: AQHWH6U0cN7TmxB4q0iIXnE8CfKG+KiTGDPQ
+Date: Fri, 1 May 2020 11:34:26 +0000
+Message-ID: <21391cdac137449ab82c1fb5444eeb66@AcuMS.aculab.com>
+References: <20200430221016.3866-1-Jason@zx2c4.com>
+ <20200501104215.s2eftchxm66lmbvj@linutronix.de>
+In-Reply-To: <20200501104215.s2eftchxm66lmbvj@linutronix.de>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 01 May 2020 11:13:02 -0000
-Message-ID: <158833158297.18947.17266443518708373577@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200501101900.22543-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200501101900.22543-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gem=3A_Use_chained_reloc_b?=
- =?utf-8?q?atches?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers
+ are available before using SIMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +59,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Sebastian Andrzej Siewior
+> Sent: 01 May 2020 11:42
+> On 2020-04-30 16:10:16 [-0600], Jason A. Donenfeld wrote:
+> > Sometimes it's not okay to use SIMD registers, the conditions for which
+> > have changed subtly from kernel release to kernel release. Usually the
+> > pattern is to check for may_use_simd() and then fallback to using
+> > something slower in the unlikely case SIMD registers aren't available.
+> > So, this patch fixes up i915's accelerated memcpy routines to fallback
+> > to boring memcpy if may_use_simd() is false.
+> 
+> That would indicate that these functions are used from IRQ/softirq which
+> break otherwise if the kernel is also using the registers. The crypto
+> code uses it for that purpose.
+> 
+> So
+>    Reviewed-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> 
+> May I ask how large the memcpy can be? I'm asking in case it is large
+> and an explicit rescheduling point might be needed.
 
-Series: series starting with [1/3] drm/i915/gem: Use chained reloc batches
-URL   : https://patchwork.freedesktop.org/series/76813/
-State : success
+It is also quite likely that a 'rep movs' copy will be at least just as
+fast on modern hardware.
 
-== Summary ==
+Clearly if you are copying to/from PCIe memory you need the largest
+resisters possible - but I think the graphics buffers are mapped cached?
+(Otherwise I wouldn't see 3ms 'spins' while it invalidates the
+entire screen buffer cache.)
 
-CI Bug Log - changes from CI_DRM_8405 -> Patchwork_17538
-====================================================
+	David
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17538/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17538 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [PASS][1] -> [FAIL][2] ([i915#262])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17538/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-bwr-2160:        [INCOMPLETE][3] ([i915#489]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8405/fi-bwr-2160/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17538/fi-bwr-2160/igt@i915_selftest@live@hugepages.html
-
-  
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8405 -> Patchwork_17538
-
-  CI-20190529: 20190529
-  CI_DRM_8405: 83efffba539b475ce7e3fb96aeae7ee744309ff7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5623: 8838c73169ea249e6e86aaed35e5178f60f4ef7d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17538: 91008ee19b392a99ff3cc190aa6c12b2c1959c11 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-91008ee19b39 drm/i915/gem: Try an alternate engine for relocations
-7b4c8219a242 drm/i915/gem: Use a single chained reloc batches for a single execbuf
-20503d783f12 drm/i915/gem: Use chained reloc batches
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17538/index.html
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
