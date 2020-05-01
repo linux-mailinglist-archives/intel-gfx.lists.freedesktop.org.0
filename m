@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E621C1BB6
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7E61C1C26
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 19:43:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 323ED6ED11;
-	Fri,  1 May 2020 17:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF9A46ED18;
+	Fri,  1 May 2020 17:43:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE78A6ED11
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 17:32:26 +0000 (UTC)
-IronPort-SDR: +kIor/DDJb74/kCORxJwS6rWCaWjpVBm1ZGOc4t5CSjWQfZq/z4UKuL8vB0GklWqlM5UKd99G3
- 0shRSnG/NoGQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 10:32:26 -0700
-IronPort-SDR: nD5g0nrEZqpr7B9DRkcANHG1oUjEh627mIsOxXqhFLS9bQCMObNDwz2kgRWjHGczxR8OYqbp4N
- eNkFVh2kIipA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,340,1583222400"; d="scan'208";a="433373897"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
- by orsmga005.jf.intel.com with ESMTP; 01 May 2020 10:32:25 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
- ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 1 May 2020 10:32:25 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.68]) by
- ORSMSX160.amr.corp.intel.com ([169.254.13.187]) with mapi id 14.03.0439.000;
- Fri, 1 May 2020 10:32:25 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 04/23] drm/i915/rkl: Load DMC firmware for Rocket Lake
-Thread-Index: AQHWH9sSm0RdvA9TRk6o0nuO0Fw2maiTeOyg
-Date: Fri, 1 May 2020 17:32:24 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B073482BD6BE@ORSMSX108.amr.corp.intel.com>
-References: <20200501170748.358135-1-matthew.d.roper@intel.com>
- <20200501170748.358135-5-matthew.d.roper@intel.com>
-In-Reply-To: <20200501170748.358135-5-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOTQ2ZjEwOTEtMjAzOS00Yjk2LTlhZjktMzgzMmJiMDUwMTBlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaXFWSCs0SXhBVDRvdmE0TFp4U3hxd0VoT2poOUsxOGsxVVA2azcxYXJHMHVqUDBBU1c0ZUJmOUJJejRYaXlBVCJ9
-x-originating-ip: [10.22.254.140]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD1456ED17;
+ Fri,  1 May 2020 17:43:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B709EA010F;
+ Fri,  1 May 2020 17:43:42 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 04/23] drm/i915/rkl: Load DMC firmware for
- Rocket Lake
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Fri, 01 May 2020 17:43:42 -0000
+Message-ID: <158835502272.18946.8031269518252251960@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200430221016.3866-1-Jason@zx2c4.com>
+In-Reply-To: <20200430221016.3866-1-Jason@zx2c4.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_check_to_see_if_SIMD_registers_are_available_before_us?=
+ =?utf-8?q?ing_SIMD?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,62 +39,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915: check to see if SIMD registers are available before using SIMD
+URL   : https://patchwork.freedesktop.org/series/76825/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8407 -> Patchwork_17544
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17544 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-guc:         [INCOMPLETE][1] ([i915#1795]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8407/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/fi-skl-guc/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1795]: https://gitlab.freedesktop.org/drm/intel/issues/1795
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Friday, May 1, 2020 10:37 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Srivatsa, Anusha
-> <anusha.srivatsa@intel.com>
-> Subject: [PATCH 04/23] drm/i915/rkl: Load DMC firmware for Rocket Lake
-> 
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Participating hosts (50 -> 43)
+------------------------------
 
-> ---
->  drivers/gpu/drm/i915/display/intel_csr.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_csr.c
-> b/drivers/gpu/drm/i915/display/intel_csr.c
-> index 3112572cfb7d..319932b03e88 100644
-> --- a/drivers/gpu/drm/i915/display/intel_csr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_csr.c
-> @@ -40,6 +40,10 @@
-> 
->  #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
-> 
-> +#define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
-> +#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
-> +MODULE_FIRMWARE(RKL_CSR_PATH);
-> +
->  #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_06.bin"
->  #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 6)
->  #define TGL_CSR_MAX_FW_SIZE		0x6000
-> @@ -682,7 +686,11 @@ void intel_csr_ucode_init(struct drm_i915_private
-> *dev_priv)
->  	 */
->  	intel_csr_runtime_pm_get(dev_priv);
-> 
-> -	if (INTEL_GEN(dev_priv) >= 12) {
-> +	if (IS_ROCKETLAKE(dev_priv)) {
-> +		csr->fw_path = RKL_CSR_PATH;
-> +		csr->required_version = RKL_CSR_VERSION_REQUIRED;
-> +		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-> +	} else if (INTEL_GEN(dev_priv) >= 12) {
->  		csr->fw_path = TGL_CSR_PATH;
->  		csr->required_version = TGL_CSR_VERSION_REQUIRED;
->  		/* Allow to load fw via parameter using the last known size */
-> --
-> 2.24.1
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8407 -> Patchwork_17544
+
+  CI-20190529: 20190529
+  CI_DRM_8407: ecb91f743598d9d646fa046c7341058e48494e7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17544: 962131944f1f279983832e13cdf45517f2abfa06 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+962131944f1f drm/i915: check to see if SIMD registers are available before using SIMD
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17544/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
