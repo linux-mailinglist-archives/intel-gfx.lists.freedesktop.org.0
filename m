@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D231C0B64
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 02:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E021C0B72
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 May 2020 03:03:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6276EA59;
-	Fri,  1 May 2020 00:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926296EA58;
+	Fri,  1 May 2020 01:03:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2933D6EA58;
- Fri,  1 May 2020 00:54:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2243BA47E6;
- Fri,  1 May 2020 00:54:24 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C35646EA58
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 May 2020 01:03:11 +0000 (UTC)
+IronPort-SDR: TPiSYbMQbgbGsoy3++ZSmqvleQg1MzsJcgbwvDFFj3nLSLFHFMu69/hAIe1oqTZqCv8KWphRLl
+ bmuT/tIgv6DA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2020 18:03:11 -0700
+IronPort-SDR: YP7GDLdLWRztZaG2sG7rPv4/+bP5t47e86OPU2+AtriAWuwgf+Lx8sqn9wYaIS3YjyDF4PSPIx
+ byeUSQ50goPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,337,1583222400"; d="scan'208";a="433176039"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga005.jf.intel.com with ESMTP; 30 Apr 2020 18:03:10 -0700
+Date: Thu, 30 Apr 2020 18:03:10 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200501010310.GG188376@mdroper-desk1.amr.corp.intel.com>
+References: <20200429101034.8208-1-ville.syrjala@linux.intel.com>
+ <20200429101034.8208-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 01 May 2020 00:54:24 -0000
-Message-ID: <158829446411.18946.303897809213527605@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200430232208.26052-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200430232208.26052-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Use_chained_reloc_batches?=
+Content-Disposition: inline
+In-Reply-To: <20200429101034.8208-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915/fbc: Require linear fb
+ stride to be multiple of 512 bytes on gen9/glk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +49,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 29, 2020 at 01:10:23PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: drm/i915/gem: Use chained reloc batches
-URL   : https://patchwork.freedesktop.org/series/76793/
-State : success
+> Display WA #1105 says that FBC requires PLANE_STRIDE to be a multiple
+> of 512 bytes on gen9 and glk.
+> =
 
-== Summary ==
+> This is definitely true for glk as certain tests (such as
+> igt/kms_big_fb/linear-16bpp-rotate-0) are now failing when the
+> display resolution results in a plane stride which is not a
+> multiple of 512 bytes.
+> =
 
-CI Bug Log - changes from CI_DRM_8403 -> Patchwork_17535
-====================================================
+> Curiously I was not able to reproduce this on a KBL. First I
+> suspected that our use of the FBC override stride explain this,
+> but after trying to use the override stride on glk the test
+> still failed. I did try both the old CHICKEN_MISC_4 way and
+> the new FBC_CHICKEN way, neither had any effect on the result.
+> =
 
-Summary
--------
+> Anyways, we need this at least on glk. But let's trust the spec
+> and apply the w/a for all gen9 as well, despite being unable to
+> reproduce the problem.
+> =
 
-  **SUCCESS**
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Fixes: 691f7ba58d52 ("drm/i915/display/fbc: Make fences a nice-to-have fo=
+r GEN9+")
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> =
 
-  No regressions found.
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index c6afa10e814c..7194f9bc62c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -564,7 +564,7 @@ void intel_fbc_cleanup_cfb(struct drm_i915_private *d=
+ev_priv)
+>  }
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17535/index.html
+>  static bool stride_is_valid(struct drm_i915_private *dev_priv,
+> -			    unsigned int stride)
+> +			    u64 modifier, unsigned int stride)
+>  {
+>  	/* This should have been caught earlier. */
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, (stride & (64 - 1)) !=3D 0))
+> @@ -580,6 +580,11 @@ static bool stride_is_valid(struct drm_i915_private =
+*dev_priv,
+>  	if (IS_GEN(dev_priv, 4) && !IS_G4X(dev_priv) && stride < 2048)
+>  		return false;
+>  =
 
-Known issues
-------------
+> +	/* Display WA #1105: skl,bxt,kbl,cfl,glk */
+> +	if (IS_GEN(dev_priv, 9) &&
+> +	    modifier =3D=3D DRM_FORMAT_MOD_LINEAR && stride & 511)
 
-  Here are the changes found in Patchwork_17535 that come from known issues:
+Might be slightly more readable to use !IS_ALIGNED(stride, 512), but
+either way,
 
-### IGT changes ###
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-#### Possible fixes ####
+> +		return false;
+> +
+>  	if (stride > 16384)
+>  		return false;
+>  =
 
-  * igt@i915_selftest@live@gt_engines:
-    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8403/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17535/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
+> @@ -810,7 +815,7 @@ static bool intel_fbc_can_activate(struct intel_crtc =
+*crtc)
+>  		return false;
+>  	}
+>  =
 
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+> -	if (!stride_is_valid(dev_priv, cache->fb.stride)) {
+> +	if (!stride_is_valid(dev_priv, cache->fb.modifier, cache->fb.stride)) {
+>  		fbc->no_fbc_reason =3D "framebuffer stride not supported";
+>  		return false;
+>  	}
+> -- =
 
+> 2.24.1
+> =
 
-Participating hosts (51 -> 43)
-------------------------------
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+-- =
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8403 -> Patchwork_17535
-
-  CI-20190529: 20190529
-  CI_DRM_8403: 09978e99929f6e5acfe1e959f6499a134f210887 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5619: 94de923ca8d4cc8f532b8062d87aaad9da6ef956 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17535: dffa147cbfe145d395dbf3b6f61578ab9e7052c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dffa147cbfe1 drm/i915/gem: Use chained reloc batches
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17535/index.html
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
