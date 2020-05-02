@@ -1,61 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F131C2210
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 02:54:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8CD91C221A
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 03:18:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA7716E042;
-	Sat,  2 May 2020 00:54:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A80356ED72;
+	Sat,  2 May 2020 01:18:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8A06E042;
- Sat,  2 May 2020 00:53:27 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5eacc4430000>; Fri, 01 May 2020 17:52:19 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Fri, 01 May 2020 17:53:27 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Fri, 01 May 2020 17:53:27 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 2 May
- 2020 00:53:27 +0000
-Received: from rcampbell-dev.nvidia.com (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
- Sat, 2 May 2020 00:53:26 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>
-References: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-From: Ralph Campbell <rcampbell@nvidia.com>
-X-Nvconfidentiality: public
-Message-ID: <3c06a94c-c17f-dc31-537e-f3f6e1ace9a2@nvidia.com>
-Date: Fri, 1 May 2020 17:53:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43EB6ED72
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 01:18:18 +0000 (UTC)
+IronPort-SDR: ivo47L+FFl3S5h/k4DWVdzqe3wlWfHXpBMjN0FVOy7nK1D8iyIbHNVvyoFD5KEyYCbusURl3i4
+ bI7V7uMDcm3A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 18:18:18 -0700
+IronPort-SDR: hb70W4ZCxjwX6XBtcRaMUJzDIOIdTnSGHrQzwEENexRKoI0FDyNzaE6MxNpFWIg+FBU0au4+NG
+ 1WxLaif4zsag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="283342085"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga004.fm.intel.com with ESMTP; 01 May 2020 18:18:18 -0700
+Date: Fri, 1 May 2020 18:18:18 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200502011818.GM188376@mdroper-desk1.amr.corp.intel.com>
+References: <20200429101034.8208-1-ville.syrjala@linux.intel.com>
+ <20200429101034.8208-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1588380739; bh=EV3nm763BNlVbz3132Rm5ScZ/T6SWXq2x/ZiKuEfuP8=;
- h=X-PGP-Universal:Subject:To:CC:References:From:X-Nvconfidentiality:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=nh1pY9Fz7u8s1vJpgRxLXu08giXCQDP363xmg6l0tAXktkX3k7JoYV9gKXZk8ciil
- SsUuIaFfjBxg5B2mGb0w6MYWHWVDSBFSOtvOJA4iKUWDR+lt/J5OTKRwsPFmkGiB2p
- KWQ21HmxXBvfqDQSqQP6ezOvrHGsyqrA94xl/oK9cAXsp7wfeJ4axVyFAWoGkFtyRZ
- 74F/UacwzaZaSglpWi4zAE3eIiU+E+80I57OOsg05kYPRSD7GKDMp+tkSbIK6Dy1QA
- ibQfUJa5jPZvKQfDqst9zXF+/N3IiDcejcNSN7m9HKNOHjmzXFxQdHg1RNqoA6EH6G
- vipRDrDiXDJSg==
-X-Mailman-Approved-At: Sat, 02 May 2020 00:54:54 +0000
-Subject: Re: [Intel-gfx] [PATCH hmm v2 5/5] mm/hmm: remove the customizable
- pfn format from hmm_range_fault
+Content-Disposition: inline
+In-Reply-To: <20200429101034.8208-5-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915/fbc: Fix nuke for pre-snb
+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,105 +49,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
- John Hubbard <jhubbard@nvidia.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Apr 29, 2020 at 01:10:26PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-On 5/1/20 11:20 AM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> Presumably the intent here was that hmm_range_fault() could put the data
-> into some HW specific format and thus avoid some work. However, nothing
-> actually does that, and it isn't clear how anything actually could do that
-> as hmm_range_fault() provides CPU addresses which must be DMA mapped.
-> 
-> Perhaps there is some special HW that does not need DMA mapping, but we
-> don't have any examples of this, and the theoretical performance win of
-> avoiding an extra scan over the pfns array doesn't seem worth the
-> complexity. Plus pfns needs to be scanned anyhow to sort out any
-> DEVICE_PRIVATE pages.
-> 
-> This version replaces the uint64_t with an usigned long containing a pfn
-> and fixed flags. On input flags is filled with the HMM_PFN_REQ_* values,
-> on successful output it is filled with HMM_PFN_* values, describing the
-> state of the pages.
-> 
-> amdgpu is simple to convert, it doesn't use snapshot and doesn't use
-> per-page flags.
-> 
-> nouveau uses only 16 hmm_pte entries at most (ie fits in a few cache
-> lines), and it sweeps over its pfns array a couple of times anyhow. It
-> also has a nasty call chain before it reaches the dma map and hardware
-> suggesting performance isn't important:
-> 
->     nouveau_svm_fault():
->       args.i.m.method = NVIF_VMM_V0_PFNMAP
->       nouveau_range_fault()
->        nvif_object_ioctl()
->         client->driver->ioctl()
-> 	  struct nvif_driver nvif_driver_nvkm:
-> 	    .ioctl = nvkm_client_ioctl
-> 	   nvkm_ioctl()
-> 	    nvkm_ioctl_path()
-> 	      nvkm_ioctl_v0[type].func(..)
-> 	      nvkm_ioctl_mthd()
-> 	       nvkm_object_mthd()
-> 		  struct nvkm_object_func nvkm_uvmm:
-> 		    .mthd = nvkm_uvmm_mthd
-> 		   nvkm_uvmm_mthd()
-> 		    nvkm_uvmm_mthd_pfnmap()
-> 		     nvkm_vmm_pfn_map()
-> 		      nvkm_vmm_ptes_get_map()
-> 		       func == gp100_vmm_pgt_pfn
-> 			struct nvkm_vmm_desc_func gp100_vmm_desc_spt:
-> 			  .pfn = gp100_vmm_pgt_pfn
-> 			 nvkm_vmm_iter()
-> 			  REF_PTES == func == gp100_vmm_pgt_pfn()
-> 			    dma_map_page()
-> 
-> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Tested-by: Ralph Campbell <rcampbell@nvidia.com>
-> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> The MSG_FBC_REND_STATE register only exists on snb+. For older
+
+I only find this register in the bspec for HSW+.  Is the spec incomplete
+or am I looking in the wrong place?
+
+It's a bit hard to review these changes for older platforms since there
+doesn't really seem to be much FBC/DPFC documentation at all in the
+bspec until we get to BDW and beyond.  The only explicit mention I can
+find of nuke-on-flip for older platforms is a SNB-specific bit in
+FBC_CTL that disables that behavior.  Do you have other documents that
+clarify that this will indeed work farther back?
+
+
+Matt
+
+> platforms (would also work for snb+) we can simply rewite DSPSURF
+> to trigger a flip nuke.
+> =
+
+> While generally RMW is considered harmful we'll use it here for
+> simplicity. And since FBC doesn't exist in i830 we don't have to
+> worry about the DSPSURF double buffering hardware fails present
+> on that platform.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > ---
->   Documentation/vm/hmm.rst                |  26 ++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  35 ++----
->   drivers/gpu/drm/nouveau/nouveau_dmem.c  |  27 +---
->   drivers/gpu/drm/nouveau/nouveau_dmem.h  |   3 +-
->   drivers/gpu/drm/nouveau/nouveau_svm.c   |  87 ++++++++-----
->   include/linux/hmm.h                     |  99 ++++++---------
->   mm/hmm.c                                | 160 +++++++++++-------------
->   7 files changed, 192 insertions(+), 245 deletions(-)
-> 
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 34 +++++++++++++++++++++++-
+>  1 file changed, 33 insertions(+), 1 deletion(-)
+> =
 
-...snip...
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 613ab499d42e..983224e07eaf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -188,8 +188,30 @@ static bool g4x_fbc_is_active(struct drm_i915_privat=
+e *dev_priv)
+>  	return intel_de_read(dev_priv, DPFC_CONTROL) & DPFC_CTL_EN;
+>  }
+>  =
 
->   
-> +static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
-> +				    struct hmm_range *range, u64 *ioctl_addr)
+> +static void i8xx_fbc_recompress(struct drm_i915_private *dev_priv)
 > +{
-> +	unsigned long i, npages;
+> +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
+> +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
 > +
-> +	/*
-> +	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
-> +	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
-> +	 *
-> +	 * This is all just encoding the internal hmm reprensetation into a
+> +	spin_lock_irq(&dev_priv->uncore.lock);
+> +	intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
+> +			  intel_de_read_fw(dev_priv, DSPADDR(i9xx_plane)));
+> +	spin_unlock_irq(&dev_priv->uncore.lock);
+> +}
+> +
+> +static void i965_fbc_recompress(struct drm_i915_private *dev_priv)
+> +{
+> +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
+> +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
+> +
+> +	spin_lock_irq(&dev_priv->uncore.lock);
+> +	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+> +			  intel_de_read_fw(dev_priv, DSPSURF(i9xx_plane)));
+> +	spin_unlock_irq(&dev_priv->uncore.lock);
+> +}
+> +
+>  /* This function forces a CFB recompression through the nuke operation. =
+*/
+> -static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
+> +static void snb_fbc_recompress(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_fbc *fbc =3D &dev_priv->fbc;
+>  =
 
-s/reprensetation/representation/
+> @@ -199,6 +221,16 @@ static void intel_fbc_recompress(struct drm_i915_pri=
+vate *dev_priv)
+>  	intel_de_posting_read(dev_priv, MSG_FBC_REND_STATE);
+>  }
+>  =
 
-Looks good and still tests OK with nouveau.
+> +static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
+> +{
+> +	if (INTEL_GEN(dev_priv) >=3D 6)
+> +		snb_fbc_recompress(dev_priv);
+> +	else if (INTEL_GEN(dev_priv) >=3D 4)
+> +		i965_fbc_recompress(dev_priv);
+> +	else
+> +		i8xx_fbc_recompress(dev_priv);
+> +}
+> +
+>  static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
