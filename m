@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D271C266A
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 17:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA191C2670
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 17:06:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27D816E128;
-	Sat,  2 May 2020 15:03:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9918A6E133;
+	Sat,  2 May 2020 15:05:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05DC66E128
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 15:03:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5864F6E133
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 15:05:57 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093750-1500050 
- for multiple; Sat, 02 May 2020 16:02:29 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093780-1500050 
+ for multiple; Sat, 02 May 2020 16:05:22 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  2 May 2020 16:02:29 +0100
-Message-Id: <20200502150229.15103-1-chris@chris-wilson.co.uk>
+Date: Sat,  2 May 2020 16:05:23 +0100
+Message-Id: <20200502150523.23504-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200502150229.15103-1-chris@chris-wilson.co.uk>
+References: <20200502150229.15103-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Mark concurrent submissions with a
  weak-dependency
@@ -49,6 +51,11 @@ common trunk. However, for the purpose of timeslicing and reset
 handling, the dependency is weak -- as we the pair of requests are
 allowed to run in parallel and not in strict succession. So for example
 we do need to suspend one if the other hangs.
+
+The real significance though is that this allows us to rearrange
+groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
+so can resolve user level inter-batch scheduling dependencies from user
+semaphores.
 
 Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
