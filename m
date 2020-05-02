@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D1E1C25DE
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 15:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F451C25DD
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 15:40:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E70A46E10E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 523146E108;
 	Sat,  2 May 2020 13:40:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8946E108;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4258B6E106;
  Sat,  2 May 2020 13:40:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093158-1500050 
- for multiple; Sat, 02 May 2020 14:40:08 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093160-1500050 
+ for multiple; Sat, 02 May 2020 14:40:09 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  2 May 2020 14:40:07 +0100
-Message-Id: <20200502134009.1597325-1-chris@chris-wilson.co.uk>
+Date: Sat,  2 May 2020 14:40:08 +0100
+Message-Id: <20200502134009.1597325-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200502134009.1597325-1-chris@chris-wilson.co.uk>
+References: <20200502134009.1597325-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/3] intel-ci: Only skip the hanging
- gem_exec_fence tests
+Subject: [Intel-gfx] [PATCH i-g-t 2/3] lib/i915: Report scheduler caps for
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,28 +45,84 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gem_exec_fence includes a bunch of functional syncobj tests that are
-currently being skipped due to an eagerness to avoid the intentionally
-very slow hang tests.
-
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/intel-ci/blacklist.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/drm-uapi/i915_drm.h |  8 +++++---
+ lib/i915/gem_scheduler.c    | 15 +++++++++++++++
+ lib/i915/gem_scheduler.h    |  1 +
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
-diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
-index 08333afff..ecbec5080 100644
---- a/tests/intel-ci/blacklist.txt
-+++ b/tests/intel-ci/blacklist.txt
-@@ -26,7 +26,7 @@ igt@gem_evict_alignment(@.*)?
- igt@gem_evict_everything(@.*)?
- igt@gem_exec_big@(?!.*single).*
- igt@gem_exec_capture@many-(?!4K-).*
--igt@gem_exec_fence@(?!.*basic).*
-+igt@gem_exec_fence@.*hang.*
- igt@gem_exec_flush@(?!.*basic).*
- igt@gem_exec_latency(@.*)?
- igt@gem_exec_lut_handle(@.*)?
+diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+index 2b55af13a..a222b6bfb 100644
+--- a/include/drm-uapi/i915_drm.h
++++ b/include/drm-uapi/i915_drm.h
+@@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
+ #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+ #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+ #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
++#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
+ 
+ #define I915_PARAM_HUC_STATUS		 42
+ 
+@@ -1040,9 +1041,10 @@ struct drm_i915_gem_exec_fence {
+ 	 */
+ 	__u32 handle;
+ 
+-#define I915_EXEC_FENCE_WAIT            (1<<0)
+-#define I915_EXEC_FENCE_SIGNAL          (1<<1)
+-#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
++#define I915_EXEC_FENCE_WAIT            (1u << 0)
++#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
++#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
++#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
+ 	__u32 flags;
+ };
+ 
+diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
+index 1beb85dec..a1dc694e5 100644
+--- a/lib/i915/gem_scheduler.c
++++ b/lib/i915/gem_scheduler.c
+@@ -131,6 +131,19 @@ bool gem_scheduler_has_engine_busy_stats(int fd)
+ 		I915_SCHEDULER_CAP_ENGINE_BUSY_STATS;
+ }
+ 
++/**
++ * gem_scheduler_has_timeslicing:
++ * @fd: open i915 drm file descriptor
++ *
++ * Feature test macro to query whether the driver supports using HW preemption
++ * to implement timeslicing of userspace batches. This allows userspace to
++ * implement micro-level scheduling within their own batches.
++ */
++bool gem_scheduler_has_timeslicing(int fd)
++{
++	return gem_scheduler_capability(fd) & I915_SCHEDULER_CAP_TIMESLICING;
++}
++
+ /**
+  * gem_scheduler_print_capability:
+  * @fd: open i915 drm file descriptor
+@@ -151,6 +164,8 @@ void gem_scheduler_print_capability(int fd)
+ 		igt_info(" - With preemption enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_SEMAPHORES)
+ 		igt_info(" - With HW semaphores enabled\n");
++	if (caps & I915_SCHEDULER_CAP_TIMESLICING)
++		igt_info(" - With user timeslicing enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
+ 		igt_info(" - With engine busy statistics\n");
+ }
+diff --git a/lib/i915/gem_scheduler.h b/lib/i915/gem_scheduler.h
+index 14bd4cac4..d43e84bd2 100644
+--- a/lib/i915/gem_scheduler.h
++++ b/lib/i915/gem_scheduler.h
+@@ -32,6 +32,7 @@ bool gem_scheduler_has_ctx_priority(int fd);
+ bool gem_scheduler_has_preemption(int fd);
+ bool gem_scheduler_has_semaphores(int fd);
+ bool gem_scheduler_has_engine_busy_stats(int fd);
++bool gem_scheduler_has_timeslicing(int fd);
+ void gem_scheduler_print_capability(int fd);
+ 
+ #endif /* GEM_SCHEDULER_H */
 -- 
 2.26.2
 
