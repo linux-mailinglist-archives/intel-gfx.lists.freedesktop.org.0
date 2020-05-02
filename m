@@ -1,38 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89701C2320
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 06:57:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7911C2321
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 06:58:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56FA96ED79;
-	Sat,  2 May 2020 04:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2114B6ED7C;
+	Sat,  2 May 2020 04:58:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52A576ED79
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 04:57:53 +0000 (UTC)
-IronPort-SDR: +ATm+4uEUfrz9Olp+xrgvCPMh6818jCEZQeyp9YkgXPLxZO85ffMR6jF1dclKg+GDsl6202FA8
- d2V6sL+Lcvqw==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14CED6ED7C
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 04:58:02 +0000 (UTC)
+IronPort-SDR: GLaaerRxBnO4Q9WS1wux38cm4n87lfW6J5C8ccpYiI1xK0XA6N3gFYvVBCy+YZG6HzP/lM2851
+ 73CyiujmHC9Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 21:57:52 -0700
-IronPort-SDR: zeUydbuZT95Re9EsTmTKMri5j/LssWGGGnDMCtak+3LlnEDKs7GSiIrYl6M0Gf4GWrQWl6VfB7
- 3zmcKSvCyQhw==
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 21:58:01 -0700
+IronPort-SDR: 8TiQpg36A3Uu6X13osmTRKUSYsM5FxbXqgeVRRoD9qM9xKkYPJhfxomH2mpFblE11rxGZ3S94z
+ m1FFt7FLKpuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="248709986"
+X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="248710003"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by fmsmga007.fm.intel.com with ESMTP; 01 May 2020 21:57:52 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 01 May 2020 21:58:01 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 21:57:41 -0700
-Message-Id: <20200502045744.407060-1-matthew.d.roper@intel.com>
+Date: Fri,  1 May 2020 21:57:42 -0700
+Message-Id: <20200502045744.407060-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200502045744.407060-1-matthew.d.roper@intel.com>
+References: <20200502045744.407060-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 0/3] Steer multicast register workaround
- verification
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Setup multicast register
+ steering for all gen >= 10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,41 +53,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're seeing some CI errors indicating that a workaround did not apply
-properly on EHL/JSL.  The workaround in question is updating a multicast
-register, the failures are only seen on specific CI machines, and the
-failures only seem to happen on resets and such rather than on initial
-driver load.  It seems likely that the culprit here is failure to steer
-the multicast register readback on a SKU that has slice0 / subslice0
-fused off.
+Steering of multicast registers for workarounds is needed on all
+platforms gen10 and above.  Move the wa_init_mcr() call to the
+higher-level gt_init_workarounds() rather than re-calling it for each
+individual platform.
 
-This series makes a couple changes:
- * Ensure setup of MCR steering is done at the beginning of the RCS
-   engine workaround list, not just the general GT workaround list.
- * New multicast ranges are added for gen11 and gen12.  Sadly this
-   information is still missing from the bspec (just like the updated
-   forcewake tables).  The hardware guys have given us a spreadsheet
-   with both the forcewake and the multicast information while they work
-   on getting the spec properly updated, so that's where the new ranges
-   come from.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-In addition to MCR and forcewake, there's supposed to be some more bspec
-updates coming soon that deal with steering (i.e., different MCR ranges
-should actually be using different registers to steer rather than just
-the 0xFDC register we're familiar with); I don't have the full details
-on that yet, so those updates will have to wait until we actually have
-an updated spec.
-
-References: https://gitlab.freedesktop.org/drm/intel/issues/1222
-
-Matt Roper (3):
-  drm/i915: Setup multicast register steering for all gen >= 10
-  drm/i915: Setup MCR steering for RCS engine workarounds
-  drm/i915: Add MCR ranges for gen11 and gen12
-
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 57 ++++++++++++++++-----
- 1 file changed, 45 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index adddc5c93b48..4a255de13394 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -870,8 +870,6 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
+-
+ 	/* WaDisableI2mCycleOnWRPort:cnl (pre-prod) */
+ 	if (IS_CNL_REVID(i915, CNL_REVID_B0, CNL_REVID_B0))
+ 		wa_write_or(wal,
+@@ -887,8 +885,6 @@ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
+-
+ 	/* WaInPlaceDecompressionHang:icl */
+ 	wa_write_or(wal,
+ 		    GEN9_GAMT_ECO_REG_RW_IA,
+@@ -943,8 +939,6 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
+-
+ 	/* Wa_1409420604:tgl */
+ 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+ 		wa_write_or(wal,
+@@ -961,6 +955,9 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
++	if (INTEL_GEN(i915) >= 10)
++		wa_init_mcr(i915, wal);
++
+ 	if (IS_GEN(i915, 12))
+ 		tgl_gt_workarounds_init(i915, wal);
+ 	else if (IS_GEN(i915, 11))
 -- 
 2.24.1
 
