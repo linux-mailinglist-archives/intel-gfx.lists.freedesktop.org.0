@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73291C25DF
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 15:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D271C266A
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 17:03:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3199E6E114;
-	Sat,  2 May 2020 13:40:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27D816E128;
+	Sat,  2 May 2020 15:03:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F016E107;
- Sat,  2 May 2020 13:40:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05DC66E128
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 15:03:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093161-1500050 
- for multiple; Sat, 02 May 2020 14:40:09 +0100
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21093750-1500050 
+ for multiple; Sat, 02 May 2020 16:02:29 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  2 May 2020 14:40:09 +0100
-Message-Id: <20200502134009.1597325-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200502134009.1597325-1-chris@chris-wilson.co.uk>
-References: <20200502134009.1597325-1-chris@chris-wilson.co.uk>
+Date: Sat,  2 May 2020 16:02:29 +0100
+Message-Id: <20200502150229.15103-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 3/3] i915/gem_exec_fence: Teach
- invalid-wait about invalid future fences
+Subject: [Intel-gfx] [PATCH] drm/i915: Mark concurrent submissions with a
+ weak-dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,321 +37,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we allow a wait on a future future fence, it must autoexpire if the
-fence is never signaled by userspace.
+We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
+correctly perform priority inheritance from the parallel branches to the
+common trunk. However, for the purpose of timeslicing and reset
+handling, the dependency is weak -- as we the pair of requests are
+allowed to run in parallel and not in strict succession. So for example
+we do need to suspend one if the other hangs.
 
+Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v5.6+
 ---
- tests/i915/gem_exec_fence.c | 243 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 240 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
+ drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
+ drivers/gpu/drm/i915/i915_scheduler.c       | 4 +++-
+ drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
+ drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
+ 5 files changed, 21 insertions(+), 4 deletions(-)
 
-diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-index ebd0f931f..31788d55e 100644
---- a/tests/i915/gem_exec_fence.c
-+++ b/tests/i915/gem_exec_fence.c
-@@ -46,6 +46,15 @@ struct sync_merge_data {
- #define SYNC_IOC_MERGE _IOWR(SYNC_IOC_MAGIC, 3, struct sync_merge_data)
- #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index d4ef344657b0..a47e4e15cbaa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1883,6 +1883,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-+#define MI_SEMAPHORE_WAIT		(0x1c << 23)
-+#define   MI_SEMAPHORE_POLL             (1 << 15)
-+#define   MI_SEMAPHORE_SAD_GT_SDD       (0 << 12)
-+#define   MI_SEMAPHORE_SAD_GTE_SDD      (1 << 12)
-+#define   MI_SEMAPHORE_SAD_LT_SDD       (2 << 12)
-+#define   MI_SEMAPHORE_SAD_LTE_SDD      (3 << 12)
-+#define   MI_SEMAPHORE_SAD_EQ_SDD       (4 << 12)
-+#define   MI_SEMAPHORE_SAD_NEQ_SDD      (5 << 12)
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
 +
- static void store(int fd, const struct intel_execution_engine2 *e,
- 		  int fence, uint32_t target, unsigned offset_value)
- {
-@@ -917,11 +926,12 @@ static void test_syncobj_invalid_wait(int fd)
- 	struct drm_i915_gem_exec_fence fence = {
- 		.handle = syncobj_create(fd, 0),
- 	};
-+	int out;
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2729,6 +2732,9 @@ static void __execlists_hold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
- 	memset(&execbuf, 0, sizeof(execbuf));
- 	execbuf.buffers_ptr = to_user_pointer(&obj);
- 	execbuf.buffer_count = 1;
--	execbuf.flags = I915_EXEC_FENCE_ARRAY;
-+	execbuf.flags = I915_EXEC_FENCE_ARRAY | I915_EXEC_FENCE_OUT;
- 	execbuf.cliprects_ptr = to_user_pointer(&fence);
- 	execbuf.num_cliprects = 1;
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2853,6 +2859,9 @@ static void __execlists_unhold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-@@ -929,14 +939,55 @@ static void test_syncobj_invalid_wait(int fd)
- 	obj.handle = gem_create(fd, 4096);
- 	gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Propagate any change in error status */
+ 			if (rq->fence.error)
+ 				i915_request_set_error_once(w, rq->fence.error);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 22635bbabf06..95edc5523a01 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1038,7 +1038,9 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 		return 0;
  
--	/* waiting before the fence is set is invalid */
-+	/* waiting before the fence is set is^W may be invalid */
- 	fence.flags = I915_EXEC_FENCE_WAIT;
--	igt_assert_eq(__gem_execbuf(fd, &execbuf), -EINVAL);
-+	if (__gem_execbuf_wr(fd, &execbuf))
-+		igt_assert_eq(__gem_execbuf(fd, &execbuf), -EINVAL);
-+
-+	/* If we do allow the wait on a future fence, it should autoexpire */
-+	gem_sync(fd, obj.handle);
-+	out = execbuf.rsvd2 >> 32;
-+	igt_assert_eq(sync_fence_status(out), -ETIMEDOUT);
-+	close(out);
- 
- 	gem_close(fd, obj.handle);
- 	syncobj_destroy(fd, fence.handle);
- }
- 
-+static void test_syncobj_incomplete_wait_submit(int i915)
-+{
-+	struct drm_i915_gem_exec_object2 obj = {
-+		.handle = batch_create(i915),
-+	};
-+	struct drm_i915_gem_exec_fence fence = {
-+		.handle = syncobj_create(i915, 0),
-+		.flags = I915_EXEC_FENCE_WAIT | I915_EXEC_FENCE_WAIT_SUBMIT,
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+
-+		.cliprects_ptr = to_user_pointer(&fence),
-+		.num_cliprects = 1,
-+
-+		.flags = I915_EXEC_FENCE_ARRAY | I915_EXEC_FENCE_OUT,
-+	};
-+	int out;
-+
-+	/* waiting before the fence is set is^W may be invalid */
-+	if (__gem_execbuf_wr(i915, &execbuf))
-+		igt_assert_eq(__gem_execbuf(i915, &execbuf), -EINVAL);
-+
-+	/* If we do allow the wait on a future fence, it should autoexpire */
-+	gem_sync(i915, obj.handle);
-+	out = execbuf.rsvd2 >> 32;
-+	igt_assert_eq(sync_fence_status(out), -ETIMEDOUT);
-+	close(out);
-+
-+	gem_close(i915, obj.handle);
-+	syncobj_destroy(i915, fence.handle);
-+}
-+
- static void test_syncobj_invalid_flags(int fd)
- {
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
-@@ -1083,6 +1134,177 @@ static void test_syncobj_wait(int fd)
+ 	if (to->engine->schedule) {
+-		ret = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		ret = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     0);
+ 		if (ret < 0)
+ 			return ret;
  	}
+@@ -1200,7 +1202,9 @@ __i915_request_await_execution(struct i915_request *to,
+ 
+ 	/* Couple the dependency tree for PI on this exposed to->fence */
+ 	if (to->engine->schedule) {
+-		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		err = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     I915_DEPENDENCY_WEAK);
+ 		if (err < 0)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 37cfcf5b321b..5f4c1e49e974 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -462,7 +462,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
  }
  
-+static uint32_t future_end_batch(int i915, uint32_t offset)
-+{
-+	uint32_t handle = gem_create(i915, 4096);
-+	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	uint32_t cs[16];
-+	int i = 0;
-+
-+	cs[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-+	if (gen >= 8) {
-+		cs[++i] = offset + 4000;
-+		cs[++i] = 0;
-+	} else if (gen >= 4) {
-+		cs[++i] = 0;
-+		cs[++i] = offset + 4000;
-+	} else {
-+		cs[i]--;
-+		cs[++i] = offset + 4000;
-+	}
-+	cs[++i] = 1;
-+	cs[i + 1] = MI_BATCH_BUFFER_END;
-+	gem_write(i915, handle, 0, cs, sizeof(cs));
-+
-+	cs[i] = 2;
-+	gem_write(i915, handle, 64, cs, sizeof(cs));
-+
-+	return handle;
-+}
-+
-+static void test_syncobj_future_end(int i915, unsigned int engine)
-+{
-+	struct drm_i915_gem_exec_object2 obj = {
-+		.offset = 24 << 20,
-+		.handle = future_end_batch(i915, 24 << 20),
-+		.flags = EXEC_OBJECT_PINNED,
-+	};
-+	struct drm_i915_gem_exec_fence fence = {
-+		.handle = syncobj_create(i915, 0),
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf  = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+		.cliprects_ptr = to_user_pointer(&fence),
-+		.num_cliprects = 1,
-+		.flags = engine | I915_EXEC_FENCE_ARRAY,
-+	};
-+	uint32_t result;
-+
-+	igt_require(gem_scheduler_enabled(i915));
-+
-+	execbuf.rsvd1 = gem_context_create(i915);
-+	fence.flags = I915_EXEC_FENCE_WAIT;
-+	execbuf.batch_start_offset = 0;
-+	igt_require(__gem_execbuf(i915, &execbuf) == 0); /* writes 1 */
-+	gem_context_destroy(i915, execbuf.rsvd1);
-+
-+	execbuf.rsvd1 = gem_context_create(i915);
-+	fence.flags = I915_EXEC_FENCE_SIGNAL;
-+	execbuf.batch_start_offset = 64;
-+	gem_execbuf(i915, &execbuf); /* writes 2 */
-+	gem_context_destroy(i915, execbuf.rsvd1);
-+
-+	gem_sync(i915, obj.handle); /* write hazard lies */
-+	gem_read(i915, obj.handle, 4000, &result, sizeof(result));
-+	igt_assert_eq(result, 1);
-+
-+	gem_close(i915, obj.handle);
-+	syncobj_destroy(i915, fence.handle);
-+}
-+
-+static uint32_t future_submit_batch(int i915, uint32_t offset)
-+{
-+	uint32_t handle = gem_create(i915, 4096);
-+	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	uint32_t cs[16];
-+	int i = 0;
-+
-+	cs[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-+	if (gen >= 8) {
-+		cs[++i] = offset + 4000;
-+		cs[++i] = 0;
-+	} else if (gen >= 4) {
-+		cs[++i] = 0;
-+		cs[++i] = offset + 4000;
-+	} else {
-+		cs[i]--;
-+		cs[++i] = offset + 4000;
-+	}
-+	cs[++i] = 1;
-+	cs[i + 1] = MI_BATCH_BUFFER_END;
-+	igt_assert(i + 1 < ARRAY_SIZE(cs));
-+	gem_write(i915, handle, 0, cs, sizeof(cs));
-+
-+	i = 0;
-+	cs[i++] =
-+		MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_EQ_SDD |
-+		(4 - 2);
-+	cs[i++] = 1;
-+	cs[i++] = offset + 4000;
-+	cs[i++] = 0;
-+
-+	cs[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-+	if (gen >= 8) {
-+		cs[++i] = offset + 4000;
-+		cs[++i] = 0;
-+	} else if (gen >= 4) {
-+		cs[++i] = 0;
-+		cs[++i] = offset + 4000;
-+	} else {
-+		cs[i]--;
-+		cs[++i] = offset + 4000;
-+	}
-+	cs[++i] = 2;
-+	cs[++i] = MI_BATCH_BUFFER_END;
-+	igt_assert(i < ARRAY_SIZE(cs));
-+
-+	gem_write(i915, handle, 64, cs, sizeof(cs));
-+
-+	return handle;
-+}
-+
-+static void test_syncobj_future_submit(int i915, unsigned int engine)
-+{
-+	struct drm_i915_gem_exec_object2 obj = {
-+		.offset = 24 << 20,
-+		.handle = future_submit_batch(i915, 24 << 20),
-+		.flags = EXEC_OBJECT_PINNED,
-+	};
-+	struct drm_i915_gem_exec_fence fence = {
-+		.handle = syncobj_create(i915, 0),
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf  = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+		.cliprects_ptr = to_user_pointer(&fence),
-+		.num_cliprects = 1,
-+		.flags = engine | I915_EXEC_FENCE_ARRAY,
-+	};
-+	uint32_t result;
-+	int out;
-+
-+	igt_require(gem_scheduler_has_timeslicing(i915));
-+
-+	execbuf.rsvd1 = gem_context_create(i915);
-+	fence.flags = I915_EXEC_FENCE_WAIT | I915_EXEC_FENCE_WAIT_SUBMIT;
-+	execbuf.batch_start_offset = 0;
-+	execbuf.flags |= I915_EXEC_FENCE_OUT;
-+	igt_require(__gem_execbuf_wr(i915, &execbuf) == 0); /* writes 1 */
-+	execbuf.flags &= ~I915_EXEC_FENCE_OUT;
-+	gem_context_destroy(i915, execbuf.rsvd1);
-+
-+	execbuf.rsvd1 = gem_context_create(i915);
-+	fence.flags = I915_EXEC_FENCE_SIGNAL;
-+	execbuf.batch_start_offset = 64;
-+	gem_execbuf(i915, &execbuf); /* writes 2 */
-+	gem_context_destroy(i915, execbuf.rsvd1);
-+
-+	gem_sync(i915, obj.handle); /* write hazard lies */
-+	gem_read(i915, obj.handle, 4000, &result, sizeof(result));
-+	igt_assert_eq(result, 2);
-+
-+	/* check we didn't autotimeout */
-+	out = execbuf.rsvd2 >> 32;
-+	igt_assert_eq(sync_fence_status(out), 1);
-+	close(out);
-+
-+	gem_close(i915, obj.handle);
-+	syncobj_destroy(i915, fence.handle);
-+}
-+
- static void test_syncobj_export(int fd)
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal)
++				   struct i915_sched_node *signal,
++				   unsigned long flags)
  {
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
-@@ -1552,6 +1774,9 @@ igt_main
- 		igt_subtest("syncobj-invalid-wait")
- 			test_syncobj_invalid_wait(i915);
+ 	struct i915_dependency *dep;
  
-+		igt_subtest("syncobj-incomplete-wait-submit")
-+			test_syncobj_incomplete_wait_submit(i915);
-+
- 		igt_subtest("syncobj-invalid-flags")
- 			test_syncobj_invalid_flags(i915);
+@@ -473,6 +474,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 	local_bh_disable();
  
-@@ -1561,6 +1786,18 @@ igt_main
- 		igt_subtest("syncobj-wait")
- 			test_syncobj_wait(i915);
+ 	if (!__i915_sched_node_add_dependency(node, signal, dep,
++					      flags |
+ 					      I915_DEPENDENCY_EXTERNAL |
+ 					      I915_DEPENDENCY_ALLOC))
+ 		i915_dependency_free(dep);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index d1dc4efef77b..6f0bf00fc569 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -34,7 +34,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 				      unsigned long flags);
  
-+		igt_subtest_with_dynamic("syncobj-future-end")
-+			__for_each_physical_engine(i915, e) {
-+				igt_dynamic_f("%s", e->name)
-+					test_syncobj_future_end(i915, e->flags);
-+			}
-+
-+		igt_subtest_with_dynamic("syncobj-future-submit")
-+			__for_each_physical_engine(i915, e) {
-+				igt_dynamic_f("%s", e->name)
-+					test_syncobj_future_submit(i915, e->flags);
-+			}
-+
- 		igt_subtest("syncobj-export")
- 			test_syncobj_export(i915);
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal);
++				   struct i915_sched_node *signal,
++				   unsigned long flags);
  
+ void i915_sched_node_fini(struct i915_sched_node *node);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index d18e70550054..7186875088a0 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -78,6 +78,7 @@ struct i915_dependency {
+ 	unsigned long flags;
+ #define I915_DEPENDENCY_ALLOC		BIT(0)
+ #define I915_DEPENDENCY_EXTERNAL	BIT(1)
++#define I915_DEPENDENCY_WEAK		BIT(2)
+ };
+ 
+ #endif /* _I915_SCHEDULER_TYPES_H_ */
 -- 
-2.26.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
