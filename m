@@ -1,110 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211C31C26F4
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 18:26:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031151C2726
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 19:05:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6104E6E167;
-	Sat,  2 May 2020 16:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D795C6E17B;
+	Sat,  2 May 2020 17:05:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A16D6E167
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 16:26:55 +0000 (UTC)
-IronPort-SDR: 3CR0LKPtImoN6usaLT9LMSVB9aMPnV/j7/OXPZ6Ap0l2OaBgm9vtRBoITJEZLyIft1gl7Sq2C2
- jp1RCMeLl1Lg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2020 09:26:54 -0700
-IronPort-SDR: qeyFTk+HG7eTnUGHh2l57oSnrvJfNPe+95c79oJkEm3EN6VKV9MXvyxPjlP9tQgTduzrCH1l8I
- PGEnB8Ak7bjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,343,1583222400"; d="scan'208";a="406032891"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
- by orsmga004.jf.intel.com with ESMTP; 02 May 2020 09:26:54 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
- ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Sat, 2 May 2020 09:26:54 -0700
-Received: from ORSEDG002.ED.cps.intel.com (10.7.248.5) by
- ORSMSX160.amr.corp.intel.com (10.22.226.43) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Sat, 2 May 2020 09:26:54 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
- by edgegateway.intel.com (134.134.137.101) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Sat, 2 May 2020 09:26:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OK5Sgi+qBxugp+1w9dPYHssgwac69bAmVDCcPCvgpBx/wULHJEK++8ni4g1vIPnaCTd6CrySeAgFvawFBPRaAVW4R3RGiH0YCd6KlVyEZJe04deGbTX/8dV8VWe1CumHMuDi9/D9TkwJ+giIfvVR2BMKOomAqvRT7r6juJ5gA9QrniAXrjRIG2L+HwenZzaRZwVVELdPCSzbdiMxlcH/JpC0I3j0AnWZq23zxXl5KakJGAaiZ0dd/bsUE6xnDpBPcN0Rm1SQIftxmmvmG3MtSZSUpoJNlQh3Tjw5aqUAwpJEYDANh068hhxgleggWYfv5Po9VILavuJespTHpARCWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H7ZtHbO3AqMI4s6yD7fkO4gCEgMUqMCcVYHAKVLtagQ=;
- b=jZeMux2MrR28C5QB7zepMndTpHu+oMZRWg3CCQ/6bNkssySud/ms1pd2f0JWl5bS3WWvnxYtpG0Dr/Bn7jt8L5R1A+PDGpI6zEkPiYeZpU9JyCNKFSg5ilteKIPGI4cMtAC/76bhQeHRJAf8W7K9mSQNDUPg5Pv2hDTUlE3fcCrq+06RNFOA4PyNNn9cqjBjunFqlomiet/x9c3st+MmdRqHOthMch0iSoaTwdllS23uNYj9o8ToBH0M13VxTWPNwj8X0S9Kjo4TeWv+6djjRNFqBzM4pyVgasqPca+ZLMIsM6Yvvy9jK6KUWy8Dsqvz7XREohW7oVA03OoVUsZP6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H7ZtHbO3AqMI4s6yD7fkO4gCEgMUqMCcVYHAKVLtagQ=;
- b=Qlak0fjku+aqil2wsX9lpxMJ6cW0BRimcfJaDWh5YU6dJS2Hh2xeUvF+HdEWHNTUtgoOTUEvikQVMRIvkNhpVUpfIAwTFE03zdmitWYnrVmYWaxZa0+/qi26gcPDAFqpIoaagufgzPvRsYlAcbwmPvGkAhdtQ3XPp7bqHYWoRtw=
-Received: from SN6PR11MB3134.namprd11.prod.outlook.com (2603:10b6:805:d9::12)
- by SN6PR11MB2654.namprd11.prod.outlook.com (2603:10b6:805:54::31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.27; Sat, 2 May
- 2020 16:26:51 +0000
-Received: from SN6PR11MB3134.namprd11.prod.outlook.com
- ([fe80::c562:58dd:a0d6:965d]) by SN6PR11MB3134.namprd11.prod.outlook.com
- ([fe80::c562:58dd:a0d6:965d%5]) with mapi id 15.20.2958.027; Sat, 2 May 2020
- 16:26:51 +0000
-From: "Khor, Swee Aun" <swee.aun.khor@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 11/23] drm/i915/rkl: Add cdclk support
-Thread-Index: AQHWH9syI0qUtqpB6E6jrzngD7x4MaiU+tRg
-Date: Sat, 2 May 2020 16:26:51 +0000
-Message-ID: <SN6PR11MB31344582F05A1DA48E8821F6AFA80@SN6PR11MB3134.namprd11.prod.outlook.com>
-References: <20200501170748.358135-1-matthew.d.roper@intel.com>
- <20200501170748.358135-12-matthew.d.roper@intel.com>
-In-Reply-To: <20200501170748.358135-12-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [14.192.208.190]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 43956687-8c29-4251-0be2-08d7eeb59eb8
-x-ms-traffictypediagnostic: SN6PR11MB2654:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR11MB2654BA4A6F54B414160A93AFAFA80@SN6PR11MB2654.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 039178EF4A
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OFckecDH/qmoe0zpRREsqvb6Ip1VoVfhNi8FKw78YJOmSaEps3PsVKQC3SctkvEutBEsme3WOAFkBvQmlmLRb2BPUWf5sKHOHzeAUlDdI05P984dicq2mKMnF8EXqZDFmmkMP2sktTSLZgrwtl2Q9PASaDPTI0qhnh27O260WZEXNY5YClSMxY9+tshml0Zi6gM3xJhbk4D7VMSMc+sH3N70djGy15u6JeMsCf6FxzbDwJos406QqCvS2yaEB97h5i3Mk7nzrH3DiniVdtMrKSK22vjK9L1bR1oVVFnm5Jj2nueapqD2AwuiBS0arFkmvE3gF230sfYsdWBAOB+DH6exzOAsPvXQq3MPRL8hlBXZKgg3Tvgux3y5MokuDAs0ysPus0ZbHq9IWrWhmCO2VEXeXsmID2sdMiyJ3oIPEzocXO1JoArX858CxDGw3E7OE5+fa4uc+tDPsvV6ritNTFv64K+UYMLVg/RVpS3Riy8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR11MB3134.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(39860400002)(366004)(136003)(376002)(396003)(346002)(8936002)(26005)(76116006)(66946007)(478600001)(110136005)(966005)(186003)(316002)(9686003)(7696005)(55016002)(52536014)(6506007)(2906002)(71200400001)(53546011)(66476007)(64756008)(66446008)(66556008)(5660300002)(8676002)(33656002)(86362001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: Sh/4FOFZmBS4Rjf2lH9qI3/8EZ84velCeoJKpYJo0f6UBe/z3D6AAlSDBQqun/KMZ7Nayc+vGR5r2cE5k+3qgUAkSoF86WWZCdGL88vbzKsUQhwlercHXBHiUjgzf9k5J/vLkcGu3MheDnJlAP7f90tATqeNCDHTPCqHf/8+UQXX8SECJnQOdJZpbW8/q4L/6E9luD/vYk371kAfKNFiGo9eB4C7CsytFJW8fc5BdsYXhG9tdNDE2IqQVRsdnC2FPjxmBrnur2I4FA9NyG7nBXzlmGaJNaMgy0rAcNnBnirMHwGlukb62jafjJXPy2+XgT5n7o9quHvejTsNz3VrwWCIreQ4hq1D0SQPyszfHq9xmAlAvjAnvGhSDXLBDOGLXIiaIJX9WFiscKDLw8CEJv2l4+2Gk5T693pmWyAjf6C7ldrhJLd6Vo8pch1MR+/hdLE7iO6fDpDHnVFC8/lx/ulc6TopMHLvxmpbHc/3oHPWivGv8O+n1JLQni8eSXOvT23/Th31Zv6WYPjHjF8Y6/pPmJyiZ0Tmi7VhB/O7ZxsyOEzstcxFC2NrbrSlJLVobW8Yf/r6WaZGVj2/A77vb8oNPVEklEGuIqY55hmfzhYC7j1emwXjzpqSrugfYnWt5VMYU9dFeCQJsSQ00Mr2udlo+9MiOE2QKUFL9zDyidls5RFEH7nGh8bRKardvIohBOhL6y0aydNtGIxCntikSg3WLavTGKBp5DrwMTPnyTXZfhvT5a9X7ZEAkrofxIKuEXeF9vJw2eGiTmwmfNDVWj1enuKnBuBjK5V1G25z8AY=
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6022A6E17B
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 17:05:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21094432-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sat, 02 May 2020 18:05:25 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat,  2 May 2020 18:05:27 +0100
+Message-Id: <20200502170527.2349-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43956687-8c29-4251-0be2-08d7eeb59eb8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2020 16:26:51.2869 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: T1XL5QDGVSNtwb5oS0pBIhHOMZRNg6vxePPOTjt9RGoKoCydhkmCHlCjYKNvA6XJZ/6D7T3gc7lYKTF/bTWcCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2654
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 11/23] drm/i915/rkl: Add cdclk support
+Subject: [Intel-gfx] [CI] perf/core: Only copy-to-user after completely
+ unlocking all locks, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,120 +37,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgTWF0dCwNClRoZSBmb2xsb3cgY2RjbGsgZG9lc24ndCBsb29rZWQgcmlnaHQsIGlzbuKAmXQg
-aXQgc2hvdWxkIGJlIDk2MDAwIGFuZCA1NDAwMDAgYWNjb3JkaW5nIHRvIHRoZWlyIHJlc3BlY3Rp
-dmUgZGl2aWRlciBhbmQgcmF0aW8/DQouLi4uDQorCXsgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsg
-PSAxOTIwMDAsIC5kaXZpZGVyID0gMywgLnJhdGlvID0gMTUgfSwNCi4uLi4NCisJeyAucmVmY2xr
-ID0gMjQwMDAsIC5jZGNsayA9IDU1MjAwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA0NSB9LA0K
-Li4uLg0KDQpSZWdhcmRzLA0KU3dlZUF1bg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-RnJvbTogSW50ZWwtZ2Z4IDxpbnRlbC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+
-IE9uIEJlaGFsZiBPZiBNYXR0IFJvcGVyDQpTZW50OiBTYXR1cmRheSwgTWF5IDIsIDIwMjAgMTow
-OCBBTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNClN1YmplY3Q6IFtJbnRl
-bC1nZnhdIFtQQVRDSCAxMS8yM10gZHJtL2k5MTUvcmtsOiBBZGQgY2RjbGsgc3VwcG9ydA0KDQpO
-b3RlIHRoYXQgdGhlIDE5MjAwMCBjbG9jayBmcmVxdWVuY2llcyBjYW4gYmUgYWNoaWV2ZWQgd2l0
-aCBkaWZmZXJlbnQgcGFpcnMgb2YgcmF0aW8rZGl2aWRlciwgd2hpY2ggaXMgc29tZXRoaW5nIHdl
-IGhhdmVuJ3QgZW5jb3VudGVyZWQgYmVmb3JlLiAgSWYgYW55IG9mIHRob3NlIHJhdGlvcyB3ZXJl
-IGNvbW1vbiB3aXRoIG90aGVyIGxlZ2FsIGNkY2xrIHZhbHVlcywgdGhlbiBpdCB3b3VsZCBtZWFu
-IHdlIGNvdWxkIGF2b2lkIHRyaWdnZXJpbmcgZnVsbCBtb2Rlc2V0cyBpZiB3ZSBqdXN0IG5lZWRl
-ZCB0byBjaGFuZ2UgdGhlIGRpdmlkZXIuICBIb3dldmVyIGF0IHRoZSBtb21lbnQgdGhlcmUgZG9u
-J3QgYXBwZWFyIHRvIGJlIGFueSB2YWxpZCBjZGNsa3MgdGhhdCBzaGFyZSB0aGUgc2FtZSByYXRp
-byBzbyB3ZSBjYW4ndCB0YWtlIGFkdmFudGFnZSBvZiB0aGlzIGFuZCBpdCBkb2Vzbid0IHJlYWxs
-eSBtYXR0ZXIgd2hpY2ggYXBwcm9hY2ggd2UgdXNlIHRvIGFjaGlldmUgdGhlIDE5MjAwMCBjZGNs
-ay4gIEZvciBub3cgb3VyIGRyaXZlciBmdW5jdGlvbnMgdGhhdCBvcGVyYXRlIG9uIHRoZSB0YWJs
-ZSB3aWxsIGp1c3QgYWx3YXlzIHBpY2sgdGhlIGZpcnN0IGVudHJ5IChsb3dlciByYXRpbyArIGxv
-d2VyIGRpdmlkZXIpLg0KDQpCc3BlYzogNDkyMDINCkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0
-dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCi0tLQ0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfY2RjbGsuYyB8IDU0ICsrKysrKysrKysrKysrKysrKystLS0NCiAxIGZpbGUgY2hh
-bmdlZCwgNDggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYw0KaW5kZXggOTc5YTAyNDFmZGNiLi40Y2E4NzI2
-MGU4YmEgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nk
-Y2xrLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYw0K
-QEAgLTEyMzAsNiArMTIzMCw0MCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2NkY2xrX3Zh
-bHMgaWNsX2NkY2xrX3RhYmxlW10gPSB7DQogCXt9DQogfTsNCiANCisvKg0KKyAqIFJLTCBoYXMg
-bXVsdGlwbGUgZGl2aWRlcityYXRpbyBwYWlycyB0aGF0IGNhbiBoaXQgY2RjbGs9MTkyMDAwLiAg
-T3VyDQorICogZnVuY3Rpb25zIHRvIHJlYWQgdGhlc2UgdGFibGVzIHdpbGwganVzdCBhbHdheXMg
-cGljayB0aGUgZmlyc3Qgb25lIA0KK3doaWNoDQorICogc2hvdWxkIGJlIGZpbmUgc2luY2UgdGhl
-cmUncyBubyBvdGhlciB2YWxpZCBjZGNsayB2YWx1ZSB0aGF0IGNhbiBiZSANCithY2hpZXZlZA0K
-KyAqIHZpYSB0aGUgc2FtZSByYXRpbyB3aXRoIGEgZGlmZmVyZW50IGRpdmlkZXIgKGkuZS4sIG5v
-IG9wcG9ydHVuaXR5IHRvIA0KK2F2b2lkIGENCisgKiBmdWxsIG1vZGVzZXQpLg0KKyAqLw0KK3N0
-YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfY2RjbGtfdmFscyBya2xfY2RjbGtfdGFibGVbXSA9IHsN
-CisJeyAucmVmY2xrID0gMTkyMDAsIC5jZGNsayA9IDE3MjgwMCwgLmRpdmlkZXIgPSAzLCAucmF0
-aW8gPSAyNyB9LA0KKwl7IC5yZWZjbGsgPSAxOTIwMCwgLmNkY2xrID0gMTkyMDAwLCAuZGl2aWRl
-ciA9IDIsIC5yYXRpbyA9IDIwIH0sDQorCXsgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAxOTIw
-MDAsIC5kaXZpZGVyID0gMywgLnJhdGlvID0gMTUgfSwNCisJeyAucmVmY2xrID0gMTkyMDAsIC5j
-ZGNsayA9IDMwNzIwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSAzMiB9LA0KKwl7IC5yZWZjbGsg
-PSAxOTIwMCwgLmNkY2xrID0gMzI2NDAwLCAuZGl2aWRlciA9IDQsIC5yYXRpbyA9IDY4IH0sDQor
-CXsgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSA1NTY4MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlv
-ID0gNTggfSwNCisJeyAucmVmY2xrID0gMTkyMDAsIC5jZGNsayA9IDY1MjgwMCwgLmRpdmlkZXIg
-PSAyLCAucmF0aW8gPSA2OCB9LA0KKw0KKwl7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gMTc2
-MDAwLCAuZGl2aWRlciA9IDMsIC5yYXRpbyA9IDIyIH0sDQorCXsgLnJlZmNsayA9IDI0MDAwLCAu
-Y2RjbGsgPSAxOTIwMDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gMTYgfSwNCisJeyAucmVmY2xr
-ID0gMjQwMDAsIC5jZGNsayA9IDE5MjAwMCwgLmRpdmlkZXIgPSAzLCAucmF0aW8gPSAyNCB9LA0K
-Kwl7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gMzEyMDAwLCAuZGl2aWRlciA9IDIsIC5yYXRp
-byA9IDI2IH0sDQorCXsgLnJlZmNsayA9IDI0MDAwLCAuY2RjbGsgPSAzMjQwMDAsIC5kaXZpZGVy
-ID0gNCwgLnJhdGlvID0gNTQgfSwNCisJeyAucmVmY2xrID0gMjQwMDAsIC5jZGNsayA9IDU1MjAw
-MCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA0NSB9LA0KKwl7IC5yZWZjbGsgPSAyNDAwMCwgLmNk
-Y2xrID0gNjQ4MDAwLCAuZGl2aWRlciA9IDIsIC5yYXRpbyA9IDU0IH0sDQorDQorCXsgLnJlZmNs
-ayA9IDM4NDAwLCAuY2RjbGsgPSAxNzkyMDAsIC5kaXZpZGVyID0gMywgLnJhdGlvID0gMTQgfSwN
-CisJeyAucmVmY2xrID0gMzg0MDAsIC5jZGNsayA9IDE5MjAwMCwgLmRpdmlkZXIgPSAyLCAucmF0
-aW8gPSAxMCB9LA0KKwl7IC5yZWZjbGsgPSAzODQwMCwgLmNkY2xrID0gMTkyMDAwLCAuZGl2aWRl
-ciA9IDMsIC5yYXRpbyA9IDE1IH0sDQorCXsgLnJlZmNsayA9IDM4NDAwLCAuY2RjbGsgPSAzMDcy
-MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gMTYgfSwNCisJeyAucmVmY2xrID0gMzg0MDAsIC5j
-ZGNsayA9IDMyNjQwMCwgLmRpdmlkZXIgPSA0LCAucmF0aW8gPSAzNCB9LA0KKwl7IC5yZWZjbGsg
-PSAzODQwMCwgLmNkY2xrID0gNTU2ODAwLCAuZGl2aWRlciA9IDIsIC5yYXRpbyA9IDI5IH0sDQor
-CXsgLnJlZmNsayA9IDM4NDAwLCAuY2RjbGsgPSA2NTI4MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlv
-ID0gMzQgfSwNCisJe30NCit9Ow0KKw0KIHN0YXRpYyBpbnQgYnh0X2NhbGNfY2RjbGsoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBpbnQgbWluX2NkY2xrKSAgew0KIAljb25zdCBz
-dHJ1Y3QgaW50ZWxfY2RjbGtfdmFscyAqdGFibGUgPSBkZXZfcHJpdi0+Y2RjbGsudGFibGU7IEBA
-IC0xNDA1LDggKzE0MzksOCBAQCBzdGF0aWMgdm9pZCBieHRfZ2V0X2NkY2xrKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCiAJCWRpdiA9IDI7DQogCQlicmVhazsNCiAJY2FzZSBC
-WFRfQ0RDTEtfQ0QyWF9ESVZfU0VMXzFfNToNCi0JCWRybV9XQVJOKCZkZXZfcHJpdi0+ZHJtLA0K
-LQkJCSBJU19HRU1JTklMQUtFKGRldl9wcml2KSB8fCBJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEw
-LA0KKwkJZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sIElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpIHx8
-DQorCQkJIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEwICYmICFJU19ST0NLRVRMQUtFKGRldl9w
-cml2KSksDQogCQkJICJVbnN1cHBvcnRlZCBkaXZpZGVyXG4iKTsNCiAJCWRpdiA9IDM7DQogCQli
-cmVhazsNCkBAIC0xNDE0LDcgKzE0NDgsOCBAQCBzdGF0aWMgdm9pZCBieHRfZ2V0X2NkY2xrKHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCiAJCWRpdiA9IDQ7DQogCQlicmVhazsN
-CiAJY2FzZSBCWFRfQ0RDTEtfQ0QyWF9ESVZfU0VMXzQ6DQotCQlkcm1fV0FSTigmZGV2X3ByaXYt
-PmRybSwgSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCwNCisJCWRybV9XQVJOKCZkZXZfcHJpdi0+
-ZHJtLA0KKwkJCSBJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEwICYmICFJU19ST0NLRVRMQUtFKGRl
-dl9wcml2KSwNCiAJCQkgIlVuc3VwcG9ydGVkIGRpdmlkZXJcbiIpOw0KIAkJZGl2ID0gODsNCiAJ
-CWJyZWFrOw0KQEAgLTE1NjQsNyArMTU5OSw4IEBAIHN0YXRpYyB2b2lkIGJ4dF9zZXRfY2RjbGso
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KIAkJYnJlYWs7DQogCWNhc2UgMzoN
-CiAJCWRybV9XQVJOKCZkZXZfcHJpdi0+ZHJtLA0KLQkJCSBJU19HRU1JTklMQUtFKGRldl9wcml2
-KSB8fCBJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEwLA0KKwkJCSBJU19HRU1JTklMQUtFKGRldl9w
-cml2KSB8fA0KKwkJCSAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCAmJiAhSVNfUk9DS0VUTEFL
-RShkZXZfcHJpdikpLA0KIAkJCSAiVW5zdXBwb3J0ZWQgZGl2aWRlclxuIik7DQogCQlkaXZpZGVy
-ID0gQlhUX0NEQ0xLX0NEMlhfRElWX1NFTF8xXzU7DQogCQlicmVhazsNCkBAIC0xNTcyLDcgKzE2
-MDgsOCBAQCBzdGF0aWMgdm9pZCBieHRfc2V0X2NkY2xrKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdiwNCiAJCWRpdmlkZXIgPSBCWFRfQ0RDTEtfQ0QyWF9ESVZfU0VMXzI7DQogCQli
-cmVhazsNCiAJY2FzZSA4Og0KLQkJZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sIElOVEVMX0dFTihk
-ZXZfcHJpdikgPj0gMTAsDQorCQlkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwNCisJCQkgSU5URUxf
-R0VOKGRldl9wcml2KSA+PSAxMCAmJiAhSVNfUk9DS0VUTEFLRShkZXZfcHJpdiksDQogCQkJICJV
-bnN1cHBvcnRlZCBkaXZpZGVyXG4iKTsNCiAJCWRpdmlkZXIgPSBCWFRfQ0RDTEtfQ0QyWF9ESVZf
-U0VMXzQ7DQogCQlicmVhazsNCkBAIC0yNzU4LDcgKzI3OTUsMTIgQEAgdTMyIGludGVsX3JlYWRf
-cmF3Y2xrKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCiAgKi8NCiB2b2lkIGlu
-dGVsX2luaXRfY2RjbGtfaG9va3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KSAg
-ew0KLQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgew0KKwlpZiAoSVNfUk9DS0VUTEFL
-RShkZXZfcHJpdikpIHsNCisJCWRldl9wcml2LT5kaXNwbGF5LnNldF9jZGNsayA9IGJ4dF9zZXRf
-Y2RjbGs7DQorCQlkZXZfcHJpdi0+ZGlzcGxheS5tb2Rlc2V0X2NhbGNfY2RjbGsgPSBieHRfbW9k
-ZXNldF9jYWxjX2NkY2xrOw0KKwkJZGV2X3ByaXYtPmRpc3BsYXkuY2FsY192b2x0YWdlX2xldmVs
-ID0gdGdsX2NhbGNfdm9sdGFnZV9sZXZlbDsNCisJCWRldl9wcml2LT5jZGNsay50YWJsZSA9IHJr
-bF9jZGNsa190YWJsZTsNCisJfSBlbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7
-DQogCQlkZXZfcHJpdi0+ZGlzcGxheS5zZXRfY2RjbGsgPSBieHRfc2V0X2NkY2xrOw0KIAkJZGV2
-X3ByaXYtPmRpc3BsYXkubW9kZXNldF9jYWxjX2NkY2xrID0gYnh0X21vZGVzZXRfY2FsY19jZGNs
-azsNCiAJCWRldl9wcml2LT5kaXNwbGF5LmNhbGNfdm9sdGFnZV9sZXZlbCA9IHRnbF9jYWxjX3Zv
-bHRhZ2VfbGV2ZWw7DQotLQ0KMi4yNC4xDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQpJbnRlbC1nZnggbWFpbGluZyBsaXN0DQpJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnDQpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+We inadvertently create a dependency on mmap_sem with a whole chain.
+
+This breaks any user who wants to take a lock and call rcu_barrier(),
+while also taking that lock inside mmap_sem:
+
+<4> [604.892532] ======================================================
+<4> [604.892534] WARNING: possible circular locking dependency detected
+<4> [604.892536] 5.6.0-rc7-CI-Patchwork_17096+ #1 Tainted: G     U
+<4> [604.892537] ------------------------------------------------------
+<4> [604.892538] kms_frontbuffer/2595 is trying to acquire lock:
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
+<4> [604.892547]
+but task is already holding lock:
+<4> [604.892547] ffff888484716050 (reservation_ww_class_mutex){+.+.}, at: i915_gem_object_pin_to_display_plane+0x89/0x270 [i915]
+<4> [604.892592]
+which lock already depends on the new lock.
+<4> [604.892593]
+the existing dependency chain (in reverse order) is:
+<4> [604.892594]
+-> #6 (reservation_ww_class_mutex){+.+.}:
+<4> [604.892597]        __ww_mutex_lock.constprop.15+0xc3/0x1090
+<4> [604.892598]        ww_mutex_lock+0x39/0x70
+<4> [604.892600]        dma_resv_lockdep+0x10e/0x1f5
+<4> [604.892602]        do_one_initcall+0x58/0x300
+<4> [604.892604]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892605]        kernel_init+0x5/0x100
+<4> [604.892606]        ret_from_fork+0x24/0x50
+<4> [604.892607]
+-> #5 (reservation_ww_class_acquire){+.+.}:
+<4> [604.892609]        dma_resv_lockdep+0xec/0x1f5
+<4> [604.892610]        do_one_initcall+0x58/0x300
+<4> [604.892610]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892611]        kernel_init+0x5/0x100
+<4> [604.892612]        ret_from_fork+0x24/0x50
+<4> [604.892613]
+-> #4 (&mm->mmap_sem#2){++++}:
+<4> [604.892615]        __might_fault+0x63/0x90
+<4> [604.892617]        _copy_to_user+0x1e/0x80
+<4> [604.892619]        perf_read+0x200/0x2b0
+<4> [604.892621]        vfs_read+0x96/0x160
+<4> [604.892622]        ksys_read+0x9f/0xe0
+<4> [604.892623]        do_syscall_64+0x4f/0x220
+<4> [604.892624]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892625]
+-> #3 (&cpuctx_mutex){+.+.}:
+<4> [604.892626]        __mutex_lock+0x9a/0x9c0
+<4> [604.892627]        perf_event_init_cpu+0xa4/0x140
+<4> [604.892629]        perf_event_init+0x19d/0x1cd
+<4> [604.892630]        start_kernel+0x362/0x4e4
+<4> [604.892631]        secondary_startup_64+0xa4/0xb0
+<4> [604.892631]
+-> #2 (pmus_lock){+.+.}:
+<4> [604.892633]        __mutex_lock+0x9a/0x9c0
+<4> [604.892633]        perf_event_init_cpu+0x6b/0x140
+<4> [604.892635]        cpuhp_invoke_callback+0x9b/0x9d0
+<4> [604.892636]        _cpu_up+0xa2/0x140
+<4> [604.892637]        do_cpu_up+0x61/0xa0
+<4> [604.892639]        smp_init+0x57/0x96
+<4> [604.892639]        kernel_init_freeable+0x87/0x1dc
+<4> [604.892640]        kernel_init+0x5/0x100
+<4> [604.892642]        ret_from_fork+0x24/0x50
+<4> [604.892642]
+-> #1 (cpu_hotplug_lock.rw_sem){++++}:
+<4> [604.892643]        cpus_read_lock+0x34/0xd0
+<4> [604.892644]        rcu_barrier+0xaa/0x190
+<4> [604.892645]        kernel_init+0x21/0x100
+<4> [604.892647]        ret_from_fork+0x24/0x50
+<4> [604.892647]
+-> #0 (rcu_state.barrier_mutex){+.+.}:
+<4> [604.892649]        __lock_acquire+0x1328/0x15d0
+<4> [604.892650]        lock_acquire+0xa7/0x1c0
+<4> [604.892651]        __mutex_lock+0x9a/0x9c0
+<4> [604.892652]        rcu_barrier+0x23/0x190
+<4> [604.892680]        i915_gem_object_unbind+0x29d/0x3f0 [i915]
+<4> [604.892707]        i915_gem_object_pin_to_display_plane+0x141/0x270 [i915]
+<4> [604.892737]        intel_pin_and_fence_fb_obj+0xec/0x1f0 [i915]
+<4> [604.892767]        intel_plane_pin_fb+0x3f/0xd0 [i915]
+<4> [604.892797]        intel_prepare_plane_fb+0x13b/0x5c0 [i915]
+<4> [604.892798]        drm_atomic_helper_prepare_planes+0x85/0x110
+<4> [604.892827]        intel_atomic_commit+0xda/0x390 [i915]
+<4> [604.892828]        drm_atomic_helper_set_config+0x57/0xa0
+<4> [604.892830]        drm_mode_setcrtc+0x1c4/0x720
+<4> [604.892830]        drm_ioctl_kernel+0xb0/0xf0
+<4> [604.892831]        drm_ioctl+0x2e1/0x390
+<4> [604.892833]        ksys_ioctl+0x7b/0x90
+<4> [604.892835]        __x64_sys_ioctl+0x11/0x20
+<4> [604.892835]        do_syscall_64+0x4f/0x220
+<4> [604.892836]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892837]
+
+Changes since v1:
+- Use (*values)[n++] in perf_read_one().
+Changes since v2:
+- Centrally allocate values.
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+fixup perf patch
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ kernel/events/core.c | 45 +++++++++++++++++++++-----------------------
+ 1 file changed, 21 insertions(+), 24 deletions(-)
+
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index 33054521ea5d..f06dd7e68e7f 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -5102,20 +5102,16 @@ static int __perf_read_group_add(struct perf_event *leader,
+ }
+ 
+ static int perf_read_group(struct perf_event *event,
+-				   u64 read_format, char __user *buf)
++				   u64 read_format, char __user *buf,
++				   u64 *values)
+ {
+ 	struct perf_event *leader = event->group_leader, *child;
+ 	struct perf_event_context *ctx = leader->ctx;
+ 	int ret;
+-	u64 *values;
+ 
+ 	lockdep_assert_held(&ctx->mutex);
+ 
+-	values = kzalloc(event->read_size, GFP_KERNEL);
+-	if (!values)
+-		return -ENOMEM;
+-
+-	values[0] = 1 + leader->nr_siblings;
++	*values = 1 + leader->nr_siblings;
+ 
+ 	/*
+ 	 * By locking the child_mutex of the leader we effectively
+@@ -5133,25 +5129,17 @@ static int perf_read_group(struct perf_event *event,
+ 			goto unlock;
+ 	}
+ 
+-	mutex_unlock(&leader->child_mutex);
+-
+ 	ret = event->read_size;
+-	if (copy_to_user(buf, values, event->read_size))
+-		ret = -EFAULT;
+-	goto out;
+-
+ unlock:
+ 	mutex_unlock(&leader->child_mutex);
+-out:
+-	kfree(values);
+ 	return ret;
+ }
+ 
+ static int perf_read_one(struct perf_event *event,
+-				 u64 read_format, char __user *buf)
++				 u64 read_format, char __user *buf,
++				 u64 *values)
+ {
+ 	u64 enabled, running;
+-	u64 values[4];
+ 	int n = 0;
+ 
+ 	values[n++] = __perf_event_read_value(event, &enabled, &running);
+@@ -5162,9 +5150,6 @@ static int perf_read_one(struct perf_event *event,
+ 	if (read_format & PERF_FORMAT_ID)
+ 		values[n++] = primary_event_id(event);
+ 
+-	if (copy_to_user(buf, values, n * sizeof(u64)))
+-		return -EFAULT;
+-
+ 	return n * sizeof(u64);
+ }
+ 
+@@ -5185,7 +5170,8 @@ static bool is_event_hup(struct perf_event *event)
+  * Read the performance event - simple non blocking version for now
+  */
+ static ssize_t
+-__perf_read(struct perf_event *event, char __user *buf, size_t count)
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 *values)
+ {
+ 	u64 read_format = event->attr.read_format;
+ 	int ret;
+@@ -5203,9 +5189,9 @@ __perf_read(struct perf_event *event, char __user *buf, size_t count)
+ 
+ 	WARN_ON_ONCE(event->ctx->parent_ctx);
+ 	if (read_format & PERF_FORMAT_GROUP)
+-		ret = perf_read_group(event, read_format, buf);
++		ret = perf_read_group(event, read_format, buf, values);
+ 	else
+-		ret = perf_read_one(event, read_format, buf);
++		ret = perf_read_one(event, read_format, buf, values);
+ 
+ 	return ret;
+ }
+@@ -5215,6 +5201,7 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ {
+ 	struct perf_event *event = file->private_data;
+ 	struct perf_event_context *ctx;
++	u64 *values;
+ 	int ret;
+ 
+ 	ret = security_perf_event_read(event);
+@@ -5222,9 +5209,19 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ 		return ret;
+ 
+ 	ctx = perf_event_ctx_lock(event);
+-	ret = __perf_read(event, buf, count);
++	values = kzalloc(event->read_size, GFP_KERNEL);
++	if (values)
++		ret = __perf_read(event, buf, count, values);
++	else
++		ret = -ENOMEM;
+ 	perf_event_ctx_unlock(event, ctx);
+ 
++	if (ret > 0) {
++		if (copy_to_user(buf, values, ret))
++			ret = -EFAULT;
++	}
++	kfree(values);
++
+ 	return ret;
+ }
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
