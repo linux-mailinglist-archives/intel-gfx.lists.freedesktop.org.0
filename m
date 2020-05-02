@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92BFC1C2752
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 19:50:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BECE1C277D
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 20:13:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E3C6E19C;
-	Sat,  2 May 2020 17:50:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979546E1EE;
+	Sat,  2 May 2020 18:13:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 443D16E195;
- Sat,  2 May 2020 17:50:06 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5B2A6E1D6;
+ Sat,  2 May 2020 18:13:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 32F25A00FD;
- Sat,  2 May 2020 17:50:06 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CE1C9A011A;
+ Sat,  2 May 2020 18:13:42 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Sat, 02 May 2020 17:50:06 -0000
-Message-ID: <158844180617.4998.7982309038320096160@emeril.freedesktop.org>
+Date: Sat, 02 May 2020 18:13:42 -0000
+Message-ID: <158844322281.4999.17231978485212027179@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200502171413.9133-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200502171413.9133-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_perf/core=3A_Only_copy-to-user_after_completely_unlocking_a?=
- =?utf-8?q?ll_locks=2C_v3=2E_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgcGVy?=
+ =?utf-8?q?f/core=3A_Only_copy-to-user_after_completely_unlocking_all_lock?=
+ =?utf-8?b?cywgdjMuIChyZXYzKQ==?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,27 +50,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: perf/core: Only copy-to-user after completely unlocking all locks, v3. (rev3)
 URL   : https://patchwork.freedesktop.org/series/76325/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_8411 -> Patchwork_17553
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17553/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17553 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@objects:
+    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8411/fi-bwr-2160/igt@i915_selftest@live@objects.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17553/fi-bwr-2160/igt@i915_selftest@live@objects.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (51 -> 43)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8411 -> Patchwork_17553
+
+  CI-20190529: 20190529
+  CI_DRM_8411: b0821be4cf1a8ede85f8b93d4d28e0332f6fb334 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17553: 9cb5cee2dd0e976d529dfefbaa3e1b65eeef128f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 9cb5cee2dd0e perf/core: Only copy-to-user after completely unlocking all locks, v3.
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
 
--:106: WARNING:BAD_SIGN_OFF: Duplicate signature
-#106: 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+== Logs ==
 
--:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#180: FILE: kernel/events/core.c:5174:
-+__perf_read(struct perf_event *event, char __user *buf,
-+		    size_t count, u64 *values)
-
-total: 0 errors, 2 warnings, 1 checks, 110 lines checked
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17553/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
