@@ -1,42 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CD91C221A
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 03:18:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89701C2320
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 06:57:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A80356ED72;
-	Sat,  2 May 2020 01:18:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56FA96ED79;
+	Sat,  2 May 2020 04:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B43EB6ED72
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 01:18:18 +0000 (UTC)
-IronPort-SDR: ivo47L+FFl3S5h/k4DWVdzqe3wlWfHXpBMjN0FVOy7nK1D8iyIbHNVvyoFD5KEyYCbusURl3i4
- bI7V7uMDcm3A==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52A576ED79
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 04:57:53 +0000 (UTC)
+IronPort-SDR: +ATm+4uEUfrz9Olp+xrgvCPMh6818jCEZQeyp9YkgXPLxZO85ffMR6jF1dclKg+GDsl6202FA8
+ d2V6sL+Lcvqw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 18:18:18 -0700
-IronPort-SDR: hb70W4ZCxjwX6XBtcRaMUJzDIOIdTnSGHrQzwEENexRKoI0FDyNzaE6MxNpFWIg+FBU0au4+NG
- 1WxLaif4zsag==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2020 21:57:52 -0700
+IronPort-SDR: zeUydbuZT95Re9EsTmTKMri5j/LssWGGGnDMCtak+3LlnEDKs7GSiIrYl6M0Gf4GWrQWl6VfB7
+ 3zmcKSvCyQhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="283342085"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga004.fm.intel.com with ESMTP; 01 May 2020 18:18:18 -0700
-Date: Fri, 1 May 2020 18:18:18 -0700
+X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="248709986"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by fmsmga007.fm.intel.com with ESMTP; 01 May 2020 21:57:52 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200502011818.GM188376@mdroper-desk1.amr.corp.intel.com>
-References: <20200429101034.8208-1-ville.syrjala@linux.intel.com>
- <20200429101034.8208-5-ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 May 2020 21:57:41 -0700
+Message-Id: <20200502045744.407060-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200429101034.8208-5-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915/fbc: Fix nuke for pre-snb
- platforms
+Subject: [Intel-gfx] [PATCH v2 0/3] Steer multicast register workaround
+ verification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,124 +45,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: chris@chris-wilson.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 29, 2020 at 01:10:26PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+We're seeing some CI errors indicating that a workaround did not apply
+properly on EHL/JSL.  The workaround in question is updating a multicast
+register, the failures are only seen on specific CI machines, and the
+failures only seem to happen on resets and such rather than on initial
+driver load.  It seems likely that the culprit here is failure to steer
+the multicast register readback on a SKU that has slice0 / subslice0
+fused off.
 
-> The MSG_FBC_REND_STATE register only exists on snb+. For older
+This series makes a couple changes:
+ * Ensure setup of MCR steering is done at the beginning of the RCS
+   engine workaround list, not just the general GT workaround list.
+ * New multicast ranges are added for gen11 and gen12.  Sadly this
+   information is still missing from the bspec (just like the updated
+   forcewake tables).  The hardware guys have given us a spreadsheet
+   with both the forcewake and the multicast information while they work
+   on getting the spec properly updated, so that's where the new ranges
+   come from.
 
-I only find this register in the bspec for HSW+.  Is the spec incomplete
-or am I looking in the wrong place?
+In addition to MCR and forcewake, there's supposed to be some more bspec
+updates coming soon that deal with steering (i.e., different MCR ranges
+should actually be using different registers to steer rather than just
+the 0xFDC register we're familiar with); I don't have the full details
+on that yet, so those updates will have to wait until we actually have
+an updated spec.
 
-It's a bit hard to review these changes for older platforms since there
-doesn't really seem to be much FBC/DPFC documentation at all in the
-bspec until we get to BDW and beyond.  The only explicit mention I can
-find of nuke-on-flip for older platforms is a SNB-specific bit in
-FBC_CTL that disables that behavior.  Do you have other documents that
-clarify that this will indeed work farther back?
+References: https://gitlab.freedesktop.org/drm/intel/issues/1222
 
+Matt Roper (3):
+  drm/i915: Setup multicast register steering for all gen >= 10
+  drm/i915: Setup MCR steering for RCS engine workarounds
+  drm/i915: Add MCR ranges for gen11 and gen12
 
-Matt
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 57 ++++++++++++++++-----
+ 1 file changed, 45 insertions(+), 12 deletions(-)
 
-> platforms (would also work for snb+) we can simply rewite DSPSURF
-> to trigger a flip nuke.
-> =
+-- 
+2.24.1
 
-> While generally RMW is considered harmful we'll use it here for
-> simplicity. And since FBC doesn't exist in i830 we don't have to
-> worry about the DSPSURF double buffering hardware fails present
-> on that platform.
-> =
-
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 34 +++++++++++++++++++++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 613ab499d42e..983224e07eaf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -188,8 +188,30 @@ static bool g4x_fbc_is_active(struct drm_i915_privat=
-e *dev_priv)
->  	return intel_de_read(dev_priv, DPFC_CONTROL) & DPFC_CTL_EN;
->  }
->  =
-
-> +static void i8xx_fbc_recompress(struct drm_i915_private *dev_priv)
-> +{
-> +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-> +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
-> +
-> +	spin_lock_irq(&dev_priv->uncore.lock);
-> +	intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
-> +			  intel_de_read_fw(dev_priv, DSPADDR(i9xx_plane)));
-> +	spin_unlock_irq(&dev_priv->uncore.lock);
-> +}
-> +
-> +static void i965_fbc_recompress(struct drm_i915_private *dev_priv)
-> +{
-> +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-> +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
-> +
-> +	spin_lock_irq(&dev_priv->uncore.lock);
-> +	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
-> +			  intel_de_read_fw(dev_priv, DSPSURF(i9xx_plane)));
-> +	spin_unlock_irq(&dev_priv->uncore.lock);
-> +}
-> +
->  /* This function forces a CFB recompression through the nuke operation. =
-*/
-> -static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
-> +static void snb_fbc_recompress(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_fbc *fbc =3D &dev_priv->fbc;
->  =
-
-> @@ -199,6 +221,16 @@ static void intel_fbc_recompress(struct drm_i915_pri=
-vate *dev_priv)
->  	intel_de_posting_read(dev_priv, MSG_FBC_REND_STATE);
->  }
->  =
-
-> +static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
-> +{
-> +	if (INTEL_GEN(dev_priv) >=3D 6)
-> +		snb_fbc_recompress(dev_priv);
-> +	else if (INTEL_GEN(dev_priv) >=3D 4)
-> +		i965_fbc_recompress(dev_priv);
-> +	else
-> +		i8xx_fbc_recompress(dev_priv);
-> +}
-> +
->  static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-> -- =
-
-> 2.24.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
