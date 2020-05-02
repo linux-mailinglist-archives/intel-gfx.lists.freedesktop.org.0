@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04711C2323
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 06:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77FA01C235D
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 07:45:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E35DB6ED80;
-	Sat,  2 May 2020 04:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BD2E6ED81;
+	Sat,  2 May 2020 05:45:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5426ED7D
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 04:58:02 +0000 (UTC)
-IronPort-SDR: 3T6JtNVs39TaL0N1x5qUL3mKZvcYZz4B/1AjbYqfbUikYJUDk4qgHkUeN4kWiJ2d2WNJeiUQJh
- QLFo7r7uXEAw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2020 21:58:01 -0700
-IronPort-SDR: dG6APiWI8z+XJTyvIqGspsGaXlij8cuKQgPj3+KW/o1e62WBMd1Ya3SllcKl6Ho5CWMgCSqIE5
- 0BCW6b2svMww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,342,1583222400"; d="scan'208";a="248710008"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by fmsmga007.fm.intel.com with ESMTP; 01 May 2020 21:58:01 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 May 2020 21:57:44 -0700
-Message-Id: <20200502045744.407060-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200502045744.407060-1-matthew.d.roper@intel.com>
-References: <20200502045744.407060-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 02A286E02E;
+ Sat,  2 May 2020 05:45:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5862A47DA;
+ Sat,  2 May 2020 05:45:46 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: Add MCR ranges for gen11 and
- gen12
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Sat, 02 May 2020 05:45:46 -0000
+Message-ID: <158839834692.4998.14557981425516184412@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200502045744.407060-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200502045744.407060-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU3Rl?=
+ =?utf-8?q?er_multicast_register_workaround_verification_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +38,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The multicast register ranges are slightly different for gen11 and gen12
-than the table we have for gen8.  This information never got updated in
-the bspec, so this patch is based on a spreadsheet provided by the
-hardware team while they work on getting the official documentation
-updated.
+== Series Details ==
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 45 ++++++++++++++++++---
- 1 file changed, 39 insertions(+), 6 deletions(-)
+Series: Steer multicast register workaround verification (rev2)
+URL   : https://patchwork.freedesktop.org/series/76792/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index b11b83546696..370607514e7b 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1668,10 +1668,12 @@ create_scratch(struct i915_address_space *vm, int count)
- 	return ERR_PTR(err);
- }
- 
--static const struct {
-+struct mcr_range {
- 	u32 start;
- 	u32 end;
--} mcr_ranges_gen8[] = {
-+};
-+
-+static const struct mcr_range mcr_ranges_gen8[] = {
- 	{ .start = 0x5500, .end = 0x55ff },
- 	{ .start = 0x7000, .end = 0x7fff },
- 	{ .start = 0x9400, .end = 0x97ff },
-@@ -1680,11 +1682,42 @@ static const struct {
- 	{},
- };
- 
-+static const struct mcr_range mcr_ranges_gen11[] = {
-+	{ .start = 0x5500,  .end = 0x55ff },
-+	{ .start = 0x7000,  .end = 0x7fff },
-+	{ .start = 0x8140,  .end = 0x815f },
-+	{ .start = 0x8c00,  .end = 0x8cff },
-+	{ .start = 0x94d0,  .end = 0x955f },
-+	{ .start = 0xb000,  .end = 0xb3ff },
-+	{ .start = 0xdf00,  .end = 0xe8ff },
-+	{ .start = 0x24400, .end = 0x24fff },
-+	{},
-+};
-+
-+static const struct mcr_range mcr_ranges_gen12[] = {
-+	{ .start = 0xb00,   .end = 0xbff },
-+	{ .start = 0x1000,  .end = 0x1fff },
-+	{ .start = 0x8150,  .end = 0x815f },
-+	{ .start = 0x8700,  .end = 0x87ff },
-+	{ .start = 0x9520,  .end = 0x955f },
-+	{ .start = 0xb100,  .end = 0xb3ff },
-+	{ .start = 0xde80,  .end = 0xe8ff },
-+	{ .start = 0x24a00, .end = 0x24a7f },
-+	{},
-+};
-+
- static bool mcr_range(struct drm_i915_private *i915, u32 offset)
- {
-+	const struct mcr_range *range_list;
- 	int i;
- 
--	if (INTEL_GEN(i915) < 8)
-+	if (INTEL_GEN(i915) >= 12)
-+		range_list = mcr_ranges_gen12;
-+	else if (INTEL_GEN(i915) >= 11)
-+		range_list = mcr_ranges_gen11;
-+	else if (INTEL_GEN(i915) >= 8)
-+		range_list = mcr_ranges_gen8;
-+	else
- 		return false;
- 
- 	/*
-@@ -1692,9 +1725,9 @@ static bool mcr_range(struct drm_i915_private *i915, u32 offset)
- 	 * which only controls CPU initiated MMIO. Routing does not
- 	 * work for CS access so we cannot verify them on this path.
- 	 */
--	for (i = 0; mcr_ranges_gen8[i].start; i++)
--		if (offset >= mcr_ranges_gen8[i].start &&
--		    offset <= mcr_ranges_gen8[i].end)
-+	for (i = 0; range_list[i].start; i++)
-+		if (offset >= range_list[i].start &&
-+		    offset <= range_list[i].end)
- 			return true;
- 
- 	return false;
--- 
-2.24.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8408 -> Patchwork_17548
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17548/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17548 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-skl-6600u:       [DMESG-FAIL][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8408/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17548/fi-skl-6600u/igt@i915_selftest@live@gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8408 -> Patchwork_17548
+
+  CI-20190529: 20190529
+  CI_DRM_8408: 646ef402e5c4d091d216e27ad5121a8265ab8e00 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17548: bda4e1d81e65985f9dabd33dbe0d69761172e827 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bda4e1d81e65 drm/i915: Add MCR ranges for gen11 and gen12
+cef6afc905e3 drm/i915: Setup MCR steering for RCS engine workarounds
+b9aa445528d4 drm/i915: Setup multicast register steering for all gen >= 10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17548/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
