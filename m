@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031151C2726
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 19:05:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8F51C272B
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 May 2020 19:09:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D795C6E17B;
-	Sat,  2 May 2020 17:05:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706826E181;
+	Sat,  2 May 2020 17:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6022A6E17B
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 May 2020 17:05:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21094432-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 02 May 2020 18:05:25 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat,  2 May 2020 18:05:27 +0100
-Message-Id: <20200502170527.2349-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DCF4B6E17D;
+ Sat,  2 May 2020 17:09:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D52AEA47DA;
+ Sat,  2 May 2020 17:09:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] perf/core: Only copy-to-user after completely
- unlocking all locks, v3.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Khor, Swee Aun" <swee.aun.khor@intel.com>
+Date: Sat, 02 May 2020 17:09:51 -0000
+Message-ID: <158843939183.5000.16107455907697052001@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200501170748.358135-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200501170748.358135-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
+ =?utf-8?q?ntroduce_Rocket_Lake_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,236 +38,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+== Series Details ==
 
-We inadvertently create a dependency on mmap_sem with a whole chain.
+Series: Introduce Rocket Lake (rev2)
+URL   : https://patchwork.freedesktop.org/series/76826/
+State : failure
 
-This breaks any user who wants to take a lock and call rcu_barrier(),
-while also taking that lock inside mmap_sem:
+== Summary ==
 
-<4> [604.892532] ======================================================
-<4> [604.892534] WARNING: possible circular locking dependency detected
-<4> [604.892536] 5.6.0-rc7-CI-Patchwork_17096+ #1 Tainted: G     U
-<4> [604.892537] ------------------------------------------------------
-<4> [604.892538] kms_frontbuffer/2595 is trying to acquire lock:
-<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
-<4> [604.892547]
-but task is already holding lock:
-<4> [604.892547] ffff888484716050 (reservation_ww_class_mutex){+.+.}, at: i915_gem_object_pin_to_display_plane+0x89/0x270 [i915]
-<4> [604.892592]
-which lock already depends on the new lock.
-<4> [604.892593]
-the existing dependency chain (in reverse order) is:
-<4> [604.892594]
--> #6 (reservation_ww_class_mutex){+.+.}:
-<4> [604.892597]        __ww_mutex_lock.constprop.15+0xc3/0x1090
-<4> [604.892598]        ww_mutex_lock+0x39/0x70
-<4> [604.892600]        dma_resv_lockdep+0x10e/0x1f5
-<4> [604.892602]        do_one_initcall+0x58/0x300
-<4> [604.892604]        kernel_init_freeable+0x17b/0x1dc
-<4> [604.892605]        kernel_init+0x5/0x100
-<4> [604.892606]        ret_from_fork+0x24/0x50
-<4> [604.892607]
--> #5 (reservation_ww_class_acquire){+.+.}:
-<4> [604.892609]        dma_resv_lockdep+0xec/0x1f5
-<4> [604.892610]        do_one_initcall+0x58/0x300
-<4> [604.892610]        kernel_init_freeable+0x17b/0x1dc
-<4> [604.892611]        kernel_init+0x5/0x100
-<4> [604.892612]        ret_from_fork+0x24/0x50
-<4> [604.892613]
--> #4 (&mm->mmap_sem#2){++++}:
-<4> [604.892615]        __might_fault+0x63/0x90
-<4> [604.892617]        _copy_to_user+0x1e/0x80
-<4> [604.892619]        perf_read+0x200/0x2b0
-<4> [604.892621]        vfs_read+0x96/0x160
-<4> [604.892622]        ksys_read+0x9f/0xe0
-<4> [604.892623]        do_syscall_64+0x4f/0x220
-<4> [604.892624]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-<4> [604.892625]
--> #3 (&cpuctx_mutex){+.+.}:
-<4> [604.892626]        __mutex_lock+0x9a/0x9c0
-<4> [604.892627]        perf_event_init_cpu+0xa4/0x140
-<4> [604.892629]        perf_event_init+0x19d/0x1cd
-<4> [604.892630]        start_kernel+0x362/0x4e4
-<4> [604.892631]        secondary_startup_64+0xa4/0xb0
-<4> [604.892631]
--> #2 (pmus_lock){+.+.}:
-<4> [604.892633]        __mutex_lock+0x9a/0x9c0
-<4> [604.892633]        perf_event_init_cpu+0x6b/0x140
-<4> [604.892635]        cpuhp_invoke_callback+0x9b/0x9d0
-<4> [604.892636]        _cpu_up+0xa2/0x140
-<4> [604.892637]        do_cpu_up+0x61/0xa0
-<4> [604.892639]        smp_init+0x57/0x96
-<4> [604.892639]        kernel_init_freeable+0x87/0x1dc
-<4> [604.892640]        kernel_init+0x5/0x100
-<4> [604.892642]        ret_from_fork+0x24/0x50
-<4> [604.892642]
--> #1 (cpu_hotplug_lock.rw_sem){++++}:
-<4> [604.892643]        cpus_read_lock+0x34/0xd0
-<4> [604.892644]        rcu_barrier+0xaa/0x190
-<4> [604.892645]        kernel_init+0x21/0x100
-<4> [604.892647]        ret_from_fork+0x24/0x50
-<4> [604.892647]
--> #0 (rcu_state.barrier_mutex){+.+.}:
-<4> [604.892649]        __lock_acquire+0x1328/0x15d0
-<4> [604.892650]        lock_acquire+0xa7/0x1c0
-<4> [604.892651]        __mutex_lock+0x9a/0x9c0
-<4> [604.892652]        rcu_barrier+0x23/0x190
-<4> [604.892680]        i915_gem_object_unbind+0x29d/0x3f0 [i915]
-<4> [604.892707]        i915_gem_object_pin_to_display_plane+0x141/0x270 [i915]
-<4> [604.892737]        intel_pin_and_fence_fb_obj+0xec/0x1f0 [i915]
-<4> [604.892767]        intel_plane_pin_fb+0x3f/0xd0 [i915]
-<4> [604.892797]        intel_prepare_plane_fb+0x13b/0x5c0 [i915]
-<4> [604.892798]        drm_atomic_helper_prepare_planes+0x85/0x110
-<4> [604.892827]        intel_atomic_commit+0xda/0x390 [i915]
-<4> [604.892828]        drm_atomic_helper_set_config+0x57/0xa0
-<4> [604.892830]        drm_mode_setcrtc+0x1c4/0x720
-<4> [604.892830]        drm_ioctl_kernel+0xb0/0xf0
-<4> [604.892831]        drm_ioctl+0x2e1/0x390
-<4> [604.892833]        ksys_ioctl+0x7b/0x90
-<4> [604.892835]        __x64_sys_ioctl+0x11/0x20
-<4> [604.892835]        do_syscall_64+0x4f/0x220
-<4> [604.892836]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-<4> [604.892837]
-
-Changes since v1:
-- Use (*values)[n++] in perf_read_one().
-Changes since v2:
-- Centrally allocate values.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-fixup perf patch
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- kernel/events/core.c | 45 +++++++++++++++++++++-----------------------
- 1 file changed, 21 insertions(+), 24 deletions(-)
-
-diff --git a/kernel/events/core.c b/kernel/events/core.c
-index 33054521ea5d..f06dd7e68e7f 100644
---- a/kernel/events/core.c
-+++ b/kernel/events/core.c
-@@ -5102,20 +5102,16 @@ static int __perf_read_group_add(struct perf_event *leader,
- }
- 
- static int perf_read_group(struct perf_event *event,
--				   u64 read_format, char __user *buf)
-+				   u64 read_format, char __user *buf,
-+				   u64 *values)
- {
- 	struct perf_event *leader = event->group_leader, *child;
- 	struct perf_event_context *ctx = leader->ctx;
- 	int ret;
--	u64 *values;
- 
- 	lockdep_assert_held(&ctx->mutex);
- 
--	values = kzalloc(event->read_size, GFP_KERNEL);
--	if (!values)
--		return -ENOMEM;
--
--	values[0] = 1 + leader->nr_siblings;
-+	*values = 1 + leader->nr_siblings;
- 
- 	/*
- 	 * By locking the child_mutex of the leader we effectively
-@@ -5133,25 +5129,17 @@ static int perf_read_group(struct perf_event *event,
- 			goto unlock;
- 	}
- 
--	mutex_unlock(&leader->child_mutex);
--
- 	ret = event->read_size;
--	if (copy_to_user(buf, values, event->read_size))
--		ret = -EFAULT;
--	goto out;
--
- unlock:
- 	mutex_unlock(&leader->child_mutex);
--out:
--	kfree(values);
- 	return ret;
- }
- 
- static int perf_read_one(struct perf_event *event,
--				 u64 read_format, char __user *buf)
-+				 u64 read_format, char __user *buf,
-+				 u64 *values)
- {
- 	u64 enabled, running;
--	u64 values[4];
- 	int n = 0;
- 
- 	values[n++] = __perf_event_read_value(event, &enabled, &running);
-@@ -5162,9 +5150,6 @@ static int perf_read_one(struct perf_event *event,
- 	if (read_format & PERF_FORMAT_ID)
- 		values[n++] = primary_event_id(event);
- 
--	if (copy_to_user(buf, values, n * sizeof(u64)))
--		return -EFAULT;
--
- 	return n * sizeof(u64);
- }
- 
-@@ -5185,7 +5170,8 @@ static bool is_event_hup(struct perf_event *event)
-  * Read the performance event - simple non blocking version for now
-  */
- static ssize_t
--__perf_read(struct perf_event *event, char __user *buf, size_t count)
-+__perf_read(struct perf_event *event, char __user *buf,
-+		    size_t count, u64 *values)
- {
- 	u64 read_format = event->attr.read_format;
- 	int ret;
-@@ -5203,9 +5189,9 @@ __perf_read(struct perf_event *event, char __user *buf, size_t count)
- 
- 	WARN_ON_ONCE(event->ctx->parent_ctx);
- 	if (read_format & PERF_FORMAT_GROUP)
--		ret = perf_read_group(event, read_format, buf);
-+		ret = perf_read_group(event, read_format, buf, values);
- 	else
--		ret = perf_read_one(event, read_format, buf);
-+		ret = perf_read_one(event, read_format, buf, values);
- 
- 	return ret;
- }
-@@ -5215,6 +5201,7 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
- {
- 	struct perf_event *event = file->private_data;
- 	struct perf_event_context *ctx;
-+	u64 *values;
- 	int ret;
- 
- 	ret = security_perf_event_read(event);
-@@ -5222,9 +5209,19 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
- 		return ret;
- 
- 	ctx = perf_event_ctx_lock(event);
--	ret = __perf_read(event, buf, count);
-+	values = kzalloc(event->read_size, GFP_KERNEL);
-+	if (values)
-+		ret = __perf_read(event, buf, count, values);
-+	else
-+		ret = -ENOMEM;
- 	perf_event_ctx_unlock(event, ctx);
- 
-+	if (ret > 0) {
-+		if (copy_to_user(buf, values, ret))
-+			ret = -EFAULT;
-+	}
-+	kfree(values);
-+
- 	return ret;
- }
- 
--- 
-2.20.1
+Applying: drm/i915/rkl: Add RKL platform info and PCI ids
+Applying: x86/gpu: add RKL stolen memory support
+Applying: drm/i915/rkl: Re-use TGL GuC/HuC firmware
+Applying: drm/i915/rkl: Load DMC firmware for Rocket Lake
+Applying: drm/i915/rkl: Add PCH support
+Applying: drm/i915/rkl: Update memory bandwidth parameters
+Applying: drm/i915/rkl: Limit number of universal planes to 5
+Applying: drm/i915/rkl: Add power well support
+Applying: drm/i915/rkl: Program BW_BUDDY0 registers instead of BW_BUDDY1/2
+Applying: drm/i915/rkl: RKL only uses PHY_MISC for PHY's A and B
+Applying: drm/i915/rkl: Add cdclk support
+error: patch fragment without header at line 14: @@ -1414,7 +1448,8 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0011 drm/i915/rkl: Add cdclk support
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
