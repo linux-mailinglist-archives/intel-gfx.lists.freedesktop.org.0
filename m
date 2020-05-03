@@ -1,30 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FB31C2F3E
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 May 2020 22:31:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E261C42DC
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 19:33:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3530B8982C;
-	Sun,  3 May 2020 20:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF62B6E44B;
+	Mon,  4 May 2020 17:32:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FCFA8982C
- for <intel-gfx@lists.freedesktop.org>; Sun,  3 May 2020 20:31:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21101122-1500050 
- for multiple; Sun, 03 May 2020 21:31:10 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun,  3 May 2020 21:31:08 +0100
-Message-Id: <20200503203108.15420-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06FF7898A4;
+ Sun,  3 May 2020 20:35:16 +0000 (UTC)
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 18562c7a;
+ Sun, 3 May 2020 20:22:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+ :references:in-reply-to:from:date:message-id:subject:to:cc
+ :content-type; s=mail; bh=z5Do7NyDKuHfMJ/mAldD8G6RJ60=; b=e/VPTE
+ L65O0OQ1o9jg74xixPwpiZoUamL3h2sC5/EZ3eitxMEVhQ72lh4vZw82PPFwwIQn
+ 3Ft31VWYR1iszDXqTIVyksn3ccsxfWJSY4CKtAMu0ASxTaJPkDeQ8Z3SXGV/ZUdr
+ 7acbxP5Upx9fzjHZqlWrrWDLufLJWOlYdRZy/FjCR+1w0EyNI3RLST7C9U8Se01L
+ 12Luica0tiD3Cpvy0xD3DxX/NIBBX1ny1Jj5ymBjl4HTzVr+G2YkzBCv0qMEegzu
+ 7aFEViPQ26u858asbgXP8YKOcidXe2teSnLC6Q5wddff/R3mH8tsm7nkGmxsGM4s
+ Frhisbmv1xPsyHaw==
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 9a819733
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Sun, 3 May 2020 20:22:56 +0000 (UTC)
+Received: by mail-il1-f170.google.com with SMTP id f82so9395418ilh.8;
+ Sun, 03 May 2020 13:35:15 -0700 (PDT)
+X-Gm-Message-State: AGi0PubwKeuSfA+SFCDwjNr0rYbhRioShr9OcABjh4GSV3kHkKi24p5B
+ UyPulfHyjr2llVUuO5yp5C5/5+Xe5Zsau/ON7CY=
+X-Google-Smtp-Source: APiQypIUEcNyFcnsHFVMbKCh4WfUv2KcwZdBYHy02yKWsXCGZThmATTnJ/z6CY+STZVhkP88X18Q9XG3mHkF5ndh8mY=
+X-Received: by 2002:a92:5c82:: with SMTP id d2mr13749187ilg.231.1588538114849; 
+ Sun, 03 May 2020 13:35:14 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Avoid using simd from interrupt
- context
+References: <20200430221016.3866-1-Jason@zx2c4.com>
+ <158853782127.10831.11598587258154009671@build.alporthouse.com>
+In-Reply-To: <158853782127.10831.11598587258154009671@build.alporthouse.com>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Sun, 3 May 2020 14:35:03 -0600
+X-Gmail-Original-Message-ID: <CAHmME9o51exzeeV6C95-9b=608-qFWag2X_jPTYEmuBUtUU3WQ@mail.gmail.com>
+Message-ID: <CAHmME9o51exzeeV6C95-9b=608-qFWag2X_jPTYEmuBUtUU3WQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Approved-At: Mon, 04 May 2020 17:32:53 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers
+ are available before using SIMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,47 +57,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Sebastian Siewior <bigeasy@linutronix.de>,
+ LKML <linux-kernel@vger.kernel.org>, stable <stable@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Query whether or not we are in a legal context for using SIMD, before
-using SSE4.2 registers.
+On Sun, May 3, 2020 at 2:30 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Jason A. Donenfeld (2020-04-30 23:10:16)
+> > Sometimes it's not okay to use SIMD registers, the conditions for which
+> > have changed subtly from kernel release to kernel release. Usually the
+> > pattern is to check for may_use_simd() and then fallback to using
+> > something slower in the unlikely case SIMD registers aren't available.
+> > So, this patch fixes up i915's accelerated memcpy routines to fallback
+> > to boring memcpy if may_use_simd() is false.
+> >
+> > Cc: stable@vger.kernel.org
+>
+> The same argument as on the previous submission is that we return to the
+> caller if we can't use movntqda as their fallback path should be faster
+> than uncached memcpy.
 
-Suggested-by: Jason A. Donenfeld <Jason@zx2c4.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_memcpy.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-index 7b3b83bd5ab8..fc18d6c28d5f 100644
---- a/drivers/gpu/drm/i915/i915_memcpy.c
-+++ b/drivers/gpu/drm/i915/i915_memcpy.c
-@@ -24,6 +24,7 @@
- 
- #include <linux/kernel.h>
- #include <asm/fpu/api.h>
-+#include <asm/simd.h>
- 
- #include "i915_memcpy.h"
- 
-@@ -115,6 +116,9 @@ bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len)
- 	if (unlikely(((unsigned long)dst | (unsigned long)src | len) & 15))
- 		return false;
- 
-+	if (unlikely(!may_use_simd()))
-+		return false;
-+
- 	if (static_branch_likely(&has_movntdqa)) {
- 		if (likely(len))
- 			__memcpy_ntdqa(dst, src, len >> 4);
--- 
-2.20.1
-
+Oh, THAT's what you meant before. Okay, will follow up.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
