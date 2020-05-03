@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38CE1C2BA4
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 May 2020 13:22:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1CDF1C2B9B
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 May 2020 13:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D148B6E20A;
-	Sun,  3 May 2020 11:22:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB2D6E16F;
+	Sun,  3 May 2020 11:21:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08DA06E1FB
- for <intel-gfx@lists.freedesktop.org>; Sun,  3 May 2020 11:22:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2E576E192
+ for <intel-gfx@lists.freedesktop.org>; Sun,  3 May 2020 11:21:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21097487-1500050 
- for multiple; Sun, 03 May 2020 12:21:37 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21097488-1500050 
+ for multiple; Sun, 03 May 2020 12:21:38 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  3 May 2020 12:21:22 +0100
-Message-Id: <20200503112132.17899-4-chris@chris-wilson.co.uk>
+Date: Sun,  3 May 2020 12:21:23 +0100
+Message-Id: <20200503112132.17899-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200503112132.17899-1-chris@chris-wilson.co.uk>
 References: <20200503112132.17899-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 04/14] drm/i915: Mark concurrent submissions
- with a weak-dependency
+Subject: [Intel-gfx] [PATCH 05/14] drm/i915/selftests: Repeat the rps clock
+ frequency measurement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,144 +39,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
-correctly perform priority inheritance from the parallel branches to the
-common trunk. However, for the purpose of timeslicing and reset
-handling, the dependency is weak -- as we the pair of requests are
-allowed to run in parallel and not in strict succession. So for example
-we do need to suspend one if the other hangs.
+Repeat the measurement of the clock frequency a few times and use the
+median to try and reduce the systematic measurement error.
 
-The real significance though is that this allows us to rearrange
-groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
-so can resolve user level inter-batch scheduling dependencies from user
-semaphores.
-
-Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: <stable@vger.kernel.org> # v5.6+
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
- drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
- drivers/gpu/drm/i915/i915_scheduler.c       | 4 +++-
- drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
- drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
- 5 files changed, 21 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 54 +++++++++++++++++++-------
+ 1 file changed, 40 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c00366387b54..508661cf61d9 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1883,6 +1883,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
- 			struct i915_request *w =
- 				container_of(p->waiter, typeof(*w), sched);
- 
-+			if (p->flags & I915_DEPENDENCY_WEAK)
-+				continue;
-+
- 			/* Leave semaphores spinning on the other engines */
- 			if (w->engine != rq->engine)
- 				continue;
-@@ -2729,6 +2732,9 @@ static void __execlists_hold(struct i915_request *rq)
- 			struct i915_request *w =
- 				container_of(p->waiter, typeof(*w), sched);
- 
-+			if (p->flags & I915_DEPENDENCY_WEAK)
-+				continue;
-+
- 			/* Leave semaphores spinning on the other engines */
- 			if (w->engine != rq->engine)
- 				continue;
-@@ -2853,6 +2859,9 @@ static void __execlists_unhold(struct i915_request *rq)
- 			struct i915_request *w =
- 				container_of(p->waiter, typeof(*w), sched);
- 
-+			if (p->flags & I915_DEPENDENCY_WEAK)
-+				continue;
-+
- 			/* Propagate any change in error status */
- 			if (rq->fence.error)
- 				i915_request_set_error_once(w, rq->fence.error);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 22635bbabf06..95edc5523a01 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1038,7 +1038,9 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index b89a7d7611f6..bfa1a15564f7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -56,6 +56,18 @@ static int cmp_u64(const void *A, const void *B)
  		return 0;
- 
- 	if (to->engine->schedule) {
--		ret = i915_sched_node_add_dependency(&to->sched, &from->sched);
-+		ret = i915_sched_node_add_dependency(&to->sched,
-+						     &from->sched,
-+						     0);
- 		if (ret < 0)
- 			return ret;
- 	}
-@@ -1200,7 +1202,9 @@ __i915_request_await_execution(struct i915_request *to,
- 
- 	/* Couple the dependency tree for PI on this exposed to->fence */
- 	if (to->engine->schedule) {
--		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
-+		err = i915_sched_node_add_dependency(&to->sched,
-+						     &from->sched,
-+						     I915_DEPENDENCY_WEAK);
- 		if (err < 0)
- 			return err;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index 37cfcf5b321b..5f4c1e49e974 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -462,7 +462,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
  }
  
- int i915_sched_node_add_dependency(struct i915_sched_node *node,
--				   struct i915_sched_node *signal)
-+				   struct i915_sched_node *signal,
-+				   unsigned long flags)
- {
- 	struct i915_dependency *dep;
++static int cmp_u32(const void *A, const void *B)
++{
++	const u32 *a = A, *b = B;
++
++	if (a < b)
++		return -1;
++	else if (a > b)
++		return 1;
++	else
++		return 0;
++}
++
+ static struct i915_vma *
+ create_spin_counter(struct intel_engine_cs *engine,
+ 		    struct i915_address_space *vm,
+@@ -236,8 +248,8 @@ int live_rps_clock_interval(void *arg)
+ 	for_each_engine(engine, gt, id) {
+ 		unsigned long saved_heartbeat;
+ 		struct i915_request *rq;
+-		ktime_t dt;
+ 		u32 cycles;
++		u64 dt;
  
-@@ -473,6 +474,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
- 	local_bh_disable();
+ 		if (!intel_engine_can_store_dword(engine))
+ 			continue;
+@@ -286,15 +298,29 @@ int live_rps_clock_interval(void *arg)
+ 				  engine->name);
+ 			err = -ENODEV;
+ 		} else {
+-			preempt_disable();
+-			dt = ktime_get();
+-			cycles = -intel_uncore_read_fw(gt->uncore,
+-						       GEN6_RP_CUR_UP_EI);
+-			udelay(1000);
+-			dt = ktime_sub(ktime_get(), dt);
+-			cycles += intel_uncore_read_fw(gt->uncore,
+-						       GEN6_RP_CUR_UP_EI);
+-			preempt_enable();
++			ktime_t dt_[5];
++			u32 cycles_[5];
++			int i;
++
++			for (i = 0; i < 5; i++) {
++				preempt_disable();
++
++				dt_[i] = ktime_get();
++				cycles_[i] = -intel_uncore_read_fw(gt->uncore, GEN6_RP_CUR_UP_EI);
++
++				udelay(1000);
++
++				dt_[i] = ktime_sub(ktime_get(), dt_[i]);
++				cycles_[i] += intel_uncore_read_fw(gt->uncore, GEN6_RP_CUR_UP_EI);
++
++				preempt_enable();
++			}
++
++			/* Use the median of both cycle/dt; close enough */
++			sort(cycles_, 5, sizeof(*cycles_), cmp_u32, NULL);
++			cycles = (cycles_[1] + 2 * cycles_[2] + cycles_[3]) / 4;
++			sort(dt_, 5, sizeof(*dt_), cmp_u64, NULL);
++			dt = div_u64(dt_[1] + 2 * dt_[2] + dt_[3], 4);
+ 		}
  
- 	if (!__i915_sched_node_add_dependency(node, signal, dep,
-+					      flags |
- 					      I915_DEPENDENCY_EXTERNAL |
- 					      I915_DEPENDENCY_ALLOC))
- 		i915_dependency_free(dep);
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-index d1dc4efef77b..6f0bf00fc569 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler.h
-@@ -34,7 +34,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
- 				      unsigned long flags);
+ 		intel_uncore_write_fw(gt->uncore, GEN6_RP_CONTROL, 0);
+@@ -306,14 +332,14 @@ int live_rps_clock_interval(void *arg)
+ 		if (err == 0) {
+ 			u64 time = intel_gt_pm_interval_to_ns(gt, cycles);
+ 			u32 expected =
+-				intel_gt_ns_to_pm_interval(gt, ktime_to_ns(dt));
++				intel_gt_ns_to_pm_interval(gt, dt);
  
- int i915_sched_node_add_dependency(struct i915_sched_node *node,
--				   struct i915_sched_node *signal);
-+				   struct i915_sched_node *signal,
-+				   unsigned long flags);
+ 			pr_info("%s: rps counted %d C0 cycles [%lldns] in %lldns [%d cycles], using GT clock frequency of %uKHz\n",
+-				engine->name, cycles, time, ktime_to_ns(dt), expected,
++				engine->name, cycles, time, dt, expected,
+ 				gt->clock_frequency / 1000);
  
- void i915_sched_node_fini(struct i915_sched_node *node);
- 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
-index d18e70550054..7186875088a0 100644
---- a/drivers/gpu/drm/i915/i915_scheduler_types.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
-@@ -78,6 +78,7 @@ struct i915_dependency {
- 	unsigned long flags;
- #define I915_DEPENDENCY_ALLOC		BIT(0)
- #define I915_DEPENDENCY_EXTERNAL	BIT(1)
-+#define I915_DEPENDENCY_WEAK		BIT(2)
- };
- 
- #endif /* _I915_SCHEDULER_TYPES_H_ */
+-			if (10 * time < 8 * ktime_to_ns(dt) ||
+-			    8 * time > 10 * ktime_to_ns(dt)) {
++			if (10 * time < 8 * dt ||
++			    8 * time > 10 * dt) {
+ 				pr_err("%s: rps clock time does not match walltime!\n",
+ 				       engine->name);
+ 				err = -EINVAL;
 -- 
 2.20.1
 
