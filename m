@@ -2,31 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DC21C2E80
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 May 2020 20:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5F81C2F0D
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 May 2020 22:10:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D91089C53;
-	Sun,  3 May 2020 18:31:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 712F06E15E;
+	Sun,  3 May 2020 20:10:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C4F1C89B8E;
- Sun,  3 May 2020 18:31:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BAF90A00E7;
- Sun,  3 May 2020 18:31:12 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 945736E0BC
+ for <intel-gfx@lists.freedesktop.org>; Sun,  3 May 2020 20:10:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21100964-1500050 
+ for multiple; Sun, 03 May 2020 21:09:55 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun,  3 May 2020 21:09:50 +0100
+Message-Id: <20200503200952.10671-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 03 May 2020 18:31:12 -0000
-Message-ID: <158853067273.21038.17028939183853994882@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200503180034.20010-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200503180034.20010-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Warn_if_the_FBC_is_still_writing_to_stolen_on_?=
- =?utf-8?q?removal?=
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Remove trace_i915_gem_object_fault
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +36,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The tracepoint is only covering one of the possible fault handlers;
+clearly no longer of interest.
 
-Series: drm/i915/display: Warn if the FBC is still writing to stolen on removal
-URL   : https://patchwork.freedesktop.org/series/76880/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c |  2 --
+ drivers/gpu/drm/i915/i915_trace.h        | 25 ------------------------
+ 2 files changed, 27 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 70f5f82da288..97a58b592c37 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -296,8 +296,6 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+ 	/* We don't use vmf->pgoff since that has the fake offset */
+ 	page_offset = (vmf->address - area->vm_start) >> PAGE_SHIFT;
+ 
+-	trace_i915_gem_object_fault(obj, page_offset, true, write);
+-
+ 	ret = i915_gem_object_pin_pages(obj);
+ 	if (ret)
+ 		goto err;
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index bc854ad60954..af4d1c74b54c 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -601,31 +601,6 @@ TRACE_EVENT(i915_gem_object_pread,
+ 		      __entry->obj, __entry->offset, __entry->len)
+ );
+ 
+-TRACE_EVENT(i915_gem_object_fault,
+-	    TP_PROTO(struct drm_i915_gem_object *obj, u64 index, bool gtt, bool write),
+-	    TP_ARGS(obj, index, gtt, write),
+-
+-	    TP_STRUCT__entry(
+-			     __field(struct drm_i915_gem_object *, obj)
+-			     __field(u64, index)
+-			     __field(bool, gtt)
+-			     __field(bool, write)
+-			     ),
+-
+-	    TP_fast_assign(
+-			   __entry->obj = obj;
+-			   __entry->index = index;
+-			   __entry->gtt = gtt;
+-			   __entry->write = write;
+-			   ),
+-
+-	    TP_printk("obj=%p, %s index=%llu %s",
+-		      __entry->obj,
+-		      __entry->gtt ? "GTT" : "CPU",
+-		      __entry->index,
+-		      __entry->write ? ", writable" : "")
+-);
+-
+ DECLARE_EVENT_CLASS(i915_gem_object,
+ 	    TP_PROTO(struct drm_i915_gem_object *obj),
+ 	    TP_ARGS(obj),
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8414 -> Patchwork_17558
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17558/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17558 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@ring_submission:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8414/fi-bwr-2160/igt@i915_selftest@live@ring_submission.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17558/fi-bwr-2160/igt@i915_selftest@live@ring_submission.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][3] ([i915#62] / [i915#95]) -> [SKIP][4] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8414/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17558/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 41)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8414 -> Patchwork_17558
-
-  CI-20190529: 20190529
-  CI_DRM_8414: a6f6a61a3cd126f52d1a80c463f4bb3d3dcc1813 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5626: f27fdfff026276ac75c69e487c929a843f66f6ca @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17558: 07bea32d7f254de06802a8acbfffd0159310f920 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-07bea32d7f25 drm/i915/display: Warn if the FBC is still writing to stolen on removal
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17558/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
