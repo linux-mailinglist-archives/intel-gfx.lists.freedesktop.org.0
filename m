@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F301C3B64
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1831C3B65
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:39:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6065D6E3F7;
-	Mon,  4 May 2020 13:39:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E596E3FB;
+	Mon,  4 May 2020 13:39:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546E76E3F7
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 13:39:05 +0000 (UTC)
-IronPort-SDR: iZEGa+4gsny6yk4IPFthK7Hw1JKKE59Tjbl/AuWJfQJ20kex4udLIMfd4RgcM4VMIfDv7iBsW6
- 2XiXBcp0G79Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 06:39:04 -0700
-IronPort-SDR: 9tlhy0yB/jVg0+uNo7gj9NQAVX3zrmYljAsiVgzHDimBiw8UN+meutQv26vzXOYpLvdIYAxggn
- IIoFufZ6L9vQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,352,1583222400"; d="scan'208";a="248219466"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 04 May 2020 06:39:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 04 May 2020 16:39:01 +0300
-Date: Mon, 4 May 2020 16:39:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200504133901.GZ6112@intel.com>
-References: <20200504075828.20348-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B9416E3F9;
+ Mon,  4 May 2020 13:39:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 45B2FA47E8;
+ Mon,  4 May 2020 13:39:14 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200504075828.20348-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl+: Fix interrupt handling for
- DP AUX transactions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 04 May 2020 13:39:14 -0000
+Message-ID: <158859955428.5816.16392062521215405751@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504125149.4396-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200504125149.4396-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Specify_address_type_for_chained_reloc_batches?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,81 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 04, 2020 at 10:58:28AM +0300, Imre Deak wrote:
-> Unmask/enable AUX interrupts on all ports on TGL+. So far the interrupts
-> worked only on port A, which meant each transaction on other ports took
-> 10ms.
-> =
+== Series Details ==
 
-> Cc: <stable@vger.kernel.org> # v5.4+
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Series: drm/i915/gem: Specify address type for chained reloc batches
+URL   : https://patchwork.freedesktop.org/series/76904/
+State : success
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 16 +++-------------
->  1 file changed, 3 insertions(+), 13 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_8418 -> Patchwork_17567
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index bd722d0650c8..0b8b0c069ce3 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -3361,7 +3361,7 @@ static void gen8_de_irq_postinstall(struct drm_i915=
-_private *dev_priv)
->  	u32 de_pipe_masked =3D gen8_de_pipe_fault_mask(dev_priv) |
->  		GEN8_PIPE_CDCLK_CRC_DONE;
->  	u32 de_pipe_enables;
-> -	u32 de_port_masked =3D GEN8_AUX_CHANNEL_A;
-> +	u32 de_port_masked =3D gen8_de_port_aux_mask(dev_priv);
->  	u32 de_port_enables;
->  	u32 de_misc_masked =3D GEN8_DE_EDP_PSR;
->  	enum pipe pipe;
-> @@ -3369,18 +3369,8 @@ static void gen8_de_irq_postinstall(struct drm_i91=
-5_private *dev_priv)
->  	if (INTEL_GEN(dev_priv) <=3D 10)
->  		de_misc_masked |=3D GEN8_DE_MISC_GSE;
->  =
+Summary
+-------
 
-> -	if (INTEL_GEN(dev_priv) >=3D 9) {
-> -		de_port_masked |=3D GEN9_AUX_CHANNEL_B | GEN9_AUX_CHANNEL_C |
-> -				  GEN9_AUX_CHANNEL_D;
-> -		if (IS_GEN9_LP(dev_priv))
-> -			de_port_masked |=3D BXT_DE_PORT_GMBUS;
-> -	}
-> -
-> -	if (INTEL_GEN(dev_priv) >=3D 11)
-> -		de_port_masked |=3D ICL_AUX_CHANNEL_E;
-> -
-> -	if (IS_CNL_WITH_PORT_F(dev_priv) || INTEL_GEN(dev_priv) >=3D 11)
-> -		de_port_masked |=3D CNL_AUX_CHANNEL_F;
-> +	if (IS_GEN9_LP(dev_priv))
-> +		de_port_masked |=3D BXT_DE_PORT_GMBUS;
->  =
+  **SUCCESS**
 
->  	de_pipe_enables =3D de_pipe_masked | GEN8_PIPE_VBLANK |
->  					   GEN8_PIPE_FIFO_UNDERRUN;
-> -- =
+  No regressions found.
 
-> 2.23.1
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17567/index.html
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Known issues
+------------
 
--- =
+  Here are the changes found in Patchwork_17567 that come from known issues:
 
-Ville Syrj=E4l=E4
-Intel
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_timelines:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/fi-bwr-2160/igt@i915_selftest@live@gt_timelines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17567/fi-bwr-2160/igt@i915_selftest@live@gt_timelines.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8418 -> Patchwork_17567
+
+  CI-20190529: 20190529
+  CI_DRM_8418: bdfc2bf07b3e68612db8955fc3df80ad5b6c9a8d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17567: ec8e181ed79ae319be18f7a25b8991d1dd3c6fe4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ec8e181ed79a drm/i915/gem: Specify address type for chained reloc batches
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17567/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
