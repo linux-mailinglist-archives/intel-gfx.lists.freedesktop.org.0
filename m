@@ -1,74 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCB741C3FE4
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 18:31:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6840A1C3E21
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 17:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8600589798;
-	Mon,  4 May 2020 16:31:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBAD56E0C6;
+	Mon,  4 May 2020 15:08:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 3133 seconds by postgrey-1.36 at gabe;
- Mon, 04 May 2020 16:31:19 UTC
-Received: from gateway22.websitewelcome.com (gateway22.websitewelcome.com
- [192.185.46.233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF4689798
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 16:31:19 +0000 (UTC)
-Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
- by gateway22.websitewelcome.com (Postfix) with ESMTP id 4345E5EA0
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 10:00:26 -0500 (CDT)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id Vca1jHOAGSl8qVca2jf56p; Mon, 04 May 2020 10:00:26 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:
- Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+1JYBdusNEcbfurXrebTZTOPT2a0N++LhWMXr79SGeg=; b=sE1pIwLxvKhX30ejPg28L6ami+
- g0vB8HKkCvGgT29H+zyump16lqlpqZRFS39S51Od7vXiOTcbVL+5tBXKEIVlsOfTvs9L9OKWn9Npn
- 7cful0T6ESyw28FAh6q7IXZSZpJYdKlfDTTVfKDAKePEEHgog7P5Ra3luXvgE016QpfbiO3jvZqvs
- 1zXhpGu9OLZniUEetyYACoHPk1Qk8u/C/8Sjttz3VdJVyN1vzx1O4QGsVIbVSsXlpZkRN0uNvuz+2
- fqGSbAFdu9Ur1oTdeK2mJFeCa706ViUEhs6k3NMlBsHaA3lSSkg42rdfxxLCnuanV76gvbkOZyTRS
- wUBaeR4g==;
-Received: from [189.207.59.248] (port=60830 helo=embeddedor)
- by gator4166.hostgator.com with esmtpa (Exim 4.92)
- (envelope-from <gustavo@embeddedor.com>)
- id 1jVca1-003k6N-Cu; Mon, 04 May 2020 10:00:25 -0500
-Date: Mon, 4 May 2020 10:04:50 -0500
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Message-ID: <20200504150450.GA20991@embeddedor>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E7C276E41B;
+ Mon,  4 May 2020 15:08:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2577A010F;
+ Mon,  4 May 2020 15:08:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 189.207.59.248
-X-Source-L: No
-X-Exim-ID: 1jVca1-003k6N-Cu
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (embeddedor) [189.207.59.248]:60830
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 8
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Subject: [Intel-gfx] [PATCH][next] drm/i915/gem: Fix inconsistent IS_ERR and
- PTR_ERR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 04 May 2020 15:08:36 -0000
+Message-ID: <158860491692.5817.2005739019023819902@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504135030.19210-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200504135030.19210-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915=3A_Mark_concurrent_submiss?=
+ =?utf-8?q?ions_with_a_weak-dependency?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,42 +39,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix inconsistent IS_ERR and PTR_ERR in __reloc_gpu_alloc().
+== Series Details ==
 
-The proper pointer to be passed as argument is ce.
+Series: series starting with [1/6] drm/i915: Mark concurrent submissions with a weak-dependency
+URL   : https://patchwork.freedesktop.org/series/76912/
+State : failure
 
-This bug was detected with the help of Coccinelle.
+== Summary ==
 
-Fixes: 6f576d6277ce ("drm/i915/gem: Try an alternate engine for relocations")
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+CI Bug Log - changes from CI_DRM_8419 -> Patchwork_17569
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index cce7df231cb9..78fdbfd068d3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1325,7 +1325,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 
- 		ce = intel_context_create(engine);
- 		if (IS_ERR(ce)) {
--			err = PTR_ERR(rq);
-+			err = PTR_ERR(ce);
- 			goto err_unpin;
- 		}
- 
--- 
-2.26.0
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17569 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17569, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17569/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17569:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8419/fi-icl-u2/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17569/fi-icl-u2/igt@i915_selftest@live@execlists.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_8419 and Patchwork_17569:
+
+### New IGT tests (1) ###
+
+  * igt@dmabuf@all@dma_fence_proxy:
+    - Statuses : 40 pass(s)
+    - Exec time: [0.03, 0.10] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17569 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [FAIL][3] ([i915#262]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8419/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17569/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1}:
+    - fi-pnv-d510:        [FAIL][5] ([i915#34]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8419/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17569/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8419 -> Patchwork_17569
+
+  CI-20190529: 20190529
+  CI_DRM_8419: 4331ff197d0a7330c311830569aee90bab940694 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17569: 8bd2f81ece028dc8a4c91f64d193d7f563ddcc64 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8bd2f81ece02 drm/i915/gt: Declare when we enabled timeslicing
+ce52e4177208 drm/i915/gem: Allow combining submit-fences with syncobj
+09b46dbf7d9f drm/i915/gem: Teach execbuf how to wait on future syncobj
+2f097bd40cbf drm/syncobj: Allow use of dma-fence-proxy
+55c216ab5caf dma-buf: Proxy fence, an unsignaled fence placeholder
+aa08f9739363 drm/i915: Mark concurrent submissions with a weak-dependency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17569/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
