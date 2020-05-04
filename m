@@ -1,43 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39601C47E6
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 22:20:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68DAC1C4812
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 22:25:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 494206E491;
-	Mon,  4 May 2020 20:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC6E6E4A5;
+	Mon,  4 May 2020 20:25:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 582D16E491
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 20:20:05 +0000 (UTC)
-IronPort-SDR: rzRPBt9Hb5IJAYyDI6Kjx3BtHIkTwBg5jWmCpGvLgbdoVeSy+1EoBTX3aPZ2XBJtbgxQoB3gCp
- mOrBXDfMU+hA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 13:20:04 -0700
-IronPort-SDR: Q1CEqM2NPM37LgP+ucFIBPAPq5vT7dvF9eB7diZml4jboGP7ObbS+ZPGcUjffe3IRDKaqwLdv5
- fKm4I9rCLrmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="460791606"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga005.fm.intel.com with ESMTP; 04 May 2020 13:20:04 -0700
-Date: Mon, 4 May 2020 13:20:04 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Khor, Swee Aun" <swee.aun.khor@intel.com>
-Message-ID: <20200504202004.GK188376@mdroper-desk1.amr.corp.intel.com>
-References: <20200501170748.358135-1-matthew.d.roper@intel.com>
- <20200501170748.358135-12-matthew.d.roper@intel.com>
- <SN6PR11MB31344582F05A1DA48E8821F6AFA80@SN6PR11MB3134.namprd11.prod.outlook.com>
- <20200504173341.GJ188376@mdroper-desk1.amr.corp.intel.com>
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com
+ [IPv6:2607:f8b0:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77DF56E4A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 20:24:59 +0000 (UTC)
+Received: by mail-il1-x143.google.com with SMTP id x2so103213ilp.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 04 May 2020 13:24:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=iiI9BStCiK8EZa9m9r7uSeyX2UpLEyYrTFtUKeAcohs=;
+ b=ATRq7lixJYyaowrXXnvRXxl/rJ8PDpEAGFb2UwfwTbi2nruP5eonlh4FQMmf8IyJiB
+ /IuE08rWYTugZScHs4zuN04HQNrjIbfsGEHYU1uKMV1oVyI9qnSUIFXW14jqjAoUJnZz
+ byV1geUl5+AH715jlmwYnol8mpKN6LaiU2aXPc2mCwfD4i5psVrJA2N16TUwZz901xIX
+ QQUIXs347VvEx0r8L0WI49MRObAT+8kxZw6tNIUIPe89kOHGBZ4LDQG/lcLlGlLf9dIq
+ 6H06Cl+txrx3N/KckTjz0r/P4ctZ+K0fGGJ6/oAYmSloShr7RB74GGlK9/pOFfWkVmHI
+ hm4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=iiI9BStCiK8EZa9m9r7uSeyX2UpLEyYrTFtUKeAcohs=;
+ b=cA5rsJsdbemUUFVTjnIiQcA51x3jvi+y1CI7xwHKNhV9zEnfRj3ZGwQQIANMdp0dYn
+ E0EEvcyFOQ3hQSpMSg4GSiXzso/UPc7ZTNIyGFEzC+Tg7vjsFVyN80LLwttwPSSF/uHQ
+ JQLFJHq/on3eV9FWB+PVqKK691PEZD6LQhpEVViW05amirX+1kg5WlAk+YTu8WfJkhqU
+ AepFVfeHQKx1HTmAHoliE5Db7KdxrGzMCMteIYRR0CRL53l51GXhw5m0u6PvGupkFgbj
+ HN7M2NxvA0l7jyh6Sz8pJCWdPEKmlQj3BYjHsiZtUUCioXFi+50wlZwLOm3337EFbY1t
+ Dc7Q==
+X-Gm-Message-State: AGi0PubNELeXfLRqUXq1/lNZQBrtrFq+3Aj96Ql+gZbxBJprPi+Vf7aL
+ R/gfbJ8a90ZMj9es7nS85+BfJ88OwdCljsdgnlPtEA==
+X-Google-Smtp-Source: APiQypLOf3wMQ3nahgoDyfMir3kjV+R/s79pFgkc6bdApL7mNwp1WC2Nroz57ITxFPEaHV4SYvoT9xg7RewzzknLjcA=
+X-Received: by 2002:a92:5f17:: with SMTP id t23mr243825ilb.2.1588623898789;
+ Mon, 04 May 2020 13:24:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200504173341.GJ188376@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 11/23] drm/i915/rkl: Add cdclk support
+References: <20200504123524.7731-1-oliver.barta@aptiv.com>
+In-Reply-To: <20200504123524.7731-1-oliver.barta@aptiv.com>
+From: Sean Paul <sean@poorly.run>
+Date: Mon, 4 May 2020 16:24:22 -0400
+Message-ID: <CAMavQKJezSBt_KX_miWOums-CXy4iuxrCmoOgMYfSposiaGN5w@mail.gmail.com>
+To: Oliver Barta <o.barta89@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: HDCP: retry link integrity check
+ on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,141 +61,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Ravisankar Madasamy <ravisankar.madasamy@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, Oliver Barta <oliver.barta@aptiv.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBNYXkgMDQsIDIwMjAgYXQgMTA6MzM6NDFBTSAtMDcwMCwgTWF0dCBSb3BlciB3cm90
-ZToKPiBPbiBTYXQsIE1heSAwMiwgMjAyMCBhdCAwOToyNjo1MUFNIC0wNzAwLCBLaG9yLCBTd2Vl
-IEF1biB3cm90ZToKPiA+IEhpIE1hdHQsCj4gPiBUaGUgZm9sbG93IGNkY2xrIGRvZXNuJ3QgbG9v
-a2VkIHJpZ2h0LCBpc27igJl0IGl0IHNob3VsZCBiZSA5NjAwMCBhbmQgNTQwMDAwIGFjY29yZGlu
-ZyB0byB0aGVpciByZXNwZWN0aXZlIGRpdmlkZXIgYW5kIHJhdGlvPwo+ID4gLi4uLgo+ID4gK3sg
-LnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAxOTIwMDAsIC5kaXZpZGVyID0gMywgLnJhdGlvID0g
-MTUgfSwKPiA+IC4uLi4KPiA+ICt7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gNTUyMDAwLCAu
-ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDQ1IH0sCj4gPiAuLi4uCj4gCj4gWWVhaCwgeW91J3JlIHJp
-Z2h0LiAgVGhlIGZpcnN0IG9uZSBhcHBlYXJzIHRvIGhhdmUgYmVlbiByZW1vdmVkIGZyb20gdGhl
-Cj4gYnNwZWMgbm93IGFuZCB0aGUgc2Vjb25kIG9uZSBhcHBlYXJzIHRvIGJlIGEgdHlwbyBvbiBt
-eSBwYXJ0IChyYXRpbwo+IHNob3VsZCBiZSA0NiBpbnN0ZWFkIG9mIDQ1KS4KPiAKPiBMb29rcyBs
-aWtlIHRoZXJlIGhhdmUgYmVlbiBhIGNvdXBsZSBvdGhlciByZWNlbnQgbW9kaWZpY2F0aW9ucyB0
-byB0aGUKPiBic3BlYyBhcyB3ZWxsIHRoYXQgSSBzaG91bGQgdXBkYXRlIHRoaXMgcGF0Y2ggdG8g
-Y2FwdHVyZS4gIFRoYW5rcyBmb3IKPiBwb2ludGluZyB0aGF0IG91dCEKCkFjdHVhbGx5LCBpdCBs
-b29rcyBsaWtlIHRoZSBsYXRlc3QgdXBkYXRlcyBpbiB0aGUgYnNwZWMgaGF2ZSBub3cgbWFkZQp0
-aGUgUktMIGNkY2xrIHRhYmxlIGlkZW50aWNhbCB0byB0aGUgVEdML0lDTCB0YWJsZS4gIFNvIHdl
-IHNob3VsZCBiZQphYmxlIHRvIGRyb3AgdGhpcyBwYXRjaCBjb21wbGV0ZWx5IG5vdy4KCgpNYXR0
-Cgo+IAo+IAo+IE1hdHQKPiAKPiA+IAo+ID4gUmVnYXJkcywKPiA+IFN3ZWVBdW4KPiA+IAo+ID4g
-LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPiA+IEZyb206IEludGVsLWdmeCA8aW50ZWwtZ2Z4
-LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgTWF0dCBSb3Blcgo+
-ID4gU2VudDogU2F0dXJkYXksIE1heSAyLCAyMDIwIDE6MDggQU0KPiA+IFRvOiBpbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggMTEv
-MjNdIGRybS9pOTE1L3JrbDogQWRkIGNkY2xrIHN1cHBvcnQKPiA+IAo+ID4gTm90ZSB0aGF0IHRo
-ZSAxOTIwMDAgY2xvY2sgZnJlcXVlbmNpZXMgY2FuIGJlIGFjaGlldmVkIHdpdGggZGlmZmVyZW50
-IHBhaXJzIG9mIHJhdGlvK2RpdmlkZXIsIHdoaWNoIGlzIHNvbWV0aGluZyB3ZSBoYXZlbid0IGVu
-Y291bnRlcmVkIGJlZm9yZS4gIElmIGFueSBvZiB0aG9zZSByYXRpb3Mgd2VyZSBjb21tb24gd2l0
-aCBvdGhlciBsZWdhbCBjZGNsayB2YWx1ZXMsIHRoZW4gaXQgd291bGQgbWVhbiB3ZSBjb3VsZCBh
-dm9pZCB0cmlnZ2VyaW5nIGZ1bGwgbW9kZXNldHMgaWYgd2UganVzdCBuZWVkZWQgdG8gY2hhbmdl
-IHRoZSBkaXZpZGVyLiAgSG93ZXZlciBhdCB0aGUgbW9tZW50IHRoZXJlIGRvbid0IGFwcGVhciB0
-byBiZSBhbnkgdmFsaWQgY2RjbGtzIHRoYXQgc2hhcmUgdGhlIHNhbWUgcmF0aW8gc28gd2UgY2Fu
-J3QgdGFrZSBhZHZhbnRhZ2Ugb2YgdGhpcyBhbmQgaXQgZG9lc24ndCByZWFsbHkgbWF0dGVyIHdo
-aWNoIGFwcHJvYWNoIHdlIHVzZSB0byBhY2hpZXZlIHRoZSAxOTIwMDAgY2RjbGsuICBGb3Igbm93
-IG91ciBkcml2ZXIgZnVuY3Rpb25zIHRoYXQgb3BlcmF0ZSBvbiB0aGUgdGFibGUgd2lsbCBqdXN0
-IGFsd2F5cyBwaWNrIHRoZSBmaXJzdCBlbnRyeSAobG93ZXIgcmF0aW8gKyBsb3dlciBkaXZpZGVy
-KS4KPiA+IAo+ID4gQnNwZWM6IDQ5MjAyCj4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1h
-dHRoZXcuZC5yb3BlckBpbnRlbC5jb20+Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2NkY2xrLmMgfCA1NCArKysrKysrKysrKysrKysrKysrLS0tCj4gPiAg
-MSBmaWxlIGNoYW5nZWQsIDQ4IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4gPiAKPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMKPiA+IGluZGV4IDk3
-OWEwMjQxZmRjYi4uNGNhODcyNjBlOGJhIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2NkY2xrLmMKPiA+IEBAIC0xMjMwLDYgKzEyMzAsNDAgQEAgc3RhdGlj
-IGNvbnN0IHN0cnVjdCBpbnRlbF9jZGNsa192YWxzIGljbF9jZGNsa190YWJsZVtdID0gewo+ID4g
-IHt9Cj4gPiAgfTsKPiA+IAo+ID4gKy8qCj4gPiArICogUktMIGhhcyBtdWx0aXBsZSBkaXZpZGVy
-K3JhdGlvIHBhaXJzIHRoYXQgY2FuIGhpdCBjZGNsaz0xOTIwMDAuICBPdXIKPiA+ICsgKiBmdW5j
-dGlvbnMgdG8gcmVhZCB0aGVzZSB0YWJsZXMgd2lsbCBqdXN0IGFsd2F5cyBwaWNrIHRoZSBmaXJz
-dCBvbmUKPiA+ICt3aGljaAo+ID4gKyAqIHNob3VsZCBiZSBmaW5lIHNpbmNlIHRoZXJlJ3Mgbm8g
-b3RoZXIgdmFsaWQgY2RjbGsgdmFsdWUgdGhhdCBjYW4gYmUKPiA+ICthY2hpZXZlZAo+ID4gKyAq
-IHZpYSB0aGUgc2FtZSByYXRpbyB3aXRoIGEgZGlmZmVyZW50IGRpdmlkZXIgKGkuZS4sIG5vIG9w
-cG9ydHVuaXR5IHRvCj4gPiArYXZvaWQgYQo+ID4gKyAqIGZ1bGwgbW9kZXNldCkuCj4gPiArICov
-Cj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9jZGNsa192YWxzIHJrbF9jZGNsa190YWJs
-ZVtdID0gewo+ID4gK3sgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAxNzI4MDAsIC5kaXZpZGVy
-ID0gMywgLnJhdGlvID0gMjcgfSwKPiA+ICt7IC5yZWZjbGsgPSAxOTIwMCwgLmNkY2xrID0gMTky
-MDAwLCAuZGl2aWRlciA9IDIsIC5yYXRpbyA9IDIwIH0sCj4gPiAreyAucmVmY2xrID0gMTkyMDAs
-IC5jZGNsayA9IDE5MjAwMCwgLmRpdmlkZXIgPSAzLCAucmF0aW8gPSAxNSB9LAo+ID4gK3sgLnJl
-ZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAzMDcyMDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gMzIg
-fSwKPiA+ICt7IC5yZWZjbGsgPSAxOTIwMCwgLmNkY2xrID0gMzI2NDAwLCAuZGl2aWRlciA9IDQs
-IC5yYXRpbyA9IDY4IH0sCj4gPiAreyAucmVmY2xrID0gMTkyMDAsIC5jZGNsayA9IDU1NjgwMCwg
-LmRpdmlkZXIgPSAyLCAucmF0aW8gPSA1OCB9LAo+ID4gK3sgLnJlZmNsayA9IDE5MjAwLCAuY2Rj
-bGsgPSA2NTI4MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gNjggfSwKPiA+ICsKPiA+ICt7IC5y
-ZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gMTc2MDAwLCAuZGl2aWRlciA9IDMsIC5yYXRpbyA9IDIy
-IH0sCj4gPiAreyAucmVmY2xrID0gMjQwMDAsIC5jZGNsayA9IDE5MjAwMCwgLmRpdmlkZXIgPSAy
-LCAucmF0aW8gPSAxNiB9LAo+ID4gK3sgLnJlZmNsayA9IDI0MDAwLCAuY2RjbGsgPSAxOTIwMDAs
-IC5kaXZpZGVyID0gMywgLnJhdGlvID0gMjQgfSwKPiA+ICt7IC5yZWZjbGsgPSAyNDAwMCwgLmNk
-Y2xrID0gMzEyMDAwLCAuZGl2aWRlciA9IDIsIC5yYXRpbyA9IDI2IH0sCj4gPiAreyAucmVmY2xr
-ID0gMjQwMDAsIC5jZGNsayA9IDMyNDAwMCwgLmRpdmlkZXIgPSA0LCAucmF0aW8gPSA1NCB9LAo+
-ID4gK3sgLnJlZmNsayA9IDI0MDAwLCAuY2RjbGsgPSA1NTIwMDAsIC5kaXZpZGVyID0gMiwgLnJh
-dGlvID0gNDUgfSwKPiA+ICt7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gNjQ4MDAwLCAuZGl2
-aWRlciA9IDIsIC5yYXRpbyA9IDU0IH0sCj4gPiArCj4gPiAreyAucmVmY2xrID0gMzg0MDAsIC5j
-ZGNsayA9IDE3OTIwMCwgLmRpdmlkZXIgPSAzLCAucmF0aW8gPSAxNCB9LAo+ID4gK3sgLnJlZmNs
-ayA9IDM4NDAwLCAuY2RjbGsgPSAxOTIwMDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gMTAgfSwK
-PiA+ICt7IC5yZWZjbGsgPSAzODQwMCwgLmNkY2xrID0gMTkyMDAwLCAuZGl2aWRlciA9IDMsIC5y
-YXRpbyA9IDE1IH0sCj4gPiAreyAucmVmY2xrID0gMzg0MDAsIC5jZGNsayA9IDMwNzIwMCwgLmRp
-dmlkZXIgPSAyLCAucmF0aW8gPSAxNiB9LAo+ID4gK3sgLnJlZmNsayA9IDM4NDAwLCAuY2RjbGsg
-PSAzMjY0MDAsIC5kaXZpZGVyID0gNCwgLnJhdGlvID0gMzQgfSwKPiA+ICt7IC5yZWZjbGsgPSAz
-ODQwMCwgLmNkY2xrID0gNTU2ODAwLCAuZGl2aWRlciA9IDIsIC5yYXRpbyA9IDI5IH0sCj4gPiAr
-eyAucmVmY2xrID0gMzg0MDAsIC5jZGNsayA9IDY1MjgwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8g
-PSAzNCB9LAo+ID4gK3t9Cj4gPiArfTsKPiA+ICsKPiA+ICBzdGF0aWMgaW50IGJ4dF9jYWxjX2Nk
-Y2xrKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgaW50IG1pbl9jZGNsaykgIHsK
-PiA+ICBjb25zdCBzdHJ1Y3QgaW50ZWxfY2RjbGtfdmFscyAqdGFibGUgPSBkZXZfcHJpdi0+Y2Rj
-bGsudGFibGU7IEBAIC0xNDA1LDggKzE0MzksOCBAQCBzdGF0aWMgdm9pZCBieHRfZ2V0X2NkY2xr
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiA+ICBkaXYgPSAyOwo+ID4gIGJy
-ZWFrOwo+ID4gIGNhc2UgQlhUX0NEQ0xLX0NEMlhfRElWX1NFTF8xXzU6Cj4gPiAtZHJtX1dBUk4o
-JmRldl9wcml2LT5kcm0sCj4gPiAtIElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpIHx8IElOVEVMX0dF
-TihkZXZfcHJpdikgPj0gMTAsCj4gPiArZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sIElTX0dFTUlO
-SUxBS0UoZGV2X3ByaXYpIHx8Cj4gPiArIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEwICYmICFJ
-U19ST0NLRVRMQUtFKGRldl9wcml2KSksCj4gPiAgICJVbnN1cHBvcnRlZCBkaXZpZGVyXG4iKTsK
-PiA+ICBkaXYgPSAzOwo+ID4gIGJyZWFrOwo+ID4gQEAgLTE0MTQsNyArMTQ0OCw4IEBAIHN0YXRp
-YyB2b2lkIGJ4dF9nZXRfY2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+
-ID4gIGRpdiA9IDQ7Cj4gPiAgYnJlYWs7Cj4gPiAgY2FzZSBCWFRfQ0RDTEtfQ0QyWF9ESVZfU0VM
-XzQ6Cj4gPiAtZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sIElOVEVMX0dFTihkZXZfcHJpdikgPj0g
-MTAsCj4gPiArZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sCj4gPiArIElOVEVMX0dFTihkZXZfcHJp
-dikgPj0gMTAgJiYgIUlTX1JPQ0tFVExBS0UoZGV2X3ByaXYpLAo+ID4gICAiVW5zdXBwb3J0ZWQg
-ZGl2aWRlclxuIik7Cj4gPiAgZGl2ID0gODsKPiA+ICBicmVhazsKPiA+IEBAIC0xNTY0LDcgKzE1
-OTksOCBAQCBzdGF0aWMgdm9pZCBieHRfc2V0X2NkY2xrKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdiwKPiA+ICBicmVhazsKPiA+ICBjYXNlIDM6Cj4gPiAgZHJtX1dBUk4oJmRldl9w
-cml2LT5kcm0sCj4gPiAtIElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpIHx8IElOVEVMX0dFTihkZXZf
-cHJpdikgPj0gMTAsCj4gPiArIElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpIHx8Cj4gPiArIChJTlRF
-TF9HRU4oZGV2X3ByaXYpID49IDEwICYmICFJU19ST0NLRVRMQUtFKGRldl9wcml2KSksCj4gPiAg
-ICJVbnN1cHBvcnRlZCBkaXZpZGVyXG4iKTsKPiA+ICBkaXZpZGVyID0gQlhUX0NEQ0xLX0NEMlhf
-RElWX1NFTF8xXzU7Cj4gPiAgYnJlYWs7Cj4gPiBAQCAtMTU3Miw3ICsxNjA4LDggQEAgc3RhdGlj
-IHZvaWQgYnh0X3NldF9jZGNsayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4g
-PiAgZGl2aWRlciA9IEJYVF9DRENMS19DRDJYX0RJVl9TRUxfMjsKPiA+ICBicmVhazsKPiA+ICBj
-YXNlIDg6Cj4gPiAtZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sIElOVEVMX0dFTihkZXZfcHJpdikg
-Pj0gMTAsCj4gPiArZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sCj4gPiArIElOVEVMX0dFTihkZXZf
-cHJpdikgPj0gMTAgJiYgIUlTX1JPQ0tFVExBS0UoZGV2X3ByaXYpLAo+ID4gICAiVW5zdXBwb3J0
-ZWQgZGl2aWRlclxuIik7Cj4gPiAgZGl2aWRlciA9IEJYVF9DRENMS19DRDJYX0RJVl9TRUxfNDsK
-PiA+ICBicmVhazsKPiA+IEBAIC0yNzU4LDcgKzI3OTUsMTIgQEAgdTMyIGludGVsX3JlYWRfcmF3
-Y2xrKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiA+ICAgKi8KPiA+ICB2b2lk
-IGludGVsX2luaXRfY2RjbGtfaG9va3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-KSAgewo+ID4gLWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7Cj4gPiAraWYgKElTX1JP
-Q0tFVExBS0UoZGV2X3ByaXYpKSB7Cj4gPiArZGV2X3ByaXYtPmRpc3BsYXkuc2V0X2NkY2xrID0g
-Ynh0X3NldF9jZGNsazsKPiA+ICtkZXZfcHJpdi0+ZGlzcGxheS5tb2Rlc2V0X2NhbGNfY2RjbGsg
-PSBieHRfbW9kZXNldF9jYWxjX2NkY2xrOwo+ID4gK2Rldl9wcml2LT5kaXNwbGF5LmNhbGNfdm9s
-dGFnZV9sZXZlbCA9IHRnbF9jYWxjX3ZvbHRhZ2VfbGV2ZWw7Cj4gPiArZGV2X3ByaXYtPmNkY2xr
-LnRhYmxlID0gcmtsX2NkY2xrX3RhYmxlOwo+ID4gK30gZWxzZSBpZiAoSU5URUxfR0VOKGRldl9w
-cml2KSA+PSAxMikgewo+ID4gIGRldl9wcml2LT5kaXNwbGF5LnNldF9jZGNsayA9IGJ4dF9zZXRf
-Y2RjbGs7Cj4gPiAgZGV2X3ByaXYtPmRpc3BsYXkubW9kZXNldF9jYWxjX2NkY2xrID0gYnh0X21v
-ZGVzZXRfY2FsY19jZGNsazsKPiA+ICBkZXZfcHJpdi0+ZGlzcGxheS5jYWxjX3ZvbHRhZ2VfbGV2
-ZWwgPSB0Z2xfY2FsY192b2x0YWdlX2xldmVsOwo+ID4gLS0KPiA+IDIuMjQuMQo+ID4gCj4gPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdAo+ID4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4g
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
-PiAKPiAtLSAKPiBNYXR0IFJvcGVyCj4gR3JhcGhpY3MgU29mdHdhcmUgRW5naW5lZXIKPiBWVFQt
-T1NHQyBQbGF0Zm9ybSBFbmFibGVtZW50Cj4gSW50ZWwgQ29ycG9yYXRpb24KPiAoOTE2KSAzNTYt
-Mjc5NQoKLS0gCk1hdHQgUm9wZXIKR3JhcGhpY3MgU29mdHdhcmUgRW5naW5lZXIKVlRULU9TR0Mg
-UGxhdGZvcm0gRW5hYmxlbWVudApJbnRlbCBDb3Jwb3JhdGlvbgooOTE2KSAzNTYtMjc5NQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Mon, May 4, 2020 at 1:32 PM Oliver Barta <o.barta89@gmail.com> wrote:
+>
+> From: Oliver Barta <oliver.barta@aptiv.com>
+>
+> A single Ri mismatch doesn't automatically mean that the link integrity
+> is broken. Update and check of Ri and Ri' are done asynchronously. In
+> case an update happens just between the read of Ri' and the check against
+> Ri there will be a mismatch even if the link integrity is fine otherwise.
+>
+> Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 010f37240710..3156fde392f2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1540,7 +1540,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+>  }
+>
+>  static
+> -bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+> +bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *intel_dig_port)
+>  {
+>         struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>         struct intel_connector *connector =
+> @@ -1563,8 +1563,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>         if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
+>                       (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
+>                      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+
+Why doesn't the wait_for catch this?
+
+Sean
+
+> -               drm_err(&i915->drm,
+> -                       "Ri' mismatch detected, link check failed (%x)\n",
+> +               drm_dbg_kms(&i915->drm, "Ri' mismatch detected (%x)\n",
+>                         intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
+>                                                         port)));
+>                 return false;
+> @@ -1572,6 +1571,20 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>         return true;
+>  }
+>
+> +static
+> +bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+> +{
+> +       struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+> +       int retry;
+> +
+> +       for (retry = 0; retry < 3; retry++)
+> +               if (intel_hdmi_hdcp_check_link_once(intel_dig_port))
+> +                       return true;
+> +
+> +       drm_err(&i915->drm, "Link check failed\n");
+> +       return false;
+> +}
+> +
+>  struct hdcp2_hdmi_msg_timeout {
+>         u8 msg_id;
+>         u16 timeout;
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
