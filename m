@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916101C49DA
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE5B1C49CF
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A72AF6E4EA;
-	Mon,  4 May 2020 22:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAAF6E4BB;
+	Mon,  4 May 2020 22:52:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B05D6E4B7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 924836E0D6
  for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:41 +0000 (UTC)
-IronPort-SDR: m8fYVROEccPweu3YT22ghW/QrC/aM16eP+DdO5fCGPoE3itAAfFtO3jcY49BIFbRyQslVOtQp0
- eMretqVYzPuA==
+IronPort-SDR: 3PkosPF4z6gwqpO8aMuQ2xDgReNH2m7NRrZs1DThyiM2UrZfYYZCWCsL3P8H118hSWb85Rq4Ga
+ pgbvsv15zbfA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2020 15:52:41 -0700
-IronPort-SDR: cedTpAcDdrYFE9p5f54Ac3uBfUw+U9UAePdINbP6gEtrSGOW5rVIgUEOOv9KfsxAfIUe8cpgS6
- BZi3Yfkx9DJg==
+IronPort-SDR: i6/qM6/gid4m+FI3LBNtafoFb/lpij2kCM5gmFzUjVNyKrBxIb7OCYTjXcDIUPxf2xK/uzWvco
+ auw3Oi/iMA9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646708"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646711"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:40 -0700
+ by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:09 -0700
-Message-Id: <20200504225227.464666-5-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:10 -0700
+Message-Id: <20200504225227.464666-6-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 04/22] drm/i915/rkl: Load DMC firmware for
- Rocket Lake
+Subject: [Intel-gfx] [PATCH v2 05/22] drm/i915/rkl: Add PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,46 +46,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_csr.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Rocket Lake can pair with either TGP or CMP.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
-index 3112572cfb7d..319932b03e88 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.c
-+++ b/drivers/gpu/drm/i915/display/intel_csr.c
-@@ -40,6 +40,10 @@
- 
- #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
- 
-+#define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
-+#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
-+MODULE_FIRMWARE(RKL_CSR_PATH);
-+
- #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_06.bin"
- #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 6)
- #define TGL_CSR_MAX_FW_SIZE		0x6000
-@@ -682,7 +686,11 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pch.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+index 20ab9a5023b5..102b03d24f90 100644
+--- a/drivers/gpu/drm/i915/intel_pch.c
++++ b/drivers/gpu/drm/i915/intel_pch.c
+@@ -88,7 +88,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 	case INTEL_PCH_CMP_DEVICE_ID_TYPE:
+ 	case INTEL_PCH_CMP2_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found Comet Lake PCH (CMP)\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_COFFEELAKE(dev_priv));
++		drm_WARN_ON(&dev_priv->drm, !IS_COFFEELAKE(dev_priv) &&
++			    !IS_ROCKETLAKE(dev_priv));
+ 		/* CometPoint is CNP Compatible */
+ 		return PCH_CNP;
+ 	case INTEL_PCH_CMP_V_DEVICE_ID_TYPE:
+@@ -107,7 +108,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+ 	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv));
++		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
++			    !IS_ROCKETLAKE(dev_priv));
+ 		return PCH_TGP;
+ 	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
+ 	case INTEL_PCH_JSP2_DEVICE_ID_TYPE:
+@@ -141,7 +143,7 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
+ 	 * make an educated guess as to which PCH is really there.
  	 */
- 	intel_csr_runtime_pm_get(dev_priv);
  
--	if (INTEL_GEN(dev_priv) >= 12) {
-+	if (IS_ROCKETLAKE(dev_priv)) {
-+		csr->fw_path = RKL_CSR_PATH;
-+		csr->required_version = RKL_CSR_VERSION_REQUIRED;
-+		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-+	} else if (INTEL_GEN(dev_priv) >= 12) {
- 		csr->fw_path = TGL_CSR_PATH;
- 		csr->required_version = TGL_CSR_VERSION_REQUIRED;
- 		/* Allow to load fw via parameter using the last known size */
+-	if (IS_TIGERLAKE(dev_priv))
++	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+ 		id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
+ 	else if (IS_ELKHARTLAKE(dev_priv))
+ 		id = INTEL_PCH_MCC_DEVICE_ID_TYPE;
 -- 
 2.24.1
 
