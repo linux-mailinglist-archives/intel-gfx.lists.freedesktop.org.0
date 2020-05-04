@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39D301C4710
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 21:31:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCD731C4716
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 21:34:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF93B89487;
-	Mon,  4 May 2020 19:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC6496E48D;
+	Mon,  4 May 2020 19:34:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E077F893D0;
- Mon,  4 May 2020 19:31:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21111043-1500050 
- for multiple; Mon, 04 May 2020 20:31:15 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 20:31:12 +0100
-Message-Id: <20200504193112.2382452-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A3A6488DFC;
+ Mon,  4 May 2020 19:34:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9D2B6A47E6;
+ Mon,  4 May 2020 19:34:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_exec: Exploit resource
- contention to verify execbuf independence
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 04 May 2020 19:34:14 -0000
+Message-ID: <158862085461.5815.10624769421880797106@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504180745.15645-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200504180745.15645-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Stop_holding_onto_the_pinned=5Fdefault=5Fstate_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,171 +39,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Even if one client is blocked on a resource, that should not impact
-another client.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_ctx_exec.c | 122 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 121 insertions(+), 1 deletion(-)
+Series: drm/i915/gt: Stop holding onto the pinned_default_state (rev2)
+URL   : https://patchwork.freedesktop.org/series/76738/
+State : success
 
-diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
-index ad2f9e545..d7cd56424 100644
---- a/tests/i915/gem_ctx_exec.c
-+++ b/tests/i915/gem_ctx_exec.c
-@@ -35,8 +35,9 @@
- #include <fcntl.h>
- #include <inttypes.h>
- #include <errno.h>
--#include <sys/stat.h>
- #include <sys/ioctl.h>
-+#include <sys/poll.h>
-+#include <sys/stat.h>
- #include <sys/time.h>
- 
- #include <drm.h>
-@@ -331,6 +332,122 @@ static void nohangcheck_hostile(int i915)
- 	close(i915);
- }
- 
-+static void kill_children(int sig)
-+{
-+	sighandler_t old;
-+
-+	old = signal(sig, SIG_IGN);
-+	kill(-getpgrp(), sig);
-+	signal(sig, old);
-+}
-+
-+static bool has_persistence(int i915)
-+{
-+	struct drm_i915_gem_context_param p = {
-+		.param = I915_CONTEXT_PARAM_PERSISTENCE,
-+	};
-+	uint64_t saved;
-+
-+	if (__gem_context_get_param(i915, &p))
-+		return false;
-+
-+	saved = p.value;
-+	p.value = 0;
-+	if (__gem_context_set_param(i915, &p))
-+		return false;
-+
-+	p.value = saved;
-+	return __gem_context_set_param(i915, &p) == 0;
-+}
-+
-+static void pi_active(int i915)
-+{
-+	igt_spin_t *spin = igt_spin_new(i915);
-+	unsigned long count = 0;
-+	bool blocked = false;
-+	struct pollfd pfd;
-+	int lnk[2];
-+	int *done;
-+
-+	igt_require(gem_scheduler_enabled(i915));
-+	igt_require(has_persistence(i915)); /* for graceful error recovery */
-+
-+	done = mmap(NULL, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
-+	igt_assert(done != MAP_FAILED);
-+
-+	igt_assert(pipe(lnk) == 0);
-+
-+	igt_fork(child, 1) {
-+		struct sigaction sa = { .sa_handler = alarm_handler };
-+
-+		sigaction(SIGHUP, &sa, NULL);
-+
-+		do {
-+			uint32_t ctx;
-+
-+			if (__gem_context_clone(i915, 0,
-+						I915_CONTEXT_CLONE_ENGINES |
-+						I915_CONTEXT_CLONE_VM,
-+						0, &ctx))
-+				break;
-+
-+			gem_context_set_persistence(i915, ctx, false);
-+			if (READ_ONCE(*done))
-+				break;
-+
-+			spin->execbuf.rsvd1 = ctx;
-+			if (__execbuf(i915, &spin->execbuf))
-+				break;
-+
-+			count++;
-+			write(lnk[1], &count, sizeof(count));
-+		} while (1);
-+	}
-+
-+	pfd.fd = lnk[0];
-+	pfd.events = POLLIN;
-+	close(lnk[1]);
-+
-+	igt_until_timeout(90) {
-+		if (poll(&pfd, 1, 1000) == 0) {
-+			igt_info("Child blocked after %lu active contexts\n",
-+				 count);
-+			blocked = true;
-+			break;
-+		}
-+		read(pfd.fd, &count, sizeof(count));
-+	}
-+
-+	if (blocked) {
-+		struct sigaction old_sa, sa = { .sa_handler = alarm_handler };
-+		struct itimerval itv;
-+
-+		sigaction(SIGALRM, &sa, &old_sa);
-+		itv.it_value.tv_sec = 0;
-+		itv.it_value.tv_usec = 250000; /* 250ms */
-+		setitimer(ITIMER_REAL, &itv, NULL);
-+
-+		igt_assert_f(__execbuf(i915, &spin->execbuf) == 0,
-+			     "Active execbuf blocked for more than 250ms by %lu child contexts\n",
-+			     count);
-+
-+		memset(&itv, 0, sizeof(itv));
-+		setitimer(ITIMER_REAL, &itv, NULL);
-+		sigaction(SIGALRM, &old_sa, NULL);
-+	} else {
-+		igt_info("Not blocked after %lu active contexts\n",
-+			 count);
-+	}
-+
-+	*done = 1;
-+	kill_children(SIGHUP);
-+	igt_waitchildren();
-+	gem_quiescent_gpu(i915);
-+	close(lnk[0]);
-+
-+	munmap(done, 4096);
-+}
-+
- igt_main
- {
- 	const uint32_t batch[2] = { 0, MI_BATCH_BUFFER_END };
-@@ -375,6 +492,9 @@ igt_main
- 	igt_subtest("basic-nohangcheck")
- 		nohangcheck_hostile(fd);
- 
-+	igt_subtest("basic-pi-active")
-+		pi_active(fd);
-+
- 	igt_subtest("reset-pin-leak") {
- 		int i;
- 
--- 
-2.26.2
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8422 -> Patchwork_17574
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17574/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17574 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@perf:
+    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8422/fi-bwr-2160/igt@i915_selftest@live@perf.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17574/fi-bwr-2160/igt@i915_selftest@live@perf.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (52 -> 44)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8422 -> Patchwork_17574
+
+  CI-20190529: 20190529
+  CI_DRM_8422: 0ca0fee447b032331962bc5c717786bdb3594bd9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17574: ca23be75c4c21a2a54eec2b4836307b869e4356f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ca23be75c4c2 drm/i915/gt: Stop holding onto the pinned_default_state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17574/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
