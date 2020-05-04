@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050881C49CE
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 916101C49DA
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42ED96E0D6;
-	Mon,  4 May 2020 22:52:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A72AF6E4EA;
+	Mon,  4 May 2020 22:52:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E98F6E0D6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B05D6E4B7
  for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:41 +0000 (UTC)
-IronPort-SDR: VUskeSs91tgM9b7ullMw8gKfwjNp7AbUHVFr31A5AlfqeNa0SfA9IcBFotb9Xeq++iRuuCulRq
- KbrZBFobC3tQ==
+IronPort-SDR: m8fYVROEccPweu3YT22ghW/QrC/aM16eP+DdO5fCGPoE3itAAfFtO3jcY49BIFbRyQslVOtQp0
+ eMretqVYzPuA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 15:52:40 -0700
-IronPort-SDR: EcTIeZi3S2VSgUVFQEwhNW5IanmGsUYJYkzURExlaqktWb3dtZWzfhSgoSfERZX4hlQxwes0e/
- HqAUaHJDtj4A==
+ 04 May 2020 15:52:41 -0700
+IronPort-SDR: cedTpAcDdrYFE9p5f54Ac3uBfUw+U9UAePdINbP6gEtrSGOW5rVIgUEOOv9KfsxAfIUe8cpgS6
+ BZi3Yfkx9DJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646705"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646708"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
  by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:08 -0700
-Message-Id: <20200504225227.464666-4-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:09 -0700
+Message-Id: <20200504225227.464666-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 03/22] drm/i915/rkl: Re-use TGL GuC/HuC
- firmware
+Subject: [Intel-gfx] [PATCH v2 04/22] drm/i915/rkl: Load DMC firmware for
+ Rocket Lake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,32 +52,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL uses the same GuC and HuC as TGL and should load the same firmwares.
-
-Bspec: 50668
 Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_csr.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index e1caae93996d..9b6218128d09 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -47,8 +47,11 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
-  * TGL 35.2 is interface-compatible with 33.0 for previous Gens. The deltas
-  * between 33.0 and 35.2 are only related to new additions to support new Gen12
-  * features.
-+ *
-+ * Note that RKL uses the same firmware as TGL.
-  */
- #define INTEL_UC_FIRMWARE_DEFS(fw_def, guc_def, huc_def) \
-+	fw_def(ROCKETLAKE,  0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 0, 12)) \
- 	fw_def(TIGERLAKE,   0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 0, 12)) \
- 	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 33, 0, 4), huc_def(ehl,  9, 0, 0)) \
- 	fw_def(ICELAKE,     0, guc_def(icl, 33, 0, 0), huc_def(icl,  9, 0, 0)) \
+diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+index 3112572cfb7d..319932b03e88 100644
+--- a/drivers/gpu/drm/i915/display/intel_csr.c
++++ b/drivers/gpu/drm/i915/display/intel_csr.c
+@@ -40,6 +40,10 @@
+ 
+ #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+ 
++#define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
++#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
++MODULE_FIRMWARE(RKL_CSR_PATH);
++
+ #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_06.bin"
+ #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 6)
+ #define TGL_CSR_MAX_FW_SIZE		0x6000
+@@ -682,7 +686,11 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+ 	 */
+ 	intel_csr_runtime_pm_get(dev_priv);
+ 
+-	if (INTEL_GEN(dev_priv) >= 12) {
++	if (IS_ROCKETLAKE(dev_priv)) {
++		csr->fw_path = RKL_CSR_PATH;
++		csr->required_version = RKL_CSR_VERSION_REQUIRED;
++		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
++	} else if (INTEL_GEN(dev_priv) >= 12) {
+ 		csr->fw_path = TGL_CSR_PATH;
+ 		csr->required_version = TGL_CSR_VERSION_REQUIRED;
+ 		/* Allow to load fw via parameter using the last known size */
 -- 
 2.24.1
 
