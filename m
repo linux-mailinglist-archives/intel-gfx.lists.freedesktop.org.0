@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E66B1C37ED
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 13:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3E81C37F5
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 13:22:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B23A6E37C;
-	Mon,  4 May 2020 11:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA1BE6E37F;
+	Mon,  4 May 2020 11:22:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D46576E37C
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 11:21:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21105906-1500050 for multiple; Mon, 04 May 2020 12:21:48 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 38F1B6E37F;
+ Mon,  4 May 2020 11:22:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 342D2A00C7;
+ Mon,  4 May 2020 11:22:17 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200504111249.1367096-4-lionel.g.landwerlin@intel.com>
-References: <20200504111249.1367096-1-lionel.g.landwerlin@intel.com>
- <20200504111249.1367096-4-lionel.g.landwerlin@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158859130597.10831.1879381999581311910@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 04 May 2020 12:21:45 +0100
-Subject: Re: [Intel-gfx] [PATCH v12 3/4] drm/i915/perf: prepare driver to
- receive multiple ctx handles
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 04 May 2020 11:22:17 -0000
+Message-ID: <158859133721.5817.9004894626203099196@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504103146.1359515-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200504103146.1359515-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Add_support_for_multi_context_perf_queries_=28rev?=
+ =?utf-8?q?5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,79 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2020-05-04 12:12:48)
-> +static int oa_get_render_ctx_ids(struct i915_perf_stream *stream)
->  {
->         struct intel_context *ce;
-> +       int i, err = 0;
-> +       u32 n_allocated_ctxs = 0;
->  
-> -       ce = fetch_and_zero(&stream->pinned_ctx);
-> -       if (ce) {
-> -               ce->tag = 0; /* recomputed on next submission after parking */
-> -               intel_context_unpin(ce);
-> +       stream->ctx_id_mask = get_ctx_id_mask(stream->engine);
-> +
-> +       for (i = 0; i < stream->n_ctxs; i++) {
-> +               struct i915_gem_context *ctx = stream->ctxs[i];
-> +               struct i915_gem_engines_iter it;
-> +
-> +               for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
-> +                       if (ce->engine != stream->engine) /* first match! */
-> +                               continue;
-> +
-> +                       /*
-> +                        * As the ID is the gtt offset of the context's vma we
-> +                        * pin the vma to ensure the ID remains fixed.
-> +                        */
-> +                       err = intel_context_pin(ce);
-> +                       if (err) {
-> +                               i915_gem_context_unlock_engines(ctx);
-> +                               break;
-> +                       }
-> +
-> +                       if (stream->n_pinned_ctxs >= n_allocated_ctxs) {
-> +                               u32 new_allocated_len = max(n_allocated_ctxs * 2, 2u);
-> +                               struct i915_perf_context_detail *new_ctxs =
-> +                                       krealloc(stream->pinned_ctxs,
-> +                                                sizeof(*stream->pinned_ctxs) *
-> +                                                new_allocated_len,
-> +                                                GFP_KERNEL);
-> +
-> +                               if (!new_ctxs) {
-> +                                       err = -ENOMEM;
-> +                                       break;
-> +                               }
-> +
-> +                               n_allocated_ctxs = new_allocated_len;
-> +                               stream->pinned_ctxs = new_ctxs;
-> +                       }
-> +
-> +                       stream->pinned_ctxs[stream->n_pinned_ctxs].ce = ce;
-> +                       stream->pinned_ctxs[stream->n_pinned_ctxs].id = get_ctx_id(ce, i);
-> +
-> +                       drm_dbg(&stream->perf->i915->drm,
-> +                               "filtering on ctx_id%i=0x%x ctx_id_mask=0x%x\n",
-> +                               i, stream->pinned_ctxs[i].id, stream->ctx_id_mask);
-> +
-> +                       ce->tag = stream->pinned_ctxs[stream->n_pinned_ctxs].id;
-> +
-> +                       stream->n_pinned_ctxs++;
-> +               }
-> +               i915_gem_context_unlock_engines(ctx);
-> +               if (err)
-> +                       goto err;
->         }
+== Series Details ==
 
-For each GEM context handle the user supplied, match on all HW contexts.
+Series: drm/i915/perf: Add support for multi context perf queries (rev5)
+URL   : https://patchwork.freedesktop.org/series/76588/
+State : success
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8417 -> Patchwork_17565
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17565/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8417 -> Patchwork_17565
+
+  CI-20190529: 20190529
+  CI_DRM_8417: 7f9142d29c789842bd79245dd6623df9f15ba746 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17565: 7bde0bbe0042cf9b9240fc9fe8fa24e03d2bc021 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7bde0bbe0042 drm/i915/perf: enable filtering on multiple contexts
+aa12fc3b16d1 drm/i915/perf: prepare driver to receive multiple ctx handles
+c7117b7d18c4 drm/i915/perf: stop using the kernel context
+08a61efc634f drm/i915/perf: break OA config buffer object in 2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17565/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
