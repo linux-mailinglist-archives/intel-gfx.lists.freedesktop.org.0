@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A8B71C49D3
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7591C49E2
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:53:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6156E4C7;
-	Mon,  4 May 2020 22:52:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9214A6E4E3;
+	Mon,  4 May 2020 22:52:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9426E4BA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D216E4C1
  for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:42 +0000 (UTC)
-IronPort-SDR: DGYcgA3eMBlSQCvE7/33QIWiiX3+kSwP2diJj66zmp6ke9hBP4wgP6FjGvQqhkFe8LO4prw51B
- AZwLZVq0rrcQ==
+IronPort-SDR: 5K7ANQ4Qngqb/+C2cjpXL5Ou3JH6v9itxd5XDy1y+UayyyF+8m8g6g27RwkUJq1QnVsmmrFkrj
+ frkH/m078Kiw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2020 15:52:42 -0700
-IronPort-SDR: unjJclNdemce8gT/YXq8hvcQL6i0Yt8rekjIzIA5QztkZ0n8Jdtsl0vFE5uUwvcED7X6sGmIW9
- eGx+fzr1QF5Q==
+IronPort-SDR: X8azJ8U8OIl3OCv6eFOzt77kZT173QryPaJAPdzEFszNa9ZKI5hlNLt1j2yJdLvgzg3HyQDVus
+ vICb5AGYy5nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646725"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646728"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:41 -0700
+ by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:42 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:14 -0700
-Message-Id: <20200504225227.464666-10-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:15 -0700
+Message-Id: <20200504225227.464666-11-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 09/22] drm/i915/rkl: Program BW_BUDDY0
- registers instead of BW_BUDDY1/2
+Subject: [Intel-gfx] [PATCH v2 10/22] drm/i915/rkl: RKL only uses PHY_MISC
+ for PHY's A and B
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,113 +52,74 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL uses the same BW_BUDDY programming table as TGL, but programs the
-values into a single set BUDDY0 set of registers rather than the
-BUDDY1/BUDDY2 sets used by TGL.
+Since the number of platforms with this restriction are growing, let's
+separate out the platform logic into a has_phy_misc() function.
 
-Bspec: 49218
-Cc: Aditya Swarup <aditya.swarup@intel.com>
+Bspec: 50107
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    | 44 +++++++++++--------
- drivers/gpu/drm/i915/i915_reg.h               | 14 ++++--
- 2 files changed, 35 insertions(+), 23 deletions(-)
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 30 +++++++++++--------
+ 1 file changed, 17 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 71691919d101..a83e1bc0e3a7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -5249,7 +5249,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
- 	enum intel_dram_type type = dev_priv->dram_info.type;
- 	u8 num_channels = dev_priv->dram_info.num_channels;
- 	const struct buddy_page_mask *table;
--	int i;
-+	int config, min_buddy, max_buddy, i;
- 
- 	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
- 		/* Wa_1409767108: tgl */
-@@ -5257,29 +5257,35 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
- 	else
- 		table = tgl_buddy_page_masks;
- 
--	for (i = 0; table[i].page_mask != 0; i++)
--		if (table[i].num_channels == num_channels &&
--		    table[i].type == type)
-+	if (IS_ROCKETLAKE(dev_priv)) {
-+		min_buddy = max_buddy = 0;
-+	} else {
-+		min_buddy = 1;
-+		max_buddy = 2;
-+	}
-+
-+	for (config = 0; table[config].page_mask != 0; config++)
-+		if (table[config].num_channels == num_channels &&
-+		    table[config].type == type)
- 			break;
- 
--	if (table[i].page_mask == 0) {
-+	if (table[config].page_mask == 0) {
- 		drm_dbg(&dev_priv->drm,
- 			"Unknown memory configuration; disabling address buddy logic.\n");
--		intel_de_write(dev_priv, BW_BUDDY1_CTL, BW_BUDDY_DISABLE);
--		intel_de_write(dev_priv, BW_BUDDY2_CTL, BW_BUDDY_DISABLE);
-+		for (i = min_buddy; i <= max_buddy; i++)
-+			intel_de_write(dev_priv, BW_BUDDY_CTL(i),
-+				       BW_BUDDY_DISABLE);
- 	} else {
--		intel_de_write(dev_priv, BW_BUDDY1_PAGE_MASK,
--			       table[i].page_mask);
--		intel_de_write(dev_priv, BW_BUDDY2_PAGE_MASK,
--			       table[i].page_mask);
--
--		/* Wa_22010178259:tgl */
--		intel_de_rmw(dev_priv, BW_BUDDY1_CTL,
--			     BW_BUDDY_TLB_REQ_TIMER_MASK,
--			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
--		intel_de_rmw(dev_priv, BW_BUDDY2_CTL,
--			     BW_BUDDY_TLB_REQ_TIMER_MASK,
--			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
-+		for (i = min_buddy; i <= max_buddy; i++) {
-+			intel_de_write(dev_priv, BW_BUDDY_PAGE_MASK(i),
-+				       table[config].page_mask);
-+
-+			/* Wa_22010178259:tgl,rkl */
-+			intel_de_rmw(dev_priv, BW_BUDDY_CTL(i),
-+				     BW_BUDDY_TLB_REQ_TIMER_MASK,
-+				     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK,
-+						    0x8));
-+		}
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 9ff05ec12115..43d8784f6fa0 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -181,11 +181,25 @@ static void cnl_combo_phys_uninit(struct drm_i915_private *dev_priv)
+ 	intel_de_write(dev_priv, CHICKEN_MISC_2, val);
  }
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 59c1d527cf13..2266f9fc2d79 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7832,13 +7832,19 @@ enum {
- #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
- #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
++static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
++{
++	/*
++	 * Some platforms only expect PHY_MISC to be programmed for PHY-A and
++	 * PHY-B and may not even have instances of the register for the
++	 * other combo PHY's.
++	 */
++	if (IS_ELKHARTLAKE(i915) ||
++	    IS_ROCKETLAKE(i915))
++		return phy < PHY_C;
++
++	return true;
++}
++
+ static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
+ 				  enum phy phy)
+ {
+ 	/* The PHY C added by EHL has no PHY_MISC register */
+-	if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
++	if (!has_phy_misc(dev_priv, phy))
+ 		return intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
+ 	else
+ 		return !(intel_de_read(dev_priv, ICL_PHY_MISC(phy)) &
+@@ -317,12 +331,7 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+ 			continue;
+ 		}
  
--#define BW_BUDDY1_CTL			_MMIO(0x45140)
--#define BW_BUDDY2_CTL			_MMIO(0x45150)
-+#define _BW_BUDDY0_CTL			0x45130
-+#define _BW_BUDDY1_CTL			0x45140
-+#define BW_BUDDY_CTL(x)			_MMIO(_PICK_EVEN(x, \
-+							 _BW_BUDDY0_CTL, \
-+							 _BW_BUDDY1_CTL))
- #define   BW_BUDDY_DISABLE		REG_BIT(31)
- #define   BW_BUDDY_TLB_REQ_TIMER_MASK	REG_GENMASK(21, 16)
+-		/*
+-		 * Although EHL adds a combo PHY C, there's no PHY_MISC
+-		 * register for it and no need to program the
+-		 * DE_IO_COMP_PWR_DOWN setting on PHY C.
+-		 */
+-		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
++		if (!has_phy_misc(dev_priv, phy))
+ 			goto skip_phy_misc;
  
--#define BW_BUDDY1_PAGE_MASK		_MMIO(0x45144)
--#define BW_BUDDY2_PAGE_MASK		_MMIO(0x45154)
-+#define _BW_BUDDY0_PAGE_MASK		0x45134
-+#define _BW_BUDDY1_PAGE_MASK		0x45144
-+#define BW_BUDDY_PAGE_MASK(x)		_MMIO(_PICK_EVEN(x, \
-+							 _BW_BUDDY0_PAGE_MASK, \
-+							 _BW_BUDDY1_PAGE_MASK))
+ 		/*
+@@ -376,12 +385,7 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
+ 				 "Combo PHY %c HW state changed unexpectedly\n",
+ 				 phy_name(phy));
  
- #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
- #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
+-		/*
+-		 * Although EHL adds a combo PHY C, there's no PHY_MISC
+-		 * register for it and no need to program the
+-		 * DE_IO_COMP_PWR_DOWN setting on PHY C.
+-		 */
+-		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
++		if (!has_phy_misc(dev_priv, phy))
+ 			goto skip_phy_misc;
+ 
+ 		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
 -- 
 2.24.1
 
