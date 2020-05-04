@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 467BB1C49DB
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBBD61C49D9
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64A36E4E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 612056E4DE;
 	Mon,  4 May 2020 22:52:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC0E6E4BA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 717036E4CF
  for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:43 +0000 (UTC)
-IronPort-SDR: xqqEKWi1g06k1DZESRAzK46FID/Bexj80BTOrh3C/77SZBw78B0SBVLTTek4knVUX7g4BOEdkq
- CNUjLxN/cZNw==
+IronPort-SDR: i6lRNeW1c5OMsTPmzEXX6/tPhO7VYi+jRn8QqGpFlEEb6XP42hYY9pKwB2hxVGgpsBoYOd0ixf
+ INglyG5z2TBA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2020 15:52:43 -0700
-IronPort-SDR: hsJxxUzgh9P0O5+HaSHXM4c3AafZoqL2clSO4xn5PJLRcAPvlzwWxlRY2stvj1Vi4pQZJzznHb
- GKrS0MTUGBGg==
+IronPort-SDR: b2AMZXcCMnxWGXLNjzDDl2VjWx0urefC89tSf1uIr4ud3rEksiIb+jmtIp0AueX2EIsi4KJx5X
+ 7xR/TqMHTuYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646743"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646746"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:42 -0700
+ by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:43 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:20 -0700
-Message-Id: <20200504225227.464666-16-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:21 -0700
+Message-Id: <20200504225227.464666-17-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 15/22] drm/i915/rkl: Add DDC pin mapping
+Subject: [Intel-gfx] [PATCH v2 16/22] drm/i915/rkl: Don't try to access
+ transcoder D
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,57 +52,56 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The pin mapping for the final two outputs varies according to which PCH
-is present on the platform:  with TGP the pins are remapped into the TC
-range, whereas with CMP they stay in the traditional combo output range.
+There are a couple places in our driver that loop over transcoders A..D
+for gen11+; since RKL only has three pipes/transcoders, this can lead to
+unclaimed register reads/writes.  We should add checks for transcoder
+existence where appropriate.
 
-Bspec: 49181
 Cc: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+ drivers/gpu/drm/i915/i915_irq.c              | 6 ++++++
+ 2 files changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 010f37240710..a31a98d26882 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3082,6 +3082,24 @@ static u8 mcc_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
- 	return ddc_pin;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index fcfc3812ef28..2eeafda82188 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -11007,6 +11007,9 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
+ 		else
+ 			cpu_transcoder = TRANSCODER_DSI_C;
  
-+static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
-+{
-+	enum phy phy = intel_port_to_phy(dev_priv, port);
++		if (!HAS_TRANSCODER(dev_priv, cpu_transcoder))
++			continue;
 +
-+	WARN_ON(port == PORT_C);
-+
-+	/*
-+	 * Pin mapping for RKL depends on which PCH is present.  With TGP, the
-+	 * final two outputs use type-c pins, even though they're actually
-+	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
-+	 * all outputs.
-+	 */
-+	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && phy >= PHY_C)
-+		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
-+
-+	return GMBUS_PIN_1_BXT + phy;
-+}
-+
- static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
- 			      enum port port)
- {
-@@ -3119,7 +3137,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
- 		return ddc_pin;
- 	}
+ 		power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
+ 		drm_WARN_ON(dev, *power_domain_mask & BIT_ULL(power_domain));
  
--	if (HAS_PCH_MCC(dev_priv))
-+	if (IS_ROCKETLAKE(dev_priv))
-+		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
-+	else if (HAS_PCH_MCC(dev_priv))
- 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
- 	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 622986759ec6..1381cb530c2f 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2849,6 +2849,9 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+ 		for (trans = TRANSCODER_A; trans <= TRANSCODER_D; trans++) {
+ 			enum intel_display_power_domain domain;
+ 
++			if (!HAS_TRANSCODER(dev_priv, trans))
++				continue;
++
+ 			domain = POWER_DOMAIN_TRANSCODER(trans);
+ 			if (!intel_display_power_is_enabled(dev_priv, domain))
+ 				continue;
+@@ -3399,6 +3402,9 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		for (trans = TRANSCODER_A; trans <= TRANSCODER_D; trans++) {
+ 			enum intel_display_power_domain domain;
+ 
++			if (!HAS_TRANSCODER(dev_priv, trans))
++				continue;
++
+ 			domain = POWER_DOMAIN_TRANSCODER(trans);
+ 			if (!intel_display_power_is_enabled(dev_priv, domain))
+ 				continue;
 -- 
 2.24.1
 
