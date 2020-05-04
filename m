@@ -2,44 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF4D1C42DD
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 19:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DFC31C3F7C
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 18:12:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC4E6E44D;
-	Mon,  4 May 2020 17:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85D1589F5B;
+	Mon,  4 May 2020 16:12:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C3C6E06E;
- Mon,  4 May 2020 16:03:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=MJiG06idgkhQ7ETomKvk+pXIhWmcVzgg6Sh67pMiRa8=; b=KSO+cu4KS04f9QMSMnoEgpz4lP
- xEUzzhMHMNy0nNQLb/oWLnGEmta0IgfeMaWPLFVU8v0KE5Q/SQ/kf7eZZQbtkWd1mh1jOtqlamJpr
- YN+qE50vHOxXepS7SXteLP+Jz8YM7GoPnzdBjtA78HfjZE5ci7Ix61JXsgZmNOz3ITCwjRyIZY+8f
- VyOZXfNmnntPRCfh/xfRBQBe6qX2/BPIpwkpCgcPE5LJxYzBjMyx5sO7eU8s1XolUvo0+SbSxsYHA
- IxtQuHWPpYcGkzHJS2c5PU+nqLHZ77pbjoE7P9V0lYxoaoYguZ5auscSJkpBNu3v2LiCVcQSeLZB2
- eIpOBNEQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1jVdYo-0007fF-8J; Mon, 04 May 2020 16:03:14 +0000
-Date: Mon, 4 May 2020 09:03:14 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200504160314.GA26373@infradead.org>
-References: <20200430221016.3866-1-Jason@zx2c4.com>
- <20200501180731.GA2485@infradead.org>
- <158853721918.8377.18286963845226122104@build.alporthouse.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0196489F5B;
+ Mon,  4 May 2020 16:12:18 +0000 (UTC)
+IronPort-SDR: q2YgEtAaloXL/5ulHk/iVDH6MfJLbf0dkvoIaRL4zlUOJMO6ERnvLaUt61d//KFavYV8NHIVix
+ jRQaC+5UCoNQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2020 09:12:18 -0700
+IronPort-SDR: NjIs5eVckiefVYzs1nbR8TZZP08x1SCNuBp/AYXeYKVd5KTbFssOqilwxELtBYPR4imLSjI+d2
+ TGTnF4ViDebw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,352,1583222400"; d="scan'208";a="262866242"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 04 May 2020 09:12:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 04 May 2020 19:12:13 +0300
+Date: Mon, 4 May 2020 19:12:13 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sultan Alsawaf <sultan@kerneltoast.com>
+Message-ID: <20200504161213.GD6112@intel.com>
+References: <20200430214654.51314-1-sultan@kerneltoast.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <158853721918.8377.18286963845226122104@build.alporthouse.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Mon, 04 May 2020 17:32:53 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers
- are available before using SIMD
+In-Reply-To: <20200430214654.51314-1-sultan@kerneltoast.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't enable
+ WaIncreaseLatencyIPCEnabled when IPC is disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,24 +51,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, bigeasy@linutronix.de,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@infradead.org>, stable@vger.kernel.org,
- tglx@linutronix.de, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, May 03, 2020 at 09:20:19PM +0100, Chris Wilson wrote:
-> > Err, why does i915 implements its own uncached memcpy instead of relying
-> > on core functionality to start with?
-> 
-> What is this core functionality that provides movntqda?
+On Thu, Apr 30, 2020 at 02:46:54PM -0700, Sultan Alsawaf wrote:
+> From: Sultan Alsawaf <sultan@kerneltoast.com>
+> =
 
-A sensible name might be memcpy_uncached or mempcy_nontemporal.
-But the important point is that this should be arch code with a common
-fallback rather than hacking it up in drivers.
+> In commit 5a7d202b1574, a logical AND was erroneously changed to an OR,
+> causing WaIncreaseLatencyIPCEnabled to be enabled unconditionally for
+> kabylake and coffeelake, even when IPC is disabled. Fix the logic so
+> that WaIncreaseLatencyIPCEnabled is only used when IPC is enabled.
+> =
+
+> Fixes: 5a7d202b1574 ("drm/i915: Drop WaIncreaseLatencyIPCEnabled/1140 for=
+ cnl")
+> Cc: stable@vger.kernel.org # 5.3.x+
+> Signed-off-by: Sultan Alsawaf <sultan@kerneltoast.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 8375054ba27d..a52986a9e7a6 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4992,7 +4992,7 @@ static void skl_compute_plane_wm(const struct intel=
+_crtc_state *crtc_state,
+>  	 * WaIncreaseLatencyIPCEnabled: kbl,cfl
+>  	 * Display WA #1141: kbl,cfl
+>  	 */
+> -	if ((IS_KABYLAKE(dev_priv) || IS_COFFEELAKE(dev_priv)) ||
+> +	if ((IS_KABYLAKE(dev_priv) || IS_COFFEELAKE(dev_priv)) &&
+
+Whoops. Thanks for the fix. Pushed.
+
+>  	    dev_priv->ipc_enabled)
+>  		latency +=3D 4;
+>  =
+
+> -- =
+
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
