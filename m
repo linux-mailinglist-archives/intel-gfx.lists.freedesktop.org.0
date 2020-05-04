@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B44E1C3BBC
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:50:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6A31C3BBD
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:50:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1773C6E40D;
-	Mon,  4 May 2020 13:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C136D6E413;
+	Mon,  4 May 2020 13:50:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3AB6E408
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 13:50:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1B846E40F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 13:50:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21106865-1500050 
- for multiple; Mon, 04 May 2020 14:50:34 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21106866-1500050 
+ for multiple; Mon, 04 May 2020 14:50:35 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 14:50:28 +0100
-Message-Id: <20200504135030.19210-5-chris@chris-wilson.co.uk>
+Date: Mon,  4 May 2020 14:50:29 +0100
+Message-Id: <20200504135030.19210-6-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200504135030.19210-1-chris@chris-wilson.co.uk>
 References: <20200504135030.19210-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/6] drm/i915/gem: Teach execbuf how to wait on
- future syncobj
+Subject: [Intel-gfx] [PATCH 5/6] drm/i915/gem: Allow combining submit-fences
+ with syncobj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,195 +45,147 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a syncobj has not yet been assigned, treat it as a future fence and
-install and wait upon a dma-fence-proxy. The proxy will be replace by
-the real fence later, and that fence will be responsible for signaling
-our waiter.
+We allow exported sync_file fences to be used as submit fences, but they
+are not the only source of user fences. We also accept an array of
+syncobj, and as with sync_file these are dma_fences underneath and so
+feature the same set of controls. The submit-fence allows for a request
+to be scheduled at the same time as the signaler, rather than as normal
+after. Userspace can combine submit-fence with its own semaphores for
+intra-batch scheduling.
 
+Not exposing submit-fences to syncobj was at the time just a matter of
+pragmatic expediency.
+
+Fixes: a88b6e4cbafd ("drm/i915: Allow specification of parallel execbuf")
 Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/4854
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  21 +++-
- drivers/gpu/drm/i915/i915_request.c           | 113 ++++++++++++++++++
- 2 files changed, 132 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 14 ++++++----
+ drivers/gpu/drm/i915/i915_request.c           | 26 ++++++++++++++++++-
+ include/uapi/drm/i915_drm.h                   |  7 ++---
+ 3 files changed, 38 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index cce7df231cb9..71e4dbf7b9a8 100644
+index 71e4dbf7b9a8..a47aa33e722e 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/intel-iommu.h>
-+#include <linux/dma-fence-proxy.h>
- #include <linux/dma-resv.h>
- #include <linux/sync_file.h>
- #include <linux/uaccess.h>
-@@ -2472,8 +2473,24 @@ await_fence_array(struct i915_execbuffer *eb,
- 			continue;
- 
- 		fence = drm_syncobj_fence_get(syncobj);
--		if (!fence)
--			return -EINVAL;
-+		if (!fence) {
-+			struct dma_fence *old;
-+
-+			fence = dma_fence_create_proxy();
-+			if (!fence)
-+				return -ENOMEM;
-+
-+			spin_lock(&syncobj->lock);
-+			old = rcu_dereference_protected(syncobj->fence, true);
-+			if (unlikely(old)) {
-+				dma_fence_put(fence);
-+				fence = dma_fence_get(old);
-+			} else {
-+				rcu_assign_pointer(syncobj->fence,
-+						   dma_fence_get(fence));
-+			}
-+			spin_unlock(&syncobj->lock);
-+		}
- 
- 		err = i915_request_await_dma_fence(eb->request, fence);
- 		dma_fence_put(fence);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 95edc5523a01..8583fe5bb3b6 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <linux/dma-fence-array.h>
-+#include <linux/dma-fence-proxy.h>
- #include <linux/irq_work.h>
- #include <linux/prefetch.h>
- #include <linux/sched.h>
-@@ -1065,6 +1066,116 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
- 	return 0;
+@@ -2380,7 +2380,7 @@ static void
+ __free_fence_array(struct drm_syncobj **fences, unsigned int n)
+ {
+ 	while (n--)
+-		drm_syncobj_put(ptr_mask_bits(fences[n], 2));
++		drm_syncobj_put(ptr_mask_bits(fences[n], 3));
+ 	kvfree(fences);
  }
  
-+struct await_proxy {
-+	struct wait_queue_entry base;
-+	struct i915_request *request;
-+	struct dma_fence *fence;
-+	struct timer_list timer;
-+	struct work_struct work;
-+	int (*attach)(struct await_proxy *ap);
-+	void *data;
-+};
-+
-+static void await_proxy_work(struct work_struct *work)
+@@ -2437,7 +2437,7 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
+ 		BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
+ 			     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
+ 
+-		fences[n] = ptr_pack_bits(syncobj, fence.flags, 2);
++		fences[n] = ptr_pack_bits(syncobj, fence.flags, 3);
+ 	}
+ 
+ 	return fences;
+@@ -2468,7 +2468,7 @@ await_fence_array(struct i915_execbuffer *eb,
+ 		struct dma_fence *fence;
+ 		unsigned int flags;
+ 
+-		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
++		syncobj = ptr_unpack_bits(fences[n], &flags, 3);
+ 		if (!(flags & I915_EXEC_FENCE_WAIT))
+ 			continue;
+ 
+@@ -2492,7 +2492,11 @@ await_fence_array(struct i915_execbuffer *eb,
+ 			spin_unlock(&syncobj->lock);
+ 		}
+ 
+-		err = i915_request_await_dma_fence(eb->request, fence);
++		if (flags & I915_EXEC_FENCE_WAIT_SUBMIT)
++			err = i915_request_await_execution(eb->request, fence,
++							   eb->engine->bond_execute);
++		else
++			err = i915_request_await_dma_fence(eb->request, fence);
+ 		dma_fence_put(fence);
+ 		if (err < 0)
+ 			return err;
+@@ -2513,7 +2517,7 @@ signal_fence_array(struct i915_execbuffer *eb,
+ 		struct drm_syncobj *syncobj;
+ 		unsigned int flags;
+ 
+-		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
++		syncobj = ptr_unpack_bits(fences[n], &flags, 3);
+ 		if (!(flags & I915_EXEC_FENCE_SIGNAL))
+ 			continue;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 8583fe5bb3b6..92fa5267bcce 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1326,6 +1326,26 @@ __i915_request_await_execution(struct i915_request *to,
+ 					     &from->fence);
+ }
+ 
++static int execution_proxy(struct await_proxy *ap)
 +{
-+	struct await_proxy *ap = container_of(work, typeof(*ap), work);
-+	struct i915_request *rq = ap->request;
-+	int err;
-+
-+	del_timer_sync(&ap->timer);
-+
-+	if (ap->fence) {
-+		mutex_lock(&rq->context->timeline->mutex);
-+		err = ap->attach(ap);
-+		mutex_unlock(&rq->context->timeline->mutex);
-+		if (err < 0)
-+			i915_sw_fence_set_error_once(&rq->submit, err);
-+	}
-+
-+	i915_sw_fence_complete(&rq->submit);
-+
-+	dma_fence_put(ap->fence);
-+	kfree(ap);
++	return i915_request_await_execution(ap->request, ap->fence, ap->data);
 +}
 +
 +static int
-+await_proxy_wake(struct wait_queue_entry *entry,
-+		 unsigned int mode,
-+		 int flags,
-+		 void *fence)
-+{
-+	struct await_proxy *ap = container_of(entry, typeof(*ap), base);
-+
-+	ap->fence = dma_fence_get(fence);
-+	schedule_work(&ap->work);
-+
-+	return 0;
-+}
-+
-+static void
-+await_proxy_timer(struct timer_list *t)
-+{
-+	struct await_proxy *ap = container_of(t, typeof(*ap), timer);
-+
-+	if (dma_fence_remove_proxy_listener(ap->base.private, &ap->base)) {
-+		struct i915_request *rq = ap->request;
-+
-+		pr_notice("Asynchronous wait on unset proxy fence by %s:%s:%llx timed out\n",
-+			  rq->fence.ops->get_driver_name(&rq->fence),
-+			  rq->fence.ops->get_timeline_name(&rq->fence),
-+			  rq->fence.seqno);
-+		i915_sw_fence_set_error_once(&rq->submit, -ETIMEDOUT);
-+
-+		schedule_work(&ap->work);
-+	}
-+}
-+
-+static int
-+__i915_request_await_proxy(struct i915_request *rq,
-+			   struct dma_fence *fence,
-+			   unsigned long timeout,
-+			   int (*attach)(struct await_proxy *ap),
-+			   void *data)
-+{
-+	struct await_proxy *ap;
-+
-+	ap = kzalloc(sizeof(*ap), I915_FENCE_GFP);
-+	if (!ap)
-+		return -ENOMEM;
-+
-+	i915_sw_fence_await(&rq->submit);
-+
-+	ap->base.private = fence;
-+	ap->base.func = await_proxy_wake;
-+	ap->request = rq;
-+	INIT_WORK(&ap->work, await_proxy_work);
-+	ap->attach = attach;
-+	ap->data = data;
-+
-+	timer_setup(&ap->timer, await_proxy_timer, 0);
-+	if (timeout)
-+		mod_timer(&ap->timer, round_jiffies_up(jiffies + timeout));
-+
-+	dma_fence_add_proxy_listener(fence, &ap->base);
-+	return 0;
-+}
-+
-+static int await_proxy(struct await_proxy *ap)
-+{
-+	return i915_request_await_dma_fence(ap->request, ap->fence);
-+}
-+
-+static int
-+i915_request_await_proxy(struct i915_request *rq, struct dma_fence *fence)
++i915_request_await_proxy_execution(struct i915_request *rq,
++				   struct dma_fence *fence,
++				   void (*hook)(struct i915_request *rq,
++						struct dma_fence *signal))
 +{
 +	/*
-+	 * Wait until we know the real fence so that can optimise the
-+	 * inter-fence synchronisation.
++	 * We have to wait until the real request is known in order to
++	 * be able to hook into its execution, as opposed to waiting for
++	 * its completion.
 +	 */
 +	return __i915_request_await_proxy(rq, fence, I915_FENCE_TIMEOUT,
-+					  await_proxy, NULL);
++					  execution_proxy, hook);
 +}
 +
  int
- i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
- {
-@@ -1111,6 +1222,8 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
- 
- 		if (dma_fence_is_i915(fence))
- 			ret = i915_request_await_request(rq, to_request(fence));
+ i915_request_await_execution(struct i915_request *rq,
+ 			     struct dma_fence *fence,
+@@ -1362,10 +1382,14 @@ i915_request_await_execution(struct i915_request *rq,
+ 			ret = __i915_request_await_execution(rq,
+ 							     to_request(fence),
+ 							     hook);
 +		else if (dma_fence_is_proxy(fence))
-+			ret = i915_request_await_proxy(rq, fence);
++			ret = i915_request_await_proxy_execution(rq,
++								 fence,
++								 hook);
  		else
  			ret = i915_sw_fence_await_dma_fence(&rq->submit, fence,
- 							    fence->context ? I915_FENCE_TIMEOUT : 0,
+ 							    I915_FENCE_TIMEOUT,
+-							    GFP_KERNEL);
++							    I915_FENCE_GFP);
+ 		if (ret < 0)
+ 			return ret;
+ 	} while (--nchild);
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 14b67cd6b54b..704dd0e3bc1d 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1040,9 +1040,10 @@ struct drm_i915_gem_exec_fence {
+ 	 */
+ 	__u32 handle;
+ 
+-#define I915_EXEC_FENCE_WAIT            (1<<0)
+-#define I915_EXEC_FENCE_SIGNAL          (1<<1)
+-#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
++#define I915_EXEC_FENCE_WAIT            (1u << 0)
++#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
++#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
++#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
+ 	__u32 flags;
+ };
+ 
 -- 
 2.20.1
 
