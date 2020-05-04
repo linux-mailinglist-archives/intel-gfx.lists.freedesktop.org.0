@@ -2,43 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB9A1C3BB5
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3271C3BB7
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 15:50:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 558E76E3FE;
-	Mon,  4 May 2020 13:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757336E402;
+	Mon,  4 May 2020 13:50:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B03F56E402
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 13:49:31 +0000 (UTC)
-IronPort-SDR: IZanvEuJXZtW37zFCzdMzVMLClTqLR6BEzLwa73LRHO/COI7Dcjg8SjQFY2/8sOM7o0VO6POaL
- +A51iZLKi6Uw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 06:49:31 -0700
-IronPort-SDR: Q85ECNrh14Phu2+mAaBQjC7hvbohFyyhogZ9n4Ll5myrXr7SmTU/AniFrTHVXErbSZsskLhXTo
- tJ9YFWh1DuBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,352,1583222400"; d="scan'208";a="277531262"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 04 May 2020 06:49:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 04 May 2020 16:49:28 +0300
-Date: Mon, 4 May 2020 16:49:28 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200504134928.GA6112@intel.com>
-References: <20200503180034.20010-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00A476E402
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 13:50:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21106860-1500050 
+ for multiple; Mon, 04 May 2020 14:50:33 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  4 May 2020 14:50:24 +0100
+Message-Id: <20200504135030.19210-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200503180034.20010-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Warn if the FBC is still
- writing to stolen on removal
+Subject: [Intel-gfx] Wait-for-submit on future syncobj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,61 +36,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: kenneth@whitecape.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, May 03, 2020 at 07:00:34PM +0100, Chris Wilson wrote:
-> If the FBC is still writing into stolen, it will overwrite any future
-> users of that stolen region. Check before release.
-> =
+This series extends the I915_EXEC_FENCE_SUBMIT to syncobj; with the
+primary motivation for this to allow userspace to schedule between
+individual clients coordinating with semaphores. The advantage syncobj
+have over sync-file is that since the syncobj is known a priori, it can
+be used to pass the location of a not-yet-submitted fence. This is used
+by iris in its deferred flush implementations where a fence is acquired
+for an incomplete batch, and that future-fence may be used to
+serlisation execution in another context. Since we already handle
+'bonded execution' for media submission, we need only extend support to
+syncobjs.
 
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1635
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 3 +++
->  1 file changed, 3 insertions(+)
-> =
+A simplified example of out-of-order execution that is required by iris:
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index c6afa10e814c..37244ed92ae4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -540,6 +540,9 @@ static void __intel_fbc_cleanup_cfb(struct drm_i915_p=
-rivate *dev_priv)
->  {
->  	struct intel_fbc *fbc =3D &dev_priv->fbc;
->  =
+        struct drm_i915_gem_exec_object2 obj = {
+                .offset = 24 << 20,
+                .handle = future_submit_batch(i915, 24 << 20),
+                .flags = EXEC_OBJECT_PINNED,
+        };
+        struct drm_i915_gem_exec_fence fence = {
+                .handle = syncobj_create(i915, 0),
+        };
+        struct drm_i915_gem_execbuffer2 execbuf  = {
+                .buffers_ptr = to_user_pointer(&obj),
+                .buffer_count = 1,
+                .cliprects_ptr = to_user_pointer(&fence),
+                .num_cliprects = 1,
+                .flags = engine | I915_EXEC_FENCE_ARRAY,
+        };
+        uint32_t result;
+        int out;
 
-> +	if (WARN_ON(intel_fbc_hw_is_active(dev_priv)))
-> +		return;
-> +
+        /*
+         * Here we submit client A waiting on client B, but internally client
+         * B has a semaphore that waits on client A. This relies on timeslicing
+         * to reorder B before A, even though userspace has asked to submit
+         * A & B simultaneously (and due to the sequence we will submit B
+         * then A).
+         */
+        igt_require(gem_scheduler_has_timeslicing(i915));
 
-Can't immediately see how that would hapoen, but no harm in checking.
+        execbuf.rsvd1 = gem_context_create(i915);
+        fence.flags = I915_EXEC_FENCE_WAIT | I915_EXEC_FENCE_WAIT_SUBMIT;
+        execbuf.batch_start_offset = 0;
+        execbuf.flags |= I915_EXEC_FENCE_OUT;
+        igt_require(__gem_execbuf_wr(i915, &execbuf) == 0); /* writes 1 */
+        execbuf.flags &= ~I915_EXEC_FENCE_OUT;
+        gem_context_destroy(i915, execbuf.rsvd1);
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+        execbuf.rsvd1 = gem_context_create(i915);
+        fence.flags = I915_EXEC_FENCE_SIGNAL;
+        execbuf.batch_start_offset = 64;
+        gem_execbuf(i915, &execbuf); /* writes 2 */
+        gem_context_destroy(i915, execbuf.rsvd1);
 
->  	if (!drm_mm_node_allocated(&fbc->compressed_fb))
->  		return;
->  =
+        gem_sync(i915, obj.handle); /* write hazard lies */
+        gem_read(i915, obj.handle, 4000, &result, sizeof(result));
+        igt_assert_eq(result, 2);
 
-> -- =
+        /* check we didn't autotimeout */
+        out = execbuf.rsvd2 >> 32;
+        igt_assert_eq(sync_fence_status(out), 1);
+        close(out);
 
-> 2.20.1
-> =
+        gem_close(i915, obj.handle);
+        syncobj_destroy(i915, fence.handle);
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
--- =
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/3802
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/4854
 
-Ville Syrj=E4l=E4
-Intel
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
