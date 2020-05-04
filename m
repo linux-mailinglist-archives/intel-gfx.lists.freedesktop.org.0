@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86AB1C49E3
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6878C1C4A0A
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 01:11:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBD56E4F8;
-	Mon,  4 May 2020 22:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A91926E4D4;
+	Mon,  4 May 2020 23:10:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62A76E4CA
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:44 +0000 (UTC)
-IronPort-SDR: QAHN032HVooVpTb1aANecPAx+nVLVfv74CfM7GedQwkoagh1w+MoXc/zusSx2VNW6ID6jVAVK8
- ocRCrWX1MPnw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 15:52:44 -0700
-IronPort-SDR: FcMN3rjF9tQDdZtWShSpDefwhAXzufDWYa0MFdva5s6eqX2UN3C7924Rht2cEcyRZJOzR38cZH
- 3L9/HxNUyaBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646766"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:44 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:27 -0700
-Message-Id: <20200504225227.464666-23-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
-References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 19CDF6E4F1;
+ Mon,  4 May 2020 23:10:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 121B2A47DF;
+ Mon,  4 May 2020 23:10:57 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 22/22] drm/i915/rkl: Add initial workarounds
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Mon, 04 May 2020 23:10:57 -0000
+Message-ID: <158863385704.5818.3219638168519352538@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Rocket_Lake_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,205 +38,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL and TGL share some general gen12 workarounds, but each platform also
-has its own platform-specific workarounds.
+== Series Details ==
 
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c |  5 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 88 +++++++++++++--------
- 2 files changed, 59 insertions(+), 34 deletions(-)
+Series: Introduce Rocket Lake (rev4)
+URL   : https://patchwork.freedesktop.org/series/76826/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 571c36f929bd..20eea81118da 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -2842,8 +2842,9 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
- static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
- 					enum plane_id plane_id)
- {
--	/* Wa_14010477008:tgl[a0..c0] */
--	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
-+	/* Wa_14010477008:tgl[a0..c0],rkl[all] */
-+	if (IS_ROCKETLAKE(dev_priv) ||
-+	    IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
- 		return false;
- 
- 	return plane_id < PLANE_SPRITE4;
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index aa90e6b7a118..0132728c4e60 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -575,8 +575,8 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
- }
- 
--static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
--				     struct i915_wa_list *wal)
-+static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				       struct i915_wa_list *wal)
- {
- 	/*
- 	 * Wa_1409142259:tgl
-@@ -586,12 +586,28 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 * Wa_1409207793:tgl
- 	 * Wa_1409178076:tgl
- 	 * Wa_1408979724:tgl
-+	 * Wa_14010443199:rkl
-+	 * Wa_14010698770:rkl
- 	 */
- 	WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
- 			  GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
- 
-+	/* WaDisableGPGPUMidThreadPreemption:gen12 */
-+	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
-+			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
-+			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
-+}
-+
-+static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				     struct i915_wa_list *wal)
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e6bef4e2c937 drm/i915/rkl: Add RKL platform info and PCI ids
+-:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#35: FILE: drivers/gpu/drm/i915/i915_drv.h:1522:
++#define IS_RKL_REVID(p, since, until) \
++	(IS_ROCKETLAKE(p) && IS_REVID(p, since, until))
+
+-:102: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#102: FILE: include/drm/i915_pciids.h:609:
++#define INTEL_RKL_IDS(info) \
++	INTEL_VGA_DEVICE(0x4C80, info), \
++	INTEL_VGA_DEVICE(0x4C8A, info), \
++	INTEL_VGA_DEVICE(0x4C8B, info), \
++	INTEL_VGA_DEVICE(0x4C8C, info), \
++	INTEL_VGA_DEVICE(0x4C90, info), \
++	INTEL_VGA_DEVICE(0x4C9A, info)
+
+-:102: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
+#102: FILE: include/drm/i915_pciids.h:609:
++#define INTEL_RKL_IDS(info) \
++	INTEL_VGA_DEVICE(0x4C80, info), \
++	INTEL_VGA_DEVICE(0x4C8A, info), \
++	INTEL_VGA_DEVICE(0x4C8B, info), \
++	INTEL_VGA_DEVICE(0x4C8C, info), \
++	INTEL_VGA_DEVICE(0x4C90, info), \
++	INTEL_VGA_DEVICE(0x4C9A, info)
+
+total: 1 errors, 0 warnings, 2 checks, 69 lines checked
+803b4f04888a x86/gpu: add RKL stolen memory support
+630f1d4d8718 drm/i915/rkl: Re-use TGL GuC/HuC firmware
+90f79585717f drm/i915/rkl: Load DMC firmware for Rocket Lake
+1c85ab4847be drm/i915/rkl: Add PCH support
+dc4048963014 drm/i915/rkl: Update memory bandwidth parameters
+a445dde7ad9f drm/i915/rkl: Limit number of universal planes to 5
+f02fc9990788 drm/i915/rkl: Add power well support
+fda2d4b25173 drm/i915/rkl: Program BW_BUDDY0 registers instead of BW_BUDDY1/2
+-:36: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:5261:
++		min_buddy = max_buddy = 0;
+
+total: 0 errors, 0 warnings, 1 checks, 84 lines checked
+7846d1a805b9 drm/i915/rkl: RKL only uses PHY_MISC for PHY's A and B
+02aa4c0c4f8f drm/i915/rkl: Handle new DPCLKA_CFGCR0 layout
+1c3381316fe1 drm/i915/rkl: Check proper SDEISR bits for TC1 and TC2 outputs
+a8c3d67dc688 drm/i915/rkl: Setup ports/phys
+196dbf07dad1 drm/i915/rkl: provide port/phy mapping for vbt
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+[drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:275:DDI A]
+
+total: 0 errors, 1 warnings, 0 checks, 104 lines checked
+3c2d8a199e89 drm/i915/rkl: Add DDC pin mapping
+b8b1dbd88b20 drm/i915/rkl: Don't try to access transcoder D
+6906840e8b24 drm/i915/rkl: Don't try to read out DSI transcoders
+5018930e1944 drm/i915/rkl: Handle comp master/slave relationships for PHYs
+69bfbb9c7a02 drm/i915/rkl: Add DPLL4 support
+8b97223a1c60 drm/i915/rkl: Handle HTI
+-:92: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#92: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:274:
 +{
-+	gen12_ctx_workarounds_init(engine, wal);
 +
- 	/*
--	 * Wa_1604555607:gen12 and Wa_1608008084:gen12
-+	 * Wa_1604555607:tgl
-+	 *
-+	 * Note that the implementation of this workaround is further modified
-+	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
- 	 * FF_MODE2 register will return the wrong value when read. The default
- 	 * value for this register is zero for all fields and there are no bit
- 	 * masks. So instead of doing a RMW we should just write the TDS timer
-@@ -599,11 +615,6 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 */
- 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK,
- 	       FF_MODE2_TDS_TIMER_128, 0);
--
--	/* WaDisableGPGPUMidThreadPreemption:tgl */
--	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
--			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
--			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
- }
- 
- static void
-@@ -618,8 +629,10 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 
- 	wa_init_start(wal, name, engine->name);
- 
--	if (IS_GEN(i915, 12))
-+	if (IS_TIGERLAKE(i915))
- 		tgl_ctx_workarounds_init(engine, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_ctx_workarounds_init(engine, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_ctx_workarounds_init(engine, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -924,9 +937,16 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- }
- 
- static void
--tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+gen12_gt_workarounds_init(struct drm_i915_private *i915,
-+			  struct i915_wa_list *wal)
- {
- 	wa_init_mcr(i915, wal);
-+}
-+
-+static void
-+tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+{
-+	gen12_gt_workarounds_init(i915, wal);
- 
- 	/* Wa_1409420604:tgl */
- 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-@@ -944,8 +964,10 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- static void
- gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
--	if (IS_GEN(i915, 12))
-+	if (IS_TIGERLAKE(i915))
- 		tgl_gt_workarounds_init(i915, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_gt_workarounds_init(i915, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_gt_workarounds_init(i915, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -1340,18 +1362,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    GEN9_CTX_PREEMPT_REG,
- 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
- 
--		/*
--		 * Wa_1607030317:tgl
--		 * Wa_1607186500:tgl
--		 * Wa_1607297627:tgl there is 3 entries for this WA on BSpec, 2
--		 * of then says it is fixed on B0 the other one says it is
--		 * permanent
--		 */
--		wa_masked_en(wal,
--			     GEN6_RC_SLEEP_PSMI_CONTROL,
--			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
--
- 		/*
- 		 * Wa_1606679103:tgl
- 		 * (see also Wa_1606682166:icl)
-@@ -1370,24 +1380,38 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    VSUNIT_CLKGATE_DIS_TGL);
- 	}
- 
--	if (IS_TIGERLAKE(i915)) {
--		/* Wa_1606931601:tgl */
-+	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
-+		/* Wa_1606931601:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
- 
--		/* Wa_1409804808:tgl */
-+		/* Wa_1409804808:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
- 			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
- 
--		/* Wa_1606700617:tgl */
--		wa_masked_en(wal,
--			     GEN9_CS_DEBUG_MODE1,
--			     FF_DOP_CLOCK_GATE_DISABLE);
--
- 		/*
- 		 * Wa_1409085225:tgl
--		 * Wa_14010229206:tgl
-+		 * Wa_14010229206:tgl,rkl
- 		 */
- 		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
-+
-+		/*
-+		 * Wa_1607030317:tgl
-+		 * Wa_1607186500:tgl
-+		 * Wa_1607297627:tgl,rkl there are multiple entries for this
-+		 * WA in the BSpec; some indicate this is an A0-only WA,
-+		 * others indicate it applies to all steppings.
-+		 */
-+		wa_masked_en(wal,
-+			     GEN6_RC_SLEEP_PSMI_CONTROL,
-+			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
-+			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
-+	}
-+
-+	if (IS_TIGERLAKE(i915)) {
-+		/* Wa_1606700617:tgl */
-+		wa_masked_en(wal,
-+			     GEN9_CS_DEBUG_MODE1,
-+			     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
- 
- 	if (IS_GEN(i915, 11)) {
--- 
-2.24.1
+
+-:154: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#154: FILE: drivers/gpu/drm/i915/i915_reg.h:2903:
++#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2*phy + 2)
+                                  	         ^
+
+-:154: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
+#154: FILE: drivers/gpu/drm/i915/i915_reg.h:2903:
++#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2*phy + 2)
+
+-:155: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#155: FILE: drivers/gpu/drm/i915/i915_reg.h:2904:
++#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2*phy + 1)
+                                    	         ^
+
+-:155: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
+#155: FILE: drivers/gpu/drm/i915/i915_reg.h:2904:
++#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2*phy + 1)
+
+total: 0 errors, 0 warnings, 5 checks, 116 lines checked
+0126c509f30f drm/i915/rkl: Disable PSR2
+9b58f54fa37e drm/i915/rkl: Add initial workarounds
 
 _______________________________________________
 Intel-gfx mailing list
