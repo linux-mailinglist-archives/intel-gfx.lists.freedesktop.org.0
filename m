@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46CA41C49C9
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73451C49CB
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4BFF6E0C4;
-	Mon,  4 May 2020 22:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0DE16E4B7;
+	Mon,  4 May 2020 22:52:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEDE76E0C4
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:31 +0000 (UTC)
-IronPort-SDR: 1nyec+p+ZeUBfen8u4J7lp2BGXHyLomreeqhA4liwSKkzgf5MM3NhUKTo9R+pPuHJ8w26wcyzn
- OJa7uUas4MXw==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13A986E0D6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:41 +0000 (UTC)
+IronPort-SDR: 65582hC2T5M1Oty/fvOYfRjTDcJip1O8ltL4+0TKL8QVY/pIwl+BjEFmzAMG19asX4w9kxJcD9
+ ytu7icis1uvA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 15:52:31 -0700
-IronPort-SDR: rzJGr68Z/5CAXahuQrOP3Gh8f0mGq5o1YFpbYLaUIpb5LVq9gtq3kOSCvodLDb6URQU143tjUD
- L1gHZ2FMlqbg==
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2020 15:52:40 -0700
+IronPort-SDR: FZl1UBWaR111o+z9gKoLlg5Na39AXFAJLePhN7ccd6ZN7g7DPfjlLq1erPV0EXcGjqo8mcki0O
+ QacAh0l9v2vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646675"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646698"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:31 -0700
+ by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:05 -0700
-Message-Id: <20200504225227.464666-1-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:06 -0700
+Message-Id: <20200504225227.464666-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 00/22] Introduce Rocket Lake
+Subject: [Intel-gfx] [PATCH v2 01/22] drm/i915/rkl: Add RKL platform info
+ and PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +47,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T25seSBtaW5vciBjaGFuZ2VzIHNpbmNlIHYxLCBidXQgcGF0Y2h3b3JrIGdvdCBjb25mdXNlZCBi
-eSB0aGUgdXBkYXRlcywKc28gc2VuZGluZyB0aGUgd2hvbGUgc2VyaWVzIGFnYWluIHRvIGVuc3Vy
-ZSBwcm9wZXIgQ0kgdGVzdGluZy4KCnYyIGNoYW5nZXM6CiAtIERyb3AgdGhlIGNkY2xrIHBhdGNo
-LiAgVGhlIGJzcGVjIHdhcyB1cGRhdGVkIHNpbmNlIEkgb3JpZ2luYWxseSB3cm90ZQogICB0aGF0
-IGFuZCBub3cgUktMJ3MgdGFibGUgaXMgaWRlbnRpY2FsIHRvIHRoZSBvbmUgd2UgdXNlIG9uIFRH
-TCBhbmQKICAgSUNMLiAgTm8gUktMLXNwZWNpZmljIGRyaXZlciBjaGFuZ2VzIGFyZSBuZWNlc3Nh
-cnkgbm93LgogLSBGaXggYSBib3RjaGVkIG1hc2sgaW4gdGhlIERQQ0xLQV9DRkdDUjAgY2xvY2sg
-c2VsZWN0aW9uLgoKU2VlIHRoZSBjb3ZlciBsZXR0ZXIgZnJvbSB2MSBmb3Igb3RoZXIgZGV0YWls
-czoKICBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9pbnRlbC1nZngvMjAy
-MC1NYXkvMjM4NDk4Lmh0bWwKCgpBZGl0eWEgU3dhcnVwICgxKToKICBkcm0vaTkxNS9ya2w6IERv
-bid0IHRyeSB0byByZWFkIG91dCBEU0kgdHJhbnNjb2RlcnMKCkpvc8OpIFJvYmVydG8gZGUgU291
-emEgKDEpOgogIGRybS9pOTE1L3JrbDogRGlzYWJsZSBQU1IyCgpMdWNhcyBEZSBNYXJjaGkgKDEp
-OgogIGRybS9pOTE1L3JrbDogcHJvdmlkZSBwb3J0L3BoeSBtYXBwaW5nIGZvciB2YnQKCk1hdHQg
-Um9wZXIgKDE5KToKICBkcm0vaTkxNS9ya2w6IEFkZCBSS0wgcGxhdGZvcm0gaW5mbyBhbmQgUENJ
-IGlkcwogIHg4Ni9ncHU6IGFkZCBSS0wgc3RvbGVuIG1lbW9yeSBzdXBwb3J0CiAgZHJtL2k5MTUv
-cmtsOiBSZS11c2UgVEdMIEd1Qy9IdUMgZmlybXdhcmUKICBkcm0vaTkxNS9ya2w6IExvYWQgRE1D
-IGZpcm13YXJlIGZvciBSb2NrZXQgTGFrZQogIGRybS9pOTE1L3JrbDogQWRkIFBDSCBzdXBwb3J0
-CiAgZHJtL2k5MTUvcmtsOiBVcGRhdGUgbWVtb3J5IGJhbmR3aWR0aCBwYXJhbWV0ZXJzCiAgZHJt
-L2k5MTUvcmtsOiBMaW1pdCBudW1iZXIgb2YgdW5pdmVyc2FsIHBsYW5lcyB0byA1CiAgZHJtL2k5
-MTUvcmtsOiBBZGQgcG93ZXIgd2VsbCBzdXBwb3J0CiAgZHJtL2k5MTUvcmtsOiBQcm9ncmFtIEJX
-X0JVRERZMCByZWdpc3RlcnMgaW5zdGVhZCBvZiBCV19CVUREWTEvMgogIGRybS9pOTE1L3JrbDog
-UktMIG9ubHkgdXNlcyBQSFlfTUlTQyBmb3IgUEhZJ3MgQSBhbmQgQgogIGRybS9pOTE1L3JrbDog
-SGFuZGxlIG5ldyBEUENMS0FfQ0ZHQ1IwIGxheW91dAogIGRybS9pOTE1L3JrbDogQ2hlY2sgcHJv
-cGVyIFNERUlTUiBiaXRzIGZvciBUQzEgYW5kIFRDMiBvdXRwdXRzCiAgZHJtL2k5MTUvcmtsOiBT
-ZXR1cCBwb3J0cy9waHlzCiAgZHJtL2k5MTUvcmtsOiBBZGQgRERDIHBpbiBtYXBwaW5nCiAgZHJt
-L2k5MTUvcmtsOiBEb24ndCB0cnkgdG8gYWNjZXNzIHRyYW5zY29kZXIgRAogIGRybS9pOTE1L3Jr
-bDogSGFuZGxlIGNvbXAgbWFzdGVyL3NsYXZlIHJlbGF0aW9uc2hpcHMgZm9yIFBIWXMKICBkcm0v
-aTkxNS9ya2w6IEFkZCBEUExMNCBzdXBwb3J0CiAgZHJtL2k5MTUvcmtsOiBIYW5kbGUgSFRJCiAg
-ZHJtL2k5MTUvcmtsOiBBZGQgaW5pdGlhbCB3b3JrYXJvdW5kcwoKIGFyY2gveDg2L2tlcm5lbC9l
-YXJseS1xdWlya3MuYyAgICAgICAgICAgICAgICB8ICAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Jpb3MuYyAgICAgfCAgNzIgKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2J3LmMgICAgICAgfCAgMTAgKy0KIC4uLi9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyAgICB8ICA1NSArKystLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyAgICAgIHwgIDEwICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgfCAgMTggKy0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8ICA4MiArKysrKy0tCiAuLi4vZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgICAgfCAyMjkgKysrKysrKysrKysrKysrKy0t
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgICAgICAgfCAgIDggKy0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYyB8ICA1MCArKyst
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmggfCAgIDEgKwog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgICAgIHwgIDIyICstCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jICAgICAgfCAgMTUgKysKIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgICB8ICAyMiArLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuaCAgIHwgIDExICstCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyAgICAgfCAgIDQgKy0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgICB8ICA4OCArKysrLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5jICAgICAgfCAgIDMgKwogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAgIHwgIDEzICsKIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAgICAgICAgICAgICB8ICAxMCArLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAgICAgICAgICAgICAgIHwgIDEzICsKIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICAzNSArKy0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMgICAgICB8ICAgNiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCAgICAgIHwgICAyICsKIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX3BjaC5jICAgICAgICAgICAgICB8ICAgOCArLQogaW5jbHVkZS9kcm0v
-aTkxNV9wY2lpZHMuaCAgICAgICAgICAgICAgICAgICAgIHwgICA5ICsKIDI2IGZpbGVzIGNoYW5n
-ZWQsIDY1NiBpbnNlcnRpb25zKCspLCAxNDEgZGVsZXRpb25zKC0pCgotLSAKMi4yNC4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Introduce the basic platform definition, macros, and PCI IDs.
+
+Bspec: 44501
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Caz Yokoyama <caz.yokoyama@intel.com>
+Cc: Aditya Swarup <aditya.swarup@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Caz Yokoyama <caz.yokoyama@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h          |  8 ++++++++
+ drivers/gpu/drm/i915/i915_pci.c          | 10 ++++++++++
+ drivers/gpu/drm/i915/intel_device_info.c |  1 +
+ drivers/gpu/drm/i915/intel_device_info.h |  1 +
+ include/drm/i915_pciids.h                |  9 +++++++++
+ 5 files changed, 29 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 6af69555733e..1ba77283123d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1406,6 +1406,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_ICELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ICELAKE)
+ #define IS_ELKHARTLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE)
+ #define IS_TIGERLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_TIGERLAKE)
++#define IS_ROCKETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ROCKETLAKE)
+ #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+ 				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+ #define IS_BDW_ULT(dev_priv) \
+@@ -1514,6 +1515,13 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_TGL_REVID(p, since, until) \
+ 	(IS_TIGERLAKE(p) && IS_REVID(p, since, until))
+ 
++#define RKL_REVID_A0		0x0
++#define RKL_REVID_B0		0x1
++#define RKL_REVID_C0		0x4
++
++#define IS_RKL_REVID(p, since, until) \
++	(IS_ROCKETLAKE(p) && IS_REVID(p, since, until))
++
+ #define IS_LP(dev_priv)	(INTEL_INFO(dev_priv)->is_lp)
+ #define IS_GEN9_LP(dev_priv)	(IS_GEN(dev_priv, 9) && IS_LP(dev_priv))
+ #define IS_GEN9_BC(dev_priv)	(IS_GEN(dev_priv, 9) && !IS_LP(dev_priv))
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 1faf9d6ec0a4..5a470bab2214 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -863,6 +863,15 @@ static const struct intel_device_info tgl_info = {
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ };
+ 
++static const struct intel_device_info rkl_info = {
++	GEN12_FEATURES,
++	PLATFORM(INTEL_ROCKETLAKE),
++	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.require_force_probe = 1,
++	.engine_mask =
++		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
++};
++
+ #define GEN12_DGFX_FEATURES \
+ 	GEN12_FEATURES, \
+ 	.is_dgfx = 1
+@@ -941,6 +950,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_ICL_11_IDS(&icl_info),
+ 	INTEL_EHL_IDS(&ehl_info),
+ 	INTEL_TGL_12_IDS(&tgl_info),
++	INTEL_RKL_IDS(&rkl_info),
+ 	{0, 0, 0}
+ };
+ MODULE_DEVICE_TABLE(pci, pciidlist);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 91bb7891c70c..9862c1185059 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -61,6 +61,7 @@ static const char * const platform_names[] = {
+ 	PLATFORM_NAME(ICELAKE),
+ 	PLATFORM_NAME(ELKHARTLAKE),
+ 	PLATFORM_NAME(TIGERLAKE),
++	PLATFORM_NAME(ROCKETLAKE),
+ };
+ #undef PLATFORM_NAME
+ 
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 69c9257c6c6a..a126984cef7f 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -80,6 +80,7 @@ enum intel_platform {
+ 	INTEL_ELKHARTLAKE,
+ 	/* gen12 */
+ 	INTEL_TIGERLAKE,
++	INTEL_ROCKETLAKE,
+ 	INTEL_MAX_PLATFORMS
+ };
+ 
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 662d8351c87a..bc989de2aac2 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -605,4 +605,13 @@
+ 	INTEL_VGA_DEVICE(0x9AD9, info), \
+ 	INTEL_VGA_DEVICE(0x9AF8, info)
+ 
++/* RKL */
++#define INTEL_RKL_IDS(info) \
++	INTEL_VGA_DEVICE(0x4C80, info), \
++	INTEL_VGA_DEVICE(0x4C8A, info), \
++	INTEL_VGA_DEVICE(0x4C8B, info), \
++	INTEL_VGA_DEVICE(0x4C8C, info), \
++	INTEL_VGA_DEVICE(0x4C90, info), \
++	INTEL_VGA_DEVICE(0x4C9A, info)
++
+ #endif /* _I915_PCIIDS_H */
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
