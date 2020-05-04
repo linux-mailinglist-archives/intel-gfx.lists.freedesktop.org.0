@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFE81C49D1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8B71C49D3
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 00:52:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251596E4CD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6156E4C7;
 	Mon,  4 May 2020 22:52:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 066426E0D6
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:41 +0000 (UTC)
-IronPort-SDR: Ys7YDm5S3759aW4gSj7F6QcXEk5zDcWNoMEsksija1F0Fda7FC973xGfyF7g4IAIvoj/fRJ8jF
- RQXA4hLGBsyQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9426E4BA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 22:52:42 +0000 (UTC)
+IronPort-SDR: DGYcgA3eMBlSQCvE7/33QIWiiX3+kSwP2diJj66zmp6ke9hBP4wgP6FjGvQqhkFe8LO4prw51B
+ AZwLZVq0rrcQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 15:52:41 -0700
-IronPort-SDR: s5BZYOap3W4KBzoQYTzalw0WcSRi2gC5CM1gHmIDNmMd4QealVFi8D36/F5aoaPi3RPCFgsUJs
- sI9arqewtCjw==
+ 04 May 2020 15:52:42 -0700
+IronPort-SDR: unjJclNdemce8gT/YXq8hvcQL6i0Yt8rekjIzIA5QztkZ0n8Jdtsl0vFE5uUwvcED7X6sGmIW9
+ eGx+fzr1QF5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646721"
+X-IronPort-AV: E=Sophos;i="5.73,353,1583222400"; d="scan'208";a="295646725"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
  by orsmga008.jf.intel.com with ESMTP; 04 May 2020 15:52:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 May 2020 15:52:13 -0700
-Message-Id: <20200504225227.464666-9-matthew.d.roper@intel.com>
+Date: Mon,  4 May 2020 15:52:14 -0700
+Message-Id: <20200504225227.464666-10-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200504225227.464666-1-matthew.d.roper@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 08/22] drm/i915/rkl: Add power well support
+Subject: [Intel-gfx] [PATCH v2 09/22] drm/i915/rkl: Program BW_BUDDY0
+ registers instead of BW_BUDDY1/2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,264 +47,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL power wells are similar to TGL power wells, but have some important
-differences:
+RKL uses the same BW_BUDDY programming table as TGL, but programs the
+values into a single set BUDDY0 set of registers rather than the
+BUDDY1/BUDDY2 sets used by TGL.
 
- * PG1 now has pipe A's VDSC (rather than sticking it in PG2)
- * PG2 no longer exists
- * DDI-C (aka TC-1) moves from PG1 -> PG3
- * PG5 no longer exists due to the lack of a fourth pipe
-
-Also note that what we refer to as 'DDI-C' and 'DDI-D' need to actually
-be programmed as TC-1 and TC-2 even though this platform doesn't have TC
-outputs.
-
-Bspec: 49234
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Bspec: 49218
+Cc: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    | 185 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   4 +-
- 2 files changed, 186 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_display_power.c    | 44 +++++++++++--------
+ drivers/gpu/drm/i915/i915_reg.h               | 14 ++++--
+ 2 files changed, 35 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 49998906cc61..71691919d101 100644
+index 71691919d101..a83e1bc0e3a7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2913,6 +2913,53 @@ void intel_display_power_put(struct drm_i915_private *dev_priv,
- 	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
- 	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
+@@ -5249,7 +5249,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+ 	enum intel_dram_type type = dev_priv->dram_info.type;
+ 	u8 num_channels = dev_priv->dram_info.num_channels;
+ 	const struct buddy_page_mask *table;
+-	int i;
++	int config, min_buddy, max_buddy, i;
  
-+#define RKL_PW_4_POWER_DOMAINS (			\
-+	BIT_ULL(POWER_DOMAIN_PIPE_C) |			\
-+	BIT_ULL(POWER_DOMAIN_PIPE_C_PANEL_FITTER) |	\
-+	BIT_ULL(POWER_DOMAIN_TRANSCODER_C) |		\
-+	BIT_ULL(POWER_DOMAIN_INIT))
-+
-+#define RKL_PW_3_POWER_DOMAINS (			\
-+	RKL_PW_4_POWER_DOMAINS |			\
-+	BIT_ULL(POWER_DOMAIN_PIPE_B) |			\
-+	BIT_ULL(POWER_DOMAIN_PIPE_B_PANEL_FITTER) |	\
-+	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
-+	BIT_ULL(POWER_DOMAIN_VGA) |			\
-+	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
-+	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
-+	BIT_ULL(POWER_DOMAIN_INIT))
-+
-+/*
-+ * There is no PW_2/PG_2 on RKL.
-+ *
-+ * RKL PW_1/PG_1 domains (under HW/DMC control):
-+ * - DBUF function (note: registers are in PW0)
-+ * - PIPE_A and its planes and VDSC/joining, except VGA
-+ * - transcoder A
-+ * - DDI_A and DDI_B
-+ * - FBC
-+ *
-+ * RKL PW_0/PG_0 domains (under HW/DMC control):
-+ * - PCI
-+ * - clocks except port PLL
-+ * - shared functions:
-+ *     * interrupts except pipe interrupts
-+ *     * MBus except PIPE_MBUS_DBOX_CTL
-+ *     * DBUF registers
-+ * - central power except FBC
-+ * - top-level GTC (DDI-level GTC is in the well associated with the DDI)
-+ */
-+
-+#define RKL_DISPLAY_DC_OFF_POWER_DOMAINS (		\
-+	RKL_PW_3_POWER_DOMAINS |			\
-+	BIT_ULL(POWER_DOMAIN_MODESET) |			\
-+	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-+	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
-+	BIT_ULL(POWER_DOMAIN_INIT))
-+
- static const struct i915_power_well_ops i9xx_always_on_power_well_ops = {
- 	.sync_hw = i9xx_power_well_sync_hw_noop,
- 	.enable = i9xx_always_on_power_well_noop,
-@@ -4283,6 +4330,140 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 	},
- };
+ 	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+ 		/* Wa_1409767108: tgl */
+@@ -5257,29 +5257,35 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+ 	else
+ 		table = tgl_buddy_page_masks;
  
-+static const struct i915_power_well_desc rkl_power_wells[] = {
-+	{
-+		.name = "always-on",
-+		.always_on = true,
-+		.domains = POWER_DOMAIN_MASK,
-+		.ops = &i9xx_always_on_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+	},
-+	{
-+		.name = "power well 1",
-+		/* Handled by the DMC firmware */
-+		.always_on = true,
-+		.domains = 0,
-+		.ops = &hsw_power_well_ops,
-+		.id = SKL_DISP_PW_1,
-+		{
-+			.hsw.regs = &hsw_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_PW_1,
-+			.hsw.has_fuses = true,
-+		},
-+	},
-+	{
-+		.name = "DC off",
-+		.domains = RKL_DISPLAY_DC_OFF_POWER_DOMAINS,
-+		.ops = &gen9_dc_off_power_well_ops,
-+		.id = SKL_DISP_DC_OFF,
-+	},
-+	{
-+		.name = "power well 3",
-+		.domains = RKL_PW_3_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = ICL_DISP_PW_3,
-+		{
-+			.hsw.regs = &hsw_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
-+			.hsw.irq_pipe_mask = BIT(PIPE_B),
-+			.hsw.has_vga = true,
-+			.hsw.has_fuses = true,
-+		},
-+	},
-+	{
-+		.name = "power well 4",
-+		.domains = RKL_PW_4_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &hsw_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_PW_4,
-+			.hsw.has_fuses = true,
-+			.hsw.irq_pipe_mask = BIT(PIPE_C),
-+		}
-+	},
-+	{
-+		.name = "DDI A IO",
-+		.domains = ICL_DDI_IO_A_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_ddi_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_DDI_A,
-+		}
-+	},
-+	{
-+		.name = "DDI B IO",
-+		.domains = ICL_DDI_IO_B_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_ddi_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_DDI_B,
-+		}
-+	},
-+	{
-+		.name = "DDI D TC1 IO",
-+		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_ddi_power_well_regs,
-+			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC1,
-+		},
-+	},
-+	{
-+		.name = "DDI E TC2 IO",
-+		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
-+		.ops = &hsw_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_ddi_power_well_regs,
-+			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC2,
-+		},
-+	},
-+	{
-+		.name = "AUX A",
-+		.domains = ICL_AUX_A_IO_POWER_DOMAINS,
-+		.ops = &icl_aux_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_aux_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_AUX_A,
-+		},
-+	},
-+	{
-+		.name = "AUX B",
-+		.domains = ICL_AUX_B_IO_POWER_DOMAINS,
-+		.ops = &icl_aux_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_aux_power_well_regs,
-+			.hsw.idx = ICL_PW_CTL_IDX_AUX_B,
-+		},
-+	},
-+	{
-+		.name = "AUX D TC1",
-+		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
-+		.ops = &icl_aux_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_aux_power_well_regs,
-+			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC1,
-+		},
-+	},
-+	{
-+		.name = "AUX E TC2",
-+		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
-+		.ops = &icl_aux_power_well_ops,
-+		.id = DISP_PW_ID_NONE,
-+		{
-+			.hsw.regs = &icl_aux_power_well_regs,
-+			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC2,
-+		},
-+	},
-+};
-+
- static int
- sanitize_disable_power_well_option(const struct drm_i915_private *dev_priv,
- 				   int disable_power_well)
-@@ -4428,7 +4609,9 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
- 	 * The enabling order will be from lower to higher indexed wells,
- 	 * the disabling order is reversed.
- 	 */
--	if (IS_GEN(dev_priv, 12)) {
+-	for (i = 0; table[i].page_mask != 0; i++)
+-		if (table[i].num_channels == num_channels &&
+-		    table[i].type == type)
 +	if (IS_ROCKETLAKE(dev_priv)) {
-+		err = set_power_wells(power_domains, rkl_power_wells);
-+	} else if (IS_GEN(dev_priv, 12)) {
- 		err = set_power_wells(power_domains, tgl_power_wells);
- 	} else if (IS_GEN(dev_priv, 11)) {
- 		err = set_power_wells(power_domains, icl_power_wells);
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 95ad87d4ccb3..d145fe2bed81 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -476,13 +476,13 @@ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state)
- 	 * POWER_DOMAIN_TRANSCODER_VDSC_PW2 power domain in two cases:
- 	 *
- 	 *  - ICL eDP/DSI transcoder
--	 *  - TGL pipe A
-+	 *  - Gen12+ (except RKL) pipe A
- 	 *
- 	 * For any other pipe, VDSC/joining uses the power well associated with
- 	 * the pipe in use. Hence another reference on the pipe power domain
- 	 * will suffice. (Except no VDSC/joining on ICL pipe A.)
- 	 */
--	if (INTEL_GEN(i915) >= 12 && pipe == PIPE_A)
-+	if (INTEL_GEN(i915) >= 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
- 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
- 	else if (is_pipe_dsc(crtc_state))
- 		return POWER_DOMAIN_PIPE(pipe);
++		min_buddy = max_buddy = 0;
++	} else {
++		min_buddy = 1;
++		max_buddy = 2;
++	}
++
++	for (config = 0; table[config].page_mask != 0; config++)
++		if (table[config].num_channels == num_channels &&
++		    table[config].type == type)
+ 			break;
+ 
+-	if (table[i].page_mask == 0) {
++	if (table[config].page_mask == 0) {
+ 		drm_dbg(&dev_priv->drm,
+ 			"Unknown memory configuration; disabling address buddy logic.\n");
+-		intel_de_write(dev_priv, BW_BUDDY1_CTL, BW_BUDDY_DISABLE);
+-		intel_de_write(dev_priv, BW_BUDDY2_CTL, BW_BUDDY_DISABLE);
++		for (i = min_buddy; i <= max_buddy; i++)
++			intel_de_write(dev_priv, BW_BUDDY_CTL(i),
++				       BW_BUDDY_DISABLE);
+ 	} else {
+-		intel_de_write(dev_priv, BW_BUDDY1_PAGE_MASK,
+-			       table[i].page_mask);
+-		intel_de_write(dev_priv, BW_BUDDY2_PAGE_MASK,
+-			       table[i].page_mask);
+-
+-		/* Wa_22010178259:tgl */
+-		intel_de_rmw(dev_priv, BW_BUDDY1_CTL,
+-			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+-			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
+-		intel_de_rmw(dev_priv, BW_BUDDY2_CTL,
+-			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+-			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
++		for (i = min_buddy; i <= max_buddy; i++) {
++			intel_de_write(dev_priv, BW_BUDDY_PAGE_MASK(i),
++				       table[config].page_mask);
++
++			/* Wa_22010178259:tgl,rkl */
++			intel_de_rmw(dev_priv, BW_BUDDY_CTL(i),
++				     BW_BUDDY_TLB_REQ_TIMER_MASK,
++				     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK,
++						    0x8));
++		}
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 59c1d527cf13..2266f9fc2d79 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7832,13 +7832,19 @@ enum {
+ #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
+ #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
+ 
+-#define BW_BUDDY1_CTL			_MMIO(0x45140)
+-#define BW_BUDDY2_CTL			_MMIO(0x45150)
++#define _BW_BUDDY0_CTL			0x45130
++#define _BW_BUDDY1_CTL			0x45140
++#define BW_BUDDY_CTL(x)			_MMIO(_PICK_EVEN(x, \
++							 _BW_BUDDY0_CTL, \
++							 _BW_BUDDY1_CTL))
+ #define   BW_BUDDY_DISABLE		REG_BIT(31)
+ #define   BW_BUDDY_TLB_REQ_TIMER_MASK	REG_GENMASK(21, 16)
+ 
+-#define BW_BUDDY1_PAGE_MASK		_MMIO(0x45144)
+-#define BW_BUDDY2_PAGE_MASK		_MMIO(0x45154)
++#define _BW_BUDDY0_PAGE_MASK		0x45134
++#define _BW_BUDDY1_PAGE_MASK		0x45144
++#define BW_BUDDY_PAGE_MASK(x)		_MMIO(_PICK_EVEN(x, \
++							 _BW_BUDDY0_PAGE_MASK, \
++							 _BW_BUDDY1_PAGE_MASK))
+ 
+ #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
+ #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
 -- 
 2.24.1
 
