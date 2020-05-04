@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE281C3E99
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 17:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF4D1C42DD
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 19:33:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 539E26E424;
-	Mon,  4 May 2020 15:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC4E6E44D;
+	Mon,  4 May 2020 17:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23D7089B06;
- Mon,  4 May 2020 15:34:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1D7B3A00CC;
- Mon,  4 May 2020 15:34:18 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2C3C6E06E;
+ Mon,  4 May 2020 16:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=MJiG06idgkhQ7ETomKvk+pXIhWmcVzgg6Sh67pMiRa8=; b=KSO+cu4KS04f9QMSMnoEgpz4lP
+ xEUzzhMHMNy0nNQLb/oWLnGEmta0IgfeMaWPLFVU8v0KE5Q/SQ/kf7eZZQbtkWd1mh1jOtqlamJpr
+ YN+qE50vHOxXepS7SXteLP+Jz8YM7GoPnzdBjtA78HfjZE5ci7Ix61JXsgZmNOz3ITCwjRyIZY+8f
+ VyOZXfNmnntPRCfh/xfRBQBe6qX2/BPIpwkpCgcPE5LJxYzBjMyx5sO7eU8s1XolUvo0+SbSxsYHA
+ IxtQuHWPpYcGkzHJS2c5PU+nqLHZ77pbjoE7P9V0lYxoaoYguZ5auscSJkpBNu3v2LiCVcQSeLZB2
+ eIpOBNEQ==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1jVdYo-0007fF-8J; Mon, 04 May 2020 16:03:14 +0000
+Date: Mon, 4 May 2020 09:03:14 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200504160314.GA26373@infradead.org>
+References: <20200430221016.3866-1-Jason@zx2c4.com>
+ <20200501180731.GA2485@infradead.org>
+ <158853721918.8377.18286963845226122104@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 04 May 2020 15:34:18 -0000
-Message-ID: <158860645811.5817.12518024648324215277@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200504140629.28240-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200504140629.28240-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Implement_legacy_MI=5FSTORE=5FDATA=5FIMM_=28rev2?=
- =?utf-8?q?=29?=
+Content-Disposition: inline
+In-Reply-To: <158853721918.8377.18286963845226122104@build.alporthouse.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Mon, 04 May 2020 17:32:53 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if SIMD registers
+ are available before using SIMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,98 +52,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, bigeasy@linutronix.de,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@infradead.org>, stable@vger.kernel.org,
+ tglx@linutronix.de, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sun, May 03, 2020 at 09:20:19PM +0100, Chris Wilson wrote:
+> > Err, why does i915 implements its own uncached memcpy instead of relying
+> > on core functionality to start with?
+> 
+> What is this core functionality that provides movntqda?
 
-Series: drm/i915/gem: Implement legacy MI_STORE_DATA_IMM (rev2)
-URL   : https://patchwork.freedesktop.org/series/76866/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8419 -> Patchwork_17570
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17570/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8419 and Patchwork_17570:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@live@gem_execbuf:
-    - Statuses : 41 pass(s)
-    - Exec time: [0.46, 2.62] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17570 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [FAIL][1] ([i915#262]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8419/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17570/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * {igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1}:
-    - fi-pnv-d510:        [FAIL][3] ([i915#34]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8419/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17570/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-
-
-Participating hosts (51 -> 44)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8419 -> Patchwork_17570
-
-  CI-20190529: 20190529
-  CI_DRM_8419: 4331ff197d0a7330c311830569aee90bab940694 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17570: ff32ff0a01797ee7c806f0f18b0da8d4be57366b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ff32ff0a0179 drm/i915/gem: Implement legacy MI_STORE_DATA_IMM
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17570/index.html
+A sensible name might be memcpy_uncached or mempcy_nontemporal.
+But the important point is that this should be arch code with a common
+fallback rather than hacking it up in drivers.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
