@@ -2,44 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B9E1C3894
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 13:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F14BE1C3899
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 13:51:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 074A26E02D;
-	Mon,  4 May 2020 11:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED986E395;
+	Mon,  4 May 2020 11:51:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D98C6E02D
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 11:49:08 +0000 (UTC)
-IronPort-SDR: awzQe2SlwaAL3w2WxQH7xPLSWVR54a8RDPLIuKlLQG7z0c3jdDfL3iuYIkUP7xV9CLAyOp5+Yf
- IBdQAucqZZ3w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 04:49:07 -0700
-IronPort-SDR: RMVUIWCLS/QrGNelnOepI7u4lvsmQFZ0Im+RUWyiNB4Q826ssaeFWpJaRHSzb4xVi5Wyv1cvHw
- rzCKKe88B/Rw==
-X-IronPort-AV: E=Sophos;i="5.73,351,1583222400"; d="scan'208";a="277505958"
-Received: from efarji-mobl1.ger.corp.intel.com (HELO [10.251.165.124])
- ([10.251.165.124])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2020 04:49:06 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200504044903.7626-1-chris@chris-wilson.co.uk>
- <20200504044903.7626-2-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <6b0f5f78-cbdb-8a81-f799-3f16cf9c1586@linux.intel.com>
-Date: Mon, 4 May 2020 12:49:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 632CB6E395;
+ Mon,  4 May 2020 11:50:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5CE24A47DF;
+ Mon,  4 May 2020 11:50:59 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200504044903.7626-2-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/22] drm/i915/gem: Specify address type
- for chained reloc batches
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 04 May 2020 11:50:59 -0000
+Message-ID: <158859305935.5818.13301632102090013790@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504111249.1367096-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200504111249.1367096-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Add_support_for_multi_context_perf_queries_=28rev?=
+ =?utf-8?q?6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,56 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 04/05/2020 05:48, Chris Wilson wrote:
-> It is required that a chained batch be in the same address domain as its
-> parent, and also that must be specified in the command for earlier gen
-> as it is not inferred from the chaining until gen6.
-> 
-> Fixes: 964a9b0f611e ("drm/i915/gem: Use chained reloc batches")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index cce7df231cb9..ab0d4df13c0b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1004,14 +1004,14 @@ static int reloc_gpu_chain(struct reloc_cache *cache)
->   	GEM_BUG_ON(cache->rq_size + RELOC_TAIL > PAGE_SIZE  / sizeof(u32));
->   	cmd = cache->rq_cmd + cache->rq_size;
->   	*cmd++ = MI_ARB_CHECK;
-> -	if (cache->gen >= 8) {
-> +	if (cache->gen >= 8)
->   		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
-> -		*cmd++ = lower_32_bits(batch->node.start);
-> -		*cmd++ = upper_32_bits(batch->node.start);
-> -	} else {
-> +	else if (cache->gen >= 6)
->   		*cmd++ = MI_BATCH_BUFFER_START;
-> -		*cmd++ = lower_32_bits(batch->node.start);
-> -	}
-> +	else
-> +		*cmd++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
-> +	*cmd++ = lower_32_bits(batch->node.start);
-> +	*cmd++ = upper_32_bits(batch->node.start);
+Series: drm/i915/perf: Add support for multi context perf queries (rev6)
+URL   : https://patchwork.freedesktop.org/series/76588/
+State : success
 
-MI_NOOP between batches on gen < 8 ?
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_8417 -> Patchwork_17566
+====================================================
 
-Tvrtko
+Summary
+-------
 
->   	i915_gem_object_flush_map(cache->rq_vma->obj);
->   	i915_gem_object_unpin_map(cache->rq_vma->obj);
->   	cache->rq_vma = NULL;
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17566/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (52 -> 44)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8417 -> Patchwork_17566
+
+  CI-20190529: 20190529
+  CI_DRM_8417: 7f9142d29c789842bd79245dd6623df9f15ba746 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17566: 694113f0aaaa85b7b98a9f6f452ae5091c03c658 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+694113f0aaaa drm/i915/perf: enable filtering on multiple contexts
+a56d9ae89710 drm/i915/perf: prepare driver to receive multiple ctx handles
+dcd6889c9ed4 drm/i915/perf: stop using the kernel context
+1bfd98eff93d drm/i915/perf: break OA config buffer object in 2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17566/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
