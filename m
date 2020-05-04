@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D558F1C48A9
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 22:57:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F1F1C48E1
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 23:20:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD0189DF7;
-	Mon,  4 May 2020 20:57:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A1E6E49C;
+	Mon,  4 May 2020 21:20:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5C60889DF7;
- Mon,  4 May 2020 20:57:01 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5FC476E49C;
+ Mon,  4 May 2020 21:20:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 55F80A47E6;
- Mon,  4 May 2020 20:57:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58746A0078;
+ Mon,  4 May 2020 21:20:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Mon, 04 May 2020 20:57:01 -0000
-Message-ID: <158862582134.5817.18283742331274326360@emeril.freedesktop.org>
+Date: Mon, 04 May 2020 21:20:44 -0000
+Message-ID: <158862724433.5816.3309473881719245280@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200504181600.18503-1-pankaj.laxminarayan.bharadiya@intel.com>
 In-Reply-To: <20200504181600.18503-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Prefer_drm=5FWARN*_over_WARN*_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUHJl?=
+ =?utf-8?q?fer_drm=5FWARN*_over_WARN*_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,51 +49,74 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: Prefer drm_WARN* over WARN* (rev3)
 URL   : https://patchwork.freedesktop.org/series/75543/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e13909e4cad6 drm/i915/display/display_power: Prefer drm_WARN_ON over WARN_ON
--:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#19: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, power_domains);
+CI Bug Log - changes from CI_DRM_8424 -> Patchwork_17575
+====================================================
 
-total: 0 errors, 1 warnings, 0 checks, 71 lines checked
-1007d6a2e1d7 drm/i915/display/dp: Prefer drm_WARN* over WARN*
-6f400e74f722 drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
-700fd559057c drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
-f41a15c05f60 drm/i915/gem: Prefer drm_WARN* over WARN*
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1630:
-+			if (drm_WARN_ONCE(&i915->drm, err,
- 				      "Unexpected failure to bind target VMA!"))
+Summary
+-------
 
--:50: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!obj->userptr.mm"
-#50: FILE: drivers/gpu/drm/i915/gem/i915_gem_userptr.c:238:
-+	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+  **SUCCESS**
 
-total: 0 errors, 0 warnings, 2 checks, 25 lines checked
-57cd2a85fcd4 drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
--:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#25: FILE: drivers/gpu/drm/i915/i915_drv.h:1652:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) \
-+		(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+  No regressions found.
 
--:26: WARNING:LONG_LINE: line over 100 characters
-#26: FILE: drivers/gpu/drm/i915/i915_drv.h:1653:
-+		(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !i915_modparams.disable_display)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17575/index.html
 
-total: 0 errors, 1 warnings, 1 checks, 9 lines checked
-adfccabbfb60 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
-fd2a05cb030c drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17575 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8424/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17575/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8424 -> Patchwork_17575
+
+  CI-20190529: 20190529
+  CI_DRM_8424: 69ecf47ef1aabcdc8a4e070584d0a717bbabf4fe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17575: 5f984d13c80e508c7cdc67f51e18f102d5ac309f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 5f984d13c80e drm/i915/runtime_pm: Prefer drm_WARN* over WARN*
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-+ struct drm_i915_private *i915 = container_of(T, struct drm_i915_private, runtime_pm);
+fd2a05cb030c drm/i915/pm: Prefer drm_WARN_ON over WARN_ON
+adfccabbfb60 drm/i915/pmu: Prefer drm_WARN_ON over WARN_ON
+57cd2a85fcd4 drm/i915/i915_drv: Prefer drm_WARN_ON over WARN_ON
+f41a15c05f60 drm/i915/gem: Prefer drm_WARN* over WARN*
+700fd559057c drm/i915/display/tc: Prefer drm_WARN_ON over WARN_ON
+6f400e74f722 drm/i915/display/sdvo: Prefer drm_WARN* over WARN*
+1007d6a2e1d7 drm/i915/display/dp: Prefer drm_WARN* over WARN*
+e13909e4cad6 drm/i915/display/display_power: Prefer drm_WARN_ON over WARN_ON
 
-total: 0 errors, 1 warnings, 0 checks, 89 lines checked
+== Logs ==
 
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17575/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
