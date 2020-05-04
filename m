@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2D41C33DB
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 09:51:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F811C33E9
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 May 2020 09:59:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D417D6E339;
-	Mon,  4 May 2020 07:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC6C6E33E;
+	Mon,  4 May 2020 07:59:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B15D6E339;
- Mon,  4 May 2020 07:51:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93B44A0BC6;
- Mon,  4 May 2020 07:51:03 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69D156E33E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 May 2020 07:59:02 +0000 (UTC)
+IronPort-SDR: nQn4GYgVIhu3Z//p1o8bQsLZMBe9rfBQXSrl4UHYwdVU0msNECPTOOacA3q/kq8nmQcvhIPiyg
+ ZmPsqrAVkHpw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2020 00:59:01 -0700
+IronPort-SDR: pAlqvdFkQs9K6iURMIjLXPwu3k15qMbYCSY2ytFkejkWfMMrsZWZgjs7Odr3T+Mu1pU7H/At4I
+ w8zE1UJG5yPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,351,1583222400"; d="scan'208";a="259255944"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga003.jf.intel.com with ESMTP; 04 May 2020 00:59:00 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  4 May 2020 10:58:28 +0300
+Message-Id: <20200504075828.20348-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.23.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sultan Alsawaf" <sultan@kerneltoast.com>
-Date: Mon, 04 May 2020 07:51:03 -0000
-Message-ID: <158857866357.5817.9510964066755528895@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200430214654.51314-1-sultan@kerneltoast.com>
-In-Reply-To: <20200430214654.51314-1-sultan@kerneltoast.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Don=27t_enable_WaIncreaseLatencyIPCEnabled_when_IPC_is?=
- =?utf-8?q?_disabled?=
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl+: Fix interrupt handling for DP
+ AUX transactions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +45,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Unmask/enable AUX interrupts on all ports on TGL+. So far the interrupts
+worked only on port A, which meant each transaction on other ports took
+10ms.
 
-Series: drm/i915: Don't enable WaIncreaseLatencyIPCEnabled when IPC is disabled
-URL   : https://patchwork.freedesktop.org/series/76889/
-State : success
+Cc: <stable@vger.kernel.org> # v5.4+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index bd722d0650c8..0b8b0c069ce3 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3361,7 +3361,7 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	u32 de_pipe_masked = gen8_de_pipe_fault_mask(dev_priv) |
+ 		GEN8_PIPE_CDCLK_CRC_DONE;
+ 	u32 de_pipe_enables;
+-	u32 de_port_masked = GEN8_AUX_CHANNEL_A;
++	u32 de_port_masked = gen8_de_port_aux_mask(dev_priv);
+ 	u32 de_port_enables;
+ 	u32 de_misc_masked = GEN8_DE_EDP_PSR;
+ 	enum pipe pipe;
+@@ -3369,18 +3369,8 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	if (INTEL_GEN(dev_priv) <= 10)
+ 		de_misc_masked |= GEN8_DE_MISC_GSE;
+ 
+-	if (INTEL_GEN(dev_priv) >= 9) {
+-		de_port_masked |= GEN9_AUX_CHANNEL_B | GEN9_AUX_CHANNEL_C |
+-				  GEN9_AUX_CHANNEL_D;
+-		if (IS_GEN9_LP(dev_priv))
+-			de_port_masked |= BXT_DE_PORT_GMBUS;
+-	}
+-
+-	if (INTEL_GEN(dev_priv) >= 11)
+-		de_port_masked |= ICL_AUX_CHANNEL_E;
+-
+-	if (IS_CNL_WITH_PORT_F(dev_priv) || INTEL_GEN(dev_priv) >= 11)
+-		de_port_masked |= CNL_AUX_CHANNEL_F;
++	if (IS_GEN9_LP(dev_priv))
++		de_port_masked |= BXT_DE_PORT_GMBUS;
+ 
+ 	de_pipe_enables = de_pipe_masked | GEN8_PIPE_VBLANK |
+ 					   GEN8_PIPE_FIFO_UNDERRUN;
+-- 
+2.23.1
 
-CI Bug Log - changes from CI_DRM_8415 -> Patchwork_17562
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17562/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17562 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-bsw-n3050:       [INCOMPLETE][1] ([i915#1436]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8415/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17562/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
-
-  
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Additional (2): fi-tgl-u fi-pnv-d510 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8415 -> Patchwork_17562
-
-  CI-20190529: 20190529
-  CI_DRM_8415: a20d5d8cc2cec9962cf4241fd8ac4b0c4bb4d9d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17562: 7839d28f2393d1ab8f010684bf2e871d572c99db @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7839d28f2393 drm/i915: Don't enable WaIncreaseLatencyIPCEnabled when IPC is disabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17562/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
