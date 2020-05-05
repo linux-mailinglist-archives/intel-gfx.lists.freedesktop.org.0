@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D311C5DAD
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:34:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9141C5E03
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:55:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0BE89F9F;
-	Tue,  5 May 2020 16:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFFEA6E828;
+	Tue,  5 May 2020 16:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C42B89F9F
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 16:34:42 +0000 (UTC)
-IronPort-SDR: JL2mowHEV/iqzzPMsrCDoeajKuSKlk63ygpP+zFHSe0cDXGeiMj+D5Qut7mlkZhgBaDfai4HvG
- 9p1iXjYJaVPA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 09:34:40 -0700
-IronPort-SDR: ECHYHir9U0ci3m5gkIGq2qSIwGUiJK9cv5X5MJv/koCxeLeIPef/Uriu76g5m8Elw+2306k3Dn
- 1S542+av3Vsg==
-X-IronPort-AV: E=Sophos;i="5.73,356,1583222400"; d="scan'208";a="259755733"
-Received: from dsp-dsk1.jf.intel.com (HELO localhost) ([10.54.70.63])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 09:34:40 -0700
-From: D Scott Phillips <d.scott.phillips@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <be3e56eb-6b24-be70-d89e-e640533e976e@intel.com>
-References: <20200505000146.2295525-1-d.scott.phillips@intel.com>
- <874ksvtf86.fsf@intel.com> <be3e56eb-6b24-be70-d89e-e640533e976e@intel.com>
-Date: Tue, 05 May 2020 09:32:07 -0700
-Message-ID: <87sggecph4.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E3E386E827;
+ Tue,  5 May 2020 16:55:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ADA24A0091;
+ Tue,  5 May 2020 16:55:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Put HDC flush pipe_control
- bit in the right dword
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 05 May 2020 16:55:03 -0000
+Message-ID: <158869770368.25913.631676316058144998@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200505161302.21726-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200505161302.21726-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Propagate_fence-=3Eerror_across_semaphores?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +38,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Lionel Landwerlin <lionel.g.landwerlin@intel.com> writes:
+== Series Details ==
 
-> On 05/05/2020 03:09, D Scott Phillips wrote:
->> D Scott Phillips <d.scott.phillips@intel.com> writes:
->>
->>> Previously we set HDC_PIPELINE_FLUSH in dword 1 of gen12
->>> pipe_control commands. HDC Pipeline flush actually resides in
->>> dword 0, and the bit we were setting in dword 1 was Indirect State
->>> Pointers Disable, which invalidates indirect state in the render
->>> context. This causes failures for userspace, as things like push
->>> constant state gets invalidated.
->>>
->>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->>> Signed-off-by: D Scott Phillips <d.scott.phillips@intel.com>
->> also,
->>
->> Fixes: 4aa0b5d457f5 ("drm/i915/tgl: Add HDC Pipeline Flush")
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
-> I think Mika sent the same patch in "drm/i915/gen12: Fix HDC pipeline 
-> flush".
->
-> -Lionel
+Series: drm/i915: Propagate fence->error across semaphores
+URL   : https://patchwork.freedesktop.org/series/76968/
+State : success
 
-Ah, quite right, I missed it. Ignore this.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8430 -> Patchwork_17585
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17585/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8430 -> Patchwork_17585
+
+  CI-20190529: 20190529
+  CI_DRM_8430: 2daa6f8cad645f49a898158190a20a893b4aabe3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5632: e630cb8cd2ec01d6d5358eb2a3f6ea70498b8183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17585: 71d8a4f50f28cbd6c43c8877add6f2105fce76e7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+71d8a4f50f28 drm/i915: Propagate fence->error across semaphores
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17585/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
