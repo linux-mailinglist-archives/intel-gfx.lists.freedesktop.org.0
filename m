@@ -1,59 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AEB1C5DA5
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:32:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B081C4B89
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 03:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547B789FAC;
-	Tue,  5 May 2020 16:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 675BE6E0F1;
+	Tue,  5 May 2020 01:31:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
- [216.228.121.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1FD6E030;
- Tue,  5 May 2020 01:30:02 +0000 (UTC)
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5eb0c1190000>; Mon, 04 May 2020 18:27:53 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate102.nvidia.com (PGP Universal service);
- Mon, 04 May 2020 18:30:01 -0700
-X-PGP-Universal: processed;
- by hqpgpgate102.nvidia.com on Mon, 04 May 2020 18:30:01 -0700
-Received: from [10.2.56.198] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 5 May
- 2020 01:30:01 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>, Ralph Campbell
- <rcampbell@nvidia.com>
-References: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Nvconfidentiality: public
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <c0d02b98-c356-60b1-6043-5b8d1a9be19a@nvidia.com>
-Date: Mon, 4 May 2020 18:30:00 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 700C56E081;
+ Tue,  5 May 2020 01:31:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 69AD6A00C7;
+ Tue,  5 May 2020 01:31:48 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1588642074; bh=0RmV3sG8w7ohZ9OHDH/pFQovyGtqFiweq5osGERvRpo=;
- h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=eOY1+0+N16Z8aXdaiKYs4SjvO5ciGMllXCnn4JHvxrMNegzH6IgzBrgMQ6KLknx+2
- NW61WlLixaCXwpAX66FkMFk33D1AZxP9m+6e4xhyt3iViJHKiqZE0yxobywOngahYp
- Oa4t4//YPZ9FBYbFVnWJS7FFUuGNZMQcvthU8XFKEm+qluSRkODN/sHHCRiJUh5bGf
- BKKLGG2OcIR8QibGldQa4e9evirUYK9GxZAkXDoSgZQj+ERLHJV3M/7/AZZ0+IMwVQ
- /QA2kar4rqltVlXZDL6gLT9+eQ5GwMKMARyXGnZEQoIO2rCTlEo8sgwnQQ5HXAkQnM
- O4nW+Hut9230g==
-X-Mailman-Approved-At: Tue, 05 May 2020 16:32:36 +0000
-Subject: Re: [Intel-gfx] [PATCH hmm v2 5/5] mm/hmm: remove the customizable
- pfn format from hmm_range_fault
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 05 May 2020 01:31:48 -0000
+Message-ID: <158864230841.25913.17837232873247585765@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200504044903.7626-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200504044903.7626-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/22=5D_drm/i915=3A_Allow_some_leniency_i?=
+ =?utf-8?q?n_PCU_reads_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,263 +39,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
- nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-01 11:20, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> Presumably the intent here was that hmm_range_fault() could put the data
-> into some HW specific format and thus avoid some work. However, nothing
-> actually does that, and it isn't clear how anything actually could do that
-> as hmm_range_fault() provides CPU addresses which must be DMA mapped.
-> 
-> Perhaps there is some special HW that does not need DMA mapping, but we
-> don't have any examples of this, and the theoretical performance win of
-> avoiding an extra scan over the pfns array doesn't seem worth the
-> complexity. Plus pfns needs to be scanned anyhow to sort out any
-> DEVICE_PRIVATE pages.
-> 
-> This version replaces the uint64_t with an usigned long containing a pfn
-> and fixed flags. On input flags is filled with the HMM_PFN_REQ_* values,
-> on successful output it is filled with HMM_PFN_* values, describing the
-> state of the pages.
-> 
+== Series Details ==
 
-Just some minor stuff below. I wasn't able to spot any errors in the code,
-though, so these are just documentation nits.
+Series: series starting with [01/22] drm/i915: Allow some leniency in PCU reads (rev2)
+URL   : https://patchwork.freedesktop.org/series/76885/
+State : success
 
+== Summary ==
 
-...
+CI Bug Log - changes from CI_DRM_8418_full -> Patchwork_17568_full
+====================================================
 
-> 
-> diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
-> index 9924f2caa0184c..c9f2329113a47f 100644
-> --- a/Documentation/vm/hmm.rst
-> +++ b/Documentation/vm/hmm.rst
-> @@ -185,9 +185,6 @@ The usage pattern is::
->         range.start = ...;
->         range.end = ...;
->         range.pfns = ...;
+Summary
+-------
 
-That should be:
+  **SUCCESS**
 
-           range.hmm_pfns = ...;
+  No regressions found.
 
+  
 
-> -      range.flags = ...;
-> -      range.values = ...;
-> -      range.pfn_shift = ...;
->   
->         if (!mmget_not_zero(interval_sub->notifier.mm))
->             return -EFAULT;
-> @@ -229,15 +226,10 @@ The hmm_range struct has 2 fields, default_flags and pfn_flags_mask, that specif
->   fault or snapshot policy for the whole range instead of having to set them
->   for each entry in the pfns array.
->   
-> -For instance, if the device flags for range.flags are::
-> +For instance if the device driver wants pages for a range with at least read
-> +permission, it sets::
->   
-> -    range.flags[HMM_PFN_VALID] = (1 << 63);
-> -    range.flags[HMM_PFN_WRITE] = (1 << 62);
-> -
-> -and the device driver wants pages for a range with at least read permission,
-> -it sets::
-> -
-> -    range->default_flags = (1 << 63);
-> +    range->default_flags = HMM_PFN_REQ_FAULT;
->       range->pfn_flags_mask = 0;
->   
->   and calls hmm_range_fault() as described above. This will fill fault all pages
-> @@ -246,18 +238,18 @@ in the range with at least read permission.
->   Now let's say the driver wants to do the same except for one page in the range for
->   which it wants to have write permission. Now driver set::
->   
-> -    range->default_flags = (1 << 63);
-> -    range->pfn_flags_mask = (1 << 62);
-> -    range->pfns[index_of_write] = (1 << 62);
-> +    range->default_flags = HMM_PFN_REQ_FAULT;
-> +    range->pfn_flags_mask = HMM_PFN_REQ_WRITE;
-> +    range->pfns[index_of_write] = HMM_PFN_REQ_WRITE;
+New tests
+---------
 
+  New tests have been introduced between CI_DRM_8418_full and Patchwork_17568_full:
 
-All these choices for _WRITE behavior make it slightly confusing. I mean, it's
-better than it was, but there are default flags, a mask, and an index as well,
-and it looks like maybe we have a little more power and flexibility than
-desirable? Nouveau for example is now just setting the mask only:
+### New IGT tests (1) ###
 
-// nouveau_range_fault():
-     .pfn_flags_mask = HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE,
-     (.default_flags is not set, so is zero)
+  * igt@dmabuf@all@dma_fence_proxy:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.04, 0.11] s
 
-Maybe the example should do what Nouveau is doing? And/or do we want to get rid
-of either .default_flags or .pfn_flags_mask?
+  
 
-...
+Known issues
+------------
 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index cf0d9bd61bebf9..99697df28bfe12 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+  Here are the changes found in Patchwork_17568_full that come from known issues:
 
-...
+### IGT changes ###
 
-> @@ -518,9 +506,45 @@ static const struct mmu_interval_notifier_ops nouveau_svm_mni_ops = {
->   	.invalidate = nouveau_svm_range_invalidate,
->   };
->   
-> +static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
-> +				    struct hmm_range *range, u64 *ioctl_addr)
-> +{
-> +	unsigned long i, npages;
-> +
-> +	/*
-> +	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
-> +	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
-> +	 *
-> +	 * This is all just encoding the internal hmm reprensetation into a
+#### Issues hit ####
 
-"representation"
+  * igt@gem_workarounds@suspend-resume:
+    - shard-apl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-apl6/igt@gem_workarounds@suspend-resume.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-apl6/igt@gem_workarounds@suspend-resume.html
 
-...
+  * igt@i915_suspend@debugfs-reader:
+    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-kbl2/igt@i915_suspend@debugfs-reader.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-kbl4/igt@i915_suspend@debugfs-reader.html
 
-> @@ -542,12 +564,15 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
->   			return -EBUSY;
->   
->   		range.notifier_seq = mmu_interval_read_begin(range.notifier);
-> -		range.default_flags = 0;
-> -		range.pfn_flags_mask = -1UL;
->   		down_read(&mm->mmap_sem);
->   		ret = hmm_range_fault(&range);
->   		up_read(&mm->mmap_sem);
->   		if (ret) {
-> +			/*
-> +			 * FIXME: the input PFN_REQ flags are destroyed on
-> +			 * -EBUSY, we need to regenerate them, also for the
-> +			 * other continue below
-> +			 */
+  * igt@kms_cursor_edge_walk@pipe-a-256x256-bottom-edge:
+    - shard-apl:          [PASS][5] -> [FAIL][6] ([i915#70] / [i915#95])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-apl6/igt@kms_cursor_edge_walk@pipe-a-256x256-bottom-edge.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-apl6/igt@kms_cursor_edge_walk@pipe-a-256x256-bottom-edge.html
 
+  * igt@kms_draw_crc@draw-method-rgb565-pwrite-untiled:
+    - shard-glk:          [PASS][7] -> [FAIL][8] ([i915#177] / [i915#52] / [i915#54])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-glk8/igt@kms_draw_crc@draw-method-rgb565-pwrite-untiled.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-glk4/igt@kms_draw_crc@draw-method-rgb565-pwrite-untiled.html
 
-How serious is this FIXME? It seems like we could get stuck in a loop here,
-if we're not issuing a new REQ, right?
+  * igt@kms_draw_crc@draw-method-xrgb8888-pwrite-untiled:
+    - shard-skl:          [PASS][9] -> [FAIL][10] ([i915#177] / [i915#52] / [i915#54])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl4/igt@kms_draw_crc@draw-method-xrgb8888-pwrite-untiled.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl8/igt@kms_draw_crc@draw-method-xrgb8888-pwrite-untiled.html
 
+  * igt@kms_flip_tiling@flip-changes-tiling-y:
+    - shard-apl:          [PASS][11] -> [FAIL][12] ([i915#95])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-apl4/igt@kms_flip_tiling@flip-changes-tiling-y.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-apl3/igt@kms_flip_tiling@flip-changes-tiling-y.html
+    - shard-kbl:          [PASS][13] -> [FAIL][14] ([i915#699] / [i915#93] / [i915#95])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-kbl3/igt@kms_flip_tiling@flip-changes-tiling-y.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-kbl2/igt@kms_flip_tiling@flip-changes-tiling-y.html
 
->   			if (ret == -EBUSY)
->   				continue;
->   			return ret;
-> @@ -562,7 +587,7 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
->   		break;
->   	}
->   
-> -	nouveau_dmem_convert_pfn(drm, &range);
-> +	nouveau_hmm_convert_pfn(drm, &range, ioctl_addr);
->   
->   	svmm->vmm->vmm.object.client->super = true;
->   	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, data, size, NULL);
-> @@ -589,6 +614,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
->   		} i;
->   		u64 phys[16];
->   	} args;
-> +	unsigned long hmm_pfns[ARRAY_SIZE(args.phys)];
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#1188]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl6/igt@kms_hdr@bpc-switch-dpms.html
 
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][17] -> [FAIL][18] ([fdo#108145] / [i915#265]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
 
-Is there a risk of blowing up the stack here?
+  * igt@kms_psr2_su@frontbuffer:
+    - shard-iclb:         [PASS][19] -> [SKIP][20] ([fdo#109642] / [fdo#111068])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-iclb1/igt@kms_psr2_su@frontbuffer.html
 
-...
+  * igt@kms_psr@psr2_primary_page_flip:
+    - shard-iclb:         [PASS][21] -> [SKIP][22] ([fdo#109441]) +3 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-iclb7/igt@kms_psr@psr2_primary_page_flip.html
 
-> --- a/include/linux/hmm.h
-> +++ b/include/linux/hmm.h
-> @@ -19,45 +19,45 @@
->   #include <linux/mmu_notifier.h>
->   
->   /*
-> - * hmm_pfn_flag_e - HMM flag enums
-> + * On output:
-> + * 0             - The page is faultable and a future call with
-> + *                 HMM_PFN_REQ_FAULT could succeed.
-> + * HMM_PFN_VALID - the pfn field points to a valid PFN. This PFN is at
-> + *                 least readable. If dev_private_owner is !NULL then this could
-> + *                 point at a DEVICE_PRIVATE page.
-> + * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
-> + * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
-> + *                 fail. ie poisoned memory, special pages, no vma, etc
->    *
-> - * Flags:
-> - * HMM_PFN_VALID: pfn is valid. It has, at least, read permission.
-> - * HMM_PFN_WRITE: CPU page table has write permission set
-> - *
-> - * The driver provides a flags array for mapping page protections to device
-> - * PTE bits. If the driver valid bit for an entry is bit 3,
-> - * i.e., (entry & (1 << 3)), then the driver must provide
-> - * an array in hmm_range.flags with hmm_range.flags[HMM_PFN_VALID] == 1 << 3.
-> - * Same logic apply to all flags. This is the same idea as vm_page_prot in vma
-> - * except that this is per device driver rather than per architecture.
-> + * On input:
-> + * 0                 - Return the current state of the page, do not fault it.
-> + * HMM_PFN_REQ_FAULT - The output must have HMM_PFN_VALID or hmm_range_fault()
-> + *                     will fail
-> + * HMM_PFN_REQ_WRITE - The output must have HMM_PFN_WRITE or hmm_range_fault()
-> + *                     will fail. Must be combined with HMM_PFN_REQ_FAULT.
->    */
-> -enum hmm_pfn_flag_e {
-> -	HMM_PFN_VALID = 0,
-> -	HMM_PFN_WRITE,
-> -	HMM_PFN_FLAG_MAX
-> +enum hmm_pfn_flags {
+  
+#### Possible fixes ####
 
-Let's add:
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-apl:          [DMESG-WARN][23] ([i915#716]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-apl6/igt@gen9_exec_parse@allowed-all.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-apl4/igt@gen9_exec_parse@allowed-all.html
 
-         /* Output flags: */
+  * igt@kms_atomic_interruptible@atomic-setmode:
+    - shard-snb:          [SKIP][25] ([fdo#109271]) -> [PASS][26] +1 similar issue
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-snb2/igt@kms_atomic_interruptible@atomic-setmode.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-snb6/igt@kms_atomic_interruptible@atomic-setmode.html
 
-> +	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
-> +	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
-> +	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
-> +
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-apl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-apl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-apl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
 
-         /* Input flags: */
+  * igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy:
+    - shard-glk:          [FAIL][29] ([i915#72]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-glk6/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-glk6/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
 
-...
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [SKIP][31] ([fdo#109349]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-iclb6/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
 
-> @@ -174,44 +162,44 @@ static int hmm_vma_walk_hole(unsigned long addr, unsigned long end,
->   	}
->   	if (required_fault)
->   		return hmm_vma_fault(addr, end, required_fault, walk);
-> -	return hmm_pfns_fill(addr, end, range, HMM_PFN_NONE);
-> +	return hmm_pfns_fill(addr, end, range, 0);
->   }
->   
-> -static inline uint64_t pmd_to_hmm_pfn_flags(struct hmm_range *range, pmd_t pmd)
-> +static inline unsigned long pmd_to_hmm_pfn_flags(struct hmm_range *range,
-> +						 pmd_t pmd)
->   {
->   	if (pmd_protnone(pmd))
->   		return 0;
-> -	return pmd_write(pmd) ? range->flags[HMM_PFN_VALID] |
-> -				range->flags[HMM_PFN_WRITE] :
-> -				range->flags[HMM_PFN_VALID];
-> +	return pmd_write(pmd) ? (HMM_PFN_VALID | HMM_PFN_WRITE) : HMM_PFN_VALID;
+  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1}:
+    - shard-skl:          [FAIL][33] ([i915#79]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render:
+    - shard-skl:          [FAIL][35] ([i915#49]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl9/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl2/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
+    - shard-kbl:          [DMESG-WARN][37] ([i915#180]) -> [PASS][38] +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
+    - shard-skl:          [FAIL][39] ([fdo#108145] / [i915#265]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+
+  * igt@kms_psr@psr2_suspend:
+    - shard-iclb:         [SKIP][41] ([fdo#109441]) -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-iclb7/igt@kms_psr@psr2_suspend.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-iclb2/igt@kms_psr@psr2_suspend.html
+
+  * {igt@perf@blocking-parameterized}:
+    - shard-iclb:         [FAIL][43] ([i915#1542]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-iclb7/igt@perf@blocking-parameterized.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-iclb2/igt@perf@blocking-parameterized.html
+
+  
+#### Warnings ####
+
+  * igt@kms_vblank@pipe-c-ts-continuation-suspend:
+    - shard-kbl:          [DMESG-WARN][45] ([i915#180]) -> [INCOMPLETE][46] ([i915#155] / [i915#794])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8418/shard-kbl7/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/shard-kbl3/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
+  [i915#177]: https://gitlab.freedesktop.org/drm/intel/issues/177
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#699]: https://gitlab.freedesktop.org/drm/intel/issues/699
+  [i915#70]: https://gitlab.freedesktop.org/drm/intel/issues/70
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#72]: https://gitlab.freedesktop.org/drm/intel/issues/72
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-I always found the previous range->flags[...] approach hard to remember, so it's
-nice to see a simpler version now.
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
 
 
-thanks,
--- 
-John Hubbard
-NVIDIA
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8418 -> Patchwork_17568
+
+  CI-20190529: 20190529
+  CI_DRM_8418: bdfc2bf07b3e68612db8955fc3df80ad5b6c9a8d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17568: 521d3542c857f910bfff1940ced5f65412023df2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17568/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
