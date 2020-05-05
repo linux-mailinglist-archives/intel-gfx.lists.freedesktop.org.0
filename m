@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973001C5533
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 14:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2261C5687
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 15:16:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95AE589F53;
-	Tue,  5 May 2020 12:14:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18E736E21E;
+	Tue,  5 May 2020 13:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38D5489F53;
- Tue,  5 May 2020 12:14:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852906E212
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 13:15:55 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21117928-1500050 
- for multiple; Tue, 05 May 2020 13:13:22 +0100
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21119200-1500050 
+ for multiple; Tue, 05 May 2020 14:15:20 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 May 2020 13:13:18 +0100
-Message-Id: <20200505121318.2816478-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Date: Tue,  5 May 2020 14:15:15 +0100
+Message-Id: <20200505131516.12466-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] lib/i915: Reset all engine properties to
- defaults prior to the start of a test
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Mark concurrent submissions with
+ a weak-dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,134 +37,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need each test in an isolated context, so that bad results from one
-test do not interfere with the next. In particular, we want to clean up
-the device and reset it to the defaults so that they are known for the
-next test, and the test can focus on behaviour it wants to control.
+We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
+correctly perform priority inheritance from the parallel branches to the
+common trunk. However, for the purpose of timeslicing and reset
+handling, the dependency is weak -- as we the pair of requests are
+allowed to run in parallel and not in strict succession. So for example
+we do need to suspend one if the other hangs.
 
+The real significance though is that this allows us to rearrange
+groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
+so can resolve user level inter-batch scheduling dependencies from user
+semaphores.
+
+Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.6+
 ---
- lib/i915/gem.c | 83 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
+ drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
+ drivers/gpu/drm/i915/i915_scheduler.c       | 4 +++-
+ drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
+ drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
+ 5 files changed, 21 insertions(+), 4 deletions(-)
 
-diff --git a/lib/i915/gem.c b/lib/i915/gem.c
-index b2717ba6a..6fa8abf21 100644
---- a/lib/i915/gem.c
-+++ b/lib/i915/gem.c
-@@ -22,6 +22,7 @@
-  *
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index dc3f2ee7136d..10109f661bcb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1880,6 +1880,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-+#include <dirent.h>
- #include <fcntl.h>
- #include <sys/ioctl.h>
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2726,6 +2729,9 @@ static void __execlists_hold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-@@ -30,6 +31,87 @@
- #include "igt_debugfs.h"
- #include "igt_sysfs.h"
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2850,6 +2856,9 @@ static void __execlists_unhold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-+static void __restore_defaults(int engine)
-+{
-+	struct dirent *de;
-+	int defaults;
-+	DIR *dir;
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
 +
-+	defaults = openat(engine, ".defaults", O_RDONLY);
-+	if (defaults < 0)
-+		return;
-+
-+	dir = fdopendir(defaults);
-+	if (!dir) {
-+		close(defaults);
-+		return;
-+	}
-+
-+	while ((de = readdir(dir))) {
-+		char buf[256];
-+		int fd, len;
-+
-+		if (*de->d_name == '.')
-+			continue;
-+
-+		fd = openat(defaults, de->d_name, O_RDONLY);
-+		if (fd < 0)
-+			continue;
-+
-+		len = read(fd, buf, sizeof(buf));
-+		close(fd);
-+
-+		fd = openat(engine, de->d_name, O_WRONLY);
-+		if (fd < 0)
-+			continue;
-+
-+		write(fd, buf, len);
-+		close(fd);
-+	}
-+
-+	closedir(dir);
-+}
-+
-+static void restore_defaults(int i915)
-+{
-+	struct dirent *de;
-+	int engines;
-+	DIR *dir;
-+	int sys;
-+
-+	sys = igt_sysfs_open(i915);
-+	if (sys < 0)
-+		return;
-+
-+	engines = openat(sys, "engine", O_RDONLY);
-+	if (engines < 0)
-+		goto close_sys;
-+
-+	dir = fdopendir(engines);
-+	if (!dir) {
-+		close(engines);
-+		goto close_sys;
-+	}
-+
-+	while ((de = readdir(dir))) {
-+		int engine;
-+
-+		if (*de->d_name == '.')
-+			continue;
-+
-+		engine = openat(engines, de->d_name, O_RDONLY);
-+		if (engine < 0)
-+			continue;
-+
-+		__restore_defaults(engine);
-+		close(engine);
-+	}
-+
-+	closedir(dir);
-+close_sys:
-+	close(sys);
-+}
-+
- static void reset_device(int i915)
+ 			/* Propagate any change in error status */
+ 			if (rq->fence.error)
+ 				i915_request_set_error_once(w, rq->fence.error);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 22635bbabf06..95edc5523a01 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1038,7 +1038,9 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 		return 0;
+ 
+ 	if (to->engine->schedule) {
+-		ret = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		ret = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     0);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+@@ -1200,7 +1202,9 @@ __i915_request_await_execution(struct i915_request *to,
+ 
+ 	/* Couple the dependency tree for PI on this exposed to->fence */
+ 	if (to->engine->schedule) {
+-		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		err = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     I915_DEPENDENCY_WEAK);
+ 		if (err < 0)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 37cfcf5b321b..5f4c1e49e974 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -462,7 +462,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ }
+ 
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal)
++				   struct i915_sched_node *signal,
++				   unsigned long flags)
  {
- 	int dir;
-@@ -66,6 +148,7 @@ void igt_require_gem(int i915)
- 	 * sequences of batches.
- 	 */
- 	reset_device(i915);
-+	restore_defaults(i915);
+ 	struct i915_dependency *dep;
  
- 	err = 0;
- 	if (ioctl(i915, DRM_IOCTL_I915_GEM_THROTTLE)) {
+@@ -473,6 +474,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 	local_bh_disable();
+ 
+ 	if (!__i915_sched_node_add_dependency(node, signal, dep,
++					      flags |
+ 					      I915_DEPENDENCY_EXTERNAL |
+ 					      I915_DEPENDENCY_ALLOC))
+ 		i915_dependency_free(dep);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index d1dc4efef77b..6f0bf00fc569 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -34,7 +34,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 				      unsigned long flags);
+ 
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal);
++				   struct i915_sched_node *signal,
++				   unsigned long flags);
+ 
+ void i915_sched_node_fini(struct i915_sched_node *node);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index d18e70550054..7186875088a0 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -78,6 +78,7 @@ struct i915_dependency {
+ 	unsigned long flags;
+ #define I915_DEPENDENCY_ALLOC		BIT(0)
+ #define I915_DEPENDENCY_EXTERNAL	BIT(1)
++#define I915_DEPENDENCY_WEAK		BIT(2)
+ };
+ 
+ #endif /* _I915_SCHEDULER_TYPES_H_ */
 -- 
-2.26.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
