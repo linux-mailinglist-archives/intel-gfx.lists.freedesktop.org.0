@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F661C4B28
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 02:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1860B1C4B3D
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 03:06:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C22CB6E504;
-	Tue,  5 May 2020 00:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0015B89CF8;
+	Tue,  5 May 2020 01:06:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 883366E030;
- Tue,  5 May 2020 00:48:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 85909A47EB;
- Tue,  5 May 2020 00:48:16 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "D Scott Phillips" <d.scott.phillips@intel.com>
-Date: Tue, 05 May 2020 00:48:16 -0000
-Message-ID: <158863969654.25913.5921519390788902768@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200505000146.2295525-1-d.scott.phillips@intel.com>
+X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
+ Tue, 05 May 2020 01:06:51 UTC
+Received: from smtp90.iad3b.emailsrvr.com (smtp90.iad3b.emailsrvr.com
+ [146.20.161.90])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A09B989CF8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 01:06:51 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp12.relay.iad3b.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id 83726C0133; 
+ Mon,  4 May 2020 20:57:09 -0400 (EDT)
+X-Sender-Id: kenneth@whitecape.org
+Received: from mizzik.localnet (50-39-162-34.bvtn.or.frontiernet.net
+ [50.39.162.34]) (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+ by 0.0.0.0:465 (trex/5.7.12); Mon, 04 May 2020 20:57:09 -0400
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org,
+ D Scott Phillips <d.scott.phillips@intel.com>
+Date: Mon, 04 May 2020 17:57:05 -0700
+Message-ID: <2650835.mvXUDI8C0e@mizzik>
 In-Reply-To: <20200505000146.2295525-1-d.scott.phillips@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Put_HDC_flush_pipe=5Fcontrol_bit_in_the_right_dwor?=
- =?utf-8?q?d?=
+References: <20200505000146.2295525-1-d.scott.phillips@intel.com>
+MIME-Version: 1.0
+X-Classification-ID: e6077747-36d2-49b6-9974-5b775c7eeadd-1-1
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Put HDC flush pipe_control
+ bit in the right dword
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +46,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: multipart/mixed; boundary="===============0915026900=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============0915026900==
+Content-Type: multipart/signed; boundary="nextPart11637060.O9o76ZdvQC"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-Series: drm/i915/tgl: Put HDC flush pipe_control bit in the right dword
-URL   : https://patchwork.freedesktop.org/series/76925/
-State : success
+--nextPart11637060.O9o76ZdvQC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-== Summary ==
+On Monday, May 4, 2020 5:01:46 PM PDT D Scott Phillips wrote:
+> Previously we set HDC_PIPELINE_FLUSH in dword 1 of gen12
+> pipe_control commands. HDC Pipeline flush actually resides in
+> dword 0, and the bit we were setting in dword 1 was Indirect State
+> Pointers Disable, which invalidates indirect state in the render
+> context. This causes failures for userspace, as things like push
+> constant state gets invalidated.
+> 
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: D Scott Phillips <d.scott.phillips@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine.h | 23 +++++++++++++++++------
+>  drivers/gpu/drm/i915/gt/intel_lrc.c    | 11 ++++++-----
+>  2 files changed, 23 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 19d0b8830905..8338be338ec8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -241,19 +241,24 @@ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+>  void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
+>  				    struct drm_printer *p);
+>  
+> -static inline u32 *gen8_emit_pipe_control(u32 *batch, u32 flags, u32 offset)
+> +static inline u32 *gen12_emit_pipe_control(u32 *batch, u32 flags0, u32 flags1, u32 offset)
 
-CI Bug Log - changes from CI_DRM_8424 -> Patchwork_17578
-====================================================
+Great find!  It looks like HDC_PIPELINE_FLUSH moved from bit 41 to bit 9
+even on Icelake / Gen11 - so it might make sense to call this
+gen11_emit_pipe_control() and use it on the Icelake functions.
 
-Summary
--------
+That said, i915 never sets HDC_PIPELINE_FLUSH until Gen12, so we don't
+actually have a bug to fix on Icelake today.  But if someone started
+trying to set it on Gen11, we would have a bug - hence the suggestion.
 
-  **SUCCESS**
+With or without any changes,
 
-  No regressions found.
+Reviewed-by: Kenneth Graunke <kenneth@whitecape.org>
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17578/index.html
+and thanks so much for tracking this down!
 
-Known issues
-------------
+--nextPart11637060.O9o76ZdvQC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-  Here are the changes found in Patchwork_17578 that come from known issues:
+-----BEGIN PGP SIGNATURE-----
 
-### IGT changes ###
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAl6wueEACgkQW1vaBx1J
+zDi7vg/5AWn/8/+hWZEfr/2ArL9bWIF6pMQAT95iDVKz/xsCz4kQ2smQalj/aFEd
+nXQIlctPqLcjYPLdsDepyj7h4pAzfdcCepMbJtxBArNvYADWQ2UKTOZwH/hTty8J
+a/EPY0yFRJ3umDAHunhdNP63APCb09w+dyx35LusbfQr4Rauu3+42sKqGvhO7Rt5
+sokotaVQ07Vsx7Vj4EVpZugYEs80luHTjzEFokfG4Z0Rx6UJ7xb5FSFykQhXW9AV
+s7pcNoKUO+fvFTl2SiuCXkkfc4aGcVzSuwN0KUZGRBsP6o54XFEFSwfxASUesE6H
+hIDv4l8L+OmXdZ58ISr/bikO923grfnPpJW9Rr8uj6C98+6SfA8bB8D1CIx2P65d
+gW3PpFQx3YC5hJmpjCifq94nmX4k+2DbloyL/aYiWUjVEFj4qNLyCMyb6tBfO6Yw
+cq97S2GkbTXHBxKkrxxXlPiSPkzJWjLHN+1pH1GpfRsPld3lM7WgC8jtlRCK6D8u
+CNinEQhNe48bUBsLqQQtAgLgXO1so3M8pXk4FR+GqgUSygEfMmqp+Ooa08MmUfsk
+c15SSncQdT9HAYDOqXoZKgZ+ehFg/7JB5mQhw7vDyWEFPqVB3v0bHZLQk/nFa2Ew
+zh6pb/Za1nuTnAhmOo4P4Cp+5/4RhQorpnvsXnNn0FFzDpI/YGk=
+=ZfUS
+-----END PGP SIGNATURE-----
 
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8424/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17578/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (51 -> 44)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8424 -> Patchwork_17578
-
-  CI-20190529: 20190529
-  CI_DRM_8424: 69ecf47ef1aabcdc8a4e070584d0a717bbabf4fe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5628: 652a3fd8966345fa5498904ce80a2027a6782783 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17578: f3eb1ee5e0b9a5156d1253dc3dbf86049d9d4d69 @ git://anongit.freedesktop.org/gfx-ci/linux
+--nextPart11637060.O9o76ZdvQC--
 
 
-== Linux commits ==
 
-f3eb1ee5e0b9 drm/i915/tgl: Put HDC flush pipe_control bit in the right dword
 
-== Logs ==
+--===============0915026900==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17578/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0915026900==--
+
+
+
