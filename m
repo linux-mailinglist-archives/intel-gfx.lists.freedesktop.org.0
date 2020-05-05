@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7063F1C5D6A
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:24:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D311C5DAD
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:34:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4F6E6E29A;
-	Tue,  5 May 2020 16:24:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0BE89F9F;
+	Tue,  5 May 2020 16:34:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 35ABA6E227;
- Tue,  5 May 2020 16:24:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2EFB9A47EB;
- Tue,  5 May 2020 16:24:32 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C42B89F9F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 16:34:42 +0000 (UTC)
+IronPort-SDR: JL2mowHEV/iqzzPMsrCDoeajKuSKlk63ygpP+zFHSe0cDXGeiMj+D5Qut7mlkZhgBaDfai4HvG
+ 9p1iXjYJaVPA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 09:34:40 -0700
+IronPort-SDR: ECHYHir9U0ci3m5gkIGq2qSIwGUiJK9cv5X5MJv/koCxeLeIPef/Uriu76g5m8Elw+2306k3Dn
+ 1S542+av3Vsg==
+X-IronPort-AV: E=Sophos;i="5.73,356,1583222400"; d="scan'208";a="259755733"
+Received: from dsp-dsk1.jf.intel.com (HELO localhost) ([10.54.70.63])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 09:34:40 -0700
+From: D Scott Phillips <d.scott.phillips@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <be3e56eb-6b24-be70-d89e-e640533e976e@intel.com>
+References: <20200505000146.2295525-1-d.scott.phillips@intel.com>
+ <874ksvtf86.fsf@intel.com> <be3e56eb-6b24-be70-d89e-e640533e976e@intel.com>
+Date: Tue, 05 May 2020 09:32:07 -0700
+Message-ID: <87sggecph4.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 05 May 2020 16:24:32 -0000
-Message-ID: <158869587218.25914.13421308705396267820@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200504135030.19210-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200504135030.19210-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915=3A_Mark_concurrent_submiss?=
- =?utf-8?q?ions_with_a_weak-dependency_=28rev3=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Put HDC flush pipe_control
+ bit in the right dword
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,83 +48,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Lionel Landwerlin <lionel.g.landwerlin@intel.com> writes:
 
-Series: series starting with [1/6] drm/i915: Mark concurrent submissions with a weak-dependency (rev3)
-URL   : https://patchwork.freedesktop.org/series/76912/
-State : success
+> On 05/05/2020 03:09, D Scott Phillips wrote:
+>> D Scott Phillips <d.scott.phillips@intel.com> writes:
+>>
+>>> Previously we set HDC_PIPELINE_FLUSH in dword 1 of gen12
+>>> pipe_control commands. HDC Pipeline flush actually resides in
+>>> dword 0, and the bit we were setting in dword 1 was Indirect State
+>>> Pointers Disable, which invalidates indirect state in the render
+>>> context. This causes failures for userspace, as things like push
+>>> constant state gets invalidated.
+>>>
+>>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Signed-off-by: D Scott Phillips <d.scott.phillips@intel.com>
+>> also,
+>>
+>> Fixes: 4aa0b5d457f5 ("drm/i915/tgl: Add HDC Pipeline Flush")
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
+> I think Mika sent the same patch in "drm/i915/gen12: Fix HDC pipeline 
+> flush".
+>
+> -Lionel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8430 -> Patchwork_17584
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17584/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8430 and Patchwork_17584:
-
-### New IGT tests (1) ###
-
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 40 pass(s)
-    - Exec time: [0.02, 0.09] s
-
-  
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8430 -> Patchwork_17584
-
-  CI-20190529: 20190529
-  CI_DRM_8430: 2daa6f8cad645f49a898158190a20a893b4aabe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5632: e630cb8cd2ec01d6d5358eb2a3f6ea70498b8183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17584: 7e5f8efa9a8d423a289def24f06bd53489a08ad2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7e5f8efa9a8d drm/i915/gt: Declare when we enabled timeslicing
-f3459c71c608 drm/i915/gem: Allow combining submit-fences with syncobj
-e796d58b1084 drm/i915/gem: Teach execbuf how to wait on future syncobj
-f3138b0d84f7 drm/syncobj: Allow use of dma-fence-proxy
-19243ac2eee1 dma-buf: Proxy fence, an unsignaled fence placeholder
-d336bdf650f8 drm/i915: Mark concurrent submissions with a weak-dependency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17584/index.html
+Ah, quite right, I missed it. Ignore this.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
