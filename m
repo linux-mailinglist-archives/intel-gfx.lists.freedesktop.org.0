@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A418D1C532D
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 12:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 331931C5331
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 12:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECB206E1A4;
-	Tue,  5 May 2020 10:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614CD6E1B7;
+	Tue,  5 May 2020 10:27:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A6A56E1A4
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 10:27:10 +0000 (UTC)
-IronPort-SDR: 454YzeLbSfEe4WOSmfQNeqTZSJ6fndyucpGyCEL4yH5wBDmUetrKqwMOiWYGRfrhQMu3TkOLsS
- pVTqo1JHS82w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 03:27:10 -0700
-IronPort-SDR: /r7VHC1fCQmVc9f+aDB9w6b9R80PXAYNfbpr3aK4RouQa6sSPd+hsIeuPMPhdOomgqkrgyabTx
- 4rSXlYHHkNuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="434432066"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 05 May 2020 03:27:08 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59A56E1A4;
+ Tue,  5 May 2020 10:27:10 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21116556-1500050 
+ for multiple; Tue, 05 May 2020 11:27:06 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 May 2020 13:22:47 +0300
-Message-Id: <20200505102247.32452-7-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
-References: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
+Date: Tue,  5 May 2020 11:27:02 +0100
+Message-Id: <20200505102702.2607265-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v27 6/6] drm/i915: Enable SAGV support for Gen12
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_exec: Exploit resource
+ contention to verify execbuf independence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +37,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Flip the switch and enable SAGV support
-for Gen12 also.
+Even if one client is blocked on a resource, that should not impact
+another client.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 4 ----
- 1 file changed, 4 deletions(-)
+ tests/i915/gem_ctx_exec.c | 122 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 121 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 5d0aab515e2a..a12f1d0a0be2 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3638,10 +3638,6 @@ static bool skl_needs_memory_bw_wa(struct drm_i915_private *dev_priv)
- static bool
- intel_has_sagv(struct drm_i915_private *dev_priv)
- {
--	/* HACK! */
--	if (IS_GEN(dev_priv, 12))
--		return false;
--
- 	return (IS_GEN9_BC(dev_priv) || INTEL_GEN(dev_priv) >= 10) &&
- 		dev_priv->sagv_status != I915_SAGV_NOT_CONTROLLED;
+diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
+index ad2f9e545..97a1e0d32 100644
+--- a/tests/i915/gem_ctx_exec.c
++++ b/tests/i915/gem_ctx_exec.c
+@@ -35,8 +35,9 @@
+ #include <fcntl.h>
+ #include <inttypes.h>
+ #include <errno.h>
+-#include <sys/stat.h>
+ #include <sys/ioctl.h>
++#include <sys/poll.h>
++#include <sys/stat.h>
+ #include <sys/time.h>
+ 
+ #include <drm.h>
+@@ -331,6 +332,122 @@ static void nohangcheck_hostile(int i915)
+ 	close(i915);
  }
+ 
++static void kill_children(int sig)
++{
++	sighandler_t old;
++
++	old = signal(sig, SIG_IGN);
++	kill(-getpgrp(), sig);
++	signal(sig, old);
++}
++
++static bool has_persistence(int i915)
++{
++	struct drm_i915_gem_context_param p = {
++		.param = I915_CONTEXT_PARAM_PERSISTENCE,
++	};
++	uint64_t saved;
++
++	if (__gem_context_get_param(i915, &p))
++		return false;
++
++	saved = p.value;
++	p.value = 0;
++	if (__gem_context_set_param(i915, &p))
++		return false;
++
++	p.value = saved;
++	return __gem_context_set_param(i915, &p) == 0;
++}
++
++static void pi_active(int i915)
++{
++	igt_spin_t *spin = igt_spin_new(i915);
++	unsigned long count = 0;
++	bool blocked = false;
++	struct pollfd pfd;
++	int lnk[2];
++	int *done;
++
++	igt_require(gem_scheduler_enabled(i915));
++	igt_require(has_persistence(i915)); /* for graceful error recovery */
++
++	done = mmap(NULL, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
++	igt_assert(done != MAP_FAILED);
++
++	igt_assert(pipe(lnk) == 0);
++
++	igt_fork(child, 1) {
++		struct sigaction sa = { .sa_handler = alarm_handler };
++
++		sigaction(SIGHUP, &sa, NULL);
++
++		do {
++			uint32_t ctx;
++
++			if (__gem_context_clone(i915, 0,
++						I915_CONTEXT_CLONE_ENGINES |
++						I915_CONTEXT_CLONE_VM,
++						0, &ctx))
++				break;
++
++			gem_context_set_persistence(i915, ctx, false);
++			if (READ_ONCE(*done))
++				break;
++
++			spin->execbuf.rsvd1 = ctx;
++			if (__execbuf(i915, &spin->execbuf))
++				break;
++
++			count++;
++			write(lnk[1], &count, sizeof(count));
++		} while (1);
++	}
++
++	pfd.fd = lnk[0];
++	pfd.events = POLLIN;
++	close(lnk[1]);
++
++	igt_until_timeout(90) {
++		if (poll(&pfd, 1, 1000) == 0) {
++			igt_info("Child blocked after %lu active contexts\n",
++				 count);
++			blocked = true;
++			break;
++		}
++		read(pfd.fd, &count, sizeof(count));
++	}
++
++	if (blocked) {
++		struct sigaction old_sa, sa = { .sa_handler = alarm_handler };
++		struct itimerval itv;
++
++		sigaction(SIGALRM, &sa, &old_sa);
++		itv.it_value.tv_sec = 0;
++		itv.it_value.tv_usec = 250000; /* 250ms */
++		setitimer(ITIMER_REAL, &itv, NULL);
++
++		igt_assert_f(__execbuf(i915, &spin->execbuf) == 0,
++			     "Active execbuf blocked for more than 250ms by %lu child contexts\n",
++			     count);
++
++		memset(&itv, 0, sizeof(itv));
++		setitimer(ITIMER_REAL, &itv, NULL);
++		sigaction(SIGALRM, &old_sa, NULL);
++	} else {
++		igt_info("Not blocked after %lu active contexts\n",
++			 count);
++	}
++
++	*done = 1;
++	kill_children(SIGHUP);
++	igt_waitchildren();
++	gem_quiescent_gpu(i915);
++	close(lnk[0]);
++
++	munmap(done, 4096);
++}
++
+ igt_main
+ {
+ 	const uint32_t batch[2] = { 0, MI_BATCH_BUFFER_END };
+@@ -369,6 +486,9 @@ igt_main
+ 	igt_subtest("eviction")
+ 		big_exec(fd, handle, 0);
+ 
++	igt_subtest("basic-pi-active")
++		pi_active(fd);
++
+ 	igt_subtest("basic-norecovery")
+ 		norecovery(fd);
+ 
 -- 
-2.24.1.485.gad05a3d8e5
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
