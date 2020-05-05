@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653D91C4F49
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 09:38:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73C71C4F97
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 09:50:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF1916E52D;
-	Tue,  5 May 2020 07:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6A756E10F;
+	Tue,  5 May 2020 07:50:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD0E66E52D
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 07:38:20 +0000 (UTC)
-IronPort-SDR: b7YAKdMGeQtZUDyI6tvBI/sLgH261PFv/bLZ74+QmyRcsvE7a0+xzEdnsJzExk7MnTNI8f7kca
- Pb4EVyzEtngA==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3886E10F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 07:50:44 +0000 (UTC)
+IronPort-SDR: uPtAPGFfu1a5tx6u/q1+t61OD2+gRCLikTVsuWnp8oqIRqyPsdCzUTt4QsEMMsTk1qSC8s+1il
+ Yrz6p0f6EAcg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 00:38:19 -0700
-IronPort-SDR: w1BBwHoJ7qjkXdxZ6TFwYcaaKVQM1I9jLdf56AiPi+1xvSdKzGsSRjwH3EXN8lL71hkBN5XLWA
- j/Nvv9IS3qgg==
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 00:50:43 -0700
+IronPort-SDR: H+5UitjS256KsHebkr61ZLVB552Rrlk524i5WnRCEupOu43dLWl0jxIuHJ0gGZFv6+l2ZW4WWz
+ OZByhC+x2XDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="263072177"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga006.jf.intel.com with ESMTP; 05 May 2020 00:38:16 -0700
-Date: Tue, 5 May 2020 13:08:09 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Oliver Barta <o.barta89@gmail.com>
-Message-ID: <20200505073809.GA24093@intel.com>
-References: <20200504123524.7731-1-oliver.barta@aptiv.com>
+X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="259610623"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga003.jf.intel.com with ESMTP; 05 May 2020 00:50:42 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 306015C1DC1; Tue,  5 May 2020 10:48:37 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200504180507.6017-1-chris@chris-wilson.co.uk>
+References: <20200504180507.6017-1-chris@chris-wilson.co.uk>
+Date: Tue, 05 May 2020 10:48:37 +0300
+Message-ID: <87v9laom96.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200504123524.7731-1-oliver.barta@aptiv.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: HDCP: retry link integrity check
- on failure
+Subject: Re: [Intel-gfx] [CI] drm/i915/gt: Small tidy of gen8+ breadcrumb
+ emission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,85 +48,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <seanpaul@chromium.org>,
- Oliver Barta <oliver.barta@aptiv.com>,
- Ravisankar Madasamy <ravisankar.madasamy@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-04 at 14:35:24 +0200, Oliver Barta wrote:
-> From: Oliver Barta <oliver.barta@aptiv.com>
-> 
-> A single Ri mismatch doesn't automatically mean that the link integrity
-> is broken. Update and check of Ri and Ri' are done asynchronously. In
-> case an update happens just between the read of Ri' and the check against
-> Ri there will be a mismatch even if the link integrity is fine otherwise.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Thanks for working on this. Btw, did you face this sporadic link check
-failure or theoretically you are fixing it?
+> Use a local to shrink a line under 80 columns, and refactor the common
+> emit_xcs_breadcrumb() wrapper of ggtt-write.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-IMO this change will rule out possible sporadic link check failures as
-mentioned in the commit msg. Though I haven't faced this issue at my
-testings.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-
-> 
-> Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 010f37240710..3156fde392f2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1540,7 +1540,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 34 +++++++++++++----------------
+>  1 file changed, 15 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index d4ef344657b0..c00366387b54 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -4641,8 +4641,7 @@ static u32 *emit_preempt_busywait(struct i915_request *request, u32 *cs)
 >  }
 >  
->  static
-> -bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> +bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *intel_dig_port)
+>  static __always_inline u32*
+> -gen8_emit_fini_breadcrumb_footer(struct i915_request *request,
+> -				 u32 *cs)
+> +gen8_emit_fini_breadcrumb_tail(struct i915_request *request, u32 *cs)
 >  {
->  	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
->  	struct intel_connector *connector =
-> @@ -1563,8 +1563,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->  	if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
->  		      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
->  		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
-> -		drm_err(&i915->drm,
-> -			"Ri' mismatch detected, link check failed (%x)\n",
-> +		drm_dbg_kms(&i915->drm, "Ri' mismatch detected (%x)\n",
->  			intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
->  							port)));
->  		return false;
-> @@ -1572,6 +1571,20 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->  	return true;
+>  	*cs++ = MI_USER_INTERRUPT;
+>  
+> @@ -4656,14 +4655,16 @@ gen8_emit_fini_breadcrumb_footer(struct i915_request *request,
+>  	return gen8_emit_wa_tail(request, cs);
 >  }
 >  
-> +static
-> +bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	int retry;
-> +
-> +	for (retry = 0; retry < 3; retry++)
-> +		if (intel_hdmi_hdcp_check_link_once(intel_dig_port))
-> +			return true;
-> +
-> +	drm_err(&i915->drm, "Link check failed\n");
-> +	return false;
+> -static u32 *gen8_emit_fini_breadcrumb(struct i915_request *request, u32 *cs)
+> +static u32 *emit_xcs_breadcrumb(struct i915_request *request, u32 *cs)
+>  {
+> -	cs = gen8_emit_ggtt_write(cs,
+> -				  request->fence.seqno,
+> -				  i915_request_active_timeline(request)->hwsp_offset,
+> -				  0);
+> +	u32 addr = i915_request_active_timeline(request)->hwsp_offset;
+>  
+> -	return gen8_emit_fini_breadcrumb_footer(request, cs);
+> +	return gen8_emit_ggtt_write(cs, request->fence.seqno, addr, 0);
 > +}
 > +
->  struct hdcp2_hdmi_msg_timeout {
->  	u8 msg_id;
->  	u16 timeout;
+> +static u32 *gen8_emit_fini_breadcrumb(struct i915_request *rq, u32 *cs)
+> +{
+> +	return gen8_emit_fini_breadcrumb_tail(rq, emit_xcs_breadcrumb(rq, cs));
+>  }
+>  
+>  static u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+> @@ -4681,7 +4682,7 @@ static u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+>  				      PIPE_CONTROL_FLUSH_ENABLE |
+>  				      PIPE_CONTROL_CS_STALL);
+>  
+> -	return gen8_emit_fini_breadcrumb_footer(request, cs);
+> +	return gen8_emit_fini_breadcrumb_tail(request, cs);
+>  }
+>  
+>  static u32 *
+> @@ -4697,7 +4698,7 @@ gen11_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+>  				      PIPE_CONTROL_DC_FLUSH_ENABLE |
+>  				      PIPE_CONTROL_FLUSH_ENABLE);
+>  
+> -	return gen8_emit_fini_breadcrumb_footer(request, cs);
+> +	return gen8_emit_fini_breadcrumb_tail(request, cs);
+>  }
+>  
+>  /*
+> @@ -4735,7 +4736,7 @@ static u32 *gen12_emit_preempt_busywait(struct i915_request *request, u32 *cs)
+>  }
+>  
+>  static __always_inline u32*
+> -gen12_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
+> +gen12_emit_fini_breadcrumb_tail(struct i915_request *request, u32 *cs)
+>  {
+>  	*cs++ = MI_USER_INTERRUPT;
+>  
+> @@ -4749,14 +4750,9 @@ gen12_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
+>  	return gen8_emit_wa_tail(request, cs);
+>  }
+>  
+> -static u32 *gen12_emit_fini_breadcrumb(struct i915_request *request, u32 *cs)
+> +static u32 *gen12_emit_fini_breadcrumb(struct i915_request *rq, u32 *cs)
+>  {
+> -	cs = gen8_emit_ggtt_write(cs,
+> -				  request->fence.seqno,
+> -				  i915_request_active_timeline(request)->hwsp_offset,
+> -				  0);
+> -
+> -	return gen12_emit_fini_breadcrumb_footer(request, cs);
+> +	return gen12_emit_fini_breadcrumb_tail(rq, emit_xcs_breadcrumb(rq, cs));
+>  }
+>  
+>  static u32 *
+> @@ -4775,7 +4771,7 @@ gen12_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+>  				      PIPE_CONTROL_FLUSH_ENABLE |
+>  				      PIPE_CONTROL_HDC_PIPELINE_FLUSH);
+>  
+> -	return gen12_emit_fini_breadcrumb_footer(request, cs);
+> +	return gen12_emit_fini_breadcrumb_tail(request, cs);
+>  }
+>  
+>  static void execlists_park(struct intel_engine_cs *engine)
 > -- 
 > 2.20.1
-> 
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
