@@ -1,74 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7221C514A
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 10:51:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CEC1C51A3
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 11:15:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 231B26E560;
-	Tue,  5 May 2020 08:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9CA6E581;
+	Tue,  5 May 2020 09:14:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3DC6E560
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 08:51:51 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id f13so1680475wrm.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 May 2020 01:51:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=T87EAHnU6d/aEcc9kDIRejNNG+CQtK0nds65OFUdB2k=;
- b=GT3MqCeICZy9CIyFOHqZX6Yg1scVFmfTnRXXaIbRCeHkJi27McjD5e/cKji1EmM1KG
- LgWFDNXuxeo0Jwy/n2dN9jf0QvEjkOjdMv9zxxr0aQzAJCISnc19CL1lbe/noiLO+hMm
- nU1cRCbxcD5mB2F8u6iC2iItkHLL101ca+G1Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=T87EAHnU6d/aEcc9kDIRejNNG+CQtK0nds65OFUdB2k=;
- b=V/qm/WwBAtgePKsh6fjAuWlTmS46rEPRUdd7eFi/Mk3W3GVfAkSMmFmuPgdhKbP2XK
- r7Dk8CsE1SorJ82KJ7gmun7GHdP2lPDIGp/Uov/GX6SUe/NYFqJlUzh2sQsfONpWO50r
- lIJlduvksKoChwXTXll1M+NzqwT/rh5eNnYJR4d5hLtPpe3kZAA+vGxh6GshkDKTLj7R
- 5fenfRLAmSTP9T5GdLWrr8Dxs/Qy3rQXIQMhON5dHoPEnKJsNSivb8CWB5C7NtDGFtv0
- TUUxlOXPTs7KAppuKeLDYf4YwSG6QvP+m86FKvTL7fDB/9I8CY6LjCZCpjfcnTpht/Bk
- noLQ==
-X-Gm-Message-State: AGi0PuZXXx9hVhWS12fnzEvXVFOaHTZDPaW9Oq4Sn8oYdugOfa0pe0q6
- bKzz2Jxu0VjVZYu9IiuYyU8fig==
-X-Google-Smtp-Source: APiQypJ/7dWmhTleTJb1e+uEQs+IDM+5Y28bUPpZv6ui0LiLo5rBrMnqYRgGLsaow0hto3La+k2gVg==
-X-Received: by 2002:a5d:494a:: with SMTP id r10mr2300695wrs.136.1588668709915; 
- Tue, 05 May 2020 01:51:49 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q184sm2623921wma.25.2020.05.05.01.51.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 May 2020 01:51:48 -0700 (PDT)
-Date: Tue, 5 May 2020 10:51:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: =?utf-8?B?TWljaGHFgiBPcnplxYI=?= <michalorzel.eng@gmail.com>
-Message-ID: <20200505085147.GO10381@phenom.ffwll.local>
-Mail-Followup-To: =?utf-8?B?TWljaGHFgiBPcnplxYI=?= <michalorzel.eng@gmail.com>, 
- Sean Paul <seanpaul@chromium.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-References: <1588093804-30446-1-git-send-email-michalorzel.eng@gmail.com>
- <875zdiacv2.fsf@intel.com>
- <CAOw6vbK69aWzti9a7MXNmAfVfJXzzC5g74p4ukSE49MhaV_b3g@mail.gmail.com>
- <CAKMK7uEzTn2nKyEaxMcd6602tprwkdnBrmrFYO+_Hi7FY39jAw@mail.gmail.com>
- <520d517e-5e8f-a6c7-1c8a-38d1a368a79f@gmail.com>
- <20200504115309.GJ10381@phenom.ffwll.local>
- <9cd2487b-c6a8-b057-e53c-b3dd1e7141aa@gmail.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA09C6E581
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 09:14:56 +0000 (UTC)
+IronPort-SDR: CgGCN3XvNLdEhVRHeY8oorV/uT0PUWoSpxTNHhuPbk3y9PjJSuODh6V/ANE04+uRcUBJ9tik8q
+ LYNXlavmxK+g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 02:14:56 -0700
+IronPort-SDR: fY5g4klUmZDXmZi626W1DO89OA6sMhIsAVWlFDahZNXEz9hDFQxLXeTSN+uXOm3X6TkaRL2OMy
+ MjX0jMgxihHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="369352925"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 05 May 2020 02:14:54 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 219525C1DC1; Tue,  5 May 2020 12:12:49 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200504180745.15645-1-chris@chris-wilson.co.uk>
+References: <20200504180745.15645-1-chris@chris-wilson.co.uk>
+Date: Tue, 05 May 2020 12:12:49 +0300
+Message-ID: <87o8r2oicu.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9cd2487b-c6a8-b057-e53c-b3dd1e7141aa@gmail.com>
-X-Operating-System: Linux phenom 5.4.0-4-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm: Replace drm_modeset_lock/unlock_all
- with DRM_MODESET_LOCK_ALL_* helpers
+Subject: Re: [Intel-gfx] [CI] drm/i915/gt: Stop holding onto the
+ pinned_default_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,104 +48,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Sean Paul <seanpaul@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBNYXkgMDUsIDIwMjAgYXQgMDc6NTU6MDBBTSArMDIwMCwgTWljaGHFgiBPcnplxYIg
-d3JvdGU6Cj4gCj4gCj4gT24gMDQuMDUuMjAyMCAxMzo1MywgRGFuaWVsIFZldHRlciB3cm90ZToK
-PiA+IE9uIEZyaSwgTWF5IDAxLCAyMDIwIGF0IDA1OjQ5OjMzUE0gKzAyMDAsIE1pY2hhxYIgT3J6
-ZcWCIHdyb3RlOgo+ID4+Cj4gPj4KPiA+PiBPbiAzMC4wNC4yMDIwIDIwOjMwLCBEYW5pZWwgVmV0
-dGVyIHdyb3RlOgo+ID4+PiBPbiBUaHUsIEFwciAzMCwgMjAyMCBhdCA1OjM4IFBNIFNlYW4gUGF1
-bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPiB3cm90ZToKPiA+Pj4+Cj4gPj4+PiBPbiBXZWQsIEFw
-ciAyOSwgMjAyMCBhdCA0OjU3IEFNIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRl
-bC5jb20+IHdyb3RlOgo+ID4+Pj4+Cj4gPj4+Pj4gT24gVHVlLCAyOCBBcHIgMjAyMCwgTWljaGFs
-IE9yemVsIDxtaWNoYWxvcnplbC5lbmdAZ21haWwuY29tPiB3cm90ZToKPiA+Pj4+Pj4gQXMgc3Vn
-Z2VzdGVkIGJ5IHRoZSBUT0RPIGxpc3QgZm9yIHRoZSBrZXJuZWwgRFJNIHN1YnN5c3RlbSwgcmVw
-bGFjZQo+ID4+Pj4+PiB0aGUgZGVwcmVjYXRlZCBmdW5jdGlvbnMgdGhhdCB0YWtlL2Ryb3AgbW9k
-ZXNldCBsb2NrcyB3aXRoIG5ldyBoZWxwZXJzLgo+ID4+Pj4+Pgo+ID4+Pj4+PiBTaWduZWQtb2Zm
-LWJ5OiBNaWNoYWwgT3J6ZWwgPG1pY2hhbG9yemVsLmVuZ0BnbWFpbC5jb20+Cj4gPj4+Pj4+IC0t
-LQo+ID4+Pj4+PiAgZHJpdmVycy9ncHUvZHJtL2RybV9tb2RlX29iamVjdC5jIHwgMTAgKysrKysr
-LS0tLQo+ID4+Pj4+PiAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlv
-bnMoLSkKPiA+Pj4+Pj4KPiA+Pj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1f
-bW9kZV9vYmplY3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW9kZV9vYmplY3QuYwo+ID4+Pj4+
-PiBpbmRleCAzNWMyNzE5Li45MDFiMDc4IDEwMDY0NAo+ID4+Pj4+PiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vZHJtX21vZGVfb2JqZWN0LmMKPiA+Pj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ry
-bV9tb2RlX29iamVjdC5jCj4gPj4+Pj4+IEBAIC00MDIsMTIgKzQwMiwxMyBAQCBpbnQgZHJtX21v
-ZGVfb2JqX2dldF9wcm9wZXJ0aWVzX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQg
-KmRhdGEsCj4gPj4+Pj4+ICB7Cj4gPj4+Pj4+ICAgICAgIHN0cnVjdCBkcm1fbW9kZV9vYmpfZ2V0
-X3Byb3BlcnRpZXMgKmFyZyA9IGRhdGE7Cj4gPj4+Pj4+ICAgICAgIHN0cnVjdCBkcm1fbW9kZV9v
-YmplY3QgKm9iajsKPiA+Pj4+Pj4gKyAgICAgc3RydWN0IGRybV9tb2Rlc2V0X2FjcXVpcmVfY3R4
-IGN0eDsKPiA+Pj4+Pj4gICAgICAgaW50IHJldCA9IDA7Cj4gPj4+Pj4+Cj4gPj4+Pj4+ICAgICAg
-IGlmICghZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZFUl9NT0RFU0VUKSkKPiA+Pj4+
-Pj4gICAgICAgICAgICAgICByZXR1cm4gLUVPUE5PVFNVUFA7Cj4gPj4+Pj4+Cj4gPj4+Pj4+IC0g
-ICAgIGRybV9tb2Rlc2V0X2xvY2tfYWxsKGRldik7Cj4gPj4+Pj4+ICsgICAgIERSTV9NT0RFU0VU
-X0xPQ0tfQUxMX0JFR0lOKGRldiwgY3R4LCAwLCByZXQpOwo+ID4+Pj4+Cj4gPj4+Pj4gSSBjcnkg
-YSBsaXR0bGUgZXZlcnkgdGltZSBJIGxvb2sgYXQgdGhlIERSTV9NT0RFU0VUX0xPQ0tfQUxMX0JF
-R0lOIGFuZAo+ID4+Pj4+IERSTV9NT0RFU0VUX0xPQ0tfQUxMX0VORCBtYWNyb3MuIDooCj4gPj4+
-Pj4KPiA+Pj4+PiBDdXJyZW50bHkgb25seSBzaXggdXNlcnMuLi4gYnV0IHRoZXJlIGFyZSB+NjAg
-Y2FsbHMgdG8KPiA+Pj4+PiBkcm1fbW9kZXNldF9sb2NrX2FsbHssX2N0eH0gdGhhdCBJIHByZXN1
-bWUgYXJlIHRvIGJlIHJlcGxhY2VkLiBJIHdvbmRlcgo+ID4+Pj4+IGlmIHRoaXMgd2lsbCBjb21l
-IGJhY2sgYW5kIGhhdW50IHVzLgo+ID4+Pj4+Cj4gPj4+Pgo+ID4+Pj4gV2hhdCdzIHRoZSBhbHRl
-cm5hdGl2ZT8gU2VlbXMgbGlrZSB0aGUgb3B0aW9ucyB3aXRob3V0IHRoZSBtYWNyb3MgaXMKPiA+
-Pj4+IHRvIHVzZSBpbmNvcnJlY3Qgc2NvcGUgb3IgaGF2ZSBhIGJ1bmNoIG9mIHJldHJ5L2JhY2tv
-ZmYgY2FyZ28tY3VsdAo+ID4+Pj4gZXZlcnl3aGVyZSAoYW5kIGhvcGUgdGhlIGNvcHkgc291cmNl
-IGlzIGRvbmUgY29ycmVjdGx5KS4KPiA+Pj4KPiA+Pj4gWWVhaCBTZWFuICYgbWUgaGFkIGEgYnVu
-Y2ggb2YgYmlrZXNoZWRzIGFuZCB0aGlzIGlzIHRoZSBsZWFzdCB3b3JzdAo+ID4+PiBvcHRpb24g
-d2UgY291bGQgY29tZSB1cCB3aXRoLiBZb3UgY2FuJ3QgbWFrZSBpdCBhIGZ1bmN0aW9uIGJlY2F1
-c2Ugb2YKPiA+Pj4gdGhlIGNvbnRyb2wgZmxvdy4gWW91IGRvbid0IHdhbnQgdG8gb3BlbiBjb2Rl
-IHRoaXMgYmVjYXVzZSBpdCdzIHRyaWNreQo+ID4+PiB0byBnZXQgcmlnaHQsIGlmIGFsbCB5b3Ug
-d2FudCBpcyB0byBqdXN0IGdyYWIgYWxsIGxvY2tzLiBCdXQgaXQgaXMKPiA+Pj4gbWFnaWMgaGlk
-ZGVuIGJlaGluZCBhIG1hY3JvLCB3aGljaCBvY2Nhc2lvbmFsbHkgZW5kcyB1cCBodXJ0aW5nLgo+
-ID4+PiAtRGFuaWVsCj4gPj4gU28gd2hhdCBhcmUgd2UgZG9pbmcgd2l0aCB0aGlzIHByb2JsZW0/
-IFNob3VsZCB3ZSByZXBsYWNlIGF0IG9uY2UgYXBwcm94LiA2MCBjYWxscz8KPiA+IAo+ID4gSSdt
-IGNvbmZ1c2VkIGJ5IHlvdXIgcXVlc3Rpb24gLSBkcmFkdWFsIGNvbnZlcnNpb24gaXMgZW50aXJl
-bHkgb3J0aG9nb25hbAo+ID4gdG8gd2hhdCBleGFjdGx5IHdlJ3JlIGNvbnZlcnRpbmcgdG9vLiBB
-bGwgSSBhZGRlZCBoZXJlIGlzIHRoYXQgd2UndmUKPiA+IGRpc2N1c3NlZCB0aGlzIGF0IGxlbmd0
-aCwgYW5kIHRoZSBtYWNybyBpcyB0aGUgYmVzdCB0aGluZyB3ZSd2ZSBjb21lIHVwCj4gPiB3aXRo
-LiBJIHN0aWxsIHRoaW5rIGl0J3MgdGhlIGJlc3QgY29tcHJvbWlzZS4KPiA+IAo+ID4gRmxhZy1k
-YXkgY29udmVyc2lvbiBmb3Igb3ZlciA2MCBjYWxscyBkb2Vzbid0IHdvcmssIG5vIG1hdHRlciB3
-aGF0Lgo+ID4gLURhbmllbAo+ID4gCj4gSSBhZ3JlZSB3aXRoIHRoYXQuIEFsbCBJIHdhbnRlZCB0
-byBhc2sgd2FzIHdoZXRoZXIgSSBzaG91bGQgYWRkIHNvbWV0aGluZyBhZGRpdGlvbmFsIHRvIHRo
-aXMgcGF0Y2ggb3Igbm90LgoKUGF0Y2ggbG9va3MgZ29vZCBhbmQgcGFzc2VkIENJLCBzbyBJIHdl
-bnQgYWhlYWQgYW5kIGFwcGxpZWQgaXQuCgpUaGFua3MsIERhbmllbAoKPiAKPiBUaGFua3MsCj4g
-TWljaGFsCj4gPj4KPiA+PiBNaWNoYWwKPiA+Pj4KPiA+Pj4+IFNlYW4KPiA+Pj4+Cj4gPj4+Pj4g
-QlIsCj4gPj4+Pj4gSmFuaS4KPiA+Pj4+Pgo+ID4+Pj4+Cj4gPj4+Pj4+Cj4gPj4+Pj4+ICAgICAg
-IG9iaiA9IGRybV9tb2RlX29iamVjdF9maW5kKGRldiwgZmlsZV9wcml2LCBhcmctPm9ial9pZCwg
-YXJnLT5vYmpfdHlwZSk7Cj4gPj4+Pj4+ICAgICAgIGlmICghb2JqKSB7Cj4gPj4+Pj4+IEBAIC00
-MjcsNyArNDI4LDcgQEAgaW50IGRybV9tb2RlX29ial9nZXRfcHJvcGVydGllc19pb2N0bChzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAo+ID4+Pj4+PiAgb3V0X3VucmVmOgo+ID4+
-Pj4+PiAgICAgICBkcm1fbW9kZV9vYmplY3RfcHV0KG9iaik7Cj4gPj4+Pj4+ICBvdXQ6Cj4gPj4+
-Pj4+IC0gICAgIGRybV9tb2Rlc2V0X3VubG9ja19hbGwoZGV2KTsKPiA+Pj4+Pj4gKyAgICAgRFJN
-X01PREVTRVRfTE9DS19BTExfRU5EKGN0eCwgcmV0KTsKPiA+Pj4+Pj4gICAgICAgcmV0dXJuIHJl
-dDsKPiA+Pj4+Pj4gIH0KPiA+Pj4+Pj4KPiA+Pj4+Pj4gQEAgLTQ0OSwxMiArNDUwLDEzIEBAIHN0
-YXRpYyBpbnQgc2V0X3Byb3BlcnR5X2xlZ2FjeShzdHJ1Y3QgZHJtX21vZGVfb2JqZWN0ICpvYmos
-Cj4gPj4+Pj4+ICB7Cj4gPj4+Pj4+ICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBwcm9w
-LT5kZXY7Cj4gPj4+Pj4+ICAgICAgIHN0cnVjdCBkcm1fbW9kZV9vYmplY3QgKnJlZjsKPiA+Pj4+
-Pj4gKyAgICAgc3RydWN0IGRybV9tb2Rlc2V0X2FjcXVpcmVfY3R4IGN0eDsKPiA+Pj4+Pj4gICAg
-ICAgaW50IHJldCA9IC1FSU5WQUw7Cj4gPj4+Pj4+Cj4gPj4+Pj4+ICAgICAgIGlmICghZHJtX3By
-b3BlcnR5X2NoYW5nZV92YWxpZF9nZXQocHJvcCwgcHJvcF92YWx1ZSwgJnJlZikpCj4gPj4+Pj4+
-ICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gPj4+Pj4+Cj4gPj4+Pj4+IC0gICAgIGRy
-bV9tb2Rlc2V0X2xvY2tfYWxsKGRldik7Cj4gPj4+Pj4+ICsgICAgIERSTV9NT0RFU0VUX0xPQ0tf
-QUxMX0JFR0lOKGRldiwgY3R4LCAwLCByZXQpOwo+ID4+Pj4+PiAgICAgICBzd2l0Y2ggKG9iai0+
-dHlwZSkgewo+ID4+Pj4+PiAgICAgICBjYXNlIERSTV9NT0RFX09CSkVDVF9DT05ORUNUT1I6Cj4g
-Pj4+Pj4+ICAgICAgICAgICAgICAgcmV0ID0gZHJtX2Nvbm5lY3Rvcl9zZXRfb2JqX3Byb3Aob2Jq
-LCBwcm9wLCBwcm9wX3ZhbHVlKTsKPiA+Pj4+Pj4gQEAgLTQ2OCw3ICs0NzAsNyBAQCBzdGF0aWMg
-aW50IHNldF9wcm9wZXJ0eV9sZWdhY3koc3RydWN0IGRybV9tb2RlX29iamVjdCAqb2JqLAo+ID4+
-Pj4+PiAgICAgICAgICAgICAgIGJyZWFrOwo+ID4+Pj4+PiAgICAgICB9Cj4gPj4+Pj4+ICAgICAg
-IGRybV9wcm9wZXJ0eV9jaGFuZ2VfdmFsaWRfcHV0KHByb3AsIHJlZik7Cj4gPj4+Pj4+IC0gICAg
-IGRybV9tb2Rlc2V0X3VubG9ja19hbGwoZGV2KTsKPiA+Pj4+Pj4gKyAgICAgRFJNX01PREVTRVRf
-TE9DS19BTExfRU5EKGN0eCwgcmV0KTsKPiA+Pj4+Pj4KPiA+Pj4+Pj4gICAgICAgcmV0dXJuIHJl
-dDsKPiA+Pj4+Pj4gIH0KPiA+Pj4+Pgo+ID4+Pj4+IC0tCj4gPj4+Pj4gSmFuaSBOaWt1bGEsIElu
-dGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgo+ID4+Pgo+ID4+Pgo+ID4+Pgo+ID4gCgot
-LSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0
-cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> As we only restore the default context state upon banning a context, we
+> only need enough of the state to run the ring and nothing more. That is
+> we only need our bare protocontext.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 14 +-----
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 -
+>  drivers/gpu/drm/i915/gt/intel_lrc.c          | 14 ++----
+>  drivers/gpu/drm/i915/gt/selftest_context.c   | 11 ++--
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c       | 53 +++++++++++++++-----
+>  5 files changed, 47 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index 811debefebc0..d0a1078ef632 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -21,18 +21,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>  	struct intel_engine_cs *engine =
+>  		container_of(wf, typeof(*engine), wakeref);
+>  	struct intel_context *ce;
+> -	void *map;
+>  
+>  	ENGINE_TRACE(engine, "\n");
+>  
+>  	intel_gt_pm_get(engine->gt);
+>  
+> -	/* Pin the default state for fast resets from atomic context. */
+> -	map = NULL;
+> -	if (engine->default_state)
+> -		map = shmem_pin_map(engine->default_state);
+> -	engine->pinned_default_state = map;
+> -
+>  	/* Discard stale context state from across idling */
+>  	ce = engine->kernel_context;
+>  	if (ce) {
+> @@ -42,6 +35,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>  		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
+>  			struct drm_i915_gem_object *obj = ce->state->obj;
+>  			int type = i915_coherent_map_type(engine->i915);
+> +			void *map;
+>  
+>  			map = i915_gem_object_pin_map(obj, type);
+>  			if (!IS_ERR(map)) {
+> @@ -260,12 +254,6 @@ static int __engine_park(struct intel_wakeref *wf)
+>  	if (engine->park)
+>  		engine->park(engine);
+>  
+> -	if (engine->pinned_default_state) {
+> -		shmem_unpin_map(engine->default_state,
+> -				engine->pinned_default_state);
+> -		engine->pinned_default_state = NULL;
+> -	}
+> -
+>  	engine->execlists.no_priolist = false;
+>  
+>  	/* While gt calls i915_vma_parked(), we have to break the lock cycle */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 6c676774dcd9..c84525363bb7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -339,7 +339,6 @@ struct intel_engine_cs {
+>  	unsigned long wakeref_serial;
+>  	struct intel_wakeref wakeref;
+>  	struct file *default_state;
+> -	void *pinned_default_state;
+>  
+>  	struct {
+>  		struct intel_ring *ring;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index d4ef344657b0..100ed0fce2e2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1271,14 +1271,11 @@ execlists_check_context(const struct intel_context *ce,
+>  static void restore_default_state(struct intel_context *ce,
+>  				  struct intel_engine_cs *engine)
+>  {
+> -	u32 *regs = ce->lrc_reg_state;
+> +	u32 *regs;
+>  
+> -	if (engine->pinned_default_state)
+> -		memcpy(regs, /* skip restoring the vanilla PPHWSP */
+> -		       engine->pinned_default_state + LRC_STATE_OFFSET,
+> -		       engine->context_size - PAGE_SIZE);
+> +	regs = memset(ce->lrc_reg_state, 0, engine->context_size - PAGE_SIZE);
+> +	execlists_init_reg_state(regs, ce, engine, ce->ring, true);
+>  
+> -	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
+>  	ce->runtime.last = intel_context_get_runtime(ce);
+>  }
+>  
+> @@ -4166,8 +4163,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+>  	 * image back to the expected values to skip over the guilty request.
+>  	 */
+>  	__i915_request_reset(rq, stalled);
+> -	if (!stalled)
+> -		goto out_replay;
+
+Why the change how to handle stalled?
+
+-Mika
+
+
+>  
+>  	/*
+>  	 * We want a simple context + ring to execute the breadcrumb update.
+> @@ -4177,9 +4172,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+>  	 * future request will be after userspace has had the opportunity
+>  	 * to recreate its own state.
+>  	 */
+> -	GEM_BUG_ON(!intel_context_is_pinned(ce));
+> -	restore_default_state(ce, engine);
+> -
+>  out_replay:
+>  	ENGINE_TRACE(engine, "replay {head:%04x, tail:%04x}\n",
+>  		     head, ce->ring->tail);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+> index b8ed3cbe1277..a56dff3b157a 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+> @@ -154,10 +154,7 @@ static int live_context_size(void *arg)
+>  	 */
+>  
+>  	for_each_engine(engine, gt, id) {
+> -		struct {
+> -			struct file *state;
+> -			void *pinned;
+> -		} saved;
+> +		struct file *saved;
+>  
+>  		if (!engine->context_size)
+>  			continue;
+> @@ -171,8 +168,7 @@ static int live_context_size(void *arg)
+>  		 * active state is sufficient, we are only checking that we
+>  		 * don't use more than we planned.
+>  		 */
+> -		saved.state = fetch_and_zero(&engine->default_state);
+> -		saved.pinned = fetch_and_zero(&engine->pinned_default_state);
+> +		saved = fetch_and_zero(&engine->default_state);
+>  
+>  		/* Overlaps with the execlists redzone */
+>  		engine->context_size += I915_GTT_PAGE_SIZE;
+> @@ -181,8 +177,7 @@ static int live_context_size(void *arg)
+>  
+>  		engine->context_size -= I915_GTT_PAGE_SIZE;
+>  
+> -		engine->pinned_default_state = saved.pinned;
+> -		engine->default_state = saved.state;
+> +		engine->default_state = saved;
+>  
+>  		intel_engine_pm_put(engine);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 3ced73533f6b..824f99c4cc7c 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -5177,6 +5177,7 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+>  {
+>  	struct i915_vma *batch;
+>  	u32 dw, x, *cs, *hw;
+> +	u32 *defaults;
+>  
+>  	batch = create_user_vma(ce->vm, SZ_64K);
+>  	if (IS_ERR(batch))
+> @@ -5188,9 +5189,16 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+>  		return ERR_CAST(cs);
+>  	}
+>  
+> +	defaults = shmem_pin_map(ce->engine->default_state);
+> +	if (!defaults) {
+> +		i915_gem_object_unpin_map(batch->obj);
+> +		i915_vma_put(batch);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+>  	x = 0;
+>  	dw = 0;
+> -	hw = ce->engine->pinned_default_state;
+> +	hw = defaults;
+>  	hw += LRC_STATE_OFFSET / sizeof(*hw);
+>  	do {
+>  		u32 len = hw[dw] & 0x7f;
+> @@ -5221,6 +5229,8 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+>  
+>  	*cs++ = MI_BATCH_BUFFER_END;
+>  
+> +	shmem_unpin_map(ce->engine->default_state, defaults);
+> +
+>  	i915_gem_object_flush_map(batch->obj);
+>  	i915_gem_object_unpin_map(batch->obj);
+>  
+> @@ -5331,6 +5341,7 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+>  {
+>  	struct i915_vma *batch;
+>  	u32 dw, *cs, *hw;
+> +	u32 *defaults;
+>  
+>  	batch = create_user_vma(ce->vm, SZ_64K);
+>  	if (IS_ERR(batch))
+> @@ -5342,8 +5353,15 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+>  		return ERR_CAST(cs);
+>  	}
+>  
+> +	defaults = shmem_pin_map(ce->engine->default_state);
+> +	if (!defaults) {
+> +		i915_gem_object_unpin_map(batch->obj);
+> +		i915_vma_put(batch);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+>  	dw = 0;
+> -	hw = ce->engine->pinned_default_state;
+> +	hw = defaults;
+>  	hw += LRC_STATE_OFFSET / sizeof(*hw);
+>  	do {
+>  		u32 len = hw[dw] & 0x7f;
+> @@ -5371,6 +5389,8 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+>  
+>  	*cs++ = MI_BATCH_BUFFER_END;
+>  
+> +	shmem_unpin_map(ce->engine->default_state, defaults);
+> +
+>  	i915_gem_object_flush_map(batch->obj);
+>  	i915_gem_object_unpin_map(batch->obj);
+>  
+> @@ -5438,6 +5458,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+>  {
+>  	u32 x, dw, *hw, *lrc;
+>  	u32 *A[2], *B[2];
+> +	u32 *defaults;
+>  	int err = 0;
+>  
+>  	A[0] = i915_gem_object_pin_map(ref[0]->obj, I915_MAP_WC);
+> @@ -5470,9 +5491,15 @@ static int compare_isolation(struct intel_engine_cs *engine,
+>  	}
+>  	lrc += LRC_STATE_OFFSET / sizeof(*hw);
+>  
+> +	defaults = shmem_pin_map(ce->engine->default_state);
+> +	if (!defaults) {
+> +		err = -ENOMEM;
+> +		goto err_lrc;
+> +	}
+> +
+>  	x = 0;
+>  	dw = 0;
+> -	hw = engine->pinned_default_state;
+> +	hw = defaults;
+>  	hw += LRC_STATE_OFFSET / sizeof(*hw);
+>  	do {
+>  		u32 len = hw[dw] & 0x7f;
+> @@ -5512,6 +5539,8 @@ static int compare_isolation(struct intel_engine_cs *engine,
+>  	} while (dw < PAGE_SIZE / sizeof(u32) &&
+>  		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
+>  
+> +	shmem_unpin_map(ce->engine->default_state, defaults);
+> +err_lrc:
+>  	i915_gem_object_unpin_map(ce->state->obj);
+>  err_B1:
+>  	i915_gem_object_unpin_map(result[1]->obj);
+> @@ -5661,18 +5690,16 @@ static int live_lrc_isolation(void *arg)
+>  			continue;
+>  
+>  		intel_engine_pm_get(engine);
+> -		if (engine->pinned_default_state) {
+> -			for (i = 0; i < ARRAY_SIZE(poison); i++) {
+> -				int result;
+> +		for (i = 0; i < ARRAY_SIZE(poison); i++) {
+> +			int result;
+>  
+> -				result = __lrc_isolation(engine, poison[i]);
+> -				if (result && !err)
+> -					err = result;
+> +			result = __lrc_isolation(engine, poison[i]);
+> +			if (result && !err)
+> +				err = result;
+>  
+> -				result = __lrc_isolation(engine, ~poison[i]);
+> -				if (result && !err)
+> -					err = result;
+> -			}
+> +			result = __lrc_isolation(engine, ~poison[i]);
+> +			if (result && !err)
+> +				err = result;
+>  		}
+>  		intel_engine_pm_put(engine);
+>  		if (igt_flush_test(gt->i915)) {
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
