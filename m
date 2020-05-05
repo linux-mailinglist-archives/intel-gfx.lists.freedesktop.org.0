@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9559C1C59A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 16:32:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0AB21C59D0
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 16:39:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D753F6E5C5;
-	Tue,  5 May 2020 14:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 213CA89BFD;
+	Tue,  5 May 2020 14:39:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26FB16E5C5
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 14:32:42 +0000 (UTC)
-IronPort-SDR: qumjFT3t7lEK8F965RvRvNnjkF39EACBY7BS1iZ62enCa46W/knbVdfvWPZr2GSDtoagFot/yg
- hJpN8GyEDDOw==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9132C89BFD
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 14:39:05 +0000 (UTC)
+IronPort-SDR: 98pt8KvuYNQ0NEme8crAzDWpSSCLMA6EskINffycYFHK5sJ/rbj4LRSzmO3L8vrE5sIxyk5T8B
+ 6w9W2rX4IXPw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 07:32:42 -0700
-IronPort-SDR: 1qjmgvxGLOjAlOg9TifertcKffc/KQDhQIomOEzD3KjKRHDsynHuKPUeBgNXYwqERpDa1kFW4g
- kxRk83L8fFfg==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 07:39:04 -0700
+IronPort-SDR: 4HgAvaDjWjY8wLNvcZJWeE6YhYlJmWd3LNVqa3MmfqXNa1yKf3VoMy36oygAkHMY6r1OOSm2/e
+ LvwXkNLxJI+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,355,1583222400"; d="scan'208";a="434505800"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 05 May 2020 07:32:39 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 May 2020 17:28:16 +0300
-Message-Id: <20200505142816.13021-6-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20200505142816.13021-1-stanislav.lisovskiy@intel.com>
-References: <20200505142816.13021-1-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,355,1583222400"; d="scan'208";a="277895275"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga002.jf.intel.com with SMTP; 05 May 2020 07:39:04 -0700
+Date: Tue, 5 May 2020 07:39:04 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200505143904.GQ188376@mdroper-desk1.amr.corp.intel.com>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+ <20200504225227.464666-9-matthew.d.roper@intel.com>
+ <20200505045058.GD10565@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 5/5] drm/i915: Remove unneeded hack now for
- CDCLK
+Content-Disposition: inline
+In-Reply-To: <20200505045058.GD10565@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 08/22] drm/i915/rkl: Add power well
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,46 +50,294 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to bump up CDCLK now, as it is now correctly
-calculated, accounting for DBuf BW as BSpec says.
+On Tue, May 05, 2020 at 10:20:58AM +0530, Anshuman Gupta wrote:
+> On 2020-05-04 at 15:52:13 -0700, Matt Roper wrote:
+> > RKL power wells are similar to TGL power wells, but have some important
+> > differences:
+> > 
+> >  * PG1 now has pipe A's VDSC (rather than sticking it in PG2)
+> >  * PG2 no longer exists
+> >  * DDI-C (aka TC-1) moves from PG1 -> PG3
+> >  * PG5 no longer exists due to the lack of a fourth pipe
+> > 
+> > Also note that what we refer to as 'DDI-C' and 'DDI-D' need to actually
+> > be programmed as TC-1 and TC-2 even though this platform doesn't have TC
+> > outputs.
+> > 
+> > Bspec: 49234
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 185 +++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |   4 +-
+> >  2 files changed, 186 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 49998906cc61..71691919d101 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -2913,6 +2913,53 @@ void intel_display_power_put(struct drm_i915_private *dev_priv,
+> >  	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
+> >  	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
+> >  
+> > +#define RKL_PW_4_POWER_DOMAINS (			\
+> > +	BIT_ULL(POWER_DOMAIN_PIPE_C) |			\
+> > +	BIT_ULL(POWER_DOMAIN_PIPE_C_PANEL_FITTER) |	\
+> > +	BIT_ULL(POWER_DOMAIN_TRANSCODER_C) |		\
+> > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > +
+> > +#define RKL_PW_3_POWER_DOMAINS (			\
+> > +	RKL_PW_4_POWER_DOMAINS |			\
+> > +	BIT_ULL(POWER_DOMAIN_PIPE_B) |			\
+> > +	BIT_ULL(POWER_DOMAIN_PIPE_B_PANEL_FITTER) |	\
+> > +	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
+> > +	BIT_ULL(POWER_DOMAIN_VGA) |			\
+> > +	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
+> > +	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
+> > +	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
+> > +	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
+> > +	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
+> > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > +
+> > +/*
+> > + * There is no PW_2/PG_2 on RKL.
+> > + *
+> > + * RKL PW_1/PG_1 domains (under HW/DMC control):
+> > + * - DBUF function (note: registers are in PW0)
+> > + * - PIPE_A and its planes and VDSC/joining, except VGA
+> > + * - transcoder A
+> > + * - DDI_A and DDI_B
+> > + * - FBC
+> > + *
+> > + * RKL PW_0/PG_0 domains (under HW/DMC control):
+> > + * - PCI
+> > + * - clocks except port PLL
+> > + * - shared functions:
+> > + *     * interrupts except pipe interrupts
+> > + *     * MBus except PIPE_MBUS_DBOX_CTL
+> > + *     * DBUF registers
+> > + * - central power except FBC
+> > + * - top-level GTC (DDI-level GTC is in the well associated with the DDI)
+> > + */
+> > +
+> > +#define RKL_DISPLAY_DC_OFF_POWER_DOMAINS (		\
+> > +	RKL_PW_3_POWER_DOMAINS |			\
+> > +	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+> > +	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> > +	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+> > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > +
+> >  static const struct i915_power_well_ops i9xx_always_on_power_well_ops = {
+> >  	.sync_hw = i9xx_power_well_sync_hw_noop,
+> >  	.enable = i9xx_always_on_power_well_noop,
+> > @@ -4283,6 +4330,140 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+> >  	},
+> >  };
+> >  
+> > +static const struct i915_power_well_desc rkl_power_wells[] = {
+> > +	{
+> > +		.name = "always-on",
+> > +		.always_on = true,
+> > +		.domains = POWER_DOMAIN_MASK,
+> > +		.ops = &i9xx_always_on_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +	},
+> > +	{
+> > +		.name = "power well 1",
+> > +		/* Handled by the DMC firmware */
+> > +		.always_on = true,
+> > +		.domains = 0,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = SKL_DISP_PW_1,
+> > +		{
+> > +			.hsw.regs = &hsw_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_PW_1,
+> > +			.hsw.has_fuses = true,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "DC off",
+> > +		.domains = RKL_DISPLAY_DC_OFF_POWER_DOMAINS,
+> > +		.ops = &gen9_dc_off_power_well_ops,
+> > +		.id = SKL_DISP_DC_OFF,
+> > +	},
+> > +	{
+> > +		.name = "power well 3",
+> > +		.domains = RKL_PW_3_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = ICL_DISP_PW_3,
+> > +		{
+> > +			.hsw.regs = &hsw_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
+> > +			.hsw.irq_pipe_mask = BIT(PIPE_B),
+> > +			.hsw.has_vga = true,
+> > +			.hsw.has_fuses = true,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "power well 4",
+> > +		.domains = RKL_PW_4_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &hsw_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_PW_4,
+> > +			.hsw.has_fuses = true,
+> > +			.hsw.irq_pipe_mask = BIT(PIPE_C),
+> > +		}
+> > +	},
+> IMHO the order of power well is differs from TGL/ICL,
+> TGL/ICL PW_4 comes after DDI and AUX IO power wells.
+> Why the order is different on RKL.
+> Thanks,
+> Anshuman Gupta.
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ------------
- 1 file changed, 12 deletions(-)
+I'm not aware of any specific reason why PW_4 was placed after the
+DDI/AUX wells on ICL, but that order seems to have been copy/pasted to
+TGL too.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 45343b9a9650..42f39066ad47 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2070,18 +2070,6 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	/* Account for additional needs from the planes */
- 	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
- 
--	/*
--	 * HACK. Currently for TGL platforms we calculate
--	 * min_cdclk initially based on pixel_rate divided
--	 * by 2, accounting for also plane requirements,
--	 * however in some cases the lowest possible CDCLK
--	 * doesn't work and causing the underruns.
--	 * Explicitly stating here that this seems to be currently
--	 * rather a Hack, than final solution.
--	 */
--	if (IS_TIGERLAKE(dev_priv))
--		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
--
- 	if (min_cdclk > dev_priv->max_cdclk_freq) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
+It seems more natural to keep the main power wells together, so I wrote
+them in what I considered to be a more intuitive order here.  But
+ultimately the order of the power wells in the array shouldn't have any
+functional impact.
+
+
+Matt
+
+> > +	{
+> > +		.name = "DDI A IO",
+> > +		.domains = ICL_DDI_IO_A_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_DDI_A,
+> > +		}
+> > +	},
+> > +	{
+> > +		.name = "DDI B IO",
+> > +		.domains = ICL_DDI_IO_B_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_DDI_B,
+> > +		}
+> > +	},
+> > +	{
+> > +		.name = "DDI D TC1 IO",
+> > +		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > +			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC1,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "DDI E TC2 IO",
+> > +		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
+> > +		.ops = &hsw_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > +			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC2,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "AUX A",
+> > +		.domains = ICL_AUX_A_IO_POWER_DOMAINS,
+> > +		.ops = &icl_aux_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_aux_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_AUX_A,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "AUX B",
+> > +		.domains = ICL_AUX_B_IO_POWER_DOMAINS,
+> > +		.ops = &icl_aux_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_aux_power_well_regs,
+> > +			.hsw.idx = ICL_PW_CTL_IDX_AUX_B,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "AUX D TC1",
+> > +		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
+> > +		.ops = &icl_aux_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_aux_power_well_regs,
+> > +			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC1,
+> > +		},
+> > +	},
+> > +	{
+> > +		.name = "AUX E TC2",
+> > +		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
+> > +		.ops = &icl_aux_power_well_ops,
+> > +		.id = DISP_PW_ID_NONE,
+> > +		{
+> > +			.hsw.regs = &icl_aux_power_well_regs,
+> > +			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC2,
+> > +		},
+> > +	},
+> > +};
+> > +
+> >  static int
+> >  sanitize_disable_power_well_option(const struct drm_i915_private *dev_priv,
+> >  				   int disable_power_well)
+> > @@ -4428,7 +4609,9 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+> >  	 * The enabling order will be from lower to higher indexed wells,
+> >  	 * the disabling order is reversed.
+> >  	 */
+> > -	if (IS_GEN(dev_priv, 12)) {
+> > +	if (IS_ROCKETLAKE(dev_priv)) {
+> > +		err = set_power_wells(power_domains, rkl_power_wells);
+> > +	} else if (IS_GEN(dev_priv, 12)) {
+> >  		err = set_power_wells(power_domains, tgl_power_wells);
+> >  	} else if (IS_GEN(dev_priv, 11)) {
+> >  		err = set_power_wells(power_domains, icl_power_wells);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > index 95ad87d4ccb3..d145fe2bed81 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > @@ -476,13 +476,13 @@ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state)
+> >  	 * POWER_DOMAIN_TRANSCODER_VDSC_PW2 power domain in two cases:
+> >  	 *
+> >  	 *  - ICL eDP/DSI transcoder
+> > -	 *  - TGL pipe A
+> > +	 *  - Gen12+ (except RKL) pipe A
+> >  	 *
+> >  	 * For any other pipe, VDSC/joining uses the power well associated with
+> >  	 * the pipe in use. Hence another reference on the pipe power domain
+> >  	 * will suffice. (Except no VDSC/joining on ICL pipe A.)
+> >  	 */
+> > -	if (INTEL_GEN(i915) >= 12 && pipe == PIPE_A)
+> > +	if (INTEL_GEN(i915) >= 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
+> >  		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+> >  	else if (is_pipe_dsc(crtc_state))
+> >  		return POWER_DOMAIN_PIPE(pipe);
+> > -- 
+> > 2.24.1
+> > 
+
 -- 
-2.24.1.485.gad05a3d8e5
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
