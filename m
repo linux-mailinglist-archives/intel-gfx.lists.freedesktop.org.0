@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AAC91C5CB0
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 17:56:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CBB01C5CCB
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:01:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047926E20E;
-	Tue,  5 May 2020 15:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3696E7D9;
+	Tue,  5 May 2020 16:00:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 596056E20E;
- Tue,  5 May 2020 15:56:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 886366E5D5;
+ Tue,  5 May 2020 16:00:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 537E2A47DA;
- Tue,  5 May 2020 15:56:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8273EA011B;
+ Tue,  5 May 2020 16:00:57 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Tue, 05 May 2020 15:56:38 -0000
-Message-ID: <158869419831.25911.1383678310495761425@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 05 May 2020 16:00:57 -0000
+Message-ID: <158869445750.25913.17563267566389419557@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200505142816.13021-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200505142816.13021-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev9=29?=
+References: <20200504135030.19210-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200504135030.19210-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/6=5D_drm/i915=3A_Mark_concurrent_?=
+ =?utf-8?q?submissions_with_a_weak-dependency_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +48,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Consider DBuf bandwidth when calculating CDCLK (rev9)
-URL   : https://patchwork.freedesktop.org/series/74739/
-State : success
+Series: series starting with [1/6] drm/i915: Mark concurrent submissions with a weak-dependency (rev3)
+URL   : https://patchwork.freedesktop.org/series/76912/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8430 -> Patchwork_17583
-====================================================
+$ dim checkpatch origin/drm-tip
+d336bdf650f8 drm/i915: Mark concurrent submissions with a weak-dependency
+19243ac2eee1 dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
 
-Summary
--------
+-:387: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#387: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
 
-  **SUCCESS**
+-:547: WARNING:MEMORY_BARRIER: memory barrier without comment
+#547: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
++	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
 
-  No regressions found.
+total: 0 errors, 2 warnings, 1 checks, 1050 lines checked
+f3138b0d84f7 drm/syncobj: Allow use of dma-fence-proxy
+e796d58b1084 drm/i915/gem: Teach execbuf how to wait on future syncobj
+f3459c71c608 drm/i915/gem: Allow combining submit-fences with syncobj
+7e5f8efa9a8d drm/i915/gt: Declare when we enabled timeslicing
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17583/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8430 -> Patchwork_17583
-
-  CI-20190529: 20190529
-  CI_DRM_8430: 2daa6f8cad645f49a898158190a20a893b4aabe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5632: e630cb8cd2ec01d6d5358eb2a3f6ea70498b8183 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17583: 0792cc71d598d77d1570d73068661bd1cd504e02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0792cc71d598 drm/i915: Remove unneeded hack now for CDCLK
-6b07838f4a00 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
-0c2d539a68ee drm/i915: Introduce for_each_dbuf_slice_in_mask macro
-0debc96ba00f drm/i915: Force recalculate min_cdclk if planes config changed
-b9fba3b4f20a drm/i915: Decouple cdclk calculation from modeset checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17583/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
