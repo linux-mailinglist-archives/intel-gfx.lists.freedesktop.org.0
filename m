@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E871C6375
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 23:52:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1B41C63AB
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 00:09:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 272BA6E48C;
-	Tue,  5 May 2020 21:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6629F6E81C;
+	Tue,  5 May 2020 22:09:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF63B6E220
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 21:52:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08F686E81A;
+ Tue,  5 May 2020 22:09:29 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21124376-1500050 
- for multiple; Tue, 05 May 2020 22:52:21 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21124512-1500050 
+ for multiple; Tue, 05 May 2020 23:09:24 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 May 2020 22:52:14 +0100
-Message-Id: <20200505215214.9690-14-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200505215214.9690-1-chris@chris-wilson.co.uk>
-References: <20200505215214.9690-1-chris@chris-wilson.co.uk>
+Date: Tue,  5 May 2020 23:09:18 +0100
+Message-Id: <20200505220919.3042236-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 14/14] drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] lib/i915: Report scheduler caps for
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,61 +37,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This timeout is only used in one place, to provide a tiny bit of grace
-for slow igt to cleanup after themselves. If we are a bit stricter and
-opt to kill outstanding requsts rather than wait, we can speed up igt by
-not waiting for 200ms after a hang.
-
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 11 ++++++-----
- drivers/gpu/drm/i915/i915_drv.h     |  2 --
- 2 files changed, 6 insertions(+), 7 deletions(-)
+ include/drm-uapi/i915_drm.h |  8 +++++---
+ lib/i915/gem_scheduler.c    | 15 +++++++++++++++
+ lib/i915/gem_scheduler.h    |  1 +
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8e98df6a3045..649acf1fc33d 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1463,12 +1463,13 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
- {
- 	int ret;
+diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+index 2b55af13a..a222b6bfb 100644
+--- a/include/drm-uapi/i915_drm.h
++++ b/include/drm-uapi/i915_drm.h
+@@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
+ #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+ #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+ #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
++#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
  
--	if (val & DROP_RESET_ACTIVE &&
--	    wait_for(intel_engines_are_idle(gt), I915_IDLE_ENGINES_TIMEOUT))
--		intel_gt_set_wedged(gt);
-+	if (val & (DROP_RETIRE | DROP_RESET_ACTIVE))
-+		intel_gt_wait_for_idle(gt, 1);
+ #define I915_PARAM_HUC_STATUS		 42
  
--	if (val & DROP_RETIRE)
--		intel_gt_retire_requests(gt);
-+	if (val & DROP_RESET_ACTIVE && intel_gt_pm_get_if_awake(gt)) {
-+		intel_gt_set_wedged(gt);
-+		intel_gt_pm_put(gt);
-+	}
+@@ -1040,9 +1041,10 @@ struct drm_i915_gem_exec_fence {
+ 	 */
+ 	__u32 handle;
  
- 	if (val & (DROP_IDLE | DROP_ACTIVE)) {
- 		ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index ad287e5d6ded..97687ea53c3d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -612,8 +612,6 @@ struct i915_gem_mm {
- 	u32 shrink_count;
+-#define I915_EXEC_FENCE_WAIT            (1<<0)
+-#define I915_EXEC_FENCE_SIGNAL          (1<<1)
+-#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
++#define I915_EXEC_FENCE_WAIT            (1u << 0)
++#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
++#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
++#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
+ 	__u32 flags;
  };
  
--#define I915_IDLE_ENGINES_TIMEOUT (200) /* in ms */
--
- unsigned long i915_fence_context_timeout(const struct drm_i915_private *i915,
- 					 u64 context);
+diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
+index 1beb85dec..a1dc694e5 100644
+--- a/lib/i915/gem_scheduler.c
++++ b/lib/i915/gem_scheduler.c
+@@ -131,6 +131,19 @@ bool gem_scheduler_has_engine_busy_stats(int fd)
+ 		I915_SCHEDULER_CAP_ENGINE_BUSY_STATS;
+ }
  
++/**
++ * gem_scheduler_has_timeslicing:
++ * @fd: open i915 drm file descriptor
++ *
++ * Feature test macro to query whether the driver supports using HW preemption
++ * to implement timeslicing of userspace batches. This allows userspace to
++ * implement micro-level scheduling within their own batches.
++ */
++bool gem_scheduler_has_timeslicing(int fd)
++{
++	return gem_scheduler_capability(fd) & I915_SCHEDULER_CAP_TIMESLICING;
++}
++
+ /**
+  * gem_scheduler_print_capability:
+  * @fd: open i915 drm file descriptor
+@@ -151,6 +164,8 @@ void gem_scheduler_print_capability(int fd)
+ 		igt_info(" - With preemption enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_SEMAPHORES)
+ 		igt_info(" - With HW semaphores enabled\n");
++	if (caps & I915_SCHEDULER_CAP_TIMESLICING)
++		igt_info(" - With user timeslicing enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
+ 		igt_info(" - With engine busy statistics\n");
+ }
+diff --git a/lib/i915/gem_scheduler.h b/lib/i915/gem_scheduler.h
+index 14bd4cac4..d43e84bd2 100644
+--- a/lib/i915/gem_scheduler.h
++++ b/lib/i915/gem_scheduler.h
+@@ -32,6 +32,7 @@ bool gem_scheduler_has_ctx_priority(int fd);
+ bool gem_scheduler_has_preemption(int fd);
+ bool gem_scheduler_has_semaphores(int fd);
+ bool gem_scheduler_has_engine_busy_stats(int fd);
++bool gem_scheduler_has_timeslicing(int fd);
+ void gem_scheduler_print_capability(int fd);
+ 
+ #endif /* GEM_SCHEDULER_H */
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
