@@ -1,43 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EEA1C5521
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 14:12:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973001C5533
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 14:14:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7949A6E22A;
-	Tue,  5 May 2020 12:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95AE589F53;
+	Tue,  5 May 2020 12:14:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6BF36E245
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 12:12:24 +0000 (UTC)
-IronPort-SDR: 2zopcHQ+pzNkjTmHGynHCxRKAPNbhDGBPIQcPddYcHjyAd4xWr6HNzWtlFkY5LWmfiweIr9sbR
- xlDuWNlxDrTA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 05:12:23 -0700
-IronPort-SDR: el6RNy4QFObAOFudjdExSrzECZMaxUAwj4u6VBB11VKsBibPmW7Xyw7OiUzrkL5f4RbR94Bmsj
- D2gSITG4o3dQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="461018966"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga005.fm.intel.com with ESMTP; 05 May 2020 05:12:20 -0700
-Date: Tue, 5 May 2020 17:42:13 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Oliver Barta <o.barta89@gmail.com>
-Message-ID: <20200505121213.GA24840@intel.com>
-References: <20200504123524.7731-1-oliver.barta@aptiv.com>
- <20200505073809.GA24093@intel.com>
- <CALJK04P5A0TV=eQ3QnmXNGbe76i5eUB+hdDxtTkyhV8kfpPeNQ@mail.gmail.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D5489F53;
+ Tue,  5 May 2020 12:14:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21117928-1500050 
+ for multiple; Tue, 05 May 2020 13:13:22 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  5 May 2020 13:13:18 +0100
+Message-Id: <20200505121318.2816478-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CALJK04P5A0TV=eQ3QnmXNGbe76i5eUB+hdDxtTkyhV8kfpPeNQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: HDCP: retry link integrity check
- on failure
+Subject: [Intel-gfx] [PATCH i-g-t] lib/i915: Reset all engine properties to
+ defaults prior to the start of a test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,101 +37,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <seanpaul@chromium.org>,
- Oliver Barta <oliver.barta@aptiv.com>,
- Ravisankar Madasamy <ravisankar.madasamy@intel.com>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-05 at 14:06:51 +0200, Oliver Barta wrote:
-> On Tue, May 5, 2020 at 9:38 AM Ramalingam C <ramalingam.c@intel.com> wrote:
-> >
-> > On 2020-05-04 at 14:35:24 +0200, Oliver Barta wrote:
-> > > From: Oliver Barta <oliver.barta@aptiv.com>
-> > >
-> > > A single Ri mismatch doesn't automatically mean that the link integrity
-> > > is broken. Update and check of Ri and Ri' are done asynchronously. In
-> > > case an update happens just between the read of Ri' and the check against
-> > > Ri there will be a mismatch even if the link integrity is fine otherwise.
-> >
-> > Thanks for working on this. Btw, did you face this sporadic link check
-> > failure or theoretically you are fixing it?
-> >
-> > IMO this change will rule out possible sporadic link check failures as
-> > mentioned in the commit msg. Though I haven't faced this issue at my
-> > testings.
-> >
-> > Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> >
-> 
-> I found it by code inspection, the probability for this to happen is
-> very low. In order to test the patch I'm decreasing the value of
-> DRM_HDCP_CHECK_PERIOD_MS to just a few ms. Once you do that it happens
-> every few seconds.
-Ok. That make sense. Thanks for the explanation.
+We need each test in an isolated context, so that bad results from one
+test do not interfere with the next. In particular, we want to clean up
+the device and reset it to the defaults so that they are known for the
+next test, and the test can focus on behaviour it wants to control.
 
--Ram
-> 
-> Thanks,
-> Oliver
-> 
-> > >
-> > > Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_hdmi.c | 19 ++++++++++++++++---
-> > >  1 file changed, 16 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > index 010f37240710..3156fde392f2 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > @@ -1540,7 +1540,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-> > >  }
-> > >
-> > >  static
-> > > -bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> > > +bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *intel_dig_port)
-> > >  {
-> > >       struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> > >       struct intel_connector *connector =
-> > > @@ -1563,8 +1563,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> > >       if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
-> > >                     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
-> > >                    (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
-> > > -             drm_err(&i915->drm,
-> > > -                     "Ri' mismatch detected, link check failed (%x)\n",
-> > > +             drm_dbg_kms(&i915->drm, "Ri' mismatch detected (%x)\n",
-> > >                       intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
-> > >                                                       port)));
-> > >               return false;
-> > > @@ -1572,6 +1571,20 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> > >       return true;
-> > >  }
-> > >
-> > > +static
-> > > +bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> > > +{
-> > > +     struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> > > +     int retry;
-> > > +
-> > > +     for (retry = 0; retry < 3; retry++)
-> > > +             if (intel_hdmi_hdcp_check_link_once(intel_dig_port))
-> > > +                     return true;
-> > > +
-> > > +     drm_err(&i915->drm, "Link check failed\n");
-> > > +     return false;
-> > > +}
-> > > +
-> > >  struct hdcp2_hdmi_msg_timeout {
-> > >       u8 msg_id;
-> > >       u16 timeout;
-> > > --
-> > > 2.20.1
-> > >
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ lib/i915/gem.c | 83 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+
+diff --git a/lib/i915/gem.c b/lib/i915/gem.c
+index b2717ba6a..6fa8abf21 100644
+--- a/lib/i915/gem.c
++++ b/lib/i915/gem.c
+@@ -22,6 +22,7 @@
+  *
+  */
+ 
++#include <dirent.h>
+ #include <fcntl.h>
+ #include <sys/ioctl.h>
+ 
+@@ -30,6 +31,87 @@
+ #include "igt_debugfs.h"
+ #include "igt_sysfs.h"
+ 
++static void __restore_defaults(int engine)
++{
++	struct dirent *de;
++	int defaults;
++	DIR *dir;
++
++	defaults = openat(engine, ".defaults", O_RDONLY);
++	if (defaults < 0)
++		return;
++
++	dir = fdopendir(defaults);
++	if (!dir) {
++		close(defaults);
++		return;
++	}
++
++	while ((de = readdir(dir))) {
++		char buf[256];
++		int fd, len;
++
++		if (*de->d_name == '.')
++			continue;
++
++		fd = openat(defaults, de->d_name, O_RDONLY);
++		if (fd < 0)
++			continue;
++
++		len = read(fd, buf, sizeof(buf));
++		close(fd);
++
++		fd = openat(engine, de->d_name, O_WRONLY);
++		if (fd < 0)
++			continue;
++
++		write(fd, buf, len);
++		close(fd);
++	}
++
++	closedir(dir);
++}
++
++static void restore_defaults(int i915)
++{
++	struct dirent *de;
++	int engines;
++	DIR *dir;
++	int sys;
++
++	sys = igt_sysfs_open(i915);
++	if (sys < 0)
++		return;
++
++	engines = openat(sys, "engine", O_RDONLY);
++	if (engines < 0)
++		goto close_sys;
++
++	dir = fdopendir(engines);
++	if (!dir) {
++		close(engines);
++		goto close_sys;
++	}
++
++	while ((de = readdir(dir))) {
++		int engine;
++
++		if (*de->d_name == '.')
++			continue;
++
++		engine = openat(engines, de->d_name, O_RDONLY);
++		if (engine < 0)
++			continue;
++
++		__restore_defaults(engine);
++		close(engine);
++	}
++
++	closedir(dir);
++close_sys:
++	close(sys);
++}
++
+ static void reset_device(int i915)
+ {
+ 	int dir;
+@@ -66,6 +148,7 @@ void igt_require_gem(int i915)
+ 	 * sequences of batches.
+ 	 */
+ 	reset_device(i915);
++	restore_defaults(i915);
+ 
+ 	err = 0;
+ 	if (ioctl(i915, DRM_IOCTL_I915_GEM_THROTTLE)) {
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
