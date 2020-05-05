@@ -2,29 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331931C5331
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 12:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED991C5374
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 12:42:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 614CD6E1B7;
-	Tue,  5 May 2020 10:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 510316E199;
+	Tue,  5 May 2020 10:42:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59A56E1A4;
- Tue,  5 May 2020 10:27:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21116556-1500050 
- for multiple; Tue, 05 May 2020 11:27:06 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 May 2020 11:27:02 +0100
-Message-Id: <20200505102702.2607265-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3D36E199
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 10:42:49 +0000 (UTC)
+IronPort-SDR: IvtJEna1w8Ti8NuEZokedKF5olj4a/A7Qu2s/xyN0W7Nb6NrLhDNvjF5pidghd255wODXBDcj/
+ Air1Rzok4k8A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 03:42:49 -0700
+IronPort-SDR: CBPnm/kKrsWBktKbtjqAi5QAIqnb81+uM1UJQkoTUvXQTpSUE7AaFWS1Ye2tkYr5m8aNy5CUMG
+ dW2VNcuXXQjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,354,1583222400"; d="scan'208";a="277833166"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 05 May 2020 03:42:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 05 May 2020 13:42:46 +0300
+Date: Tue, 5 May 2020 13:42:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200505104246.GF6112@intel.com>
+References: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
+ <20200505102247.32452-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_exec: Exploit resource
- contention to verify execbuf independence
+Content-Disposition: inline
+In-Reply-To: <20200505102247.32452-3-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v27 2/6] drm/i915: Separate icl and skl SAGV
+ checking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,171 +52,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Even if one client is blocked on a resource, that should not impact
-another client.
+On Tue, May 05, 2020 at 01:22:43PM +0300, Stanislav Lisovskiy wrote:
+> Introduce platform dependent SAGV checking in
+> combination with bandwidth state pipe SAGV mask.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_ctx_exec.c | 122 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 121 insertions(+), 1 deletion(-)
+> v2, v3, v4, v5, v6: Fix rebase conflict
+> =
 
-diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
-index ad2f9e545..97a1e0d32 100644
---- a/tests/i915/gem_ctx_exec.c
-+++ b/tests/i915/gem_ctx_exec.c
-@@ -35,8 +35,9 @@
- #include <fcntl.h>
- #include <inttypes.h>
- #include <errno.h>
--#include <sys/stat.h>
- #include <sys/ioctl.h>
-+#include <sys/poll.h>
-+#include <sys/stat.h>
- #include <sys/time.h>
- 
- #include <drm.h>
-@@ -331,6 +332,122 @@ static void nohangcheck_hostile(int i915)
- 	close(i915);
- }
- 
-+static void kill_children(int sig)
-+{
-+	sighandler_t old;
-+
-+	old = signal(sig, SIG_IGN);
-+	kill(-getpgrp(), sig);
-+	signal(sig, old);
-+}
-+
-+static bool has_persistence(int i915)
-+{
-+	struct drm_i915_gem_context_param p = {
-+		.param = I915_CONTEXT_PARAM_PERSISTENCE,
-+	};
-+	uint64_t saved;
-+
-+	if (__gem_context_get_param(i915, &p))
-+		return false;
-+
-+	saved = p.value;
-+	p.value = 0;
-+	if (__gem_context_set_param(i915, &p))
-+		return false;
-+
-+	p.value = saved;
-+	return __gem_context_set_param(i915, &p) == 0;
-+}
-+
-+static void pi_active(int i915)
-+{
-+	igt_spin_t *spin = igt_spin_new(i915);
-+	unsigned long count = 0;
-+	bool blocked = false;
-+	struct pollfd pfd;
-+	int lnk[2];
-+	int *done;
-+
-+	igt_require(gem_scheduler_enabled(i915));
-+	igt_require(has_persistence(i915)); /* for graceful error recovery */
-+
-+	done = mmap(NULL, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
-+	igt_assert(done != MAP_FAILED);
-+
-+	igt_assert(pipe(lnk) == 0);
-+
-+	igt_fork(child, 1) {
-+		struct sigaction sa = { .sa_handler = alarm_handler };
-+
-+		sigaction(SIGHUP, &sa, NULL);
-+
-+		do {
-+			uint32_t ctx;
-+
-+			if (__gem_context_clone(i915, 0,
-+						I915_CONTEXT_CLONE_ENGINES |
-+						I915_CONTEXT_CLONE_VM,
-+						0, &ctx))
-+				break;
-+
-+			gem_context_set_persistence(i915, ctx, false);
-+			if (READ_ONCE(*done))
-+				break;
-+
-+			spin->execbuf.rsvd1 = ctx;
-+			if (__execbuf(i915, &spin->execbuf))
-+				break;
-+
-+			count++;
-+			write(lnk[1], &count, sizeof(count));
-+		} while (1);
-+	}
-+
-+	pfd.fd = lnk[0];
-+	pfd.events = POLLIN;
-+	close(lnk[1]);
-+
-+	igt_until_timeout(90) {
-+		if (poll(&pfd, 1, 1000) == 0) {
-+			igt_info("Child blocked after %lu active contexts\n",
-+				 count);
-+			blocked = true;
-+			break;
-+		}
-+		read(pfd.fd, &count, sizeof(count));
-+	}
-+
-+	if (blocked) {
-+		struct sigaction old_sa, sa = { .sa_handler = alarm_handler };
-+		struct itimerval itv;
-+
-+		sigaction(SIGALRM, &sa, &old_sa);
-+		itv.it_value.tv_sec = 0;
-+		itv.it_value.tv_usec = 250000; /* 250ms */
-+		setitimer(ITIMER_REAL, &itv, NULL);
-+
-+		igt_assert_f(__execbuf(i915, &spin->execbuf) == 0,
-+			     "Active execbuf blocked for more than 250ms by %lu child contexts\n",
-+			     count);
-+
-+		memset(&itv, 0, sizeof(itv));
-+		setitimer(ITIMER_REAL, &itv, NULL);
-+		sigaction(SIGALRM, &old_sa, NULL);
-+	} else {
-+		igt_info("Not blocked after %lu active contexts\n",
-+			 count);
-+	}
-+
-+	*done = 1;
-+	kill_children(SIGHUP);
-+	igt_waitchildren();
-+	gem_quiescent_gpu(i915);
-+	close(lnk[0]);
-+
-+	munmap(done, 4096);
-+}
-+
- igt_main
- {
- 	const uint32_t batch[2] = { 0, MI_BATCH_BUFFER_END };
-@@ -369,6 +486,9 @@ igt_main
- 	igt_subtest("eviction")
- 		big_exec(fd, handle, 0);
- 
-+	igt_subtest("basic-pi-active")
-+		pi_active(fd);
-+
- 	igt_subtest("basic-norecovery")
- 		norecovery(fd);
- 
--- 
-2.26.2
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 30 ++++++++++++++++++++++++++++--
+>  1 file changed, 28 insertions(+), 2 deletions(-)
+> =
 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index da567fac7c93..c7d726a656b2 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3853,6 +3853,24 @@ static bool intel_crtc_can_enable_sagv(const struc=
+t intel_crtc_state *crtc_state
+>  	return true;
+>  }
+>  =
+
+> +static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc=
+_state)
+> +{
+> +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state->=
+uapi.state);
+> +	/*
+> +	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> +	 * more then one pipe enabled
+> +	 */
+> +	if (hweight8(state->active_pipes) > 1)
+> +		return false;
+
+That stuff should no longer be here since we now have it done properly
+in intel_can_eanble_sagv().
+
+> +
+> +	return intel_crtc_can_enable_sagv(crtc_state);
+> +}
+> +
+> +static bool icl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc=
+_state)
+> +{
+> +	return intel_crtc_can_enable_sagv(crtc_state);
+> +}
+
+This looks the wrong way around. IMO intel_crtc_can_enable_sagv()
+should rather call the skl vs. icl variants as needed. Although we
+don't yet have the icl variant so the oerdering of the patches is
+a bit weird.
+
+> +
+>  bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+>  {
+>  	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pipes))
+> @@ -3863,22 +3881,30 @@ bool intel_can_enable_sagv(const struct intel_bw_=
+state *bw_state)
+>  =
+
+>  static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>  	int ret;
+>  	struct intel_crtc *crtc;
+> -	struct intel_crtc_state *new_crtc_state;
+> +	const struct intel_crtc_state *new_crtc_state;
+>  	struct intel_bw_state *new_bw_state =3D NULL;
+>  	const struct intel_bw_state *old_bw_state =3D NULL;
+>  	int i;
+>  =
+
+>  	for_each_new_intel_crtc_in_state(state, crtc,
+>  					 new_crtc_state, i) {
+> +		bool can_sagv;
+> +
+>  		new_bw_state =3D intel_atomic_get_bw_state(state);
+>  		if (IS_ERR(new_bw_state))
+>  			return PTR_ERR(new_bw_state);
+>  =
+
+>  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
+>  =
+
+> -		if (intel_crtc_can_enable_sagv(new_crtc_state))
+> +		if (INTEL_GEN(dev_priv) >=3D 11)
+> +			can_sagv =3D icl_crtc_can_enable_sagv(new_crtc_state);
+> +		else
+> +			can_sagv =3D skl_crtc_can_enable_sagv(new_crtc_state);
+> +
+> +		if (can_sagv)
+>  			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+>  		else
+>  			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
