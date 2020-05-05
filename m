@@ -1,39 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1860B1C4B3D
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 03:06:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AEB1C5DA5
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 18:32:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0015B89CF8;
-	Tue,  5 May 2020 01:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547B789FAC;
+	Tue,  5 May 2020 16:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
- Tue, 05 May 2020 01:06:51 UTC
-Received: from smtp90.iad3b.emailsrvr.com (smtp90.iad3b.emailsrvr.com
- [146.20.161.90])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A09B989CF8
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 01:06:51 +0000 (UTC)
-X-Auth-ID: kenneth@whitecape.org
-Received: by smtp12.relay.iad3b.emailsrvr.com (Authenticated sender:
- kenneth-AT-whitecape.org) with ESMTPSA id 83726C0133; 
- Mon,  4 May 2020 20:57:09 -0400 (EDT)
-X-Sender-Id: kenneth@whitecape.org
-Received: from mizzik.localnet (50-39-162-34.bvtn.or.frontiernet.net
- [50.39.162.34]) (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
- by 0.0.0.0:465 (trex/5.7.12); Mon, 04 May 2020 20:57:09 -0400
-From: Kenneth Graunke <kenneth@whitecape.org>
-To: intel-gfx@lists.freedesktop.org,
- D Scott Phillips <d.scott.phillips@intel.com>
-Date: Mon, 04 May 2020 17:57:05 -0700
-Message-ID: <2650835.mvXUDI8C0e@mizzik>
-In-Reply-To: <20200505000146.2295525-1-d.scott.phillips@intel.com>
-References: <20200505000146.2295525-1-d.scott.phillips@intel.com>
+Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
+ [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1FD6E030;
+ Tue,  5 May 2020 01:30:02 +0000 (UTC)
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5eb0c1190000>; Mon, 04 May 2020 18:27:53 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate102.nvidia.com (PGP Universal service);
+ Mon, 04 May 2020 18:30:01 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate102.nvidia.com on Mon, 04 May 2020 18:30:01 -0700
+Received: from [10.2.56.198] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 5 May
+ 2020 01:30:01 +0000
+To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>, Ralph Campbell
+ <rcampbell@nvidia.com>
+References: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+X-Nvconfidentiality: public
+From: John Hubbard <jhubbard@nvidia.com>
+Message-ID: <c0d02b98-c356-60b1-6043-5b8d1a9be19a@nvidia.com>
+Date: Mon, 4 May 2020 18:30:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-Classification-ID: e6077747-36d2-49b6-9974-5b775c7eeadd-1-1
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Put HDC flush pipe_control
- bit in the right dword
+In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1588642074; bh=0RmV3sG8w7ohZ9OHDH/pFQovyGtqFiweq5osGERvRpo=;
+ h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=eOY1+0+N16Z8aXdaiKYs4SjvO5ciGMllXCnn4JHvxrMNegzH6IgzBrgMQ6KLknx+2
+ NW61WlLixaCXwpAX66FkMFk33D1AZxP9m+6e4xhyt3iViJHKiqZE0yxobywOngahYp
+ Oa4t4//YPZ9FBYbFVnWJS7FFUuGNZMQcvthU8XFKEm+qluSRkODN/sHHCRiJUh5bGf
+ BKKLGG2OcIR8QibGldQa4e9evirUYK9GxZAkXDoSgZQj+ERLHJV3M/7/AZZ0+IMwVQ
+ /QA2kar4rqltVlXZDL6gLT9+eQ5GwMKMARyXGnZEQoIO2rCTlEo8sgwnQQ5HXAkQnM
+ O4nW+Hut9230g==
+X-Mailman-Approved-At: Tue, 05 May 2020 16:32:36 +0000
+Subject: Re: [Intel-gfx] [PATCH hmm v2 5/5] mm/hmm: remove the customizable
+ pfn format from hmm_range_fault
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,98 +66,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: multipart/mixed; boundary="===============0915026900=="
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
+ nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>,
+ =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0915026900==
-Content-Type: multipart/signed; boundary="nextPart11637060.O9o76ZdvQC"; micalg="pgp-sha256"; protocol="application/pgp-signature"
-
---nextPart11637060.O9o76ZdvQC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-On Monday, May 4, 2020 5:01:46 PM PDT D Scott Phillips wrote:
-> Previously we set HDC_PIPELINE_FLUSH in dword 1 of gen12
-> pipe_control commands. HDC Pipeline flush actually resides in
-> dword 0, and the bit we were setting in dword 1 was Indirect State
-> Pointers Disable, which invalidates indirect state in the render
-> context. This causes failures for userspace, as things like push
-> constant state gets invalidated.
+On 2020-05-01 11:20, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
 > 
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: D Scott Phillips <d.scott.phillips@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine.h | 23 +++++++++++++++++------
->  drivers/gpu/drm/i915/gt/intel_lrc.c    | 11 ++++++-----
->  2 files changed, 23 insertions(+), 11 deletions(-)
+> Presumably the intent here was that hmm_range_fault() could put the data
+> into some HW specific format and thus avoid some work. However, nothing
+> actually does that, and it isn't clear how anything actually could do that
+> as hmm_range_fault() provides CPU addresses which must be DMA mapped.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 19d0b8830905..8338be338ec8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -241,19 +241,24 @@ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
->  void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
->  				    struct drm_printer *p);
->  
-> -static inline u32 *gen8_emit_pipe_control(u32 *batch, u32 flags, u32 offset)
-> +static inline u32 *gen12_emit_pipe_control(u32 *batch, u32 flags0, u32 flags1, u32 offset)
+> Perhaps there is some special HW that does not need DMA mapping, but we
+> don't have any examples of this, and the theoretical performance win of
+> avoiding an extra scan over the pfns array doesn't seem worth the
+> complexity. Plus pfns needs to be scanned anyhow to sort out any
+> DEVICE_PRIVATE pages.
+> 
+> This version replaces the uint64_t with an usigned long containing a pfn
+> and fixed flags. On input flags is filled with the HMM_PFN_REQ_* values,
+> on successful output it is filled with HMM_PFN_* values, describing the
+> state of the pages.
+> 
 
-Great find!  It looks like HDC_PIPELINE_FLUSH moved from bit 41 to bit 9
-even on Icelake / Gen11 - so it might make sense to call this
-gen11_emit_pipe_control() and use it on the Icelake functions.
-
-That said, i915 never sets HDC_PIPELINE_FLUSH until Gen12, so we don't
-actually have a bug to fix on Icelake today.  But if someone started
-trying to set it on Gen11, we would have a bug - hence the suggestion.
-
-With or without any changes,
-
-Reviewed-by: Kenneth Graunke <kenneth@whitecape.org>
-
-and thanks so much for tracking this down!
-
---nextPart11637060.O9o76ZdvQC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAl6wueEACgkQW1vaBx1J
-zDi7vg/5AWn/8/+hWZEfr/2ArL9bWIF6pMQAT95iDVKz/xsCz4kQ2smQalj/aFEd
-nXQIlctPqLcjYPLdsDepyj7h4pAzfdcCepMbJtxBArNvYADWQ2UKTOZwH/hTty8J
-a/EPY0yFRJ3umDAHunhdNP63APCb09w+dyx35LusbfQr4Rauu3+42sKqGvhO7Rt5
-sokotaVQ07Vsx7Vj4EVpZugYEs80luHTjzEFokfG4Z0Rx6UJ7xb5FSFykQhXW9AV
-s7pcNoKUO+fvFTl2SiuCXkkfc4aGcVzSuwN0KUZGRBsP6o54XFEFSwfxASUesE6H
-hIDv4l8L+OmXdZ58ISr/bikO923grfnPpJW9Rr8uj6C98+6SfA8bB8D1CIx2P65d
-gW3PpFQx3YC5hJmpjCifq94nmX4k+2DbloyL/aYiWUjVEFj4qNLyCMyb6tBfO6Yw
-cq97S2GkbTXHBxKkrxxXlPiSPkzJWjLHN+1pH1GpfRsPld3lM7WgC8jtlRCK6D8u
-CNinEQhNe48bUBsLqQQtAgLgXO1so3M8pXk4FR+GqgUSygEfMmqp+Ooa08MmUfsk
-c15SSncQdT9HAYDOqXoZKgZ+ehFg/7JB5mQhw7vDyWEFPqVB3v0bHZLQk/nFa2Ew
-zh6pb/Za1nuTnAhmOo4P4Cp+5/4RhQorpnvsXnNn0FFzDpI/YGk=
-=ZfUS
------END PGP SIGNATURE-----
-
---nextPart11637060.O9o76ZdvQC--
+Just some minor stuff below. I wasn't able to spot any errors in the code,
+though, so these are just documentation nits.
 
 
+...
+
+> 
+> diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
+> index 9924f2caa0184c..c9f2329113a47f 100644
+> --- a/Documentation/vm/hmm.rst
+> +++ b/Documentation/vm/hmm.rst
+> @@ -185,9 +185,6 @@ The usage pattern is::
+>         range.start = ...;
+>         range.end = ...;
+>         range.pfns = ...;
+
+That should be:
+
+           range.hmm_pfns = ...;
 
 
---===============0915026900==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> -      range.flags = ...;
+> -      range.values = ...;
+> -      range.pfn_shift = ...;
+>   
+>         if (!mmget_not_zero(interval_sub->notifier.mm))
+>             return -EFAULT;
+> @@ -229,15 +226,10 @@ The hmm_range struct has 2 fields, default_flags and pfn_flags_mask, that specif
+>   fault or snapshot policy for the whole range instead of having to set them
+>   for each entry in the pfns array.
+>   
+> -For instance, if the device flags for range.flags are::
+> +For instance if the device driver wants pages for a range with at least read
+> +permission, it sets::
+>   
+> -    range.flags[HMM_PFN_VALID] = (1 << 63);
+> -    range.flags[HMM_PFN_WRITE] = (1 << 62);
+> -
+> -and the device driver wants pages for a range with at least read permission,
+> -it sets::
+> -
+> -    range->default_flags = (1 << 63);
+> +    range->default_flags = HMM_PFN_REQ_FAULT;
+>       range->pfn_flags_mask = 0;
+>   
+>   and calls hmm_range_fault() as described above. This will fill fault all pages
+> @@ -246,18 +238,18 @@ in the range with at least read permission.
+>   Now let's say the driver wants to do the same except for one page in the range for
+>   which it wants to have write permission. Now driver set::
+>   
+> -    range->default_flags = (1 << 63);
+> -    range->pfn_flags_mask = (1 << 62);
+> -    range->pfns[index_of_write] = (1 << 62);
+> +    range->default_flags = HMM_PFN_REQ_FAULT;
+> +    range->pfn_flags_mask = HMM_PFN_REQ_WRITE;
+> +    range->pfns[index_of_write] = HMM_PFN_REQ_WRITE;
 
+
+All these choices for _WRITE behavior make it slightly confusing. I mean, it's
+better than it was, but there are default flags, a mask, and an index as well,
+and it looks like maybe we have a little more power and flexibility than
+desirable? Nouveau for example is now just setting the mask only:
+
+// nouveau_range_fault():
+     .pfn_flags_mask = HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE,
+     (.default_flags is not set, so is zero)
+
+Maybe the example should do what Nouveau is doing? And/or do we want to get rid
+of either .default_flags or .pfn_flags_mask?
+
+...
+
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index cf0d9bd61bebf9..99697df28bfe12 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+
+...
+
+> @@ -518,9 +506,45 @@ static const struct mmu_interval_notifier_ops nouveau_svm_mni_ops = {
+>   	.invalidate = nouveau_svm_range_invalidate,
+>   };
+>   
+> +static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
+> +				    struct hmm_range *range, u64 *ioctl_addr)
+> +{
+> +	unsigned long i, npages;
+> +
+> +	/*
+> +	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
+> +	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
+> +	 *
+> +	 * This is all just encoding the internal hmm reprensetation into a
+
+"representation"
+
+...
+
+> @@ -542,12 +564,15 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+>   			return -EBUSY;
+>   
+>   		range.notifier_seq = mmu_interval_read_begin(range.notifier);
+> -		range.default_flags = 0;
+> -		range.pfn_flags_mask = -1UL;
+>   		down_read(&mm->mmap_sem);
+>   		ret = hmm_range_fault(&range);
+>   		up_read(&mm->mmap_sem);
+>   		if (ret) {
+> +			/*
+> +			 * FIXME: the input PFN_REQ flags are destroyed on
+> +			 * -EBUSY, we need to regenerate them, also for the
+> +			 * other continue below
+> +			 */
+
+
+How serious is this FIXME? It seems like we could get stuck in a loop here,
+if we're not issuing a new REQ, right?
+
+
+>   			if (ret == -EBUSY)
+>   				continue;
+>   			return ret;
+> @@ -562,7 +587,7 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+>   		break;
+>   	}
+>   
+> -	nouveau_dmem_convert_pfn(drm, &range);
+> +	nouveau_hmm_convert_pfn(drm, &range, ioctl_addr);
+>   
+>   	svmm->vmm->vmm.object.client->super = true;
+>   	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, data, size, NULL);
+> @@ -589,6 +614,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
+>   		} i;
+>   		u64 phys[16];
+>   	} args;
+> +	unsigned long hmm_pfns[ARRAY_SIZE(args.phys)];
+
+
+Is there a risk of blowing up the stack here?
+
+...
+
+> --- a/include/linux/hmm.h
+> +++ b/include/linux/hmm.h
+> @@ -19,45 +19,45 @@
+>   #include <linux/mmu_notifier.h>
+>   
+>   /*
+> - * hmm_pfn_flag_e - HMM flag enums
+> + * On output:
+> + * 0             - The page is faultable and a future call with
+> + *                 HMM_PFN_REQ_FAULT could succeed.
+> + * HMM_PFN_VALID - the pfn field points to a valid PFN. This PFN is at
+> + *                 least readable. If dev_private_owner is !NULL then this could
+> + *                 point at a DEVICE_PRIVATE page.
+> + * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
+> + * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
+> + *                 fail. ie poisoned memory, special pages, no vma, etc
+>    *
+> - * Flags:
+> - * HMM_PFN_VALID: pfn is valid. It has, at least, read permission.
+> - * HMM_PFN_WRITE: CPU page table has write permission set
+> - *
+> - * The driver provides a flags array for mapping page protections to device
+> - * PTE bits. If the driver valid bit for an entry is bit 3,
+> - * i.e., (entry & (1 << 3)), then the driver must provide
+> - * an array in hmm_range.flags with hmm_range.flags[HMM_PFN_VALID] == 1 << 3.
+> - * Same logic apply to all flags. This is the same idea as vm_page_prot in vma
+> - * except that this is per device driver rather than per architecture.
+> + * On input:
+> + * 0                 - Return the current state of the page, do not fault it.
+> + * HMM_PFN_REQ_FAULT - The output must have HMM_PFN_VALID or hmm_range_fault()
+> + *                     will fail
+> + * HMM_PFN_REQ_WRITE - The output must have HMM_PFN_WRITE or hmm_range_fault()
+> + *                     will fail. Must be combined with HMM_PFN_REQ_FAULT.
+>    */
+> -enum hmm_pfn_flag_e {
+> -	HMM_PFN_VALID = 0,
+> -	HMM_PFN_WRITE,
+> -	HMM_PFN_FLAG_MAX
+> +enum hmm_pfn_flags {
+
+Let's add:
+
+         /* Output flags: */
+
+> +	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
+> +	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
+> +	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
+> +
+
+         /* Input flags: */
+
+...
+
+> @@ -174,44 +162,44 @@ static int hmm_vma_walk_hole(unsigned long addr, unsigned long end,
+>   	}
+>   	if (required_fault)
+>   		return hmm_vma_fault(addr, end, required_fault, walk);
+> -	return hmm_pfns_fill(addr, end, range, HMM_PFN_NONE);
+> +	return hmm_pfns_fill(addr, end, range, 0);
+>   }
+>   
+> -static inline uint64_t pmd_to_hmm_pfn_flags(struct hmm_range *range, pmd_t pmd)
+> +static inline unsigned long pmd_to_hmm_pfn_flags(struct hmm_range *range,
+> +						 pmd_t pmd)
+>   {
+>   	if (pmd_protnone(pmd))
+>   		return 0;
+> -	return pmd_write(pmd) ? range->flags[HMM_PFN_VALID] |
+> -				range->flags[HMM_PFN_WRITE] :
+> -				range->flags[HMM_PFN_VALID];
+> +	return pmd_write(pmd) ? (HMM_PFN_VALID | HMM_PFN_WRITE) : HMM_PFN_VALID;
+
+
+I always found the previous range->flags[...] approach hard to remember, so it's
+nice to see a simpler version now.
+
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0915026900==--
-
-
-
