@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D3A1C6277
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 22:55:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B76A11C6298
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 May 2020 23:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B7C6E23F;
-	Tue,  5 May 2020 20:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E93C489E7B;
+	Tue,  5 May 2020 21:04:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5E016E23F
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 20:55:43 +0000 (UTC)
-IronPort-SDR: ZyTc/eF2MXOXhq13l+riw/UNdEa8rKaCeumEH6Dd1i0TXuOllmVnxqlg/GBOS2T0dAdaQclTTJ
- 2tK88DZguYDQ==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9528B89E7B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2020 21:04:43 +0000 (UTC)
+IronPort-SDR: DpkF5n6lOZzxq8LPqIBIVyAttA/mFWUvOYCcsXppXYbwf4WvYJLHXM7qTeCidyV7e2ukZqmjq3
+ gVZtOK+8JJhw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 13:55:43 -0700
-IronPort-SDR: fAzIja8w1kaTVEzL5rulL9eXmIOFG2UGUv+zDm+LyRGLDGTmoCziE424TpvOrNUBSFA5yDU2LU
- +QbH2lQV0IDA==
-X-IronPort-AV: E=Sophos;i="5.73,356,1583222400"; d="scan'208";a="461186583"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 14:04:42 -0700
+IronPort-SDR: bUJrBiq0quh5jVLWYMQtTYzFIV7ElPsuJ2YJtWQUhW/6Ys2Ap5J8S7OtduQlMoe9FWpw4wtuLe
+ /vxxnN5dEPHg==
+X-IronPort-AV: E=Sophos;i="5.73,356,1583222400"; d="scan'208";a="406995927"
 Received: from dsp-dsk1.jf.intel.com (HELO localhost) ([10.54.70.63])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2020 13:55:42 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2020 14:04:42 -0700
 From: D Scott Phillips <d.scott.phillips@intel.com>
 To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200430154735.22434-6-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20200430154735.22434-2-mika.kuoppala@linux.intel.com>
 References: <20200430154735.22434-1-mika.kuoppala@linux.intel.com>
- <20200430154735.22434-6-mika.kuoppala@linux.intel.com>
-Date: Tue, 05 May 2020 13:53:09 -0700
-Message-ID: <87pnbicde2.fsf@intel.com>
+ <20200430154735.22434-2-mika.kuoppala@linux.intel.com>
+Date: Tue, 05 May 2020 14:02:09 -0700
+Message-ID: <87mu6mccz2.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/gen12: Invalidate indirect
- state pointers
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/gen12: Fix HDC pipeline flush
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,7 +47,6 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -56,14 +54,12 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Mika Kuoppala <mika.kuoppala@linux.intel.com> writes:
 
-> Aim for completeness for invalidating everything
-> and mark state pointers stale.
+> HDC pipeline flush is bit on the first dword of
+> the PIPE_CONTROL, not the second. Make it so.
 >
 > Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-nak, this breaks iris. indirect state disable removes push constant
-state from the render context, not just invalidating it
-emphemerally. iris is depending on that state to persist.
+Fixes: 4aa0b5d457f5 ("drm/i915/tgl: Add HDC Pipeline Flush")
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
