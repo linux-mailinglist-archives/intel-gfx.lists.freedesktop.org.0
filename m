@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FF11C7C1F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 23:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 806091C7C4E
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 23:21:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED43D6E8EE;
-	Wed,  6 May 2020 21:15:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2F0589DC0;
+	Wed,  6 May 2020 21:21:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D18A56E8EE
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 21:15:42 +0000 (UTC)
-IronPort-SDR: FqnUh/InOH0N3HMHJj7uq0E6OT46/GSV06Q7JSMOk4bXyRSvNMVs0/ndt0cNj6yekRWKh1BV0p
- nBSfuG+c5pNg==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99C7289DC0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 21:21:31 +0000 (UTC)
+IronPort-SDR: bfA8cqSZtskkttwNmKSdicDN/pzEkOatIPdzNgPXO0WBTkSGMQO0arpLumE1BGyZq+Oe76RXEH
+ Sz8cAb9NIUSw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 14:15:40 -0700
-IronPort-SDR: Zz8pVHqFUgB+oZpyDPAFrboWwa+UD5LIAh8WFMaGYZfAYeh2mBPXZO4ujbS38lxQAxPZ4dRDzz
- 4q5PWcMf22KA==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 14:21:30 -0700
+IronPort-SDR: sVYtzn/mSJpVCCRGeccvIZ4ANG/0bGAkSok3XBwtYhu8+DDGSOlwxKNEVh1QqXVNKnLul1+z5m
+ hFzhDmW/QITQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,360,1583222400"; d="scan'208";a="249888245"
+X-IronPort-AV: E=Sophos;i="5.73,360,1583222400"; d="scan'208";a="249058174"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by fmsmga007.fm.intel.com with ESMTP; 06 May 2020 14:15:40 -0700
+ by orsmga007.jf.intel.com with ESMTP; 06 May 2020 14:21:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 May 2020 14:14:05 -0700
-Message-Id: <20200506211405.816125-1-matthew.d.roper@intel.com>
+Date: Wed,  6 May 2020 14:21:29 -0700
+Message-Id: <20200506212129.816238-1-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200504225227.464666-17-matthew.d.roper>
-References: <20200504225227.464666-17-matthew.d.roper>
+In-Reply-To: <20200504225227.464666-17-matthew.d.roper@intel.com>
+References: <20200504225227.464666-17-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH v3 16/22] drm/i915/rkl: Don't try to access
  transcoder D
