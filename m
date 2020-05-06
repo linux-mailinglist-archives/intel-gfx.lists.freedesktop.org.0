@@ -1,34 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670121C7573
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 17:55:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D072A1C7597
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 17:59:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F16C16E8A2;
-	Wed,  6 May 2020 15:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D192895E2;
+	Wed,  6 May 2020 15:59:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91C746E8A2
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 15:55:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21128918-1500050 for multiple; Wed, 06 May 2020 16:55:12 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200506144448.GB1219060@intel.com>
-References: <20200429205446.3259-1-chris@chris-wilson.co.uk>
- <20200429205446.3259-4-chris@chris-wilson.co.uk>
- <20200506144448.GB1219060@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <158878050724.927.1472476462505554945@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 06 May 2020 16:55:07 +0100
-Subject: Re: [Intel-gfx] [CI 4/6] drm/i915/gt: Switch to manual evaluation
- of RPS
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 106F9895E2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 15:59:53 +0000 (UTC)
+IronPort-SDR: iAwy2jSUdzqjw909PI/IBAeKvhWt/cl3SMk5EAv+HdDQlsbjY264sZv0krxaA9kjt+AF6zi7dJ
+ wA5V9rShJR1A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 08:59:36 -0700
+IronPort-SDR: Dw7XxqGWunrfjITaR93T9uXo3n3u1iA3cGZ5HC/wV9JDhuSU/BzU/DZljm8xYbngtJ+Pk2CdR/
+ nGtikSnccwHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="339050410"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by orsmga001.jf.intel.com with ESMTP; 06 May 2020 08:59:34 -0700
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id 63C2F84076E; Wed,  6 May 2020 18:58:56 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  6 May 2020 18:58:55 +0300
+Message-Id: <20200506155855.347-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200506144734.29297-4-mika.kuoppala@linux.intel.com>
+References: <20200506144734.29297-4-mika.kuoppala@linux.intel.com>
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gen12: Invalidate aux table
+ entries forcibly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,72 +48,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Yang A Shi <yang.a.shi@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Rodrigo Vivi (2020-05-06 15:44:48)
-> On Wed, Apr 29, 2020 at 09:54:44PM +0100, Chris Wilson wrote:
-> > As with the realisation for soft-rc6, we respond to idling the engines
-> > within microseconds, far faster than the response times for HW RC6 and
-> > RPS. Furthermore, our fast parking upon idle, prevents HW RPS from
-> > running for many desktop workloads, as the RPS evaluation intervals are
-> > on the order of tens of milliseconds, but the typical workload is just a
-> > couple of milliseconds, but yet we still need to determine the best
-> > frequency for user latency versus power.
-> > 
-> > Recognising that the HW evaluation intervals are a poor fit, and that
-> > they were deprecated [in bspec at least] from gen10, start to wean
-> > ourselves off them and replace the EI with a timer and our accurate
-> > busy-stats. The principle benefit of manually evaluating RPS intervals
-> > is that we can be more responsive for better performance and powersaving
-> > for both spiky workloads and steady-state.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1698
-> > Fixes: 98479ada421a ("drm/i915/gt: Treat idling as a RPS downclock event")
-> 
-> Hi Chris,
-> 
-> this one failed to apply on drm-intel-fixes and it looks critical
-> to me... I attempted some cherry-pick and backport of other patches
-> on this series, but they took me to other dependencies and many
-> apparently non-trivial fixes.
+Aux table invalidation can fail on update. So
+next access may cause memory access to be into stale entry.
 
-It's the entire series. It's a UX regression rather than power, so it
-could slip, and I would err on the side of caution as it is quite a
-dramatic change to throw in late into a 5.7-rc. There's going to be no
-user feedback on it until it is in the rc, by which point we have no
-time to fix it.
+Proposed workaround is to invalidate entries between
+all batchbuffers.
 
-> So, do we have a solution for this that we could apply for 5.7?
-> Or the faith of 5.7 is also the part faster solution?
-> 
-> Btw, there are other patches on the list of failed cherry-picks:
-> 
-> 614654abe847 ("drm/i915: Check current i915_vma.pin_count status first on unbind")
+v2: correct register address (Yang)
 
-We need that to fix a deadlock.
+References bspec#43904, hsdes#1809175790
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chuansheng Liu <chuansheng.liu@intel.com>
+Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+Cc: Yang A Shi <yang.a.shi@intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 16 +++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h     |  2 ++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
 
-> c4e8ba739034 ("drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore")
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index e1235d504837..bbdb0e2a4571 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4539,6 +4539,17 @@ static u32 preparser_disable(bool state)
+ 	return MI_ARB_CHECK | 1 << 8 | state;
+ }
+ 
++static u32 *
++gen12_emit_aux_table_inv(struct i915_request *rq, u32 *cs)
++{
++	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = i915_mmio_reg_offset(GEN12_GFX_CCS_AUX_NV);
++	*cs++ = AUX_INV;
++	*cs++ = MI_NOOP;
++
++	return cs;
++}
++
+ static int gen12_emit_flush_render(struct i915_request *request,
+ 				   u32 mode)
+ {
+@@ -4587,7 +4598,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 
+ 		flags |= PIPE_CONTROL_CS_STALL;
+ 
+-		cs = intel_ring_begin(request, 8);
++		cs = intel_ring_begin(request, 8 + 4);
+ 		if (IS_ERR(cs))
+ 			return PTR_ERR(cs);
+ 
+@@ -4600,6 +4611,9 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 
+ 		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
+ 
++		/* hsdes: 1809175790 */
++		cs = gen12_emit_aux_table_inv(request, cs);
++
+ 		*cs++ = preparser_disable(false);
+ 		intel_ring_advance(request, cs);
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index fde54b86ea20..5168cde0596f 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2526,6 +2526,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define HSW_GTT_CACHE_EN	_MMIO(0x4024)
+ #define   GTT_CACHE_EN_ALL	0xF0007FFF
+ #define GEN7_WR_WATERMARK	_MMIO(0x4028)
++#define GEN12_GFX_CCS_AUX_NV	_MMIO(0x4208)
++#define   AUX_INV		REG_BIT(0)
+ #define GEN7_GFX_PRIO_CTRL	_MMIO(0x402C)
+ #define ARB_MODE		_MMIO(0x4030)
+ #define   ARB_MODE_SWIZZLE_SNB	(1 << 4)
+-- 
+2.17.1
 
-That to behave nicely with VkEvents.
-
-> a95f3ac21d64 ("drm/i915/gem: Remove object_is_locked assertion from unpin_from_display_plane")
-
-And that's a potential bug in 5.7, so needs fixing.
-
-> 2632f174a2e1 ("drm/i915/execlists: Avoid reusing the same logical CCID")
-> 5c4a53e3b1cb ("drm/i915/execlists: Track inflight CCID")
-
-We probably need these based on our presumption of how the HW might
-work.
-> 
-> do you have any updated ickle/dif branch available?
-
-Will do.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
