@@ -1,46 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB431C7206
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 15:47:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE551C7208
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 15:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 605696E87C;
-	Wed,  6 May 2020 13:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68AA26E87B;
+	Wed,  6 May 2020 13:48:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE2C6E87B
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 13:47:10 +0000 (UTC)
-IronPort-SDR: EF38jhx4Nyd07bVLik7pvjuP7iFZdRk7GgoV8YRPCA39ll/iN9r48TcnmXKE8YIOCkVtyz+sUU
- ojtUwXQYUedg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 06:47:09 -0700
-IronPort-SDR: TqHIrldbfQratdJuCNYPstWCuH3cQbeogkdjceijN2xB/ju0aqDuCrGisaxI8cOUhnDILkEApk
- ZgwBFDIZnsPQ==
-X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="407247533"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 06:47:08 -0700
-Date: Wed, 6 May 2020 16:42:51 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200506134251.GA16623@intel.com>
-References: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
- <20200505102247.32452-4-stanislav.lisovskiy@intel.com>
- <20200505105911.GG6112@intel.com>
- <20200506083105.GA16959@intel.com>
- <20200506091228.GN6112@intel.com>
- <20200506121210.GA16181@intel.com>
- <20200506131636.GR6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 879C36E87B;
+ Wed,  6 May 2020 13:48:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7F7D8A47E8;
+ Wed,  6 May 2020 13:48:03 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200506131636.GR6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v27 3/6] drm/i915: Add TGL+ SAGV support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 06 May 2020 13:48:03 -0000
+Message-ID: <158877288351.11895.14997201048383651728@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Plumb_crtc_state_to_link_training_code_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,582 +38,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 06, 2020 at 04:16:36PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, May 06, 2020 at 03:12:10PM +0300, Lisovskiy, Stanislav wrote:
-> > On Wed, May 06, 2020 at 12:12:28PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Wed, May 06, 2020 at 11:31:05AM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Tue, May 05, 2020 at 01:59:11PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Tue, May 05, 2020 at 01:22:44PM +0300, Stanislav Lisovskiy wro=
-te:
-> > > > > > Starting from TGL we need to have a separate wm0
-> > > > > > values for SAGV and non-SAGV which affects
-> > > > > > how calculations are done.
-> > > > > > =
-
-> > > > > > v2: Remove long lines
-> > > > > > v3: Removed COLOR_PLANE enum references
-> > > > > > v4, v5, v6: Fixed rebase conflict
-> > > > > > =
-
-> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.c=
-om>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
-> > > > > >  .../drm/i915/display/intel_display_types.h    |   3 +
-> > > > > >  drivers/gpu/drm/i915/intel_pm.c               | 128 ++++++++++=
-+++++++-
-> > > > > >  3 files changed, 130 insertions(+), 9 deletions(-)
-> > > > > > =
-
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/dri=
-vers/gpu/drm/i915/display/intel_display.c
-> > > > > > index fd6d63b03489..be5741cb7595 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > @@ -13961,7 +13961,9 @@ static void verify_wm_state(struct inte=
-l_crtc *crtc,
-> > > > > >  		/* Watermarks */
-> > > > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > > > -						&sw_plane_wm->wm[level]))
-> > > > > > +						&sw_plane_wm->wm[level]) ||
-> > > > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm=
-[level],
-> > > > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > > > >  				continue;
-> > > > > >  =
-
-> > > > > >  			drm_err(&dev_priv->drm,
-> > > > > > @@ -14016,7 +14018,9 @@ static void verify_wm_state(struct inte=
-l_crtc *crtc,
-> > > > > >  		/* Watermarks */
-> > > > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > > > -						&sw_plane_wm->wm[level]))
-> > > > > > +						&sw_plane_wm->wm[level]) ||
-> > > > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm=
-[level],
-> > > > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > > > >  				continue;
-> > > > > >  =
-
-> > > > > >  			drm_err(&dev_priv->drm,
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h=
- b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > > > index 9488449e4b94..32cbbf7dddc6 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > > > @@ -688,11 +688,14 @@ struct skl_plane_wm {
-> > > > > >  	struct skl_wm_level wm[8];
-> > > > > >  	struct skl_wm_level uv_wm[8];
-> > > > > >  	struct skl_wm_level trans_wm;
-> > > > > > +	struct skl_wm_level sagv_wm0;
-> > > > > > +	struct skl_wm_level uv_sagv_wm0;
-> > > > > =
-
-> > > > > As mentioned before uv_wm is not a thing on icl+, so nuke this.
-> > > > =
-
-> > > > This is used in skl_plane_wm_level accessor, which is used for all
-> > > > platforms, not just icl+. I remember we had agreed that for all pla=
-tforms
-> > > > before tgl I simply copy sagv_wm0 values from regular wm0, so that =
-this
-> > > > behaviour is unified(remember that your comment about memcpy which =
-I changed
-> > > > to assignment, see skl_compute_sagv_wm). =
-
-> > > =
-
-> > > I think having that duplicated is just making things more confusing.
-> > > Also uv_wm is never used by the hardware even on pre-icl, so having
-> > > the accessor thing use it for the hw programming just doesn't make
-> > > any sense.
-> > =
-
-> > Problem is that we use it in skl_allocate_pipe_ddb in a few places:
-> > =
-
-> > blocks +=3D wm_level->min_ddb_alloc;
-> > blocks +=3D wm_uv_level->min_ddb_alloc;
-> =
-
-> I don't think we should need any accessor in there. If we do
-> what I suggested earlier, which I think was something like
-> (can't find the mail anymore unfortunately):
-> =
-
-> for reverse wm levels {
-> 	blocks =3D sum(wm[level] blocks for all planes) +
-> 		sum(uv_wm[level] blocks for all planes)
-> 	...
-> 	if (block <=3D alloc_size)
-> 		break;
-> }
-> =
-
-> if (level < 0)
-> 	fail;
-> =
-
-> blocks_sagv =3D sum(sagv_wm blocks for all planes)
-> if (blocks_sagv > blocks && blocks_sagv <=3D alloc_size) {
->     blocks =3D blocks_sagv;
->     use_sagv_wm =3D true;
-> } else {
->     use_sagv_wm =3D false;
-> }
-> alloc_size -=3D blocks;
-> =
-
-> for_each_plane_id() {
-> 	total =3D use_sagv_wm ? sagv_wm.min_ddb_alloc :
-> 		wm[level].min_ddb_alloc;
-> 	...
-> }
-> =
-
->
-
-It is actually almost same behaviour now: =
-
-skl_compute_ddb->skl_sllocate_pipe_ddb is now invoked
-before we call intel_compute_sagv_mask, which means
-that use_sagv_wm is set to false, so it will be just
-transparent leading to same wm->wm[level], wm->uv_wm[level]
-accesses as done now.
-Then in intel_compute_sagv_mask we calculate if each plane
-ddb entry is big enough to fit SAGV min_ddb_alloc and set
-use_sagv_wm bit in a pipe_wm struct.
-So the only difference here is that use_sagv_wm bit is set
-in intel_compute_sagv_mask and not skl_allocate_pipe_ddb, =
-
-which seems logical imo and anyway logic would be the same.
-
-This accessor itself is then conveniently used in skl_write_plane
-and skl_write_cursor_wm and others, providing proper wm level(otherwise
-there would be duplicated condition everywhere).
-
-So should I throw away skl_plane_wm_accessor completely?
-Because we anyway use wm->uv_wm in skl_allocate_pipe_ddb
-and the logic is otherwise same.
-
-
-Stan
-
- =
-
-> =
-
-> > =
-
-> > then those plane data rates:
-> > =
-
-> > rate =3D plane_data_rate[plane_id];
-> > extra =3D min_t(u16, alloc_size,
-> >       DIV64_U64_ROUND_UP(alloc_size * rate, total_data_rate));
-> > total[plane_id] =3D wm_level->min_ddb_alloc + extra;
-> > alloc_size -=3D extra;
-> > total_data_rate -=3D rate;
-> > =
-
-> > if (total_data_rate =3D=3D 0)
-> > 	break;
-> > =
-
-> > rate =3D uv_plane_data_rate[plane_id];
-> > extra =3D min_t(u16, alloc_size,
-> >       DIV64_U64_ROUND_UP(alloc_size * rate, total_data_rate));
-> > =
-
-> > uv_total[plane_id] =3D wm_uv_level->min_ddb_alloc + extra;
-> > =
-
-> > So if I remove this wm_uv from skl_plane_wm_level accessor,
-> > the logic in skl_allocate_pipe_ddb will obvisouly change?
-> > =
-
-> > =
-
-> > Stan
-> > =
-
-> > =
-
-> > > =
-
-> > > For the compute side I think all we should really need is
-> > > something like:
-> > > =
-
-> > > tgl_compute_sagv_wm()
-> > > {
-> > > 	skl_compute_wm_level(sagv_wm0, latency + whatever);
-> > > }
-> > > =
-
-> > > skl_build_plane_wm_single()
-> > > {
-> > > 	...
-> > > 	skl_compute_transition_wm();
-> > > +	if (gen >=3D 12)
-> > > +		tgl_compute_sagv_wm();
-> > > }
-> > > =
-
-> > > And for the progamming side we should just pick the right
-> > > wm0 based on the crtc_state->use_sagv_wm or whatever flag.
-> > > =
-
-> > > > =
-
-> > > > So if I remove it and this is called for pre-icl platforms, guess t=
-his would still
-> > > > need wm_uv data?
-> > > > =
-
-> > > > =
-
-> > > > Stan
-> > > > =
-
-> > > > > =
-
-> > > > > >  	bool is_planar;
-> > > > > >  };
-> > > > > >  =
-
-> > > > > >  struct skl_pipe_wm {
-> > > > > >  	struct skl_plane_wm planes[I915_MAX_PLANES];
-> > > > > > +	bool can_sagv;
-> > > > > =
-
-> > > > > I would call it use_sagv_wm or somesuch to make it actually clear=
- what
-> > > > > it does.
-> > > > > =
-
-> > > > > >  };
-> > > > > >  =
-
-> > > > > >  enum vlv_wm_level {
-> > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/=
-i915/intel_pm.c
-> > > > > > index c7d726a656b2..1b9925b6672c 100644
-> > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > @@ -3871,6 +3871,9 @@ static bool icl_crtc_can_enable_sagv(cons=
-t struct intel_crtc_state *crtc_state)
-> > > > > >  	return intel_crtc_can_enable_sagv(crtc_state);
-> > > > > >  }
-> > > > > >  =
-
-> > > > > > +static bool
-> > > > > > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_s=
-tate);
-> > > > > > +
-> > > > > >  bool intel_can_enable_sagv(const struct intel_bw_state *bw_sta=
-te)
-> > > > > >  {
-> > > > > >  	if (bw_state->active_pipes && !is_power_of_2(bw_state->active=
-_pipes))
-> > > > > > @@ -3884,7 +3887,7 @@ static int intel_compute_sagv_mask(struct=
- intel_atomic_state *state)
-> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev=
-);
-> > > > > >  	int ret;
-> > > > > >  	struct intel_crtc *crtc;
-> > > > > > -	const struct intel_crtc_state *new_crtc_state;
-> > > > > > +	struct intel_crtc_state *new_crtc_state;
-> > > > > >  	struct intel_bw_state *new_bw_state =3D NULL;
-> > > > > >  	const struct intel_bw_state *old_bw_state =3D NULL;
-> > > > > >  	int i;
-> > > > > > @@ -3899,7 +3902,9 @@ static int intel_compute_sagv_mask(struct=
- intel_atomic_state *state)
-> > > > > >  =
-
-> > > > > >  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
-> > > > > >  =
-
-> > > > > > -		if (INTEL_GEN(dev_priv) >=3D 11)
-> > > > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > > > > +			can_sagv =3D tgl_crtc_can_enable_sagv(new_crtc_state);
-> > > > > > +		else if (INTEL_GEN(dev_priv) >=3D 11)
-> > > > > >  			can_sagv =3D icl_crtc_can_enable_sagv(new_crtc_state);
-> > > > > >  		else
-> > > > > >  			can_sagv =3D skl_crtc_can_enable_sagv(new_crtc_state);
-> > > > > > @@ -3921,6 +3926,24 @@ static int intel_compute_sagv_mask(struc=
-t intel_atomic_state *state)
-> > > > > >  			return ret;
-> > > > > >  	}
-> > > > > >  =
-
-> > > > > > +	for_each_new_intel_crtc_in_state(state, crtc,
-> > > > > > +					 new_crtc_state, i) {
-> > > > > > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.opti=
-mal;
-> > > > > > +
-> > > > > > +		/*
-> > > > > > +		 * Due to drm limitation at commit state, when
-> > > > > > +		 * changes are written the whole atomic state is
-> > > > > > +		 * zeroed away =3D> which prevents from using it,
-> > > > > > +		 * so just sticking it into pipe wm state for
-> > > > > > +		 * keeping it simple - anyway this is related to wm.
-> > > > > > +		 * Proper way in ideal universe would be of course not
-> > > > > > +		 * to lose parent atomic state object from child crtc_state,
-> > > > > > +		 * and stick to OOP programming principles, which had been
-> > > > > > +		 * scientifically proven to work.
-> > > > > =
-
-> > > > > Seems like random ramblings. I'd just nuke the comment.
-> > > > > =
-
-> > > > > > +		 */
-> > > > > > +		pipe_wm->can_sagv =3D intel_can_enable_sagv(new_bw_state);
-> > > > > > +	}
-> > > > > > +
-> > > > > >  	if (intel_can_enable_sagv(new_bw_state) !=3D intel_can_enable=
-_sagv(old_bw_state)) {
-> > > > > >  		ret =3D intel_atomic_serialize_global_state(&new_bw_state->b=
-ase);
-> > > > > >  		if (ret)
-> > > > > > @@ -4664,12 +4687,39 @@ skl_plane_wm_level(const struct intel_c=
-rtc_state *crtc_state,
-> > > > > >  		   int level,
-> > > > > >  		   int color_plane)
-> > > > > >  {
-> > > > > > -	const struct skl_plane_wm *wm =3D
-> > > > > > -		&crtc_state->wm.skl.optimal.planes[plane_id];
-> > > > > > +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.opt=
-imal;
-> > > > > > +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
-> > > > > > +
-> > > > > > +	if (!level) {
-> > > > > > +		if (pipe_wm->can_sagv)
-> > > > > > +			return color_plane =3D=3D 0 ? &wm->sagv_wm0 : &wm->uv_sagv_=
-wm0;
-> > > > > > +	}
-> > > > > >  =
-
-> > > > > >  	return color_plane =3D=3D 0 ? &wm->wm[level] : &wm->uv_wm[lev=
-el];
-> > > > > >  }
-> > > > > >  =
-
-> > > > > > +static bool
-> > > > > > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_s=
-tate)
-> > > > > > +{
-> > > > > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.cr=
-tc);
-> > > > > > +	enum plane_id plane_id;
-> > > > > > +
-> > > > > > +	if (!crtc_state->hw.active)
-> > > > > > +		return true;
-> > > > > > +
-> > > > > > +	for_each_plane_id_on_crtc(crtc, plane_id) {
-> > > > > > +		const struct skl_ddb_entry *plane_alloc =3D
-> > > > > > +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > > > > > +		const struct skl_plane_wm *wm =3D
-> > > > > > +			&crtc_state->wm.skl.optimal.planes[plane_id];
-> > > > > > +
-> > > > > > +		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_a=
-lloc)
-> > > > > > +			return false;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	return true;
-> > > > > > +}
-> > > > > > +
-> > > > > >  static int
-> > > > > >  skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
-> > > > > >  {
-> > > > > > @@ -5251,10 +5301,17 @@ static void skl_compute_plane_wm(const =
-struct intel_crtc_state *crtc_state,
-> > > > > >  static void
-> > > > > >  skl_compute_wm_levels(const struct intel_crtc_state *crtc_stat=
-e,
-> > > > > >  		      const struct skl_wm_params *wm_params,
-> > > > > > -		      struct skl_wm_level *levels)
-> > > > > > +		      struct skl_plane_wm *plane_wm,
-> > > > > > +		      int color_plane)
-> > > > > >  {
-> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uap=
-i.crtc->dev);
-> > > > > >  	int level, max_level =3D ilk_wm_max_level(dev_priv);
-> > > > > > +	/*
-> > > > > > +	 * Check which kind of plane is it and based on that calculate
-> > > > > > +	 * correspondent WM levels.
-> > > > > > +	 */
-> > > > > > +	struct skl_wm_level *levels =3D color_plane =3D=3D 1 ?
-> > > > > > +				      plane_wm->uv_wm : plane_wm->wm;
-> > > > > >  	struct skl_wm_level *result_prev =3D &levels[0];
-> > > > > >  =
-
-> > > > > >  	for (level =3D 0; level <=3D max_level; level++) {
-> > > > > > @@ -5268,6 +5325,40 @@ skl_compute_wm_levels(const struct intel=
-_crtc_state *crtc_state,
-> > > > > >  	}
-> > > > > >  }
-> > > > > >  =
-
-> > > > > > +static void skl_compute_sagv_wm(const struct intel_crtc_state =
-*crtc_state,
-> > > > > > +				const struct skl_wm_params *wm_params,
-> > > > > > +				struct skl_plane_wm *plane_wm,
-> > > > > > +				int color_plane)
-> > > > > > +{
-> > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uap=
-i.crtc->dev);
-> > > > > > +	struct skl_wm_level *sagv_wm =3D color_plane =3D=3D 1 ?
-> > > > > > +				&plane_wm->uv_sagv_wm0 : &plane_wm->sagv_wm0;
-> > > > > > +	struct skl_wm_level *levels =3D color_plane =3D=3D 1 ?
-> > > > > > +				plane_wm->uv_wm : plane_wm->wm;
-> > > > > > +
-> > > > > > +	/*
-> > > > > > +	 * For Gen12 if it is an L0 we need to also
-> > > > > > +	 * consider sagv_block_time when calculating
-> > > > > > +	 * L0 watermark - we will need that when making
-> > > > > > +	 * a decision whether enable SAGV or not.
-> > > > > > +	 * For older gens we agreed to copy L0 value for
-> > > > > > +	 * compatibility.
-> > > > > > +	 */
-> > > > > > +	if ((INTEL_GEN(dev_priv) >=3D 12)) {
-> > > > > > +		u32 latency =3D dev_priv->wm.skl_latency[0];
-> > > > > > +
-> > > > > > +		latency +=3D dev_priv->sagv_block_time_us;
-> > > > > > +		skl_compute_plane_wm(crtc_state, 0, latency,
-> > > > > > +				     wm_params, &levels[0],
-> > > > > > +				     sagv_wm);
-> > > > > > +		DRM_DEBUG_KMS("%d L0 blocks required for SAGV vs %d for non-=
-SAGV\n",
-> > > > > > +			      sagv_wm->min_ddb_alloc, levels[0].min_ddb_alloc);
-> > > > > > +	} else {
-> > > > > > +		/* Since all members are POD */
-> > > > > > +		*sagv_wm =3D levels[0];
-> > > > > > +	}
-> > > > > > +}
-> > > > > > +
-> > > > > >  static void skl_compute_transition_wm(const struct intel_crtc_=
-state *crtc_state,
-> > > > > >  				      const struct skl_wm_params *wp,
-> > > > > >  				      struct skl_plane_wm *wm)
-> > > > > > @@ -5344,7 +5435,8 @@ static int skl_build_plane_wm_single(stru=
-ct intel_crtc_state *crtc_state,
-> > > > > >  	if (ret)
-> > > > > >  		return ret;
-> > > > > >  =
-
-> > > > > > -	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> > > > > > +	skl_compute_wm_levels(crtc_state, &wm_params, wm, 0);
-> > > > > > +	skl_compute_sagv_wm(crtc_state, &wm_params, wm, 0);
-> > > > > >  	skl_compute_transition_wm(crtc_state, &wm_params, wm);
-> > > > > >  =
-
-> > > > > >  	return 0;
-> > > > > > @@ -5366,7 +5458,8 @@ static int skl_build_plane_wm_uv(struct i=
-ntel_crtc_state *crtc_state,
-> > > > > >  	if (ret)
-> > > > > >  		return ret;
-> > > > > >  =
-
-> > > > > > -	skl_compute_wm_levels(crtc_state, &wm_params, wm->uv_wm);
-> > > > > > +	skl_compute_wm_levels(crtc_state, &wm_params, wm, 1);
-> > > > > > +	skl_compute_sagv_wm(crtc_state, &wm_params, wm, 1);
-> > > > > >  =
-
-> > > > > >  	return 0;
-> > > > > >  }
-> > > > > > @@ -5751,6 +5844,12 @@ skl_print_wm_changes(struct intel_atomic=
-_state *state)
-> > > > > >  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane=
-_res_l,
-> > > > > >  				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm=
-.plane_res_l);
-> > > > > >  =
-
-> > > > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > > > +				    "[PLANE:%d:%s] sagv wm0 lines %4d -> %4d\n",
-> > > > > > +				    plane->base.base.id, plane->base.name,
-> > > > > > +				    old_wm->sagv_wm0.plane_res_l,
-> > > > > > +				    new_wm->sagv_wm0.plane_res_l);
-> > > > > > +
-> > > > > >  			drm_dbg_kms(&dev_priv->drm,
-> > > > > >  				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d=
-,%4d"
-> > > > > >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > > > > > @@ -5766,6 +5865,12 @@ skl_print_wm_changes(struct intel_atomic=
-_state *state)
-> > > > > >  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
-> > > > > >  				    new_wm->trans_wm.plane_res_b);
-> > > > > >  =
-
-> > > > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > > > +				    "[PLANE:%d:%s] sagv wm0 blocks %4d -> %4d\n",
-> > > > > > +				    plane->base.base.id, plane->base.name,
-> > > > > > +				    old_wm->sagv_wm0.plane_res_b,
-> > > > > > +				    new_wm->sagv_wm0.plane_res_b);
-> > > > > > +
-> > > > > >  			drm_dbg_kms(&dev_priv->drm,
-> > > > > >  				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d=
-,%4d"
-> > > > > >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > > > > > @@ -5780,6 +5885,12 @@ skl_print_wm_changes(struct intel_atomic=
-_state *state)
-> > > > > >  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_all=
-oc,
-> > > > > >  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_all=
-oc,
-> > > > > >  				    new_wm->trans_wm.min_ddb_alloc);
-> > > > > > +
-> > > > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > > > +				    "[PLANE:%d:%s] sagv wm0 min ddb %4d -> %4d\n",
-> > > > > > +				    plane->base.base.id, plane->base.name,
-> > > > > > +				    old_wm->sagv_wm0.min_ddb_alloc,
-> > > > > > +				    new_wm->sagv_wm0.min_ddb_alloc);
-> > > > > >  		}
-> > > > > >  	}
-> > > > > >  }
-> > > > > > @@ -6072,6 +6183,9 @@ void skl_pipe_wm_get_hw_state(struct inte=
-l_crtc *crtc,
-> > > > > >  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
-> > > > > >  		}
-> > > > > >  =
-
-> > > > > > +		memcpy(&wm->sagv_wm0, &wm->wm[0],
-> > > > > > +		       sizeof(struct skl_wm_level));
-> > > > > > +
-> > > > > >  		if (plane_id !=3D PLANE_CURSOR)
-> > > > > >  			val =3D I915_READ(PLANE_WM_TRANS(pipe, plane_id));
-> > > > > >  		else
-> > > > > > -- =
-
-> > > > > > 2.24.1.485.gad05a3d8e5
-> > > > > =
-
-> > > > > -- =
-
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+== Series Details ==
+
+Series: drm/i915: Plumb crtc state to link training code (rev2)
+URL   : https://patchwork.freedesktop.org/series/76993/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8433_full -> Patchwork_17588_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17588_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@vcs0:
+    - shard-skl:          [PASS][1] -> [FAIL][2] ([i915#1528])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl4/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl10/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-glk:          [PASS][3] -> [DMESG-WARN][4] ([i915#716])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-glk6/igt@gen9_exec_parse@allowed-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-glk8/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl4/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-kbl1/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
+    - shard-skl:          [PASS][7] -> [FAIL][8] ([IGT#5])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+
+  * igt@kms_flip_tiling@flip-changes-tiling:
+    - shard-kbl:          [PASS][9] -> [FAIL][10] ([i915#699] / [i915#93] / [i915#95])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl4/igt@kms_flip_tiling@flip-changes-tiling.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-kbl4/igt@kms_flip_tiling@flip-changes-tiling.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][11] -> [FAIL][12] ([i915#1188]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl9/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_psr@psr2_cursor_plane_onoff:
+    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109441]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb2/igt@kms_psr@psr2_cursor_plane_onoff.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-iclb3/igt@kms_psr@psr2_cursor_plane_onoff.html
+
+  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
+    - shard-apl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl3/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl2/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+
+  * igt@kms_vblank@pipe-c-accuracy-idle:
+    - shard-skl:          [PASS][17] -> [FAIL][18] ([i915#43])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl3/igt@kms_vblank@pipe-c-accuracy-idle.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl1/igt@kms_vblank@pipe-c-accuracy-idle.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@vecs0:
+    - shard-skl:          [FAIL][19] ([i915#1528]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl4/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl10/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
+
+  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
+    - shard-kbl:          [DMESG-WARN][21] ([i915#180]) -> [PASS][22] +3 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-kbl3/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
+
+  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
+    - shard-apl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
+
+  * igt@kms_frontbuffer_tracking@fbc-suspend:
+    - shard-kbl:          [DMESG-WARN][25] ([i915#180] / [i915#93] / [i915#95]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
+
+  * igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt:
+    - shard-tglb:         [SKIP][27] ([i915#668]) -> [PASS][28] +6 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb6/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-tglb2/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [FAIL][29] ([fdo#108145] / [i915#265]) -> [PASS][30] +1 similar issue
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl7/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_psr2_su@frontbuffer:
+    - shard-iclb:         [SKIP][31] ([fdo#109642] / [fdo#111068]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb7/igt@kms_psr2_su@frontbuffer.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [SKIP][33] ([fdo#109441]) -> [PASS][34] +1 similar issue
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  * {igt@perf@blocking-parameterized}:
+    - shard-tglb:         [FAIL][35] ([i915#1542]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb6/igt@perf@blocking-parameterized.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-tglb3/igt@perf@blocking-parameterized.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-tglb:         [FAIL][37] ([i915#454]) -> [SKIP][38] ([i915#468])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb1/igt@i915_pm_dc@dc6-psr.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@i915_pm_rpm@pm-caching:
+    - shard-snb:          [INCOMPLETE][39] ([i915#82]) -> [SKIP][40] ([fdo#109271])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-snb1/igt@i915_pm_rpm@pm-caching.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-snb5/igt@i915_pm_rpm@pm-caching.html
+
+  * igt@kms_content_protection@atomic-dpms:
+    - shard-apl:          [FAIL][41] ([fdo#110321] / [fdo#110336] / [i915#95]) -> [TIMEOUT][42] ([i915#1319])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl4/igt@kms_content_protection@atomic-dpms.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl2/igt@kms_content_protection@atomic-dpms.html
+
+  * igt@kms_content_protection@legacy:
+    - shard-apl:          [FAIL][43] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][44] ([i915#1319])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl7/igt@kms_content_protection@legacy.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl8/igt@kms_content_protection@legacy.html
+
+  * igt@kms_content_protection@lic:
+    - shard-apl:          [TIMEOUT][45] ([i915#1319]) -> [FAIL][46] ([fdo#110321])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl2/igt@kms_content_protection@lic.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl1/igt@kms_content_protection@lic.html
+
+  * igt@kms_content_protection@srm:
+    - shard-apl:          [FAIL][47] ([fdo#110321]) -> [TIMEOUT][48] ([i915#1319])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl4/igt@kms_content_protection@srm.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/shard-apl6/igt@kms_content_protection@srm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
+  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
+  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#43]: https://gitlab.freedesktop.org/drm/intel/issues/43
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#488]: https://gitlab.freedesktop.org/drm/intel/issues/488
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#699]: https://gitlab.freedesktop.org/drm/intel/issues/699
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (11 -> 10)
+------------------------------
+
+  Missing    (1): pig-icl-1065g7 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8433 -> Patchwork_17588
+
+  CI-20190529: 20190529
+  CI_DRM_8433: db68fed086f2ddcdc30e0d9ca5faaba5e55d0d01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5633: c8c2e5ed5cd8e4b7a69a903f3f1653612086abcc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17588: 8ec6f4b1e7f06bdfd404ecfdf54337e9f645261f @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
