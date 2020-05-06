@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F571C7BB5
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 22:59:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3D91C7BB8
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 22:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAFFD6E8E5;
-	Wed,  6 May 2020 20:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A2E6E8E9;
+	Wed,  6 May 2020 20:59:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9E956E8DD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E20196E8DE
  for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 20:59:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21131956-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21131957-1500050 
  for multiple; Wed, 06 May 2020 21:59:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 May 2020 21:59:07 +0100
-Message-Id: <20200506205920.24233-2-chris@chris-wilson.co.uk>
+Date: Wed,  6 May 2020 21:59:08 +0100
+Message-Id: <20200506205920.24233-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200506205920.24233-1-chris@chris-wilson.co.uk>
 References: <20200506205920.24233-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/15] drm/i915/gt: Suppress internal
- I915_PRIORITY_WAIT for timeslicing
+Subject: [Intel-gfx] [PATCH 03/15] drm/i915: Ignore submit-fences on the
+ same timeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,86 +45,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure we ignore the I915_PRIORITY_WAIT hint when looking at
-timeslicing, as we do not treat it as a preemption request but as a soft
-ordering hint. If we apply the hint, then when we recompute the ordering
-after unwinding for the timeslice, we will often leave the order
-unchanged due to the soft-hint. However, if we apply it to all those we
-unwind, then the two equivalent levels may be reordered, and since the
-dependencies will be replayed in order, we will not change the order of
-dependencies.
+While we ordinarily do not skip submit-fences due to the accompanying
+hook that we want to callback on execution, a submit-fence on the same
+timeline is meaningless.
 
-There is a small issue with the lack of cross-engine priority bumping on
-unwind, leaving the total graph slightly unordered; but that will not
-result in any misordering of rendering on remote machines as any
-signalers will also be live. Though there may be a danger that this will
-upset our sanitychecks.
-
-Why keep the I915_PRIORITY_WAIT soft-hint, I hear Tvrtko ask? Despite
-the many hairy tricks we play to have the hint and then ignore it, I
-still like the concept of codel and the promise that it gives for low
-latency of independent queues!
-
-Testcase: igt/gem_exec_fence/submit
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 10109f661bcb..3606a7946707 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -414,6 +414,12 @@ static inline int rq_prio(const struct i915_request *rq)
- 	return READ_ONCE(rq->sched.attr.priority);
- }
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 3c38d61c90f8..51b9e820ffe8 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1242,6 +1242,9 @@ i915_request_await_execution(struct i915_request *rq,
+ 			continue;
+ 		}
  
-+static int __effective_prio(int prio)
-+{
-+	BUILD_BUG_ON(__NO_PREEMPTION & ~I915_PRIORITY_MASK); /* only internal */
-+	return prio | __NO_PREEMPTION;
-+}
++		if (fence->context == rq->fence.context)
++			continue;
 +
- static int effective_prio(const struct i915_request *rq)
- {
- 	int prio = rq_prio(rq);
-@@ -439,8 +445,7 @@ static int effective_prio(const struct i915_request *rq)
- 		prio |= I915_PRIORITY_NOSEMAPHORE;
- 
- 	/* Restrict mere WAIT boosts from triggering preemption */
--	BUILD_BUG_ON(__NO_PREEMPTION & ~I915_PRIORITY_MASK); /* only internal */
--	return prio | __NO_PREEMPTION;
-+	return __effective_prio(prio);
- }
- 
- static int queue_prio(const struct intel_engine_execlists *execlists)
-@@ -1126,6 +1131,7 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
- 			continue; /* XXX */
- 
- 		__i915_request_unsubmit(rq);
-+		rq->sched.attr.priority |= __NO_PREEMPTION;
- 
  		/*
- 		 * Push the request back into the queue for later resubmission.
-@@ -1930,7 +1936,7 @@ need_timeslice(const struct intel_engine_cs *engine,
- 	if (!list_is_last(&rq->sched.link, &engine->active.requests))
- 		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
- 
--	return hint >= effective_prio(rq);
-+	return __effective_prio(hint) >= effective_prio(rq);
- }
- 
- static bool
-@@ -1965,7 +1971,7 @@ switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	if (list_is_last(&rq->sched.link, &engine->active.requests))
- 		return INT_MIN;
- 
--	return rq_prio(list_next_entry(rq, sched.link));
-+	return __effective_prio(rq_prio(list_next_entry(rq, sched.link)));
- }
- 
- static inline unsigned long
+ 		 * We don't squash repeated fence dependencies here as we
+ 		 * want to run our callback in all cases.
 -- 
 2.20.1
 
