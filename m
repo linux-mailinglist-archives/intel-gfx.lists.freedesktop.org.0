@@ -1,54 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27781C7C6B
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 23:27:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC851C7CEE
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 00:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21A326E8EB;
-	Wed,  6 May 2020 21:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F47B6E8F6;
+	Wed,  6 May 2020 22:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E1586E8EB
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 21:27:18 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id l18so3889528wrn.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 06 May 2020 14:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4LHhHNlqoBvi/KCSFbCsEqyE1x6Iz53GMW9FUxl8SmA=;
- b=MqjtHDp4Ego/9GYa/m8KksjjVlWd2YXvRVYg0H3Jt+ydMAA/IbWBS07tjddAMr3o3c
- UypND8EGBF4KTwMCbyUBM7313u3p4pK0/uY1TSrgfoUrKdsw2krWWKySyHQecmcmhvOG
- F4ANJIXrut4iY13SE9eth7fErPKRVr5UkB6LUELLOZF0vPEgJBJd23JhOjoFoHrQP84g
- pfePTD+Cx6V6gCbcSHUUHyZg2K+C1zl6ekQAI9LmnPyqbCZf8LAKeuYR5c5ja9Y8Xmoi
- N5Huk1OTxkOMdgXggS1JMcuYccunzAtZnNE+zh8SuTRdBwIqJ6NfoSab4lMTjh53/qtp
- 69mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4LHhHNlqoBvi/KCSFbCsEqyE1x6Iz53GMW9FUxl8SmA=;
- b=AScA+nSfWzSvelrkErh2SS2KcZGs2W6vArjhEQ5AA28EGHtrgKzIpu9iIhs5pdCPGq
- ygB5l+FfJUlEheBoKln6PULQ5kLCBjnkd6izdINMnhjCe9TEgM9tleiqvJbtDnV/vvRe
- d2NcIjsQM89RK1/IVaOZxPOdwyiGpUM7ObzBwc4tPIrfFYMhdRqaz+aVAxmMdFU7ssE1
- rBZvvO1q6IBrYdjVCnNKEFRA+eodZn9Yu2Y3H8jfZLTc0gwNwpMp2VRqAQHG12Yc6prj
- alB8YOZ/0JvgHNN6y+IPLLdfr+44YDDfbGEZ+fwP40f3eBynK5qMm/d3qEsYrIMvKHFQ
- VIsw==
-X-Gm-Message-State: AGi0PuafZaL3rhOIZU38mDkvmRgaAmvZZIFRcsM5WmGxZXKGDsv2nYF5
- Y3SOyexu6PAWyyvhSPv+3SrjAZ8h3gISoh8IwtLcTQ==
-X-Google-Smtp-Source: APiQypJpAZXlgBSTrPYrdFzWa4ly3s+zWQiNzUroKpy1NTRt18OcErB66/9UfIL5uqz4LpRdO4uV4winI8/hFAEZ4JM=
-X-Received: by 2002:a5d:46cf:: with SMTP id g15mr7518384wrs.276.1588800436866; 
- Wed, 06 May 2020 14:27:16 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 877E86E8F2;
+ Wed,  6 May 2020 22:01:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5F773A0BCB;
+ Wed,  6 May 2020 22:01:35 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200307012600.19602-1-lucas.demarchi@intel.com>
-In-Reply-To: <20200307012600.19602-1-lucas.demarchi@intel.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Wed, 6 May 2020 14:27:04 -0700
-Message-ID: <CAKi4VALaoGE=ZGTEHdz9+aMLrbKi6D-AVHO_OtNd6u=-Rv=WrA@mail.gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dgfx: avoid opregion calls and
- messages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 06 May 2020 22:01:35 -0000
+Message-ID: <158880249536.11896.8375728195678284620@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200506205758.14689-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200506205758.14689-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Mark_concurrent_submiss?=
+ =?utf-8?q?ions_with_a_weak-dependency?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +39,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some Cc to try to get it reviewed.
+== Series Details ==
 
-Lucas De Marchi
+Series: series starting with [1/3] drm/i915: Mark concurrent submissions with a weak-dependency
+URL   : https://patchwork.freedesktop.org/series/77007/
+State : failure
 
-On Fri, Mar 6, 2020 at 5:26 PM Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->
-> This avoids the annoying message
-> "Failed to get panel details from OpRegion (-19)" while initializing.
-> On DGFX there is no access to OpRegion, so just avoid any calls related
-> to it.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index cc6b00959586..daadad046810 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1006,6 +1006,10 @@ intel_opregion_get_panel_type(struct drm_i915_private *dev_priv)
->         u32 panel_details;
->         int ret;
->
-> +       /* No access to OpRegion */
-> +       if (IS_DGFX(dev_priv))
-> +               return -ENODEV;
-> +
->         ret = swsci(dev_priv, SWSCI_GBDA_PANEL_DETAILS, 0x0, &panel_details);
->         if (ret) {
->                 drm_dbg_kms(&dev_priv->drm,
-> --
-> 2.25.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8438 -> Patchwork_17593
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17593 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17593, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17593/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17593:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cml-u2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8438/fi-cml-u2/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17593/fi-cml-u2/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17593 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@active:
+    - fi-bsw-n3050:       [PASS][3] -> [DMESG-FAIL][4] ([i915#541])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8438/fi-bsw-n3050/igt@i915_selftest@live@active.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17593/fi-bsw-n3050/igt@i915_selftest@live@active.html
+
+  
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
+Participating hosts (51 -> 43)
+------------------------------
 
--- 
-Lucas De Marchi
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8438 -> Patchwork_17593
+
+  CI-20190529: 20190529
+  CI_DRM_8438: 9463611ee93f4b254044b8b2467a1e81f942ad01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5635: e83abfca61d407d12eee4d25bb0e8686337a7791 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17593: 8b7fb9e587b1d18572b099bb9f8d3bd82d291a00 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8b7fb9e587b1 drm/i915: Ignore submit-fences on the same timeline
+05aa6d42d52e drm/i915/gt: Suppress internal I915_PRIORITY_WAIT for timeslicing
+517fb2175f2a drm/i915: Mark concurrent submissions with a weak-dependency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17593/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
