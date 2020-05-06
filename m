@@ -2,48 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0B41C6CA6
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 11:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 280A61C6CB9
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 11:19:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04ED36E570;
-	Wed,  6 May 2020 09:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7647B6E83B;
+	Wed,  6 May 2020 09:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C796E570
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 09:15:56 +0000 (UTC)
-IronPort-SDR: jABPr3AN/S9EgKoffsF1M14cwlJ1cyry2DSsYDGSGNLrbOBUBK2dW7NI1HgVEqIswjqPr21nVf
- UCwRas+P3Mqw==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0096E4B0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 09:19:21 +0000 (UTC)
+IronPort-SDR: VZBoWE7pXueONCIbUPM8JNA6dBK5e55gDTfOEpOBo2YgiRqAdzTCyLoHWXUwcZXctOdDoMfsE5
+ RfFTCt80qctA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 02:15:56 -0700
-IronPort-SDR: qQFb4M9JqJ5wsi8jHcDM1Hs6/Zb3Mh6KFdbm+JYK3s2S9VHBMUD4IVRdtgkyKaZPTxjQiW1cIp
- 21xAAMSalIcQ==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 02:19:20 -0700
+IronPort-SDR: 1sQgM5gEbTtSaxZq4IOwNL1q31Xk7koRYPCu+4rHuEKrmejFu9QF2Z9QkWzOPtYQi/p8b3HHh2
+ 9+bUECy3H3QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,358,1583222400"; d="scan'208";a="248848439"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 06 May 2020 02:15:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 May 2020 12:15:53 +0300
-Date: Wed, 6 May 2020 12:15:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200506091553.GO6112@intel.com>
-References: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
- <20200505102247.32452-3-stanislav.lisovskiy@intel.com>
- <20200505104246.GF6112@intel.com>
- <20200506075544.GA16674@intel.com>
- <20200506080834.GL6112@intel.com>
- <20200506084330.GA17010@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,358,1583222400"; d="scan'208";a="304743555"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+ by FMSMGA003.fm.intel.com with ESMTP; 06 May 2020 02:19:19 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.2.68]) by
+ ORSMSX109.amr.corp.intel.com ([169.254.11.125]) with mapi id 14.03.0439.000;
+ Wed, 6 May 2020 02:19:19 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 15/22] drm/i915/rkl: Add DDC pin mapping
+Thread-Index: AQHWImbDGee1cS5JskyP6umDh6fN1aiayd7Q
+Date: Wed, 6 May 2020 09:19:19 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B073482C11E5@ORSMSX108.amr.corp.intel.com>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+ <20200504225227.464666-16-matthew.d.roper@intel.com>
+In-Reply-To: <20200504225227.464666-16-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZGJiZjUyN2EtNTM4NS00MGI1LTg4YWYtNmVlOGNhODYyMjk1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiS1FOXC9OajA3T1hVMk0za1Y2Y3ZiRTdhTGpMU2pUSit3UTRCTUxrVGs2V0lCQW1HUUtPZDVJQ2F6NktJNkVWNVcifQ==
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200506084330.GA17010@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v27 2/6] drm/i915: Separate icl and skl SAGV
- checking
+Subject: Re: [Intel-gfx] [PATCH v2 15/22] drm/i915/rkl: Add DDC pin mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,134 +62,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 06, 2020 at 11:43:30AM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, May 06, 2020 at 11:08:34AM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Wed, May 06, 2020 at 10:55:44AM +0300, Lisovskiy, Stanislav wrote:
-> > > On Tue, May 05, 2020 at 01:42:46PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > On Tue, May 05, 2020 at 01:22:43PM +0300, Stanislav Lisovskiy wrote:
-> > > > > Introduce platform dependent SAGV checking in
-> > > > > combination with bandwidth state pipe SAGV mask.
-> > > > > =
 
-> > > > > v2, v3, v4, v5, v6: Fix rebase conflict
-> > > > > =
 
-> > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/intel_pm.c | 30 +++++++++++++++++++++++++++=
-+--
-> > > > >  1 file changed, 28 insertions(+), 2 deletions(-)
-> > > > > =
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt
+> Roper
+> Sent: Tuesday, May 5, 2020 4:22 AM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH v2 15/22] drm/i915/rkl: Add DDC pin mapping
+> 
+> The pin mapping for the final two outputs varies according to which PCH is
+> present on the platform:  with TGP the pins are remapped into the TC range,
+> whereas with CMP they stay in the traditional combo output range.
+> 
+> Bspec: 49181
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-> > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i9=
-15/intel_pm.c
-> > > > > index da567fac7c93..c7d726a656b2 100644
-> > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > @@ -3853,6 +3853,24 @@ static bool intel_crtc_can_enable_sagv(con=
-st struct intel_crtc_state *crtc_state
-> > > > >  	return true;
-> > > > >  }
-> > > > >  =
-
-> > > > > +static bool skl_crtc_can_enable_sagv(const struct intel_crtc_sta=
-te *crtc_state)
-> > > > > +{
-> > > > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc=
-_state->uapi.state);
-> > > > > +	/*
-> > > > > +	 * SKL+ workaround: bspec recommends we disable SAGV when we ha=
-ve
-> > > > > +	 * more then one pipe enabled
-> > > > > +	 */
-> > > > > +	if (hweight8(state->active_pipes) > 1)
-> > > > > +		return false;
-> > > > =
-
-> > > > That stuff should no longer be here since we now have it done prope=
-rly
-> > > > in intel_can_eanble_sagv().
-> > > > =
-
-> > > > > +
-> > > > > +	return intel_crtc_can_enable_sagv(crtc_state);
-> > > > > +}
-> > > > > +
-> > > > > +static bool icl_crtc_can_enable_sagv(const struct intel_crtc_sta=
-te *crtc_state)
-> > > > > +{
-> > > > > +	return intel_crtc_can_enable_sagv(crtc_state);
-> > > > > +}
-> > > > =
-
-> > > > This looks the wrong way around. IMO intel_crtc_can_enable_sagv()
-> > > > should rather call the skl vs. icl variants as needed. Although we
-> > > > don't yet have the icl variant so the oerdering of the patches is
-> > > > a bit weird.
-> > > =
-
-> > > This is done so, because icl and skl checking share the same code
-> > > to check if SAGV can be enabled, except active_pipes > 1 thing.
-> > > =
-
-> > > So that icl and skl can share the same code avoiding duplicating,
-> > > i.e if I put code from intel_crtc_can_enable_sagv to =
-
-> > > skl_crtc_can_enable_sagv, I will have to =
-
-> > > 1) either duplicate this code to icl_crtc_can_enable_sagv(if I add re=
-maining active_pipes check to
-> > > skl)
-> > > 2) use skl_crtc_can_enable_sagv from icl_crtc_can_enable_sagv,
-> > > but this active_pipes check will be still outside of this skl functio=
-n,
-> > > which I don't find nice - to me the best way is to keep all skl
-> > > specific checks in a correspondent function.
-> > > =
-
-> > > So that is why I preferred to extract some common code to some separa=
-te
-> > > universal function which can be then used from both icl and skl funct=
-ions:
-> > > from icl it is used "as is" and from skl it is intel_crtc_can_enable_=
-sagv
-> > > + this active_pipes check.
-> > > =
-
-> > > Currently anyway we of course have that active_pipes check in intel_c=
-an_enable_sagv
-> > > i.e already outside of skl_crtc_can_enable_sagv(where it should be im=
-o),
-> > > so was your intention to leave it outside anyway?
-> > =
-
-> > My intention is that we eventually remove it altogeher. In the
-> > meantime intel_can_enable_sagv() looks like the right place
-> > for it.
-> =
-
-> Wow, you were really fast replying :) Ok, then I just leave skl_crtc_can_=
-enable_sagv,
-> use it for icl and active_pipes check stays in intel_can_enable_sagv, how=
-ever probably
-> it will now need somekind of INTEL_GEN < 11 check, I guess.
-
-If we want to enable sagv for multi-pipe on just icl+ first, yes.
-I guess we can do that. I suggest making that a standalone patch
-so we can easily revert it if things blow up. We can then let that
-bake for a while and follow up later with nuking the single pipe
-restriction for all platforms.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 010f37240710..a31a98d26882 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -3082,6 +3082,24 @@ static u8 mcc_port_to_ddc_pin(struct
+> drm_i915_private *dev_priv, enum port port)
+>  	return ddc_pin;
+>  }
+> 
+> +static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum
+> +port port) {
+> +	enum phy phy = intel_port_to_phy(dev_priv, port);
+> +
+> +	WARN_ON(port == PORT_C);
+> +
+> +	/*
+> +	 * Pin mapping for RKL depends on which PCH is present.  With TGP,
+> the
+> +	 * final two outputs use type-c pins, even though they're actually
+> +	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
+> +	 * all outputs.
+> +	 */
+> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && phy >= PHY_C)
+> +		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
+> +
+> +	return GMBUS_PIN_1_BXT + phy;
+> +}
+> +
+>  static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
+>  			      enum port port)
+>  {
+> @@ -3119,7 +3137,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder
+> *encoder)
+>  		return ddc_pin;
+>  	}
+> 
+> -	if (HAS_PCH_MCC(dev_priv))
+> +	if (IS_ROCKETLAKE(dev_priv))
+> +		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
+> +	else if (HAS_PCH_MCC(dev_priv))
+>  		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
+>  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+>  		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
+> --
+> 2.24.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
