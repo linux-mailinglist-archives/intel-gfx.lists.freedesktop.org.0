@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFBE1C7014
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 14:14:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0DF1C70C3
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 14:49:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23B026E871;
-	Wed,  6 May 2020 12:14:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B43E6E87A;
+	Wed,  6 May 2020 12:49:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2AD96E866
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 12:14:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21126310-1500050 for multiple; Wed, 06 May 2020 13:14:12 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F5E26E87A;
+ Wed,  6 May 2020 12:49:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58776A0091;
+ Wed,  6 May 2020 12:49:23 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <05a4b95e-8e08-91dd-acc9-f30e03275091@intel.com>
-References: <20200504111249.1367096-1-lionel.g.landwerlin@intel.com>
- <20200504111249.1367096-5-lionel.g.landwerlin@intel.com>
- <158859141809.10831.14803227619074428481@build.alporthouse.com>
- <05a4b95e-8e08-91dd-acc9-f30e03275091@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158876724753.927.9551621902927778819@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 06 May 2020 13:14:07 +0100
-Subject: Re: [Intel-gfx] [PATCH v12 4/4] drm/i915/perf: enable filtering on
- multiple contexts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 06 May 2020 12:49:23 -0000
+Message-ID: <158876936333.11897.18435020079905414671@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Plumb_crtc_state_to_link_training_code_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,30 +38,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2020-05-06 13:04:57)
-> On 04/05/2020 14:23, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2020-05-04 12:12:49)
-> >> Add 2 new properties to the i915-perf open ioctl to specify an array
-> >> of GEM context handles as well as the length of the array.
-> >>
-> >> This can be used by drivers using multiple GEM contexts to implement a
-> >> single GL context.
-> >>
-> >> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> >> Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/4464
-> > >From what I recall of the tests, the API extension looked reasonable.
-> > Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > -Chris
-> 
-> Is that Rb for the whole series?
+== Series Details ==
 
-I believe they are all tagged, and if not, then make it so.
--Chris
+Series: drm/i915: Plumb crtc state to link training code (rev2)
+URL   : https://patchwork.freedesktop.org/series/76993/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8433 -> Patchwork_17588
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17588 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@reset:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/fi-bwr-2160/igt@i915_selftest@live@reset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/fi-bwr-2160/igt@i915_selftest@live@reset.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (51 -> 43)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8433 -> Patchwork_17588
+
+  CI-20190529: 20190529
+  CI_DRM_8433: db68fed086f2ddcdc30e0d9ca5faaba5e55d0d01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5633: c8c2e5ed5cd8e4b7a69a903f3f1653612086abcc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17588: 8ec6f4b1e7f06bdfd404ecfdf54337e9f645261f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8ec6f4b1e7f0 drm/i915: Eliminate intel_dp.regs.dp_tp_{ctl, status}
+fa64a8214369 drm/i915: Plumb crtc_state to link training
+2cb6124763bb drm/i915: Replace some hand rolled max()s
+35e76930c74d drm/i915: Fix DP_TRAIN_MAX_{PRE_EMPHASIS, SWING}_REACHED handling
+1e68b2953b0e drm/i915: Reverse preemph vs. voltage swing preference
+3949c1110159 drm/i915: Add {preemph, voltage}_max() vfuncs
+d80fba24e659 drm/i915: Fix ivb cpu edp vswing
+18c9808e0356 drm/i915: Fix ibx max vswing/preemph
+d43ebfb8437f drm/i915: Fix cpt/ppt max pre-emphasis
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17588/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
