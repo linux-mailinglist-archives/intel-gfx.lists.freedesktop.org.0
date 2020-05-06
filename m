@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DE61C729E
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:18:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC201C72B4
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:22:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60606E2C7;
-	Wed,  6 May 2020 14:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B78F6E88A;
+	Wed,  6 May 2020 14:22:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13E106E2C7;
- Wed,  6 May 2020 14:18:37 +0000 (UTC)
-IronPort-SDR: Ymf3ifhYK+AeEjDt8QBp7AXpbm9rOHk5EjpkvltRdA4M3jAmgUMz+Ptle7x64NVf2iM4YC7+jq
- 5+Eaa3rwjBXg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 07:18:36 -0700
-IronPort-SDR: 2wKKrkMuwNHxr6E7ELbP8IrGbLyzPMSYa5SnpH74IG0AXne5k0IRdJONmlAE12/FnW0CgV3SXu
- 3aQWNamGciPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="461451541"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga005.fm.intel.com with ESMTP; 06 May 2020 07:18:32 -0700
-Date: Wed, 6 May 2020 19:48:26 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20200506141826.GD30925@intel.com>
-References: <20200429195502.39919-1-sean@poorly.run>
- <20200429195502.39919-4-sean@poorly.run>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C556E888;
+ Wed,  6 May 2020 14:22:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21127739-1500050 
+ for multiple; Wed, 06 May 2020 15:22:24 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  6 May 2020 15:22:17 +0100
+Message-Id: <20200506142218.3098955-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200429195502.39919-4-sean@poorly.run>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 03/16] drm/i915: WARN if HDCP signalling
- is enabled upon disable
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_exec_schedule: Exercise
+ timeslicing along an engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,43 +37,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, seanpaul@chromium.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wNC0yOSBhdCAxNTo1NDo0OSAtMDQwMCwgU2VhbiBQYXVsIHdyb3RlOgo+IEZyb206
-IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+IAo+IEhEQ1Agc2lnbmFsbGluZyBz
-aG91bGQgbm90IGJlIGxlZnQgb24sIFdBUk4gaWYgaXQgaXMKPiAKPiBDYzogVmlsbGUgU3lyasOk
-bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogRGFuaWVsIFZldHRlciA8
-ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiBSZXZpZXdlZC1ieTogUmFtYWxpbmdhbSBDIDxyYW1h
-bGluZ2FtLmNAaW50ZWwuY29tPgpKdXN0IHJlY29uZmlybWluZyB0aGUgUi1iLgoKLVJhbQo+IFNp
-Z25lZC1vZmYtYnk6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+IExpbms6IGh0
-dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDE5MTIxMjE5MDIz
-MC4xODg1MDUtNC1zZWFuQHBvb3JseS5ydW4gI3YyCj4gTGluazogaHR0cHM6Ly9wYXRjaHdvcmsu
-ZnJlZWRlc2t0b3Aub3JnL3BhdGNoL21zZ2lkLzIwMjAwMTE3MTkzMTAzLjE1NjgyMS00LXNlYW5A
-cG9vcmx5LnJ1biAjdjMKPiBMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcv
-cGF0Y2gvbXNnaWQvMjAyMDAyMTgyMjAyNDIuMTA3MjY1LTQtc2VhbkBwb29ybHkucnVuICN2NAo+
-IExpbms6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDIw
-MDMwNTIwMTIzNi4xNTIzMDctNC1zZWFuQHBvb3JseS5ydW4gI3Y1Cj4gCj4gQ2hhbmdlcyBpbiB2
-MjoKPiAtQWRkZWQgdG8gdGhlIHNldCBpbiBsaWV1IG9mIGp1c3QgY2xlYXJpbmcgdGhlIGJpdAo+
-IENoYW5nZXMgaW4gdjM6Cj4gLU5vbmUKPiBDaGFuZ2VzIGluIHY0Ogo+IC1Ob25lCj4gQ2hhbmdl
-cyBpbiB2NToKPiAtQ2hhbmdlIFdBUk5fT04gdG8gZHJtX1dBUk5fT04KPiBDaGFuZ2VzIGluIHY2
-Ogo+IC1Ob25lCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMgfCAyICsrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKPiBpbmRleCA1NjAxNjczYzNmMzAuLjA4
-ODQ0YmE5ZGNiNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
-Ywo+IEBAIC0xNjYzLDYgKzE2NjMsOCBAQCB2b2lkIGludGVsX2RkaV9kaXNhYmxlX3RyYW5zY29k
-ZXJfZnVuYyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZQo+ICAKPiAg
-CWN0bCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIFRSQU5TX0RESV9GVU5DX0NUTChjcHVfdHJh
-bnNjb2RlcikpOwo+ICAKPiArCWRybV9XQVJOX09OKGNydGMtPmJhc2UuZGV2LCBjdGwgJiBUUkFO
-U19ERElfSERDUF9TSUdOQUxMSU5HKTsKPiArCj4gIAljdGwgJj0gflRSQU5TX0RESV9GVU5DX0VO
-QUJMRTsKPiAgCj4gIAlpZiAoSVNfR0VOX1JBTkdFKGRldl9wcml2LCA4LCAxMCkpCj4gLS0gCj4g
-U2VhbiBQYXVsLCBTb2Z0d2FyZSBFbmdpbmVlciwgR29vZ2xlIC8gQ2hyb21pdW0gT1MKPiAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_schedule.c | 107 +++++++++++++++++++++++++++++++++
+ 1 file changed, 107 insertions(+)
+
+diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+index 7274ffbf3..a1523277b 100644
+--- a/tests/i915/gem_exec_schedule.c
++++ b/tests/i915/gem_exec_schedule.c
+@@ -418,6 +418,110 @@ static void smoketest(int fd, unsigned ring, unsigned timeout)
+ 	}
+ }
+ 
++static uint32_t timeslicing_batches(int i915, uint32_t *offset)
++{
++        uint32_t handle = gem_create(i915, 4096);
++        uint32_t cs[256];
++
++	*offset += 4000;
++	for (int pair = 0; pair <= 1; pair++) {
++		int x = 1;
++		int i = 0;
++
++		for (int step = 0; step < 8; step++) {
++			if (pair) {
++				cs[i++] =
++					MI_SEMAPHORE_WAIT |
++					MI_SEMAPHORE_POLL |
++					MI_SEMAPHORE_SAD_EQ_SDD |
++					(4 - 2);
++				cs[i++] = x++;
++				cs[i++] = *offset;
++				cs[i++] = 0;
++			}
++
++			cs[i++] = MI_STORE_DWORD_IMM;
++			cs[i++] = *offset;
++			cs[i++] = 0;
++			cs[i++] = x++;
++
++			if (!pair) {
++				cs[i++] =
++					MI_SEMAPHORE_WAIT |
++					MI_SEMAPHORE_POLL |
++					MI_SEMAPHORE_SAD_EQ_SDD |
++					(4 - 2);
++				cs[i++] = x++;
++				cs[i++] = *offset;
++				cs[i++] = 0;
++			}
++		}
++
++		cs[i++] = MI_BATCH_BUFFER_END;
++		igt_assert(i < ARRAY_SIZE(cs));
++		gem_write(i915, handle, pair * sizeof(cs), cs, sizeof(cs));
++	}
++
++	*offset = sizeof(cs);
++        return handle;
++}
++
++static void semaphore_timeslice(int i915, unsigned int engine)
++{
++	unsigned int offset = 24 << 20;
++	struct drm_i915_gem_exec_object2 obj = {
++		.offset = offset,
++		.flags = EXEC_OBJECT_PINNED,
++	};
++	struct drm_i915_gem_execbuffer2 execbuf  = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++	};
++	uint32_t result;
++	int out;
++
++	/*
++	 * Create a pair of interlocking batches, that ping pong
++	 * between each other, and only advance one step at a time.
++	 * We require the kernel to preempt at each semaphore and
++	 * switch to the other batch in order to advance.
++	 */
++
++	igt_require(gem_scheduler_has_semaphores(i915));
++	igt_require(gem_scheduler_has_preemption(i915));
++	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
++
++	obj.handle = timeslicing_batches(i915, &offset);
++
++	execbuf.flags = engine | I915_EXEC_FENCE_OUT;
++	execbuf.batch_start_offset = 0;
++	gem_execbuf_wr(i915, &execbuf);
++
++	/* No coupling between requests; free to timeslice */
++
++	execbuf.rsvd1 = gem_context_clone_with_engines(i915, 0);
++	execbuf.rsvd2 >>= 32;
++	execbuf.flags = engine | I915_EXEC_FENCE_OUT;
++	execbuf.batch_start_offset = offset;
++	gem_execbuf_wr(i915, &execbuf);
++	gem_context_destroy(i915, execbuf.rsvd1);
++
++	gem_sync(i915, obj.handle);
++
++	/* no hangs! */
++	out = execbuf.rsvd2;
++	igt_assert_eq(sync_fence_status(out), 1);
++	close(out);
++
++	out = execbuf.rsvd2 >> 32;
++	igt_assert_eq(sync_fence_status(out), 1);
++	close(out);
++
++	gem_read(i915, obj.handle, 4000, &result, sizeof(result));
++	igt_assert_eq(result, 16);
++	gem_close(i915, obj.handle);
++}
++
+ static uint32_t __batch_create(int i915, uint32_t offset)
+ {
+ 	const uint32_t bbe = MI_BATCH_BUFFER_END;
+@@ -2128,6 +2232,9 @@ igt_main
+ 			igt_require(gem_scheduler_has_ctx_priority(fd));
+ 		}
+ 
++		test_each_engine("timeslicing", fd, e)
++			semaphore_timeslice(fd, e->flags);
++
+ 		igt_subtest("semaphore-user")
+ 			semaphore_userlock(fd);
+ 		igt_subtest("semaphore-codependency")
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
