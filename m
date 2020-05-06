@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EFBD1C73B3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 17:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0601C73F4
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 17:16:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459A86E89D;
-	Wed,  6 May 2020 15:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 391F589336;
+	Wed,  6 May 2020 15:16:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 85A276E2BD;
- Wed,  6 May 2020 15:13:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7E660A47E8;
- Wed,  6 May 2020 15:13:55 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4490F892B0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 15:16:13 +0000 (UTC)
+IronPort-SDR: Vm0KhNxadsDq9wpITvPPXVdor0zyPcVMJy2lC3CPITWrVC2KLjxaG70d7Kf6/wj+bZZ9V6/cv3
+ mc71TNor9ZIA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 08:16:07 -0700
+IronPort-SDR: dg3Cy8CuYjJjL96X/6Ru4BjMBwBNfij44O9KO/mjVrZB6YwqQxbFaSaxr+zQ1ul4sqP1D8nW9j
+ byhydksRB1Qw==
+X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="434920936"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 08:16:06 -0700
+Date: Wed, 6 May 2020 18:15:28 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200506151528.GA8813@ideak-desk.fi.intel.com>
+References: <20200311155422.3043-1-ville.syrjala@linux.intel.com>
+ <20200311155422.3043-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Wed, 06 May 2020 15:13:55 -0000
-Message-ID: <158877803549.11895.3852656377528076434@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200506131112.19581-1-animesh.manna@intel.com>
-In-Reply-To: <20200506131112.19581-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dsb=3A_Pre_allocate_and_late_cleanup_of_cmd_buffer_=28rev?=
- =?utf-8?q?4=29?=
+Content-Disposition: inline
+In-Reply-To: <20200311155422.3043-2-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/i915: Turn
+ intel_digital_port_connected() in a vfunc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,246 +49,448 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Mar 11, 2020 at 05:54:20PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: drm/i915/dsb: Pre allocate and late cleanup of cmd buffer (rev4)
-URL   : https://patchwork.freedesktop.org/series/73036/
-State : failure
+> Let's get rid of the platform if ladders in
+> intel_digital_port_connected() and make it a vfunc. Now the if
+> ladders are at the encoder initialization which makes them a bit
+> less convoluted.
+> =
 
-== Summary ==
+> v2: Add forward decl for intel_encoder in intel_tc.h
+> v3: Duplicate stuff to avoid exposing platform specific
+>     functions across files (Jani)
+> =
 
-CI Bug Log - changes from CI_DRM_8433_full -> Patchwork_17589_full
-====================================================
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Summary
--------
+Nice to see the CPU and PCH handlers in their own vfunc:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-  **FAILURE**
+nit: Looks like you could've also added mcc_digital_port_connected() for
+PHY_C.
 
-  Serious unknown changes coming with Patchwork_17589_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17589_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 109 +++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |   1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 147 +++---------------
+>  drivers/gpu/drm/i915/display/intel_tc.c       |   3 +-
+>  drivers/gpu/drm/i915/display/intel_tc.h       |   3 +-
+>  5 files changed, 135 insertions(+), 128 deletions(-)
+> =
 
-  
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 73d0f4648c06..c8ceb08f8d05 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4343,6 +4343,96 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
+>  	return state;
+>  }
+>  =
 
-Possible new issues
--------------------
+> +static bool lpt_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	u32 bit;
+> +
+> +	switch (encoder->hpd_pin) {
+> +	case HPD_PORT_B:
+> +		bit =3D SDE_PORTB_HOTPLUG_CPT;
+> +		break;
+> +	case HPD_PORT_C:
+> +		bit =3D SDE_PORTC_HOTPLUG_CPT;
+> +		break;
+> +	case HPD_PORT_D:
+> +		bit =3D SDE_PORTD_HOTPLUG_CPT;
+> +		break;
+> +	default:
+> +		MISSING_CASE(encoder->hpd_pin);
+> +		return false;
+> +	}
+> +
+> +	return intel_de_read(dev_priv, SDEISR) & bit;
+> +}
+> +
+> +static bool spt_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	u32 bit;
+> +
+> +	switch (encoder->hpd_pin) {
+> +	case HPD_PORT_A:
+> +		bit =3D SDE_PORTA_HOTPLUG_SPT;
+> +		break;
+> +	case HPD_PORT_E:
+> +		bit =3D SDE_PORTE_HOTPLUG_SPT;
+> +		break;
+> +	default:
+> +		return lpt_digital_port_connected(encoder);
+> +	}
+> +
+> +	return intel_de_read(dev_priv, SDEISR) & bit;
+> +}
+> +
+> +static bool hsw_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+> +	return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG_IVB;
+> +}
+> +
+> +static bool bdw_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+> +	return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & GEN8_PORT_DP_A_HOTPL=
+UG;
+> +}
+> +
+> +static bool bxt_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	u32 bit;
+> +
+> +	switch (encoder->hpd_pin) {
+> +	case HPD_PORT_A:
+> +		bit =3D BXT_DE_PORT_HP_DDIA;
+> +		break;
+> +	case HPD_PORT_B:
+> +		bit =3D BXT_DE_PORT_HP_DDIB;
+> +		break;
+> +	case HPD_PORT_C:
+> +		bit =3D BXT_DE_PORT_HP_DDIC;
+> +		break;
+> +	default:
+> +		MISSING_CASE(encoder->hpd_pin);
+> +		return false;
+> +	}
+> +
+> +	return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & bit;
+> +}
+> +
+> +static bool icp_digital_port_connected(struct intel_encoder *encoder)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> +
+> +	if (HAS_PCH_MCC(dev_priv) && phy =3D=3D PHY_C)
+> +		return intel_de_read(dev_priv, SDEISR) & SDE_TC_HOTPLUG_ICP(PORT_TC1);
+> +
+> +	return intel_de_read(dev_priv, SDEISR) & SDE_DDI_HOTPLUG_ICP(phy);
+> +}
+> +
+>  static struct intel_connector *
+>  intel_ddi_init_hdmi_connector(struct intel_digital_port *intel_dig_port)
+>  {
+> @@ -4534,6 +4624,25 @@ void intel_ddi_init(struct drm_i915_private *dev_p=
+riv, enum port port)
+>  				port_name(port));
+>  	}
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17589_full:
+> +	if (INTEL_GEN(dev_priv) >=3D 11) {
+> +		if (intel_phy_is_tc(dev_priv, phy))
+> +			intel_dig_port->connected =3D intel_tc_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D icp_digital_port_connected;
+> +	} else if (IS_GEN9_LP(dev_priv)) {
+> +		intel_dig_port->connected =3D bxt_digital_port_connected;
+> +	} else if (port =3D=3D PORT_A) {
+> +		if (INTEL_GEN(dev_priv) >=3D 8)
+> +			intel_dig_port->connected =3D bdw_digital_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D hsw_digital_port_connected;
+> +	} else {
+> +		if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_SPT)
+> +			intel_dig_port->connected =3D spt_digital_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D lpt_digital_port_connected;
+> +	}
+> +
+>  	intel_infoframe_init(intel_dig_port);
+>  =
 
-### IGT changes ###
+>  	return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 5e00e611f077..3aab12f69ff8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1401,6 +1401,7 @@ struct intel_digital_port {
+>  			       const struct drm_connector_state *conn_state);
+>  	u32 (*infoframes_enabled)(struct intel_encoder *encoder,
+>  				  const struct intel_crtc_state *pipe_config);
+> +	bool (*connected)(struct intel_encoder *encoder);
+>  };
+>  =
 
-#### Possible regressions ####
+>  struct intel_dp_mst_encoder {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 0a417cd2af2b..cff14f52c391 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5447,25 +5447,6 @@ static bool cpt_digital_port_connected(struct inte=
+l_encoder *encoder)
+>  	return intel_de_read(dev_priv, SDEISR) & bit;
+>  }
+>  =
 
-  * igt@i915_module_load@reload:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2] +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb8/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb7/igt@i915_module_load@reload.html
+> -static bool spt_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -	u32 bit;
+> -
+> -	switch (encoder->hpd_pin) {
+> -	case HPD_PORT_A:
+> -		bit =3D SDE_PORTA_HOTPLUG_SPT;
+> -		break;
+> -	case HPD_PORT_E:
+> -		bit =3D SDE_PORTE_HOTPLUG_SPT;
+> -		break;
+> -	default:
+> -		return cpt_digital_port_connected(encoder);
+> -	}
+> -
+> -	return intel_de_read(dev_priv, SDEISR) & bit;
+> -}
+> -
+>  static bool g4x_digital_port_connected(struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> @@ -5516,88 +5497,14 @@ static bool ilk_digital_port_connected(struct int=
+el_encoder *encoder)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  =
 
-  * igt@runner@aborted:
-    - shard-tglb:         NOTRUN -> ([FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12]) ([i915#1764] / [k.org#204565] / [k.org#205379])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb2/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb7/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb1/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb3/igt@runner@aborted.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb2/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb6/igt@runner@aborted.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb1/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb6/igt@runner@aborted.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb8/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb7/igt@runner@aborted.html
+> -	if (encoder->hpd_pin =3D=3D HPD_PORT_A)
+> -		return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG;
+> -	else
+> -		return ibx_digital_port_connected(encoder);
+> -}
+> -
+> -static bool snb_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -
+> -	if (encoder->hpd_pin =3D=3D HPD_PORT_A)
+> -		return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG;
+> -	else
+> -		return cpt_digital_port_connected(encoder);
+> +	return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG;
+>  }
+>  =
 
-  
-#### Suppressed ####
+>  static bool ivb_digital_port_connected(struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  =
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+> -	if (encoder->hpd_pin =3D=3D HPD_PORT_A)
+> -		return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG_IVB;
+> -	else
+> -		return cpt_digital_port_connected(encoder);
+> -}
+> -
+> -static bool bdw_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -
+> -	if (encoder->hpd_pin =3D=3D HPD_PORT_A)
+> -		return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & GEN8_PORT_DP_A_HOTP=
+LUG;
+> -	else
+> -		return cpt_digital_port_connected(encoder);
+> -}
+> -
+> -static bool bxt_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -	u32 bit;
+> -
+> -	switch (encoder->hpd_pin) {
+> -	case HPD_PORT_A:
+> -		bit =3D BXT_DE_PORT_HP_DDIA;
+> -		break;
+> -	case HPD_PORT_B:
+> -		bit =3D BXT_DE_PORT_HP_DDIB;
+> -		break;
+> -	case HPD_PORT_C:
+> -		bit =3D BXT_DE_PORT_HP_DDIC;
+> -		break;
+> -	default:
+> -		MISSING_CASE(encoder->hpd_pin);
+> -		return false;
+> -	}
+> -
+> -	return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & bit;
+> -}
+> -
+> -static bool intel_combo_phy_connected(struct drm_i915_private *dev_priv,
+> -				      enum phy phy)
+> -{
+> -	if (HAS_PCH_MCC(dev_priv) && phy =3D=3D PHY_C)
+> -		return intel_de_read(dev_priv, SDEISR) & SDE_TC_HOTPLUG_ICP(PORT_TC1);
+> -
+> -	return intel_de_read(dev_priv, SDEISR) & SDE_DDI_HOTPLUG_ICP(phy);
+> -}
+> -
+> -static bool icp_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> -	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> -
+> -	if (intel_phy_is_combo(dev_priv, phy))
+> -		return intel_combo_phy_connected(dev_priv, phy);
+> -	else if (intel_phy_is_tc(dev_priv, phy))
+> -		return intel_tc_port_connected(dig_port);
+> -	else
+> -		MISSING_CASE(encoder->hpd_pin);
+> -
+> -	return false;
+> +	return intel_de_read(dev_priv, DEISR) & DE_DP_A_HOTPLUG_IVB;
+>  }
+>  =
 
-  * {igt@perf_pmu@module-unload}:
-    - shard-tglb:         [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb1/igt@perf_pmu@module-unload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb3/igt@perf_pmu@module-unload.html
+>  /*
+> @@ -5611,44 +5518,15 @@ static bool icp_digital_port_connected(struct int=
+el_encoder *encoder)
+>   *
+>   * Return %true if port is connected, %false otherwise.
+>   */
+> -static bool __intel_digital_port_connected(struct intel_encoder *encoder)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -
+> -	if (HAS_GMCH(dev_priv)) {
+> -		if (IS_GM45(dev_priv))
+> -			return gm45_digital_port_connected(encoder);
+> -		else
+> -			return g4x_digital_port_connected(encoder);
+> -	}
+> -
+> -	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+> -		return icp_digital_port_connected(encoder);
+> -	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_SPT)
+> -		return spt_digital_port_connected(encoder);
+> -	else if (IS_GEN9_LP(dev_priv))
+> -		return bxt_digital_port_connected(encoder);
+> -	else if (IS_GEN(dev_priv, 8))
+> -		return bdw_digital_port_connected(encoder);
+> -	else if (IS_GEN(dev_priv, 7))
+> -		return ivb_digital_port_connected(encoder);
+> -	else if (IS_GEN(dev_priv, 6))
+> -		return snb_digital_port_connected(encoder);
+> -	else if (IS_GEN(dev_priv, 5))
+> -		return ilk_digital_port_connected(encoder);
+> -
+> -	MISSING_CASE(INTEL_GEN(dev_priv));
+> -	return false;
+> -}
+> -
+>  bool intel_digital_port_connected(struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+>  	bool is_connected =3D false;
+>  	intel_wakeref_t wakeref;
+>  =
 
-  
-Known issues
-------------
+>  	with_intel_display_power(dev_priv, POWER_DOMAIN_DISPLAY_CORE, wakeref)
+> -		is_connected =3D __intel_digital_port_connected(encoder);
+> +		is_connected =3D dig_port->connected(encoder);
+>  =
 
-  Here are the changes found in Patchwork_17589_full that come from known issues:
+>  	return is_connected;
+>  }
+> @@ -7852,6 +7730,23 @@ bool intel_dp_init(struct drm_i915_private *dev_pr=
+iv,
+>  =
 
-### IGT changes ###
+>  	intel_dig_port->hpd_pulse =3D intel_dp_hpd_pulse;
+>  =
 
-#### Issues hit ####
+> +	if (HAS_GMCH(dev_priv)) {
+> +		if (IS_GM45(dev_priv))
+> +			intel_dig_port->connected =3D gm45_digital_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D g4x_digital_port_connected;
+> +	} else if (port =3D=3D PORT_A) {
+> +		if (IS_IVYBRIDGE(dev_priv))
+> +			intel_dig_port->connected =3D ivb_digital_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D ilk_digital_port_connected;
+> +	} else {
+> +		if (HAS_PCH_CPT(dev_priv))
+> +			intel_dig_port->connected =3D cpt_digital_port_connected;
+> +		else
+> +			intel_dig_port->connected =3D ibx_digital_port_connected;
+> +	}
+> +
+>  	if (port !=3D PORT_A)
+>  		intel_infoframe_init(intel_dig_port);
+>  =
 
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-glk:          [PASS][15] -> [DMESG-WARN][16] ([i915#716])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-glk6/igt@gen9_exec_parse@allowed-all.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-glk5/igt@gen9_exec_parse@allowed-all.html
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 9b850c11aa78..1e64b4c92eec 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -484,8 +484,9 @@ static bool intel_tc_port_needs_reset(struct intel_di=
+gital_port *dig_port)
+>   * connected ports are usable, and avoids exposing to the users objects =
+they
+>   * can't really use.
+>   */
+> -bool intel_tc_port_connected(struct intel_digital_port *dig_port)
+> +bool intel_tc_port_connected(struct intel_encoder *encoder)
+>  {
+> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+>  	bool is_connected;
+>  =
 
-  * igt@kms_color@pipe-b-gamma:
-    - shard-tglb:         [PASS][17] -> [DMESG-WARN][18] ([i915#1149]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb6/igt@kms_color@pipe-b-gamma.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb7/igt@kms_color@pipe-b-gamma.html
+>  	intel_tc_port_lock(dig_port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i9=
+15/display/intel_tc.h
+> index 463f1b3c836f..b619e4736f85 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
+> @@ -10,8 +10,9 @@
+>  #include <linux/types.h>
+>  =
 
-  * igt@kms_color@pipe-d-ctm-max:
-    - shard-tglb:         [PASS][19] -> [INCOMPLETE][20] ([i915#1149]) +9 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb7/igt@kms_color@pipe-d-ctm-max.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb7/igt@kms_color@pipe-d-ctm-max.html
+>  struct intel_digital_port;
+> +struct intel_encoder;
+>  =
 
-  * igt@kms_flip_tiling@flip-changes-tiling:
-    - shard-kbl:          [PASS][21] -> [FAIL][22] ([i915#699] / [i915#93] / [i915#95])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl4/igt@kms_flip_tiling@flip-changes-tiling.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-kbl3/igt@kms_flip_tiling@flip-changes-tiling.html
+> -bool intel_tc_port_connected(struct intel_digital_port *dig_port);
+> +bool intel_tc_port_connected(struct intel_encoder *encoder);
+>  u32 intel_tc_port_get_lane_mask(struct intel_digital_port *dig_port);
+>  u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig=
+_port);
+>  int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port=
+);
+> -- =
 
-  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu:
-    - shard-snb:          [PASS][23] -> [SKIP][24] ([fdo#109271]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-snb1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-snb2/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu.html
+> 2.24.1
+> =
 
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [PASS][25] -> [FAIL][26] ([i915#1188]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-skl4/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [PASS][27] -> [DMESG-WARN][28] ([i915#180]) +1 similar issue
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-apl:          [PASS][29] -> [DMESG-WARN][30] ([i915#180])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-apl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-
-  * igt@kms_psr@psr2_cursor_plane_onoff:
-    - shard-iclb:         [PASS][31] -> [SKIP][32] ([fdo#109441]) +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb2/igt@kms_psr@psr2_cursor_plane_onoff.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-iclb8/igt@kms_psr@psr2_cursor_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_persistence@engines-mixed-process@vecs0:
-    - shard-skl:          [FAIL][33] ([i915#1528]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-skl4/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-skl3/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
-    - shard-kbl:          [DMESG-WARN][35] ([i915#180]) -> [PASS][36] +3 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][37] ([i915#180]) -> [PASS][38] +2 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [DMESG-WARN][39] ([i915#180] / [i915#93] / [i915#95]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_psr2_su@frontbuffer:
-    - shard-iclb:         [SKIP][41] ([fdo#109642] / [fdo#111068]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb7/igt@kms_psr2_su@frontbuffer.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][43] ([fdo#109441]) -> [PASS][44] +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@pm-caching:
-    - shard-snb:          [INCOMPLETE][45] ([i915#82]) -> [SKIP][46] ([fdo#109271])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-snb1/igt@i915_pm_rpm@pm-caching.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-snb5/igt@i915_pm_rpm@pm-caching.html
-
-  * igt@kms_color@pipe-a-ctm-0-75:
-    - shard-tglb:         [FAIL][47] ([i915#1149] / [i915#315]) -> [INCOMPLETE][48] ([i915#1149]) +2 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb5/igt@kms_color@pipe-a-ctm-0-75.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb3/igt@kms_color@pipe-a-ctm-0-75.html
-
-  * igt@kms_color@pipe-a-degamma:
-    - shard-tglb:         [FAIL][49] ([i915#1149]) -> [INCOMPLETE][50] ([i915#1149])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-tglb6/igt@kms_color@pipe-a-degamma.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-tglb5/igt@kms_color@pipe-a-degamma.html
-
-  * igt@kms_content_protection@atomic:
-    - shard-apl:          [TIMEOUT][51] ([i915#1319]) -> [FAIL][52] ([fdo#110321] / [fdo#110336])
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl7/igt@kms_content_protection@atomic.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-apl6/igt@kms_content_protection@atomic.html
-
-  * igt@kms_content_protection@atomic-dpms:
-    - shard-apl:          [FAIL][53] ([fdo#110321] / [fdo#110336] / [i915#95]) -> [TIMEOUT][54] ([i915#1319])
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl4/igt@kms_content_protection@atomic-dpms.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-apl3/igt@kms_content_protection@atomic-dpms.html
-
-  * igt@kms_content_protection@legacy:
-    - shard-apl:          [FAIL][55] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][56] ([i915#1319])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/shard-apl7/igt@kms_content_protection@legacy.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/shard-apl1/igt@kms_content_protection@legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1149]: https://gitlab.freedesktop.org/drm/intel/issues/1149
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1764]: https://gitlab.freedesktop.org/drm/intel/issues/1764
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#699]: https://gitlab.freedesktop.org/drm/intel/issues/699
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#204565]: https://bugzilla.kernel.org/show_bug.cgi?id=204565
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (11 -> 10)
-------------------------------
-
-  Missing    (1): pig-icl-1065g7 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8433 -> Patchwork_17589
-
-  CI-20190529: 20190529
-  CI_DRM_8433: db68fed086f2ddcdc30e0d9ca5faaba5e55d0d01 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5633: c8c2e5ed5cd8e4b7a69a903f3f1653612086abcc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17589: 6353a74d2b4ce9736369c905a92f0d2ec45651e6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
