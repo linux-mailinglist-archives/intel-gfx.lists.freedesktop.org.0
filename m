@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4277E1C7263
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:02:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 238FE1C7265
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:02:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD716E2B8;
-	Wed,  6 May 2020 14:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6449E6E2B4;
+	Wed,  6 May 2020 14:02:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B594D89C1C;
- Wed,  6 May 2020 14:02:24 +0000 (UTC)
-IronPort-SDR: Ii4YDgKPwvYAutFciYydHIOCKZtYvwgwEzYk4mcBBM21tevovMdF/i7+72CkMJR4fefM5LryHi
- hTBE5+RmUltQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 07:02:21 -0700
-IronPort-SDR: El6wGhhDJiHY+SNSR/D01hxc1kOwTL+wY64WY4oERWXKIEfiBpd+0TQLckku8kAW6I4zIoz01J
- zQ4HKBx3s8mQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="260113709"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga003.jf.intel.com with ESMTP; 06 May 2020 07:02:16 -0700
-Date: Wed, 6 May 2020 19:32:09 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20200506140209.GB30925@intel.com>
-References: <20200429195502.39919-1-sean@poorly.run>
- <20200429195502.39919-3-sean@poorly.run>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF1116E883;
+ Wed,  6 May 2020 14:02:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9B98A47E6;
+ Wed,  6 May 2020 14:02:42 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200429195502.39919-3-sean@poorly.run>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 02/16] drm/i915: Clear the repeater bit
- on HDCP disable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Wed, 06 May 2020 14:02:42 -0000
+Message-ID: <158877376295.11897.9365995945016274217@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200506131112.19581-1-animesh.manna@intel.com>
+In-Reply-To: <20200506131112.19581-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsb=3A_Pre_allocate_and_late_cleanup_of_cmd_buffer_=28rev?=
+ =?utf-8?q?4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,85 +39,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- seanpaul@chromium.org, stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-04-29 at 15:54:48 -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> On HDCP disable, clear the repeater bit. This ensures if we connect a
-> non-repeater sink after a repeater, the bit is in the state we expect.
-> 
-> Fixes: ee5e5e7a5e0f (drm/i915: Add HDCP framework + base implementation)
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Sean Paul <seanpaul@chromium.org>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v4.17+
-> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-Just reconfirming my R-b here.
+== Series Details ==
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-3-sean@poorly.run #v2
-> Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-3-sean@poorly.run #v3
-> Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-3-sean@poorly.run #v4
-> Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-3-sean@poorly.run #v5
-> 
-> Changes in v2:
-> -Added to the set
-> Changes in v3:
-> -None
->   I had previously agreed that clearing the rep_ctl bits on enable would
->   also be a good idea. However when I committed that idea to code, it
->   didn't look right. So let's rely on enables and disables being paired
->   and everything outside of that will be considered a bug
-> Changes in v4:
-> -s/I915_(READ|WRITE)/intel_de_(read|write)/
-> Changes in v5:
-> -None
-> Changes in v6:
-> -None
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 525658fd201f..20175a53643d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -795,6 +795,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	enum port port = intel_dig_port->base.port;
->  	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-> +	u32 repeater_ctl;
->  	int ret;
->  
->  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
-> @@ -810,6 +811,11 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
->  		return -ETIMEDOUT;
->  	}
->  
-> +	repeater_ctl = intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder,
-> +						   port);
-> +	intel_de_write(dev_priv, HDCP_REP_CTL,
-> +		       intel_de_read(dev_priv, HDCP_REP_CTL) & ~repeater_ctl);
-> +
->  	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
->  	if (ret) {
->  		drm_err(&dev_priv->drm, "Failed to disable HDCP signalling\n");
-> -- 
-> Sean Paul, Software Engineer, Google / Chromium OS
-> 
+Series: drm/i915/dsb: Pre allocate and late cleanup of cmd buffer (rev4)
+URL   : https://patchwork.freedesktop.org/series/73036/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8433 -> Patchwork_17589
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17589:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_module_load@reload:
+    - {fi-tgl-dsi}:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/fi-tgl-dsi/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/fi-tgl-dsi/igt@i915_module_load@reload.html
+    - {fi-tgl-u}:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/fi-tgl-u/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/fi-tgl-u/igt@i915_module_load@reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17589 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@perf:
+    - fi-bwr-2160:        [PASS][5] -> [INCOMPLETE][6] ([i915#489])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8433/fi-bwr-2160/igt@i915_selftest@live@perf.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/fi-bwr-2160/igt@i915_selftest@live@perf.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (51 -> 43)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8433 -> Patchwork_17589
+
+  CI-20190529: 20190529
+  CI_DRM_8433: db68fed086f2ddcdc30e0d9ca5faaba5e55d0d01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5633: c8c2e5ed5cd8e4b7a69a903f3f1653612086abcc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17589: 6353a74d2b4ce9736369c905a92f0d2ec45651e6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6353a74d2b4c drm/i915/dsb: Pre allocate and late cleanup of cmd buffer
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17589/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
