@@ -2,32 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1BF1C7338
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0753B1C7342
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC716E88E;
-	Wed,  6 May 2020 14:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EEA6E85A;
+	Wed,  6 May 2020 14:48:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400556E88E
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:46:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21128053-1500050 for multiple; Wed, 06 May 2020 15:46:05 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200506143616.19925-2-chris@chris-wilson.co.uk>
-References: <20200506143616.19925-1-chris@chris-wilson.co.uk>
- <20200506143616.19925-2-chris@chris-wilson.co.uk>
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47F956E21F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:48:15 +0000 (UTC)
+IronPort-SDR: kQ7hleE8Rib0bD0kmB/M5nuFbs9skWUULpbnDY6pZAurlrtJ7uzoTaYYNNaq8Iufbsh2mt9RyU
+ 5uRSQw15xQsw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 07:48:15 -0700
+IronPort-SDR: s8x1+RoemGSYOJmyLt11/etMeNpzjQevDlqy68Hq9lQVIsJhQDj9fG7FC3aUj6s5cUu7B7e0ox
+ hoBqGBAXnWXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="369811084"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by fmsmga001.fm.intel.com with ESMTP; 06 May 2020 07:48:14 -0700
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id 90FCC84076E; Wed,  6 May 2020 17:47:36 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <158877636035.927.9785429414272285375@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 06 May 2020 15:46:00 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Suppress internal
- I915_PRIORITY_WAIT for timeslicing
+Date: Wed,  6 May 2020 17:47:31 +0300
+Message-Id: <20200506144734.29297-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH 1/4] Revert "drm/i915/tgl: Include ro parts of
+ l3 to invalidate"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,35 +46,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-06 15:36:16)
-> Make sure we ignore the I915_PRIORITY_WAIT hint when looking at
-> timeslicing, as we do not treat it as a preemption request but as a soft
-> ordering hint. If we apply the hint, then when we recompute the ordering
-> after unwinding for the timeslice, we will often leave the order
-> unchanged due to the soft-hint. However, if we apply it to all those we
-> unwind, then the two equivalent levels may be reordered, and since the
-> dependencies will be replayed in order, we will not change the order of
-> dependencies.
-> 
-> There is a small issue with the lack of cross-engine priority bumping on
-> unwind, leaving the total graph slightly unordered; but that will not
-> result in any misordering of rendering on remote machines as any
-> signalers will also be live. Though there may be a danger that this will
-> upset our sanitychecks.
-> 
-> Why keep the I915_PRIORITY_WAIT soft-hint, I hear Tvrtko ask? Despite
-> the many hairy tricks we play to have the hint and then ignore it, I
-> still like the concept of codel and the promise that it gives for low
-> latency of independent queues!
+This reverts commit 62037ffff229b7d94f1db5ef8d2e2ec819832ef3.
 
-Tvrtko is warned not to ask when we replace strict priorities with
-isoschronous and psuedo-deadline scheduling.
--Chris
+L3 ro cache invalidation is part of the dword0 of pipe
+control. Also it is not relevant to this gen.
+
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h | 1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index ee10122a511e..b3cf09657fb2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -236,7 +236,6 @@
+ #define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1<<12) /* gen6+ */
+ #define   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE	(1<<11) /* MBZ on ILK */
+ #define   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE		(1<<10) /* GM45+ only */
+-#define   PIPE_CONTROL_L3_RO_CACHE_INVALIDATE		REG_BIT(10) /* gen12 */
+ #define   PIPE_CONTROL_INDIRECT_STATE_DISABLE		(1<<9)
+ #define   PIPE_CONTROL_HDC_PIPELINE_FLUSH		REG_BIT(9)  /* gen12 */
+ #define   PIPE_CONTROL_NOTIFY				(1<<8)
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index dc3f2ee7136d..feba021ca572 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4579,7 +4579,6 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 		flags |= PIPE_CONTROL_VF_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
+-		flags |= PIPE_CONTROL_L3_RO_CACHE_INVALIDATE;
+ 
+ 		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
+ 		flags |= PIPE_CONTROL_QW_WRITE;
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
