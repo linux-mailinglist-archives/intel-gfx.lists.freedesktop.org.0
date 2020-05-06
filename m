@@ -1,31 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5102E1C6F53
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 13:29:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F771C6FAA
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 13:52:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779DD6E869;
-	Wed,  6 May 2020 11:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6F76E233;
+	Wed,  6 May 2020 11:52:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 330726E868;
- Wed,  6 May 2020 11:29:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2D868A00CC;
- Wed,  6 May 2020 11:29:51 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 630FE6E233
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 11:51:59 +0000 (UTC)
+IronPort-SDR: lwxuoQRCkKzv/Ej35NGGnoHFOoSPT/1s7gR6CMX31Bo7o+v95p32wnlRivL4qeRmg/y3UebM9b
+ J9wbDrCu9E0w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 04:51:58 -0700
+IronPort-SDR: BYODh/i66f6qdqJUC0J4CBuR9AZPLZWvMc/t634spqA1NVEjZbDIIeG/uRiMw9Y/n/DXIUww8a
+ lNVMSxcVQ+0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,358,1583222400"; d="scan'208";a="248893636"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+ by orsmga007.jf.intel.com with ESMTP; 06 May 2020 04:51:58 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.2.68]) by
+ ORSMSX109.amr.corp.intel.com ([169.254.11.125]) with mapi id 14.03.0439.000;
+ Wed, 6 May 2020 04:51:58 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory
+ support
+Thread-Index: AQHWIma9nHYenXN/nEiHwFgYkeVtY6ia9H6g
+Date: Wed, 6 May 2020 11:51:57 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B073482C132A@ORSMSX108.amr.corp.intel.com>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+ <20200504225227.464666-3-matthew.d.roper@intel.com>
+In-Reply-To: <20200504225227.464666-3-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYzgyMjA4MjctZGYxNC00MDA3LTgzMTktMzE4Zjg5YjVkOWE0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiYWlRUW9YYmFzUno5VU90akNMSGZyYlJkUm5xalVFeFI3NlRydFJUMDBUMHMyUkN6KzVqQTVBQU5mcEJqcXo2KyJ9
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 06 May 2020 11:29:51 -0000
-Message-ID: <158876459115.11898.11217160018092564313@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Plumb_crtc_state_to_link_training_code?=
+Subject: Re: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,48 +64,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IFBsdW1iIGNydGMgc3RhdGUg
-dG8gbGluayB0cmFpbmluZyBjb2RlClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
-b3Aub3JnL3Nlcmllcy83Njk5My8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxM
-ICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9taWMvY2hl
-Y2stYXRvbWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJh
-dGVkL2NvbXBpbGUuaAogIEhEUlRFU1QgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcF9saW5rX3RyYWluaW5nLmgKSW4gZmlsZSBpbmNsdWRlZCBmcm9tIDxjb21tYW5kLWxpbmU+
-OjA6MDoKLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5p
-bmcuaDoxNDoyNDogZXJyb3I6IOKAmHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl4oCZIGRlY2xhcmVk
-IGluc2lkZSBwYXJhbWV0ZXIgbGlzdCB3aWxsIG5vdCBiZSB2aXNpYmxlIG91dHNpZGUgb2YgdGhp
-cyBkZWZpbml0aW9uIG9yIGRlY2xhcmF0aW9uIFstV2Vycm9yXQogICAgICAgICAgIGNvbnN0IHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogICAgICAgICAgICAgICAgICAgICAg
-ICBefn5+fn5+fn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cF9saW5rX3RyYWluaW5nLmg6MTc6MjQ6IGVycm9yOiDigJhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZeKAmSBkZWNsYXJlZCBpbnNpZGUgcGFyYW1ldGVyIGxpc3Qgd2lsbCBub3QgYmUgdmlzaWJsZSBv
-dXRzaWRlIG9mIHRoaXMgZGVmaW5pdGlvbiBvciBkZWNsYXJhdGlvbiBbLVdlcnJvcl0KICAgICAg
-ICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CiAgICAgICAg
-ICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuaDoxOToyMzogZXJyb3I6IOKAmHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRl4oCZIGRlY2xhcmVkIGluc2lkZSBwYXJhbWV0ZXIgbGlzdCB3aWxsIG5v
-dCBiZSB2aXNpYmxlIG91dHNpZGUgb2YgdGhpcyBkZWZpbml0aW9uIG9yIGRlY2xhcmF0aW9uIFst
-V2Vycm9yXQogICAgICAgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
-dGUpOwogICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn4KY2MxOiBhbGwgd2Fy
-bmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJvcnMKZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZp
-bGU6Mjk5OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcF9saW5rX3RyYWluaW5nLmhkcnRlc3QnIGZhaWxlZAptYWtlWzRdOiAqKiogW2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5oZHJ0ZXN0XSBF
-cnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDg4OiByZWNpcGUgZm9yIHRhcmdldCAnZHJp
-dmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9p
-OTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDg4OiByZWNpcGUgZm9yIHRhcmdl
-dCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1d
-IEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0ODg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdk
-cml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFr
-ZWZpbGU6MTcyMjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiog
-W2RyaXZlcnNdIEVycm9yIDIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt
+> Roper
+> Sent: Tuesday, May 5, 2020 4:22 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Subject: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory support
+> 
+> RKL re-uses the same stolen memory registers as TGL and ICL.
+> 
+> Bspec: 52055
+> Bspec: 49589
+> Bspec: 49636
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+Confirmed with Spec.
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+
+> ---
+>  arch/x86/kernel/early-quirks.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> index 2f9ec14be3b1..a4b5af03dcc1 100644
+> --- a/arch/x86/kernel/early-quirks.c
+> +++ b/arch/x86/kernel/early-quirks.c
+> @@ -550,6 +550,7 @@ static const struct pci_device_id intel_early_ids[]
+> __initconst = {
+>  	INTEL_ICL_11_IDS(&gen11_early_ops),
+>  	INTEL_EHL_IDS(&gen11_early_ops),
+>  	INTEL_TGL_12_IDS(&gen11_early_ops),
+> +	INTEL_RKL_IDS(&gen11_early_ops),
+>  };
+> 
+>  struct resource intel_graphics_stolen_res __ro_after_init =
+> DEFINE_RES_MEM(0, 0);
+> --
+> 2.24.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
