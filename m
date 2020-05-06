@@ -1,44 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D531C701C
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 14:16:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D3F1C7036
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 14:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF05489956;
-	Wed,  6 May 2020 12:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 768828934B;
+	Wed,  6 May 2020 12:22:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0702489956
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 12:16:28 +0000 (UTC)
-IronPort-SDR: oyT+ogvgyNWOdSL0J2QU6pKKJYmfTsKXCbbI8nv/nPC7RJCtee18QFlPR0ceOqkFVLzIJ41IbR
- O9z9cT1RnG8A==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC4C8934B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 12:22:36 +0000 (UTC)
+IronPort-SDR: rb4M3Z6e9WvdjvqN9aaLvTL5qYD1xz9qeUSuWLCKpe5omi1KkIqcvQlIbyj8Znc/KcY52cwPWk
+ 12WECmBorBlg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 05:16:27 -0700
-IronPort-SDR: 4yJeADACJ9u/VvJnWws7naKj7PhLC4RRRksGznay5SYVRv09UrW/G+Z61R2OLN1qEqGnIA3RWb
- iuHJ7L6NSsqg==
-X-IronPort-AV: E=Sophos;i="5.73,358,1583222400"; d="scan'208";a="434865961"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 05:16:25 -0700
-Date: Wed, 6 May 2020 15:12:10 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200506121210.GA16181@intel.com>
-References: <20200505102247.32452-1-stanislav.lisovskiy@intel.com>
- <20200505102247.32452-4-stanislav.lisovskiy@intel.com>
- <20200505105911.GG6112@intel.com>
- <20200506083105.GA16959@intel.com>
- <20200506091228.GN6112@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 05:22:35 -0700
+IronPort-SDR: e7kLRt7yqrWiZsTQ9mlbXSqthQWPl41eIAxXlGyjqQVAR6AgbmmMnynBlZFldQZbuq7ehlJzHS
+ pWbld8p9NT+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,358,1583222400"; d="scan'208";a="248900725"
+Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
+ ([10.223.74.178])
+ by orsmga007.jf.intel.com with ESMTP; 06 May 2020 05:22:33 -0700
+Date: Wed, 6 May 2020 17:43:18 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200506121317.GE10565@intel.com>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+ <20200504225227.464666-9-matthew.d.roper@intel.com>
+ <20200505045058.GD10565@intel.com>
+ <20200505143904.GQ188376@mdroper-desk1.amr.corp.intel.com>
+ <20200505160954.GC20861@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200506091228.GN6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v27 3/6] drm/i915: Add TGL+ SAGV support
+In-Reply-To: <20200505160954.GC20861@ideak-desk.fi.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 08/22] drm/i915/rkl: Add power well
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,474 +53,302 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 06, 2020 at 12:12:28PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, May 06, 2020 at 11:31:05AM +0300, Lisovskiy, Stanislav wrote:
-> > On Tue, May 05, 2020 at 01:59:11PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, May 05, 2020 at 01:22:44PM +0300, Stanislav Lisovskiy wrote:
-> > > > Starting from TGL we need to have a separate wm0
-> > > > values for SAGV and non-SAGV which affects
-> > > > how calculations are done.
-> > > > =
-
-> > > > v2: Remove long lines
-> > > > v3: Removed COLOR_PLANE enum references
-> > > > v4, v5, v6: Fixed rebase conflict
-> > > > =
-
-> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On 2020-05-05 at 19:09:54 +0300, Imre Deak wrote:
+> On Tue, May 05, 2020 at 07:39:04AM -0700, Matt Roper wrote:
+> > On Tue, May 05, 2020 at 10:20:58AM +0530, Anshuman Gupta wrote:
+> > > On 2020-05-04 at 15:52:13 -0700, Matt Roper wrote:
+> > > > RKL power wells are similar to TGL power wells, but have some important
+> > > > differences:
+> > > > 
+> > > >  * PG1 now has pipe A's VDSC (rather than sticking it in PG2)
+> > > >  * PG2 no longer exists
+> > > >  * DDI-C (aka TC-1) moves from PG1 -> PG3
+> > > >  * PG5 no longer exists due to the lack of a fourth pipe
+> > > > 
+> > > > Also note that what we refer to as 'DDI-C' and 'DDI-D' need to actually
+> > > > be programmed as TC-1 and TC-2 even though this platform doesn't have TC
+> > > > outputs.
+Looks good to me.
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > 
+> > > > Bspec: 49234
+> > > > Cc: Imre Deak <imre.deak@intel.com>
+> > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
-> > > >  .../drm/i915/display/intel_display_types.h    |   3 +
-> > > >  drivers/gpu/drm/i915/intel_pm.c               | 128 ++++++++++++++=
-+++-
-> > > >  3 files changed, 130 insertions(+), 9 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
-/gpu/drm/i915/display/intel_display.c
-> > > > index fd6d63b03489..be5741cb7595 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -13961,7 +13961,9 @@ static void verify_wm_state(struct intel_cr=
-tc *crtc,
-> > > >  		/* Watermarks */
-> > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > -						&sw_plane_wm->wm[level]))
-> > > > +						&sw_plane_wm->wm[level]) ||
-> > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[lev=
-el],
-> > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > >  				continue;
-> > > >  =
-
-> > > >  			drm_err(&dev_priv->drm,
-> > > > @@ -14016,7 +14018,9 @@ static void verify_wm_state(struct intel_cr=
-tc *crtc,
-> > > >  		/* Watermarks */
-> > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > -						&sw_plane_wm->wm[level]))
-> > > > +						&sw_plane_wm->wm[level]) ||
-> > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[lev=
-el],
-> > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > >  				continue;
-> > > >  =
-
-> > > >  			drm_err(&dev_priv->drm,
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/d=
-rivers/gpu/drm/i915/display/intel_display_types.h
-> > > > index 9488449e4b94..32cbbf7dddc6 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > @@ -688,11 +688,14 @@ struct skl_plane_wm {
-> > > >  	struct skl_wm_level wm[8];
-> > > >  	struct skl_wm_level uv_wm[8];
-> > > >  	struct skl_wm_level trans_wm;
-> > > > +	struct skl_wm_level sagv_wm0;
-> > > > +	struct skl_wm_level uv_sagv_wm0;
-> > > =
-
-> > > As mentioned before uv_wm is not a thing on icl+, so nuke this.
-> > =
-
-> > This is used in skl_plane_wm_level accessor, which is used for all
-> > platforms, not just icl+. I remember we had agreed that for all platfor=
-ms
-> > before tgl I simply copy sagv_wm0 values from regular wm0, so that this
-> > behaviour is unified(remember that your comment about memcpy which I ch=
-anged
-> > to assignment, see skl_compute_sagv_wm). =
-
-> =
-
-> I think having that duplicated is just making things more confusing.
-> Also uv_wm is never used by the hardware even on pre-icl, so having
-> the accessor thing use it for the hw programming just doesn't make
-> any sense.
-
-Problem is that we use it in skl_allocate_pipe_ddb in a few places:
-
-blocks +=3D wm_level->min_ddb_alloc;
-blocks +=3D wm_uv_level->min_ddb_alloc;
-
-then those plane data rates:
-
-rate =3D plane_data_rate[plane_id];
-extra =3D min_t(u16, alloc_size,
-      DIV64_U64_ROUND_UP(alloc_size * rate, total_data_rate));
-total[plane_id] =3D wm_level->min_ddb_alloc + extra;
-alloc_size -=3D extra;
-total_data_rate -=3D rate;
-
-if (total_data_rate =3D=3D 0)
-	break;
-
-rate =3D uv_plane_data_rate[plane_id];
-extra =3D min_t(u16, alloc_size,
-      DIV64_U64_ROUND_UP(alloc_size * rate, total_data_rate));
-
-uv_total[plane_id] =3D wm_uv_level->min_ddb_alloc + extra;
-
-So if I remove this wm_uv from skl_plane_wm_level accessor,
-the logic in skl_allocate_pipe_ddb will obvisouly change?
-
-
-Stan
-
-
-> =
-
-> For the compute side I think all we should really need is
-> something like:
-> =
-
-> tgl_compute_sagv_wm()
-> {
-> 	skl_compute_wm_level(sagv_wm0, latency + whatever);
-> }
-> =
-
-> skl_build_plane_wm_single()
-> {
-> 	...
-> 	skl_compute_transition_wm();
-> +	if (gen >=3D 12)
-> +		tgl_compute_sagv_wm();
-> }
-> =
-
-> And for the progamming side we should just pick the right
-> wm0 based on the crtc_state->use_sagv_wm or whatever flag.
-> =
-
-> > =
-
-> > So if I remove it and this is called for pre-icl platforms, guess this =
-would still
-> > need wm_uv data?
-> > =
-
-> > =
-
-> > Stan
-> > =
-
-> > > =
-
-> > > >  	bool is_planar;
+> > > >  .../drm/i915/display/intel_display_power.c    | 185 +++++++++++++++++-
+> > > >  drivers/gpu/drm/i915/display/intel_vdsc.c     |   4 +-
+> > > >  2 files changed, 186 insertions(+), 3 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > index 49998906cc61..71691919d101 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > > @@ -2913,6 +2913,53 @@ void intel_display_power_put(struct drm_i915_private *dev_priv,
+> > > >  	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
+> > > >  	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
+> > > >  
+> > > > +#define RKL_PW_4_POWER_DOMAINS (			\
+> > > > +	BIT_ULL(POWER_DOMAIN_PIPE_C) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_PIPE_C_PANEL_FITTER) |	\
+> > > > +	BIT_ULL(POWER_DOMAIN_TRANSCODER_C) |		\
+> > > > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > > > +
+> > > > +#define RKL_PW_3_POWER_DOMAINS (			\
+> > > > +	RKL_PW_4_POWER_DOMAINS |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_PIPE_B) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_PIPE_B_PANEL_FITTER) |	\
+> > > > +	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_VGA) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
+> > > > +	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
+> > > > +	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
+> > > > +	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > > > +
+> > > > +/*
+> > > > + * There is no PW_2/PG_2 on RKL.
+> > > > + *
+> > > > + * RKL PW_1/PG_1 domains (under HW/DMC control):
+> > > > + * - DBUF function (note: registers are in PW0)
+> > > > + * - PIPE_A and its planes and VDSC/joining, except VGA
+> > > > + * - transcoder A
+> > > > + * - DDI_A and DDI_B
+> > > > + * - FBC
+> > > > + *
+> > > > + * RKL PW_0/PG_0 domains (under HW/DMC control):
+> > > > + * - PCI
+> > > > + * - clocks except port PLL
+> > > > + * - shared functions:
+> > > > + *     * interrupts except pipe interrupts
+> > > > + *     * MBus except PIPE_MBUS_DBOX_CTL
+> > > > + *     * DBUF registers
+> > > > + * - central power except FBC
+> > > > + * - top-level GTC (DDI-level GTC is in the well associated with the DDI)
+> > > > + */
+> > > > +
+> > > > +#define RKL_DISPLAY_DC_OFF_POWER_DOMAINS (		\
+> > > > +	RKL_PW_3_POWER_DOMAINS |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+> > > > +	BIT_ULL(POWER_DOMAIN_INIT))
+> > > > +
+> > > >  static const struct i915_power_well_ops i9xx_always_on_power_well_ops = {
+> > > >  	.sync_hw = i9xx_power_well_sync_hw_noop,
+> > > >  	.enable = i9xx_always_on_power_well_noop,
+> > > > @@ -4283,6 +4330,140 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+> > > >  	},
 > > > >  };
-> > > >  =
-
-> > > >  struct skl_pipe_wm {
-> > > >  	struct skl_plane_wm planes[I915_MAX_PLANES];
-> > > > +	bool can_sagv;
-> > > =
-
-> > > I would call it use_sagv_wm or somesuch to make it actually clear what
-> > > it does.
-> > > =
-
-> > > >  };
-> > > >  =
-
-> > > >  enum vlv_wm_level {
-> > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915=
-/intel_pm.c
-> > > > index c7d726a656b2..1b9925b6672c 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > @@ -3871,6 +3871,9 @@ static bool icl_crtc_can_enable_sagv(const st=
-ruct intel_crtc_state *crtc_state)
-> > > >  	return intel_crtc_can_enable_sagv(crtc_state);
-> > > >  }
-> > > >  =
-
-> > > > +static bool
-> > > > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state=
-);
-> > > > +
-> > > >  bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
-> > > >  {
-> > > >  	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pip=
-es))
-> > > > @@ -3884,7 +3887,7 @@ static int intel_compute_sagv_mask(struct int=
-el_atomic_state *state)
-> > > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > >  	int ret;
-> > > >  	struct intel_crtc *crtc;
-> > > > -	const struct intel_crtc_state *new_crtc_state;
-> > > > +	struct intel_crtc_state *new_crtc_state;
-> > > >  	struct intel_bw_state *new_bw_state =3D NULL;
-> > > >  	const struct intel_bw_state *old_bw_state =3D NULL;
-> > > >  	int i;
-> > > > @@ -3899,7 +3902,9 @@ static int intel_compute_sagv_mask(struct int=
-el_atomic_state *state)
-> > > >  =
-
-> > > >  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
-> > > >  =
-
-> > > > -		if (INTEL_GEN(dev_priv) >=3D 11)
-> > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > > +			can_sagv =3D tgl_crtc_can_enable_sagv(new_crtc_state);
-> > > > +		else if (INTEL_GEN(dev_priv) >=3D 11)
-> > > >  			can_sagv =3D icl_crtc_can_enable_sagv(new_crtc_state);
-> > > >  		else
-> > > >  			can_sagv =3D skl_crtc_can_enable_sagv(new_crtc_state);
-> > > > @@ -3921,6 +3926,24 @@ static int intel_compute_sagv_mask(struct in=
-tel_atomic_state *state)
-> > > >  			return ret;
-> > > >  	}
-> > > >  =
-
-> > > > +	for_each_new_intel_crtc_in_state(state, crtc,
-> > > > +					 new_crtc_state, i) {
-> > > > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.optimal;
-> > > > +
-> > > > +		/*
-> > > > +		 * Due to drm limitation at commit state, when
-> > > > +		 * changes are written the whole atomic state is
-> > > > +		 * zeroed away =3D> which prevents from using it,
-> > > > +		 * so just sticking it into pipe wm state for
-> > > > +		 * keeping it simple - anyway this is related to wm.
-> > > > +		 * Proper way in ideal universe would be of course not
-> > > > +		 * to lose parent atomic state object from child crtc_state,
-> > > > +		 * and stick to OOP programming principles, which had been
-> > > > +		 * scientifically proven to work.
-> > > =
-
-> > > Seems like random ramblings. I'd just nuke the comment.
-> > > =
-
-> > > > +		 */
-> > > > +		pipe_wm->can_sagv =3D intel_can_enable_sagv(new_bw_state);
-> > > > +	}
-> > > > +
-> > > >  	if (intel_can_enable_sagv(new_bw_state) !=3D intel_can_enable_sag=
-v(old_bw_state)) {
-> > > >  		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
-> > > >  		if (ret)
-> > > > @@ -4664,12 +4687,39 @@ skl_plane_wm_level(const struct intel_crtc_=
-state *crtc_state,
-> > > >  		   int level,
-> > > >  		   int color_plane)
-> > > >  {
-> > > > -	const struct skl_plane_wm *wm =3D
-> > > > -		&crtc_state->wm.skl.optimal.planes[plane_id];
-> > > > +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
-> > > > +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
-> > > > +
-> > > > +	if (!level) {
-> > > > +		if (pipe_wm->can_sagv)
-> > > > +			return color_plane =3D=3D 0 ? &wm->sagv_wm0 : &wm->uv_sagv_wm0;
-> > > > +	}
-> > > >  =
-
-> > > >  	return color_plane =3D=3D 0 ? &wm->wm[level] : &wm->uv_wm[level];
-> > > >  }
-> > > >  =
-
-> > > > +static bool
-> > > > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
-> > > > +{
-> > > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > > > +	enum plane_id plane_id;
-> > > > +
-> > > > +	if (!crtc_state->hw.active)
-> > > > +		return true;
-> > > > +
-> > > > +	for_each_plane_id_on_crtc(crtc, plane_id) {
-> > > > +		const struct skl_ddb_entry *plane_alloc =3D
-> > > > +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > > > +		const struct skl_plane_wm *wm =3D
-> > > > +			&crtc_state->wm.skl.optimal.planes[plane_id];
-> > > > +
-> > > > +		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_alloc)
-> > > > +			return false;
-> > > > +	}
-> > > > +
-> > > > +	return true;
-> > > > +}
+> > > >  
+> > > > +static const struct i915_power_well_desc rkl_power_wells[] = {
+> > > > +	{
+> > > > +		.name = "always-on",
+> > > > +		.always_on = true,
+> > > > +		.domains = POWER_DOMAIN_MASK,
+> > > > +		.ops = &i9xx_always_on_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "power well 1",
+> > > > +		/* Handled by the DMC firmware */
+> > > > +		.always_on = true,
+> > > > +		.domains = 0,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = SKL_DISP_PW_1,
+> > > > +		{
+> > > > +			.hsw.regs = &hsw_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_PW_1,
+> > > > +			.hsw.has_fuses = true,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "DC off",
+> > > > +		.domains = RKL_DISPLAY_DC_OFF_POWER_DOMAINS,
+> > > > +		.ops = &gen9_dc_off_power_well_ops,
+> > > > +		.id = SKL_DISP_DC_OFF,
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "power well 3",
+> > > > +		.domains = RKL_PW_3_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = ICL_DISP_PW_3,
+> > > > +		{
+> > > > +			.hsw.regs = &hsw_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_PW_3,
+> > > > +			.hsw.irq_pipe_mask = BIT(PIPE_B),
+> > > > +			.hsw.has_vga = true,
+> > > > +			.hsw.has_fuses = true,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "power well 4",
+> > > > +		.domains = RKL_PW_4_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &hsw_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_PW_4,
+> > > > +			.hsw.has_fuses = true,
+> > > > +			.hsw.irq_pipe_mask = BIT(PIPE_C),
+> > > > +		}
+> > > > +	},
+> > > IMHO the order of power well is differs from TGL/ICL,
+> > > TGL/ICL PW_4 comes after DDI and AUX IO power wells.
+> > > Why the order is different on RKL.
+> > > Thanks,
+> > > Anshuman Gupta.
+> > 
+> > I'm not aware of any specific reason why PW_4 was placed after the
+> > DDI/AUX wells on ICL, but that order seems to have been copy/pasted to
+> > TGL too.
+> > 
+> > It seems more natural to keep the main power wells together, so I wrote
+> > them in what I considered to be a more intuitive order here.  But
+> > ultimately the order of the power wells in the array shouldn't have any
+> > functional impact.
+> 
+> The order of two power wells in the array determines their
+> enabling/disabling order if they are included in the same power domain.
+> If there is no dependency between two power wells their order in the
+> array is not important.
+> 
+> > Matt
+> > 
+> > > > +	{
+> > > > +		.name = "DDI A IO",
+> > > > +		.domains = ICL_DDI_IO_A_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_DDI_A,
+> > > > +		}
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "DDI B IO",
+> > > > +		.domains = ICL_DDI_IO_B_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_DDI_B,
+> > > > +		}
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "DDI D TC1 IO",
+> > > > +		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > > > +			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC1,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "DDI E TC2 IO",
+> > > > +		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
+> > > > +		.ops = &hsw_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_ddi_power_well_regs,
+> > > > +			.hsw.idx = TGL_PW_CTL_IDX_DDI_TC2,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "AUX A",
+> > > > +		.domains = ICL_AUX_A_IO_POWER_DOMAINS,
+> > > > +		.ops = &icl_aux_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_aux_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_AUX_A,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "AUX B",
+> > > > +		.domains = ICL_AUX_B_IO_POWER_DOMAINS,
+> > > > +		.ops = &icl_aux_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_aux_power_well_regs,
+> > > > +			.hsw.idx = ICL_PW_CTL_IDX_AUX_B,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "AUX D TC1",
+> > > > +		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
+> > > > +		.ops = &icl_aux_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_aux_power_well_regs,
+> > > > +			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC1,
+> > > > +		},
+> > > > +	},
+> > > > +	{
+> > > > +		.name = "AUX E TC2",
+> > > > +		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
+> > > > +		.ops = &icl_aux_power_well_ops,
+> > > > +		.id = DISP_PW_ID_NONE,
+> > > > +		{
+> > > > +			.hsw.regs = &icl_aux_power_well_regs,
+> > > > +			.hsw.idx = TGL_PW_CTL_IDX_AUX_TC2,
+> > > > +		},
+> > > > +	},
+> > > > +};
 > > > > +
 > > > >  static int
-> > > >  skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
-> > > >  {
-> > > > @@ -5251,10 +5301,17 @@ static void skl_compute_plane_wm(const stru=
-ct intel_crtc_state *crtc_state,
-> > > >  static void
-> > > >  skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
-> > > >  		      const struct skl_wm_params *wm_params,
-> > > > -		      struct skl_wm_level *levels)
-> > > > +		      struct skl_plane_wm *plane_wm,
-> > > > +		      int color_plane)
-> > > >  {
-> > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.cr=
-tc->dev);
-> > > >  	int level, max_level =3D ilk_wm_max_level(dev_priv);
-> > > > +	/*
-> > > > +	 * Check which kind of plane is it and based on that calculate
-> > > > +	 * correspondent WM levels.
-> > > > +	 */
-> > > > +	struct skl_wm_level *levels =3D color_plane =3D=3D 1 ?
-> > > > +				      plane_wm->uv_wm : plane_wm->wm;
-> > > >  	struct skl_wm_level *result_prev =3D &levels[0];
-> > > >  =
-
-> > > >  	for (level =3D 0; level <=3D max_level; level++) {
-> > > > @@ -5268,6 +5325,40 @@ skl_compute_wm_levels(const struct intel_crt=
-c_state *crtc_state,
-> > > >  	}
-> > > >  }
-> > > >  =
-
-> > > > +static void skl_compute_sagv_wm(const struct intel_crtc_state *crt=
-c_state,
-> > > > +				const struct skl_wm_params *wm_params,
-> > > > +				struct skl_plane_wm *plane_wm,
-> > > > +				int color_plane)
-> > > > +{
-> > > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.cr=
-tc->dev);
-> > > > +	struct skl_wm_level *sagv_wm =3D color_plane =3D=3D 1 ?
-> > > > +				&plane_wm->uv_sagv_wm0 : &plane_wm->sagv_wm0;
-> > > > +	struct skl_wm_level *levels =3D color_plane =3D=3D 1 ?
-> > > > +				plane_wm->uv_wm : plane_wm->wm;
-> > > > +
-> > > > +	/*
-> > > > +	 * For Gen12 if it is an L0 we need to also
-> > > > +	 * consider sagv_block_time when calculating
-> > > > +	 * L0 watermark - we will need that when making
-> > > > +	 * a decision whether enable SAGV or not.
-> > > > +	 * For older gens we agreed to copy L0 value for
-> > > > +	 * compatibility.
-> > > > +	 */
-> > > > +	if ((INTEL_GEN(dev_priv) >=3D 12)) {
-> > > > +		u32 latency =3D dev_priv->wm.skl_latency[0];
-> > > > +
-> > > > +		latency +=3D dev_priv->sagv_block_time_us;
-> > > > +		skl_compute_plane_wm(crtc_state, 0, latency,
-> > > > +				     wm_params, &levels[0],
-> > > > +				     sagv_wm);
-> > > > +		DRM_DEBUG_KMS("%d L0 blocks required for SAGV vs %d for non-SAGV=
-\n",
-> > > > +			      sagv_wm->min_ddb_alloc, levels[0].min_ddb_alloc);
-> > > > +	} else {
-> > > > +		/* Since all members are POD */
-> > > > +		*sagv_wm =3D levels[0];
-> > > > +	}
-> > > > +}
-> > > > +
-> > > >  static void skl_compute_transition_wm(const struct intel_crtc_stat=
-e *crtc_state,
-> > > >  				      const struct skl_wm_params *wp,
-> > > >  				      struct skl_plane_wm *wm)
-> > > > @@ -5344,7 +5435,8 @@ static int skl_build_plane_wm_single(struct i=
-ntel_crtc_state *crtc_state,
-> > > >  	if (ret)
-> > > >  		return ret;
-> > > >  =
-
-> > > > -	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> > > > +	skl_compute_wm_levels(crtc_state, &wm_params, wm, 0);
-> > > > +	skl_compute_sagv_wm(crtc_state, &wm_params, wm, 0);
-> > > >  	skl_compute_transition_wm(crtc_state, &wm_params, wm);
-> > > >  =
-
-> > > >  	return 0;
-> > > > @@ -5366,7 +5458,8 @@ static int skl_build_plane_wm_uv(struct intel=
-_crtc_state *crtc_state,
-> > > >  	if (ret)
-> > > >  		return ret;
-> > > >  =
-
-> > > > -	skl_compute_wm_levels(crtc_state, &wm_params, wm->uv_wm);
-> > > > +	skl_compute_wm_levels(crtc_state, &wm_params, wm, 1);
-> > > > +	skl_compute_sagv_wm(crtc_state, &wm_params, wm, 1);
-> > > >  =
-
-> > > >  	return 0;
-> > > >  }
-> > > > @@ -5751,6 +5844,12 @@ skl_print_wm_changes(struct intel_atomic_sta=
-te *state)
-> > > >  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res=
-_l,
-> > > >  				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.pla=
-ne_res_l);
-> > > >  =
-
-> > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > +				    "[PLANE:%d:%s] sagv wm0 lines %4d -> %4d\n",
-> > > > +				    plane->base.base.id, plane->base.name,
-> > > > +				    old_wm->sagv_wm0.plane_res_l,
-> > > > +				    new_wm->sagv_wm0.plane_res_l);
-> > > > +
-> > > >  			drm_dbg_kms(&dev_priv->drm,
-> > > >  				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> > > >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > > > @@ -5766,6 +5865,12 @@ skl_print_wm_changes(struct intel_atomic_sta=
-te *state)
-> > > >  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
-> > > >  				    new_wm->trans_wm.plane_res_b);
-> > > >  =
-
-> > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > +				    "[PLANE:%d:%s] sagv wm0 blocks %4d -> %4d\n",
-> > > > +				    plane->base.base.id, plane->base.name,
-> > > > +				    old_wm->sagv_wm0.plane_res_b,
-> > > > +				    new_wm->sagv_wm0.plane_res_b);
-> > > > +
-> > > >  			drm_dbg_kms(&dev_priv->drm,
-> > > >  				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> > > >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > > > @@ -5780,6 +5885,12 @@ skl_print_wm_changes(struct intel_atomic_sta=
-te *state)
-> > > >  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
-> > > >  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
-> > > >  				    new_wm->trans_wm.min_ddb_alloc);
-> > > > +
-> > > > +			drm_dbg_kms(&dev_priv->drm,
-> > > > +				    "[PLANE:%d:%s] sagv wm0 min ddb %4d -> %4d\n",
-> > > > +				    plane->base.base.id, plane->base.name,
-> > > > +				    old_wm->sagv_wm0.min_ddb_alloc,
-> > > > +				    new_wm->sagv_wm0.min_ddb_alloc);
-> > > >  		}
-> > > >  	}
-> > > >  }
-> > > > @@ -6072,6 +6183,9 @@ void skl_pipe_wm_get_hw_state(struct intel_cr=
-tc *crtc,
-> > > >  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
-> > > >  		}
-> > > >  =
-
-> > > > +		memcpy(&wm->sagv_wm0, &wm->wm[0],
-> > > > +		       sizeof(struct skl_wm_level));
-> > > > +
-> > > >  		if (plane_id !=3D PLANE_CURSOR)
-> > > >  			val =3D I915_READ(PLANE_WM_TRANS(pipe, plane_id));
-> > > >  		else
-> > > > -- =
-
-> > > > 2.24.1.485.gad05a3d8e5
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+> > > >  sanitize_disable_power_well_option(const struct drm_i915_private *dev_priv,
+> > > >  				   int disable_power_well)
+> > > > @@ -4428,7 +4609,9 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+> > > >  	 * The enabling order will be from lower to higher indexed wells,
+> > > >  	 * the disabling order is reversed.
+> > > >  	 */
+> > > > -	if (IS_GEN(dev_priv, 12)) {
+> > > > +	if (IS_ROCKETLAKE(dev_priv)) {
+> > > > +		err = set_power_wells(power_domains, rkl_power_wells);
+> > > > +	} else if (IS_GEN(dev_priv, 12)) {
+> > > >  		err = set_power_wells(power_domains, tgl_power_wells);
+> > > >  	} else if (IS_GEN(dev_priv, 11)) {
+> > > >  		err = set_power_wells(power_domains, icl_power_wells);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > > > index 95ad87d4ccb3..d145fe2bed81 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > > > @@ -476,13 +476,13 @@ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state)
+> > > >  	 * POWER_DOMAIN_TRANSCODER_VDSC_PW2 power domain in two cases:
+> > > >  	 *
+> > > >  	 *  - ICL eDP/DSI transcoder
+> > > > -	 *  - TGL pipe A
+> > > > +	 *  - Gen12+ (except RKL) pipe A
+> > > >  	 *
+> > > >  	 * For any other pipe, VDSC/joining uses the power well associated with
+> > > >  	 * the pipe in use. Hence another reference on the pipe power domain
+> > > >  	 * will suffice. (Except no VDSC/joining on ICL pipe A.)
+> > > >  	 */
+> > > > -	if (INTEL_GEN(i915) >= 12 && pipe == PIPE_A)
+> > > > +	if (INTEL_GEN(i915) >= 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
+> > > >  		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+> > > >  	else if (is_pipe_dsc(crtc_state))
+> > > >  		return POWER_DOMAIN_PIPE(pipe);
+> > > > -- 
+> > > > 2.24.1
+> > > > 
+> > 
+> > -- 
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
