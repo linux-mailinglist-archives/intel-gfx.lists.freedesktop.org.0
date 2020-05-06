@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A191C72B5
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD811C72FB
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:37:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C87D6E88B;
-	Wed,  6 May 2020 14:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51E7689A1A;
+	Wed,  6 May 2020 14:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B41046E889;
- Wed,  6 May 2020 14:22:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BADF989B57
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:37:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21127740-1500050 
- for multiple; Wed, 06 May 2020 15:22:24 +0100
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21127925-1500050 
+ for multiple; Wed, 06 May 2020 15:36:21 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 May 2020 15:22:18 +0100
-Message-Id: <20200506142218.3098955-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200506142218.3098955-1-chris@chris-wilson.co.uk>
-References: <20200506142218.3098955-1-chris@chris-wilson.co.uk>
+Date: Wed,  6 May 2020 15:36:15 +0100
+Message-Id: <20200506143616.19925-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/gem_exec_fence: Exercise
- timeslicing on submit-fence
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Mark concurrent submissions with
+ a weak-dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,168 +37,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_exec_fence.c | 124 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 124 insertions(+)
+We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
+correctly perform priority inheritance from the parallel branches to the
+common trunk. However, for the purpose of timeslicing and reset
+handling, the dependency is weak -- as we the pair of requests are
+allowed to run in parallel and not in strict succession. So for example
+we do need to suspend one if the other hangs.
 
-diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-index 4b0d87e4d..a75188c9c 100644
---- a/tests/i915/gem_exec_fence.c
-+++ b/tests/i915/gem_exec_fence.c
-@@ -46,6 +46,15 @@ struct sync_merge_data {
- #define SYNC_IOC_MERGE _IOWR(SYNC_IOC_MAGIC, 3, struct sync_merge_data)
- #endif
+The real significance though is that this allows us to rearrange
+groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
+so can resolve user level inter-batch scheduling dependencies from user
+semaphores.
+
+Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
+Testcase: igt/gem_exec_fence/submit
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v5.6+
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
+ drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
+ drivers/gpu/drm/i915/i915_scheduler.c       | 6 +++---
+ drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
+ drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
+ 5 files changed, 21 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index dc3f2ee7136d..10109f661bcb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1880,6 +1880,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-+#define MI_SEMAPHORE_WAIT		(0x1c << 23)
-+#define   MI_SEMAPHORE_POLL             (1 << 15)
-+#define   MI_SEMAPHORE_SAD_GT_SDD       (0 << 12)
-+#define   MI_SEMAPHORE_SAD_GTE_SDD      (1 << 12)
-+#define   MI_SEMAPHORE_SAD_LT_SDD       (2 << 12)
-+#define   MI_SEMAPHORE_SAD_LTE_SDD      (3 << 12)
-+#define   MI_SEMAPHORE_SAD_EQ_SDD       (4 << 12)
-+#define   MI_SEMAPHORE_SAD_NEQ_SDD      (5 << 12)
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
 +
- static void store(int fd, const struct intel_execution_engine2 *e,
- 		  int fence, uint32_t target, unsigned offset_value)
- {
-@@ -376,6 +385,109 @@ static void test_fence_await(int fd, const struct intel_execution_engine2 *e,
- 	gem_close(fd, scratch);
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2726,6 +2729,9 @@ static void __execlists_hold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
+ 
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2850,6 +2856,9 @@ static void __execlists_unhold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
+ 
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
++
+ 			/* Propagate any change in error status */
+ 			if (rq->fence.error)
+ 				i915_request_set_error_once(w, rq->fence.error);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 22635bbabf06..02a5644ae105 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1038,7 +1038,9 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 		return 0;
+ 
+ 	if (to->engine->schedule) {
+-		ret = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		ret = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     I915_DEPENDENCY_EXTERNAL);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+@@ -1200,7 +1202,9 @@ __i915_request_await_execution(struct i915_request *to,
+ 
+ 	/* Couple the dependency tree for PI on this exposed to->fence */
+ 	if (to->engine->schedule) {
+-		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
++		err = i915_sched_node_add_dependency(&to->sched,
++						     &from->sched,
++						     I915_DEPENDENCY_WEAK);
+ 		if (err < 0)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 37cfcf5b321b..6e2d4190099f 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -462,7 +462,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
  }
  
-+static uint32_t timeslicing_batches(int i915, uint32_t *offset)
-+{
-+        uint32_t handle = gem_create(i915, 4096);
-+        uint32_t cs[256];
-+
-+	*offset += 4000;
-+	for (int pair = 0; pair <= 1; pair++) {
-+		int x = 1;
-+		int i = 0;
-+
-+		for (int step = 0; step < 8; step++) {
-+			if (pair) {
-+				cs[i++] =
-+					MI_SEMAPHORE_WAIT |
-+					MI_SEMAPHORE_POLL |
-+					MI_SEMAPHORE_SAD_EQ_SDD |
-+					(4 - 2);
-+				cs[i++] = x++;
-+				cs[i++] = *offset;
-+				cs[i++] = 0;
-+			}
-+
-+			cs[i++] = MI_STORE_DWORD_IMM;
-+			cs[i++] = *offset;
-+			cs[i++] = 0;
-+			cs[i++] = x++;
-+
-+			if (!pair) {
-+				cs[i++] =
-+					MI_SEMAPHORE_WAIT |
-+					MI_SEMAPHORE_POLL |
-+					MI_SEMAPHORE_SAD_EQ_SDD |
-+					(4 - 2);
-+				cs[i++] = x++;
-+				cs[i++] = *offset;
-+				cs[i++] = 0;
-+			}
-+		}
-+
-+		cs[i++] = MI_BATCH_BUFFER_END;
-+		igt_assert(i < ARRAY_SIZE(cs));
-+		gem_write(i915, handle, pair * sizeof(cs), cs, sizeof(cs));
-+	}
-+
-+	*offset = sizeof(cs);
-+        return handle;
-+}
-+
-+static void test_submit_fence(int i915, unsigned int engine)
-+{
-+	const struct intel_execution_engine2 *e;
-+
-+	/*
-+	 * Create a pair of interlocking batches, that ping pong
-+	 * between each other, and only advance one step at a time.
-+	 * We require the kernel to preempt at each semaphore and
-+	 * switch to the other batch in order to advance.
-+	 */
-+
-+	__for_each_physical_engine(i915, e) {
-+		unsigned int offset = 24 << 20;
-+		struct drm_i915_gem_exec_object2 obj = {
-+			.offset = offset,
-+			.flags = EXEC_OBJECT_PINNED,
-+		};
-+		struct drm_i915_gem_execbuffer2 execbuf  = {
-+			.buffers_ptr = to_user_pointer(&obj),
-+			.buffer_count = 1,
-+		};
-+		uint32_t result;
-+		int out;
-+
-+		obj.handle = timeslicing_batches(i915, &offset);
-+
-+		execbuf.flags = engine | I915_EXEC_FENCE_OUT;
-+		execbuf.batch_start_offset = 0;
-+		gem_execbuf_wr(i915, &execbuf);
-+
-+		execbuf.rsvd1 = gem_context_clone_with_engines(i915, 0);
-+		execbuf.rsvd2 >>= 32;
-+		execbuf.flags = e->flags;
-+		execbuf.flags |= I915_EXEC_FENCE_SUBMIT | I915_EXEC_FENCE_OUT;
-+		execbuf.batch_start_offset = offset;
-+		gem_execbuf_wr(i915, &execbuf);
-+		gem_context_destroy(i915, execbuf.rsvd1);
-+
-+		gem_sync(i915, obj.handle);
-+
-+		/* no hangs! */
-+		out = execbuf.rsvd2;
-+		igt_assert_eq(sync_fence_status(out), 1);
-+		close(out);
-+
-+		out = execbuf.rsvd2 >> 32;
-+		igt_assert_eq(sync_fence_status(out), 1);
-+		close(out);
-+
-+		gem_read(i915, obj.handle, 4000, &result, sizeof(result));
-+		igt_assert_eq(result, 16);
-+		gem_close(i915, obj.handle);
-+	}
-+}
-+
- static void resubmit(int fd, uint32_t handle,
- 		     const struct intel_execution_engine2 *e, int count)
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal)
++				   struct i915_sched_node *signal,
++				   unsigned long flags)
  {
-@@ -1458,6 +1570,18 @@ igt_main
- 				}
- 			}
+ 	struct i915_dependency *dep;
  
-+			igt_subtest_with_dynamic("submit") {
-+				igt_require(gem_scheduler_has_semaphores(i915));
-+				igt_require(gem_scheduler_has_preemption(i915));
-+				igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
-+
-+				__for_each_physical_engine(i915, e) {
-+
-+					igt_dynamic_f("%s", e->name)
-+						test_submit_fence(i915, e->flags);
-+				}
-+			}
-+
- 			igt_fixture {
- 				igt_stop_hang_detector();
- 			}
+@@ -473,8 +474,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 	local_bh_disable();
+ 
+ 	if (!__i915_sched_node_add_dependency(node, signal, dep,
+-					      I915_DEPENDENCY_EXTERNAL |
+-					      I915_DEPENDENCY_ALLOC))
++					      flags | I915_DEPENDENCY_ALLOC))
+ 		i915_dependency_free(dep);
+ 
+ 	local_bh_enable(); /* kick submission tasklet */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index d1dc4efef77b..6f0bf00fc569 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -34,7 +34,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 				      unsigned long flags);
+ 
+ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+-				   struct i915_sched_node *signal);
++				   struct i915_sched_node *signal,
++				   unsigned long flags);
+ 
+ void i915_sched_node_fini(struct i915_sched_node *node);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index d18e70550054..7186875088a0 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -78,6 +78,7 @@ struct i915_dependency {
+ 	unsigned long flags;
+ #define I915_DEPENDENCY_ALLOC		BIT(0)
+ #define I915_DEPENDENCY_EXTERNAL	BIT(1)
++#define I915_DEPENDENCY_WEAK		BIT(2)
+ };
+ 
+ #endif /* _I915_SCHEDULER_TYPES_H_ */
 -- 
-2.26.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
