@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF341C7333
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:45:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1BF1C7338
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 16:46:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C306E883;
-	Wed,  6 May 2020 14:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC716E88E;
+	Wed,  6 May 2020 14:46:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38A8D6E883
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:45:18 +0000 (UTC)
-IronPort-SDR: dwns7ma4N0XNjoT5jyYQisVa33wOz4u6SOXi9LAxg5qjS/VtMeJf2XFhRJ3OVf6QUUPSOiWT9y
- xfSpfeoTwzjQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 07:45:17 -0700
-IronPort-SDR: IM/7TksA6qy8XdioNU1wM0KMWS0qj8dJcIvpEF73EMgMicinAvEUK+lSneZvspZzTQpfiqE7Uj
- 4JNJcy32c6VQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,359,1583222400"; d="scan'208";a="251216416"
-Received: from pratiks1-mobl.gar.corp.intel.com (HELO [10.252.56.151])
- ([10.252.56.151])
- by fmsmga008.fm.intel.com with ESMTP; 06 May 2020 07:45:10 -0700
-To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200430230951.2508-1-manasi.d.navare@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <3c82e6ff-2550-ac66-d0b0-a5a3baecc8fb@linux.intel.com>
-Date: Wed, 6 May 2020 16:45:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400556E88E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:46:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21128053-1500050 for multiple; Wed, 06 May 2020 15:46:05 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200430230951.2508-1-manasi.d.navare@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 00/11] Rebased Big Joiner patch series
- for 8K 2p1p
+In-Reply-To: <20200506143616.19925-2-chris@chris-wilson.co.uk>
+References: <20200506143616.19925-1-chris@chris-wilson.co.uk>
+ <20200506143616.19925-2-chris@chris-wilson.co.uk>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <158877636035.927.9785429414272285375@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 06 May 2020 15:46:00 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Suppress internal
+ I915_PRIORITY_WAIT for timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,67 +45,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Quoting Chris Wilson (2020-05-06 15:36:16)
+> Make sure we ignore the I915_PRIORITY_WAIT hint when looking at
+> timeslicing, as we do not treat it as a preemption request but as a soft
+> ordering hint. If we apply the hint, then when we recompute the ordering
+> after unwinding for the timeslice, we will often leave the order
+> unchanged due to the soft-hint. However, if we apply it to all those we
+> unwind, then the two equivalent levels may be reordered, and since the
+> dependencies will be replayed in order, we will not change the order of
+> dependencies.
+> 
+> There is a small issue with the lack of cross-engine priority bumping on
+> unwind, leaving the total graph slightly unordered; but that will not
+> result in any misordering of rendering on remote machines as any
+> signalers will also be live. Though there may be a danger that this will
+> upset our sanitychecks.
+> 
+> Why keep the I915_PRIORITY_WAIT soft-hint, I hear Tvrtko ask? Despite
+> the many hairy tricks we play to have the hint and then ignore it, I
+> still like the concept of codel and the promise that it gives for low
+> latency of independent queues!
 
-I've been testing on re-tgl1-display, but series fails.
-
-The 8k mode is rejected because of htotal exceeding limits.
-
-When testing 5120x3200@120 Hz, I get:
-
-[18352.624231] i915 0000:00:02.0: [drm:intel_crtc_compute_min_cdclk [i915]] required cdclk (1056740 kHz) exceeds max (652800 kHz)
-
-Latter makes any further testing impossible.
-
-I've copied 8k and 5k@120 edids to re-tgl1-display edids for testing DP.
-
-~Maarten
-
-Op 01-05-2020 om 01:09 schreef Manasi Navare:
-> This rebases the big joiner patch series from February:
-> https://patchwork.freedesktop.org/series/73014/
-> or from Maarten's internal tree:
-> https://patchwork.freedesktop.org/series/73014/
->
-> This especially needs a thorough review on Patch 10/11 due to
-> all the refactoring around commit_modeset_enables
->
-> Maarten Lankhorst (11):
->   HAX to make DSC work on the icelake test system
->   drm/i915: Remove hw.mode
->   drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
->   drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
->   drm/i915: Try to make bigjoiner work in atomic check
->   drm/i915: Enable big joiner support in enable and disable sequences.
->   drm/i915: Make hardware readout work on i915.
->   drm/i915: Link planes in a bigjoiner configuration, v3.
->   drm/i915: Add bigjoiner aware plane clipping checks
->   drm/i915: Add intel_update_bigjoiner handling.
->   drm/i915: Add debugfs dumping for bigjoiner, v3.
->
->  drivers/gpu/drm/drm_dp_helper.c               |    4 +-
->  drivers/gpu/drm/i915/display/icl_dsi.c        |    2 -
->  drivers/gpu/drm/i915/display/intel_atomic.c   |    9 +-
->  drivers/gpu/drm/i915/display/intel_atomic.h   |    3 +-
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  112 +-
->  .../gpu/drm/i915/display/intel_atomic_plane.h |    7 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   81 +-
->  drivers/gpu/drm/i915/display/intel_display.c  | 1070 +++++++++++++----
->  drivers/gpu/drm/i915/display/intel_display.h  |   20 +-
->  .../drm/i915/display/intel_display_debugfs.c  |   29 +-
->  .../drm/i915/display/intel_display_types.h    |   32 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  141 ++-
->  drivers/gpu/drm/i915/display/intel_dvo.c      |    2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |   16 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   46 +-
->  drivers/gpu/drm/i915/display/intel_sprite.h   |    3 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |  199 +--
->  drivers/gpu/drm/i915/display/intel_vdsc.h     |    7 +-
->  drivers/gpu/drm/i915/intel_pm.c               |   92 +-
->  include/drm/drm_dp_helper.h                   |    1 +
->  20 files changed, 1390 insertions(+), 486 deletions(-)
->
-
+Tvrtko is warned not to ask when we replace strict priorities with
+isoschronous and psuedo-deadline scheduling.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
