@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7BD1C7773
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 19:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE941C77A3
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 May 2020 19:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7F3E6E8B6;
-	Wed,  6 May 2020 17:09:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155C66E8B2;
+	Wed,  6 May 2020 17:17:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5CDBC6E8B5;
- Wed,  6 May 2020 17:09:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 557A7A00CC;
- Wed,  6 May 2020 17:09:15 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F546E8B2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 17:17:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21130094-1500050 for multiple; Wed, 06 May 2020 18:17:33 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 06 May 2020 17:09:15 -0000
-Message-ID: <158878495532.11895.2823148487976796675@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200506143616.19925-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200506143616.19925-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Mark_concurrent_submiss?=
- =?utf-8?q?ions_with_a_weak-dependency?=
+In-Reply-To: <158878050724.927.1472476462505554945@build.alporthouse.com>
+References: <20200429205446.3259-1-chris@chris-wilson.co.uk>
+ <20200429205446.3259-4-chris@chris-wilson.co.uk>
+ <20200506144448.GB1219060@intel.com>
+ <158878050724.927.1472476462505554945@build.alporthouse.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <158878544855.927.11295814293184377474@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 06 May 2020 18:17:28 +0100
+Subject: Re: [Intel-gfx] [CI 4/6] drm/i915/gt: Switch to manual evaluation
+ of RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +42,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Chris Wilson (2020-05-06 16:55:07)
+> Quoting Rodrigo Vivi (2020-05-06 15:44:48)
+> > Btw, there are other patches on the list of failed cherry-picks:
+> > 
+> > 614654abe847 ("drm/i915: Check current i915_vma.pin_count status first on unbind")
+> 
+> We need that to fix a deadlock.
+> 
+> > c4e8ba739034 ("drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore")
+> 
+> That to behave nicely with VkEvents.
+> 
+> > a95f3ac21d64 ("drm/i915/gem: Remove object_is_locked assertion from unpin_from_display_plane")
+> 
+> And that's a potential bug in 5.7, so needs fixing.
+> 
+> > 2632f174a2e1 ("drm/i915/execlists: Avoid reusing the same logical CCID")
+> > 5c4a53e3b1cb ("drm/i915/execlists: Track inflight CCID")
+> 
+> We probably need these based on our presumption of how the HW might
+> work.
+> > 
+> > do you have any updated ickle/dif branch available?
+> 
+> Will do.
 
-Series: series starting with [1/2] drm/i915: Mark concurrent submissions with a weak-dependency
-URL   : https://patchwork.freedesktop.org/series/76999/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8434 -> Patchwork_17590
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17590 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17590, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17590/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17590:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8434/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17590/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-skl-6700k2:      [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8434/fi-skl-6700k2/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17590/fi-skl-6700k2/igt@i915_selftest@live@gt_lrc.html
-
-  
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8434 -> Patchwork_17590
-
-  CI-20190529: 20190529
-  CI_DRM_8434: 2951bac393beb4f095468de8b7cc53c8e3a092c2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5635: e83abfca61d407d12eee4d25bb0e8686337a7791 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17590: 2833b6c29cc99422bd7fee78c8c51237c86a7787 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2833b6c29cc9 drm/i915/gt: Suppress internal I915_PRIORITY_WAIT for timeslicing
-e39457734fee drm/i915: Mark concurrent submissions with a weak-dependency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17590/index.html
+To ssh://people.freedesktop.org/~ickle/linux-2.6
+ + f98e2df61ab3...134711240307 dif -> dif (forced update)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
