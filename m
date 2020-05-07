@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17E41C9941
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 20:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F021CB531
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 18:52:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 469A76EA51;
-	Thu,  7 May 2020 18:27:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 895506E261;
+	Fri,  8 May 2020 16:52:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72FC66E1A2;
- Thu,  7 May 2020 18:27:40 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id g16so6394412eds.1;
- Thu, 07 May 2020 11:27:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QWr9DvvsMFmVxp+qAwg3fX2KrqX/x6aAo4AYWgOB5Qw=;
- b=Qq3s6nqqoirAAWmT8i1qcGBVqcM5eqsmvAZFMeO5bvnrgwHbozvVaIfvFH5hXFgipQ
- eHr+jvPnrHGtNTFv13OEhpHVxgtq8tMBxgzUHHLdrlqV+/FG9GzT8yu0FUjAVBpDHC1t
- ZQb3yEutLxMZZ6OBH6+waaxmfaWrDLTwOYJ1t4+m3MkvCZYBhXWobfNbyyStXO53ZSOf
- KRiG5bIeT/3KiIC5SJvaA6rH9jS7frfNfUEsxhVwvI9YpFltlkz5ZiiXfiFKuCl2DAic
- 92fsK8OAqeAY3uO0iE4FQhkZLroaVGboZchzZdD76C2pcWwPV8qDQy+NqJGIxsyz0YiH
- DxsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QWr9DvvsMFmVxp+qAwg3fX2KrqX/x6aAo4AYWgOB5Qw=;
- b=pLrPa3UghCOIXhB3zOLfWB+5F624VVdHMM6Z9OMggEGdSNcSJ1UQoVtvDkaubTknkH
- UovG1bEwqB+fixueog6zt7Q4eM3K89JAMzsHBV79a4E0R6pDsHcCL32Fu35TGJK2cFoZ
- sp/OiDc9LfXRsp0eFY6reAWEl+QF7g4LYxW9CBhrnkT45LVIhKUJaINzQW+tLA3tF3VO
- 0Xwd8A/IS2s4j4WHcAXNT8M3ejHYeUj4HFHqdYVBvh6zwjZ6WNXxMWoVzk0Ca/tKVxD5
- d437WBFd/BsXTyzhaTerL++hbzKwMnz5owFr9RgH65tG8jaoZ/G7EkddIpgvAtztimC6
- 5Z1A==
-X-Gm-Message-State: AGi0PubTt4jcysHbKxVfirb9l0LTpmyQZF3YABrcJIDAFllmBkFlXhDA
- zKK5K69KO67LesPuYimLpWIYw+MZVkBn58pldTo=
-X-Google-Smtp-Source: APiQypIFjIE2vo4XeHmJyZb97yPbBOSylzyVFDiC7OpkOgyk6jxnlccOcS92g7BZTbYHhMSpTscRNbilT+QLNX3gqwI=
-X-Received: by 2002:a50:a365:: with SMTP id 92mr13625862edn.220.1588876058972; 
- Thu, 07 May 2020 11:27:38 -0700 (PDT)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E376E18F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 18:49:42 +0000 (UTC)
+Received: from embeddedor (unknown [189.207.59.248])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3C02324957;
+ Thu,  7 May 2020 18:49:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1588877381;
+ bh=sEFdBDVeUa29FP+5J+FWkQjaGTd7YhVbv31P4E7P2jU=;
+ h=Date:From:To:Cc:Subject:From;
+ b=mcn5Al1aAEKclx5SWiiJdTsd2kLre8tYrNjIJxRKV59x1Fz+2iuR6swGbY0XCvIX8
+ VG5jAUsgI6x4FCIUCuSkl+x3dEbHbzfvc2vBxyeF9OtS4Zxjdk1joHcNO7kzRPpegt
+ juBi/XUi3za70peyxfgkupEvrs1al4jGTuUE22rc=
+Date: Thu, 7 May 2020 13:54:08 -0500
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200507185408.GA14561@embeddedor>
 MIME-Version: 1.0
-References: <20200507153600.314454-1-jason@jlekstrand.net>
- <158886626795.20858.1870213936656066157@build.alporthouse.com>
-In-Reply-To: <158886626795.20858.1870213936656066157@build.alporthouse.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 8 May 2020 04:27:27 +1000
-Message-ID: <CAPM=9tyhj+KNDFdw1nk0GASwfY5dwq2kAcxQ4oSHMt2BNyycVw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] RFC: i915: Drop relocation support on Gen12+
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Fri, 08 May 2020 16:52:09 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Replace zero-length array with
+ flexible-array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +48,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 8 May 2020 at 01:44, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Jason Ekstrand (2020-05-07 16:36:00)
-> > The Vulkan driver in Mesa for Intel hardware never uses relocations if
-> > it's running on a version of i915 that supports at least softpin which
-> > all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12 is
-> > only supported by iris which never uses relocations.  The older i965
-> > driver in Mesa does use relocations but it only supports Intel hardware
-> > through Gen11 and has been deprecated for all hardware Gen9+. The entire
-> > relocation UAPI and related infrastructure, therefore, doesn't have any
-> > open-source userspace consumer starting with Gen12.
-> >
-> > Rejecting relocations starting with Gen12 has the benefit that we don't
-> > have to bother supporting it on platforms with local memory.  Given how
-> > much CPU touching of memory is required for relocations, not having to
-> > do so on platforms where not all memory is directly CPU-accessible
-> > carries significant advantages.
->
-> You are not supplying them, the kernel is not checking them [as they
-> don't exist], so there is no material benefit. The only question is
-> maintainability.
->
-> How confident are you that you will never use them and rewrite the
-> media-driver? The code exists, will be tested, and can just as easily
-> expire with the rest of execbuffer2.
+The current codebase makes use of the zero-length array language
+extension to the C90 standard, but the preferred mechanism to declare
+variable-length types such as these ones is a flexible array member[1][2],
+introduced in C99:
 
-From an upstream POV I say hell yes, if the hw isn't generally available yet,
-and the media-driver/intel-compute-runtime people are warned in advance,
+struct foo {
+        int stuff;
+        struct boo array[];
+};
 
-I'm all in on ripping it out for new GENs.
+By making use of the mechanism above, we will get a compiler warning
+in case the flexible array does not occur last in the structure, which
+will help us prevent some kind of undefined behavior bugs from being
+inadvertently introduced[3] to the codebase from now on.
 
-Dave.
+Also, notice that, dynamic memory allocations won't be affected by
+this change:
+
+"Flexible array members have incomplete type, and so the sizeof operator
+may not be applied. As a quirk of the original implementation of
+zero-length arrays, sizeof evaluates to zero."[1]
+
+sizeof(flexible-array-member) triggers a warning because flexible array
+members have incomplete type[1]. There are some instances of code in
+which the sizeof operator is being incorrectly/erroneously applied to
+zero-length arrays and the result is zero. Such instances may be hiding
+some bugs. So, this work (flexible-array member conversions) will also
+help to get completely rid of those sorts of issues.
+
+This issue was found with the help of Coccinelle.
+
+[1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
+[2] https://github.com/KSPP/linux/issues/21
+[3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
+
+Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+---
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |    4 ++--
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |    2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |    2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index 05c7cbe32eb4..aef7fe932d1a 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -462,7 +462,7 @@ struct bdb_general_definitions {
+ 	 * number = (block_size - sizeof(bdb_general_definitions))/
+ 	 *	     defs->child_dev_size;
+ 	 */
+-	u8 devices[0];
++	u8 devices[];
+ } __packed;
+ 
+ /*
+@@ -839,7 +839,7 @@ struct bdb_mipi_config {
+ 
+ struct bdb_mipi_sequence {
+ 	u8 version;
+-	u8 data[0]; /* up to 6 variable length blocks */
++	u8 data[]; /* up to 6 variable length blocks */
+ } __packed;
+ 
+ /*
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 683014e7bc51..f42c99da2580 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -216,7 +216,7 @@ struct virtual_engine {
+ 
+ 	/* And finally, which physical engines this virtual engine maps onto. */
+ 	unsigned int num_siblings;
+-	struct intel_engine_cs *siblings[0];
++	struct intel_engine_cs *siblings[];
+ };
+ 
+ static struct virtual_engine *to_virtual_engine(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+index 0d1f6c8ff355..5a6561f7a210 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.h
++++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+@@ -42,7 +42,7 @@ struct i915_vma_coredump {
+ 	int num_pages;
+ 	int page_count;
+ 	int unused;
+-	u32 *pages[0];
++	u32 *pages[];
+ };
+ 
+ struct i915_request_coredump {
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
