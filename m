@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42CF1C8515
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 10:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F681C8535
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 10:58:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC9A6E0AB;
-	Thu,  7 May 2020 08:49:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547306E961;
+	Thu,  7 May 2020 08:58:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDD56E0AB
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 08:49:20 +0000 (UTC)
-IronPort-SDR: 015LLadp1g+EMtrp5Q3ah4chTVf3kSclBZCjwNAtPOebwOEkVjog06JI+rbcVvPfxRQZe6iNgV
- zTf5lCTCTSQQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 01:49:19 -0700
-IronPort-SDR: xOsIpK+OGAHeJWg55v14MEHenNvhlt76J/FuHnb1MD3+1FZpFMWW1p3IAuW08WgSQaoyCmcoiL
- 81774fhbtcrw==
-X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="435206477"
-Received: from naloni1-mobl.ger.corp.intel.com (HELO localhost) ([10.249.34.5])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 01:49:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200503180034.20010-1-chris@chris-wilson.co.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200503180034.20010-1-chris@chris-wilson.co.uk>
-Date: Thu, 07 May 2020 11:49:15 +0300
-Message-ID: <87zhak5dv8.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10E886E961
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 08:58:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21135808-1500050 for multiple; Thu, 07 May 2020 09:58:11 +0100
 MIME-Version: 1.0
+In-Reply-To: <87zhak5dv8.fsf@intel.com>
+References: <20200503180034.20010-1-chris@chris-wilson.co.uk>
+ <87zhak5dv8.fsf@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <158884188905.927.6811486536752543306@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 07 May 2020 09:58:09 +0100
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Warn if the FBC is still
  writing to stolen on removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -47,41 +40,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 03 May 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> If the FBC is still writing into stolen, it will overwrite any future
-> users of that stolen region. Check before release.
->
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1635
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index c6afa10e814c..37244ed92ae4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -540,6 +540,9 @@ static void __intel_fbc_cleanup_cfb(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_fbc *fbc = &dev_priv->fbc;
->  
-> +	if (WARN_ON(intel_fbc_hw_is_active(dev_priv)))
+Quoting Jani Nikula (2020-05-07 09:49:15)
+> On Sun, 03 May 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > If the FBC is still writing into stolen, it will overwrite any future
+> > users of that stolen region. Check before release.
+> >
+> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/1635
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fbc.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > index c6afa10e814c..37244ed92ae4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > @@ -540,6 +540,9 @@ static void __intel_fbc_cleanup_cfb(struct drm_i915_private *dev_priv)
+> >  {
+> >       struct intel_fbc *fbc = &dev_priv->fbc;
+> >  
+> > +     if (WARN_ON(intel_fbc_hw_is_active(dev_priv)))
+> 
+> drm_WARN_ON() ;)
 
-drm_WARN_ON() ;)
-
-> +		return;
-> +
->  	if (!drm_mm_node_allocated(&fbc->compressed_fb))
->  		return;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I'm hoping that by the time you get around to it, we will have a drm-tip
+idle run which will tell us whether or not this is barking up the wrong
+tree.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
