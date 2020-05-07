@@ -1,45 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD241C834D
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 09:16:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFBA1C8365
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 09:25:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C67A289AFF;
-	Thu,  7 May 2020 07:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C472A6E932;
+	Thu,  7 May 2020 07:25:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09FBE6E932
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 07:16:11 +0000 (UTC)
-IronPort-SDR: 7ua2JSU4bCqjZjg6DAzS76TX+sja7LLbp7VaMX+3z9AH/I9hn4W97E2YUx/DtXxSwQxa/b5+O7
- 9ogxBb28kseQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 00:09:10 -0700
-IronPort-SDR: shoeItfcPKrbWTgSPObpaZv2+29gj9/BKVoVYsWqJPqVZ6h6/B5l9tLQohp/BOnhqCe438GGbz
- SRsifMgLVMig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,362,1583222400"; d="scan'208";a="249193013"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 07 May 2020 00:09:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 May 2020 10:09:07 +0300
-Date: Thu, 7 May 2020 10:09:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200507070907.GZ6112@intel.com>
-References: <20200506112328.16562-1-ville.syrjala@linux.intel.com>
- <20200506112328.16562-5-ville.syrjala@linux.intel.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFFB46E932;
+ Thu,  7 May 2020 07:25:07 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id E75A0AF48;
+ Thu,  7 May 2020 07:25:08 +0000 (UTC)
+Date: Thu, 7 May 2020 09:25:03 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200507072503.GA10979@linux-uq9g>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200506112328.16562-5-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915: Add {preemph,
- voltage}_max() vfuncs
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,305 +35,483 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 06, 2020 at 02:23:23PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+Hi, Dave, Daniel,
 
-> Different platforms have different max vswing/preemph settings.
-> Turn that into a pair vfuncs so we can decouple intel_dp.c and
-> intel_ddi.c further.
+this is the third pull request for drm-misc-next for what will become
+v5.8. AFAICT the highlights are the new managed allocation for DRM device
+structures; optimizations in drm_mm, and Lima got runtime PM support.
 
-Forgot to mention that it not only depends on the platform, but also
-the link rate which is a runtime thing. So unfortunately can't just
-make these into fixed init time assignments.
+Best regards
+Thomas
 
-Though I have been pondering about making an init time split
-between eDP vs. eDP low vswing vs. DP vs. HDMI though. That
-could potentially make some of the if ladders in the ddi dbuf
-trans code less confusing. Haven't actually tried to code
-it up to see how it would look in the end.
+drm-misc-next-2020-05-07:
+drm-misc-next for 5.8:
 
-> =
+UAPI Changes:
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 21 ++----
->  drivers/gpu/drm/i915/display/intel_ddi.h      |  3 -
->  .../drm/i915/display/intel_display_types.h    |  3 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 67 ++++++-------------
->  drivers/gpu/drm/i915/display/intel_dp.h       |  4 --
->  .../drm/i915/display/intel_dp_link_training.c | 20 +++++-
->  6 files changed, 49 insertions(+), 69 deletions(-)
-> =
+Cross-subsystem Changes:
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 5601673c3f30..409b8a68570f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2095,10 +2095,10 @@ static void bxt_ddi_vswing_sequence(struct intel_=
-encoder *encoder,
->  				     ddi_translations[level].deemphasis);
->  }
->  =
+ * MAINTAINERS: restore alphabetical order; update cirrus driver
+ * Dcomuentation: document visionix, chronteli, ite vendor prefices; update
+                  documentation for Chrontel CH7033, IT6505, IVO, BOE,
+		  Panasonic, Chunghwa, AUO bindings; convert dw_mipi_dsi.txt
+		  to YAML; remove todo item for drm_display_mode.hsync removal;
 
-> -u8 intel_ddi_dp_voltage_max(struct intel_encoder *encoder)
-> +static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
->  {
-> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->  	enum port port =3D encoder->port;
->  	enum phy phy =3D intel_port_to_phy(dev_priv, port);
->  	int n_entries;
-> @@ -2151,19 +2151,9 @@ u8 intel_ddi_dp_voltage_max(struct intel_encoder *=
-encoder)
->   * used on all DDI platforms. Should that change we need to
->   * rethink this code.
->   */
-> -u8 intel_ddi_dp_pre_emphasis_max(struct intel_encoder *encoder, u8 volta=
-ge_swing)
-> +static u8 intel_ddi_dp_preemph_max(struct intel_dp *intel_dp)
->  {
-> -	switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
-> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
-> -		return DP_TRAIN_PRE_EMPH_LEVEL_3;
-> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
-> -		return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
-> -		return DP_TRAIN_PRE_EMPH_LEVEL_1;
-> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
-> -	default:
-> -		return DP_TRAIN_PRE_EMPH_LEVEL_0;
-> -	}
-> +	return DP_TRAIN_PRE_EMPH_LEVEL_3;
->  }
->  =
+Core Changes:
 
->  static void cnl_ddi_vswing_program(struct intel_encoder *encoder,
-> @@ -4510,6 +4500,9 @@ intel_ddi_init_dp_connector(struct intel_digital_po=
-rt *intel_dig_port)
->  	else
->  		intel_dig_port->dp.set_signal_levels =3D hsw_set_signal_levels;
->  =
+ * drm: add devm_drm_dev_alloc() for managed allocations of drm_device;
+        use DRM_MODESET_LOCK_ALL_*() in mode-object code; remove
+        drm_display_mode.hsync; small cleanups of unused variables,
+	compiler warnings and static functions
+ * drm/client: dual-lincensing: GPL-2.0 or MIT
+ * drm/mm: optimize tree searches in rb_hole_addr()
 
-> +	intel_dig_port->dp.voltage_max =3D intel_ddi_dp_voltage_max;
-> +	intel_dig_port->dp.preemph_max =3D intel_ddi_dp_preemph_max;
-> +
->  	if (INTEL_GEN(dev_priv) < 12) {
->  		intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
->  		intel_dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i=
-915/display/intel_ddi.h
-> index fbdf8ddde486..077e9dbbe367 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> @@ -42,9 +42,6 @@ void intel_ddi_compute_min_voltage_level(struct drm_i91=
-5_private *dev_priv,
->  					 struct intel_crtc_state *crtc_state);
->  u32 bxt_signal_levels(struct intel_dp *intel_dp);
->  u32 ddi_signal_levels(struct intel_dp *intel_dp);
-> -u8 intel_ddi_dp_voltage_max(struct intel_encoder *encoder);
-> -u8 intel_ddi_dp_pre_emphasis_max(struct intel_encoder *encoder,
-> -				 u8 voltage_swing);
->  int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
->  				     bool enable);
->  void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 9488449e4b94..e0384af489c2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1371,6 +1371,9 @@ struct intel_dp {
->  	void (*set_idle_link_train)(struct intel_dp *intel_dp);
->  	void (*set_signal_levels)(struct intel_dp *intel_dp);
->  =
+Driver Changes:
 
-> +	u8 (*preemph_max)(struct intel_dp *intel_dp);
-> +	u8 (*voltage_max)(struct intel_dp *intel_dp);
-> +
->  	/* Displayport compliance testing */
->  	struct intel_dp_compliance compliance;
->  =
+ * drm/{many}: use devm_drm_dev_alloc(); don't use drm_device.dev_private
+ * drm/ast: don't double-assign to drm_crtc_funcs.set_config; drop
+            drm_connector_register()
+ * drm/bochs: drop drm_connector_register()
+ * drm/bridge: add support for Chrontel ch7033; fix stack usage with
+               old gccs; return error pointer in drm_panel_bridge_add()
+ * drm/cirrus: Move to tiny
+ * drm/dp_mst: don't use 2nd sideband tx slot; revert "Remove single tx
+               msg restriction"
+ * drm/lima: support runtime PM;
+ * drm/meson: limit modes wrt chipset
+ * drm/panel: add support for Visionox rm69299; fix clock on
+              boe-tv101wum-n16; fix panel type for AUO G101EVN10;
+	      add support for Ivo M133NFW4 R0; add support for BOE
+	      NV133FHM-N61; add support for AUO G121EAN01.4, G156XTN01.0,
+	      G190EAN01
+ * drm/pl111: improve vexpress init; fix module auto-loading
+ * drm/stm: read number of endpoints from device tree
+ * drm/vboxvideo: use managed PCI functions; drop DRM_MTRR_WC
+ * drm/vkms: fix use-after-free in vkms_gem_create(); enable cursor
+             support by default
+ * fbdev: use boolean values in several drivers
+ * fbdev/controlfb: fix COMPILE_TEST
+ * fbdev/w100fb: fix double-free bug
+The following changes since commit 776d58823a60c689816972b51100cb322a0834ce:
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index a52f01c48644..1b786d5af383 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3947,58 +3947,24 @@ intel_dp_get_link_status(struct intel_dp *intel_d=
-p, u8 link_status[DP_LINK_STATU
->  				DP_LINK_STATUS_SIZE) =3D=3D DP_LINK_STATUS_SIZE;
->  }
->  =
+  dma-buf: Couple of documentation typo fixes (2020-04-21 14:37:51 +0200)
 
-> -/* These are source-specific values. */
-> -u8
-> -intel_dp_voltage_max(struct intel_dp *intel_dp)
-> +static u8 intel_dp_voltage_max_2(struct intel_dp *intel_dp)
->  {
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
-> -	enum port port =3D encoder->port;
-> +	return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
-> +}
->  =
+are available in the Git repository at:
 
-> -	if (HAS_DDI(dev_priv))
-> -		return intel_ddi_dp_voltage_max(encoder);
-> -	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
-> -		 (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A))
-> -		return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
-> -	else
-> -		return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
-> +static u8 intel_dp_voltage_max_3(struct intel_dp *intel_dp)
-> +{
-> +	return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
->  }
->  =
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2020-05-07
 
-> -u8
-> -intel_dp_pre_emphasis_max(struct intel_dp *intel_dp, u8 voltage_swing)
-> +static u8 intel_dp_pre_empemph_max_2(struct intel_dp *intel_dp)
->  {
-> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> -	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
-> -	enum port port =3D encoder->port;
-> +	return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> +}
->  =
+for you to fetch changes up to 0ea2ea42b31abc1141f2fd3911f952a97d401fcb:
 
-> -	if (HAS_DDI(dev_priv)) {
-> -		return intel_ddi_dp_pre_emphasis_max(encoder, voltage_swing);
-> -	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
-> -		   (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A)) {
-> -		switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_3;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_1;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
-> -		default:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_0;
-> -		}
-> -	} else {
-> -		switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_1;
-> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
-> -		default:
-> -			return DP_TRAIN_PRE_EMPH_LEVEL_0;
-> -		}
-> -	}
-> +static u8 intel_dp_pre_empemph_max_3(struct intel_dp *intel_dp)
-> +{
-> +	return DP_TRAIN_PRE_EMPH_LEVEL_3;
->  }
->  =
+  drm/vkms: Hold gem object while still in-use (2020-05-06 21:51:46 -0400)
 
->  static void vlv_set_signal_levels(struct intel_dp *intel_dp)
-> @@ -8491,6 +8457,15 @@ bool intel_dp_init(struct drm_i915_private *dev_pr=
-iv,
->  	else
->  		intel_dig_port->dp.set_signal_levels =3D g4x_set_signal_levels;
->  =
+----------------------------------------------------------------
+drm-misc-next for 5.8:
 
-> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
-> +	    (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A)) {
-> +		intel_dig_port->dp.preemph_max =3D intel_dp_pre_empemph_max_3;
-> +		intel_dig_port->dp.voltage_max =3D intel_dp_voltage_max_3;
-> +	} else {
-> +		intel_dig_port->dp.preemph_max =3D intel_dp_pre_empemph_max_2;
-> +		intel_dig_port->dp.voltage_max =3D intel_dp_voltage_max_2;
-> +	}
-> +
->  	intel_dig_port->dp.output_reg =3D output_reg;
->  	intel_dig_port->max_lanes =3D 4;
->  	intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 6659ce15a693..e8375a75c3ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -91,10 +91,6 @@ intel_dp_program_link_training_pattern(struct intel_dp=
- *intel_dp,
->  void
->  intel_dp_set_signal_levels(struct intel_dp *intel_dp);
->  void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
-> -u8
-> -intel_dp_voltage_max(struct intel_dp *intel_dp);
-> -u8
-> -intel_dp_pre_emphasis_max(struct intel_dp *intel_dp, u8 voltage_swing);
->  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
->  			   u8 *link_bw, u8 *rate_select);
->  bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index e4f1843170b7..171d9e842fc0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -34,6 +34,21 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK=
-_STATUS_SIZE])
->  		      link_status[3], link_status[4], link_status[5]);
->  }
->  =
+UAPI Changes:
 
-> +static u8 dp_pre_emphasis_max(u8 voltage_swing)
-> +{
-> +	switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
-> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
-> +		return DP_TRAIN_PRE_EMPH_LEVEL_3;
-> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
-> +		return DP_TRAIN_PRE_EMPH_LEVEL_2;
-> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
-> +		return DP_TRAIN_PRE_EMPH_LEVEL_1;
-> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
-> +	default:
-> +		return DP_TRAIN_PRE_EMPH_LEVEL_0;
-> +	}
-> +}
-> +
->  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
->  			       const u8 link_status[DP_LINK_STATUS_SIZE])
->  {
-> @@ -53,11 +68,12 @@ void intel_dp_get_adjust_train(struct intel_dp *intel=
-_dp,
->  			p =3D this_p;
->  	}
->  =
+Cross-subsystem Changes:
 
-> -	voltage_max =3D intel_dp_voltage_max(intel_dp);
-> +	voltage_max =3D intel_dp->voltage_max(intel_dp);
->  	if (v >=3D voltage_max)
->  		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
->  =
+ * MAINTAINERS: restore alphabetical order; update cirrus driver
+ * Dcomuentation: document visionix, chronteli, ite vendor prefices; update
+                  documentation for Chrontel CH7033, IT6505, IVO, BOE,
+		  Panasonic, Chunghwa, AUO bindings; convert dw_mipi_dsi.txt
+		  to YAML; remove todo item for drm_display_mode.hsync removal;
 
-> -	preemph_max =3D intel_dp_pre_emphasis_max(intel_dp, v);
-> +	preemph_max =3D min(intel_dp->preemph_max(intel_dp),
-> +			  dp_pre_emphasis_max(v));
->  	if (p >=3D preemph_max)
->  		p =3D preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
->  =
+Core Changes:
 
-> -- =
+ * drm: add devm_drm_dev_alloc() for managed allocations of drm_device;
+        use DRM_MODESET_LOCK_ALL_*() in mode-object code; remove
+        drm_display_mode.hsync; small cleanups of unused variables,
+	compiler warnings and static functions
+ * drm/client: dual-lincensing: GPL-2.0 or MIT
+ * drm/mm: optimize tree searches in rb_hole_addr()
 
-> 2.24.1
+Driver Changes:
 
--- =
+ * drm/{many}: use devm_drm_dev_alloc(); don't use drm_device.dev_private
+ * drm/ast: don't double-assign to drm_crtc_funcs.set_config; drop
+            drm_connector_register()
+ * drm/bochs: drop drm_connector_register()
+ * drm/bridge: add support for Chrontel ch7033; fix stack usage with
+               old gccs; return error pointer in drm_panel_bridge_add()
+ * drm/cirrus: Move to tiny
+ * drm/dp_mst: don't use 2nd sideband tx slot; revert "Remove single tx
+               msg restriction"
+ * drm/lima: support runtime PM;
+ * drm/meson: limit modes wrt chipset
+ * drm/panel: add support for Visionox rm69299; fix clock on
+              boe-tv101wum-n16; fix panel type for AUO G101EVN10;
+	      add support for Ivo M133NFW4 R0; add support for BOE
+	      NV133FHM-N61; add support for AUO G121EAN01.4, G156XTN01.0,
+	      G190EAN01
+ * drm/pl111: improve vexpress init; fix module auto-loading
+ * drm/stm: read number of endpoints from device tree
+ * drm/vboxvideo: use managed PCI functions; drop DRM_MTRR_WC
+ * drm/vkms: fix use-after-free in vkms_gem_create(); enable cursor
+             support by default
+ * fbdev: use boolean values in several drivers
+ * fbdev/controlfb: fix COMPILE_TEST
+ * fbdev/w100fb: fix double-free bug
 
-Ville Syrj=E4l=E4
-Intel
+----------------------------------------------------------------
+Adrian Ratiu (1):
+      dt-bindings: display: dw_mipi_dsi.txt: convert to yaml
+
+Arnd Bergmann (1):
+      drm/bridge: fix stack usage warning on old gcc
+
+Bartlomiej Zolnierkiewicz (1):
+      video: fbdev: controlfb: fix build for COMPILE_TEST=3Dy && PPC_PMAC=
+=3Dy && PPC32=3Dn
+
+Bjorn Andersson (4):
+      dt-bindings: display: simple: Add BOE NV133FHM-N61
+      panel: simple: Add BOE NV133FHM-N61
+      dt-bindings: display: simple: Add IVO M133NWF4 R0
+      panel: simple: Add Ivo M133NWF4 R0
+
+Christophe JAILLET (1):
+      video: fbdev: w100fb: Fix a potential double free.
+
+Daniel Vetter (40):
+      drm: Add devm_drm_dev_alloc macro
+      drm/vboxvideo: drop DRM_MTRR_WC #define
+      drm/vboxvideo: Use devm_drm_dev_alloc
+      drm/vboxvideo: Stop using drm_device->dev_private
+      drm/vboxvideo: use managed pci functions
+      drm/vboxvideo: Use devm_gen_pool_create
+      drm/v3d: Don't set drm_device->dev_private
+      drm/v3d: Use devm_drm_dev_alloc
+      drm/v3d: Delete v3d_dev->dev
+      drm/v3d: Delete v3d_dev->pdev
+      drm/udl: Use devm_drm_dev_alloc
+      drm/udl: don't set drm_device->dev_private
+      drm/st7735r: Use devm_drm_dev_alloc
+      drm/st7586: Use devm_drm_dev_alloc
+      drm/repaper: Use devm_drm_dev_alloc
+      drm/mi0283qt: Use devm_drm_dev_alloc
+      drm/ili9486: Use devm_drm_dev_alloc
+      drm/ili9341: Use devm_drm_dev_alloc
+      drm/ili9225: Use devm_drm_dev_alloc
+      drm/hx8357d: Use devm_drm_dev_alloc
+      drm/gm12u320: Use devm_drm_dev_alloc
+      drm/gm12u320: Don't use drm_device->dev_private
+      drm/tidss: Use devm_drm_dev_alloc
+      drm/tidss: Don't use drm_device->dev_private
+      drm/tidss: Delete tidss->saved_state
+      drm/mcde: Use devm_drm_dev_alloc
+      drm/mcde: Don't use drm_device->dev_private
+      drm/ingenic: Use devm_drm_dev_alloc
+      drm/ingenic: Don't set drm_device->dev_private
+      drm/komeda: use devm_drm_dev_alloc
+      drm/cirrus: Use devm_drm_dev_alloc
+      drm/cirrus: Don't use drm_device->dev_private
+      drm/cirrus: Move to drm/tiny
+      drm/aspeed: Drop aspeed_gfx->fbdev
+      drm/aspeed: Use devm_drm_dev_alloc
+      drm/ast: Drop explicit connector register/unregister
+      drm/bochs: Remove explicit drm_connector_register
+      drm/qxl: Use devm_drm_dev_alloc
+      drm/qxl: Don't use drm_device->dev_private
+      drm/i915: Use devm_drm_dev_alloc
+
+David Lu (1):
+      drm/panel: boe-tv101wum-n16: fine tune clock
+
+Emmanuel Vadot (1):
+      drm/client: Dual licence the header in GPL-2 and MIT
+
+Enric Balletbo i Serra (4):
+      drm: panel: Set connector type for LP120UP1
+      drm/bridge: ps8640: Let panel to set the connector type
+      drm/bridge: panel: Return always an error pointer in drm_panel_bridge=
+_add()
+      drm/rockchip: cdn-dp-core: Make cdn_dp_core_suspend/resume static
+
+Ezequiel Garcia (1):
+      drm/vkms: Hold gem object while still in-use
+
+Harigovindan P (2):
+      dt-bindings: documenting compatible string vendor "visionox"
+      drm/panel: add support for rm69299 visionox panel
+
+Jason Yan (6):
+      drm/ast: remove duplicate assignment of ast_crtc_funcs member
+      video: fbdev: i810: use true,false for bool variables
+      video: udlfb: use true,false for bool variables
+      video: uvesafb: use true,false for bool variables
+      fbdev: aty: use true, false for bool variables in atyfb_base.c
+      video: fbdev: valkyriefb.c: fix warning comparing pointer to 0
+
+Kenny Levinsen (1):
+      drm: make drm_file use keyed wakeups
+
+Lubomir Rintel (3):
+      dt-bindings: Add vendor prefix for Chrontel, Inc.
+      dt-bindings: display: Add Chrontel CH7033 Video Encoder binding
+      drm/bridge: chrontel-ch7033: Add a new driver
+
+Lyude Paul (2):
+      Revert "drm/dp_mst: Remove single tx msg restriction."
+      drm/dp_mst: Kill the second sideband tx slot, save the world
+
+Maya Rashish (1):
+      drm/ttm: Remove reference to the mem_glob member
+
+Melissa Wen (1):
+      drm/vkms: enable cursor by default
+
+Michal Orzel (1):
+      drm: Replace drm_modeset_lock/unlock_all with DRM_MODESET_LOCK_ALL_* =
+helpers
+
+Neil Armstrong (1):
+      drm/meson: add mode selection limits against specific SoC revisions
+
+Nirmoy Das (1):
+      drm/mm: optimize rb_hole_addr rbtree search
+
+Qiang Yu (10):
+      drm/lima: use module_platform_driver helper
+      drm/lima: print process name and pid when task error
+      drm/lima: check vm !=3D NULL in lima_vm_put
+      drm/lima: always set page directory when switch vm
+      drm/lima: add lima_devfreq_resume/suspend
+      drm/lima: power down ip blocks when pmu exit
+      drm/lima: add resume/suspend callback for each ip
+      drm/lima: separate clk/regulator enable/disable function
+      drm/lima: add pm resume/suspend ops
+      drm/lima: enable runtime pm
+
+Rob Herring (3):
+      drm: pl111: Fix module autoloading
+      drm: pl111: Simplify vexpress init
+      drm: pl111: Move VExpress setup into versatile init
+
+Robin Murphy (2):
+      drm/lima: Clean up IRQ warnings
+      drm/lima: Clean up redundant pdev pointer
+
+Rodrigo Siqueira (1):
+      drm: Correct DP DSC macro typo
+
+Sebastian Reichel (3):
+      drm/panel: simple: Add support for AUO G190EAN01 panel
+      drm/panel: simple: Add support for AUO G156XTN01.0 panel
+      drm/panel: simple: Add support for AUO G121EAN01.4 panel
+
+Souptick Joarder (1):
+      video/fbdev/riva: Remove dead code
+
+Thierry Reding (1):
+      dt-bindings: panel: Document some missing compatible strings
+
+Thomas Zimmermann (1):
+      MAINTAINERS: Restore alphabetical sorting
+
+Tomi Valkeinen (3):
+      drm/panel: panel-simple: fix AUO G101EVN010 connector/panel type
+      drm/omap: change default signal polarities and drives
+      drm/tidss: remove AM65x PG1 YUV erratum code
+
+Ville Syrj=E4l=E4 (1):
+      drm: Nuke mode->hsync
+
+Yannick Fertre (1):
+      drm/stm: ltdc: check number of endpoints
+
+YueHaibing (2):
+      drm/panel: remove set but not used variable 'config'
+      drm/omap: venc: remove unused variable 'venc_config_pal_bdghi'
+
+Zheng Bin (3):
+      drm/panel: ili9322: Remove unneeded semicolon
+      drm/rockchip: Remove unneeded semicolon
+      drm/meson: Remove unneeded semicolon
+
+Zou Wei (1):
+      drm/udl: Make udl_handle_damage static
+
+allen (2):
+      dt-bindings: fix vendor prefix for ITE Tech. Inc.
+      dt-bindings: Add binding for IT6505.
+
+ .../bindings/display/bridge/chrontel,ch7033.yaml   |  77 +++
+ .../bindings/display/bridge/dw_mipi_dsi.txt        |  32 --
+ .../bindings/display/bridge/ite,it6505.yaml        |  91 +++
+ .../bindings/display/bridge/snps,dw-mipi-dsi.yaml  |  68 +++
+ .../bindings/display/panel/panel-simple-dsi.yaml   |   2 +
+ .../bindings/display/panel/panel-simple.yaml       |  12 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   8 +-
+ Documentation/gpu/todo.rst                         |  12 -
+ MAINTAINERS                                        |  31 +-
+ drivers/gpu/drm/Kconfig                            |   2 -
+ drivers/gpu/drm/Makefile                           |   1 -
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c        |   2 +-
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c    |  16 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx.h                |   3 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c           |   2 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |  31 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_out.c            |   2 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |   4 -
+ drivers/gpu/drm/bochs/bochs_kms.c                  |   1 -
+ drivers/gpu/drm/bridge/Kconfig                     |  10 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           | 620 +++++++++++++++++=
+++++
+ drivers/gpu/drm/bridge/panel.c                     |   6 +-
+ drivers/gpu/drm/bridge/parade-ps8640.c             |   2 -
+ drivers/gpu/drm/bridge/tc358768.c                  |   4 +-
+ drivers/gpu/drm/cirrus/Kconfig                     |  19 -
+ drivers/gpu/drm/cirrus/Makefile                    |   2 -
+ drivers/gpu/drm/drm_dp_mst_topology.c              | 137 ++---
+ drivers/gpu/drm/drm_drv.c                          |  23 +
+ drivers/gpu/drm/drm_edid.c                         |   8 +
+ drivers/gpu/drm/drm_file.c                         |   6 +-
+ drivers/gpu/drm/drm_mm.c                           | 133 ++++-
+ drivers/gpu/drm/drm_mode_object.c                  |  10 +-
+ drivers/gpu/drm/drm_modes.c                        |  26 -
+ drivers/gpu/drm/i915/display/intel_display.c       |   1 -
+ drivers/gpu/drm/i915/i915_drv.c                    |  17 +-
+ drivers/gpu/drm/i915/i915_pci.c                    |   2 -
+ drivers/gpu/drm/ingenic/ingenic-drm.c              |  15 +-
+ drivers/gpu/drm/lima/lima_bcast.c                  |  25 +-
+ drivers/gpu/drm/lima/lima_bcast.h                  |   2 +
+ drivers/gpu/drm/lima/lima_devfreq.c                |  31 +-
+ drivers/gpu/drm/lima/lima_devfreq.h                |   3 +
+ drivers/gpu/drm/lima/lima_device.c                 | 211 +++++--
+ drivers/gpu/drm/lima/lima_device.h                 |   6 +-
+ drivers/gpu/drm/lima/lima_dlbu.c                   |  17 +-
+ drivers/gpu/drm/lima/lima_dlbu.h                   |   2 +
+ drivers/gpu/drm/lima/lima_drv.c                    |  41 +-
+ drivers/gpu/drm/lima/lima_gp.c                     |  21 +-
+ drivers/gpu/drm/lima/lima_gp.h                     |   2 +
+ drivers/gpu/drm/lima/lima_l2_cache.c               |  38 +-
+ drivers/gpu/drm/lima/lima_l2_cache.h               |   2 +
+ drivers/gpu/drm/lima/lima_mmu.c                    |  49 +-
+ drivers/gpu/drm/lima/lima_mmu.h                    |   2 +
+ drivers/gpu/drm/lima/lima_pmu.c                    |  77 ++-
+ drivers/gpu/drm/lima/lima_pmu.h                    |   2 +
+ drivers/gpu/drm/lima/lima_pp.c                     |  31 +-
+ drivers/gpu/drm/lima/lima_pp.h                     |   4 +
+ drivers/gpu/drm/lima/lima_sched.c                  |  63 ++-
+ drivers/gpu/drm/lima/lima_vm.h                     |   3 +-
+ drivers/gpu/drm/mcde/mcde_display.c                |  10 +-
+ drivers/gpu/drm/mcde/mcde_drm.h                    |   2 +
+ drivers/gpu/drm/mcde/mcde_drv.c                    |  21 +-
+ drivers/gpu/drm/mcde/mcde_dsi.c                    |   2 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |  29 +-
+ drivers/gpu/drm/meson/meson_drv.h                  |   6 +
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |   2 +-
+ drivers/gpu/drm/meson/meson_plane.c                |   2 +-
+ drivers/gpu/drm/meson/meson_vclk.c                 |  16 +-
+ drivers/gpu/drm/meson/meson_vclk.h                 |   3 +-
+ drivers/gpu/drm/omapdrm/dss/dispc.c                |  33 +-
+ drivers/gpu/drm/omapdrm/dss/venc.c                 |  43 --
+ drivers/gpu/drm/panel/Kconfig                      |   8 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     |   8 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9322.c       |   4 +-
+ drivers/gpu/drm/panel/panel-simple.c               | 160 +++++-
+ drivers/gpu/drm/panel/panel-truly-nt35597.c        |   2 -
+ drivers/gpu/drm/panel/panel-visionox-rm69299.c     | 302 ++++++++++
+ drivers/gpu/drm/pl111/Makefile                     |   1 -
+ drivers/gpu/drm/pl111/pl111_drv.c                  |   1 +
+ drivers/gpu/drm/pl111/pl111_versatile.c            | 148 +++--
+ drivers/gpu/drm/pl111/pl111_vexpress.c             | 138 -----
+ drivers/gpu/drm/pl111/pl111_vexpress.h             |  29 -
+ drivers/gpu/drm/qxl/qxl_debugfs.c                  |   7 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |  32 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                      |  23 +-
+ drivers/gpu/drm/qxl/qxl_drv.h                      |   7 +-
+ drivers/gpu/drm/qxl/qxl_dumb.c                     |   2 +-
+ drivers/gpu/drm/qxl/qxl_gem.c                      |   2 +-
+ drivers/gpu/drm/qxl/qxl_ioctl.c                    |  14 +-
+ drivers/gpu/drm/qxl/qxl_irq.c                      |   2 +-
+ drivers/gpu/drm/qxl/qxl_kms.c                      |  13 +-
+ drivers/gpu/drm/qxl/qxl_object.c                   |   2 +-
+ drivers/gpu/drm/qxl/qxl_release.c                  |   2 +-
+ drivers/gpu/drm/qxl/qxl_ttm.c                      |   2 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |   4 +-
+ drivers/gpu/drm/rockchip/cdn-dp-reg.c              |   6 +-
+ drivers/gpu/drm/stm/ltdc.c                         | 102 ++--
+ drivers/gpu/drm/tidss/tidss_crtc.c                 |  16 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c                |  11 +-
+ drivers/gpu/drm/tidss/tidss_dispc.h                |   6 -
+ drivers/gpu/drm/tidss/tidss_drv.c                  |  17 +-
+ drivers/gpu/drm/tidss/tidss_drv.h                  |   4 +-
+ drivers/gpu/drm/tidss/tidss_irq.c                  |  12 +-
+ drivers/gpu/drm/tidss/tidss_kms.c                  |   2 +-
+ drivers/gpu/drm/tidss/tidss_plane.c                |   6 +-
+ drivers/gpu/drm/tiny/Kconfig                       |  19 +
+ drivers/gpu/drm/tiny/Makefile                      |   1 +
+ drivers/gpu/drm/{cirrus =3D> tiny}/cirrus.c          |  22 +-
+ drivers/gpu/drm/tiny/gm12u320.c                    |  24 +-
+ drivers/gpu/drm/tiny/hx8357d.c                     |  13 +-
+ drivers/gpu/drm/tiny/ili9225.c                     |  13 +-
+ drivers/gpu/drm/tiny/ili9341.c                     |  13 +-
+ drivers/gpu/drm/tiny/ili9486.c                     |  13 +-
+ drivers/gpu/drm/tiny/mi0283qt.c                    |  13 +-
+ drivers/gpu/drm/tiny/repaper.c                     |  14 +-
+ drivers/gpu/drm/tiny/st7586.c                      |  13 +-
+ drivers/gpu/drm/tiny/st7735r.c                     |  13 +-
+ drivers/gpu/drm/udl/udl_connector.c                |   4 +-
+ drivers/gpu/drm/udl/udl_drv.c                      |  27 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  10 +-
+ drivers/gpu/drm/v3d/v3d_debugfs.c                  |  12 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |  47 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   7 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |  17 +-
+ drivers/gpu/drm/v3d/v3d_irq.c                      |  16 +-
+ drivers/gpu/drm/v3d/v3d_mmu.c                      |  10 +-
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  10 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.c               |  26 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.h               |   1 +
+ drivers/gpu/drm/vboxvideo/vbox_irq.c               |   2 +-
+ drivers/gpu/drm/vboxvideo/vbox_main.c              |  29 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c              |  10 +-
+ drivers/gpu/drm/vboxvideo/vbox_ttm.c               |  12 -
+ drivers/gpu/drm/vkms/vkms_drv.c                    |   2 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |   5 -
+ drivers/gpu/drm/vkms/vkms_gem.c                    |  11 +-
+ drivers/video/fbdev/aty/atyfb_base.c               |   4 +-
+ drivers/video/fbdev/controlfb.c                    |   2 +-
+ drivers/video/fbdev/i810/i810_main.c               |  10 +-
+ drivers/video/fbdev/riva/riva_hw.c                 |  18 -
+ drivers/video/fbdev/udlfb.c                        |   6 +-
+ drivers/video/fbdev/uvesafb.c                      |  12 +-
+ drivers/video/fbdev/valkyriefb.c                   |   4 +-
+ drivers/video/fbdev/w100fb.c                       |   2 +
+ include/drm/drm_client.h                           |   2 +-
+ include/drm/drm_dp_helper.h                        |   4 +-
+ include/drm/drm_dp_mst_helper.h                    |  24 +-
+ include/drm/drm_drv.h                              |  33 ++
+ include/drm/drm_mm.h                               |   1 +
+ include/drm/drm_modes.h                            |  11 -
+ include/drm/ttm/ttm_bo_driver.h                    |   1 -
+ 152 files changed, 2653 insertions(+), 1246 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/chront=
+el,ch7033.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/dw_mip=
+i_dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it=
+6505.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/snps,d=
+w-mipi-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/chrontel-ch7033.c
+ delete mode 100644 drivers/gpu/drm/cirrus/Kconfig
+ delete mode 100644 drivers/gpu/drm/cirrus/Makefile
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
+ delete mode 100644 drivers/gpu/drm/pl111/pl111_vexpress.c
+ delete mode 100644 drivers/gpu/drm/pl111/pl111_vexpress.h
+ rename drivers/gpu/drm/{cirrus =3D> tiny}/cirrus.c (97%)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
