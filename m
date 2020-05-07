@@ -1,44 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9BC1C8019
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 04:43:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B7F1C801B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 04:44:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E06EC6E908;
-	Thu,  7 May 2020 02:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469E86E907;
+	Thu,  7 May 2020 02:44:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61CB16E906;
- Thu,  7 May 2020 02:43:23 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49Hd791Vtpz9sRf;
- Thu,  7 May 2020 12:43:16 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1588819400;
- bh=3cql5VsIEDZ9sh1yQV7laVUfWk6ZJHdw0wTQwojE088=;
- h=Date:From:To:Cc:Subject:From;
- b=Ki7DJEmwamfoa/Ep0E/cK9nhK9D+Li1kKZb9dkJznsy8NWu6H9KYFbBHbBAscTqS1
- QhtByVVNwwVFkv6+zjC7VqiCAKShxF2z5lNTEB3/JlD1mCGsuNXmC57q1HVDTMDsHJ
- 5VYnwSHdRH/o/BbwpJnMenT+mXCXI/7qr6F1D66Ts1/LhYEf4ZsmSxebRLN0RtFQDL
- Plpmi+jO5vx3cX0Rsc1zJevOBvQ2kWdCqvuMKihTajjj+LgJGeJyUe8cr7pZ89mjgN
- +IPntnmeP6gAAVsbvd89BOdk1dQ82ldil/6ZvWvNr9Zod5S8l+zHB0JbvfyGaNPcWZ
- ynNU/lUbV7jRQ==
-Date: Thu, 7 May 2020 12:43:11 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20200507124311.3838e2a0@canb.auug.org.au>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFE456E907
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 02:44:20 +0000 (UTC)
+IronPort-SDR: jzTZhe5LGW5H6SAKZANkqvMLd4ezo7sR1GIwbdyAtJbwrWN6Vh+JPfy9xCUnGGIOj6KGglatBm
+ QdsGI3wQ2Ppw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 19:44:20 -0700
+IronPort-SDR: Klc3E5mXtQQWSzcGeDziLBXk6sIDmEbZi9idxpFlnQAEXT56CH/cANxevf8aoEJtT2XalDX7gG
+ 56NRDfapjqKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,361,1583222400"; d="scan'208";a="284841578"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga004.fm.intel.com with ESMTP; 06 May 2020 19:44:19 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 6 May 2020 19:44:19 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 6 May 2020 19:44:19 -0700
+Received: from shsmsx107.ccr.corp.intel.com (10.239.4.96) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 6 May 2020 19:44:19 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.225]) by
+ SHSMSX107.ccr.corp.intel.com ([169.254.9.200]) with mapi id 14.03.0439.000;
+ Thu, 7 May 2020 10:44:16 +0800
+From: "Liu, Chuansheng" <chuansheng.liu@intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 4/4] drm/i915/gen12: Invalidate aux table entries forcibly
+Thread-Index: AQHWI8bvr/EJIOEmiUOSUyNnMs7jL6ib3RqA
+Date: Thu, 7 May 2020 02:44:15 +0000
+Message-ID: <27240C0AC20F114CBF8149A2696CBE4A6169DECF@SHSMSX101.ccr.corp.intel.com>
+References: <158878348241.927.811872095434935872@build.alporthouse.com>
+ <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
- drm-intel-fixes tree
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gen12: Invalidate aux table
+ entries forcibly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,98 +72,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Jones <pjones@redhat.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0804477642=="
+Cc: "Shi, Yang A" <yang.a.shi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0804477642==
-Content-Type: multipart/signed; boundary="Sig_/avDbmjoaGsC/ysa+PA0FSf8";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Hi Mika,
 
---Sig_/avDbmjoaGsC/ysa+PA0FSf8
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+> -----Original Message-----
+> From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Sent: Thursday, May 7, 2020 12:53 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>; Chris Wilson
+> <chris@chris-wilson.co.uk>; Liu, Chuansheng <chuansheng.liu@intel.com>;
+> Antognolli, Rafael <rafael.antognolli@intel.com>; Shi, Yang A
+> <yang.a.shi@intel.com>
+> Subject: [PATCH 4/4] drm/i915/gen12: Invalidate aux table entries forcibly
+> 
+> Aux table invalidation can fail on update. So
+> next access may cause memory access to be into stale entry.
+> 
+> Proposed workaround is to invalidate entries between
+> all batchbuffers.
 
-Hi all,
+Thanks for cooking this patch for RCS engine. Similar way applies to all the engines.
+Expecting more patches.
 
-Today's linux-next merge of the drm tree got a conflict in:
-
-  drivers/gpu/drm/i915/display/intel_fbc.c
-
-between commit:
-
-  82152d424b6c ("Make the "Reducing compressed framebufer size" message be =
-DRM_INFO_ONCE()")
-
-from the drm-intel-fixes tree and commit:
-
-  97ed48b5c8b1 ("drm/i915/fbc: convert to drm_device based logging macros.")
-
-from the drm tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/i915/display/intel_fbc.c
-index c125ca9ab9b3,56bcd6c52a02..000000000000
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@@ -485,7 -485,9 +485,8 @@@ static int intel_fbc_alloc_cfb(struct d
-  	if (!ret)
-  		goto err_llb;
-  	else if (ret > 1) {
-- 		DRM_INFO_ONCE("Reducing the compressed framebuffer size. This may lead =
-to less power savings than a non-reduced-size. Try to increase stolen memor=
-y size if available in BIOS.\n");
- -		drm_info(&dev_priv->drm,
-++		drm_info_once(&dev_priv->drm,
-+ 			 "Reducing the compressed framebuffer size. This may lead to less powe=
-r savings than a non-reduced-size. Try to increase stolen memory size if av=
-ailable in BIOS.\n");
- -
-  	}
- =20
-  	fbc->threshold =3D ret;
-
---Sig_/avDbmjoaGsC/ysa+PA0FSf8
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6zdb8ACgkQAVBC80lX
-0GyuIgf+OkbDDmJb3xBZ3z4ltKh2Eq6GPhl9KgWPSF5jdRke+TGBjjiB66zZyGLL
-dDLb9Ff96UIASj6ArDPb3E2TlAzxJ9TvOzBL32ggHlkBnmJk4xmlQqf6yoL49OYR
-Iqzw5Ei+HSJCMP98oiCBKGKCSf3AhkT2dLoJfs503pflnfvSJ+AZCDWWkUDZYVGh
-EUlrkEozwqs01u4zK8GlhYf7A4zsg9W0RQOn56CzkLMvtH5kn4fnLGiXkVkdHH4l
-2XlC6v9UK/PSNs27mcZdI99vRgoLkkWimII7CM0s785UellFTSnsmhKm5czkZ1ZS
-N/sRtKMcGNYod1a1zSLgTPwiQLH62w==
-=fiYA
------END PGP SIGNATURE-----
-
---Sig_/avDbmjoaGsC/ysa+PA0FSf8--
-
---===============0804477642==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+VD0_CCS_AUX_NV	04218h
+VD1_CCS_AUX_NV	04228h
+VE0_CCS_AUX_NV	04238h
+VD2_CCS_AUX_NV	04298h
+VD3_CCS_AUX_NV	042A8h
+VE1_CCS_AUX_NV	042B8h
+COMPCS0_CCS_AUX_NV	042C8h
+GFX_CCS_AUX_NV	04208h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0804477642==--
