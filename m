@@ -1,44 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0371C8292
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 08:34:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D06481C82B5
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 08:43:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032A36E917;
-	Thu,  7 May 2020 06:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395CD6E915;
+	Thu,  7 May 2020 06:43:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38946E915
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 06:34:41 +0000 (UTC)
-IronPort-SDR: mW+pz9k4bF6dmefZ3lPG1nbFoNTZ2CViBxdsZ92kgZV/m2klse7HcxraiSd9LSkvC5phbxRiMd
- 0HkvyAXc109Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 23:34:41 -0700
-IronPort-SDR: JiuhoNIV6J0wFWF6revNwvNWP68xZAiS7jpphdwqPaYMvFAeTGLUwODKF78v2zeFiaoIM3qDhO
- /hicRkUtlc0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,362,1583222400"; d="scan'208";a="295619523"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 06 May 2020 23:34:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 May 2020 09:34:38 +0300
-Date: Thu, 7 May 2020 09:34:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200507063438.GV6112@intel.com>
-References: <20200307012600.19602-1-lucas.demarchi@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6786E915
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 06:43:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21134315-1500050 for multiple; Thu, 07 May 2020 07:43:46 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200307012600.19602-1-lucas.demarchi@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dgfx: avoid opregion calls and
- messages
+In-Reply-To: <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
+References: <158878348241.927.811872095434935872@build.alporthouse.com>
+ <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158883382408.927.12375552840831028590@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 07 May 2020 07:43:44 +0100
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gen12: Invalidate aux table
+ entries forcibly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,65 +41,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Yang A Shi <yang.a.shi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 06, 2020 at 05:26:00PM -0800, Lucas De Marchi wrote:
-> This avoids the annoying message
-> "Failed to get panel details from OpRegion (-19)" while initializing.
-> On DGFX there is no access to OpRegion, so just avoid any calls related
-> to it.
-> =
-
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Quoting Mika Kuoppala (2020-05-06 17:53:10)
+> Aux table invalidation can fail on update. So
+> next access may cause memory access to be into stale entry.
+> 
+> Proposed workaround is to invalidate entries between
+> all batchbuffers.
+> 
+> v2: correct register address (Yang)
+> v3: respect the order (Chris)
+> 
+> References bspec#43904, hsdes#1809175790
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Chuansheng Liu <chuansheng.liu@intel.com>
+> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> Cc: Yang A Shi <yang.a.shi@intel.com>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/=
-drm/i915/display/intel_opregion.c
-> index cc6b00959586..daadad046810 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1006,6 +1006,10 @@ intel_opregion_get_panel_type(struct drm_i915_priv=
-ate *dev_priv)
->  	u32 panel_details;
->  	int ret;
->  =
-
-> +	/* No access to OpRegion */
-> +	if (IS_DGFX(dev_priv))
-> +		return -ENODEV;
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 16 +++++++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h     |  2 ++
+>  2 files changed, 17 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index e1235d504837..bbdb0e2a4571 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -4539,6 +4539,17 @@ static u32 preparser_disable(bool state)
+>         return MI_ARB_CHECK | 1 << 8 | state;
+>  }
+>  
+> +static u32 *
+> +gen12_emit_aux_table_inv(struct i915_request *rq, u32 *cs)
+> +{
+> +       *cs++ = MI_LOAD_REGISTER_IMM(1);
+> +       *cs++ = i915_mmio_reg_offset(GEN12_GFX_CCS_AUX_NV);
+> +       *cs++ = AUX_INV;
+> +       *cs++ = MI_NOOP;
 > +
->  	ret =3D swsci(dev_priv, SWSCI_GBDA_PANEL_DETAILS, 0x0, &panel_details);
->  	if (ret) {
->  		drm_dbg_kms(&dev_priv->drm,
+> +       return cs;
+> +}
+> +
+>  static int gen12_emit_flush_render(struct i915_request *request,
+>                                    u32 mode)
+>  {
+> @@ -4587,7 +4598,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
+>  
+>                 flags |= PIPE_CONTROL_CS_STALL;
+>  
+> -               cs = intel_ring_begin(request, 8);
+> +               cs = intel_ring_begin(request, 8 + 4);
+>                 if (IS_ERR(cs))
+>                         return PTR_ERR(cs);
+>  
+> @@ -4600,6 +4611,9 @@ static int gen12_emit_flush_render(struct i915_request *request,
+>  
+>                 cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
+>  
+> +               /* hsdes: 1809175790 */
+> +               cs = gen12_emit_aux_table_inv(request, cs);
 
-I think we could just remove this debug message entirely. There are
-only two silent failures modes for swsci(): no swsci, and the specific
-function not being supported. Should be easy to figure out which case
-it is without this debug if necessary. And all the cases where the
-swcsi() succeed seem to have enough debugs to tell us that we did get
-the panel type from opregion but decided to ignore it anyway.
-
-> -- =
-
-> 2.25.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+It is worth mentioning that we do not fix up the EMIT_INVALIDATE for the
+actual physical engine a virtual request may run on. Not a problem until
+you try to support other engines. Pray for a quick HW fix.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
