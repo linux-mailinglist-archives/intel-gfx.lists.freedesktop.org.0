@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C691C8B52
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 14:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 029101C8BAA
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 15:03:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CAD6E982;
-	Thu,  7 May 2020 12:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 536B16E131;
+	Thu,  7 May 2020 13:03:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 78AB56E97D;
- Thu,  7 May 2020 12:49:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 71DFCA47E1;
- Thu,  7 May 2020 12:49:48 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 921E06E131
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 13:03:15 +0000 (UTC)
+IronPort-SDR: tZXKnfmHSr7P+7GYDzOgaaVPPYVe8s3+Akt8gM+mxBHYT/DATwXo4IzzDLgj7pEcYYmugDCaoq
+ 2ABMiEWosmcg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 06:03:12 -0700
+IronPort-SDR: OhlgTh1b0+xv/RUjNtimJluqLF4yYLWDkAfYBu8MQukSw5WvSvJX1Nsls8cBgfjsTb6xxwCtWJ
+ 17UcFvdQecvQ==
+X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="284985349"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 06:03:10 -0700
+Date: Thu, 7 May 2020 16:02:32 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200507130232.GA15958@ideak-desk.fi.intel.com>
+References: <20200311155422.3043-3-ville.syrjala@linux.intel.com>
+ <20200507114808.6150-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 07 May 2020 12:49:48 -0000
-Message-ID: <158885578843.2188.6342730409280372668@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200507082124.1673-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200507082124.1673-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Mark_concurrent_submiss?=
- =?utf-8?q?ions_with_a_weak-dependency_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200507114808.6150-1-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v4 2/3] drm/i915: Stash hpd status bits
+ under dev_priv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,285 +49,642 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, May 07, 2020 at 02:48:08PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: series starting with [1/3] drm/i915: Mark concurrent submissions with a weak-dependency (rev2)
-URL   : https://patchwork.freedesktop.org/series/77024/
-State : failure
+> Instead of constnantly having to figure out which hpd status bit
+> array to use let's store them under dev_priv.
+> =
 
-== Summary ==
+> Should perhaps take this further and stash even more stuff to
+> make the hpd handling more abstract yet.
+> =
 
-CI Bug Log - changes from CI_DRM_8441_full -> Patchwork_17598_full
-====================================================
+> v2: Remeber cnp (Imre)
+>     Add MISSING_CASE() for unknown PCHs (Imre)
+> =
 
-Summary
--------
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  **FAILURE**
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-  Serious unknown changes coming with Patchwork_17598_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17598_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h |   2 +
+>  drivers/gpu/drm/i915/i915_irq.c | 203 ++++++++++++++++++--------------
+>  2 files changed, 116 insertions(+), 89 deletions(-)
+> =
 
-  
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 6af69555733e..155f3fa3286c 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -148,6 +148,8 @@ enum hpd_pin {
+>  struct i915_hotplug {
+>  	struct delayed_work hotplug_work;
+>  =
 
-Possible new issues
--------------------
+> +	const u32 *hpd, *pch_hpd;
+> +
+>  	struct {
+>  		unsigned long last_jiffies;
+>  		int count;
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index ea4c87784a27..4dc601dffc08 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -124,7 +124,6 @@ static const u32 hpd_status_i915[HPD_NUM_PINS] =3D {
+>  	[HPD_PORT_D] =3D PORTD_HOTPLUG_INT_STATUS,
+>  };
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17598_full:
+> -/* BXT hpd list */
+>  static const u32 hpd_bxt[HPD_NUM_PINS] =3D {
+>  	[HPD_PORT_A] =3D BXT_DE_PORT_HP_DDIA,
+>  	[HPD_PORT_B] =3D BXT_DE_PORT_HP_DDIB,
+> @@ -168,6 +167,49 @@ static const u32 hpd_tgp[HPD_NUM_PINS] =3D {
+>  	[HPD_PORT_I] =3D SDE_TC_HOTPLUG_ICP(PORT_TC6),
+>  };
+>  =
 
-### IGT changes ###
+> +static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+> +{
+> +	struct i915_hotplug *hpd =3D &dev_priv->hotplug;
+> +
+> +	if (HAS_GMCH(dev_priv)) {
+> +		if (IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+> +		    IS_CHERRYVIEW(dev_priv))
+> +			hpd->hpd =3D hpd_status_g4x;
+> +		else
+> +			hpd->hpd =3D hpd_status_i915;
+> +		return;
+> +	}
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		hpd->hpd =3D hpd_gen12;
+> +	else if (INTEL_GEN(dev_priv) >=3D 11)
+> +		hpd->hpd =3D hpd_gen11;
+> +	else if (IS_GEN9_LP(dev_priv))
+> +		hpd->hpd =3D hpd_bxt;
+> +	else if (INTEL_GEN(dev_priv) >=3D 8)
+> +		hpd->hpd =3D hpd_bdw;
+> +	else if (INTEL_GEN(dev_priv) >=3D 7)
+> +		hpd->hpd =3D hpd_ivb;
+> +	else
+> +		hpd->hpd =3D hpd_ilk;
+> +
+> +	if (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv))
+> +		return;
+> +
+> +	if (HAS_PCH_TGP(dev_priv) || HAS_PCH_JSP(dev_priv))
+> +		hpd->pch_hpd =3D hpd_tgp;
+> +	else if (HAS_PCH_ICP(dev_priv) || HAS_PCH_MCC(dev_priv))
+> +		hpd->pch_hpd =3D hpd_icp;
+> +	else if (HAS_PCH_CNP(dev_priv) || HAS_PCH_SPT(dev_priv))
+> +		hpd->pch_hpd =3D hpd_spt;
+> +	else if (HAS_PCH_LPT(dev_priv) || HAS_PCH_CPT(dev_priv))
+> +		hpd->pch_hpd =3D hpd_cpt;
+> +	else if (HAS_PCH_IBX(dev_priv))
+> +		hpd->pch_hpd =3D hpd_ibx;
+> +	else
+> +		MISSING_CASE(INTEL_PCH_TYPE(dev_priv));
+> +}
+> +
+>  static void
+>  intel_handle_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+> @@ -1504,33 +1546,27 @@ static void i9xx_hpd_irq_handler(struct drm_i915_=
+private *dev_priv,
+>  				 u32 hotplug_status)
+>  {
+>  	u32 pin_mask =3D 0, long_mask =3D 0;
+> +	u32 hotplug_trigger;
+>  =
 
-#### Possible regressions ####
+> -	if (IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+> -	    IS_CHERRYVIEW(dev_priv)) {
+> -		u32 hotplug_trigger =3D hotplug_status & HOTPLUG_INT_STATUS_G4X;
+> -
+> -		if (hotplug_trigger) {
+> -			intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -					   hotplug_trigger, hotplug_trigger,
+> -					   hpd_status_g4x,
+> -					   i9xx_port_hotplug_long_detect);
+> +	if (IS_G4X(dev_priv) ||
+> +	    IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +		hotplug_trigger =3D hotplug_status & HOTPLUG_INT_STATUS_G4X;
+> +	else
+> +		hotplug_trigger =3D hotplug_status & HOTPLUG_INT_STATUS_I915;
+>  =
 
-  * igt@kms_flip_event_leak:
-    - shard-kbl:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl2/igt@kms_flip_event_leak.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl3/igt@kms_flip_event_leak.html
+> -			intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+> -		}
+> +	if (hotplug_trigger) {
+> +		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +				   hotplug_trigger, hotplug_trigger,
+> +				   dev_priv->hotplug.hpd,
+> +				   i9xx_port_hotplug_long_detect);
+>  =
 
-  
-New tests
----------
+> -		if (hotplug_status & DP_AUX_CHANNEL_MASK_INT_STATUS_G4X)
+> -			dp_aux_irq_handler(dev_priv);
+> -	} else {
+> -		u32 hotplug_trigger =3D hotplug_status & HOTPLUG_INT_STATUS_I915;
+> -
+> -		if (hotplug_trigger) {
+> -			intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -					   hotplug_trigger, hotplug_trigger,
+> -					   hpd_status_i915,
+> -					   i9xx_port_hotplug_long_detect);
+> -			intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+> -		}
+> +		intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+>  	}
+> +
+> +	if ((IS_G4X(dev_priv) ||
+> +	     IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+> +	    hotplug_status & DP_AUX_CHANNEL_MASK_INT_STATUS_G4X)
+> +		dp_aux_irq_handler(dev_priv);
+>  }
+>  =
 
-  New tests have been introduced between CI_DRM_8441_full and Patchwork_17598_full:
+>  static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+> @@ -1696,8 +1732,7 @@ static irqreturn_t cherryview_irq_handler(int irq, =
+void *arg)
+>  }
+>  =
 
-### New IGT tests (4) ###
+>  static void ibx_hpd_irq_handler(struct drm_i915_private *dev_priv,
+> -				u32 hotplug_trigger,
+> -				const u32 hpd[HPD_NUM_PINS])
+> +				u32 hotplug_trigger)
+>  {
+>  	u32 dig_hotplug_reg, pin_mask =3D 0, long_mask =3D 0;
+>  =
 
-  * igt@gem_exec_fence@submit@bcs0:
-    - Statuses : 6 pass(s)
-    - Exec time: [0.01, 0.05] s
+> @@ -1720,8 +1755,9 @@ static void ibx_hpd_irq_handler(struct drm_i915_pri=
+vate *dev_priv,
+>  	if (!hotplug_trigger)
+>  		return;
+>  =
 
-  * igt@gem_exec_fence@submit@vcs0:
-    - Statuses : 6 pass(s)
-    - Exec time: [0.01, 0.05] s
+> -	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask, hotplug_trigger,
+> -			   dig_hotplug_reg, hpd,
+> +	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +			   hotplug_trigger, dig_hotplug_reg,
+> +			   dev_priv->hotplug.pch_hpd,
+>  			   pch_port_hotplug_long_detect);
+>  =
 
-  * igt@gem_exec_fence@submit@vcs1:
-    - Statuses : 3 pass(s)
-    - Exec time: [0.01] s
+>  	intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+> @@ -1732,7 +1768,7 @@ static void ibx_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  	enum pipe pipe;
+>  	u32 hotplug_trigger =3D pch_iir & SDE_HOTPLUG_MASK;
+>  =
 
-  * igt@gem_exec_fence@submit@vecs0:
-    - Statuses : 6 pass(s)
-    - Exec time: [0.01, 0.05] s
+> -	ibx_hpd_irq_handler(dev_priv, hotplug_trigger, hpd_ibx);
+> +	ibx_hpd_irq_handler(dev_priv, hotplug_trigger);
+>  =
 
-  
+>  	if (pch_iir & SDE_AUDIO_POWER_MASK) {
+>  		int port =3D ffs((pch_iir & SDE_AUDIO_POWER_MASK) >>
+> @@ -1820,7 +1856,7 @@ static void cpt_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  	enum pipe pipe;
+>  	u32 hotplug_trigger =3D pch_iir & SDE_HOTPLUG_MASK_CPT;
+>  =
 
-Known issues
-------------
+> -	ibx_hpd_irq_handler(dev_priv, hotplug_trigger, hpd_cpt);
+> +	ibx_hpd_irq_handler(dev_priv, hotplug_trigger);
+>  =
 
-  Here are the changes found in Patchwork_17598_full that come from known issues:
+>  	if (pch_iir & SDE_AUDIO_POWER_MASK_CPT) {
+>  		int port =3D ffs((pch_iir & SDE_AUDIO_POWER_MASK_CPT) >>
+> @@ -1857,22 +1893,18 @@ static void icp_irq_handler(struct drm_i915_priva=
+te *dev_priv, u32 pch_iir)
+>  	u32 ddi_hotplug_trigger, tc_hotplug_trigger;
+>  	u32 pin_mask =3D 0, long_mask =3D 0;
+>  	bool (*tc_port_hotplug_long_detect)(enum hpd_pin pin, u32 val);
+> -	const u32 *pins;
+>  =
 
-### IGT changes ###
+>  	if (HAS_PCH_TGP(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_TGP;
+>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_MASK_TGP;
+>  		tc_port_hotplug_long_detect =3D tgp_tc_port_hotplug_long_detect;
+> -		pins =3D hpd_tgp;
+>  	} else if (HAS_PCH_JSP(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_TGP;
+>  		tc_hotplug_trigger =3D 0;
+> -		pins =3D hpd_tgp;
+>  	} else if (HAS_PCH_MCC(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_ICP;
+>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_HOTPLUG_ICP(PORT_TC1);
+>  		tc_port_hotplug_long_detect =3D icp_tc_port_hotplug_long_detect;
+> -		pins =3D hpd_icp;
+>  	} else {
+>  		drm_WARN(&dev_priv->drm, !HAS_PCH_ICP(dev_priv),
+>  			 "Unrecognized PCH type 0x%x\n",
+> @@ -1881,7 +1913,6 @@ static void icp_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_ICP;
+>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_MASK_ICP;
+>  		tc_port_hotplug_long_detect =3D icp_tc_port_hotplug_long_detect;
+> -		pins =3D hpd_icp;
+>  	}
+>  =
 
-#### Issues hit ####
+>  	if (ddi_hotplug_trigger) {
+> @@ -1891,8 +1922,8 @@ static void icp_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		I915_WRITE(SHOTPLUG_CTL_DDI, dig_hotplug_reg);
+>  =
 
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#1436] / [i915#716])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl1/igt@gen9_exec_parse@allowed-all.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl2/igt@gen9_exec_parse@allowed-all.html
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -				   ddi_hotplug_trigger,
+> -				   dig_hotplug_reg, pins,
+> +				   ddi_hotplug_trigger, dig_hotplug_reg,
+> +				   dev_priv->hotplug.pch_hpd,
+>  				   icp_ddi_port_hotplug_long_detect);
+>  	}
+>  =
 
-  * igt@i915_suspend@forcewake:
-    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl3/igt@i915_suspend@forcewake.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl1/igt@i915_suspend@forcewake.html
+> @@ -1903,8 +1934,8 @@ static void icp_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		I915_WRITE(SHOTPLUG_CTL_TC, dig_hotplug_reg);
+>  =
 
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-apl:          [PASS][7] -> [DMESG-WARN][8] ([i915#180])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl8/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl8/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -				   tc_hotplug_trigger,
+> -				   dig_hotplug_reg, pins,
+> +				   tc_hotplug_trigger, dig_hotplug_reg,
+> +				   dev_priv->hotplug.pch_hpd,
+>  				   tc_port_hotplug_long_detect);
+>  	}
+>  =
 
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([i915#1188])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl2/igt@kms_hdr@bpc-switch-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
+> @@ -1929,7 +1960,8 @@ static void spt_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		I915_WRITE(PCH_PORT_HOTPLUG, dig_hotplug_reg);
+>  =
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
-    - shard-skl:          [PASS][11] -> [INCOMPLETE][12] ([i915#69])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl8/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -				   hotplug_trigger, dig_hotplug_reg, hpd_spt,
+> +				   hotplug_trigger, dig_hotplug_reg,
+> +				   dev_priv->hotplug.pch_hpd,
+>  				   spt_port_hotplug_long_detect);
+>  	}
+>  =
 
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([fdo#108145] / [i915#265])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+> @@ -1940,7 +1972,8 @@ static void spt_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		I915_WRITE(PCH_PORT_HOTPLUG2, dig_hotplug_reg);
+>  =
 
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109441])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-iclb1/igt@kms_psr@psr2_primary_mmap_cpu.html
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> -				   hotplug2_trigger, dig_hotplug_reg, hpd_spt,
+> +				   hotplug2_trigger, dig_hotplug_reg,
+> +				   dev_priv->hotplug.pch_hpd,
+>  				   spt_port_hotplug2_long_detect);
+>  	}
+>  =
 
-  * igt@kms_setmode@basic:
-    - shard-kbl:          [PASS][17] -> [FAIL][18] ([i915#31])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl6/igt@kms_setmode@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl7/igt@kms_setmode@basic.html
+> @@ -1952,16 +1985,16 @@ static void spt_irq_handler(struct drm_i915_priva=
+te *dev_priv, u32 pch_iir)
+>  }
+>  =
 
-  
-#### Possible fixes ####
+>  static void ilk_hpd_irq_handler(struct drm_i915_private *dev_priv,
+> -				u32 hotplug_trigger,
+> -				const u32 hpd[HPD_NUM_PINS])
+> +				u32 hotplug_trigger)
+>  {
+>  	u32 dig_hotplug_reg, pin_mask =3D 0, long_mask =3D 0;
+>  =
 
-  * igt@gem_eio@in-flight-suspend:
-    - shard-skl:          [INCOMPLETE][19] ([i915#69]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl9/igt@gem_eio@in-flight-suspend.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl2/igt@gem_eio@in-flight-suspend.html
+>  	dig_hotplug_reg =3D I915_READ(DIGITAL_PORT_HOTPLUG_CNTRL);
+>  	I915_WRITE(DIGITAL_PORT_HOTPLUG_CNTRL, dig_hotplug_reg);
+>  =
 
-  * {igt@gem_exec_fence@submit@rcs0}:
-    - shard-tglb:         [INCOMPLETE][21] ([i915#1841]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-tglb8/igt@gem_exec_fence@submit@rcs0.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-tglb1/igt@gem_exec_fence@submit@rcs0.html
-    - shard-kbl:          [INCOMPLETE][23] ([i915#1841]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl6/igt@gem_exec_fence@submit@rcs0.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl7/igt@gem_exec_fence@submit@rcs0.html
-    - shard-skl:          [INCOMPLETE][25] ([i915#1841]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl5/igt@gem_exec_fence@submit@rcs0.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl6/igt@gem_exec_fence@submit@rcs0.html
-    - shard-glk:          [INCOMPLETE][27] ([i915#1841] / [i915#58] / [k.org#198133]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-glk6/igt@gem_exec_fence@submit@rcs0.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-glk6/igt@gem_exec_fence@submit@rcs0.html
-    - shard-iclb:         [INCOMPLETE][29] ([i915#1841]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-iclb7/igt@gem_exec_fence@submit@rcs0.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-iclb1/igt@gem_exec_fence@submit@rcs0.html
-    - shard-apl:          [INCOMPLETE][31] ([i915#1841]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl6/igt@gem_exec_fence@submit@rcs0.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl1/igt@gem_exec_fence@submit@rcs0.html
+> -	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask, hotplug_trigger,
+> -			   dig_hotplug_reg, hpd,
+> +	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +			   hotplug_trigger, dig_hotplug_reg,
+> +			   dev_priv->hotplug.hpd,
+>  			   ilk_port_hotplug_long_detect);
+>  =
 
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-skl:          [DMESG-WARN][33] ([i915#716]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl5/igt@gen9_exec_parse@allowed-single.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl9/igt@gen9_exec_parse@allowed-single.html
+>  	intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+> @@ -1974,7 +2007,7 @@ static void ilk_display_irq_handler(struct drm_i915=
+_private *dev_priv,
+>  	u32 hotplug_trigger =3D de_iir & DE_DP_A_HOTPLUG;
+>  =
 
-  * igt@i915_suspend@fence-restore-tiled2untiled:
-    - shard-apl:          [DMESG-WARN][35] ([i915#180]) -> [PASS][36] +4 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl6/igt@i915_suspend@fence-restore-tiled2untiled.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
+>  	if (hotplug_trigger)
+> -		ilk_hpd_irq_handler(dev_priv, hotplug_trigger, hpd_ilk);
+> +		ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
+>  =
 
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen:
-    - shard-skl:          [FAIL][37] ([i915#54]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
+>  	if (de_iir & DE_AUX_CHANNEL_A)
+>  		dp_aux_irq_handler(dev_priv);
+> @@ -2020,7 +2053,7 @@ static void ivb_display_irq_handler(struct drm_i915=
+_private *dev_priv,
+>  	u32 hotplug_trigger =3D de_iir & DE_DP_A_HOTPLUG_IVB;
+>  =
 
-  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
-    - shard-skl:          [INCOMPLETE][39] ([i915#300]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl10/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl10/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+>  	if (hotplug_trigger)
+> -		ilk_hpd_irq_handler(dev_priv, hotplug_trigger, hpd_ivb);
+> +		ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
+>  =
 
-  * igt@kms_cursor_legacy@nonblocking-modeset-vs-cursor-atomic:
-    - shard-glk:          [FAIL][41] ([i915#67]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-glk5/igt@kms_cursor_legacy@nonblocking-modeset-vs-cursor-atomic.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-glk9/igt@kms_cursor_legacy@nonblocking-modeset-vs-cursor-atomic.html
+>  	if (de_iir & DE_ERR_INT_IVB)
+>  		ivb_err_int_handler(dev_priv);
+> @@ -2130,16 +2163,16 @@ static irqreturn_t ilk_irq_handler(int irq, void =
+*arg)
+>  }
+>  =
 
-  * {igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1}:
-    - shard-apl:          [FAIL][43] ([i915#79]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl8/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1.html
+>  static void bxt_hpd_irq_handler(struct drm_i915_private *dev_priv,
+> -				u32 hotplug_trigger,
+> -				const u32 hpd[HPD_NUM_PINS])
+> +				u32 hotplug_trigger)
+>  {
+>  	u32 dig_hotplug_reg, pin_mask =3D 0, long_mask =3D 0;
+>  =
 
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-kbl:          [DMESG-WARN][45] ([i915#180]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+>  	dig_hotplug_reg =3D I915_READ(PCH_PORT_HOTPLUG);
+>  	I915_WRITE(PCH_PORT_HOTPLUG, dig_hotplug_reg);
+>  =
 
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [FAIL][47] ([fdo#108145] / [i915#265]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-skl7/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+> -	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask, hotplug_trigger,
+> -			   dig_hotplug_reg, hpd,
+> +	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +			   hotplug_trigger, dig_hotplug_reg,
+> +			   dev_priv->hotplug.hpd,
+>  			   bxt_port_hotplug_long_detect);
+>  =
 
-  * igt@kms_plane_lowres@pipe-a-tiling-none:
-    - shard-glk:          [FAIL][49] ([i915#899]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-glk9/igt@kms_plane_lowres@pipe-a-tiling-none.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-glk7/igt@kms_plane_lowres@pipe-a-tiling-none.html
+>  	intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+> @@ -2151,15 +2184,11 @@ static void gen11_hpd_irq_handler(struct drm_i915=
+_private *dev_priv, u32 iir)
+>  	u32 trigger_tc =3D iir & GEN11_DE_TC_HOTPLUG_MASK;
+>  	u32 trigger_tbt =3D iir & GEN11_DE_TBT_HOTPLUG_MASK;
+>  	long_pulse_detect_func long_pulse_detect;
+> -	const u32 *hpd;
+>  =
 
-  * igt@kms_psr@psr2_dpms:
-    - shard-iclb:         [SKIP][51] ([fdo#109441]) -> [PASS][52] +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-iclb4/igt@kms_psr@psr2_dpms.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-iclb2/igt@kms_psr@psr2_dpms.html
+> -	if (INTEL_GEN(dev_priv) >=3D 12) {
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+>  		long_pulse_detect =3D gen12_port_hotplug_long_detect;
+> -		hpd =3D hpd_gen12;
+> -	} else {
+> +	else
+>  		long_pulse_detect =3D gen11_port_hotplug_long_detect;
+> -		hpd =3D hpd_gen11;
+> -	}
+>  =
 
-  
-#### Warnings ####
+>  	if (trigger_tc) {
+>  		u32 dig_hotplug_reg;
+> @@ -2167,8 +2196,10 @@ static void gen11_hpd_irq_handler(struct drm_i915_=
+private *dev_priv, u32 iir)
+>  		dig_hotplug_reg =3D I915_READ(GEN11_TC_HOTPLUG_CTL);
+>  		I915_WRITE(GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
+>  =
 
-  * igt@i915_pm_dc@dc6-dpms:
-    - shard-tglb:         [SKIP][53] ([i915#468]) -> [FAIL][54] ([i915#454])
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-tglb2/igt@i915_pm_dc@dc6-dpms.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-tglb8/igt@i915_pm_dc@dc6-dpms.html
+> -		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask, trigger_tc,
+> -				   dig_hotplug_reg, hpd, long_pulse_detect);
+> +		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +				   trigger_tc, dig_hotplug_reg,
+> +				   dev_priv->hotplug.hpd,
+> +				   long_pulse_detect);
+>  	}
+>  =
 
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-iclb:         [FAIL][55] ([i915#1515]) -> [WARN][56] ([i915#1515])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-iclb5/igt@i915_pm_rc6_residency@rc6-idle.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-iclb6/igt@i915_pm_rc6_residency@rc6-idle.html
+>  	if (trigger_tbt) {
+> @@ -2177,8 +2208,10 @@ static void gen11_hpd_irq_handler(struct drm_i915_=
+private *dev_priv, u32 iir)
+>  		dig_hotplug_reg =3D I915_READ(GEN11_TBT_HOTPLUG_CTL);
+>  		I915_WRITE(GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
+>  =
 
-  * igt@kms_content_protection@legacy:
-    - shard-apl:          [FAIL][57] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][58] ([i915#1319])
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl8/igt@kms_content_protection@legacy.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl2/igt@kms_content_protection@legacy.html
+> -		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask, trigger_tbt,
+> -				   dig_hotplug_reg, hpd, long_pulse_detect);
+> +		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+> +				   trigger_tbt, dig_hotplug_reg,
+> +				   dev_priv->hotplug.hpd,
+> +				   long_pulse_detect);
+>  	}
+>  =
 
-  * igt@kms_content_protection@lic:
-    - shard-apl:          [TIMEOUT][59] ([i915#1319]) -> [FAIL][60] ([fdo#110321])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-apl4/igt@kms_content_protection@lic.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-apl6/igt@kms_content_protection@lic.html
+>  	if (pin_mask)
+> @@ -2309,15 +2342,13 @@ gen8_de_irq_handler(struct drm_i915_private *dev_=
+priv, u32 master_ctl)
+>  			if (IS_GEN9_LP(dev_priv)) {
+>  				tmp_mask =3D iir & BXT_DE_PORT_HOTPLUG_MASK;
+>  				if (tmp_mask) {
+> -					bxt_hpd_irq_handler(dev_priv, tmp_mask,
+> -							    hpd_bxt);
+> +					bxt_hpd_irq_handler(dev_priv, tmp_mask);
+>  					found =3D true;
+>  				}
+>  			} else if (IS_BROADWELL(dev_priv)) {
+>  				tmp_mask =3D iir & GEN8_PORT_DP_A_HOTPLUG;
+>  				if (tmp_mask) {
+> -					ilk_hpd_irq_handler(dev_priv,
+> -							    tmp_mask, hpd_bdw);
+> +					ilk_hpd_irq_handler(dev_priv, tmp_mask);
+>  					found =3D true;
+>  				}
+>  			}
+> @@ -2997,13 +3028,12 @@ static void ibx_hpd_irq_setup(struct drm_i915_pri=
+vate *dev_priv)
+>  {
+>  	u32 hotplug_irqs, enabled_irqs;
+>  =
 
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [FAIL][61] ([i915#93] / [i915#95]) -> [DMESG-FAIL][62] ([i915#180] / [i915#95])
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8441/shard-kbl4/igt@kms_fbcon_fbt@fbc-suspend.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html
+> -	if (HAS_PCH_IBX(dev_priv)) {
+> +	if (HAS_PCH_IBX(dev_priv))
+>  		hotplug_irqs =3D SDE_HOTPLUG_MASK;
+> -		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_ibx);
+> -	} else {
+> +	else
+>  		hotplug_irqs =3D SDE_HOTPLUG_MASK_CPT;
+> -		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_cpt);
+> -	}
+> +
+> +	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.pch=
+_hpd);
+>  =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+>  	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+>  =
 
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1515]: https://gitlab.freedesktop.org/drm/intel/issues/1515
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1841]: https://gitlab.freedesktop.org/drm/intel/issues/1841
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#67]: https://gitlab.freedesktop.org/drm/intel/issues/67
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+> @@ -3029,13 +3059,12 @@ static void icp_hpd_detection_setup(struct drm_i9=
+15_private *dev_priv,
+>  =
 
+>  static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv,
+>  			      u32 sde_ddi_mask, u32 sde_tc_mask,
+> -			      u32 ddi_enable_mask, u32 tc_enable_mask,
+> -			      const u32 *pins)
+> +			      u32 ddi_enable_mask, u32 tc_enable_mask)
+>  {
+>  	u32 hotplug_irqs, enabled_irqs;
+>  =
 
-Participating hosts (11 -> 11)
-------------------------------
+>  	hotplug_irqs =3D sde_ddi_mask | sde_tc_mask;
+> -	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, pins);
+> +	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.pch=
+_hpd);
+>  =
 
-  No changes in participating hosts
+>  	I915_WRITE(SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
+>  =
 
+> @@ -3052,8 +3081,7 @@ static void mcc_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  {
+>  	icp_hpd_irq_setup(dev_priv,
+>  			  SDE_DDI_MASK_ICP, SDE_TC_HOTPLUG_ICP(PORT_TC1),
+> -			  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE(PORT_TC1),
+> -			  hpd_icp);
+> +			  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE(PORT_TC1));
+>  }
+>  =
 
-Build changes
--------------
+>  /*
+> @@ -3065,8 +3093,7 @@ static void jsp_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  {
+>  	icp_hpd_irq_setup(dev_priv,
+>  			  SDE_DDI_MASK_TGP, 0,
+> -			  TGP_DDI_HPD_ENABLE_MASK, 0,
+> -			  hpd_tgp);
+> +			  TGP_DDI_HPD_ENABLE_MASK, 0);
+>  }
+>  =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8441 -> Patchwork_17598
+>  static void gen11_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> @@ -3091,11 +3118,9 @@ static void gen11_hpd_detection_setup(struct drm_i=
+915_private *dev_priv)
+>  static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 hotplug_irqs, enabled_irqs;
+> -	const u32 *hpd;
+>  	u32 val;
+>  =
 
-  CI-20190529: 20190529
-  CI_DRM_8441: 6c0ee41a7c3201ef2a89800234803a95f65989be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5637: fdc33f7e1adc5bb6a1ba88b6233aaf224174d75a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17598: 183fe789671fbe6252b0474dc63a6cca25c998cc @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+> -	hpd =3D INTEL_GEN(dev_priv) >=3D 12 ? hpd_gen12 : hpd_gen11;
+> -	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd);
+> +	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hpd=
+);
+>  	hotplug_irqs =3D GEN11_DE_TC_HOTPLUG_MASK | GEN11_DE_TBT_HOTPLUG_MASK;
+>  =
 
-== Logs ==
+>  	val =3D I915_READ(GEN11_DE_HPD_IMR);
+> @@ -3107,12 +3132,10 @@ static void gen11_hpd_irq_setup(struct drm_i915_p=
+rivate *dev_priv)
+>  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17598/index.html
+>  	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP)
+>  		icp_hpd_irq_setup(dev_priv, SDE_DDI_MASK_TGP, SDE_TC_MASK_TGP,
+> -				  TGP_DDI_HPD_ENABLE_MASK,
+> -				  TGP_TC_HPD_ENABLE_MASK, hpd_tgp);
+> +				  TGP_DDI_HPD_ENABLE_MASK, TGP_TC_HPD_ENABLE_MASK);
+>  	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+>  		icp_hpd_irq_setup(dev_priv, SDE_DDI_MASK_ICP, SDE_TC_MASK_ICP,
+> -				  ICP_DDI_HPD_ENABLE_MASK,
+> -				  ICP_TC_HPD_ENABLE_MASK, hpd_icp);
+> +				  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE_MASK);
+>  }
+>  =
+
+>  static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> @@ -3148,7 +3171,7 @@ static void spt_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  		I915_WRITE(SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
+>  =
+
+>  	hotplug_irqs =3D SDE_HOTPLUG_MASK_SPT;
+> -	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_spt);
+> +	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.pch=
+_hpd);
+>  =
+
+>  	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+>  =
+
+> @@ -3177,17 +3200,17 @@ static void ilk_hpd_irq_setup(struct drm_i915_pri=
+vate *dev_priv)
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 8) {
+>  		hotplug_irqs =3D GEN8_PORT_DP_A_HOTPLUG;
+> -		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_bdw);
+> +		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hp=
+d);
+>  =
+
+>  		bdw_update_port_irq(dev_priv, hotplug_irqs, enabled_irqs);
+>  	} else if (INTEL_GEN(dev_priv) >=3D 7) {
+>  		hotplug_irqs =3D DE_DP_A_HOTPLUG_IVB;
+> -		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_ivb);
+> +		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hp=
+d);
+>  =
+
+>  		ilk_update_display_irq(dev_priv, hotplug_irqs, enabled_irqs);
+>  	} else {
+>  		hotplug_irqs =3D DE_DP_A_HOTPLUG;
+> -		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_ilk);
+> +		enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hp=
+d);
+>  =
+
+>  		ilk_update_display_irq(dev_priv, hotplug_irqs, enabled_irqs);
+>  	}
+> @@ -3238,7 +3261,7 @@ static void bxt_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  {
+>  	u32 hotplug_irqs, enabled_irqs;
+>  =
+
+> -	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, hpd_bxt);
+> +	enabled_irqs =3D intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hpd=
+);
+>  	hotplug_irqs =3D BXT_DE_PORT_HOTPLUG_MASK;
+>  =
+
+>  	bdw_update_port_irq(dev_priv, hotplug_irqs, enabled_irqs);
+> @@ -3932,6 +3955,8 @@ void intel_irq_init(struct drm_i915_private *dev_pr=
+iv)
+>  	struct drm_device *dev =3D &dev_priv->drm;
+>  	int i;
+>  =
+
+> +	intel_hpd_init_pins(dev_priv);
+> +
+>  	intel_hpd_init_work(dev_priv);
+>  =
+
+>  	INIT_WORK(&dev_priv->l3_parity.error_work, ivb_parity_work);
+> -- =
+
+> 2.24.1
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
