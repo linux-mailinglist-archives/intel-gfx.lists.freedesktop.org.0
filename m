@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2141C90A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:50:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4C11C90CE
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:53:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC7486E9D0;
-	Thu,  7 May 2020 14:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC9B6E9CD;
+	Thu,  7 May 2020 14:53:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D7BAD6E9CD;
- Thu,  7 May 2020 14:50:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D0AD0A47EE;
- Thu,  7 May 2020 14:50:38 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71AF26E9CD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 14:53:12 +0000 (UTC)
+IronPort-SDR: Nak9kQifb5lgOcAbTMd8Cz4BGtbXkBBWcbug0t+cwZvNHRfcy4Dn0hlZcs/Jb9Ke1NhokN9vAQ
+ i6mkRFZNQymA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 07:53:11 -0700
+IronPort-SDR: xX5myfNg2xcWuVqMj7JYMsVeqFZtsEdPS3GtknWHHc4j8OfoqmhcfunRFpT+082geT19b+dkAL
+ p9NCBYPx0lOw==
+X-IronPort-AV: E=Sophos;i="5.73,364,1583222400"; d="scan'208";a="435312396"
+Received: from nstgemme-mobl1.ger.corp.intel.com (HELO [10.252.42.100])
+ ([10.252.42.100])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 07:53:10 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200507082124.1673-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <f5d72c82-7a9e-3142-f297-b2231f2e9b9f@linux.intel.com>
+Date: Thu, 7 May 2020 15:53:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Thu, 07 May 2020 14:50:38 -0000
-Message-ID: <158886303885.2191.6543513292550174417@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200507132706.2058969-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200507132706.2058969-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?q?=28rev13=29?=
+In-Reply-To: <20200507082124.1673-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Mark concurrent submissions
+ with a weak-dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,104 +51,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev13)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : success
+On 07/05/2020 09:21, Chris Wilson wrote:
+> We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
+> correctly perform priority inheritance from the parallel branches to the
+> common trunk. However, for the purpose of timeslicing and reset
+> handling, the dependency is weak -- as we the pair of requests are
+> allowed to run in parallel and not in strict succession. So for example
+> we do need to suspend one if the other hangs.
+> 
+> The real significance though is that this allows us to rearrange
+> groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
+> so can resolve user level inter-batch scheduling dependencies from user
+> semaphores.
+> 
+> Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
+> Testcase: igt/gem_exec_fence/submit
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.6+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
+>   drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
+>   drivers/gpu/drm/i915/i915_scheduler.c       | 6 +++---
+>   drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
+>   drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
+>   5 files changed, 21 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index dc3f2ee7136d..10109f661bcb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1880,6 +1880,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+>   			struct i915_request *w =
+>   				container_of(p->waiter, typeof(*w), sched);
+>   
+> +			if (p->flags & I915_DEPENDENCY_WEAK)
+> +				continue;
+> +
 
-== Summary ==
+I did not quite get it - submit fence dependency would mean different 
+engines, so the below check (w->engine != rq->engine) would effectively 
+have the same effect. What am I missing?
 
-CI Bug Log - changes from CI_DRM_8444 -> Patchwork_17600
-====================================================
+Regards,
 
-Summary
--------
+Tvrtko
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17600/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17600 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2] ([i915#1794])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8444/fi-cfl-8700k/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17600/fi-cfl-8700k/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6700k2:      [INCOMPLETE][3] ([i915#151]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8444/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17600/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@reset:
-    - fi-bwr-2160:        [INCOMPLETE][5] ([i915#489]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8444/fi-bwr-2160/igt@i915_selftest@live@reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17600/fi-bwr-2160/igt@i915_selftest@live@reset.html
-
-  
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#1794]: https://gitlab.freedesktop.org/drm/intel/issues/1794
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (49 -> 42)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8444 -> Patchwork_17600
-
-  CI-20190529: 20190529
-  CI_DRM_8444: 39544482386ac801dc4140df00a7e7e5bbea4d8a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5638: 50868ab3c532a86aa147fb555b69a1078c572b13 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17600: 21e992a96510a4b297170c1aee390b96286704e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-21e992a96510 drm/i915/psr: Use new DP VSC SDP compute routine on PSR
-74c2a914a012 drm/i915/dp: Add compute routine for DP PSR VSC SDP
-5cf81085a0c1 drm/i915: Stop sending DP SDPs on ddi disable
-0251102af3b9 drm/i915: Program DP SDPs on pipe updates
-a71792fd1d5a drm/i915: Fix enabled infoframe states of lspcon
-84bf9208397c drm/i915: Add state readout for DP VSC SDP
-e1c3006e8068 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-0c6956c780de drm/i915: Program DP SDPs with computed configs
-ffb06944568a drm/i915: Include DP VSC SDP in the crtc state dump
-20cdec4dde7d drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-ee8f99248537 drm/i915: Include HDMI DRM infoframe in the crtc state dump
-e32e44f11938 drm: Add logging function for DP VSC SDP
-2ad5c4085132 drm/i915/dp: Read out DP SDPs
-96f3abd228ee video/hdmi: Add Unpack only function for DRM infoframe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17600/index.html
+>   			/* Leave semaphores spinning on the other engines */
+>   			if (w->engine != rq->engine)
+>   				continue;
+> @@ -2726,6 +2729,9 @@ static void __execlists_hold(struct i915_request *rq)
+>   			struct i915_request *w =
+>   				container_of(p->waiter, typeof(*w), sched);
+>   
+> +			if (p->flags & I915_DEPENDENCY_WEAK)
+> +				continue;
+> +
+>   			/* Leave semaphores spinning on the other engines */
+>   			if (w->engine != rq->engine)
+>   				continue;
+> @@ -2850,6 +2856,9 @@ static void __execlists_unhold(struct i915_request *rq)
+>   			struct i915_request *w =
+>   				container_of(p->waiter, typeof(*w), sched);
+>   
+> +			if (p->flags & I915_DEPENDENCY_WEAK)
+> +				continue;
+> +
+>   			/* Propagate any change in error status */
+>   			if (rq->fence.error)
+>   				i915_request_set_error_once(w, rq->fence.error);
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 4d18f808fda2..3c38d61c90f8 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1040,7 +1040,9 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+>   	}
+>   
+>   	if (to->engine->schedule) {
+> -		ret = i915_sched_node_add_dependency(&to->sched, &from->sched);
+> +		ret = i915_sched_node_add_dependency(&to->sched,
+> +						     &from->sched,
+> +						     I915_DEPENDENCY_EXTERNAL);
+>   		if (ret < 0)
+>   			return ret;
+>   	}
+> @@ -1202,7 +1204,9 @@ __i915_request_await_execution(struct i915_request *to,
+>   
+>   	/* Couple the dependency tree for PI on this exposed to->fence */
+>   	if (to->engine->schedule) {
+> -		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
+> +		err = i915_sched_node_add_dependency(&to->sched,
+> +						     &from->sched,
+> +						     I915_DEPENDENCY_WEAK);
+>   		if (err < 0)
+>   			return err;
+>   	}
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index 37cfcf5b321b..6e2d4190099f 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -462,7 +462,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+>   }
+>   
+>   int i915_sched_node_add_dependency(struct i915_sched_node *node,
+> -				   struct i915_sched_node *signal)
+> +				   struct i915_sched_node *signal,
+> +				   unsigned long flags)
+>   {
+>   	struct i915_dependency *dep;
+>   
+> @@ -473,8 +474,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+>   	local_bh_disable();
+>   
+>   	if (!__i915_sched_node_add_dependency(node, signal, dep,
+> -					      I915_DEPENDENCY_EXTERNAL |
+> -					      I915_DEPENDENCY_ALLOC))
+> +					      flags | I915_DEPENDENCY_ALLOC))
+>   		i915_dependency_free(dep);
+>   
+>   	local_bh_enable(); /* kick submission tasklet */
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+> index d1dc4efef77b..6f0bf00fc569 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.h
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.h
+> @@ -34,7 +34,8 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+>   				      unsigned long flags);
+>   
+>   int i915_sched_node_add_dependency(struct i915_sched_node *node,
+> -				   struct i915_sched_node *signal);
+> +				   struct i915_sched_node *signal,
+> +				   unsigned long flags);
+>   
+>   void i915_sched_node_fini(struct i915_sched_node *node);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+> index d18e70550054..7186875088a0 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler_types.h
+> +++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+> @@ -78,6 +78,7 @@ struct i915_dependency {
+>   	unsigned long flags;
+>   #define I915_DEPENDENCY_ALLOC		BIT(0)
+>   #define I915_DEPENDENCY_EXTERNAL	BIT(1)
+> +#define I915_DEPENDENCY_WEAK		BIT(2)
+>   };
+>   
+>   #endif /* _I915_SCHEDULER_TYPES_H_ */
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
