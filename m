@@ -2,39 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932E11C9029
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB00E1C902D
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:43:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3F466E9C2;
-	Thu,  7 May 2020 14:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B79D6E9BC;
+	Thu,  7 May 2020 14:43:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7476E9C2
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 14:41:30 +0000 (UTC)
-IronPort-SDR: yZZfIob4WbgfnhNiViqsl5I5YiPifJKpOEsLxpX2/aY989e0FV6yjzSy+/nZxl9CINWddrJzqH
- 5P5+vVmZALLg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 07:41:28 -0700
-IronPort-SDR: wPMy3yeB49IFp4RtDbQFaIA6DwI1rqLMRA5KRG3d1fnpDvzj757fCzn+Xh8e5Nsjz9BgfOlg9h
- KWNHn340gfLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,364,1583222400"; d="scan'208";a="278619019"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 07 May 2020 07:41:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 May 2020 17:41:25 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 May 2020 17:41:25 +0300
-Message-Id: <20200507144125.2458-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE476E9BC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 14:43:02 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 047EXfqo168469;
+ Thu, 7 May 2020 14:42:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type : in-reply-to;
+ s=corp-2020-01-29; bh=bocl0FMwqPPYnizsdvS9aOeOl5oGbXzittSfq87nlug=;
+ b=P5/AKg9stiddu8D4HolsWbvsPAXDyI807w0OtlHMoYGTG3stZP5it3aCHlhaYNWHp3hX
+ 6j01a4GMMjNzuP3FviCwky2HW0VBlQzc/PoMeC4J7u6xSM6XkMJSD0KmFd4Gb7OvNUov
+ lJqdthdJ4iNvX5VW0YzbrGc1+iAUqfLUAKQ1gLVUkYexjAJ/eJKI4fDAM8GOPo/jl4JW
+ gIL56S7uN4N+cVFOuY3X0YfE2CsE1zjF62K8pAU3OsPtulTMjPM1HtrqVYdUO1ZfUyBH
+ K5qvfxsv3ey7nrk4au2S1C5OkVVHjwJj6GnJcfThD9dfc0EbcMJTG1aydo+NJ8vO+OPR DQ== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by userp2130.oracle.com with ESMTP id 30vhvyguy6-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 07 May 2020 14:42:54 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 047Egr2t137661;
+ Thu, 7 May 2020 14:42:53 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by aserp3030.oracle.com with ESMTP id 30sjdy7nqr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 07 May 2020 14:42:53 +0000
+Received: from abhmp0006.oracle.com (abhmp0006.oracle.com [141.146.116.12])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 047Egd7r007237;
+ Thu, 7 May 2020 14:42:39 GMT
+Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Thu, 07 May 2020 07:42:39 -0700
+Date: Thu, 7 May 2020 17:42:33 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: kbuild@lists.01.org, Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <20200507144233.GO1992@kadam>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/mst: Wait for ACT sent before enabling
- the pipe
+Content-Disposition: inline
+In-Reply-To: <20200504111249.1367096-4-lionel.g.landwerlin@intel.com>
+Message-ID-Hash: ZYJO6DOCBMOJC572YR62YHENBHBCS2WK
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9613
+ signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ suspectscore=0 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2005070119
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9613
+ signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
+ malwarescore=0 mlxscore=0 adultscore=0 suspectscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2005070118
+Subject: [Intel-gfx] [kbuild] Re: [PATCH v12 3/4] drm/i915/perf: prepare
+ driver to receive multiple ctx handles
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,34 +79,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kbuild-all@lists.01.org, chris@chris-wilson.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBjb3JyZWN0IHNlcXVlbmNlIGFjY29yZGluZyB0byBic3BlYyBpcyB0byB3YWl0IGZvciB0aGUg
-QUNUIHNlbnQKc3RhdHVzIGJlZm9yZSB3ZSB0dXJuIG9uIHRoZSBwaXBlLiBNYWtlIGl0IHNvLgoK
-U2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwg
-OSArKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9t
-c3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKaW5kZXgg
-NGQyMzg0NjUwMzgzLi5kMThiNDA2ZjJhN2QgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcF9tc3QuYwpAQCAtNTEwLDEwICs1MTAsNiBAQCBzdGF0aWMgdm9pZCBpbnRl
-bF9tc3RfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCiAJaW50
-ZWxfZGRpX2VuYWJsZV90cmFuc2NvZGVyX2Z1bmMoZW5jb2RlciwgcGlwZV9jb25maWcpOwogCi0J
-aW50ZWxfZW5hYmxlX3BpcGUocGlwZV9jb25maWcpOwotCi0JaW50ZWxfY3J0Y192Ymxhbmtfb24o
-cGlwZV9jb25maWcpOwotCiAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJhY3RpdmUgbGlu
-a3MgJWRcbiIsCiAJCSAgICBpbnRlbF9kcC0+YWN0aXZlX21zdF9saW5rcyk7CiAKQEAgLTUyNCw2
-ICs1MjAsMTEgQEAgc3RhdGljIHZvaWQgaW50ZWxfbXN0X2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSwKIAlkcm1fZHBfY2hlY2tfYWN0X3N0YXR1cygmaW50ZWxfZHAt
-Pm1zdF9tZ3IpOwogCiAJZHJtX2RwX3VwZGF0ZV9wYXlsb2FkX3BhcnQyKCZpbnRlbF9kcC0+bXN0
-X21ncik7CisKKwlpbnRlbF9lbmFibGVfcGlwZShwaXBlX2NvbmZpZyk7CisKKwlpbnRlbF9jcnRj
-X3ZibGFua19vbihwaXBlX2NvbmZpZyk7CisKIAlpZiAocGlwZV9jb25maWctPmhhc19hdWRpbykK
-IAkJaW50ZWxfYXVkaW9fY29kZWNfZW5hYmxlKGVuY29kZXIsIHBpcGVfY29uZmlnLCBjb25uX3N0
-YXRlKTsKIH0KLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+Hi Lionel,
+
+Thank you for the patch! Perhaps something to improve:
+
+url:    https://github.com/0day-ci/linux/commits/Lionel-Landwerlin/drm-i915-perf-Add-support-for-multi-context-perf-queries/20200505-060720
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kbuild test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+
+New smatch warnings:
+drivers/gpu/drm/i915/i915_perf.c:1457 i915_oa_stream_destroy() error: uninitialized symbol 'err'.
+
+Old smatch warnings:
+drivers/gpu/drm/i915/i915_perf.c:1383 oa_get_render_ctx_ids() error: double unlocked 'ctx->engines_mutex' (orig line 1351)
+drivers/gpu/drm/i915/i915_perf.c:3044 i915_oa_stream_init() error: uninitialized symbol 'timeline'.
+drivers/gpu/drm/i915/i915_perf.c:3664 i915_perf_open_ioctl_locked() error: uninitialized symbol 'ret'.
+
+# https://github.com/0day-ci/linux/commit/dc9d77b54dfbfd0de4e30e59d29d5216b80a51b2
+git remote add linux-review https://github.com/0day-ci/linux
+git remote update linux-review
+git checkout dc9d77b54dfbfd0de4e30e59d29d5216b80a51b2
+vim +/err +1457 drivers/gpu/drm/i915/i915_perf.c
+
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1441  
+d79651522e89c4 Robert Bragg          2016-11-07  1442  static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
+d79651522e89c4 Robert Bragg          2016-11-07  1443  {
+8f8b1171e1a514 Chris Wilson          2019-10-07  1444  	struct i915_perf *perf = stream->perf;
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1445  	int err;
+                                                        ^^^^^^^
+
+d79651522e89c4 Robert Bragg          2016-11-07  1446  
+8f8b1171e1a514 Chris Wilson          2019-10-07  1447  	BUG_ON(stream != perf->exclusive_stream);
+d79651522e89c4 Robert Bragg          2016-11-07  1448  
+19f81df2859eb1 Robert Bragg          2017-06-13  1449  	/*
+f89823c212246d Lionel Landwerlin     2017-08-03  1450  	 * Unset exclusive_stream first, it will be checked while disabling
+f89823c212246d Lionel Landwerlin     2017-08-03  1451  	 * the metric set on gen8+.
+a5af081d012e8b Chris Wilson          2020-02-27  1452  	 *
+a5af081d012e8b Chris Wilson          2020-02-27  1453  	 * See i915_oa_init_reg_state() and lrc_configure_all_contexts()
+19f81df2859eb1 Robert Bragg          2017-06-13  1454  	 */
+a5af081d012e8b Chris Wilson          2020-02-27  1455  	WRITE_ONCE(perf->exclusive_stream, NULL);
+dc9d77b54dfbfd Lionel Landwerlin     2020-05-04  1456  
+dc9d77b54dfbfd Lionel Landwerlin     2020-05-04 @1457  	if (!err) {
+                                                            ^^^^^
+Uninitialized
+
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1458  		err = i915_perf_stream_sync(stream, false /* enable */);
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1459  		if (err) {
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1460  			drm_err(&perf->i915->drm,
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1461  				"Error while disabling OA stream\n");
+307ca63ef54097 Lionel Landwerlin     2020-05-04  1462  		}
+dc9d77b54dfbfd Lionel Landwerlin     2020-05-04  1463  	}
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+_______________________________________________
+kbuild mailing list -- kbuild@lists.01.org
+To unsubscribe send an email to kbuild-leave@lists.01.org
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
