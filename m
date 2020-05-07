@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5361C909A
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 784241C909B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 16:49:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E00926E9CC;
-	Thu,  7 May 2020 14:49:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0DE6E9CF;
+	Thu,  7 May 2020 14:49:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD406E9CB
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 14:49:17 +0000 (UTC)
-IronPort-SDR: ZlNEi2IJuc3qcUbHbI87GM4e50WeMbE/chXVu9ODd/IN3eXfS58j9O374WX31FEliIbTicnQLd
- Uzp1+2GdvwYQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAEF56E9CD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 14:49:18 +0000 (UTC)
+IronPort-SDR: Ws75KaYA6QNlNtAd064ovD447bDrO3HgVhXsasR27MN8zgSKnDO9KaHTG5biKk2MUvjp8iVeuB
+ hFI/QFWZp+Ig==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 07:49:16 -0700
-IronPort-SDR: 7iBcTetameiVfMX2QROCI9UwYb/EWIDAVo5XoI8s3VCWZxN4i4M9HMckFiQy3P8jsz3OOYFlCn
- VtpKV8okS+uw==
+ 07 May 2020 07:49:18 -0700
+IronPort-SDR: HFthORnKTDwime3AdF5Zfp9PRhXnmkoXqD7I6smqlAHlUIq4oPGmiEW6TBPYw1rzOeFYf/h/zD
+ 1FQ2EsICE0SQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,364,1583222400"; d="scan'208";a="285018574"
+X-IronPort-AV: E=Sophos;i="5.73,364,1583222400"; d="scan'208";a="285018580"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by fmsmga004.fm.intel.com with ESMTP; 07 May 2020 07:49:15 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 07 May 2020 07:49:17 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 May 2020 17:44:59 +0300
-Message-Id: <20200507144503.15506-3-stanislav.lisovskiy@intel.com>
+Date: Thu,  7 May 2020 17:45:00 +0300
+Message-Id: <20200507144503.15506-4-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
 References: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v28 2/6] drm/i915: Extract skl SAGV checking
+Subject: [Intel-gfx] [PATCH v28 3/6] drm/i915: Make active_pipes check skl
+ specific
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,62 +53,85 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Introduce platform dependent SAGV checking in
-combination with bandwidth state pipe SAGV mask.
+Seems that only skl needs to have SAGV turned off
+for multipipe scenarios, so lets do it this way.
 
-This is preparation to adding TGL support, which
-requires different way of SAGV checking.
-
-v2, v3, v4, v5, v6: Fix rebase conflict
-
-v7: - Nuke icl specific function, use skl
-      for icl as well, gen specific active_pipes
-      check to be added in the next patch(Ville)
+If anything blows up - we can always revert this patch.
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/intel_pm.c | 15 +++++++++------
+ drivers/gpu/drm/i915/intel_pm.h |  3 ++-
+ 2 files changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 8a86298962dc..3dc1ad66beb3 100644
+index 3dc1ad66beb3..db188efee21e 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3804,7 +3804,7 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+@@ -3777,7 +3777,7 @@ void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+ 	if (!new_bw_state)
+ 		return;
+ 
+-	if (!intel_can_enable_sagv(new_bw_state))
++	if (!intel_can_enable_sagv(dev_priv, new_bw_state))
+ 		intel_disable_sagv(dev_priv);
+ }
+ 
+@@ -3800,7 +3800,7 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+ 	if (!new_bw_state)
+ 		return;
+ 
+-	if (intel_can_enable_sagv(new_bw_state))
++	if (intel_can_enable_sagv(dev_priv, new_bw_state))
  		intel_enable_sagv(dev_priv);
  }
  
--static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
-+static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+@@ -3853,16 +3853,19 @@ static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ 	return true;
+ }
+ 
+-bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
++bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
++			   const struct intel_bw_state *bw_state)
  {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-@@ -3865,7 +3865,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+-	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pipes))
+-		return false;
++	if (INTEL_GEN(dev_priv) < 11)
++		if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pipes))
++			return false;
+ 
+ 	return bw_state->pipe_sagv_reject == 0;
+ }
+ 
+ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
  {
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
  	int ret;
  	struct intel_crtc *crtc;
--	struct intel_crtc_state *new_crtc_state;
-+	const struct intel_crtc_state *new_crtc_state;
- 	struct intel_bw_state *new_bw_state = NULL;
- 	const struct intel_bw_state *old_bw_state = NULL;
- 	int i;
-@@ -3878,7 +3878,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 	const struct intel_crtc_state *new_crtc_state;
+@@ -3896,7 +3899,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 			return ret;
+ 	}
  
- 		old_bw_state = intel_atomic_get_old_bw_state(state);
- 
--		if (intel_crtc_can_enable_sagv(new_crtc_state))
-+		if (skl_crtc_can_enable_sagv(new_crtc_state))
- 			new_bw_state->pipe_sagv_reject &= ~BIT(crtc->pipe);
- 		else
- 			new_bw_state->pipe_sagv_reject |= BIT(crtc->pipe);
-@@ -3889,6 +3889,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 
- 	new_bw_state->active_pipes =
- 		intel_calc_active_pipes(state, old_bw_state->active_pipes);
-+
- 	if (new_bw_state->active_pipes != old_bw_state->active_pipes) {
- 		ret = intel_atomic_lock_global_state(&new_bw_state->base);
+-	if (intel_can_enable_sagv(new_bw_state) != intel_can_enable_sagv(old_bw_state)) {
++	if (intel_can_enable_sagv(dev_priv, new_bw_state) != intel_can_enable_sagv(dev_priv, old_bw_state)) {
+ 		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
  		if (ret)
+ 			return ret;
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+index fd1dc422e6c5..614ac7f8d4cc 100644
+--- a/drivers/gpu/drm/i915/intel_pm.h
++++ b/drivers/gpu/drm/i915/intel_pm.h
+@@ -42,7 +42,8 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+ 			      struct skl_pipe_wm *out);
+ void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+ void vlv_wm_sanitize(struct drm_i915_private *dev_priv);
+-bool intel_can_enable_sagv(const struct intel_bw_state *bw_state);
++bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
++			   const struct intel_bw_state *bw_state);
+ int intel_enable_sagv(struct drm_i915_private *dev_priv);
+ int intel_disable_sagv(struct drm_i915_private *dev_priv);
+ void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
 -- 
 2.24.1.485.gad05a3d8e5
 
