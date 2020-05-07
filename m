@@ -1,65 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B7F1C801B
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 04:44:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8CD1C804A
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 05:04:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 469E86E907;
-	Thu,  7 May 2020 02:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 964436E90A;
+	Thu,  7 May 2020 03:04:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE456E907
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 02:44:20 +0000 (UTC)
-IronPort-SDR: jzTZhe5LGW5H6SAKZANkqvMLd4ezo7sR1GIwbdyAtJbwrWN6Vh+JPfy9xCUnGGIOj6KGglatBm
- QdsGI3wQ2Ppw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2020 19:44:20 -0700
-IronPort-SDR: Klc3E5mXtQQWSzcGeDziLBXk6sIDmEbZi9idxpFlnQAEXT56CH/cANxevf8aoEJtT2XalDX7gG
- 56NRDfapjqKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,361,1583222400"; d="scan'208";a="284841578"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga004.fm.intel.com with ESMTP; 06 May 2020 19:44:19 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 6 May 2020 19:44:19 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 6 May 2020 19:44:19 -0700
-Received: from shsmsx107.ccr.corp.intel.com (10.239.4.96) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 6 May 2020 19:44:19 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.225]) by
- SHSMSX107.ccr.corp.intel.com ([169.254.9.200]) with mapi id 14.03.0439.000;
- Thu, 7 May 2020 10:44:16 +0800
-From: "Liu, Chuansheng" <chuansheng.liu@intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 4/4] drm/i915/gen12: Invalidate aux table entries forcibly
-Thread-Index: AQHWI8bvr/EJIOEmiUOSUyNnMs7jL6ib3RqA
-Date: Thu, 7 May 2020 02:44:15 +0000
-Message-ID: <27240C0AC20F114CBF8149A2696CBE4A6169DECF@SHSMSX101.ccr.corp.intel.com>
-References: <158878348241.927.811872095434935872@build.alporthouse.com>
- <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20200506165310.1239-1-mika.kuoppala@linux.intel.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.239.127.40]
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB496E040;
+ Thu,  7 May 2020 03:04:37 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 49Hdbk5Nd1z9sRf;
+ Thu,  7 May 2020 13:04:34 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1588820675;
+ bh=a+F66NvecwiCtPS7aubjUnfdcDz9hKUlOuxsLFVVZdA=;
+ h=Date:From:To:Cc:Subject:From;
+ b=m4+31SmWOo9CFW7NN0hyV4U94NU1otuQbA4aEKKNVNToudihSgAnTSl9nAXwSa0Ab
+ sDKyEUiAu/3vwW6motWQNJ86hAjKOIEBw7kjBD+bB95EIugtAYubXUEPqk92NfwsZU
+ Hcqv+xCL5Fp8EIWg8Mmu9dquBGmfZNNvU15fakfvZNK0r2Cq0fw9Gfcr8ddOVoLdJZ
+ AetFpXdAr4v44InTbC6zZP73CPnbTeFgfjuXHTo9bihhg74wr6NVbE3BPk95RR+nIj
+ jD1yBYYgzssU5ZRfraY83MsVH4feAMUXzI+hhEvcT0vwW18pUh7wymm4EfPgrj3RIt
+ wMjZ978XFhPCw==
+Date: Thu, 7 May 2020 13:04:33 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200507130433.27955b1f@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gen12: Invalidate aux table
- entries forcibly
+Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,43 +48,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Shi, Yang A" <yang.a.shi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Harigovindan P <harigovi@codeaurora.org>
+Content-Type: multipart/mixed; boundary="===============1125624105=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mika,
+--===============1125624105==
+Content-Type: multipart/signed; boundary="Sig_/IMMi3Hd2LSA7IcZxxDM+k=7";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-> -----Original Message-----
-> From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Sent: Thursday, May 7, 2020 12:53 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>; Chris Wilson
-> <chris@chris-wilson.co.uk>; Liu, Chuansheng <chuansheng.liu@intel.com>;
-> Antognolli, Rafael <rafael.antognolli@intel.com>; Shi, Yang A
-> <yang.a.shi@intel.com>
-> Subject: [PATCH 4/4] drm/i915/gen12: Invalidate aux table entries forcibly
-> 
-> Aux table invalidation can fail on update. So
-> next access may cause memory access to be into stale entry.
-> 
-> Proposed workaround is to invalidate entries between
-> all batchbuffers.
+--Sig_/IMMi3Hd2LSA7IcZxxDM+k=7
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for cooking this patch for RCS engine. Similar way applies to all the engines.
-Expecting more patches.
+Hi all,
 
-VD0_CCS_AUX_NV	04218h
-VD1_CCS_AUX_NV	04228h
-VE0_CCS_AUX_NV	04238h
-VD2_CCS_AUX_NV	04298h
-VD3_CCS_AUX_NV	042A8h
-VE1_CCS_AUX_NV	042B8h
-COMPCS0_CCS_AUX_NV	042C8h
-GFX_CCS_AUX_NV	04208h
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) produced this warning:
+
+WARNING: modpost: missing MODULE_LICENSE() in drivers/gpu/drm/panel/panel-v=
+isionox-rm69299.o
+see include/linux/module.h for more information
+
+Introduced by commit
+
+  c7f66d32dd43 ("drm/panel: add support for rm69299 visionox panel")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/IMMi3Hd2LSA7IcZxxDM+k=7
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl6zesEACgkQAVBC80lX
+0GyMmggAn1kCCD1zMQkWORF0w7eNpngLumwm2QsWsEBC54XP6OTKJnQWsAImgxaq
+Y0BeHLUvNygFlhlcOCwSgBNgEU4V/Xe5oyvEk/G1wwF79VtvUCSj6lnqVPhbwgZ3
+rZALNBjk1uK5izQLc6WTszEF/1QhkAKzombsaJQXVIk1f5DpdNLZ8GdBZ1Cp/Hlq
+9EWsw0COE3tDvQY+l+4H/NC8qKIftJkOMQmb8vtyGSyVlqOixW6ojrvQb7vNxR+O
+lGJMFf7vMP5I83En+tD7cE4eCeStSxiIv6enrpyqodeehYXj5/tfD0Wk3jg38NUe
+DVaIGkYGb/qP02vl9NBQfDffHQUrEA==
+=MdCf
+-----END PGP SIGNATURE-----
+
+--Sig_/IMMi3Hd2LSA7IcZxxDM+k=7--
+
+--===============1125624105==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1125624105==--
