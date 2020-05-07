@@ -2,47 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E217F1C87EF
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 13:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E7151C886D
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 13:38:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 168376E0DF;
-	Thu,  7 May 2020 11:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DDF86E978;
+	Thu,  7 May 2020 11:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 974826E0DF
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 11:22:08 +0000 (UTC)
-IronPort-SDR: Qj4Qgmnz/UiVW05ek4wOTPV5wl2nRjdCzz3QBNCZRupQT3HHsovxeTipOVRmN5TVLz++8NN5ur
- zQMgCd8H9zbg==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D34796E0E8
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 11:38:10 +0000 (UTC)
+IronPort-SDR: V3v1k8H0RclWLOEXQZuu72dCTx1yNcGsz5H1iPmU9VojXeBwi6r2laV8ejaeHY2GSHTYeoZ0KP
+ kJs/4OTktiBw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 04:22:06 -0700
-IronPort-SDR: 55vm2Bt2SimGlcfbYdeRPbOXvHmib/MWdxL8zVzm33ThXKodb2zkSiWDYUwNMVMfjJJMaqV2zz
- UvQc9o3U59CA==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 04:38:10 -0700
+IronPort-SDR: DyyB19Y8iw9eJpUaxyht1qacvIZEL7X+edz89ZPjl0ebQ23mae/jibAEmaS1JGEOImEgBpIWoK
+ EoN7MuvP7Qaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="407603174"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
- by orsmga004.jf.intel.com with ESMTP; 07 May 2020 04:22:06 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
- ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 7 May 2020 04:22:06 -0700
+X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="305098370"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+ by FMSMGA003.fm.intel.com with ESMTP; 07 May 2020 04:38:10 -0700
+Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
+ ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 7 May 2020 04:38:09 -0700
 Received: from orsmsx108.amr.corp.intel.com ([169.254.2.68]) by
- ORSMSX157.amr.corp.intel.com ([169.254.9.116]) with mapi id 14.03.0439.000;
- Thu, 7 May 2020 04:22:05 -0700
+ ORSMSX114.amr.corp.intel.com ([169.254.8.97]) with mapi id 14.03.0439.000;
+ Thu, 7 May 2020 04:38:09 -0700
 From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 10/22] drm/i915/rkl: RKL only uses
- PHY_MISC for PHY's A and B
-Thread-Index: AQHWImbK9azIzebuokKkEAQMoT9x2qibFL0ggACohoCAAMEU0A==
-Date: Thu, 7 May 2020 11:22:05 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B073482C20BB@ORSMSX108.amr.corp.intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 12/22] drm/i915/rkl: Check proper SDEISR
+ bits for TC1 and TC2 outputs
+Thread-Index: AQHWImbHjoccf1qplUmq57Dyn4nYHaicgwHg
+Date: Thu, 7 May 2020 11:38:08 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B073482C2128@ORSMSX108.amr.corp.intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
- <20200504225227.464666-11-matthew.d.roper@intel.com>
- <83F5C7385F545743AD4FB2A62F75B073482C1471@ORSMSX108.amr.corp.intel.com>
- <20200506164951.GX188376@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20200506164951.GX188376@mdroper-desk1.amr.corp.intel.com>
+ <20200504225227.464666-13-matthew.d.roper@intel.com>
+In-Reply-To: <20200504225227.464666-13-matthew.d.roper@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -51,11 +50,11 @@ dlp-product: dlpe-windows
 dlp-version: 11.2.0.6
 dlp-reaction: no-action
 x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYTZlODE0NjYtMDYzNi00Y2Y5LWJhODktNThjOTllNTFkNzg1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoidm1CdjQ1emdHeGNaZTh4aTZ6MXd1ZCtNN2lONDJCME1tMVBhc0ZLV2dyVFpQcVloOHFPUnlqKzlmb2xXWGNKVSJ9
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDQwMTNlNTUtZjQ2ZS00MzIwLWEwMTgtYjAyNzg1ZjQwNTkyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiQWQ0cW5KV2htVG5haDFwYkh2Q054T3ZIblp0c1l3ZUVXZmxWdUVqTUkyYkxnNHN2Z1krWkc5R3dKTGNnaDRRUSJ9
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 10/22] drm/i915/rkl: RKL only uses
- PHY_MISC for PHY's A and B
+Subject: Re: [Intel-gfx] [PATCH v2 12/22] drm/i915/rkl: Check proper SDEISR
+ bits for TC1 and TC2 outputs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +67,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -77,122 +76,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Wednesday, May 6, 2020 10:20 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH v2 10/22] drm/i915/rkl: RKL only uses PHY_MISC
-> for PHY's A and B
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt
+> Roper
+> Sent: Tuesday, May 5, 2020 4:22 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Subject: [Intel-gfx] [PATCH v2 12/22] drm/i915/rkl: Check proper SDEISR bits for
+> TC1 and TC2 outputs
 > 
-> On Wed, May 06, 2020 at 06:49:06AM -0700, Srivatsa, Anusha wrote:
-> >
-> >
-> > > -----Original Message----- From: Intel-gfx
-> > > <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Roper
-> > > Sent: Tuesday, May 5, 2020 4:22 AM To:
-> > > intel-gfx@lists.freedesktop.org Subject: [Intel-gfx] [PATCH v2
-> > > 10/22] drm/i915/rkl: RKL only uses PHY_MISC for PHY's A and B
-> > >
-> > > Since the number of platforms with this restriction are growing,
-> > > let's separate out the platform logic into a has_phy_misc()
-> > > function.
-> > >
-> > > Bspec: 50107 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > > --- .../gpu/drm/i915/display/intel_combo_phy.c    | 30
-> > > +++++++++++-------- 1 file changed, 17 insertions(+), 13
-> > > deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> > > b/drivers/gpu/drm/i915/display/intel_combo_phy.c index
-> > > 9ff05ec12115..43d8784f6fa0 100644 ---
-> > > a/drivers/gpu/drm/i915/display/intel_combo_phy.c +++
-> > > b/drivers/gpu/drm/i915/display/intel_combo_phy.c @@ -181,11 +181,25
-> > > @@ static void cnl_combo_phys_uninit(struct drm_i915_private
-> > > *dev_priv) intel_de_write(dev_priv, CHICKEN_MISC_2, val);  }
-> > >
-> > > +static bool has_phy_misc(struct drm_i915_private *i915, enum phy
-> > > phy) { +	/* +	 * Some platforms only expect PHY_MISC to be
-> > > programmed for PHY-A and +	 * PHY-B and may not even have
-> instances
-> > > of the register for the +	 * other combo PHY's.  +	 */ + if
-> > > (IS_ELKHARTLAKE(i915) || +	    IS_ROCKETLAKE(i915)) + return phy <
-> > > PHY_C;
-> > According BSpec 50107, there is an instance of this for combo PHY C as
-> > well.
-> >
-> Yeah, there's technically an instance of the register, but the only field in it that
-> our driver programs has a RKL programming note that says "This register field
-> need only be programmed for port A and B."
-
-Ok. Thanks for pointing it out.
+> When Rocket Lake is paired with a TGP PCH, the last two outputs utilize the
+> TC1 and TC2 hpd pins, even though these are combo outputs.
+> 
+> Bspec: 49181
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Looks good.
 
 Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> Matt
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6952b0295096..d32bbcd99b8a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6172,8 +6172,12 @@ static bool bxt_digital_port_connected(struct
+> intel_encoder *encoder)  static bool intel_combo_phy_connected(struct
+> drm_i915_private *dev_priv,
+>  				      enum phy phy)
+>  {
+> -	if (HAS_PCH_MCC(dev_priv) && phy == PHY_C)
+> -		return intel_de_read(dev_priv, SDEISR) &
+> SDE_TC_HOTPLUG_ICP(PORT_TC1);
+> +	if (IS_ROCKETLAKE(dev_priv) && phy >= PHY_C)
+> +		return intel_de_read(dev_priv, SDEISR) &
+> +			SDE_TC_HOTPLUG_ICP(phy - PHY_C);
+> +	else if (HAS_PCH_MCC(dev_priv) && phy == PHY_C)
+> +		return intel_de_read(dev_priv, SDEISR) &
+> +			SDE_TC_HOTPLUG_ICP(PORT_TC1);
 > 
-> > Anusha
-> > > +
-> > > +	return true;
-> > > +}
-> > > +
-> > >  static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
-> > >  				  enum phy phy)
-> > >  {
-> > >  	/* The PHY C added by EHL has no PHY_MISC register */
-> > > -	if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
-> > > +	if (!has_phy_misc(dev_priv, phy))
-> > >  		return intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy))
-> &
-> > > COMP_INIT;
-> > >  	else
-> > >  		return !(intel_de_read(dev_priv, ICL_PHY_MISC(phy)) & @@ -
-> > > 317,12 +331,7 @@ static void icl_combo_phys_init(struct
-> > > drm_i915_private
-> > > *dev_priv)
-> > >  			continue;
-> > >  		}
-> > >
-> > > -		/*
-> > > -		 * Although EHL adds a combo PHY C, there's no PHY_MISC
-> > > -		 * register for it and no need to program the
-> > > -		 * DE_IO_COMP_PWR_DOWN setting on PHY C.
-> > > -		 */
-> > > -		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
-> > > +		if (!has_phy_misc(dev_priv, phy))
-> > >  			goto skip_phy_misc;
-> > >
-> > >  		/*
-> > > @@ -376,12 +385,7 @@ static void icl_combo_phys_uninit(struct
-> > > drm_i915_private *dev_priv)
-> > >  				 "Combo PHY %c HW state changed
-> unexpectedly\n",
-> > >  				 phy_name(phy));
-> > >
-> > > -		/*
-> > > -		 * Although EHL adds a combo PHY C, there's no PHY_MISC
-> > > -		 * register for it and no need to program the
-> > > -		 * DE_IO_COMP_PWR_DOWN setting on PHY C.
-> > > -		 */
-> > > -		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
-> > > +		if (!has_phy_misc(dev_priv, phy))
-> > >  			goto skip_phy_misc;
-> > >
-> > >  		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
-> > > --
-> > > 2.24.1
-> > >
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+>  	return intel_de_read(dev_priv, SDEISR) &
+> SDE_DDI_HOTPLUG_ICP(phy);  }
 > --
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+> 2.24.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
