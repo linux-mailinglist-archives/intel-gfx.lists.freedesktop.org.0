@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38051C8A0C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 14:04:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00101C8A24
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 14:10:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 040276E97C;
-	Thu,  7 May 2020 12:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C78A6E0E9;
+	Thu,  7 May 2020 12:10:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 789446E97C
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 12:04:34 +0000 (UTC)
-IronPort-SDR: vqXq0PKbucxJupvGTgRL98fgvbhRZrgx0hcO1gD4g6qN36j+LSgxuoyqfQhp0Tb+Kb2dnV8n73
- 3G/CPBM5Ok9Q==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC9976E0E9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 12:10:35 +0000 (UTC)
+IronPort-SDR: bBSpgj7f2EeU+Beookwiwj4Ta+4KUmOgKGPWc1HyIhV+suGFOWyyoD0KWLvR5yRrvZ240mcqUx
+ KXsDGIklFMiA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 05:04:33 -0700
-IronPort-SDR: 39NJYRQCW2FPaAMghJ+7qk7JFFeUM0XxQPkniCQZVnIvByaoDYupGKKoGfa9U13Wd93wOufNIJ
- ORVkzyAwG4tA==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 05:10:35 -0700
+IronPort-SDR: o6v9m3mNYzL0sLzyfO2sJVe8YLHx2Yq7r9vsfVD83kvnbc4ppDpYmW6Z3FcmyCiyUYQSKOwriC
+ wQ4t6zk/rbrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="249266925"
+X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="278579580"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 07 May 2020 05:04:31 -0700
+ by orsmga002.jf.intel.com with SMTP; 07 May 2020 05:10:31 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 May 2020 15:04:30 +0300
-Date: Thu, 7 May 2020 15:04:30 +0300
+ Thu, 07 May 2020 15:10:32 +0300
+Date: Thu, 7 May 2020 15:10:32 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200507120430.GD6112@intel.com>
+Message-ID: <20200507121032.GE6112@intel.com>
 References: <20200504225227.464666-1-matthew.d.roper@intel.com>
- <20200504225227.464666-15-matthew.d.roper@intel.com>
+ <20200504225227.464666-8-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200504225227.464666-15-matthew.d.roper@intel.com>
+In-Reply-To: <20200504225227.464666-8-matthew.d.roper@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 14/22] drm/i915/rkl: provide port/phy
- mapping for vbt
+Subject: Re: [Intel-gfx] [PATCH v2 07/22] drm/i915/rkl: Limit number of
+ universal planes to 5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,206 +52,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 04, 2020 at 03:52:19PM -0700, Matt Roper wrote:
-> From: Lucas De Marchi <lucas.demarchi@intel.com>
+On Mon, May 04, 2020 at 03:52:12PM -0700, Matt Roper wrote:
+> RKL only has five universal planes, plus a cursor.  Since the
+> bottom-most universal plane is considered the primary plane, set the
+> number of sprites available on this platform to 4.
 > =
 
-> RKL uses the DDI A, DDI B, DDI USBC1, DDI USBC2 from the DE point of
-> view, so all DDI/pipe/transcoder register use these indexes to refer to
-> them. Combo phy and IO functions follow another namespace that we keep
-> as "enum phy". The VBT in theory would use the DE point of view, but
-> that does not happen in practice.
+> In general, the plane capabilities of the remaining planes stay the same
+> as TGL.  However the NV12 Y-plane support moves down to the new top two
+> planes and now only the bottom three planes can be used for NV12 UV.
 > =
 
-> Provide a table to convert the child devices to the "correct" port
-> numbering we use. Now this is the output we get while reading the VBT:
-> =
-
-> DDIA:
-> [drm:intel_bios_port_aux_ch [i915]] using AUX A for port A (VBT)
-> [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:275:=
-DDI A]
-> [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:=
-275:DDI A]
-> [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x1 for port A (VBT)
-> =
-
-> DDIB:
-> [drm:intel_bios_port_aux_ch [i915]] using AUX B for port B (platform defa=
-ult)
-> [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:=
-291:DDI B]
-> [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x2 for port B (VBT)
-> =
-
-> DDI USBC1:
-> [drm:intel_bios_port_aux_ch [i915]] using AUX D for port D (VBT)
-> [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:295:=
-DDI D]
-> [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:=
-295:DDI D]
-> [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x3 for port D (VBT)
-> =
-
-> DDI USBC2:
-> [drm:intel_bios_port_aux_ch [i915]] using AUX E for port E (VBT)
-> [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:306:=
-DDI E]
-> [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:=
-306:DDI E]
-> [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x9 for port E (VBT)
-> =
-
-> Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Bspec: 49181
+> Bspec: 49251
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 72 ++++++++++++++++-------
->  1 file changed, 51 insertions(+), 21 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c |  6 +++++-
+>  drivers/gpu/drm/i915/display/intel_sprite.c  | 17 ++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_sprite.h  | 11 ++---------
+>  drivers/gpu/drm/i915/i915_irq.c              |  4 +++-
+>  drivers/gpu/drm/i915/i915_reg.h              |  5 +++++
+>  drivers/gpu/drm/i915/intel_device_info.c     |  5 ++++-
+>  6 files changed, 35 insertions(+), 13 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 839124647202..4f1a72a90b8f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1619,30 +1619,18 @@ static u8 map_ddc_pin(struct drm_i915_private *de=
-v_priv, u8 vbt_pin)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index fd6d63b03489..7d7a5b66f2cb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -12500,7 +12500,7 @@ static int icl_check_nv12_planes(struct intel_crt=
+c_state *crtc_state)
+>  			continue;
+>  =
+
+>  		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, linked) {
+> -			if (!icl_is_nv12_y_plane(linked->id))
+> +			if (!icl_is_nv12_y_plane(dev_priv, linked->id))
+>  				continue;
+>  =
+
+>  			if (crtc_state->active_planes & BIT(linked->id))
+> @@ -12546,6 +12546,10 @@ static int icl_check_nv12_planes(struct intel_cr=
+tc_state *crtc_state)
+>  				plane_state->cus_ctl |=3D PLANE_CUS_PLANE_7;
+>  			else if (linked->id =3D=3D PLANE_SPRITE4)
+>  				plane_state->cus_ctl |=3D PLANE_CUS_PLANE_6;
+> +			else if (linked->id =3D=3D PLANE_SPRITE3)
+> +				plane_state->cus_ctl |=3D PLANE_CUS_PLANE_5_RKL;
+> +			else if (linked->id =3D=3D PLANE_SPRITE2)
+> +				plane_state->cus_ctl |=3D PLANE_CUS_PLANE_4_RKL;
+>  			else
+>  				MISSING_CASE(linked->id);
+>  		}
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 0000ec7055f7..571c36f929bd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -333,6 +333,21 @@ int intel_plane_check_src_coordinates(struct intel_p=
+lane_state *plane_state)
 >  	return 0;
 >  }
 >  =
 
-> -static enum port dvo_port_to_port(u8 dvo_port)
-> +static enum port __dvo_port_to_port(int n_ports, int n_dvo,
-> +				    const int port_mapping[][3], u8 dvo_port)
+> +static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
+> +{
+> +	if (IS_ROCKETLAKE(i915))
+> +		return BIT(PLANE_SPRITE2) | BIT(PLANE_SPRITE3);
+> +	else
+
+I'd probably move the gen11+ check here too.
+
+Starting to wonder if we shouldn't just stuff a few plane
+masks into the device info (and replace all num_sprites
+stuff with those).
+
+Anyways, looks reasonable:
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Also wondering what happened to some of the stuff I did to these
+functions... Oh right, it was all part of some colorkey stuff
+which by now needs to rebased.
+
+> +		return BIT(PLANE_SPRITE4) | BIT(PLANE_SPRITE5);
+> +}
+> +
+> +bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
+> +			 enum plane_id plane_id)
+> +{
+> +	return INTEL_GEN(dev_priv) >=3D 11 &&
+> +		icl_nv12_y_plane_mask(dev_priv) & BIT(plane_id);
+> +}
+> +
+>  bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id p=
+lane_id)
 >  {
-> -	/*
-> -	 * Each DDI port can have more than one value on the "DVO Port" field,
-> -	 * so look for all the possible values for each port.
-> -	 */
-> -	static const int dvo_ports[][3] =3D {
-> -		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1},
-> -		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1},
-> -		[PORT_C] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1},
-> -		[PORT_D] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1},
-> -		[PORT_E] =3D { DVO_PORT_CRT, DVO_PORT_HDMIE, DVO_PORT_DPE},
-> -		[PORT_F] =3D { DVO_PORT_HDMIF, DVO_PORT_DPF, -1},
-> -		[PORT_G] =3D { DVO_PORT_HDMIG, DVO_PORT_DPG, -1},
-> -	};
->  	enum port port;
->  	int i;
+>  	return INTEL_GEN(dev_priv) >=3D 11 &&
+> @@ -3003,7 +3018,7 @@ static const u32 *icl_get_plane_formats(struct drm_=
+i915_private *dev_priv,
+>  	if (icl_is_hdr_plane(dev_priv, plane_id)) {
+>  		*num_formats =3D ARRAY_SIZE(icl_hdr_plane_formats);
+>  		return icl_hdr_plane_formats;
+> -	} else if (icl_is_nv12_y_plane(plane_id)) {
+> +	} else if (icl_is_nv12_y_plane(dev_priv, plane_id)) {
+>  		*num_formats =3D ARRAY_SIZE(icl_sdr_y_plane_formats);
+>  		return icl_sdr_y_plane_formats;
+>  	} else {
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.h b/drivers/gpu/dr=
+m/i915/display/intel_sprite.h
+> index 5eeaa92420d1..cd2104ba1ca1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.h
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.h
+> @@ -32,21 +32,14 @@ struct intel_plane *
+>  skl_universal_plane_create(struct drm_i915_private *dev_priv,
+>  			   enum pipe pipe, enum plane_id plane_id);
 >  =
 
-> -	for (port =3D PORT_A; port < ARRAY_SIZE(dvo_ports); port++) {
-> -		for (i =3D 0; i < ARRAY_SIZE(dvo_ports[port]); i++) {
-> -			if (dvo_ports[port][i] =3D=3D -1)
-> +	for (port =3D PORT_A; port < n_ports; port++) {
-> +		for (i =3D 0; i < n_dvo; i++) {
-> +			if (port_mapping[port][i] =3D=3D -1)
->  				break;
->  =
-
-> -			if (dvo_port =3D=3D dvo_ports[port][i])
-> +			if (dvo_port =3D=3D port_mapping[port][i])
->  				return port;
->  		}
->  	}
-> @@ -1650,6 +1638,48 @@ static enum port dvo_port_to_port(u8 dvo_port)
->  	return PORT_NONE;
+> -static inline bool icl_is_nv12_y_plane(enum plane_id id)
+> -{
+> -	/* Don't need to do a gen check, these planes are only available on gen=
+11 */
+> -	if (id =3D=3D PLANE_SPRITE4 || id =3D=3D PLANE_SPRITE5)
+> -		return true;
+> -
+> -	return false;
+> -}
+> -
+>  static inline u8 icl_hdr_plane_mask(void)
+>  {
+>  	return BIT(PLANE_PRIMARY) |
+>  		BIT(PLANE_SPRITE0) | BIT(PLANE_SPRITE1);
 >  }
 >  =
 
-> +static enum port dvo_port_to_port(struct drm_i915_private *dev_priv,
-> +				  u8 dvo_port)
-> +{
-> +	/*
-> +	 * Each DDI port can have more than one value on the "DVO Port" field,
-> +	 * so look for all the possible values for each port.
-> +	 */
-> +	static const int port_mapping[][3] =3D {
-> +		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1 },
-> +		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1 },
-> +		[PORT_C] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
-> +		[PORT_D] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
-> +		[PORT_E] =3D { DVO_PORT_CRT, DVO_PORT_HDMIE, -1 },
-> +		[PORT_F] =3D { DVO_PORT_HDMIF, DVO_PORT_DPF, -1 },
-> +		[PORT_G] =3D { DVO_PORT_HDMIG, DVO_PORT_DPG, -1 },
-> +	};
-> +	/*
-> +	 * Bspec lists the ports as A, B, C, D - however internally in our
-> +	 * driver we keep them as PORT_A, PORT_B, PORT_D and PORT_E so the
-> +	 * registers in Display Engine match the right offsets. Apply the
-> +	 * mapping here to translate from VBT to internal convention.
-> +	 */
-> +	static const int rkl_port_mapping[][3] =3D {
-> +		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1 },
-> +		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1 },
-> +		[PORT_C] =3D { -1 },
-> +		[PORT_D] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
-> +		[PORT_E] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
-> +	};
-> +
+> +bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
+> +			 enum plane_id plane_id);
+>  bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id p=
+lane_id);
+>  =
+
+>  int ivb_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index bd722d0650c8..622986759ec6 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2221,7 +2221,9 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_pr=
+ivate *dev_priv)
+>  =
+
+>  static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>  {
+> -	if (INTEL_GEN(dev_priv) >=3D 11)
 > +	if (IS_ROCKETLAKE(dev_priv))
-> +		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
-> +					  ARRAY_SIZE(rkl_port_mapping[0]),
-> +					  rkl_port_mapping,
-> +					  dvo_port);
-> +	else
-> +		return __dvo_port_to_port(ARRAY_SIZE(port_mapping),
-> +					  ARRAY_SIZE(port_mapping[0]),
-> +					  port_mapping,
-> +					  dvo_port);
-> +}
-
-What a horror show. To me it looks like we should just use the
-phy here. Or would that break something else?
-
-> +
->  static void parse_ddi_port(struct drm_i915_private *dev_priv,
->  			   struct display_device_data *devdata,
->  			   u8 bdb_version)
-> @@ -1659,7 +1689,7 @@ static void parse_ddi_port(struct drm_i915_private =
-*dev_priv,
->  	bool is_dvi, is_hdmi, is_dp, is_edp, is_crt;
->  	enum port port;
+> +		return RKL_DE_PIPE_IRQ_FAULT_ERRORS;
+> +	else if (INTEL_GEN(dev_priv) >=3D 11)
+>  		return GEN11_DE_PIPE_IRQ_FAULT_ERRORS;
+>  	else if (INTEL_GEN(dev_priv) >=3D 9)
+>  		return GEN9_DE_PIPE_IRQ_FAULT_ERRORS;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index fd9f2904d93c..59c1d527cf13 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6907,6 +6907,8 @@ enum {
+>  #define _PLANE_CUS_CTL_1_A			0x701c8
+>  #define _PLANE_CUS_CTL_2_A			0x702c8
+>  #define  PLANE_CUS_ENABLE			(1 << 31)
+> +#define  PLANE_CUS_PLANE_4_RKL			(0 << 30)
+> +#define  PLANE_CUS_PLANE_5_RKL			(1 << 30)
+>  #define  PLANE_CUS_PLANE_6			(0 << 30)
+>  #define  PLANE_CUS_PLANE_7			(1 << 30)
+>  #define  PLANE_CUS_HPHASE_SIGN_NEGATIVE		(1 << 19)
+> @@ -7573,6 +7575,9 @@ enum {
+>  	 GEN11_PIPE_PLANE7_FAULT | \
+>  	 GEN11_PIPE_PLANE6_FAULT | \
+>  	 GEN11_PIPE_PLANE5_FAULT)
+> +#define RKL_DE_PIPE_IRQ_FAULT_ERRORS \
+> +	(GEN9_DE_PIPE_IRQ_FAULT_ERRORS | \
+> +	 GEN11_PIPE_PLANE5_FAULT)
 >  =
 
-> -	port =3D dvo_port_to_port(child->dvo_port);
-> +	port =3D dvo_port_to_port(dev_priv, child->dvo_port);
->  	if (port =3D=3D PORT_NONE)
->  		return;
+>  #define GEN8_DE_PORT_ISR _MMIO(0x44440)
+>  #define GEN8_DE_PORT_IMR _MMIO(0x44444)
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index 9862c1185059..a5a92c2728db 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -934,7 +934,10 @@ void intel_device_info_runtime_init(struct drm_i915_=
+private *dev_priv)
 >  =
 
-> @@ -2603,10 +2633,10 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i91=
-5_private *dev_priv,
->  		aux_ch =3D AUX_CH_B;
->  		break;
->  	case DP_AUX_C:
-> -		aux_ch =3D AUX_CH_C;
-> +		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_D : AUX_CH_C;
->  		break;
->  	case DP_AUX_D:
-> -		aux_ch =3D AUX_CH_D;
-> +		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_E : AUX_CH_D;
->  		break;
->  	case DP_AUX_E:
->  		aux_ch =3D AUX_CH_E;
+>  	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
+>  =
+
+> -	if (INTEL_GEN(dev_priv) >=3D 11)
+> +	if (IS_ROCKETLAKE(dev_priv))
+> +		for_each_pipe(dev_priv, pipe)
+> +			runtime->num_sprites[pipe] =3D 4;
+> +	else if (INTEL_GEN(dev_priv) >=3D 11)
+>  		for_each_pipe(dev_priv, pipe)
+>  			runtime->num_sprites[pipe] =3D 6;
+>  	else if (IS_GEN(dev_priv, 10) || IS_GEMINILAKE(dev_priv))
 > -- =
 
 > 2.24.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
