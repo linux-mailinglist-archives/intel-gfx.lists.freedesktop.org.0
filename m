@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413C21C8C55
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 15:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B511C8CBE
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 15:42:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA456E9A9;
-	Thu,  7 May 2020 13:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E266E984;
+	Thu,  7 May 2020 13:42:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 919026E9A8;
- Thu,  7 May 2020 13:27:28 +0000 (UTC)
-IronPort-SDR: 2dtEbst4lx/LJWTT1RgFLN4k+XqFbZsU2AwCyYwLBJ8C1+ABq4yOPVbgPvY8TcajpGenLkjTvV
- cYdHBLDKq0Ew==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A23126E984
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 13:42:05 +0000 (UTC)
+IronPort-SDR: +5ReUrHD4eOuWUgB3AZixUvG5Ust4OIYdRvtHuijIGN9CrovxQ2CYsnF3od+peX6hn+wYknkq7
+ 8QU9MLgb2Hmw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 06:27:28 -0700
-IronPort-SDR: zDrl4IQeUoD6vbWNlKxVwMP3oHmQpEWELmxd6RduSG7MdirJgGFhvEzdVpIAo4jChSCEWA2T5T
- Ank/hMhZ3aJw==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 06:42:05 -0700
+IronPort-SDR: LOwDSU8ZWlDa3Dz/6aS4ZWScDNNtch6VsKBDrC6t75Kc6ZhsFDMGrU/gJEe+oTANbRkXGUW9QL
+ C8IuKWSLPjjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="260528047"
-Received: from plaurent-mobl.ger.corp.intel.com (HELO
- helsinki.ger.corp.intel.com) ([10.251.84.89])
- by orsmga003.jf.intel.com with ESMTP; 07 May 2020 06:27:27 -0700
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,363,1583222400"; d="scan'208";a="305122505"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by FMSMGA003.fm.intel.com with ESMTP; 07 May 2020 06:42:03 -0700
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id 28F178408A3; Thu,  7 May 2020 16:41:25 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 May 2020 16:27:06 +0300
-Message-Id: <20200507132706.2058969-15-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200507132706.2058969-1-gwan-gyeong.mun@intel.com>
-References: <20200507132706.2058969-1-gwan-gyeong.mun@intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v11 14/14] drm/i915/psr: Use new DP VSC SDP
- compute routine on PSR
+Date: Thu,  7 May 2020 16:41:22 +0300
+Message-Id: <20200507134122.17732-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/gen12: Add aux table invalidate for
+ all engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,241 +46,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to use a common VSC SDP Colorimetry calculating code on PSR,
-it uses a new psr vsc sdp compute routine.
-Because PSR routine has its own scenario and timings of writing a VSC SDP,
-the current PSR routine needs to have its own drm_dp_vsc_sdp structure
-member variable on struct i915_psr.
+All engines, exception being blitter as it does not
+care about the form, can access compressed surfaces.
 
-In order to calculate colorimetry information, intel_psr_update()
-function and intel_psr_enable() function extend a drm_connector_state
-argument.
+So we need to add forced aux table invalidates
+for those engines.
 
-There are no changes to PSR mechanism.
+v2: virtual instance masking (Chris)
 
-v3: Replace a structure name to drm_dp_vsc_sdp from intel_dp_vsc_sdp
-v4: Rebased
-v8: Rebased
-v10: When a PSR is enabled, it needs to add DP_SDP_VSC to
-     infoframes.enable.
-     It is needed for comparing between HW and pipe_state of VSC_SDP.
-V11: If PSR is disabled by flag, it don't enable psr on pipe compute.
-
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+References: d248b371f747 ("drm/i915/gen12: Invalidate aux table entries forcibly")
+References bspec#43904, hsdes#1809175790
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chuansheng Liu <chuansheng.liu@intel.com>
+Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c |  4 +-
- drivers/gpu/drm/i915/display/intel_psr.c | 58 ++++++++----------------
- drivers/gpu/drm/i915/display/intel_psr.h |  6 ++-
- drivers/gpu/drm/i915/i915_drv.h          |  1 +
- 4 files changed, 26 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 84 +++++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h     |  6 +++
+ 2 files changed, 85 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index d88431ebb34e..b4d20b33b9fd 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3682,7 +3682,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
- 		intel_dp_stop_link_train(intel_dp);
- 
- 	intel_edp_backlight_on(crtc_state, conn_state);
--	intel_psr_enable(intel_dp, crtc_state);
-+	intel_psr_enable(intel_dp, crtc_state, conn_state);
- 	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
- 	intel_edp_drrs_enable(intel_dp, crtc_state);
- 
-@@ -3865,7 +3865,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
- 
- 	intel_ddi_set_dp_msa(crtc_state, conn_state);
- 
--	intel_psr_update(intel_dp, crtc_state);
-+	intel_psr_update(intel_dp, crtc_state, conn_state);
- 	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
- 	intel_edp_drrs_enable(intel_dp, crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index a0569fdfeb16..dcb2dcde0078 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -30,6 +30,7 @@
- #include "intel_display_types.h"
- #include "intel_psr.h"
- #include "intel_sprite.h"
-+#include "intel_hdmi.h"
- 
- /**
-  * DOC: Panel Self Refresh (PSR/SRD)
-@@ -357,39 +358,6 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index bbdb0e2a4571..2fffedc99806 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4539,11 +4539,34 @@ static u32 preparser_disable(bool state)
+ 	return MI_ARB_CHECK | 1 << 8 | state;
  }
  
--static void intel_psr_setup_vsc(struct intel_dp *intel_dp,
--				const struct intel_crtc_state *crtc_state)
--{
--	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
--	struct dp_sdp psr_vsc;
--
--	if (dev_priv->psr.psr2_enabled) {
--		/* Prepare VSC Header for SU as per EDP 1.4 spec, Table 6.11 */
--		memset(&psr_vsc, 0, sizeof(psr_vsc));
--		psr_vsc.sdp_header.HB0 = 0;
--		psr_vsc.sdp_header.HB1 = 0x7;
--		if (dev_priv->psr.colorimetry_support) {
--			psr_vsc.sdp_header.HB2 = 0x5;
--			psr_vsc.sdp_header.HB3 = 0x13;
--		} else {
--			psr_vsc.sdp_header.HB2 = 0x4;
--			psr_vsc.sdp_header.HB3 = 0xe;
--		}
--	} else {
--		/* Prepare VSC packet as per EDP 1.3 spec, Table 3.10 */
--		memset(&psr_vsc, 0, sizeof(psr_vsc));
--		psr_vsc.sdp_header.HB0 = 0;
--		psr_vsc.sdp_header.HB1 = 0x7;
--		psr_vsc.sdp_header.HB2 = 0x2;
--		psr_vsc.sdp_header.HB3 = 0x8;
--	}
--
--	intel_dig_port->write_infoframe(&intel_dig_port->base,
--					crtc_state,
--					DP_SDP_VSC, &psr_vsc, sizeof(psr_vsc));
--}
--
- static void hsw_psr_setup_aux(struct intel_dp *intel_dp)
++static i915_reg_t aux_inv_reg(const struct intel_engine_cs *engine)
++{
++	static const i915_reg_t vd[] = {
++		GEN12_VD0_AUX_NV,
++		GEN12_VD1_AUX_NV,
++		GEN12_VD2_AUX_NV,
++		GEN12_VD3_AUX_NV,
++	};
++
++	static const i915_reg_t ve[] = {
++		GEN12_VE0_AUX_NV,
++		GEN12_VE1_AUX_NV,
++	};
++
++	if (engine->class == VIDEO_DECODE_CLASS)
++		return vd[engine->instance];
++
++	if (engine->class == VIDEO_ENHANCEMENT_CLASS)
++		return ve[engine->instance];
++
++	return INVALID_MMIO_REG;
++}
++
+ static u32 *
+-gen12_emit_aux_table_inv(struct i915_request *rq, u32 *cs)
++gen12_emit_aux_table_inv(const i915_reg_t inv_reg, u32 *cs)
  {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-@@ -756,6 +724,8 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 	if (intel_dp != dev_priv->psr.dp)
- 		return;
+ 	*cs++ = MI_LOAD_REGISTER_IMM(1);
+-	*cs++ = i915_mmio_reg_offset(GEN12_GFX_CCS_AUX_NV);
++	*cs++ = i915_mmio_reg_offset(inv_reg);
+ 	*cs++ = AUX_INV;
+ 	*cs++ = MI_NOOP;
  
-+	 if (!psr_global_enabled(dev_priv))
-+		return;
- 	/*
- 	 * HSW spec explicitly says PSR is tied to port A.
- 	 * BDW+ platforms have a instance of PSR registers per transcoder but
-@@ -798,6 +768,7 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+@@ -4612,7 +4635,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
  
- 	crtc_state->has_psr = true;
- 	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
-+	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
+ 		/* hsdes: 1809175790 */
+-		cs = gen12_emit_aux_table_inv(request, cs);
++		cs = gen12_emit_aux_table_inv(GEN12_GFX_CCS_AUX_NV, cs);
+ 
+ 		*cs++ = preparser_disable(false);
+ 		intel_ring_advance(request, cs);
+@@ -4621,6 +4644,56 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 	return 0;
  }
  
- static void intel_psr_activate(struct intel_dp *intel_dp)
-@@ -880,9 +851,12 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- }
++static int gen12_emit_flush(struct i915_request *request, u32 mode)
++{
++	intel_engine_mask_t aux_inv = 0;
++	u32 cmd, *cs;
++
++	if (mode & EMIT_INVALIDATE)
++		aux_inv = request->engine->mask & ~BIT(BCS0);
++
++	cs = intel_ring_begin(request,
++			      4 + (aux_inv ? 2 * hweight8(aux_inv) + 2 : 0));
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	cmd = MI_FLUSH_DW + 1;
++
++	/* We always require a command barrier so that subsequent
++	 * commands, such as breadcrumb interrupts, are strictly ordered
++	 * wrt the contents of the write cache being flushed to memory
++	 * (and thus being coherent from the CPU).
++	 */
++	cmd |= MI_FLUSH_DW_STORE_INDEX | MI_FLUSH_DW_OP_STOREDW;
++
++	if (mode & EMIT_INVALIDATE) {
++		cmd |= MI_INVALIDATE_TLB;
++		if (request->engine->class == VIDEO_DECODE_CLASS)
++			cmd |= MI_INVALIDATE_BSD;
++	}
++
++	*cs++ = cmd;
++	*cs++ = LRC_PPHWSP_SCRATCH_ADDR;
++	*cs++ = 0; /* upper addr */
++	*cs++ = 0; /* value */
++
++	if (aux_inv) { /* hsdes: 1809175790 */
++		struct intel_engine_cs *engine;
++		unsigned int tmp;
++
++		*cs++ = MI_LOAD_REGISTER_IMM(hweight8(aux_inv));
++		for_each_engine_masked(engine, request->engine->gt,
++				       aux_inv, tmp) {
++			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
++			*cs++ = AUX_INV;
++		}
++		*cs++ = MI_NOOP;
++	}
++	intel_ring_advance(request, cs);
++
++	return 0;
++}
++
+ /*
+  * Reserve space for 2 NOOPs at the end of each request to be
+  * used as a workaround for not being allowed to do lite
+@@ -4854,9 +4927,10 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 	engine->emit_flush = gen8_emit_flush;
+ 	engine->emit_init_breadcrumb = gen8_emit_init_breadcrumb;
+ 	engine->emit_fini_breadcrumb = gen8_emit_fini_breadcrumb;
+-	if (INTEL_GEN(engine->i915) >= 12)
++	if (INTEL_GEN(engine->i915) >= 12) {
+ 		engine->emit_fini_breadcrumb = gen12_emit_fini_breadcrumb;
+-
++		engine->emit_flush = gen12_emit_flush;
++	}
+ 	engine->set_default_submission = intel_execlists_set_default_submission;
  
- static void intel_psr_enable_locked(struct drm_i915_private *dev_priv,
--				    const struct intel_crtc_state *crtc_state)
-+				    const struct intel_crtc_state *crtc_state,
-+				    const struct drm_connector_state *conn_state)
- {
- 	struct intel_dp *intel_dp = dev_priv->psr.dp;
-+	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-+	struct intel_encoder *encoder = &intel_dig_port->base;
- 	u32 val;
- 
- 	drm_WARN_ON(&dev_priv->drm, dev_priv->psr.enabled);
-@@ -921,7 +895,9 @@ static void intel_psr_enable_locked(struct drm_i915_private *dev_priv,
- 
- 	drm_dbg_kms(&dev_priv->drm, "Enabling PSR%s\n",
- 		    dev_priv->psr.psr2_enabled ? "2" : "1");
--	intel_psr_setup_vsc(intel_dp, crtc_state);
-+	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
-+				     &dev_priv->psr.vsc);
-+	intel_write_dp_vsc_sdp(encoder, crtc_state, &dev_priv->psr.vsc);
- 	intel_psr_enable_sink(intel_dp);
- 	intel_psr_enable_source(intel_dp, crtc_state);
- 	dev_priv->psr.enabled = true;
-@@ -933,11 +909,13 @@ static void intel_psr_enable_locked(struct drm_i915_private *dev_priv,
-  * intel_psr_enable - Enable PSR
-  * @intel_dp: Intel DP
-  * @crtc_state: new CRTC state
-+ * @conn_state: new CONNECTOR state
-  *
-  * This function can only be called after the pipe is fully trained and enabled.
-  */
- void intel_psr_enable(struct intel_dp *intel_dp,
--		      const struct intel_crtc_state *crtc_state)
-+		      const struct intel_crtc_state *crtc_state,
-+		      const struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 
-@@ -958,7 +936,7 @@ void intel_psr_enable(struct intel_dp *intel_dp,
- 		goto unlock;
- 	}
- 
--	intel_psr_enable_locked(dev_priv, crtc_state);
-+	intel_psr_enable_locked(dev_priv, crtc_state, conn_state);
- 
- unlock:
- 	mutex_unlock(&dev_priv->psr.lock);
-@@ -1091,13 +1069,15 @@ static void psr_force_hw_tracking_exit(struct drm_i915_private *dev_priv)
-  * intel_psr_update - Update PSR state
-  * @intel_dp: Intel DP
-  * @crtc_state: new CRTC state
-+ * @conn_state: new CONNECTOR state
-  *
-  * This functions will update PSR states, disabling, enabling or switching PSR
-  * version when executing fastsets. For full modeset, intel_psr_disable() and
-  * intel_psr_enable() should be called instead.
-  */
- void intel_psr_update(struct intel_dp *intel_dp,
--		      const struct intel_crtc_state *crtc_state)
-+		      const struct intel_crtc_state *crtc_state,
-+		      const struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	struct i915_psr *psr = &dev_priv->psr;
-@@ -1134,7 +1114,7 @@ void intel_psr_update(struct intel_dp *intel_dp,
- 		intel_psr_disable_locked(intel_dp);
- 
- 	if (enable)
--		intel_psr_enable_locked(dev_priv, crtc_state);
-+		intel_psr_enable_locked(dev_priv, crtc_state, conn_state);
- 
- unlock:
- 	mutex_unlock(&dev_priv->psr.lock);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 274fc6bb6221..b4515186d5f4 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -17,11 +17,13 @@ struct intel_dp;
- #define CAN_PSR(dev_priv) (HAS_PSR(dev_priv) && dev_priv->psr.sink_support)
- void intel_psr_init_dpcd(struct intel_dp *intel_dp);
- void intel_psr_enable(struct intel_dp *intel_dp,
--		      const struct intel_crtc_state *crtc_state);
-+		      const struct intel_crtc_state *crtc_state,
-+		      const struct drm_connector_state *conn_state);
- void intel_psr_disable(struct intel_dp *intel_dp,
- 		       const struct intel_crtc_state *old_crtc_state);
- void intel_psr_update(struct intel_dp *intel_dp,
--		      const struct intel_crtc_state *crtc_state);
-+		      const struct intel_crtc_state *crtc_state,
-+		      const struct drm_connector_state *conn_state);
- int intel_psr_debug_set(struct drm_i915_private *dev_priv, u64 value);
- void intel_psr_invalidate(struct drm_i915_private *dev_priv,
- 			  unsigned frontbuffer_bits,
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 6af69555733e..82ebd7774a1d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -510,6 +510,7 @@ struct i915_psr {
- 	u32 dc3co_exit_delay;
- 	struct delayed_work dc3co_work;
- 	bool force_mode_changed;
-+	struct drm_dp_vsc_sdp vsc;
- };
- 
- #define QUIRK_LVDS_SSC_DISABLE (1<<1)
+ 	if (INTEL_GEN(engine->i915) < 11) {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index dc5952200a07..6c076a24eb82 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2558,6 +2558,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GEN12_PAT_INDEX(index)	_MMIO(0x4800 + (index) * 4)
+ #define BSD_HWS_PGA_GEN7	_MMIO(0x04180)
+ #define GEN12_GFX_CCS_AUX_NV	_MMIO(0x4208)
++#define GEN12_VD0_AUX_NV	_MMIO(0x4218)
++#define GEN12_VD1_AUX_NV	_MMIO(0x4228)
++#define GEN12_VD2_AUX_NV	_MMIO(0x4298)
++#define GEN12_VD3_AUX_NV	_MMIO(0x42A8)
++#define GEN12_VE0_AUX_NV	_MMIO(0x4238)
++#define GEN12_VE1_AUX_NV	_MMIO(0x42B8)
+ #define   AUX_INV		REG_BIT(0)
+ #define BLT_HWS_PGA_GEN7	_MMIO(0x04280)
+ #define VEBOX_HWS_PGA_GEN7	_MMIO(0x04380)
 -- 
-2.25.0
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
