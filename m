@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576091C7E0C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 01:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0961C7FB4
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 03:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A72206E07F;
-	Wed,  6 May 2020 23:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E5AB6E037;
+	Thu,  7 May 2020 01:07:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A504B6E07F
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 May 2020 23:42:16 +0000 (UTC)
-Received: from localhost (unknown [137.135.114.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 56CD520746;
- Wed,  6 May 2020 23:42:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1588808536;
- bh=CrL0vY8NzNe+Jnr1Alkh1Cnhdd78xGVrP+CFWalWXyo=;
- h=Date:From:To:To:To:Cc:Cc:Cc:Subject:In-Reply-To:References:From;
- b=ddydAYBsduwGjeUcHL4xDkyQ580G+g2s4yZ2xCKMa7cR92E1yV1772Ql6zXWnvZJf
- BbSwi5arayt+i9jYovmeJMUCoH67bu6cep4RJbaz0+ZIpkCDFgezaIYu9SdTEo7iCZ
- P+c0REtDVpCe1pQPeL9LByKhKJ4CKWvwRc+tM6a4=
-Date: Wed, 06 May 2020 23:42:15 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200504135030.19210-2-chris@chris-wilson.co.uk>
-References: <20200504135030.19210-2-chris@chris-wilson.co.uk>
-Message-Id: <20200506234216.56CD520746@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Mark concurrent submissions
- with a weak-dependency
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B49086E037
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 01:07:08 +0000 (UTC)
+IronPort-SDR: 4JCu5zdWuST4pN/LE1ZrK6sW4H2xajmOpmgnnqU/wdKmOEsEcnm7KzTZyVcKefJ7D4YnjSqATy
+ 184lpUIfQmuQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2020 18:07:08 -0700
+IronPort-SDR: eOiUZjCbbVCU8SPJ86F/IrCXMcN2la+2T/1KQWDmqLwdBu83JdWr8gU3SwMSTEGnvg+rmHYaI1
+ RVQXAh7OmOrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,361,1583222400"; d="scan'208";a="249120083"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+ by orsmga007.jf.intel.com with ESMTP; 06 May 2020 18:07:08 -0700
+Received: from vkasired-desk2.fm.intel.com (10.22.254.140) by
+ ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 6 May 2020 18:07:07 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Date: Wed, 6 May 2020 18:01:03 -0700
+Message-ID: <20200507010103.16040-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.21.1
+MIME-Version: 1.0
+X-Originating-IP: [10.22.254.140]
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Dont forget to clean up the
+ connector on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,33 +49,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+During the DSI initialization setup, after instantiating the relevant
+drm connector and encoder objects, the connector also needs to be
+cleaned up along with the encoder if an error is encountered. The error
+can happen due to a missing mode in the VBT or for other reasons.
 
-[This is an automated email]
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences").
-
-The bot has tested the following trees: v5.6.10.
-
-v5.6.10: Failed to apply! Possible dependencies:
-    8e9f84cf5cac ("drm/i915/gt: Propagate change in error status to children on unhold")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 4fec5bd64920..f93f72463df5 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1954,6 +1954,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 	return;
+ 
+ err:
++	drm_connector_cleanup(connector);
+ 	drm_encoder_cleanup(&encoder->base);
+ 	kfree(intel_dsi);
+ 	kfree(intel_connector);
 -- 
-Thanks
-Sasha
+2.21.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
