@@ -2,35 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8931C9528
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 17:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422951C9531
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 May 2020 17:36:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F11FC6EA20;
-	Thu,  7 May 2020 15:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19C26EA23;
+	Thu,  7 May 2020 15:36:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D0B6EA20
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 15:34:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21140512-1500050 for multiple; Thu, 07 May 2020 16:34:36 +0100
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A016EA21
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2020 15:36:22 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id a4so2982986pgc.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 May 2020 08:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Qr2jOJU0nwDv3Zr5vF5a1me04s/gPafFoUQXU1q5+ss=;
+ b=Dg61HoqY1LAIcueDBXUPrLd0RnoSUrdiQ6+1UgvwN+TwSM17e3utL+hSyUHwpdMmRx
+ I/3vKqC0ePOnLwf7pARVHgNcT78La1weUjOl1ct9sVCbPeEB/8szqDLvV10CZ9ic4nOE
+ LA7NflXVGpNTTXIGveNaIiTjl3k4kmkbogkxbDpc8lThBwzFsd8IA64fSa203pu9aMMw
+ tKHY18wxk59ftSkD3Zke0JA3S4EvZh3sw9dEVwJ9942AMnwtGWuafG9m5MRp4WaJSq5K
+ cnhr5QmFtTzbs7QRmsSCW/ClkKcp7EH8VfxJHZh/hmAKYUsobd6/ho5j5R3yJJ6VgbFz
+ GTew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Qr2jOJU0nwDv3Zr5vF5a1me04s/gPafFoUQXU1q5+ss=;
+ b=ZnxN1xbnCD2vznmMmzLu9cfcAw1H7joS7LW68wHKkkHJUC/ds84FgHUs7Tly4tyHkI
+ 5B38fHF9DSMYe983lxFHKmchXAfphhkHhTlhIHcpa3JBC1LkCXXu2iKiTfN4UrUYMSD+
+ uUqopXBQNjisQ2UL/D+CbKywRf74hcNgy05idKYCqqaD9C5w5xFK0QPGaZ4/FLtv7KOU
+ WcXZEUHCOf6OotnHn4tpW9j7XtwrzthGWQqHCg53tE2bM/WkoaswcA7ad16oDdQLkm3p
+ 6BkSou5IAnObO0nFX1Fj5K6pwmiMKjJ5trQlalYufzljf6F2xeP1UyomAColvQEOkmoC
+ qSNg==
+X-Gm-Message-State: AGi0PuY0ZQq3qm2kzNige1npv2jCLY0ACmSvbUCTRJkvNZa4XZyt2fYz
+ Ybkyw2d7y6du3bPUcw/2CXZoZdvE0sypdA==
+X-Google-Smtp-Source: APiQypIqkSWv8SubQOaXBzJ48rBKY7KMbeKWezbcFxkcB1zHX8qMSbY/OQEAtl6LptJaAEjic5w4yw==
+X-Received: by 2002:a62:34c1:: with SMTP id b184mr14226847pfa.73.1588865781338; 
+ Thu, 07 May 2020 08:36:21 -0700 (PDT)
+Received: from omlet.com ([2605:6000:1026:c273::ce4])
+ by smtp.gmail.com with ESMTPSA id c2sm5229469pfp.118.2020.05.07.08.36.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 07 May 2020 08:36:20 -0700 (PDT)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu,  7 May 2020 10:36:00 -0500
+Message-Id: <20200507153600.314454-1-jason@jlekstrand.net>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <2ea266b4-64a7-e494-65e9-6435d4455a71@linux.intel.com>
-References: <20200507082124.1673-1-chris@chris-wilson.co.uk>
- <f5d72c82-7a9e-3142-f297-b2231f2e9b9f@linux.intel.com>
- <158886364344.20858.57212288691515302@build.alporthouse.com>
- <2ea266b4-64a7-e494-65e9-6435d4455a71@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158886567396.20858.16515551637133920867@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 07 May 2020 16:34:33 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Mark concurrent submissions
- with a weak-dependency
+Subject: [Intel-gfx] [PATCH] RFC: i915: Drop relocation support on Gen12+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,106 +66,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Dave Airlie <airlied@redhat.com>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-05-07 16:23:59)
-> 
-> 
-> On 07/05/2020 16:00, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-05-07 15:53:08)
-> >> On 07/05/2020 09:21, Chris Wilson wrote:
-> >>> We recorded the dependencies for WAIT_FOR_SUBMIT in order that we could
-> >>> correctly perform priority inheritance from the parallel branches to the
-> >>> common trunk. However, for the purpose of timeslicing and reset
-> >>> handling, the dependency is weak -- as we the pair of requests are
-> >>> allowed to run in parallel and not in strict succession. So for example
-> >>> we do need to suspend one if the other hangs.
-> >>>
-> >>> The real significance though is that this allows us to rearrange
-> >>> groups of WAIT_FOR_SUBMIT linked requests along the single engine, and
-> >>> so can resolve user level inter-batch scheduling dependencies from user
-> >>> semaphores.
-> >>>
-> >>> Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
-> >>> Testcase: igt/gem_exec_fence/submit
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>> Cc: <stable@vger.kernel.org> # v5.6+
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gt/intel_lrc.c         | 9 +++++++++
-> >>>    drivers/gpu/drm/i915/i915_request.c         | 8 ++++++--
-> >>>    drivers/gpu/drm/i915/i915_scheduler.c       | 6 +++---
-> >>>    drivers/gpu/drm/i915/i915_scheduler.h       | 3 ++-
-> >>>    drivers/gpu/drm/i915/i915_scheduler_types.h | 1 +
-> >>>    5 files changed, 21 insertions(+), 6 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> index dc3f2ee7136d..10109f661bcb 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> @@ -1880,6 +1880,9 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
-> >>>                        struct i915_request *w =
-> >>>                                container_of(p->waiter, typeof(*w), sched);
-> >>>    
-> >>> +                     if (p->flags & I915_DEPENDENCY_WEAK)
-> >>> +                             continue;
-> >>> +
-> >>
-> >> I did not quite get it - submit fence dependency would mean different
-> >> engines, so the below check (w->engine != rq->engine) would effectively
-> >> have the same effect. What am I missing?
-> > 
-> > That submit fences can be between different contexts on the same engine.
-> > The example (from mesa) is where we have two interdependent clients
-> > which are using their own userlevel scheduling inside each batch, i.e.
-> > waiting on semaphores.
-> 
-> But if submit fence was used that means the waiter should never be 
-> submitted ahead of the signaler. And with this change it could get ahead 
-> in the priolist, no?
+The Vulkan driver in Mesa for Intel hardware never uses relocations if
+it's running on a version of i915 that supports at least softpin which
+all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12 is
+only supported by iris which never uses relocations.  The older i965
+driver in Mesa does use relocations but it only supports Intel hardware
+through Gen11 and has been deprecated for all hardware Gen9+. The entire
+relocation UAPI and related infrastructure, therefore, doesn't have any
+open-source userspace consumer starting with Gen12.
 
-You do recall the starting point for this series was future fences :)
+Rejecting relocations starting with Gen12 has the benefit that we don't
+have to bother supporting it on platforms with local memory.  Given how
+much CPU touching of memory is required for relocations, not having to
+do so on platforms where not all memory is directly CPU-accessible
+carries significant advantages.
 
-The test case for this is:
+Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-	execbuf.flags = engine | I915_EXEC_FENCE_OUT;
-	execbuf.batch_start_offset = 0;
-       	gem_execbuf_wr(i915, &execbuf);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 4f9c1f5a4dedb..e10c93aff945d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1533,7 +1533,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct i915_vma *vma)
+ 	return err;
+ }
+ 
+-static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
++static int check_relocations(const struct i915_execbuffer *eb,
++			     const struct drm_i915_gem_exec_object2 *entry)
+ {
+ 	const char __user *addr, *end;
+ 	unsigned long size;
+@@ -1543,6 +1544,9 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+ 	if (size == 0)
+ 		return 0;
+ 
++	if (size && eb->reloc_cache.gen >= 12)
++		return -EINVAL;
++
+ 	if (size > N_RELOC(ULONG_MAX))
+ 		return -EINVAL;
+ 
+@@ -1576,7 +1580,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
+ 		if (nreloc == 0)
+ 			continue;
+ 
+-		err = check_relocations(&eb->exec[i]);
++		err = check_relocations(eb, &eb->exec[i]);
+ 		if (err)
+ 			goto err;
+ 
+-- 
+2.26.2
 
-       	execbuf.rsvd1 = gem_context_clone_with_engines(i915, 0);
-       	execbuf.rsvd2 >>= 32;
-       	execbuf.flags = e->flags;
-       	execbuf.flags |= I915_EXEC_FENCE_SUBMIT | I915_EXEC_FENCE_OUT;
-       	execbuf.batch_start_offset = offset;
-       	gem_execbuf_wr(i915, &execbuf);
-       	gem_context_destroy(i915, execbuf.rsvd1);
-
-       	gem_sync(i915, obj.handle);
-
-	/* no hangs! */
-	out = execbuf.rsvd2;
-       	igt_assert_eq(sync_fence_status(out), 1);
-       	close(out);
-
-       	out = execbuf.rsvd2 >> 32;
-       	igt_assert_eq(sync_fence_status(out), 1);
-       	close(out);
-
-Where the batches are a couple of semaphore waits, which is the essence
-of a bonded request but being run on a single engine.
-
-Unless we treat the submit fence as a weak dependency here, we can't
-timeslice between the two.
-
-The other observation is that we may not have to suspend the request if
-the other hangs as the linkage is implicit. If the request does continue
-to wait on the hung request, we can only hope it too hangs. I should
-make that a second patch, since it is a distinct change.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
