@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107B61CA5D9
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 10:17:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 389C41CA5DC
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 10:17:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD9BB6E148;
-	Fri,  8 May 2020 08:17:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7475F6EA9A;
+	Fri,  8 May 2020 08:17:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D414E6E148
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 08:17:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 946386E148
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 08:17:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21147509-1500050 
- for multiple; Fri, 08 May 2020 09:16:33 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21147510-1500050 
+ for multiple; Fri, 08 May 2020 09:16:34 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 May 2020 09:16:20 +0100
-Message-Id: <20200508081630.13882-1-chris@chris-wilson.co.uk>
+Date: Fri,  8 May 2020 09:16:21 +0100
+Message-Id: <20200508081630.13882-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200508081630.13882-1-chris@chris-wilson.co.uk>
+References: <20200508081630.13882-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/11] drm/i915: Ignore submit-fences on the
- same timeline
+Subject: [Intel-gfx] [PATCH 02/11] drm/i915: Pull waiting on an external
+ dma-fence into its routine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,30 +45,56 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While we ordinarily do not skip submit-fences due to the accompanying
-hook that we want to callback on execution, a submit-fence on the same
-timeline is meaningless.
+As a means for a small code consolidation, but primarily to start
+thinking more carefully about internal-vs-external linkage, pull the
+pair of i915_sw_fence_await_dma_fence() calls into a common routine.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/i915_request.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 589739bfee25..be2ce9065a29 100644
+index be2ce9065a29..94189c7d43cd 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1242,6 +1242,9 @@ i915_request_await_execution(struct i915_request *rq,
- 			continue;
- 		}
+@@ -1067,6 +1067,14 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 	return 0;
+ }
  
-+		if (fence->context == rq->fence.context)
-+			continue;
++static int
++i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
++{
++	return i915_sw_fence_await_dma_fence(&rq->submit, fence,
++					     fence->context ? I915_FENCE_TIMEOUT : 0,
++					     I915_FENCE_GFP);
++}
 +
- 		/*
- 		 * We don't squash repeated fence dependencies here as we
- 		 * want to run our callback in all cases.
+ int
+ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+ {
+@@ -1114,9 +1122,7 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+ 		if (dma_fence_is_i915(fence))
+ 			ret = i915_request_await_request(rq, to_request(fence));
+ 		else
+-			ret = i915_sw_fence_await_dma_fence(&rq->submit, fence,
+-							    fence->context ? I915_FENCE_TIMEOUT : 0,
+-							    I915_FENCE_GFP);
++			ret = i915_request_await_external(rq, fence);
+ 		if (ret < 0)
+ 			return ret;
+ 
+@@ -1255,9 +1261,7 @@ i915_request_await_execution(struct i915_request *rq,
+ 							     to_request(fence),
+ 							     hook);
+ 		else
+-			ret = i915_sw_fence_await_dma_fence(&rq->submit, fence,
+-							    I915_FENCE_TIMEOUT,
+-							    GFP_KERNEL);
++			ret = i915_request_await_external(rq, fence);
+ 		if (ret < 0)
+ 			return ret;
+ 	} while (--nchild);
 -- 
 2.20.1
 
