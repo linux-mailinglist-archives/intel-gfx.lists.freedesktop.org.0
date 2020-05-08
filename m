@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4DB1CB7C4
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 20:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5421CB850
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 21:32:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAC1A6EB47;
-	Fri,  8 May 2020 18:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 905096EB57;
+	Fri,  8 May 2020 19:32:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A43E6EB47
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 18:55:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154848-1500050 
- for multiple; Fri, 08 May 2020 19:54:55 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 May 2020 19:54:48 +0100
-Message-Id: <20200508185448.29709-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200508184334.16015-1-chris@chris-wilson.co.uk>
-References: <20200508184334.16015-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6F3076EB4E;
+ Fri,  8 May 2020 19:32:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67430A0BC6;
+ Fri,  8 May 2020 19:32:44 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Peel dma-fence-chains for await
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 08 May 2020 19:32:44 -0000
+Message-ID: <158896636439.22721.1277866354754987866@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200508184334.16015-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200508184334.16015-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Peel_dma-fence-chains_for_await_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,82 +38,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+== Series Details ==
 
-To allow faster engine to engine synchronization, peel the layer of
-dma-fence-chain to expose potential i915 fences so that the
-i915_request code can emit HW semaphore wait/signal operations in the
-ring which is faster than waking up the host to submit unblocked
-workloads after interrupt notification.
+Series: drm/i915: Peel dma-fence-chains for await (rev3)
+URL   : https://patchwork.freedesktop.org/series/77081/
+State : success
 
-This is similar to the peeling we do for e.g. dma_fence_array.
+== Summary ==
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 29 ++++++++++++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
+CI Bug Log - changes from CI_DRM_8453 -> Patchwork_17613
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 94189c7d43cd..9df2cb8d66d0 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <linux/dma-fence-array.h>
-+#include <linux/dma-fence-chain.h>
- #include <linux/irq_work.h>
- #include <linux/prefetch.h>
- #include <linux/sched.h>
-@@ -1068,13 +1069,39 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
- }
- 
- static int
--i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
-+__i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
- {
- 	return i915_sw_fence_await_dma_fence(&rq->submit, fence,
- 					     fence->context ? I915_FENCE_TIMEOUT : 0,
- 					     I915_FENCE_GFP);
- }
- 
-+static int
-+i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
-+{
-+	struct dma_fence *iter;
-+	int err = 0;
-+
-+	if (!to_dma_fence_chain(fence))
-+		return __i915_request_await_external(rq, fence);
-+
-+	dma_fence_chain_for_each(iter, fence) {
-+		struct dma_fence_chain *chain = to_dma_fence_chain(iter);
-+
-+		if (!dma_fence_is_i915(chain->fence)) {
-+			err = __i915_request_await_external(rq, iter);
-+			break;
-+		}
-+
-+		err = i915_request_await_dma_fence(rq, chain->fence);
-+		if (err < 0)
-+			break;
-+	}
-+
-+	dma_fence_put(iter);
-+	return err;
-+}
-+
- int
- i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
- {
--- 
-2.20.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17613/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17613 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][1] ([fdo#109271]) -> [FAIL][2] ([i915#62])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8453/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17613/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (48 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8453 -> Patchwork_17613
+
+  CI-20190529: 20190529
+  CI_DRM_8453: bd2e8a4803db758fcbc558acbf5ad89e3a1779b0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5642: d1ce4abb01c70f7be6e777b6d45442663c4b830e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17613: f7542d436cfcb22ac4769e8277fa6a555bdcb44b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f7542d436cfc drm/i915: Peel dma-fence-chains for await
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17613/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
