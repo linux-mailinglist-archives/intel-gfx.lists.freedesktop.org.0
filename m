@@ -1,44 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA9D1CA916
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 13:10:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B341CA923
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 13:11:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 072736EB04;
-	Fri,  8 May 2020 11:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED206EB09;
+	Fri,  8 May 2020 11:11:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85E4E6EB04
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 11:10:16 +0000 (UTC)
-IronPort-SDR: YTewEIrqXYOMzBFKt8BPfvgV9ROR0Hspqzg2J5Sl/suEhctS3C0S2YsdyG0CmK8Q5rV1hREOru
- Ji+uB5b7HWJg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2020 04:10:15 -0700
-IronPort-SDR: tTM77yia2ur9gkUF+4jqIkemXEygJMJTG0FZZ34SY1622PWraQ3OyTYczLWsgAeOMHkJl+Sr9x
- QWWcOgvD9SMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,367,1583222400"; d="scan'208";a="305410692"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by FMSMGA003.fm.intel.com with ESMTP; 08 May 2020 04:10:14 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id B46EF5C1DC1; Fri,  8 May 2020 14:08:06 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158893364177.11903.12713400644286649178@build.alporthouse.com>
-References: <20200508092933.738-1-chris@chris-wilson.co.uk>
- <20200508092933.738-2-chris@chris-wilson.co.uk>
- <87imh6ybiq.fsf@gaia.fi.intel.com>
- <158893364177.11903.12713400644286649178@build.alporthouse.com>
-Date: Fri, 08 May 2020 14:08:06 +0300
-Message-ID: <87ftcay99l.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 331CE6EB07;
+ Fri,  8 May 2020 11:11:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21149741-1500050 
+ for multiple; Fri, 08 May 2020 12:10:38 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: dri-devel@lists.freedesktop.org
+Date: Fri,  8 May 2020 12:10:35 +0100
+Message-Id: <20200508111035.18813-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Pull waiting on an external
- dma-fence into its routine
+Subject: [Intel-gfx] [PATCH] dma-buf: Use atomic_fetch_add() for the context
+ id
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,67 +37,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Now that atomic64_fetch_add() exists we can use it to return the base
+context id, rather than the atomic64_add_return(N) - N concoction.
 
-> Quoting Mika Kuoppala (2020-05-08 11:19:25)
->> Chris Wilson <chris@chris-wilson.co.uk> writes:
->> 
->> > As a means for a small code consolidation, but primarily to start
->> > thinking more carefully about internal-vs-external linkage, pull the
->> > pair of i915_sw_fence_await_dma_fence() calls into a common routine.
->> >
->> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> > ---
->> >  drivers/gpu/drm/i915/i915_request.c | 16 ++++++++++------
->> >  1 file changed, 10 insertions(+), 6 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->> > index be2ce9065a29..94189c7d43cd 100644
->> > --- a/drivers/gpu/drm/i915/i915_request.c
->> > +++ b/drivers/gpu/drm/i915/i915_request.c
->> > @@ -1067,6 +1067,14 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
->> >       return 0;
->> >  }
->> >  
->> > +static int
->> > +i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
->> > +{
->> > +     return i915_sw_fence_await_dma_fence(&rq->submit, fence,
->> > +                                          fence->context ? I915_FENCE_TIMEOUT : 0,
->> > +                                          I915_FENCE_GFP);
->> > +}
->> > +
->> >  int
->> >  i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
->> >  {
->> > @@ -1114,9 +1122,7 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
->> >               if (dma_fence_is_i915(fence))
->> >                       ret = i915_request_await_request(rq, to_request(fence));
->> >               else
->> > -                     ret = i915_sw_fence_await_dma_fence(&rq->submit, fence,
->> > -                                                         fence->context ? I915_FENCE_TIMEOUT : 0,
->> > -                                                         I915_FENCE_GFP);
->> > +                     ret = i915_request_await_external(rq, fence);
->> 
->> For us (rq, rq), for external (rq, fence).
->> 
->> It looks neat for a reader. But then, how can external fence have
->> a context?
->
-> How about s/fence/dma/?
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/dma-buf/dma-fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It is fine like it is. I was just so confused that we piggyback our
-context along the fence. But yeah this is the fence->context and zero
-is a special. (thanks for explaining in irc)
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index 052a41e2451c..90edf2b281b0 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -106,7 +106,7 @@ EXPORT_SYMBOL(dma_fence_get_stub);
+ u64 dma_fence_context_alloc(unsigned num)
+ {
+ 	WARN_ON(!num);
+-	return atomic64_add_return(num, &dma_fence_context_counter) - num;
++	return atomic64_fetch_add(num, &dma_fence_context_counter);
+ }
+ EXPORT_SYMBOL(dma_fence_context_alloc);
+ 
+-- 
+2.20.1
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> -Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
