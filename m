@@ -2,21 +2,21 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300741CA84B
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 12:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA1B1CA850
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 12:27:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94ED989D5F;
-	Fri,  8 May 2020 10:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15216EAD6;
+	Fri,  8 May 2020 10:27:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8740F89D5F
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 10:27:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 805816EAD6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 10:27:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21149150-1500050 for multiple; Fri, 08 May 2020 11:26:59 +0100
+ 21149155-1500050 for multiple; Fri, 08 May 2020 11:27:24 +0100
 MIME-Version: 1.0
 In-Reply-To: <87imh6ybiq.fsf@gaia.fi.intel.com>
 References: <20200508092933.738-1-chris@chris-wilson.co.uk>
@@ -25,9 +25,9 @@ References: <20200508092933.738-1-chris@chris-wilson.co.uk>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <158893361621.11903.8192692245953803179@build.alporthouse.com>
+Message-ID: <158893364177.11903.12713400644286649178@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Fri, 08 May 2020 11:26:56 +0100
+Date: Fri, 08 May 2020 11:27:21 +0100
 Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Pull waiting on an external
  dma-fence into its routine
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -92,9 +92,7 @@ Quoting Mika Kuoppala (2020-05-08 11:19:25)
 > It looks neat for a reader. But then, how can external fence have
 > a context?
 
-The 'context' here is the dma_fence timeline context. All dma_fences
-have a context:seqno tuple which denotes their timeline and position
-along the timeline.
+How about s/fence/dma/?
 -Chris
 _______________________________________________
 Intel-gfx mailing list
