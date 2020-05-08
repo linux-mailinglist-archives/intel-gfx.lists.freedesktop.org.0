@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A621CB12D
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 15:56:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A82A1CB131
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 15:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB426E209;
-	Fri,  8 May 2020 13:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B76A16E213;
+	Fri,  8 May 2020 13:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A9B6E18E;
- Fri,  8 May 2020 13:56:53 +0000 (UTC)
-IronPort-SDR: p+OjkaiN6jZQd9M4KQ2wp5ETaBmMd43qIb9rxeGcVZGXLLgxhhh8YBj0Jz4xBK/Bo866liDv4u
- 8MS7qkqJu3Xg==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 125036E213;
+ Fri,  8 May 2020 13:56:55 +0000 (UTC)
+IronPort-SDR: pnvA1nKWttu6dAH57F9qYM532jhTji34ibyOm06dw41EKumJ4wvrKcKRJXA0Q/XvqMH4/rYbPG
+ e0BKil9rdm/A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2020 06:56:52 -0700
-IronPort-SDR: 4ABKa/BeGxOts1AbyjKKYPN78kIlHYnDArSLxkHy/lRWYVZsmxqMa5hpmjhD1OL94U+ekmHTMR
- YFrPLA8Mh+mA==
-X-IronPort-AV: E=Sophos;i="5.73,367,1583222400"; d="scan'208";a="408078665"
+ 08 May 2020 06:56:54 -0700
+IronPort-SDR: U6OGCd2zhug149+Bi8RmwteXOqSRCMoM6gfjp3xZFWRegKHLEWkUKcT405TgL68GUxuJnY3TVC
+ 9tI7bXWBYOLg==
+X-IronPort-AV: E=Sophos;i="5.73,367,1583222400"; d="scan'208";a="408078675"
 Received: from jkrzyszt-desk.ger.corp.intel.com (HELO
  jkrzyszt-desk.igk.intel.com) ([172.22.244.18])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2020 06:56:51 -0700
+ 08 May 2020 06:56:53 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri,  8 May 2020 15:56:30 +0200
-Message-Id: <20200508135631.8099-2-janusz.krzysztofik@linux.intel.com>
+Date: Fri,  8 May 2020 15:56:31 +0200
+Message-Id: <20200508135631.8099-3-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200508135631.8099-1-janusz.krzysztofik@linux.intel.com>
 References: <20200508135631.8099-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/2] tests/gem_exec_nop: Kill obsolete
- pass/fail metric
+Subject: [Intel-gfx] [PATCH i-g-t 2/2] tests/gem_exec_nop: Remove submission
+ batching
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,56 +54,285 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 870c774b866c ("igt/gem_exec_nop: Add expectancy of independent
-execution between engines") extended a "basic" subtest (now
-"basic-series") with a pass/fail metric based on comparison of parallel
-execution time to be less than an average * 2.  Since then, that limit
-has been raised quite a few times:
-- by commit 41a26b5152a5 ("igt/gem_exec_nop: Relax parallel assertion
-  for short rings") to maximum + minimum,
-- by commit 7bd4f918c461 ("igt/gem_exec_nop: Explain the parallel
-  execution assertion") to maximum + minimum * 10/9,
-- by commit a0eebbddecaa ("igt/gem_exec_nop: Relax assertion for
-  parallel execution") to sum * 2.
+Execbuf requests are now submitted by subtests in batches of 1024
+repetitions.  That may be too many under some circumstances (e.g.,
+intensive logging output) and subtests may take far more time than
+expected.
 
-With the criteria relaxed up to that extent, the purpose of that check
-has been limited to a showcase for an old GuC failure.  Since that is
-now obsolete, kill that assert.
+The reason standing behind that batching was unacceptable microsecond
+imprecision of gettime when gem_exec_nop was a benchmark rather than a
+test and time measurement was looking for a precision of ~100 ns.
+Since that measurement is now mostly informative and not a pass/fail
+metric, we can be more tolerant and accept overhead of gettime after
+each submission.
+
+Remove the batching from the body of subtests which don't require
+submicrosecond precision and measure time after each execbuf request
+submission (or a group of one submission per engine).  Since there is
+one subtest - "headless" - which still requires more precise time
+measurement, don't remove the batching from nop_on_ring() helper but
+let its users request non-batched submission mode instead.  To make
+this even more flexible, change semantics of the helper argument used
+so far for returning the count of submissions completed within the
+requested time frame and use it also for passing desired batch size
+(number of iterations), then update its users to initialize that
+argument according to their individual requirements.
 
 Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/i915/gem_exec_nop.c | 17 -----------------
- 1 file changed, 17 deletions(-)
+ tests/i915/gem_exec_nop.c | 120 +++++++++++++++++++-------------------
+ 1 file changed, 59 insertions(+), 61 deletions(-)
 
 diff --git a/tests/i915/gem_exec_nop.c b/tests/i915/gem_exec_nop.c
-index 357449c5b..c17d672c3 100644
+index c17d672c3..10639765b 100644
 --- a/tests/i915/gem_exec_nop.c
 +++ b/tests/i915/gem_exec_nop.c
-@@ -682,23 +682,6 @@ static void series(int fd, uint32_t handle, int timeout)
- 	time = elapsed(&start, &now) / count;
- 	igt_info("All (%d engines): %'lu cycles, average %.3fus per cycle [expected %.3fus]\n",
- 		 nengine, count, 1e6*time, 1e6*((max-min)/nengine+min));
--
--	/* The rate limiting step should be how fast the slowest engine can
--	 * execute its queue of requests, as when we wait upon a full ring all
--	 * dispatch is frozen. So in general we cannot go faster than the
--	 * slowest engine (but as all engines are in lockstep, they should all
--	 * be executing in parallel and so the average should be max/nengines),
--	 * but we should equally not go any slower.
--	 *
--	 * However, that depends upon being able to submit fast enough, and
--	 * that in turns depends upon debugging turned off and no bottlenecks
--	 * within the driver. We cannot assert that we hit ideal conditions
--	 * across all engines, so we only look for an outrageous error
--	 * condition.
--	 */
--	igt_assert_f(time < 2*sum,
--		     "Average time (%.3fus) exceeds expectation for parallel execution (min %.3fus, max %.3fus; limit set at %.3fus)\n",
--		     1e6*time, 1e6*min, 1e6*max, 1e6*sum*2);
+@@ -71,12 +71,14 @@ static double elapsed(const struct timespec *start, const struct timespec *end)
+ 
+ static double nop_on_ring(int fd, uint32_t handle,
+ 			  const struct intel_execution_engine2 *e, int timeout,
+-			  unsigned long *out)
++			  unsigned long *count)
+ {
+ 	struct drm_i915_gem_execbuffer2 execbuf;
+ 	struct drm_i915_gem_exec_object2 obj;
+ 	struct timespec start, now;
+-	unsigned long count;
++	unsigned long total;
++
++	igt_assert(*count);
+ 
+ 	memset(&obj, 0, sizeof(obj));
+ 	obj.handle = handle;
+@@ -93,18 +95,18 @@ static double nop_on_ring(int fd, uint32_t handle,
+ 	}
+ 	intel_detect_and_clear_missed_interrupts(fd);
+ 
+-	count = 0;
++	total = 0;
+ 	clock_gettime(CLOCK_MONOTONIC, &start);
+ 	do {
+-		for (int loop = 0; loop < 1024; loop++)
++		for (int loop = 0; loop < *count; loop++)
+ 			gem_execbuf(fd, &execbuf);
+ 
+-		count += 1024;
++		total += *count;
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+ 	} while (elapsed(&start, &now) < timeout);
+ 	igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
+ 
+-	*out = count;
++	*count = total;
+ 	return elapsed(&start, &now);
  }
  
- static void xchg(void *array, unsigned i, unsigned j)
+@@ -353,7 +355,7 @@ static void single(int fd, uint32_t handle,
+ 		   const struct intel_execution_engine2 *e)
+ {
+ 	double time;
+-	unsigned long count;
++	unsigned long count = 1;
+ 
+ 	time = nop_on_ring(fd, handle, e, 20, &count);
+ 	igt_info("%s: %'lu cycles: %.3fus\n",
+@@ -374,7 +376,7 @@ stable_nop_on_ring(int fd, uint32_t handle,
+ 	s.is_float = true;
+ 
+ 	while (reps--) {
+-		unsigned long count;
++		unsigned long count = 1024;
+ 		double time;
+ 
+ 		time = nop_on_ring(fd, handle, e, timeout, &count);
+@@ -451,6 +453,7 @@ static void parallel(int fd, uint32_t handle, int timeout)
+ 		engines[nengine] = e->flags;
+ 		names[nengine++] = strdup(e->name);
+ 
++		count = 1;
+ 		time = nop_on_ring(fd, handle, e, 1, &count) / count;
+ 		sum += time;
+ 		igt_debug("%s: %.3fus\n", e->name, 1e6*time);
+@@ -481,9 +484,8 @@ static void parallel(int fd, uint32_t handle, int timeout)
+ 		count = 0;
+ 		clock_gettime(CLOCK_MONOTONIC, &start);
+ 		do {
+-			for (int loop = 0; loop < 1024; loop++)
+-				gem_execbuf(fd, &execbuf);
+-			count += 1024;
++			gem_execbuf(fd, &execbuf);
++			count++;
+ 			clock_gettime(CLOCK_MONOTONIC, &now);
+ 		} while (elapsed(&start, &now) < timeout);
+ 		time = elapsed(&start, &now) / count;
+@@ -513,6 +515,7 @@ static void independent(int fd, uint32_t handle, int timeout)
+ 		engines[nengine] = e->flags;
+ 		names[nengine++] = strdup(e->name);
+ 
++		count = 1;
+ 		time = nop_on_ring(fd, handle, e, 1, &count) / count;
+ 		sum += time;
+ 		igt_debug("%s: %.3fus\n", e->name, 1e6*time);
+@@ -633,6 +636,7 @@ static void series(int fd, uint32_t handle, int timeout)
+ 
+ 	nengine = 0;
+ 	__for_each_physical_engine(fd, e) {
++		count = 1;
+ 		time = nop_on_ring(fd, handle, e, 1, &count) / count;
+ 		if (time > max) {
+ 			name = e->name;
+@@ -664,14 +668,12 @@ static void series(int fd, uint32_t handle, int timeout)
+ 	count = 0;
+ 	clock_gettime(CLOCK_MONOTONIC, &start);
+ 	do {
+-		for (int loop = 0; loop < 1024; loop++) {
+-			for (int n = 0; n < nengine; n++) {
+-				execbuf.flags &= ~ENGINE_FLAGS;
+-				execbuf.flags |= engines[n];
+-				gem_execbuf(fd, &execbuf);
+-			}
++		for (int n = 0; n < nengine; n++) {
++			execbuf.flags &= ~ENGINE_FLAGS;
++			execbuf.flags |= engines[n];
++			gem_execbuf(fd, &execbuf);
+ 		}
+-		count += nengine * 1024;
++		count += nengine;
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+ 	} while (elapsed(&start, &now) < timeout); /* Hang detection ~120s */
+ 	gem_sync(fd, handle);
+@@ -712,7 +714,7 @@ static void sequential(int fd, uint32_t handle, unsigned flags, int timeout)
+ 	nengine = 0;
+ 	sum = 0;
+ 	__for_each_physical_engine(fd, e) {
+-		unsigned long count;
++		unsigned long count = 1;
+ 
+ 		time = nop_on_ring(fd, handle, e, 1, &count) / count;
+ 		sum += time;
+@@ -765,27 +767,31 @@ static void sequential(int fd, uint32_t handle, unsigned flags, int timeout)
+ 
+ 		count = 0;
+ 		clock_gettime(CLOCK_MONOTONIC, &start);
+-		do {
++		if (flags & CHAINED) {
+ 			igt_permute_array(engines, nengine, xchg);
+-			if (flags & CHAINED) {
++			for (n = 0; n < nengine; n++) {
++				execbuf.flags &= ~ENGINE_FLAGS;
++				execbuf.flags |= engines[n];
++				do {
++					gem_execbuf(fd, &execbuf);
++					count++;
++					clock_gettime(CLOCK_MONOTONIC,
++							      &now);
++				} while (elapsed(&start, &now) <
++						timeout * (n + 1) / nengine);
++			}
++		} else {
++			do {
++				igt_permute_array(engines, nengine, xchg);
+ 				for (n = 0; n < nengine; n++) {
+ 					execbuf.flags &= ~ENGINE_FLAGS;
+ 					execbuf.flags |= engines[n];
+-					for (int loop = 0; loop < 1024; loop++)
+-						gem_execbuf(fd, &execbuf);
++					gem_execbuf(fd, &execbuf);
+ 				}
+-			} else {
+-				for (int loop = 0; loop < 1024; loop++) {
+-					for (n = 0; n < nengine; n++) {
+-						execbuf.flags &= ~ENGINE_FLAGS;
+-						execbuf.flags |= engines[n];
+-						gem_execbuf(fd, &execbuf);
+-					}
+-				}
+-			}
+-			count += 1024;
+-			clock_gettime(CLOCK_MONOTONIC, &now);
+-		} while (elapsed(&start, &now) < timeout); /* Hang detection ~120s */
++				count++;
++				clock_gettime(CLOCK_MONOTONIC, &now);
++			} while (elapsed(&start, &now) < timeout);
++		}
+ 
+ 		gem_sync(fd, obj[0].handle);
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+@@ -869,26 +875,24 @@ static void fence_signal(int fd, uint32_t handle,
+ 	intel_detect_and_clear_missed_interrupts(fd);
+ 	clock_gettime(CLOCK_MONOTONIC, &start);
+ 	do {
+-		for (int loop = 0; loop < 1024; loop++) {
+-			for (int e = 0; e < nengine; e++) {
+-				if (fences[n] != -1) {
+-					igt_assert(fence_wait(fences[n]));
+-					close(fences[n]);
+-				}
++		for (int e = 0; e < nengine; e++) {
++			if (fences[n] != -1) {
++				igt_assert(fence_wait(fences[n]));
++				close(fences[n]);
++			}
+ 
+-				execbuf.flags &= ~ENGINE_FLAGS;
+-				execbuf.flags |= engines[e];
+-				gem_execbuf_wr(fd, &execbuf);
++			execbuf.flags &= ~ENGINE_FLAGS;
++			execbuf.flags |= engines[e];
++			gem_execbuf_wr(fd, &execbuf);
+ 
+-				/* Enable signaling by doing a poll() */
+-				fences[n] = execbuf.rsvd2 >> 32;
+-				signal += fence_enable_signaling(fences[n]);
++			/* Enable signaling by doing a poll() */
++			fences[n] = execbuf.rsvd2 >> 32;
++			signal += fence_enable_signaling(fences[n]);
+ 
+-				n = (n + 1) % NFENCES;
+-			}
++			n = (n + 1) % NFENCES;
+ 		}
+ 
+-		count += 1024 * nengine;
++		count += nengine;
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+ 	} while (elapsed(&start, &now) < timeout);
+ 	igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
+@@ -910,6 +914,7 @@ static void preempt(int fd, uint32_t handle,
+ 	struct timespec start, now;
+ 	unsigned long count;
+ 	uint32_t ctx[2];
++	igt_spin_t *spin;
+ 
+ 	ctx[0] = gem_context_clone_with_engines(fd, 0);
+ 	gem_context_set_priority(fd, ctx[0], MIN_PRIO);
+@@ -934,21 +939,14 @@ static void preempt(int fd, uint32_t handle,
+ 	intel_detect_and_clear_missed_interrupts(fd);
+ 
+ 	count = 0;
++	spin = __igt_spin_new(fd, .ctx = ctx[0], .engine = e->flags);
+ 	clock_gettime(CLOCK_MONOTONIC, &start);
+ 	do {
+-		igt_spin_t *spin =
+-			__igt_spin_new(fd,
+-				       .ctx = ctx[0],
+-				       .engine = e->flags);
+-
+-		for (int loop = 0; loop < 1024; loop++)
+-			gem_execbuf(fd, &execbuf);
+-
+-		igt_spin_free(fd, spin);
+-
+-		count += 1024;
++		gem_execbuf(fd, &execbuf);
++		count++;
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+ 	} while (elapsed(&start, &now) < 20);
++	igt_spin_free(fd, spin);
+ 	igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
+ 
+ 	gem_context_destroy(fd, ctx[1]);
 -- 
 2.21.1
 
