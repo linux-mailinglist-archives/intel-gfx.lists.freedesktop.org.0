@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76A51CA246
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 06:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE9C1CA29D
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 07:25:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC92A6E1D2;
-	Fri,  8 May 2020 04:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1EBD6EA75;
+	Fri,  8 May 2020 05:25:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 342C06E1D2;
- Fri,  8 May 2020 04:29:35 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49JHRG3tDvz9sRf;
- Fri,  8 May 2020 14:29:30 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1588912173;
- bh=RQXB8rPuh7y1lmH6XmNpcRx9cxb29ebZDhSL2BWaWGE=;
- h=Date:From:To:Cc:Subject:From;
- b=Kmk0Qc6jV47rfbR4JJMZVgjQ0mq8aZLc+0V/3bzayxQw46n4OF8x+wPXXoFt+UykK
- GFhfSGWGUi66BNnBaQ77CYF+xshVShMAK6ds6KrUj/1H8At4lcNLBxEBs8XiDxUrK3
- Yhm5/X+WUN9QQALZ88Z6fcTpR6w8+FFeHUuln1NgN3wSeLUsxtDaXgk9QPtXo5Gxfe
- FGgzA8DQLNnnZCQNgnaDQNtdOOJuIvaCRYNH9AODgfuRrg4semAkauxpwjBLeHYmoA
- nUopS9xE0Hcnru08X0/1qnCZ/TKtEPyGhi2861++jyBU0+OcBxchMHW0KBnFK6KFbz
- TsNspZ5zs69lg==
-Date: Fri, 8 May 2020 14:29:28 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20200508142928.05cde878@canb.auug.org.au>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA536E892;
+ Fri,  8 May 2020 05:25:40 +0000 (UTC)
+IronPort-SDR: LQts2E9hJuFyKsaR7cZZsztMA/E3qvC4jX2R3itvB40nYmBmhaIz/WS74fjvyrHMRas7vjdopF
+ ku3P+aHSb7pA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 22:25:39 -0700
+IronPort-SDR: LwQzoQnhkqpUZ0AWHuz0uiEOZPR05ed4ANCO6vlM5nGio05PsMKkS5pKmbJoQguvy9yOIt6hUn
+ USiiaD1UfXgg==
+X-IronPort-AV: E=Sophos;i="5.73,366,1583222400"; d="scan'208";a="435559079"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 22:25:38 -0700
+Date: Thu, 7 May 2020 22:24:37 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200508052437.GA3212215@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm tree
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,164 +45,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: multipart/mixed; boundary="===============0479951358=="
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0479951358==
-Content-Type: multipart/signed; boundary="Sig_/e.nyMLmvHLl8O.HE3RkDMhs";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Hi Dave and Daniel,
 
---Sig_/e.nyMLmvHLl8O.HE3RkDMhs
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Here goes drm-intel-fixes-2020-05-07:
 
-Hi all,
+- Fixes on execlist to avoid GPU hang situation (Chris)
+- Fixes couple deadlocks (Chris)
+- Timeslice preemption fixes (Chris)
+- Fix Display Port interrupt handling on Tiger Lake (Imre)
+- Reduce debug noise around Frame Buffer Compression (Peter)
+- Fix logic around IPC W/a for Coffee Lake and Kaby Lake (Sultan)
+- Avoid dereferencing a dead context (Chris)
 
-After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
-failed like this:
+Thanks,
+Rodrigo.
 
-In file included from include/asm-generic/bug.h:19,
-                 from arch/x86/include/asm/bug.h:83,
-                 from include/linux/bug.h:5,
-                 from include/linux/seq_file.h:7,
-                 from include/drm/drm_print.h:31,
-                 from drivers/gpu/drm/i915/gt/intel_engine_cs.c:25:
-drivers/gpu/drm/i915/gt/intel_engine_cs.c: In function 'intel_engine_print_=
-registers':
-drivers/gpu/drm/i915/gt/intel_engine_cs.c:1428:31: error: 'struct intel_con=
-text' has no member named 'lrc_desc'
- 1428 |      upper_32_bits(rq->context->lrc_desc));
-      |                               ^~
-drivers/gpu/drm/i915/gt/intel_engine_cs.c:1440:31: error: 'struct intel_con=
-text' has no member named 'lrc_desc'
- 1440 |      upper_32_bits(rq->context->lrc_desc));
-      |                               ^~
-In file included from include/linux/interrupt.h:6,
-                 from drivers/gpu/drm/i915/gt/intel_lrc.c:134:
-drivers/gpu/drm/i915/gt/intel_lrc.c: In function 'active_context':
-drivers/gpu/drm/i915/gt/intel_lrc.c:2850:32: error: 'struct intel_context' =
-has no member named 'lrc_desc'
- 2850 |   if (upper_32_bits(rq->context->lrc_desc) =3D=3D ccid) {
-      |                                ^~
-drivers/gpu/drm/i915/gt/intel_lrc.c:2859:32: error: 'struct intel_context' =
-has no member named 'lrc_desc'
- 2859 |   if (upper_32_bits(rq->context->lrc_desc) =3D=3D ccid) {
-      |                                ^~
+The following changes since commit 8598eb781cf68fd6cb67c479f1479ae58bd54fb9:
 
-Caused by commit
+  drm/i915: Use proper fault mask in interrupt postinstall too (2020-04-28 16:38:03 -0700)
 
-  53b2622e7746 ("drm/i915/execlists: Avoid reusing the same logical CCID")
+are available in the Git repository at:
 
-from the drm-intel-fixes tree interacting with commits
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-05-07
 
-  606727842d8b ("drm/i915/gt: Include the execlists CCID of each port in th=
-e engine dump")
-  4c977837ba29 ("drm/i915/execlists: Peek at the next submission for error =
-interrupts")
+for you to fetch changes up to 1bc6a60143a4f9264cc6e09ceb9919f4e813a872:
 
-from the drm tree.
+  drm/i915/execlists: Track inflight CCID (2020-05-06 15:37:59 -0700)
 
-I have added teh following merge fix patch.
+----------------------------------------------------------------
+- Fixes on execlist to avoid GPU hang situation (Chris)
+- Fixes couple deadlocks (Chris)
+- Timeslice preemption fixes (Chris)
+- Fix Display Port interrupt handling on Tiger Lake (Imre)
+- Reduce debug noise around Frame Buffer Compression (Peter)
+- Fix logic around IPC W/a for Coffee Lake and Kaby Lake (Sultan)
+- Avoid dereferencing a dead context (Chris)
 
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Fri, 8 May 2020 14:21:40 +1000
-Subject: [PATCH] drm/i915/execlists: fix up for "Avoid reusing the same log=
-ical CCID"
+----------------------------------------------------------------
+Chris Wilson (7):
+      drm/i915: Avoid dereferencing a dead context
+      drm/i915/gt: Make timeslicing an explicit engine property
+      drm/i915: Check current i915_vma.pin_count status first on unbind
+      drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+      drm/i915/gem: Remove object_is_locked assertion from unpin_from_display_plane
+      drm/i915/execlists: Avoid reusing the same logical CCID
+      drm/i915/execlists: Track inflight CCID
 
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 4 ++--
- drivers/gpu/drm/i915/gt/intel_lrc.c       | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Imre Deak (1):
+      drm/i915/tgl+: Fix interrupt handling for DP AUX transactions
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i9=
-15/gt/intel_engine_cs.c
-index b1f8527f02c8..7c3cb5aedfdf 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1425,7 +1425,7 @@ static void intel_engine_print_registers(struct intel=
-_engine_cs *engine,
- 			len =3D scnprintf(hdr, sizeof(hdr),
- 					"\t\tActive[%d]:  ccid:%08x, ",
- 					(int)(port - execlists->active),
--					upper_32_bits(rq->context->lrc_desc));
-+					rq->context->lrc.ccid);
- 			len +=3D print_ring(hdr + len, sizeof(hdr) - len, rq);
- 			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
- 			print_request(m, rq, hdr);
-@@ -1437,7 +1437,7 @@ static void intel_engine_print_registers(struct intel=
-_engine_cs *engine,
- 			len =3D scnprintf(hdr, sizeof(hdr),
- 					"\t\tPending[%d]: ccid:%08x, ",
- 					(int)(port - execlists->pending),
--					upper_32_bits(rq->context->lrc_desc));
-+					rq->context->lrc.ccid);
- 			len +=3D print_ring(hdr + len, sizeof(hdr) - len, rq);
- 			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
- 			print_request(m, rq, hdr);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/=
-intel_lrc.c
-index 233f815c3c86..456d286c17dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2847,7 +2847,7 @@ active_context(struct intel_engine_cs *engine, u32 cc=
-id)
- 	 */
-=20
- 	for (port =3D el->active; (rq =3D *port); port++) {
--		if (upper_32_bits(rq->context->lrc_desc) =3D=3D ccid) {
-+		if (rq->context->lrc.ccid =3D=3D ccid) {
- 			ENGINE_TRACE(engine,
- 				     "ccid found at active:%zd\n",
- 				     port - el->active);
-@@ -2856,7 +2856,7 @@ active_context(struct intel_engine_cs *engine, u32 cc=
-id)
- 	}
-=20
- 	for (port =3D el->pending; (rq =3D *port); port++) {
--		if (upper_32_bits(rq->context->lrc_desc) =3D=3D ccid) {
-+		if (rq->context->lrc.ccid =3D=3D ccid) {
- 			ENGINE_TRACE(engine,
- 				     "ccid found at pending:%zd\n",
- 				     port - el->pending);
---=20
-2.26.2
+Peter Jones (1):
+      Make the "Reducing compressed framebufer size" message be DRM_INFO_ONCE()
 
---=20
-Cheers,
-Stephen Rothwell
+Sultan Alsawaf (1):
+      drm/i915: Don't enable WaIncreaseLatencyIPCEnabled when IPC is disabled
 
---Sig_/e.nyMLmvHLl8O.HE3RkDMhs
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl604CgACgkQAVBC80lX
-0GyuCQf/bCPaY923Ltga+uVnvu2+bMet/ju0S6gT8ZEkVZm7RQm541Baslq8hB6d
-dlUv3F3qRXJ9M5OJlP9HvmOJMSP3gygYHtFYDhuILvlOyjH2VCDwrccfaFRNGi3U
-52ZeDWVsGlEUyVrMLEphJ9Rad6IAEEHUactBa/K1flYyjNa6ZAax3CQjnwSgKbm5
-ANN5tbW3Fjs1HFkGjGTw6ja9RAqFo0/b+TU3AXZQdvDdpzeD8BeBOQwiQCd7yP6h
-CXdz1lha86iNUyvuBgFAwJRQXlT+S3rx6xXTrCMuUSaHu0+Vsr54q1hFe1wyEEuR
-JK30f87thgOzc23PGy4P+XNRX5BmNw==
-=JUUx
------END PGP SIGNATURE-----
-
---Sig_/e.nyMLmvHLl8O.HE3RkDMhs--
-
---===============0479951358==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+ drivers/gpu/drm/i915/display/intel_fbc.c          |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c        |   7 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h     |   8 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h            |   9 --
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c         |   6 ++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h      |  35 +++++--
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c            |  15 ++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c               | 117 ++++++++++++++--------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c            |  34 ++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |   2 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c              |   4 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c             |  12 ++-
+ drivers/gpu/drm/i915/i915_irq.c                   |  16 +--
+ drivers/gpu/drm/i915/i915_perf.c                  |   6 +-
+ drivers/gpu/drm/i915/i915_reg.h                   |   1 +
+ drivers/gpu/drm/i915/i915_vma.c                   |  25 ++---
+ drivers/gpu/drm/i915/intel_pm.c                   |   2 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c         |   2 +-
+ 18 files changed, 180 insertions(+), 124 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0479951358==--
