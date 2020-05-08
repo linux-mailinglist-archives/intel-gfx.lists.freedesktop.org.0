@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9131CA7F5
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 12:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993ED1CA7F7
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 12:10:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98A2F6E153;
-	Fri,  8 May 2020 10:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1D3D6EAD2;
+	Fri,  8 May 2020 10:10:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 359E86E153
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 10:10:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21148913-1500050 for multiple; Fri, 08 May 2020 11:09:55 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4F0046EAD0;
+ Fri,  8 May 2020 10:10:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48372A0091;
+ Fri,  8 May 2020 10:10:31 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87lfm2ycj2.fsf@gaia.fi.intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 08 May 2020 10:10:31 -0000
+Message-ID: <158893263129.22724.16937837433203736344@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200508092933.738-1-chris@chris-wilson.co.uk>
- <87lfm2ycj2.fsf@gaia.fi.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158893259277.11903.5165216768500522569@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 08 May 2020 11:09:52 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Ignore submit-fences on the
- same timeline
+In-Reply-To: <20200508092933.738-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/9=5D_drm/i915=3A_Ignore_submit-fe?=
+ =?utf-8?q?nces_on_the_same_timeline?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,56 +39,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-05-08 10:57:37)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > While we ordinarily do not skip submit-fences due to the accompanying
-> > hook that we want to callback on execution, a submit-fence on the same
-> > timeline is meaningless.
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_request.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> > index 589739bfee25..be2ce9065a29 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.c
-> > +++ b/drivers/gpu/drm/i915/i915_request.c
-> > @@ -1242,6 +1242,9 @@ i915_request_await_execution(struct i915_request *rq,
-> >                       continue;
-> >               }
-> >  
-> > +             if (fence->context == rq->fence.context)
-> > +                     continue;
-> > +
-> >               /*
-> >                * We don't squash repeated fence dependencies here as we
-> >                * want to run our callback in all cases.
-> 
-> The comment in here makes me nervous. Is this skipping on same context
-> other than squashing?
+== Series Details ==
 
-The hooks we have only apply between timelines, so skipping isn't an
-issue. Suppressing the wait ensures that
+Series: series starting with [1/9] drm/i915: Ignore submit-fences on the same timeline
+URL   : https://patchwork.freedesktop.org/series/77072/
+State : warning
 
-syncobj-future-submit-past:
-	I915_EXEC_FENCE_WAIT |
-	I915_EXEC_FENCE_WAIT_SUBMIT |
-	I915_EXEC_FENCE_SIGNAL
+== Summary ==
 
-is a no-op. That is if you declare that request should wait for itself
-to be submitted before it is submitted, we correctly conclude that is
-degenerate and a no-op. We can generalise that to realise that waiting for
-any fence along the same timeline to be submitted before we are
-submitted is guaranteed by the timeline itself, and so all are no-ops.
--Chris
+$ dim checkpatch origin/drm-tip
+3db130b5548c drm/i915: Ignore submit-fences on the same timeline
+d17611e9e0a3 drm/i915: Pull waiting on an external dma-fence into its routine
+fccd141053d3 drm/i915: Prevent using semaphores to chain up to external fences
+fe5b438ff7a9 drm/i915: Tidy awaiting on dma-fences
+4e705a4d23cc dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+-:380: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#380: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
+
+-:540: WARNING:MEMORY_BARRIER: memory barrier without comment
+#540: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
++	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
+
+total: 0 errors, 2 warnings, 1 checks, 1043 lines checked
+d5504a1bf6f5 drm/syncobj: Allow use of dma-fence-proxy
+61b47826215b drm/i915/gem: Teach execbuf how to wait on future syncobj
+f44784ab7169 drm/i915/gem: Allow combining submit-fences with syncobj
+96dc49eecf66 drm/i915/gt: Declare when we enabled timeslicing
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
