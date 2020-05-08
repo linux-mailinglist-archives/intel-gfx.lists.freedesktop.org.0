@@ -1,43 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA171CA325
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 07:58:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9267E1CA476
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 08:49:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 789046EA7C;
-	Fri,  8 May 2020 05:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C5526EA83;
+	Fri,  8 May 2020 06:49:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9635D6EA7A;
- Fri,  8 May 2020 05:58:14 +0000 (UTC)
-IronPort-SDR: ri4TXbM/fKN0NpFExXBR/gQSFhYuLW7H8v8aNHKqAo7VNwVxmiszhwwdGn5xwZOZ6B9Y4AVSki
- q1NgpRNnSmeg==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 211296EA81;
+ Fri,  8 May 2020 06:49:07 +0000 (UTC)
+IronPort-SDR: YSn3jlAJ/ovFyvOYu7hWmZrlYZ2b64tthQiqOm5/JkWf3PBpHM2NszlEfodMhH7fAbGi3bxa9N
+ 1FRrmm3wbWBg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 22:58:14 -0700
-IronPort-SDR: 5SVCFbji2owjB96pBTMnlrN5O/37HsZkaE4XJYOK1zNC4DWYhbPnQBdk2+EgdOkzPzVjlpFtqG
- UzQdWrq+8vLQ==
-X-IronPort-AV: E=Sophos;i="5.73,366,1583222400"; d="scan'208";a="435566274"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.252.15.24])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2020 23:49:06 -0700
+IronPort-SDR: 5nGyvKNXcLhxXoRI6+ljuHIZP9XiiXE8us99kRracXVYKloDX8QHJFK8Nu6+Ia9RfLPw0HQA6S
+ KjT9oB8yNb2g==
+X-IronPort-AV: E=Sophos;i="5.73,366,1583222400"; d="scan'208";a="435579005"
+Received: from keolinsk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.209])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2020 22:58:11 -0700
-MIME-Version: 1.0
-In-Reply-To: <CAPM=9tyhj+KNDFdw1nk0GASwfY5dwq2kAcxQ4oSHMt2BNyycVw@mail.gmail.com>
-References: <20200507153600.314454-1-jason@jlekstrand.net>
- <158886626795.20858.1870213936656066157@build.alporthouse.com>
- <CAPM=9tyhj+KNDFdw1nk0GASwfY5dwq2kAcxQ4oSHMt2BNyycVw@mail.gmail.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, Dave Airlie <airlied@gmail.com>
+ 07 May 2020 23:49:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
+ daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Imre Deak <imre.deak@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Pankaj Bharadiya
+ <pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200504181600.18503-4-pankaj.laxminarayan.bharadiya@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Fri, 08 May 2020 08:58:08 +0300
-Message-ID: <158891748855.5249.8585589207741654136@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Subject: Re: [Intel-gfx] [PATCH] RFC: i915: Drop relocation support on Gen12+
+References: <20200504181600.18503-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200504181600.18503-4-pankaj.laxminarayan.bharadiya@intel.com>
+Date: Fri, 08 May 2020 09:48:57 +0300
+Message-ID: <87tv0q6hwm.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 3/9] drm/i915/display/sdvo: Prefer
+ drm_WARN* over WARN*
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,69 +57,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Dave Airlie (2020-05-07 21:27:27)
-> On Fri, 8 May 2020 at 01:44, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Quoting Jason Ekstrand (2020-05-07 16:36:00)
-> > > The Vulkan driver in Mesa for Intel hardware never uses relocations if
-> > > it's running on a version of i915 that supports at least softpin which
-> > > all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12 is
-> > > only supported by iris which never uses relocations.  The older i965
-> > > driver in Mesa does use relocations but it only supports Intel hardware
-> > > through Gen11 and has been deprecated for all hardware Gen9+. The entire
-> > > relocation UAPI and related infrastructure, therefore, doesn't have any
-> > > open-source userspace consumer starting with Gen12.
-> > >
-> > > Rejecting relocations starting with Gen12 has the benefit that we don't
-> > > have to bother supporting it on platforms with local memory.  Given how
-> > > much CPU touching of memory is required for relocations, not having to
-> > > do so on platforms where not all memory is directly CPU-accessible
-> > > carries significant advantages.
-> >
-> > You are not supplying them, the kernel is not checking them [as they
-> > don't exist], so there is no material benefit. The only question is
-> > maintainability.
-> >
-> > How confident are you that you will never use them and rewrite the
-> > media-driver? The code exists, will be tested, and can just as easily
-> > expire with the rest of execbuffer2.
-> 
-> From an upstream POV I say hell yes, if the hw isn't generally available yet,
-> and the media-driver/intel-compute-runtime people are warned in advance,
-> 
-> I'm all in on ripping it out for new GENs.
+On Mon, 04 May 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> struct drm_device specific drm_WARN* macros include device information
+> in the backtrace, so we know what device the warnings originate from.
+>
+> Prefer drm_WARN* over WARN* calls.
+>
+> changes since v1:
+> - Added dev_priv local variable and used it in drm_WARN* calls (Jani)
 
-There have been discussions with our media driver team about eliminating
-any relocations, but today they are still being used. They have started
-partially using soft-pinning, which is a great first step to that
-direction.
+In the earlier patches you're adding i915 local variable, here it's
+dev_priv. We're gradually transitioning from dev_priv to i915, so I'm
+not thrilled about adding new dev_priv.
 
-The compute driver does not rely on relocations, they use soft-pinning
-everywhere and explicitly manage the address space.
+BR,
+Jani.
 
-Be assured that I'm also in favor of eliminating relocations (just like
-execbuffer2, userptr and couple other things), just that we still need
-to have a functional stack before they can be dropped for new hardware.
 
-Like Chris mentioned, enough optimization have been put in the code so
-that there is zero impact from the relocations to the exclusively
-soft-pinning drivers. So the sole benefit would be being able to drop
-the relocations code in the future when the Gen11 hardware has gone
-exctinct and that is a worthy goal, too.
 
-But for now the feature is still needed for Gen12, so forcefully
-disabling it is untimely.
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index bc6c26818e15..773523dcd107 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -411,6 +411,7 @@ static const char *sdvo_cmd_name(u8 cmd)
+>  static void intel_sdvo_debug_write(struct intel_sdvo *intel_sdvo, u8 cmd,
+>  				   const void *args, int args_len)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(intel_sdvo->base.base.dev);
+>  	const char *cmd_name;
+>  	int i, pos = 0;
+>  	char buffer[64];
+> @@ -431,7 +432,7 @@ static void intel_sdvo_debug_write(struct intel_sdvo *intel_sdvo, u8 cmd,
+>  	else
+>  		BUF_PRINT("(%02X)", cmd);
+>  
+> -	WARN_ON(pos >= sizeof(buffer) - 1);
+> +	drm_WARN_ON(&dev_priv->drm, pos >= sizeof(buffer) - 1);
+>  #undef BUF_PRINT
+>  
+>  	DRM_DEBUG_KMS("%s: W: %02X %s\n", SDVO_NAME(intel_sdvo), cmd, buffer);
+> @@ -533,6 +534,7 @@ static bool intel_sdvo_write_cmd(struct intel_sdvo *intel_sdvo, u8 cmd,
+>  static bool intel_sdvo_read_response(struct intel_sdvo *intel_sdvo,
+>  				     void *response, int response_len)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(intel_sdvo->base.base.dev);
+>  	const char *cmd_status;
+>  	u8 retry = 15; /* 5 quick checks, followed by 10 long checks */
+>  	u8 status;
+> @@ -597,7 +599,7 @@ static bool intel_sdvo_read_response(struct intel_sdvo *intel_sdvo,
+>  		BUF_PRINT(" %02X", ((u8 *)response)[i]);
+>  	}
+>  
+> -	WARN_ON(pos >= sizeof(buffer) - 1);
+> +	drm_WARN_ON(&dev_priv->drm, pos >= sizeof(buffer) - 1);
+>  #undef BUF_PRINT
+>  
+>  	DRM_DEBUG_KMS("%s: R: %s\n", SDVO_NAME(intel_sdvo), buffer);
+> @@ -1081,6 +1083,7 @@ static bool intel_sdvo_compute_avi_infoframe(struct intel_sdvo *intel_sdvo,
+>  					     struct intel_crtc_state *crtc_state,
+>  					     struct drm_connector_state *conn_state)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(intel_sdvo->base.base.dev);
+>  	struct hdmi_avi_infoframe *frame = &crtc_state->infoframes.avi.avi;
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+> @@ -1106,7 +1109,7 @@ static bool intel_sdvo_compute_avi_infoframe(struct intel_sdvo *intel_sdvo,
+>  					   HDMI_QUANTIZATION_RANGE_FULL);
+>  
+>  	ret = hdmi_avi_infoframe_check(frame);
+> -	if (WARN_ON(ret))
+> +	if (drm_WARN_ON(&dev_priv->drm, ret))
+>  		return false;
+>  
+>  	return true;
+> @@ -1115,6 +1118,7 @@ static bool intel_sdvo_compute_avi_infoframe(struct intel_sdvo *intel_sdvo,
+>  static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo,
+>  					 const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(intel_sdvo->base.base.dev);
+>  	u8 sdvo_data[HDMI_INFOFRAME_SIZE(AVI)];
+>  	const union hdmi_infoframe *frame = &crtc_state->infoframes.avi;
+>  	ssize_t len;
+> @@ -1123,11 +1127,12 @@ static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo,
+>  	     intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI)) == 0)
+>  		return true;
+>  
+> -	if (WARN_ON(frame->any.type != HDMI_INFOFRAME_TYPE_AVI))
+> +	if (drm_WARN_ON(&dev_priv->drm,
+> +			frame->any.type != HDMI_INFOFRAME_TYPE_AVI))
+>  		return false;
+>  
+>  	len = hdmi_infoframe_pack_only(frame, sdvo_data, sizeof(sdvo_data));
+> -	if (WARN_ON(len < 0))
+> +	if (drm_WARN_ON(&dev_priv->drm, len < 0))
+>  		return false;
+>  
+>  	return intel_sdvo_write_infoframe(intel_sdvo, SDVO_HBUF_INDEX_AVI_IF,
+> @@ -1237,6 +1242,7 @@ intel_sdvo_get_preferred_input_mode(struct intel_sdvo *intel_sdvo,
+>  
+>  static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_config)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(pipe_config->uapi.crtc->dev);
+>  	unsigned dotclock = pipe_config->port_clock;
+>  	struct dpll *clock = &pipe_config->dpll;
+>  
+> @@ -1257,7 +1263,8 @@ static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_config)
+>  		clock->m1 = 12;
+>  		clock->m2 = 8;
+>  	} else {
+> -		WARN(1, "SDVO TV clock out of range: %i\n", dotclock);
+> +		drm_WARN(&dev_priv->drm, 1,
+> +			 "SDVO TV clock out of range: %i\n", dotclock);
+>  	}
+>  
+>  	pipe_config->clock_set = true;
+> @@ -2293,7 +2300,7 @@ intel_sdvo_connector_atomic_get_property(struct drm_connector *connector,
+>  				return 0;
+>  			}
+>  
+> -		WARN_ON(1);
+> +		drm_WARN_ON(connector->dev, 1);
+>  		*val = 0;
+>  	} else if (property == intel_sdvo_connector->top ||
+>  		   property == intel_sdvo_connector->bottom)
 
-Regards, Joonas
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
