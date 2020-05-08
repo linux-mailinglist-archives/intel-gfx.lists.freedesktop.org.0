@@ -1,47 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8A91CA769
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 11:44:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCF11CA7D6
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 May 2020 12:03:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23ACB6E054;
-	Fri,  8 May 2020 09:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267696EACE;
+	Fri,  8 May 2020 10:03:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3344B6E054
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 09:44:33 +0000 (UTC)
-IronPort-SDR: KHMYPovJIkrzGeYWPZ3bv0sy5IUuSL5hzcBLpCsIi5OZ3BCfXrvuIHg6qu3ISmN3zkuYtrLNDg
- +8DwFaadIfNA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2020 02:44:32 -0700
-IronPort-SDR: sqqplKrSPW6O/RZUnQdQmU9/cmRqRngwj6pMVVh6Lwif9PcA4cqDrO9gOtVOpvU33Co8bf6/gV
- onZCPn4trF9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,367,1583222400"; d="scan'208";a="249582497"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 08 May 2020 02:44:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 08 May 2020 12:44:29 +0300
-Date: Fri, 8 May 2020 12:44:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200508094429.GG6112@intel.com>
-References: <20200504225227.464666-1-matthew.d.roper@intel.com>
- <20200504225227.464666-15-matthew.d.roper@intel.com>
- <20200507120430.GD6112@intel.com>
- <20200507180533.GA837377@mdroper-desk1.amr.corp.intel.com>
+X-Greylist: delayed 514 seconds by postgrey-1.36 at gabe;
+ Fri, 08 May 2020 10:03:12 UTC
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 264C86EACC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 May 2020 10:03:12 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 44EE05800E1;
+ Fri,  8 May 2020 05:54:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Fri, 08 May 2020 05:54:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=fNKb2E3cngycuSCYlu4bdd4ggu3
+ a874dABTj/kMWUm0=; b=fZZ1hS1aaqVwquRtjcmtV1uwMAChocqg77h2wS5q+6S
+ CTysKclNK/nv1Ft+POR8eY2bzp6wyx1jkI1pa4yKymYwQ3lSeVCpgKskekxOwW3V
+ rYg6ASUEIRO3CZdc+xmfLgwrTD51JKxI5uH23frrKvJlMI5sctciSycR5co756gT
+ O6RCa8jTgEK5lxWREhRAQSSQL0uZ5lS1ncnghdP+ak1Fn+mjn4+4WvUL36MB08U4
+ AsInFYHnz+r1lMwf9MwqOJE/VSxkw42eaqNgThGWYleWyQBZKEXysu0D+zo4dpk9
+ O9jsRiF2Fo6dYxpDxvSJkLnW6Zch17Pg1XQQh417vig==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=fNKb2E
+ 3cngycuSCYlu4bdd4ggu3a874dABTj/kMWUm0=; b=IVz5NEuAd8YNG9zOll2WGv
+ LVMirSGHhkmKzHsqzIRU4vmwPY06iaA0ZVqkLHvTQQbSKqK+ZuXHLRLcpXm/x7Yc
+ Eyu8tN5q0QQpK4I+Pjbfjx6PBYHceqm3zupvXr3RUF6DJaEMnRPRL2OSzF2bWU1e
+ ghvZprSJtjEiZwczQ9eDWI5xn9nAfhKvHAj7SvYdg09cONqYpQRzqpKuM/nwUf2R
+ UlHaPU7Fx2fp2DtesP6A4dQUUP27/EL7jaoMyJGB5vE8Snss5VdaEkAR4wsn5WzC
+ z9PG2hV24VVGvxLatb9PHfAcKTNzbvECGCT1VyNiwIvi0zlU3JMMxB0PcVcet4EQ
+ ==
+X-ME-Sender: <xms:WSy1XrLHLwYoqFca-9ZQRaTAl21STgn4Ua-jN0OfQsPvzIuY8La8GQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrkedvgddvudcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghgucfm
+ jfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuheejgf
+ ffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecukfhppeekfedr
+ keeirdekledruddtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
+ hlfhhrohhmpehgrhgvgheskhhrohgrhhdrtghomh
+X-ME-Proxy: <xmx:WSy1XgYPNH_dMaQPBpqQmubb9WDDa-pGvtp-LCKIlOkFzIcGGeRd3g>
+ <xmx:WSy1XsLN-X5N5GrqOAMoZsCT_Kyv_a9Q4Agj6vWQTu2Jjm-KmZ-A0g>
+ <xmx:WSy1Xqn4gbyXrsM5-OrS4bduG-yU1xQirbm2fufqhAs885o1DsygKA>
+ <xmx:XCy1Xs5hqa_PXM4aJN_lHF1bMY4ghUjSybFF6_cfF58xrxdxJBsokA>
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 85EC73280066;
+ Fri,  8 May 2020 05:54:32 -0400 (EDT)
+Date: Fri, 8 May 2020 11:54:26 +0200
+From: Greg KH <greg@kroah.com>
+To: Yves-Alexis Perez <corsac@debian.org>
+Message-ID: <20200508095426.GA3778290@kroah.com>
+References: <20190903190642.32588-1-daniel.vetter@ffwll.ch>
+ <20190905185318.31363-1-daniel.vetter@ffwll.ch>
+ <2a05f4c4362d386d298a06a67f2f528ef603a734.camel@debian.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200507180533.GA837377@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 14/22] drm/i915/rkl: provide port/phy
- mapping for vbt
+In-Reply-To: <2a05f4c4362d386d298a06a67f2f528ef603a734.camel@debian.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Take the atomic toys away from X
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,266 +80,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
+ Adam Jackson <ajax@redhat.com>, stable@vger.kernel.org,
+ Alex Deucher <alexdeucher@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Ilia Mirkin <imirkin@alum.mit.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 07, 2020 at 11:05:33AM -0700, Matt Roper wrote:
-> On Thu, May 07, 2020 at 03:04:30PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Mon, May 04, 2020 at 03:52:19PM -0700, Matt Roper wrote:
-> > > From: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > =
+On Fri, May 08, 2020 at 11:06:56AM +0200, Yves-Alexis Perez wrote:
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA256
+> 
+> On Thu, 2019-09-05 at 20:53 +0200, Daniel Vetter wrote:
+> > The -modesetting ddx has a totally broken idea of how atomic works:
+> > - doesn't disable old connectors, assuming they get auto-disable like
+> >   with the legacy setcrtc
+> > - assumes ASYNC_FLIP is wired through for the atomic ioctl
+> > - not a single call to TEST_ONLY
+> > 
+> > Iow the implementation is a 1:1 translation of legacy ioctls to
+> > atomic, which is a) broken b) pointless.
+> > 
+> > We already have bugs in both i915 and amdgpu-DC where this prevents us
+> > from enabling neat features.
+> > 
+> > If anyone ever cares about atomic in X we can easily add a new atomic
+> > level (req->value == 2) for X to get back the shiny toys.
+> > 
+> > Since these broken versions of -modesetting have been shipping,
+> > there's really no other way to get out of this bind.
+> 
+> Hi Daniel and Greg (especially). It seems that this patch was never applied to
+> stable, maybe it fell through the cracks?
 
-> > > RKL uses the DDI A, DDI B, DDI USBC1, DDI USBC2 from the DE point of
-> > > view, so all DDI/pipe/transcoder register use these indexes to refer =
-to
-> > > them. Combo phy and IO functions follow another namespace that we keep
-> > > as "enum phy". The VBT in theory would use the DE point of view, but
-> > > that does not happen in practice.
-> > > =
+What patch is "this patch"?
 
-> > > Provide a table to convert the child devices to the "correct" port
-> > > numbering we use. Now this is the output we get while reading the VBT:
-> > > =
+> It doesn't apply as-is in 4.19 branch but a small change in the context makes
+> it apply. I'm experiencing issues with lightdm and vt-switch in Debian Buster
+> (which has a 4.19 kernel) so I'd appreciate if the patch was included in at
+> least that release.
 
-> > > DDIA:
-> > > [drm:intel_bios_port_aux_ch [i915]] using AUX A for port A (VBT)
-> > > [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:=
-275:DDI A]
-> > > [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCO=
-DER:275:DDI A]
-> > > [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x1 for port A (=
-VBT)
-> > > =
+What is the git commit id of the patch in Linus's tree?  If you have a
+working backport, that makes it much easier than hoping I can fix it
+up...
 
-> > > DDIB:
-> > > [drm:intel_bios_port_aux_ch [i915]] using AUX B for port B (platform =
-default)
-> > > [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCO=
-DER:291:DDI B]
-> > > [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x2 for port B (=
-VBT)
-> > > =
+thanks,
 
-> > > DDI USBC1:
-> > > [drm:intel_bios_port_aux_ch [i915]] using AUX D for port D (VBT)
-> > > [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:=
-295:DDI D]
-> > > [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCO=
-DER:295:DDI D]
-> > > [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x3 for port D (=
-VBT)
-> > > =
-
-> > > DDI USBC2:
-> > > [drm:intel_bios_port_aux_ch [i915]] using AUX E for port E (VBT)
-> > > [drm:intel_dp_init_connector [i915]] Adding DP connector on [ENCODER:=
-306:DDI E]
-> > > [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCO=
-DER:306:DDI E]
-> > > [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x9 for port E (=
-VBT)
-> > > =
-
-> > > Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> > > Cc: Aditya Swarup <aditya.swarup@intel.com>
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_bios.c | 72 ++++++++++++++++-----=
---
-> > >  1 file changed, 51 insertions(+), 21 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/=
-drm/i915/display/intel_bios.c
-> > > index 839124647202..4f1a72a90b8f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > > @@ -1619,30 +1619,18 @@ static u8 map_ddc_pin(struct drm_i915_private=
- *dev_priv, u8 vbt_pin)
-> > >  	return 0;
-> > >  }
-> > >  =
-
-> > > -static enum port dvo_port_to_port(u8 dvo_port)
-> > > +static enum port __dvo_port_to_port(int n_ports, int n_dvo,
-> > > +				    const int port_mapping[][3], u8 dvo_port)
-> > >  {
-> > > -	/*
-> > > -	 * Each DDI port can have more than one value on the "DVO Port" fie=
-ld,
-> > > -	 * so look for all the possible values for each port.
-> > > -	 */
-> > > -	static const int dvo_ports[][3] =3D {
-> > > -		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1},
-> > > -		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1},
-> > > -		[PORT_C] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1},
-> > > -		[PORT_D] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1},
-> > > -		[PORT_E] =3D { DVO_PORT_CRT, DVO_PORT_HDMIE, DVO_PORT_DPE},
-> > > -		[PORT_F] =3D { DVO_PORT_HDMIF, DVO_PORT_DPF, -1},
-> > > -		[PORT_G] =3D { DVO_PORT_HDMIG, DVO_PORT_DPG, -1},
-> > > -	};
-> > >  	enum port port;
-> > >  	int i;
-> > >  =
-
-> > > -	for (port =3D PORT_A; port < ARRAY_SIZE(dvo_ports); port++) {
-> > > -		for (i =3D 0; i < ARRAY_SIZE(dvo_ports[port]); i++) {
-> > > -			if (dvo_ports[port][i] =3D=3D -1)
-> > > +	for (port =3D PORT_A; port < n_ports; port++) {
-> > > +		for (i =3D 0; i < n_dvo; i++) {
-> > > +			if (port_mapping[port][i] =3D=3D -1)
-> > >  				break;
-> > >  =
-
-> > > -			if (dvo_port =3D=3D dvo_ports[port][i])
-> > > +			if (dvo_port =3D=3D port_mapping[port][i])
-> > >  				return port;
-> > >  		}
-> > >  	}
-> > > @@ -1650,6 +1638,48 @@ static enum port dvo_port_to_port(u8 dvo_port)
-> > >  	return PORT_NONE;
-> > >  }
-> > >  =
-
-> > > +static enum port dvo_port_to_port(struct drm_i915_private *dev_priv,
-> > > +				  u8 dvo_port)
-> > > +{
-> > > +	/*
-> > > +	 * Each DDI port can have more than one value on the "DVO Port" fie=
-ld,
-> > > +	 * so look for all the possible values for each port.
-> > > +	 */
-> > > +	static const int port_mapping[][3] =3D {
-> > > +		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1 },
-> > > +		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1 },
-> > > +		[PORT_C] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
-> > > +		[PORT_D] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
-> > > +		[PORT_E] =3D { DVO_PORT_CRT, DVO_PORT_HDMIE, -1 },
-> > > +		[PORT_F] =3D { DVO_PORT_HDMIF, DVO_PORT_DPF, -1 },
-> > > +		[PORT_G] =3D { DVO_PORT_HDMIG, DVO_PORT_DPG, -1 },
-> > > +	};
-> > > +	/*
-> > > +	 * Bspec lists the ports as A, B, C, D - however internally in our
-> > > +	 * driver we keep them as PORT_A, PORT_B, PORT_D and PORT_E so the
-> > > +	 * registers in Display Engine match the right offsets. Apply the
-> > > +	 * mapping here to translate from VBT to internal convention.
-> > > +	 */
-> > > +	static const int rkl_port_mapping[][3] =3D {
-> > > +		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1 },
-> > > +		[PORT_B] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1 },
-> > > +		[PORT_C] =3D { -1 },
-> > > +		[PORT_D] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
-> > > +		[PORT_E] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
-> > > +	};
-> > > +
-> > > +	if (IS_ROCKETLAKE(dev_priv))
-> > > +		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
-> > > +					  ARRAY_SIZE(rkl_port_mapping[0]),
-> > > +					  rkl_port_mapping,
-> > > +					  dvo_port);
-> > > +	else
-> > > +		return __dvo_port_to_port(ARRAY_SIZE(port_mapping),
-> > > +					  ARRAY_SIZE(port_mapping[0]),
-> > > +					  port_mapping,
-> > > +					  dvo_port);
-> > > +}
-> > =
-
-> > What a horror show. To me it looks like we should just use the
-> > phy here. Or would that break something else?
-> =
-
-> That would break EHL since its VBT uses the DDI ("D") rather than the
-> PHY.
-> =
-
-> So today we have two platforms (EHL and RKL) that have DDI !=3D PHY, but
-> the VBT handling of them isn't consistent.  :-(
-
-Sigh.
-
-I wonder if we should just add encoder->vbt_port or something along
-those lines. Unfortunately even that still needs some mapping tricks
-due to the HDMI vs. DP dvo_port difference.
-
-In the mantime I guess this is hidden well wnough that it won't bother
-too many people until the next platform that needs these hacks comes
-along.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> =
-
-> =
-
-> Matt
-> =
-
-> > =
-
-> > > +
-> > >  static void parse_ddi_port(struct drm_i915_private *dev_priv,
-> > >  			   struct display_device_data *devdata,
-> > >  			   u8 bdb_version)
-> > > @@ -1659,7 +1689,7 @@ static void parse_ddi_port(struct drm_i915_priv=
-ate *dev_priv,
-> > >  	bool is_dvi, is_hdmi, is_dp, is_edp, is_crt;
-> > >  	enum port port;
-> > >  =
-
-> > > -	port =3D dvo_port_to_port(child->dvo_port);
-> > > +	port =3D dvo_port_to_port(dev_priv, child->dvo_port);
-> > >  	if (port =3D=3D PORT_NONE)
-> > >  		return;
-> > >  =
-
-> > > @@ -2603,10 +2633,10 @@ enum aux_ch intel_bios_port_aux_ch(struct drm=
-_i915_private *dev_priv,
-> > >  		aux_ch =3D AUX_CH_B;
-> > >  		break;
-> > >  	case DP_AUX_C:
-> > > -		aux_ch =3D AUX_CH_C;
-> > > +		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_D : AUX_CH_C;
-> > >  		break;
-> > >  	case DP_AUX_D:
-> > > -		aux_ch =3D AUX_CH_D;
-> > > +		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_E : AUX_CH_D;
-> > >  		break;
-> > >  	case DP_AUX_E:
-> > >  		aux_ch =3D AUX_CH_E;
-> > > -- =
-
-> > > 2.24.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-> =
-
-> -- =
-
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+greg k-h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
