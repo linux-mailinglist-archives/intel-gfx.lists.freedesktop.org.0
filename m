@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296821CC11B
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 14:02:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 790421CC164
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 14:44:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 495926E02C;
-	Sat,  9 May 2020 12:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B63B6E343;
+	Sat,  9 May 2020 12:44:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD3A6E02C
- for <intel-gfx@lists.freedesktop.org>; Sat,  9 May 2020 12:02:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21147788-1500050 for multiple; Sat, 09 May 2020 13:02:38 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C74956E340;
+ Sat,  9 May 2020 12:44:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C1677A0088;
+ Sat,  9 May 2020 12:44:19 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200509115217.26853-1-chris@chris-wilson.co.uk>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 09 May 2020 12:44:19 -0000
+Message-ID: <158902825976.12067.6648287174860934854@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200509115217.26853-1-chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158902575439.20071.16532097686934470584@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Sat, 09 May 2020 13:02:34 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Watch out for idling during
- i915_gem_evict_something
+In-Reply-To: <20200509115217.26853-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Watch_out_for_idling_during_i915=5Fgem=5Fevict=5Fsomet?=
+ =?utf-8?q?hing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +39,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-09 12:52:17)
-> i915_gem_evict_something() is charged with finding a slot within the GTT
-> that we may reuse. Since our goal is not to stall, we first look for a
-> slot that only overlaps idle vma. To this end, on the first pass we move
-> any active vma to the end of the search list. However, we only stopped
-> moving active vma after we see the first active vma twice. If during the
-> search, that first active vma completed, we would not notice and keep on
-> extending the search list.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1746
+== Series Details ==
 
-Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
-Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
+Series: drm/i915: Watch out for idling during i915_gem_evict_something
+URL   : https://patchwork.freedesktop.org/series/77104/
+State : success
 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.5+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8456 -> Patchwork_17617
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17617/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17617 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([i915#262])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8456/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17617/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8456 -> Patchwork_17617
+
+  CI-20190529: 20190529
+  CI_DRM_8456: 4027cd5e6a38cb88b4ae0296d2f06daf8944f26b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5643: 9d0576c821f886fd053effd96cd3c441fee2ce53 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17617: f1eb03c3424cabcc304cdc53c920a134b8de12a9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f1eb03c3424c drm/i915: Watch out for idling during i915_gem_evict_something
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17617/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
