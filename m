@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C731CC03F
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 12:13:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB85F1CC074
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 12:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ACE56E320;
-	Sat,  9 May 2020 10:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD9336E329;
+	Sat,  9 May 2020 10:41:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2C5006E31E;
- Sat,  9 May 2020 10:13:51 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAB686E32B;
+ Sat,  9 May 2020 10:41:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03B76A00CC;
- Sat,  9 May 2020 10:13:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9FC4FA011B;
+ Sat,  9 May 2020 10:41:51 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 09 May 2020 10:13:51 -0000
-Message-ID: <158901923101.12068.455543870031404967@emeril.freedesktop.org>
+Date: Sat, 09 May 2020 10:41:51 -0000
+Message-ID: <158902091163.12065.13998131755529435566@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200509094222.16666-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200509094222.16666-1-chris@chris-wilson.co.uk>
+References: <20200509095733.30073-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200509095733.30073-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Mark_up_the_racy_read_of_execlists-=3Econtext=5Ftag?=
+ =?utf-8?q?/i915/gt=3A_Couple_up_old_virtual_breadcrumb_on_new_sibling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Mark up the racy read of execlists->context_tag
-URL   : https://patchwork.freedesktop.org/series/77099/
+Series: drm/i915/gt: Couple up old virtual breadcrumb on new sibling
+URL   : https://patchwork.freedesktop.org/series/77101/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8456 -> Patchwork_17614
+CI Bug Log - changes from CI_DRM_8456 -> Patchwork_17615
 ====================================================
 
 Summary
@@ -63,24 +63,13 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17614/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17615/index.html
 
-Known issues
-------------
 
-  Here are the changes found in Patchwork_17614 that come from known issues:
+Changes
+-------
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8456/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17614/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+  No changes found
 
 
 Participating hosts (48 -> 42)
@@ -93,21 +82,21 @@ Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8456 -> Patchwork_17614
+  * Linux: CI_DRM_8456 -> Patchwork_17615
 
   CI-20190529: 20190529
   CI_DRM_8456: 4027cd5e6a38cb88b4ae0296d2f06daf8944f26b @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5643: 9d0576c821f886fd053effd96cd3c441fee2ce53 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17614: 667a54b0c4c137832da216fc858a12f828d9adbf @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_17615: 52901240bad544703067ab46afce33bd7e63e04d @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-667a54b0c4c1 drm/i915/gt: Mark up the racy read of execlists->context_tag
+52901240bad5 drm/i915/gt: Couple up old virtual breadcrumb on new sibling
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17614/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17615/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
