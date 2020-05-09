@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB85F1CC074
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 12:41:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF0E1CC082
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 May 2020 12:46:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9336E329;
-	Sat,  9 May 2020 10:41:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E11189DA3;
+	Sat,  9 May 2020 10:46:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AAB686E32B;
- Sat,  9 May 2020 10:41:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9FC4FA011B;
- Sat,  9 May 2020 10:41:51 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4379C89DA3
+ for <intel-gfx@lists.freedesktop.org>; Sat,  9 May 2020 10:46:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21147219-1500050 for multiple; Sat, 09 May 2020 11:46:30 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 09 May 2020 10:41:51 -0000
-Message-ID: <158902091163.12065.13998131755529435566@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200509095733.30073-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200509095733.30073-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Couple_up_old_virtual_breadcrumb_on_new_sibling?=
+In-Reply-To: <14063C7AD467DE4B82DEDB5C278E8663010E20C1C4@FMSMSX108.amr.corp.intel.com>
+References: <20200506205920.24233-1-chris@chris-wilson.co.uk>
+ <20200506205920.24233-12-chris@chris-wilson.co.uk>
+ <14063C7AD467DE4B82DEDB5C278E8663010E2094F8@FMSMSX108.amr.corp.intel.com>
+ <158885980224.20858.10019801670820346317@build.alporthouse.com>
+ <14063C7AD467DE4B82DEDB5C278E8663010E20C1C4@FMSMSX108.amr.corp.intel.com>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158902118622.20071.15836050766689160768@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Sat, 09 May 2020 11:46:26 +0100
+Subject: Re: [Intel-gfx] [PATCH 12/15] drm/i915: Replace the hardcoded
+ I915_FENCE_TIMEOUT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,65 +44,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Ruhl, Michael J (2020-05-08 14:54:50)
+> >-----Original Message-----
+> >From: Chris Wilson <chris@chris-wilson.co.uk>
+> >Sent: Thursday, May 7, 2020 9:57 AM
+> >To: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-
+> >gfx@lists.freedesktop.org
+> >Subject: Re: [Intel-gfx] [PATCH 12/15] drm/i915: Replace the hardcoded
+> >I915_FENCE_TIMEOUT
+> >
+> >Quoting Ruhl, Michael J (2020-05-07 14:53:00)
+> >>
+> >>
+> >> >-----Original Message-----
+> >> >From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> >Chris
+> >> >Wilson
+> >> >diff --git a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+> >> >b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+> >> >index 3a146aa2593b..d3a86a4d5c04 100644
+> >> >--- a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+> >> >+++ b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+> >> >@@ -288,8 +288,7 @@ int i915_gem_schedule_fill_pages_blt(struct
+> >> >drm_i915_gem_object *obj,
+> >> >
+> >> >       i915_gem_object_lock(obj);
+> >> >       err = i915_sw_fence_await_reservation(&work->wait,
+> >> >-                                            obj->base.resv, NULL,
+> >> >-                                            true, I915_FENCE_TIMEOUT,
+> >> >+                                            obj->base.resv, NULL, true, 0,
+> >>
+> >> Did you miss this one, or is the '0' on purpose?
+> >
+> >It should be 0, as it should be only handling internal fences which may
+> >take as long as required and should not be timed out.
+> >
+> >Still this is a placeholder function and should not be taken too
+> >seriously.
+> 
+> Assuming that the "placeholder function" is the _fill_pages_blt()...
 
-Series: drm/i915/gt: Couple up old virtual breadcrumb on new sibling
-URL   : https://patchwork.freedesktop.org/series/77101/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8456 -> Patchwork_17615
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17615/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8456 -> Patchwork_17615
-
-  CI-20190529: 20190529
-  CI_DRM_8456: 4027cd5e6a38cb88b4ae0296d2f06daf8944f26b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5643: 9d0576c821f886fd053effd96cd3c441fee2ce53 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17615: 52901240bad544703067ab46afce33bd7e63e04d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-52901240bad5 drm/i915/gt: Couple up old virtual breadcrumb on new sibling
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17615/index.html
+It is. I'm not fond of await_reservation either. That extra 'exclude'
+parameter belies a weakness of the one-size fits all approach. Just look
+at the trouble we go to with i915_request_await_dma_fence() to determine
+the "best" means of waiting on the fence, and then worry about how to fit
+that into a more generic api.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
