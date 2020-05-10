@@ -2,40 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C94A1CC5B4
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 02:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCD451CCA32
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 12:24:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2914289A20;
-	Sun, 10 May 2020 00:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 069D06E13F;
+	Sun, 10 May 2020 10:24:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F89E8970B;
- Sun, 10 May 2020 00:16:14 +0000 (UTC)
-Received: from localhost.localdomain (c-73-231-172-41.hsd1.ca.comcast.net
- [73.231.172.41])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 924AF20735;
- Sun, 10 May 2020 00:16:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1589069774;
- bh=rcEsrsDljCvjlGQcVUHPCm18WB0VkP4lxtaiG5DbAyw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=W/CJP4rfOuAYUekGlno04mT1Bs4lSQLdciQD+tx1rHltWBYBtvFb+B4LUrQlbHjBw
- UW04g6EtzWPm5sfdxjNzKUcndsgGiQnoKqJbwTmr1gRmhfy5sziX1U8aQ0QHjqGc6a
- IYL4qvBvGH/VJgSMEmkxSCU36sL9Vj/k7/fB2KjE=
-Date: Sat, 9 May 2020 17:16:12 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Message-Id: <20200509171612.94ee332ad4f494521d911ac0@linux-foundation.org>
-In-Reply-To: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-References: <0-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
- <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH hmm v2 1/5] mm/hmm: make
- CONFIG_DEVICE_PRIVATE into a select
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6866E13F
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 May 2020 10:24:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154793-1500050 
+ for multiple; Sun, 10 May 2020 11:24:34 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 10 May 2020 11:24:29 +0100
+Message-Id: <20200510102431.21959-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Emit await(batch) before
+ MI_BB_START
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,61 +37,290 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Ralph Campbell <rcampbell@nvidia.com>, "Yang, Philip" <Philip.Yang@amd.com>,
- John Hubbard <jhubbard@nvidia.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
- =?ISO-8859-1?Q?J=E9r=F4me?= Glisse <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, intel-gfx@lists.freedesktop.org,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri,  1 May 2020 15:20:44 -0300 Jason Gunthorpe <jgg@ziepe.ca> wrote:
+Be consistent and ensure that we always emit the asynchronous waits
+prior to issuing instructions that use the address. This ensures that if
+we do emit GPU commands to do the await, they are before our use!
 
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> There is no reason for a user to select this or not directly - it should
-> be selected by drivers that are going to use the feature, similar to how
-> CONFIG_HMM_MIRROR works.
-> 
-> Currently all drivers provide a feature kconfig that will disable use of
-> DEVICE_PRIVATE in that driver, allowing users to avoid enabling this if
-> they don't want the overhead.
-> 
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 49 ++++++++++++-------
+ .../drm/i915/gem/selftests/igt_gem_utils.c    | 26 ++++------
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   | 16 +++---
+ drivers/gpu/drm/i915/selftests/i915_request.c | 28 +++++------
+ 4 files changed, 65 insertions(+), 54 deletions(-)
 
-I'm not too sure what's going on here, but i386 allmodconfig broke.
-
-kernel/resource.c: In function '__request_free_mem_region':
-kernel/resource.c:1653:28: error: 'PA_SECTION_SHIFT' undeclared (first use in this function); did you mean 'SECTIONS_PGSHIFT'?
-  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
-
-because in current mainline, allmodconfig produces
-CONFIG_DEVICE_PRIVATE=n but in current linux-next, allmodconfig
-produces CONFIG_DEVICE_PRIVATE=y.  But CONFIG_SPARSEMEM=n so the build
-breaks.
-
-Bisection fingers this commit, but reverting it doesn't seem to fix
-things.  Could you take a look please?
-
-I'm seeing this from menuconfig:
-
-WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
-  Depends on [n]: ZONE_DEVICE [=n]
-  Selected by [m]:
-  - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=m] && MMU [=y] && STAGING [=y]
-  - TEST_HMM [=m] && RUNTIME_TESTING_MENU [=y] && TRANSPARENT_HUGEPAGE [=y]
-
-`select' rather sucks this way - easy to break dependencies.  Quite a
-number of years ago the Kconfig gurus were saying "avoid", but I don't
-recall the details.
-
-
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 87d264fe54b2..b81978890641 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -972,12 +972,6 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
+ 		goto err_batch;
+ 	}
+ 
+-	err = rq->engine->emit_bb_start(rq,
+-					batch->node.start, batch->node.size,
+-					0);
+-	if (err)
+-		goto err_request;
+-
+ 	i915_vma_lock(batch);
+ 	err = i915_request_await_object(rq, batch->obj, false);
+ 	if (err == 0)
+@@ -994,6 +988,18 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
+ 	if (err)
+ 		goto skip_request;
+ 
++	if (rq->engine->emit_init_breadcrumb) {
++		err = rq->engine->emit_init_breadcrumb(rq);
++		if (err)
++			goto skip_request;
++	}
++
++	err = rq->engine->emit_bb_start(rq,
++					batch->node.start, batch->node.size,
++					0);
++	if (err)
++		goto skip_request;
++
+ 	i915_vma_unpin_and_release(&batch, 0);
+ 	i915_vma_unpin(vma);
+ 
+@@ -1005,7 +1011,6 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
+ 
+ skip_request:
+ 	i915_request_set_error_once(rq, err);
+-err_request:
+ 	i915_request_add(rq);
+ err_batch:
+ 	i915_vma_unpin_and_release(&batch, 0);
+@@ -1541,10 +1546,6 @@ static int write_to_scratch(struct i915_gem_context *ctx,
+ 		goto err_unpin;
+ 	}
+ 
+-	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
+-	if (err)
+-		goto err_request;
+-
+ 	i915_vma_lock(vma);
+ 	err = i915_request_await_object(rq, vma->obj, false);
+ 	if (err == 0)
+@@ -1553,6 +1554,16 @@ static int write_to_scratch(struct i915_gem_context *ctx,
+ 	if (err)
+ 		goto skip_request;
+ 
++	if (rq->engine->emit_init_breadcrumb) {
++		err = rq->engine->emit_init_breadcrumb(rq);
++		if (err)
++			goto skip_request;
++	}
++
++	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
++	if (err)
++		goto skip_request;
++
+ 	i915_vma_unpin(vma);
+ 
+ 	i915_request_add(rq);
+@@ -1560,7 +1571,6 @@ static int write_to_scratch(struct i915_gem_context *ctx,
+ 	goto out_vm;
+ skip_request:
+ 	i915_request_set_error_once(rq, err);
+-err_request:
+ 	i915_request_add(rq);
+ err_unpin:
+ 	i915_vma_unpin(vma);
+@@ -1674,10 +1684,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 		goto err_unpin;
+ 	}
+ 
+-	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, flags);
+-	if (err)
+-		goto err_request;
+-
+ 	i915_vma_lock(vma);
+ 	err = i915_request_await_object(rq, vma->obj, true);
+ 	if (err == 0)
+@@ -1686,6 +1692,16 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	if (err)
+ 		goto skip_request;
+ 
++	if (rq->engine->emit_init_breadcrumb) {
++		err = rq->engine->emit_init_breadcrumb(rq);
++		if (err)
++			goto skip_request;
++	}
++
++	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, flags);
++	if (err)
++		goto skip_request;
++
+ 	i915_vma_unpin(vma);
+ 
+ 	i915_request_add(rq);
+@@ -1708,7 +1724,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	goto out_vm;
+ skip_request:
+ 	i915_request_set_error_once(rq, err);
+-err_request:
+ 	i915_request_add(rq);
+ err_unpin:
+ 	i915_vma_unpin(vma);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+index 772d8cba7da9..e21b5023ca7d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
++++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+@@ -83,6 +83,8 @@ igt_emit_store_dw(struct i915_vma *vma,
+ 		offset += PAGE_SIZE;
+ 	}
+ 	*cmd = MI_BATCH_BUFFER_END;
++
++	i915_gem_object_flush_map(obj);
+ 	i915_gem_object_unpin_map(obj);
+ 
+ 	intel_gt_chipset_flush(vma->vm->gt);
+@@ -126,16 +128,6 @@ int igt_gpu_fill_dw(struct intel_context *ce,
+ 		goto err_batch;
+ 	}
+ 
+-	flags = 0;
+-	if (INTEL_GEN(ce->vm->i915) <= 5)
+-		flags |= I915_DISPATCH_SECURE;
+-
+-	err = rq->engine->emit_bb_start(rq,
+-					batch->node.start, batch->node.size,
+-					flags);
+-	if (err)
+-		goto err_request;
+-
+ 	i915_vma_lock(batch);
+ 	err = i915_request_await_object(rq, batch->obj, false);
+ 	if (err == 0)
+@@ -152,15 +144,17 @@ int igt_gpu_fill_dw(struct intel_context *ce,
+ 	if (err)
+ 		goto skip_request;
+ 
+-	i915_request_add(rq);
+-
+-	i915_vma_unpin_and_release(&batch, 0);
++	flags = 0;
++	if (INTEL_GEN(ce->vm->i915) <= 5)
++		flags |= I915_DISPATCH_SECURE;
+ 
+-	return 0;
++	err = rq->engine->emit_bb_start(rq,
++					batch->node.start, batch->node.size,
++					flags);
+ 
+ skip_request:
+-	i915_request_set_error_once(rq, err);
+-err_request:
++	if (err)
++		i915_request_set_error_once(rq, err);
+ 	i915_request_add(rq);
+ err_batch:
+ 	i915_vma_unpin_and_release(&batch, 0);
+diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+index 708cb7808865..f59e7875cc5e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
++++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+@@ -219,6 +219,14 @@ int intel_renderstate_emit(struct intel_renderstate *so,
+ 	if (!so->vma)
+ 		return 0;
+ 
++	i915_vma_lock(so->vma);
++	err = i915_request_await_object(rq, so->vma->obj, false);
++	if (err == 0)
++		err = i915_vma_move_to_active(so->vma, rq, 0);
++	i915_vma_unlock(so->vma);
++	if (err)
++		return err;
++
+ 	err = engine->emit_bb_start(rq,
+ 				    so->batch_offset, so->batch_size,
+ 				    I915_DISPATCH_SECURE);
+@@ -233,13 +241,7 @@ int intel_renderstate_emit(struct intel_renderstate *so,
+ 			return err;
+ 	}
+ 
+-	i915_vma_lock(so->vma);
+-	err = i915_request_await_object(rq, so->vma->obj, false);
+-	if (err == 0)
+-		err = i915_vma_move_to_active(so->vma, rq, 0);
+-	i915_vma_unlock(so->vma);
+-
+-	return err;
++	return 0;
+ }
+ 
+ void intel_renderstate_fini(struct intel_renderstate *so)
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 15b1ca9f7a01..ffdfcb3805b5 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -865,13 +865,6 @@ static int live_all_engines(void *arg)
+ 			goto out_request;
+ 		}
+ 
+-		err = engine->emit_bb_start(request[idx],
+-					    batch->node.start,
+-					    batch->node.size,
+-					    0);
+-		GEM_BUG_ON(err);
+-		request[idx]->batch = batch;
+-
+ 		i915_vma_lock(batch);
+ 		err = i915_request_await_object(request[idx], batch->obj, 0);
+ 		if (err == 0)
+@@ -879,6 +872,13 @@ static int live_all_engines(void *arg)
+ 		i915_vma_unlock(batch);
+ 		GEM_BUG_ON(err);
+ 
++		err = engine->emit_bb_start(request[idx],
++					    batch->node.start,
++					    batch->node.size,
++					    0);
++		GEM_BUG_ON(err);
++		request[idx]->batch = batch;
++
+ 		i915_request_get(request[idx]);
+ 		i915_request_add(request[idx]);
+ 		idx++;
+@@ -993,13 +993,6 @@ static int live_sequential_engines(void *arg)
+ 			}
+ 		}
+ 
+-		err = engine->emit_bb_start(request[idx],
+-					    batch->node.start,
+-					    batch->node.size,
+-					    0);
+-		GEM_BUG_ON(err);
+-		request[idx]->batch = batch;
+-
+ 		i915_vma_lock(batch);
+ 		err = i915_request_await_object(request[idx],
+ 						batch->obj, false);
+@@ -1008,6 +1001,13 @@ static int live_sequential_engines(void *arg)
+ 		i915_vma_unlock(batch);
+ 		GEM_BUG_ON(err);
+ 
++		err = engine->emit_bb_start(request[idx],
++					    batch->node.start,
++					    batch->node.size,
++					    0);
++		GEM_BUG_ON(err);
++		request[idx]->batch = batch;
++
+ 		i915_request_get(request[idx]);
+ 		i915_request_add(request[idx]);
+ 
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
