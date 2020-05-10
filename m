@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19E061CCA33
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 12:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4547E1CCA34
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 12:24:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57BCC6E144;
-	Sun, 10 May 2020 10:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA1886E14A;
+	Sun, 10 May 2020 10:24:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 718D86E142
- for <intel-gfx@lists.freedesktop.org>; Sun, 10 May 2020 10:24:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0DD6E13F
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 May 2020 10:24:41 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154794-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154795-1500050 
  for multiple; Sun, 10 May 2020 11:24:34 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 10 May 2020 11:24:30 +0100
-Message-Id: <20200510102431.21959-2-chris@chris-wilson.co.uk>
+Date: Sun, 10 May 2020 11:24:31 +0100
+Message-Id: <20200510102431.21959-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200510102431.21959-1-chris@chris-wilson.co.uk>
 References: <20200510102431.21959-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Always flush before
- unpining after writing
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Restore Cherryview back to
+ full-ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,129 +45,106 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Be consistent, and even when we know we had used a WC, flush the mapped
-object after writing into it. The flush understands the mapping type and
-will only flush the WCB if I915_MAP_WC.
+This reverts commit 0b718ba1e884f64dce27c19311dd2859b87e56b9.
+
+There are still some residual issues with asynchronous binding and
+execution, but since commit 92581f9fb99c ("drm/i915: Immediately execute
+the fenced work") we prefer not to use asynchronous binds, and the
+remaining issues do not seem restricted to Cherryview [at least the ones
+seen over a few dozen CI runs, less frequent issues are sure to be
+discovered!]
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c          | 8 ++++++--
- drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 2 ++
- drivers/gpu/drm/i915/gt/selftest_ring_submission.c      | 2 ++
- drivers/gpu/drm/i915/gt/selftest_rps.c                  | 2 ++
- drivers/gpu/drm/i915/selftests/i915_request.c           | 9 +++++++--
- 5 files changed, 19 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 54 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_pci.c     |  2 +-
+ 2 files changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index 2fc7737ef5f4..f457d7130491 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -78,10 +78,12 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
- 	} while (rem);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(ce->vm->gt);
- 
-+	i915_gem_object_flush_map(pool->obj);
- 	i915_gem_object_unpin_map(pool->obj);
- 
-+	intel_gt_chipset_flush(ce->vm->gt);
-+
- 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
-@@ -289,10 +291,12 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 	} while (rem);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(ce->vm->gt);
- 
-+	i915_gem_object_flush_map(pool->obj);
- 	i915_gem_object_unpin_map(pool->obj);
- 
-+	intel_gt_chipset_flush(ce->vm->gt);
-+
- 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-index 3f6079e1dfb6..87d7d8aa080f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-@@ -158,6 +158,8 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
- 		return PTR_ERR(map);
- 
- 	map[offset / sizeof(*map)] = v;
-+
-+	__i915_gem_object_flush_map(ctx->obj, offset, sizeof(*map));
- 	i915_gem_object_unpin_map(ctx->obj);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-index 9995faadd7e8..3350e7c995bc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-@@ -54,6 +54,8 @@ static struct i915_vma *create_wally(struct intel_engine_cs *engine)
- 	*cs++ = STACK_MAGIC;
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
-+
-+	i915_gem_object_flush_map(obj);
- 	i915_gem_object_unpin_map(obj);
- 
- 	vma->private = intel_context_create(engine); /* dummy residuals */
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index bfa1a15564f7..6275d69aa9cc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -727,6 +727,7 @@ int live_rps_frequency_cs(void *arg)
- 
- err_vma:
- 		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_flush_map(vma->obj);
- 		i915_gem_object_unpin_map(vma->obj);
- 		i915_vma_unpin(vma);
- 		i915_vma_put(vma);
-@@ -868,6 +869,7 @@ int live_rps_frequency_srm(void *arg)
- 
- err_vma:
- 		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_flush_map(vma->obj);
- 		i915_gem_object_unpin_map(vma->obj);
- 		i915_vma_unpin(vma);
- 		i915_vma_put(vma);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index ffdfcb3805b5..6014e8dfcbb1 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -816,10 +816,12 @@ static int recursive_batch_resolve(struct i915_vma *batch)
- 		return PTR_ERR(cmd);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(batch->vm->gt);
- 
-+	__i915_gem_object_flush_map(batch->obj, 0, sizeof(*cmd));
- 	i915_gem_object_unpin_map(batch->obj);
- 
-+	intel_gt_chipset_flush(batch->vm->gt);
-+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 8e254f639751..b11e8f033774 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3522,6 +3522,54 @@ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
  	return 0;
  }
  
-@@ -1060,9 +1062,12 @@ static int live_sequential_engines(void *arg)
- 					      I915_MAP_WC);
- 		if (!IS_ERR(cmd)) {
- 			*cmd = MI_BATCH_BUFFER_END;
--			intel_gt_chipset_flush(engine->gt);
- 
-+			__i915_gem_object_flush_map(request[idx]->batch->obj,
-+						    0, sizeof(*cmd));
- 			i915_gem_object_unpin_map(request[idx]->batch->obj);
++static int emit_pdps(struct i915_request *rq)
++{
++	const struct intel_engine_cs * const engine = rq->engine;
++	struct i915_ppgtt * const ppgtt = i915_vm_to_ppgtt(rq->context->vm);
++	int err, i;
++	u32 *cs;
 +
-+			intel_gt_chipset_flush(engine->gt);
- 		}
++	GEM_BUG_ON(intel_vgpu_active(rq->i915));
++
++	/*
++	 * Beware ye of the dragons, this sequence is magic!
++	 *
++	 * Small changes to this sequence can cause anything from
++	 * GPU hangs to forcewake errors and machine lockups!
++	 */
++
++	/* Flush any residual operations from the context load */
++	err = engine->emit_flush(rq, EMIT_FLUSH);
++	if (err)
++		return err;
++
++	/* Magic required to prevent forcewake errors! */
++	err = engine->emit_flush(rq, EMIT_INVALIDATE);
++	if (err)
++		return err;
++
++	cs = intel_ring_begin(rq, 4 * GEN8_3LVL_PDPES + 2);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	/* Ensure the LRI have landed before we invalidate & continue */
++	*cs++ = MI_LOAD_REGISTER_IMM(2 * GEN8_3LVL_PDPES) | MI_LRI_FORCE_POSTED;
++	for (i = GEN8_3LVL_PDPES; i--; ) {
++		const dma_addr_t pd_daddr = i915_page_dir_dma_addr(ppgtt, i);
++		u32 base = engine->mmio_base;
++
++		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, i));
++		*cs++ = upper_32_bits(pd_daddr);
++		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, i));
++		*cs++ = lower_32_bits(pd_daddr);
++	}
++	*cs++ = MI_NOOP;
++
++	intel_ring_advance(rq, cs);
++
++	return 0;
++}
++
+ static int execlists_request_alloc(struct i915_request *request)
+ {
+ 	int ret;
+@@ -3543,6 +3591,12 @@ static int execlists_request_alloc(struct i915_request *request)
+ 	 * to cancel/unwind this request now.
+ 	 */
  
- 		i915_vma_put(request[idx]->batch);
++	if (!i915_vm_is_4lvl(request->context->vm)) {
++		ret = emit_pdps(request);
++		if (ret)
++			return ret;
++	}
++
+ 	/* Unconditionally invalidate GPU caches and TLBs. */
+ 	ret = request->engine->emit_flush(request, EMIT_INVALIDATE);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 1faf9d6ec0a4..eb0b5be7c35d 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -615,7 +615,7 @@ static const struct intel_device_info chv_info = {
+ 	.has_logical_ring_contexts = 1,
+ 	.display.has_gmch = 1,
+ 	.dma_mask_size = 39,
+-	.ppgtt_type = INTEL_PPGTT_ALIASING,
++	.ppgtt_type = INTEL_PPGTT_FULL,
+ 	.ppgtt_size = 32,
+ 	.has_reset_engine = 1,
+ 	.has_snoop = true,
 -- 
 2.20.1
 
