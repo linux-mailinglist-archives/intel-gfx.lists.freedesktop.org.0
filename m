@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD451CCA32
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 12:24:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E061CCA33
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 May 2020 12:24:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 069D06E13F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BCC6E144;
 	Sun, 10 May 2020 10:24:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6866E13F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 718D86E142
  for <intel-gfx@lists.freedesktop.org>; Sun, 10 May 2020 10:24:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154793-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21154794-1500050 
  for multiple; Sun, 10 May 2020 11:24:34 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 10 May 2020 11:24:29 +0100
-Message-Id: <20200510102431.21959-1-chris@chris-wilson.co.uk>
+Date: Sun, 10 May 2020 11:24:30 +0100
+Message-Id: <20200510102431.21959-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200510102431.21959-1-chris@chris-wilson.co.uk>
+References: <20200510102431.21959-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Emit await(batch) before
- MI_BB_START
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Always flush before
+ unpining after writing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,282 +45,129 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Be consistent and ensure that we always emit the asynchronous waits
-prior to issuing instructions that use the address. This ensures that if
-we do emit GPU commands to do the await, they are before our use!
+Be consistent, and even when we know we had used a WC, flush the mapped
+object after writing into it. The flush understands the mapping type and
+will only flush the WCB if I915_MAP_WC.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../drm/i915/gem/selftests/i915_gem_context.c | 49 ++++++++++++-------
- .../drm/i915/gem/selftests/igt_gem_utils.c    | 26 ++++------
- drivers/gpu/drm/i915/gt/intel_renderstate.c   | 16 +++---
- drivers/gpu/drm/i915/selftests/i915_request.c | 28 +++++------
- 4 files changed, 65 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.c          | 8 ++++++--
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 2 ++
+ drivers/gpu/drm/i915/gt/selftest_ring_submission.c      | 2 ++
+ drivers/gpu/drm/i915/gt/selftest_rps.c                  | 2 ++
+ drivers/gpu/drm/i915/selftests/i915_request.c           | 9 +++++++--
+ 5 files changed, 19 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 87d264fe54b2..b81978890641 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -972,12 +972,6 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
- 		goto err_batch;
- 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+index 2fc7737ef5f4..f457d7130491 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+@@ -78,10 +78,12 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
+ 	} while (rem);
  
--	err = rq->engine->emit_bb_start(rq,
--					batch->node.start, batch->node.size,
--					0);
--	if (err)
--		goto err_request;
--
- 	i915_vma_lock(batch);
- 	err = i915_request_await_object(rq, batch->obj, false);
- 	if (err == 0)
-@@ -994,6 +988,18 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
- 	if (err)
- 		goto skip_request;
- 
-+	if (rq->engine->emit_init_breadcrumb) {
-+		err = rq->engine->emit_init_breadcrumb(rq);
-+		if (err)
-+			goto skip_request;
-+	}
-+
-+	err = rq->engine->emit_bb_start(rq,
-+					batch->node.start, batch->node.size,
-+					0);
-+	if (err)
-+		goto skip_request;
-+
- 	i915_vma_unpin_and_release(&batch, 0);
- 	i915_vma_unpin(vma);
- 
-@@ -1005,7 +1011,6 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
- 
- skip_request:
- 	i915_request_set_error_once(rq, err);
--err_request:
- 	i915_request_add(rq);
- err_batch:
- 	i915_vma_unpin_and_release(&batch, 0);
-@@ -1541,10 +1546,6 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 		goto err_unpin;
- 	}
- 
--	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
--	if (err)
--		goto err_request;
--
- 	i915_vma_lock(vma);
- 	err = i915_request_await_object(rq, vma->obj, false);
- 	if (err == 0)
-@@ -1553,6 +1554,16 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 	if (err)
- 		goto skip_request;
- 
-+	if (rq->engine->emit_init_breadcrumb) {
-+		err = rq->engine->emit_init_breadcrumb(rq);
-+		if (err)
-+			goto skip_request;
-+	}
-+
-+	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
-+	if (err)
-+		goto skip_request;
-+
- 	i915_vma_unpin(vma);
- 
- 	i915_request_add(rq);
-@@ -1560,7 +1571,6 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 	goto out_vm;
- skip_request:
- 	i915_request_set_error_once(rq, err);
--err_request:
- 	i915_request_add(rq);
- err_unpin:
- 	i915_vma_unpin(vma);
-@@ -1674,10 +1684,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 		goto err_unpin;
- 	}
- 
--	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, flags);
--	if (err)
--		goto err_request;
--
- 	i915_vma_lock(vma);
- 	err = i915_request_await_object(rq, vma->obj, true);
- 	if (err == 0)
-@@ -1686,6 +1692,16 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	if (err)
- 		goto skip_request;
- 
-+	if (rq->engine->emit_init_breadcrumb) {
-+		err = rq->engine->emit_init_breadcrumb(rq);
-+		if (err)
-+			goto skip_request;
-+	}
-+
-+	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, flags);
-+	if (err)
-+		goto skip_request;
-+
- 	i915_vma_unpin(vma);
- 
- 	i915_request_add(rq);
-@@ -1708,7 +1724,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	goto out_vm;
- skip_request:
- 	i915_request_set_error_once(rq, err);
--err_request:
- 	i915_request_add(rq);
- err_unpin:
- 	i915_vma_unpin(vma);
-diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-index 772d8cba7da9..e21b5023ca7d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-@@ -83,6 +83,8 @@ igt_emit_store_dw(struct i915_vma *vma,
- 		offset += PAGE_SIZE;
- 	}
  	*cmd = MI_BATCH_BUFFER_END;
+-	intel_gt_chipset_flush(ce->vm->gt);
+ 
++	i915_gem_object_flush_map(pool->obj);
+ 	i915_gem_object_unpin_map(pool->obj);
+ 
++	intel_gt_chipset_flush(ce->vm->gt);
++
+ 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+ 	if (IS_ERR(batch)) {
+ 		err = PTR_ERR(batch);
+@@ -289,10 +291,12 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+ 	} while (rem);
+ 
+ 	*cmd = MI_BATCH_BUFFER_END;
+-	intel_gt_chipset_flush(ce->vm->gt);
+ 
++	i915_gem_object_flush_map(pool->obj);
+ 	i915_gem_object_unpin_map(pool->obj);
+ 
++	intel_gt_chipset_flush(ce->vm->gt);
++
+ 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+ 	if (IS_ERR(batch)) {
+ 		err = PTR_ERR(batch);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+index 3f6079e1dfb6..87d7d8aa080f 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+@@ -158,6 +158,8 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
+ 		return PTR_ERR(map);
+ 
+ 	map[offset / sizeof(*map)] = v;
++
++	__i915_gem_object_flush_map(ctx->obj, offset, sizeof(*map));
+ 	i915_gem_object_unpin_map(ctx->obj);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+index 9995faadd7e8..3350e7c995bc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+@@ -54,6 +54,8 @@ static struct i915_vma *create_wally(struct intel_engine_cs *engine)
+ 	*cs++ = STACK_MAGIC;
+ 
+ 	*cs++ = MI_BATCH_BUFFER_END;
 +
 +	i915_gem_object_flush_map(obj);
  	i915_gem_object_unpin_map(obj);
  
- 	intel_gt_chipset_flush(vma->vm->gt);
-@@ -126,16 +128,6 @@ int igt_gpu_fill_dw(struct intel_context *ce,
- 		goto err_batch;
- 	}
+ 	vma->private = intel_context_create(engine); /* dummy residuals */
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index bfa1a15564f7..6275d69aa9cc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -727,6 +727,7 @@ int live_rps_frequency_cs(void *arg)
  
--	flags = 0;
--	if (INTEL_GEN(ce->vm->i915) <= 5)
--		flags |= I915_DISPATCH_SECURE;
--
--	err = rq->engine->emit_bb_start(rq,
--					batch->node.start, batch->node.size,
--					flags);
--	if (err)
--		goto err_request;
--
- 	i915_vma_lock(batch);
- 	err = i915_request_await_object(rq, batch->obj, false);
- 	if (err == 0)
-@@ -152,15 +144,17 @@ int igt_gpu_fill_dw(struct intel_context *ce,
- 	if (err)
- 		goto skip_request;
+ err_vma:
+ 		*cancel = MI_BATCH_BUFFER_END;
++		i915_gem_object_flush_map(vma->obj);
+ 		i915_gem_object_unpin_map(vma->obj);
+ 		i915_vma_unpin(vma);
+ 		i915_vma_put(vma);
+@@ -868,6 +869,7 @@ int live_rps_frequency_srm(void *arg)
  
--	i915_request_add(rq);
--
--	i915_vma_unpin_and_release(&batch, 0);
-+	flags = 0;
-+	if (INTEL_GEN(ce->vm->i915) <= 5)
-+		flags |= I915_DISPATCH_SECURE;
- 
--	return 0;
-+	err = rq->engine->emit_bb_start(rq,
-+					batch->node.start, batch->node.size,
-+					flags);
- 
- skip_request:
--	i915_request_set_error_once(rq, err);
--err_request:
-+	if (err)
-+		i915_request_set_error_once(rq, err);
- 	i915_request_add(rq);
- err_batch:
- 	i915_vma_unpin_and_release(&batch, 0);
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index 708cb7808865..f59e7875cc5e 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -219,6 +219,14 @@ int intel_renderstate_emit(struct intel_renderstate *so,
- 	if (!so->vma)
- 		return 0;
- 
-+	i915_vma_lock(so->vma);
-+	err = i915_request_await_object(rq, so->vma->obj, false);
-+	if (err == 0)
-+		err = i915_vma_move_to_active(so->vma, rq, 0);
-+	i915_vma_unlock(so->vma);
-+	if (err)
-+		return err;
-+
- 	err = engine->emit_bb_start(rq,
- 				    so->batch_offset, so->batch_size,
- 				    I915_DISPATCH_SECURE);
-@@ -233,13 +241,7 @@ int intel_renderstate_emit(struct intel_renderstate *so,
- 			return err;
- 	}
- 
--	i915_vma_lock(so->vma);
--	err = i915_request_await_object(rq, so->vma->obj, false);
--	if (err == 0)
--		err = i915_vma_move_to_active(so->vma, rq, 0);
--	i915_vma_unlock(so->vma);
--
--	return err;
-+	return 0;
- }
- 
- void intel_renderstate_fini(struct intel_renderstate *so)
+ err_vma:
+ 		*cancel = MI_BATCH_BUFFER_END;
++		i915_gem_object_flush_map(vma->obj);
+ 		i915_gem_object_unpin_map(vma->obj);
+ 		i915_vma_unpin(vma);
+ 		i915_vma_put(vma);
 diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 15b1ca9f7a01..ffdfcb3805b5 100644
+index ffdfcb3805b5..6014e8dfcbb1 100644
 --- a/drivers/gpu/drm/i915/selftests/i915_request.c
 +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -865,13 +865,6 @@ static int live_all_engines(void *arg)
- 			goto out_request;
+@@ -816,10 +816,12 @@ static int recursive_batch_resolve(struct i915_vma *batch)
+ 		return PTR_ERR(cmd);
+ 
+ 	*cmd = MI_BATCH_BUFFER_END;
+-	intel_gt_chipset_flush(batch->vm->gt);
+ 
++	__i915_gem_object_flush_map(batch->obj, 0, sizeof(*cmd));
+ 	i915_gem_object_unpin_map(batch->obj);
+ 
++	intel_gt_chipset_flush(batch->vm->gt);
++
+ 	return 0;
+ }
+ 
+@@ -1060,9 +1062,12 @@ static int live_sequential_engines(void *arg)
+ 					      I915_MAP_WC);
+ 		if (!IS_ERR(cmd)) {
+ 			*cmd = MI_BATCH_BUFFER_END;
+-			intel_gt_chipset_flush(engine->gt);
+ 
++			__i915_gem_object_flush_map(request[idx]->batch->obj,
++						    0, sizeof(*cmd));
+ 			i915_gem_object_unpin_map(request[idx]->batch->obj);
++
++			intel_gt_chipset_flush(engine->gt);
  		}
  
--		err = engine->emit_bb_start(request[idx],
--					    batch->node.start,
--					    batch->node.size,
--					    0);
--		GEM_BUG_ON(err);
--		request[idx]->batch = batch;
--
- 		i915_vma_lock(batch);
- 		err = i915_request_await_object(request[idx], batch->obj, 0);
- 		if (err == 0)
-@@ -879,6 +872,13 @@ static int live_all_engines(void *arg)
- 		i915_vma_unlock(batch);
- 		GEM_BUG_ON(err);
- 
-+		err = engine->emit_bb_start(request[idx],
-+					    batch->node.start,
-+					    batch->node.size,
-+					    0);
-+		GEM_BUG_ON(err);
-+		request[idx]->batch = batch;
-+
- 		i915_request_get(request[idx]);
- 		i915_request_add(request[idx]);
- 		idx++;
-@@ -993,13 +993,6 @@ static int live_sequential_engines(void *arg)
- 			}
- 		}
- 
--		err = engine->emit_bb_start(request[idx],
--					    batch->node.start,
--					    batch->node.size,
--					    0);
--		GEM_BUG_ON(err);
--		request[idx]->batch = batch;
--
- 		i915_vma_lock(batch);
- 		err = i915_request_await_object(request[idx],
- 						batch->obj, false);
-@@ -1008,6 +1001,13 @@ static int live_sequential_engines(void *arg)
- 		i915_vma_unlock(batch);
- 		GEM_BUG_ON(err);
- 
-+		err = engine->emit_bb_start(request[idx],
-+					    batch->node.start,
-+					    batch->node.size,
-+					    0);
-+		GEM_BUG_ON(err);
-+		request[idx]->batch = batch;
-+
- 		i915_request_get(request[idx]);
- 		i915_request_add(request[idx]);
- 
+ 		i915_vma_put(request[idx]->batch);
 -- 
 2.20.1
 
