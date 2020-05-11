@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA6D21CE63C
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 23:01:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5B71CE781
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 23:35:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C76F86E598;
-	Mon, 11 May 2020 21:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 388046E5A3;
+	Mon, 11 May 2020 21:35:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8927E6E595
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 21:01:33 +0000 (UTC)
-Received: from capuchin.riseup.net (capuchin-pn.riseup.net [10.0.1.176])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 49LYJY0kRvzDrsX;
- Mon, 11 May 2020 14:01:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1589230893; bh=c5aC42a68kHuYAj8kNftIl6FVukXobLt1cvk0SKJmLw=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=eUY1yvnS8GqdUo8gPVqnV8hvC4V8iULvC4mQ6QWY97ne3/GU5jjcKBVfP2tzUSCZx
- QC3upSmxSIFCvS1sf6cRhQMv0KSQZ2dkqm4h0FIipjr5gdEo/BulGRdzIrj5GLI9V2
- B1/AISZ+vl52cA4Qt2DWAokSQqx9fWvHVE0IAglw=
-X-Riseup-User-ID: 7E94995CD430B3A5D7E7269DF40EA2343D572B2CF5E4BE196C34136F3412586D
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by capuchin.riseup.net (Postfix) with ESMTPSA id 49LYJX3Ts8z8t1k;
- Mon, 11 May 2020 14:01:32 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: Peter Zijlstra <peterz@infradead.org>
-In-Reply-To: <20200511105701.GA2940@hirez.programming.kicks-ass.net>
-References: <20200428032258.2518-1-currojerez@riseup.net>
- <20200511105701.GA2940@hirez.programming.kicks-ass.net>
-Date: Mon, 11 May 2020 14:01:41 -0700
-Message-ID: <874ksmuqx6.fsf@riseup.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 418D16E5A2;
+ Mon, 11 May 2020 21:35:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38150A47E1;
+ Mon, 11 May 2020 21:35:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2.99)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 11 May 2020 21:35:00 -0000
+Message-ID: <158923290022.13116.4559165236465163957@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200511141304.599-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200511141304.599-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Always_flush_before_unpining_after_writing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,130 +38,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, daniel.lezcano@linaro.org,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, chris.p.wilson@intel.com, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com
-Content-Type: multipart/mixed; boundary="===============0553181674=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0553181674==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+== Series Details ==
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+Series: drm/i915/selftests: Always flush before unpining after writing
+URL   : https://patchwork.freedesktop.org/series/77156/
+State : success
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Summary ==
 
-Peter Zijlstra <peterz@infradead.org> writes:
+CI Bug Log - changes from CI_DRM_8465_full -> Patchwork_17625_full
+====================================================
 
-> On Mon, Apr 27, 2020 at 08:22:47PM -0700, Francisco Jerez wrote:
->> This addresses the technical concerns people brought up about my
->> previous v2 revision of this series.  Other than a few bug fixes, the
->> only major change relative to v2 is that the controller is now exposed
->> as a new CPUFREQ generic governor as requested by Rafael (named
->> "adaptive" in this RFC though other naming suggestions are welcome).
->> Main reason for calling this v2.99 rather than v3 is that I haven't
->> yet addressed all the documentation requests from the v2 thread --
->> Will spend some time doing that as soon as I have an ACK (ideally from
->> Rafael) that things are moving in the right direction.
->>=20
->> You can also find this series along with the WIP code for non-HWP
->> platforms in this branch:
->>=20
->> https://github.com/curro/linux/tree/intel_pstate-vlp-v2.99
->>=20
->> Thanks!
->>=20
->> [PATCHv2.99 01/11] PM: QoS: Add CPU_SCALING_RESPONSE global PM QoS limit.
->> [PATCHv2.99 02/11] drm/i915: Adjust PM QoS scaling response frequency ba=
-sed on GPU load.
->> [PATCHv2.99 03/11] OPTIONAL: drm/i915: Expose PM QoS control parameters =
-via debugfs.
->> [PATCHv2.99 04/11] cpufreq: Define ADAPTIVE frequency governor policy.
->> [PATCHv2.99 05/11] cpufreq: intel_pstate: Reorder intel_pstate_clear_upd=
-ate_util_hook() and intel_pstate_set_update_util_hook().
->> [PATCHv2.99 06/11] cpufreq: intel_pstate: Call intel_pstate_set_update_u=
-til_hook() once from the setpolicy hook.
->> [PATCHv2.99 07/11] cpufreq: intel_pstate: Implement VLP controller stati=
-stics and target range calculation.
->> [PATCHv2.99 08/11] cpufreq: intel_pstate: Implement VLP controller for H=
-WP parts.
->> [PATCHv2.99 09/11] cpufreq: intel_pstate: Enable VLP controller based on=
- ACPI FADT profile and CPUID.
->> [PATCHv2.99 10/11] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP c=
-ontroller status.
->> [PATCHv2.99 11/11] OPTIONAL: cpufreq: intel_pstate: Expose VLP controlle=
-r parameters via debugfs.
->
-> What I'm missing is an explanation for why this isn't using the
-> infrastructure that was build for these kinds of things? The thermal
-> framework, was AFAIU, supposed to help with these things, and the IPA
-> thing in particular is used by ARM to do exactly this GPU/CPU power
-> budget thing.
->
-> If thermal/IPA is found wanting, why aren't we improving that?
+Summary
+-------
 
-The GPU/CPU power budget "thing" is only a positive side effect of this
-series on some TDP-bound systems.  Its ultimate purpose is improving the
-energy efficiency of workloads which have a bottleneck on a device other
-than the CPU, by giving the bottlenecking device driver some influence
-over the response latency of CPUFREQ governors via a PM QoS interface.
-This seems to be completely outside the scope of the thermal framework
-and IPA AFAIU.
+  **SUCCESS**
 
->
-> How much of that ADAPTIVE crud is actually intel_pstate specific? On a
-> (really) quick read it appears to me that much of the controller bits
-> there can be applied more generic, and thus should not be part of any
-> one governor.
->
+  No regressions found.
 
-The implementation of that is intel_pstate-specific right now, but the
-basic algorithm could be made to work on any other governor in
-principle, which is why it is exposed as a generic CPUFREQ governor.  I
-don't care about taking out the generic CPUFREQ governor changes if you
-don't like them, and going back to some driver-specific means of turning
-it on and off (though Rafael might disagree with that).
+  
 
-> Specifically, I want to use sched_util as cpufreq governor and use the
-> intel_pstate as a passive driver.
+New tests
+---------
 
-Yeah, getting a similar optimization into the schedutil governor has
-been on my wish list for a while, but I haven't had the time to get very
-far on that except for a handful of hacks.  The intel_pstate handling is
-going to be necessary anyway in order to handle HWP systems gracefully,
-at least in the near future until schedutil becomes a viable alternative
-to intel_pstate in active mode on HWP systems.
+  New tests have been introduced between CI_DRM_8465_full and Patchwork_17625_full:
 
---=-=-=--
+### New IGT tests (1) ###
 
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+  * igt@gem_ringfill@legacy-basic:
+    - Statuses :
+    - Exec time: [None] s
 
------BEGIN PGP SIGNATURE-----
+  
 
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXrm9NQAKCRCDmTidfVK/
-W/3kAP40BljIZi0Y1Roy8ZmjBZhASVttP2m77/ZDRADJNIprrwD+KeE0rfn+2Uvg
-+tAjGhrf8/x3p8/DI9zqibhLF2uQGyQ=
-=KeYB
------END PGP SIGNATURE-----
---==-=-=--
+Known issues
+------------
 
---===============0553181674==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  Here are the changes found in Patchwork_17625_full that come from known issues:
 
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@engines-mixed-process@bcs0:
+    - shard-tglb:         [PASS][1] -> [FAIL][2] ([i915#1528])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-tglb3/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-tglb2/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-apl:          [PASS][3] -> [DMESG-WARN][4] ([i915#1436] / [i915#716])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl1/igt@gen9_exec_parse@allowed-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl8/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180]) +4 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-onscreen:
+    - shard-skl:          [PASS][7] -> [FAIL][8] ([i915#54])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl10/igt@kms_cursor_crc@pipe-c-cursor-64x21-onscreen.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl9/igt@kms_cursor_crc@pipe-c-cursor-64x21-onscreen.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-apl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl7/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl8/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_frontbuffer_tracking@fbc-suspend:
+    - shard-kbl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180] / [i915#93] / [i915#95])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-kbl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#1188]) +2 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl4/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([fdo#108145] / [i915#265]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+
+  * igt@kms_plane_cursor@pipe-a-viewport-size-64:
+    - shard-apl:          [PASS][17] -> [FAIL][18] ([i915#1559] / [i915#95])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl6/igt@kms_plane_cursor@pipe-a-viewport-size-64.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl2/igt@kms_plane_cursor@pipe-a-viewport-size-64.html
+
+  
+#### Possible fixes ####
+
+  * {igt@gem_exec_schedule@thriceslice@bcs0}:
+    - shard-glk:          [FAIL][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-glk8/igt@gem_exec_schedule@thriceslice@bcs0.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-glk9/igt@gem_exec_schedule@thriceslice@bcs0.html
+
+  * igt@i915_suspend@sysfs-reader:
+    - shard-kbl:          [DMESG-WARN][21] ([i915#180] / [i915#93] / [i915#95]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-kbl7/igt@i915_suspend@sysfs-reader.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-kbl4/igt@i915_suspend@sysfs-reader.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-random:
+    - shard-skl:          [FAIL][23] ([i915#54]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-128x42-random.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-128x42-random.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-kbl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +1 similar issue
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-kbl2/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-kbl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * {igt@kms_flip@flip-vs-suspend@a-dp1}:
+    - shard-apl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28] +5 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl4/igt@kms_flip@flip-vs-suspend@a-dp1.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][29] ([fdo#108145] / [i915#265]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [FAIL][31] ([i915#31]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl7/igt@kms_setmode@basic.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl8/igt@kms_setmode@basic.html
+
+  * igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend:
+    - shard-skl:          [INCOMPLETE][33] ([i915#69]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-skl3/igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-skl4/igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc3co-vpb-simulation:
+    - shard-iclb:         [SKIP][35] ([i915#588]) -> [SKIP][36] ([i915#658])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-iclb5/igt@i915_pm_dc@dc3co-vpb-simulation.html
+
+  * igt@kms_content_protection@legacy:
+    - shard-apl:          [TIMEOUT][37] ([i915#1319]) -> [FAIL][38] ([fdo#110321] / [fdo#110336])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl4/igt@kms_content_protection@legacy.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl1/igt@kms_content_protection@legacy.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-alpha-basic:
+    - shard-apl:          [FAIL][39] ([fdo#108145] / [i915#265] / [i915#95]) -> [FAIL][40] ([fdo#108145] / [i915#265])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl8/igt@kms_plane_alpha_blend@pipe-a-alpha-basic.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl6/igt@kms_plane_alpha_blend@pipe-a-alpha-basic.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb:
+    - shard-apl:          [FAIL][41] ([fdo#108145] / [i915#265]) -> [FAIL][42] ([fdo#108145] / [i915#265] / [i915#95])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl7/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl3/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html
+
+  * igt@kms_sysfs_edid_timing:
+    - shard-apl:          [FAIL][43] ([IGT#2]) -> [FAIL][44] ([IGT#2] / [i915#95])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8465/shard-apl3/igt@kms_sysfs_edid_timing.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/shard-apl4/igt@kms_sysfs_edid_timing.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#2]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/2
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
+  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#1559]: https://gitlab.freedesktop.org/drm/intel/issues/1559
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8465 -> Patchwork_17625
+
+  CI-20190529: 20190529
+  CI_DRM_8465: 353e7636140b8a9d873f6a7615dcda2b32535fda @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5646: 5a5a3162a7638b3ae38b6dc2545622c204d1b97c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17625: 421bd67f6d6b5b47b97efcc6548b222dcc13082d @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17625/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0553181674==--
