@@ -2,30 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42AF51CD881
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 13:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F11631CD8A2
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 13:37:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 894B66E444;
-	Mon, 11 May 2020 11:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C301F6E43D;
+	Mon, 11 May 2020 11:37:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1D9D06E43D;
- Mon, 11 May 2020 11:32:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1667DA3C0D;
- Mon, 11 May 2020 11:32:59 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Mon, 11 May 2020 11:32:59 -0000
-Message-ID: <158919677908.13116.5466687071340810159@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3CA6E43D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 11:37:44 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id z72so9211027wmc.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 04:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=ONEtdIkAc0XGrzdJ+vZ9El01kQJP8dEySAsiTgZYuB0=;
+ b=QZBHN+27NsrB4jrWbRtmq8kKBtqYQxFjmxlehkFzC5xw+yq5qTaio7B1Q39/mwwPH2
+ 6giK0t+F0BCXOCLRtwvWmQpwooKyIfJXVcj17eaJUsEsOD6rKWb6iGLviL+9raxm0TdI
+ BQGuS3FAy/rQHbA2qUa3HWuMgpuXiIx7krzoQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=ONEtdIkAc0XGrzdJ+vZ9El01kQJP8dEySAsiTgZYuB0=;
+ b=Phu+02qrJxAyCl6mThV5U6PNkLWzBsgmfKARMBnHiCaNHLDQZP5d4TS0/SYbC4LNIK
+ 4ykZmkgGk8RwbhHG7H/iyAKz9BNpyG/8g3z3+PmDIWd355W9s3DlrI7GwPf3aHx/qcJ5
+ tsBpWC5VRJWCyysqZZi2wS7tT6h2BTQPxWFv+vR5yPdhw6V0ZeiyQ1I1fphaUX5IX9LL
+ kSoHqpunWbYEBSpFXmQoGiYAJNP1P3M43TyFud4bv/hXhQgnUxzLHMdFWc93vplZZl9L
+ ogeuOVNPnqS/KgFoSlFtpyK5Cl9gzWgpxQtP92HjdLdl0wmhkN6DbKhaPbQL9u2KWl9o
+ C/PA==
+X-Gm-Message-State: AGi0PubeI1FVUpKo4eplujFjJ1UNPvyKp0J+hqzYkYUK/PCW9TAPaIWf
+ HwSy2VZZinVRZubKEuGDVgG+eg==
+X-Google-Smtp-Source: APiQypLW21qp23JdQwUR+Xp+ib17FxstPFRyP2ifSuL9uprRmR3mzz72pX06eak3SJYySbt7OOPzVw==
+X-Received: by 2002:a7b:cd10:: with SMTP id f16mr32404977wmj.21.1589197062995; 
+ Mon, 11 May 2020 04:37:42 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id w15sm16625890wrl.73.2020.05.11.04.37.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 May 2020 04:37:42 -0700 (PDT)
+Date: Mon, 11 May 2020 13:37:40 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200511113740.GE206103@phenom.ffwll.local>
 References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_shmem_helper_untangling?=
+ <20200511093554.211493-6-daniel.vetter@ffwll.ch>
+ <d34c53ef-1cba-9559-8169-66535d06b6cf@suse.de>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <d34c53ef-1cba-9559-8169-66535d06b6cf@suse.de>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm/udl: Don't call get/put_pages on
+ imported dma-buf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,73 +68,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, May 11, 2020 at 01:23:38PM +0200, Thomas Zimmermann wrote:
+> Hi
+> =
 
-Series: shmem helper untangling
-URL   : https://patchwork.freedesktop.org/series/77146/
-State : warning
+> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
+> > There's no direct harm, because for the shmem helpers these are noops
+> > on imported buffers. The trouble is in the locks these take - I want
+> > to change dma_buf_vmap locking, and so need to make sure that we only
+> > ever take certain locks on one side of the dma-buf interface: Either
+> > for exporters, or for importers.
+> > =
 
-== Summary ==
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Dave Airlie <airlied@redhat.com>
+> > Cc: Sean Paul <sean@poorly.run>
+> > Cc: Gerd Hoffmann <kraxel@redhat.com>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Thomas Gleixner <tglx@linutronix.de>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > ---
+> >  drivers/gpu/drm/udl/udl_gem.c | 22 ++++++++++++----------
+> >  1 file changed, 12 insertions(+), 10 deletions(-)
+> > =
 
-$ dim checkpatch origin/drm-tip
-28f8f1b12090 drm/msm: Don't call dma_buf_vunmap without _vmap
--:47: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> > diff --git a/drivers/gpu/drm/udl/udl_gem.c b/drivers/gpu/drm/udl/udl_ge=
+m.c
+> > index b6e26f98aa0a..c68d3e265329 100644
+> > --- a/drivers/gpu/drm/udl/udl_gem.c
+> > +++ b/drivers/gpu/drm/udl/udl_gem.c
+> > @@ -46,29 +46,31 @@ static void *udl_gem_object_vmap(struct drm_gem_obj=
+ect *obj)
+> =
 
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-939923110257 drm/gem: WARN if drm_gem_get_pages is called on a private obj
--:30: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#30: FILE: drivers/gpu/drm/drm_gem.c:563:
- 
-+
+> It's still not clear to me why this function exists in the first place.
+> It's the same code as the default implementation, except that it doesn't
+> support cached mappings.
+> =
 
--:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> I don't see why udl is special. I'd suggest to try to use the original
+> shmem function and remove this one. Same for the mmap code.
 
-total: 0 errors, 1 warnings, 1 checks, 20 lines checked
-7697f211fde7 drm/doc: Some polish for shmem helpers
--:166: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+tbh no idea, could be that the usb code is then a bit too inefficient at
+uploading stuff if it needs to cache flush.
 
-total: 0 errors, 1 warnings, 0 checks, 108 lines checked
-e6bf106a5bea drm/virtio: Call the right shmem helpers
--:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2f2aa13724d5 ("drm/virtio: move virtio_gpu_mem_entry initialization to new function")'
-#13: 
-commit 2f2aa13724d56829d910b2fa8e80c502d388f106
+But then on x86 at least everything (except real gpus) is coherent, so
+cached mappings should be faster.
 
--:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+No idea, but also don't have the hw so not going to touch udl that much.
+-Daniel
 
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-11556760a00c drm/udl: Don't call get/put_pages on imported dma-buf
--:67: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> =
 
-total: 0 errors, 1 warnings, 0 checks, 41 lines checked
-9fb258f570b0 drm/shmem-helpers: Don't call get/put_pages on imported dma-buf in vmap
--:66: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> Best regards
+> Thomas
+> =
 
-total: 0 errors, 1 warnings, 0 checks, 41 lines checked
-ea34b12d5b36 drm/shmem-helpers: Redirect mmap for imported dma-buf
--:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> >  	if (shmem->vmap_use_count++ > 0)
+> >  		goto out;
+> >  =
 
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-1ba534889eed drm/shmem-helpers: Ensure get_pages is not called on imported dma-buf
--:68: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> > -	ret =3D drm_gem_shmem_get_pages(shmem);
+> > -	if (ret)
+> > -		goto err_zero_use;
+> > -
+> > -	if (obj->import_attach)
+> > +	if (obj->import_attach) {
+> >  		shmem->vaddr =3D dma_buf_vmap(obj->import_attach->dmabuf);
+> > -	else
+> > +	} else {
+> > +		ret =3D drm_gem_shmem_get_pages(shmem);
+> > +		if (ret)
+> > +			goto err;
+> > +
+> >  		shmem->vaddr =3D vmap(shmem->pages, obj->size >> PAGE_SHIFT,
+> >  				    VM_MAP, PAGE_KERNEL);
+> >  =
 
-total: 0 errors, 1 warnings, 0 checks, 40 lines checked
-fa97485c1080 drm/shmem-helpers: Simplify dma-buf importing
--:65: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#65: FILE: drivers/gpu/drm/drm_gem_shmem_helper.c:92:
- }
-+/**
+> > +		if (!shmem->vaddr)
+> > +			drm_gem_shmem_put_pages(shmem);
+> > +	}
+> > +
+> >  	if (!shmem->vaddr) {
+> >  		DRM_DEBUG_KMS("Failed to vmap pages\n");
+> >  		ret =3D -ENOMEM;
+> > -		goto err_put_pages;
+> > +		goto err;
+> >  	}
+> >  =
 
--:136: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+> >  out:
+> >  	mutex_unlock(&shmem->vmap_lock);
+> >  	return shmem->vaddr;
+> >  =
 
-total: 0 errors, 1 warnings, 1 checks, 108 lines checked
+> > -err_put_pages:
+> > -	drm_gem_shmem_put_pages(shmem);
+> > -err_zero_use:
+> > +err:
+> >  	shmem->vmap_use_count =3D 0;
+> >  	mutex_unlock(&shmem->vmap_lock);
+> >  	return ERR_PTR(ret);
+> > =
 
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
