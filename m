@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2FB91CD367
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 09:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A578D1CD361
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 09:58:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CEC96E279;
-	Mon, 11 May 2020 07:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9DBF6E252;
+	Mon, 11 May 2020 07:57:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3256E279
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 07:58:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36316E248
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 07:57:58 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21160786-1500050 
- for multiple; Mon, 11 May 2020 08:57:24 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21160787-1500050 
+ for multiple; Mon, 11 May 2020 08:57:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 May 2020 08:57:04 +0100
-Message-Id: <20200511075722.13483-2-chris@chris-wilson.co.uk>
+Date: Mon, 11 May 2020 08:57:05 +0100
+Message-Id: <20200511075722.13483-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200511075722.13483-1-chris@chris-wilson.co.uk>
 References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/20] drm/i915/gt: Couple up old virtual
- breadcrumb on new sibling
+Subject: [Intel-gfx] [PATCH 03/20] dma-buf: Use atomic_fetch_add() for the
+ context id
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,69 +45,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The second try at staging the transfer of the breadcrumb. In part one,
-we realised we could not simply move to the second engine as we were
-only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
-("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
-removed it from the first engine and marked up this request to reattach
-the signaling on the new engine. However, this failed to take into
-account that we only attach the breadcrumb if the new request is added
-at the start of the queue, which if we are transferring, it is because
-we know there to be a request to be signaled (and hence we would not be
-attached). In this second try, we remove from the first list under its
-lock, take ownership of the link, and then take the second lock to
-complete the transfer.
+Now that atomic64_fetch_add() exists we can use it to return the base
+context id, rather than the atomic64_add_return(N) - N concoction.
 
-Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/dma-buf/dma-fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index ed45fc40f884..c5591248dafb 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1825,13 +1825,12 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
- 				     struct i915_request *rq)
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index 052a41e2451c..90edf2b281b0 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -106,7 +106,7 @@ EXPORT_SYMBOL(dma_fence_get_stub);
+ u64 dma_fence_context_alloc(unsigned num)
  {
- 	struct intel_engine_cs *old = ve->siblings[0];
-+	bool xfer = false;
- 
- 	/* All unattached (rq->engine == old) must already be completed */
- 
- 	spin_lock(&old->breadcrumbs.irq_lock);
- 	if (!list_empty(&ve->context.signal_link)) {
--		list_del_init(&ve->context.signal_link);
--
- 		/*
- 		 * We cannot acquire the new engine->breadcrumbs.irq_lock
- 		 * (as we are holding a breadcrumbs.irq_lock already),
-@@ -1839,12 +1838,21 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
- 		 * The queued irq_work will occur when we finally drop
- 		 * the engine->active.lock after dequeue.
- 		 */
--		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
-+		__list_del_entry(&ve->context.signal_link);
-+		xfer = true;
-+	}
-+	spin_unlock(&old->breadcrumbs.irq_lock);
-+
-+	if (xfer) {
-+		struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
-+
-+		spin_lock(&b->irq_lock);
-+		list_add_tail(&ve->context.signal_link, &b->signalers);
-+		spin_unlock(&b->irq_lock);
- 
- 		/* Also transfer the pending irq_work for the old breadcrumb. */
- 		intel_engine_signal_breadcrumbs(rq->engine);
- 	}
--	spin_unlock(&old->breadcrumbs.irq_lock);
+ 	WARN_ON(!num);
+-	return atomic64_add_return(num, &dma_fence_context_counter) - num;
++	return atomic64_fetch_add(num, &dma_fence_context_counter);
  }
+ EXPORT_SYMBOL(dma_fence_context_alloc);
  
- #define for_each_waiter(p__, rq__) \
 -- 
 2.20.1
 
