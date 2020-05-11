@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1DC1CD3FC
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B611CD436
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 025DB89CC9;
-	Mon, 11 May 2020 08:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E801D6E3EB;
+	Mon, 11 May 2020 08:49:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B673A89CB5;
- Mon, 11 May 2020 08:32:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AFF18A47E0;
- Mon, 11 May 2020 08:32:35 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2406E3EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 08:49:54 +0000 (UTC)
+IronPort-SDR: C3Kg6ZFaxOCkp6VB8RaUieUId2ra4j+GhjB9aUOWfP9KUkhj78c0HVWdelcqvd9cgOfQk/bJjA
+ F85g6pSJnhGA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 01:49:54 -0700
+IronPort-SDR: ToAi05Q8l/fjEp2GXjogLCFTFS5M4pnPj1l0b35jHqwMhNAV4tyb54Pf/shNzbl0uW03mEB7xN
+ ydhYdffkCAgg==
+X-IronPort-AV: E=Sophos;i="5.73,379,1583222400"; d="scan'208";a="436623314"
+Received: from gschoede-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.164])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 01:49:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Manna\, Animesh" <animesh.manna@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <a8a54264-6fa0-1b21-a467-cd3a5e47761b@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200506131112.19581-1-animesh.manna@intel.com>
+ <22382e1c-e5e1-f8c8-74f3-83bd6b649978@linux.intel.com>
+ <a8a54264-6fa0-1b21-a467-cd3a5e47761b@intel.com>
+Date: Mon, 11 May 2020 11:49:49 +0300
+Message-ID: <87mu6e6eky.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 11 May 2020 08:32:35 -0000
-Message-ID: <158918595568.13116.10118537693942261039@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200511075722.13483-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/20=5D_drm/i915/gt=3A_Mark_up_the_racy_r?=
- =?utf-8?q?ead_of_execlists-=3Econtext=5Ftag?=
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/dsb: Pre allocate and late
+ cleanup of cmd buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,141 +52,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 11 May 2020, "Manna, Animesh" <animesh.manna@intel.com> wrote:
+> On 08-05-2020 16:44, Maarten Lankhorst wrote:
+>> Op 06-05-2020 om 15:11 schreef Animesh Manna:
+>>> -	struct intel_dsb *dsb = intel_dsb_get(crtc);
+>>> +	struct intel_dsb *dsb = (struct intel_dsb *)&crtc_state->dsb;
+>> Why the cast? Unconstify crtc_state as it's obviously not const any more.
+>
+> Dsb cmd buffer filling is done in load_lut function, so need to
+> unconstify. Otherwise throwing warning during compilation.
 
-Series: series starting with [01/20] drm/i915/gt: Mark up the racy read of execlists->context_tag
-URL   : https://patchwork.freedesktop.org/series/77141/
-State : failure
+You shouldn't just throw the const away like that using a cast. It's a
+bad idea. Don't do it.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8461 -> Patchwork_17620
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17620 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17620, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17620/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17620:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-kbl-r:           NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17620/fi-kbl-r/igt@runner@aborted.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8461 and Patchwork_17620:
-
-### New IGT tests (1) ###
-
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 35 pass(s)
-    - Exec time: [0.03, 0.10] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17620 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-bwr-2160:        [PASS][2] -> [INCOMPLETE][3] ([i915#489])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17620/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [INCOMPLETE][4] ([i915#1580]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17620/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+BR,
+Jani.
 
 
-Participating hosts (48 -> 42)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8461 -> Patchwork_17620
-
-  CI-20190529: 20190529
-  CI_DRM_8461: c0be14b9502e54c9ece4f4fc25872d665c6a6553 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5644: 16f067ae42a6a93b8f0c5835210e2575a883001b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17620: a36f76dba344c34b8d5ab7b56fad43781ad8bd83 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a36f76dba344 drm/i915/selftests: Always flush before unpining after writing
-2d0a0242f895 drm/i915: Emit await(batch) before MI_BB_START
-da8da4f7bf46 drm/i915/selftests: Always call the provided engine->emit_init_breadcrumb
-a6e1762c5b41 drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
-1c257f5105ba drm/i915: Drop I915_RESET_TIMEOUT and friends
-8fd6b02f35ea drm/i915/gt: Use built-in active intel_context reference
-b408f2a0bcf3 drm/i915: Remove the saturation backoff for HW semaphores
-30e4aad7f08c drm/i915: Move saturated workload detection back to the context
-b3548165607b drm/i915: Drop no-semaphore boosting
-9edbc891b919 drm/i915/gem: Remove redundant exec_fence
-456efa24718d drm/i915/gt: Declare when we enabled timeslicing
-554edd421135 drm/i915/gem: Allow combining submit-fences with syncobj
-2d38f7b8348e drm/i915/gem: Teach execbuf how to wait on future syncobj
-f5ce843a1d9e drm/syncobj: Allow use of dma-fence-proxy
-b28a6fb10640 dma-buf: Proxy fence, an unsignaled fence placeholder
-aae3a8087d19 drm/i915: Tidy awaiting on dma-fences
-344cdfd1b12f drm/i915: Mark the addition of the initial-breadcrumb in the request
-00b75eb28274 dma-buf: Use atomic_fetch_add() for the context id
-bf3abad22116 drm/i915/gt: Couple up old virtual breadcrumb on new sibling
-e9cce902ea86 drm/i915/gt: Mark up the racy read of execlists->context_tag
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17620/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
