@@ -1,57 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD921CE5AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 22:36:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6D21CE63C
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 23:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2D589760;
-	Mon, 11 May 2020 20:36:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C76F86E598;
+	Mon, 11 May 2020 21:01:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C08218929C;
- Mon, 11 May 2020 20:36:20 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id r16so9192779edw.5;
- Mon, 11 May 2020 13:36:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1uYG9e4dVm6PWRoL8m/kIoqP3zhS97zMzITiZZkfVo8=;
- b=TsuiNVSyuVdgW/EOzGASz9Q20Ckfj8RkQ+7t6+K55MZvuz5looNlvY2UVaTiu4R7SX
- RSXam1aHMNhP1jHAnq5ySmGP9uVuKt9OMtP5D6/BBZk/0jDoDd27QodPfH2c8fdfqlB5
- k1k7ulQCJnd+duACVn752X2Q8GTSOF2nrvDlAJjbkn0vICeXl6yUbNBy5rgxzZaVDENS
- j6z+P5ADfDcau3xp6mHV0P9kN9eHCe1pbal8KmOjZ8/oHatHc8LOr3yslCouXWD5fC19
- DCrz26wwRFkxxuycZ2Vl77jnp3OEm/4hPwa0L9LOmIGQEsvJl+tS4TEl/Sn2NA/3S5dC
- 8dBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1uYG9e4dVm6PWRoL8m/kIoqP3zhS97zMzITiZZkfVo8=;
- b=kQG+KM8g2wUHx9Bg+HhCJRa3J1IGmDhyeU5diVK0SewCBR7DqXkI03niMxw+4s/dWC
- 1223psd1RX1VcAiwYQt4kS+7tMuX9BuovkP48JkxczXj07W6IjJzIYarcispkUEdYGCd
- 15N9Onfl7pG5dS+OzG5jX0A4UUluGVdYCoDPR8WTZNPjryM1p/263t/f2RORFGG2Ni9l
- ZYfegFLXnPTws0dRt7CbL9jr35onDhgTREAe1xc78fHP/Z+WNO7Bk+DWjRrZWWEHSncD
- CMpUJm8yShmRwcPvjw2N70Sr6U/RNqZGut3UQKftELc++KRJncA2aJzZ5WwVOA+JejAQ
- O23A==
-X-Gm-Message-State: AGi0PuYrHK92rxOoBvQeQIB+CrbEGGtpwoG1JGfrTckd7aJByaLCmXhH
- oe1i9bbzgsxwywNVj9D8puucPmEPnaOhbbMmyA7aT2qH
-X-Google-Smtp-Source: APiQypJd2EfcwETUCT/8L023guh6ESXaqu8nohL13MgmMY+BO2wuzIUOXD9NKuPFyN2oza0kbWSA/6s1ReCwUv+XQNE=
-X-Received: by 2002:a50:d7c7:: with SMTP id m7mr15478740edj.101.1589229379271; 
- Mon, 11 May 2020 13:36:19 -0700 (PDT)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8927E6E595
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 21:01:33 +0000 (UTC)
+Received: from capuchin.riseup.net (capuchin-pn.riseup.net [10.0.1.176])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 49LYJY0kRvzDrsX;
+ Mon, 11 May 2020 14:01:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1589230893; bh=c5aC42a68kHuYAj8kNftIl6FVukXobLt1cvk0SKJmLw=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=eUY1yvnS8GqdUo8gPVqnV8hvC4V8iULvC4mQ6QWY97ne3/GU5jjcKBVfP2tzUSCZx
+ QC3upSmxSIFCvS1sf6cRhQMv0KSQZ2dkqm4h0FIipjr5gdEo/BulGRdzIrj5GLI9V2
+ B1/AISZ+vl52cA4Qt2DWAokSQqx9fWvHVE0IAglw=
+X-Riseup-User-ID: 7E94995CD430B3A5D7E7269DF40EA2343D572B2CF5E4BE196C34136F3412586D
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by capuchin.riseup.net (Postfix) with ESMTPSA id 49LYJX3Ts8z8t1k;
+ Mon, 11 May 2020 14:01:32 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Peter Zijlstra <peterz@infradead.org>
+In-Reply-To: <20200511105701.GA2940@hirez.programming.kicks-ass.net>
+References: <20200428032258.2518-1-currojerez@riseup.net>
+ <20200511105701.GA2940@hirez.programming.kicks-ass.net>
+Date: Mon, 11 May 2020 14:01:41 -0700
+Message-ID: <874ksmuqx6.fsf@riseup.net>
 MIME-Version: 1.0
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-2-daniel.vetter@ffwll.ch>
- <CAF6AEGuy050MWGxHk48i2f4XqKuF-9q9+FD3N8z55s6sQ+CALQ@mail.gmail.com>
- <CAKMK7uEq1vPPB9AaXb-Me6FG_pwGdRwzu87jNGquHexDRHMowg@mail.gmail.com>
-In-Reply-To: <CAKMK7uEq1vPPB9AaXb-Me6FG_pwGdRwzu87jNGquHexDRHMowg@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 11 May 2020 13:36:38 -0700
-Message-ID: <CAF6AEGuGH1-5mhtwfCC=pMe+DtLHGQxhfibJuMSDsDusMmeaEg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/msm: Don't call dma_buf_vunmap
- without _vmap
+Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
+ the intel_pstate driver (v2.99)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,110 +50,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- freedreno <freedreno@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, daniel.lezcano@linaro.org,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, chris.p.wilson@intel.com, "Pandruvada,
+ Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com
+Content-Type: multipart/mixed; boundary="===============0553181674=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 11, 2020 at 8:29 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> On Mon, May 11, 2020 at 5:24 PM Rob Clark <robdclark@gmail.com> wrote:
-> >
-> > On Mon, May 11, 2020 at 2:36 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > >
-> > > I honestly don't exactly understand what's going on here, but the
-> > > current code is wrong for sure: It calls dma_buf_vunmap without ever
-> > > calling dma_buf_vmap.
-> > >
-> > > What I'm not sure about is whether the WARN_ON is correct:
-> > > - msm imports dma-buf using drm_prime_sg_to_page_addr_arrays. Which is
-> > >   a pretty neat layering violation of how you shouldn't peek behind
-> > >   the curtain of the dma-buf exporter, but par for course. Note that
-> > >   all the nice new helpers don't (and we should probably have a bit a
-> > >   warning about this in the kerneldoc).
-> > >
-> > > - but then in the get_vaddr() in msm_gem.c, and that seems to happily
-> > >   wrap a vmap() around any object with ->pages set (so including
-> > >   imported dma-buf)
-> > >
-> > > - I'm not seeing any guarantees that userspace can't use an imported
-> > >   dma-buf for e.g. MSM_SUBMIT_CMD_BUF in a5xx_submit_in_rb, so no
-> > >   guarantees that an imported dma-buf won't end up with a ->vaddr set.
-> >
-> > fwiw, a5xx_submit_in_rb() isn't a "normal" path (build-time disabled
-> > by default, and restricted to sudo).. it really only exists to
-> > simplify poking at fw.
-> >
-> > There could be vmap's in the msm_gem_submit path, however.  If we
-> > don't, we should probably just disallow using an imported dma-buf as
-> > cmdstream.. I don't think there is any sane reason to permit that.  We
-> > should probably also disallow get_vaddr() on imported buffers.
->
-> Yeah if that's possible and won't blow up (I can't test) I think it'd
-> be best. Something like
-> if (bo->import_attach) return NULL; should do the trick I think.
-> Should I type that up as v2 of this?
+--===============0553181674==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Sure.  It should probably be something like
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-  if (obj->import_attach)
-    return ERR_PTR(-ESOMETHING)
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-looks like the gem-submit path handles an IS_ERR() return
+Peter Zijlstra <peterz@infradead.org> writes:
 
-BR,
--R
-
-
-> -Daniel
+> On Mon, Apr 27, 2020 at 08:22:47PM -0700, Francisco Jerez wrote:
+>> This addresses the technical concerns people brought up about my
+>> previous v2 revision of this series.  Other than a few bug fixes, the
+>> only major change relative to v2 is that the controller is now exposed
+>> as a new CPUFREQ generic governor as requested by Rafael (named
+>> "adaptive" in this RFC though other naming suggestions are welcome).
+>> Main reason for calling this v2.99 rather than v3 is that I haven't
+>> yet addressed all the documentation requests from the v2 thread --
+>> Will spend some time doing that as soon as I have an ACK (ideally from
+>> Rafael) that things are moving in the right direction.
+>>=20
+>> You can also find this series along with the WIP code for non-HWP
+>> platforms in this branch:
+>>=20
+>> https://github.com/curro/linux/tree/intel_pstate-vlp-v2.99
+>>=20
+>> Thanks!
+>>=20
+>> [PATCHv2.99 01/11] PM: QoS: Add CPU_SCALING_RESPONSE global PM QoS limit.
+>> [PATCHv2.99 02/11] drm/i915: Adjust PM QoS scaling response frequency ba=
+sed on GPU load.
+>> [PATCHv2.99 03/11] OPTIONAL: drm/i915: Expose PM QoS control parameters =
+via debugfs.
+>> [PATCHv2.99 04/11] cpufreq: Define ADAPTIVE frequency governor policy.
+>> [PATCHv2.99 05/11] cpufreq: intel_pstate: Reorder intel_pstate_clear_upd=
+ate_util_hook() and intel_pstate_set_update_util_hook().
+>> [PATCHv2.99 06/11] cpufreq: intel_pstate: Call intel_pstate_set_update_u=
+til_hook() once from the setpolicy hook.
+>> [PATCHv2.99 07/11] cpufreq: intel_pstate: Implement VLP controller stati=
+stics and target range calculation.
+>> [PATCHv2.99 08/11] cpufreq: intel_pstate: Implement VLP controller for H=
+WP parts.
+>> [PATCHv2.99 09/11] cpufreq: intel_pstate: Enable VLP controller based on=
+ ACPI FADT profile and CPUID.
+>> [PATCHv2.99 10/11] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP c=
+ontroller status.
+>> [PATCHv2.99 11/11] OPTIONAL: cpufreq: intel_pstate: Expose VLP controlle=
+r parameters via debugfs.
 >
-> >
-> > BR,
-> > -R
-> >
-> > >
-> > > But even if that WARN_ON is wrong, cleaning up a vmap() done by msm by
-> > > calling dma_buf_vmap is the wrong thing to do.
-> > >
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: Rob Clark <robdclark@gmail.com>
-> > > Cc: Sean Paul <sean@poorly.run>
-> > > Cc: linux-arm-msm@vger.kernel.org
-> > > Cc: freedreno@lists.freedesktop.org
-> > > ---
-> > >  drivers/gpu/drm/msm/msm_gem.c | 3 +--
-> > >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
-> > > index 5a6a79fbc9d6..3305a457960e 100644
-> > > --- a/drivers/gpu/drm/msm/msm_gem.c
-> > > +++ b/drivers/gpu/drm/msm/msm_gem.c
-> > > @@ -907,8 +907,7 @@ static void free_object(struct msm_gem_object *msm_obj)
-> > >         put_iova(obj);
-> > >
-> > >         if (obj->import_attach) {
-> > > -               if (msm_obj->vaddr)
-> > > -                       dma_buf_vunmap(obj->import_attach->dmabuf, msm_obj->vaddr);
-> > > +               WARN_ON(msm_obj->vaddr);
-> > >
-> > >                 /* Don't drop the pages for imported dmabuf, as they are not
-> > >                  * ours, just free the array we allocated:
-> > > --
-> > > 2.26.2
-> > >
+> What I'm missing is an explanation for why this isn't using the
+> infrastructure that was build for these kinds of things? The thermal
+> framework, was AFAIU, supposed to help with these things, and the IPA
+> thing in particular is used by ARM to do exactly this GPU/CPU power
+> budget thing.
 >
+> If thermal/IPA is found wanting, why aren't we improving that?
+
+The GPU/CPU power budget "thing" is only a positive side effect of this
+series on some TDP-bound systems.  Its ultimate purpose is improving the
+energy efficiency of workloads which have a bottleneck on a device other
+than the CPU, by giving the bottlenecking device driver some influence
+over the response latency of CPUFREQ governors via a PM QoS interface.
+This seems to be completely outside the scope of the thermal framework
+and IPA AFAIU.
+
 >
+> How much of that ADAPTIVE crud is actually intel_pstate specific? On a
+> (really) quick read it appears to me that much of the controller bits
+> there can be applied more generic, and thus should not be part of any
+> one governor.
 >
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+
+The implementation of that is intel_pstate-specific right now, but the
+basic algorithm could be made to work on any other governor in
+principle, which is why it is exposed as a generic CPUFREQ governor.  I
+don't care about taking out the generic CPUFREQ governor changes if you
+don't like them, and going back to some driver-specific means of turning
+it on and off (though Rafael might disagree with that).
+
+> Specifically, I want to use sched_util as cpufreq governor and use the
+> intel_pstate as a passive driver.
+
+Yeah, getting a similar optimization into the schedutil governor has
+been on my wish list for a while, but I haven't had the time to get very
+far on that except for a handful of hacks.  The intel_pstate handling is
+going to be necessary anyway in order to handle HWP systems gracefully,
+at least in the near future until schedutil becomes a viable alternative
+to intel_pstate in active mode on HWP systems.
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXrm9NQAKCRCDmTidfVK/
+W/3kAP40BljIZi0Y1Roy8ZmjBZhASVttP2m77/ZDRADJNIprrwD+KeE0rfn+2Uvg
++tAjGhrf8/x3p8/DI9zqibhLF2uQGyQ=
+=KeYB
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0553181674==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0553181674==--
