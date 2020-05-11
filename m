@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2021A1CDE51
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 17:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE721CDE52
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 17:10:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF196E2A5;
-	Mon, 11 May 2020 15:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C650C6E4CD;
+	Mon, 11 May 2020 15:10:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F38F6E2A5
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 15:09:58 +0000 (UTC)
-IronPort-SDR: Wio7x0e7yBRslI23gpU119hGE9WI75jcNt9bXiFxnZcexHxn1OoQ77VtRKeEzqx0FzYHIUoBaY
- S4TIQAwN1DRQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE2D6E2A5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 15:10:00 +0000 (UTC)
+IronPort-SDR: UPIsLDgiv52VAWYr5JieaP609aM7W9lRNMb9RKTnuq/65hm7M8Cae0ZrCzd4ph2DvK0mMdHSVD
+ lr1yZXu/Qxig==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2020 08:09:58 -0700
-IronPort-SDR: nRz1USSTTbc5tAMv2ak05SxPzB50GLjl2turG9iW9iJR+e3/DxjCJvmkIJx1wPMp1JHoLTmdCO
- 6/CRRFLsClBA==
+ 11 May 2020 08:09:59 -0700
+IronPort-SDR: Be9G+SQm4xD9YRYVHI42cHGg1A3px1Z/CjgyR0oCdZSRvNQuDS3u1HU7kB4uxCsjJZZTtO4bSu
+ 5iDVoxog7XFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="306202701"
+X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="306202708"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by FMSMGA003.fm.intel.com with ESMTP; 11 May 2020 08:09:56 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 11 May 2020 08:09:58 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 May 2020 18:05:41 +0300
-Message-Id: <20200511150545.15149-4-stanislav.lisovskiy@intel.com>
+Date: Mon, 11 May 2020 18:05:42 +0300
+Message-Id: <20200511150545.15149-5-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
 References: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 3/7] drm/i915: Check plane configuration
- properly
+Subject: [Intel-gfx] [PATCH v7 4/7] drm/i915: Plane configuration affects
+ CDCLK in Gen11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,35 +55,26 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Stanislav Lisovskiy <stanislav.lisovskiY@intel.com>
 
-Checking with hweight8 if plane configuration had
-changed seems to be wrong as different plane configs
-can result in a same hamming weight.
-So lets check the bitmask itself.
+So lets support it.
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6efa6faf0fc3..7e00a07e0d7a 100644
+index 7e00a07e0d7a..012c3ed64b02 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -14614,7 +14614,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
- 		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
- 		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+@@ -14569,7 +14569,7 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
+ 	/* See {hsw,vlv,ivb}_plane_ratio() */
+ 	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
+ 		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+-		IS_IVYBRIDGE(dev_priv);
++		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >= 11);
+ }
  
--		if (hweight8(old_active_planes) == hweight8(new_active_planes))
-+		/*
-+		 * Not only the number of planes, but if the plane configuration had
-+		 * changed might already mean we need to recompute min CDCLK,
-+		 * because different planes might consume different amount of Dbuf bandwidth
-+		 * according to formula: Bw per plane = Pixel rate * bpp * pipe/plane scale factor
-+		 */
-+		if (old_active_planes == new_active_planes)
- 			continue;
- 
- 		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
+ static int intel_atomic_check_planes(struct intel_atomic_state *state)
 -- 
 2.24.1.485.gad05a3d8e5
 
