@@ -1,47 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFD21CDA61
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 14:45:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C741CDABF
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 15:05:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00ABF6E455;
-	Mon, 11 May 2020 12:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 577EF6E459;
+	Mon, 11 May 2020 13:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA6506E455
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 12:45:25 +0000 (UTC)
-IronPort-SDR: kf0pyh2px9gYRIKuzzWSIX4EDa46jJDtgwbx/s86LplmOtJGxfN1Dix9M60ztO+4watqkDZ1yf
- bKF27L9x+ZWw==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF196E459;
+ Mon, 11 May 2020 13:05:45 +0000 (UTC)
+IronPort-SDR: 66nntVXWFwjQPiXUWU8fJ8SSfCWAe+ikVnmuB+nfGxlIZHuiQPW3mhEtyUnBSyBn4foBI827Rz
+ OllqbB8y/J9A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2020 05:45:25 -0700
-IronPort-SDR: 1giBkgJBTcLi/8vPoMYErDDDxcc8iZTySmXWLxlWQEXMoY5yUlg5+oxkemtvVd1IZ9ADLlGmf8
- U6nTQT2bWsNw==
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 06:05:16 -0700
+IronPort-SDR: czWtYUcdtIzQmDbozwO30CWXEpq19bMYy+nvT1MOlTO3jsfBOQVEdoX89iVavUbcNSRHmk84Eg
+ Pwxa6QIDFK0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="250535579"
+X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="250542938"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 11 May 2020 05:45:22 -0700
+ by orsmga007.jf.intel.com with SMTP; 11 May 2020 06:05:08 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 11 May 2020 15:45:21 +0300
-Date: Mon, 11 May 2020 15:45:21 +0300
+ Mon, 11 May 2020 16:05:07 +0300
+Date: Mon, 11 May 2020 16:05:07 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200511124521.GJ6112@intel.com>
-References: <20200417212408.19649-1-shawn.c.lee@intel.com>
- <078627d6dff5e01868771b5b2158b75446200fd9.camel@redhat.com>
- <BN6PR11MB15883B388981ADA59DAEB97FA3AA0@BN6PR11MB1588.namprd11.prod.outlook.com>
- <1a35fc492437f1cd2aefc30690bba52a6b4d8962.camel@redhat.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200511130507.GK6112@intel.com>
+References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
+ <20200417152310.GQ3456981@phenom.ffwll.local>
+ <20200417154313.GO6112@intel.com>
+ <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
+ <20200417182834.GS6112@intel.com>
+ <20200508170840.GE1219060@intel.com>
+ <CAKMK7uHm+CmM6noHbMnmW9bSzk0dZ=9-CTpu+hxUwFbXmMkZ4g@mail.gmail.com>
+ <20200511123715.GI6112@intel.com>
+ <CAKMK7uFxObdsNM7PETpipr0AJs_qfTY8NEpQ6M+x9NPC5gUuEg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1a35fc492437f1cd2aefc30690bba52a6b4d8962.camel@redhat.com>
+In-Reply-To: <CAKMK7uFxObdsNM7PETpipr0AJs_qfTY8NEpQ6M+x9NPC5gUuEg@mail.gmail.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: filter out the display mode
- exceed sink's capability
+Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,102 +58,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- "20200417212408.19649-1-shawn.c.lee@intel.com"
- <20200417212408.19649-1-shawn.c.lee@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXkgMDcsIDIwMjAgYXQgMDY6NDY6MTdQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBPbiBUaHUsIDIwMjAtMDQtMzAgYXQgMDI6MzcgKzAwMDAsIExlZSwgU2hhd24gQyB3cm90
-ZToKPiA+IE9uIFNhdCwgMjAyMC0wNC0yNSwgTHl1ZGUgUGF1bCB3cm90ZToKPiA+ID4gSGkhIFNv
-cnJ5IHRoaXMgdG9vayBtZSBhIGxpdHRsZSB3aGlsZSB0byBnZXQgYmFjayB0bywgSSBoYWQgYSBj
-b3VwbGUgb2YKPiA+ID4gTVNUIHJlZ3Jlc3Npb25zIHRoYXQgSSBoYWQgdG8gbG9vayBpbnRvCj4g
-PiA+IAo+ID4gPiBPbiBTYXQsIDIwMjAtMDQtMTggYXQgMDU6MjQgKzA4MDAsIExlZSBTaGF3biBD
-IHdyb3RlOgo+ID4gPiA+IFNvIGZhciwgbWF4IGRvdCBjbG9jayByYXRlIGZvciBNU1QgbW9kZSBy
-ZWx5IG9uIHBoeXNjaWFsIGJhbmR3aWR0aCAKPiA+ID4gPiBsaW1pdGF0aW9uLiBJdCB3b3VsZCBj
-YXVzZWQgY29tcGF0aWJpbGl0eSBpc3N1ZSBpZiBzb3VyY2UgZGlzcGxheSAKPiA+ID4gPiByZXNv
-bHV0aW9uIGV4Y2VlZCBNU1QgaHViIG91dHB1dCBhYmlsaXR5Lgo+ID4gPiA+IAo+ID4gPiA+IEZv
-ciBleGFtcGxlLCBzb3VyY2UgRFVUIGhhZCBEUCAxLjIgb3V0cHV0IGNhcGFiaWxpdHkuCj4gPiA+
-ID4gQW5kIE1TVCBkb2NraW5nIGp1c3Qgc3VwcG9ydCBIRE1JIDEuNCBzcGVjLiBXaGVuIGEgSERN
-SSAyLjAgbW9uaXRvciAKPiA+ID4gPiBjb25uZWN0ZWQuIFNvdXJjZSB3b3VsZCByZXRyaWV2ZSBF
-RElEIGZyb20gZXh0ZXJuYWwgYW5kIGdldCBtYXggCj4gPiA+ID4gcmVzb2x1dGlvbiA0a0A2MGZw
-cy4gRFAgMS4yIGNhbiBzdXBwb3J0IDRLQDYwZnBzIGJlY2F1c2UgaXQgZGlkIG5vdCAKPiA+ID4g
-PiBzdXJwYXNzIERQIHBoeXNpY2FsIGJhbmR3aWR0aCBsaW1pdGF0aW9uLgo+ID4gPiA+IERvIG1v
-ZGVzZXQgdG8gNGtANjBmcHMsIHNvdXJjZSBvdXRwdXQgZGlzcGxheSBkYXRhIGJ1dCBNU1QgZG9j
-a2luZyAKPiA+ID4gPiBjYW4ndCBvdXRwdXQgSERNSSBwcm9wZXJseSBkdWUgdG8gdGhpcyByZXNv
-bHV0aW9uIGFscmVhZHkgb3ZlciBIRE1JIAo+ID4gPiA+IDEuNCBzcGVjLgo+ID4gPiA+IAo+ID4g
-PiA+IFJlZmVyIHRvIGNvbW1pdCA8ZmNmNDYzODA3NTk2PiAoImRybS9kcF9tc3Q6IFVzZSBmdWxs
-X3BibiBpbnN0ZWFkIG9mIAo+ID4gPiA+IGF2YWlsYWJsZV9wYm4gZm9yIGJhbmR3aWR0aCBjaGVj
-a3MiKS4KPiA+ID4gPiBTb3VyY2UgZHJpdmVyIHNob3VsZCByZWZlciB0byBmdWxsX3BibiB0byBl
-dmFsdWF0ZSBzaW5rIG91dHB1dCAKPiA+ID4gPiBjYXBhYmlsaXR5LiBBbmQgZmlsdGVyIG91dCB0
-aGUgcmVzb2x1dGlvbiBzdXJwYXNzIHNpbmsgb3V0cHV0IAo+ID4gPiA+IGxpbWl0YXRpb24uCj4g
-PiA+ID4gCj4gPiA+ID4gQ2M6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5j
-b20+Cj4gPiA+ID4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+
-Cj4gPiA+ID4gQ2M6IFZpbGxlIFN5cmphbGEgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-Pgo+ID4gPiA+IENjOiBDb29wZXIgQ2hpb3UgPGNvb3Blci5jaGlvdUBpbnRlbC5jb20+Cj4gPiA+
-ID4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiA+ID4gU2lnbmVkLW9mZi1i
-eTogTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4KPiA+ID4gPiAtLS0KPiA+ID4g
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyB8IDI0IAo+ID4g
-PiA+ICsrKysrKysrKysrKysrKysrKysrLQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjMgaW5z
-ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+ID4gPiA+IAo+ID4gPiA+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCj4gPiA+ID4gYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCj4gPiA+ID4gaW5kZXggNjE2
-MDVlYjhjMmFmLi42ODY5N2Y0NjNkYWIgMTAwNjQ0Cj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKPiA+ID4gPiBAQCAtNjA5LDYgKzYwOSwy
-NiBAQCBzdGF0aWMgaW50IGludGVsX2RwX21zdF9nZXRfbW9kZXMoc3RydWN0IAo+ID4gPiA+IGRy
-bV9jb25uZWN0b3IKPiA+ID4gPiAqY29ubmVjdG9yKQo+ID4gPiA+ICAJcmV0dXJuIGludGVsX2Rw
-X21zdF9nZXRfZGRjX21vZGVzKGNvbm5lY3Rvcik7Cj4gPiA+ID4gIH0KPiA+ID4gPiAgCj4gPiA+
-ID4gK3N0YXRpYyBib29sCj4gPiA+ID4gK2ludGVsX2RwX21zdF9tb2RlX2Nsb2NrX2V4Y2VlZF9w
-Ym5fYmFuZHdpZHRoKHN0cnVjdCBkcm1fY29ubmVjdG9yCj4gPiA+ID4gKmNvbm5lY3RvciwgaW50
-IGNsb2NrLCBpbnQgYnBwKQo+ID4gPiA+ICt7Cj4gPiA+ID4gKwlzdHJ1Y3QgaW50ZWxfY29ubmVj
-dG9yICppbnRlbF9jb25uZWN0b3IgPQo+ID4gPiA+IHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0
-b3IpOwo+ID4gPiA+ICsJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9IGludGVsX2Nvbm5lY3Rv
-ci0+bXN0X3BvcnQ7Cj4gPiA+ID4gKwlzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1n
-ciA9ICZpbnRlbF9kcC0+bXN0X21ncjsKPiA+ID4gPiArCXN0cnVjdCBkcm1fZHBfbXN0X3BvcnQg
-KnBvcnQgPSAodG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3RvcikpLT5wb3J0Owo+ID4gPiA+ICsJ
-Ym9vbCByZXQgPSBmYWxzZTsKPiA+ID4gPiArCj4gPiA+ID4gKwlpZiAoIW1ncikKPiA+ID4gPiAr
-CQlyZXR1cm4gcmV0Owo+ID4gPiA+ICsKPiA+ID4gPiArCW11dGV4X2xvY2soJm1nci0+bG9jayk7
-Cj4gPiA+IAo+ID4gPiBUaGlzIGlzbid0IHRoZSByaWdodCBsb2NrIGZvciB0aGlzIC0gbWdyLT5s
-b2NrIHByb3RlY3RzIHRoZSB0b3BvbG9neQo+ID4gPiBsYXlvdXQgKGUuZy4gZHJtX2RwX21zdF9w
-b3J0Lm1zdGIsIGRybV9kcF9tc3RfcG9ydC5uZXh0LCBhbmQKPiA+ID4gZHJtX2RwX21zdF9icmFu
-Y2gucG9ydHMpLiBwb3J0LT5mdWxsX3BibiBpcyBwcm90ZWN0ZWQgdW5kZXIKPiA+ID4gJmRybV9k
-cF9tc3RfdG9wb2xvZ3lfbWdyLmJhc2UubG9jayAobm90IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdy
-LmxvY2spLCBzbwo+ID4gPiB5b3UgbmVlZCB0byBmaXJzdCBhZGQgYSB2ZXJzaW9uIG9mIC5tb2Rl
-X3ZhbGlkKCkgdG8gc3RydWN0Cj4gPiA+IGRybV9jb25uZWN0b3JfaGVscGVyX2Z1bmNzIHRoYXQg
-YWNjZXB0cyBhIGRybV9tb2Rlc2V0X2FjcXVpcmVfY3R4IHNvIHlvdQo+ID4gPiBjYW4gdXNlIHRo
-YXQgdG8gc2FmZWx5IGdyYWIgJmRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyLmJhc2UubG9jay4KPiA+
-ID4gCj4gPiAKPiA+IFRoYW5rcyBmb3IgY29tbWVudHMhIEkgd2lsbCBjb3JyZWN0IHRoZSBsb2Nr
-IHRvIHByb3RlY3QgcG9ydC0+ZnVsbF9wYm4uCj4gPiAKPiA+ID4gPiArCWlmIChwb3J0LT5mdWxs
-X3BibikKPiA+ID4gCj4gPiA+IEFsc28gLSB0aGVyZSdzIG5vIHJlYXNvbiB0byBjaGVjayBpZiAo
-cG9ydC0+ZnVsbF9wYm4pIGhlcmUsIHNvIGxvbmcgYXMKPiA+ID4geW91J3JlIGhvbGRpbmcgdGhl
-IHJpZ2h0IGxvY2tzIHRoaXMgc2hvdWxkIGFsd2F5cyBiZSBwb3B1bGF0ZWQgYnkgdGhlIHRpbWUK
-PiA+ID4gd2UgY3JlYXRlIHRoZSBkcm1fY29ubmVjdG9yIGZvciB0aGUgTVNUIHBvcnQgKGlmIGl0
-J3Mgbm90LCB0aGF0J3MgYSBidWcKPiA+ID4gdGhhdCBuZWVkcyB0byBiZSBmaXhlZCkuCj4gPiA+
-IAo+ID4gCj4gPiBKdXN0IHdhbnQgdG8gbWFrZSBzdXJlIGZ1bGxfcGJuIHZhbHVlIGlzIGdyZWF0
-ZXIgdGhhbiB6ZXJvLiBBcyB5b3UgbWVudGlvbgo+ID4gaW4gYW5vdGhlciBwYXRjaCwgaXQncyBo
-YXJkIHRvIHByZWRpY3Qgc2luayByZXBvcnQgZnVsbCBvciBhdmFpbGFibGUgUEJOCj4gPiBwcm9w
-ZXJseS4KPiAKPiBTb3JyeSB0aGlzIHRvb2sgbWUgYSBsaXR0bGUgd2hpbGUgdG8gcmVzcG9uZCB0
-bywgY3J1bmNoIHRpbWUgY2FtZSB1cCBhdCB3b3Jr4oCmCj4gQW55d2F5LWhhdmUgeW91IHNlZW4g
-aXNzdWVzIHdpdGggZnVsbF9wYm4gcmVwb3J0aW5nIG9uIGh1YnM/IEkndmUgc2VlbiBwbGVudHkK
-PiBvZiBwcm9ibGVtcyB3aXRoIGF2YWlsYWJsZV9wYm4gcmVwb3J0aW5nLCBidXQgdGhlIHJlYXNv
-biB3ZSBzd2l0Y2hlZCBvdmVyIHRvCj4gZnVsbF9wYm4gaW4gdGhlIGZpcnN0IHBsYWNlIGlzIGJl
-Y2F1c2UgdGhhdCBzZWVtZWQgdG8gYmUgdGhlIG9uZSBodWJzIHJlcG9ydGVkCj4gcmVsaWFibHku
-IFdlIGFjdHVhbGx5IG1ha2UgdGhlIGFzc3VtcHRpb24gZnVsbF9wYm4gaXMgYWx3YXlzID4gMCBp
-Zgo+IHNvbWV0aGluZydzIGNvbm5lY3RlZCBpbiBzb21lIHBsYWNlcyBpbiB0aGUgTVNUIGhlbHBl
-cnMsIHNvIGlmIHdlJ3ZlIGdvdCBjYXNlcwo+IG9mIGZ1bGxfcGJuIGx5aW5nIGFzIHdlbGwgb24g
-c29tZSBodWJzIHdlIG1pZ2h0IHdhbnQgdG8gZml4IHRoYXQuCgpXZSBoYXZlIGF0IGxlYXN0IG9u
-ZSBmdWxsX3Bibj09MCBpc3N1ZSBpbiBjaToKPDQ+WyAgICA1LjA2MTM0NV0gV0FSTklORzogQ1BV
-OiAwIFBJRDogMzc2IGF0IGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmM6NDg4
-OSBkcm1fZHBfbXN0X2F0b21pY19jaGVja19tc3RiX2J3X2xpbWl0KzB4MTkzLzB4MWMwCgpodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV84NDYwL2ZpLWtibC03
-NTYwdS9ib290MC50eHQKCkR1bm5vIGlmIHRoYXQncyB0aGUgTVNUIGRldmljZSByZXBvcnRpbmcg
-emVybyBvciBkdWUgdG8gc29tZSBvdGhlcgpidWcsIGJ1dCBhdCBsZWFzdCBDSSBpcyBjdXJyZW50
-bHkgYm9ya2VkIG9uIHRoYXQgbWFjaGluZS4KCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, May 11, 2020 at 02:41:13PM +0200, Daniel Vetter wrote:
+> On Mon, May 11, 2020 at 2:37 PM Ville Syrj=E4l=E4
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > On Sat, May 09, 2020 at 12:13:02PM +0200, Daniel Vetter wrote:
+> > > On Fri, May 8, 2020 at 7:09 PM Rodrigo Vivi <rodrigo.vivi@intel.com> =
+wrote:
+> > > >
+> > > > On Fri, Apr 17, 2020 at 09:28:34PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > > On Fri, Apr 17, 2020 at 08:10:26PM +0200, Daniel Vetter wrote:
+> > > > > > On Fri, Apr 17, 2020 at 5:43 PM Ville Syrj=E4l=E4
+> > > > > > <ville.syrjala@linux.intel.com> wrote:
+> > > > > > >
+> > > > > > > On Fri, Apr 17, 2020 at 05:23:10PM +0200, Daniel Vetter wrote:
+> > > > > > > > On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wro=
+te:
+> > > > > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > > > >
+> > > > > > > > > Revert back to comparing fb->format->format instead fb->f=
+ormat for the
+> > > > > > > > > page flip ioctl. This check was originally only here to d=
+isallow pixel
+> > > > > > > > > format changes, but when we changed it to do the pointer =
+comparison
+> > > > > > > > > we potentially started to reject some (but definitely not=
+ all) modifier
+> > > > > > > > > changes as well. In fact the current behaviour depends on=
+ whether the
+> > > > > > > > > driver overrides the format info for a specific format+mo=
+difier combo.
+> > > > > > > > > Eg. on i915 this now rejects compression vs. no compressi=
+on changes but
+> > > > > > > > > does not reject any other tiling changes. That's just inc=
+onsistent
+> > > > > > > > > nonsense.
+> > > > > > > > >
+> > > > > > > > > The main reason we have to go back to the old behaviour i=
+s to fix page
+> > > > > > > > > flipping with Xorg. At some point Xorg got its atomic rig=
+hts taken away
+> > > > > > > > > and since then we can't page flip between compressed and =
+non-compressed
+> > > > > > > > > fbs on i915. Currently we get no page flipping for any ga=
+mes pretty much
+> > > > > > > > > since Mesa likes to use compressed buffers. Not sure how =
+compositors are
+> > > > > > > > > working around this (don't use one myself). I guess they =
+must be doing
+> > > > > > > > > something to get non-compressed buffers instead. Either t=
+hat or
+> > > > > > > > > somehow no one noticed the tearing from the blit fallback.
+> > > > > > > >
+> > > > > > > > Mesa only uses compressed buffers if you enable modifiers, =
+and there's a
+> > > > > > > > _loooooooooooot_ more that needs to be fixed in Xorg to ena=
+ble that for
+> > > > > > > > real. Like real atomic support.
+> > > > > > >
+> > > > > > > Why would you need atomic for modifiers? Xorg doesn't even ha=
+ve
+> > > > > > > any sensible framework for atomic and I suspect it never will.
+> > > > > >
+> > > > > > Frankly if no one cares about atomic in X I don't think we shou=
+ld do
+> > > > > > work-arounds for lack of atomic in X.
+> > > > > >
+> > > > > > > > Without modifiers all you get is X tiling,
+> > > > > > > > and that works just fine.
+> > > > > > > >
+> > > > > > > > Which would also fix this issue here you're papering over.
+> > > > > > > >
+> > > > > > > > So if this is the entire reason for this, I'm inclined to n=
+ot do this.
+> > > > > > > > Current Xorg is toast wrt modifiers, that's not news.
+> > > > > > >
+> > > > > > > Works just fine. Also pretty sure modifiers are even enabled =
+by
+> > > > > > > default now in modesetting.
+> > > > > >
+> > > > > > Y/CSS is harder to scan out, you need to verify with TEST_ONLY =
+whether
+> > > > > > it works. Otherwise good chances for some oddball black screens=
+ on
+> > > > > > configurations that worked before. Which is why all non-atomic
+> > > > > > compositors reverted modifiers by default again.
+> > > > >
+> > > > > Y alone is hard to scanout also, and yet we do nothing to reject =
+that.
+> > > > > It's just an inconsistent mess.
+> > > > >
+> > > > > If we really want to keep this check then we should rewrite it
+> > > > > to be explicit:
+> > > > >
+> > > > > if (old_fb->format->format !=3D new_fb->format->format ||
+> > > > >     is_ccs(old_fb->modifier) !=3D is_ccs(new_fb->modifier))
+> > > > >     return -EINVAL;
+> > > > >
+> > > > > Now it's just a random thing that may even stop doing what it's
+> > > > > currently doing if anyone touches their .get_format_info()
+> > > > > implementation.
+> > > > >
+> > > > > >
+> > > > > > > And as stated the current check doesn't have consistent behav=
+iour
+> > > > > > > anyway. You can still flip between different modifiers as lon=
+g a the
+> > > > > > > driver doesn't override .get_format_info() for one of them. T=
+he *only*
+> > > > > > > case where that happens is CCS on i915. There is no valid rea=
+son to
+> > > > > > > special case that one.
+> > > > > >
+> > > > > > The thing is, you need atomic to make CCS work reliably enough =
+for
+> > > > > > compositors and distros to dare enabling it by default.
+> > > > >
+> > > > > If it's not enabled by default then there is no harm in letting p=
+eople
+> > > > > explicitly enable it and get better performance.
+> > > > >
+> > > > > > CCS flipping
+> > > > > > works with atomic. I really see no point in baking this in with=
+ as
+> > > > > > uapi.
+> > > > >
+> > > > > It's just going back to the original intention of the check.
+> > > > > Heck, the debug message doesn't even match what it's doing now.
+> > > > >
+> > > > > > Just fix Xorg.
+> > > > >
+> > > > > Be serious. No one is going to rewrite all the randr code to be a=
+tomic.
+> > > >
+> > > > I fully understand Daniel's concern here, but I also believe this w=
+on't be
+> > > > done so soon at least. Meanwhile would it be acceptable to have a c=
+omment
+> > > > with the code /* XXX: Xorg blah... */ or /* FIXME: After Xorg blah.=
+. */
+> > > > ?
+> > >
+> > > Here's a few numbers:
+> > >
+> > > - skl shipped in Aug 2015, so about 5 years. Since then would we like
+> > > to have modifiers enabled for intel, because it costs us quite a bit
+> > > of performance. This isn't new at all.
+> > > - the last Xorg release is from May 2018, so two years. Meanwhile even
+> > > patches to fix some of the atomic mixups in -modesetting landed, but
+> > > they never shipped so not useful.
+> > > - I spent a few hours (which really is nothing) reading Xorg code
+> > > yesterday, and I concur with Daniel Stone's napkin estimate that this
+> > > will take about half to one year to fix properly. It's not happening,
+> > > no one is working on that.
+> > >
+> > > Conclusion: No one cares about modifiers on Xorg-modesetting. I don't
+> > > see why the kernel should bend over for that.
+> > >
+> > > Once that has changed (I'm not betting on that) and there's clear
+> > > effort behind modifiers for Xorg-modesetting I guess we can look into
+> > > stop-gap measures, but meanwhile the best imo is to not disturb the
+> > > dead.
+> >
+> > The alternative interpretation is that the current kernel code is
+> > just nonsense, and since no one is depending on the current nonsense
+> > behaviour we can safely change it it back to make sense.
+> >
+> > Would allow people to at least test modifier plumbing via dri3/etc.
+> > Also those of us who know what they're doing and want to actually
+> > play games on Intel GPUs can flip it on for a a bit extra performance.
+> > In the meantime I'll just have to keep carrying this patch in my own
+> > kernels.
+> =
+
+> You can also carry a one-liner for -modesetting to re-enable atomic on
+> master (it's fixed up there, simply never released, why we've had to
+> take it away). And then you can also play with modifiers.
+
+Nah. I prefer to carry the obviously corect fix rather than something
+that may or may not have unknown issues.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
