@@ -1,30 +1,25 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071C01CDCC7
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 16:13:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5AB31CDD2B
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 16:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C724189E5B;
-	Mon, 11 May 2020 14:13:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8030A6E48D;
+	Mon, 11 May 2020 14:29:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A804689E5B
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 14:13:54 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21161346-1500050 
- for multiple; Mon, 11 May 2020 15:13:05 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB7CE891BB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 14:29:46 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 May 2020 15:13:03 +0100
-Message-Id: <20200511141304.599-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Mon, 11 May 2020 16:29:16 +0200
+Message-Id: <20200511142938.1041006-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Always flush before
- unpining after writing
+Subject: [Intel-gfx] [PATCH 01/23] Revert "drm/i915/gem: Drop relocation
+ slowpath".
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,169 +32,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Be consistent, and even when we know we had used a WC, flush the mapped
-object after writing into it. The flush understands the mapping type and
-will only clflush if !I915_MAP_WC, but will always insert a wmb [sfence]
-so that we can be sure that all writes are visible.
+This reverts commit 7dc8f1143778 ("drm/i915/gem: Drop relocation
+slowpath"). We need the slowpath relocation for taking ww-mutex
+inside the page fault handler, and we will take this mutex when
+pinning all objects.
 
-v2: Add the unconditional wmb so we are know that we always flush the
-writes to memory/HW at that point.
+[mlankhorst: Adjusted for reloc_gpu_flush() changes]
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c          | 8 ++++++--
- drivers/gpu/drm/i915/gem/i915_gem_pages.c               | 1 +
- drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 2 ++
- drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c      | 2 ++
- drivers/gpu/drm/i915/gt/selftest_ring_submission.c      | 2 ++
- drivers/gpu/drm/i915/gt/selftest_rps.c                  | 2 ++
- drivers/gpu/drm/i915/selftests/i915_request.c           | 9 +++++++--
- 7 files changed, 22 insertions(+), 4 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 246 +++++++++++++++++-
+ 1 file changed, 245 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index 2fc7737ef5f4..f457d7130491 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -78,10 +78,12 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
- 	} while (rem);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(ce->vm->gt);
- 
-+	i915_gem_object_flush_map(pool->obj);
- 	i915_gem_object_unpin_map(pool->obj);
- 
-+	intel_gt_chipset_flush(ce->vm->gt);
-+
- 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
-@@ -289,10 +291,12 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 	} while (rem);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(ce->vm->gt);
- 
-+	i915_gem_object_flush_map(pool->obj);
- 	i915_gem_object_unpin_map(pool->obj);
- 
-+	intel_gt_chipset_flush(ce->vm->gt);
-+
- 	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 5d855fcd5c0f..189efcd58942 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -391,6 +391,7 @@ void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
- 	GEM_BUG_ON(range_overflows_t(typeof(obj->base.size),
- 				     offset, size, obj->base.size));
- 
-+	wmb(); /* let all previous writes be visible to HW */
- 	obj->mm.dirty = true;
- 
- 	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE)
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-index 3f6079e1dfb6..87d7d8aa080f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-@@ -158,6 +158,8 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
- 		return PTR_ERR(map);
- 
- 	map[offset / sizeof(*map)] = v;
-+
-+	__i915_gem_object_flush_map(ctx->obj, offset, sizeof(*map));
- 	i915_gem_object_unpin_map(ctx->obj);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-index 772d8cba7da9..226b5fa9b430 100644
---- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-@@ -83,6 +83,8 @@ igt_emit_store_dw(struct i915_vma *vma,
- 		offset += PAGE_SIZE;
- 	}
- 	*cmd = MI_BATCH_BUFFER_END;
-+
-+	i915_gem_object_flush_map(obj);
- 	i915_gem_object_unpin_map(obj);
- 
- 	intel_gt_chipset_flush(vma->vm->gt);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-index 9995faadd7e8..3350e7c995bc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-@@ -54,6 +54,8 @@ static struct i915_vma *create_wally(struct intel_engine_cs *engine)
- 	*cs++ = STACK_MAGIC;
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
-+
-+	i915_gem_object_flush_map(obj);
- 	i915_gem_object_unpin_map(obj);
- 
- 	vma->private = intel_context_create(engine); /* dummy residuals */
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index bfa1a15564f7..6275d69aa9cc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -727,6 +727,7 @@ int live_rps_frequency_cs(void *arg)
- 
- err_vma:
- 		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_flush_map(vma->obj);
- 		i915_gem_object_unpin_map(vma->obj);
- 		i915_vma_unpin(vma);
- 		i915_vma_put(vma);
-@@ -868,6 +869,7 @@ int live_rps_frequency_srm(void *arg)
- 
- err_vma:
- 		*cancel = MI_BATCH_BUFFER_END;
-+		i915_gem_object_flush_map(vma->obj);
- 		i915_gem_object_unpin_map(vma->obj);
- 		i915_vma_unpin(vma);
- 		i915_vma_put(vma);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 15b1ca9f7a01..c191976e1d15 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -816,10 +816,12 @@ static int recursive_batch_resolve(struct i915_vma *batch)
- 		return PTR_ERR(cmd);
- 
- 	*cmd = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(batch->vm->gt);
- 
-+	__i915_gem_object_flush_map(batch->obj, 0, sizeof(*cmd));
- 	i915_gem_object_unpin_map(batch->obj);
- 
-+	intel_gt_chipset_flush(batch->vm->gt);
-+
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d54a4933cc05..6c991154baaf 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1706,7 +1706,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 		 * we would try to acquire the struct mutex again. Obviously
+ 		 * this is bad and so lockdep complains vehemently.
+ 		 */
+-		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
++		pagefault_disable();
++		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
++		pagefault_enable();
+ 		if (unlikely(copied)) {
+ 			remain = -EFAULT;
+ 			goto out;
+@@ -1754,6 +1756,246 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 	return remain;
  }
  
-@@ -1060,9 +1062,12 @@ static int live_sequential_engines(void *arg)
- 					      I915_MAP_WC);
- 		if (!IS_ERR(cmd)) {
- 			*cmd = MI_BATCH_BUFFER_END;
--			intel_gt_chipset_flush(engine->gt);
- 
-+			__i915_gem_object_flush_map(request[idx]->batch->obj,
-+						    0, sizeof(*cmd));
- 			i915_gem_object_unpin_map(request[idx]->batch->obj);
++static int
++eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
++{
++	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
++	struct drm_i915_gem_relocation_entry *relocs =
++		u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++	unsigned int i;
++	int err;
 +
-+			intel_gt_chipset_flush(engine->gt);
- 		}
++	for (i = 0; i < entry->relocation_count; i++) {
++		u64 offset = eb_relocate_entry(eb, ev, &relocs[i]);
++
++		if ((s64)offset < 0) {
++			err = (int)offset;
++			goto err;
++		}
++	}
++	err = 0;
++err:
++	reloc_cache_reset(&eb->reloc_cache);
++	return err;
++}
++
++static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
++{
++	const char __user *addr, *end;
++	unsigned long size;
++	char __maybe_unused c;
++
++	size = entry->relocation_count;
++	if (size == 0)
++		return 0;
++
++	if (size > N_RELOC(ULONG_MAX))
++		return -EINVAL;
++
++	addr = u64_to_user_ptr(entry->relocs_ptr);
++	size *= sizeof(struct drm_i915_gem_relocation_entry);
++	if (!access_ok(addr, size))
++		return -EFAULT;
++
++	end = addr + size;
++	for (; addr < end; addr += PAGE_SIZE) {
++		int err = __get_user(c, addr);
++		if (err)
++			return err;
++	}
++	return __get_user(c, end - 1);
++}
++
++static int eb_copy_relocations(const struct i915_execbuffer *eb)
++{
++	struct drm_i915_gem_relocation_entry *relocs;
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < count; i++) {
++		const unsigned int nreloc = eb->exec[i].relocation_count;
++		struct drm_i915_gem_relocation_entry __user *urelocs;
++		unsigned long size;
++		unsigned long copied;
++
++		if (nreloc == 0)
++			continue;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			goto err;
++
++		urelocs = u64_to_user_ptr(eb->exec[i].relocs_ptr);
++		size = nreloc * sizeof(*relocs);
++
++		relocs = kvmalloc_array(size, 1, GFP_KERNEL);
++		if (!relocs) {
++			err = -ENOMEM;
++			goto err;
++		}
++
++		/* copy_from_user is limited to < 4GiB */
++		copied = 0;
++		do {
++			unsigned int len =
++				min_t(u64, BIT_ULL(31), size - copied);
++
++			if (__copy_from_user((char *)relocs + copied,
++					     (char __user *)urelocs + copied,
++					     len))
++				goto end;
++
++			copied += len;
++		} while (copied < size);
++
++		/*
++		 * As we do not update the known relocation offsets after
++		 * relocating (due to the complexities in lock handling),
++		 * we need to mark them as invalid now so that we force the
++		 * relocation processing next time. Just in case the target
++		 * object is evicted and then rebound into its old
++		 * presumed_offset before the next execbuffer - if that
++		 * happened we would make the mistake of assuming that the
++		 * relocations were valid.
++		 */
++		if (!user_access_begin(urelocs, size))
++			goto end;
++
++		for (copied = 0; copied < nreloc; copied++)
++			unsafe_put_user(-1,
++					&urelocs[copied].presumed_offset,
++					end_user);
++		user_access_end();
++
++		eb->exec[i].relocs_ptr = (uintptr_t)relocs;
++	}
++
++	return 0;
++
++end_user:
++	user_access_end();
++end:
++	kvfree(relocs);
++	err = -EFAULT;
++err:
++	while (i--) {
++		relocs = u64_to_ptr(typeof(*relocs), eb->exec[i].relocs_ptr);
++		if (eb->exec[i].relocation_count)
++			kvfree(relocs);
++	}
++	return err;
++}
++
++static int eb_prefault_relocations(const struct i915_execbuffer *eb)
++{
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++
++	for (i = 0; i < count; i++) {
++		int err;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
++static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
++{
++	bool have_copy = false;
++	struct eb_vma *ev;
++	int err = 0, flush;
++
++repeat:
++	if (signal_pending(current)) {
++		err = -ERESTARTSYS;
++		goto out;
++	}
++
++	/*
++	 * We take 3 passes through the slowpatch.
++	 *
++	 * 1 - we try to just prefault all the user relocation entries and
++	 * then attempt to reuse the atomic pagefault disabled fast path again.
++	 *
++	 * 2 - we copy the user entries to a local buffer here outside of the
++	 * local and allow ourselves to wait upon any rendering before
++	 * relocations
++	 *
++	 * 3 - we already have a local copy of the relocation entries, but
++	 * were interrupted (EAGAIN) whilst waiting for the objects, try again.
++	 */
++	if (!err) {
++		err = eb_prefault_relocations(eb);
++	} else if (!have_copy) {
++		err = eb_copy_relocations(eb);
++		have_copy = err == 0;
++	} else {
++		cond_resched();
++		err = 0;
++	}
++	if (err)
++		goto out;
++
++	list_for_each_entry(ev, &eb->relocs, reloc_link) {
++		if (!have_copy) {
++			pagefault_disable();
++			err = eb_relocate_vma(eb, ev);
++			pagefault_enable();
++			if (err)
++				break;
++		} else {
++			err = eb_relocate_vma_slow(eb, ev);
++			if (err)
++				break;
++		}
++	}
++
++	flush = reloc_gpu_flush(&eb->reloc_cache);
++	if (err && !have_copy)
++		goto repeat;
++
++	if (!err)
++		err = flush;
++
++	if (err)
++		goto err;
++
++	/*
++	 * Leave the user relocations as are, this is the painfully slow path,
++	 * and we want to avoid the complication of dropping the lock whilst
++	 * having buffers reserved in the aperture and so causing spurious
++	 * ENOSPC for random operations.
++	 */
++
++err:
++	if (err == -EAGAIN)
++		goto repeat;
++
++out:
++	if (have_copy) {
++		const unsigned int count = eb->buffer_count;
++		unsigned int i;
++
++		for (i = 0; i < count; i++) {
++			const struct drm_i915_gem_exec_object2 *entry =
++				&eb->exec[i];
++			struct drm_i915_gem_relocation_entry *relocs;
++
++			if (!entry->relocation_count)
++				continue;
++
++			relocs = u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++			kvfree(relocs);
++		}
++	}
++
++	return err;
++}
++
+ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+@@ -1782,6 +2024,8 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ 		flush = reloc_gpu_flush(&eb->reloc_cache);
+ 		if (!err)
+ 			err = flush;
++		else
++			return eb_relocate_slow(eb);
+ 	}
  
- 		i915_vma_put(request[idx]->batch);
+ 	return err;
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
