@@ -1,32 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D5041CD381
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:05:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 297CA1CD39A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 891146E248;
-	Mon, 11 May 2020 08:05:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81E0D89F99;
+	Mon, 11 May 2020 08:18:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3A54789D99;
- Mon, 11 May 2020 08:05:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 28126A47EE;
- Mon, 11 May 2020 08:05:16 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C64FD6E227
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 08:18:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1589185127;
+ bh=J4RfFWIfCX+n/ofk7Er2DKCJneTANqazrtHYKLaoO7U=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=iJaxLGpOULOZjJ8k/aRmqZOcndgQ2ObReH85DP8gXxmN7Czn5Tca+G5hQDzhDnPep
+ XA2EgGMrFpF+03qZhazGd8RqiYP1b23rEHjv3cKk7qyUfGbUZ2zd/9BPLSesc5s6GU
+ LgzeT0JaPaDOV+STsqeY2pPitFLGSb+Qq2zI6g20=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.3.33] ([217.225.88.7]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MvK0R-1jGOL03KZF-00rHMM for
+ <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 10:18:47 +0200
+To: intel-gfx@lists.freedesktop.org
+From: Arno <star@gmx.li>
+Message-ID: <aab05507-450d-5643-20af-500dec6bc59b@gmx.li>
+Date: Mon, 11 May 2020 10:18:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 11 May 2020 08:05:16 -0000
-Message-ID: <158918431612.13119.5080613071298473733@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200511075722.13483-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/20=5D_drm/i915/gt=3A_Mark_up_the?=
- =?utf-8?q?_racy_read_of_execlists-=3Econtext=5Ftag?=
+Content-Language: en-US
+X-Provags-ID: V03:K1:ZKZH+Ty9LoLsSrD6/4//XbUpyzpoPppl9b9XABjpviHrCq1UoRw
+ yjq9eLZrGZyvP/lEt1JoUQFa9a+tIt7SlwipBQWB7S2VXEVERt7icze/EKZtYzo92Etlt1p
+ yqYcZ2xC1Gm39KIAmCs/rbfV2rH5+hr2CvBY8DX9d+HPYbIbbd05ShD5DMJUTw88cIOPpAp
+ F1jNjVQWrnRX40upYkP6g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:n+A73Kx1Byg=:JNG7z4rzN0XTW4GtGZtyhw
+ nueW7wT6pAN6PkR4byHWS9eiflur6l0BnyrigYMXXPxPnvXTfiCBlmXx0AYEW1DXuGFI4Ing1
+ WOa8DRyN4PEXeuGimAIabPGUUctysKk54hJ/G8ZhjJG5fkB4zMnKI/P28H44u2kDxMC0X+zmH
+ vpyw86+p9GmjEuEqMdEh9xt65c5hJOjfEyyFfMGk2IvorGIfRk+qWFzVyuPG/cKNAW8XyaGOd
+ //+B1mK58aTpwyongHuF6i94LkngQVCLBKrLk4k1qdm8vSzXENUhX8AdPI9nl5/0lves+cS1P
+ mnX/e7fZGbwdac4ugY7JJy4iZQEj+OY1GY99lCx3c97wu0QV1zuO9ippLIMC70iJEG7vgck/N
+ vZZfuui9n72VkQ5uFzeptRCmFnHMoHNDYkDaGprQhY7edjWlnOtrEFg/N+YeUNC/WKEpfSb3i
+ SQdn7Cu48V+/Y8iTKChhPg7bC4QAFRsvziibSwcWZYWU4SSPUHfH265+23UhUyc9J8Z+WJ7Lz
+ f5Dim4wtQ5dNpv/Rrsi9xA/MQjFxJlATRurXAotOiP3BRQYC+bysnYirURBPzNCd4o8RnjA61
+ 7Zjf5nGE5+aVTgH8PjPGGAx7HmaxUimrd26GsahbPYZmQHq+3Oomzh3ny/zaTdzoyFjJH43Bo
+ Qs11Ous5PiwLT27W17OzpOoNf9RcWBp45LwbX3DXt+2ZkdlVxuB6/s3OGAmeMiR3yj3ut6+hv
+ JVFuhocRGO4kpLNlH2/O0gbnvr7aK+PURQ2yGBRomhrB1BaeJnY/sXd0vMgHtjr+4yITrP9Rq
+ VFoV6XRSiH/aulOvJ8JSE0r1h+prwArdgl9EeYnnGd4vkRfk8JZHfZwXnVQs88ldxNYMnpy8M
+ +i5o/OOYShKSh++ufdvgrqYjqiWkjfwkWLUpQX12sgnDN5DcUNRAQbGnqajwYqqaeJs2SBv92
+ 4yUHvTzzEPMOKVg+TaohOGUTRTeTERykcsQ63gZDrWy6sR8gZUVz3i/CEH7MW0OYftYoNIj7F
+ wiXDyuUUqOTsYNie+0WVOvJxPOIm0jkwFbXHl3swID3KuYWQ2agdxufC4c4GUB8hxvA6rrYzO
+ 6UgTlkebDAeuHSPuWTBj2JCZlsm0MaPy/os/BnqxhuSDwuuNnhsM7kknfGH3YVUs58nG4/0YT
+ io2hgI2I7GObjsdoHzMg79lxkdNFu/8tAAksbWJBVH8zBapDRNjLar3js7cjVcLyn1TAI=
+Subject: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU
+ pipe A FIFO underrun
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,75 +68,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1886098530=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is a multi-part message in MIME format.
+--===============1886098530==
+Content-Type: multipart/alternative;
+ boundary="------------94AC8D44052152EEF9C9990C"
+Content-Language: en-US
 
-Series: series starting with [01/20] drm/i915/gt: Mark up the racy read of execlists->context_tag
-URL   : https://patchwork.freedesktop.org/series/77141/
-State : warning
+This is a multi-part message in MIME format.
+--------------94AC8D44052152EEF9C9990C
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+My laptop (core m5-6y54) starts flickering after returning from Suspend
+(to RAM) or other commands touching the video driver (xrandr, powertop
+=2D-calibrate, ...)
 
-$ dim checkpatch origin/drm-tip
-e9cce902ea86 drm/i915/gt: Mark up the racy read of execlists->context_tag
-bf3abad22116 drm/i915/gt: Couple up old virtual breadcrumb on new sibling
-00b75eb28274 dma-buf: Use atomic_fetch_add() for the context id
-344cdfd1b12f drm/i915: Mark the addition of the initial-breadcrumb in the request
-aae3a8087d19 drm/i915: Tidy awaiting on dma-fences
-b28a6fb10640 dma-buf: Proxy fence, an unsignaled fence placeholder
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
+ From kernel (tested with up to 5.7) I get the message:
 
--:380: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#380: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
-+	spinlock_t lock;
+[drm:intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU pipe A FIFO
+underrun
 
--:540: WARNING:MEMORY_BARRIER: memory barrier without comment
-#540: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
-+	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
+I added a bug with more details here:
 
-total: 0 errors, 2 warnings, 1 checks, 1043 lines checked
-f5ce843a1d9e drm/syncobj: Allow use of dma-fence-proxy
-2d38f7b8348e drm/i915/gem: Teach execbuf how to wait on future syncobj
-554edd421135 drm/i915/gem: Allow combining submit-fences with syncobj
-456efa24718d drm/i915/gt: Declare when we enabled timeslicing
-9edbc891b919 drm/i915/gem: Remove redundant exec_fence
-b3548165607b drm/i915: Drop no-semaphore boosting
-30e4aad7f08c drm/i915: Move saturated workload detection back to the context
--:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#22: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1872760
 
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")'
-#22: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+but guys from Ubuntu seems not able to help (as it is an upstream bug) !?
 
-total: 1 errors, 1 warnings, 0 checks, 68 lines checked
-b408f2a0bcf3 drm/i915: Remove the saturation backoff for HW semaphores
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-References: ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")
+This happend not in older kernels, but these have the problem not to go
+in power save states. So I think the fix of that
 
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")'
-#10: 
-References: ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1863489
 
-total: 1 errors, 1 warnings, 0 checks, 139 lines checked
-8fd6b02f35ea drm/i915/gt: Use built-in active intel_context reference
-1c257f5105ba drm/i915: Drop I915_RESET_TIMEOUT and friends
-a6e1762c5b41 drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
-da8da4f7bf46 drm/i915/selftests: Always call the provided engine->emit_init_breadcrumb
-2d0a0242f895 drm/i915: Emit await(batch) before MI_BB_START
-a36f76dba344 drm/i915/selftests: Always flush before unpining after writing
+causes this regression.
+
+Hope someone can help. For a=C2=A0 laptop it is better to have both - stan=
+dby
+and power saving. Thank you.
+
+Arno
+
+
+
+--------------94AC8D44052152EEF9C9990C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <div class=3D"moz-text-html" lang=3D"x-unicode">
+      <p>My laptop (core m5-6y54) starts flickering after returning from
+        Suspend (to RAM) or other commands touching the video driver
+        (xrandr, powertop --calibrate, ...)</p>
+      <p>From kernel (tested with up to 5.7) I get the message:</p>
+      <p id=3D"yui_3_10_3_1_1589111239449_1529">[drm:intel_<wbr>cpu_fifo_<=
+wbr>underrun_<wbr>irq_handler
+        [i915]] *ERROR* CPU pipe A FIFO underrun</p>
+      <p>I added a bug with more details here:</p>
+      <p><a class=3D"moz-txt-link-freetext"
+          href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/187=
+2760">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1872760</a></p>
+      <p>but guys from Ubuntu seems not able to help (as it is an
+        upstream bug) !?<br>
+      </p>
+      <p>This happend not in older kernels, but these have the problem
+        not to go in power save states. So I think the fix of that=C2=A0</=
+p>
+      <p><a class=3D"moz-txt-link-freetext"
+          href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/186=
+3489">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1863489</a></p>
+      <p>causes this regression. <br>
+      </p>
+      <p>Hope someone can help. For a=C2=A0 laptop it is better to have bo=
+th
+        - standby and power saving. Thank you.</p>
+      <p>Arno<br>
+      </p>
+      <p><br>
+      </p>
+    </div>
+  </body>
+</html>
+
+--------------94AC8D44052152EEF9C9990C--
+
+--===============1886098530==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1886098530==--
