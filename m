@@ -1,45 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B611CD436
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:49:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62671CD43F
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 10:51:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E801D6E3EB;
-	Mon, 11 May 2020 08:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA5FF89D83;
+	Mon, 11 May 2020 08:51:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2406E3EB
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 08:49:54 +0000 (UTC)
-IronPort-SDR: C3Kg6ZFaxOCkp6VB8RaUieUId2ra4j+GhjB9aUOWfP9KUkhj78c0HVWdelcqvd9cgOfQk/bJjA
- F85g6pSJnhGA==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6590B89D83;
+ Mon, 11 May 2020 08:51:18 +0000 (UTC)
+IronPort-SDR: eRV4nW1R4Eym5xyluLh93t0n1JNSd79ODMpijkPtTG1OXNuplndFe1M8+OsgVxDzfhukvecsT3
+ 2evSaaMGe6Yg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2020 01:49:54 -0700
-IronPort-SDR: ToAi05Q8l/fjEp2GXjogLCFTFS5M4pnPj1l0b35jHqwMhNAV4tyb54Pf/shNzbl0uW03mEB7xN
- ydhYdffkCAgg==
-X-IronPort-AV: E=Sophos;i="5.73,379,1583222400"; d="scan'208";a="436623314"
-Received: from gschoede-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.32.164])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 01:51:17 -0700
+IronPort-SDR: NFQ4qyFRoUrEiWvCnr7y20K3CTO1cMOgocWEXUZfodEQeF1cfTn7Q0z6F4C4jbeRx8LX9IiVEm
+ lzReiVXcot7w==
+X-IronPort-AV: E=Sophos;i="5.73,379,1583222400"; d="scan'208";a="436623660"
+Received: from jkrzyszt-desk.ger.corp.intel.com ([172.22.244.18])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2020 01:49:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Manna\, Animesh" <animesh.manna@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <a8a54264-6fa0-1b21-a467-cd3a5e47761b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200506131112.19581-1-animesh.manna@intel.com>
- <22382e1c-e5e1-f8c8-74f3-83bd6b649978@linux.intel.com>
- <a8a54264-6fa0-1b21-a467-cd3a5e47761b@intel.com>
-Date: Mon, 11 May 2020 11:49:49 +0300
-Message-ID: <87mu6e6eky.fsf@intel.com>
+ 11 May 2020 01:51:15 -0700
+Message-ID: <c391b824f21dd36956fbf95740e9ea4ba7548a24.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+Date: Mon, 11 May 2020 10:51:12 +0200
+In-Reply-To: <158896045063.30605.10719204340280805143@build.alporthouse.com>
+References: <20200508135631.8099-1-janusz.krzysztofik@linux.intel.com>
+ <20200508135631.8099-3-janusz.krzysztofik@linux.intel.com>
+ <158896045063.30605.10719204340280805143@build.alporthouse.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/dsb: Pre allocate and late
- cleanup of cmd buffer
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/2] tests/gem_exec_nop:
+ Remove submission batching
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,31 +51,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 11 May 2020, "Manna, Animesh" <animesh.manna@intel.com> wrote:
-> On 08-05-2020 16:44, Maarten Lankhorst wrote:
->> Op 06-05-2020 om 15:11 schreef Animesh Manna:
->>> -	struct intel_dsb *dsb = intel_dsb_get(crtc);
->>> +	struct intel_dsb *dsb = (struct intel_dsb *)&crtc_state->dsb;
->> Why the cast? Unconstify crtc_state as it's obviously not const any more.
->
-> Dsb cmd buffer filling is done in load_lut function, so need to
-> unconstify. Otherwise throwing warning during compilation.
+Hi Chris,
 
-You shouldn't just throw the const away like that using a cast. It's a
-bad idea. Don't do it.
+On Fri, 2020-05-08 at 18:54 +0100, Chris Wilson wrote:
+> Quoting Janusz Krzysztofik (2020-05-08 14:56:31)
+> >  static double nop_on_ring(int fd, uint32_t handle,
+> >                           const struct intel_execution_engine2 *e, int timeout,
+> > -                         unsigned long *out)
+> > +                         unsigned long *count)
+> >  {
+> >         struct drm_i915_gem_execbuffer2 execbuf;
+> >         struct drm_i915_gem_exec_object2 obj;
+> >         struct timespec start, now;
+> > -       unsigned long count;
+> > +       unsigned long total;
+> > +
+> > +       igt_assert(*count);
+> >  
+> >         memset(&obj, 0, sizeof(obj));
+> >         obj.handle = handle;
+> > @@ -93,18 +95,18 @@ static double nop_on_ring(int fd, uint32_t handle,
+> >         }
+> >         intel_detect_and_clear_missed_interrupts(fd);
+> >  
+> > -       count = 0;
+> > +       total = 0;
+> >         clock_gettime(CLOCK_MONOTONIC, &start);
+> >         do {
+> > -               for (int loop = 0; loop < 1024; loop++)
+> > +               for (int loop = 0; loop < *count; loop++)
+> 
+> This unnerves me. I expect to get this wrong when writing new callers.
+> 
+> There's no great reason to even have 1024 here, we can survive with
+> doing clock_gettime() every iteration, and just accept it as part of the
+> systematic cost.
 
-BR,
-Jani.
+Thanks for fixing this and merging the change.
+
+Following our discussion on IRC which I probably didn't understand
+precisely enough but maybe have a better understanding now after having
+it reread, how about still addressing the "headless" requirement for
+better precision with the following hunk?
+
+@@ -373,10 +372,12 @@ stable_nop_on_ring(int fd, uint32_t handle,
+ 	while (reps--) {
+ 		unsigned long count;
+ 		double time;
+ 
+ 		time = nop_on_ring(fd, handle, e, timeout, &count);
++		igt_skip_on_f(count < 1000 * timeout,
++			      "submicrosecond precision of time measurement\n");
+ 		igt_stats_push_float(&s, time / count);
+ 	}
+ 
+ 	n = igt_stats_get_median(&s);
+ 	igt_stats_fini(&s);
+
+Thanks,
+Janusz
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> >  
+> > -               count += 1024;
+> > +               total += *count;
+> >                 clock_gettime(CLOCK_MONOTONIC, &now);
+> >         } while (elapsed(&start, &now) < timeout);
+> >         igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
+> >  
+> > -       *out = count;
+> > +       *count = total;
+> >         return elapsed(&start, &now);
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
