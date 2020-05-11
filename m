@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA7D1CD879
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 13:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AF51CD881
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 13:33:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 642456E43C;
-	Mon, 11 May 2020 11:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 894B66E444;
+	Mon, 11 May 2020 11:33:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A286E43C
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 11:32:43 +0000 (UTC)
-IronPort-SDR: Quk8ZLoyjMsnlvN/cgdhbpWYW38i18vZ0YbM5y9jRRWjYBlmH3zNhAFL7Kynpxji6OnM8mkHHF
- tIkugHsmGvhQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2020 04:32:43 -0700
-IronPort-SDR: y5UKnqq0kOJseRfh5SqEHcSeCihbCUT+ITvWfndTonmzMr+KuAM0aiC2yPFRbaW08ICosobuTy
- AIeCdHEZxb5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,379,1583222400"; d="scan'208";a="252574564"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga008.fm.intel.com with ESMTP; 11 May 2020 04:32:42 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id B81F35C1DC1; Mon, 11 May 2020 14:30:31 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200511075722.13483-5-chris@chris-wilson.co.uk>
-References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
- <20200511075722.13483-5-chris@chris-wilson.co.uk>
-Date: Mon, 11 May 2020 14:30:31 +0300
-Message-ID: <8736864sko.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D9D06E43D;
+ Mon, 11 May 2020 11:32:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1667DA3C0D;
+ Mon, 11 May 2020 11:32:59 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915: Tidy awaiting on dma-fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Mon, 11 May 2020 11:32:59 -0000
+Message-ID: <158919677908.13116.5466687071340810159@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_shmem_helper_untangling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +38,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Just tidy up the return handling for completed dma-fences. While it may
-> return errors for invalid fence, we already know that we have a good
-> fence and the only error will be an already signaled fence.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Series: shmem helper untangling
+URL   : https://patchwork.freedesktop.org/series/77146/
+State : warning
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/i915_sw_fence.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> index 7daf81f55c90..295b9829e2da 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> @@ -546,13 +546,11 @@ int __i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
->  	cb->fence = fence;
->  	i915_sw_fence_await(fence);
->  
-> -	ret = dma_fence_add_callback(dma, &cb->base, __dma_i915_sw_fence_wake);
-> -	if (ret == 0) {
-> -		ret = 1;
-> -	} else {
-> +	ret = 1;
-> +	if (dma_fence_add_callback(dma, &cb->base, __dma_i915_sw_fence_wake)) {
-> +		/* fence already signaled */
->  		__dma_i915_sw_fence_wake(dma, &cb->base);
-> -		if (ret == -ENOENT) /* fence already signaled */
-> -			ret = 0;
-> +		ret = 0;
->  	}
->  
->  	return ret;
-> -- 
-> 2.20.1
+$ dim checkpatch origin/drm-tip
+28f8f1b12090 drm/msm: Don't call dma_buf_vunmap without _vmap
+-:47: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+939923110257 drm/gem: WARN if drm_gem_get_pages is called on a private obj
+-:30: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#30: FILE: drivers/gpu/drm/drm_gem.c:563:
+ 
++
+
+-:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 1 checks, 20 lines checked
+7697f211fde7 drm/doc: Some polish for shmem helpers
+-:166: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 108 lines checked
+e6bf106a5bea drm/virtio: Call the right shmem helpers
+-:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2f2aa13724d5 ("drm/virtio: move virtio_gpu_mem_entry initialization to new function")'
+#13: 
+commit 2f2aa13724d56829d910b2fa8e80c502d388f106
+
+-:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+11556760a00c drm/udl: Don't call get/put_pages on imported dma-buf
+-:67: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+9fb258f570b0 drm/shmem-helpers: Don't call get/put_pages on imported dma-buf in vmap
+-:66: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+ea34b12d5b36 drm/shmem-helpers: Redirect mmap for imported dma-buf
+-:36: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+1ba534889eed drm/shmem-helpers: Ensure get_pages is not called on imported dma-buf
+-:68: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+fa97485c1080 drm/shmem-helpers: Simplify dma-buf importing
+-:65: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#65: FILE: drivers/gpu/drm/drm_gem_shmem_helper.c:92:
+ }
++/**
+
+-:136: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 1 checks, 108 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
