@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8B51CD364
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 09:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813771CD36A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 09:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D8BA89CD9;
-	Mon, 11 May 2020 07:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DCAF6E26C;
+	Mon, 11 May 2020 07:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1E8D6E267
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFAC86E260
  for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 07:57:59 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21160797-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21160798-1500050 
  for multiple; Mon, 11 May 2020 08:57:27 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 May 2020 08:57:15 +0100
-Message-Id: <20200511075722.13483-13-chris@chris-wilson.co.uk>
+Date: Mon, 11 May 2020 08:57:16 +0100
+Message-Id: <20200511075722.13483-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200511075722.13483-1-chris@chris-wilson.co.uk>
 References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/20] drm/i915: Move saturated workload
- detection back to the context
+Subject: [Intel-gfx] [PATCH 14/20] drm/i915: Remove the saturation backoff
+ for HW semaphores
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,131 +45,187 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we introduced the saturated workload detection to tell us to back
-off from semaphore usage [semaphores have a noticeable impact on
-contended bus cycles with the CPU for some heavy workloads], we first
-introduced it as a per-context tracker. This allows individual contexts
-to try and optimise their own usage, but we found that with the local
-tracking and the no-semaphore boosting, the first context to disable
-semaphores got a massive priority boost and so would starve the rest and
-all new contexts (as they started with semaphores enabled and lower
-priority). Hence we moved the saturated workload detection to the
-engine, and a consequence had to disable semaphores on virtual engines.
+Could our scheduling now be good enough that we avoid unnecessary
+semaphores and do not waste bus cycles checking old results? Judging by
+local runs of the examples from last year, possibly!
 
-Now that we do not have semaphore priority boosting, we can move the
-tracking back to the context and virtual engines can now utilise the
-faster inter-engine synchronisation.
-
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+References: ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
- drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 --
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 --
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 15 ---------------
- drivers/gpu/drm/i915/i915_request.c           |  4 ++--
- 6 files changed, 5 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c       |  1 -
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  2 -
+ drivers/gpu/drm/i915/i915_request.c           | 54 ++-----------------
+ drivers/gpu/drm/i915/i915_request.h           |  1 -
+ 4 files changed, 3 insertions(+), 55 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index e4aece20bc80..762a251d553b 100644
+index 762a251d553b..e4aece20bc80 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context.c
 +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -268,6 +268,7 @@ static int __intel_context_active(struct i915_active *active)
+@@ -268,7 +268,6 @@ static int __intel_context_active(struct i915_active *active)
  	if (err)
  		goto err_timeline;
  
-+	ce->saturated = 0;
+-	ce->saturated = 0;
  	return 0;
  
  err_timeline:
 diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 4954b0df4864..aed26d93c2ca 100644
+index aed26d93c2ca..4954b0df4864 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
 +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -78,6 +78,8 @@ struct intel_context {
+@@ -78,8 +78,6 @@ struct intel_context {
  	} lrc;
  	u32 tag; /* cookie passed to HW to track this context on submission */
  
-+	intel_engine_mask_t saturated; /* submitting semaphores too late? */
-+
+-	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+-
  	/* Time on GPU as tracked by the hw. */
  	struct {
  		struct ewma_runtime avg;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index d0a1078ef632..6d7fdba5adef 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -229,8 +229,6 @@ static int __engine_park(struct intel_wakeref *wf)
- 	struct intel_engine_cs *engine =
- 		container_of(wf, typeof(*engine), wakeref);
- 
--	engine->saturated = 0;
--
- 	/*
- 	 * If one and only one request is completed between pm events,
- 	 * we know that we are inside the kernel context and it is
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index c113b7805e65..2b1232a233bc 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -332,8 +332,6 @@ struct intel_engine_cs {
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
--	intel_engine_mask_t saturated; /* submitting semaphores too late? */
--
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 382969c1c7ca..730f639a4477 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -5591,21 +5591,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
- 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 
--	/*
--	 * The decision on whether to submit a request using semaphores
--	 * depends on the saturated state of the engine. We only compute
--	 * this during HW submission of the request, and we need for this
--	 * state to be globally applied to all requests being submitted
--	 * to this engine. Virtual engines encompass more than one physical
--	 * engine and so we cannot accurately tell in advance if one of those
--	 * engines is already saturated and so cannot afford to use a semaphore
--	 * and be pessimized in priority for doing so -- if we are the only
--	 * context using semaphores after all other clients have stopped, we
--	 * will be starved on the saturated system. Such a global switch for
--	 * semaphores is less than ideal, but alas is the current compromise.
--	 */
--	ve->base.saturated = ALL_ENGINES;
--
- 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
- 
- 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 9738dab5a9f6..dae0b2c44951 100644
+index dae0b2c44951..b87766b02efb 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -469,7 +469,7 @@ bool __i915_request_submit(struct i915_request *request)
+@@ -120,7 +120,6 @@ static void i915_fence_release(struct dma_fence *fence)
+ 	 * caught trying to reuse dead objects.
  	 */
- 	if (request->sched.semaphores &&
- 	    i915_sw_fence_signaled(&request->semaphore))
--		engine->saturated |= request->sched.semaphores;
-+		request->context->saturated |= request->sched.semaphores;
+ 	i915_sw_fence_fini(&rq->submit);
+-	i915_sw_fence_fini(&rq->semaphore);
  
+ 	/* Keep one request on each engine for reserved use under mempressure */
+ 	if (!cmpxchg(&rq->engine->request_pool, NULL, rq))
+@@ -451,26 +450,6 @@ bool __i915_request_submit(struct i915_request *request)
+ 	if (unlikely(fatal_error(request->fence.error)))
+ 		__i915_request_skip(request);
+ 
+-	/*
+-	 * Are we using semaphores when the gpu is already saturated?
+-	 *
+-	 * Using semaphores incurs a cost in having the GPU poll a
+-	 * memory location, busywaiting for it to change. The continual
+-	 * memory reads can have a noticeable impact on the rest of the
+-	 * system with the extra bus traffic, stalling the cpu as it too
+-	 * tries to access memory across the bus (perf stat -e bus-cycles).
+-	 *
+-	 * If we installed a semaphore on this request and we only submit
+-	 * the request after the signaler completed, that indicates the
+-	 * system is overloaded and using semaphores at this time only
+-	 * increases the amount of work we are doing. If so, we disable
+-	 * further use of semaphores until we are idle again, whence we
+-	 * optimistically try again.
+-	 */
+-	if (request->sched.semaphores &&
+-	    i915_sw_fence_signaled(&request->semaphore))
+-		request->context->saturated |= request->sched.semaphores;
+-
  	engine->emit_fini_breadcrumb(request,
  				     request->ring->vaddr + request->postfix);
-@@ -921,7 +921,7 @@ already_busywaiting(struct i915_request *rq)
- 	 *
- 	 * See the are-we-too-late? check in __i915_request_submit().
+ 
+@@ -536,10 +515,6 @@ void __i915_request_unsubmit(struct i915_request *request)
+ 
+ 	spin_unlock(&request->lock);
+ 
+-	/* We've already spun, don't charge on resubmitting. */
+-	if (request->sched.semaphores && i915_request_started(request))
+-		request->sched.semaphores = 0;
+-
+ 	/*
+ 	 * We don't need to wake_up any waiters on request->execute, they
+ 	 * will get woken by any other event or us re-adding this request
+@@ -596,23 +571,6 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+ 	return NOTIFY_DONE;
+ }
+ 
+-static int __i915_sw_fence_call
+-semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+-{
+-	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
+-
+-	switch (state) {
+-	case FENCE_COMPLETE:
+-		break;
+-
+-	case FENCE_FREE:
+-		i915_request_put(rq);
+-		break;
+-	}
+-
+-	return NOTIFY_DONE;
+-}
+-
+ static void retire_requests(struct intel_timeline *tl)
+ {
+ 	struct i915_request *rq, *rn;
+@@ -668,7 +626,6 @@ static void __i915_request_ctor(void *arg)
+ 	spin_lock_init(&rq->lock);
+ 	i915_sched_node_init(&rq->sched);
+ 	i915_sw_fence_init(&rq->submit, submit_notify);
+-	i915_sw_fence_init(&rq->semaphore, semaphore_notify);
+ 
+ 	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
+ 
+@@ -757,7 +714,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 
+ 	/* We bump the ref for the fence chain */
+ 	i915_sw_fence_reinit(&i915_request_get(rq)->submit);
+-	i915_sw_fence_reinit(&i915_request_get(rq)->semaphore);
+ 
+ 	i915_sched_node_reinit(&rq->sched);
+ 
+@@ -918,10 +874,8 @@ already_busywaiting(struct i915_request *rq)
+ 	 * if we have detected the engine is saturated (i.e. would not be
+ 	 * submitted early and cause bus traffic reading an already passed
+ 	 * semaphore).
+-	 *
+-	 * See the are-we-too-late? check in __i915_request_submit().
  	 */
--	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
-+	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+-	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
++	return rq->sched.semaphores;
  }
  
  static int
+@@ -981,7 +935,6 @@ emit_semaphore_wait(struct i915_request *to,
+ 		    gfp_t gfp)
+ {
+ 	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
+-	struct i915_sw_fence *wait = &to->submit;
+ 
+ 	if (!intel_context_use_semaphores(to->context))
+ 		goto await_fence;
+@@ -1016,10 +969,10 @@ emit_semaphore_wait(struct i915_request *to,
+ 		goto await_fence;
+ 
+ 	to->sched.semaphores |= mask;
+-	wait = &to->semaphore;
++	return 0;
+ 
+ await_fence:
+-	return i915_sw_fence_await_dma_fence(wait,
++	return i915_sw_fence_await_dma_fence(&to->submit,
+ 					     &from->fence, 0,
+ 					     I915_FENCE_GFP);
+ }
+@@ -1654,7 +1607,6 @@ void __i915_request_queue(struct i915_request *rq,
+ 	 */
+ 	if (attr && rq->engine->schedule)
+ 		rq->engine->schedule(rq, attr);
+-	i915_sw_fence_commit(&rq->semaphore);
+ 	i915_sw_fence_commit(&rq->submit);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 8ec7ee4dbadc..246c80dd37f1 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -215,7 +215,6 @@ struct i915_request {
+ 		} duration;
+ 	};
+ 	struct list_head execute_cb;
+-	struct i915_sw_fence semaphore;
+ 
+ 	/*
+ 	 * A list of everyone we wait upon, and everyone who waits upon us.
 -- 
 2.20.1
 
