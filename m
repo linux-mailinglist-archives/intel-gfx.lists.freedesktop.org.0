@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8768C1CE15B
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 19:15:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD531CE177
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 19:19:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38F1F6E50C;
-	Mon, 11 May 2020 17:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFC089DEC;
+	Mon, 11 May 2020 17:19:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1874189D00;
- Mon, 11 May 2020 17:15:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9288589DEC;
+ Mon, 11 May 2020 17:19:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05D8CA47E1;
- Mon, 11 May 2020 17:15:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8C1FAA47E1;
+ Mon, 11 May 2020 17:19:01 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pascal Terjan" <pterjan@google.com>
-Date: Mon, 11 May 2020 17:15:07 -0000
-Message-ID: <158921730702.13117.1840445462121427450@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 11 May 2020 17:19:01 -0000
+Message-ID: <158921754157.13116.15172167938286223924@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200510212521.128869-1-pterjan@google.com>
-In-Reply-To: <20200510212521.128869-1-pterjan@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_unused_HAS=5FFWTABLE_macro?=
+References: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Consider_DBuf_bandwidth_when_calculating_CDCLK_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,67 +47,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Remove unused HAS_FWTABLE macro
-URL   : https://patchwork.freedesktop.org/series/77158/
-State : success
+Series: Consider DBuf bandwidth when calculating CDCLK (rev10)
+URL   : https://patchwork.freedesktop.org/series/74739/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8466 -> Patchwork_17627
-====================================================
+$ dim checkpatch origin/drm-tip
+f95bf937bce0 drm/i915: Decouple cdclk calculation from modeset checks
+4dca6193f621 drm/i915: Extract cdclk requirements checking to separate function
+c570057695f2 drm/i915: Check plane configuration properly
+-:31: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Stanislav Lisovskiy <stanislav.lisovskiY@intel.com>'
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+bef12142b2dd drm/i915: Plane configuration affects CDCLK in Gen11+
+-:22: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Stanislav Lisovskiy <stanislav.lisovskiY@intel.com>'
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+309f231f6098 drm/i915: Introduce for_each_dbuf_slice_in_mask macro
+-:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__slice' - possible side-effects?
+#24: FILE: drivers/gpu/drm/i915/display/intel_display.h:190:
++#define for_each_dbuf_slice_in_mask(__slice, __mask) \
++	for ((__slice) = DBUF_S1; (__slice) < I915_MAX_DBUF_SLICES; (__slice)++) \
++		for_each_if((BIT(__slice)) & (__mask))
 
-  No regressions found.
+total: 0 errors, 0 warnings, 1 checks, 20 lines checked
+ce163ad5cb90 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
+120f117da5c4 drm/i915: Remove unneeded hack now for CDCLK
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17627/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17627 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8466/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17627/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8466 -> Patchwork_17627
-
-  CI-20190529: 20190529
-  CI_DRM_8466: eea130b942bec4cb8c19514b3a63aed25e4dec27 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5646: 5a5a3162a7638b3ae38b6dc2545622c204d1b97c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17627: e3dc906cf5dbe7fa3ab94c3053b490c3657d9c08 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e3dc906cf5db drm/i915: Remove unused HAS_FWTABLE macro
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17627/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
