@@ -2,31 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249C71CD58A
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 11:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612651CD590
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 11:44:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 776CF6E415;
-	Mon, 11 May 2020 09:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E48F96E426;
+	Mon, 11 May 2020 09:43:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48B8D6E415;
- Mon, 11 May 2020 09:42:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42B8EA0BCB;
- Mon, 11 May 2020 09:42:27 +0000 (UTC)
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A315D6E421;
+ Mon, 11 May 2020 09:43:55 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id t199so14588847oif.7;
+ Mon, 11 May 2020 02:43:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YO2ZrbWa/GjLyrkjg6sCgnAZgQAjgJWk4AMO7gsTNVw=;
+ b=W4za8q6xCq1PKmE8TDaVI/YbrU6tqAlPw3FphOaONDGWKNRL+n6K8rSmWR95gSdRiB
+ Pc72TnO3EiTLrsUZOm9sQ9P1mv8VLDl/jEofb3UQT982ll1L4zGpE+upTgjddatOLAGi
+ vTjZ7BJoLpiDK2xvIqRWE4g2aK6pBxn4ErUuAAbwgR00NO6t/QQ0GQnRF7+CCx8vg5jb
+ Z6vodzvYigvmI1gybtXoYIhvzlrouuL/Dah9ipcyPIL3UHonNON0i7OGh1x9WaaQwXl+
+ 9FErOVivQrBuiln/MSiNpAGkh7eH59IlB1cI28gkmcyr6hMcDhyW46K97SROLNgAiiej
+ SryA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YO2ZrbWa/GjLyrkjg6sCgnAZgQAjgJWk4AMO7gsTNVw=;
+ b=V2Qj+VcixFkBVSyHMn1/WxOroTsn8RvJRiTWUJo3hxR/HdAdr/6ji6kt+o8NniFByc
+ eVb7eadlrOH7T4hBoCS6nPVTR5+mPjpOI63dYCygugU7Nz51E0mEF1X2AFEXyY3FEnAa
+ ydey96eSgIBkJ78S672Ko8p2IqOvMhamMtXi8FrT3FpJe2go87YXHAABoAV4hDOfE56E
+ Y3qQA6zEUylQRF1VhAR5rwVwfb+EEnd2rJDbNeU7T3pb6/BN9vKN+AQvIrOhhmmgOmnG
+ M6MkA9d8QW84jzS4ngCXEDOOR+SUfKTdY8Sm98X3ZLaT1RdTkTQ0SocScb3181bnfB/N
+ YBrg==
+X-Gm-Message-State: AGi0PuYeoMuAgII4j1mPV5Tl/n7BMdi9BrgWih5Yt3DSWCZUCUJ9Q1Yn
+ 30VbIPrwsSyxMvjbNPdnH2sb08k7a1pyBaxcnrw=
+X-Google-Smtp-Source: APiQypK+nD0Gmx36F2wXwHrGVNh8L6LLcNUzenp1CD2DqFB/EQ8oek6utcYJ1Lr3zoWhnSPdbH5CwdqJePlWg1ebiqY=
+X-Received: by 2002:aca:abd0:: with SMTP id
+ u199mr18301648oie.130.1589190234071; 
+ Mon, 11 May 2020 02:43:54 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Mon, 11 May 2020 09:42:27 -0000
-Message-ID: <158919014726.13116.15026960854756434290@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20200511091142.208787-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200511091142.208787-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/writeback=3A_don=27t_set_fence-?=
- =?utf-8?q?=3Eops_to_default?=
+ <20200511091142.208787-3-daniel.vetter@ffwll.ch>
+ <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
+In-Reply-To: <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
+From: Oded Gabbay <oded.gabbay@gmail.com>
+Date: Mon, 11 May 2020 12:43:09 +0300
+Message-ID: <CAFCwf11MrovJbcutkuyhJpvAY9v9rtRdHAkY8wJF7S-z5vrWTg@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 3/3] misc/habalabs: don't set default
+ fence_ops->wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,225 +64,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ linaro-mm-sig@lists.linaro.org, Olof Johansson <olof@lixom.net>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+And just FYI, the driver was written internally at 2016-17, where the
+dma-buf module didn't check the .wait ops before calling it and that's
+why the initialization of the default wait was there in the first
+place.
+I should have removed it when I upstreamed it but it missed my review.
+Thanks,
+Oded
 
-Series: series starting with [1/3] drm/writeback: don't set fence->ops to default
-URL   : https://patchwork.freedesktop.org/series/77144/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8461 -> Patchwork_17621
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17621 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17621, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17621:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@dmabuf@all@dma_fence:
-    - fi-icl-u2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-icl-u2/igt@dmabuf@all@dma_fence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-icl-u2/igt@dmabuf@all@dma_fence.html
-    - fi-icl-guc:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-icl-guc/igt@dmabuf@all@dma_fence.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-icl-guc/igt@dmabuf@all@dma_fence.html
-    - fi-kbl-8809g:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-kbl-8809g/igt@dmabuf@all@dma_fence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-kbl-8809g/igt@dmabuf@all@dma_fence.html
-    - fi-byt-n2820:       [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-byt-n2820/igt@dmabuf@all@dma_fence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-byt-n2820/igt@dmabuf@all@dma_fence.html
-    - fi-kbl-r:           [PASS][9] -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-kbl-r/igt@dmabuf@all@dma_fence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-kbl-r/igt@dmabuf@all@dma_fence.html
-    - fi-cfl-8700k:       [PASS][11] -> [FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-cfl-8700k/igt@dmabuf@all@dma_fence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-cfl-8700k/igt@dmabuf@all@dma_fence.html
-    - fi-apl-guc:         [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-apl-guc/igt@dmabuf@all@dma_fence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-apl-guc/igt@dmabuf@all@dma_fence.html
-    - fi-snb-2520m:       [PASS][15] -> [FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-snb-2520m/igt@dmabuf@all@dma_fence.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-snb-2520m/igt@dmabuf@all@dma_fence.html
-    - fi-bsw-kefka:       [PASS][17] -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bsw-kefka/igt@dmabuf@all@dma_fence.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bsw-kefka/igt@dmabuf@all@dma_fence.html
-    - fi-glk-dsi:         [PASS][19] -> [FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-glk-dsi/igt@dmabuf@all@dma_fence.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-glk-dsi/igt@dmabuf@all@dma_fence.html
-    - fi-kbl-x1275:       [PASS][21] -> [FAIL][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-kbl-x1275/igt@dmabuf@all@dma_fence.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-kbl-x1275/igt@dmabuf@all@dma_fence.html
-    - fi-cml-s:           [PASS][23] -> [FAIL][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-cml-s/igt@dmabuf@all@dma_fence.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-cml-s/igt@dmabuf@all@dma_fence.html
-    - fi-skl-6600u:       [PASS][25] -> [FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-skl-6600u/igt@dmabuf@all@dma_fence.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-skl-6600u/igt@dmabuf@all@dma_fence.html
-    - fi-skl-guc:         [PASS][27] -> [FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-skl-guc/igt@dmabuf@all@dma_fence.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-skl-guc/igt@dmabuf@all@dma_fence.html
-    - fi-icl-y:           NOTRUN -> [FAIL][29]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-icl-y/igt@dmabuf@all@dma_fence.html
-    - fi-cfl-guc:         [PASS][30] -> [FAIL][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-cfl-guc/igt@dmabuf@all@dma_fence.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-cfl-guc/igt@dmabuf@all@dma_fence.html
-    - fi-bsw-n3050:       [PASS][32] -> [FAIL][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bsw-n3050/igt@dmabuf@all@dma_fence.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bsw-n3050/igt@dmabuf@all@dma_fence.html
-    - fi-ilk-650:         [PASS][34] -> [FAIL][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-ilk-650/igt@dmabuf@all@dma_fence.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-ilk-650/igt@dmabuf@all@dma_fence.html
-    - fi-ivb-3770:        [PASS][36] -> [FAIL][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-ivb-3770/igt@dmabuf@all@dma_fence.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-ivb-3770/igt@dmabuf@all@dma_fence.html
-    - fi-cml-u2:          [PASS][38] -> [FAIL][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-cml-u2/igt@dmabuf@all@dma_fence.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-cml-u2/igt@dmabuf@all@dma_fence.html
-    - fi-blb-e6850:       [PASS][40] -> [FAIL][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-blb-e6850/igt@dmabuf@all@dma_fence.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-blb-e6850/igt@dmabuf@all@dma_fence.html
-    - fi-byt-j1900:       [PASS][42] -> [FAIL][43]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-byt-j1900/igt@dmabuf@all@dma_fence.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-byt-j1900/igt@dmabuf@all@dma_fence.html
-    - fi-elk-e7500:       [PASS][44] -> [FAIL][45]
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-elk-e7500/igt@dmabuf@all@dma_fence.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-elk-e7500/igt@dmabuf@all@dma_fence.html
-    - fi-skl-6700k2:      [PASS][46] -> [FAIL][47]
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-skl-6700k2/igt@dmabuf@all@dma_fence.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-skl-6700k2/igt@dmabuf@all@dma_fence.html
-    - fi-bxt-dsi:         [PASS][48] -> [FAIL][49]
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bxt-dsi/igt@dmabuf@all@dma_fence.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bxt-dsi/igt@dmabuf@all@dma_fence.html
-    - fi-hsw-4770:        [PASS][50] -> [FAIL][51]
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-hsw-4770/igt@dmabuf@all@dma_fence.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-hsw-4770/igt@dmabuf@all@dma_fence.html
-    - fi-whl-u:           [PASS][52] -> [FAIL][53]
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-whl-u/igt@dmabuf@all@dma_fence.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-whl-u/igt@dmabuf@all@dma_fence.html
-    - fi-bdw-5557u:       [PASS][54] -> [FAIL][55]
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bdw-5557u/igt@dmabuf@all@dma_fence.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bdw-5557u/igt@dmabuf@all@dma_fence.html
-    - fi-snb-2600:        [PASS][56] -> [FAIL][57]
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-snb-2600/igt@dmabuf@all@dma_fence.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-snb-2600/igt@dmabuf@all@dma_fence.html
-    - fi-bwr-2160:        [PASS][58] -> [FAIL][59]
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bwr-2160/igt@dmabuf@all@dma_fence.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bwr-2160/igt@dmabuf@all@dma_fence.html
-    - fi-gdg-551:         [PASS][60] -> [FAIL][61]
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-gdg-551/igt@dmabuf@all@dma_fence.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-gdg-551/igt@dmabuf@all@dma_fence.html
-    - fi-skl-lmem:        [PASS][62] -> [FAIL][63]
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-skl-lmem/igt@dmabuf@all@dma_fence.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-skl-lmem/igt@dmabuf@all@dma_fence.html
-    - fi-kbl-guc:         [PASS][64] -> [FAIL][65]
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-kbl-guc/igt@dmabuf@all@dma_fence.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-kbl-guc/igt@dmabuf@all@dma_fence.html
-    - fi-cfl-8109u:       [PASS][66] -> [FAIL][67]
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-cfl-8109u/igt@dmabuf@all@dma_fence.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-cfl-8109u/igt@dmabuf@all@dma_fence.html
-    - fi-bsw-nick:        [PASS][68] -> [FAIL][69]
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-bsw-nick/igt@dmabuf@all@dma_fence.html
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-bsw-nick/igt@dmabuf@all@dma_fence.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-kbl-soraka:      [PASS][70] -> [INCOMPLETE][71]
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-kbl-soraka/igt@i915_selftest@live@requests.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-kbl-soraka/igt@i915_selftest@live@requests.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@dmabuf@all@dma_fence:
-    - {fi-tgl-dsi}:       [PASS][72] -> [FAIL][73]
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-tgl-dsi/igt@dmabuf@all@dma_fence.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-tgl-dsi/igt@dmabuf@all@dma_fence.html
-    - {fi-tgl-u}:         [PASS][74] -> [FAIL][75]
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-tgl-u/igt@dmabuf@all@dma_fence.html
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-tgl-u/igt@dmabuf@all@dma_fence.html
-    - {fi-ehl-1}:         [PASS][76] -> [FAIL][77]
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-ehl-1/igt@dmabuf@all@dma_fence.html
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-ehl-1/igt@dmabuf@all@dma_fence.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17621 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [INCOMPLETE][78] ([i915#1580]) -> [PASS][79]
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8461/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1580]: https://gitlab.freedesktop.org/drm/intel/issues/1580
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8461 -> Patchwork_17621
-
-  CI-20190529: 20190529
-  CI_DRM_8461: c0be14b9502e54c9ece4f4fc25872d665c6a6553 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5644: 16f067ae42a6a93b8f0c5835210e2575a883001b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17621: 22f23e5ef53f4a88a03167d3341821452c5f2d4f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-22f23e5ef53f misc/habalabs: don't set default fence_ops->wait
-d701844ab384 dma-fence: use default wait function for mock fences
-9634e3eb3729 drm/writeback: don't set fence->ops to default
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17621/index.html
+On Mon, May 11, 2020 at 12:36 PM Oded Gabbay <oded.gabbay@gmail.com> wrote:
+>
+> On Mon, May 11, 2020 at 12:11 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > It's the default.
+> Thanks for catching that.
+>
+> >
+> > Also so much for "we're not going to tell the graphics people how to
+> > review their code", dma_fence is a pretty core piece of gpu driver
+> > infrastructure. And it's very much uapi relevant, including piles of
+> > corresponding userspace protocols and libraries for how to pass these
+> > around.
+> >
+> > Would be great if habanalabs would not use this (from a quick look
+> > it's not needed at all), since open source the userspace and playing
+> > by the usual rules isn't on the table. If that's not possible (because
+> > it's actually using the uapi part of dma_fence to interact with gpu
+> > drivers) then we have exactly what everyone promised we'd want to
+> > avoid.
+>
+> We don't use the uapi parts, we currently only using the fencing and
+> signaling ability of this module inside our kernel code. But maybe I
+> didn't understand what you request. You want us *not* to use this
+> well-written piece of kernel code because it is only used by graphics
+> drivers ?
+> I'm sorry but I don't get this argument, if this is indeed what you meant.
+>
+> Oded
+>
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc:     Olof Johansson <olof@lixom.net>
+> > Cc: Oded Gabbay <oded.gabbay@gmail.com>
+> > Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> > Cc: linux-media@vger.kernel.org
+> > Cc: linaro-mm-sig@lists.linaro.org
+> > ---
+> >  drivers/misc/habanalabs/command_submission.c | 1 -
+> >  1 file changed, 1 deletion(-)
+> >
+> > diff --git a/drivers/misc/habanalabs/command_submission.c b/drivers/misc/habanalabs/command_submission.c
+> > index 409276b6374d..cc3ce759b6c3 100644
+> > --- a/drivers/misc/habanalabs/command_submission.c
+> > +++ b/drivers/misc/habanalabs/command_submission.c
+> > @@ -46,7 +46,6 @@ static const struct dma_fence_ops hl_fence_ops = {
+> >         .get_driver_name = hl_fence_get_driver_name,
+> >         .get_timeline_name = hl_fence_get_timeline_name,
+> >         .enable_signaling = hl_fence_enable_signaling,
+> > -       .wait = dma_fence_default_wait,
+> >         .release = hl_fence_release
+> >  };
+> >
+> > --
+> > 2.26.2
+> >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
