@@ -1,53 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA86E1CDEFC
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 17:29:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80611CDF21
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 17:34:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17BB66E4D2;
-	Mon, 11 May 2020 15:29:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC036E4CB;
+	Mon, 11 May 2020 15:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
- [IPv6:2607:f8b0:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 099EE6E4D2
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 15:29:08 +0000 (UTC)
-Received: by mail-oi1-x241.google.com with SMTP id o24so15437750oic.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 08:29:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=jr8BqxYa5N2UQFIWCH+ZeFGjIUjI6K0QpaYQti5dmF0=;
- b=Lg++tOm6IwiIzgdNtd59XFNZ5Rmlo64vDv1d4OxItcq8FR+s48C8JwmCXbAKorjZ6J
- YMSEEwHXoSig7JadxHN8PtMZuZemoD+1KjSnSKqfgM2CBbOHJslVSimDSF7trCKxPCQU
- IZR0vJPAXGKhAKd75Zi+m8C4aIcjuV9t7jzbg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=jr8BqxYa5N2UQFIWCH+ZeFGjIUjI6K0QpaYQti5dmF0=;
- b=SMgggbLMBGT38/ojUVoquoGu6rEadJ7bsCjG0OKwcaRtcBK0YggOV1Z771Tjay3Tp7
- 6jJoTIV0zMfh3Z+AF1EsU91pY446qQg4uDfmqaXCtdBBAbKep6clcU/qj/gYIfpvTChE
- 931D0wqfrs9TM+KgKxd755eWfpLbZbRiWkXHF+m3RfDbzTdtrb3P+j/3ttSnmEYqU8gp
- 0gwh28By6ivdBP4Ll5Jc0pRBoLgf76fLYcJ219kofKqLh660Keq5zywbK9yoQVigVuQ2
- ZgNGm892sUoQuu8jOH2kzuVDRoJPnKwtgbrVv3O906lR3n6eZgrVtUylS+323KHZME6u
- dmEA==
-X-Gm-Message-State: AGi0PuYLDc+sjBKACw/N7DPQNsC9kEgqLPbkIFmoxBenNKFVJYRPaBif
- +WBeZSkL+bkkLNf1qJ7Y6dMvPBvNEG1Yr9ReJpFIYdTX
-X-Google-Smtp-Source: APiQypKoTHn0cJuzKGjhu51d/sGUsrkJZ4SrSZew0vSiBm3gQMc/ep2bCh/uj8x3VtDMZyNngfdYdPlUlBeH3a6m4Zs=
-X-Received: by 2002:aca:2113:: with SMTP id 19mr11528686oiz.128.1589210947246; 
- Mon, 11 May 2020 08:29:07 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 572FD6E4CB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2020 15:34:33 +0000 (UTC)
+IronPort-SDR: DQ6DcnAPYcWulmBAdAIo6HV1GG9i9i+QWtCyevK/KS+x+CBFOSvgZH+zOT9Z/tlhqAQvUa5b9q
+ jJPUykk/17YA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 08:34:32 -0700
+IronPort-SDR: AWrgSjjV1U6cz9SJV/tRXni6f5+1sbhxNL/AtbUfLwmPH1CgEEIhj2Pdkdz2bwVAJnG9cT4NaA
+ H5YJlv8GCVig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="296981357"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga002.fm.intel.com with ESMTP; 11 May 2020 08:34:31 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 3BB7B5C1DC1; Mon, 11 May 2020 18:32:21 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200511141304.599-1-chris@chris-wilson.co.uk>
+References: <20200511141304.599-1-chris@chris-wilson.co.uk>
+Date: Mon, 11 May 2020 18:32:21 +0300
+Message-ID: <87sgg632t6.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-2-daniel.vetter@ffwll.ch>
- <CAF6AEGuy050MWGxHk48i2f4XqKuF-9q9+FD3N8z55s6sQ+CALQ@mail.gmail.com>
-In-Reply-To: <CAF6AEGuy050MWGxHk48i2f4XqKuF-9q9+FD3N8z55s6sQ+CALQ@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Mon, 11 May 2020 17:28:56 +0200
-Message-ID: <CAKMK7uEq1vPPB9AaXb-Me6FG_pwGdRwzu87jNGquHexDRHMowg@mail.gmail.com>
-To: Rob Clark <robdclark@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/msm: Don't call dma_buf_vunmap
- without _vmap
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Always flush before
+ unpining after writing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,95 +48,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- freedreno <freedreno@lists.freedesktop.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 11, 2020 at 5:24 PM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Mon, May 11, 2020 at 2:36 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> >
-> > I honestly don't exactly understand what's going on here, but the
-> > current code is wrong for sure: It calls dma_buf_vunmap without ever
-> > calling dma_buf_vmap.
-> >
-> > What I'm not sure about is whether the WARN_ON is correct:
-> > - msm imports dma-buf using drm_prime_sg_to_page_addr_arrays. Which is
-> >   a pretty neat layering violation of how you shouldn't peek behind
-> >   the curtain of the dma-buf exporter, but par for course. Note that
-> >   all the nice new helpers don't (and we should probably have a bit a
-> >   warning about this in the kerneldoc).
-> >
-> > - but then in the get_vaddr() in msm_gem.c, and that seems to happily
-> >   wrap a vmap() around any object with ->pages set (so including
-> >   imported dma-buf)
-> >
-> > - I'm not seeing any guarantees that userspace can't use an imported
-> >   dma-buf for e.g. MSM_SUBMIT_CMD_BUF in a5xx_submit_in_rb, so no
-> >   guarantees that an imported dma-buf won't end up with a ->vaddr set.
->
-> fwiw, a5xx_submit_in_rb() isn't a "normal" path (build-time disabled
-> by default, and restricted to sudo).. it really only exists to
-> simplify poking at fw.
->
-> There could be vmap's in the msm_gem_submit path, however.  If we
-> don't, we should probably just disallow using an imported dma-buf as
-> cmdstream.. I don't think there is any sane reason to permit that.  We
-> should probably also disallow get_vaddr() on imported buffers.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Yeah if that's possible and won't blow up (I can't test) I think it'd
-be best. Something like
-if (bo->import_attach) return NULL; should do the trick I think.
-Should I type that up as v2 of this?
--Daniel
-
+> Be consistent, and even when we know we had used a WC, flush the mapped
+> object after writing into it. The flush understands the mapping type and
+> will only clflush if !I915_MAP_WC, but will always insert a wmb [sfence]
+> so that we can be sure that all writes are visible.
 >
-> BR,
-> -R
+> v2: Add the unconditional wmb so we are know that we always flush the
+> writes to memory/HW at that point.
 >
-> >
-> > But even if that WARN_ON is wrong, cleaning up a vmap() done by msm by
-> > calling dma_buf_vmap is the wrong thing to do.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Rob Clark <robdclark@gmail.com>
-> > Cc: Sean Paul <sean@poorly.run>
-> > Cc: linux-arm-msm@vger.kernel.org
-> > Cc: freedreno@lists.freedesktop.org
-> > ---
-> >  drivers/gpu/drm/msm/msm_gem.c | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
-> > index 5a6a79fbc9d6..3305a457960e 100644
-> > --- a/drivers/gpu/drm/msm/msm_gem.c
-> > +++ b/drivers/gpu/drm/msm/msm_gem.c
-> > @@ -907,8 +907,7 @@ static void free_object(struct msm_gem_object *msm_obj)
-> >         put_iova(obj);
-> >
-> >         if (obj->import_attach) {
-> > -               if (msm_obj->vaddr)
-> > -                       dma_buf_vunmap(obj->import_attach->dmabuf, msm_obj->vaddr);
-> > +               WARN_ON(msm_obj->vaddr);
-> >
-> >                 /* Don't drop the pages for imported dmabuf, as they are not
-> >                  * ours, just free the array we allocated:
-> > --
-> > 2.26.2
-> >
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object_blt.c          | 8 ++++++--
+>  drivers/gpu/drm/i915/gem/i915_gem_pages.c               | 1 +
+>  drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 2 ++
+>  drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c      | 2 ++
+>  drivers/gpu/drm/i915/gt/selftest_ring_submission.c      | 2 ++
+>  drivers/gpu/drm/i915/gt/selftest_rps.c                  | 2 ++
+>  drivers/gpu/drm/i915/selftests/i915_request.c           | 9 +++++++--
+>  7 files changed, 22 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> index 2fc7737ef5f4..f457d7130491 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> @@ -78,10 +78,12 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
+>  	} while (rem);
+>  
+>  	*cmd = MI_BATCH_BUFFER_END;
+> -	intel_gt_chipset_flush(ce->vm->gt);
+>  
+> +	i915_gem_object_flush_map(pool->obj);
+>  	i915_gem_object_unpin_map(pool->obj);
 
+Ok, so there is explicit wmb now in flush_map even
+if bo is marketed as coherent. That wmb will then
+make the writes to flushed past that point...
 
+>  
+> +	intel_gt_chipset_flush(ce->vm->gt);
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+and then the do the sfence for wcb. This pattern feels
+solid for me.
+
+If we would mark map for writes, we could do everything
+in unpin_map.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> +
+>  	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+>  	if (IS_ERR(batch)) {
+>  		err = PTR_ERR(batch);
+> @@ -289,10 +291,12 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+>  	} while (rem);
+>  
+>  	*cmd = MI_BATCH_BUFFER_END;
+> -	intel_gt_chipset_flush(ce->vm->gt);
+>  
+> +	i915_gem_object_flush_map(pool->obj);
+>  	i915_gem_object_unpin_map(pool->obj);
+>  
+> +	intel_gt_chipset_flush(ce->vm->gt);
+> +
+>  	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+>  	if (IS_ERR(batch)) {
+>  		err = PTR_ERR(batch);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> index 5d855fcd5c0f..189efcd58942 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -391,6 +391,7 @@ void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
+>  	GEM_BUG_ON(range_overflows_t(typeof(obj->base.size),
+>  				     offset, size, obj->base.size));
+>  
+> +	wmb(); /* let all previous writes be visible to HW */
+>  	obj->mm.dirty = true;
+>  
+>  	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE)
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+> index 3f6079e1dfb6..87d7d8aa080f 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+> @@ -158,6 +158,8 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
+>  		return PTR_ERR(map);
+>  
+>  	map[offset / sizeof(*map)] = v;
+> +
+> +	__i915_gem_object_flush_map(ctx->obj, offset, sizeof(*map));
+>  	i915_gem_object_unpin_map(ctx->obj);
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+> index 772d8cba7da9..226b5fa9b430 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+> @@ -83,6 +83,8 @@ igt_emit_store_dw(struct i915_vma *vma,
+>  		offset += PAGE_SIZE;
+>  	}
+>  	*cmd = MI_BATCH_BUFFER_END;
+> +
+> +	i915_gem_object_flush_map(obj);
+>  	i915_gem_object_unpin_map(obj);
+>  
+>  	intel_gt_chipset_flush(vma->vm->gt);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+> index 9995faadd7e8..3350e7c995bc 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+> @@ -54,6 +54,8 @@ static struct i915_vma *create_wally(struct intel_engine_cs *engine)
+>  	*cs++ = STACK_MAGIC;
+>  
+>  	*cs++ = MI_BATCH_BUFFER_END;
+> +
+> +	i915_gem_object_flush_map(obj);
+>  	i915_gem_object_unpin_map(obj);
+>  
+>  	vma->private = intel_context_create(engine); /* dummy residuals */
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> index bfa1a15564f7..6275d69aa9cc 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> @@ -727,6 +727,7 @@ int live_rps_frequency_cs(void *arg)
+>  
+>  err_vma:
+>  		*cancel = MI_BATCH_BUFFER_END;
+> +		i915_gem_object_flush_map(vma->obj);
+>  		i915_gem_object_unpin_map(vma->obj);
+>  		i915_vma_unpin(vma);
+>  		i915_vma_put(vma);
+> @@ -868,6 +869,7 @@ int live_rps_frequency_srm(void *arg)
+>  
+>  err_vma:
+>  		*cancel = MI_BATCH_BUFFER_END;
+> +		i915_gem_object_flush_map(vma->obj);
+>  		i915_gem_object_unpin_map(vma->obj);
+>  		i915_vma_unpin(vma);
+>  		i915_vma_put(vma);
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+> index 15b1ca9f7a01..c191976e1d15 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+> @@ -816,10 +816,12 @@ static int recursive_batch_resolve(struct i915_vma *batch)
+>  		return PTR_ERR(cmd);
+>  
+>  	*cmd = MI_BATCH_BUFFER_END;
+> -	intel_gt_chipset_flush(batch->vm->gt);
+>  
+> +	__i915_gem_object_flush_map(batch->obj, 0, sizeof(*cmd));
+>  	i915_gem_object_unpin_map(batch->obj);
+>  
+> +	intel_gt_chipset_flush(batch->vm->gt);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -1060,9 +1062,12 @@ static int live_sequential_engines(void *arg)
+>  					      I915_MAP_WC);
+>  		if (!IS_ERR(cmd)) {
+>  			*cmd = MI_BATCH_BUFFER_END;
+> -			intel_gt_chipset_flush(engine->gt);
+>  
+> +			__i915_gem_object_flush_map(request[idx]->batch->obj,
+> +						    0, sizeof(*cmd));
+>  			i915_gem_object_unpin_map(request[idx]->batch->obj);
+> +
+> +			intel_gt_chipset_flush(engine->gt);
+>  		}
+>  
+>  		i915_vma_put(request[idx]->batch);
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
