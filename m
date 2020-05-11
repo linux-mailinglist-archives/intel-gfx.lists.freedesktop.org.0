@@ -2,59 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572341CD949
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 14:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7697E1CDA15
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2020 14:37:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18E5F6E447;
-	Mon, 11 May 2020 12:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21EF16E44F;
+	Mon, 11 May 2020 12:37:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CEF96E447;
- Mon, 11 May 2020 12:05:05 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 7AA7BAC91;
- Mon, 11 May 2020 12:05:05 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85F0289C28;
+ Mon, 11 May 2020 12:37:22 +0000 (UTC)
+IronPort-SDR: jOAQN1E+zTNTO121R67MNEjLEADmMJhRXwzEQ2TH7JAD7Bj+3Cku6Um78XRpbnitxVjeWcECZR
+ 92SNI4FVbvXQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 05:37:21 -0700
+IronPort-SDR: 89pvjIBQT6dfYxR71EyBPWacDiW2IkF9OUIip2wPXJMERKcxwVlaDcMwo7RipYYDAtzYY8/a76
+ pp+WHbLWzmow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,380,1583222400"; d="scan'208";a="306166876"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 11 May 2020 05:37:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 11 May 2020 15:37:15 +0300
+Date: Mon, 11 May 2020 15:37:15 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Daniel Vetter <daniel@ffwll.ch>
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-6-daniel.vetter@ffwll.ch>
- <d34c53ef-1cba-9559-8169-66535d06b6cf@suse.de>
- <20200511113740.GE206103@phenom.ffwll.local>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <82c0365f-4963-da7c-572f-2c11dda3c5d8@suse.de>
-Date: Mon, 11 May 2020 14:04:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Message-ID: <20200511123715.GI6112@intel.com>
+References: <20200416170420.23657-1-ville.syrjala@linux.intel.com>
+ <20200417152310.GQ3456981@phenom.ffwll.local>
+ <20200417154313.GO6112@intel.com>
+ <CAKMK7uGBWyPtm0dva=Ndk6xJx7nUKJ20kn8S37iFB8s85WWmdw@mail.gmail.com>
+ <20200417182834.GS6112@intel.com>
+ <20200508170840.GE1219060@intel.com>
+ <CAKMK7uHm+CmM6noHbMnmW9bSzk0dZ=9-CTpu+hxUwFbXmMkZ4g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200511113740.GE206103@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/udl: Don't call get/put_pages on
- imported dma-buf
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uHm+CmM6noHbMnmW9bSzk0dZ=9-CTpu+hxUwFbXmMkZ4g@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm: Fix page flip ioctl format check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,221 +56,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>
-Content-Type: multipart/mixed; boundary="===============1412046436=="
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1412046436==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="14DO7Ly8obsuF3OOLdOnV7UecYyvyL5An"
+On Sat, May 09, 2020 at 12:13:02PM +0200, Daniel Vetter wrote:
+> On Fri, May 8, 2020 at 7:09 PM Rodrigo Vivi <rodrigo.vivi@intel.com> wrot=
+e:
+> >
+> > On Fri, Apr 17, 2020 at 09:28:34PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Fri, Apr 17, 2020 at 08:10:26PM +0200, Daniel Vetter wrote:
+> > > > On Fri, Apr 17, 2020 at 5:43 PM Ville Syrj=E4l=E4
+> > > > <ville.syrjala@linux.intel.com> wrote:
+> > > > >
+> > > > > On Fri, Apr 17, 2020 at 05:23:10PM +0200, Daniel Vetter wrote:
+> > > > > > On Thu, Apr 16, 2020 at 08:04:20PM +0300, Ville Syrjala wrote:
+> > > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > >
+> > > > > > > Revert back to comparing fb->format->format instead fb->forma=
+t for the
+> > > > > > > page flip ioctl. This check was originally only here to disal=
+low pixel
+> > > > > > > format changes, but when we changed it to do the pointer comp=
+arison
+> > > > > > > we potentially started to reject some (but definitely not all=
+) modifier
+> > > > > > > changes as well. In fact the current behaviour depends on whe=
+ther the
+> > > > > > > driver overrides the format info for a specific format+modifi=
+er combo.
+> > > > > > > Eg. on i915 this now rejects compression vs. no compression c=
+hanges but
+> > > > > > > does not reject any other tiling changes. That's just inconsi=
+stent
+> > > > > > > nonsense.
+> > > > > > >
+> > > > > > > The main reason we have to go back to the old behaviour is to=
+ fix page
+> > > > > > > flipping with Xorg. At some point Xorg got its atomic rights =
+taken away
+> > > > > > > and since then we can't page flip between compressed and non-=
+compressed
+> > > > > > > fbs on i915. Currently we get no page flipping for any games =
+pretty much
+> > > > > > > since Mesa likes to use compressed buffers. Not sure how comp=
+ositors are
+> > > > > > > working around this (don't use one myself). I guess they must=
+ be doing
+> > > > > > > something to get non-compressed buffers instead. Either that =
+or
+> > > > > > > somehow no one noticed the tearing from the blit fallback.
+> > > > > >
+> > > > > > Mesa only uses compressed buffers if you enable modifiers, and =
+there's a
+> > > > > > _loooooooooooot_ more that needs to be fixed in Xorg to enable =
+that for
+> > > > > > real. Like real atomic support.
+> > > > >
+> > > > > Why would you need atomic for modifiers? Xorg doesn't even have
+> > > > > any sensible framework for atomic and I suspect it never will.
+> > > >
+> > > > Frankly if no one cares about atomic in X I don't think we should do
+> > > > work-arounds for lack of atomic in X.
+> > > >
+> > > > > > Without modifiers all you get is X tiling,
+> > > > > > and that works just fine.
+> > > > > >
+> > > > > > Which would also fix this issue here you're papering over.
+> > > > > >
+> > > > > > So if this is the entire reason for this, I'm inclined to not d=
+o this.
+> > > > > > Current Xorg is toast wrt modifiers, that's not news.
+> > > > >
+> > > > > Works just fine. Also pretty sure modifiers are even enabled by
+> > > > > default now in modesetting.
+> > > >
+> > > > Y/CSS is harder to scan out, you need to verify with TEST_ONLY whet=
+her
+> > > > it works. Otherwise good chances for some oddball black screens on
+> > > > configurations that worked before. Which is why all non-atomic
+> > > > compositors reverted modifiers by default again.
+> > >
+> > > Y alone is hard to scanout also, and yet we do nothing to reject that.
+> > > It's just an inconsistent mess.
+> > >
+> > > If we really want to keep this check then we should rewrite it
+> > > to be explicit:
+> > >
+> > > if (old_fb->format->format !=3D new_fb->format->format ||
+> > >     is_ccs(old_fb->modifier) !=3D is_ccs(new_fb->modifier))
+> > >     return -EINVAL;
+> > >
+> > > Now it's just a random thing that may even stop doing what it's
+> > > currently doing if anyone touches their .get_format_info()
+> > > implementation.
+> > >
+> > > >
+> > > > > And as stated the current check doesn't have consistent behaviour
+> > > > > anyway. You can still flip between different modifiers as long a =
+the
+> > > > > driver doesn't override .get_format_info() for one of them. The *=
+only*
+> > > > > case where that happens is CCS on i915. There is no valid reason =
+to
+> > > > > special case that one.
+> > > >
+> > > > The thing is, you need atomic to make CCS work reliably enough for
+> > > > compositors and distros to dare enabling it by default.
+> > >
+> > > If it's not enabled by default then there is no harm in letting people
+> > > explicitly enable it and get better performance.
+> > >
+> > > > CCS flipping
+> > > > works with atomic. I really see no point in baking this in with as
+> > > > uapi.
+> > >
+> > > It's just going back to the original intention of the check.
+> > > Heck, the debug message doesn't even match what it's doing now.
+> > >
+> > > > Just fix Xorg.
+> > >
+> > > Be serious. No one is going to rewrite all the randr code to be atomi=
+c.
+> >
+> > I fully understand Daniel's concern here, but I also believe this won't=
+ be
+> > done so soon at least. Meanwhile would it be acceptable to have a comme=
+nt
+> > with the code /* XXX: Xorg blah... */ or /* FIXME: After Xorg blah.. */
+> > ?
+> =
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---14DO7Ly8obsuF3OOLdOnV7UecYyvyL5An
-Content-Type: multipart/mixed; boundary="N36e26HDN4UHQ3jShoEWJj3V5dJybsu8g";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Sean Paul <sean@poorly.run>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Thomas Gleixner
- <tglx@linutronix.de>, Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <82c0365f-4963-da7c-572f-2c11dda3c5d8@suse.de>
-Subject: Re: [PATCH 5/9] drm/udl: Don't call get/put_pages on imported dma-buf
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-6-daniel.vetter@ffwll.ch>
- <d34c53ef-1cba-9559-8169-66535d06b6cf@suse.de>
- <20200511113740.GE206103@phenom.ffwll.local>
-In-Reply-To: <20200511113740.GE206103@phenom.ffwll.local>
+> Here's a few numbers:
+> =
 
---N36e26HDN4UHQ3jShoEWJj3V5dJybsu8g
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> - skl shipped in Aug 2015, so about 5 years. Since then would we like
+> to have modifiers enabled for intel, because it costs us quite a bit
+> of performance. This isn't new at all.
+> - the last Xorg release is from May 2018, so two years. Meanwhile even
+> patches to fix some of the atomic mixups in -modesetting landed, but
+> they never shipped so not useful.
+> - I spent a few hours (which really is nothing) reading Xorg code
+> yesterday, and I concur with Daniel Stone's napkin estimate that this
+> will take about half to one year to fix properly. It's not happening,
+> no one is working on that.
+> =
 
-Hi
+> Conclusion: No one cares about modifiers on Xorg-modesetting. I don't
+> see why the kernel should bend over for that.
+> =
 
-Am 11.05.20 um 13:37 schrieb Daniel Vetter:
-> On Mon, May 11, 2020 at 01:23:38PM +0200, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
->>> There's no direct harm, because for the shmem helpers these are noops=
+> Once that has changed (I'm not betting on that) and there's clear
+> effort behind modifiers for Xorg-modesetting I guess we can look into
+> stop-gap measures, but meanwhile the best imo is to not disturb the
+> dead.
 
->>> on imported buffers. The trouble is in the locks these take - I want
->>> to change dma_buf_vmap locking, and so need to make sure that we only=
+The alternative interpretation is that the current kernel code is
+just nonsense, and since no one is depending on the current nonsense
+behaviour we can safely change it it back to make sense.
 
->>> ever take certain locks on one side of the dma-buf interface: Either
->>> for exporters, or for importers.
->>>
->>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->>> Cc: Dave Airlie <airlied@redhat.com>
->>> Cc: Sean Paul <sean@poorly.run>
->>> Cc: Gerd Hoffmann <kraxel@redhat.com>
->>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Alex Deucher <alexander.deucher@amd.com>
->>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->>> Cc: Thomas Gleixner <tglx@linutronix.de>
->>> Cc: Sam Ravnborg <sam@ravnborg.org>
->>> ---
->>>  drivers/gpu/drm/udl/udl_gem.c | 22 ++++++++++++----------
->>>  1 file changed, 12 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/udl/udl_gem.c b/drivers/gpu/drm/udl/udl_=
-gem.c
->>> index b6e26f98aa0a..c68d3e265329 100644
->>> --- a/drivers/gpu/drm/udl/udl_gem.c
->>> +++ b/drivers/gpu/drm/udl/udl_gem.c
->>> @@ -46,29 +46,31 @@ static void *udl_gem_object_vmap(struct drm_gem_o=
-bject *obj)
->>
->> It's still not clear to me why this function exists in the first place=
-=2E
->> It's the same code as the default implementation, except that it doesn=
-'t
->> support cached mappings.
->>
->> I don't see why udl is special. I'd suggest to try to use the original=
+Would allow people to at least test modifier plumbing via dri3/etc.
+Also those of us who know what they're doing and want to actually
+play games on Intel GPUs can flip it on for a a bit extra performance.
+In the meantime I'll just have to keep carrying this patch in my own
+kernels.
 
->> shmem function and remove this one. Same for the mmap code.
->=20
-> tbh no idea, could be that the usb code is then a bit too inefficient a=
-t
-> uploading stuff if it needs to cache flush.
+-- =
 
-IIRC I was told that some other component (userspace, dma-buf provider)
-might not work well with cached mappings. But that problem should affect
-all other shmem-based drivers as well. I'm not aware of any problems here=
-=2E
-
-The upload code is in udl_render_hline. It's an elaborate
-format-conversion helper that packs the framebuffer into USB URBs and
-sends them out. Again, I don't see much of a conceptual difference to
-other drivers that do similar things on device memory.
-
->=20
-> But then on x86 at least everything (except real gpus) is coherent, so
-> cached mappings should be faster.
->=20
-> No idea, but also don't have the hw so not going to touch udl that much=
-=2E
-
-I can help with testing.
-
-Best regards
-Thomas
-
-> -Daniel
->=20
->>
->> Best regards
->> Thomas
->>
->>>  	if (shmem->vmap_use_count++ > 0)
->>>  		goto out;
->>> =20
->>> -	ret =3D drm_gem_shmem_get_pages(shmem);
->>> -	if (ret)
->>> -		goto err_zero_use;
->>> -
->>> -	if (obj->import_attach)
->>> +	if (obj->import_attach) {
->>>  		shmem->vaddr =3D dma_buf_vmap(obj->import_attach->dmabuf);
->>> -	else
->>> +	} else {
->>> +		ret =3D drm_gem_shmem_get_pages(shmem);
->>> +		if (ret)
->>> +			goto err;
->>> +
->>>  		shmem->vaddr =3D vmap(shmem->pages, obj->size >> PAGE_SHIFT,
->>>  				    VM_MAP, PAGE_KERNEL);
->>> =20
->>> +		if (!shmem->vaddr)
->>> +			drm_gem_shmem_put_pages(shmem);
->>> +	}
->>> +
->>>  	if (!shmem->vaddr) {
->>>  		DRM_DEBUG_KMS("Failed to vmap pages\n");
->>>  		ret =3D -ENOMEM;
->>> -		goto err_put_pages;
->>> +		goto err;
->>>  	}
->>> =20
->>>  out:
->>>  	mutex_unlock(&shmem->vmap_lock);
->>>  	return shmem->vaddr;
->>> =20
->>> -err_put_pages:
->>> -	drm_gem_shmem_put_pages(shmem);
->>> -err_zero_use:
->>> +err:
->>>  	shmem->vmap_use_count =3D 0;
->>>  	mutex_unlock(&shmem->vmap_lock);
->>>  	return ERR_PTR(ret);
->>>
->>
->> --=20
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->> (HRB 36809, AG N=C3=BCrnberg)
->> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->>
->=20
->=20
->=20
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---N36e26HDN4UHQ3jShoEWJj3V5dJybsu8g--
-
---14DO7Ly8obsuF3OOLdOnV7UecYyvyL5An
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl65P2oACgkQaA3BHVML
-eiP0jAf/WP9bv7O5utlz/EUlBaGskM2QqACLGKDMoSEKrCRDh70A2mrjpY4n34AS
-6UDzLCTfkNkS5p8FT87PgJZiwzv/WCeIdyyQ8cbwOymM+8rrqaOi/m1sJQUxBpen
-Up2f83W3cKNo7HrahRGrDgFpl3URkM8kAygBXaJaV8K81/xUWq9Xghns655buXW8
-UWaVwUhH/HzXEGD8LxGdiTAYr9FwHwhj/946v26eQFKASjxnG2KHt8LGOi8kW7HC
-9bEs1aRvQrU9CpI6yUIKqR6uv+Vwq89wDycwtLK/5h6vld0vVe8oe8drTiUKxD4W
-LrK19mAw0xUMms+uG5vtJJJ5AO7qpg==
-=UxEC
------END PGP SIGNATURE-----
-
---14DO7Ly8obsuF3OOLdOnV7UecYyvyL5An--
-
---===============1412046436==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1412046436==--
