@@ -1,44 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60ACF1CF8CC
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 17:17:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3121CF936
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 17:32:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B71E06E11D;
-	Tue, 12 May 2020 15:17:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCBEE6E122;
+	Tue, 12 May 2020 15:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD726E11D
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 15:17:35 +0000 (UTC)
-IronPort-SDR: FJvEEBvY+1CUQVVztE3FZX98JYkJYXrXd4sCTilYx6SthnsUhvLj/tW8JDSMhCdUjpGinh2YAM
- 2tFfdIRVvdYA==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8582F6E926
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 15:32:42 +0000 (UTC)
+IronPort-SDR: UJ2fIgxDQxWOWuGozz7ut19ESXeOTeQPmSPzL3DhKxAJuc4XbAqH22HTTa4dS4oFfZp1dqM/Ue
+ YmbiEsqU3BuQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 08:17:34 -0700
-IronPort-SDR: z68RCVZzXH1z0txBrATlLS3aREZD+CmaomzXud+Kny/CSeEL7UmDFAMF0CAefhmZu1OAmSVjKz
- JXIgjyCpKGcQ==
-X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="437136397"
-Received: from dhelmanx-mobl2.ger.corp.intel.com (HELO [10.214.209.74])
- ([10.214.209.74])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 08:17:33 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200512132255.20537-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <561ef231-3894-5f9e-d3f2-629537801fb6@linux.intel.com>
-Date: Tue, 12 May 2020 16:17:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 08:32:42 -0700
+IronPort-SDR: FTR7SQmaQyb+jmPOSpNsZ6qEc9c7UiVznWWU7ppZkPYY9c92sw7V0qsCrDHtZx2aC0KuxT/6H4
+ P7x9dP8hUKug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="250931843"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 12 May 2020 08:32:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 12 May 2020 18:32:38 +0300
+Date: Tue, 12 May 2020 18:32:38 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200512153238.GW6112@intel.com>
+References: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
+ <20200507144503.15506-4-stanislav.lisovskiy@intel.com>
+ <20200512113925.GM6112@intel.com>
+ <20200512124406.GA19632@intel.com>
+ <20200512131433.GR6112@intel.com>
+ <20200512132644.GA19773@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200512132255.20537-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Transfer old virtual
- breadcrumbs to irq_worker
+Content-Disposition: inline
+In-Reply-To: <20200512132644.GA19773@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v28 3/6] drm/i915: Make active_pipes check
+ skl specific
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,198 +56,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, May 12, 2020 at 04:26:53PM +0300, Lisovskiy, Stanislav wrote:
+> On Tue, May 12, 2020 at 04:14:33PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Tue, May 12, 2020 at 03:44:06PM +0300, Lisovskiy, Stanislav wrote:
+> > > On Tue, May 12, 2020 at 02:39:25PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Thu, May 07, 2020 at 05:45:00PM +0300, Stanislav Lisovskiy wrote:
+> > > > > Seems that only skl needs to have SAGV turned off
+> > > > > for multipipe scenarios, so lets do it this way.
+> > > > =
 
-On 12/05/2020 14:22, Chris Wilson wrote:
-> The second try at staging the transfer of the breadcrumb. In part one,
-> we realised we could not simply move to the second engine as we were
-> only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
-> ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
-> removed it from the first engine and marked up this request to reattach
-> the signaling on the new engine. However, this failed to take into
-> account that we only attach the breadcrumb if the new request is added
-> at the start of the queue, which if we are transferring, it is because
-> we know there to be a request to be signaled (and hence we would not be
-> attached).
-> 
-> In this attempt, we try to transfer the completed requests to the
-> irq_worker on its rq->engine->breadcrumbs. This preserves the coupling
-> between the rq and its breadcrumbs, so that
-> i915_request_cancel_breadcrumb() does not attempt to manipulate the list
-> under the wrong lock.
-> 
-> Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
-> v2: rewrite from scratch with a new idea
-> ---
->   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c  | 33 ++++++++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_engine.h       |  3 ++
->   drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 ++
->   drivers/gpu/drm/i915/gt/intel_lrc.c          | 26 ++-------------
->   4 files changed, 41 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index cbedba857d43..e09dc162b508 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -155,6 +155,8 @@ static void signal_irq_work(struct irq_work *work)
->   	if (b->irq_armed && list_empty(&b->signalers))
->   		__intel_breadcrumbs_disarm_irq(b);
->   
-> +	list_splice_init(&b->signaled_requests, &signal);
-> +
->   	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
->   		GEM_BUG_ON(list_empty(&ce->signals));
->   
-> @@ -255,6 +257,7 @@ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
->   
->   	spin_lock_init(&b->irq_lock);
->   	INIT_LIST_HEAD(&b->signalers);
-> +	INIT_LIST_HEAD(&b->signaled_requests);
->   
->   	init_irq_work(&b->irq_work, signal_irq_work);
->   }
-> @@ -274,6 +277,36 @@ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine)
->   	spin_unlock_irqrestore(&b->irq_lock, flags);
->   }
->   
-> +void intel_engine_transfer_breadcrumbs(struct intel_engine_cs *engine,
-> +				       struct intel_context *ce)
-> +{
-> +	struct intel_breadcrumbs *b = &engine->breadcrumbs;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&b->irq_lock, flags);
-> +	if (!list_empty(&ce->signals)) {
-> +		struct i915_request *rq, *next;
-> +
-> +		list_for_each_entry_safe(rq, next, &ce->signals, signal_link) {
-> +			GEM_BUG_ON(rq->engine != engine);
-> +			GEM_BUG_ON(!i915_request_completed(rq));
+> > > > It doesn't afaics. It's just someone added the check for some random
+> > > > reason. So this should be reworded a bit. Also this isn't just about
+> > > > skl/derivatives but all pre-icl so the <subject> is a bit misleadin=
+g too.
+> > > =
 
-Do you remember why the breadcrumbs code uses local __request_completed 
-helper?
+> > > This is in BSpec anyway. And it was in the code before, so I really =
 
- From here vvv
+> > > don't get what do you mean here.
+> > > =
 
-> +
-> +			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
-> +			if (!__dma_fence_signal(&rq->fence))
-> +				continue;
-> +
-> +			i915_request_get(rq);
-> +			list_add_tail(&rq->signal_link, &b->signaled_requests);
+> > > > =
 
-^^^ to here looks like a block which could be shared with signal_irq_work.
+> > > > > =
 
-> +		}
-> +
-> +		INIT_LIST_HEAD(&ce->signals);
+> > > > > If anything blows up - we can always revert this patch.
+> > > > > =
 
-Hm because list_add and not list_move you can't assert all have been 
-unlinked.
+> > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/intel_pm.c | 15 +++++++++------
+> > > > >  drivers/gpu/drm/i915/intel_pm.h |  3 ++-
+> > > > >  2 files changed, 11 insertions(+), 7 deletions(-)
+> > > > > =
 
-> +		list_del_init(&ce->signal_link);
-> +
-> +		irq_work_queue(&b->irq_work);
-> +	}
-> +	spin_unlock_irqrestore(&b->irq_lock, flags);
-> +}
-> +
->   void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
->   {
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index cb789c8bf06b..45418f887953 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -238,6 +238,9 @@ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
->   void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
->   void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
->   
-> +void intel_engine_transfer_breadcrumbs(struct intel_engine_cs *engine,
-> +				       struct intel_context *ce);
-> +
->   void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
->   				    struct drm_printer *p);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index c113b7805e65..e20b39eefd79 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -377,6 +377,8 @@ struct intel_engine_cs {
->   		spinlock_t irq_lock;
->   		struct list_head signalers;
->   
-> +		struct list_head signaled_requests;
-> +
->   		struct irq_work irq_work; /* for use from inside irq_lock */
->   
->   		unsigned int irq_enabled;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 15716e4d6b76..ac32d494b07d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1821,30 +1821,10 @@ static bool virtual_matches(const struct virtual_engine *ve,
->   	return true;
->   }
->   
-> -static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
-> -				     struct i915_request *rq)
-> +static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
->   {
-> -	struct intel_engine_cs *old = ve->siblings[0];
-> -
->   	/* All unattached (rq->engine == old) must already be completed */
+> > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i9=
+15/intel_pm.c
+> > > > > index 3dc1ad66beb3..db188efee21e 100644
+> > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > @@ -3777,7 +3777,7 @@ void intel_sagv_pre_plane_update(struct int=
+el_atomic_state *state)
+> > > > >  	if (!new_bw_state)
+> > > > >  		return;
+> > > > >  =
 
-This comments feels a bit out of place now.
+> > > > > -	if (!intel_can_enable_sagv(new_bw_state))
+> > > > > +	if (!intel_can_enable_sagv(dev_priv, new_bw_state))
+> > > > >  		intel_disable_sagv(dev_priv);
+> > > > >  }
+> > > > >  =
 
-> -
-> -	spin_lock(&old->breadcrumbs.irq_lock);
-> -	if (!list_empty(&ve->context.signal_link)) {
-> -		list_del_init(&ve->context.signal_link);
-> -
-> -		/*
-> -		 * We cannot acquire the new engine->breadcrumbs.irq_lock
-> -		 * (as we are holding a breadcrumbs.irq_lock already),
-> -		 * so attach this request to the signaler on submission.
-> -		 * The queued irq_work will occur when we finally drop
-> -		 * the engine->active.lock after dequeue.
-> -		 */
-> -		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
-> -
-> -		/* Also transfer the pending irq_work for the old breadcrumb. */
-> -		intel_engine_signal_breadcrumbs(rq->engine);
-> -	}
-> -	spin_unlock(&old->breadcrumbs.irq_lock);
-> +	intel_engine_transfer_breadcrumbs(ve->siblings[0], &ve->context);
+> > > > > @@ -3800,7 +3800,7 @@ void intel_sagv_post_plane_update(struct in=
+tel_atomic_state *state)
+> > > > >  	if (!new_bw_state)
+> > > > >  		return;
+> > > > >  =
 
-But isn't ve->siblings[0] the old engine at this point so new target 
-engine would have to be explicitly passed in?
+> > > > > -	if (intel_can_enable_sagv(new_bw_state))
+> > > > > +	if (intel_can_enable_sagv(dev_priv, new_bw_state))
+> > > > >  		intel_enable_sagv(dev_priv);
+> > > > >  }
+> > > > >  =
 
->   }
->   
->   #define for_each_waiter(p__, rq__) \
-> @@ -2279,7 +2259,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   									engine);
->   
->   				if (!list_empty(&ve->context.signals))
-> -					virtual_xfer_breadcrumbs(ve, rq);
-> +					virtual_xfer_breadcrumbs(ve);
->   
->   				/*
->   				 * Move the bound engine to the top of the list
-> 
+> > > > > @@ -3853,16 +3853,19 @@ static bool skl_crtc_can_enable_sagv(cons=
+t struct intel_crtc_state *crtc_state)
+> > > > >  	return true;
+> > > > >  }
+> > > > >  =
 
-Regards,
+> > > > > -bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+> > > > > +bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
+> > > > > +			   const struct intel_bw_state *bw_state)
+> > > > >  {
+> > > > > -	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_p=
+ipes))
+> > > > > -		return false;
+> > > > > +	if (INTEL_GEN(dev_priv) < 11)
+> > > > > +		if (bw_state->active_pipes && !is_power_of_2(bw_state->active_=
+pipes))
+> > > > =
 
-Tvrtko
+> > > > If (a && b && c)
+> > > > 	return false;
+> > > =
+
+> > > Then the line would get too long, and it does exactly same thing.
+> > > I really don't understand such comments.
+> > =
+
+> > if (a && b &&
+> >     c)
+> > =
+
+> > if (a &&
+> >     b && c)
+> > =
+
+> > if (a &&
+> >     b &&
+> >     c)
+> > =
+
+> > there are plenty of options. The point is nested ifs like this
+> > only serve to indent code needlessly deep.
+> =
+
+> and ifs like if (long condition1 && long condition2 && ...) make =
+
+> unnecessary "wide". =
+
+> =
+
+> I would understand of course if I would do something like
+> 3-4 nested ifs sure, however that one seems to be completely similar.
+> =
+
+> I don't even get why =
+
+> =
+
+> if (a &&
+>     b && c)
+
+"if a and b and c then do stuff"
+
+> =
+
+> reads better than
+> =
+
+> if (a)
+>    if(b && c)
+
+"if a then if b and c then do stuff"
+
+The first one definitely sounds better to my ears. Not sure
+the second one can even be called English.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
