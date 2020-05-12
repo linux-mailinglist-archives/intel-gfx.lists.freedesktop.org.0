@@ -1,37 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62ED1CF252
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 12:28:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF7A1CF2B8
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 12:41:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 363586E13B;
-	Tue, 12 May 2020 10:28:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1BD6E89C;
+	Tue, 12 May 2020 10:41:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 791256E13B
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 10:28:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21171362-1500050 for multiple; Tue, 12 May 2020 11:28:11 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6FE6E89C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 10:41:44 +0000 (UTC)
+IronPort-SDR: NHwWzD+zxgSIH5/VYzPY/Pd5NmUeQTr6vTDcY5d7q2XqDMOvKFAmc7R0nigqJmQpd1U6IYVh8c
+ kS7ZUWCJYpKw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 03:41:43 -0700
+IronPort-SDR: IKGkcoonveRRsaxEa/z7hB2eSwHmMMWTLNtvjBme2nqnMHOXCmjMfwT/I5P8A7Z8xqVvma9d8X
+ TmoBJ3UjM5fw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; d="scan'208";a="252857807"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 12 May 2020 03:41:42 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 36AFF5C1F36; Tue, 12 May 2020 13:39:31 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200509115217.26853-1-chris@chris-wilson.co.uk>
+References: <20200509115217.26853-1-chris@chris-wilson.co.uk>
+Date: Tue, 12 May 2020 13:39:31 +0300
+Message-ID: <87lflx309o.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <eebc8a12-1204-e619-f7bd-df607e839ad7@linux.intel.com>
-References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
- <20200511075722.13483-2-chris@chris-wilson.co.uk>
- <0f0dbddc-3733-40d6-060c-36e2da9e42fb@linux.intel.com>
- <158927336578.15653.17606758936318781729@build.alporthouse.com>
- <eebc8a12-1204-e619-f7bd-df607e839ad7@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158927929013.21674.14131333702537604615@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 12 May 2020 11:28:10 +0100
-Subject: Re: [Intel-gfx] [PATCH 02/20] drm/i915/gt: Couple up old virtual
- breadcrumb on new sibling
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Watch out for idling during
+ i915_gem_evict_something
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,80 +48,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-05-12 11:12:23)
-> 
-> On 12/05/2020 09:49, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-05-12 09:41:01)
-> >> On 11/05/2020 08:57, Chris Wilson wrote:
-> >>> The second try at staging the transfer of the breadcrumb. In part one,
-> >>> we realised we could not simply move to the second engine as we were
-> >>> only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
-> >>> ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
-> >>> removed it from the first engine and marked up this request to reattach
-> >>> the signaling on the new engine. However, this failed to take into
-> >>> account that we only attach the breadcrumb if the new request is added
-> >>> at the start of the queue, which if we are transferring, it is because
-> >>> we know there to be a request to be signaled (and hence we would not be
-> >>> attached). In this second try, we remove from the first list under its
-> >>> lock, take ownership of the link, and then take the second lock to
-> >>> complete the transfer.
-> >>
-> >> Overall just an optimisation not to call i915_request_enable_breadcrumb,
-> >> I mean not add to the list indirectly?
-> > 
-> > The request that we need to add already has its breadcrumb enabled. The
-> > request is on the veng->context.signals list, it's just that the veng is
-> > on siblings[0] signalers list and we are no longer guaranteed to
-> > generate an interrupt on engine.
-> > 
-> > There's an explosion in the current code due to the lists not moving
-> > as expected on enabling the breadcrumb on the next request (because of
-> >                  if (pos == &ce->signals) /* catch transitions from empty list */
-> >                          list_move_tail(&ce->signal_link, &b->signalers);
-> > 
-> > )
-> > 
-> > The explosion is on a dead list, but has on a couple of occasions looked
-> > like
-> > 
-> > <4> [373.551331] RIP: 0010:i915_request_enable_breadcrumb+0x144/0x380 [i915]
-> > <4> [373.551341] Code: c7 c2 20 f1 42 c0 48 c7 c7 77 85 28 c0 e8 44 bc f2 ec bf 01 00 00 00 e8 5a 8e f2 ec 31 f6 bf 09 00 00 00 e8 6e 09 e3 ec 0f 0b <3b> 45 80 0f 89 5d ff ff ff 48 8b 6d 08 4c 39 e5 75 ee 49 8b 4d 38
-> > <4> [373.551356] RSP: 0018:ffffb64d0114b9f8 EFLAGS: 00010083
-> > <4> [373.551363] RAX: 00000000000036b2 RBX: ffffa310385096c0 RCX: 0000000000000003
-> > <4> [373.551372] RDX: 00000000000036b2 RSI: 000000002ac5cf63 RDI: 00000000ffffffff
-> > <4> [373.551379] RBP: dead000000000122 R08: ffffa31047075a50 R09: 00000000fffffffe
-> > <4> [373.551385] R10: 0000000053a90a70 R11: 000000005e84b7e5 R12: ffffa3103fde38c0
-> > <4> [373.551392] R13: ffffa3103fde3888 R14: ffffa30ff0982328 R15: ffffa30ff0982000
-> > <4> [373.551401] FS:  00007f19f3359e40(0000) GS:ffffa3104ed00000(0000) knlGS:0000000000000000
-> > <4> [373.551410] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > <4> [373.551414] CR2: 00007f19f2aac778 CR3: 0000000232b0c004 CR4: 00000000003606e0
-> > <4> [373.551421] Call Trace:
-> > <4> [373.551466]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
-> > <4> [373.551506]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
-> > <4> [373.551515]  __dma_fence_enable_signaling+0x60/0x160
-> > <4> [373.551558]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
-> > <4> [373.551564]  dma_fence_add_callback+0x44/0xd0
-> > <4> [373.551605]  __i915_sw_fence_await_dma_fence+0x6f/0xc0 [i915]
-> > <4> [373.551665]  __i915_request_commit+0x442/0x5b0 [i915]
-> > <4> [373.551721]  i915_gem_do_execbuffer+0x17fb/0x2eb0 [i915]
-> > 
-> > kasan/kcsan do not complain; it's just a broken list.
-> 
-> Which list gets broken?
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Since we may not signal the requests immediately from the new engine
-(and have decoupled them from the old), they will call
-i915_request_cancel_breadcrumbs() on their stale rq->engine->breadcrumbs
-which is no longer the lock owner.
+> i915_gem_evict_something() is charged with finding a slot within the GTT
+> that we may reuse. Since our goal is not to stall, we first look for a
+> slot that only overlaps idle vma. To this end, on the first pass we move
+> any active vma to the end of the search list. However, we only stopped
+> moving active vma after we see the first active vma twice. If during the
+> search, that first active vma completed, we would not notice and keep on
+> extending the search list.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1746
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.5+
 
-Following that logic, this is not safe either, we just are better at
-winning the race.
--Chris
+Only thing I would change is tune up the subject line.
+It fixes a possible busy loop in eviction so I feel 'watch out' is not
+strong enough for my liking.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_gem_evict.c | 26 ++++++++++++--------------
+>  1 file changed, 12 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+> index 0ba7b1e881c0..6501939929d5 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
+> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+> @@ -128,6 +128,13 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>  	active = NULL;
+>  	INIT_LIST_HEAD(&eviction_list);
+>  	list_for_each_entry_safe(vma, next, &vm->bound_list, vm_link) {
+> +		if (vma == active) { /* now seen this vma twice */
+> +			if (flags & PIN_NONBLOCK)
+> +				break;
+> +
+> +			active = ERR_PTR(-EAGAIN);
+> +		}
+> +
+>  		/*
+>  		 * We keep this list in a rough least-recently scanned order
+>  		 * of active elements (inactive elements are cheap to reap).
+> @@ -143,21 +150,12 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>  		 * To notice when we complete one full cycle, we record the
+>  		 * first active element seen, before moving it to the tail.
+>  		 */
+> -		if (i915_vma_is_active(vma)) {
+> -			if (vma == active) {
+> -				if (flags & PIN_NONBLOCK)
+> -					break;
+> -
+> -				active = ERR_PTR(-EAGAIN);
+> -			}
+> -
+> -			if (active != ERR_PTR(-EAGAIN)) {
+> -				if (!active)
+> -					active = vma;
+> +		if (active != ERR_PTR(-EAGAIN) && i915_vma_is_active(vma)) {
+> +			if (!active)
+> +				active = vma;
+>  
+> -				list_move_tail(&vma->vm_link, &vm->bound_list);
+> -				continue;
+> -			}
+> +			list_move_tail(&vma->vm_link, &vm->bound_list);
+> +			continue;
+>  		}
+>  
+>  		if (mark_free(&scan, vma, flags, &eviction_list))
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
