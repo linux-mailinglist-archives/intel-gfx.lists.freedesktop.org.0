@@ -2,54 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808221CFA96
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 18:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 730EE1CFB53
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 18:50:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE506E936;
-	Tue, 12 May 2020 16:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F89B6E93D;
+	Tue, 12 May 2020 16:50:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
- [IPv6:2607:f8b0:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972DC6E937
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 16:27:15 +0000 (UTC)
-Received: by mail-oi1-x241.google.com with SMTP id k133so18546373oih.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 09:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=MJbloyb8GeFV+8WTKCZZjFvi4tHQNahuAS+Pb3o2Kyk=;
- b=YE9ZEB/csOO/qgzFHHZkD+kfc7F2OXh03OJ8P+gb/y34vODSSeNOtlafjQf9mkvp75
- nYqfWl2OARG5rd4Cmhx1dVe8jvVR9/6+KZO4hv32d0sr8zCzIS96b3PZebL6xAWi2l30
- aueBQw0FW2Mn2/EdEJItXdMN2tEisjXtwIGy0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=MJbloyb8GeFV+8WTKCZZjFvi4tHQNahuAS+Pb3o2Kyk=;
- b=T1OA3guhz1wOnTavHGH4dIEa9l6D7eVhKtimSz13V9Sxc/U6rp8+hsKSJJTLSDKPNm
- +hqh5CCKxSCRWKDgzxNQhqnWIsCPVnkT7EalAfC6N5iZVSTEA59zHr1KysnqAZXwW00e
- 8qyO7kXD00FO4WhZaFk+5QsXhsgAQjE0a17QXprikteR0A7D4JvSC60FwcOeqi5ayY0I
- 75RBYMexCZ5dchnumbPI6AYwhtN/xgoBwbf6mxTvxbP/MAwlcL+IJE4V9cm0Q0EDKuGl
- KguxzU+nrpW0BFo1rjkS6KST7EQul+b0zwEHG/yg4Sz2Tcr2CVdM3XPZWPr2TZlXeaSY
- 7n2w==
-X-Gm-Message-State: AGi0PuboqKOTtTu60DQ2RaYbQdPgTWP68SEdPc+703FV41lapOG+Yzy3
- b0HYmVhSl5nnioArrFx+/VhXzWj0YbM3J8Ac9BKKTw==
-X-Google-Smtp-Source: APiQypJU803JZeffGdUiKfSFxC4qEhXBDbbj5VZjPE9IPYrJYd5IqjMvmHgdml9yeEAH/819ES+YujXGuMcW2zkufnY=
-X-Received: by 2002:aca:3b41:: with SMTP id i62mr5799116oia.101.1589300834676; 
- Tue, 12 May 2020 09:27:14 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 387666E93D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 16:50:37 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21175694-1500050 
+ for multiple; Tue, 12 May 2020 17:50:12 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 12 May 2020 17:50:10 +0100
+Message-Id: <20200512165010.3947-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200512132255.20537-1-chris@chris-wilson.co.uk>
+References: <20200512132255.20537-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
- <20200512085944.222637-11-daniel.vetter@ffwll.ch>
- <879b127e-2180-bc59-f522-252416a7ac01@amd.com>
- <CAKMK7uF1c3R7DTsvRaBfzRVAx03Z+AiUnqdAzP=mt4d=KsoEgg@mail.gmail.com>
-In-Reply-To: <CAKMK7uF1c3R7DTsvRaBfzRVAx03Z+AiUnqdAzP=mt4d=KsoEgg@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 12 May 2020 18:27:03 +0200
-Message-ID: <CAKMK7uGUBqcwo56p3f+8B=ntvuYZ8WtKaFxAPJ_D=H7qdDsGqQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [RFC 10/17] drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in
- scheduler code
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Transfer old virtual
+ breadcrumbs to irq_worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,145 +39,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBNYXkgMTIsIDIwMjAgYXQgNjoyMCBQTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPiB3cm90ZToKPgo+IE9uIFR1ZSwgTWF5IDEyLCAyMDIwIGF0IDU6NTYgUE0g
-Q2hyaXN0aWFuIEvDtm5pZwo+IDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+IHdyb3RlOgo+ID4K
-PiA+IEh1aSB3aGF0PyBPZiBoYW5kIHRoYXQgZG9lc24ndCBsb29rcyBjb3JyZWN0IHRvIG1lLgo+
-Cj4gSXQncyBub3QgR0ZQX0FUT01JQywgaXQncyBqdXN0IHRoYXQgR0ZQX0FUT01JQyBpcyB0aGUg
-b25seSBzaG90Z3VuIHdlCj4gaGF2ZSB0byBhdm9pZCBkaXJlY3QgcmVjbGFpbS4gQW5kIGRpcmVj
-dCByZWNsYWltIG1pZ2h0IG5lZWQgdG8gY2FsbAo+IGludG8geW91ciBtbXUgbm90aWZpZXIsIHdo
-aWNoIG1pZ2h0IG5lZWQgdG8gd2FpdCBvbiBhIGZlbmNlLCB3aGljaCBpcwo+IG5ldmVyIGdvaW5n
-IHRvIGhhcHBlbiBiZWNhdXNlIHlvdXIgc2NoZWR1bGVyIGlzIHN0dWNrLgo+Cj4gTm90ZSB0aGF0
-IGFsbCB0aGUgZXhwbGFuYXRpb25zIGZvciB0aGUgZGVhZGxvY2tzIGFuZCBzdHVmZiBJJ20gdHJ5
-aW5nCj4gdG8gaHVudCBoZXJlIGFyZSBpbiB0aGUgb3RoZXIgcGF0Y2hlcywgdGhlIGRyaXZlciBv
-bmVzIGFyZSBtb3JlCj4gaW5mb3JtYXRpb25hbCwgc28gSSBsZWZ0IHRoZXNlIGhlcmUgcmF0aGVy
-IGJhcmUtYm9uZXMgdG8gc2h1dCB1cAo+IGxvY2tkZXAgc28gSSBjYW4gZ2V0IHRocm91Z2ggdGhl
-IGVudGlyZSBkcml2ZXIgYW5kIGFsbCBtYWpvciBhcmVhcwo+IChzY2hlZHVsZXIsIHJlc2V0LCBt
-b2Rlc2V0IGNvZGUpLgo+Cj4gTm93IHlvdSBjYW4gZG8gc29tZXRoaW5nIGxpa2UgR0ZQX05PRlMs
-IGJ1dCB0aGUgb25seSByZWFzb25zIHRoYXQKPiB3b3JrcyBpcyBiZWNhdXNlIHRoZSBkaXJlY3Qg
-cmVjbGFpbSBhbm5vdGF0aW9ucwo+IChmc19yZWNsYWltX2FjcXVpcmUvcmVsZWFzZSkgb25seSB2
-YWxpZGF0ZXMgYWdhaW5zdCBfX0dGUF9GUywgYW5kIG5vdAo+IGFnYWluc3QgYW55IG9mIHRoZSBv
-dGhlciBmbGFncy4gV2Ugc2hvdWxkIHByb2JhYmx5IGFkZCBzb21lIGxvY2tkZXAKPiBhbm5vdGF0
-aW9ucyBzbyB0aGF0IF9fR0ZQX1JFQ0xBSU0gaXMgYW5ub3RhdGVkIGFnYWluc3QgdGhlCj4gX19t
-bXVfbm90aWZpZXJfaW52YWxpZGF0ZV9yYW5nZV9zdGFydF9tYXAgbG9ja2RlcCBtYXAgSSd2ZSBy
-ZWNlbnRseQo+IGFkZGVkIGZvciBtbXUgbm90aWZpZXJzLiBFbmQgcmVzdWx0IChhc3N1bWluZyBJ
-J20gbm90IG1peGluZyBhbnl0aGluZwo+IHVwIGhlcmUsIHRoaXMgaXMgYWxsIHJhdGhlciB0cmlj
-a3kgc3R1ZmYpOiBHRlBfQVRPTUlDIGlzIHRoZSBvbmx5IGtpbmQKPiBvZiBtZW1vcnkgYWxsb2Nh
-dGlvbiB5b3UgY2FuIGRvLgo+Cj4gPiBXaHkgdGhlIGhlY2sgc2hvdWxkIHRoaXMgYmUgYW4gYXRv
-bWljIGNvbnRleHQ/IElmIHRoYXQncyBjb3JyZWN0Cj4gPiBhbGxvY2F0aW5nIG1lbW9yeSBpcyB0
-aGUgbGVhc3Qgb2YgdGhlIHByb2JsZW1zIHdlIGhhdmUuCj4KPiBJdCdzIG5vdCBhYm91dCBhdG9t
-aWMsIGl0J3MgIV9fR0ZQX1JFQ0xBSU0uIFdoaWNoIG1vcmUgb3IgbGVzcyBpcwo+IEdGUF9BVE9N
-SUMuIENvcnJlY3QgZml4IGlzIHByb2JhYmx5IEdGUF9BVE9NSUMgKyBhIG1lbXBvb2wgZm9yIHRo
-ZQo+IHNjaGVkdWxlciBmaXhlcyBzbyB0aGF0IGlmIHlvdSBjYW4ndCBhbGxvY2F0ZSB0aGVtIGZv
-ciBzb21lIHJlYXNvbiwKPiB5b3UgYXQgbGVhc3Qga25vdyB0aGF0IHlvdXIgc2NoZWR1bGVyIHNo
-b3VsZCBldmVudHVhbGx5IHJldGlyZSByZXRpcmUKPiBzb21lIG9mIHRoZW0sIHdoaWNoIHlvdSBj
-YW4gdGhlbiBwaWNrIHVwIGZyb20gdGhlIG1lbXBvb2wgdG8gZ3VhcmFudGVlCj4gZm9yd2FyZCBw
-cm9ncmVzcy4KPgo+IEJ1dCBJIHJlYWxseSBkaWRuJ3QgZGlnIGludG8gZGV0YWlscyBvZiB0aGUg
-Y29kZSwgdGhpcyB3YXMganVzdCBhIHF1aWNrIGhhY2suCj4KPiBTbyBzbGVlcGluZyBhbmQgdGFr
-aW5nIGFsbCBraW5kcyBvZiBsb2NrcyAoYnV0IG5vdCBhbGwsIGUuZy4KPiBkbWFfcmVzdl9sb2Nr
-IGFuZCBkcm1fbW9kZXNldF9sb2NrIGFyZSBuby1nbykgaXMgc3RpbGwgdG90YWxseSBvay4KPiBK
-dXN0IHRoaW5rCj4KPiAjZGVmaW5lIEdGUF9OT19ESVJFQ1RfUkVDTEFJTSBHRlBfQVRPTUlDCgpN
-YXliZSBzbGlnaHRseSBkaWZmZXJlbnQgdGFrZSB0aGF0J3MgZWFzaWVyIHRvIHVuZGVyc3RhbmQ6
-IFlvdSd2ZQphbHJlYWR5IG1hZGUgdGhlIG9ic2VydmF0aW9uIHRoYXQgYW55dGhpbmcgaG9sZGlu
-ZyBhZGV2LT5ub3RpZmllcl9sb2NrCmlzbid0IGFsbG93ZWQgdG8gYWxsb2NhdGUgbWVtb3J5ICh3
-ZWxsIEdGUF9BVE9NSUMgaXMgb2ssIGxpa2UgaGVyZSkuCgpPbmx5IHRoaW5nIEknbSBhZGRpbmcg
-aXMgdGhhdCB0aGUgc2l0dWF0aW9uIGlzIGEgbG90IHdvcnNlLiBQbHVzIHRoZQpsb2NrZGVwIGFu
-bm90YXRpb25zIHRvIGhlbHAgdXMgY2F0Y2ggdGhlc2UgaXNzdWVzLgotRGFuaWVsCgo+IENoZWVy
-cywgRGFuaWVsCj4KPiA+Cj4gPiBSZWdhcmRzLAo+ID4gQ2hyaXN0aWFuLgo+ID4KPiA+IEFtIDEy
-LjA1LjIwIHVtIDEwOjU5IHNjaHJpZWIgRGFuaWVsIFZldHRlcjoKPiA+ID4gTXkgZG1hLWZlbmNl
-IGxvY2tkZXAgYW5ub3RhdGlvbnMgY2F1Z2h0IGFuIGludmVyc2lvbiBiZWNhdXNlIHdlCj4gPiA+
-IGFsbG9jYXRlIG1lbW9yeSB3aGVyZSB3ZSByZWFsbHkgc2hvdWxkbid0Ogo+ID4gPgo+ID4gPiAg
-ICAgICBrbWVtX2NhY2hlX2FsbG9jKzB4MmIvMHg2ZDAKPiA+ID4gICAgICAgYW1kZ3B1X2ZlbmNl
-X2VtaXQrMHgzMC8weDMzMCBbYW1kZ3B1XQo+ID4gPiAgICAgICBhbWRncHVfaWJfc2NoZWR1bGUr
-MHgzMDYvMHg1NTAgW2FtZGdwdV0KPiA+ID4gICAgICAgYW1kZ3B1X2pvYl9ydW4rMHgxMGYvMHgy
-NjAgW2FtZGdwdV0KPiA+ID4gICAgICAgZHJtX3NjaGVkX21haW4rMHgxYjkvMHg0OTAgW2dwdV9z
-Y2hlZF0KPiA+ID4gICAgICAga3RocmVhZCsweDEyZS8weDE1MAo+ID4gPgo+ID4gPiBUcm91Ymxl
-IHJpZ2h0IG5vdyBpcyB0aGF0IGxvY2tkZXAgb25seSB2YWxpZGF0ZXMgYWdhaW5zdCBHRlBfRlMs
-IHdoaWNoCj4gPiA+IHdvdWxkIGJlIGdvb2QgZW5vdWdoIGZvciBzaHJpbmtlcnMuIEJ1dCBmb3Ig
-bW11X25vdGlmaWVycyB3ZSBhY3R1YWxseQo+ID4gPiBuZWVkICFHRlBfQVRPTUlDLCBzaW5jZSB0
-aGV5IGNhbiBiZSBjYWxsZWQgZnJvbSBhbnkgcGFnZSBsYXVuZGVyaW5nLAo+ID4gPiBldmVuIGlm
-IEdGUF9OT0ZTIG9yIEdGUF9OT0lPIGFyZSBzZXQuCj4gPiA+Cj4gPiA+IEkgZ3Vlc3Mgd2Ugc2hv
-dWxkIGltcHJvdmUgdGhlIGxvY2tkZXAgYW5ub3RhdGlvbnMgZm9yCj4gPiA+IGZzX3JlY2xhaW1f
-YWNxdWlyZS9yZWxlYXNlLgo+ID4gPgo+ID4gPiBPZmMgcmVhbCBmaXggaXMgdG8gcHJvcGVybHkg
-cHJlYWxsb2NhdGUgdGhpcyBmZW5jZSBhbmQgc3R1ZmYgaXQgaW50bwo+ID4gPiB0aGUgYW1kZ3B1
-IGpvYiBzdHJ1Y3R1cmUuIEJ1dCBHRlBfQVRPTUlDIGdldHMgdGhlIGxvY2tkZXAgc3BsYXQgb3V0
-IG9mCj4gPiA+IHRoZSB3YXkuCj4gPiA+Cj4gPiA+IHYyOiBUd28gbW9yZSBhbGxvY2F0aW9ucyBp
-biBzY2hlZHVsZXIgcGF0aHMuCj4gPiA+Cj4gPiA+IEZyaXN0IG9uZToKPiA+ID4KPiA+ID4gICAg
-ICAgX19rbWFsbG9jKzB4NTgvMHg3MjAKPiA+ID4gICAgICAgYW1kZ3B1X3ZtaWRfZ3JhYisweDEw
-MC8weGNhMCBbYW1kZ3B1XQo+ID4gPiAgICAgICBhbWRncHVfam9iX2RlcGVuZGVuY3krMHhmOS8w
-eDEyMCBbYW1kZ3B1XQo+ID4gPiAgICAgICBkcm1fc2NoZWRfZW50aXR5X3BvcF9qb2IrMHgzZi8w
-eDQ0MCBbZ3B1X3NjaGVkXQo+ID4gPiAgICAgICBkcm1fc2NoZWRfbWFpbisweGY5LzB4NDkwIFtn
-cHVfc2NoZWRdCj4gPiA+Cj4gPiA+IFNlY29uZCBvbmU6Cj4gPiA+Cj4gPiA+ICAgICAgIGttZW1f
-Y2FjaGVfYWxsb2MrMHgyYi8weDZkMAo+ID4gPiAgICAgICBhbWRncHVfc3luY19mZW5jZSsweDdl
-LzB4MTEwIFthbWRncHVdCj4gPiA+ICAgICAgIGFtZGdwdV92bWlkX2dyYWIrMHg4NmIvMHhjYTAg
-W2FtZGdwdV0KPiA+ID4gICAgICAgYW1kZ3B1X2pvYl9kZXBlbmRlbmN5KzB4ZjkvMHgxMjAgW2Ft
-ZGdwdV0KPiA+ID4gICAgICAgZHJtX3NjaGVkX2VudGl0eV9wb3Bfam9iKzB4M2YvMHg0NDAgW2dw
-dV9zY2hlZF0KPiA+ID4gICAgICAgZHJtX3NjaGVkX21haW4rMHhmOS8weDQ5MCBbZ3B1X3NjaGVk
-XQo+ID4gPgo+ID4gPiBDYzogbGludXgtbWVkaWFAdmdlci5rZXJuZWwub3JnCj4gPiA+IENjOiBs
-aW5hcm8tbW0tc2lnQGxpc3RzLmxpbmFyby5vcmcKPiA+ID4gQ2M6IGxpbnV4LXJkbWFAdmdlci5r
-ZXJuZWwub3JnCj4gPiA+IENjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gPiBD
-YzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gPiBDYzogQ2hyaXMgV2lsc29u
-IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiA+IENjOiBNYWFydGVuIExhbmtob3JzdCA8
-bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+ID4gPiBDYzogQ2hyaXN0aWFuIEvD
-tm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5p
-ZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiA+ID4gLS0tCj4gPiA+ICAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZlbmNlLmMgfCAyICstCj4gPiA+ICAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lkcy5jICAgfCAyICstCj4gPiA+ICAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYyAgfCAyICstCj4gPiA+ICAgMyBm
-aWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4gPiA+Cj4gPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmVuY2UuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZW5jZS5jCj4gPiA+IGluZGV4IGQ4
-NzhmZTdmZWU1MS4uMDU1YjQ3MjQxYmIxIDEwMDY0NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfZmVuY2UuYwo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfZmVuY2UuYwo+ID4gPiBAQCAtMTQzLDcgKzE0Myw3IEBAIGludCBh
-bWRncHVfZmVuY2VfZW1pdChzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcsIHN0cnVjdCBkbWFfZmVu
-Y2UgKipmLAo+ID4gPiAgICAgICB1aW50MzJfdCBzZXE7Cj4gPiA+ICAgICAgIGludCByOwo+ID4g
-Pgo+ID4gPiAtICAgICBmZW5jZSA9IGttZW1fY2FjaGVfYWxsb2MoYW1kZ3B1X2ZlbmNlX3NsYWIs
-IEdGUF9LRVJORUwpOwo+ID4gPiArICAgICBmZW5jZSA9IGttZW1fY2FjaGVfYWxsb2MoYW1kZ3B1
-X2ZlbmNlX3NsYWIsIEdGUF9BVE9NSUMpOwo+ID4gPiAgICAgICBpZiAoZmVuY2UgPT0gTlVMTCkK
-PiA+ID4gICAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsKPiA+ID4KPiA+ID4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pZHMuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pZHMuYwo+ID4gPiBpbmRleCBmZTkyZGNkOTRkNGEuLmZk
-Y2Q2NjU5ZjVhZCAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X2lkcy5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9pZHMuYwo+ID4gPiBAQCAtMjA4LDcgKzIwOCw3IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3ZtaWRf
-Z3JhYl9pZGxlKHN0cnVjdCBhbWRncHVfdm0gKnZtLAo+ID4gPiAgICAgICBpZiAocmluZy0+dm1p
-ZF93YWl0ICYmICFkbWFfZmVuY2VfaXNfc2lnbmFsZWQocmluZy0+dm1pZF93YWl0KSkKPiA+ID4g
-ICAgICAgICAgICAgICByZXR1cm4gYW1kZ3B1X3N5bmNfZmVuY2Uoc3luYywgcmluZy0+dm1pZF93
-YWl0LCBmYWxzZSk7Cj4gPiA+Cj4gPiA+IC0gICAgIGZlbmNlcyA9IGttYWxsb2NfYXJyYXkoc2l6
-ZW9mKHZvaWQgKiksIGlkX21nci0+bnVtX2lkcywgR0ZQX0tFUk5FTCk7Cj4gPiA+ICsgICAgIGZl
-bmNlcyA9IGttYWxsb2NfYXJyYXkoc2l6ZW9mKHZvaWQgKiksIGlkX21nci0+bnVtX2lkcywgR0ZQ
-X0FUT01JQyk7Cj4gPiA+ICAgICAgIGlmICghZmVuY2VzKQo+ID4gPiAgICAgICAgICAgICAgIHJl
-dHVybiAtRU5PTUVNOwo+ID4gPgo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X3N5bmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9zeW5jLmMKPiA+ID4gaW5kZXggYjg3Y2ExNzE5ODZhLi4zMzA0NzZjYzBjODYgMTAwNjQ0Cj4g
-PiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9zeW5jLmMKPiA+ID4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYwo+ID4gPiBAQCAt
-MTY4LDcgKzE2OCw3IEBAIGludCBhbWRncHVfc3luY19mZW5jZShzdHJ1Y3QgYW1kZ3B1X3N5bmMg
-KnN5bmMsIHN0cnVjdCBkbWFfZmVuY2UgKmYsCj4gPiA+ICAgICAgIGlmIChhbWRncHVfc3luY19h
-ZGRfbGF0ZXIoc3luYywgZiwgZXhwbGljaXQpKQo+ID4gPiAgICAgICAgICAgICAgIHJldHVybiAw
-Owo+ID4gPgo+ID4gPiAtICAgICBlID0ga21lbV9jYWNoZV9hbGxvYyhhbWRncHVfc3luY19zbGFi
-LCBHRlBfS0VSTkVMKTsKPiA+ID4gKyAgICAgZSA9IGttZW1fY2FjaGVfYWxsb2MoYW1kZ3B1X3N5
-bmNfc2xhYiwgR0ZQX0FUT01JQyk7Cj4gPiA+ICAgICAgIGlmICghZSkKPiA+ID4gICAgICAgICAg
-ICAgICByZXR1cm4gLUVOT01FTTsKPiA+ID4KPiA+Cj4KPgo+IC0tCj4gRGFuaWVsIFZldHRlcgo+
-IFNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgo+ICs0MSAoMCkgNzkgMzY1IDU3
-IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKCgoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUg
-RW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCis0MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDov
-L2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+The second try at staging the transfer of the breadcrumb. In part one,
+we realised we could not simply move to the second engine as we were
+only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
+("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
+removed it from the first engine and marked up this request to reattach
+the signaling on the new engine. However, this failed to take into
+account that we only attach the breadcrumb if the new request is added
+at the start of the queue, which if we are transferring, it is because
+we know there to be a request to be signaled (and hence we would not be
+attached).
+
+In this attempt, we try to transfer the completed requests to the
+irq_worker on its rq->engine->breadcrumbs. This preserves the coupling
+between the rq and its breadcrumbs, so that
+i915_request_cancel_breadcrumb() does not attempt to manipulate the list
+under the wrong lock.
+
+v2: Code sharing is fun.
+
+Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c  | 55 +++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_engine.h       |  3 ++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 34 ++++--------
+ 4 files changed, 58 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index cbedba857d43..1fbffacc2eaa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -142,6 +142,18 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
+ 	intel_engine_add_retire(engine, tl);
+ }
+ 
++static void __signal_request(struct i915_request *rq, struct list_head *signals)
++{
++	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
++	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
++
++	if (!__dma_fence_signal(&rq->fence))
++		return;
++
++	i915_request_get(rq);
++	list_add_tail(&rq->signal_link, signals);
++}
++
+ static void signal_irq_work(struct irq_work *work)
+ {
+ 	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
+@@ -155,6 +167,8 @@ static void signal_irq_work(struct irq_work *work)
+ 	if (b->irq_armed && list_empty(&b->signalers))
+ 		__intel_breadcrumbs_disarm_irq(b);
+ 
++	list_splice_init(&b->signaled_requests, &signal);
++
+ 	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+ 		GEM_BUG_ON(list_empty(&ce->signals));
+ 
+@@ -164,23 +178,13 @@ static void signal_irq_work(struct irq_work *work)
+ 
+ 			GEM_BUG_ON(!check_signal_order(ce, rq));
+ 
+-			if (!__request_completed(rq))
+-				break;
+-
+-			GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_SIGNAL,
+-					     &rq->fence.flags));
+-			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+-
+-			if (!__dma_fence_signal(&rq->fence))
+-				continue;
+-
+ 			/*
+ 			 * Queue for execution after dropping the signaling
+ 			 * spinlock as the callback chain may end up adding
+ 			 * more signalers to the same context or engine.
+ 			 */
+-			i915_request_get(rq);
+-			list_add_tail(&rq->signal_link, &signal);
++			if (__request_completed(rq))
++				__signal_request(rq, &signal);
+ 		}
+ 
+ 		/*
+@@ -255,6 +259,7 @@ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
+ 
+ 	spin_lock_init(&b->irq_lock);
+ 	INIT_LIST_HEAD(&b->signalers);
++	INIT_LIST_HEAD(&b->signaled_requests);
+ 
+ 	init_irq_work(&b->irq_work, signal_irq_work);
+ }
+@@ -274,6 +279,32 @@ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine)
+ 	spin_unlock_irqrestore(&b->irq_lock, flags);
+ }
+ 
++void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
++					     struct intel_context *ce)
++{
++	struct intel_breadcrumbs *b = &engine->breadcrumbs;
++	unsigned long flags;
++
++	spin_lock_irqsave(&b->irq_lock, flags);
++	if (!list_empty(&ce->signals)) {
++		struct i915_request *rq, *next;
++
++		/* Queue for executing the signal callbacks in the irq_work */
++		list_for_each_entry_safe(rq, next, &ce->signals, signal_link) {
++			GEM_BUG_ON(rq->engine != engine);
++			GEM_BUG_ON(!__request_completed(rq));
++
++			__signal_request(rq, &b->signaled_requests);
++		}
++
++		INIT_LIST_HEAD(&ce->signals);
++		list_del_init(&ce->signal_link);
++
++		irq_work_queue(&b->irq_work);
++	}
++	spin_unlock_irqrestore(&b->irq_lock, flags);
++}
++
+ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
+ {
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index cb789c8bf06b..9bf6d4989968 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -238,6 +238,9 @@ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
+ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
+ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+ 
++void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
++					     struct intel_context *ce);
++
+ void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
+ 				    struct drm_printer *p);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index c113b7805e65..e20b39eefd79 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -377,6 +377,8 @@ struct intel_engine_cs {
+ 		spinlock_t irq_lock;
+ 		struct list_head signalers;
+ 
++		struct list_head signaled_requests;
++
+ 		struct irq_work irq_work; /* for use from inside irq_lock */
+ 
+ 		unsigned int irq_enabled;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 15716e4d6b76..3d0e0894c015 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1821,30 +1821,16 @@ static bool virtual_matches(const struct virtual_engine *ve,
+ 	return true;
+ }
+ 
+-static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
+-				     struct i915_request *rq)
++static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
+ {
+-	struct intel_engine_cs *old = ve->siblings[0];
+-
+-	/* All unattached (rq->engine == old) must already be completed */
+-
+-	spin_lock(&old->breadcrumbs.irq_lock);
+-	if (!list_empty(&ve->context.signal_link)) {
+-		list_del_init(&ve->context.signal_link);
+-
+-		/*
+-		 * We cannot acquire the new engine->breadcrumbs.irq_lock
+-		 * (as we are holding a breadcrumbs.irq_lock already),
+-		 * so attach this request to the signaler on submission.
+-		 * The queued irq_work will occur when we finally drop
+-		 * the engine->active.lock after dequeue.
+-		 */
+-		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
+-
+-		/* Also transfer the pending irq_work for the old breadcrumb. */
+-		intel_engine_signal_breadcrumbs(rq->engine);
+-	}
+-	spin_unlock(&old->breadcrumbs.irq_lock);
++	/*
++	 * All the outstanding signals on ve->siblings[0] must have
++	 * been completed, just pending the interrupt handler. As those
++	 * signals still refer to the old sibling (via rq->engine), we must
++	 * transfer those to the old irq_worker to keep our locking
++	 * consistent.
++	 */
++	intel_engine_transfer_stale_breadcrumbs(ve->siblings[0], &ve->context);
+ }
+ 
+ #define for_each_waiter(p__, rq__) \
+@@ -2279,7 +2265,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 									engine);
+ 
+ 				if (!list_empty(&ve->context.signals))
+-					virtual_xfer_breadcrumbs(ve, rq);
++					virtual_xfer_breadcrumbs(ve);
+ 
+ 				/*
+ 				 * Move the bound engine to the top of the list
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
