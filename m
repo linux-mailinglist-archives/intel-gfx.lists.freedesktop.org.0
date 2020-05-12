@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32451CF1BD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 11:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B81461CF1F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 11:55:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12D0489101;
-	Tue, 12 May 2020 09:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752156E8D2;
+	Tue, 12 May 2020 09:55:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 09AC989101;
- Tue, 12 May 2020 09:38:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02E1FA47EE;
- Tue, 12 May 2020 09:38:37 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674F16E0A1;
+ Tue, 12 May 2020 09:55:04 +0000 (UTC)
+IronPort-SDR: /Q22ZGzRoXCFI1vwtbFf2+EvNjzsv41V6Dn9mVAjQSxXv8gCKl+8M0kHDIE0AQli/PID8I0Wbe
+ x5HtODjdmVTg==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 02:55:03 -0700
+IronPort-SDR: H2S9UBY0givUN4wuvDL85XufH8gZYvmltx/kbdaOp6SsYBKhr2mpoEmjJR5DdW+IzD8c01YPdV
+ +MxVHSoTLSUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; 
+ d="asc'?scan'208";a="463711650"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga006.fm.intel.com with ESMTP; 12 May 2020 02:55:01 -0700
+Date: Tue, 12 May 2020 17:40:17 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200512094017.GX18545@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 12 May 2020 09:38:37 -0000
-Message-ID: <158927631798.18142.4111847127312310578@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?dma-fence_lockdep_annotations?=
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,133 +48,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0818567963=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: dma-fence lockdep annotations
-URL   : https://patchwork.freedesktop.org/series/77178/
-State : warning
+--===============0818567963==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="V2Kn1ZfDiPlyQ6Qk"
+Content-Disposition: inline
 
-== Summary ==
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: dma-fence: add might_sleep annotation to _wait()
-Okay!
+--V2Kn1ZfDiPlyQ6Qk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Commit: dma-fence: basic lockdep annotations
-Okay!
 
-Commit: dma-fence: prime lockdep annotations
-Okay!
+Hi,
 
-Commit: drm/vkms: Annotate vblank timer
-Okay!
+This includes support for ppgtt update by LRI command which gvt
+replaces by shadow ppgtt, another small optimization for shadow
+ctx and one workload destroy cleanup.
 
-Commit: drm/vblank: Annotate with dma-fence signalling section
-Okay!
+Thanks
+--
 
-Commit: drm/atomic-helper: Add dma-fence annotations
-Okay!
+The following changes since commit fb55c735522352704c35d899d0b253453cf0e799:
 
-Commit: drm/amdgpu: add dma-fence annotations to atomic commit path
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1155:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1160:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1160:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1160:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1162:36: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1229:25: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1229:25: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1229:25: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1235:37: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1261:41: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1263:39: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1267:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1156:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1161:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1161:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1161:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1163:36: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1230:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1230:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1230:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1236:37: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1262:41: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1264:39: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1271:17: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2521:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2539:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5337:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:750:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:805:25: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:809:23: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1269:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1272:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2522:24: warning: symbol 'dm_atomic_get_new_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:2540:24: warning: symbol 'dm_atomic_get_old_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:5338:6: warning: symbol 'dm_drm_plane_destroy_state' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:751:6: warning: symbol 'amdgpu_dm_audio_eld_notify' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:806:25: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:813:30: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:816:28: warning: cast to restricted __le32
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8702:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8706:50: warning: missing braces around initializer
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:811:23: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:814:30: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:817:28: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8708:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8712:50: warning: missing braces around initializer
+  drm/i915/gvt: skip populate shadow context if guest context not changed (=
+2020-04-17 17:31:22 +0800)
 
-Commit: drm/scheduler: use dma-fence annotations in main thread
-Okay!
+are available in the Git repository at:
 
-Commit: drm/amdgpu: use dma-fence annotations in cs_submit()
-Okay!
+  https://github.com/intel/gvt-linux tags/gvt-next-2020-05-12
 
-Commit: drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in scheduler code
-Okay!
+for you to fetch changes up to 47e51832ae93534d872511ba557115722582d94c:
 
-Commit: drm/amdgpu: DC also loves to allocate stuff where it shouldn't
-Okay!
+  drm/i915/gvt: use context lrc_reg_state for shadow ppgtt override (2020-0=
+5-08 12:37:14 +0800)
 
-Commit: drm/amdgpu/dc: Stop dma_resv_lock inversion in commit_tail
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8708:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
--drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8712:50: warning: missing braces around initializer
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8718:6: warning: symbol 'amdgpu_dm_psr_enable' was not declared. Should it be static?
-+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8722:50: warning: missing braces around initializer
+----------------------------------------------------------------
+gvt-next-2020-05-12
 
-Commit: drm/scheduler: use dma-fence annotations in tdr work
-Okay!
+- Support PPGTT update via LRI cmd (Zhenyu)
+- Remove extra kmap for shadow ctx update (Zhenyu)
+- Move workload cleanup out of execlist handling code (Zhenyu)
 
-Commit: drm/amdgpu: use dma-fence annotations for gpu reset code
-Okay!
+----------------------------------------------------------------
+Zhenyu Wang (3):
+      drm/i915/gvt: move workload destroy out of execlist complete
+      drm/i915/gvt: Support PPGTT table load command
+      drm/i915/gvt: use context lrc_reg_state for shadow ppgtt override
 
-Commit: Revert "drm/amdgpu: add fbdev suspend/resume on gpu reset"
-Okay!
+ drivers/gpu/drm/i915/gvt/cmd_parser.c |  45 +++++++++++++
+ drivers/gpu/drm/i915/gvt/execlist.c   |   2 -
+ drivers/gpu/drm/i915/gvt/gtt.c        |   1 +
+ drivers/gpu/drm/i915/gvt/gtt.h        |   1 +
+ drivers/gpu/drm/i915/gvt/handlers.c   |   2 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c  | 115 ++++++++++++++++++++++++++++++=
++---
+ drivers/gpu/drm/i915/gvt/scheduler.h  |   1 +
+ 7 files changed, 155 insertions(+), 12 deletions(-)
 
-Commit: drm/amdgpu: gpu recovery does full modesets
-Okay!
+--=20
+Open Source Technology Center, Intel ltd.
 
-Commit: drm/i915: Annotate dma_fence_work
-Okay!
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--V2Kn1ZfDiPlyQ6Qk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXrpvAQAKCRCxBBozTXgY
+J5rjAKCLYmqSPT0RM8FbxlltSLiBCzRFQACfWIIIzjwy3gEQOpDis7i5HWcQG+U=
+=N2B/
+-----END PGP SIGNATURE-----
+
+--V2Kn1ZfDiPlyQ6Qk--
+
+--===============0818567963==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0818567963==--
