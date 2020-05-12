@@ -2,91 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1362A1CF9ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 17:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F331CFA0A
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 18:02:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE096E932;
-	Tue, 12 May 2020 15:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A633689291;
+	Tue, 12 May 2020 16:02:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2076.outbound.protection.outlook.com [40.107.237.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9166E92C;
- Tue, 12 May 2020 15:56:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cLxkldQbAZ3OquT1j3BO0CJUKn/TEa4ruA7GCeMHXorAXzBcHgXY8IwxFg5+jxz+Pi8u5MEbG3tXFPXEqdQWw/W2hgrsW6qH1Bk7e6GDW6/Q40+G3tfY4S1HoNSOCk/B1kXR4Oe+3085Qfvz8LesvbmBPJ4rvZS7daotg9p1loWStvqMx+gE0VJhOaDzOk7Yr/Mvzrpk4cdPDlK12N7x0BwrW832he52moC9XvlqurU1ayGcwb7y5F6PKx9lOAdycAEvRyrBs3FRScsncBOuQIYoCobIYCQHeu3rHBP8IL30QVG9SKnQFTcWi5MvcQFF0vur/sPGIcxsyEQ+n3wlPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m76jCPLZqvFAvjX95FNc4uGTJgpMuzxOLhlUpWFTdOY=;
- b=CVD50e/fSaBmrquaawf9gSmzHavUqBcd9/+tNXNFYgblrUcKyeE87izCU7rYFJ+MObBGyzoMwVekbZJdNZ3I3cALgQdY/rh8duPKpu4ucA/1Va2fTWMOfAprEzDfB5WP5gMbnvl+nN4OPy6STcxvh4ociCP+vYtqlVQMcv5h9sLqhBjqm01pNpoM3P53u2GQkkw69NWUB6wMt2CO16Oah5GIrJ+2DgDAZpRBw9oLYt0/uuX8SAn8ibtc5y0n56gu3FoAk3nTo3QqrJZJWt2BdKDL73QgG5EE+0+JYdEsLQG9nylDUGA/XQ0MNr3Zga0PUMYK31Pbd8m9MNrQg88Rvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m76jCPLZqvFAvjX95FNc4uGTJgpMuzxOLhlUpWFTdOY=;
- b=tUNXG2RxqmlFMlEvnh+YZ4dIQWDDvgqHNCF4HrPqsbkxVjQUJgz+8KOfdQGUVCf7W7NhXIaRyCqxKLGpX12kXlN7s0Dg7uHQ72R5otRFXoB3u/u/xnnhceEk2d2jILBT8Np6CGru1pXtagj8y6Pv9VndWAMlbK55Ce9Q9aZL/oQ=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com (2603:10b6:5:2a9::15)
- by DM6PR12MB3081.namprd12.prod.outlook.com (2603:10b6:5:38::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.33; Tue, 12 May
- 2020 15:56:50 +0000
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::7949:b580:a2d5:f766]) by DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::7949:b580:a2d5:f766%3]) with mapi id 15.20.2979.033; Tue, 12 May 2020
- 15:56:50 +0000
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
- <20200512085944.222637-11-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <879b127e-2180-bc59-f522-252416a7ac01@amd.com>
-Date: Tue, 12 May 2020 17:56:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <20200512085944.222637-11-daniel.vetter@ffwll.ch>
-Content-Language: en-US
-X-ClientProxiedBy: FR2P281CA0034.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::21) To DM6PR12MB4401.namprd12.prod.outlook.com
- (2603:10b6:5:2a9::15)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7DC689A34
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 16:02:45 +0000 (UTC)
+IronPort-SDR: X3IFrtvpHoX8XSoQI3uQ7iADnlbafPO8DhHoRwE6j2vb6AvpK1DgUB/N8sCk3cYSo/HyJcujKt
+ vAB1oIlm987Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 09:02:35 -0700
+IronPort-SDR: vxTa81YNQQ6Pnof28GCFsrSFzH6DkHQEDPIZGAUiAXS0E2MS2bJm+65e4L5TvbTbmPOrUaY+yn
+ oLuBQsarV9bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="306520583"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 12 May 2020 09:02:32 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 12 May 2020 19:02:31 +0300
+Date: Tue, 12 May 2020 19:02:31 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200512160231.GX6112@intel.com>
+References: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
+ <20200507144503.15506-6-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- FR2P281CA0034.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:14::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Tue, 12 May 2020 15:56:47 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 99439c64-eb47-4a93-8c70-08d7f68d14be
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3081:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3081CA6BC4F5CAE7736BDB4B83BE0@DM6PR12MB3081.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-Forefront-PRVS: 0401647B7F
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ydIa+oJHoAiqPNjZr4kFe48iSUaYv5Lb7i8g4kn7vN/38nqf+vQzmrcIC05J32iMFPbFMscxvbjLlWhl/QVI7lhP1z6oDLWF/OFu7YoRrJYYW78i8YYAXcn9NR74Jc+MAYY0uILe5PwyzmMAp3zdUEd614fXTXafoDsK4UpCzLdzkOOiyHXkFl99GizfzjP9REwz+GgALlVqQZ2lchetP9GyPACHubiAxYeRamqPxMT6Plw7tWpPoSBPoFQsF3EFEKgA8W/FKNSbSYKystoFe0FzTvazOFrfbQmoPBdhrArClPwCefCGl2kYS+uTADP4vf+p5yUQn95qaqpb7XtuJ0c3ssCRthdcU/tz9xT9J78BXFxYEm+zrjbaxdjSw3s1vmI9eNdsPJ8VO0OcJHRwGHVTSg5Dl6mB/9+DIdQXZP+5EvVCmp87cPEjY9LvqVXH8k3dcnXFw02X9hHD1WCq/orkNMX32c/0EyNtBRpYLrfeq3cWdMFukgTNFCG4hhllt2G8QzT9X9fTteiqoqHDONMKv0MWc5jiRy2OUC2DQYjUVlyZ+rYRMnaJtTar9bOt
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4401.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(33430700001)(86362001)(66556008)(16526019)(5660300002)(66476007)(31696002)(54906003)(52116002)(316002)(66946007)(478600001)(6666004)(33440700001)(110136005)(2906002)(31686004)(36756003)(8676002)(186003)(7416002)(2616005)(6486002)(8936002)(4326008)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: LrxnlV7hPQUPawhqdOBYuAHH/w0GjYZGu7iUKxEQVcWRaBJbL9TxZou1Qrkl54X9iDl3pFofC7wuoMfaEYJ6YdCJepbu21BLLugsyJ4FO4INwBTTh8ZlKR9osWo5PS9+Kxy1yDBTLOXCtQ2MpaJYY7M9K2wRRfJcU8tc7Va7tftol7LZ88EN8pz8ZEc4jprEi3ucu9iGZM3IXB4XbJoutO0fFid4iyDli0egucfRqc+MxYvBynSKE1tfOhfKlcKrMkAR5kGoR6GFexvINGRVXoGdgiqbm8oinXpR9Fl0DFU1w4797rTuwZmxH33Pj0MaHrtilgWq0fUR2TizpaEhyYmqEImxd5vH1kOk74eWrqDoj/UYl3ssOxec+dKGJdpAkaaKkhfeup+ZElNCI5rmTw3nTm5dAOObH91+uyanuUq/WN+JA3MpFD8t84b/rUA7gx/46KB70Jgq7AxylH7YvgQpOcDfkglylXFIRtSqjARv4wnxBHfYgnlKkPvNrgUAKlMs1jCdm1G5uvkClnFERxaSD/k4G/wAEq8qIJ75czX9JR/wGwO09ctApqbYkhOA
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99439c64-eb47-4a93-8c70-08d7f68d14be
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2020 15:56:49.9439 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lz5PA8s8e2i6SsSo4/rCGGe+q05HFhHV+zyK1nEBKpRRtm0qtWQaRFuK4ceKTC83
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3081
-Subject: Re: [Intel-gfx] [RFC 10/17] drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in
- scheduler code
+Content-Disposition: inline
+In-Reply-To: <20200507144503.15506-6-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v28 5/6] drm/i915: Restrict qgv points which
+ don't have enough bandwidth.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,85 +52,615 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- Daniel Vetter <daniel.vetter@intel.com>, linux-media@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SHVpIHdoYXQ/IE9mIGhhbmQgdGhhdCBkb2Vzbid0IGxvb2tzIGNvcnJlY3QgdG8gbWUuCgpXaHkg
-dGhlIGhlY2sgc2hvdWxkIHRoaXMgYmUgYW4gYXRvbWljIGNvbnRleHQ/IElmIHRoYXQncyBjb3Jy
-ZWN0IAphbGxvY2F0aW5nIG1lbW9yeSBpcyB0aGUgbGVhc3Qgb2YgdGhlIHByb2JsZW1zIHdlIGhh
-dmUuCgpSZWdhcmRzLApDaHJpc3RpYW4uCgpBbSAxMi4wNS4yMCB1bSAxMDo1OSBzY2hyaWViIERh
-bmllbCBWZXR0ZXI6Cj4gTXkgZG1hLWZlbmNlIGxvY2tkZXAgYW5ub3RhdGlvbnMgY2F1Z2h0IGFu
-IGludmVyc2lvbiBiZWNhdXNlIHdlCj4gYWxsb2NhdGUgbWVtb3J5IHdoZXJlIHdlIHJlYWxseSBz
-aG91bGRuJ3Q6Cj4KPiAJa21lbV9jYWNoZV9hbGxvYysweDJiLzB4NmQwCj4gCWFtZGdwdV9mZW5j
-ZV9lbWl0KzB4MzAvMHgzMzAgW2FtZGdwdV0KPiAJYW1kZ3B1X2liX3NjaGVkdWxlKzB4MzA2LzB4
-NTUwIFthbWRncHVdCj4gCWFtZGdwdV9qb2JfcnVuKzB4MTBmLzB4MjYwIFthbWRncHVdCj4gCWRy
-bV9zY2hlZF9tYWluKzB4MWI5LzB4NDkwIFtncHVfc2NoZWRdCj4gCWt0aHJlYWQrMHgxMmUvMHgx
-NTAKPgo+IFRyb3VibGUgcmlnaHQgbm93IGlzIHRoYXQgbG9ja2RlcCBvbmx5IHZhbGlkYXRlcyBh
-Z2FpbnN0IEdGUF9GUywgd2hpY2gKPiB3b3VsZCBiZSBnb29kIGVub3VnaCBmb3Igc2hyaW5rZXJz
-LiBCdXQgZm9yIG1tdV9ub3RpZmllcnMgd2UgYWN0dWFsbHkKPiBuZWVkICFHRlBfQVRPTUlDLCBz
-aW5jZSB0aGV5IGNhbiBiZSBjYWxsZWQgZnJvbSBhbnkgcGFnZSBsYXVuZGVyaW5nLAo+IGV2ZW4g
-aWYgR0ZQX05PRlMgb3IgR0ZQX05PSU8gYXJlIHNldC4KPgo+IEkgZ3Vlc3Mgd2Ugc2hvdWxkIGlt
-cHJvdmUgdGhlIGxvY2tkZXAgYW5ub3RhdGlvbnMgZm9yCj4gZnNfcmVjbGFpbV9hY3F1aXJlL3Jl
-bGVhc2UuCj4KPiBPZmMgcmVhbCBmaXggaXMgdG8gcHJvcGVybHkgcHJlYWxsb2NhdGUgdGhpcyBm
-ZW5jZSBhbmQgc3R1ZmYgaXQgaW50bwo+IHRoZSBhbWRncHUgam9iIHN0cnVjdHVyZS4gQnV0IEdG
-UF9BVE9NSUMgZ2V0cyB0aGUgbG9ja2RlcCBzcGxhdCBvdXQgb2YKPiB0aGUgd2F5Lgo+Cj4gdjI6
-IFR3byBtb3JlIGFsbG9jYXRpb25zIGluIHNjaGVkdWxlciBwYXRocy4KPgo+IEZyaXN0IG9uZToK
-Pgo+IAlfX2ttYWxsb2MrMHg1OC8weDcyMAo+IAlhbWRncHVfdm1pZF9ncmFiKzB4MTAwLzB4Y2Ew
-IFthbWRncHVdCj4gCWFtZGdwdV9qb2JfZGVwZW5kZW5jeSsweGY5LzB4MTIwIFthbWRncHVdCj4g
-CWRybV9zY2hlZF9lbnRpdHlfcG9wX2pvYisweDNmLzB4NDQwIFtncHVfc2NoZWRdCj4gCWRybV9z
-Y2hlZF9tYWluKzB4ZjkvMHg0OTAgW2dwdV9zY2hlZF0KPgo+IFNlY29uZCBvbmU6Cj4KPiAJa21l
-bV9jYWNoZV9hbGxvYysweDJiLzB4NmQwCj4gCWFtZGdwdV9zeW5jX2ZlbmNlKzB4N2UvMHgxMTAg
-W2FtZGdwdV0KPiAJYW1kZ3B1X3ZtaWRfZ3JhYisweDg2Yi8weGNhMCBbYW1kZ3B1XQo+IAlhbWRn
-cHVfam9iX2RlcGVuZGVuY3krMHhmOS8weDEyMCBbYW1kZ3B1XQo+IAlkcm1fc2NoZWRfZW50aXR5
-X3BvcF9qb2IrMHgzZi8weDQ0MCBbZ3B1X3NjaGVkXQo+IAlkcm1fc2NoZWRfbWFpbisweGY5LzB4
-NDkwIFtncHVfc2NoZWRdCj4KPiBDYzogbGludXgtbWVkaWFAdmdlci5rZXJuZWwub3JnCj4gQ2M6
-IGxpbmFyby1tbS1zaWdAbGlzdHMubGluYXJvLm9yZwo+IENjOiBsaW51eC1yZG1hQHZnZXIua2Vy
-bmVsLm9yZwo+IENjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBpbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
-d2lsc29uLmNvLnVrPgo+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RA
-bGludXguaW50ZWwuY29tPgo+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmln
-QGFtZC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBp
-bnRlbC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmVu
-Y2UuYyB8IDIgKy0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pZHMuYyAg
-IHwgMiArLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYyAgfCAy
-ICstCj4gICAzIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkK
-Pgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmVuY2Uu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZW5jZS5jCj4gaW5kZXggZDg3
-OGZlN2ZlZTUxLi4wNTViNDcyNDFiYjEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X2ZlbmNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfZmVuY2UuYwo+IEBAIC0xNDMsNyArMTQzLDcgQEAgaW50IGFtZGdwdV9mZW5jZV9l
-bWl0KHN0cnVjdCBhbWRncHVfcmluZyAqcmluZywgc3RydWN0IGRtYV9mZW5jZSAqKmYsCj4gICAJ
-dWludDMyX3Qgc2VxOwo+ICAgCWludCByOwo+ICAgCj4gLQlmZW5jZSA9IGttZW1fY2FjaGVfYWxs
-b2MoYW1kZ3B1X2ZlbmNlX3NsYWIsIEdGUF9LRVJORUwpOwo+ICsJZmVuY2UgPSBrbWVtX2NhY2hl
-X2FsbG9jKGFtZGdwdV9mZW5jZV9zbGFiLCBHRlBfQVRPTUlDKTsKPiAgIAlpZiAoZmVuY2UgPT0g
-TlVMTCkKPiAgIAkJcmV0dXJuIC1FTk9NRU07Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lkcy5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2lkcy5jCj4gaW5kZXggZmU5MmRjZDk0ZDRhLi5mZGNkNjY1OWY1YWQgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lkcy5jCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lkcy5jCj4gQEAgLTIwOCw3ICsyMDgs
-NyBAQCBzdGF0aWMgaW50IGFtZGdwdV92bWlkX2dyYWJfaWRsZShzdHJ1Y3QgYW1kZ3B1X3ZtICp2
-bSwKPiAgIAlpZiAocmluZy0+dm1pZF93YWl0ICYmICFkbWFfZmVuY2VfaXNfc2lnbmFsZWQocmlu
-Zy0+dm1pZF93YWl0KSkKPiAgIAkJcmV0dXJuIGFtZGdwdV9zeW5jX2ZlbmNlKHN5bmMsIHJpbmct
-PnZtaWRfd2FpdCwgZmFsc2UpOwo+ICAgCj4gLQlmZW5jZXMgPSBrbWFsbG9jX2FycmF5KHNpemVv
-Zih2b2lkICopLCBpZF9tZ3ItPm51bV9pZHMsIEdGUF9LRVJORUwpOwo+ICsJZmVuY2VzID0ga21h
-bGxvY19hcnJheShzaXplb2Yodm9pZCAqKSwgaWRfbWdyLT5udW1faWRzLCBHRlBfQVRPTUlDKTsK
-PiAgIAlpZiAoIWZlbmNlcykKPiAgIAkJcmV0dXJuIC1FTk9NRU07Cj4gICAKPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9zeW5jLmMKPiBpbmRleCBiODdjYTE3MTk4NmEuLjMzMDQ3
-NmNjMGM4NiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-c3luYy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYwo+
-IEBAIC0xNjgsNyArMTY4LDcgQEAgaW50IGFtZGdwdV9zeW5jX2ZlbmNlKHN0cnVjdCBhbWRncHVf
-c3luYyAqc3luYywgc3RydWN0IGRtYV9mZW5jZSAqZiwKPiAgIAlpZiAoYW1kZ3B1X3N5bmNfYWRk
-X2xhdGVyKHN5bmMsIGYsIGV4cGxpY2l0KSkKPiAgIAkJcmV0dXJuIDA7Cj4gICAKPiAtCWUgPSBr
-bWVtX2NhY2hlX2FsbG9jKGFtZGdwdV9zeW5jX3NsYWIsIEdGUF9LRVJORUwpOwo+ICsJZSA9IGtt
-ZW1fY2FjaGVfYWxsb2MoYW1kZ3B1X3N5bmNfc2xhYiwgR0ZQX0FUT01JQyk7Cj4gICAJaWYgKCFl
-KQo+ICAgCQlyZXR1cm4gLUVOT01FTTsKPiAgIAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, May 07, 2020 at 05:45:02PM +0300, Stanislav Lisovskiy wrote:
+> According to BSpec 53998, we should try to
+> restrict qgv points, which can't provide
+> enough bandwidth for desired display configuration.
+> =
+
+> Currently we are just comparing against all of
+> those and take minimum(worst case).
+> =
+
+> v2: Fixed wrong PCode reply mask, removed hardcoded
+>     values.
+> =
+
+> v3: Forbid simultaneous legacy SAGV PCode requests and
+>     restricting qgv points. Put the actual restriction
+>     to commit function, added serialization(thanks to Ville)
+>     to prevent commit being applied out of order in case of
+>     nonblocking and/or nomodeset commits.
+> =
+
+> v4:
+>     - Minor code refactoring, fixed few typos(thanks to James Ausmus)
+>     - Change the naming of qgv point
+>       masking/unmasking functions(James Ausmus).
+>     - Simplify the masking/unmasking operation itself,
+>       as we don't need to mask only single point per request(James Ausmus)
+>     - Reject and stick to highest bandwidth point if SAGV
+>       can't be enabled(BSpec)
+> =
+
+> v5:
+>     - Add new mailbox reply codes, which seems to happen during boot
+>       time for TGL and indicate that QGV setting is not yet available.
+> =
+
+> v6:
+>     - Increase number of supported QGV points to be in sync with BSpec.
+> =
+
+> v7: - Rebased and resolved conflict to fix build failure.
+>     - Fix NUM_QGV_POINTS to 8 and moved that to header file(James Ausmus)
+> =
+
+> v8: - Don't report an error if we can't restrict qgv points, as SAGV
+>       can be disabled by BIOS, which is completely legal. So don't
+>       make CI panic. Instead if we detect that there is only 1 QGV
+>       point accessible just analyze if we can fit the required bandwidth
+>       requirements, but no need in restricting.
+> =
+
+> v9: - Fix wrong QGV transition if we have 0 planes and no SAGV
+>       simultaneously.
+> =
+
+> v10: - Fix CDCLK corruption, because of global state getting serialized
+>        without modeset, which caused copying of non-calculated cdclk
+>        to be copied to dev_priv(thanks to Ville for the hint).
+> =
+
+> v11: - Remove unneeded headers and spaces(Matthew Roper)
+>      - Remove unneeded intel_qgv_info qi struct from bw check and zero
+>        out the needed one(Matthew Roper)
+>      - Changed QGV error message to have more clear meaning(Matthew Roper)
+>      - Use state->modeset_set instead of any_ms(Matthew Roper)
+>      - Moved NUM_SAGV_POINTS from i915_reg.h to i915_drv.h where it's used
+>      - Keep using crtc_state->hw.active instead of .enable(Matthew Roper)
+>      - Moved unrelated changes to other patch(using latency as parameter
+>        for plane wm calculation, moved to SAGV refactoring patch)
+> =
+
+> v12: - Fix rebase conflict with own temporary SAGV/QGV fix.
+>      - Remove unnecessary mask being zero check when unmasking
+>        qgv points as this is completely legal(Matt Roper)
+>      - Check if we are setting the same mask as already being set
+>        in hardware to prevent error from PCode.
+>      - Fix error message when restricting/unrestricting qgv points
+>        to "mask/unmask" which sounds more accurate(Matt Roper)
+>      - Move sagv status setting to icl_get_bw_info from atomic check
+>        as this should be calculated only once.(Matt Roper)
+>      - Edited comments for the case when we can't enable SAGV and
+>        use only 1 QGV point with highest bandwidth to be more
+>        understandable.(Matt Roper)
+> =
+
+> v13: - Moved max_data_rate in bw check to closer scope(Ville Syrj=E4l=E4)
+>      - Changed comment for zero new_mask in qgv points masking function
+>        to better reflect reality(Ville Syrj=E4l=E4)
+>      - Simplified bit mask operation in qgv points masking function
+>        (Ville Syrj=E4l=E4)
+>      - Moved intel_qgv_points_mask closer to gen11 SAGV disabling,
+>        however this still can't be under modeset condition(Ville Syrj=E4l=
+=E4)
+>      - Packed qgv_points_mask as u8 and moved closer to pipe_sagv_mask
+>        (Ville Syrj=E4l=E4)
+>      - Extracted PCode changes to separate patch.(Ville Syrj=E4l=E4)
+>      - Now treat num_planes 0 same as 1 to avoid confusion and
+>        returning max_bw as 0, which would prevent choosing QGV
+>        point having max bandwidth in case if SAGV is not allowed,
+>        as per BSpec(Ville Syrj=E4l=E4)
+>      - Do the actual qgv_points_mask swap in the same place as
+>        all other global state parts like cdclk are swapped.
+>        In the next patch, this all will be moved to bw state as
+>        global state, once new global state patch series from Ville
+>        lands
+> =
+
+> v14: - Now using global state to serialize access to qgv points
+>      - Added global state locking back, otherwise we seem to read
+>        bw state in a wrong way.
+> =
+
+> v15: - Added TODO comment for near atomic global state locking in
+>        bw code.
+> =
+
+> v16: - Fixed intel_atomic_bw_* functions to be intel_bw_* as discussed
+>        with Jani Nikula.
+>      - Take bw_state_changed flag into use.
+> =
+
+> v17: - Moved qgv point related manipulations next to SAGV code, as
+>        those are semantically related(Ville Syrj=E4l=E4)
+>      - Renamed those into intel_sagv_(pre)|(post)_plane_update
+>        (Ville Syrj=E4l=E4)
+> =
+
+> v18: - Move sagv related calls from commit tail into
+>        intel_sagv_(pre)|(post)_plane_update(Ville Syrj=E4l=E4)
+> =
+
+> v19: - Use intel_atomic_get_bw_(old)|(new)_state which is intended
+>        for commit tail stage.
+> =
+
+> v20: - Return max bandwidth for 0 planes(Ville)
+>      - Constify old_bw_state in bw_atomic_check(Ville)
+>      - Removed some debugs(Ville)
+>      - Added data rate to debug print when no QGV points(Ville)
+>      - Removed some comments(Ville)
+> =
+
+> v21, v22, v23: - Fixed rebase conflict
+> =
+
+> v24: - Changed PCode mask to use ICL_ prefix
+> v25: - Resolved rebase conflict
+> =
+
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> Cc: James Ausmus <james.ausmus@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c       | 139 +++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_bw.h       |   9 ++
+>  .../drm/i915/display/intel_display_types.h    |   3 +
+>  drivers/gpu/drm/i915/intel_pm.c               |  66 ++++++++-
+>  drivers/gpu/drm/i915/intel_pm.h               |   2 +
+>  5 files changed, 181 insertions(+), 38 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
+15/display/intel_bw.c
+> index 6e7cc3a4f1aa..5455420fde49 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -8,6 +8,9 @@
+>  #include "intel_bw.h"
+>  #include "intel_display_types.h"
+>  #include "intel_sideband.h"
+> +#include "intel_atomic.h"
+> +#include "intel_pm.h"
+> +
+>  =
+
+>  /* Parameters for Qclk Geyserville (QGV) */
+>  struct intel_qgv_point {
+> @@ -113,6 +116,26 @@ static int icl_pcode_read_qgv_point_info(struct drm_=
+i915_private *dev_priv,
+>  	return 0;
+>  }
+>  =
+
+> +int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+> +				  u32 points_mask)
+> +{
+> +	int ret;
+> +
+> +	/* bspec says to keep retrying for at least 1 ms */
+> +	ret =3D skl_pcode_request(dev_priv, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
+> +				points_mask,
+> +				ICL_PCODE_POINTS_RESTRICTED_MASK,
+> +				ICL_PCODE_POINTS_RESTRICTED,
+> +				1);
+> +
+> +	if (ret < 0) {
+> +		DRM_ERROR("Failed to disable qgv points (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			      struct intel_qgv_info *qi)
+>  {
+> @@ -240,6 +263,16 @@ static int icl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>  			break;
+>  	}
+>  =
+
+> +	/*
+> +	 * In case if SAGV is disabled in BIOS, we always get 1
+> +	 * SAGV point, but we can't send PCode commands to restrict it
+> +	 * as it will fail and pointless anyway.
+> +	 */
+> +	if (qi.num_points =3D=3D 1)
+> +		dev_priv->sagv_status =3D I915_SAGV_NOT_CONTROLLED;
+> +	else
+> +		dev_priv->sagv_status =3D I915_SAGV_ENABLED;
+> +
+>  	return 0;
+>  }
+>  =
+
+> @@ -248,6 +281,11 @@ static unsigned int icl_max_bw(struct drm_i915_priva=
+te *dev_priv,
+>  {
+>  	int i;
+>  =
+
+> +	/*
+> +	 * Let's return max bw for 0 planes
+> +	 */
+> +	num_planes =3D max(1, num_planes);
+> +
+>  	for (i =3D 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
+>  		const struct intel_bw_info *bi =3D
+>  			&dev_priv->max_bw[i];
+> @@ -277,34 +315,6 @@ void intel_bw_init_hw(struct drm_i915_private *dev_p=
+riv)
+>  		icl_get_bw_info(dev_priv, &icl_sa_info);
+>  }
+>  =
+
+> -static unsigned int intel_max_data_rate(struct drm_i915_private *dev_pri=
+v,
+> -					int num_planes)
+> -{
+> -	if (INTEL_GEN(dev_priv) >=3D 11) {
+> -		/*
+> -		 * Any bw group has same amount of QGV points
+> -		 */
+> -		const struct intel_bw_info *bi =3D
+> -			&dev_priv->max_bw[0];
+> -		unsigned int min_bw =3D UINT_MAX;
+> -		int i;
+> -
+> -		/*
+> -		 * FIXME with SAGV disabled maybe we can assume
+> -		 * point 1 will always be used? Seems to match
+> -		 * the behaviour observed in the wild.
+> -		 */
+> -		for (i =3D 0; i < bi->num_qgv_points; i++) {
+> -			unsigned int bw =3D icl_max_bw(dev_priv, num_planes, i);
+> -
+> -			min_bw =3D min(bw, min_bw);
+> -		}
+> -		return min_bw;
+> -	} else {
+> -		return UINT_MAX;
+> -	}
+> -}
+> -
+>  static unsigned int intel_bw_crtc_num_active_planes(const struct intel_c=
+rtc_state *crtc_state)
+>  {
+>  	/*
+> @@ -415,10 +425,15 @@ int intel_bw_atomic_check(struct intel_atomic_state=
+ *state)
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>  	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+>  	struct intel_bw_state *new_bw_state =3D NULL;
+> -	unsigned int data_rate, max_data_rate;
+> +	const struct intel_bw_state *old_bw_state =3D NULL;
+> +	unsigned int data_rate;
+>  	unsigned int num_active_planes;
+>  	struct intel_crtc *crtc;
+>  	int i, ret;
+> +	u32 allowed_points =3D 0;
+> +	unsigned int max_bw_point =3D 0, max_bw =3D 0;
+> +	unsigned int num_qgv_points =3D dev_priv->max_bw[0].num_qgv_points;
+> +	u32 mask =3D (1 << num_qgv_points) - 1;
+>  =
+
+>  	/* FIXME earlier gens need some checks too */
+>  	if (INTEL_GEN(dev_priv) < 11)
+> @@ -465,19 +480,73 @@ int intel_bw_atomic_check(struct intel_atomic_state=
+ *state)
+>  		return ret;
+>  =
+
+>  	data_rate =3D intel_bw_data_rate(dev_priv, new_bw_state);
+> +	data_rate =3D DIV_ROUND_UP(data_rate, 1000);
+> +
+>  	num_active_planes =3D intel_bw_num_active_planes(dev_priv, new_bw_state=
+);
+>  =
+
+> -	max_data_rate =3D intel_max_data_rate(dev_priv, num_active_planes);
+> +	for (i =3D 0; i < num_qgv_points; i++) {
+> +		unsigned int max_data_rate;
+>  =
+
+> -	data_rate =3D DIV_ROUND_UP(data_rate, 1000);
+> +		max_data_rate =3D icl_max_bw(dev_priv, num_active_planes, i);
+> +		/*
+> +		 * We need to know which qgv point gives us
+> +		 * maximum bandwidth in order to disable SAGV
+> +		 * if we find that we exceed SAGV block time
+> +		 * with watermarks. By that moment we already
+> +		 * have those, as it is calculated earlier in
+> +		 * intel_atomic_check,
+> +		 */
+> +		if (max_data_rate > max_bw) {
+> +			max_bw_point =3D i;
+> +			max_bw =3D max_data_rate;
+> +		}
+> +		if (max_data_rate >=3D data_rate)
+> +			allowed_points |=3D BIT(i);
+> +		DRM_DEBUG_KMS("QGV point %d: max bw %d required %d\n",
+> +			      i, max_data_rate, data_rate);
+> +	}
+>  =
+
+> -	if (data_rate > max_data_rate) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Bandwidth %u MB/s exceeds max available %d MB/s (%d active plane=
+s)\n",
+> -			    data_rate, max_data_rate, num_active_planes);
+> +	/*
+> +	 * BSpec states that we always should have at least one allowed point
+> +	 * left, so if we couldn't - simply reject the configuration for obvious
+> +	 * reasons.
+> +	 */
+> +	if (allowed_points =3D=3D 0) {
+> +		DRM_DEBUG_KMS("No QGV points provide sufficient memory"
+> +			      " bandwidth %d for display configuration.\n", data_rate);
+
+Please use the drm_dbg_kms() & co. so as to not undo the changes other
+people did to convert over to the per-device debugs/errors.
+
+We also seem to lose the num_active_planes part of this debug message.
+I think that might still be a nice piece of infomation to have around
+when this fails.
+
+>  		return -EINVAL;
+>  	}
+>  =
+
+> +	/*
+> +	 * Leave only single point with highest bandwidth, if
+> +	 * we can't enable SAGV due to the increased memory latency it may
+> +	 * cause.
+> +	 */
+> +	if (!intel_can_enable_sagv(dev_priv, new_bw_state)) {
+> +		allowed_points =3D BIT(max_bw_point);
+> +		DRM_DEBUG_KMS("No SAGV, using single QGV point %d\n",
+> +			      max_bw_point);
+> +	}
+> +	/*
+> +	 * We store the ones which need to be masked as that is what PCode
+> +	 * actually accepts as a parameter.
+> +	 */
+> +	new_bw_state->qgv_points_mask =3D (~allowed_points) & mask;
+
+Pointless parens.
+
+> +
+> +	old_bw_state =3D intel_atomic_get_old_bw_state(state);
+> +	if (!old_bw_state)
+> +		return -EINVAL;
+
+This can't fail since you already have the new bw state.
+
+> +
+> +	/*
+> +	 * If the actual mask had changed we need to make sure that
+> +	 * the commits are serialized(in case this is a nomodeset, nonblocking)
+> +	 */
+> +	if (new_bw_state->qgv_points_mask !=3D old_bw_state->qgv_points_mask) {
+> +		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
+15/display/intel_bw.h
+> index 898b4a85ccab..bbcaaa73ec1b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -24,6 +24,13 @@ struct intel_bw_state {
+>  	 */
+>  	u8 pipe_sagv_reject;
+>  =
+
+> +	/*
+> +	 * Current QGV points mask, which restricts
+> +	 * some particular SAGV states, not to confuse
+> +	 * with pipe_sagv_mask.
+> +	 */
+> +	u8 qgv_points_mask;
+> +
+>  	unsigned int data_rate[I915_MAX_PIPES];
+>  	u8 num_active_planes[I915_MAX_PIPES];
+>  =
+
+> @@ -47,5 +54,7 @@ int intel_bw_init(struct drm_i915_private *dev_priv);
+>  int intel_bw_atomic_check(struct intel_atomic_state *state);
+>  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  			  const struct intel_crtc_state *crtc_state);
+> +int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+> +				  u32 points_mask);
+>  =
+
+>  #endif /* __INTEL_BW_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 8cede29c9562..6edf0844f8ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -692,6 +692,9 @@ struct skl_plane_wm {
+>  	bool is_planar;
+>  };
+>  =
+
+> +/* BSpec precisely defines this */
+> +#define NUM_SAGV_POINTS 8
+> +
+>  struct skl_pipe_wm {
+>  	struct skl_plane_wm planes[I915_MAX_PLANES];
+>  	bool use_sagv_wm;
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 934a686342ad..66775d4fb1ae 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3761,7 +3761,10 @@ intel_disable_sagv(struct drm_i915_private *dev_pr=
+iv)
+>  void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	int ret;
+>  	const struct intel_bw_state *new_bw_state;
+> +	const struct intel_bw_state *old_bw_state;
+> +	u32 new_mask =3D 0;
+>  =
+
+>  	/*
+>  	 * Just return if we can't control SAGV or don't have it.
+> @@ -3777,15 +3780,48 @@ void intel_sagv_pre_plane_update(struct intel_ato=
+mic_state *state)
+>  	if (!new_bw_state)
+>  		return;
+>  =
+
+> -	if (!intel_can_enable_sagv(dev_priv, new_bw_state))
+> +	if (INTEL_GEN(dev_priv) < 11 && !intel_can_enable_sagv(dev_priv, new_bw=
+_state)) {
+>  		intel_disable_sagv(dev_priv);
+> +		return;
+> +	}
+> +
+> +	old_bw_state =3D intel_atomic_get_old_bw_state(state);
+> +	if (!old_bw_state)
+> +		return;
+
+This too can't fail since we already checked that we have the
+new_bw_state.
+
+> +
+> +	/*
+> +	 * Nothing to mask
+> +	 */
+> +	if (new_bw_state->qgv_points_mask =3D=3D old_bw_state->qgv_points_mask)
+> +		return;
+> +
+> +	new_mask =3D old_bw_state->qgv_points_mask | new_bw_state->qgv_points_m=
+ask;
+> +
+> +	/*
+> +	 * If new mask is zero - means there is nothing to mask,
+> +	 * we can only unmask, which should be done in unmask.
+> +	 */
+> +	if (!new_mask)
+> +		return;
+> +
+> +	/*
+> +	 * Restrict required qgv points before updating the configuration.
+> +	 * According to BSpec we can't mask and unmask qgv points at the same
+> +	 * time. Also masking should be done before updating the configuration
+> +	 * and unmasking afterwards.
+> +	 */
+> +	ret =3D icl_pcode_restrict_qgv_points(dev_priv, new_mask);
+> +	if (ret < 0)
+> +		drm_err(&dev_priv->drm, "Could not mask required qgv points(%d)\n", re=
+t);
+
+I think we now have double error prints. One here, the other inside
+icl_pcode_restrict_qgv_points(). Pls nuke one of them so we don't have
+redundant error prints.
+
+>  }
+>  =
+
+>  void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	int ret;
+>  	const struct intel_bw_state *new_bw_state;
+> -
+> +	const struct intel_bw_state *old_bw_state;
+> +	u32 new_mask =3D 0;
+>  	/*
+>  	 * Just return if we can't control SAGV or don't have it.
+>  	 * This is different from situation when we have SAGV but just can't
+> @@ -3800,8 +3836,32 @@ void intel_sagv_post_plane_update(struct intel_ato=
+mic_state *state)
+>  	if (!new_bw_state)
+>  		return;
+>  =
+
+> -	if (intel_can_enable_sagv(dev_priv, new_bw_state))
+> +	if (INTEL_GEN(dev_priv) < 11 && intel_can_enable_sagv(dev_priv, new_bw_=
+state)) {
+>  		intel_enable_sagv(dev_priv);
+> +		return;
+> +	}
+> +
+> +	old_bw_state =3D intel_atomic_get_old_bw_state(state);
+> +	if (!old_bw_state)
+> +		return;
+
+can't fail.
+
+> +
+> +	/*
+> +	 * Nothing to unmask
+> +	 */
+> +	if (new_bw_state->qgv_points_mask =3D=3D old_bw_state->qgv_points_mask)
+> +		return;
+> +
+> +	new_mask =3D new_bw_state->qgv_points_mask;
+> +
+> +	/*
+> +	 * Allow required qgv points after updating the configuration.
+> +	 * According to BSpec we can't mask and unmask qgv points at the same
+> +	 * time. Also masking should be done before updating the configuration
+> +	 * and unmasking afterwards.
+> +	 */
+> +	ret =3D icl_pcode_restrict_qgv_points(dev_priv, new_mask);
+> +	if (ret < 0)
+> +		drm_err(&dev_priv->drm, "Could not unmask required qgv points(%d)\n", =
+ret);
+
+Another double error print.
+
+Apart from those issues this looks nice.
+
+
+>  }
+>  =
+
+>  static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc=
+_state)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
+_pm.h
+> index 614ac7f8d4cc..528aba6267da 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -44,6 +44,8 @@ void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+>  void vlv_wm_sanitize(struct drm_i915_private *dev_priv);
+>  bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
+>  			   const struct intel_bw_state *bw_state);
+> +void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
+> +void intel_sagv_post_plane_update(struct intel_atomic_state *state);
+>  int intel_enable_sagv(struct drm_i915_private *dev_priv);
+>  int intel_disable_sagv(struct drm_i915_private *dev_priv);
+>  void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
