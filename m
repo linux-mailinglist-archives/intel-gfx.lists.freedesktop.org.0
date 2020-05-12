@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 730EE1CFB53
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 18:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E9C1CFBDF
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 19:20:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F89B6E93D;
-	Tue, 12 May 2020 16:50:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E20126E1A4;
+	Tue, 12 May 2020 17:19:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 387666E93D
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 16:50:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6856E1A4;
+ Tue, 12 May 2020 17:19:57 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21175694-1500050 
- for multiple; Tue, 12 May 2020 17:50:12 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21176133-1500050 
+ for multiple; Tue, 12 May 2020 18:19:48 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 May 2020 17:50:10 +0100
-Message-Id: <20200512165010.3947-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200512132255.20537-1-chris@chris-wilson.co.uk>
-References: <20200512132255.20537-1-chris@chris-wilson.co.uk>
+Date: Tue, 12 May 2020 18:19:47 +0100
+Message-Id: <20200512171947.730859-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200512102447.9249-1-janusz.krzysztofik@linux.intel.com>
+References: <20200512102447.9249-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Transfer old virtual
- breadcrumbs to irq_worker
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_nop: Specify timeout in
+ milliseconds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,222 +39,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The second try at staging the transfer of the breadcrumb. In part one,
-we realised we could not simply move to the second engine as we were
-only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
-("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
-removed it from the first engine and marked up this request to reattach
-the signaling on the new engine. However, this failed to take into
-account that we only attach the breadcrumb if the new request is added
-at the start of the queue, which if we are transferring, it is because
-we know there to be a request to be signaled (and hence we would not be
-attached).
+Our 'headless' subtest requires fairly precise measurements to determine
+the impact of the dmc upon request latency. The test cannot be effective
+if we cannot execute requests quickly, so add a very short pre-pass to
+check the test requirements. For this we want to specify the baseline
+measurement timeout in milliseconds, allowing us to speed up our other
+baseline measurements elsewhere as well.
 
-In this attempt, we try to transfer the completed requests to the
-irq_worker on its rq->engine->breadcrumbs. This preserves the coupling
-between the rq and its breadcrumbs, so that
-i915_request_cancel_breadcrumb() does not attempt to manipulate the list
-under the wrong lock.
-
-v2: Code sharing is fun.
-
-Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c  | 55 +++++++++++++++-----
- drivers/gpu/drm/i915/gt/intel_engine.h       |  3 ++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 +
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 34 ++++--------
- 4 files changed, 58 insertions(+), 36 deletions(-)
+ tests/i915/gem_exec_nop.c | 29 +++++++++++++++++------------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index cbedba857d43..1fbffacc2eaa 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -142,6 +142,18 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
- 	intel_engine_add_retire(engine, tl);
- }
+diff --git a/tests/i915/gem_exec_nop.c b/tests/i915/gem_exec_nop.c
+index 4051e0fd7..21a937c83 100644
+--- a/tests/i915/gem_exec_nop.c
++++ b/tests/i915/gem_exec_nop.c
+@@ -64,7 +64,7 @@ static double elapsed(const struct timespec *start, const struct timespec *end)
  
-+static void __signal_request(struct i915_request *rq, struct list_head *signals)
-+{
-+	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
-+	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
-+
-+	if (!__dma_fence_signal(&rq->fence))
-+		return;
-+
-+	i915_request_get(rq);
-+	list_add_tail(&rq->signal_link, signals);
-+}
-+
- static void signal_irq_work(struct irq_work *work)
+ static double nop_on_ring(int fd, uint32_t handle,
+ 			  const struct intel_execution_engine2 *e,
+-			  int timeout,
++			  int timeout_ms,
+ 			  unsigned long *out)
  {
- 	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
-@@ -155,6 +167,8 @@ static void signal_irq_work(struct irq_work *work)
- 	if (b->irq_armed && list_empty(&b->signalers))
- 		__intel_breadcrumbs_disarm_irq(b);
+ 	struct drm_i915_gem_execbuffer2 execbuf;
+@@ -94,7 +94,7 @@ static double nop_on_ring(int fd, uint32_t handle,
+ 		count++;
  
-+	list_splice_init(&b->signaled_requests, &signal);
-+
- 	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
- 		GEM_BUG_ON(list_empty(&ce->signals));
+ 		clock_gettime(CLOCK_MONOTONIC, &now);
+-	} while (elapsed(&start, &now) < timeout);
++	} while (elapsed(&start, &now) < timeout_ms * 1e-3);
+ 	igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
  
-@@ -164,23 +178,13 @@ static void signal_irq_work(struct irq_work *work)
+ 	*out = count;
+@@ -348,14 +348,15 @@ static void single(int fd, uint32_t handle,
+ 	double time;
+ 	unsigned long count;
  
- 			GEM_BUG_ON(!check_signal_order(ce, rq));
- 
--			if (!__request_completed(rq))
--				break;
--
--			GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_SIGNAL,
--					     &rq->fence.flags));
--			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
--
--			if (!__dma_fence_signal(&rq->fence))
--				continue;
--
- 			/*
- 			 * Queue for execution after dropping the signaling
- 			 * spinlock as the callback chain may end up adding
- 			 * more signalers to the same context or engine.
- 			 */
--			i915_request_get(rq);
--			list_add_tail(&rq->signal_link, &signal);
-+			if (__request_completed(rq))
-+				__signal_request(rq, &signal);
- 		}
- 
- 		/*
-@@ -255,6 +259,7 @@ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
- 
- 	spin_lock_init(&b->irq_lock);
- 	INIT_LIST_HEAD(&b->signalers);
-+	INIT_LIST_HEAD(&b->signaled_requests);
- 
- 	init_irq_work(&b->irq_work, signal_irq_work);
- }
-@@ -274,6 +279,32 @@ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine)
- 	spin_unlock_irqrestore(&b->irq_lock, flags);
+-	time = nop_on_ring(fd, handle, e, 20, &count);
++	time = nop_on_ring(fd, handle, e, 20000, &count);
+ 	igt_info("%s: %'lu cycles: %.3fus\n",
+ 		  e->name, count, time*1e6 / count);
  }
  
-+void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
-+					     struct intel_context *ce)
-+{
-+	struct intel_breadcrumbs *b = &engine->breadcrumbs;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&b->irq_lock, flags);
-+	if (!list_empty(&ce->signals)) {
-+		struct i915_request *rq, *next;
-+
-+		/* Queue for executing the signal callbacks in the irq_work */
-+		list_for_each_entry_safe(rq, next, &ce->signals, signal_link) {
-+			GEM_BUG_ON(rq->engine != engine);
-+			GEM_BUG_ON(!__request_completed(rq));
-+
-+			__signal_request(rq, &b->signaled_requests);
-+		}
-+
-+		INIT_LIST_HEAD(&ce->signals);
-+		list_del_init(&ce->signal_link);
-+
-+		irq_work_queue(&b->irq_work);
-+	}
-+	spin_unlock_irqrestore(&b->irq_lock, flags);
-+}
-+
- void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
+ static double
+ stable_nop_on_ring(int fd, uint32_t handle,
+-		   const struct intel_execution_engine2 *e, int timeout,
++		   const struct intel_execution_engine2 *e,
++		   int timeout_ms,
+ 		   int reps)
  {
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index cb789c8bf06b..9bf6d4989968 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -238,6 +238,9 @@ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
- void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
- void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+ 	igt_stats_t s;
+@@ -370,7 +371,7 @@ stable_nop_on_ring(int fd, uint32_t handle,
+ 		unsigned long count;
+ 		double time;
  
-+void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
-+					     struct intel_context *ce);
-+
- void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
- 				    struct drm_printer *p);
+-		time = nop_on_ring(fd, handle, e, timeout, &count);
++		time = nop_on_ring(fd, handle, e, timeout_ms, &count);
+ 		igt_stats_push_float(&s, time / count);
+ 	}
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index c113b7805e65..e20b39eefd79 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -377,6 +377,8 @@ struct intel_engine_cs {
- 		spinlock_t irq_lock;
- 		struct list_head signalers;
- 
-+		struct list_head signaled_requests;
-+
- 		struct irq_work irq_work; /* for use from inside irq_lock */
- 
- 		unsigned int irq_enabled;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 15716e4d6b76..3d0e0894c015 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1821,30 +1821,16 @@ static bool virtual_matches(const struct virtual_engine *ve,
- 	return true;
- }
- 
--static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
--				     struct i915_request *rq)
-+static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
+@@ -390,9 +391,10 @@ static void headless(int fd, uint32_t handle,
+ 		     const struct intel_execution_engine2 *e)
  {
--	struct intel_engine_cs *old = ve->siblings[0];
--
--	/* All unattached (rq->engine == old) must already be completed */
--
--	spin_lock(&old->breadcrumbs.irq_lock);
--	if (!list_empty(&ve->context.signal_link)) {
--		list_del_init(&ve->context.signal_link);
--
--		/*
--		 * We cannot acquire the new engine->breadcrumbs.irq_lock
--		 * (as we are holding a breadcrumbs.irq_lock already),
--		 * so attach this request to the signaler on submission.
--		 * The queued irq_work will occur when we finally drop
--		 * the engine->active.lock after dequeue.
--		 */
--		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
--
--		/* Also transfer the pending irq_work for the old breadcrumb. */
--		intel_engine_signal_breadcrumbs(rq->engine);
--	}
--	spin_unlock(&old->breadcrumbs.irq_lock);
-+	/*
-+	 * All the outstanding signals on ve->siblings[0] must have
-+	 * been completed, just pending the interrupt handler. As those
-+	 * signals still refer to the old sibling (via rq->engine), we must
-+	 * transfer those to the old irq_worker to keep our locking
-+	 * consistent.
-+	 */
-+	intel_engine_transfer_stale_breadcrumbs(ve->siblings[0], &ve->context);
- }
+ 	unsigned int nr_connected = 0;
++	double n_display, n_headless;
+ 	drmModeConnector *connector;
++	unsigned long count;
+ 	drmModeRes *res;
+-	double n_display, n_headless;
  
- #define for_each_waiter(p__, rq__) \
-@@ -2279,7 +2265,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 									engine);
+ 	res = drmModeGetResources(fd);
+ 	igt_require(res);
+@@ -409,8 +411,11 @@ static void headless(int fd, uint32_t handle,
+ 	/* set graphics mode to prevent blanking */
+ 	kmstest_set_vt_graphics_mode();
  
- 				if (!list_empty(&ve->context.signals))
--					virtual_xfer_breadcrumbs(ve, rq);
-+					virtual_xfer_breadcrumbs(ve);
++	nop_on_ring(fd, handle, e, 10, &count);
++	igt_require_f(count > 100, "submillisecond precision required\n");
++
+ 	/* benchmark nops */
+-	n_display = stable_nop_on_ring(fd, handle, e, 1, 5);
++	n_display = stable_nop_on_ring(fd, handle, e, 500, 5);
+ 	igt_info("With one display connected: %.2fus\n",
+ 		 n_display * 1e6);
  
- 				/*
- 				 * Move the bound engine to the top of the list
+@@ -418,7 +423,7 @@ static void headless(int fd, uint32_t handle,
+ 	kmstest_unset_all_crtcs(fd, res);
+ 
+ 	/* benchmark nops again */
+-	n_headless = stable_nop_on_ring(fd, handle, e, 1, 5);
++	n_headless = stable_nop_on_ring(fd, handle, e, 500, 5);
+ 	igt_info("Without a display connected (headless): %.2fus\n",
+ 		 n_headless * 1e6);
+ 
+@@ -444,7 +449,7 @@ static void parallel(int fd, uint32_t handle, int timeout)
+ 		engines[nengine] = e->flags;
+ 		names[nengine++] = strdup(e->name);
+ 
+-		time = nop_on_ring(fd, handle, e, 1, &count) / count;
++		time = nop_on_ring(fd, handle, e, 250, &count) / count;
+ 		sum += time;
+ 		igt_debug("%s: %.3fus\n", e->name, 1e6*time);
+ 	}
+@@ -506,7 +511,7 @@ static void independent(int fd, uint32_t handle, int timeout)
+ 		engines[nengine] = e->flags;
+ 		names[nengine++] = strdup(e->name);
+ 
+-		time = nop_on_ring(fd, handle, e, 1, &count) / count;
++		time = nop_on_ring(fd, handle, e, 250, &count) / count;
+ 		sum += time;
+ 		igt_debug("%s: %.3fus\n", e->name, 1e6*time);
+ 	}
+@@ -626,7 +631,7 @@ static void series(int fd, uint32_t handle, int timeout)
+ 
+ 	nengine = 0;
+ 	__for_each_physical_engine(fd, e) {
+-		time = nop_on_ring(fd, handle, e, 1, &count) / count;
++		time = nop_on_ring(fd, handle, e, 250, &count) / count;
+ 		if (time > max) {
+ 			name = e->name;
+ 			max = time;
+@@ -705,7 +710,7 @@ static void sequential(int fd, uint32_t handle, unsigned flags, int timeout)
+ 	__for_each_physical_engine(fd, e) {
+ 		unsigned long count;
+ 
+-		time = nop_on_ring(fd, handle, e, 1, &count) / count;
++		time = nop_on_ring(fd, handle, e, 250, &count) / count;
+ 		sum += time;
+ 		igt_debug("%s: %.3fus\n", e->name, 1e6*time);
+ 
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
