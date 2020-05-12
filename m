@@ -1,38 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 545851CF672
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 16:07:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3F41CF706
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 16:24:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E02891E7;
-	Tue, 12 May 2020 14:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD35E6E11E;
+	Tue, 12 May 2020 14:24:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBB9891E7;
- Tue, 12 May 2020 14:07:46 +0000 (UTC)
-IronPort-SDR: Sfn8WYTgNnbAcl8ly6xYgorGf44Y8OsNLmZr9TLIbUU+N6g3vclIZsEjvVNxhTc/stmjF8/XBy
- lb1bjutzZdYg==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 583366E11E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 14:24:53 +0000 (UTC)
+IronPort-SDR: TXmC4XfRpT+xSsZCjWWSrnThT2UWEtUW9y6QWqxqKcyW4JO9PF+pI9WMLeE+zQn9TkJdYrjyPd
+ 6B1+YYxvRVsg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 07:07:45 -0700
-IronPort-SDR: AdJ6hJnU+1u1WYxno54K4dkKz4oh7dukOuLv31khWGXbFliTs6zsM8Z8RxISZS7PlQHm61U+r3
- 5IKvCxnpoUDw==
-X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="409308506"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 07:07:43 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 12 May 2020 16:07:36 +0200
-Message-Id: <20200512140736.22096-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 07:24:49 -0700
+IronPort-SDR: ndsD4K2Ur3KIHEhbeDzZG71kCVVkypLGq+1ega0yBlJRNVzxFwG04lTxUwWO23EPnjT18sAlkS
+ 07cUtFNT7C6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="340916807"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga001.jf.intel.com with ESMTP; 12 May 2020 07:24:48 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 13FCA5C1F36; Tue, 12 May 2020 17:22:37 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <1035a7d1-d648-ae33-0018-06f3dfa35e61@intel.com>
+References: <158885907681.20858.14209789974764134586@build.alporthouse.com>
+ <20200507142045.8668-1-mika.kuoppala@linux.intel.com>
+ <1035a7d1-d648-ae33-0018-06f3dfa35e61@intel.com>
+Date: Tue, 12 May 2020 17:22:37 +0300
+Message-ID: <87imh12pxu.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] lib/gem_test_engine: Add no device reopen
- variant
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen12: Add aux table invalidate
+ for all engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,105 +51,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Marcin Bernatowicz <marcin.bernatowicz@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some tests may need to take care of closing all device file descriptors
-even on subtest failure.  For example, if a test would like to
-effectively unload the driver module after a subtest failure, that
-wouldn't be possible if any device file descriptors were kept open.
-That may happen if the subtest wants to use gem_test_engine() helper as
-it reopens the device for its internal use and may certainly leave it
-open on failure.
+Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> writes:
 
-Provide a variant of the helper that doesn't reopen the device.
+> On 5/7/20 7:20 AM, Mika Kuoppala wrote:
+>> All engines, exception being blitter as it does not
+>> care about the form, can access compressed surfaces.
+>> 
+>> So we need to add forced aux table invalidates
+>> for those engines.
+>> 
+>> v2: virtual instance masking (Chris)
+>> v3: bug on if not found (Chris)
+>> 
+>> References: d248b371f747 ("drm/i915/gen12: Invalidate aux table entries forcibly")
+>> References bspec#43904, hsdes#1809175790
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Chuansheng Liu <chuansheng.liu@intel.com>
+>> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+>> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_lrc.c | 86 +++++++++++++++++++++++++++--
+>>   drivers/gpu/drm/i915/i915_reg.h     |  6 ++
+>>   2 files changed, 87 insertions(+), 5 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> index bbdb0e2a4571..e12916e2799b 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> @@ -4539,11 +4539,36 @@ static u32 preparser_disable(bool state)
+>>   	return MI_ARB_CHECK | 1 << 8 | state;
+>>   }
+>>   
+>> +static i915_reg_t aux_inv_reg(const struct intel_engine_cs *engine)
+>> +{
+>> +	static const i915_reg_t vd[] = {
+>> +		GEN12_VD0_AUX_NV,
+>> +		GEN12_VD1_AUX_NV,
+>> +		GEN12_VD2_AUX_NV,
+>> +		GEN12_VD3_AUX_NV,
+>> +	};
+>> +
+>> +	static const i915_reg_t ve[] = {
+>> +		GEN12_VE0_AUX_NV,
+>> +		GEN12_VE1_AUX_NV,
+>> +	};
+>> +
+>> +	if (engine->class == VIDEO_DECODE_CLASS)
+>> +		return vd[engine->instance];
+>> +
+>> +	if (engine->class == VIDEO_ENHANCEMENT_CLASS)
+>> +		return ve[engine->instance];
+>> +
+>> +	GEM_BUG_ON("unknown aux_inv_reg\n");
+>> +
+>> +	return INVALID_MMIO_REG;
+>> +}
+>> +
+>>   static u32 *
+>> -gen12_emit_aux_table_inv(struct i915_request *rq, u32 *cs)
+>> +gen12_emit_aux_table_inv(const i915_reg_t inv_reg, u32 *cs)
+>>   {
+>>   	*cs++ = MI_LOAD_REGISTER_IMM(1);
+>> -	*cs++ = i915_mmio_reg_offset(GEN12_GFX_CCS_AUX_NV);
+>> +	*cs++ = i915_mmio_reg_offset(inv_reg);
+>>   	*cs++ = AUX_INV;
+>>   	*cs++ = MI_NOOP;
+>>   
+>> @@ -4612,7 +4637,7 @@ static int gen12_emit_flush_render(struct i915_request *request,
+>>   		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
+>>   
+>>   		/* hsdes: 1809175790 */
+>> -		cs = gen12_emit_aux_table_inv(request, cs);
+>> +		cs = gen12_emit_aux_table_inv(GEN12_GFX_CCS_AUX_NV, cs);
+>>   
+>>   		*cs++ = preparser_disable(false);
+>>   		intel_ring_advance(request, cs);
+>> @@ -4621,6 +4646,56 @@ static int gen12_emit_flush_render(struct i915_request *request,
+>>   	return 0;
+>>   }
+>>   
+>> +static int gen12_emit_flush(struct i915_request *request, u32 mode)
+>> +{
+>> +	intel_engine_mask_t aux_inv = 0;
+>> +	u32 cmd, *cs;
+>> +
+>> +	if (mode & EMIT_INVALIDATE)
+>> +		aux_inv = request->engine->mask & ~BIT(BCS0);
+>> +
+>> +	cs = intel_ring_begin(request,
+>> +			      4 + (aux_inv ? 2 * hweight8(aux_inv) + 2 : 0));
+>> +	if (IS_ERR(cs))
+>> +		return PTR_ERR(cs);
+>> +
+>> +	cmd = MI_FLUSH_DW + 1;
+>> +
+>> +	/* We always require a command barrier so that subsequent
+>> +	 * commands, such as breadcrumb interrupts, are strictly ordered
+>> +	 * wrt the contents of the write cache being flushed to memory
+>> +	 * (and thus being coherent from the CPU).
+>> +	 */
+>> +	cmd |= MI_FLUSH_DW_STORE_INDEX | MI_FLUSH_DW_OP_STOREDW;
+>> +
+>> +	if (mode & EMIT_INVALIDATE) {
+>> +		cmd |= MI_INVALIDATE_TLB;
+>> +		if (request->engine->class == VIDEO_DECODE_CLASS)
+>> +			cmd |= MI_INVALIDATE_BSD;
+>> +	}
+>> +
+>> +	*cs++ = cmd;
+>> +	*cs++ = LRC_PPHWSP_SCRATCH_ADDR;
+>> +	*cs++ = 0; /* upper addr */
+>> +	*cs++ = 0; /* value */
+>> +
+>> +	if (aux_inv) { /* hsdes: 1809175790 */
+>> +		struct intel_engine_cs *engine;
+>> +		unsigned int tmp;
+>> +
+>> +		*cs++ = MI_LOAD_REGISTER_IMM(hweight8(aux_inv));
+>> +		for_each_engine_masked(engine, request->engine->gt,
+>> +				       aux_inv, tmp) {
+>> +			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
+>> +			*cs++ = AUX_INV;
+>
+> Why do we loop through all engines? AFAICS the WA just says to 
+> invalidate the current one. If it is because we don't know what we're 
+> running on, can't we just use the automatic mmio remap on the CS? That 
+> was added on purpose for per-engine registers that are not relative to 
+> the mmio base (see bspec 45606)
+>
+> Daniele
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- lib/i915/gem_submission.c | 31 ++++++++++++++++++++++++++++---
- lib/i915/gem_submission.h |  1 +
- 2 files changed, 29 insertions(+), 3 deletions(-)
+I looked at the auto remap feature and it should be doable
+with that feature.
 
-diff --git a/lib/i915/gem_submission.c b/lib/i915/gem_submission.c
-index 72de0c223..48defd4a0 100644
---- a/lib/i915/gem_submission.c
-+++ b/lib/i915/gem_submission.c
-@@ -186,14 +186,16 @@ static bool is_wedged(int i915)
- }
- 
- /**
-- * gem_test_engine:
-+ * __gem_test_engine:
-  * @i915: open i915 drm file descriptor
-  * @engine: the engine (I915_EXEC_RING id) to exercise
-  *
-  * Execute a nop batch on the engine specified, or ALL_ENGINES for all,
-  * and check it executes.
-+ *
-+ * Note: This version does not reopen the device.
-  */
--void gem_test_engine(int i915, unsigned int engine)
-+void __gem_test_engine(int i915, unsigned int engine)
- {
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	struct drm_i915_gem_exec_object2 obj = { };
-@@ -202,7 +204,6 @@ void gem_test_engine(int i915, unsigned int engine)
- 		.buffer_count = 1,
- 	};
- 
--	i915 = gem_reopen_driver(i915);
- 	igt_assert(!is_wedged(i915));
- 
- 	obj.handle = gem_create(i915, 4096);
-@@ -223,6 +224,30 @@ void gem_test_engine(int i915, unsigned int engine)
- 	gem_close(i915, obj.handle);
- 
- 	igt_assert(!is_wedged(i915));
-+}
-+
-+/**
-+ * gem_test_engine:
-+ * @i915: open i915 drm file descriptor
-+ * @engine: the engine (I915_EXEC_RING id) to exercise
-+ *
-+ * Reopen the device so the test is run in an isolated context, then
-+ * execute a nop batch on the engine specified, or ALL_ENGINES for all,
-+ * and check it executes.
-+ */
-+void gem_test_engine(int i915, unsigned int engine)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	struct drm_i915_gem_exec_object2 obj = { };
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+	};
-+
-+	i915 = gem_reopen_driver(i915);
-+
-+	__gem_test_engine(i915, engine);
-+
- 	close(i915);
- }
- 
-diff --git a/lib/i915/gem_submission.h b/lib/i915/gem_submission.h
-index acd24bcbf..32b737169 100644
---- a/lib/i915/gem_submission.h
-+++ b/lib/i915/gem_submission.h
-@@ -46,6 +46,7 @@ static inline bool gem_has_cmdparser(int i915, uint32_t engine)
- bool gem_has_blitter(int i915);
- void gem_require_blitter(int i915);
- 
-+void __gem_test_engine(int fd, unsigned int engine);
- void gem_test_engine(int fd, unsigned int engine);
- 
- int gem_reopen_driver(int fd);
--- 
-2.21.1
+Now it will inv with all engine backing up a virtual one.
+
+So there is a difference. But we do not have a bug on other
+engines to require inv. So we play it safe.
+We would need a media pipeline expert to ack/nack actually.
+
+Thanks for the remap io pointer,
+-Mika
+
+
+
+
+
 
 _______________________________________________
 Intel-gfx mailing list
