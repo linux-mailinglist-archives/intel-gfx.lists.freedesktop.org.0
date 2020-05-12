@@ -2,33 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3B21CF168
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 11:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 157FB1CF1A2
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 11:30:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC5816E8FF;
-	Tue, 12 May 2020 09:20:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A796E908;
+	Tue, 12 May 2020 09:30:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6F76E0CC;
- Tue, 12 May 2020 09:20:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21170407-1500050 for multiple; Tue, 12 May 2020 10:19:57 +0100
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EBB96E908
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 09:30:55 +0000 (UTC)
+IronPort-SDR: lbEIL6WAsU7W8oX1Z7ON/IusGd9DMQwqiB2eTx0XBsYJUfs6rf83RX8o3UROGfliDdieK4ONmH
+ n99stph13uFA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 02:30:51 -0700
+IronPort-SDR: RkzV7MTzCfZ7q2Z0m1hQneoGiLurbv72MJwH8s/wiRYs7rCxKAkrOlZycRNEXIzCZ9ZzaB0TpY
+ 6h/sjJnteERw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; d="scan'208";a="437033531"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by orsmga005.jf.intel.com with ESMTP; 12 May 2020 02:30:48 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 12 May 2020 12:26:44 +0300
+Message-Id: <20200512092644.11572-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200511150545.15149-7-stanislav.lisovskiy@intel.com>
+References: <20200511150545.15149-7-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200512090847.GF206103@phenom.ffwll.local>
-References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
- <20200512085944.222637-3-daniel.vetter@ffwll.ch>
- <158927426244.15653.14406159524439944950@build.alporthouse.com>
- <20200512090847.GF206103@phenom.ffwll.local>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <158927519651.15653.17392305363363808831@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 12 May 2020 10:19:56 +0100
-Subject: Re: [Intel-gfx] [RFC 02/17] dma-fence: basic lockdep annotations
+Subject: [Intel-gfx] [PATCH v7 6/7] drm/i915: Adjust CDCLK accordingly to
+ our DBuf bw needs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,116 +48,406 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Christian König <christian.koenig@amd.com>, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYW5pZWwgVmV0dGVyICgyMDIwLTA1LTEyIDEwOjA4OjQ3KQo+IE9uIFR1ZSwgTWF5
-IDEyLCAyMDIwIGF0IDEwOjA0OjIyQU0gKzAxMDAsIENocmlzIFdpbHNvbiB3cm90ZToKPiA+IFF1
-b3RpbmcgRGFuaWVsIFZldHRlciAoMjAyMC0wNS0xMiAwOTo1OToyOSkKPiA+ID4gRGVzaWduIGlz
-IHNpbWlsYXIgdG8gdGhlIGxvY2tkZXAgYW5ub3RhdGlvbnMgZm9yIHdvcmtlcnMsIGJ1dCB3aXRo
-Cj4gPiA+IHNvbWUgdHdpc3RzOgo+ID4gPiAKPiA+ID4gLSBXZSB1c2UgYSByZWFkLWxvY2sgZm9y
-IHRoZSBleGVjdXRpb24vd29ya2VyL2NvbXBsZXRpb24gc2lkZSwgc28gdGhhdAo+ID4gPiAgIHRo
-aXMgZXhwbGljaXQgYW5ub3RhdGlvbiBjYW4gYmUgbW9yZSBsaWJlcmFsbHkgc3ByaW5rbGVkIGFy
-b3VuZC4KPiA+ID4gICBXaXRoIHJlYWQgbG9ja3MgbG9ja2RlcCBpc24ndCBnb2luZyB0byBjb21w
-bGFpbiBpZiB0aGUgcmVhZC1zaWRlCj4gPiA+ICAgaXNuJ3QgbmVzdGVkIHRoZSBzYW1lIHdheSB1
-bmRlciBhbGwgY2lyY3Vtc3RhbmNlcywgc28gQUJCQSBkZWFkbG9ja3MKPiA+ID4gICBhcmUgb2su
-IFdoaWNoIHRoZXkgYXJlLCBzaW5jZSB0aGlzIGlzIGFuIGFubm90YXRpb24gb25seS4KPiA+ID4g
-Cj4gPiA+IC0gV2UncmUgdXNpbmcgbm9uLXJlY3Vyc2l2ZSBsb2NrZGVwIHJlYWQgbG9jayBtb2Rl
-LCBzaW5jZSBpbiByZWN1cnNpdmUKPiA+ID4gICByZWFkIGxvY2sgbW9kZSBsb2NrZGVwIGRvZXMg
-bm90IGNhdGNoIHJlYWQgc2lkZSBoYXphcmRzLiBBbmQgd2UKPiA+ID4gICBfdmVyeV8gbXVjaCB3
-YW50IHJlYWQgc2lkZSBoYXphcmRzIHRvIGJlIGNhdWdodC4gRm9yIGZ1bGwgZGV0YWlscyBvZgo+
-ID4gPiAgIHRoaXMgbGltaXRhdGlvbiBzZWUKPiA+ID4gCj4gPiA+ICAgY29tbWl0IGU5MTQ5ODU4
-OTc0NjA2NWUzYWU5NWQ5YTAwYjA2OGU1MjVlZWMzNGYKPiA+ID4gICBBdXRob3I6IFBldGVyIFpp
-amxzdHJhIDxwZXRlcnpAaW5mcmFkZWFkLm9yZz4KPiA+ID4gICBEYXRlOiAgIFdlZCBBdWcgMjMg
-MTM6MTM6MTEgMjAxNyArMDIwMAo+ID4gPiAKPiA+ID4gICAgICAgbG9ja2luZy9sb2NrZGVwL3Nl
-bGZ0ZXN0czogQWRkIG1peGVkIHJlYWQtd3JpdGUgQUJCQSB0ZXN0cwo+ID4gPiAKPiA+ID4gLSBU
-byBhbGxvdyBuZXN0aW5nIG9mIHRoZSByZWFkLXNpZGUgZXhwbGljaXQgYW5ub3RhdGlvbnMgd2Ug
-ZXhwbGljaXRseQo+ID4gPiAgIGtlZXAgdHJhY2sgb2YgdGhlIG5lc3RpbmcuIGxvY2tfaXNfaGVs
-ZCgpIGFsbG93cyB1cyB0byBkbyB0aGF0Lgo+ID4gPiAKPiA+ID4gLSBUaGUgd2FpdC1zaWRlIGFu
-bm90YXRpb24gaXMgYSB3cml0ZSBsb2NrLCBhbmQgZW50aXJlbHkgZG9uZSB3aXRoaW4KPiA+ID4g
-ICBkbWFfZmVuY2Vfd2FpdCgpIGZvciBldmVyeW9uZSBieSBkZWZhdWx0Lgo+ID4gPiAKPiA+ID4g
-LSBUbyBiZSBhYmxlIHRvIGZyZWVseSBhbm5vdGF0ZSBoZWxwZXIgZnVuY3Rpb25zIEkgd2FudCB0
-byBtYWtlIGl0IG9rCj4gPiA+ICAgdG8gY2FsbCBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxp
-bmcgZnJvbSBzb2Z0L2hhcmRpcnEgY29udGV4dC4KPiA+ID4gICBGaXJzdCBhdHRlbXB0IHdhcyB1
-c2luZyB0aGUgaGFyZGlycSBsb2NraW5nIGNvbnRleHQgZm9yIHRoZSB3cml0ZQo+ID4gPiAgIHNp
-ZGUgaW4gbG9ja2RlcCwgYnV0IHRoaXMgZm9yY2VzIGFsbCBub3JtYWwgc3BpbmxvY2tzIG5lc3Rl
-ZCB3aXRoaW4KPiA+ID4gICBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxpbmcgdG8gYmUgc3Bp
-bmxvY2tzLiBUaGF0IGJvbGxvY2tzLgo+ID4gPiAKPiA+ID4gICBUaGUgYXBwcm9hY2ggbm93IGlz
-IHRvIHNpbXBsZSBjaGVjayBpbl9hdG9taWMoKSwgYW5kIGZvciB0aGVzZSBjYXNlcwo+ID4gPiAg
-IGVudGlyZWx5IHJlbHkgb24gdGhlIG1pZ2h0X3NsZWVwKCkgY2hlY2sgaW4gZG1hX2ZlbmNlX3dh
-aXQoKS4gVGhhdAo+ID4gPiAgIHdpbGwgY2F0Y2ggYW55IHdyb25nIG5lc3RpbmcgYWdhaW5zdCBz
-cGlubG9ja3MgZnJvbSBzb2Z0L2hhcmRpcnEKPiA+ID4gICBjb250ZXh0cy4KPiA+ID4gCj4gPiA+
-IFRoZSBpZGVhIGhlcmUgaXMgdGhhdCBldmVyeSBjb2RlIHBhdGggdGhhdCdzIGNyaXRpY2FsIGZv
-ciBldmVudHVhbGx5Cj4gPiA+IHNpZ25hbGxpbmcgYSBkbWFfZmVuY2Ugc2hvdWxkIGJlIGFubm90
-YXRlZCB3aXRoCj4gPiA+IGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGluZy4gVGhlIGFubm90
-YXRpb24gaWRlYWxseSBzdGFydHMgcmlnaHQKPiA+ID4gYWZ0ZXIgYSBkbWFfZmVuY2UgaXMgcHVi
-bGlzaGVkIChhZGRlZCB0byBhIGRtYV9yZXN2LCBleHBvc2VkIGFzIGEKPiA+ID4gc3luY19maWxl
-IGZkLCBhdHRhY2hlZCB0byBhIGRybV9zeW5jb2JqIGZkLCBvciBhbnl0aGluZyBlbHNlIHRoYXQK
-PiA+ID4gbWFrZXMgdGhlIGRtYV9mZW5jZSB2aXNpYmxlIHRvIG90aGVyIGtlcm5lbCB0aHJlYWRz
-KSwgdXAgdG8gYW5kCj4gPiA+IGluY2x1ZGluZyB0aGUgZG1hX2ZlbmNlX3dhaXQoKS4gRXhhbXBs
-ZXMgYXJlIGlycSBoYW5kbGVycywgdGhlCj4gPiA+IHNjaGVkdWxlciBydCB0aHJlYWRzLCB0aGUg
-dGFpbCBvZiBleGVjYnVmIChhZnRlciB0aGUgY29ycmVzcG9uZGluZwo+ID4gPiBmZW5jZXMgYXJl
-IHZpc2libGUpLCBhbnkgd29ya2VycyB0aGF0IGVuZCB1cCBzaWduYWxsaW5nIGRtYV9mZW5jZXMg
-YW5kCj4gPiA+IHJlYWxseSBhbnl0aGluZyBlbHNlLiBOb3QgYW5ub3RhdGVkIHNob3VsZCBiZSBj
-b2RlIHBhdGhzIHRoYXQgb25seQo+ID4gPiBjb21wbGV0ZSBmZW5jZXMgb3Bwb3J0dW5pc3RpY2Fs
-bHkgYXMgdGhlIGdwdSBwcm9ncmVzc2VzLCBsaWtlIGUuZy4KPiA+ID4gc2hyaW5rZXIvZXZpY3Rp
-b24gY29kZS4KPiA+ID4gCj4gPiA+IFRoZSBtYWluIGNsYXNzIG9mIGRlYWRsb2NrcyB0aGlzIGlz
-IHN1cHBvc2VkIHRvIGNhdGNoIGFyZToKPiA+ID4gCj4gPiA+IFRocmVhZCBBOgo+ID4gPiAKPiA+
-ID4gICAgICAgICBtdXRleF9sb2NrKEEpOwo+ID4gPiAgICAgICAgIG11dGV4X3VubG9jayhBKTsK
-PiA+ID4gCj4gPiA+ICAgICAgICAgZG1hX2ZlbmNlX3NpZ25hbCgpOwo+ID4gPiAKPiA+ID4gVGhy
-ZWFkIEI6Cj4gPiA+IAo+ID4gPiAgICAgICAgIG11dGV4X2xvY2soQSk7Cj4gPiA+ICAgICAgICAg
-ZG1hX2ZlbmNlX3dhaXQoKTsKPiA+ID4gICAgICAgICBtdXRleF91bmxvY2soQSk7Cj4gPiA+IAo+
-ID4gPiBUaHJlYWQgQiBpcyBibG9ja2VkIG9uIEEgc2lnbmFsbGluZyB0aGUgZmVuY2UsIGJ1dCBB
-IG5ldmVyIGdldHMgYXJvdW5kCj4gPiA+IHRvIHRoYXQgYmVjYXVzZSBpdCBjYW5ub3QgYWNxdWly
-ZSB0aGUgbG9jayBBLgo+ID4gPiAKPiA+ID4gTm90ZSB0aGF0IGRtYV9mZW5jZV93YWl0KCkgaXMg
-YWxsb3dlZCB0byBiZSBuZXN0ZWQgd2l0aGluCj4gPiA+IGRtYV9mZW5jZV9iZWdpbi9lbmRfc2ln
-bmFsbGluZyBzZWN0aW9ucy4gVG8gYWxsb3cgdGhpcyB0byBoYXBwZW4gdGhlCj4gPiA+IHJlYWQg
-bG9jayBuZWVkcyB0byBiZSB1cGdyYWRlZCB0byBhIHdyaXRlIGxvY2ssIHdoaWNoIG1lYW5zIHRo
-YXQgYW55Cj4gPiA+IG90aGVyIGxvY2sgaXMgYWNxdWlyZWQgYmV0d2VlbiB0aGUgZG1hX2ZlbmNl
-X2JlZ2luX3NpZ25hbGxpbmcoKSBjYWxsIGFuZAo+ID4gPiB0aGUgY2FsbCB0byBkbWFfZmVuY2Vf
-d2FpdCgpLCBhbmQgc3RpbGwgaGVsZCwgdGhpcyB3aWxsIHJlc3VsdCBpbiBhbgo+ID4gPiBpbW1l
-ZGlhdGUgbG9ja2RlcCBjb21wbGFpbnQuIFRoZSBvbmx5IG90aGVyIG9wdGlvbiB3b3VsZCBiZSB0
-byBub3QKPiA+ID4gYW5ub3RhdGUgc3VjaCBjYWxscywgZGVmZWF0aW5nIHRoZSBwb2ludC4gVGhl
-cmVmb3JlIHRoZXNlIGFubm90YXRpb25zCj4gPiA+IGNhbm5vdCBiZSBzcHJpbmtsZWQgb3ZlciB0
-aGUgY29kZSBlbnRpcmVseSBtaW5kbGVzcyB0byBhdm9pZCBmYWxzZQo+ID4gPiBwb3NpdGl2ZXMu
-Cj4gPiA+IAo+ID4gPiB2MjogaGFuZGxlIHNvZnQvaGFyZGlycSBjdHggYmV0dGVyIGFnYWluc3Qg
-d3JpdGUgc2lkZSBhbmQgZG9udCBmb3JnZXQKPiA+ID4gRVhQT1JUX1NZTUJPTCwgZHJpdmVycyBj
-YW4ndCB1c2UgdGhpcyBvdGhlcndpc2UuCj4gPiA+IAo+ID4gPiBDYzogbGludXgtbWVkaWFAdmdl
-ci5rZXJuZWwub3JnCj4gPiA+IENjOiBsaW5hcm8tbW0tc2lnQGxpc3RzLmxpbmFyby5vcmcKPiA+
-ID4gQ2M6IGxpbnV4LXJkbWFAdmdlci5rZXJuZWwub3JnCj4gPiA+IENjOiBhbWQtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+ID4gPiBDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+ID4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiA+
-IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29t
-Pgo+ID4gPiBDYzogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+
-ID4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNv
-bT4KPiA+ID4gLS0tCj4gPiA+ICBkcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLmMgfCA1MyArKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCj4gPiA+ICBpbmNsdWRlL2xpbnV4L2Rt
-YS1mZW5jZS5oICAgfCAxMiArKysrKysrKysKPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNjUgaW5z
-ZXJ0aW9ucygrKQo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZG1hLWJ1Zi9kbWEt
-ZmVuY2UuYyBiL2RyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UuYwo+ID4gPiBpbmRleCA2ODAyMTI1
-MzQ5ZmIuLmQ1YzBmZDJlZmM3MCAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9kbWEtYnVmL2Rt
-YS1mZW5jZS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UuYwo+ID4gPiBA
-QCAtMTEwLDYgKzExMCw1MiBAQCB1NjQgZG1hX2ZlbmNlX2NvbnRleHRfYWxsb2ModW5zaWduZWQg
-bnVtKQo+ID4gPiAgfQo+ID4gPiAgRVhQT1JUX1NZTUJPTChkbWFfZmVuY2VfY29udGV4dF9hbGxv
-Yyk7Cj4gPiA+ICAKPiA+ID4gKyNpZmRlZiBDT05GSUdfTE9DS0RFUAo+ID4gPiArc3RydWN0IGxv
-Y2tkZXBfbWFwICAgICBkbWFfZmVuY2VfbG9ja2RlcF9tYXAgPSB7Cj4gPiA+ICsgICAgICAgLm5h
-bWUgPSAiZG1hX2ZlbmNlX21hcCIKPiA+ID4gK307Cj4gPiAKPiA+IE5vdCBhbm90aGVyIGZhbHNl
-IGdsb2JhbCBzaGFyaW5nIGxvY2ttYXAuCj4gCj4gSXQncyBhIGdsb2JhbCBjb250cmFjdCwgaXQg
-bmVlZHMgYSBnbG9iYWwgbG9ja2RlcCBtYXAuIEFuZCB5ZXMgYSBiaWcKPiByZWFzb24gZm9yIHRo
-ZSBtb3RpdmF0aW9uIGhlcmUgaXMgdGhhdCBpOTE1LWdlbSBoYXMgYSB0cmVtZW5kb3VzIHVyZ2Ug
-dG8KPiBqdXN0IHJlZGVmaW5lIGFsbCB0aGVzZSBnbG9iYWwgbG9ja3MgdG8gZml0IHRvIHNvbWUg
-bG9jYWwgaW50ZXJwcmV0YXRpb24KPiBvZiB3aGF0J3MgZ29pbmcgb24uCgpObywgeW91IGNhbiBi
-dWlsZCB0aGUgZ2xvYmFsIGNvbnRyYWN0IG91dCBvZiB0aGUgYWN0dWFsIGNvbnRyYWN0cwpiZXR3
-ZWVuIGZlbmNlIGRyaXZlcnMuIElmIHlvdSBpbnRyb2R1Y2UgYSBzdHJ1Y3QgbG9ja2RlcF9tYXAg
-Km1hcCBpbnRvCnRoZSBmZW5jZV9vcHMgKHNvIHRoZSBmZW5jZV9vcHMgY2FuIHJlbWFpbiBjb25z
-dCksIHlvdSBnYWluIGNvcnJlY3RuZXNzCmF0IHRoZSBjb3N0IG9mIGhhdmluZyB0byBydW4gdGhy
-b3VnaCBhbGwgcG9zc2libGUgaW50ZXJhY3Rpb25zIG9uY2UuCllvdSBjYW4gYWxzbyB0aGVuIGRv
-IGlmIG9wcy0+bG9ja21hcCA/OiAmZ2xvYmFsX2ZlbmNlX2xvY2ttYXAgZm9yCnBpZWNlbWVhbCBj
-b252ZXJzaW9uIG9mIGRyaXZlcnMgdGhhdCBkbyBub3QgYWxyZWFkeSB1c2UgbG9ja21hcHMgZm9y
-CmNvbnRyYWN0IGVuZm9yY2VtZW50IG9mIHRoZWlyIGZlbmNlIHdhaXRzLgotQ2hyaXMKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+According to BSpec max BW per slice is calculated using formula
+Max BW = CDCLK * 64. Currently when calculating min CDCLK we
+account only per plane requirements, however in order to avoid
+FIFO underruns we need to estimate accumulated BW consumed by
+all planes(ddb entries basically) residing on that particular
+DBuf slice. This will allow us to put CDCLK lower and save power
+when we don't need that much bandwidth or gain additional
+performance once plane consumption grows.
+
+v2: - Fix long line warning
+    - Limited new DBuf bw checks to only gens >= 11
+
+v3: - Lets track used Dbuf bw per slice and per crtc in bw state
+      (or may be in DBuf state in future), that way we don't need
+      to have all crtcs in state and those only if we detect if
+      are actually going to change cdclk, just same way as we
+      do with other stuff, i.e intel_atomic_serialize_global_state
+      and co. Just as per Ville's paradigm.
+    - Made dbuf bw calculation procedure look nicer by introducing
+      for_each_dbuf_slice_in_mask - we often will now need to iterate
+      slices using mask.
+    - According to experimental results CDCLK * 64 accounts for
+      overall bandwidth across all dbufs, not per dbuf.
+
+v4: - Fixed missing const(Ville)
+    - Removed spurious whitespaces(Ville)
+    - Fixed local variable init(reduced scope where not needed)
+    - Added some comments about data rate for planar formats
+    - Changed struct intel_crtc_bw to intel_dbuf_bw
+    - Moved dbuf bw calculation to intel_compute_min_cdclk(Ville)
+
+v5: - Removed unneeded macro
+
+v6: - Prevent too frequent CDCLK switching back and forth:
+      Always switch to higher CDCLK when needed to prevent bandwidth
+      issues, however don't switch to lower CDCLK earlier than once
+      in 30 minutes in order to prevent constant modeset blinking.
+      We could of course not switch back at all, however this is
+      bad from power consumption point of view.
+
+v7: - Fixed to track cdclk using bw_state, modeset will be now
+      triggered only when CDCLK change is really needed.
+
+v8: - Lock global state if bw_state->min_cdclk is changed.
+    - Try getting bw_state only if there are crtcs in the commit
+      (need to have read-locked global state)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c      | 82 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bw.h      |  9 +++
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 18 ++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |  1 -
+ drivers/gpu/drm/i915/display/intel_display.c | 36 +++++++--
+ drivers/gpu/drm/i915/intel_pm.c              | 31 +++++++-
+ drivers/gpu/drm/i915/intel_pm.h              |  3 +
+ 7 files changed, 167 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 6e7cc3a4f1aa..d5a759b916dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -6,6 +6,7 @@
+ #include <drm/drm_atomic_state_helper.h>
+ 
+ #include "intel_bw.h"
++#include "intel_pm.h"
+ #include "intel_display_types.h"
+ #include "intel_sideband.h"
+ 
+@@ -333,7 +334,6 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+ 
+ 	return data_rate;
+ }
+-
+ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+ 			  const struct intel_crtc_state *crtc_state)
+ {
+@@ -410,6 +410,86 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ 	return to_intel_bw_state(bw_state);
+ }
+ 
++int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	int i;
++	const struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int max_bw = 0;
++	int slice_id;
++	struct intel_bw_state *new_bw_state;
++	struct intel_bw_state *old_bw_state;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		enum plane_id plane_id;
++		struct intel_dbuf_bw *crtc_bw;
++		struct intel_bw_state *bw_state;
++
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
++		crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
++
++		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
++
++		for_each_plane_id_on_crtc(crtc, plane_id) {
++			const struct skl_ddb_entry *plane_alloc =
++				&crtc_state->wm.skl.plane_ddb_y[plane_id];
++			const struct skl_ddb_entry *uv_plane_alloc =
++				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
++			unsigned int data_rate = crtc_state->data_rate[plane_id];
++			unsigned int dbuf_mask = 0;
++
++			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, plane_alloc);
++			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, uv_plane_alloc);
++
++			/*
++			 * FIXME: To calculate that more properly we probably need to
++			 * to split per plane data_rate into data_rate_y and data_rate_uv
++			 * for multiplanar formats in order not to get accounted those twice
++			 * if they happen to reside on different slices.
++			 * However for pre-icl this would work anyway because we have only single
++			 * slice and for icl+ uv plane has non-zero data rate.
++			 * So in worst case those calculation are a bit pessimistic, which
++			 * shouldn't pose any significant problem anyway.
++			 */
++			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
++				crtc_bw->used_bw[slice_id] += data_rate;
++		}
++
++		for_each_dbuf_slice(slice_id) {
++			/*
++			 * Current experimental observations show that contrary to BSpec
++			 * we get underruns once we exceed 64 * CDCLK for slices in total.
++			 * As a temporary measure in order not to keep CDCLK bumped up all the
++			 * time we calculate CDCLK according to this formula for  overall bw
++			 * consumed by slices.
++			 */
++			struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
++
++			max_bw += crtc_bw->used_bw[slice_id];
++		}
++	}
++
++	new_bw_state = intel_atomic_get_new_bw_state(state);
++	old_bw_state = intel_atomic_get_old_bw_state(state);
++
++	if (new_bw_state && old_bw_state) {
++
++		new_bw_state->min_cdclk = max_bw / 64;
++
++		if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
++			int ret = intel_atomic_lock_global_state(&new_bw_state->base);
++			if (ret)
++				return ret;
++		}
++	}
++
++	return 0;
++}
++
+ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index 898b4a85ccab..d8c92a59ba49 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -10,13 +10,19 @@
+ 
+ #include "intel_display.h"
+ #include "intel_global_state.h"
++#include "intel_display_power.h"
+ 
+ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc_state;
+ 
++struct intel_dbuf_bw {
++	int used_bw[I915_MAX_DBUF_SLICES];
++};
++
+ struct intel_bw_state {
+ 	struct intel_global_state base;
++	struct intel_dbuf_bw dbuf_bw[I915_MAX_PIPES];
+ 
+ 	/*
+ 	 * Contains a bit mask, used to determine, whether correspondent
+@@ -29,6 +35,8 @@ struct intel_bw_state {
+ 
+ 	/* bitmask of active pipes */
+ 	u8 active_pipes;
++
++	int min_cdclk;
+ };
+ 
+ #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+@@ -47,5 +55,6 @@ int intel_bw_init(struct drm_i915_private *dev_priv);
+ int intel_bw_atomic_check(struct intel_atomic_state *state);
+ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+ 			  const struct intel_crtc_state *crtc_state);
++int intel_bw_calc_min_cdclk(struct intel_atomic_state *state);
+ 
+ #endif /* __INTEL_BW_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 979a0241fdcb..28750d1f914b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -21,10 +21,12 @@
+  * DEALINGS IN THE SOFTWARE.
+  */
+ 
++#include <linux/time.h>
+ #include "intel_atomic.h"
+ #include "intel_cdclk.h"
+ #include "intel_display_types.h"
+ #include "intel_sideband.h"
++#include "intel_bw.h"
+ 
+ /**
+  * DOC: CDCLK / RAWCLK
+@@ -2093,11 +2095,9 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ {
+ 	struct intel_atomic_state *state = cdclk_state->base.state;
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc *crtc;
+ 	struct intel_crtc_state *crtc_state;
+ 	int min_cdclk, i;
+-	enum pipe pipe;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		int ret;
+@@ -2117,8 +2117,18 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ 	}
+ 
+ 	min_cdclk = cdclk_state->force_min_cdclk;
+-	for_each_pipe(dev_priv, pipe)
+-		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		struct intel_bw_state *bw_state;
++
++		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
++		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
++	}
+ 
+ 	return min_cdclk;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index 5731806e4cee..d62e11d620c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -7,7 +7,6 @@
+ #define __INTEL_CDCLK_H__
+ 
+ #include <linux/types.h>
+-
+ #include "i915_drv.h"
+ #include "intel_display.h"
+ #include "intel_global_state.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 012c3ed64b02..e6c0d7b07ba1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14634,16 +14634,14 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 				    bool *need_cdclk_calc)
+ {
+-	struct intel_cdclk_state *new_cdclk_state;
+ 	int i;
+ 	struct intel_plane_state *plane_state;
+ 	struct intel_plane *plane;
+ 	int ret;
++	int min_cdclk = 0;
+ 
+-	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+-	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
+-		*need_cdclk_calc = true;
+-
++	struct intel_crtc_state *new_crtc_state;
++	struct intel_crtc *crtc;
+ 	/*
+ 	 * active_planes bitmask has been updated, and potentially
+ 	 * affected planes are part of the state. We can now
+@@ -14655,6 +14653,34 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 			return ret;
+ 	}
+ 
++	ret = intel_bw_calc_min_cdclk(state);
++	if (ret)
++		return ret;
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		struct intel_bw_state *bw_state;
++		struct intel_cdclk_state *cdclk_state;
++
++		cdclk_state = intel_atomic_get_cdclk_state(state);
++		if (IS_ERR(cdclk_state))
++			return PTR_ERR(cdclk_state);
++
++		if (cdclk_state->force_min_cdclk_changed)
++			*need_cdclk_calc = true;
++
++		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
++		/*
++		 * Currently do this change only if we need to increase
++		 */
++		if (bw_state->min_cdclk > min_cdclk)
++			*need_cdclk_calc = true;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 416cb1a1e7cb..7c0ec0efef11 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -3929,10 +3929,9 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+ 	return offset;
+ }
+ 
+-static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
++u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+ {
+ 	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+-
+ 	drm_WARN_ON(&dev_priv->drm, ddb_size == 0);
+ 
+ 	if (INTEL_GEN(dev_priv) < 11)
+@@ -3941,6 +3940,34 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+ 	return ddb_size;
+ }
+ 
++u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
++			    const struct skl_ddb_entry *entry)
++{
++	u32 slice_mask = 0;
++	u16 ddb_size = intel_get_ddb_size(dev_priv);
++	u16 num_supported_slices = INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
++	u16 slice_size = ddb_size / num_supported_slices;
++	u16 start_slice;
++	u16 end_slice;
++
++	if (!skl_ddb_entry_size(entry))
++		return 0;
++
++	start_slice = entry->start / slice_size;
++	end_slice = (entry->end - 1) / slice_size;
++
++	/*
++	 * Per plane DDB entry can in a really worst case be on multiple slices
++	 * but single entry is anyway contigious.
++	 */
++	while (start_slice <= end_slice) {
++		slice_mask |= BIT(start_slice);
++		start_slice++;
++	}
++
++	return slice_mask;
++}
++
+ static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_state,
+ 				  u8 active_pipes);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+index fd1dc422e6c5..de7f6c4103ba 100644
+--- a/drivers/gpu/drm/i915/intel_pm.h
++++ b/drivers/gpu/drm/i915/intel_pm.h
+@@ -38,6 +38,9 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+ 			       struct skl_ddb_entry *ddb_y,
+ 			       struct skl_ddb_entry *ddb_uv);
+ void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
++u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
++u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
++			    const struct skl_ddb_entry *entry);
+ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+ 			      struct skl_pipe_wm *out);
+ void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
