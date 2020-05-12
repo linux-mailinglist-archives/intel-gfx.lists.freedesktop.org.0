@@ -1,42 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE26E1CF50A
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 14:56:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743601CF4FF
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 14:55:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA1876E0CF;
-	Tue, 12 May 2020 12:56:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 034776E90A;
+	Tue, 12 May 2020 12:55:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C09356E0CF
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 12:56:35 +0000 (UTC)
-IronPort-SDR: nTzTdBPpmtMKHsGKM9OCYoKa5mGRnVKv2VL3YBdQHPfIDrwBvl29hySItUPtv54240mHC3tkcS
- shGxVEygx4vg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 05:56:35 -0700
-IronPort-SDR: rbmrUYe8bLq+DppY/n7+EAfIDWINQB5nCheRfBam9YZQrtz8Njf8dGAS34/4CODBEsPkWEWibJ
- z8NGwpS373Ig==
-X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; d="scan'208";a="437091191"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 05:56:33 -0700
-Date: Tue, 12 May 2020 15:52:27 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200512125227.GB19632@intel.com>
-References: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
- <20200507144503.15506-5-stanislav.lisovskiy@intel.com>
- <20200512120326.GO6112@intel.com>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECF56E0CF;
+ Tue, 12 May 2020 12:54:58 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id z72so13533919wmc.2;
+ Tue, 12 May 2020 05:54:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=r1EA3WN24+bV6xiFKfzEz9KgDmmiprN/hltcu+5QZ2o=;
+ b=StryanJFFDpfRltI+vfAONSG2LjrcAaKWJkBoZ7WfFL36xoUrcPwzUL6BWwfLWIxpM
+ 6givxFDI554XCDY/UtLLIJYM4arOJ2jSze2o1pwnhPM8ue8/TNSJLUoNfnG5nLN0/w3y
+ sCg8XGhIfFISQLlwdizC5E/B3aQ3b8DkXrlsVPURqG/wcCjG8ePOXz9kltVqEcuZcBBY
+ vwbFthfGPXqX2pDReZfrx0uFAjL3Vgx0AWurfO4oHx81BDHQOhqmJXl4bdy7tgkThkYN
+ oGewaYP/7oJAa8MPYC9NU3tbFCZhxSI+IN2hrYzBHh/ss+qCb6Y3u5HPhnhONpmHVoQ7
+ dleA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=r1EA3WN24+bV6xiFKfzEz9KgDmmiprN/hltcu+5QZ2o=;
+ b=Z1CrCaaKOWDBQMNinSLWJlHe3qsgCi2P8pZJyloJD/tQgA8xrFZD78kACJAY+y1yQ8
+ fm+4p0KNyWK0xYszk6wiP6qji0yG4Rhfr6GrSCPvtum33BlfnQ9fUdptZyOxH7cFlUoj
+ AIwN+2Uqepl+86ld0yHaX4KJKsiSZJ0H7lDOVTBFacLvplrbz9HlyhbbUSlfGjtoXX8s
+ 3n1VP0qSTZJ8C2KOUfNlWjZG+Xz9thTf/bUZNJ90EHVhkRxjPSkD9RNA+4KJmsNQJ5UG
+ vgNzaqIeCZcoF1BAhusHOSmH6Xp+Y/RaDVl76WLjlCGNunoQi/ZQvd5U8nehEpZ2RY2y
+ y55Q==
+X-Gm-Message-State: AGi0Puamxl5RlGuMuQQjXIUpjiiv07Lzr/ueAqZ+F2N3pur+S4XpOa37
+ bNB29tb73HZgSypSzh/81ml4Kwd6xAoMHgHoqxfWag==
+X-Google-Smtp-Source: APiQypLYHj0IlodYoA8783h8VSLOXPiQMEoGYWrnQEtl/cGiv1PK+3Kjy3A6Zyti5ItNPgIUoQt++qcQMZiFuH7bDfI=
+X-Received: by 2002:a05:600c:243:: with SMTP id
+ 3mr33199935wmj.73.1589288097043; 
+ Tue, 12 May 2020 05:54:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200512120326.GO6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v28 4/6] drm/i915: Add TGL+ SAGV support
+References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
+ <20200512085944.222637-17-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200512085944.222637-17-daniel.vetter@ffwll.ch>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 12 May 2020 08:54:45 -0400
+Message-ID: <CADnq5_NJTwkUszd-F2d4D+kD4c_+FKD8tuhVJ7VWHGxAyd8fCg@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [RFC 16/17] drm/amdgpu: gpu recovery does full
+ modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,433 +64,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-rdma@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 03:03:26PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, May 07, 2020 at 05:45:01PM +0300, Stanislav Lisovskiy wrote:
-> > Starting from TGL we need to have a separate wm0
-> > values for SAGV and non-SAGV which affects
-> > how calculations are done.
-> > =
-
-> > v2: Remove long lines
-> > v3: Removed COLOR_PLANE enum references
-> > v4, v5, v6: Fixed rebase conflict
-> > v7: - Removed skl_plane_wm_level accessor from skl_allocate_pipe_ddb(Vi=
-lle)
-> >     - Removed sagv_uv_wm0(Ville)
-> >     - can_sagv->use_sagv_wm(Ville)
-> > =
-
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
-> >  .../drm/i915/display/intel_display_types.h    |   2 +
-> >  drivers/gpu/drm/i915/intel_pm.c               | 118 +++++++++++++++++-
-> >  3 files changed, 121 insertions(+), 7 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index fd6d63b03489..be5741cb7595 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -13961,7 +13961,9 @@ static void verify_wm_state(struct intel_crtc *=
-crtc,
-> >  		/* Watermarks */
-> >  		for (level =3D 0; level <=3D max_level; level++) {
-> >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > -						&sw_plane_wm->wm[level]))
-> > +						&sw_plane_wm->wm[level]) ||
-> > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > +							       &sw_plane_wm->sagv_wm0)))
-> >  				continue;
-> >  =
-
-> >  			drm_err(&dev_priv->drm,
-> > @@ -14016,7 +14018,9 @@ static void verify_wm_state(struct intel_crtc *=
-crtc,
-> >  		/* Watermarks */
-> >  		for (level =3D 0; level <=3D max_level; level++) {
-> >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > -						&sw_plane_wm->wm[level]))
-> > +						&sw_plane_wm->wm[level]) ||
-> > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > +							       &sw_plane_wm->sagv_wm0)))
-> >  				continue;
-> >  =
-
-> >  			drm_err(&dev_priv->drm,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
-rs/gpu/drm/i915/display/intel_display_types.h
-> > index 9488449e4b94..8cede29c9562 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -688,11 +688,13 @@ struct skl_plane_wm {
-> >  	struct skl_wm_level wm[8];
-> >  	struct skl_wm_level uv_wm[8];
-> >  	struct skl_wm_level trans_wm;
-> > +	struct skl_wm_level sagv_wm0;
-> >  	bool is_planar;
-> >  };
-> >  =
-
-> >  struct skl_pipe_wm {
-> >  	struct skl_plane_wm planes[I915_MAX_PLANES];
-> > +	bool use_sagv_wm;
-> >  };
-> >  =
-
-> >  enum vlv_wm_level {
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
-el_pm.c
-> > index db188efee21e..934a686342ad 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -3863,25 +3863,35 @@ bool intel_can_enable_sagv(struct drm_i915_priv=
-ate *dev_priv,
-> >  	return bw_state->pipe_sagv_reject =3D=3D 0;
-> >  }
-> >  =
-
-> > +static bool
-> > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state);
-> =
-
-> Just put the function here instead of adding fwd decalrations.
-> =
-
-> > +
-> >  static int intel_compute_sagv_mask(struct intel_atomic_state *state)
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> >  	int ret;
-> >  	struct intel_crtc *crtc;
-> > -	const struct intel_crtc_state *new_crtc_state;
-> > +	struct intel_crtc_state *new_crtc_state;
-> >  	struct intel_bw_state *new_bw_state =3D NULL;
-> >  	const struct intel_bw_state *old_bw_state =3D NULL;
-> >  	int i;
-> >  =
-
-> >  	for_each_new_intel_crtc_in_state(state, crtc,
-> >  					 new_crtc_state, i) {
-> > +		bool can_sagv;
-> > +
-> >  		new_bw_state =3D intel_atomic_get_bw_state(state);
-> >  		if (IS_ERR(new_bw_state))
-> >  			return PTR_ERR(new_bw_state);
-> >  =
-
-> >  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
-> >  =
-
-> > -		if (skl_crtc_can_enable_sagv(new_crtc_state))
-> > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > +			can_sagv =3D tgl_crtc_can_enable_sagv(new_crtc_state);
-> > +		else
-> > +			can_sagv =3D skl_crtc_can_enable_sagv(new_crtc_state);
-> > +
-> > +		if (can_sagv)
-> >  			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
-> >  		else
-> >  			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
-> > @@ -3899,6 +3909,24 @@ static int intel_compute_sagv_mask(struct intel_=
-atomic_state *state)
-> >  			return ret;
-> >  	}
-> >  =
-
-> > +	for_each_new_intel_crtc_in_state(state, crtc,
-> > +					 new_crtc_state, i) {
-> > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.optimal;
-> > +
-> > +		/*
-> > +		 * Due to drm limitation at commit state, when
-> > +		 * changes are written the whole atomic state is
-> > +		 * zeroed away =3D> which prevents from using it,
-> > +		 * so just sticking it into pipe wm state for
-> > +		 * keeping it simple - anyway this is related to wm.
-> > +		 * Proper way in ideal universe would be of course not
-> > +		 * to lose parent atomic state object from child crtc_state,
-> > +		 * and stick to OOP programming principles, which had been
-> > +		 * scientifically proven to work.
-> > +		 */
-> =
-
-> More ramblings. Just drop this comment too imo.
-
-As I understand what is happening here is rather weird, so I thought =
-
-commenting is good idea.
-
-> =
-
-> > +		pipe_wm->use_sagv_wm =3D intel_can_enable_sagv(dev_priv, new_bw_stat=
-e);
-> =
-
-> I think this should be =
-
-> gen >=3D 12 && intel_can_enable_sagv();
-> =
-
-> > +	}
-> > +
-> >  	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=3D intel_can_enab=
-le_sagv(dev_priv, old_bw_state)) {
-> >  		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
-> >  		if (ret)
-> > @@ -4642,12 +4670,39 @@ skl_plane_wm_level(const struct intel_crtc_stat=
-e *crtc_state,
-> >  		   int level,
-> >  		   int color_plane)
-> >  {
-> > -	const struct skl_plane_wm *wm =3D
-> > -		&crtc_state->wm.skl.optimal.planes[plane_id];
-> > +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
-> > +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
-> > +
-> > +	if (!level) {
-> > +		if (pipe_wm->use_sagv_wm)
-> > +			return &wm->sagv_wm0;
-> > +	}
-> =
-
-> if (level =3D=3D 0 && use_sagv_wm)
-> 	return sagv_wm0;
-> =
-
-> >  =
-
-> >  	return color_plane =3D=3D 0 ? &wm->wm[level] : &wm->uv_wm[level];
-> >  }
-> >  =
-
-> > +static bool
-> > +tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > +	enum plane_id plane_id;
-> > +
-> > +	if (!crtc_state->hw.active)
-> > +		return true;
-> > +
-> > +	for_each_plane_id_on_crtc(crtc, plane_id) {
-> > +		const struct skl_ddb_entry *plane_alloc =3D
-> > +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > +		const struct skl_plane_wm *wm =3D
-> > +			&crtc_state->wm.skl.optimal.planes[plane_id];
-> > +
-> > +		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_alloc)
-> > +			return false;
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> >  static int
-> >  skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -4684,7 +4739,6 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *cr=
-tc_state)
-> >  							 plane_data_rate,
-> >  							 uv_plane_data_rate);
-> >  =
-
-> > -
-> >  	skl_ddb_get_pipe_allocation_limits(dev_priv, crtc_state, total_data_r=
-ate,
-> >  					   alloc, &num_active);
-> >  	alloc_size =3D skl_ddb_entry_size(alloc);
-> > @@ -5219,6 +5273,37 @@ skl_compute_wm_levels(const struct intel_crtc_st=
-ate *crtc_state,
-> >  	}
-> >  }
-> >  =
-
-> > +static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_st=
-ate,
-> > +				const struct skl_wm_params *wm_params,
-> > +				struct skl_plane_wm *plane_wm)
-> > +{
-> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> > +	struct skl_wm_level *sagv_wm =3D &plane_wm->sagv_wm0;
-> > +	struct skl_wm_level *levels =3D plane_wm->wm;
-> > +
-> > +	/*
-> > +	 * For Gen12 if it is an L0 we need to also
-> > +	 * consider sagv_block_time when calculating
-> > +	 * L0 watermark - we will need that when making
-> > +	 * a decision whether enable SAGV or not.
-> > +	 * For older gens we agreed to copy L0 value for
-> > +	 * compatibility.
-> > +	 */
-> > +	if ((INTEL_GEN(dev_priv) >=3D 12)) {
-> =
-
-> Drop this if-else and only call tgl_compute_sagv_wm() on tgl+.
-> The comment can then go as well I think.
-
-We actually had _agreed_ with you personally that I do copy
-wm0 values for other platforms for compatibility reasons.
-Now after one month you say that we are going to call this
-only for gen12. =
-
-
-> =
-
-> > +		u32 latency =3D dev_priv->wm.skl_latency[0];
-> > +
-> > +		latency +=3D dev_priv->sagv_block_time_us;
-> > +		skl_compute_plane_wm(crtc_state, 0, latency,
-> > +				     wm_params, &levels[0],
-> > +				     sagv_wm);
-> > +		DRM_DEBUG_KMS("%d L0 blocks required for SAGV vs %d for non-SAGV\n",
-> > +			      sagv_wm->min_ddb_alloc, levels[0].min_ddb_alloc);
-> =
-
-> Leftover debugs. Pls remove.
-
-I thought this might be useful, we should have some understanding what
-is happening, i.e what was the reasoning and why SAGV was switched on/off.
-Not crucial, but really don't understand why this is _that_ harmful.
-We have plenty of wm/ddb debugs anyway, but no way to figure out how SAGV l=
-ogic is working.
-
-> =
-
-> > +	} else {
-> > +		/* Since all members are POD */
-> > +		*sagv_wm =3D levels[0];
-> > +	}
-> > +}
-> > +
-> >  static void skl_compute_transition_wm(const struct intel_crtc_state *c=
-rtc_state,
-> >  				      const struct skl_wm_params *wp,
-> >  				      struct skl_plane_wm *wm)
-> > @@ -5296,6 +5381,8 @@ static int skl_build_plane_wm_single(struct intel=
-_crtc_state *crtc_state,
-> >  		return ret;
-> >  =
-
-> >  	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> > +	if (color_plane =3D=3D 0)
-> =
-
-> We do want this for both the Y plane and UV plane.
-> =
-
-> > +		tgl_compute_sagv_wm(crtc_state, &wm_params, wm);
-> >  	skl_compute_transition_wm(crtc_state, &wm_params, wm);
-> >  =
-
-> >  	return 0;
-> > @@ -5702,6 +5789,12 @@ skl_print_wm_changes(struct intel_atomic_state *=
-state)
-> >  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res_l,
-> >  				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_r=
-es_l);
-> >  =
-
-> > +			drm_dbg_kms(&dev_priv->drm,
-> > +				    "[PLANE:%d:%s] sagv wm0 lines %4d -> %4d\n",
-> > +				    plane->base.base.id, plane->base.name,
-> > +				    old_wm->sagv_wm0.plane_res_l,
-> > +				    new_wm->sagv_wm0.plane_res_l);
-> > +
-> =
-
-> IIRC I already suggested just slapping these onto the existing debug
-> prints instead of bloating the debug output with extra lines.
-> =
-
-> Ie instead of =
-
-> wms ... -> ...
-> sagv wm ... -> ...
-> =
-
-> we just get
-> wms ...,old_sagv_wm0 -> ...,new_sagv_wm0
-> =
-
-> just like we already do for eg. the transition wm.
-
-Not sure about this one. I will check, I thought you suggested the opposite,
-i.e do those debugs separately.
-
-Stan
-> =
-
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > @@ -5717,6 +5810,12 @@ skl_print_wm_changes(struct intel_atomic_state *=
-state)
-> >  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
-> >  				    new_wm->trans_wm.plane_res_b);
-> >  =
-
-> > +			drm_dbg_kms(&dev_priv->drm,
-> > +				    "[PLANE:%d:%s] sagv wm0 blocks %4d -> %4d\n",
-> > +				    plane->base.base.id, plane->base.name,
-> > +				    old_wm->sagv_wm0.plane_res_b,
-> > +				    new_wm->sagv_wm0.plane_res_b);
-> > +
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> >  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> > @@ -5731,6 +5830,12 @@ skl_print_wm_changes(struct intel_atomic_state *=
-state)
-> >  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
-> >  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
-> >  				    new_wm->trans_wm.min_ddb_alloc);
-> > +
-> > +			drm_dbg_kms(&dev_priv->drm,
-> > +				    "[PLANE:%d:%s] sagv wm0 min ddb %4d -> %4d\n",
-> > +				    plane->base.base.id, plane->base.name,
-> > +				    old_wm->sagv_wm0.min_ddb_alloc,
-> > +				    new_wm->sagv_wm0.min_ddb_alloc);
-> >  		}
-> >  	}
-> >  }
-> > @@ -6023,6 +6128,9 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *=
-crtc,
-> >  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
-> >  		}
-> >  =
-
-> > +		memcpy(&wm->sagv_wm0, &wm->wm[0],
-> > +		       sizeof(struct skl_wm_level));
-> =
-
-> A simple assignment should suffice?
-
-Agree.
-
-> =
-
-> > +
-> >  		if (plane_id !=3D PLANE_CURSOR)
-> >  			val =3D I915_READ(PLANE_WM_TRANS(pipe, plane_id));
-> >  		else
-> > -- =
-
-> > 2.24.1.485.gad05a3d8e5
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBNYXkgMTIsIDIwMjAgYXQgNTowMCBBTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
+dGVyQGZmd2xsLmNoPiB3cm90ZToKPgo+IC4uLgo+Cj4gSSB0aGluayBpdCdzIHRpbWUgdG8gc3Rv
+cCB0aGlzIGxpdHRsZSBleGVyY2lzZS4KPgo+IFRoZSBsb2NrZGVwIHNwbGF0LCBmb3IgdGhlIHJl
+Y29yZDoKPgo+IFsgIDEzMi41ODMzODFdID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PQo+IFsgIDEzMi41ODQwOTFdIFdBUk5JTkc6IHBvc3NpYmxl
+IGNpcmN1bGFyIGxvY2tpbmcgZGVwZW5kZW5jeSBkZXRlY3RlZAo+IFsgIDEzMi41ODQ3NzVdIDUu
+Ny4wLXJjMysgIzM0NiBUYWludGVkOiBHICAgICAgICBXCj4gWyAgMTMyLjU4NTQ2MV0gLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gWyAgMTMy
+LjU4NjE4NF0ga3dvcmtlci8yOjMvODY1IGlzIHRyeWluZyB0byBhY3F1aXJlIGxvY2s6Cj4gWyAg
+MTMyLjU4Njg1N10gZmZmZmM5MDAwMDY3N2M3MCAoY3J0Y193d19jbGFzc19hY3F1aXJlKXsrLisu
+fS17MDowfSwgYXQ6IGRybV9hdG9taWNfaGVscGVyX3N1c3BlbmQrMHgzOC8weDEyMCBbZHJtX2tt
+c19oZWxwZXJdCj4gWyAgMTMyLjU4NzU2OV0KPiAgICAgICAgICAgICAgICBidXQgdGFzayBpcyBh
+bHJlYWR5IGhvbGRpbmcgbG9jazoKPiBbICAxMzIuNTg5MDQ0XSBmZmZmZmZmZjgyMzE4YzgwIChk
+bWFfZmVuY2VfbWFwKXsrKysrfS17MDowfSwgYXQ6IGRybV9zY2hlZF9qb2JfdGltZWRvdXQrMHgy
+NS8weGYwIFtncHVfc2NoZWRdCj4gWyAgMTMyLjU4OTgwM10KPiAgICAgICAgICAgICAgICB3aGlj
+aCBsb2NrIGFscmVhZHkgZGVwZW5kcyBvbiB0aGUgbmV3IGxvY2suCj4KPiBbICAxMzIuNTkyMDA5
+XQo+ICAgICAgICAgICAgICAgIHRoZSBleGlzdGluZyBkZXBlbmRlbmN5IGNoYWluIChpbiByZXZl
+cnNlIG9yZGVyKSBpczoKPiBbICAxMzIuNTkzNTA3XQo+ICAgICAgICAgICAgICAgIC0+ICMyIChk
+bWFfZmVuY2VfbWFwKXsrKysrfS17MDowfToKPiBbICAxMzIuNTk1MDE5XSAgICAgICAgZG1hX2Zl
+bmNlX2JlZ2luX3NpZ25hbGxpbmcrMHg1MC8weDYwCj4gWyAgMTMyLjU5NTc2N10gICAgICAgIGRy
+bV9hdG9taWNfaGVscGVyX2NvbW1pdCsweGExLzB4MTgwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAx
+MzIuNTk2NTY3XSAgICAgICAgZHJtX2NsaWVudF9tb2Rlc2V0X2NvbW1pdF9hdG9taWMrMHgxZWEv
+MHgyNTAgW2RybV0KPiBbICAxMzIuNTk3NDIwXSAgICAgICAgZHJtX2NsaWVudF9tb2Rlc2V0X2Nv
+bW1pdF9sb2NrZWQrMHg1NS8weDE5MCBbZHJtXQo+IFsgIDEzMi41OTgxNzhdICAgICAgICBkcm1f
+Y2xpZW50X21vZGVzZXRfY29tbWl0KzB4MjQvMHg0MCBbZHJtXQo+IFsgIDEzMi41OTg5NDhdICAg
+ICAgICBkcm1fZmJfaGVscGVyX3Jlc3RvcmVfZmJkZXZfbW9kZV91bmxvY2tlZCsweDRiLzB4YTAg
+W2RybV9rbXNfaGVscGVyXQo+IFsgIDEzMi41OTk3MzhdICAgICAgICBkcm1fZmJfaGVscGVyX3Nl
+dF9wYXIrMHgzMC8weDQwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAxMzIuNjAwNTM5XSAgICAgICAg
+ZmJjb25faW5pdCsweDJlOC8weDY2MAo+IFsgIDEzMi42MDEzNDRdICAgICAgICB2aXN1YWxfaW5p
+dCsweGNlLzB4MTMwCj4gWyAgMTMyLjYwMjE1Nl0gICAgICAgIGRvX2JpbmRfY29uX2RyaXZlcisw
+eDFiYy8weDJiMAo+IFsgIDEzMi42MDI5NzBdICAgICAgICBkb190YWtlX292ZXJfY29uc29sZSsw
+eDExNS8weDE4MAo+IFsgIDEzMi42MDM3NjNdICAgICAgICBkb19mYmNvbl90YWtlb3ZlcisweDU4
+LzB4YjAKPiBbICAxMzIuNjA0NTY0XSAgICAgICAgcmVnaXN0ZXJfZnJhbWVidWZmZXIrMHgxZWUv
+MHgzMDAKPiBbICAxMzIuNjA1MzY5XSAgICAgICAgX19kcm1fZmJfaGVscGVyX2luaXRpYWxfY29u
+ZmlnX2FuZF91bmxvY2srMHgzNmUvMHg1MjAgW2RybV9rbXNfaGVscGVyXQo+IFsgIDEzMi42MDYx
+ODddICAgICAgICBhbWRncHVfZmJkZXZfaW5pdCsweGIzLzB4ZjAgW2FtZGdwdV0KPiBbICAxMzIu
+NjA3MDMyXSAgICAgICAgYW1kZ3B1X2RldmljZV9pbml0LmNvbGQrMHhlOTAvMHgxNjc3IFthbWRn
+cHVdCj4gWyAgMTMyLjYwNzg2Ml0gICAgICAgIGFtZGdwdV9kcml2ZXJfbG9hZF9rbXMrMHg1YS8w
+eDIwMCBbYW1kZ3B1XQo+IFsgIDEzMi42MDg2OTddICAgICAgICBhbWRncHVfcGNpX3Byb2JlKzB4
+ZjcvMHgxODAgW2FtZGdwdV0KPiBbICAxMzIuNjA5NTExXSAgICAgICAgbG9jYWxfcGNpX3Byb2Jl
+KzB4NDIvMHg4MAo+IFsgIDEzMi42MTAzMjRdICAgICAgICBwY2lfZGV2aWNlX3Byb2JlKzB4MTA0
+LzB4MWEwCj4gWyAgMTMyLjYxMTEzMF0gICAgICAgIHJlYWxseV9wcm9iZSsweDE0Ny8weDNjMAo+
+IFsgIDEzMi42MTE5MzldICAgICAgICBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4YjYvMHgxMDAKPiBb
+ICAxMzIuNjEyNzY2XSAgICAgICAgZGV2aWNlX2RyaXZlcl9hdHRhY2grMHg1My8weDYwCj4gWyAg
+MTMyLjYxMzU5M10gICAgICAgIF9fZHJpdmVyX2F0dGFjaCsweDhjLzB4MTUwCj4gWyAgMTMyLjYx
+NDQxOV0gICAgICAgIGJ1c19mb3JfZWFjaF9kZXYrMHg3Yi8weGMwCj4gWyAgMTMyLjYxNTI0OV0g
+ICAgICAgIGJ1c19hZGRfZHJpdmVyKzB4MTRjLzB4MWYwCj4gWyAgMTMyLjYxNjA3MV0gICAgICAg
+IGRyaXZlcl9yZWdpc3RlcisweDZjLzB4YzAKPiBbICAxMzIuNjE2OTAyXSAgICAgICAgZG9fb25l
+X2luaXRjYWxsKzB4NWQvMHgyZjAKPiBbICAxMzIuNjE3NzMxXSAgICAgICAgZG9faW5pdF9tb2R1
+bGUrMHg1Yy8weDIzMAo+IFsgIDEzMi42MTg1NjBdICAgICAgICBsb2FkX21vZHVsZSsweDI5ODEv
+MHgyYmMwCj4gWyAgMTMyLjYxOTM5MV0gICAgICAgIF9fZG9fc3lzX2Zpbml0X21vZHVsZSsweGFh
+LzB4MTEwCj4gWyAgMTMyLjYyMDIyOF0gICAgICAgIGRvX3N5c2NhbGxfNjQrMHg1YS8weDI1MAo+
+IFsgIDEzMi42MjEwNjRdICAgICAgICBlbnRyeV9TWVNDQUxMXzY0X2FmdGVyX2h3ZnJhbWUrMHg0
+OS8weGIzCj4gWyAgMTMyLjYyMTkwM10KPiAgICAgICAgICAgICAgICAtPiAjMSAoY3J0Y193d19j
+bGFzc19tdXRleCl7Ky4rLn0tezM6M306Cj4gWyAgMTMyLjYyMzU4N10gICAgICAgIF9fd3dfbXV0
+ZXhfbG9jay5jb25zdHByb3AuMCsweGNjLzB4MTBjMAo+IFsgIDEzMi42MjQ0NDhdICAgICAgICB3
+d19tdXRleF9sb2NrKzB4NDMvMHhiMAo+IFsgIDEzMi42MjUzMTVdICAgICAgICBkcm1fbW9kZXNl
+dF9sb2NrKzB4NDQvMHgxMjAgW2RybV0KPiBbICAxMzIuNjI2MTg0XSAgICAgICAgZHJtbV9tb2Rl
+X2NvbmZpZ19pbml0KzB4MmRiLzB4OGIwIFtkcm1dCj4gWyAgMTMyLjYyNzA5OF0gICAgICAgIGFt
+ZGdwdV9kZXZpY2VfaW5pdC5jb2xkKzB4YmQxLzB4MTY3NyBbYW1kZ3B1XQo+IFsgIDEzMi42Mjgw
+MDddICAgICAgICBhbWRncHVfZHJpdmVyX2xvYWRfa21zKzB4NWEvMHgyMDAgW2FtZGdwdV0KPiBb
+ICAxMzIuNjI4OTIwXSAgICAgICAgYW1kZ3B1X3BjaV9wcm9iZSsweGY3LzB4MTgwIFthbWRncHVd
+Cj4gWyAgMTMyLjYyOTgwNF0gICAgICAgIGxvY2FsX3BjaV9wcm9iZSsweDQyLzB4ODAKPiBbICAx
+MzIuNjMwNjkwXSAgICAgICAgcGNpX2RldmljZV9wcm9iZSsweDEwNC8weDFhMAo+IFsgIDEzMi42
+MzE1ODNdICAgICAgICByZWFsbHlfcHJvYmUrMHgxNDcvMHgzYzAKPiBbICAxMzIuNjMyNDc5XSAg
+ICAgICAgZHJpdmVyX3Byb2JlX2RldmljZSsweGI2LzB4MTAwCj4gWyAgMTMyLjYzMzM3OV0gICAg
+ICAgIGRldmljZV9kcml2ZXJfYXR0YWNoKzB4NTMvMHg2MAo+IFsgIDEzMi42MzQyNzVdICAgICAg
+ICBfX2RyaXZlcl9hdHRhY2grMHg4Yy8weDE1MAo+IFsgIDEzMi42MzUxNzBdICAgICAgICBidXNf
+Zm9yX2VhY2hfZGV2KzB4N2IvMHhjMAo+IFsgIDEzMi42MzYwNjldICAgICAgICBidXNfYWRkX2Ry
+aXZlcisweDE0Yy8weDFmMAo+IFsgIDEzMi42MzY5NzRdICAgICAgICBkcml2ZXJfcmVnaXN0ZXIr
+MHg2Yy8weGMwCj4gWyAgMTMyLjYzNzg3MF0gICAgICAgIGRvX29uZV9pbml0Y2FsbCsweDVkLzB4
+MmYwCj4gWyAgMTMyLjYzODc2NV0gICAgICAgIGRvX2luaXRfbW9kdWxlKzB4NWMvMHgyMzAKPiBb
+ICAxMzIuNjM5NjU0XSAgICAgICAgbG9hZF9tb2R1bGUrMHgyOTgxLzB4MmJjMAo+IFsgIDEzMi42
+NDA1MjJdICAgICAgICBfX2RvX3N5c19maW5pdF9tb2R1bGUrMHhhYS8weDExMAo+IFsgIDEzMi42
+NDEzNzJdICAgICAgICBkb19zeXNjYWxsXzY0KzB4NWEvMHgyNTAKPiBbICAxMzIuNjQyMjAzXSAg
+ICAgICAgZW50cnlfU1lTQ0FMTF82NF9hZnRlcl9od2ZyYW1lKzB4NDkvMHhiMwo+IFsgIDEzMi42
+NDMwMjJdCj4gICAgICAgICAgICAgICAgLT4gIzAgKGNydGNfd3dfY2xhc3NfYWNxdWlyZSl7Ky4r
+Ln0tezA6MH06Cj4gWyAgMTMyLjY0NDY0M10gICAgICAgIF9fbG9ja19hY3F1aXJlKzB4MTI0MS8w
+eDIzZjAKPiBbICAxMzIuNjQ1NDY5XSAgICAgICAgbG9ja19hY3F1aXJlKzB4YWQvMHgzNzAKPiBb
+ICAxMzIuNjQ2Mjc0XSAgICAgICAgZHJtX21vZGVzZXRfYWNxdWlyZV9pbml0KzB4ZDIvMHgxMDAg
+W2RybV0KPiBbICAxMzIuNjQ3MDcxXSAgICAgICAgZHJtX2F0b21pY19oZWxwZXJfc3VzcGVuZCsw
+eDM4LzB4MTIwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAxMzIuNjQ3OTAyXSAgICAgICAgZG1fc3Vz
+cGVuZCsweDFjLzB4NjAgW2FtZGdwdV0KPiBbICAxMzIuNjQ4Njk4XSAgICAgICAgYW1kZ3B1X2Rl
+dmljZV9pcF9zdXNwZW5kX3BoYXNlMSsweDgzLzB4ZTAgW2FtZGdwdV0KPiBbICAxMzIuNjQ5NDk4
+XSAgICAgICAgYW1kZ3B1X2RldmljZV9pcF9zdXNwZW5kKzB4MWMvMHg2MCBbYW1kZ3B1XQo+IFsg
+IDEzMi42NTAzMDBdICAgICAgICBhbWRncHVfZGV2aWNlX2dwdV9yZWNvdmVyLmNvbGQrMHg0ZTYv
+MHhlNjQgW2FtZGdwdV0KPiBbICAxMzIuNjUxMDg0XSAgICAgICAgYW1kZ3B1X2pvYl90aW1lZG91
+dCsweGZiLzB4MTUwIFthbWRncHVdCj4gWyAgMTMyLjY1MTgyNV0gICAgICAgIGRybV9zY2hlZF9q
+b2JfdGltZWRvdXQrMHg4YS8weGYwIFtncHVfc2NoZWRdCj4gWyAgMTMyLjY1MjU5NF0gICAgICAg
+IHByb2Nlc3Nfb25lX3dvcmsrMHgyM2MvMHg1ODAKPiBbICAxMzIuNjUzNDAyXSAgICAgICAgd29y
+a2VyX3RocmVhZCsweDUwLzB4M2IwCj4gWyAgMTMyLjY1NDEzOV0gICAgICAgIGt0aHJlYWQrMHgx
+MmUvMHgxNTAKPiBbICAxMzIuNjU0ODY4XSAgICAgICAgcmV0X2Zyb21fZm9yaysweDI3LzB4NTAK
+PiBbICAxMzIuNjU1NTk4XQo+ICAgICAgICAgICAgICAgIG90aGVyIGluZm8gdGhhdCBtaWdodCBo
+ZWxwIHVzIGRlYnVnIHRoaXM6Cj4KPiBbICAxMzIuNjU3NzM5XSBDaGFpbiBleGlzdHMgb2Y6Cj4g
+ICAgICAgICAgICAgICAgICBjcnRjX3d3X2NsYXNzX2FjcXVpcmUgLS0+IGNydGNfd3dfY2xhc3Nf
+bXV0ZXggLS0+IGRtYV9mZW5jZV9tYXAKPgo+IFsgIDEzMi42NTk4NzddICBQb3NzaWJsZSB1bnNh
+ZmUgbG9ja2luZyBzY2VuYXJpbzoKPgo+IFsgIDEzMi42NjE0MTZdICAgICAgICBDUFUwICAgICAg
+ICAgICAgICAgICAgICBDUFUxCj4gWyAgMTMyLjY2MjEyNl0gICAgICAgIC0tLS0gICAgICAgICAg
+ICAgICAgICAgIC0tLS0KPiBbICAxMzIuNjYyODQ3XSAgIGxvY2soZG1hX2ZlbmNlX21hcCk7Cj4g
+WyAgMTMyLjY2MzU3NF0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxvY2soY3J0Y193
+d19jbGFzc19tdXRleCk7Cj4gWyAgMTMyLjY2NDMxOV0gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIGxvY2soZG1hX2ZlbmNlX21hcCk7Cj4gWyAgMTMyLjY2NTA2M10gICBsb2NrKGNydGNf
+d3dfY2xhc3NfYWNxdWlyZSk7Cj4gWyAgMTMyLjY2NTc5OV0KPiAgICAgICAgICAgICAgICAgKioq
+IERFQURMT0NLICoqKgo+Cj4gWyAgMTMyLjY2Nzk2NV0gNCBsb2NrcyBoZWxkIGJ5IGt3b3JrZXIv
+MjozLzg2NToKPiBbICAxMzIuNjY4NzAxXSAgIzA6IGZmZmY4ODg3ZmI4MWM5MzggKCh3cV9jb21w
+bGV0aW9uKWV2ZW50cyl7Ky4rLn0tezA6MH0sIGF0OiBwcm9jZXNzX29uZV93b3JrKzB4MWJjLzB4
+NTgwCj4gWyAgMTMyLjY2OTQ2Ml0gICMxOiBmZmZmYzkwMDAwNjc3ZTU4ICgod29ya19jb21wbGV0
+aW9uKSgmKCZzY2hlZC0+d29ya190ZHIpLT53b3JrKSl7Ky4rLn0tezA6MH0sIGF0OiBwcm9jZXNz
+X29uZV93b3JrKzB4MWJjLzB4NTgwCj4gWyAgMTMyLjY3MDI0Ml0gICMyOiBmZmZmZmZmZjgyMzE4
+YzgwIChkbWFfZmVuY2VfbWFwKXsrKysrfS17MDowfSwgYXQ6IGRybV9zY2hlZF9qb2JfdGltZWRv
+dXQrMHgyNS8weGYwIFtncHVfc2NoZWRdCj4gWyAgMTMyLjY3MTAzOV0gICMzOiBmZmZmODg4N2I4
+NGExNzQ4ICgmYWRldi0+bG9ja19yZXNldCl7Ky4rLn0tezM6M30sIGF0OiBhbWRncHVfZGV2aWNl
+X2dwdV9yZWNvdmVyLmNvbGQrMHg1OWUvMHhlNjQgW2FtZGdwdV0KPiBbICAxMzIuNjcxOTAyXQo+
+ICAgICAgICAgICAgICAgIHN0YWNrIGJhY2t0cmFjZToKPiBbICAxMzIuNjczNTE1XSBDUFU6IDIg
+UElEOiA4NjUgQ29tbToga3dvcmtlci8yOjMgVGFpbnRlZDogRyAgICAgICAgVyAgICAgICAgIDUu
+Ny4wLXJjMysgIzM0Ngo+IFsgIDEzMi42NzQzNDddIEhhcmR3YXJlIG5hbWU6IFN5c3RlbSBtYW51
+ZmFjdHVyZXIgU3lzdGVtIFByb2R1Y3QgTmFtZS9QUklNRSBYMzcwLVBSTywgQklPUyA0MDExIDA0
+LzE5LzIwMTgKPiBbICAxMzIuNjc1MTk0XSBXb3JrcXVldWU6IGV2ZW50cyBkcm1fc2NoZWRfam9i
+X3RpbWVkb3V0IFtncHVfc2NoZWRdCj4gWyAgMTMyLjY3NjA0Nl0gQ2FsbCBUcmFjZToKPiBbICAx
+MzIuNjc2ODk3XSAgZHVtcF9zdGFjaysweDhmLzB4ZDAKPiBbICAxMzIuNjc3NzQ4XSAgY2hlY2tf
+bm9uY2lyY3VsYXIrMHgxNjIvMHgxODAKPiBbICAxMzIuNjc4NjA0XSAgPyBzdGFja190cmFjZV9z
+YXZlKzB4NGIvMHg3MAo+IFsgIDEzMi42Nzk0NTldICBfX2xvY2tfYWNxdWlyZSsweDEyNDEvMHgy
+M2YwCj4gWyAgMTMyLjY4MDMxMV0gIGxvY2tfYWNxdWlyZSsweGFkLzB4MzcwCj4gWyAgMTMyLjY4
+MTE2M10gID8gZHJtX2F0b21pY19oZWxwZXJfc3VzcGVuZCsweDM4LzB4MTIwIFtkcm1fa21zX2hl
+bHBlcl0KPiBbICAxMzIuNjgyMDIxXSAgPyBjcHVtYXNrX25leHQrMHgxNi8weDIwCj4gWyAgMTMy
+LjY4Mjg4MF0gID8gbW9kdWxlX2Fzc2VydF9tdXRleF9vcl9wcmVlbXB0KzB4MTQvMHg0MAo+IFsg
+IDEzMi42ODM3MzddICA/IF9fbW9kdWxlX2FkZHJlc3MrMHgyOC8weGYwCj4gWyAgMTMyLjY4NDYw
+MV0gIGRybV9tb2Rlc2V0X2FjcXVpcmVfaW5pdCsweGQyLzB4MTAwIFtkcm1dCj4gWyAgMTMyLjY4
+NTQ2Nl0gID8gZHJtX2F0b21pY19oZWxwZXJfc3VzcGVuZCsweDM4LzB4MTIwIFtkcm1fa21zX2hl
+bHBlcl0KPiBbICAxMzIuNjg2MzM1XSAgZHJtX2F0b21pY19oZWxwZXJfc3VzcGVuZCsweDM4LzB4
+MTIwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAxMzIuNjg3MjU1XSAgZG1fc3VzcGVuZCsweDFjLzB4
+NjAgW2FtZGdwdV0KPiBbICAxMzIuNjg4MTUyXSAgYW1kZ3B1X2RldmljZV9pcF9zdXNwZW5kX3Bo
+YXNlMSsweDgzLzB4ZTAgW2FtZGdwdV0KPiBbICAxMzIuNjg5MDU3XSAgPyBhbWRncHVfZmVuY2Vf
+cHJvY2VzcysweDRjLzB4MTUwIFthbWRncHVdCj4gWyAgMTMyLjY4OTk2M10gIGFtZGdwdV9kZXZp
+Y2VfaXBfc3VzcGVuZCsweDFjLzB4NjAgW2FtZGdwdV0KPiBbICAxMzIuNjkwODkzXSAgYW1kZ3B1
+X2RldmljZV9ncHVfcmVjb3Zlci5jb2xkKzB4NGU2LzB4ZTY0IFthbWRncHVdCj4gWyAgMTMyLjY5
+MTgxOF0gIGFtZGdwdV9qb2JfdGltZWRvdXQrMHhmYi8weDE1MCBbYW1kZ3B1XQo+IFsgIDEzMi42
+OTI3MDddICBkcm1fc2NoZWRfam9iX3RpbWVkb3V0KzB4OGEvMHhmMCBbZ3B1X3NjaGVkXQo+IFsg
+IDEzMi42OTM1OTddICBwcm9jZXNzX29uZV93b3JrKzB4MjNjLzB4NTgwCj4gWyAgMTMyLjY5NDQ4
+N10gIHdvcmtlcl90aHJlYWQrMHg1MC8weDNiMAo+IFsgIDEzMi42OTUzNzNdICA/IHByb2Nlc3Nf
+b25lX3dvcmsrMHg1ODAvMHg1ODAKPiBbICAxMzIuNjk2MjY0XSAga3RocmVhZCsweDEyZS8weDE1
+MAo+IFsgIDEzMi42OTcxNTRdICA/IGt0aHJlYWRfY3JlYXRlX3dvcmtlcl9vbl9jcHUrMHg3MC8w
+eDcwCj4gWyAgMTMyLjY5ODA1N10gIHJldF9mcm9tX2ZvcmsrMHgyNy8weDUwCj4KPiBDYzogbGlu
+dXgtbWVkaWFAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGxpbmFyby1tbS1zaWdAbGlzdHMubGluYXJv
+Lm9yZwo+IENjOiBsaW51eC1yZG1hQHZnZXIua2VybmVsLm9yZwo+IENjOiBhbWQtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwo+IENjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+Q2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBNYWFydGVu
+IExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+IENjOiBDaHJp
+c3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gU2lnbmVkLW9mZi1ieTog
+RGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyB8IDggKysrKysrKysKPiAgMSBmaWxl
+IGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9kZXZpY2UuYwo+IGluZGV4IDM1ODRlMjkzMjNjMC4uYjNiODRhMGQzYmFmIDEwMDY0
+NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+IEBAIC0yNDE1
+LDYgKzI0MTUsMTQgQEAgc3RhdGljIGludCBhbWRncHVfZGV2aWNlX2lwX3N1c3BlbmRfcGhhc2Ux
+KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAgICAgICAgICAgICAgICAvKiBkaXNwbGF5
+cyBhcmUgaGFuZGxlZCBzZXBhcmF0ZWx5ICovCj4gICAgICAgICAgICAgICAgIGlmIChhZGV2LT5p
+cF9ibG9ja3NbaV0udmVyc2lvbi0+dHlwZSA9PSBBTURfSVBfQkxPQ0tfVFlQRV9EQ0UpIHsKPiAg
+ICAgICAgICAgICAgICAgICAgICAgICAvKiBYWFggaGFuZGxlIGVycm9ycyAqLwo+ICsKPiArICAg
+ICAgICAgICAgICAgICAgICAgICAvKgo+ICsgICAgICAgICAgICAgICAgICAgICAgICAqIFRoaXMg
+aXMgZG1fc3VzcGVuZCwgd2hpY2ggY2FsbHMgbW9kZXNldCBsb2NrcywgYW5kCj4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICogdGhhdCBhIHByZXR0eSBnb29kIGludmVyc2lvbiBhZ2FpbnN0IGRt
+YV9mZW5jZV9zaWduYWwKPiArICAgICAgICAgICAgICAgICAgICAgICAgKiB3aGljaCBncHUgcmVj
+b3ZlcnkgaXMgc3VwcG9zZWQgdG8gZ3VhcmFudGVlLgo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAqCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICogRG9udCBhc2sgbWUgaG93IHRvIGZpeCB0
+aGlzLgo+ICsgICAgICAgICAgICAgICAgICAgICAgICAqLwoKV2UgYWN0dWFsbHkgaGF2ZSBhIGZp
+eCBmb3IgdGhpcy4gIFdpbGwgYmUgb3V0IHNob3J0bHkuCgpBbGV4Cgo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIHIgPSBhZGV2LT5pcF9ibG9ja3NbaV0udmVyc2lvbi0+ZnVuY3MtPnN1c3BlbmQo
+YWRldik7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgLyogWFhYIGhhbmRsZSBlcnJvcnMgKi8K
+PiAgICAgICAgICAgICAgICAgICAgICAgICBpZiAocikgewo+IC0tCj4gMi4yNi4yCj4KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGFtZC1nZnggbWFp
+bGluZyBsaXN0Cj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
