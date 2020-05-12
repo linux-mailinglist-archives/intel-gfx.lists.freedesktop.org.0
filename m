@@ -1,52 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB1A1CF8BC
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 17:14:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60ACF1CF8CC
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 17:17:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABF226E08A;
-	Tue, 12 May 2020 15:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B71E06E11D;
+	Tue, 12 May 2020 15:17:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F6826E08A
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 15:14:32 +0000 (UTC)
-IronPort-SDR: aTGDtuECCAA11Vw/7JBWD0+vqWCDAgsJp8evHGJGmQI63a6nTO6e9GaghycwNwuH1odw3NbU2s
- 80aOdW1fcZaA==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD726E11D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 15:17:35 +0000 (UTC)
+IronPort-SDR: FJvEEBvY+1CUQVVztE3FZX98JYkJYXrXd4sCTilYx6SthnsUhvLj/tW8JDSMhCdUjpGinh2YAM
+ 2tFfdIRVvdYA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 08:14:31 -0700
-IronPort-SDR: ZM54RrsoHcseQBKrW5HDkIqvkROagopnmCJj3JGqS66xpHbGZtqBeRPHXy+Xwje6ywwQG0lyDg
- gvx4rkxLro6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="306508298"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 12 May 2020 08:14:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 12 May 2020 18:14:27 +0300
-Date: Tue, 12 May 2020 18:14:27 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200512151427.GV6112@intel.com>
-References: <20200512120326.GO6112@intel.com>
- <20200512125227.GB19632@intel.com>
- <20200512131046.GQ6112@intel.com>
- <20200512131734.GA19728@intel.com>
- <20200512133821.GS6112@intel.com>
- <20200512134126.GA19822@intel.com>
- <20200512135046.GT6112@intel.com>
- <20200512135919.GA20092@intel.com>
- <20200512143221.GU6112@intel.com>
- <20200512150445.GA20405@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 08:17:34 -0700
+IronPort-SDR: z68RCVZzXH1z0txBrATlLS3aREZD+CmaomzXud+Kny/CSeEL7UmDFAMF0CAefhmZu1OAmSVjKz
+ JXIgjyCpKGcQ==
+X-IronPort-AV: E=Sophos;i="5.73,384,1583222400"; d="scan'208";a="437136397"
+Received: from dhelmanx-mobl2.ger.corp.intel.com (HELO [10.214.209.74])
+ ([10.214.209.74])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2020 08:17:33 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200512132255.20537-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <561ef231-3894-5f9e-d3f2-629537801fb6@linux.intel.com>
+Date: Tue, 12 May 2020 16:17:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200512150445.GA20405@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v28 4/6] drm/i915: Add TGL+ SAGV support
+In-Reply-To: <20200512132255.20537-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Transfer old virtual
+ breadcrumbs to irq_worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,354 +51,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 06:04:45PM +0300, Lisovskiy, Stanislav wrote:
-> On Tue, May 12, 2020 at 05:32:21PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, May 12, 2020 at 04:59:19PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Tue, May 12, 2020 at 04:50:46PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > On Tue, May 12, 2020 at 04:41:26PM +0300, Lisovskiy, Stanislav wrot=
-e:
-> > > > > On Tue, May 12, 2020 at 04:38:21PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > > On Tue, May 12, 2020 at 04:17:34PM +0300, Lisovskiy, Stanislav =
-wrote:
-> > > > > > > On Tue, May 12, 2020 at 04:10:46PM +0300, Ville Syrj=E4l=E4 w=
-rote:
-> > > > > > > > On Tue, May 12, 2020 at 03:52:27PM +0300, Lisovskiy, Stanis=
-lav wrote:
-> > > > > > > > > On Tue, May 12, 2020 at 03:03:26PM +0300, Ville Syrj=E4l=
-=E4 wrote:
-> > > > > > > > > > On Thu, May 07, 2020 at 05:45:01PM +0300, Stanislav Lis=
-ovskiy wrote:
-> > > > > > > > > > > Starting from TGL we need to have a separate wm0
-> > > > > > > > > > > values for SAGV and non-SAGV which affects
-> > > > > > > > > > > how calculations are done.
-> > > > > > > > > > > =
 
-> > > > > > > > > > > v2: Remove long lines
-> > > > > > > > > > > v3: Removed COLOR_PLANE enum references
-> > > > > > > > > > > v4, v5, v6: Fixed rebase conflict
-> > > > > > > > > > > v7: - Removed skl_plane_wm_level accessor from skl_al=
-locate_pipe_ddb(Ville)
-> > > > > > > > > > >     - Removed sagv_uv_wm0(Ville)
-> > > > > > > > > > >     - can_sagv->use_sagv_wm(Ville)
-> > > > > > > > > > > =
+On 12/05/2020 14:22, Chris Wilson wrote:
+> The second try at staging the transfer of the breadcrumb. In part one,
+> we realised we could not simply move to the second engine as we were
+> only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
+> ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
+> removed it from the first engine and marked up this request to reattach
+> the signaling on the new engine. However, this failed to take into
+> account that we only attach the breadcrumb if the new request is added
+> at the start of the queue, which if we are transferring, it is because
+> we know there to be a request to be signaled (and hence we would not be
+> attached).
+> 
+> In this attempt, we try to transfer the completed requests to the
+> irq_worker on its rq->engine->breadcrumbs. This preserves the coupling
+> between the rq and its breadcrumbs, so that
+> i915_request_cancel_breadcrumb() does not attempt to manipulate the list
+> under the wrong lock.
+> 
+> Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+> v2: rewrite from scratch with a new idea
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c  | 33 ++++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_engine.h       |  3 ++
+>   drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 ++
+>   drivers/gpu/drm/i915/gt/intel_lrc.c          | 26 ++-------------
+>   4 files changed, 41 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index cbedba857d43..e09dc162b508 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -155,6 +155,8 @@ static void signal_irq_work(struct irq_work *work)
+>   	if (b->irq_armed && list_empty(&b->signalers))
+>   		__intel_breadcrumbs_disarm_irq(b);
+>   
+> +	list_splice_init(&b->signaled_requests, &signal);
+> +
+>   	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+>   		GEM_BUG_ON(list_empty(&ce->signals));
+>   
+> @@ -255,6 +257,7 @@ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
+>   
+>   	spin_lock_init(&b->irq_lock);
+>   	INIT_LIST_HEAD(&b->signalers);
+> +	INIT_LIST_HEAD(&b->signaled_requests);
+>   
+>   	init_irq_work(&b->irq_work, signal_irq_work);
+>   }
+> @@ -274,6 +277,36 @@ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine)
+>   	spin_unlock_irqrestore(&b->irq_lock, flags);
+>   }
+>   
+> +void intel_engine_transfer_breadcrumbs(struct intel_engine_cs *engine,
+> +				       struct intel_context *ce)
+> +{
+> +	struct intel_breadcrumbs *b = &engine->breadcrumbs;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&b->irq_lock, flags);
+> +	if (!list_empty(&ce->signals)) {
+> +		struct i915_request *rq, *next;
+> +
+> +		list_for_each_entry_safe(rq, next, &ce->signals, signal_link) {
+> +			GEM_BUG_ON(rq->engine != engine);
+> +			GEM_BUG_ON(!i915_request_completed(rq));
 
-> > > > > > > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovsk=
-iy@intel.com>
-> > > > > > > > > > > ---
-> > > > > > > > > > >  drivers/gpu/drm/i915/display/intel_display.c  |   8 =
-+-
-> > > > > > > > > > >  .../drm/i915/display/intel_display_types.h    |   2 +
-> > > > > > > > > > >  drivers/gpu/drm/i915/intel_pm.c               | 118 =
-+++++++++++++++++-
-> > > > > > > > > > >  3 files changed, 121 insertions(+), 7 deletions(-)
-> > > > > > > > > > > =
+Do you remember why the breadcrumbs code uses local __request_completed 
+helper?
 
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_displ=
-ay.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > > index fd6d63b03489..be5741cb7595 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > > @@ -13961,7 +13961,9 @@ static void verify_wm_state(s=
-truct intel_crtc *crtc,
-> > > > > > > > > > >  		/* Watermarks */
-> > > > > > > > > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > > > > > > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > > > > > > > > -						&sw_plane_wm->wm[level]))
-> > > > > > > > > > > +						&sw_plane_wm->wm[level]) ||
-> > > > > > > > > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_pl=
-ane_wm->wm[level],
-> > > > > > > > > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > > > > > > > > >  				continue;
-> > > > > > > > > > >  =
+ From here vvv
 
-> > > > > > > > > > >  			drm_err(&dev_priv->drm,
-> > > > > > > > > > > @@ -14016,7 +14018,9 @@ static void verify_wm_state(s=
-truct intel_crtc *crtc,
-> > > > > > > > > > >  		/* Watermarks */
-> > > > > > > > > > >  		for (level =3D 0; level <=3D max_level; level++) {
-> > > > > > > > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> > > > > > > > > > > -						&sw_plane_wm->wm[level]))
-> > > > > > > > > > > +						&sw_plane_wm->wm[level]) ||
-> > > > > > > > > > > +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_pl=
-ane_wm->wm[level],
-> > > > > > > > > > > +							       &sw_plane_wm->sagv_wm0)))
-> > > > > > > > > > >  				continue;
-> > > > > > > > > > >  =
+> +
+> +			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> +			if (!__dma_fence_signal(&rq->fence))
+> +				continue;
+> +
+> +			i915_request_get(rq);
+> +			list_add_tail(&rq->signal_link, &b->signaled_requests);
 
-> > > > > > > > > > >  			drm_err(&dev_priv->drm,
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_displ=
-ay_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > > > > > > > > index 9488449e4b94..8cede29c9562 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_type=
-s.h
-> > > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_type=
-s.h
-> > > > > > > > > > > @@ -688,11 +688,13 @@ struct skl_plane_wm {
-> > > > > > > > > > >  	struct skl_wm_level wm[8];
-> > > > > > > > > > >  	struct skl_wm_level uv_wm[8];
-> > > > > > > > > > >  	struct skl_wm_level trans_wm;
-> > > > > > > > > > > +	struct skl_wm_level sagv_wm0;
-> > > > > > > > > > >  	bool is_planar;
-> > > > > > > > > > >  };
-> > > > > > > > > > >  =
+^^^ to here looks like a block which could be shared with signal_irq_work.
 
-> > > > > > > > > > >  struct skl_pipe_wm {
-> > > > > > > > > > >  	struct skl_plane_wm planes[I915_MAX_PLANES];
-> > > > > > > > > > > +	bool use_sagv_wm;
-> > > > > > > > > > >  };
-> > > > > > > > > > >  =
+> +		}
+> +
+> +		INIT_LIST_HEAD(&ce->signals);
 
-> > > > > > > > > > >  enum vlv_wm_level {
-> > > > > > > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/driver=
-s/gpu/drm/i915/intel_pm.c
-> > > > > > > > > > > index db188efee21e..934a686342ad 100644
-> > > > > > > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > > > > > > @@ -3863,25 +3863,35 @@ bool intel_can_enable_sagv(st=
-ruct drm_i915_private *dev_priv,
-> > > > > > > > > > >  	return bw_state->pipe_sagv_reject =3D=3D 0;
-> > > > > > > > > > >  }
-> > > > > > > > > > >  =
+Hm because list_add and not list_move you can't assert all have been 
+unlinked.
 
-> > > > > > > > > > > +static bool
-> > > > > > > > > > > +tgl_crtc_can_enable_sagv(const struct intel_crtc_sta=
-te *crtc_state);
-> > > > > > > > > > =
+> +		list_del_init(&ce->signal_link);
+> +
+> +		irq_work_queue(&b->irq_work);
+> +	}
+> +	spin_unlock_irqrestore(&b->irq_lock, flags);
+> +}
+> +
+>   void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
+>   {
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index cb789c8bf06b..45418f887953 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -238,6 +238,9 @@ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
+>   void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
+>   void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+>   
+> +void intel_engine_transfer_breadcrumbs(struct intel_engine_cs *engine,
+> +				       struct intel_context *ce);
+> +
+>   void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
+>   				    struct drm_printer *p);
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index c113b7805e65..e20b39eefd79 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -377,6 +377,8 @@ struct intel_engine_cs {
+>   		spinlock_t irq_lock;
+>   		struct list_head signalers;
+>   
+> +		struct list_head signaled_requests;
+> +
+>   		struct irq_work irq_work; /* for use from inside irq_lock */
+>   
+>   		unsigned int irq_enabled;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 15716e4d6b76..ac32d494b07d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1821,30 +1821,10 @@ static bool virtual_matches(const struct virtual_engine *ve,
+>   	return true;
+>   }
+>   
+> -static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
+> -				     struct i915_request *rq)
+> +static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
+>   {
+> -	struct intel_engine_cs *old = ve->siblings[0];
+> -
+>   	/* All unattached (rq->engine == old) must already be completed */
 
-> > > > > > > > > > Just put the function here instead of adding fwd decalr=
-ations.
-> > > > > > > > > > =
+This comments feels a bit out of place now.
 
-> > > > > > > > > > > +
-> > > > > > > > > > >  static int intel_compute_sagv_mask(struct intel_atom=
-ic_state *state)
-> > > > > > > > > > >  {
-> > > > > > > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(state=
-->base.dev);
-> > > > > > > > > > >  	int ret;
-> > > > > > > > > > >  	struct intel_crtc *crtc;
-> > > > > > > > > > > -	const struct intel_crtc_state *new_crtc_state;
-> > > > > > > > > > > +	struct intel_crtc_state *new_crtc_state;
-> > > > > > > > > > >  	struct intel_bw_state *new_bw_state =3D NULL;
-> > > > > > > > > > >  	const struct intel_bw_state *old_bw_state =3D NULL;
-> > > > > > > > > > >  	int i;
-> > > > > > > > > > >  =
+> -
+> -	spin_lock(&old->breadcrumbs.irq_lock);
+> -	if (!list_empty(&ve->context.signal_link)) {
+> -		list_del_init(&ve->context.signal_link);
+> -
+> -		/*
+> -		 * We cannot acquire the new engine->breadcrumbs.irq_lock
+> -		 * (as we are holding a breadcrumbs.irq_lock already),
+> -		 * so attach this request to the signaler on submission.
+> -		 * The queued irq_work will occur when we finally drop
+> -		 * the engine->active.lock after dequeue.
+> -		 */
+> -		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
+> -
+> -		/* Also transfer the pending irq_work for the old breadcrumb. */
+> -		intel_engine_signal_breadcrumbs(rq->engine);
+> -	}
+> -	spin_unlock(&old->breadcrumbs.irq_lock);
+> +	intel_engine_transfer_breadcrumbs(ve->siblings[0], &ve->context);
 
-> > > > > > > > > > >  	for_each_new_intel_crtc_in_state(state, crtc,
-> > > > > > > > > > >  					 new_crtc_state, i) {
-> > > > > > > > > > > +		bool can_sagv;
-> > > > > > > > > > > +
-> > > > > > > > > > >  		new_bw_state =3D intel_atomic_get_bw_state(state);
-> > > > > > > > > > >  		if (IS_ERR(new_bw_state))
-> > > > > > > > > > >  			return PTR_ERR(new_bw_state);
-> > > > > > > > > > >  =
+But isn't ve->siblings[0] the old engine at this point so new target 
+engine would have to be explicitly passed in?
 
-> > > > > > > > > > >  		old_bw_state =3D intel_atomic_get_old_bw_state(sta=
-te);
-> > > > > > > > > > >  =
+>   }
+>   
+>   #define for_each_waiter(p__, rq__) \
+> @@ -2279,7 +2259,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+>   									engine);
+>   
+>   				if (!list_empty(&ve->context.signals))
+> -					virtual_xfer_breadcrumbs(ve, rq);
+> +					virtual_xfer_breadcrumbs(ve);
+>   
+>   				/*
+>   				 * Move the bound engine to the top of the list
+> 
 
-> > > > > > > > > > > -		if (skl_crtc_can_enable_sagv(new_crtc_state))
-> > > > > > > > > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > > > > > > > > > +			can_sagv =3D tgl_crtc_can_enable_sagv(new_crtc_st=
-ate);
-> > > > > > > > > > > +		else
-> > > > > > > > > > > +			can_sagv =3D skl_crtc_can_enable_sagv(new_crtc_st=
-ate);
-> > > > > > > > > > > +
-> > > > > > > > > > > +		if (can_sagv)
-> > > > > > > > > > >  			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pi=
-pe);
-> > > > > > > > > > >  		else
-> > > > > > > > > > >  			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pip=
-e);
-> > > > > > > > > > > @@ -3899,6 +3909,24 @@ static int intel_compute_sagv_=
-mask(struct intel_atomic_state *state)
-> > > > > > > > > > >  			return ret;
-> > > > > > > > > > >  	}
-> > > > > > > > > > >  =
+Regards,
 
-> > > > > > > > > > > +	for_each_new_intel_crtc_in_state(state, crtc,
-> > > > > > > > > > > +					 new_crtc_state, i) {
-> > > > > > > > > > > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->w=
-m.skl.optimal;
-> > > > > > > > > > > +
-> > > > > > > > > > > +		/*
-> > > > > > > > > > > +		 * Due to drm limitation at commit state, when
-> > > > > > > > > > > +		 * changes are written the whole atomic state is
-> > > > > > > > > > > +		 * zeroed away =3D> which prevents from using it,
-> > > > > > > > > > > +		 * so just sticking it into pipe wm state for
-> > > > > > > > > > > +		 * keeping it simple - anyway this is related to w=
-m.
-> > > > > > > > > > > +		 * Proper way in ideal universe would be of course=
- not
-> > > > > > > > > > > +		 * to lose parent atomic state object from child c=
-rtc_state,
-> > > > > > > > > > > +		 * and stick to OOP programming principles, which =
-had been
-> > > > > > > > > > > +		 * scientifically proven to work.
-> > > > > > > > > > > +		 */
-> > > > > > > > > > =
-
-> > > > > > > > > > More ramblings. Just drop this comment too imo.
-> > > > > > > > > =
-
-> > > > > > > > > As I understand what is happening here is rather weird, s=
-o I thought =
-
-> > > > > > > > > commenting is good idea.
-> > > > > > > > =
-
-> > > > > > > > At least I have no idea what the comment is trying to say.
-> > > > > > > > I see nothing weird hapening here, we're just computing the
-> > > > > > > > state which is totally standard stuff.
-> > > > > > > =
-
-> > > > > > > Well I can remind, this is because there is no way to get par=
-ent state
-> > > > > > > from crtc_state, because of weird drm atomic behaviour which =
-leaves us
-> > > > > > > with NULL parent state. So that we had to stick this boolean =
-to some
-> > > > > > > place.
-> > > > > > > In normal code universe this wouldn't even be needed if we co=
-uld
-> > > > > > > just get atomic state from crtc_state when we write wm in skl=
-_write_plane_wm.
-> > > > > > =
-
-> > > > > > Didn't get that at all from the comment. It talked about zeroin=
-g some
-> > > > > > whole state which I took as 'memset(state, 0, sizeof(*state))'.
-> > > > > > As that is not what's going on I just got confused by the comme=
-nt.
-> > > > > > =
-
-> > > > > > Now that I understand what this is about I think the comment
-> > > > > > (if we want to have one) should probably say something more lik=
-e:
-> > > > > > "we store use_sagv_wm in the crtc state rather than relying on
-> > > > > >  the bw state since we have no convenient way to get at the
-> > > > > >  latter from the plane commit hooks (especially in the legacy
-> > > > > >  cursor case)".
-> > > > > > =
-
-> > > > > > > =
-
-> > > > > > > However probably OOP principles like parent-child hieararchy =
-is not a thing
-> > > > > > > here. That what this comment was trying to say.
-> > > > > > > =
-
-> > > > > > > In normal OOP you can't destroy parent object _before_ destro=
-ying
-> > > > > > > child one.
-> > > > > > =
-
-> > > > > > There's no parent-child relationship between the crtc state and=
- atomic
-> > > > > > state (which really shouldn't be called a state to begin with, =
-rather
-> > > > > > it should be "transaction" or something along those lines).
-> > > > > =
-
-> > > > > In practice there is. crtc_state is being aggregated and containe=
-d as =
-
-> > > > > part of more general atomic state. That is exactly what parent-ch=
-ild
-> > > > > object relation is.
-> > > > > If you want to decouple those, this needs to be not aggregation b=
-ut a reference,
-> > > > > i.e atomic state would not contain those state objects, but have =
-a pointer
-> > > > > instead, but then you would not be using that container_of magic.
-> > > > =
-
-> > > > Pointers is what it has. And once the atomic commit is done the =
-
-> > > > atomic_state (ie. the object used to track the single transaction)
-> > > > goes away while the crtc/plane/etc. states remain behind.
-> > > =
-
-> > > If the rest of states are independent there should be sane way
-> > > to get those without the atomic state. =
-
-> > =
-
-> > How could you possibly get the right one without specifying
-> > which transaction you want them for?
-> =
-
-> Then if we still need those in skl_write_plane_wm or somewhere else durin=
-g commit,
-> transaction should not go away yet.
-
-IMO those backpointers shouldn't perhaps exist at all and instead we
-should just plumb the atomic state through everywhere. But you tried
-that and it kinda failed thanks to the legacy cursor hacks, so here
-we are.
-
-> =
-
-> Otherwise there is a logical contraversy: we need those objects, but can'=
-t get
-> them without transaction. But transaction still goes away,
-> because it's kinda "separate".
-
-It's a pre-existing issue with the atomic core/helpers. Changing
-that is a lot of work, as we discused before a few times.
-
-> =
-
-> Stan
-> =
-
-> > =
-
-> > > =
-
-> > > Currently bw_state, cdclk_state and co - all can be retrieved only
-> > > using atomic state, which is at some point "gone". =
-
-> > > Also it is actually not even gone, we just zero out a pointer
-> > > to it in drm_crtc_state. =
-
-> > > =
-
-> > > I know why this done as we discussed, however I would =
-
-> > > emphasize that the proper way would be then
-> > > to completely decouple from it, so that all required states can
-> > > be retrieved without atomic state. Because currently we are
-> > > kind of in some "fuzzy" state in between.
-> > > =
-
-> > > Stan
-> > > =
-
-> > > > =
-
-> > > > -- =
-
-> > > > Ville Syrj=E4l=E4
-> > > > Intel
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
