@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819721CF241
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 12:24:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62ED1CF252
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 12:28:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 602346E0DB;
-	Tue, 12 May 2020 10:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 363586E13B;
+	Tue, 12 May 2020 10:28:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 732416E0DB;
- Tue, 12 May 2020 10:24:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72838A0138;
- Tue, 12 May 2020 10:24:44 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 791256E13B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 10:28:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21171362-1500050 for multiple; Tue, 12 May 2020 11:28:11 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Tue, 12 May 2020 10:24:44 -0000
-Message-ID: <158927908443.18141.469915234151988147@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200511150545.15149-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev11=29?=
+In-Reply-To: <eebc8a12-1204-e619-f7bd-df607e839ad7@linux.intel.com>
+References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
+ <20200511075722.13483-2-chris@chris-wilson.co.uk>
+ <0f0dbddc-3733-40d6-060c-36e2da9e42fb@linux.intel.com>
+ <158927336578.15653.17606758936318781729@build.alporthouse.com>
+ <eebc8a12-1204-e619-f7bd-df607e839ad7@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158927929013.21674.14131333702537604615@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 12 May 2020 11:28:10 +0100
+Subject: Re: [Intel-gfx] [PATCH 02/20] drm/i915/gt: Couple up old virtual
+ breadcrumb on new sibling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,116 +44,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2020-05-12 11:12:23)
+> 
+> On 12/05/2020 09:49, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2020-05-12 09:41:01)
+> >> On 11/05/2020 08:57, Chris Wilson wrote:
+> >>> The second try at staging the transfer of the breadcrumb. In part one,
+> >>> we realised we could not simply move to the second engine as we were
+> >>> only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
+> >>> ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
+> >>> removed it from the first engine and marked up this request to reattach
+> >>> the signaling on the new engine. However, this failed to take into
+> >>> account that we only attach the breadcrumb if the new request is added
+> >>> at the start of the queue, which if we are transferring, it is because
+> >>> we know there to be a request to be signaled (and hence we would not be
+> >>> attached). In this second try, we remove from the first list under its
+> >>> lock, take ownership of the link, and then take the second lock to
+> >>> complete the transfer.
+> >>
+> >> Overall just an optimisation not to call i915_request_enable_breadcrumb,
+> >> I mean not add to the list indirectly?
+> > 
+> > The request that we need to add already has its breadcrumb enabled. The
+> > request is on the veng->context.signals list, it's just that the veng is
+> > on siblings[0] signalers list and we are no longer guaranteed to
+> > generate an interrupt on engine.
+> > 
+> > There's an explosion in the current code due to the lists not moving
+> > as expected on enabling the breadcrumb on the next request (because of
+> >                  if (pos == &ce->signals) /* catch transitions from empty list */
+> >                          list_move_tail(&ce->signal_link, &b->signalers);
+> > 
+> > )
+> > 
+> > The explosion is on a dead list, but has on a couple of occasions looked
+> > like
+> > 
+> > <4> [373.551331] RIP: 0010:i915_request_enable_breadcrumb+0x144/0x380 [i915]
+> > <4> [373.551341] Code: c7 c2 20 f1 42 c0 48 c7 c7 77 85 28 c0 e8 44 bc f2 ec bf 01 00 00 00 e8 5a 8e f2 ec 31 f6 bf 09 00 00 00 e8 6e 09 e3 ec 0f 0b <3b> 45 80 0f 89 5d ff ff ff 48 8b 6d 08 4c 39 e5 75 ee 49 8b 4d 38
+> > <4> [373.551356] RSP: 0018:ffffb64d0114b9f8 EFLAGS: 00010083
+> > <4> [373.551363] RAX: 00000000000036b2 RBX: ffffa310385096c0 RCX: 0000000000000003
+> > <4> [373.551372] RDX: 00000000000036b2 RSI: 000000002ac5cf63 RDI: 00000000ffffffff
+> > <4> [373.551379] RBP: dead000000000122 R08: ffffa31047075a50 R09: 00000000fffffffe
+> > <4> [373.551385] R10: 0000000053a90a70 R11: 000000005e84b7e5 R12: ffffa3103fde38c0
+> > <4> [373.551392] R13: ffffa3103fde3888 R14: ffffa30ff0982328 R15: ffffa30ff0982000
+> > <4> [373.551401] FS:  00007f19f3359e40(0000) GS:ffffa3104ed00000(0000) knlGS:0000000000000000
+> > <4> [373.551410] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > <4> [373.551414] CR2: 00007f19f2aac778 CR3: 0000000232b0c004 CR4: 00000000003606e0
+> > <4> [373.551421] Call Trace:
+> > <4> [373.551466]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+> > <4> [373.551506]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+> > <4> [373.551515]  __dma_fence_enable_signaling+0x60/0x160
+> > <4> [373.551558]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+> > <4> [373.551564]  dma_fence_add_callback+0x44/0xd0
+> > <4> [373.551605]  __i915_sw_fence_await_dma_fence+0x6f/0xc0 [i915]
+> > <4> [373.551665]  __i915_request_commit+0x442/0x5b0 [i915]
+> > <4> [373.551721]  i915_gem_do_execbuffer+0x17fb/0x2eb0 [i915]
+> > 
+> > kasan/kcsan do not complain; it's just a broken list.
+> 
+> Which list gets broken?
 
-Series: Consider DBuf bandwidth when calculating CDCLK (rev11)
-URL   : https://patchwork.freedesktop.org/series/74739/
-State : failure
+Since we may not signal the requests immediately from the new engine
+(and have decoupled them from the old), they will call
+i915_request_cancel_breadcrumbs() on their stale rq->engine->breadcrumbs
+which is no longer the lock owner.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8467 -> Patchwork_17632
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17632 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17632, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17632:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-ilk-650/igt@runner@aborted.html
-    - fi-gdg-551:         NOTRUN -> [FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-gdg-551/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-snb-2520m/igt@runner@aborted.html
-    - fi-bwr-2160:        NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-bwr-2160/igt@runner@aborted.html
-    - fi-snb-2600:        NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-snb-2600/igt@runner@aborted.html
-    - fi-ivb-3770:        NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-ivb-3770/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-elk-e7500/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-blb-e6850/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17632 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-icl-y:           [DMESG-FAIL][9] ([i915#1873]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8467/fi-icl-y/igt@i915_selftest@live@gt_lrc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/fi-icl-y/igt@i915_selftest@live@gt_lrc.html
-
-  
-  [i915#1873]: https://gitlab.freedesktop.org/drm/intel/issues/1873
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-guc fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8467 -> Patchwork_17632
-
-  CI-20190529: 20190529
-  CI_DRM_8467: 1a0f0c378117fc90f421a692698ad85963ecdb3a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5646: 5a5a3162a7638b3ae38b6dc2545622c204d1b97c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17632: 39b38984e11146f54f69193b1dddc64d28ae990a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-39b38984e111 drm/i915: Remove unneeded hack now for CDCLK
-b18cdabf9809 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
-719f67e64ea2 drm/i915: Introduce for_each_dbuf_slice_in_mask macro
-15c1c44d9cdc drm/i915: Plane configuration affects CDCLK in Gen11+
-997e17ed6b40 drm/i915: Check plane configuration properly
-65be6d7302db drm/i915: Extract cdclk requirements checking to separate function
-d3cd77d67aae drm/i915: Decouple cdclk calculation from modeset checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17632/index.html
+Following that logic, this is not safe either, we just are better at
+winning the race.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
