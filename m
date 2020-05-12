@@ -2,56 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4301CEAA2
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 04:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8371CEB07
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 05:02:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9EB6E087;
-	Tue, 12 May 2020 02:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C849489E2B;
+	Tue, 12 May 2020 03:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com
- [IPv6:2a00:1450:4864:20::643])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A47A26E087;
- Tue, 12 May 2020 02:14:33 +0000 (UTC)
-Received: by mail-ej1-x643.google.com with SMTP id s21so1556172ejd.2;
- Mon, 11 May 2020 19:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6gJvFOJgRmCUuHQ9KCv0CAQBXJvMZ3ZEqpa1faKKd80=;
- b=D6meoNPiM/kyzO8itLiSOkXRVo2//1y42iO0SvsJphtgJc+98LNMkQyuYCgzAGZueb
- MCqVzNdD6z41HnSMAh6Nq4oQc+co5pwat8b0NK+qxYWE4hBAcuwkjPeFRL6eMIPtmsOc
- CHgXW0JqigelR2oxmJ6ZpGfv7ABk4iGu5Le9PUPfojeEZpjHcpl+bBDOqejGvLFgHLNP
- L64GyHrJFQ+dXLZeKuHP5qNfLXqcMotUKFo+0JjY+SeZ7aSKN+pky2j9aB2GCQxxYEOe
- 0KK7mN6qN0ZprKspu11gTihjR5yE0Nts47MfgiP2KZjQInixK+KnscSeSP26B5iI+rT+
- KZKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6gJvFOJgRmCUuHQ9KCv0CAQBXJvMZ3ZEqpa1faKKd80=;
- b=ZLGUhgCyq6wux2bdcw679c9XoPJJwjhrk3xB0WAFdxmAZBquz0omoEJ6iEQUpjolK1
- 6LiNCZM1ecswYuVyQOpZQmFbo0rvxZ0N4RElc55vION/4D28wvG+r8d2t6GMzL3V/MOZ
- yIUs1UkXfP0tB09IfoEYAv0x1eh4uAhkTg4gXwreOpyh27AKl4onstIF1rYazmsszC/F
- QT7mr08441kIta/tPrHVTrqfXzgc1vgzdqUmOf8ICH7OGfGjmZMyuwQxr+8rgZxpwJCF
- OV4+oMlaH1qfFfNM28H2aSyhtFTvDJOBnnHZkKWv+rhMIa7jEbPq0aA92djxKGVnRjwn
- WOsw==
-X-Gm-Message-State: AGi0PuYE96Js3f5AVRY9JiLtNh9RTk3QXAuowOeZukUlcovHlovUIX8y
- fUkZ6mVUGM2x1ZNEQHwu3PoA13msO+rSlYRsECk=
-X-Google-Smtp-Source: APiQypKvoGJ05XwMC2ywwTCNcJ1snijF1Y8YHOxuAycdEcZGBHIMpEuM9QUFeK3xCS81J/YmfWca02XITf2P9jmfZVw=
-X-Received: by 2002:a17:907:2155:: with SMTP id
- rk21mr16482845ejb.163.1589249672229; 
- Mon, 11 May 2020 19:14:32 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 411A189E2B;
+ Tue, 12 May 2020 03:02:49 +0000 (UTC)
+IronPort-SDR: rR/6guOuQxqkkH/vislZJvGFsouBC82n0mDVd1oWb08Ufo9fdUoiPxCjoVSbpIMUdfukSFx2U8
+ wlr+4gFxoquQ==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2020 20:02:48 -0700
+IronPort-SDR: 1UTr17cxVi0CTEje5T2An1AGoV/t+ozu3oJJCn0W4C/VcLoqA27sBwb9w144ywqVf4N1bs28hu
+ IS4lTOTOvwfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,381,1583222400"; 
+ d="asc'?scan'208";a="436918249"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga005.jf.intel.com with ESMTP; 11 May 2020 20:02:46 -0700
+Date: Tue, 12 May 2020 10:48:03 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200512024803.GQ18545@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-References: <20200511091142.208787-1-daniel.vetter@ffwll.ch>
- <20200511091142.208787-3-daniel.vetter@ffwll.ch>
- <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
-In-Reply-To: <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Tue, 12 May 2020 12:14:20 +1000
-Message-ID: <CAPM=9tyukFdDiM6-Mxd+ouXCt9Z4t6LRZwxq7DGoX9drrHnMdQ@mail.gmail.com>
-To: Oded Gabbay <oded.gabbay@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] misc/habalabs: don't set default
- fence_ops->wait
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +48,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Olof Johansson <olof@lixom.net>, Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0957696343=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 11 May 2020 at 19:37, Oded Gabbay <oded.gabbay@gmail.com> wrote:
->
-> On Mon, May 11, 2020 at 12:11 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> >
-> > It's the default.
-> Thanks for catching that.
->
-> >
-> > Also so much for "we're not going to tell the graphics people how to
-> > review their code", dma_fence is a pretty core piece of gpu driver
-> > infrastructure. And it's very much uapi relevant, including piles of
-> > corresponding userspace protocols and libraries for how to pass these
-> > around.
-> >
-> > Would be great if habanalabs would not use this (from a quick look
-> > it's not needed at all), since open source the userspace and playing
-> > by the usual rules isn't on the table. If that's not possible (because
-> > it's actually using the uapi part of dma_fence to interact with gpu
-> > drivers) then we have exactly what everyone promised we'd want to
-> > avoid.
->
-> We don't use the uapi parts, we currently only using the fencing and
-> signaling ability of this module inside our kernel code. But maybe I
-> didn't understand what you request. You want us *not* to use this
-> well-written piece of kernel code because it is only used by graphics
-> drivers ?
-> I'm sorry but I don't get this argument, if this is indeed what you meant.
 
-We would rather drivers using a feature that has requirements on
-correct userspace implementations of the feature have a userspace that
-is open source and auditable.
+--===============0957696343==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="emC2J5fP5T/4de5w"
+Content-Disposition: inline
 
-Fencing is tricky, cross-device fencing is really tricky, and having
-the ability for a closed userspace component to mess up other people's
-drivers, think i915 shared with closed habana userspace and shared
-fences, decreases ability to debug things.
 
-Ideally we wouldn't offer users known untested/broken scenarios, so
-yes we'd prefer that drivers that intend to expose a userspace fencing
-api around dma-fence would adhere to the rules of the gpu drivers.
+--emC2J5fP5T/4de5w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm not say you have to drop using dma-fence, but if you move towards
-cross-device stuff I believe other drivers would be correct in
-refusing to interact with fences from here.
 
-Dave.
+Hi,
+
+Here's two more fixes for 5.7. One is for recent guest display probe failur=
+e,
+which is fixed by setting correct transcoder and DPLL clock against virtual
+display. Another is regression to fix kernel oops for older aliasing ppgtt =
+guest.
+
+Thanks
+--
+
+The following changes since commit ec7301d5146c9abe8aaf6e16e420ea3951018503:
+
+  drm/i915/gvt: switch to user vfio_group_pin/upin_pages (2020-04-14 16:30:=
+17 +0800)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-fixes-2020-05-12
+
+for you to fetch changes up to 72a7a9925e2beea09b109dffb3384c9bf920d9da:
+
+  drm/i915/gvt: Fix kernel oops for 3-level ppgtt guest (2020-05-11 17:07:2=
+5 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2020-05-12
+
+- Correct transcoder and DPLL initial clock to fix recent guest
+  display probe failure. (Colin)
+- Fix kernel oops on older guest using aliasing ppgtt. (Zhenyu)
+
+----------------------------------------------------------------
+Colin Xu (1):
+      drm/i915/gvt: Init DPLL/DDI vreg for virtual display instead of inher=
+itance.
+
+Zhenyu Wang (1):
+      drm/i915/gvt: Fix kernel oops for 3-level ppgtt guest
+
+ drivers/gpu/drm/i915/gvt/display.c   | 49 ++++++++++++++++++++++++++++++++=
+----
+ drivers/gpu/drm/i915/gvt/scheduler.c |  6 ++++-
+ 2 files changed, 49 insertions(+), 6 deletions(-)
+
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--emC2J5fP5T/4de5w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXroOYgAKCRCxBBozTXgY
+J0LNAJ90qdhUOgFgMDE82+Qn+yN21MrfxwCePtQ+l6Y8+xq1jxT/m6tdPodvji8=
+=bXL9
+-----END PGP SIGNATURE-----
+
+--emC2J5fP5T/4de5w--
+
+--===============0957696343==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0957696343==--
