@@ -2,42 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911D11CEF47
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 10:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 373C41CEF77
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 10:49:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4E36E879;
-	Tue, 12 May 2020 08:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97F826E0AA;
+	Tue, 12 May 2020 08:49:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84DFE6E879
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 08:41:06 +0000 (UTC)
-IronPort-SDR: jD9/N8/5/VT1rJDHyhDkzGIPrcf1j75U7DAQ6YJeIybsbR3OJPqfdOcQvJBjSGJcqGLorrqq0u
- nNGC4KARFGtg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 01:41:06 -0700
-IronPort-SDR: q2i5Qg5WQ3kaEpvWFVF1wJFEhV61KKII4JXP0JFHiZBB6TM1lKv7LNVG50yea0gH4A2aehAPj6
- ldDJOm91MKcw==
-X-IronPort-AV: E=Sophos;i="5.73,383,1583222400"; d="scan'208";a="437019939"
-Received: from dhelmanx-mobl2.ger.corp.intel.com (HELO [10.214.209.74])
- ([10.214.209.74])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 01:41:04 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69B836E0AA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 08:49:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21169820-1500050 for multiple; Tue, 12 May 2020 09:49:26 +0100
+MIME-Version: 1.0
+In-Reply-To: <0f0dbddc-3733-40d6-060c-36e2da9e42fb@linux.intel.com>
 References: <20200511075722.13483-1-chris@chris-wilson.co.uk>
  <20200511075722.13483-2-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0f0dbddc-3733-40d6-060c-36e2da9e42fb@linux.intel.com>
-Date: Tue, 12 May 2020 09:41:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <20200511075722.13483-2-chris@chris-wilson.co.uk>
-Content-Language: en-US
+ <0f0dbddc-3733-40d6-060c-36e2da9e42fb@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158927336578.15653.17606758936318781729@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 12 May 2020 09:49:25 +0100
 Subject: Re: [Intel-gfx] [PATCH 02/20] drm/i915/gt: Couple up old virtual
  breadcrumb on new sibling
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -52,84 +42,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 11/05/2020 08:57, Chris Wilson wrote:
-> The second try at staging the transfer of the breadcrumb. In part one,
-> we realised we could not simply move to the second engine as we were
-> only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
-> ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
-> removed it from the first engine and marked up this request to reattach
-> the signaling on the new engine. However, this failed to take into
-> account that we only attach the breadcrumb if the new request is added
-> at the start of the queue, which if we are transferring, it is because
-> we know there to be a request to be signaled (and hence we would not be
-> attached). In this second try, we remove from the first list under its
-> lock, take ownership of the link, and then take the second lock to
-> complete the transfer.
-
-Overall just an optimisation not to call i915_request_enable_breadcrumb, 
-I mean not add to the list indirectly?
-
-Regards,
-
-Tvrtko
-
-> Fixes: 6c81e21a4742 ("drm/i915/gt: Stage the transfer of the virtual breadcrumb")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 16 ++++++++++++----
->   1 file changed, 12 insertions(+), 4 deletions(-)
+Quoting Tvrtko Ursulin (2020-05-12 09:41:01)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index ed45fc40f884..c5591248dafb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1825,13 +1825,12 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
->   				     struct i915_request *rq)
->   {
->   	struct intel_engine_cs *old = ve->siblings[0];
-> +	bool xfer = false;
->   
->   	/* All unattached (rq->engine == old) must already be completed */
->   
->   	spin_lock(&old->breadcrumbs.irq_lock);
->   	if (!list_empty(&ve->context.signal_link)) {
-> -		list_del_init(&ve->context.signal_link);
-> -
->   		/*
->   		 * We cannot acquire the new engine->breadcrumbs.irq_lock
->   		 * (as we are holding a breadcrumbs.irq_lock already),
-> @@ -1839,12 +1838,21 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
->   		 * The queued irq_work will occur when we finally drop
->   		 * the engine->active.lock after dequeue.
->   		 */
-> -		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
-> +		__list_del_entry(&ve->context.signal_link);
-> +		xfer = true;
-> +	}
-> +	spin_unlock(&old->breadcrumbs.irq_lock);
-> +
-> +	if (xfer) {
-> +		struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
-> +
-> +		spin_lock(&b->irq_lock);
-> +		list_add_tail(&ve->context.signal_link, &b->signalers);
-> +		spin_unlock(&b->irq_lock);
->   
->   		/* Also transfer the pending irq_work for the old breadcrumb. */
->   		intel_engine_signal_breadcrumbs(rq->engine);
->   	}
-> -	spin_unlock(&old->breadcrumbs.irq_lock);
->   }
->   
->   #define for_each_waiter(p__, rq__) \
+> On 11/05/2020 08:57, Chris Wilson wrote:
+> > The second try at staging the transfer of the breadcrumb. In part one,
+> > we realised we could not simply move to the second engine as we were
+> > only holding the breadcrumb lock on the first. So in commit 6c81e21a4742
+> > ("drm/i915/gt: Stage the transfer of the virtual breadcrumb"), we
+> > removed it from the first engine and marked up this request to reattach
+> > the signaling on the new engine. However, this failed to take into
+> > account that we only attach the breadcrumb if the new request is added
+> > at the start of the queue, which if we are transferring, it is because
+> > we know there to be a request to be signaled (and hence we would not be
+> > attached). In this second try, we remove from the first list under its
+> > lock, take ownership of the link, and then take the second lock to
+> > complete the transfer.
 > 
+> Overall just an optimisation not to call i915_request_enable_breadcrumb, 
+> I mean not add to the list indirectly?
+
+The request that we need to add already has its breadcrumb enabled. The
+request is on the veng->context.signals list, it's just that the veng is
+on siblings[0] signalers list and we are no longer guaranteed to
+generate an interrupt on engine.
+
+There's an explosion in the current code due to the lists not moving
+as expected on enabling the breadcrumb on the next request (because of
+                if (pos == &ce->signals) /* catch transitions from empty list */
+                        list_move_tail(&ce->signal_link, &b->signalers);
+
+)
+
+The explosion is on a dead list, but has on a couple of occasions looked
+like
+
+<4> [373.551331] RIP: 0010:i915_request_enable_breadcrumb+0x144/0x380 [i915]
+<4> [373.551341] Code: c7 c2 20 f1 42 c0 48 c7 c7 77 85 28 c0 e8 44 bc f2 ec bf 01 00 00 00 e8 5a 8e f2 ec 31 f6 bf 09 00 00 00 e8 6e 09 e3 ec 0f 0b <3b> 45 80 0f 89 5d ff ff ff 48 8b 6d 08 4c 39 e5 75 ee 49 8b 4d 38
+<4> [373.551356] RSP: 0018:ffffb64d0114b9f8 EFLAGS: 00010083
+<4> [373.551363] RAX: 00000000000036b2 RBX: ffffa310385096c0 RCX: 0000000000000003
+<4> [373.551372] RDX: 00000000000036b2 RSI: 000000002ac5cf63 RDI: 00000000ffffffff
+<4> [373.551379] RBP: dead000000000122 R08: ffffa31047075a50 R09: 00000000fffffffe
+<4> [373.551385] R10: 0000000053a90a70 R11: 000000005e84b7e5 R12: ffffa3103fde38c0
+<4> [373.551392] R13: ffffa3103fde3888 R14: ffffa30ff0982328 R15: ffffa30ff0982000
+<4> [373.551401] FS:  00007f19f3359e40(0000) GS:ffffa3104ed00000(0000) knlGS:0000000000000000
+<4> [373.551410] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [373.551414] CR2: 00007f19f2aac778 CR3: 0000000232b0c004 CR4: 00000000003606e0
+<4> [373.551421] Call Trace:
+<4> [373.551466]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+<4> [373.551506]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+<4> [373.551515]  __dma_fence_enable_signaling+0x60/0x160
+<4> [373.551558]  ? dma_i915_sw_fence_wake+0x40/0x40 [i915]
+<4> [373.551564]  dma_fence_add_callback+0x44/0xd0
+<4> [373.551605]  __i915_sw_fence_await_dma_fence+0x6f/0xc0 [i915]
+<4> [373.551665]  __i915_request_commit+0x442/0x5b0 [i915]
+<4> [373.551721]  i915_gem_do_execbuffer+0x17fb/0x2eb0 [i915]
+
+kasan/kcsan do not complain; it's just a broken list.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
