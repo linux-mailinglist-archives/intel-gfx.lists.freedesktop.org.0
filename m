@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B7A1CFF9E
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 22:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BED8A1CFFE2
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2020 22:54:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E597D6E03A;
-	Tue, 12 May 2020 20:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 580DA6E983;
+	Tue, 12 May 2020 20:54:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 593FE6E03A
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 May 2020 20:41:07 +0000 (UTC)
-IronPort-SDR: M2dNHPtkw7nVr8cUf5zV+d7801MRZeCtCTOkAVlelmJ8AF7gomSXGLseEPnZIp0uc2ubkj2/NO
- 6eFMbz+JsKkg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 13:41:06 -0700
-IronPort-SDR: GnTOQFepVQQcnyWENtuM/M92xBgu0DJIqPAm6OEiT/FK/We1wlF3Xs4o0RoCun99GWor5jnIXg
- b3ec7JMKQgdA==
-X-IronPort-AV: E=Sophos;i="5.73,385,1583222400"; d="scan'208";a="437233383"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2020 13:41:05 -0700
-Date: Tue, 12 May 2020 23:36:54 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200512203654.GA21397@intel.com>
-References: <20200507144503.15506-1-stanislav.lisovskiy@intel.com>
- <20200507144503.15506-4-stanislav.lisovskiy@intel.com>
- <20200512113925.GM6112@intel.com>
- <20200512124406.GA19632@intel.com>
- <20200512131433.GR6112@intel.com>
- <20200512132644.GA19773@intel.com>
- <20200512153238.GW6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2A2DD6E983;
+ Tue, 12 May 2020 20:54:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 238C5A011B;
+ Tue, 12 May 2020 20:54:00 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200512153238.GW6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v28 3/6] drm/i915: Make active_pipes check
- skl specific
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
+Date: Tue, 12 May 2020 20:54:00 -0000
+Message-ID: <158931684011.18140.11888552789073711858@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200512180050.6785-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20200512180050.6785-1-swathi.dhanavanthri@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ehl=3A_Restrict_w/a_1607087056_for_EHL/JSL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,205 +38,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 06:32:38PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, May 12, 2020 at 04:26:53PM +0300, Lisovskiy, Stanislav wrote:
-> > On Tue, May 12, 2020 at 04:14:33PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, May 12, 2020 at 03:44:06PM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Tue, May 12, 2020 at 02:39:25PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Thu, May 07, 2020 at 05:45:00PM +0300, Stanislav Lisovskiy wro=
-te:
-> > > > > > Seems that only skl needs to have SAGV turned off
-> > > > > > for multipipe scenarios, so lets do it this way.
-> > > > > =
+== Series Details ==
 
-> > > > > It doesn't afaics. It's just someone added the check for some ran=
-dom
-> > > > > reason. So this should be reworded a bit. Also this isn't just ab=
-out
-> > > > > skl/derivatives but all pre-icl so the <subject> is a bit mislead=
-ing too.
-> > > > =
+Series: drm/i915/ehl: Restrict w/a 1607087056 for EHL/JSL
+URL   : https://patchwork.freedesktop.org/series/77199/
+State : success
 
-> > > > This is in BSpec anyway. And it was in the code before, so I really =
+== Summary ==
 
-> > > > don't get what do you mean here.
-> > > > =
+CI Bug Log - changes from CI_DRM_8470_full -> Patchwork_17636_full
+====================================================
 
-> > > > > =
+Summary
+-------
 
-> > > > > > =
+  **SUCCESS**
 
-> > > > > > If anything blows up - we can always revert this patch.
-> > > > > > =
+  No regressions found.
 
-> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.c=
-om>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/intel_pm.c | 15 +++++++++------
-> > > > > >  drivers/gpu/drm/i915/intel_pm.h |  3 ++-
-> > > > > >  2 files changed, 11 insertions(+), 7 deletions(-)
-> > > > > > =
+  
 
-> > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/=
-i915/intel_pm.c
-> > > > > > index 3dc1ad66beb3..db188efee21e 100644
-> > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > > @@ -3777,7 +3777,7 @@ void intel_sagv_pre_plane_update(struct i=
-ntel_atomic_state *state)
-> > > > > >  	if (!new_bw_state)
-> > > > > >  		return;
-> > > > > >  =
+Possible new issues
+-------------------
 
-> > > > > > -	if (!intel_can_enable_sagv(new_bw_state))
-> > > > > > +	if (!intel_can_enable_sagv(dev_priv, new_bw_state))
-> > > > > >  		intel_disable_sagv(dev_priv);
-> > > > > >  }
-> > > > > >  =
+  Here are the unknown changes that may have been introduced in Patchwork_17636_full:
 
-> > > > > > @@ -3800,7 +3800,7 @@ void intel_sagv_post_plane_update(struct =
-intel_atomic_state *state)
-> > > > > >  	if (!new_bw_state)
-> > > > > >  		return;
-> > > > > >  =
+### IGT changes ###
 
-> > > > > > -	if (intel_can_enable_sagv(new_bw_state))
-> > > > > > +	if (intel_can_enable_sagv(dev_priv, new_bw_state))
-> > > > > >  		intel_enable_sagv(dev_priv);
-> > > > > >  }
-> > > > > >  =
+#### Suppressed ####
 
-> > > > > > @@ -3853,16 +3853,19 @@ static bool skl_crtc_can_enable_sagv(co=
-nst struct intel_crtc_state *crtc_state)
-> > > > > >  	return true;
-> > > > > >  }
-> > > > > >  =
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-> > > > > > -bool intel_can_enable_sagv(const struct intel_bw_state *bw_sta=
-te)
-> > > > > > +bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
-> > > > > > +			   const struct intel_bw_state *bw_state)
-> > > > > >  {
-> > > > > > -	if (bw_state->active_pipes && !is_power_of_2(bw_state->active=
-_pipes))
-> > > > > > -		return false;
-> > > > > > +	if (INTEL_GEN(dev_priv) < 11)
-> > > > > > +		if (bw_state->active_pipes && !is_power_of_2(bw_state->activ=
-e_pipes))
-> > > > > =
+  * {igt@kms_flip@flip-vs-suspend-interruptible@c-edp1}:
+    - shard-iclb:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-iclb3/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-iclb3/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
 
-> > > > > If (a && b && c)
-> > > > > 	return false;
-> > > > =
+  
+Known issues
+------------
 
-> > > > Then the line would get too long, and it does exactly same thing.
-> > > > I really don't understand such comments.
-> > > =
+  Here are the changes found in Patchwork_17636_full that come from known issues:
 
-> > > if (a && b &&
-> > >     c)
-> > > =
+### IGT changes ###
 
-> > > if (a &&
-> > >     b && c)
-> > > =
+#### Issues hit ####
 
-> > > if (a &&
-> > >     b &&
-> > >     c)
-> > > =
+  * igt@gem_eio@in-flight-suspend:
+    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-kbl6/igt@gem_eio@in-flight-suspend.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-kbl6/igt@gem_eio@in-flight-suspend.html
 
-> > > there are plenty of options. The point is nested ifs like this
-> > > only serve to indent code needlessly deep.
-> > =
+  * igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size:
+    - shard-hsw:          [PASS][5] -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-hsw8/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-hsw7/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html
 
-> > and ifs like if (long condition1 && long condition2 && ...) make =
+  * igt@kms_cursor_legacy@pipe-d-torture-bo:
+    - shard-tglb:         [PASS][7] -> [DMESG-WARN][8] ([i915#128])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-tglb7/igt@kms_cursor_legacy@pipe-d-torture-bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-tglb1/igt@kms_cursor_legacy@pipe-d-torture-bo.html
 
-> > unnecessary "wide". =
+  * igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt:
+    - shard-tglb:         [PASS][9] -> [SKIP][10] ([i915#668]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-tglb2/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-tglb6/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt.html
 
-> > =
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][11] -> [FAIL][12] ([fdo#108145] / [i915#265]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
 
-> > I would understand of course if I would do something like
-> > 3-4 nested ifs sure, however that one seems to be completely similar.
-> > =
+  * igt@kms_psr2_su@frontbuffer:
+    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109642] / [fdo#111068])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-iclb7/igt@kms_psr2_su@frontbuffer.html
 
-> > I don't even get why =
+  * igt@kms_psr@psr2_cursor_render:
+    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109441])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-iclb7/igt@kms_psr@psr2_cursor_render.html
 
-> > =
+  
+#### Possible fixes ####
 
-> > if (a &&
-> >     b && c)
-> =
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-apl:          [DMESG-WARN][17] ([i915#1436] / [i915#716]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-apl3/igt@gen9_exec_parse@allowed-all.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-apl2/igt@gen9_exec_parse@allowed-all.html
 
-> "if a and b and c then do stuff"
-> =
+  * igt@i915_selftest@live@gt_pm:
+    - shard-apl:          [INCOMPLETE][19] ([i915#1812]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-apl2/igt@i915_selftest@live@gt_pm.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-apl1/igt@i915_selftest@live@gt_pm.html
 
-> > =
+  * igt@kms_cursor_legacy@pipe-c-torture-bo:
+    - shard-hsw:          [DMESG-WARN][21] ([i915#128]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-hsw6/igt@kms_cursor_legacy@pipe-c-torture-bo.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-hsw1/igt@kms_cursor_legacy@pipe-c-torture-bo.html
 
-> > reads better than
-> > =
+  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
+    - shard-apl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +6 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-apl8/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-apl3/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
 
-> > if (a)
-> >    if(b && c)
-> =
+  * {igt@kms_flip@flip-vs-suspend@c-dp1}:
+    - shard-kbl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +2 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-kbl7/igt@kms_flip@flip-vs-suspend@c-dp1.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-kbl7/igt@kms_flip@flip-vs-suspend@c-dp1.html
 
-> "if a then if b and c then do stuff"
-> =
+  * {igt@kms_flip@plain-flip-ts-check@a-hdmi-a1}:
+    - shard-glk:          [FAIL][27] ([i915#34]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-glk8/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-glk7/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html
 
-> The first one definitely sounds better to my ears. Not sure
-> the second one can even be called English.
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [FAIL][29] ([i915#1188]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-skl9/igt@kms_hdr@bpc-switch-suspend.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-skl5/igt@kms_hdr@bpc-switch-suspend.html
 
-It is just a game of words here. You can also spell logical
-expression like a && b && c, as "if a evaluates to True then
-if b evaluates to true then if c evaluates to true, then do stuff".
+  * igt@kms_psr@psr2_suspend:
+    - shard-iclb:         [SKIP][31] ([fdo#109441]) -> [PASS][32] +2 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-iclb3/igt@kms_psr@psr2_suspend.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-iclb2/igt@kms_psr@psr2_suspend.html
 
-Those expressions most likely produce same assembly even,
-so basically you can spell both same way either.
+  * {igt@perf@blocking-parameterized}:
+    - shard-hsw:          [FAIL][33] ([i915#1542]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-hsw8/igt@perf@blocking-parameterized.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-hsw7/igt@perf@blocking-parameterized.html
 
-So this arguing is honestly all about your personal matter of taste.
-Which is fine I mean, everyone can write code according to own
-preference unless it violates some _well known_ and _formal_ conventions.
+  
+#### Warnings ####
 
-Like of course I do realize that doing something like:
+  * igt@kms_content_protection@atomic:
+    - shard-apl:          [TIMEOUT][35] ([i915#1319]) -> [FAIL][36] ([fdo#110321] / [fdo#110336])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-apl1/igt@kms_content_protection@atomic.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-apl1/igt@kms_content_protection@atomic.html
 
-if (a)
-  if(b)
-    if(c)
-      ...
+  * igt@kms_content_protection@srm:
+    - shard-apl:          [TIMEOUT][37] ([i915#1319]) -> [FAIL][38] ([fdo#110321])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8470/shard-apl3/igt@kms_content_protection@srm.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/shard-apl7/igt@kms_content_protection@srm.html
 
-is stupid, however that would be exaggeration to say
-that I'm doing something like this here.
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-For example I really don't like long lines in =
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
+  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#128]: https://gitlab.freedesktop.org/drm/intel/issues/128
+  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1812]: https://gitlab.freedesktop.org/drm/intel/issues/1812
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
 
-conditions like (if verylongstuff && verylongstuff2 && ..)
-neither those hanging && like
 
-if (somestuff &&
-    somestuff2 ||
-    somestuff3)
+Participating hosts (11 -> 11)
+------------------------------
 
-to me the latter is way more horrible than
+  No changes in participating hosts
 
-if (somestuff)
-   if (somestuff2 || somestuff3)
 
-which looks much more clear to me. Again imho..
+Build changes
+-------------
 
-Stan
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8470 -> Patchwork_17636
 
-> =
+  CI-20190529: 20190529
+  CI_DRM_8470: d2c5ae86eac811c49f2fe22c4fa02b6e6d31cd67 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5651: e54e2642f1967ca3c488db32264607df670d1dfb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17636: d26f548aa0bd59e4dc4853eb2345620768d7fd9a @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
-> -- =
+== Logs ==
 
-> Ville Syrj=E4l=E4
-> Intel
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17636/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
