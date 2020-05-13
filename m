@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5A11D0E91
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 12:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBB621D0F57
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 12:09:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57B7E6E147;
-	Wed, 13 May 2020 10:01:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4BD6E9F6;
+	Wed, 13 May 2020 10:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC426E147
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 10:01:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21184446-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 11:01:21 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 11:01:20 +0100
-Message-Id: <20200513100120.11617-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D456C6E9F6;
+ Wed, 13 May 2020 10:09:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CE1FFA0019;
+ Wed, 13 May 2020 10:09:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Reset execlists registers before HWSP
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 13 May 2020 10:09:16 -0000
+Message-ID: <158936455681.25405.11704065029745964240@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_SAGV_support_for_Gen12+_=28rev37=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,68 +38,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Upon gt resume, we first poison then sanitize the engine. However, our
-testing shows that gen9 will very rarely retain the poisoned value from
-the HWSP mappings of the execlists status registers. This suggests that
-it is reading back from the HWSP, so rejig the register reset.
+== Series Details ==
 
-v2: Maybe RING_CONTEXT_STATUS_PTR is write masked. It is.
+Series: SAGV support for Gen12+ (rev37)
+URL   : https://patchwork.freedesktop.org/series/75129/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 15716e4d6b76..32feb2a27dfc 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3938,6 +3938,14 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
- 
- 	ring_set_paused(engine, 0);
- 
-+	/*
-+	 * Sometimes Icelake forgets to reset its pointers on a GPU reset.
-+	 * Bludgeon them with a mmio update to be sure.
-+	 */
-+	ENGINE_WRITE(engine, RING_CONTEXT_STATUS_PTR,
-+		     0xffff << 16 | reset_value << 8 | reset_value);
-+	ENGINE_POSTING_READ(engine, RING_CONTEXT_STATUS_PTR);
-+
- 	/*
- 	 * After a reset, the HW starts writing into CSB entry [0]. We
- 	 * therefore have to set our HEAD pointer back one entry so that
-@@ -3951,16 +3959,15 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
- 	WRITE_ONCE(*execlists->csb_write, reset_value);
- 	wmb(); /* Make sure this is visible to HW (paranoia?) */
- 
--	/*
--	 * Sometimes Icelake forgets to reset its pointers on a GPU reset.
--	 * Bludgeon them with a mmio update to be sure.
--	 */
-+	invalidate_csb_entries(&execlists->csb_status[0],
-+			       &execlists->csb_status[reset_value]);
-+
-+	/* Once more for luck and our trusty paranoia */
- 	ENGINE_WRITE(engine, RING_CONTEXT_STATUS_PTR,
--		     reset_value << 8 | reset_value);
-+		     0xffff << 16 | reset_value << 8 | reset_value);
- 	ENGINE_POSTING_READ(engine, RING_CONTEXT_STATUS_PTR);
- 
--	invalidate_csb_entries(&execlists->csb_status[0],
--			       &execlists->csb_status[reset_value]);
-+	GEM_BUG_ON(READ_ONCE(*execlists->csb_write) != reset_value);
- }
- 
- static void execlists_sanitize(struct intel_engine_cs *engine)
--- 
-2.20.1
+$ dim checkpatch origin/drm-tip
+1a28a5c25a7d drm/i915: Introduce skl_plane_wm_level accessor.
+c93186da4f39 drm/i915: Extract skl SAGV checking
+197c503f86b0 drm/i915: Make active_pipes check skl specific
+-:64: WARNING:LONG_LINE: line over 100 characters
+#64: FILE: drivers/gpu/drm/i915/intel_pm.c:3907:
++	if (intel_can_enable_sagv(dev_priv, new_bw_state) != intel_can_enable_sagv(dev_priv, old_bw_state)) {
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+452bb4194c02 drm/i915: Add TGL+ SAGV support
+-:247: WARNING:LONG_LINE: line over 100 characters
+#247: FILE: drivers/gpu/drm/i915/intel_pm.c:5767:
++				    enast(old_wm->sagv_wm0.ignore_lines), old_wm->sagv_wm0.plane_res_l,
+
+-:256: WARNING:LONG_LINE: line over 100 characters
+#256: FILE: drivers/gpu/drm/i915/intel_pm.c:5777:
++				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res_l,
+
+-:257: WARNING:LONG_LINE: line over 100 characters
+#257: FILE: drivers/gpu/drm/i915/intel_pm.c:5778:
++				    enast(new_wm->sagv_wm0.ignore_lines), new_wm->sagv_wm0.plane_res_l);
+
+total: 0 errors, 3 warnings, 0 checks, 255 lines checked
+60649b3d025e drm/i915: Restrict qgv points which don't have enough bandwidth.
+-:319: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#319: FILE: drivers/gpu/drm/i915/display/intel_bw.c:529:
++		drm_dbg_kms(&dev_priv->drm, "No SAGV, using single QGV point %d\n",
++			      max_bw_point);
+
+total: 0 errors, 0 warnings, 1 checks, 306 lines checked
+dcde82c42f62 drm/i915: Enable SAGV support for Gen12
 
 _______________________________________________
 Intel-gfx mailing list
