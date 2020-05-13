@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49B21D15FF
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB5D1D162D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520126EA2F;
-	Wed, 13 May 2020 13:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E48D46E1F5;
+	Wed, 13 May 2020 13:44:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424466EA2F
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:41:33 +0000 (UTC)
-IronPort-SDR: ebNyRkgCaXrDsmfBdWlmxpRS6sPsR709/Q3HuguwMF7JZ90/mwLR8WV3c4e3YYizVOOeMbLAMb
- MaDxdEbV/RVg==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1574A6E1F5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:44:16 +0000 (UTC)
+IronPort-SDR: wVhslDZJZ6FFnc8DEtutVL9101c+GchYZhCvTBzOfs1E3Ob1qHvxvxulOFfZv3N5oAqtXPu6bk
+ UcnXAE0ZRRKA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 06:41:32 -0700
-IronPort-SDR: WAIBw0fcHqgLxwabqYQMdSQtq5kDfDFYJxx9ioEkPf6psBNTSTVSKFfTNCLV1Xuvg4US/8jhUP
- uPMH1Es5L2BQ==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2020 06:44:15 -0700
+IronPort-SDR: uh6qPM99jYtHMFazpl42ZP93OgM6Xc8TqSUK6TPvHIalGg58NJIBsGoNzxOaEGI3nTWwGb6SbD
+ /puGeLz6rSIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="253197911"
+X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="265875967"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 13 May 2020 06:41:30 -0700
+ by orsmga006.jf.intel.com with SMTP; 13 May 2020 06:44:13 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 May 2020 16:41:29 +0300
-Date: Wed, 13 May 2020 16:41:29 +0300
+ Wed, 13 May 2020 16:44:12 +0300
+Date: Wed, 13 May 2020 16:44:12 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200513134129.GF6112@intel.com>
+Message-ID: <20200513134412.GG6112@intel.com>
 References: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
- <20200513093816.11466-5-stanislav.lisovskiy@intel.com>
+ <20200513093816.11466-6-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200513093816.11466-5-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200513093816.11466-6-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v29 4/6] drm/i915: Add TGL+ SAGV support
+Subject: Re: [Intel-gfx] [PATCH v29 5/6] drm/i915: Restrict qgv points which
+ don't have enough bandwidth.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,419 +58,222 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 13, 2020 at 12:38:14PM +0300, Stanislav Lisovskiy wrote:
-> Starting from TGL we need to have a separate wm0
-> values for SAGV and non-SAGV which affects
-> how calculations are done.
+On Wed, May 13, 2020 at 12:38:15PM +0300, Stanislav Lisovskiy wrote:
+> According to BSpec 53998, we should try to
+> restrict qgv points, which can't provide
+> enough bandwidth for desired display configuration.
 > =
 
-> v2: Remove long lines
-> v3: Removed COLOR_PLANE enum references
-> v4, v5, v6: Fixed rebase conflict
-> v7: - Removed skl_plane_wm_level accessor from skl_allocate_pipe_ddb(Vill=
-e)
->     - Removed sagv_uv_wm0(Ville)
->     - can_sagv->use_sagv_wm(Ville)
+> Currently we are just comparing against all of
+> those and take minimum(worst case).
 > =
 
-> v8: - Moved tgl_crtc_can_enable_sagv function up(Ville)
->     - Changed comment regarding pipe_wm usage(Ville)
->     - Call intel_can_enable_sagv and tgl_compute_sagv_wm only
->       for Gen12(Ville)
->     - Some sagv debugs removed(Ville)
->     - skl_print_wm_changes improvements(Ville)
->     - Do assignment instead of memcpy in
->       skl_pipe_wm_get_hw_state(Ville)
+> v2: Fixed wrong PCode reply mask, removed hardcoded
+>     values.
+> =
+
+> v3: Forbid simultaneous legacy SAGV PCode requests and
+>     restricting qgv points. Put the actual restriction
+>     to commit function, added serialization(thanks to Ville)
+>     to prevent commit being applied out of order in case of
+>     nonblocking and/or nomodeset commits.
+> =
+
+> v4:
+>     - Minor code refactoring, fixed few typos(thanks to James Ausmus)
+>     - Change the naming of qgv point
+>       masking/unmasking functions(James Ausmus).
+>     - Simplify the masking/unmasking operation itself,
+>       as we don't need to mask only single point per request(James Ausmus)
+>     - Reject and stick to highest bandwidth point if SAGV
+>       can't be enabled(BSpec)
+> =
+
+> v5:
+>     - Add new mailbox reply codes, which seems to happen during boot
+>       time for TGL and indicate that QGV setting is not yet available.
+> =
+
+> v6:
+>     - Increase number of supported QGV points to be in sync with BSpec.
+> =
+
+> v7: - Rebased and resolved conflict to fix build failure.
+>     - Fix NUM_QGV_POINTS to 8 and moved that to header file(James Ausmus)
+> =
+
+> v8: - Don't report an error if we can't restrict qgv points, as SAGV
+>       can be disabled by BIOS, which is completely legal. So don't
+>       make CI panic. Instead if we detect that there is only 1 QGV
+>       point accessible just analyze if we can fit the required bandwidth
+>       requirements, but no need in restricting.
+> =
+
+> v9: - Fix wrong QGV transition if we have 0 planes and no SAGV
+>       simultaneously.
+> =
+
+> v10: - Fix CDCLK corruption, because of global state getting serialized
+>        without modeset, which caused copying of non-calculated cdclk
+>        to be copied to dev_priv(thanks to Ville for the hint).
+> =
+
+> v11: - Remove unneeded headers and spaces(Matthew Roper)
+>      - Remove unneeded intel_qgv_info qi struct from bw check and zero
+>        out the needed one(Matthew Roper)
+>      - Changed QGV error message to have more clear meaning(Matthew Roper)
+>      - Use state->modeset_set instead of any_ms(Matthew Roper)
+>      - Moved NUM_SAGV_POINTS from i915_reg.h to i915_drv.h where it's used
+>      - Keep using crtc_state->hw.active instead of .enable(Matthew Roper)
+>      - Moved unrelated changes to other patch(using latency as parameter
+>        for plane wm calculation, moved to SAGV refactoring patch)
+> =
+
+> v12: - Fix rebase conflict with own temporary SAGV/QGV fix.
+>      - Remove unnecessary mask being zero check when unmasking
+>        qgv points as this is completely legal(Matt Roper)
+>      - Check if we are setting the same mask as already being set
+>        in hardware to prevent error from PCode.
+>      - Fix error message when restricting/unrestricting qgv points
+>        to "mask/unmask" which sounds more accurate(Matt Roper)
+>      - Move sagv status setting to icl_get_bw_info from atomic check
+>        as this should be calculated only once.(Matt Roper)
+>      - Edited comments for the case when we can't enable SAGV and
+>        use only 1 QGV point with highest bandwidth to be more
+>        understandable.(Matt Roper)
+> =
+
+> v13: - Moved max_data_rate in bw check to closer scope(Ville Syrj=E4l=E4)
+>      - Changed comment for zero new_mask in qgv points masking function
+>        to better reflect reality(Ville Syrj=E4l=E4)
+>      - Simplified bit mask operation in qgv points masking function
+>        (Ville Syrj=E4l=E4)
+>      - Moved intel_qgv_points_mask closer to gen11 SAGV disabling,
+>        however this still can't be under modeset condition(Ville Syrj=E4l=
+=E4)
+>      - Packed qgv_points_mask as u8 and moved closer to pipe_sagv_mask
+>        (Ville Syrj=E4l=E4)
+>      - Extracted PCode changes to separate patch.(Ville Syrj=E4l=E4)
+>      - Now treat num_planes 0 same as 1 to avoid confusion and
+>        returning max_bw as 0, which would prevent choosing QGV
+>        point having max bandwidth in case if SAGV is not allowed,
+>        as per BSpec(Ville Syrj=E4l=E4)
+>      - Do the actual qgv_points_mask swap in the same place as
+>        all other global state parts like cdclk are swapped.
+>        In the next patch, this all will be moved to bw state as
+>        global state, once new global state patch series from Ville
+>        lands
+> =
+
+> v14: - Now using global state to serialize access to qgv points
+>      - Added global state locking back, otherwise we seem to read
+>        bw state in a wrong way.
+> =
+
+> v15: - Added TODO comment for near atomic global state locking in
+>        bw code.
+> =
+
+> v16: - Fixed intel_atomic_bw_* functions to be intel_bw_* as discussed
+>        with Jani Nikula.
+>      - Take bw_state_changed flag into use.
+> =
+
+> v17: - Moved qgv point related manipulations next to SAGV code, as
+>        those are semantically related(Ville Syrj=E4l=E4)
+>      - Renamed those into intel_sagv_(pre)|(post)_plane_update
+>        (Ville Syrj=E4l=E4)
+> =
+
+> v18: - Move sagv related calls from commit tail into
+>        intel_sagv_(pre)|(post)_plane_update(Ville Syrj=E4l=E4)
+> =
+
+> v19: - Use intel_atomic_get_bw_(old)|(new)_state which is intended
+>        for commit tail stage.
+> =
+
+> v20: - Return max bandwidth for 0 planes(Ville)
+>      - Constify old_bw_state in bw_atomic_check(Ville)
+>      - Removed some debugs(Ville)
+>      - Added data rate to debug print when no QGV points(Ville)
+>      - Removed some comments(Ville)
+> =
+
+> v21, v22, v23: - Fixed rebase conflict
+> =
+
+> v24: - Changed PCode mask to use ICL_ prefix
+> v25: - Resolved rebase conflict
+> =
+
+> v26: - Removed redundant NULL checks(Ville)
+>      - Removed redundant error prints(Ville)
 > =
 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> Cc: James Ausmus <james.ausmus@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
->  .../drm/i915/display/intel_display_types.h    |   2 +
->  drivers/gpu/drm/i915/intel_pm.c               | 112 +++++++++++++++---
->  3 files changed, 103 insertions(+), 19 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bw.c       | 137 +++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_bw.h       |   9 ++
+>  .../drm/i915/display/intel_display_types.h    |   3 +
+>  drivers/gpu/drm/i915/intel_pm.c               |  54 ++++++-
+>  drivers/gpu/drm/i915/intel_pm.h               |   2 +
+>  5 files changed, 167 insertions(+), 38 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index fd6d63b03489..be5741cb7595 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13961,7 +13961,9 @@ static void verify_wm_state(struct intel_crtc *cr=
-tc,
->  		/* Watermarks */
->  		for (level =3D 0; level <=3D max_level; level++) {
->  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> -						&sw_plane_wm->wm[level]))
-> +						&sw_plane_wm->wm[level]) ||
-> +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> +							       &sw_plane_wm->sagv_wm0)))
->  				continue;
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
+15/display/intel_bw.c
+> index 6e7cc3a4f1aa..d28ca4d0b1c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -8,6 +8,9 @@
+>  #include "intel_bw.h"
+>  #include "intel_display_types.h"
+>  #include "intel_sideband.h"
+> +#include "intel_atomic.h"
+> +#include "intel_pm.h"
+> +
 >  =
 
->  			drm_err(&dev_priv->drm,
-> @@ -14016,7 +14018,9 @@ static void verify_wm_state(struct intel_crtc *cr=
-tc,
->  		/* Watermarks */
->  		for (level =3D 0; level <=3D max_level; level++) {
->  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
-> -						&sw_plane_wm->wm[level]))
-> +						&sw_plane_wm->wm[level]) ||
-> +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> +							       &sw_plane_wm->sagv_wm0)))
->  				continue;
->  =
-
->  			drm_err(&dev_priv->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 9488449e4b94..8cede29c9562 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -688,11 +688,13 @@ struct skl_plane_wm {
->  	struct skl_wm_level wm[8];
->  	struct skl_wm_level uv_wm[8];
->  	struct skl_wm_level trans_wm;
-> +	struct skl_wm_level sagv_wm0;
->  	bool is_planar;
->  };
->  =
-
->  struct skl_pipe_wm {
->  	struct skl_plane_wm planes[I915_MAX_PLANES];
-> +	bool use_sagv_wm;
->  };
->  =
-
->  enum vlv_wm_level {
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index de0f8cede59c..1f253db3b7c0 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3853,9 +3853,39 @@ static bool skl_crtc_can_enable_sagv(const struct =
-intel_crtc_state *crtc_state)
->  	return true;
->  }
->  =
-
-> +static bool tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc=
-_state)
-> +{
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	enum plane_id plane_id;
-> +
-> +	if (!crtc_state->hw.active)
-> +		return true;
-> +
-> +	for_each_plane_id_on_crtc(crtc, plane_id) {
-> +		const struct skl_ddb_entry *plane_alloc =3D
-> +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> +		const struct skl_plane_wm *wm =3D
-> +			&crtc_state->wm.skl.optimal.planes[plane_id];
-> +
-> +		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_alloc)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *cr=
-tc_state)
->  {
-> -	return skl_crtc_can_enable_sagv(crtc_state);
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> +	bool can_sagv;
-> +
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		can_sagv =3D tgl_crtc_can_enable_sagv(crtc_state);
-> +	else
-> +		can_sagv =3D skl_crtc_can_enable_sagv(crtc_state);
-> +
-> +	return can_sagv;
-
-nit: pointless variable. Just
-
-if (gen>=3D12)
-	return tgl...();
-else
-	return skl...()
-
-would do.
-
->  }
->  =
-
->  bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
-> @@ -3873,7 +3903,7 @@ static int intel_compute_sagv_mask(struct intel_ato=
-mic_state *state)
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
->  	int ret;
->  	struct intel_crtc *crtc;
-> -	const struct intel_crtc_state *new_crtc_state;
-> +	struct intel_crtc_state *new_crtc_state;
->  	struct intel_bw_state *new_bw_state =3D NULL;
->  	const struct intel_bw_state *old_bw_state =3D NULL;
->  	int i;
-> @@ -3904,6 +3934,20 @@ static int intel_compute_sagv_mask(struct intel_at=
-omic_state *state)
->  			return ret;
->  	}
->  =
-
-> +	for_each_new_intel_crtc_in_state(state, crtc,
-> +					 new_crtc_state, i) {
-> +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.optimal;
-> +
-> +		/*
-> +		 * We store use_sagv_wm in the crtc state rather than relying on
-> +		 * that bw state since we have no convenient way to get at the
-> +		 * latter from the plane commit hooks (especially in the legacy
-> +		 * cursor case)
-> +		 */
-> +		pipe_wm->use_sagv_wm =3D INTEL_GEN(dev_priv) >=3D 12 &&
-> +				       intel_can_enable_sagv(dev_priv, new_bw_state);
-> +	}
-> +
->  	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=3D intel_can_enable=
-_sagv(dev_priv, old_bw_state)) {
->  		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
->  		if (ret)
-> @@ -4646,8 +4690,11 @@ skl_plane_wm_level(const struct intel_crtc_state *=
-crtc_state,
->  		   enum plane_id plane_id,
->  		   int level)
->  {
-> -	const struct skl_plane_wm *wm =3D
-> -		&crtc_state->wm.skl.optimal.planes[plane_id];
-> +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
-> +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
-> +
-> +	if (level =3D=3D 0 && pipe_wm->use_sagv_wm)
-> +		return &wm->sagv_wm0;
->  =
-
->  	return &wm->wm[level];
->  }
-> @@ -4688,7 +4735,6 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crtc=
-_state)
->  							 plane_data_rate,
->  							 uv_plane_data_rate);
->  =
-
-> -
->  	skl_ddb_get_pipe_allocation_limits(dev_priv, crtc_state, total_data_rat=
-e,
->  					   alloc, &num_active);
->  	alloc_size =3D skl_ddb_entry_size(alloc);
-> @@ -5223,6 +5269,22 @@ skl_compute_wm_levels(const struct intel_crtc_stat=
-e *crtc_state,
->  	}
->  }
->  =
-
-> +static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_stat=
-e,
-> +				const struct skl_wm_params *wm_params,
-> +				struct skl_plane_wm *plane_wm)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> +	struct skl_wm_level *sagv_wm =3D &plane_wm->sagv_wm0;
-> +	struct skl_wm_level *levels =3D plane_wm->wm;
-> +
-
-Spurious empty line.
-
-> +	u32 latency =3D dev_priv->wm.skl_latency[0];
-
-A few more nits here:
-
-I think we went with 'unsigned int 'in most places?
-
-> +
-> +	latency +=3D dev_priv->sagv_block_time_us;
-
-Single statement
-
-unsigned int latency =3D a + b;
-
-would be less confusing imo.
-
-
-> +	skl_compute_plane_wm(crtc_state, 0, latency,
-> +			     wm_params, &levels[0],
-
-Hmm. Wonder if we should pass this or sagv_wm itself
-as result_prev. I guess in theory we should never hit
-the relevant checks since sagv_wm should get a higher
-watermark than wm0 anyway. So probably fine this way.
-
-> +			     sagv_wm);
-> +}
-> +
->  static void skl_compute_transition_wm(const struct intel_crtc_state *crt=
-c_state,
->  				      const struct skl_wm_params *wp,
->  				      struct skl_plane_wm *wm)
-> @@ -5290,6 +5352,8 @@ static int skl_build_plane_wm_single(struct intel_c=
-rtc_state *crtc_state,
->  				     const struct intel_plane_state *plane_state,
->  				     enum plane_id plane_id, int color_plane)
->  {
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	struct skl_plane_wm *wm =3D &crtc_state->wm.skl.optimal.planes[plane_id=
-];
->  	struct skl_wm_params wm_params;
->  	int ret;
-> @@ -5300,6 +5364,10 @@ static int skl_build_plane_wm_single(struct intel_=
-crtc_state *crtc_state,
->  		return ret;
->  =
-
->  	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> +
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		tgl_compute_sagv_wm(crtc_state, &wm_params, wm);
-> +
->  	skl_compute_transition_wm(crtc_state, &wm_params, wm);
->  =
-
+>  /* Parameters for Qclk Geyserville (QGV) */
+>  struct intel_qgv_point {
+> @@ -113,6 +116,26 @@ static int icl_pcode_read_qgv_point_info(struct drm_=
+i915_private *dev_priv,
 >  	return 0;
-> @@ -5666,23 +5734,25 @@ skl_print_wm_changes(struct intel_atomic_state *s=
-tate)
->  				continue;
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
-> -				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6=
-,%cwm7,%ctwm"
-> -				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm\n",
-> +				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6=
-,%cwm7,%ctwm,%cswm"
-> +				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm=
-\n",
->  				    plane->base.base.id, plane->base.name,
->  				    enast(old_wm->wm[0].plane_en), enast(old_wm->wm[1].plane_en),
->  				    enast(old_wm->wm[2].plane_en), enast(old_wm->wm[3].plane_en),
->  				    enast(old_wm->wm[4].plane_en), enast(old_wm->wm[5].plane_en),
->  				    enast(old_wm->wm[6].plane_en), enast(old_wm->wm[7].plane_en),
->  				    enast(old_wm->trans_wm.plane_en),
-> +				    enast(old_wm->sagv_wm0.plane_en),
->  				    enast(new_wm->wm[0].plane_en), enast(new_wm->wm[1].plane_en),
->  				    enast(new_wm->wm[2].plane_en), enast(new_wm->wm[3].plane_en),
->  				    enast(new_wm->wm[4].plane_en), enast(new_wm->wm[5].plane_en),
->  				    enast(new_wm->wm[6].plane_en), enast(new_wm->wm[7].plane_en),
-> -				    enast(new_wm->trans_wm.plane_en));
-> +				    enast(new_wm->trans_wm.plane_en),
-> +				    enast(new_wm->sagv_wm0.plane_en));
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
-> -				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
-,%c%3d,%c%3d"
-> -				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d\n",
-> +				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
-,%c%3d,%c%3d,%c%3d"
-> +				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%=
-3d\n",
->  				    plane->base.base.id, plane->base.name,
->  				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].plane_res_l,
->  				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].plane_res_l,
-> @@ -5693,6 +5763,7 @@ skl_print_wm_changes(struct intel_atomic_state *sta=
-te)
->  				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].plane_res_l,
->  				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].plane_res_l,
->  				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.plane_res=
-_l,
-> +				    enast(old_wm->sagv_wm0.ignore_lines), old_wm->sagv_wm0.plane_res=
-_l,
->  =
-
->  				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].plane_res_l,
->  				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].plane_res_l,
-> @@ -5702,37 +5773,42 @@ skl_print_wm_changes(struct intel_atomic_state *s=
-tate)
->  				    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].plane_res_l,
->  				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].plane_res_l,
->  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res_l,
-> -				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res=
-_l);
-> +				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res=
-_l,
-> +				    enast(new_wm->sagv_wm0.ignore_lines), new_wm->sagv_wm0.plane_res=
-_l);
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
-> -				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> -				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> +				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> +				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
->  				    plane->base.base.id, plane->base.name,
->  				    old_wm->wm[0].plane_res_b, old_wm->wm[1].plane_res_b,
->  				    old_wm->wm[2].plane_res_b, old_wm->wm[3].plane_res_b,
->  				    old_wm->wm[4].plane_res_b, old_wm->wm[5].plane_res_b,
->  				    old_wm->wm[6].plane_res_b, old_wm->wm[7].plane_res_b,
->  				    old_wm->trans_wm.plane_res_b,
-> +				    old_wm->sagv_wm0.plane_res_b,
->  				    new_wm->wm[0].plane_res_b, new_wm->wm[1].plane_res_b,
->  				    new_wm->wm[2].plane_res_b, new_wm->wm[3].plane_res_b,
->  				    new_wm->wm[4].plane_res_b, new_wm->wm[5].plane_res_b,
->  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
-> -				    new_wm->trans_wm.plane_res_b);
-> +				    new_wm->trans_wm.plane_res_b,
-> +				    new_wm->sagv_wm0.plane_res_b);
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
-> -				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> -				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
-> +				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> +				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
->  				    plane->base.base.id, plane->base.name,
->  				    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
->  				    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
->  				    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
->  				    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
->  				    old_wm->trans_wm.min_ddb_alloc,
-> +				    old_wm->sagv_wm0.min_ddb_alloc,
->  				    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
->  				    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
->  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
->  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
-> -				    new_wm->trans_wm.min_ddb_alloc);
-> +				    new_wm->trans_wm.min_ddb_alloc,
-> +				    new_wm->sagv_wm0.min_ddb_alloc);
->  		}
->  	}
 >  }
-> @@ -6025,6 +6101,8 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *cr=
-tc,
->  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
->  		}
 >  =
 
-> +		wm->sagv_wm0 =3D wm->wm[0];
-
-This should probably have a gen>=3D12 check too since we only compute
-it for tgl+ now.
-
-If nothing else it should work as a good reminder that we need to
-adjust this code again in the near future for the next gen.
-
-Apart from that, and the small nits above, the rest looks nice.
-
+> +int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+> +				  u32 points_mask)
+> +{
+> +	int ret;
 > +
->  		if (plane_id !=3D PLANE_CURSOR)
->  			val =3D I915_READ(PLANE_WM_TRANS(pipe, plane_id));
->  		else
-> -- =
+> +	/* bspec says to keep retrying for at least 1 ms */
+> +	ret =3D skl_pcode_request(dev_priv, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
+> +				points_mask,
+> +				ICL_PCODE_POINTS_RESTRICTED_MASK,
+> +				ICL_PCODE_POINTS_RESTRICTED,
+> +				1);
+> +
+> +	if (ret < 0) {
+> +		DRM_ERROR("Failed to disable qgv points (%d)\n", ret);
 
-> 2.24.1.485.gad05a3d8e5
+Pls use the per-device logging. drm_err() or whatever it's called.
+
+Apart from that (and the checkpatch issue ci reported) this looks
+ready to go in.
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			      struct intel_qgv_info *qi)
+>  {
 
 -- =
 
