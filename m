@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB561D0A34
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 09:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D70A1D0A29
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 09:48:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9093A6E9A4;
-	Wed, 13 May 2020 07:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5614F6E98C;
+	Wed, 13 May 2020 07:48:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE3606E980
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 507666E984
  for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 07:48:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21182453-1500050 
- for multiple; Wed, 13 May 2020 08:48:15 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21182454-1500050 
+ for multiple; Wed, 13 May 2020 08:48:16 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 08:47:58 +0100
-Message-Id: <20200513074809.18194-13-chris@chris-wilson.co.uk>
+Date: Wed, 13 May 2020 08:47:59 +0100
+Message-Id: <20200513074809.18194-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200513074809.18194-1-chris@chris-wilson.co.uk>
 References: <20200513074809.18194-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/24] drm/i915/gt: Use built-in active
- intel_context reference
+Subject: [Intel-gfx] [PATCH 14/24] drm/i915: Drop I915_RESET_TIMEOUT and
+ friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,35 +45,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since a few rearragements ago, we have an explicit reference to the
-containing intel_context from inside the active reference and can drop
-our own reference handling dancing around releasing the i915_active.
+These were used to set various timeouts for the reset procedure
+(deciding when the engine was dead, and even if the reset itself was not
+making forward progress). No longer used.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c | 8 --------
- 1 file changed, 8 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index e4aece20bc80..e9b754b317bb 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -155,15 +155,7 @@ void intel_context_unpin(struct intel_context *ce)
- 	CE_TRACE(ce, "unpin\n");
- 	ce->ops->unpin(ce);
- 
--	/*
--	 * Once released, we may asynchronously drop the active reference.
--	 * As that may be the only reference keeping the context alive,
--	 * take an extra now so that it is not freed before we finish
--	 * dereferencing it.
--	 */
--	intel_context_get(ce);
- 	intel_context_active_release(ce);
--	intel_context_put(ce);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 98dc8cdf2c38..631d31bc2313 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -625,13 +625,6 @@ i915_fence_timeout(const struct drm_i915_private *i915)
+ 	return i915_fence_context_timeout(i915, U64_MAX);
  }
  
- static int __context_pin_state(struct i915_vma *vma)
+-#define I915_RESET_TIMEOUT (10 * HZ) /* 10s */
+-
+-#define I915_ENGINE_DEAD_TIMEOUT  (4 * HZ)  /* Seqno, head and subunits dead */
+-#define I915_SEQNO_DEAD_TIMEOUT   (12 * HZ) /* Seqno dead with active head */
+-
+-#define I915_ENGINE_WEDGED_TIMEOUT  (60 * HZ)  /* Reset but no recovery? */
+-
+ /* Amount of SAGV/QGV points, BSpec precisely defines this */
+ #define I915_NUM_QGV_POINTS 8
+ 
 -- 
 2.20.1
 
