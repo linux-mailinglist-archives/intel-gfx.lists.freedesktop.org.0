@@ -1,42 +1,100 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C12B1D1481
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:19:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7411D151E
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:33:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FAEB6E02B;
-	Wed, 13 May 2020 13:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 855BF6EA34;
+	Wed, 13 May 2020 13:33:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE7256E02B;
- Wed, 13 May 2020 13:19:17 +0000 (UTC)
-IronPort-SDR: OHna3Yh+8UqpZO2R6JQVjCdBTCEPG2vnvFtiXWS8iJYRgYKtNz3tOWdTEOQ/mrFsTCRPDcO1s3
- x5+riFaBpcAA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 06:19:13 -0700
-IronPort-SDR: 3UbGgiwLA854kUDbnK4cu281hqldfRRf8q8GpmRNdW7Xc/ja0syjGpm+ver+HVxBDQTdlJDkQz
- K9VXuvzX53KQ==
-X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="437495750"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 06:19:12 -0700
-Date: Wed, 13 May 2020 16:19:08 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200513131908.GA2729@ideak-desk.fi.intel.com>
-References: <20200513103155.12336-1-imre.deak@intel.com>
- <20200513124858.GD6112@intel.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200513124858.GD6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/dp_mst: Fix timeout handling of MST
- down messages
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com
+ [210.118.77.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9CE26EA33
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:33:06 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20200513133305euoutp014f259556328af2e48ad86f8b526b8238~OmcP90opQ2234622346euoutp01L
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:33:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20200513133305euoutp014f259556328af2e48ad86f8b526b8238~OmcP90opQ2234622346euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1589376785;
+ bh=z9EfuvXz29SpoaO1u1hYDnS9A8CwqyxmFLAoV9YTbmo=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=XZ0IpuNP5wzwn3mMAnVTxWuYUIIsunV5e5uYxZg6/XE8qjJ1ftGOSJXv+EaVdMnAH
+ 1LrFle6YW1WaXxYLKuuFN219jUE6pDg6DOdbRRRHRnMsgvAZKr9Fi55sH2cMnpKJ3m
+ x8OLZI6sGRwEP/Rv8Ah77AmRY2is3vbW8jOaLFbY=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20200513133305eucas1p1aa1760055cdc49ff4321a57d67227f93~OmcPsFhgG0876608766eucas1p1z;
+ Wed, 13 May 2020 13:33:05 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges1new.samsung.com (EUCPMTA) with SMTP id 47.C5.61286.117FBBE5; Wed, 13
+ May 2020 14:33:05 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20200513133304eucas1p2d24ddf9d7d60aad254486010db86e6bc~OmcPXj3u32581325813eucas1p2L;
+ Wed, 13 May 2020 13:33:04 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20200513133304eusmtrp19607ff2c6360b25ea2a6dfa1ac9ca55e~OmcPWzvCN1049110491eusmtrp1F;
+ Wed, 13 May 2020 13:33:04 +0000 (GMT)
+X-AuditID: cbfec7f2-f0bff7000001ef66-43-5ebbf7113423
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id C7.37.07950.017FBBE5; Wed, 13
+ May 2020 14:33:04 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20200513133304eusmtip15529af41e9a69e66f77087c52417587e~OmcOpSeCB0741507415eusmtip1h;
+ Wed, 13 May 2020 13:33:04 +0000 (GMT)
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+To: dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
+Date: Wed, 13 May 2020 15:32:19 +0200
+Message-Id: <20200513133245.6408-12-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200513133245.6408-1-m.szyprowski@samsung.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WSa0hTYRjHec/Z2c6Gq+MUfVFTWBQkObMSTliR0IdDhei3irJWHqblVDbv
+ Ui2Hdy3Lwktms4SlzpY6VFzLprOlxrxMh5pmoiQKonktEW3zmH37Pf8Lz8vDi6MCI+aBR8XE
+ 07IYcbSQzWM1ff7T6+e8rg8/pu7gkQWWLoSsL9Fi5HbTE5QcXF1gk9W1nQj5orARIVVtQaTa
+ qgWkoRIhVwYnEbJhyoaR1tZyNllnGueQxsVpjGwrs3HO7ac0FRpAGdZULOrNh1mEal77gVEV
+ XWHURJ4ZoRqrHlDftqZQqmhYDSj9iIJNPdLVAGq5wTvU6SrvdAQdHZVIy/zP3uRFlhamxlkP
+ JA91b6AKMA1zAY5D4iQ0WFi5gIcLiLcAKkZKEGZYAXBz6RfGDMsA5myO2h3uTiPbquQ4WECo
+ AWzRHN1rzBZbdkJsIgDmzueyHexKZAD4pcDJEUIJEwoHVDbgMFyIUKj6ubrDLOIQtLY0Yw7m
+ E2fgQrWWzWzzgbXvP6EO5tr1ubG2ncdCwsaBWb+fYUzoPHxetr3LLnDOrOMw7AV7ivJ3C0oA
+ Jy11HGbIB9CaXgKYVBAcs2ywHedAiSNQ2+rPyMFQ/zIfYa60Dw7POztk1I5Pm4pRRubD7EwB
+ kz4My8zv9tYa+wZ2IxQcmopjDtQB4MMqI1YIfMr+71IBUAPc6QS5VELLA2LoJJFcLJUnxEhE
+ t2OlDcD+sXq2zEstYHXgVjsgcCB04pOj+nABJk6Up0jbAcRRoSs/RGuX+BHilFRaFntDlhBN
+ y9uBJ84SuvNPvJ69LiAk4nj6Lk3H0bJ/LoJzPRSgqTjdreq+oTMh0BpWqulpNHK3TN2qyylF
+ nvWv0rKu9eVV1sbytJG66Kz4nI/HhSzbeMjFqJryGZNUcu9Slu8FY3JbWmY/N/jKks48UeFG
+ JIV8zYCaRFGE/tTQdK/YoB/i9n5/3D9TPrKZZFn0UuIvlYXe60GiwT6//sDtOweFLHmkOMAX
+ lcnFfwHtUAIcVAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsVy+t/xu7oC33fHGfx6YGrRe+4kk8XGGetZ
+ Lf5vm8hsceXrezaLlauPMlnMnrCZyWLBfmuL5ZfXM1rsXchk8eXKQyaLTY+vsVpc3jWHzWLt
+ kbvsFgc/PGG12D/rGrsDv8eaeWsYPfZ+W8DisXjPSyaP7d8esHrMOxnocb/7OJPH5iX1Hrf/
+ PWb2mHxjOaPH7psNbB59W1YxenzeJBfAE6VnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdo
+ bB5rZWSqpG9nk5Kak1mWWqRvl6CXMXNCVcFl2Yqrp34xNzA+kehi5OSQEDCR6LjczN7FyMUh
+ JLCUUaJr+mQWiISMxMlpDawQtrDEn2tdbBBFnxgl/m6fxASSYBMwlOh6C5EQEehklJjW/ZEd
+ JMEscIZZ4vcGbxBbWMBP4u+Op2BxFgFVics7toNN5RWwlXi/cj0bxAZ5idUbDjCD2JxA8Vd3
+ 9oNdISSQL7F38T62CYx8CxgZVjGKpJYW56bnFhvpFSfmFpfmpesl5+duYgTG0LZjP7fsYOx6
+ F3yIUYCDUYmH1+LW7jgh1sSy4srcQ4wSHMxKIrx+64FCvCmJlVWpRfnxRaU5qcWHGE2BjprI
+ LCWanA+M77ySeENTQ3MLS0NzY3NjMwslcd4OgYMxQgLpiSWp2ampBalFMH1MHJxSDYxb56gI
+ 9O9/bBOxiKkz5qeT7eWWpau46w4+WX5aXMmzczFr5a6L/DdL3i7srNyyZ4LLLYXjU4UUfi+8
+ sCWzqfPC2ZXbtnk7cn201meVKlv8P+QXd36wDEN0WeTXw0brn/zZtHDJe/OrLdW7xC5Pzr1y
+ qYKbVUnLpqpChZHx0KtfDU5MW86Z3TuqxFKckWioxVxUnAgAkBX5ZrcCAAA=
+X-CMS-MailID: 20200513133304eucas1p2d24ddf9d7d60aad254486010db86e6bc
+X-Msg-Generator: CA
+X-RootMTR: 20200513133304eucas1p2d24ddf9d7d60aad254486010db86e6bc
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200513133304eucas1p2d24ddf9d7d60aad254486010db86e6bc
+References: <20200513132114.6046-1-m.szyprowski@samsung.com>
+ <20200513133245.6408-1-m.szyprowski@samsung.com>
+ <CGME20200513133304eucas1p2d24ddf9d7d60aad254486010db86e6bc@eucas1p2.samsung.com>
+Subject: [Intel-gfx] [PATCH v5 12/38] drm: i915: fix common struct sg_table
+ related issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,139 +107,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Wayne Lin <Wayne.Lin@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-arm-kernel@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 13, 2020 at 03:48:58PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, May 13, 2020 at 01:31:55PM +0300, Imre Deak wrote:
-> > This fixes the following use-after-free problem in case an MST down
-> > message times out, while waiting for the response for it:
-> > =
+The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg() function
+returns the number of the created entries in the DMA address space.
+However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
+dma_unmap_sg must be called with the original number of the entries
+passed to the dma_map_sg().
 
-> > [  449.022841] [drm:drm_dp_mst_wait_tx_reply.isra.26] timedout msg send=
- 0000000080ba7fa2 2 0
-> > [  449.022898] ------------[ cut here ]------------
-> > [  449.022903] list_add corruption. prev->next should be next (ffff8884=
-7dae32c0), but was 6b6b6b6b6b6b6b6b. (prev=3Dffff88847db1c140).
-> > [  449.022931] WARNING: CPU: 2 PID: 22 at lib/list_debug.c:28 __list_ad=
-d_valid+0x4d/0x70
-> > [  449.022935] Modules linked in: asix usbnet mii snd_hda_codec_hdmi me=
-i_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul gha=
-sh_clmulni_intel snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep e10=
-00e snd_hda_core ptp snd_pcm pps_core mei_me mei intel_lpss_pci prime_numbe=
-rs
-> > [  449.022966] CPU: 2 PID: 22 Comm: kworker/2:0 Not tainted 5.7.0-rc3-C=
-I-Patchwork_17536+ #1
-> > [  449.022970] Hardware name: Intel Corporation Tiger Lake Client Platf=
-orm/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.2457.A16.1912270059 12/2=
-7/2019
-> > [  449.022976] Workqueue: events_long drm_dp_mst_link_probe_work
-> > [  449.022982] RIP: 0010:__list_add_valid+0x4d/0x70
-> > [  449.022987] Code: c3 48 89 d1 48 c7 c7 f0 e7 32 82 48 89 c2 e8 3a 49=
- b7 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 40 e8 32 82 e8 23 49 b7 ff=
- <0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 90 e8 32 82 e8
-> > [  449.022991] RSP: 0018:ffffc900001abcb0 EFLAGS: 00010286
-> > [  449.022995] RAX: 0000000000000000 RBX: ffff88847dae2d58 RCX: 0000000=
-000000001
-> > [  449.022999] RDX: 0000000080000001 RSI: ffff88849d914978 RDI: 0000000=
-0ffffffff
-> > [  449.023002] RBP: ffff88847dae32c0 R08: ffff88849d914978 R09: 0000000=
-000000000
-> > [  449.023006] R10: ffffc900001abcb8 R11: 0000000000000000 R12: ffff888=
-490d98400
-> > [  449.023009] R13: ffff88847dae3230 R14: ffff88847db1c140 R15: ffff888=
-490d98540
-> > [  449.023013] FS:  0000000000000000(0000) GS:ffff88849ff00000(0000) kn=
-lGS:0000000000000000
-> > [  449.023017] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > [  449.023021] CR2: 00007fb96fafdc63 CR3: 0000000005610004 CR4: 0000000=
-000760ee0
-> > [  449.023025] PKRU: 55555554
-> > [  449.023028] Call Trace:
-> > [  449.023034]  drm_dp_queue_down_tx+0x59/0x110
-> > [  449.023041]  ? rcu_read_lock_sched_held+0x4d/0x80
-> > [  449.023050]  ? kmem_cache_alloc_trace+0x2a6/0x2d0
-> > [  449.023060]  drm_dp_send_link_address+0x74/0x870
-> > [  449.023065]  ? __slab_free+0x3e1/0x5c0
-> > [  449.023071]  ? lockdep_hardirqs_on+0xe0/0x1c0
-> > [  449.023078]  ? lockdep_hardirqs_on+0xe0/0x1c0
-> > [  449.023097]  drm_dp_check_and_send_link_address+0x9a/0xc0
-> > [  449.023106]  drm_dp_mst_link_probe_work+0x9e/0x160
-> > [  449.023117]  process_one_work+0x268/0x600
-> > [  449.023124]  ? __schedule+0x307/0x8d0
-> > [  449.023139]  worker_thread+0x37/0x380
-> > [  449.023149]  ? process_one_work+0x600/0x600
-> > [  449.023153]  kthread+0x140/0x160
-> > [  449.023159]  ? kthread_park+0x80/0x80
-> > [  449.023169]  ret_from_fork+0x24/0x50
-> > =
+struct sg_table is a common structure used for describing a non-contiguous
+memory buffer, used commonly in the DRM and graphics subsystems. It
+consists of a scatterlist with memory pages and DMA addresses (sgl entry),
+as well as the number of scatterlist entries: CPU pages (orig_nents entry)
+and DMA mapped pages (nents entry).
 
-> > Fixes: d308a881a591 ("drm/dp_mst: Kill the second sideband tx slot, sav=
-e the world")
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Cc: Sean Paul <sean@poorly.run>
-> > Cc: Wayne Lin <Wayne.Lin@amd.com>
-> > Cc: <stable@vger.kernel.org> # v3.17+
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_dp_mst_topology.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > =
+It turned out that it was a common mistake to misuse nents and orig_nents
+entries, calling DMA-mapping functions with a wrong number of entries or
+ignoring the number of mapped entries returned by the dma_map_sg()
+function.
 
-> > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/dr=
-m_dp_mst_topology.c
-> > index 2d4132e0a98f..70455e304a26 100644
-> > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > @@ -1197,7 +1197,8 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp=
-_mst_branch *mstb,
-> >  =
+This driver creatively uses sg_table->orig_nents to store the size of the
+allocated scatterlist and ignores the number of the entries returned by
+dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
+free the (over)allocated scatterlist.
 
-> >  		/* remove from q */
-> >  		if (txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_QUEUED ||
-> > -		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND)
-> > +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND ||
-> > +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_SENT)
-> >  			list_del(&txmsg->next);
-> =
+This patch only introduces the common DMA-mapping wrappers operating
+directly on the struct sg_table objects to the dmabuf related functions,
+so the other drivers, which might share buffers with i915 could rely on
+the properly set nents and orig_nents values.
 
-> Looks correct. Pondering list_del_init() all over so we
-> wouldn't even need the state check...
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+For more information, see '[PATCH v5 00/38] DRM: fix struct sg_table nents
+vs. orig_nents misuse' thread:
+https://lore.kernel.org/linux-iommu/20200513132114.6046-1-m.szyprowski@samsung.com/T/
+---
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
+ drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
+ 2 files changed, 6 insertions(+), 12 deletions(-)
 
-Good idea, that would work.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+index 7db5a79..6c67810 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+@@ -48,12 +48,9 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
+ 		src = sg_next(src);
+ 	}
+ 
+-	if (!dma_map_sg_attrs(attachment->dev,
+-			      st->sgl, st->nents, dir,
+-			      DMA_ATTR_SKIP_CPU_SYNC)) {
+-		ret = -ENOMEM;
++	ret = dma_map_sgtable(attachment->dev, st, dir, DMA_ATTR_SKIP_CPU_SYNC);
++	if (ret)
+ 		goto err_free_sg;
+-	}
+ 
+ 	return st;
+ 
+@@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
+ {
+ 	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
+ 
+-	dma_unmap_sg_attrs(attachment->dev,
+-			   sg->sgl, sg->nents, dir,
+-			   DMA_ATTR_SKIP_CPU_SYNC);
++	dma_unmap_sgtable(attachment->dev, sg, dir, DMA_ATTR_SKIP_CPU_SYNC);
+ 	sg_free_table(sg);
+ 	kfree(sg);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+index debaf7b..be30b27 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+@@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
+ 		sg = sg_next(sg);
+ 	}
+ 
+-	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
+-		err = -ENOMEM;
++	err = dma_map_sgtable(attachment->dev, st, dir, 0);
++	if (err)
+ 		goto err_st;
+-	}
+ 
+ 	return st;
+ 
+@@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
+ 			       struct sg_table *st,
+ 			       enum dma_data_direction dir)
+ {
+-	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
++	dma_unmap_sgtable(attachment->dev, st, dir, 0);
+ 	sg_free_table(st);
+ 	kfree(st);
+ }
+-- 
+1.9.1
 
-> Also the 'return 1' in process_single_tx_qlock() seems =
-
-> to be a zombie of some sort. Should probably be nuked to not
-> confused the next person to read the code.
-
-Yes, looks like a left-over by the fixed commit.
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> >  	}
-> >  out:
-> > -- =
-
-> > 2.23.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
