@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2155A1D1CB0
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:56:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054F81D1CB1
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:56:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE236E261;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D0C6EA8E;
 	Wed, 13 May 2020 17:56:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE6C6EA7B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD5B6E261
  for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 17:56:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190754-1500050 
- for multiple; Wed, 13 May 2020 18:56:12 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190757-1500050 
+ for multiple; Wed, 13 May 2020 18:56:31 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 18:56:10 +0100
-Message-Id: <20200513175610.20700-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 May 2020 18:56:30 +0100
+Message-Id: <20200513175630.20806-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200513165937.9508-1-chris@chris-wilson.co.uk>
 References: <20200513165937.9508-1-chris@chris-wilson.co.uk>
@@ -47,7 +47,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 Since there can only be one of in_fence/exec_fence, just use the single
 in_fence local.
 
-v2: Considate lookup
+v2: Consolidate lookup
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
