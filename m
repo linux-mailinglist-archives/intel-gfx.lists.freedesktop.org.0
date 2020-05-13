@@ -2,31 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504CF1D0A66
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 10:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CFF71D0A8A
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 10:10:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5BB56E9B8;
-	Wed, 13 May 2020 08:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 811596E126;
+	Wed, 13 May 2020 08:10:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7A0D96E9B6;
- Wed, 13 May 2020 08:01:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7413CA0078;
- Wed, 13 May 2020 08:01:40 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FAE56E126
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 08:10:52 +0000 (UTC)
+IronPort-SDR: kg9iZ6yoCmdJqRZBoM3/I8Gal4cYDF7VAokybE6MDFulIOaWmsnRRxDF3fUw5T9edVRfhoWEiK
+ u5IUmHQebDkQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2020 01:10:51 -0700
+IronPort-SDR: qN8LYtn392TZw402eSg/5Fh/i71u8+KmuwkS3nxiDM1ZmXIeES1WmR323cVuPyW7E866vRarq7
+ qlXK+/cWtTmw==
+X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="437411947"
+Received: from premrein-mobl1.ger.corp.intel.com (HELO [10.252.50.237])
+ ([10.252.50.237])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2020 01:10:50 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200512132255.20537-1-chris@chris-wilson.co.uk>
+ <561ef231-3894-5f9e-d3f2-629537801fb6@linux.intel.com>
+ <158929873346.20930.5498889568935361289@build.alporthouse.com>
+ <2bbf7b12-2220-e993-b324-c0962bd065a5@linux.intel.com>
+ <158930042365.20930.7538247247159812047@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <5db3e3de-0227-c33c-6576-530df7f91634@linux.intel.com>
+Date: Wed, 13 May 2020 09:10:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 13 May 2020 08:01:40 -0000
-Message-ID: <158935690047.25405.13757905846565879648@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200513074809.18194-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200513074809.18194-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/24=5D_drm/i915/gt=3A_Transfer_ol?=
- =?utf-8?q?d_virtual_breadcrumbs_to_irq=5Fworker?=
+In-Reply-To: <158930042365.20930.7538247247159812047@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Transfer old virtual
+ breadcrumbs to irq_worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,106 +55,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [01/24] drm/i915/gt: Transfer old virtual breadcrumbs to irq_worker
-URL   : https://patchwork.freedesktop.org/series/77206/
-State : warning
+On 12/05/2020 17:20, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-05-12 17:07:23)
+>>
+>> On 12/05/2020 16:52, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2020-05-12 16:17:30)
+>>>>
+>>>> On 12/05/2020 14:22, Chris Wilson wrote:
+>>>>> -     spin_lock(&old->breadcrumbs.irq_lock);
+>>>>> -     if (!list_empty(&ve->context.signal_link)) {
+>>>>> -             list_del_init(&ve->context.signal_link);
+>>>>> -
+>>>>> -             /*
+>>>>> -              * We cannot acquire the new engine->breadcrumbs.irq_lock
+>>>>> -              * (as we are holding a breadcrumbs.irq_lock already),
+>>>>> -              * so attach this request to the signaler on submission.
+>>>>> -              * The queued irq_work will occur when we finally drop
+>>>>> -              * the engine->active.lock after dequeue.
+>>>>> -              */
+>>>>> -             set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
+>>>>> -
+>>>>> -             /* Also transfer the pending irq_work for the old breadcrumb. */
+>>>>> -             intel_engine_signal_breadcrumbs(rq->engine);
+>>>>> -     }
+>>>>> -     spin_unlock(&old->breadcrumbs.irq_lock);
+>>>>> +     intel_engine_transfer_breadcrumbs(ve->siblings[0], &ve->context);
+>>>>
+>>>> But isn't ve->siblings[0] the old engine at this point so new target
+>>>> engine would have to be explicitly passed in?
+>>>
+>>> ve->siblings[0] is the old engine, which is holding the completed
+>>> requests and their signals. Since their rq->engine == ve->siblings[0]
+>>> and we can't update rq->engine as we can't take the required locks, we
+>>> need to keep the breadcrumbs relative to ve->siblings[0] and not the new
+>>> engine (the i915_request_cancel_breadcrumb conundrum).
+>>
+>> Who then enables breadcrumbs on the new engine?
+> 
+> If we enable signaling on the request we are about to submit, that
+> will enable the breadcrumbs on the new engine. We've cleared out
+> ce->signals and removed it from the old engine, so as soon as we want to
+> enable a new breadcrumb, it will be attached to the [new] rq->engine.
 
-== Summary ==
+So current code was wrong to think it needed to set 
+DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT? Should it instead assert it is set? 
+Because if it is not set signalling on the new engine won't be enabled.
 
-$ dim checkpatch origin/drm-tip
-cef179c6c753 drm/i915/gt: Transfer old virtual breadcrumbs to irq_worker
-d6f1021a3dcb dma-buf: Use atomic_fetch_add() for the context id
-a15a684cc4c9 drm/i915: Mark the addition of the initial-breadcrumb in the request
-a94b5ee24e05 dma-buf: Proxy fence, an unsignaled fence placeholder
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
+Regards,
 
--:380: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#380: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
-+	spinlock_t lock;
-
--:540: WARNING:MEMORY_BARRIER: memory barrier without comment
-#540: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
-+	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
-
-total: 0 errors, 2 warnings, 1 checks, 1043 lines checked
-82be0c56504c drm/syncobj: Allow use of dma-fence-proxy
-773537ae484b drm/i915/gem: Teach execbuf how to wait on future syncobj
-fc77d982c314 drm/i915/gem: Allow combining submit-fences with syncobj
-897758a943d2 drm/i915/gt: Declare when we enabled timeslicing
-266499ff1b75 drm/i915/gem: Remove redundant exec_fence
-bf2ca3e56570 drm/i915: Drop no-semaphore boosting
-49a593e6bf87 drm/i915: Move saturated workload detection back to the context
--:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#22: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
-
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")'
-#22: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
-
-total: 1 errors, 1 warnings, 0 checks, 68 lines checked
-eccb2abc67b2 drm/i915: Remove the saturation backoff for HW semaphores
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-References: ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")
-
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")'
-#10: 
-References: ca6e56f654e7 ("drm/i915: Disable semaphore busywaits on saturated systems")
-
-total: 1 errors, 1 warnings, 0 checks, 139 lines checked
-6bf996a3601d drm/i915/gt: Use built-in active intel_context reference
-67e7f9c1fd1b drm/i915: Drop I915_RESET_TIMEOUT and friends
-a6ea09974ca5 drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
-6cd3a2e3228f drm/i915/selftests: Always call the provided engine->emit_init_breadcrumb
-5ab78e0c654c drm/i915/gt: Do not suspend bonded requests if one hangs
-c229c3651ca1 drm/i915: Always defer fenced work to the worker
-ec1ec75471f6 drm/i915/gem: Assign context id for async work
-536b4afc6bcd drm/i915: Export a preallocate variant of i915_active_acquire()
-dbb8c079fa73 drm/i915/gem: Separate the ww_mutex walker into its own list
--:92: WARNING:LONG_LINE: line over 100 characters
-#92: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1812:
-+			list_for_each_entry_safe_continue_reverse(unlock, en, &eb->lock, lock_link) {
-
--:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+		n = list_prev_entry(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+		n = list_prev_entry(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+		n = list_prev_entry(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
-total: 0 errors, 1 warnings, 3 checks, 120 lines checked
-f36911bb9551 drm/i915/gem: Asynchronous GTT unbinding
-e56800e94599 drm/i915/gem: Bind the fence async for execbuf
-4842e8ffd4a0 drm/i915: Show per-engine default property values in sysfs
+Tvrtko
 
 _______________________________________________
 Intel-gfx mailing list
