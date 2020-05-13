@@ -2,40 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C341D1BE1
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 484C61D3000
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 14:39:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03BD06E25F;
-	Wed, 13 May 2020 17:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61FF06EB34;
+	Thu, 14 May 2020 12:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1066E25F
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 17:06:22 +0000 (UTC)
-IronPort-SDR: xIl8ROBuOF+1qLcPhegLWGRZL1gGv1c3EROB602+RwOccEjynGZZyJxZQ2k7iV/HRIxUfPs0g0
- jwhcUiR3uPtw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 10:06:21 -0700
-IronPort-SDR: 77J/PxRbdhvpaL1SX8kakeED/ILPIdAa2/bfKi1tvT9iL09eHF4SlfvjCaTSvEEMQyUcnJuNEY
- zVRnR0y6b+iQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,388,1583222400"; d="scan'208";a="306837738"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by FMSMGA003.fm.intel.com with ESMTP; 13 May 2020 10:06:20 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 31BC85C1DF0; Wed, 13 May 2020 20:04:08 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200513074809.18194-10-chris@chris-wilson.co.uk>
-References: <20200513074809.18194-1-chris@chris-wilson.co.uk>
- <20200513074809.18194-10-chris@chris-wilson.co.uk>
-Date: Wed, 13 May 2020 20:04:08 +0300
-Message-ID: <87a72bvkaf.fsf@gaia.fi.intel.com>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCB396EA7E;
+ Wed, 13 May 2020 17:08:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LBlHbuh9b9GZLzHFrfPZVNRYUkOP3yF815g2vbLzBEbuJISbz4HBtMzG0ijiLRcFB+Ek3ECAjvn1tNuW7vKoPnBwmXXaDk71LrkqohhwNhdHCq5vjU534fPLcWVseZjTU2JQHvEMfMAXmwz8BDK4jFCKZIba6AR/MnuL3yUmiiF8MEb5MS7hnaeDwir4gIeLlZXzwT5K1ZNv1shFlf3MAvkurcqwj2JbjYm4rdZlKaghEmlWiSiiY6IjQgW2kq+BRII4hSyxr8EM6MlK8w4ETZUtsdgX9UiqsxeddPYrRs3X4M+8wQKFQQ97TSJTjJcO6KJLxnZ2ayEH/hgxgcmsLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3mDzF84INkLzGBoMqqGPl8inMEBznIIn9ux4foP7EM8=;
+ b=azUVBBtZX+hbtTOIvjIYx9gF+oaN6XW/8ikvBBlT6sAbW9F+/feyyVEnP9wQjHe02Pe2K7I8aHcY7Mo8a4p9DITxVW/ke1gYsAAaOrEeKKiEB6Af4NgZqqe16hm3xFHU9MuCcPWbe7n7Tx8TauvT57xB64J94N00qTXwMQQ+s03/AoBHsLc248ay1zvgK3gwZ1mVVknFsjw3E8siTbtVATaAKa75o2l4XLr0t2XCJfs0SARZOuqoki7O9iYjpfRQoYAp/QzrpC1vRaB0q+BDG5HP7+pewisyn4rvQe9MTI08QDVJCuLZdXnfRm3QyiftLeen5V6wgSm+8zF+DaSZ8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vmware.com; dmarc=pass action=none header.from=vmware.com;
+ dkim=pass header.d=vmware.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmware.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3mDzF84INkLzGBoMqqGPl8inMEBznIIn9ux4foP7EM8=;
+ b=aD7TB2J4jXYqXAx/WdkXXKJqTySbQ12ysNT+ZLCKKzyGfZoAQRjwDz9iOAq+gxVujY0mhwOh6axO4Zg510PLdCSZBCVpuxLSmIQA/z36VTB3wID6L8Cq9nBsDZrDUJTPtTifc2Q32SFCNebzQe2rqicMrAxbAAIdtlbPuDkqbhc=
+Received: from MN2PR05MB6381.namprd05.prod.outlook.com (2603:10b6:208:d6::24)
+ by MN2PR05MB6653.namprd05.prod.outlook.com (2603:10b6:208:dd::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.15; Wed, 13 May
+ 2020 17:08:19 +0000
+Received: from MN2PR05MB6381.namprd05.prod.outlook.com
+ ([fe80::7803:13e7:2e4d:58ff]) by MN2PR05MB6381.namprd05.prod.outlook.com
+ ([fe80::7803:13e7:2e4d:58ff%3]) with mapi id 15.20.3000.016; Wed, 13 May 2020
+ 17:08:19 +0000
+From: Ashwin H <ashwinh@vmware.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Thread-Topic: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
+Thread-Index: AQHWKIdKPHhk+fo7OUe7+WKkK8SJkqilhT4AgABhFAD//6nZgIAAsMCg
+Date: Wed, 13 May 2020 17:08:19 +0000
+Message-ID: <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
+References: <d29f87f3f3abb4e496866253bd170faad976f687.1589305630.git.ashwinh@vmware.com>
+ <20200513055548.GA743118@kroah.com>
+ <89DE19F6-4CB0-4324-A630-C8574C8D591C@vmware.com>
+ <20200513063455.GA752913@kroah.com>
+In-Reply-To: <20200513063455.GA752913@kroah.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=vmware.com;
+x-originating-ip: [49.206.7.228]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e3d4df3c-d6e5-410a-efe5-08d7f7603c52
+x-ms-traffictypediagnostic: MN2PR05MB6653:
+x-ld-processed: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR05MB6653AB30C7778494E5B6DC73CDBF0@MN2PR05MB6653.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2089;
+x-forefront-prvs: 0402872DA1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2Gb16DfpxVeX6lxIOH7XtA7VcpmMQ1WsW4NB3PKPRNHGFL0/giu/KmvS/2YsbFEdfk5nBE/ZFF14Hddz2kIsX+rPBZe/voBZIcmAiRWsQscW1kuS6YpfXfYf8v13OOh0cPO1Qon1H5HythxcuJkyQRHYnlJc5jD7DILmsJCAKGReeOOp3prUlIu15p14MYbsubbV5ap2tfvfm6S/KSL0ldYWjSVLIt3QNKL14hqu3JBX1RGpWqZ9PI+cDp4iBXZZwjBsmP+XVdIFFIXcZ8/oodwe0tIKT2EndIeIP6LQ0i6KMK3Fn7L9z4gMWuaLCr+IzvJxD0F/dXC8bwJ8+XKl+xDrtaMyw2vtE3WAFxbMxwmgDhuVfsy5kWdXwK0lSd8DTgTNoGycshN+eJB/nAVWI9rSLlYfEv+PUKrXo2pqFvqfqshvKcDZ2U3NuuRhu4VcKbBUodeRBdESIaWqa/C2DAkKNHoSVB2UNSpF2QmtS4BncA2BS3nUMOAIPMoiclDVgs9tbbBXzmK86cxHQ10YBg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR05MB6381.namprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(396003)(366004)(346002)(39860400002)(376002)(136003)(33430700001)(6506007)(316002)(55236004)(54906003)(66476007)(33440700001)(7696005)(76116006)(66946007)(64756008)(66556008)(66446008)(52536014)(86362001)(2906002)(55016002)(5660300002)(478600001)(9686003)(26005)(186003)(4326008)(71200400001)(8676002)(6916009)(33656002)(8936002)(4744005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: K8HSN7VVCnDxDnSR/qiPLQkGlTON2DeltziLp9hkNflU5fnqNEJRYSEZm3Jk1JY0A32EQZyLdA+KGYUuhUwKtLLDgIL/diMzUnff8JiZBij7ywCDyjsff3fQsyowiC5Jqqc5GU5sErC9GKsIpCe3Vie3QcK7bKz8mIPe9gXiUCv1XIGZbDxsGpmbQoqxsTBaiSgeDyuJjb03kMed6ouMBjcrMDlnslIXIMjtIERXZN0+DFBlsTI4QHky8TDvc66f/Xu+iB95NjUVV3r3n6OMKhBRVNNyq85rNyqRpFDClIidrF5LdINosJ2uZvAmgQ5qBFbjPMk5KFpy+nY7iBm642Qg7VQgPtYRnJeYQEyPWV6k+mFskiSyn+KdGkuKFdauLN4WXMQAz5St9hvBizaRjezx1EL6qhfQHGcjfQsQF/7CHnA1qh3zKR3tRl0Vh4Wc4rLDGuH9N/A7rYb5gkCDzSiwHvLII0OeYNzieLfX9zM=
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/24] drm/i915: Drop no-semaphore boosting
+X-OriginatorOrg: vmware.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3d4df3c-d6e5-410a-efe5-08d7f7603c52
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2020 17:08:19.6114 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Q5mFC8wLOAMenw1UXT6WW/zLPbO+NhiaeeoYK+nHYBA6hkuNOuz54re56hHIlLSOPgsiJh16CKVmGrOfUU2ULQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB6653
+X-Mailman-Approved-At: Thu, 14 May 2020 12:39:42 +0000
+Subject: Re: [Intel-gfx] [PATCH v4.19.x] make 'user_access_begin()' do
+ 'access_ok()'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,292 +97,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "x86@kernel.org" <x86@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
+ "rostedt@goodmis.org" <rostedt@goodmis.org>,
+ Steven Rostedt <srostedt@vmware.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ "stable@kernel.org" <stable@kernel.org>, Srivatsa Bhat <srivatsab@vmware.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+> Ok, but what does that mean for us?
+> 
+> You need to say why you are sending a patch, otherwise we will guess wrong.
 
-> Now that we have fast timeslicing on semaphores, we no longer need to
-> prioritise none-semaphore work as we will yield any work blocked on a
-> sempahore to the next in the queue. Previously with no timeslicing,
+In drivers/gpu/drm/i915/i915_gem_execbuffer.c, ioctl functions does user_access_begin() without doing access_ok(Checks if a user space pointer is valid)  first.
+A local attacker can craft a malicious ioctl function call to overwrite arbitrary kernel memory, resulting in a Denial of Service or privilege escalation (CVE-2018-20669)
 
-sempahore is back at blocking again :)
+This patch makes sure that user_access_begin always does access_ok. 
+user_access_begin has been modified to do access_ok internally.
 
-> blocking on the semaphore caused extremely bad scheduling with multiple
-> clients utilising multiple rings. Now, there is no impact and we can
-> remove the complication.
-
-Not a small feat to accomplish.
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 -------
->  drivers/gpu/drm/i915/gt/intel_lrc.c           |  9 -----
->  drivers/gpu/drm/i915/gt/selftest_context.c    |  1 +
->  drivers/gpu/drm/i915/i915_priolist_types.h    |  4 +-
->  drivers/gpu/drm/i915/i915_request.c           | 40 ++-----------------
->  drivers/gpu/drm/i915/i915_request.h           |  1 -
->  drivers/gpu/drm/i915/i915_scheduler.c         | 12 +++---
->  drivers/gpu/drm/i915/i915_scheduler_types.h   |  3 +-
->  8 files changed, 12 insertions(+), 73 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 2067557e277b..0a4606faf966 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2603,21 +2603,6 @@ static void eb_request_add(struct i915_execbuffer *eb)
->  	/* Check that the context wasn't destroyed before submission */
->  	if (likely(!intel_context_is_closed(eb->context))) {
->  		attr = eb->gem_context->sched;
-> -
-> -		/*
-> -		 * Boost actual workloads past semaphores!
-> -		 *
-> -		 * With semaphores we spin on one engine waiting for another,
-> -		 * simply to reduce the latency of starting our work when
-> -		 * the signaler completes. However, if there is any other
-> -		 * work that we could be doing on this engine instead, that
-> -		 * is better utilisation and will reduce the overall duration
-> -		 * of the current work. To avoid PI boosting a semaphore
-> -		 * far in the distance past over useful work, we keep a history
-> -		 * of any semaphore use along our dependency chain.
-> -		 */
-> -		if (!(rq->sched.flags & I915_SCHED_HAS_SEMAPHORE_CHAIN))
-> -			attr.priority |= I915_PRIORITY_NOSEMAPHORE;
->  	} else {
->  		/* Serialise with context_close via the add_to_timeline */
->  		i915_request_set_error_once(rq, -ENOENT);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 9141b3afa2c5..c7d7438b5d55 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -429,15 +429,6 @@ static int effective_prio(const struct i915_request *rq)
->  	if (i915_request_has_nopreempt(rq))
->  		prio = I915_PRIORITY_UNPREEMPTABLE;
->  
-> -	/*
-> -	 * On unwinding the active request, we give it a priority bump
-> -	 * if it has completed waiting on any semaphore. If we know that
-> -	 * the request has already started, we can prevent an unwanted
-> -	 * preempt-to-idle cycle by taking that into account now.
-> -	 */
-> -	if (__i915_request_has_started(rq))
-> -		prio |= I915_PRIORITY_NOSEMAPHORE;
-> -
->  	return prio;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
-> index a56dff3b157a..52af1cee9a94 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
-> @@ -24,6 +24,7 @@ static int request_sync(struct i915_request *rq)
->  
->  	/* Opencode i915_request_add() so we can keep the timeline locked. */
->  	__i915_request_commit(rq);
-> +	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
->  	__i915_request_queue(rq, NULL);
->  
->  	timeout = i915_request_wait(rq, 0, HZ / 10);
-> diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
-> index e18723d8df86..5003a71113cb 100644
-> --- a/drivers/gpu/drm/i915/i915_priolist_types.h
-> +++ b/drivers/gpu/drm/i915/i915_priolist_types.h
-> @@ -24,14 +24,12 @@ enum {
->  	I915_PRIORITY_DISPLAY,
->  };
->  
-> -#define I915_USER_PRIORITY_SHIFT 1
-> +#define I915_USER_PRIORITY_SHIFT 0
->  #define I915_USER_PRIORITY(x) ((x) << I915_USER_PRIORITY_SHIFT)
->  
->  #define I915_PRIORITY_COUNT BIT(I915_USER_PRIORITY_SHIFT)
->  #define I915_PRIORITY_MASK (I915_PRIORITY_COUNT - 1)
->  
-> -#define I915_PRIORITY_NOSEMAPHORE	((u8)BIT(0))
-> -
->  /* Smallest priority value that cannot be bumped. */
->  #define I915_PRIORITY_INVALID (INT_MIN | (u8)I915_PRIORITY_MASK)
->  
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 9ad1e6761492..9738dab5a9f6 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -369,8 +369,6 @@ __await_execution(struct i915_request *rq,
->  	}
->  	spin_unlock_irq(&signal->lock);
->  
-> -	/* Copy across semaphore status as we need the same behaviour */
-> -	rq->sched.flags |= signal->sched.flags;
->  	return 0;
->  }
->  
-> @@ -539,10 +537,8 @@ void __i915_request_unsubmit(struct i915_request *request)
->  	spin_unlock(&request->lock);
->  
->  	/* We've already spun, don't charge on resubmitting. */
-> -	if (request->sched.semaphores && i915_request_started(request)) {
-> -		request->sched.attr.priority |= I915_PRIORITY_NOSEMAPHORE;
-> +	if (request->sched.semaphores && i915_request_started(request))
->  		request->sched.semaphores = 0;
-> -	}
->  
->  	/*
->  	 * We don't need to wake_up any waiters on request->execute, they
-> @@ -600,15 +596,6 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  	return NOTIFY_DONE;
->  }
->  
-> -static void irq_semaphore_cb(struct irq_work *wrk)
-> -{
-> -	struct i915_request *rq =
-> -		container_of(wrk, typeof(*rq), semaphore_work);
-> -
-> -	i915_schedule_bump_priority(rq, I915_PRIORITY_NOSEMAPHORE);
-> -	i915_request_put(rq);
-> -}
-> -
->  static int __i915_sw_fence_call
->  semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  {
-> @@ -616,11 +603,6 @@ semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->  
->  	switch (state) {
->  	case FENCE_COMPLETE:
-> -		if (!(READ_ONCE(rq->sched.attr.priority) & I915_PRIORITY_NOSEMAPHORE)) {
-> -			i915_request_get(rq);
-> -			init_irq_work(&rq->semaphore_work, irq_semaphore_cb);
-> -			irq_work_queue(&rq->semaphore_work);
-> -		}
->  		break;
->  
->  	case FENCE_FREE:
-> @@ -999,6 +981,7 @@ emit_semaphore_wait(struct i915_request *to,
->  		    gfp_t gfp)
->  {
->  	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
-> +	struct i915_sw_fence *wait = &to->submit;
->  
->  	if (!intel_context_use_semaphores(to->context))
->  		goto await_fence;
-> @@ -1033,11 +1016,10 @@ emit_semaphore_wait(struct i915_request *to,
->  		goto await_fence;
->  
->  	to->sched.semaphores |= mask;
-> -	to->sched.flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
-> -	return 0;
-> +	wait = &to->semaphore;
->  
->  await_fence:
-> -	return i915_sw_fence_await_dma_fence(&to->submit,
-> +	return i915_sw_fence_await_dma_fence(wait,
->  					     &from->fence, 0,
->  					     I915_FENCE_GFP);
->  }
-> @@ -1072,17 +1054,6 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
->  	if (ret < 0)
->  		return ret;
->  
-> -	if (to->sched.flags & I915_SCHED_HAS_SEMAPHORE_CHAIN) {
-> -		ret = i915_sw_fence_await_dma_fence(&to->semaphore,
-> -						    &from->fence, 0,
-> -						    I915_FENCE_GFP);
-> -		if (ret < 0)
-> -			return ret;
-> -	}
-> -
-> -	if (from->sched.flags & I915_SCHED_HAS_EXTERNAL_CHAIN)
-> -		to->sched.flags |= I915_SCHED_HAS_EXTERNAL_CHAIN;
-> -
->  	return 0;
->  }
->  
-> @@ -1706,9 +1677,6 @@ void i915_request_add(struct i915_request *rq)
->  		attr = ctx->sched;
->  	rcu_read_unlock();
->  
-> -	if (!(rq->sched.flags & I915_SCHED_HAS_SEMAPHORE_CHAIN))
-> -		attr.priority |= I915_PRIORITY_NOSEMAPHORE;
-> -
->  	__i915_request_queue(rq, &attr);
->  
->  	mutex_unlock(&tl->mutex);
-> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> index 98ae2dc82371..8ec7ee4dbadc 100644
-> --- a/drivers/gpu/drm/i915/i915_request.h
-> +++ b/drivers/gpu/drm/i915/i915_request.h
-> @@ -216,7 +216,6 @@ struct i915_request {
->  	};
->  	struct list_head execute_cb;
->  	struct i915_sw_fence semaphore;
-> -	struct irq_work semaphore_work;
->  
->  	/*
->  	 * A list of everyone we wait upon, and everyone who waits upon us.
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index f8e797a7eee9..56defe78ae54 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -51,11 +51,11 @@ static void assert_priolists(struct intel_engine_execlists * const execlists)
->  	GEM_BUG_ON(rb_first_cached(&execlists->queue) !=
->  		   rb_first(&execlists->queue.rb_root));
->  
-> -	last_prio = (INT_MAX >> I915_USER_PRIORITY_SHIFT) + 1;
-> +	last_prio = INT_MAX;
->  	for (rb = rb_first_cached(&execlists->queue); rb; rb = rb_next(rb)) {
->  		const struct i915_priolist *p = to_priolist(rb);
->  
-> -		GEM_BUG_ON(p->priority >= last_prio);
-> +		GEM_BUG_ON(p->priority > last_prio);
->  		last_prio = p->priority;
->  
->  		GEM_BUG_ON(!p->used);
-> @@ -434,15 +434,13 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
->  		dep->waiter = node;
->  		dep->flags = flags;
->  
-> -		/* Keep track of whether anyone on this chain has a semaphore */
-> -		if (signal->flags & I915_SCHED_HAS_SEMAPHORE_CHAIN &&
-> -		    !node_started(signal))
-> -			node->flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
-> -
->  		/* All set, now publish. Beware the lockless walkers. */
->  		list_add_rcu(&dep->signal_link, &node->signalers_list);
->  		list_add_rcu(&dep->wait_link, &signal->waiters_list);
->  
-> +		/* Propagate the chains */
-> +		node->flags |= signal->flags;
-> +
->  		ret = true;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
-> index 6ab2c5289bed..f72e6c397b08 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler_types.h
-> +++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
-> @@ -65,8 +65,7 @@ struct i915_sched_node {
->  	struct list_head link;
->  	struct i915_sched_attr attr;
->  	unsigned int flags;
-> -#define I915_SCHED_HAS_SEMAPHORE_CHAIN	BIT(0)
-> -#define I915_SCHED_HAS_EXTERNAL_CHAIN	BIT(1)
-> +#define I915_SCHED_HAS_EXTERNAL_CHAIN	BIT(0)
->  	intel_engine_mask_t semaphores;
->  };
->  
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Thanks,
+Ashwin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
