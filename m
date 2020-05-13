@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6351D17C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 16:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CA81D1811
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 16:57:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 700FF6EA5F;
-	Wed, 13 May 2020 14:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B5C6EA63;
+	Wed, 13 May 2020 14:57:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7A47A6EA5F;
- Wed, 13 May 2020 14:40:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 71942A0138;
- Wed, 13 May 2020 14:40:29 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A6F6EA63
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 14:57:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21188438-1500050 for multiple; Wed, 13 May 2020 15:57:20 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 13 May 2020 14:40:29 -0000
-Message-ID: <158938082943.25404.8961145281393887980@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200513103155.12336-1-imre.deak@intel.com>
-In-Reply-To: <20200513103155.12336-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dp=5Fmst=3A_Fix_timeout_handling_of_MST_down_messages?=
+In-Reply-To: <20200302143943.32676-1-ville.syrjala@linux.intel.com>
+References: <20200302143943.32676-1-ville.syrjala@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158938183932.29850.9901227653127012566@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 13 May 2020 15:57:19 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Nuke pointless div by 64bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,649 +39,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/dp_mst: Fix timeout handling of MST down messages
-URL   : https://patchwork.freedesktop.org/series/77216/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8472_full -> Patchwork_17643_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8472_full and Patchwork_17643_full:
-
-### New IGT tests (123) ###
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-offscreen:
-    - Statuses : 7 pass(s)
-    - Exec time: [2.97, 4.97] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [1.73, 2.92] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-random:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.74, 4.76] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-rapid-movement:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.19, 1.11] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.59, 4.28] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.96] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.89] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.46] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.28] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.97, 4.94] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [1.73, 2.90] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-random:
-    - Statuses : 1 fail(s) 7 pass(s)
-    - Exec time: [0.44, 4.41] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-rapid-movement:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.29, 1.14] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.61, 4.30] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x85-offscreen:
-    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.97] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.87] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x85-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.43] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x85-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.26] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-sliding:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-onscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-rapid-movement:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.96] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.89] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-random:
-    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.45] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.74] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-offscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.95, 4.96] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [1.76, 3.29] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-random:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.69, 4.51] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-rapid-movement:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.18, 1.13] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.64, 4.67] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-alpha-opaque:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.26, 1.11] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-alpha-transparent:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.27, 1.08] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-dpms:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.83, 4.46] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-size-change:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.49, 1.89] s
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.05, 5.28] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-offscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [4.10, 5.89] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.26, 4.06] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.71, 5.48] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-rapid-movement:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.28, 2.23] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.60, 5.36] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x42-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.89] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x42-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.03] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x42-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.92] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x42-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.36] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x256-offscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [4.09, 5.89] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x256-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.25, 3.97] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x256-random:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.73, 5.49] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x256-rapid-movement:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.26, 2.23] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x256-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.59, 5.36] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.88] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.45] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.50] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.36] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x170-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x170-onscreen:
-    - Statuses : 7 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x170-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x170-sliding:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x512-onscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x512-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x512-rapid-movement:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-512x512-sliding:
-    - Statuses : 7 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.90] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.02] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.49] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.33] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-offscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [4.08, 6.38] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen:
-    - Statuses : 8 pass(s)
-    - Exec time: [2.30, 4.51] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-random:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.72, 5.50] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-rapid-movement:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.26, 2.27] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding:
-    - Statuses : 8 pass(s)
-    - Exec time: [3.59, 5.35] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-alpha-opaque:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.37, 2.21] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-alpha-transparent:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.42, 2.20] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-dpms:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.78, 5.30] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-size-change:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.52, 2.35] s
-
-  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
-    - Statuses : 8 pass(s)
-    - Exec time: [1.86, 6.19] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen:
-    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.41] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.44] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.95] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-rapid-movement:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.23] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.32] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x42-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.88] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x42-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 3.98] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x42-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.46] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x42-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.75] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.88] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.01] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.46] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-rapid-movement:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.24] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-sliding:
-    - Statuses : 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 6.68] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 6.67] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 3.98] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.42] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding:
-    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 4.86] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x170-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x170-onscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x170-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x170-sliding:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x512-offscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x512-onscreen:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x512-random:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x512-rapid-movement:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-512x512-sliding:
-    - Statuses : 8 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.92] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 3.97] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.49] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.35] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x64-offscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.87] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x64-onscreen:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 3.97] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x64-random:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.48] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x64-rapid-movement:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.27] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x64-sliding:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.80] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-alpha-opaque:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.64] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-alpha-transparent:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.21] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-dpms:
-    - Statuses : 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 5.33] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-size-change:
-    - Statuses : 7 pass(s) 1 skip(s)
-    - Exec time: [0.0, 2.33] s
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - Statuses : 1 incomplete(s) 6 pass(s) 1 skip(s)
-    - Exec time: [0.0, 6.39] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17643_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-apl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl1/igt@gem_workarounds@suspend-resume-fd.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl4/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding (NEW):
-    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#54])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
-
-  * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
-    - shard-snb:          [PASS][5] -> [SKIP][6] ([fdo#109271]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-snb4/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-snb4/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [PASS][7] -> [FAIL][8] ([fdo#108145] / [i915#265]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109441]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_eio@in-flight-suspend:
-    - shard-skl:          [INCOMPLETE][11] ([i915#69]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl4/igt@gem_eio@in-flight-suspend.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl2/igt@gem_eio@in-flight-suspend.html
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-kbl:          [DMESG-WARN][13] ([i915#180]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-kbl4/igt@gem_softpin@noreloc-s3.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-kbl3/igt@gem_softpin@noreloc-s3.html
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-apl:          [DMESG-WARN][15] ([i915#1436] / [i915#716]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl4/igt@gen9_exec_parse@allowed-all.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl3/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_selftest@live@execlists:
-    - shard-skl:          [INCOMPLETE][17] ([i915#1874]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl6/igt@i915_selftest@live@execlists.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl7/igt@i915_selftest@live@execlists.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][19] ([i915#180]) -> [PASS][20] +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl8/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * igt@kms_psr@psr2_primary_blt:
-    - shard-iclb:         [SKIP][21] ([fdo#109441]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-iclb8/igt@kms_psr@psr2_primary_blt.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-iclb2/igt@kms_psr@psr2_primary_blt.html
-
-  
-#### Warnings ####
-
-  * igt@kms_content_protection@lic:
-    - shard-apl:          [FAIL][23] ([fdo#110321]) -> [TIMEOUT][24] ([i915#1319]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl8/igt@kms_content_protection@lic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl7/igt@kms_content_protection@lic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8472 -> Patchwork_17643
-
-  CI-20190529: 20190529
-  CI_DRM_8472: 57acc5ba2cfb81691917a3da729573a99c893e5a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5651: e54e2642f1967ca3c488db32264607df670d1dfb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17643: 211186b681ff1bc9c2f4f70d495e1072ae5ee0b4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAzLTAyIDE0OjM5OjM4KQo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gQnVuY2ggb2Yg
+cGxhY2VzIHVzZSBhIDY0Yml0IGRpdmlzb3IgbmVlZGxlc3NseS4gU3dpdGNoCj4gdG8gMzJiaXQg
+ZGl2aXNvci4KPiAKPiBDYzogTGlvbmVsIExhbmR3ZXJsaW4gPGxpb25lbC5nLmxhbmR3ZXJsaW5A
+aW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVy
+Zi5jIHwgMTEgKysrKystLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwg
+NiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wZXJmLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYwo+IGluZGV4IDIzMzRj
+NDVmMWQwOC4uNzE2ZmU2ZTRlNTZjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcGVyZi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMKPiBA
+QCAtMTY2NywxMCArMTY2Nyw5IEBAIHN0YXRpYyBpbnQgYWxsb2Nfbm9hX3dhaXQoc3RydWN0IGk5
+MTVfcGVyZl9zdHJlYW0gKnN0cmVhbSkKPiAgICAgICAgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2Jq
+ZWN0ICpibzsKPiAgICAgICAgIHN0cnVjdCBpOTE1X3ZtYSAqdm1hOwo+ICAgICAgICAgY29uc3Qg
+dTY0IGRlbGF5X3RpY2tzID0gMHhmZmZmZmZmZmZmZmZmZmZmIC0KPiAtICAgICAgICAgICAgICAg
+RElWNjRfVTY0X1JPVU5EX1VQKAo+IC0gICAgICAgICAgICAgICAgICAgICAgIGF0b21pYzY0X3Jl
+YWQoJnN0cmVhbS0+cGVyZi0+bm9hX3Byb2dyYW1taW5nX2RlbGF5KSAqCj4gLSAgICAgICAgICAg
+ICAgICAgICAgICAgUlVOVElNRV9JTkZPKGk5MTUpLT5jc190aW1lc3RhbXBfZnJlcXVlbmN5X2to
+eiwKPiAtICAgICAgICAgICAgICAgICAgICAgICAxMDAwMDAwdWxsKTsKPiArICAgICAgICAgICAg
+ICAgRElWX1JPVU5EX1VQX1VMTChhdG9taWM2NF9yZWFkKCZzdHJlYW0tPnBlcmYtPm5vYV9wcm9n
+cmFtbWluZ19kZWxheSkgKgo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJVTlRJ
+TUVfSU5GTyhpOTE1KS0+Y3NfdGltZXN0YW1wX2ZyZXF1ZW5jeV9raHosCj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgMTAwMDAwMCk7Cj4gICAgICAgICBjb25zdCB1MzIgYmFzZSA9
+IHN0cmVhbS0+ZW5naW5lLT5tbWlvX2Jhc2U7Cj4gICNkZWZpbmUgQ1NfR1BSKHgpIEdFTjhfUklO
+R19DU19HUFIoYmFzZSwgeCkKPiAgICAgICAgIHUzMiAqYmF0Y2gsICp0czAsICpjcywgKmp1bXA7
+Cj4gQEAgLTM0NjcsOCArMzQ2Niw4IEBAIGk5MTVfcGVyZl9vcGVuX2lvY3RsX2xvY2tlZChzdHJ1
+Y3QgaTkxNV9wZXJmICpwZXJmLAo+ICAKPiAgc3RhdGljIHU2NCBvYV9leHBvbmVudF90b19ucyhz
+dHJ1Y3QgaTkxNV9wZXJmICpwZXJmLCBpbnQgZXhwb25lbnQpCj4gIHsKPiAtICAgICAgIHJldHVy
+biBkaXY2NF91NjQoMTAwMDAwMDAwMFVMTCAqICgyVUxMIDw8IGV4cG9uZW50KSwKPiAtICAgICAg
+ICAgICAgICAgICAgICAgICAgMTAwMFVMTCAqIFJVTlRJTUVfSU5GTyhwZXJmLT5pOTE1KS0+Y3Nf
+dGltZXN0YW1wX2ZyZXF1ZW5jeV9raHopOwo+ICsgICAgICAgcmV0dXJuIGRpdl91NjQoMTAwMDAw
+MCAqICgyVUxMIDw8IGV4cG9uZW50KSwKPiArICAgICAgICAgICAgICAgICAgICAgIFJVTlRJTUVf
+SU5GTyhwZXJmLT5pOTE1KS0+Y3NfdGltZXN0YW1wX2ZyZXF1ZW5jeV9raHopOwo+ICB9CgpSZXZp
+ZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJpcwpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
