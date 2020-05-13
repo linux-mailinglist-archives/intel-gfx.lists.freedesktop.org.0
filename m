@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1233C1D0D1B
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 11:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5A11D0E91
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 12:01:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB9889F77;
-	Wed, 13 May 2020 09:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B7E6E147;
+	Wed, 13 May 2020 10:01:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E54E89F77
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 09:50:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC426E147
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 10:01:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21184201-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 10:50:17 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21184446-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 11:01:21 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 10:50:16 +0100
-Message-Id: <20200513095016.10882-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 May 2020 11:01:20 +0100
+Message-Id: <20200513100120.11617-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [CI] drm/i915/gt: Reset execlists registers before HWSP
@@ -46,16 +46,16 @@ testing shows that gen9 will very rarely retain the poisoned value from
 the HWSP mappings of the execlists status registers. This suggests that
 it is reading back from the HWSP, so rejig the register reset.
 
-v2: Maybe RING_CONTEXT_STATUS_PTR is write masked.
+v2: Maybe RING_CONTEXT_STATUS_PTR is write masked. It is.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 15716e4d6b76..21db0566dad7 100644
+index 15716e4d6b76..32feb2a27dfc 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
 @@ -3938,6 +3938,14 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
@@ -86,7 +86,8 @@ index 15716e4d6b76..21db0566dad7 100644
 +
 +	/* Once more for luck and our trusty paranoia */
  	ENGINE_WRITE(engine, RING_CONTEXT_STATUS_PTR,
- 		     reset_value << 8 | reset_value);
+-		     reset_value << 8 | reset_value);
++		     0xffff << 16 | reset_value << 8 | reset_value);
  	ENGINE_POSTING_READ(engine, RING_CONTEXT_STATUS_PTR);
  
 -	invalidate_csb_entries(&execlists->csb_status[0],
