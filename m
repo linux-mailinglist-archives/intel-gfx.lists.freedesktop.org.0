@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217251D1BBF
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:00:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969C71D1BCD
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:02:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAAC36EA77;
-	Wed, 13 May 2020 17:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A258B6EA84;
+	Wed, 13 May 2020 17:02:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 784AF6EA5E
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 17:00:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 587926EA7E;
+ Wed, 13 May 2020 17:02:33 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190032-1500050 
- for multiple; Wed, 13 May 2020 17:59:40 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190086-1500050 
+ for multiple; Wed, 13 May 2020 18:02:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 17:59:37 +0100
-Message-Id: <20200513165937.9508-7-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200513165937.9508-1-chris@chris-wilson.co.uk>
-References: <20200513165937.9508-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 May 2020 18:02:23 +0100
+Message-Id: <20200513170224.848726-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/gt: Declare when we enabled
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] lib/i915: Report scheduler caps for
  timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -39,45 +37,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth@whitecape.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let userspace know if they can trust timeslicing by including it as part
-of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
-
-v2: Only declare timeslicing if we can safely preempt userspace.
-
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/3802
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/4854
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_user.c | 1 +
- include/uapi/drm/i915_drm.h                 | 1 +
- 2 files changed, 2 insertions(+)
+ include/drm-uapi/i915_drm.h |  8 +++++---
+ lib/i915/gem_scheduler.c    | 15 +++++++++++++++
+ lib/i915/gem_scheduler.h    |  1 +
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-index 848decee9066..8415511f1465 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-@@ -98,6 +98,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
- 		MAP(HAS_PREEMPTION, PREEMPTION),
- 		MAP(HAS_SEMAPHORES, SEMAPHORES),
- 		MAP(SUPPORTS_STATS, ENGINE_BUSY_STATS),
-+		MAP(HAS_TIMESLICES, TIMESLICING),
- #undef MAP
- 	};
- 	struct intel_engine_cs *engine;
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 704dd0e3bc1d..1ee227b5131a 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
+diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+index 2b55af13a..a222b6bfb 100644
+--- a/include/drm-uapi/i915_drm.h
++++ b/include/drm-uapi/i915_drm.h
 @@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
  #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
  #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
@@ -86,8 +62,67 @@ index 704dd0e3bc1d..1ee227b5131a 100644
  
  #define I915_PARAM_HUC_STATUS		 42
  
+@@ -1040,9 +1041,10 @@ struct drm_i915_gem_exec_fence {
+ 	 */
+ 	__u32 handle;
+ 
+-#define I915_EXEC_FENCE_WAIT            (1<<0)
+-#define I915_EXEC_FENCE_SIGNAL          (1<<1)
+-#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
++#define I915_EXEC_FENCE_WAIT            (1u << 0)
++#define I915_EXEC_FENCE_SIGNAL          (1u << 1)
++#define I915_EXEC_FENCE_WAIT_SUBMIT     (1u << 2)
++#define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_WAIT_SUBMIT << 1))
+ 	__u32 flags;
+ };
+ 
+diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
+index 184da8436..7873766ae 100644
+--- a/lib/i915/gem_scheduler.c
++++ b/lib/i915/gem_scheduler.c
+@@ -129,6 +129,19 @@ bool gem_scheduler_has_engine_busy_stats(int fd)
+ 		I915_SCHEDULER_CAP_ENGINE_BUSY_STATS;
+ }
+ 
++/**
++ * gem_scheduler_has_timeslicing:
++ * @fd: open i915 drm file descriptor
++ *
++ * Feature test macro to query whether the driver supports using HW preemption
++ * to implement timeslicing of userspace batches. This allows userspace to
++ * implement micro-level scheduling within their own batches.
++ */
++bool gem_scheduler_has_timeslicing(int fd)
++{
++	return gem_scheduler_capability(fd) & I915_SCHEDULER_CAP_TIMESLICING;
++}
++
+ /**
+  * gem_scheduler_print_capability:
+  * @fd: open i915 drm file descriptor
+@@ -149,6 +162,8 @@ void gem_scheduler_print_capability(int fd)
+ 		igt_info(" - With preemption enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_SEMAPHORES)
+ 		igt_info(" - With HW semaphores enabled\n");
++	if (caps & I915_SCHEDULER_CAP_TIMESLICING)
++		igt_info(" - With user timeslicing enabled\n");
+ 	if (caps & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
+ 		igt_info(" - With engine busy statistics\n");
+ }
+diff --git a/lib/i915/gem_scheduler.h b/lib/i915/gem_scheduler.h
+index 14bd4cac4..d43e84bd2 100644
+--- a/lib/i915/gem_scheduler.h
++++ b/lib/i915/gem_scheduler.h
+@@ -32,6 +32,7 @@ bool gem_scheduler_has_ctx_priority(int fd);
+ bool gem_scheduler_has_preemption(int fd);
+ bool gem_scheduler_has_semaphores(int fd);
+ bool gem_scheduler_has_engine_busy_stats(int fd);
++bool gem_scheduler_has_timeslicing(int fd);
+ void gem_scheduler_print_capability(int fd);
+ 
+ #endif /* GEM_SCHEDULER_H */
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
