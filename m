@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5C61D142F
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C12B1D1481
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:19:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2136E16F;
-	Wed, 13 May 2020 13:12:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FAEB6E02B;
+	Wed, 13 May 2020 13:19:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40CF46E056;
- Wed, 13 May 2020 13:12:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3AE7DA47E1;
- Wed, 13 May 2020 13:12:30 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE7256E02B;
+ Wed, 13 May 2020 13:19:17 +0000 (UTC)
+IronPort-SDR: OHna3Yh+8UqpZO2R6JQVjCdBTCEPG2vnvFtiXWS8iJYRgYKtNz3tOWdTEOQ/mrFsTCRPDcO1s3
+ x5+riFaBpcAA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2020 06:19:13 -0700
+IronPort-SDR: 3UbGgiwLA854kUDbnK4cu281hqldfRRf8q8GpmRNdW7Xc/ja0syjGpm+ver+HVxBDQTdlJDkQz
+ K9VXuvzX53KQ==
+X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="437495750"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2020 06:19:12 -0700
+Date: Wed, 13 May 2020 16:19:08 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200513131908.GA2729@ideak-desk.fi.intel.com>
+References: <20200513103155.12336-1-imre.deak@intel.com>
+ <20200513124858.GD6112@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 13 May 2020 13:12:30 -0000
-Message-ID: <158937555021.25404.11397956224353267407@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200513122826.27484-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200513122826.27484-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Suspend_tasklets_before_resume_sanitization?=
+Content-Disposition: inline
+In-Reply-To: <20200513124858.GD6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/dp_mst: Fix timeout handling of MST
+ down messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,108 +49,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Wayne Lin <Wayne.Lin@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, May 13, 2020 at 03:48:58PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Wed, May 13, 2020 at 01:31:55PM +0300, Imre Deak wrote:
+> > This fixes the following use-after-free problem in case an MST down
+> > message times out, while waiting for the response for it:
+> > =
 
-Series: drm/i915/gt: Suspend tasklets before resume sanitization
-URL   : https://patchwork.freedesktop.org/series/77223/
-State : success
+> > [  449.022841] [drm:drm_dp_mst_wait_tx_reply.isra.26] timedout msg send=
+ 0000000080ba7fa2 2 0
+> > [  449.022898] ------------[ cut here ]------------
+> > [  449.022903] list_add corruption. prev->next should be next (ffff8884=
+7dae32c0), but was 6b6b6b6b6b6b6b6b. (prev=3Dffff88847db1c140).
+> > [  449.022931] WARNING: CPU: 2 PID: 22 at lib/list_debug.c:28 __list_ad=
+d_valid+0x4d/0x70
+> > [  449.022935] Modules linked in: asix usbnet mii snd_hda_codec_hdmi me=
+i_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul gha=
+sh_clmulni_intel snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep e10=
+00e snd_hda_core ptp snd_pcm pps_core mei_me mei intel_lpss_pci prime_numbe=
+rs
+> > [  449.022966] CPU: 2 PID: 22 Comm: kworker/2:0 Not tainted 5.7.0-rc3-C=
+I-Patchwork_17536+ #1
+> > [  449.022970] Hardware name: Intel Corporation Tiger Lake Client Platf=
+orm/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.2457.A16.1912270059 12/2=
+7/2019
+> > [  449.022976] Workqueue: events_long drm_dp_mst_link_probe_work
+> > [  449.022982] RIP: 0010:__list_add_valid+0x4d/0x70
+> > [  449.022987] Code: c3 48 89 d1 48 c7 c7 f0 e7 32 82 48 89 c2 e8 3a 49=
+ b7 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 40 e8 32 82 e8 23 49 b7 ff=
+ <0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 90 e8 32 82 e8
+> > [  449.022991] RSP: 0018:ffffc900001abcb0 EFLAGS: 00010286
+> > [  449.022995] RAX: 0000000000000000 RBX: ffff88847dae2d58 RCX: 0000000=
+000000001
+> > [  449.022999] RDX: 0000000080000001 RSI: ffff88849d914978 RDI: 0000000=
+0ffffffff
+> > [  449.023002] RBP: ffff88847dae32c0 R08: ffff88849d914978 R09: 0000000=
+000000000
+> > [  449.023006] R10: ffffc900001abcb8 R11: 0000000000000000 R12: ffff888=
+490d98400
+> > [  449.023009] R13: ffff88847dae3230 R14: ffff88847db1c140 R15: ffff888=
+490d98540
+> > [  449.023013] FS:  0000000000000000(0000) GS:ffff88849ff00000(0000) kn=
+lGS:0000000000000000
+> > [  449.023017] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > [  449.023021] CR2: 00007fb96fafdc63 CR3: 0000000005610004 CR4: 0000000=
+000760ee0
+> > [  449.023025] PKRU: 55555554
+> > [  449.023028] Call Trace:
+> > [  449.023034]  drm_dp_queue_down_tx+0x59/0x110
+> > [  449.023041]  ? rcu_read_lock_sched_held+0x4d/0x80
+> > [  449.023050]  ? kmem_cache_alloc_trace+0x2a6/0x2d0
+> > [  449.023060]  drm_dp_send_link_address+0x74/0x870
+> > [  449.023065]  ? __slab_free+0x3e1/0x5c0
+> > [  449.023071]  ? lockdep_hardirqs_on+0xe0/0x1c0
+> > [  449.023078]  ? lockdep_hardirqs_on+0xe0/0x1c0
+> > [  449.023097]  drm_dp_check_and_send_link_address+0x9a/0xc0
+> > [  449.023106]  drm_dp_mst_link_probe_work+0x9e/0x160
+> > [  449.023117]  process_one_work+0x268/0x600
+> > [  449.023124]  ? __schedule+0x307/0x8d0
+> > [  449.023139]  worker_thread+0x37/0x380
+> > [  449.023149]  ? process_one_work+0x600/0x600
+> > [  449.023153]  kthread+0x140/0x160
+> > [  449.023159]  ? kthread_park+0x80/0x80
+> > [  449.023169]  ret_from_fork+0x24/0x50
+> > =
 
-== Summary ==
+> > Fixes: d308a881a591 ("drm/dp_mst: Kill the second sideband tx slot, sav=
+e the world")
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: Sean Paul <sean@poorly.run>
+> > Cc: Wayne Lin <Wayne.Lin@amd.com>
+> > Cc: <stable@vger.kernel.org> # v3.17+
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_dp_mst_topology.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > =
 
-CI Bug Log - changes from CI_DRM_8472 -> Patchwork_17645
-====================================================
+> > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/dr=
+m_dp_mst_topology.c
+> > index 2d4132e0a98f..70455e304a26 100644
+> > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > @@ -1197,7 +1197,8 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp=
+_mst_branch *mstb,
+> >  =
 
-Summary
--------
+> >  		/* remove from q */
+> >  		if (txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_QUEUED ||
+> > -		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND)
+> > +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND ||
+> > +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_SENT)
+> >  			list_del(&txmsg->next);
+> =
 
-  **SUCCESS**
+> Looks correct. Pondering list_del_init() all over so we
+> wouldn't even need the state check...
 
-  No regressions found.
+Good idea, that would work.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/index.html
+> Also the 'return 1' in process_single_tx_qlock() seems =
 
-Known issues
-------------
+> to be a zombie of some sort. Should probably be nuked to not
+> confused the next person to read the code.
 
-  Here are the changes found in Patchwork_17645 that come from known issues:
+Yes, looks like a left-over by the fixed commit.
 
-### IGT changes ###
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-#### Issues hit ####
+> >  	}
+> >  out:
+> > -- =
 
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-bsw-n3050:       [PASS][1] -> [INCOMPLETE][2] ([i915#1250] / [i915#1436])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+> > 2.23.1
+> > =
 
-  
-#### Possible fixes ####
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
 
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-guc:         [INCOMPLETE][3] ([i915#1874]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-skl-guc/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-skl-guc/igt@i915_selftest@live@execlists.html
-    - {fi-tgl-dsi}:       [INCOMPLETE][5] ([i915#1803]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
+> -- =
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-icl-u2:          [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-icl-u2/igt@i915_selftest@live@gt_pm.html
-    - fi-bdw-5557u:       [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-bdw-5557u/igt@i915_selftest@live@gt_pm.html
-
-  * {igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2}:
-    - fi-bsw-n3050:       [FAIL][11] ([i915#34]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-
-
-Participating hosts (39 -> 44)
-------------------------------
-
-  Additional (9): fi-cml-s fi-cfl-8700k fi-kbl-7500u fi-pnv-d510 fi-kbl-8809g fi-elk-e7500 fi-tgl-y fi-bsw-nick fi-kbl-r 
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8472 -> Patchwork_17645
-
-  CI-20190529: 20190529
-  CI_DRM_8472: 57acc5ba2cfb81691917a3da729573a99c893e5a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5651: e54e2642f1967ca3c488db32264607df670d1dfb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17645: a06430f11a8054e6b4ee2cbae13fd781319329aa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a06430f11a80 drm/i915/gt: Suspend tasklets before resume sanitization
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17645/index.html
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
