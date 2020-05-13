@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB5D1D162D
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 15:44:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6351D17C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 16:40:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E48D46E1F5;
-	Wed, 13 May 2020 13:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 700FF6EA5F;
+	Wed, 13 May 2020 14:40:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1574A6E1F5
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:44:16 +0000 (UTC)
-IronPort-SDR: wVhslDZJZ6FFnc8DEtutVL9101c+GchYZhCvTBzOfs1E3Ob1qHvxvxulOFfZv3N5oAqtXPu6bk
- UcnXAE0ZRRKA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 06:44:15 -0700
-IronPort-SDR: uh6qPM99jYtHMFazpl42ZP93OgM6Xc8TqSUK6TPvHIalGg58NJIBsGoNzxOaEGI3nTWwGb6SbD
- /puGeLz6rSIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="265875967"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 13 May 2020 06:44:13 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 May 2020 16:44:12 +0300
-Date: Wed, 13 May 2020 16:44:12 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200513134412.GG6112@intel.com>
-References: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
- <20200513093816.11466-6-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A47A6EA5F;
+ Wed, 13 May 2020 14:40:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 71942A0138;
+ Wed, 13 May 2020 14:40:29 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200513093816.11466-6-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v29 5/6] drm/i915: Restrict qgv points which
- don't have enough bandwidth.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Wed, 13 May 2020 14:40:29 -0000
+Message-ID: <158938082943.25404.8961145281393887980@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200513103155.12336-1-imre.deak@intel.com>
+In-Reply-To: <20200513103155.12336-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/dp=5Fmst=3A_Fix_timeout_handling_of_MST_down_messages?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,233 +38,648 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 13, 2020 at 12:38:15PM +0300, Stanislav Lisovskiy wrote:
-> According to BSpec 53998, we should try to
-> restrict qgv points, which can't provide
-> enough bandwidth for desired display configuration.
-> =
+== Series Details ==
 
-> Currently we are just comparing against all of
-> those and take minimum(worst case).
-> =
+Series: drm/dp_mst: Fix timeout handling of MST down messages
+URL   : https://patchwork.freedesktop.org/series/77216/
+State : success
 
-> v2: Fixed wrong PCode reply mask, removed hardcoded
->     values.
-> =
+== Summary ==
 
-> v3: Forbid simultaneous legacy SAGV PCode requests and
->     restricting qgv points. Put the actual restriction
->     to commit function, added serialization(thanks to Ville)
->     to prevent commit being applied out of order in case of
->     nonblocking and/or nomodeset commits.
-> =
+CI Bug Log - changes from CI_DRM_8472_full -> Patchwork_17643_full
+====================================================
 
-> v4:
->     - Minor code refactoring, fixed few typos(thanks to James Ausmus)
->     - Change the naming of qgv point
->       masking/unmasking functions(James Ausmus).
->     - Simplify the masking/unmasking operation itself,
->       as we don't need to mask only single point per request(James Ausmus)
->     - Reject and stick to highest bandwidth point if SAGV
->       can't be enabled(BSpec)
-> =
+Summary
+-------
 
-> v5:
->     - Add new mailbox reply codes, which seems to happen during boot
->       time for TGL and indicate that QGV setting is not yet available.
-> =
+  **SUCCESS**
 
-> v6:
->     - Increase number of supported QGV points to be in sync with BSpec.
-> =
+  No regressions found.
 
-> v7: - Rebased and resolved conflict to fix build failure.
->     - Fix NUM_QGV_POINTS to 8 and moved that to header file(James Ausmus)
-> =
+  
 
-> v8: - Don't report an error if we can't restrict qgv points, as SAGV
->       can be disabled by BIOS, which is completely legal. So don't
->       make CI panic. Instead if we detect that there is only 1 QGV
->       point accessible just analyze if we can fit the required bandwidth
->       requirements, but no need in restricting.
-> =
+New tests
+---------
 
-> v9: - Fix wrong QGV transition if we have 0 planes and no SAGV
->       simultaneously.
-> =
+  New tests have been introduced between CI_DRM_8472_full and Patchwork_17643_full:
 
-> v10: - Fix CDCLK corruption, because of global state getting serialized
->        without modeset, which caused copying of non-calculated cdclk
->        to be copied to dev_priv(thanks to Ville for the hint).
-> =
+### New IGT tests (123) ###
 
-> v11: - Remove unneeded headers and spaces(Matthew Roper)
->      - Remove unneeded intel_qgv_info qi struct from bw check and zero
->        out the needed one(Matthew Roper)
->      - Changed QGV error message to have more clear meaning(Matthew Roper)
->      - Use state->modeset_set instead of any_ms(Matthew Roper)
->      - Moved NUM_SAGV_POINTS from i915_reg.h to i915_drv.h where it's used
->      - Keep using crtc_state->hw.active instead of .enable(Matthew Roper)
->      - Moved unrelated changes to other patch(using latency as parameter
->        for plane wm calculation, moved to SAGV refactoring patch)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-offscreen:
+    - Statuses : 7 pass(s)
+    - Exec time: [2.97, 4.97] s
 
-> v12: - Fix rebase conflict with own temporary SAGV/QGV fix.
->      - Remove unnecessary mask being zero check when unmasking
->        qgv points as this is completely legal(Matt Roper)
->      - Check if we are setting the same mask as already being set
->        in hardware to prevent error from PCode.
->      - Fix error message when restricting/unrestricting qgv points
->        to "mask/unmask" which sounds more accurate(Matt Roper)
->      - Move sagv status setting to icl_get_bw_info from atomic check
->        as this should be calculated only once.(Matt Roper)
->      - Edited comments for the case when we can't enable SAGV and
->        use only 1 QGV point with highest bandwidth to be more
->        understandable.(Matt Roper)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [1.73, 2.92] s
 
-> v13: - Moved max_data_rate in bw check to closer scope(Ville Syrj=E4l=E4)
->      - Changed comment for zero new_mask in qgv points masking function
->        to better reflect reality(Ville Syrj=E4l=E4)
->      - Simplified bit mask operation in qgv points masking function
->        (Ville Syrj=E4l=E4)
->      - Moved intel_qgv_points_mask closer to gen11 SAGV disabling,
->        however this still can't be under modeset condition(Ville Syrj=E4l=
-=E4)
->      - Packed qgv_points_mask as u8 and moved closer to pipe_sagv_mask
->        (Ville Syrj=E4l=E4)
->      - Extracted PCode changes to separate patch.(Ville Syrj=E4l=E4)
->      - Now treat num_planes 0 same as 1 to avoid confusion and
->        returning max_bw as 0, which would prevent choosing QGV
->        point having max bandwidth in case if SAGV is not allowed,
->        as per BSpec(Ville Syrj=E4l=E4)
->      - Do the actual qgv_points_mask swap in the same place as
->        all other global state parts like cdclk are swapped.
->        In the next patch, this all will be moved to bw state as
->        global state, once new global state patch series from Ville
->        lands
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-random:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.74, 4.76] s
 
-> v14: - Now using global state to serialize access to qgv points
->      - Added global state locking back, otherwise we seem to read
->        bw state in a wrong way.
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-rapid-movement:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.19, 1.11] s
 
-> v15: - Added TODO comment for near atomic global state locking in
->        bw code.
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.59, 4.28] s
 
-> v16: - Fixed intel_atomic_bw_* functions to be intel_bw_* as discussed
->        with Jani Nikula.
->      - Take bw_state_changed flag into use.
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.96] s
 
-> v17: - Moved qgv point related manipulations next to SAGV code, as
->        those are semantically related(Ville Syrj=E4l=E4)
->      - Renamed those into intel_sagv_(pre)|(post)_plane_update
->        (Ville Syrj=E4l=E4)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.89] s
 
-> v18: - Move sagv related calls from commit tail into
->        intel_sagv_(pre)|(post)_plane_update(Ville Syrj=E4l=E4)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.46] s
 
-> v19: - Use intel_atomic_get_bw_(old)|(new)_state which is intended
->        for commit tail stage.
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.28] s
 
-> v20: - Return max bandwidth for 0 planes(Ville)
->      - Constify old_bw_state in bw_atomic_check(Ville)
->      - Removed some debugs(Ville)
->      - Added data rate to debug print when no QGV points(Ville)
->      - Removed some comments(Ville)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.97, 4.94] s
 
-> v21, v22, v23: - Fixed rebase conflict
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [1.73, 2.90] s
 
-> v24: - Changed PCode mask to use ICL_ prefix
-> v25: - Resolved rebase conflict
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-random:
+    - Statuses : 1 fail(s) 7 pass(s)
+    - Exec time: [0.44, 4.41] s
 
-> v26: - Removed redundant NULL checks(Ville)
->      - Removed redundant error prints(Ville)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-rapid-movement:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.29, 1.14] s
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
-> Cc: James Ausmus <james.ausmus@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c       | 137 +++++++++++++-----
->  drivers/gpu/drm/i915/display/intel_bw.h       |   9 ++
->  .../drm/i915/display/intel_display_types.h    |   3 +
->  drivers/gpu/drm/i915/intel_pm.c               |  54 ++++++-
->  drivers/gpu/drm/i915/intel_pm.h               |   2 +
->  5 files changed, 167 insertions(+), 38 deletions(-)
-> =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x256-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.61, 4.30] s
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
-15/display/intel_bw.c
-> index 6e7cc3a4f1aa..d28ca4d0b1c4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -8,6 +8,9 @@
->  #include "intel_bw.h"
->  #include "intel_display_types.h"
->  #include "intel_sideband.h"
-> +#include "intel_atomic.h"
-> +#include "intel_pm.h"
-> +
->  =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-offscreen:
+    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.97] s
 
->  /* Parameters for Qclk Geyserville (QGV) */
->  struct intel_qgv_point {
-> @@ -113,6 +116,26 @@ static int icl_pcode_read_qgv_point_info(struct drm_=
-i915_private *dev_priv,
->  	return 0;
->  }
->  =
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.87] s
 
-> +int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
-> +				  u32 points_mask)
-> +{
-> +	int ret;
-> +
-> +	/* bspec says to keep retrying for at least 1 ms */
-> +	ret =3D skl_pcode_request(dev_priv, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
-> +				points_mask,
-> +				ICL_PCODE_POINTS_RESTRICTED_MASK,
-> +				ICL_PCODE_POINTS_RESTRICTED,
-> +				1);
-> +
-> +	if (ret < 0) {
-> +		DRM_ERROR("Failed to disable qgv points (%d)\n", ret);
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.43] s
 
-Pls use the per-device logging. drm_err() or whatever it's called.
+  * igt@kms_cursor_crc@pipe-a-cursor-256x85-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.26] s
 
-Apart from that (and the checkpatch issue ci reported) this looks
-ready to go in.
+  * igt@kms_cursor_crc@pipe-a-cursor-512x170-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
 
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			      struct intel_qgv_info *qi)
->  {
+  * igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
 
--- =
+  * igt@kms_cursor_crc@pipe-a-cursor-512x170-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@kms_cursor_crc@pipe-a-cursor-512x170-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-512x512-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-512x512-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-512x512-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-512x512-rapid-movement:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x21-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.96] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x21-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.89] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x21-random:
+    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.45] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x21-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.74] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-offscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.95, 4.96] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [1.76, 3.29] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-random:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.69, 4.51] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-rapid-movement:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.18, 1.13] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.64, 4.67] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-alpha-opaque:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.26, 1.11] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-alpha-transparent:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.27, 1.08] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-dpms:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.83, 4.46] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-size-change:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.49, 1.89] s
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.05, 5.28] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-offscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [4.10, 5.89] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.26, 4.06] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.71, 5.48] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-rapid-movement:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.28, 2.23] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.60, 5.36] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x42-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.89] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x42-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.03] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x42-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.92] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x42-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.36] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-offscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [4.09, 5.89] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.25, 3.97] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-random:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.73, 5.49] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-rapid-movement:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.26, 2.23] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.59, 5.36] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x85-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.88] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x85-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.45] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x85-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.50] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x85-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.36] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x170-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x170-onscreen:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x170-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x170-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-rapid-movement:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-sliding:
+    - Statuses : 7 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x21-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.90] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x21-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.02] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x21-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.49] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x21-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.33] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-offscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [4.08, 6.38] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen:
+    - Statuses : 8 pass(s)
+    - Exec time: [2.30, 4.51] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-random:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.72, 5.50] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-rapid-movement:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.26, 2.27] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-64x64-sliding:
+    - Statuses : 8 pass(s)
+    - Exec time: [3.59, 5.35] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-alpha-opaque:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.37, 2.21] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-alpha-transparent:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.42, 2.20] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-dpms:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.78, 5.30] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-size-change:
+    - Statuses : 8 pass(s)
+    - Exec time: [0.52, 2.35] s
+
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - Statuses : 8 pass(s)
+    - Exec time: [1.86, 6.19] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen:
+    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.41] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.44] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.95] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-rapid-movement:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.23] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.32] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.88] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 3.98] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.46] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x42-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.75] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x256-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.88] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x256-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.01] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x256-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.46] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x256-rapid-movement:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.24] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x256-sliding:
+    - Statuses : 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 6.68] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 6.67] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 3.98] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.42] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding:
+    - Statuses : 1 fail(s) 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 4.86] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x170-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x170-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x170-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x170-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-offscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-onscreen:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-random:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-rapid-movement:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-sliding:
+    - Statuses : 8 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.92] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 3.97] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.49] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.35] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x64-offscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.87] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x64-onscreen:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 3.97] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x64-random:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.48] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x64-rapid-movement:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.27] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x64-sliding:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.80] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-alpha-opaque:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.64] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-alpha-transparent:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.21] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-dpms:
+    - Statuses : 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 5.33] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-size-change:
+    - Statuses : 7 pass(s) 1 skip(s)
+    - Exec time: [0.0, 2.33] s
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - Statuses : 1 incomplete(s) 6 pass(s) 1 skip(s)
+    - Exec time: [0.0, 6.39] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17643_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_workarounds@suspend-resume-fd:
+    - shard-apl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl1/igt@gem_workarounds@suspend-resume-fd.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl4/igt@gem_workarounds@suspend-resume-fd.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding (NEW):
+    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#54])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+
+  * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
+    - shard-snb:          [PASS][5] -> [SKIP][6] ([fdo#109271]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-snb4/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-snb4/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
+    - shard-skl:          [PASS][7] -> [FAIL][8] ([fdo#108145] / [i915#265]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109441]) +3 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_eio@in-flight-suspend:
+    - shard-skl:          [INCOMPLETE][11] ([i915#69]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl4/igt@gem_eio@in-flight-suspend.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl2/igt@gem_eio@in-flight-suspend.html
+
+  * igt@gem_softpin@noreloc-s3:
+    - shard-kbl:          [DMESG-WARN][13] ([i915#180]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-kbl4/igt@gem_softpin@noreloc-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-kbl3/igt@gem_softpin@noreloc-s3.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-apl:          [DMESG-WARN][15] ([i915#1436] / [i915#716]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl4/igt@gen9_exec_parse@allowed-all.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl3/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@i915_selftest@live@execlists:
+    - shard-skl:          [INCOMPLETE][17] ([i915#1874]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-skl6/igt@i915_selftest@live@execlists.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-skl7/igt@i915_selftest@live@execlists.html
+
+  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
+    - shard-apl:          [DMESG-WARN][19] ([i915#180]) -> [PASS][20] +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl8/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
+
+  * igt@kms_psr@psr2_primary_blt:
+    - shard-iclb:         [SKIP][21] ([fdo#109441]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-iclb8/igt@kms_psr@psr2_primary_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-iclb2/igt@kms_psr@psr2_primary_blt.html
+
+  
+#### Warnings ####
+
+  * igt@kms_content_protection@lic:
+    - shard-apl:          [FAIL][23] ([fdo#110321]) -> [TIMEOUT][24] ([i915#1319]) +1 similar issue
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8472/shard-apl8/igt@kms_content_protection@lic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/shard-apl7/igt@kms_content_protection@lic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
+  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8472 -> Patchwork_17643
+
+  CI-20190529: 20190529
+  CI_DRM_8472: 57acc5ba2cfb81691917a3da729573a99c893e5a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5651: e54e2642f1967ca3c488db32264607df670d1dfb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17643: 211186b681ff1bc9c2f4f70d495e1072ae5ee0b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17643/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
