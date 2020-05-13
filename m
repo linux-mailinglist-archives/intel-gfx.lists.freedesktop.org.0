@@ -1,44 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED29A1D1318
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 14:49:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F181D1320
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 14:50:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 448426E121;
-	Wed, 13 May 2020 12:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D796EA21;
+	Wed, 13 May 2020 12:50:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3FC6E121;
- Wed, 13 May 2020 12:49:02 +0000 (UTC)
-IronPort-SDR: Ur3Aq3ECql6owvKDDK+UDHrTEokgRpH6HQ17oqiNXcRcgjBnbEvU4ozYmZVjjoAfaXHAgG8RVM
- UnBX2mGzq1Kw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 05:49:01 -0700
-IronPort-SDR: 5dHtdCaNcfgRlQnMMii5wd2AlM7H1KdO6B1YU6W0akSALvxpFWEWaPePIreEAQw+FP2AyS25go
- qXb0fOWAnSKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="251759371"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 13 May 2020 05:48:58 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 May 2020 15:48:58 +0300
-Date: Wed, 13 May 2020 15:48:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200513124858.GD6112@intel.com>
-References: <20200513103155.12336-1-imre.deak@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B391F6EA21
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 12:50:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21186684-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 13:50:34 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 13 May 2020 13:50:32 +0100
+Message-Id: <20200513125033.28055-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200513103155.12336-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/dp_mst: Fix timeout handling of MST
- down messages
+Subject: [Intel-gfx] [CI 1/2] drm/i915/gt: Suspend tasklets before resume
+ sanitization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,129 +37,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Wayne Lin <Wayne.Lin@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 13, 2020 at 01:31:55PM +0300, Imre Deak wrote:
-> This fixes the following use-after-free problem in case an MST down
-> message times out, while waiting for the response for it:
-> =
+It is possible for a residual tasklet to be pending execution as we
+resume (whether that's some prior test kicking off the tasklet, or if we
+are in a suspend/resume stress test). As such, we do not want that
+tasklet to execute in the middle of our sanitization, such that it sees
+the poisoned state. For example,
 
-> [  449.022841] [drm:drm_dp_mst_wait_tx_reply.isra.26] timedout msg send 0=
-000000080ba7fa2 2 0
-> [  449.022898] ------------[ cut here ]------------
-> [  449.022903] list_add corruption. prev->next should be next (ffff88847d=
-ae32c0), but was 6b6b6b6b6b6b6b6b. (prev=3Dffff88847db1c140).
-> [  449.022931] WARNING: CPU: 2 PID: 22 at lib/list_debug.c:28 __list_add_=
-valid+0x4d/0x70
-> [  449.022935] Modules linked in: asix usbnet mii snd_hda_codec_hdmi mei_=
-hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash=
-_clmulni_intel snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep e1000=
-e snd_hda_core ptp snd_pcm pps_core mei_me mei intel_lpss_pci prime_numbers
-> [  449.022966] CPU: 2 PID: 22 Comm: kworker/2:0 Not tainted 5.7.0-rc3-CI-=
-Patchwork_17536+ #1
-> [  449.022970] Hardware name: Intel Corporation Tiger Lake Client Platfor=
-m/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.2457.A16.1912270059 12/27/=
-2019
-> [  449.022976] Workqueue: events_long drm_dp_mst_link_probe_work
-> [  449.022982] RIP: 0010:__list_add_valid+0x4d/0x70
-> [  449.022987] Code: c3 48 89 d1 48 c7 c7 f0 e7 32 82 48 89 c2 e8 3a 49 b=
-7 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 40 e8 32 82 e8 23 49 b7 ff <=
-0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 90 e8 32 82 e8
-> [  449.022991] RSP: 0018:ffffc900001abcb0 EFLAGS: 00010286
-> [  449.022995] RAX: 0000000000000000 RBX: ffff88847dae2d58 RCX: 000000000=
-0000001
-> [  449.022999] RDX: 0000000080000001 RSI: ffff88849d914978 RDI: 00000000f=
-fffffff
-> [  449.023002] RBP: ffff88847dae32c0 R08: ffff88849d914978 R09: 000000000=
-0000000
-> [  449.023006] R10: ffffc900001abcb8 R11: 0000000000000000 R12: ffff88849=
-0d98400
-> [  449.023009] R13: ffff88847dae3230 R14: ffff88847db1c140 R15: ffff88849=
-0d98540
-> [  449.023013] FS:  0000000000000000(0000) GS:ffff88849ff00000(0000) knlG=
-S:0000000000000000
-> [  449.023017] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  449.023021] CR2: 00007fb96fafdc63 CR3: 0000000005610004 CR4: 000000000=
-0760ee0
-> [  449.023025] PKRU: 55555554
-> [  449.023028] Call Trace:
-> [  449.023034]  drm_dp_queue_down_tx+0x59/0x110
-> [  449.023041]  ? rcu_read_lock_sched_held+0x4d/0x80
-> [  449.023050]  ? kmem_cache_alloc_trace+0x2a6/0x2d0
-> [  449.023060]  drm_dp_send_link_address+0x74/0x870
-> [  449.023065]  ? __slab_free+0x3e1/0x5c0
-> [  449.023071]  ? lockdep_hardirqs_on+0xe0/0x1c0
-> [  449.023078]  ? lockdep_hardirqs_on+0xe0/0x1c0
-> [  449.023097]  drm_dp_check_and_send_link_address+0x9a/0xc0
-> [  449.023106]  drm_dp_mst_link_probe_work+0x9e/0x160
-> [  449.023117]  process_one_work+0x268/0x600
-> [  449.023124]  ? __schedule+0x307/0x8d0
-> [  449.023139]  worker_thread+0x37/0x380
-> [  449.023149]  ? process_one_work+0x600/0x600
-> [  449.023153]  kthread+0x140/0x160
-> [  449.023159]  ? kthread_park+0x80/0x80
-> [  449.023169]  ret_from_fork+0x24/0x50
-> =
+<4>[  449.386553] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+<4>[  449.386555] CPU: 1 PID: 5115 Comm: i915_selftest Tainted: G     U  W         5.7.0-rc4-CI-CI_DRM_8472+ #1
+<4>[  449.386556] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake U DDR4 SODIMM PD RVP TLC, BIOS ICLSFWR1.R00.3183.A00.1905020411 05/02/2019
+<4>[  449.386585] RIP: 0010:process_csb+0x6bf/0x830 [i915]
+<4>[  449.386588] Code: 00 48 c7 c2 10 bc 4c a0 48 c7 c7 d4 75 34 a0 e8 87 0e e6 e0 bf 01 00 00 00 e8 9d e0 e5 e0 31 f6 bf 09 00 00 00 e8 e1 ba d6 e0 <0f> 0b 8b 87 10 05 00 00 85 c0 0f 85 5f f9 ff ff 48 c7 c1 70 a5 4f
+<4>[  449.386591] RSP: 0018:ffffc90000170ea0 EFLAGS: 00010297
+<4>[  449.386594] RAX: 0000000080000101 RBX: 0000000000000000 RCX: 0000000000000000
+<4>[  449.386596] RDX: ffff88849d5bc040 RSI: 0000000000000000 RDI: 0000000000000009
+<4>[  449.386598] RBP: ffffc90000170f00 R08: 0000000000000000 R09: 0000000000000000
+<4>[  449.386600] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88843ccea018
+<4>[  449.386602] R13: ffff88843ccea658 R14: ffff88843ccea640 R15: ffff88843ccea000
+<4>[  449.386605] FS:  00007f826a813300(0000) GS:ffff88849fe80000(0000) knlGS:0000000000000000
+<4>[  449.386607] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4>[  449.386609] CR2: 0000560366b94280 CR3: 000000048ba02002 CR4: 0000000000760ee0
+<4>[  449.386611] PKRU: 55555554
+<4>[  449.386613] Call Trace:
+<4>[  449.386616]  <IRQ>
+<4>[  449.386646]  ? execlists_submission_tasklet+0xcf/0x140 [i915]
+<4>[  449.386674]  execlists_submission_tasklet+0x2f/0x140 [i915]
+<4>[  449.386679]  tasklet_action_common.isra.16+0x6c/0x1c0
+<4>[  449.386684]  __do_softirq+0xdf/0x49e
+<4>[  449.386687]  irq_exit+0xba/0xc0
+<4>[  449.386690]  smp_apic_timer_interrupt+0xb7/0x280
+<4>[  449.386693]  apic_timer_interrupt+0xf/0x20
+<4>[  449.386695]  </IRQ>
+<4>[  449.386698] RIP: 0010:_raw_spin_unlock_irqrestore+0x49/0x60
+<4>[  449.386701] Code: c7 02 75 1f 53 9d e8 26 ab 75 ff bf 01 00 00 00 e8 7c a3 69 ff 65 8b 05 7d 9b 5c 7e 85 c0 74 0c 5b 5d c3 e8 09 aa 75 ff 53 9d <eb> df e8 ca 39 5b ff 5b 5d c3 0f 1f 00 66 2e 0f 1f 84 00 00 00 00
+<4>[  449.386703] RSP: 0018:ffffc90000a6b950 EFLAGS: 00000202 ORIG_RAX: ffffffffffffff13
+<4>[  449.386706] RAX: 0000000080000001 RBX: 0000000000000202 RCX: 0000000000000000
+<4>[  449.386708] RDX: ffff88849d5bc040 RSI: ffff88849d5bc900 RDI: ffffffff82386f12
+<4>[  449.386710] RBP: ffff88847d400f00 R08: ffff88849d5bc900 R09: 0000000000000000
+<4>[  449.386712] R10: 0000000000000000 R11: 0000000000000000 R12: 00000000ffff0b0b
+<4>[  449.386714] R13: 000000000000000c R14: ffff88847d40bf70 R15: ffff88847d40cef8
+<4>[  449.386742]  reset_csb_pointers+0x59/0x140 [i915]
+<4>[  449.386769]  execlists_sanitize+0x3e/0x60 [i915]
+<4>[  449.386797]  gt_sanitize+0xd6/0x260 [i915]
 
-> Fixes: d308a881a591 ("drm/dp_mst: Kill the second sideband tx slot, save =
-the world")
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Wayne Lin <Wayne.Lin@amd.com>
-> Cc: <stable@vger.kernel.org> # v3.17+
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> =
+As part of the reset preparation, engine->reset.prepare() prevents the
+tasklet from running, so pull the sanitization inside the critical
+section for reset.
 
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_=
-dp_mst_topology.c
-> index 2d4132e0a98f..70455e304a26 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -1197,7 +1197,8 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp_m=
-st_branch *mstb,
->  =
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1812
+Fixes: 23122a4d992b ("drm/i915/gt: Scrub execlists state on resume")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
->  		/* remove from q */
->  		if (txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_QUEUED ||
-> -		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND)
-> +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND ||
-> +		    txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_SENT)
->  			list_del(&txmsg->next);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index e59776485457..6bdb434a442d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -150,10 +150,6 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+ 	if (intel_gt_is_wedged(gt))
+ 		intel_gt_unset_wedged(gt);
+ 
+-	for_each_engine(engine, gt, id)
+-		if (engine->sanitize)
+-			engine->sanitize(engine);
+-
+ 	intel_uc_sanitize(&gt->uc);
+ 
+ 	for_each_engine(engine, gt, id)
+@@ -162,6 +158,10 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+ 
+ 	intel_uc_reset_prepare(&gt->uc);
+ 
++	for_each_engine(engine, gt, id)
++		if (engine->sanitize)
++			engine->sanitize(engine);
++
+ 	if (reset_engines(gt) || force) {
+ 		for_each_engine(engine, gt, id)
+ 			__intel_engine_reset(engine, false);
+-- 
+2.20.1
 
-Looks correct. Pondering list_del_init() all over so we
-wouldn't even need the state check...
-
-Also the 'return 1' in process_single_tx_qlock() seems =
-
-to be a zombie of some sort. Should probably be nuked to not
-confused the next person to read the code.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  	}
->  out:
-> -- =
-
-> 2.23.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
