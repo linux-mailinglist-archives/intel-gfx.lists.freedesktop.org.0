@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFDC1D0C80
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 11:42:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDEF51D0C81
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 11:42:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCC146E9EB;
-	Wed, 13 May 2020 09:42:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 241EA6E9EF;
+	Wed, 13 May 2020 09:42:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0926E9E9
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 09:42:22 +0000 (UTC)
-IronPort-SDR: 92xDsZI+wYPTPKwaIrOyqgMJZ3ukvSmMOUxfL3xJxKBCsnd+xv5WYueWxGusAQLTQFDb+KcxTR
- 397lVxfwO5yQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BACDF6E9EB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 09:42:23 +0000 (UTC)
+IronPort-SDR: syTa8HQD/gAMWEHUzd01REXy+IvIDSdXi0KwnwpHl2NDgrwmZpKuy3tTHhUe7Ms8MHj3i9csOe
+ 1lzimdsjhxmA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2020 02:42:22 -0700
-IronPort-SDR: hbegxwdIVYDSxbky5E+5GX4dfOyxih0J2+ljTzIBtXnSGP1314oJ//AHTjSd61ICD73AW3OjBL
- lrGGwsSKBgnA==
+ 13 May 2020 02:42:23 -0700
+IronPort-SDR: M+zsl/G6hDpao5gL8hiSOIp4Dqrv035HslT+e5T5Z3hTb1YMU0PzEwGC4wEIShkgVzKB/ITMfF
+ cNalk+gCNFlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="464070990"
+X-IronPort-AV: E=Sophos;i="5.73,387,1583222400"; d="scan'208";a="464070998"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by fmsmga006.fm.intel.com with ESMTP; 13 May 2020 02:42:20 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 13 May 2020 02:42:22 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 12:38:11 +0300
-Message-Id: <20200513093816.11466-2-stanislav.lisovskiy@intel.com>
+Date: Wed, 13 May 2020 12:38:12 +0300
+Message-Id: <20200513093816.11466-3-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
 References: <20200513093816.11466-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v29 1/6] drm/i915: Introduce skl_plane_wm_level
- accessor.
+Subject: [Intel-gfx] [PATCH v29 2/6] drm/i915: Extract skl SAGV checking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +47,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rm9yIGZ1dHVyZSBHZW4xMiBTQUdWIGltcGxlbWVudGF0aW9uIHdlIG5lZWQgdG8Kc2VlbWxlc3Ns
-eSBhbHRlciB3bSBsZXZlbHMgY2FsY3VsYXRlZCwgZGVwZW5kaW5nCm9uIHdoZXRoZXIgd2UgYXJl
-IGFsbG93ZWQgdG8gZW5hYmxlIFNBR1Ygb3Igbm90LgoKU28gdGhpcyBhY2Nlc3NvciB3aWxsIGdp
-dmUgYWRkaXRpb25hbCBmbGV4aWJpbGl0eQp0byBkbyB0aGF0LgoKQ3VycmVudGx5IHRoaXMgYWNj
-ZXNzb3IgaXMgc3RpbGwgc2ltcGx5IHdvcmtpbmcKYXMgInBhc3MtdGhyb3VnaCIgZnVuY3Rpb24u
-IFRoaXMgd2lsbCBiZSBjaGFuZ2VkCmluIG5leHQgY29taW5nIHBhdGNoZXMgZnJvbSB0aGlzIHNl
-cmllcy4KCnYyOiAtIHBsYW5lX2lkIC0+IHBsYW5lLT5pZChWaWxsZSBTeXJqw6Rsw6QpCiAgICAt
-IE1vdmVkIHdtX2xldmVsIHZhciB0byBoYXZlIG1vcmUgbG9jYWwgc2NvcGUKICAgICAgKFZpbGxl
-IFN5cmrDpGzDpCkKICAgIC0gUmVuYW1lZCB5dXYgdG8gY29sb3JfcGxhbmUoVmlsbGUgU3lyasOk
-bMOkKSBpbgogICAgICBza2xfcGxhbmVfd21fbGV2ZWwKCnYzOiAtIHBsYW5lLT5pZCAtPiBwbGFu
-ZV9pZCh0aGlzIHRpbWUgZm9yIHJlYWwsIFZpbGxlIFN5cmrDpGzDpCkKICAgIC0gQ2hhbmdlZCBj
-b2xvcnBsYW5lIGlkIHR5cGUgZnJvbSBib29sZWFuIHRvIGludCBhcyBpbmRleAogICAgICAoVmls
-bGUgU3lyasOkbMOkKQogICAgLSBNb3ZlZCBjcnRjX3N0YXRlIHBhcmFtIHNvIHRoYXQgaXQgaXMg
-Zmlyc3Qgbm93CiAgICAgIChWaWxsZSBTeXJqw6Rsw6QpCiAgICAtIE1vdmVkIHdtX2xldmVsIGRl
-Y2xhcmF0aW9uIHRvIHRpZ2hlciBzY29wZSBpbgogICAgICBza2xfd3JpdGVfcGxhbmVfd20oVmls
-bGUgU3lyasOkbMOkKQoKdjQ6IC0gU3RhcnRlZCB0byB1c2UgZW51bSB2YWx1ZXMgZm9yIGNvbG9y
-IHBsYW5lCiAgICAtIERvIHNpemVvZiBmb3IgYSB0eXBlIHdoYXQgd2UgYXJlIG1lbXNldCdpbmcK
-ICAgIC0gWmVybyBvdXQgd21fdXYgYXMgd2VsbChWaWxsZSBTeXJqw6Rsw6QpCgp2NTogLSBGaXhl
-ZCByZWJhc2UgY29uZmxpY3QgY2F1c2VkIGJ5IENPTE9SX1BMQU5FXyoKICAgICAgZW51bSByZW1v
-dmFsCgp2NjogLSBEbyBub3QgdXNlIHNrbF9wbGFuZV93bV9sZXZlbCBhY2Nlc3NvciBpbiBza2xf
-YWxsb2NhdGVfcGlwZV9kZGIKCnY3OiAtIEdldCByaWQgb2Ygd21fdXYsIHdoaWNoIGlzIG5vdCB1
-c2VkIGluIHNrbF9wbGFuZV93cml0ZV93bShWaWxsZSkKClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xh
-diBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCAyMyArKysrKysrKysrKysrKysrKysrKystLQogMSBm
-aWxlIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2ludGVsX3BtLmMKaW5kZXggNDE2Y2IxYTFlN2NiLi45YmUyZDFiZWE0YzMgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfcG0uYwpAQCAtNDYzMiw2ICs0NjMyLDE3IEBAIGljbF9nZXRfdG90YWxfcmVsYXRp
-dmVfZGF0YV9yYXRlKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCXJldHVy
-biB0b3RhbF9kYXRhX3JhdGU7CiB9CiAKK3N0YXRpYyBjb25zdCBzdHJ1Y3Qgc2tsX3dtX2xldmVs
-ICoKK3NrbF9wbGFuZV93bV9sZXZlbChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
-Y19zdGF0ZSwKKwkJICAgZW51bSBwbGFuZV9pZCBwbGFuZV9pZCwKKwkJICAgaW50IGxldmVsKQor
-eworCWNvbnN0IHN0cnVjdCBza2xfcGxhbmVfd20gKndtID0KKwkJJmNydGNfc3RhdGUtPndtLnNr
-bC5vcHRpbWFsLnBsYW5lc1twbGFuZV9pZF07CisKKwlyZXR1cm4gJndtLT53bVtsZXZlbF07Cit9
-CisKIHN0YXRpYyBpbnQKIHNrbF9hbGxvY2F0ZV9waXBlX2RkYihzdHJ1Y3QgaW50ZWxfY3J0Y19z
-dGF0ZSAqY3J0Y19zdGF0ZSkKIHsKQEAgLTU0MzksOCArNTQ1MCwxMiBAQCB2b2lkIHNrbF93cml0
-ZV9wbGFuZV93bShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLAogCQkmY3J0Y19zdGF0ZS0+d20u
-c2tsLnBsYW5lX2RkYl91dltwbGFuZV9pZF07CiAKIAlmb3IgKGxldmVsID0gMDsgbGV2ZWwgPD0g
-bWF4X2xldmVsOyBsZXZlbCsrKSB7CisJCWNvbnN0IHN0cnVjdCBza2xfd21fbGV2ZWwgKndtX2xl
-dmVsOworCisJCXdtX2xldmVsID0gc2tsX3BsYW5lX3dtX2xldmVsKGNydGNfc3RhdGUsIHBsYW5l
-X2lkLCBsZXZlbCk7CisKIAkJc2tsX3dyaXRlX3dtX2xldmVsKGRldl9wcml2LCBQTEFORV9XTShw
-aXBlLCBwbGFuZV9pZCwgbGV2ZWwpLAotCQkJCSAgICZ3bS0+d21bbGV2ZWxdKTsKKwkJCQkgICB3
-bV9sZXZlbCk7CiAJfQogCXNrbF93cml0ZV93bV9sZXZlbChkZXZfcHJpdiwgUExBTkVfV01fVFJB
-TlMocGlwZSwgcGxhbmVfaWQpLAogCQkJICAgJndtLT50cmFuc193bSk7CkBAIC01NDczLDggKzU0
-ODgsMTIgQEAgdm9pZCBza2xfd3JpdGVfY3Vyc29yX3dtKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxh
-bmUsCiAJCSZjcnRjX3N0YXRlLT53bS5za2wucGxhbmVfZGRiX3lbcGxhbmVfaWRdOwogCiAJZm9y
-IChsZXZlbCA9IDA7IGxldmVsIDw9IG1heF9sZXZlbDsgbGV2ZWwrKykgeworCQljb25zdCBzdHJ1
-Y3Qgc2tsX3dtX2xldmVsICp3bV9sZXZlbDsKKworCQl3bV9sZXZlbCA9IHNrbF9wbGFuZV93bV9s
-ZXZlbChjcnRjX3N0YXRlLCBwbGFuZV9pZCwgbGV2ZWwpOworCiAJCXNrbF93cml0ZV93bV9sZXZl
-bChkZXZfcHJpdiwgQ1VSX1dNKHBpcGUsIGxldmVsKSwKLQkJCQkgICAmd20tPndtW2xldmVsXSk7
-CisJCQkJICAgd21fbGV2ZWwpOwogCX0KIAlza2xfd3JpdGVfd21fbGV2ZWwoZGV2X3ByaXYsIENV
-Ul9XTV9UUkFOUyhwaXBlKSwgJndtLT50cmFuc193bSk7CiAKLS0gCjIuMjQuMS40ODUuZ2FkMDVh
-M2Q4ZTUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Introduce platform dependent SAGV checking in
+combination with bandwidth state pipe SAGV mask.
+
+This is preparation to adding TGL support, which
+requires different way of SAGV checking.
+
+v2, v3, v4, v5, v6: Fix rebase conflict
+
+v7: - Nuke icl specific function, use skl
+      for icl as well, gen specific active_pipes
+      check to be added in the next patch(Ville)
+
+v8: - Use more generic intel_crtc_can_enable_sagv
+      for checking(Ville)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 9be2d1bea4c3..6a212d47aec8 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -3804,7 +3804,7 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+ 		intel_enable_sagv(dev_priv);
+ }
+ 
+-static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
++static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+@@ -3853,6 +3853,11 @@ static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state
+ 	return true;
+ }
+ 
++static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
++{
++	return skl_crtc_can_enable_sagv(crtc_state);
++}
++
+ bool intel_can_enable_sagv(const struct intel_bw_state *bw_state)
+ {
+ 	if (bw_state->active_pipes && !is_power_of_2(bw_state->active_pipes))
+@@ -3865,7 +3870,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ {
+ 	int ret;
+ 	struct intel_crtc *crtc;
+-	struct intel_crtc_state *new_crtc_state;
++	const struct intel_crtc_state *new_crtc_state;
+ 	struct intel_bw_state *new_bw_state = NULL;
+ 	const struct intel_bw_state *old_bw_state = NULL;
+ 	int i;
+@@ -3889,6 +3894,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 
+ 	new_bw_state->active_pipes =
+ 		intel_calc_active_pipes(state, old_bw_state->active_pipes);
++
+ 	if (new_bw_state->active_pipes != old_bw_state->active_pipes) {
+ 		ret = intel_atomic_lock_global_state(&new_bw_state->base);
+ 		if (ret)
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
