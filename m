@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 253CE1D1C57
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:34:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF321D1C59
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2020 19:35:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C0E6EA80;
-	Wed, 13 May 2020 17:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29DAD6EA88;
+	Wed, 13 May 2020 17:35:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC04B6EA88
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 17:34:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEA6C6EA88
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 17:35:07 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190488-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 18:34:03 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21190499-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2020 18:35:05 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 May 2020 18:34:02 +0100
-Message-Id: <20200513173402.23742-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 May 2020 18:35:04 +0100
+Message-Id: <20200513173504.28322-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [CI] drm/i915: Drop no-semaphore boosting
