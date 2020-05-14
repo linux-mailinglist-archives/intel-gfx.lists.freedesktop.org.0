@@ -2,59 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F8B1D3E6F
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 22:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 933131D3EC9
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 22:14:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C904D6EBC0;
-	Thu, 14 May 2020 20:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFD1F6EBA0;
+	Thu, 14 May 2020 20:14:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4CB16EBBE
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 20:06:03 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id l18so282216wrn.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 13:06:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=hu/RdgI33YXRJfDmSbHxeL7l4HXDUqJS/cFvL6dS94c=;
- b=bAaEVxqMLrAmEI3zx17EA0Kr/End6iz7Bc5nSVpKn6cd/ZqrWs6Scy2Ohjg+zx1YR5
- 3VQpZQWleDiTsn3tEysUKPVuPtnaPAPUoGg4BNE/prjw4IR8jVZOxtKDmem8kBpVCx6z
- xpNeEkbnp87pc8fj4TzigrBzetDAtmYUazrS0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=hu/RdgI33YXRJfDmSbHxeL7l4HXDUqJS/cFvL6dS94c=;
- b=QtfB5H7ZFhxoMAKCqZo5FtLOpP5fr93p/g2DKbcLzFXL6K0C2BNliXxCmMeprDn8J8
- AGvFaPH1bTWC7WBUnT6j+lmkl9cFgty/qGZvm/VoZJN/Z1vYreko+p9sRx2DZKnSULe8
- krC3H33b6amGM54+7YumBvqnb4Z0XINZEPMRUKq4bt0L/0cTx2MTh1VUt20XHFedaIbu
- XW3t+dW/64w9B+a2kjs1DCducPErDPKHJp5DHbBzryGWdVs2AuLd/WlfLHqdJEGKP2z/
- rTHKKtGCAsy+/3+Hc2iBEbDFkc7I5segGXzSLDsRJ7fmANT0AzXqM1h9XOWELFAvbAYZ
- O/2g==
-X-Gm-Message-State: AOAM531qbCW5qtOpNfWs+wFJ77WLQ20+GOLGe2yILnZSHbbRQTnXSOuT
- cRUfSPCpRKSEFqXRQf766S40OQ==
-X-Google-Smtp-Source: ABdhPJxlBa7sCaUKwBgQyLPPqdwCXDgMuGBtRlQSEcjGZ4Viz4V1HUTTIvBlT5sDJIKiAfzaUzftJg==
-X-Received: by 2002:adf:ed82:: with SMTP id c2mr116614wro.255.1589486762103;
- Thu, 14 May 2020 13:06:02 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id r14sm17565044wmb.2.2020.05.14.13.06.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 May 2020 13:06:01 -0700 (PDT)
-Date: Thu, 14 May 2020 22:05:59 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200514200559.GE206103@phenom.ffwll.local>
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-4-daniel.vetter@ffwll.ch>
- <d4088d21-8351-6afb-ae90-cab3e30f83e8@suse.de>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E7586EBA0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 20:14:42 +0000 (UTC)
+IronPort-SDR: ck5tZ1ZhFmCWWOjsAZouOeuPvRpXFYddFEp4l5DL15FSbCJlMKuYB47zWwnQPiM58wAqCbQO6A
+ zvjeo5QOWBEA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2020 13:14:41 -0700
+IronPort-SDR: 3wSPplFXyVSRGELarj4PBNhbUubPD1Ur5GCHMfEjKxcIckEnwiSkAOXR45VLC5a1R5SQQDNCHn
+ qtBt8LSKTFDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="464466473"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga005.fm.intel.com with ESMTP; 14 May 2020 13:14:41 -0700
+Date: Thu, 14 May 2020 13:15:47 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200514201547.GE15561@intel.com>
+References: <20200514152145.2449-7-stanislav.lisovskiy@intel.com>
+ <20200514154337.10492-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <d4088d21-8351-6afb-ae90-cab3e30f83e8@suse.de>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/doc: Some polish for shmem helpers
+In-Reply-To: <20200514154337.10492-1-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v8 6/7] drm/i915: Adjust CDCLK accordingly
+ to our DBuf bw needs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,263 +50,477 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 11, 2020 at 01:12:49PM +0200, Thomas Zimmermann wrote:
-> =
+The logic seems fine, some comments below:
 
-> =
+On Thu, May 14, 2020 at 06:43:37PM +0300, Stanislav Lisovskiy wrote:
+> According to BSpec max BW per slice is calculated using formula
+> Max BW = CDCLK * 64. Currently when calculating min CDCLK we
+> account only per plane requirements, however in order to avoid
+> FIFO underruns we need to estimate accumulated BW consumed by
+> all planes(ddb entries basically) residing on that particular
+> DBuf slice. This will allow us to put CDCLK lower and save power
+> when we don't need that much bandwidth or gain additional
+> performance once plane consumption grows.
+> 
+> v2: - Fix long line warning
+>     - Limited new DBuf bw checks to only gens >= 11
+> 
+> v3: - Lets track used Dbuf bw per slice and per crtc in bw state
+>       (or may be in DBuf state in future), that way we don't need
+>       to have all crtcs in state and those only if we detect if
+>       are actually going to change cdclk, just same way as we
+>       do with other stuff, i.e intel_atomic_serialize_global_state
+>       and co. Just as per Ville's paradigm.
+>     - Made dbuf bw calculation procedure look nicer by introducing
+>       for_each_dbuf_slice_in_mask - we often will now need to iterate
+>       slices using mask.
+>     - According to experimental results CDCLK * 64 accounts for
+>       overall bandwidth across all dbufs, not per dbuf.
+> 
+> v4: - Fixed missing const(Ville)
+>     - Removed spurious whitespaces(Ville)
+>     - Fixed local variable init(reduced scope where not needed)
+>     - Added some comments about data rate for planar formats
+>     - Changed struct intel_crtc_bw to intel_dbuf_bw
+>     - Moved dbuf bw calculation to intel_compute_min_cdclk(Ville)
+> 
+> v5: - Removed unneeded macro
+> 
+> v6: - Prevent too frequent CDCLK switching back and forth:
+>       Always switch to higher CDCLK when needed to prevent bandwidth
+>       issues, however don't switch to lower CDCLK earlier than once
+>       in 30 minutes in order to prevent constant modeset blinking.
+>       We could of course not switch back at all, however this is
+>       bad from power consumption point of view.
+> 
+> v7: - Fixed to track cdclk using bw_state, modeset will be now
+>       triggered only when CDCLK change is really needed.
+> 
+> v8: - Lock global state if bw_state->min_cdclk is changed.
+>     - Try getting bw_state only if there are crtcs in the commit
+>       (need to have read-locked global state)
+> 
+> v9: - Do not do Dbuf bw check for gens < 9 - triggers WARN
+>       as ddb_size is 0.
+> 
+> v10: - Lock global state for older gens as well.
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c      | 129 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_bw.h      |   9 ++
+>  drivers/gpu/drm/i915/display/intel_cdclk.c   |  18 ++-
+>  drivers/gpu/drm/i915/display/intel_cdclk.h   |   1 -
+>  drivers/gpu/drm/i915/display/intel_display.c |  38 +++++-
+>  drivers/gpu/drm/i915/intel_pm.c              |  31 ++++-
+>  drivers/gpu/drm/i915/intel_pm.h              |   3 +
+>  7 files changed, 215 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 6e7cc3a4f1aa..d00338dba7e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -6,8 +6,10 @@
+>  #include <drm/drm_atomic_state_helper.h>
+>  
+>  #include "intel_bw.h"
+> +#include "intel_pm.h"
+>  #include "intel_display_types.h"
+>  #include "intel_sideband.h"
+> +#include "intel_cdclk.h"
+>  
+>  /* Parameters for Qclk Geyserville (QGV) */
+>  struct intel_qgv_point {
+> @@ -333,7 +335,6 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+>  
+>  	return data_rate;
+>  }
+> -
+>  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  			  const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -410,6 +411,132 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>  	return to_intel_bw_state(bw_state);
+>  }
+>  
+> +static int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	int i;
+> +	const struct intel_crtc_state *crtc_state;
+> +	struct intel_crtc *crtc;
+> +	int max_bw = 0;
+> +	int slice_id;
+> +	struct intel_bw_state *new_bw_state = NULL;
+> +	struct intel_bw_state *old_bw_state = NULL;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> +		enum plane_id plane_id;
+> +		struct intel_dbuf_bw *crtc_bw;
+> +
+> +		new_bw_state = intel_atomic_get_bw_state(state);
+> +		if (IS_ERR(new_bw_state))
+> +			return PTR_ERR(new_bw_state);
+> +
+> +		crtc_bw = &new_bw_state->dbuf_bw[crtc->pipe];
+> +
+> +		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
+> +
+> +		for_each_plane_id_on_crtc(crtc, plane_id) {
+> +			const struct skl_ddb_entry *plane_alloc =
+> +				&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +			const struct skl_ddb_entry *uv_plane_alloc =
+> +				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
+> +			unsigned int data_rate = crtc_state->data_rate[plane_id];
+> +			unsigned int dbuf_mask = 0;
+> +
+> +			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, plane_alloc);
+> +			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, uv_plane_alloc);
+> +
+> +			/*
+> +			 * FIXME: To calculate that more properly we probably need to
+> +			 * to split per plane data_rate into data_rate_y and data_rate_uv
+> +			 * for multiplanar formats in order not to get accounted those twice
+> +			 * if they happen to reside on different slices.
+> +			 * However for pre-icl this would work anyway because we have only single
+> +			 * slice and for icl+ uv plane has non-zero data rate.
+> +			 * So in worst case those calculation are a bit pessimistic, which
+> +			 * shouldn't pose any significant problem anyway.
+> +			 */
+> +			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
+> +				crtc_bw->used_bw[slice_id] += data_rate;
+> +		}
+> +
+> +		for_each_dbuf_slice(slice_id) {
+> +			/*
+> +			 * Current experimental observations show that contrary to BSpec
+> +			 * we get underruns once we exceed 64 * CDCLK for slices in total.
+> +			 * As a temporary measure in order not to keep CDCLK bumped up all the
+> +			 * time we calculate CDCLK according to this formula for  overall bw
+> +			 * consumed by slices.
+> +			 */
+> +			max_bw += crtc_bw->used_bw[slice_id];
+> +		}
+> +
+> +		new_bw_state->min_cdclk = max_bw / 64;
+> +
+> +		old_bw_state = intel_atomic_get_old_bw_state(state);
+> +	}
+> +
+> +	if (!old_bw_state)
+> +		return 0;
+> +
+> +	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+> +		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	int i;
+> +	const struct intel_crtc_state *crtc_state;
+> +	struct intel_crtc *crtc;
+> +
+> +	/*
+> +	 * Older gens might not have dbuf/ddb and for
+> +	 * compatibility will have same min_cdclk in bw_state
+> +	 * as cdclk state does.
+> +	 */
+> +	if (INTEL_GEN(dev_priv) >= 9) {
+> +		return skl_bw_calc_min_cdclk(state);
+> +	} else {
+> +		int min_cdclk = 0;
+> +		struct intel_bw_state *new_bw_state = NULL;
+> +		struct intel_bw_state *old_bw_state = NULL;
+> +
+> +		for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> +			struct intel_cdclk_state *cdclk_state;
+> +
+> +			new_bw_state = intel_atomic_get_bw_state(state);
+> +			if (IS_ERR(new_bw_state))
+> +				return PTR_ERR(new_bw_state);
+> +
+> +			cdclk_state = intel_atomic_get_cdclk_state(state);
+> +			if (IS_ERR(cdclk_state))
+> +				return PTR_ERR(cdclk_state);
+> +
+> +			min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> +
+> +			new_bw_state->min_cdclk = min_cdclk;
+> +
+> +			old_bw_state = intel_atomic_get_old_bw_state(state);
+> +		}
+> +
+> +		if (!old_bw_state)
+> +			return 0;
+> +
+> +		if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+> +			int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
 
-> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
-> > - Move the shmem helper section to the drm-mm.rst file, next to the
-> >   vram helpers. Makes a lot more sense there with the now wider scope.
-> >   Also, that's where the all the other backing storage stuff resides.
-> >   It's just the framebuffer helpers that should be in the kms helper
-> >   section.
-> > =
+Is it better to define a new hook for intel_bw_calc_min_cdclk() where the bw_calc_min_cdclk() hook for Gen <9 gets assigned to
+intel_bw_calc_min_cdclk() and Gen >=9 gets assigned to skl_bw_calc_min_cdclk instead of the if ..else in this function.
 
-> > - Try to clarify which functiosn are for implementing
-> >   drm_gem_object_funcs, and which for drivers to call directly. At
-> >   least one driver screwed that up a bit.
-> > =
+This also makes the solution more scalable if this logic changes for further platforms and this also follows
+the same terminology as other per platforms hooks.
 
-> > Cc: Gerd Hoffmann <kraxel@redhat.com>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> =
+Manasi
 
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> =
-
-> See below for a suggestion on the help text.
-> =
-
-> > ---
-> >  Documentation/gpu/drm-kms-helpers.rst  | 12 --------
-> >  Documentation/gpu/drm-mm.rst           | 12 ++++++++
-> >  drivers/gpu/drm/drm_gem_shmem_helper.c | 39 +++++++++++++++++++++-----
-> >  3 files changed, 44 insertions(+), 19 deletions(-)
-> > =
-
-> > diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/=
-drm-kms-helpers.rst
-> > index ee730457bf4e..b89ddd06dabb 100644
-> > --- a/Documentation/gpu/drm-kms-helpers.rst
-> > +++ b/Documentation/gpu/drm-kms-helpers.rst
-> > @@ -411,15 +411,3 @@ Legacy CRTC/Modeset Helper Functions Reference
-> >  =
-
-> >  .. kernel-doc:: drivers/gpu/drm/drm_crtc_helper.c
-> >     :export:
-> > -
-> > -SHMEM GEM Helper Reference
-> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> > -
-> > -.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
-> > -   :doc: overview
-> > -
-> > -.. kernel-doc:: include/drm/drm_gem_shmem_helper.h
-> > -   :internal:
-> > -
-> > -.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
-> > -   :export:
-> > diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-> > index 1839762044be..c01757b0ac25 100644
-> > --- a/Documentation/gpu/drm-mm.rst
-> > +++ b/Documentation/gpu/drm-mm.rst
-> > @@ -373,6 +373,18 @@ GEM CMA Helper Functions Reference
-> >  .. kernel-doc:: drivers/gpu/drm/drm_gem_cma_helper.c
-> >     :export:
-> >  =
-
-> > +GEM SHMEM Helper Function Reference
-> > +-----------------------------------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
-> > +   :doc: overview
-> > +
-> > +.. kernel-doc:: include/drm/drm_gem_shmem_helper.h
-> > +   :internal:
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
-> > +   :export:
-> > +
-> >  GEM VRAM Helper Functions Reference
-> >  -----------------------------------
-> >  =
-
-> > diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
-rm_gem_shmem_helper.c
-> > index df31e5782eed..2a70159d50ef 100644
-> > --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > @@ -103,7 +103,8 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
-> >   * @obj: GEM object to free
-> >   *
-> >   * This function cleans up the GEM object state and frees the memory u=
-sed to
-> > - * store the object itself.
-> > + * store the object itself. It should be used to implement
-> > + * &drm_gem_object_funcs.free.
-> =
-
-> It should 'only' be used? Or maybe you can say that it should be used by
-> drivers that don't implement struct drm_driver.gem_create_object.
-
-Just looked at this, and I'm not clear what you're aiming for. There
-doesn't seem to be any misuse for this for other places than the free
-hook. And I can't really come up with ideas where that would even work.
-
-What kind of confusion are you trying to clarify with your suggestion?
-Maybe I can then reword that into something that also makes sense for me.
-
-Thanks, Daniel
-
-> =
-
-> >   */
-> >  void drm_gem_shmem_free_object(struct drm_gem_object *obj)
-> >  {
-> > @@ -214,7 +215,8 @@ EXPORT_SYMBOL(drm_gem_shmem_put_pages);
-> >   * @obj: GEM object
-> >   *
-> >   * This function makes sure the backing pages are pinned in memory whi=
-le the
-> > - * buffer is exported.
-> > + * buffer is exported. It should only be used to implement
-> > + * &drm_gem_object_funcs.pin.
-> >   *
-> >   * Returns:
-> >   * 0 on success or a negative error code on failure.
-> > @@ -232,7 +234,7 @@ EXPORT_SYMBOL(drm_gem_shmem_pin);
-> >   * @obj: GEM object
-> >   *
-> >   * This function removes the requirement that the backing pages are pi=
-nned in
-> > - * memory.
-> > + * memory. It should only be used to implement &drm_gem_object_funcs.u=
-npin.
-> >   */
-> >  void drm_gem_shmem_unpin(struct drm_gem_object *obj)
-> >  {
-> > @@ -285,8 +287,14 @@ static void *drm_gem_shmem_vmap_locked(struct drm_=
-gem_shmem_object *shmem)
-> >   * drm_gem_shmem_vmap - Create a virtual mapping for a shmem GEM object
-> >   * @shmem: shmem GEM object
-> >   *
-> > - * This function makes sure that a virtual address exists for the buff=
-er backing
-> > - * the shmem GEM object.
-> > + * This function makes sure that a contiguous kernel virtual address m=
-apping
-> > + * exists for the buffer backing the shmem GEM object.
-> > + *
-> > + * This function can be used to implement &drm_gem_object_funcs.vmap. =
-But it can
-> > + * also be called by drivers directly, in which case it will hide the
-> > + * differences between dma-buf imported and natively allocated objects.
-> > + *
-> > + * Acquired mappings should be cleaned up by calling drm_gem_shmem_vun=
-map().
-> >   *
-> >   * Returns:
-> >   * 0 on success or a negative error code on failure.
-> > @@ -330,7 +338,13 @@ static void drm_gem_shmem_vunmap_locked(struct drm=
-_gem_shmem_object *shmem)
-> >   * drm_gem_shmem_vunmap - Unmap a virtual mapping fo a shmem GEM object
-> >   * @shmem: shmem GEM object
-> >   *
-> > - * This function removes the virtual address when use count drops to z=
-ero.
-> > + * This function cleans up a kernel virtual address mapping acquired by
-> > + * drm_gem_shmem_vmap(). The mapping is only removed when the use coun=
-t drops to
-> > + * zero.
-> > + *
-> > + * This function can be used to implement &drm_gem_object_funcs.vmap. =
-But it can
-> > + * also be called by drivers directly, in which case it will hide the
-> > + * differences between dma-buf imported and natively allocated objects.
-> >   */
-> >  void drm_gem_shmem_vunmap(struct drm_gem_object *obj, void *vaddr)
-> >  {
-> > @@ -559,6 +573,8 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_mmap);
-> >   * @p: DRM printer
-> >   * @indent: Tab indentation level
-> >   * @obj: GEM object
-> > + *
-> > + * This implements the &drm_gem_object_funcs.info callback.
-> >   */
-> >  void drm_gem_shmem_print_info(struct drm_printer *p, unsigned int inde=
-nt,
-> >  			      const struct drm_gem_object *obj)
-> > @@ -577,7 +593,12 @@ EXPORT_SYMBOL(drm_gem_shmem_print_info);
-> >   * @obj: GEM object
-> >   *
-> >   * This function exports a scatter/gather table suitable for PRIME usa=
-ge by
-> > - * calling the standard DMA mapping API.
-> > + * calling the standard DMA mapping API. Drivers should not call this =
-function
-> > + * directly, instead it should only be used as an implementation for
-> > + * &drm_gem_object_funcs.get_sg_table.
-> > + *
-> > + * Drivers who need to acquire an scatter/gather table for objects nee=
-d to call
-> > + * drm_gem_shmem_get_pages_sgt() instead.
-> >   *
-> >   * Returns:
-> >   * A pointer to the scatter/gather table of pinned pages or NULL on fa=
-ilure.
-> > @@ -599,6 +620,10 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_get_sg_table);
-> >   * the sg table doesn't exist, the pages are pinned, dma-mapped, and a=
- sg
-> >   * table created.
-> >   *
-> > + * This is the main function for drivers to get at backing storage, an=
-d it hides
-> > + * and difference between dma-buf imported and natively allocated obje=
-cts.
-> > + * drm_gem_shmem_get_sg_table() should not be directly called by drive=
-rs.
-> > + *
-> >   * Returns:
-> >   * A pointer to the scatter/gather table of pinned pages or errno on f=
-ailure.
-> >   */
-> > =
-
-> =
-
-> -- =
-
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> (HRB 36809, AG N=FCrnberg)
-> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> =
-
-
-
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> +
+>  int intel_bw_atomic_check(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+> index 898b4a85ccab..d8c92a59ba49 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -10,13 +10,19 @@
+>  
+>  #include "intel_display.h"
+>  #include "intel_global_state.h"
+> +#include "intel_display_power.h"
+>  
+>  struct drm_i915_private;
+>  struct intel_atomic_state;
+>  struct intel_crtc_state;
+>  
+> +struct intel_dbuf_bw {
+> +	int used_bw[I915_MAX_DBUF_SLICES];
+> +};
+> +
+>  struct intel_bw_state {
+>  	struct intel_global_state base;
+> +	struct intel_dbuf_bw dbuf_bw[I915_MAX_PIPES];
+>  
+>  	/*
+>  	 * Contains a bit mask, used to determine, whether correspondent
+> @@ -29,6 +35,8 @@ struct intel_bw_state {
+>  
+>  	/* bitmask of active pipes */
+>  	u8 active_pipes;
+> +
+> +	int min_cdclk;
+>  };
+>  
+>  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+> @@ -47,5 +55,6 @@ int intel_bw_init(struct drm_i915_private *dev_priv);
+>  int intel_bw_atomic_check(struct intel_atomic_state *state);
+>  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  			  const struct intel_crtc_state *crtc_state);
+> +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state);
+>  
+>  #endif /* __INTEL_BW_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 979a0241fdcb..28750d1f914b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -21,10 +21,12 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+>  
+> +#include <linux/time.h>
+>  #include "intel_atomic.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_display_types.h"
+>  #include "intel_sideband.h"
+> +#include "intel_bw.h"
+>  
+>  /**
+>   * DOC: CDCLK / RAWCLK
+> @@ -2093,11 +2095,9 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>  {
+>  	struct intel_atomic_state *state = cdclk_state->base.state;
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	struct intel_crtc *crtc;
+>  	struct intel_crtc_state *crtc_state;
+>  	int min_cdclk, i;
+> -	enum pipe pipe;
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+>  		int ret;
+> @@ -2117,8 +2117,18 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>  	}
+>  
+>  	min_cdclk = cdclk_state->force_min_cdclk;
+> -	for_each_pipe(dev_priv, pipe)
+> -		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> +		struct intel_bw_state *bw_state;
+> +
+> +		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> +
+> +		bw_state = intel_atomic_get_bw_state(state);
+> +		if (IS_ERR(bw_state))
+> +			return PTR_ERR(bw_state);
+> +
+> +		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
+> +	}
+>  
+>  	return min_cdclk;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> index 5731806e4cee..d62e11d620c0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -7,7 +7,6 @@
+>  #define __INTEL_CDCLK_H__
+>  
+>  #include <linux/types.h>
+> -
+>  #include "i915_drv.h"
+>  #include "intel_display.h"
+>  #include "intel_global_state.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 800ae3768841..7d460ccfda8d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14634,16 +14634,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+>  static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+>  				    bool *need_cdclk_calc)
+>  {
+> -	struct intel_cdclk_state *new_cdclk_state;
+>  	int i;
+>  	struct intel_plane_state *plane_state;
+>  	struct intel_plane *plane;
+>  	int ret;
+> -
+> -	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> -	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
+> -		*need_cdclk_calc = true;
+> -
+> +	struct intel_cdclk_state *new_cdclk_state;
+> +	struct intel_crtc_state *new_crtc_state;
+> +	struct intel_crtc *crtc;
+>  	/*
+>  	 * active_planes bitmask has been updated, and potentially
+>  	 * affected planes are part of the state. We can now
+> @@ -14655,6 +14652,35 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+>  			return ret;
+>  	}
+>  
+> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +
+> +	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
+> +		*need_cdclk_calc = true;
+> +
+> +	ret = intel_bw_calc_min_cdclk(state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!new_cdclk_state)
+> +		return 0;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		struct intel_bw_state *bw_state;
+> +		int min_cdclk = 0;
+> +
+> +		min_cdclk = max(new_cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> +
+> +		bw_state = intel_atomic_get_bw_state(state);
+> +		if (IS_ERR(bw_state))
+> +			return PTR_ERR(bw_state);
+> +
+> +		/*
+> +		 * Currently do this change only if we need to increase
+> +		 */
+> +		if (bw_state->min_cdclk > min_cdclk)
+> +			*need_cdclk_calc = true;
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index f7bd1dbb625e..684339f44559 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3939,10 +3939,9 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+>  	return offset;
+>  }
+>  
+> -static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+> +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+>  {
+>  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+> -
+>  	drm_WARN_ON(&dev_priv->drm, ddb_size == 0);
+>  
+>  	if (INTEL_GEN(dev_priv) < 11)
+> @@ -3951,6 +3950,34 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+>  	return ddb_size;
+>  }
+>  
+> +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
+> +			    const struct skl_ddb_entry *entry)
+> +{
+> +	u32 slice_mask = 0;
+> +	u16 ddb_size = intel_get_ddb_size(dev_priv);
+> +	u16 num_supported_slices = INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
+> +	u16 slice_size = ddb_size / num_supported_slices;
+> +	u16 start_slice;
+> +	u16 end_slice;
+> +
+> +	if (!skl_ddb_entry_size(entry))
+> +		return 0;
+> +
+> +	start_slice = entry->start / slice_size;
+> +	end_slice = (entry->end - 1) / slice_size;
+> +
+> +	/*
+> +	 * Per plane DDB entry can in a really worst case be on multiple slices
+> +	 * but single entry is anyway contigious.
+> +	 */
+> +	while (start_slice <= end_slice) {
+> +		slice_mask |= BIT(start_slice);
+> +		start_slice++;
+> +	}
+> +
+> +	return slice_mask;
+> +}
+> +
+>  static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_state,
+>  				  u8 active_pipes);
+>  
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+> index 614ac7f8d4cc..f8fc7eecadb6 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -38,6 +38,9 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+>  			       struct skl_ddb_entry *ddb_y,
+>  			       struct skl_ddb_entry *ddb_uv);
+>  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
+> +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
+> +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
+> +			    const struct skl_ddb_entry *entry);
+>  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+>  			      struct skl_pipe_wm *out);
+>  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+> -- 
+> 2.24.1.485.gad05a3d8e5
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
