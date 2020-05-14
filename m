@@ -2,39 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41261D3940
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 20:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A88F51D3AEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 21:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5AE6E388;
-	Thu, 14 May 2020 18:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBF966EBA3;
+	Thu, 14 May 2020 19:01:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 040076E384;
- Thu, 14 May 2020 18:40:43 +0000 (UTC)
-IronPort-SDR: +PpSRM0aBTEck3G4jfdWelu8hl+fc+hUaxGyfEX4YoR4uJC+q1qwmUfHhsn0gPKMIqpT0tce/O
- yEVVK+tjs0dw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2020 11:40:43 -0700
-IronPort-SDR: FOj9Uu7XMKXKGHV76KvUBdkLAYpb/oxWuEdjC8ge8Z0suzCwMVTlFcs2E9qFraKLLrwduOcDc2
- YaAGiz1twOZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="298798802"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 14 May 2020 11:40:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 14 May 2020 21:40:40 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 14 May 2020 21:40:40 +0300
-Message-Id: <20200514184040.20700-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA3B96EBAB;
+ Thu, 14 May 2020 19:01:50 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id 5D48A8053A;
+ Thu, 14 May 2020 21:01:48 +0200 (CEST)
+Date: Thu, 14 May 2020 21:01:46 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200514190146.GA277929@ravnborg.org>
+References: <20200514184040.20700-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/dp: Include the AUX CH name in the debug
- messages
+Content-Disposition: inline
+In-Reply-To: <20200514184040.20700-1-ville.syrjala@linux.intel.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=8nJEP1OIZ-IA:10 a=QyXUC8HyAAAA:8 a=7gkXJVJtAAAA:8
+ a=6kA8yK9TrNV1GUk-dt4A:9 a=wPNLvfGTeEIA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+Subject: Re: [Intel-gfx] [PATCH v2] drm/dp: Include the AUX CH name in the
+ debug messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,145 +44,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRv
-IG1ha2UgaXQgZWFzaWVyIHRvIGZpZ3VyZSBvdXQgd2hhdCBjYXVzZWQgYSBwYXJ0aWN1bGFyIGRl
-YnVnCm1lc3NhZ2UgbGV0J3MgcHJpbnQgb3V0IGF1eC0+bmFtZS4KCnYyOiBDb252ZXJ0IGRybV9k
-cF9zZW5kX3JlYWxfZWRpZF9jaGVja3N1bSgpIHRvbwoKQ2M6IFNhbSBSYXZuYm9yZyA8c2FtQHJh
-dm5ib3JnLm9yZz4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4KLS0tCklJUkMgU2FtIHN1Z2dlc3RlZCB0aGF0IEkgc3dpdGNoIHRv
-IHBlci1kZXZpY2UgbG9nZ2luZyBmdW5jdGlvbnMgYXQgdGhlCnNhbWUgdGltZS4gU2FkbHkgdGhh
-dCdzIGdvaW5nIHRvIHJlcXVpcmUgc29tZSBhbW91bnQgb2YgYWN0dWFsIHdvcms6CkZvciBpOTE1
-L2FtZGdwdS9ub3V2ZWF1L2V0Yy4gYXV4LT5kZXYgaXMgY29ubmVjdG9yLT5rZGV2IGluc3RlYWQg
-b2YgdGhlCnBkZXYtPmRldiB3ZSB3YW50LCB3aGljaCB3ZSBjb3VsZCBoYW5kbGUgYnkgd2Fsa2lu
-ZyB1cCB0aGUgdHJlZSBzZXZlcmFsCmxldmVscy4gSG93ZXZlciBpdCBsb29rcyBsaWtlIHNvbWUg
-b2YgdGhlIGFybWlzaCBkcml2ZXJzIHN0aWNrIHBkZXYtPmRldgpkaXJlY3RseSBpbnRvIGF1eC0+
-ZGV2IHNvIHRoZXJlIHdlIGRvbid0IHdhbnQgdG8gd2FsayB1cCB0aGUgdHJlZS4gVGhpcwptZWFu
-cyBlaXRoZXIgb25lIHNldCBvZiBkcml2ZXJzIHdpbGwgbmVlZCB0byBjaGFuZ2UgdGhlaXIgYXV4
-LT5kZXYKYXNzaWdubWVudCBhcHByb2FjaCwgb3Igd2UncmUgZ29pbmcgdG8gbmVlZCBhbm90aGVy
-IGRldmljZSBwb2ludGVyIGluCnRoZXJlLiBJIGRpZG4ndCBldmVuIHdhbnQgdG8gbG9vayB3aGF0
-IHRoZSBicmlkZ2UgZHJpdmVycyBwdXQgdGhlcmUuCkluIHRoZSBtZWFudGltZSBJIHJlZnJlc2hl
-ZCB0aGUgb3JpZ2luYWwgcGF0Y2ggd2hpY2ggYXQgbGVhc3QgbGV0cwp1cyBzZWUgYXV4LT5uYW1l
-Li4uCgogZHJpdmVycy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYyB8IDY3ICsrKysrKysrKysrKysr
-KysrKy0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDMw
-IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVy
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jCmluZGV4IDQzZTU3NjMyYjAwYS4u
-NzQzZWFkMDY4YTQzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMKQEAgLTI1Nyw3ICsyNTcsOCBA
-QCBzdGF0aWMgaW50IGRybV9kcF9kcGNkX2FjY2VzcyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCB1
-OCByZXF1ZXN0LAogCQkJZXJyID0gcmV0OwogCX0KIAotCURSTV9ERUJVR19LTVMoIlRvbyBtYW55
-IHJldHJpZXMsIGdpdmluZyB1cC4gRmlyc3QgZXJyb3I6ICVkXG4iLCBlcnIpOworCURSTV9ERUJV
-R19LTVMoIiVzOiBUb28gbWFueSByZXRyaWVzLCBnaXZpbmcgdXAuIEZpcnN0IGVycm9yOiAlZFxu
-IiwKKwkJICAgICAgYXV4LT5uYW1lLCBlcnIpOwogCXJldCA9IGVycjsKIAogdW5sb2NrOgpAQCAt
-Mzc2LDQzICszNzcsNDQgQEAgYm9vbCBkcm1fZHBfc2VuZF9yZWFsX2VkaWRfY2hlY2tzdW0oc3Ry
-dWN0IGRybV9kcF9hdXggKmF1eCwKIAogCWlmIChkcm1fZHBfZHBjZF9yZWFkKGF1eCwgRFBfREVW
-SUNFX1NFUlZJQ0VfSVJRX1ZFQ1RPUiwKIAkJCSAgICAgJmF1dG9fdGVzdF9yZXEsIDEpIDwgMSkg
-ewotCQlEUk1fRVJST1IoIkRQQ0QgZmFpbGVkIHJlYWQgYXQgcmVnaXN0ZXIgMHgleFxuIiwKLQkJ
-CSAgRFBfREVWSUNFX1NFUlZJQ0VfSVJRX1ZFQ1RPUik7CisJCURSTV9FUlJPUigiJXM6IERQQ0Qg
-ZmFpbGVkIHJlYWQgYXQgcmVnaXN0ZXIgMHgleFxuIiwKKwkJCSAgYXV4LT5uYW1lLCBEUF9ERVZJ
-Q0VfU0VSVklDRV9JUlFfVkVDVE9SKTsKIAkJcmV0dXJuIGZhbHNlOwogCX0KIAlhdXRvX3Rlc3Rf
-cmVxICY9IERQX0FVVE9NQVRFRF9URVNUX1JFUVVFU1Q7CiAKIAlpZiAoZHJtX2RwX2RwY2RfcmVh
-ZChhdXgsIERQX1RFU1RfUkVRVUVTVCwgJmxpbmtfZWRpZF9yZWFkLCAxKSA8IDEpIHsKLQkJRFJN
-X0VSUk9SKCJEUENEIGZhaWxlZCByZWFkIGF0IHJlZ2lzdGVyIDB4JXhcbiIsCi0JCQkgIERQX1RF
-U1RfUkVRVUVTVCk7CisJCURSTV9FUlJPUigiJXM6IERQQ0QgZmFpbGVkIHJlYWQgYXQgcmVnaXN0
-ZXIgMHgleFxuIiwKKwkJCSAgYXV4LT5uYW1lLCBEUF9URVNUX1JFUVVFU1QpOwogCQlyZXR1cm4g
-ZmFsc2U7CiAJfQogCWxpbmtfZWRpZF9yZWFkICY9IERQX1RFU1RfTElOS19FRElEX1JFQUQ7CiAK
-IAlpZiAoIWF1dG9fdGVzdF9yZXEgfHwgIWxpbmtfZWRpZF9yZWFkKSB7Ci0JCURSTV9ERUJVR19L
-TVMoIlNvdXJjZSBEVVQgZG9lcyBub3Qgc3VwcG9ydCBURVNUX0VESURfUkVBRFxuIik7CisJCURS
-TV9ERUJVR19LTVMoIiVzOiBTb3VyY2UgRFVUIGRvZXMgbm90IHN1cHBvcnQgVEVTVF9FRElEX1JF
-QURcbiIsCisJCQkgICAgICBhdXgtPm5hbWUpOwogCQlyZXR1cm4gZmFsc2U7CiAJfQogCiAJaWYg
-KGRybV9kcF9kcGNkX3dyaXRlKGF1eCwgRFBfREVWSUNFX1NFUlZJQ0VfSVJRX1ZFQ1RPUiwKIAkJ
-CSAgICAgICZhdXRvX3Rlc3RfcmVxLCAxKSA8IDEpIHsKLQkJRFJNX0VSUk9SKCJEUENEIGZhaWxl
-ZCB3cml0ZSBhdCByZWdpc3RlciAweCV4XG4iLAotCQkJICBEUF9ERVZJQ0VfU0VSVklDRV9JUlFf
-VkVDVE9SKTsKKwkJRFJNX0VSUk9SKCIlczogRFBDRCBmYWlsZWQgd3JpdGUgYXQgcmVnaXN0ZXIg
-MHgleFxuIiwKKwkJCSAgYXV4LT5uYW1lLCBEUF9ERVZJQ0VfU0VSVklDRV9JUlFfVkVDVE9SKTsK
-IAkJcmV0dXJuIGZhbHNlOwogCX0KIAogCS8qIHNlbmQgYmFjayBjaGVja3N1bSBmb3IgdGhlIGxh
-c3QgZWRpZCBleHRlbnNpb24gYmxvY2sgZGF0YSAqLwogCWlmIChkcm1fZHBfZHBjZF93cml0ZShh
-dXgsIERQX1RFU1RfRURJRF9DSEVDS1NVTSwKIAkJCSAgICAgICZyZWFsX2VkaWRfY2hlY2tzdW0s
-IDEpIDwgMSkgewotCQlEUk1fRVJST1IoIkRQQ0QgZmFpbGVkIHdyaXRlIGF0IHJlZ2lzdGVyIDB4
-JXhcbiIsCi0JCQkgIERQX1RFU1RfRURJRF9DSEVDS1NVTSk7CisJCURSTV9FUlJPUigiJXM6IERQ
-Q0QgZmFpbGVkIHdyaXRlIGF0IHJlZ2lzdGVyIDB4JXhcbiIsCisJCQkgIGF1eC0+bmFtZSwgRFBf
-VEVTVF9FRElEX0NIRUNLU1VNKTsKIAkJcmV0dXJuIGZhbHNlOwogCX0KIAogCXRlc3RfcmVzcCB8
-PSBEUF9URVNUX0VESURfQ0hFQ0tTVU1fV1JJVEU7CiAJaWYgKGRybV9kcF9kcGNkX3dyaXRlKGF1
-eCwgRFBfVEVTVF9SRVNQT05TRSwgJnRlc3RfcmVzcCwgMSkgPCAxKSB7Ci0JCURSTV9FUlJPUigi
-RFBDRCBmYWlsZWQgd3JpdGUgYXQgcmVnaXN0ZXIgMHgleFxuIiwKLQkJCSAgRFBfVEVTVF9SRVNQ
-T05TRSk7CisJCURSTV9FUlJPUigiJXM6IERQQ0QgZmFpbGVkIHdyaXRlIGF0IHJlZ2lzdGVyIDB4
-JXhcbiIsCisJCQkgIGF1eC0+bmFtZSwgRFBfVEVTVF9SRVNQT05TRSk7CiAJCXJldHVybiBmYWxz
-ZTsKIAl9CiAKQEAgLTczNywxMCArNzM5LDExIEBAIHN0YXRpYyBpbnQgZHJtX2RwX2kyY19kb19t
-c2coc3RydWN0IGRybV9kcF9hdXggKmF1eCwgc3RydWN0IGRybV9kcF9hdXhfbXNnICptc2cpCiAJ
-CQkgKiBBdm9pZCBzcGFtbWluZyB0aGUga2VybmVsIGxvZyB3aXRoIHRpbWVvdXQgZXJyb3JzLgog
-CQkJICovCiAJCQlpZiAocmV0ID09IC1FVElNRURPVVQpCi0JCQkJRFJNX0RFQlVHX0tNU19SQVRF
-TElNSVRFRCgidHJhbnNhY3Rpb24gdGltZWQgb3V0XG4iKTsKKwkJCQlEUk1fREVCVUdfS01TX1JB
-VEVMSU1JVEVEKCIlczogdHJhbnNhY3Rpb24gdGltZWQgb3V0XG4iLAorCQkJCQkJCSAgYXV4LT5u
-YW1lKTsKIAkJCWVsc2UKLQkJCQlEUk1fREVCVUdfS01TKCJ0cmFuc2FjdGlvbiBmYWlsZWQ6ICVk
-XG4iLCByZXQpOwotCisJCQkJRFJNX0RFQlVHX0tNUygiJXM6IHRyYW5zYWN0aW9uIGZhaWxlZDog
-JWRcbiIsCisJCQkJCSAgICAgIGF1eC0+bmFtZSwgcmV0KTsKIAkJCXJldHVybiByZXQ7CiAJCX0K
-IApAQCAtNzU0LDExICs3NTcsMTIgQEAgc3RhdGljIGludCBkcm1fZHBfaTJjX2RvX21zZyhzdHJ1
-Y3QgZHJtX2RwX2F1eCAqYXV4LCBzdHJ1Y3QgZHJtX2RwX2F1eF9tc2cgKm1zZykKIAkJCWJyZWFr
-OwogCiAJCWNhc2UgRFBfQVVYX05BVElWRV9SRVBMWV9OQUNLOgotCQkJRFJNX0RFQlVHX0tNUygi
-bmF0aXZlIG5hY2sgKHJlc3VsdD0lZCwgc2l6ZT0lenUpXG4iLCByZXQsIG1zZy0+c2l6ZSk7CisJ
-CQlEUk1fREVCVUdfS01TKCIlczogbmF0aXZlIG5hY2sgKHJlc3VsdD0lZCwgc2l6ZT0lenUpXG4i
-LAorCQkJCSAgICAgIGF1eC0+bmFtZSwgcmV0LCBtc2ctPnNpemUpOwogCQkJcmV0dXJuIC1FUkVN
-T1RFSU87CiAKIAkJY2FzZSBEUF9BVVhfTkFUSVZFX1JFUExZX0RFRkVSOgotCQkJRFJNX0RFQlVH
-X0tNUygibmF0aXZlIGRlZmVyXG4iKTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBuYXRpdmUgZGVm
-ZXJcbiIsIGF1eC0+bmFtZSk7CiAJCQkvKgogCQkJICogV2UgY291bGQgY2hlY2sgZm9yIEkyQyBi
-aXQgcmF0ZSBjYXBhYmlsaXRpZXMgYW5kIGlmCiAJCQkgKiBhdmFpbGFibGUgYWRqdXN0IHRoaXMg
-aW50ZXJ2YWwuIFdlIGNvdWxkIGFsc28gYmUKQEAgLTc3Miw3ICs3NzYsOCBAQCBzdGF0aWMgaW50
-IGRybV9kcF9pMmNfZG9fbXNnKHN0cnVjdCBkcm1fZHBfYXV4ICphdXgsIHN0cnVjdCBkcm1fZHBf
-YXV4X21zZyAqbXNnKQogCQkJY29udGludWU7CiAKIAkJZGVmYXVsdDoKLQkJCURSTV9FUlJPUigi
-aW52YWxpZCBuYXRpdmUgcmVwbHkgJSMwNHhcbiIsIG1zZy0+cmVwbHkpOworCQkJRFJNX0VSUk9S
-KCIlczogaW52YWxpZCBuYXRpdmUgcmVwbHkgJSMwNHhcbiIsCisJCQkJICBhdXgtPm5hbWUsIG1z
-Zy0+cmVwbHkpOwogCQkJcmV0dXJuIC1FUkVNT1RFSU87CiAJCX0KIApAQCAtNzg3LDEzICs3OTIs
-MTMgQEAgc3RhdGljIGludCBkcm1fZHBfaTJjX2RvX21zZyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4
-LCBzdHJ1Y3QgZHJtX2RwX2F1eF9tc2cgKm1zZykKIAkJCXJldHVybiByZXQ7CiAKIAkJY2FzZSBE
-UF9BVVhfSTJDX1JFUExZX05BQ0s6Ci0JCQlEUk1fREVCVUdfS01TKCJJMkMgbmFjayAocmVzdWx0
-PSVkLCBzaXplPSV6dSlcbiIsCi0JCQkJICAgICAgcmV0LCBtc2ctPnNpemUpOworCQkJRFJNX0RF
-QlVHX0tNUygiJXM6IEkyQyBuYWNrIChyZXN1bHQ9JWQsIHNpemU9JXp1KVxuIiwKKwkJCQkgICAg
-ICBhdXgtPm5hbWUsIHJldCwgbXNnLT5zaXplKTsKIAkJCWF1eC0+aTJjX25hY2tfY291bnQrKzsK
-IAkJCXJldHVybiAtRVJFTU9URUlPOwogCiAJCWNhc2UgRFBfQVVYX0kyQ19SRVBMWV9ERUZFUjoK
-LQkJCURSTV9ERUJVR19LTVMoIkkyQyBkZWZlclxuIik7CisJCQlEUk1fREVCVUdfS01TKCIlczog
-STJDIGRlZmVyXG4iLCBhdXgtPm5hbWUpOwogCQkJLyogRFAgQ29tcGxpYW5jZSBUZXN0IDQuMi4y
-LjUgUmVxdWlyZW1lbnQ6CiAJCQkgKiBNdXN0IGhhdmUgYXQgbGVhc3QgNyByZXRyaWVzIGZvciBJ
-MkMgZGVmZXJzIG9uIHRoZQogCQkJICogdHJhbnNhY3Rpb24gdG8gcGFzcyB0aGlzIHRlc3QKQEAg
-LTgwNywxMiArODEyLDEzIEBAIHN0YXRpYyBpbnQgZHJtX2RwX2kyY19kb19tc2coc3RydWN0IGRy
-bV9kcF9hdXggKmF1eCwgc3RydWN0IGRybV9kcF9hdXhfbXNnICptc2cpCiAJCQljb250aW51ZTsK
-IAogCQlkZWZhdWx0OgotCQkJRFJNX0VSUk9SKCJpbnZhbGlkIEkyQyByZXBseSAlIzA0eFxuIiwg
-bXNnLT5yZXBseSk7CisJCQlEUk1fRVJST1IoIiVzOiBpbnZhbGlkIEkyQyByZXBseSAlIzA0eFxu
-IiwKKwkJCQkgIGF1eC0+bmFtZSwgbXNnLT5yZXBseSk7CiAJCQlyZXR1cm4gLUVSRU1PVEVJTzsK
-IAkJfQogCX0KIAotCURSTV9ERUJVR19LTVMoInRvbyBtYW55IHJldHJpZXMsIGdpdmluZyB1cFxu
-Iik7CisJRFJNX0RFQlVHX0tNUygiJXM6IFRvbyBtYW55IHJldHJpZXMsIGdpdmluZyB1cFxuIiwg
-YXV4LT5uYW1lKTsKIAlyZXR1cm4gLUVSRU1PVEVJTzsKIH0KIApAQCAtODQxLDggKzg0Nyw4IEBA
-IHN0YXRpYyBpbnQgZHJtX2RwX2kyY19kcmFpbl9tc2coc3RydWN0IGRybV9kcF9hdXggKmF1eCwg
-c3RydWN0IGRybV9kcF9hdXhfbXNnICpvCiAJCQlyZXR1cm4gZXJyID09IDAgPyAtRVBST1RPIDog
-ZXJyOwogCiAJCWlmIChlcnIgPCBtc2cuc2l6ZSAmJiBlcnIgPCByZXQpIHsKLQkJCURSTV9ERUJV
-R19LTVMoIlBhcnRpYWwgSTJDIHJlcGx5OiByZXF1ZXN0ZWQgJXp1IGJ5dGVzIGdvdCAlZCBieXRl
-c1xuIiwKLQkJCQkgICAgICBtc2cuc2l6ZSwgZXJyKTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBQ
-YXJ0aWFsIEkyQyByZXBseTogcmVxdWVzdGVkICV6dSBieXRlcyBnb3QgJWQgYnl0ZXNcbiIsCisJ
-CQkJICAgICAgYXV4LT5uYW1lLCBtc2cuc2l6ZSwgZXJyKTsKIAkJCXJldCA9IGVycjsKIAkJfQog
-CkBAIC0xMDIxLDExICsxMDI3LDEyIEBAIHN0YXRpYyB2b2lkIGRybV9kcF9hdXhfY3JjX3dvcmso
-c3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQogCQl9CiAKIAkJaWYgKHJldCA9PSAtRUFHQUlOKSB7
-Ci0JCQlEUk1fREVCVUdfS01TKCJHZXQgQ1JDIGZhaWxlZCBhZnRlciByZXRyeWluZzogJWRcbiIs
-Ci0JCQkJICAgICAgcmV0KTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBHZXQgQ1JDIGZhaWxlZCBh
-ZnRlciByZXRyeWluZzogJWRcbiIsCisJCQkJICAgICAgYXV4LT5uYW1lLCByZXQpOwogCQkJY29u
-dGludWU7CiAJCX0gZWxzZSBpZiAocmV0KSB7Ci0JCQlEUk1fREVCVUdfS01TKCJGYWlsZWQgdG8g
-Z2V0IGEgQ1JDOiAlZFxuIiwgcmV0KTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBGYWlsZWQgdG8g
-Z2V0IGEgQ1JDOiAlZFxuIiwKKwkJCQkgICAgICBhdXgtPm5hbWUsIHJldCk7CiAJCQljb250aW51
-ZTsKIAkJfQogCkBAIC0xMzg3LDggKzEzOTQsOCBAQCBpbnQgZHJtX2RwX3JlYWRfZGVzYyhzdHJ1
-Y3QgZHJtX2RwX2F1eCAqYXV4LCBzdHJ1Y3QgZHJtX2RwX2Rlc2MgKmRlc2MsCiAKIAlkZXZfaWRf
-bGVuID0gc3RybmxlbihpZGVudC0+ZGV2aWNlX2lkLCBzaXplb2YoaWRlbnQtPmRldmljZV9pZCkp
-OwogCi0JRFJNX0RFQlVHX0tNUygiRFAgJXM6IE9VSSAlKnBoRCBkZXYtSUQgJSpwRSBIVy1yZXYg
-JWQuJWQgU1ctcmV2ICVkLiVkIHF1aXJrcyAweCUwNHhcbiIsCi0JCSAgICAgIGlzX2JyYW5jaCA/
-ICJicmFuY2giIDogInNpbmsiLAorCURSTV9ERUJVR19LTVMoIiVzOiBEUCAlczogT1VJICUqcGhE
-IGRldi1JRCAlKnBFIEhXLXJldiAlZC4lZCBTVy1yZXYgJWQuJWQgcXVpcmtzIDB4JTA0eFxuIiwK
-KwkJICAgICAgYXV4LT5uYW1lLCBpc19icmFuY2ggPyAiYnJhbmNoIiA6ICJzaW5rIiwKIAkJICAg
-ICAgKGludClzaXplb2YoaWRlbnQtPm91aSksIGlkZW50LT5vdWksCiAJCSAgICAgIGRldl9pZF9s
-ZW4sIGlkZW50LT5kZXZpY2VfaWQsCiAJCSAgICAgIGlkZW50LT5od19yZXYgPj4gNCwgaWRlbnQt
-Pmh3X3JldiAmIDB4ZiwKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+Hi Ville.
+
+On Thu, May 14, 2020 at 09:40:40PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> To make it easier to figure out what caused a particular debug
+> message let's print out aux->name.
+> =
+
+> v2: Convert drm_dp_send_real_edid_checksum() too
+> =
+
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+> IIRC Sam suggested that I switch to per-device logging functions at the
+> same time.
+I could imagine I did.
+
+> Sadly that's going to require some amount of actual work:
+> For i915/amdgpu/nouveau/etc. aux->dev is connector->kdev instead of the
+> pdev->dev we want, which we could handle by walking up the tree several
+> levels. However it looks like some of the armish drivers stick pdev->dev
+> directly into aux->dev so there we don't want to walk up the tree. This
+> means either one set of drivers will need to change their aux->dev
+> assignment approach, or we're going to need another device pointer in
+> there. I didn't even want to look what the bridge drivers put there.
+> In the meantime I refreshed the original patch which at least lets
+> us see aux->name...
+
+Thanks for the detailed explanation.
+Patch is:
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+> =
+
+>  drivers/gpu/drm/drm_dp_helper.c | 67 ++++++++++++++++++---------------
+>  1 file changed, 37 insertions(+), 30 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
+per.c
+> index 43e57632b00a..743ead068a43 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -257,7 +257,8 @@ static int drm_dp_dpcd_access(struct drm_dp_aux *aux,=
+ u8 request,
+>  			err =3D ret;
+>  	}
+>  =
+
+> -	DRM_DEBUG_KMS("Too many retries, giving up. First error: %d\n", err);
+> +	DRM_DEBUG_KMS("%s: Too many retries, giving up. First error: %d\n",
+> +		      aux->name, err);
+>  	ret =3D err;
+>  =
+
+>  unlock:
+> @@ -376,43 +377,44 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_a=
+ux *aux,
+>  =
+
+>  	if (drm_dp_dpcd_read(aux, DP_DEVICE_SERVICE_IRQ_VECTOR,
+>  			     &auto_test_req, 1) < 1) {
+> -		DRM_ERROR("DPCD failed read at register 0x%x\n",
+> -			  DP_DEVICE_SERVICE_IRQ_VECTOR);
+> +		DRM_ERROR("%s: DPCD failed read at register 0x%x\n",
+> +			  aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+>  		return false;
+>  	}
+>  	auto_test_req &=3D DP_AUTOMATED_TEST_REQUEST;
+>  =
+
+>  	if (drm_dp_dpcd_read(aux, DP_TEST_REQUEST, &link_edid_read, 1) < 1) {
+> -		DRM_ERROR("DPCD failed read at register 0x%x\n",
+> -			  DP_TEST_REQUEST);
+> +		DRM_ERROR("%s: DPCD failed read at register 0x%x\n",
+> +			  aux->name, DP_TEST_REQUEST);
+>  		return false;
+>  	}
+>  	link_edid_read &=3D DP_TEST_LINK_EDID_READ;
+>  =
+
+>  	if (!auto_test_req || !link_edid_read) {
+> -		DRM_DEBUG_KMS("Source DUT does not support TEST_EDID_READ\n");
+> +		DRM_DEBUG_KMS("%s: Source DUT does not support TEST_EDID_READ\n",
+> +			      aux->name);
+>  		return false;
+>  	}
+>  =
+
+>  	if (drm_dp_dpcd_write(aux, DP_DEVICE_SERVICE_IRQ_VECTOR,
+>  			      &auto_test_req, 1) < 1) {
+> -		DRM_ERROR("DPCD failed write at register 0x%x\n",
+> -			  DP_DEVICE_SERVICE_IRQ_VECTOR);
+> +		DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> +			  aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+>  		return false;
+>  	}
+>  =
+
+>  	/* send back checksum for the last edid extension block data */
+>  	if (drm_dp_dpcd_write(aux, DP_TEST_EDID_CHECKSUM,
+>  			      &real_edid_checksum, 1) < 1) {
+> -		DRM_ERROR("DPCD failed write at register 0x%x\n",
+> -			  DP_TEST_EDID_CHECKSUM);
+> +		DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> +			  aux->name, DP_TEST_EDID_CHECKSUM);
+>  		return false;
+>  	}
+>  =
+
+>  	test_resp |=3D DP_TEST_EDID_CHECKSUM_WRITE;
+>  	if (drm_dp_dpcd_write(aux, DP_TEST_RESPONSE, &test_resp, 1) < 1) {
+> -		DRM_ERROR("DPCD failed write at register 0x%x\n",
+> -			  DP_TEST_RESPONSE);
+> +		DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> +			  aux->name, DP_TEST_RESPONSE);
+>  		return false;
+>  	}
+>  =
+
+> @@ -737,10 +739,11 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux=
+, struct drm_dp_aux_msg *msg)
+>  			 * Avoid spamming the kernel log with timeout errors.
+>  			 */
+>  			if (ret =3D=3D -ETIMEDOUT)
+> -				DRM_DEBUG_KMS_RATELIMITED("transaction timed out\n");
+> +				DRM_DEBUG_KMS_RATELIMITED("%s: transaction timed out\n",
+> +							  aux->name);
+>  			else
+> -				DRM_DEBUG_KMS("transaction failed: %d\n", ret);
+> -
+> +				DRM_DEBUG_KMS("%s: transaction failed: %d\n",
+> +					      aux->name, ret);
+>  			return ret;
+>  		}
+>  =
+
+> @@ -754,11 +757,12 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux=
+, struct drm_dp_aux_msg *msg)
+>  			break;
+>  =
+
+>  		case DP_AUX_NATIVE_REPLY_NACK:
+> -			DRM_DEBUG_KMS("native nack (result=3D%d, size=3D%zu)\n", ret, msg->si=
+ze);
+> +			DRM_DEBUG_KMS("%s: native nack (result=3D%d, size=3D%zu)\n",
+> +				      aux->name, ret, msg->size);
+>  			return -EREMOTEIO;
+>  =
+
+>  		case DP_AUX_NATIVE_REPLY_DEFER:
+> -			DRM_DEBUG_KMS("native defer\n");
+> +			DRM_DEBUG_KMS("%s: native defer\n", aux->name);
+>  			/*
+>  			 * We could check for I2C bit rate capabilities and if
+>  			 * available adjust this interval. We could also be
+> @@ -772,7 +776,8 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, =
+struct drm_dp_aux_msg *msg)
+>  			continue;
+>  =
+
+>  		default:
+> -			DRM_ERROR("invalid native reply %#04x\n", msg->reply);
+> +			DRM_ERROR("%s: invalid native reply %#04x\n",
+> +				  aux->name, msg->reply);
+>  			return -EREMOTEIO;
+>  		}
+>  =
+
+> @@ -787,13 +792,13 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux=
+, struct drm_dp_aux_msg *msg)
+>  			return ret;
+>  =
+
+>  		case DP_AUX_I2C_REPLY_NACK:
+> -			DRM_DEBUG_KMS("I2C nack (result=3D%d, size=3D%zu)\n",
+> -				      ret, msg->size);
+> +			DRM_DEBUG_KMS("%s: I2C nack (result=3D%d, size=3D%zu)\n",
+> +				      aux->name, ret, msg->size);
+>  			aux->i2c_nack_count++;
+>  			return -EREMOTEIO;
+>  =
+
+>  		case DP_AUX_I2C_REPLY_DEFER:
+> -			DRM_DEBUG_KMS("I2C defer\n");
+> +			DRM_DEBUG_KMS("%s: I2C defer\n", aux->name);
+>  			/* DP Compliance Test 4.2.2.5 Requirement:
+>  			 * Must have at least 7 retries for I2C defers on the
+>  			 * transaction to pass this test
+> @@ -807,12 +812,13 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux=
+, struct drm_dp_aux_msg *msg)
+>  			continue;
+>  =
+
+>  		default:
+> -			DRM_ERROR("invalid I2C reply %#04x\n", msg->reply);
+> +			DRM_ERROR("%s: invalid I2C reply %#04x\n",
+> +				  aux->name, msg->reply);
+>  			return -EREMOTEIO;
+>  		}
+>  	}
+>  =
+
+> -	DRM_DEBUG_KMS("too many retries, giving up\n");
+> +	DRM_DEBUG_KMS("%s: Too many retries, giving up\n", aux->name);
+>  	return -EREMOTEIO;
+>  }
+>  =
+
+> @@ -841,8 +847,8 @@ static int drm_dp_i2c_drain_msg(struct drm_dp_aux *au=
+x, struct drm_dp_aux_msg *o
+>  			return err =3D=3D 0 ? -EPROTO : err;
+>  =
+
+>  		if (err < msg.size && err < ret) {
+> -			DRM_DEBUG_KMS("Partial I2C reply: requested %zu bytes got %d bytes\n",
+> -				      msg.size, err);
+> +			DRM_DEBUG_KMS("%s: Partial I2C reply: requested %zu bytes got %d byte=
+s\n",
+> +				      aux->name, msg.size, err);
+>  			ret =3D err;
+>  		}
+>  =
+
+> @@ -1021,11 +1027,12 @@ static void drm_dp_aux_crc_work(struct work_struc=
+t *work)
+>  		}
+>  =
+
+>  		if (ret =3D=3D -EAGAIN) {
+> -			DRM_DEBUG_KMS("Get CRC failed after retrying: %d\n",
+> -				      ret);
+> +			DRM_DEBUG_KMS("%s: Get CRC failed after retrying: %d\n",
+> +				      aux->name, ret);
+>  			continue;
+>  		} else if (ret) {
+> -			DRM_DEBUG_KMS("Failed to get a CRC: %d\n", ret);
+> +			DRM_DEBUG_KMS("%s: Failed to get a CRC: %d\n",
+> +				      aux->name, ret);
+>  			continue;
+>  		}
+>  =
+
+> @@ -1387,8 +1394,8 @@ int drm_dp_read_desc(struct drm_dp_aux *aux, struct=
+ drm_dp_desc *desc,
+>  =
+
+>  	dev_id_len =3D strnlen(ident->device_id, sizeof(ident->device_id));
+>  =
+
+> -	DRM_DEBUG_KMS("DP %s: OUI %*phD dev-ID %*pE HW-rev %d.%d SW-rev %d.%d q=
+uirks 0x%04x\n",
+> -		      is_branch ? "branch" : "sink",
+> +	DRM_DEBUG_KMS("%s: DP %s: OUI %*phD dev-ID %*pE HW-rev %d.%d SW-rev %d.=
+%d quirks 0x%04x\n",
+> +		      aux->name, is_branch ? "branch" : "sink",
+>  		      (int)sizeof(ident->oui), ident->oui,
+>  		      dev_id_len, ident->device_id,
+>  		      ident->hw_rev >> 4, ident->hw_rev & 0xf,
+> -- =
+
+> 2.26.2
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
