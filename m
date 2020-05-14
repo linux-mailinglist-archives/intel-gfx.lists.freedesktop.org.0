@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BE91D3709
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:54:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A1B1D370A
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:54:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30A656E11A;
-	Thu, 14 May 2020 16:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C706EB88;
+	Thu, 14 May 2020 16:54:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3EEF6EB88
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E41D96EB89
  for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 16:54:45 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21202370-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21202371-1500050 
  for multiple; Thu, 14 May 2020 17:54:38 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 May 2020 17:54:33 +0100
-Message-Id: <20200514165436.17380-1-chris@chris-wilson.co.uk>
+Date: Thu, 14 May 2020 17:54:34 +0100
+Message-Id: <20200514165436.17380-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200514165436.17380-1-chris@chris-wilson.co.uk>
+References: <20200514165436.17380-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Add tests for
- timeslicing virtual engines
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/gt: Kick virtual siblings on
+ timeslice out
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,210 +45,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure that we can execute a virtual request on an already busy
-engine, and conversely that we can execute a normal request if the
-engines are already fully occupied by virtual requests.
+If we decide to timeslice out the current virtual request, we will
+unsubmit it while it is still busy (ve->context.inflight == sibling[0]).
+If the virtual tasklet and then the other sibling tasklets run before we
+completely schedule out the active virtual request for the preemption,
+those other tasklets will see that the virtul request is still inflight
+on sibling[0] and leave it be. Therefore when we finally schedule-out
+the virtual request and if we see that we have passed it back to the
+virtual engine, reschedule the virtual tasklet so that it may be
+resubmitted on any of the siblings.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 177 +++++++++++++++++++++++++
- 1 file changed, 177 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 824f99c4cc7c..523c05a3c7f8 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3766,6 +3766,182 @@ static int live_virtual_mask(void *arg)
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 87e6c5bdd2dc..d550fe871be5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1402,7 +1402,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+ 	struct i915_request *next = READ_ONCE(ve->request);
+ 
+-	if (next && next->execution_mask & ~rq->execution_mask)
++	if (next == rq || (next && next->execution_mask & ~rq->execution_mask))
+ 		tasklet_schedule(&ve->base.execlists.tasklet);
  }
  
-+static int slicein_virtual_engine(struct intel_gt *gt,
-+				  struct intel_engine_cs **siblings,
-+				  unsigned int nsibling)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	struct igt_spinner spin;
-+	unsigned int n;
-+	int err = 0;
-+
-+	/*
-+	 * Virtual requests must take part in timeslicing on the target engines.
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for (n = 0; n < nsibling; n++) {
-+		ce = intel_context_create(siblings[n]);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_add(rq);
-+	}
-+
-+	ce = intel_execlists_create_virtual(siblings, nsibling);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out;
-+	}
-+
-+	rq = intel_context_create_request(ce);
-+	intel_context_put(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out;
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+	if (i915_request_wait(rq, 0, HZ / 10) < 0) {
-+		GEM_TRACE_ERR("%s(%s) failed to slice in virtual request\n",
-+			  __func__, rq->engine->name);
-+		GEM_TRACE_DUMP();
-+		intel_gt_set_wedged(gt);
-+		err = -EIO;
-+	}
-+	i915_request_put(rq);
-+
-+out:
-+	igt_spinner_end(&spin);
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int sliceout_virtual_engine(struct intel_gt *gt,
-+				   struct intel_engine_cs **siblings,
-+				   unsigned int nsibling)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	struct igt_spinner spin;
-+	unsigned int n;
-+	int err = 0;
-+
-+	/*
-+	 * Virtual requests must allow others a fair timeslice.
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for (n = 0; n < nsibling; n++) {
-+		ce = intel_execlists_create_virtual(siblings, nsibling);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_add(rq);
-+	}
-+
-+	ce = intel_execlists_create_virtual(siblings, nsibling);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out;
-+	}
-+
-+	rq = intel_context_create_request(ce);
-+	intel_context_put(ce);
-+
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out;
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+	if (i915_request_wait(rq, 0, HZ / 10) < 0) {
-+		GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
-+				__func__, siblings[n]->name);
-+		GEM_TRACE_DUMP();
-+		intel_gt_set_wedged(gt);
-+		err = -EIO;
-+	}
-+	i915_request_put(rq);
-+
-+out:
-+	igt_spinner_end(&spin);
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int live_virtual_slice(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
-+	unsigned int class, inst;
-+	int err;
-+
-+	if (intel_uc_uses_guc_submission(&gt->uc))
-+		return 0;
-+
-+	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
-+		unsigned int nsibling;
-+
-+		nsibling = 0;
-+		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
-+			struct intel_engine_cs *engine;
-+
-+			engine = gt->engine_class[class][inst];
-+			if (!engine)
-+				break;
-+
-+			if (!intel_engine_has_timeslices(engine))
-+				continue;
-+
-+			siblings[nsibling++] = engine;
-+		}
-+		if (nsibling < 2)
-+			continue;
-+
-+		err = slicein_virtual_engine(gt, siblings, nsibling);
-+		if (err)
-+			return err;
-+
-+		err = sliceout_virtual_engine(gt, siblings, nsibling);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int preserved_virtual_engine(struct intel_gt *gt,
- 				    struct intel_engine_cs **siblings,
- 				    unsigned int nsibling)
-@@ -4329,6 +4505,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_virtual_engine),
- 		SUBTEST(live_virtual_mask),
- 		SUBTEST(live_virtual_preserved),
-+		SUBTEST(live_virtual_slice),
- 		SUBTEST(live_virtual_bond),
- 		SUBTEST(live_virtual_reset),
- 	};
 -- 
 2.20.1
 
