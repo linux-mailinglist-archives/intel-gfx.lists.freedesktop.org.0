@@ -1,43 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9E61D3E11
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 21:56:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F8B1D3E6F
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 22:06:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57F546EBA1;
-	Thu, 14 May 2020 19:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C904D6EBC0;
+	Thu, 14 May 2020 20:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF746EBA1
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 19:56:34 +0000 (UTC)
-IronPort-SDR: VqoJveI9I5U7eLXUP66aLu68LqbkBwl4WFn/GMuJsFiOdxq0UB74QH1NCjcCei5+ENTFZOA4a2
- zZkr+9mjlDlA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2020 12:56:33 -0700
-IronPort-SDR: mx6SibZd030g44taGYs6MG1fHLUxGMpJpNQKJBHfrX8+AoZ9Mhb9IPA8fgcb940LHMPEmgrlso
- itXVx06rBPng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="266358889"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga006.jf.intel.com with ESMTP; 14 May 2020 12:56:33 -0700
-Date: Thu, 14 May 2020 12:57:39 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200514195739.GD15561@intel.com>
-References: <20200514152145.2449-1-stanislav.lisovskiy@intel.com>
- <20200514152145.2449-6-stanislav.lisovskiy@intel.com>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CB16EBBE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 20:06:03 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id l18so282216wrn.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 13:06:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=hu/RdgI33YXRJfDmSbHxeL7l4HXDUqJS/cFvL6dS94c=;
+ b=bAaEVxqMLrAmEI3zx17EA0Kr/End6iz7Bc5nSVpKn6cd/ZqrWs6Scy2Ohjg+zx1YR5
+ 3VQpZQWleDiTsn3tEysUKPVuPtnaPAPUoGg4BNE/prjw4IR8jVZOxtKDmem8kBpVCx6z
+ xpNeEkbnp87pc8fj4TzigrBzetDAtmYUazrS0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=hu/RdgI33YXRJfDmSbHxeL7l4HXDUqJS/cFvL6dS94c=;
+ b=QtfB5H7ZFhxoMAKCqZo5FtLOpP5fr93p/g2DKbcLzFXL6K0C2BNliXxCmMeprDn8J8
+ AGvFaPH1bTWC7WBUnT6j+lmkl9cFgty/qGZvm/VoZJN/Z1vYreko+p9sRx2DZKnSULe8
+ krC3H33b6amGM54+7YumBvqnb4Z0XINZEPMRUKq4bt0L/0cTx2MTh1VUt20XHFedaIbu
+ XW3t+dW/64w9B+a2kjs1DCducPErDPKHJp5DHbBzryGWdVs2AuLd/WlfLHqdJEGKP2z/
+ rTHKKtGCAsy+/3+Hc2iBEbDFkc7I5segGXzSLDsRJ7fmANT0AzXqM1h9XOWELFAvbAYZ
+ O/2g==
+X-Gm-Message-State: AOAM531qbCW5qtOpNfWs+wFJ77WLQ20+GOLGe2yILnZSHbbRQTnXSOuT
+ cRUfSPCpRKSEFqXRQf766S40OQ==
+X-Google-Smtp-Source: ABdhPJxlBa7sCaUKwBgQyLPPqdwCXDgMuGBtRlQSEcjGZ4Viz4V1HUTTIvBlT5sDJIKiAfzaUzftJg==
+X-Received: by 2002:adf:ed82:: with SMTP id c2mr116614wro.255.1589486762103;
+ Thu, 14 May 2020 13:06:02 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id r14sm17565044wmb.2.2020.05.14.13.06.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 May 2020 13:06:01 -0700 (PDT)
+Date: Thu, 14 May 2020 22:05:59 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200514200559.GE206103@phenom.ffwll.local>
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+ <20200511093554.211493-4-daniel.vetter@ffwll.ch>
+ <d4088d21-8351-6afb-ae90-cab3e30f83e8@suse.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200514152145.2449-6-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v8 5/7] drm/i915: Introduce
- for_each_dbuf_slice_in_mask macro
+In-Reply-To: <d4088d21-8351-6afb-ae90-cab3e30f83e8@suse.de>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/doc: Some polish for shmem helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,69 +67,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 14, 2020 at 06:21:43PM +0300, Stanislav Lisovskiy wrote:
-> We quite often need now to iterate only particular dbuf slices
-> in mask, whether they are active or related to particular crtc.
-> 
-> v2: - Minor code refactoring
-> v3: - Use enum for max slices instead of macro
-> 
-> Let's make our life a bit easier and use a macro for that.
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Mon, May 11, 2020 at 01:12:49PM +0200, Thomas Zimmermann wrote:
+> =
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+> =
 
-Manasi
+> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
+> > - Move the shmem helper section to the drm-mm.rst file, next to the
+> >   vram helpers. Makes a lot more sense there with the now wider scope.
+> >   Also, that's where the all the other backing storage stuff resides.
+> >   It's just the framebuffer helpers that should be in the kms helper
+> >   section.
+> > =
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.h       | 7 +++++++
->  drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index efb4da205ea2..b7a6d56bac5f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -187,6 +187,13 @@ enum plane_id {
->  	for ((__p) = PLANE_PRIMARY; (__p) < I915_MAX_PLANES; (__p)++) \
->  		for_each_if((__crtc)->plane_ids_mask & BIT(__p))
->  
-> +#define for_each_dbuf_slice_in_mask(__slice, __mask) \
-> +	for ((__slice) = DBUF_S1; (__slice) < I915_MAX_DBUF_SLICES; (__slice)++) \
-> +		for_each_if((BIT(__slice)) & (__mask))
-> +
-> +#define for_each_dbuf_slice(__slice) \
-> +	for_each_dbuf_slice_in_mask(__slice, BIT(I915_MAX_DBUF_SLICES) - 1)
-> +
->  enum port {
->  	PORT_NONE = -1,
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 6c917699293b..4d0d6f9dad26 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -314,6 +314,7 @@ intel_display_power_put_async(struct drm_i915_private *i915,
->  enum dbuf_slice {
->  	DBUF_S1,
->  	DBUF_S2,
-> +	I915_MAX_DBUF_SLICES
->  };
->  
->  #define with_intel_display_power(i915, domain, wf) \
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > - Try to clarify which functiosn are for implementing
+> >   drm_gem_object_funcs, and which for drivers to call directly. At
+> >   least one driver screwed that up a bit.
+> > =
+
+> > Cc: Gerd Hoffmann <kraxel@redhat.com>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> =
+
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> =
+
+> See below for a suggestion on the help text.
+> =
+
+> > ---
+> >  Documentation/gpu/drm-kms-helpers.rst  | 12 --------
+> >  Documentation/gpu/drm-mm.rst           | 12 ++++++++
+> >  drivers/gpu/drm/drm_gem_shmem_helper.c | 39 +++++++++++++++++++++-----
+> >  3 files changed, 44 insertions(+), 19 deletions(-)
+> > =
+
+> > diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/=
+drm-kms-helpers.rst
+> > index ee730457bf4e..b89ddd06dabb 100644
+> > --- a/Documentation/gpu/drm-kms-helpers.rst
+> > +++ b/Documentation/gpu/drm-kms-helpers.rst
+> > @@ -411,15 +411,3 @@ Legacy CRTC/Modeset Helper Functions Reference
+> >  =
+
+> >  .. kernel-doc:: drivers/gpu/drm/drm_crtc_helper.c
+> >     :export:
+> > -
+> > -SHMEM GEM Helper Reference
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> > -
+> > -.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
+> > -   :doc: overview
+> > -
+> > -.. kernel-doc:: include/drm/drm_gem_shmem_helper.h
+> > -   :internal:
+> > -
+> > -.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
+> > -   :export:
+> > diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
+> > index 1839762044be..c01757b0ac25 100644
+> > --- a/Documentation/gpu/drm-mm.rst
+> > +++ b/Documentation/gpu/drm-mm.rst
+> > @@ -373,6 +373,18 @@ GEM CMA Helper Functions Reference
+> >  .. kernel-doc:: drivers/gpu/drm/drm_gem_cma_helper.c
+> >     :export:
+> >  =
+
+> > +GEM SHMEM Helper Function Reference
+> > +-----------------------------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
+> > +   :doc: overview
+> > +
+> > +.. kernel-doc:: include/drm/drm_gem_shmem_helper.h
+> > +   :internal:
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/drm_gem_shmem_helper.c
+> > +   :export:
+> > +
+> >  GEM VRAM Helper Functions Reference
+> >  -----------------------------------
+> >  =
+
+> > diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
+rm_gem_shmem_helper.c
+> > index df31e5782eed..2a70159d50ef 100644
+> > --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> > +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> > @@ -103,7 +103,8 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
+> >   * @obj: GEM object to free
+> >   *
+> >   * This function cleans up the GEM object state and frees the memory u=
+sed to
+> > - * store the object itself.
+> > + * store the object itself. It should be used to implement
+> > + * &drm_gem_object_funcs.free.
+> =
+
+> It should 'only' be used? Or maybe you can say that it should be used by
+> drivers that don't implement struct drm_driver.gem_create_object.
+
+Just looked at this, and I'm not clear what you're aiming for. There
+doesn't seem to be any misuse for this for other places than the free
+hook. And I can't really come up with ideas where that would even work.
+
+What kind of confusion are you trying to clarify with your suggestion?
+Maybe I can then reword that into something that also makes sense for me.
+
+Thanks, Daniel
+
+> =
+
+> >   */
+> >  void drm_gem_shmem_free_object(struct drm_gem_object *obj)
+> >  {
+> > @@ -214,7 +215,8 @@ EXPORT_SYMBOL(drm_gem_shmem_put_pages);
+> >   * @obj: GEM object
+> >   *
+> >   * This function makes sure the backing pages are pinned in memory whi=
+le the
+> > - * buffer is exported.
+> > + * buffer is exported. It should only be used to implement
+> > + * &drm_gem_object_funcs.pin.
+> >   *
+> >   * Returns:
+> >   * 0 on success or a negative error code on failure.
+> > @@ -232,7 +234,7 @@ EXPORT_SYMBOL(drm_gem_shmem_pin);
+> >   * @obj: GEM object
+> >   *
+> >   * This function removes the requirement that the backing pages are pi=
+nned in
+> > - * memory.
+> > + * memory. It should only be used to implement &drm_gem_object_funcs.u=
+npin.
+> >   */
+> >  void drm_gem_shmem_unpin(struct drm_gem_object *obj)
+> >  {
+> > @@ -285,8 +287,14 @@ static void *drm_gem_shmem_vmap_locked(struct drm_=
+gem_shmem_object *shmem)
+> >   * drm_gem_shmem_vmap - Create a virtual mapping for a shmem GEM object
+> >   * @shmem: shmem GEM object
+> >   *
+> > - * This function makes sure that a virtual address exists for the buff=
+er backing
+> > - * the shmem GEM object.
+> > + * This function makes sure that a contiguous kernel virtual address m=
+apping
+> > + * exists for the buffer backing the shmem GEM object.
+> > + *
+> > + * This function can be used to implement &drm_gem_object_funcs.vmap. =
+But it can
+> > + * also be called by drivers directly, in which case it will hide the
+> > + * differences between dma-buf imported and natively allocated objects.
+> > + *
+> > + * Acquired mappings should be cleaned up by calling drm_gem_shmem_vun=
+map().
+> >   *
+> >   * Returns:
+> >   * 0 on success or a negative error code on failure.
+> > @@ -330,7 +338,13 @@ static void drm_gem_shmem_vunmap_locked(struct drm=
+_gem_shmem_object *shmem)
+> >   * drm_gem_shmem_vunmap - Unmap a virtual mapping fo a shmem GEM object
+> >   * @shmem: shmem GEM object
+> >   *
+> > - * This function removes the virtual address when use count drops to z=
+ero.
+> > + * This function cleans up a kernel virtual address mapping acquired by
+> > + * drm_gem_shmem_vmap(). The mapping is only removed when the use coun=
+t drops to
+> > + * zero.
+> > + *
+> > + * This function can be used to implement &drm_gem_object_funcs.vmap. =
+But it can
+> > + * also be called by drivers directly, in which case it will hide the
+> > + * differences between dma-buf imported and natively allocated objects.
+> >   */
+> >  void drm_gem_shmem_vunmap(struct drm_gem_object *obj, void *vaddr)
+> >  {
+> > @@ -559,6 +573,8 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_mmap);
+> >   * @p: DRM printer
+> >   * @indent: Tab indentation level
+> >   * @obj: GEM object
+> > + *
+> > + * This implements the &drm_gem_object_funcs.info callback.
+> >   */
+> >  void drm_gem_shmem_print_info(struct drm_printer *p, unsigned int inde=
+nt,
+> >  			      const struct drm_gem_object *obj)
+> > @@ -577,7 +593,12 @@ EXPORT_SYMBOL(drm_gem_shmem_print_info);
+> >   * @obj: GEM object
+> >   *
+> >   * This function exports a scatter/gather table suitable for PRIME usa=
+ge by
+> > - * calling the standard DMA mapping API.
+> > + * calling the standard DMA mapping API. Drivers should not call this =
+function
+> > + * directly, instead it should only be used as an implementation for
+> > + * &drm_gem_object_funcs.get_sg_table.
+> > + *
+> > + * Drivers who need to acquire an scatter/gather table for objects nee=
+d to call
+> > + * drm_gem_shmem_get_pages_sgt() instead.
+> >   *
+> >   * Returns:
+> >   * A pointer to the scatter/gather table of pinned pages or NULL on fa=
+ilure.
+> > @@ -599,6 +620,10 @@ EXPORT_SYMBOL_GPL(drm_gem_shmem_get_sg_table);
+> >   * the sg table doesn't exist, the pages are pinned, dma-mapped, and a=
+ sg
+> >   * table created.
+> >   *
+> > + * This is the main function for drivers to get at backing storage, an=
+d it hides
+> > + * and difference between dma-buf imported and natively allocated obje=
+cts.
+> > + * drm_gem_shmem_get_sg_table() should not be directly called by drive=
+rs.
+> > + *
+> >   * Returns:
+> >   * A pointer to the scatter/gather table of pinned pages or errno on f=
+ailure.
+> >   */
+> > =
+
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
