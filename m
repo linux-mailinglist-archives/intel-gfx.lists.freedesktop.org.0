@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115431D3671
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:26:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BE91D3709
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:54:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 599C46EB85;
-	Thu, 14 May 2020 16:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A656E11A;
+	Thu, 14 May 2020 16:54:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2FEF6EB85
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 16:26:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3EEF6EB88
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 16:54:45 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21202078-1500050 
- for multiple; Thu, 14 May 2020 17:26:41 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21202370-1500050 
+ for multiple; Thu, 14 May 2020 17:54:38 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 May 2020 17:26:39 +0100
-Message-Id: <20200514162639.8283-1-chris@chris-wilson.co.uk>
+Date: Thu, 14 May 2020 17:54:33 +0100
+Message-Id: <20200514165436.17380-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Add tests for timeslicing
- virtual engines
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Add tests for
+ timeslicing virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,14 +49,14 @@ engines are already fully occupied by virtual requests.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 182 +++++++++++++++++++++++++
- 1 file changed, 182 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 177 +++++++++++++++++++++++++
+ 1 file changed, 177 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 824f99c4cc7c..ce53ca09d82b 100644
+index 824f99c4cc7c..523c05a3c7f8 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3766,6 +3766,187 @@ static int live_virtual_mask(void *arg)
+@@ -3766,6 +3766,182 @@ static int live_virtual_mask(void *arg)
  	return 0;
  }
  
@@ -131,6 +131,7 @@ index 824f99c4cc7c..ce53ca09d82b 100644
 +				   struct intel_engine_cs **siblings,
 +				   unsigned int nsibling)
 +{
++	struct intel_context *ce;
 +	struct i915_request *rq;
 +	struct igt_spinner spin;
 +	unsigned int n;
@@ -144,35 +145,13 @@ index 824f99c4cc7c..ce53ca09d82b 100644
 +		return -ENOMEM;
 +
 +	for (n = 0; n < nsibling; n++) {
-+		struct intel_context *ve;
-+
-+		ve = intel_execlists_create_virtual(siblings, nsibling);
-+		if (IS_ERR(ve)) {
-+			err = PTR_ERR(ve);
-+			goto out;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ve, MI_ARB_CHECK);
-+		intel_context_put(ve);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_add(rq);
-+	}
-+
-+	for (n = 0; !err && n < nsibling; n++) {
-+		struct intel_context *ce;
-+
-+		ce = intel_context_create(siblings[n]);
++		ce = intel_execlists_create_virtual(siblings, nsibling);
 +		if (IS_ERR(ce)) {
 +			err = PTR_ERR(ce);
 +			goto out;
 +		}
 +
-+		rq = intel_context_create_request(ce);
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
 +		intel_context_put(ce);
 +
 +		if (IS_ERR(rq)) {
@@ -180,17 +159,33 @@ index 824f99c4cc7c..ce53ca09d82b 100644
 +			goto out;
 +		}
 +
-+		i915_request_get(rq);
 +		i915_request_add(rq);
-+		if (i915_request_wait(rq, 0, HZ / 10) < 0) {
-+			GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
-+				      __func__, siblings[n]->name);
-+			GEM_TRACE_DUMP();
-+			intel_gt_set_wedged(gt);
-+			err = -EIO;
-+		}
-+		i915_request_put(rq);
 +	}
++
++	ce = intel_execlists_create_virtual(siblings, nsibling);
++	if (IS_ERR(ce)) {
++		err = PTR_ERR(ce);
++		goto out;
++	}
++
++	rq = intel_context_create_request(ce);
++	intel_context_put(ce);
++
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out;
++	}
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++	if (i915_request_wait(rq, 0, HZ / 10) < 0) {
++		GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
++				__func__, siblings[n]->name);
++		GEM_TRACE_DUMP();
++		intel_gt_set_wedged(gt);
++		err = -EIO;
++	}
++	i915_request_put(rq);
 +
 +out:
 +	igt_spinner_end(&spin);
@@ -244,7 +239,7 @@ index 824f99c4cc7c..ce53ca09d82b 100644
  static int preserved_virtual_engine(struct intel_gt *gt,
  				    struct intel_engine_cs **siblings,
  				    unsigned int nsibling)
-@@ -4329,6 +4510,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+@@ -4329,6 +4505,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
  		SUBTEST(live_virtual_engine),
  		SUBTEST(live_virtual_mask),
  		SUBTEST(live_virtual_preserved),
