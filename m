@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3E81D28FD
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 09:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAAB51D28FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 09:45:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6670F6EAD3;
-	Thu, 14 May 2020 07:44:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEFD6EAD4;
+	Thu, 14 May 2020 07:45:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED3286EAD2;
- Thu, 14 May 2020 07:44:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21195254-1500050 
- for multiple; Thu, 14 May 2020 08:44:14 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: igt-dev@lists.freedesktop.org
-Date: Thu, 14 May 2020 08:44:12 +0100
-Message-Id: <20200514074412.962179-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665A56EAD2;
+ Thu, 14 May 2020 07:45:30 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id C7B0CAB91;
+ Thu, 14 May 2020 07:45:31 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+ <20200511093554.211493-3-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <a8fb0cb4-86a6-af5c-ccbb-665f68e7758f@suse.de>
+Date: Thu, 14 May 2020 09:45:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] lib/i915: Reset all engine properties to
- defaults prior to the start of a test
+In-Reply-To: <20200511093554.211493-3-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/gem: WARN if drm_gem_get_pages is
+ called on a private obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,166 +66,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0406133653=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need each test in an isolated context, so that bad results from one
-test do not interfere with the next. In particular, we want to clean up
-the device and reset it to the defaults so that they are known for the
-next test, and the test can focus on behaviour it wants to control.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0406133653==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="WKxmUZd21uWuUpH5LCbegYIw1JA9mp85u"
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- lib/i915/gem.c      | 85 +++++++++++++++++++++++++++++++++++++++++++++
- lib/igt_dummyload.c |  2 --
- lib/igt_gt.c        |  2 --
- 3 files changed, 85 insertions(+), 4 deletions(-)
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--WKxmUZd21uWuUpH5LCbegYIw1JA9mp85u
+Content-Type: multipart/mixed; boundary="B7acXOxbWu3SopmpWGR0CLHYAIgr1Z5dO";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <a8fb0cb4-86a6-af5c-ccbb-665f68e7758f@suse.de>
+Subject: Re: [PATCH 2/9] drm/gem: WARN if drm_gem_get_pages is called on a
+ private obj
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+ <20200511093554.211493-3-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200511093554.211493-3-daniel.vetter@ffwll.ch>
 
-diff --git a/lib/i915/gem.c b/lib/i915/gem.c
-index cabd23768..3ef31ed33 100644
---- a/lib/i915/gem.c
-+++ b/lib/i915/gem.c
-@@ -22,6 +22,7 @@
-  *
-  */
- 
-+#include <dirent.h>
- #include <fcntl.h>
- #include <sys/ioctl.h>
- 
-@@ -30,6 +31,89 @@
- #include "igt_debugfs.h"
- #include "igt_sysfs.h"
- 
-+static void __restore_defaults(int engine)
-+{
-+	struct dirent *de;
-+	int defaults;
-+	DIR *dir;
-+
-+	defaults = openat(engine, ".defaults", O_RDONLY);
-+	if (defaults < 0)
-+		return;
-+
-+	dir = fdopendir(defaults);
-+	if (!dir) {
-+		close(defaults);
-+		return;
-+	}
-+
-+	while ((de = readdir(dir))) {
-+		char buf[256];
-+		int fd, len;
-+
-+		if (*de->d_name == '.')
-+			continue;
-+
-+		fd = openat(defaults, de->d_name, O_RDONLY);
-+		if (fd < 0)
-+			continue;
-+
-+		len = read(fd, buf, sizeof(buf));
-+		close(fd);
-+		if (len < 0)
-+			continue;
-+
-+		fd = openat(engine, de->d_name, O_WRONLY);
-+		if (fd < 0)
-+			continue;
-+
-+		write(fd, buf, len);
-+		close(fd);
-+	}
-+
-+	closedir(dir);
-+}
-+
-+static void restore_defaults(int i915)
-+{
-+	struct dirent *de;
-+	int engines;
-+	DIR *dir;
-+	int sys;
-+
-+	sys = igt_sysfs_open(i915);
-+	if (sys < 0)
-+		return;
-+
-+	engines = openat(sys, "engine", O_RDONLY);
-+	if (engines < 0)
-+		goto close_sys;
-+
-+	dir = fdopendir(engines);
-+	if (!dir) {
-+		close(engines);
-+		goto close_sys;
-+	}
-+
-+	while ((de = readdir(dir))) {
-+		int engine;
-+
-+		if (*de->d_name == '.')
-+			continue;
-+
-+		engine = openat(engines, de->d_name, O_RDONLY);
-+		if (engine < 0)
-+			continue;
-+
-+		__restore_defaults(engine);
-+		close(engine);
-+	}
-+
-+	closedir(dir);
-+close_sys:
-+	close(sys);
-+}
-+
- static void reset_device(int i915)
- {
- 	int dir;
-@@ -66,6 +150,7 @@ void igt_require_gem(int i915)
- 	 * sequences of batches.
- 	 */
- 	reset_device(i915);
-+	restore_defaults(i915);
- 
- 	err = 0;
- 	if (ioctl(i915, DRM_IOCTL_I915_GEM_THROTTLE)) {
-diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
-index 0b52eb5b5..a733bd674 100644
---- a/lib/igt_dummyload.c
-+++ b/lib/igt_dummyload.c
-@@ -355,8 +355,6 @@ igt_spin_factory(int fd, const struct igt_spin_factory *opts)
- {
- 	igt_spin_t *spin;
- 
--	igt_require_gem(fd);
--
- 	if (opts->engine != ALL_ENGINES) {
- 		struct intel_execution_engine2 e;
- 		int class;
-diff --git a/lib/igt_gt.c b/lib/igt_gt.c
-index a806b567a..101627973 100644
---- a/lib/igt_gt.c
-+++ b/lib/igt_gt.c
-@@ -172,8 +172,6 @@ igt_hang_t igt_allow_hang(int fd, unsigned ctx, unsigned flags)
- 	 * to recover from reset and for it to remain wedged. It's hard to
- 	 * say even if we do hang/reset making the test suspect.
- 	 */
--	igt_require_gem(fd);
--
- 	if (!igt_check_boolean_env_var("IGT_HANG", true))
- 		igt_skip("hang injection disabled by user [IGT_HANG=0]\n");
- 	gem_context_require_bannable(fd);
--- 
-2.26.2
+--B7acXOxbWu3SopmpWGR0CLHYAIgr1Z5dO
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+
+
+Am 11.05.20 um 11:35 schrieb Daniel Vetter:
+> No real functional change, since this just converts an annoying Oops
+> into a more harmless WARNING backtrace. It's still a driver bug.
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+> ---
+>  drivers/gpu/drm/drm_gem.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 7bf628e13023..63bfd97e69d8 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -548,6 +548,10 @@ static void drm_gem_check_release_pagevec(struct p=
+agevec *pvec)
+>   * set during initialization. If you have special zone constraints, se=
+t them
+>   * after drm_gem_object_init() via mapping_set_gfp_mask(). shmem-core =
+takes care
+>   * to keep pages in the required zone during swap-in.
+> + *
+> + * This function is only valid on objects initialized with
+> + * drm_gem_object_init(), but not for those initialized with
+> + * drm_gem_private_object_init() only.
+>   */
+>  struct page **drm_gem_get_pages(struct drm_gem_object *obj)
+>  {
+> @@ -556,6 +560,10 @@ struct page **drm_gem_get_pages(struct drm_gem_obj=
+ect *obj)
+>  	struct pagevec pvec;
+>  	int i, npages;
+> =20
+> +
+> +	if (WARN_ON(!obj->filp))
+> +		return ERR_PTR(-EINVAL);
+> +
+>  	/* This is the shared memory object that backs the GEM resource */
+>  	mapping =3D obj->filp->f_mapping;
+> =20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--B7acXOxbWu3SopmpWGR0CLHYAIgr1Z5dO--
+
+--WKxmUZd21uWuUpH5LCbegYIw1JA9mp85u
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl689xgACgkQaA3BHVML
+eiP/IwgAv0J4jbizDLEiEuBeuYdQUNCzrhie1uNdys5GKzPbEN0sgABgT7/lcmX4
+1xEaIvI0qaCFKl+QKkfrooxDCrt7KkqReq2gfLaBFpkesgR8CN9yaPyYkgDkqoTq
+5r/h6ZNGvQ7wyLQWC7mF61SjaeKRBAF75za5A++alr/bVqlXZ6wF0QiVC1wSC+Nk
+6I/Xvn1zdUeFxaQhXjEJyPb3+k5kTiODDXZ4IQNGfYvyOquzUsuHz32TkP3KXsI+
+SshU8JyGqyIZ3+eBU9+eC3sgJfrpjz70TbFhS53qffjvyarCGOFID31zCSWV4G7V
+OF2Ys8RXEd6KmCpaZdGYcofnUujdjA==
+=+B86
+-----END PGP SIGNATURE-----
+
+--WKxmUZd21uWuUpH5LCbegYIw1JA9mp85u--
+
+--===============0406133653==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0406133653==--
