@@ -1,62 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEFD91D304C
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 14:49:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B2311D3067
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 14:55:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F386E33C;
-	Thu, 14 May 2020 12:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 033436EB42;
+	Thu, 14 May 2020 12:55:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0E06EB3E
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 12:49:50 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id d207so11332264wmd.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 05:49:50 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2F96EB41
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 12:55:33 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id i15so3889415wrx.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 05:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=bloCnaq8kEhJLc92W8Ae9wynkl5ZdlQmtWQtta8YKP0=;
- b=Nm7GC19hczTQ+sai5rDvZ5MjdahgnlLMqXxcfnwSWJq7/NdjvEEUm2xgvz2qjQMvFn
- 46n6bcNilc4kZvv/8D57xcjgsH1X6X1pegC3bL+6n+LkrgLW5vN2V6FiMvCeB1rHvya1
- jVESko9ldfxz+Sx4h0LtHxOhnJYwNnAnGgR4U=
+ bh=4wPXeNcLW4ZBVZEWneMiy/Djij00xCw9qJYjwl+CGqE=;
+ b=TlmZAoVz4eyoh4PJ5nxYIRqEcULhdm7cVTrPW0yDrINXspysruIi+eIzbYUqZ/22mQ
+ IYSvP/ZqNlBlQOg0FpP9AqMn2kyYk76XAoLHrhVV5BSHQrq5EZ4h8+fauC9I18s2py1n
+ OTe8IZH950RXRTxiuuSd3F9QTNKoi+liHJbxY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=bloCnaq8kEhJLc92W8Ae9wynkl5ZdlQmtWQtta8YKP0=;
- b=qAdnusrrZs+JY+CkVV+I2qEa6TFYAyJLAgbLRA/uEulhSIhS3NYoKvWknTJNUCPwrB
- G7B/bou+2PyrYhRm4OnhSGYzmvpU59ApcA0d//72YUXu6g/NrpV5B8aXHy/fUjoeQ5p6
- OqhIXHT0TLxaTWQPiim/mRvgbmxxHoIogkVT1vEkZkCQ5SX0LoqsbFnlJSzz3DZRw4Nh
- UYBxOng3GANZgL8sWZATnrWoeALOt+sWxQXyn8Uueyvn4qfEDWW8QaFC73XnqdrJIB90
- WV21Y1/VmZWyM4y6jwZylRaxXTD2YlmK3BFEx+KI54uTKBnCDnDifquY5gqLVdfsPUQC
- Rhrw==
-X-Gm-Message-State: AGi0PubLPMzR4EwiS9rUDrEidAJWr4WnqHUujyBesChf31qBt6L3CkiQ
- rM+cEyOW7tB+/+ublsC1G2/3SA==
-X-Google-Smtp-Source: APiQypLD7L5rX6Xx06rYZCvSGbZD9MjGGaR8Q9/Aap4chpVVKC/y8vWKvppZBwwb8IZ6k+lyMI5XWQ==
-X-Received: by 2002:a05:600c:280b:: with SMTP id
- m11mr20202846wmb.115.1589460589505; 
- Thu, 14 May 2020 05:49:49 -0700 (PDT)
+ bh=4wPXeNcLW4ZBVZEWneMiy/Djij00xCw9qJYjwl+CGqE=;
+ b=omLvfD3C0tPs26yJIkLpNs81xHwlKoz6fp4xgQCkuk0UH+4fdpVa4nkCI+q+SRqi3X
+ c64SmawikxCrmHGneoo4RMmfff6T6lqkgFjoUICnhT1zKWIbWXP4+OJKdcyI92xLmNda
+ PxuR07/nvAsB1qTL4h3wUJD52jWIb0BrueGNffI6QaRC+FsRDbVOR78HaBss9f7uKr+3
+ yDZhaUZjMvywCV7YW5h0+Jissp47eSsSoW96KL+qbe7Y2J91WnaZdqzQVSIKeX5l0OHu
+ cRk/PwDjRLbGEaLiocjVwBClCnktk8ZT3Fn3Ohpcfh9DG4tBCSIOCwPtrDFFUUBqlTlE
+ hRGQ==
+X-Gm-Message-State: AOAM531ijf6CfbyB9goqqcDomD9skK4yoeMYGII8AuG54GwxkUZM/GQ1
+ SbpHpb1tuaG531rr3yCKXWZRVw==
+X-Google-Smtp-Source: ABdhPJyqveUs+SO5BZztKeocuJ5hqkU2HtoH28CqVbu2LlwfjKf3vX2hr1UXT5VOH8Nw00o6DfmnNg==
+X-Received: by 2002:a05:6000:114a:: with SMTP id
+ d10mr5059869wrx.243.1589460931619; 
+ Thu, 14 May 2020 05:55:31 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q9sm15764296wmb.34.2020.05.14.05.49.48
+ by smtp.gmail.com with ESMTPSA id w9sm4215099wrc.27.2020.05.14.05.55.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 May 2020 05:49:48 -0700 (PDT)
-Date: Thu, 14 May 2020 14:49:47 +0200
+ Thu, 14 May 2020 05:55:30 -0700 (PDT)
+Date: Thu, 14 May 2020 14:55:28 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200514124947.GZ206103@phenom.ffwll.local>
+Message-ID: <20200514125528.GA206103@phenom.ffwll.local>
 References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-7-daniel.vetter@ffwll.ch>
- <6910cb3c-7169-fe1c-efc1-3acb8a218384@suse.de>
+ <20200511093554.211493-10-daniel.vetter@ffwll.ch>
+ <732e30cc-9169-c409-4ddc-50508ef36efc@suse.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <6910cb3c-7169-fe1c-efc1-3acb8a218384@suse.de>
+In-Reply-To: <732e30cc-9169-c409-4ddc-50508ef36efc@suse.de>
 X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/shmem-helpers: Don't call
- get/put_pages on imported dma-buf in vmap
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/shmem-helpers: Simplify dma-buf
+ importing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,16 +79,15 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 14, 2020 at 09:16:54AM +0200, Thomas Zimmermann wrote:
+On Thu, May 14, 2020 at 09:44:02AM +0200, Thomas Zimmermann wrote:
 > Hi
 > =
 
 > Am 11.05.20 um 11:35 schrieb Daniel Vetter:
-> > There's no direct harm, because for the shmem helpers these are noops
-> > on imported buffers. The trouble is in the locks these take - I want
-> > to change dma_buf_vmap locking, and so need to make sure that we only
-> > ever take certain locks on one side of the dma-buf interface: Either
-> > for exporters, or for importers.
+> > - Ditch the ->pages array
+> > - Make it a private gem bo, which means no shmem object, which means
+> >   fireworks if anyone calls drm_gem_object_get_pages. But we've just
+> >   made sure that's all covered.
 > > =
 
 > > Cc: Gerd Hoffmann <kraxel@redhat.com>
@@ -96,82 +95,192 @@ On Thu, May 14, 2020 at 09:16:54AM +0200, Thomas Zimmermann wrote:
 > > Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
 > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > > ---
-> >  drivers/gpu/drm/drm_gem_shmem_helper.c | 17 +++++++++--------
-> >  1 file changed, 9 insertions(+), 8 deletions(-)
+> >  drivers/gpu/drm/drm_gem_shmem_helper.c | 59 ++++++++++----------------
+> >  1 file changed, 23 insertions(+), 36 deletions(-)
 > > =
 
 > > diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
 rm_gem_shmem_helper.c
-> > index 2a70159d50ef..b9cba5cc61c3 100644
+> > index f7011338813e..8c7d4f422b7b 100644
 > > --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
 > > +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > @@ -252,32 +252,33 @@ static void *drm_gem_shmem_vmap_locked(struct drm=
-_gem_shmem_object *shmem)
-> >  	if (shmem->vmap_use_count++ > 0)
-> >  		return shmem->vaddr;
+> > @@ -35,22 +35,12 @@ static const struct drm_gem_object_funcs drm_gem_sh=
+mem_funcs =3D {
+> >  	.mmap =3D drm_gem_shmem_mmap,
+> >  };
 > >  =
 
-> > -	ret =3D drm_gem_shmem_get_pages(shmem);
-> > -	if (ret)
-> > -		goto err_zero_use;
-> > -
+> > -/**
+> > - * drm_gem_shmem_create - Allocate an object with the given size
+> > - * @dev: DRM device
+> > - * @size: Size of the object to allocate
+> > - *
+> > - * This function creates a shmem GEM object.
+> > - *
+> > - * Returns:
+> > - * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded =
+negative
+> > - * error code on failure.
+> > - */
+> > -struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *d=
+ev, size_t size)
+> > +static struct drm_gem_shmem_object *
+> > +__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool priva=
+te)
+> >  {
+> >  	struct drm_gem_shmem_object *shmem;
+> >  	struct drm_gem_object *obj;
+> > -	int ret;
+> > +	int ret =3D 0;
+> >  =
+
+> >  	size =3D PAGE_ALIGN(size);
+> >  =
+
+> > @@ -64,7 +54,10 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(st=
+ruct drm_device *dev, size_t
+> >  	if (!obj->funcs)
+> >  		obj->funcs =3D &drm_gem_shmem_funcs;
+> >  =
+
+> > -	ret =3D drm_gem_object_init(dev, obj, size);
+> > +	if (private)
+> > +		drm_gem_private_object_init(dev, obj, size);
+> > +	else
+> > +		ret =3D drm_gem_object_init(dev, obj, size);
+> >  	if (ret)
+> >  		goto err_free;
+> >  =
+
+> > @@ -96,6 +89,21 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(st=
+ruct drm_device *dev, size_t
+> >  =
+
+> >  	return ERR_PTR(ret);
+> >  }
+> > +/**
+> > + * drm_gem_shmem_create - Allocate an object with the given size
+> > + * @dev: DRM device
+> > + * @size: Size of the object to allocate
+> > + *
+> > + * This function creates a shmem GEM object.
+> > + *
+> > + * Returns:
+> > + * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded =
+negative
+> > + * error code on failure.
+> > + */
+> > +struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *d=
+ev, size_t size)
+> > +{
+> > +	return __drm_gem_shmem_create(dev, size, false);
+> > +}
+> >  EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
+> >  =
+
+> >  /**
+> > @@ -115,7 +123,6 @@ void drm_gem_shmem_free_object(struct drm_gem_objec=
+t *obj)
 > >  	if (obj->import_attach) {
-> >  		shmem->vaddr =3D dma_buf_vmap(obj->import_attach->dmabuf);
+> >  		shmem->pages_use_count--;
+> >  		drm_prime_gem_destroy(obj, shmem->sgt);
+> > -		kvfree(shmem->pages);
 > >  	} else {
-> >  		pgprot_t prot =3D PAGE_KERNEL;
+> >  		if (shmem->sgt) {
+> >  			dma_unmap_sg(obj->dev->dev, shmem->sgt->sgl,
+> > @@ -371,7 +378,7 @@ drm_gem_shmem_create_with_handle(struct drm_file *f=
+ile_priv,
+> >  	struct drm_gem_shmem_object *shmem;
+> >  	int ret;
 > >  =
 
-> > +		ret =3D drm_gem_shmem_get_pages(shmem);
-> > +		if (ret)
-> > +			goto err;
-> > +
-> >  		if (!shmem->map_cached)
-> >  			prot =3D pgprot_writecombine(prot);
-> >  		shmem->vaddr =3D vmap(shmem->pages, obj->size >> PAGE_SHIFT,
-> >  				    VM_MAP, prot);
-> > +
-> > +		if (!shmem->vaddr)
-> > +			drm_gem_shmem_put_pages(shmem);
-> >  	}
+> > -	shmem =3D drm_gem_shmem_create(dev, size);
+> > +	shmem =3D __drm_gem_shmem_create(dev, size, true);
+> >  	if (IS_ERR(shmem))
+> >  		return shmem;
 > >  =
 
-> >  	if (!shmem->vaddr) {
-> >  		DRM_DEBUG_KMS("Failed to vmap pages\n");
-> >  		ret =3D -ENOMEM;
-> > -		goto err_put_pages;
-> > +		goto err;
-> >  	}
+> > @@ -695,36 +702,16 @@ drm_gem_shmem_prime_import_sg_table(struct drm_de=
+vice *dev,
+> >  				    struct sg_table *sgt)
+> >  {
+> >  	size_t size =3D PAGE_ALIGN(attach->dmabuf->size);
+> > -	size_t npages =3D size >> PAGE_SHIFT;
+> >  	struct drm_gem_shmem_object *shmem;
+> > -	int ret;
 > >  =
 
-> >  	return shmem->vaddr;
+> >  	shmem =3D drm_gem_shmem_create(dev, size);
+> >  	if (IS_ERR(shmem))
+> >  		return ERR_CAST(shmem);
 > >  =
 
-> > -err_put_pages:
-> > -	drm_gem_shmem_put_pages(shmem);
+> > -	shmem->pages =3D kvmalloc_array(npages, sizeof(struct page *), GFP_KE=
+RNEL);
+> > -	if (!shmem->pages) {
+> > -		ret =3D -ENOMEM;
+> > -		goto err_free_gem;
+> > -	}
+> > -
+> > -	ret =3D drm_prime_sg_to_page_addr_arrays(sgt, shmem->pages, NULL, npa=
+ges);
+> > -	if (ret < 0)
+> > -		goto err_free_array;
+> > -
+> >  	shmem->sgt =3D sgt;
+> > -	shmem->pages_use_count =3D 1; /* Permanently pinned from our point of=
+ view */
 > =
 
-> I found the new code to be less readable. Maybe keep the error rollback
-> as-is and protect _put_pages() with if (!import_attach).
+> This counter protected drm_gem_shmem_get_pages() from being executed on
+> imported buffers. I guess that previous patches sorted out all the
+> instances where this could occur. If so, the current patch looks
+> correct. I'm not sure, if the overall code is really better than what we
+> have ATM, but anyway
 
-Hm yeah I guess I can leave this as-is mostly, makes at least the diff
-smaller. Imo it all looks a bit awkward, but what I've done isn't clearly
-better than just leaving stuff mostly where it was.
+The goal was to clearly sort these cases out, iirc we had callers of
+get_pages doing the wrong thing, but I tried to review them all. Some got
+removed while this series was hanging around in my tree somewhere.
+
+What I wanted to do in the end is replace all mutex_lock with
+dma_resv_lock, which now should be doable. Except I need to audit all the
+drivers, and some want _locked variant since they are already holding the
+lock. That's roughly the point where I gave up on this eandeavour, at
+least for now.
+
+But if we'd get there then all the various helpers we have (cma, shmem,
+vram) would more or less properly use dma_resv_lock as their protectiong
+concept. That's kinda neat since with the dynamic dma-buf stuff
+dma_resv_lock really becomes _the_ buffer lock for drivers, so some
+motivation to move towards that.
+
+Anyway if you don't feel like this is all that useful without the
+dma_resv_lock work on top, I guess I can merge up to the doc patch and
+leave the others out. Not sure myself, thoughts?
+
+Thanks for taking a look.
 -Daniel
 
-> =
-
-> In any case
 > =
 
 > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 > =
 
-> > -err_zero_use:
-> > +err:
-> >  	shmem->vmap_use_count =3D 0;
 > >  =
 
-> >  	return ERR_PTR(ret);
+> >  	DRM_DEBUG_PRIME("size =3D %zu\n", size);
+> >  =
+
+> >  	return &shmem->base;
+> > -
+> > -err_free_array:
+> > -	kvfree(shmem->pages);
+> > -err_free_gem:
+> > -	drm_gem_object_put_unlocked(&shmem->base);
+> > -
+> > -	return ERR_PTR(ret);
+> >  }
+> >  EXPORT_SYMBOL_GPL(drm_gem_shmem_prime_import_sg_table);
 > > =
 
 > =
