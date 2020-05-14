@@ -2,61 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B2311D3067
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 14:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 509421D30E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 15:17:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033436EB42;
-	Thu, 14 May 2020 12:55:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D0B6EB44;
+	Thu, 14 May 2020 13:17:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2F96EB41
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 12:55:33 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id i15so3889415wrx.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 05:55:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=4wPXeNcLW4ZBVZEWneMiy/Djij00xCw9qJYjwl+CGqE=;
- b=TlmZAoVz4eyoh4PJ5nxYIRqEcULhdm7cVTrPW0yDrINXspysruIi+eIzbYUqZ/22mQ
- IYSvP/ZqNlBlQOg0FpP9AqMn2kyYk76XAoLHrhVV5BSHQrq5EZ4h8+fauC9I18s2py1n
- OTe8IZH950RXRTxiuuSd3F9QTNKoi+liHJbxY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=4wPXeNcLW4ZBVZEWneMiy/Djij00xCw9qJYjwl+CGqE=;
- b=omLvfD3C0tPs26yJIkLpNs81xHwlKoz6fp4xgQCkuk0UH+4fdpVa4nkCI+q+SRqi3X
- c64SmawikxCrmHGneoo4RMmfff6T6lqkgFjoUICnhT1zKWIbWXP4+OJKdcyI92xLmNda
- PxuR07/nvAsB1qTL4h3wUJD52jWIb0BrueGNffI6QaRC+FsRDbVOR78HaBss9f7uKr+3
- yDZhaUZjMvywCV7YW5h0+Jissp47eSsSoW96KL+qbe7Y2J91WnaZdqzQVSIKeX5l0OHu
- cRk/PwDjRLbGEaLiocjVwBClCnktk8ZT3Fn3Ohpcfh9DG4tBCSIOCwPtrDFFUUBqlTlE
- hRGQ==
-X-Gm-Message-State: AOAM531ijf6CfbyB9goqqcDomD9skK4yoeMYGII8AuG54GwxkUZM/GQ1
- SbpHpb1tuaG531rr3yCKXWZRVw==
-X-Google-Smtp-Source: ABdhPJyqveUs+SO5BZztKeocuJ5hqkU2HtoH28CqVbu2LlwfjKf3vX2hr1UXT5VOH8Nw00o6DfmnNg==
-X-Received: by 2002:a05:6000:114a:: with SMTP id
- d10mr5059869wrx.243.1589460931619; 
- Thu, 14 May 2020 05:55:31 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w9sm4215099wrc.27.2020.05.14.05.55.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 May 2020 05:55:30 -0700 (PDT)
-Date: Thu, 14 May 2020 14:55:28 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200514125528.GA206103@phenom.ffwll.local>
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-10-daniel.vetter@ffwll.ch>
- <732e30cc-9169-c409-4ddc-50508ef36efc@suse.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1CC896EB44;
+ Thu, 14 May 2020 13:17:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1668FA47E1;
+ Thu, 14 May 2020 13:17:25 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <732e30cc-9169-c409-4ddc-50508ef36efc@suse.de>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/shmem-helpers: Simplify dma-buf
- importing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Thu, 14 May 2020 13:17:25 -0000
+Message-ID: <158946224506.2824.4449775875657796249@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200514112752.12049-1-animesh.manna@intel.com>
+In-Reply-To: <20200514112752.12049-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsb=3A_Pre_allocate_and_late_cleanup_of_cmd_buffer_=28rev?=
+ =?utf-8?q?6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,241 +39,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 14, 2020 at 09:44:02AM +0200, Thomas Zimmermann wrote:
-> Hi
-> =
+== Series Details ==
 
-> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
-> > - Ditch the ->pages array
-> > - Make it a private gem bo, which means no shmem object, which means
-> >   fireworks if anyone calls drm_gem_object_get_pages. But we've just
-> >   made sure that's all covered.
-> > =
+Series: drm/i915/dsb: Pre allocate and late cleanup of cmd buffer (rev6)
+URL   : https://patchwork.freedesktop.org/series/73036/
+State : failure
 
-> > Cc: Gerd Hoffmann <kraxel@redhat.com>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_gem_shmem_helper.c | 59 ++++++++++----------------
-> >  1 file changed, 23 insertions(+), 36 deletions(-)
-> > =
+== Summary ==
 
-> > diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
-rm_gem_shmem_helper.c
-> > index f7011338813e..8c7d4f422b7b 100644
-> > --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > @@ -35,22 +35,12 @@ static const struct drm_gem_object_funcs drm_gem_sh=
-mem_funcs =3D {
-> >  	.mmap =3D drm_gem_shmem_mmap,
-> >  };
-> >  =
+CI Bug Log - changes from CI_DRM_8485 -> Patchwork_17659
+====================================================
 
-> > -/**
-> > - * drm_gem_shmem_create - Allocate an object with the given size
-> > - * @dev: DRM device
-> > - * @size: Size of the object to allocate
-> > - *
-> > - * This function creates a shmem GEM object.
-> > - *
-> > - * Returns:
-> > - * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded =
-negative
-> > - * error code on failure.
-> > - */
-> > -struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *d=
-ev, size_t size)
-> > +static struct drm_gem_shmem_object *
-> > +__drm_gem_shmem_create(struct drm_device *dev, size_t size, bool priva=
-te)
-> >  {
-> >  	struct drm_gem_shmem_object *shmem;
-> >  	struct drm_gem_object *obj;
-> > -	int ret;
-> > +	int ret =3D 0;
-> >  =
+Summary
+-------
 
-> >  	size =3D PAGE_ALIGN(size);
-> >  =
+  **FAILURE**
 
-> > @@ -64,7 +54,10 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(st=
-ruct drm_device *dev, size_t
-> >  	if (!obj->funcs)
-> >  		obj->funcs =3D &drm_gem_shmem_funcs;
-> >  =
+  Serious unknown changes coming with Patchwork_17659 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17659, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > -	ret =3D drm_gem_object_init(dev, obj, size);
-> > +	if (private)
-> > +		drm_gem_private_object_init(dev, obj, size);
-> > +	else
-> > +		ret =3D drm_gem_object_init(dev, obj, size);
-> >  	if (ret)
-> >  		goto err_free;
-> >  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17659/index.html
 
-> > @@ -96,6 +89,21 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(st=
-ruct drm_device *dev, size_t
-> >  =
+Possible new issues
+-------------------
 
-> >  	return ERR_PTR(ret);
-> >  }
-> > +/**
-> > + * drm_gem_shmem_create - Allocate an object with the given size
-> > + * @dev: DRM device
-> > + * @size: Size of the object to allocate
-> > + *
-> > + * This function creates a shmem GEM object.
-> > + *
-> > + * Returns:
-> > + * A struct drm_gem_shmem_object * on success or an ERR_PTR()-encoded =
-negative
-> > + * error code on failure.
-> > + */
-> > +struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *d=
-ev, size_t size)
-> > +{
-> > +	return __drm_gem_shmem_create(dev, size, false);
-> > +}
-> >  EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
-> >  =
+  Here are the unknown changes that may have been introduced in Patchwork_17659:
 
-> >  /**
-> > @@ -115,7 +123,6 @@ void drm_gem_shmem_free_object(struct drm_gem_objec=
-t *obj)
-> >  	if (obj->import_attach) {
-> >  		shmem->pages_use_count--;
-> >  		drm_prime_gem_destroy(obj, shmem->sgt);
-> > -		kvfree(shmem->pages);
-> >  	} else {
-> >  		if (shmem->sgt) {
-> >  			dma_unmap_sg(obj->dev->dev, shmem->sgt->sgl,
-> > @@ -371,7 +378,7 @@ drm_gem_shmem_create_with_handle(struct drm_file *f=
-ile_priv,
-> >  	struct drm_gem_shmem_object *shmem;
-> >  	int ret;
-> >  =
+### IGT changes ###
 
-> > -	shmem =3D drm_gem_shmem_create(dev, size);
-> > +	shmem =3D __drm_gem_shmem_create(dev, size, true);
-> >  	if (IS_ERR(shmem))
-> >  		return shmem;
-> >  =
+#### Possible regressions ####
 
-> > @@ -695,36 +702,16 @@ drm_gem_shmem_prime_import_sg_table(struct drm_de=
-vice *dev,
-> >  				    struct sg_table *sgt)
-> >  {
-> >  	size_t size =3D PAGE_ALIGN(attach->dmabuf->size);
-> > -	size_t npages =3D size >> PAGE_SHIFT;
-> >  	struct drm_gem_shmem_object *shmem;
-> > -	int ret;
-> >  =
+  * igt@i915_module_load@reload:
+    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8485/fi-cfl-8109u/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17659/fi-cfl-8109u/igt@i915_module_load@reload.html
 
-> >  	shmem =3D drm_gem_shmem_create(dev, size);
-> >  	if (IS_ERR(shmem))
-> >  		return ERR_CAST(shmem);
-> >  =
+  
+Known issues
+------------
 
-> > -	shmem->pages =3D kvmalloc_array(npages, sizeof(struct page *), GFP_KE=
-RNEL);
-> > -	if (!shmem->pages) {
-> > -		ret =3D -ENOMEM;
-> > -		goto err_free_gem;
-> > -	}
-> > -
-> > -	ret =3D drm_prime_sg_to_page_addr_arrays(sgt, shmem->pages, NULL, npa=
-ges);
-> > -	if (ret < 0)
-> > -		goto err_free_array;
-> > -
-> >  	shmem->sgt =3D sgt;
-> > -	shmem->pages_use_count =3D 1; /* Permanently pinned from our point of=
- view */
-> =
+  Here are the changes found in Patchwork_17659 that come from known issues:
 
-> This counter protected drm_gem_shmem_get_pages() from being executed on
-> imported buffers. I guess that previous patches sorted out all the
-> instances where this could occur. If so, the current patch looks
-> correct. I'm not sure, if the overall code is really better than what we
-> have ATM, but anyway
+### IGT changes ###
 
-The goal was to clearly sort these cases out, iirc we had callers of
-get_pages doing the wrong thing, but I tried to review them all. Some got
-removed while this series was hanging around in my tree somewhere.
+#### Possible fixes ####
 
-What I wanted to do in the end is replace all mutex_lock with
-dma_resv_lock, which now should be doable. Except I need to audit all the
-drivers, and some want _locked variant since they are already holding the
-lock. That's roughly the point where I gave up on this eandeavour, at
-least for now.
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-dsi}:       [INCOMPLETE][3] ([i915#1803]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8485/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17659/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
 
-But if we'd get there then all the various helpers we have (cma, shmem,
-vram) would more or less properly use dma_resv_lock as their protectiong
-concept. That's kinda neat since with the dynamic dma-buf stuff
-dma_resv_lock really becomes _the_ buffer lock for drivers, so some
-motivation to move towards that.
+  
+#### Warnings ####
 
-Anyway if you don't feel like this is all that useful without the
-dma_resv_lock work on top, I guess I can merge up to the doc patch and
-leave the others out. Not sure myself, thoughts?
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][5] ([i915#62] / [i915#95]) -> [FAIL][6] ([i915#62])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8485/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17659/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
 
-Thanks for taking a look.
--Daniel
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> =
-
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> =
-
-> >  =
-
-> >  	DRM_DEBUG_PRIME("size =3D %zu\n", size);
-> >  =
-
-> >  	return &shmem->base;
-> > -
-> > -err_free_array:
-> > -	kvfree(shmem->pages);
-> > -err_free_gem:
-> > -	drm_gem_object_put_unlocked(&shmem->base);
-> > -
-> > -	return ERR_PTR(ret);
-> >  }
-> >  EXPORT_SYMBOL_GPL(drm_gem_shmem_prime_import_sg_table);
-> > =
-
-> =
-
-> -- =
-
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> (HRB 36809, AG N=FCrnberg)
-> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> =
+  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
+Participating hosts (50 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-byt-clapper 
 
 
+Build changes
+-------------
 
--- =
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8485 -> Patchwork_17659
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  CI-20190529: 20190529
+  CI_DRM_8485: 0c6c45b4587580b4b7b2247d201a3b0f7af4b7f6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5654: 5637a466a0b09535517751608f5525a8b468a76b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17659: 33df6f69fa2b49f981c75d2332edd538b0d21301 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+33df6f69fa2b drm/i915/dsb: Pre allocate and late cleanup of cmd buffer
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17659/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
