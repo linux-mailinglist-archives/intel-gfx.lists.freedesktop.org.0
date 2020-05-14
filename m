@@ -2,41 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714A51D35F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1251F1D362A
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 18:13:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D32016EB7F;
-	Thu, 14 May 2020 16:04:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32AE86EB81;
+	Thu, 14 May 2020 16:13:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 647566EB7E;
- Thu, 14 May 2020 16:04:27 +0000 (UTC)
-IronPort-SDR: 00P7KiVljuSh30F/dzey1f9Hph41MfxlM8dtc4FSN234NF+Ywwok1uTgA/RilRMX2r4lvyZHGd
- H3BNaI9i64uA==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8948D6E075
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 16:13:34 +0000 (UTC)
+IronPort-SDR: WtBB+OIMirOSSwgKCsxDAUifOa5Gh9qWK8AMVDSfzIo6YCZGgquuyHE/1YRiaM/N/JqouEhaJ+
+ Zhu4xR3Lx6Rw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2020 09:04:26 -0700
-IronPort-SDR: qzuxUD3IV0gJee5oEgTouglm77B4SHGarcN4AL149SkYQGJJ7fM0Xuu45oDyIVsGKyyhpMii9W
- mTNQ7MJkpHyw==
-X-IronPort-AV: E=Sophos;i="5.73,391,1583222400"; d="scan'208";a="464390004"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.251.82.70])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2020 09:04:21 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2020 09:13:33 -0700
+IronPort-SDR: 7xSEwcFD6Nfut2l+Kml1hn6KBq5IfualM77nmK8hoqovEAaQsoFE+bU6d+yhuNczgRBKPcqt3T
+ k7nMKqMIBj5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="251727668"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 14 May 2020 09:13:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 14 May 2020 19:13:30 +0300
+Date: Thu, 14 May 2020 19:13:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200514161330.GH6112@intel.com>
+References: <20200514074853.9508-1-stanislav.lisovskiy@intel.com>
+ <20200514074853.9508-2-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200512094017.GX18545@zhen-hp.sh.intel.com>
-References: <20200512094017.GX18545@zhen-hp.sh.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 14 May 2020 19:04:19 +0300
-Message-ID: <158947225919.15520.8550751429056510209@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Content-Disposition: inline
+In-Reply-To: <20200514074853.9508-2-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v30 1/3] drm/i915: Add TGL+ SAGV support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,68 +51,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Zhenyu Wang (2020-05-12 12:40:17)
-> 
-> Hi,
-> 
-> This includes support for ppgtt update by LRI command which gvt
-> replaces by shadow ppgtt, another small optimization for shadow
-> ctx and one workload destroy cleanup.
+On Thu, May 14, 2020 at 10:48:51AM +0300, Stanislav Lisovskiy wrote:
+> Starting from TGL we need to have a separate wm0
+> values for SAGV and non-SAGV which affects
+> how calculations are done.
+> =
 
-This is now pulled. Thanks for the PR.
+> v2: Remove long lines
+> v3: Removed COLOR_PLANE enum references
+> v4, v5, v6: Fixed rebase conflict
+> v7: - Removed skl_plane_wm_level accessor from skl_allocate_pipe_ddb(Vill=
+e)
+>     - Removed sagv_uv_wm0(Ville)
+>     - can_sagv->use_sagv_wm(Ville)
+> =
 
-Regards, Joonas
+> v8: - Moved tgl_crtc_can_enable_sagv function up(Ville)
+>     - Changed comment regarding pipe_wm usage(Ville)
+>     - Call intel_can_enable_sagv and tgl_compute_sagv_wm only
+>       for Gen12(Ville)
+>     - Some sagv debugs removed(Ville)
+>     - skl_print_wm_changes improvements(Ville)
+>     - Do assignment instead of memcpy in
+>       skl_pipe_wm_get_hw_state(Ville)
+> =
 
-> 
-> Thanks
-> --
-> 
-> The following changes since commit fb55c735522352704c35d899d0b253453cf0e799:
-> 
->   drm/i915/gvt: skip populate shadow context if guest context not changed (2020-04-17 17:31:22 +0800)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/intel/gvt-linux tags/gvt-next-2020-05-12
-> 
-> for you to fetch changes up to 47e51832ae93534d872511ba557115722582d94c:
-> 
->   drm/i915/gvt: use context lrc_reg_state for shadow ppgtt override (2020-05-08 12:37:14 +0800)
-> 
-> ----------------------------------------------------------------
-> gvt-next-2020-05-12
-> 
-> - Support PPGTT update via LRI cmd (Zhenyu)
-> - Remove extra kmap for shadow ctx update (Zhenyu)
-> - Move workload cleanup out of execlist handling code (Zhenyu)
-> 
-> ----------------------------------------------------------------
-> Zhenyu Wang (3):
->       drm/i915/gvt: move workload destroy out of execlist complete
->       drm/i915/gvt: Support PPGTT table load command
->       drm/i915/gvt: use context lrc_reg_state for shadow ppgtt override
-> 
->  drivers/gpu/drm/i915/gvt/cmd_parser.c |  45 +++++++++++++
->  drivers/gpu/drm/i915/gvt/execlist.c   |   2 -
->  drivers/gpu/drm/i915/gvt/gtt.c        |   1 +
->  drivers/gpu/drm/i915/gvt/gtt.h        |   1 +
->  drivers/gpu/drm/i915/gvt/handlers.c   |   2 +-
->  drivers/gpu/drm/i915/gvt/scheduler.c  | 115 +++++++++++++++++++++++++++++++---
->  drivers/gpu/drm/i915/gvt/scheduler.h  |   1 +
->  7 files changed, 155 insertions(+), 12 deletions(-)
-> 
-> -- 
-> Open Source Technology Center, Intel ltd.
-> 
-> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+> v9: - Removed can_sagv variable(Ville)
+>     - Removed spurious line(Ville)
+>     - Changed u32 to unsigned int as agreed(Ville)
+>     - Assign sagv only for gen12 in
+>       skl_pipe_wm_get_hw_state(Ville)
+> =
+
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
+>  .../drm/i915/display/intel_display_types.h    |   2 +
+>  drivers/gpu/drm/i915/intel_pm.c               | 110 +++++++++++++++---
+>  3 files changed, 101 insertions(+), 19 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 432b4eeaf9f6..b128fc859b20 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -13961,7 +13961,9 @@ static void verify_wm_state(struct intel_crtc *cr=
+tc,
+>  		/* Watermarks */
+>  		for (level =3D 0; level <=3D max_level; level++) {
+>  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> -						&sw_plane_wm->wm[level]))
+> +						&sw_plane_wm->wm[level]) ||
+> +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
+> +							       &sw_plane_wm->sagv_wm0)))
+>  				continue;
+>  =
+
+>  			drm_err(&dev_priv->drm,
+> @@ -14016,7 +14018,9 @@ static void verify_wm_state(struct intel_crtc *cr=
+tc,
+>  		/* Watermarks */
+>  		for (level =3D 0; level <=3D max_level; level++) {
+>  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> -						&sw_plane_wm->wm[level]))
+> +						&sw_plane_wm->wm[level]) ||
+> +			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
+> +							       &sw_plane_wm->sagv_wm0)))
+>  				continue;
+>  =
+
+>  			drm_err(&dev_priv->drm,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 87876fce91a5..2bf3d4cb4ea9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -688,11 +688,13 @@ struct skl_plane_wm {
+>  	struct skl_wm_level wm[8];
+>  	struct skl_wm_level uv_wm[8];
+>  	struct skl_wm_level trans_wm;
+> +	struct skl_wm_level sagv_wm0;
+>  	bool is_planar;
+>  };
+>  =
+
+>  struct skl_pipe_wm {
+>  	struct skl_plane_wm planes[I915_MAX_PLANES];
+> +	bool use_sagv_wm;
+>  };
+>  =
+
+>  enum vlv_wm_level {
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index f7bd1dbb625e..c52b941df5d6 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3853,9 +3853,38 @@ static bool skl_crtc_can_enable_sagv(const struct =
+intel_crtc_state *crtc_state)
+>  	return true;
+>  }
+>  =
+
+> +static bool tgl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc=
+_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum plane_id plane_id;
+> +
+> +	if (!crtc_state->hw.active)
+> +		return true;
+> +
+> +	for_each_plane_id_on_crtc(crtc, plane_id) {
+> +		const struct skl_ddb_entry *plane_alloc =3D
+> +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> +		const struct skl_plane_wm *wm =3D
+> +			&crtc_state->wm.skl.optimal.planes[plane_id];
+> +
+> +		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_alloc)
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  static bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *cr=
+tc_state)
+>  {
+> -	return skl_crtc_can_enable_sagv(crtc_state);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		return tgl_crtc_can_enable_sagv(crtc_state);
+> +	else
+> +		return skl_crtc_can_enable_sagv(crtc_state);
+> +
+> +	return false;
+
+This one is obviously dead -> nuked while applying. Also
+nuked the unused NUM_SAGV_POINTS and duplicate prototypes
+for intel_sagv_{pre,post}_plane_update() from the second
+patch.
+
+In general I'd suggest you should try to read your own patches
+a few more times as if you were reviewing them yourself to avoid
+these sort of trivial things from coming up so often. Some of
+that is probably down to fatigue with this particular series,
+but I feel I've seen a hint of a pattern in other series as well.
+I've found the practice of reviewing my own patches quite decent
+at catching silly things at least, and sometimes it does reveal
+more fundemental issues too.
+
+
+Phew. All pushed to dinq now. Thanks for sticking with it. Took
+us a "while" but I think we ended up with pretty decent code that
+should be reasonaly easy to maintain from here on out.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
