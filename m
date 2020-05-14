@@ -2,57 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F251D2E80
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 13:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EAF21D3001
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 14:39:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 140BF6E32B;
-	Thu, 14 May 2020 11:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 669A16EB36;
+	Thu, 14 May 2020 12:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com
- [IPv6:2607:f8b0:4864:20::c41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1776E180;
- Thu, 14 May 2020 11:39:05 +0000 (UTC)
-Received: by mail-oo1-xc41.google.com with SMTP id z26so282306oog.8;
- Thu, 14 May 2020 04:39:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZSwtCexk9nrc5wXHZb6xl7x3Ukus0pVklq+X0lXtP9M=;
- b=q8byuDEV/HBaHutEfKPBCsOyJyKXLTe4fdppUu5YAyVeuJZ/cfy0kQWEcbAeRjIVy6
- AZkToLQ6x/5AVr9U+gRwDb9fIvkuXhFu+VIWabcrx71puBIQSHn8hH7/T08WuZAGb2B7
- Yn2cYkz3VxMdDJbOOAyk7jH906xTaQoGoFsaxjiRg+KFqP1wIS1AldxFzTqZs2TIC8F3
- HdlclyNH5C5/2cRr3L16eW33oGDt2+ZZuwoot7brtKW68FMdUhy5Vm/2oO1mPQ2NKV8s
- yuUbUGhQxHy2Dmp+DUlMBgnV8IwEZIzwfAfefoJkjWWveDDJSK548DuLRV7v6Pqr5Zw0
- Rb2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZSwtCexk9nrc5wXHZb6xl7x3Ukus0pVklq+X0lXtP9M=;
- b=Qj07GzRDmOLBPGO8r4Saf5UBrHkhEpO57pPNmWLkf/CO5tueYFR6VaXJtWXjDO/6yb
- 5SaANoatNOWTHbjQG4V3WahPicGe6k669PbHvKliQsIe3Xj2b99xqTMTV7j25E5MvQXX
- +XqJQQFLvG2FhxZabVhnrsoKksDBI6BM5jgLhWHJ93gvycz6BPZ9T5Fq5pUQ/yTc3aFF
- xbGh5cexZmaDcqn8vfq+/706aKn9U28l6WoKtY6mIsTI2nOIDwqyJ//mIY1SyzCrNgzI
- NG35azU99FzckG9Jxx3gVutw71NEZr2xXKmoZ+dyu/zxeej31yPKZxV94T/PO2yyXRzr
- a+eg==
-X-Gm-Message-State: AOAM531Zn6v5ouruNaurBpPwZku01Xa6vNoPdOlW64Ro0oOV/zqTTcFh
- zR7kH9s+BkBoMyq1uEHHlePmSuAU9z+DOVmKbM4=
-X-Google-Smtp-Source: ABdhPJzpF/j77VZ1mUAB6oImvLDs5y+yw8Ffqf9KnZIjayJc7xQ/fTQmYbxSeR6K0/KuM1T7We9orB4e+Fb4bfMi4ag=
-X-Received: by 2002:a4a:a50e:: with SMTP id v14mr3145833ook.27.1589456345130; 
- Thu, 14 May 2020 04:39:05 -0700 (PDT)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 280526E32D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 11:50:33 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 987D630E;
+ Thu, 14 May 2020 04:50:32 -0700 (PDT)
+Received: from e113632-lin (e113632-lin.cambridge.arm.com [10.1.194.46])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 124FA3F305;
+ Thu, 14 May 2020 04:50:30 -0700 (PDT)
+References: <20200428032258.2518-1-currojerez@riseup.net>
+ <20200511105701.GA2940@hirez.programming.kicks-ass.net>
+ <874ksmuqx6.fsf@riseup.net>
+User-agent: mu4e 0.9.17; emacs 26.3
+From: Valentin Schneider <valentin.schneider@arm.com>
+To: Francisco Jerez <currojerez@riseup.net>
+In-reply-to: <874ksmuqx6.fsf@riseup.net>
+Date: Thu, 14 May 2020 12:50:25 +0100
+Message-ID: <jhjwo5erb0e.mognet@arm.com>
 MIME-Version: 1.0
-References: <20200511091142.208787-1-daniel.vetter@ffwll.ch>
- <20200511091142.208787-3-daniel.vetter@ffwll.ch>
- <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
- <CAPM=9tyukFdDiM6-Mxd+ouXCt9Z4t6LRZwxq7DGoX9drrHnMdQ@mail.gmail.com>
- <CAKMK7uF=SzeEBtZ9xH+jPzeML4V0QQuwBnPVw+OL+MUgTaaLzQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uF=SzeEBtZ9xH+jPzeML4V0QQuwBnPVw+OL+MUgTaaLzQ@mail.gmail.com>
-From: Oded Gabbay <oded.gabbay@gmail.com>
-Date: Thu, 14 May 2020 14:38:38 +0300
-Message-ID: <CAFCwf110j5EDNH9nvrVX9fQ5JkEt5B217snyiTyfpFz8yAkxNg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 3/3] misc/habalabs: don't set default
- fence_ops->wait
+X-Mailman-Approved-At: Thu, 14 May 2020 12:39:42 +0000
+Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
+ the intel_pstate driver (v2.99)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +43,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Olof Johansson <olof@lixom.net>, Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
+Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ daniel.lezcano@linaro.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ chris.p.wilson@intel.com, "Pandruvada,
+ Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com,
+ Lukasz Luba <Lukasz.Luba@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 9:12 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> On Tue, May 12, 2020 at 4:14 AM Dave Airlie <airlied@gmail.com> wrote:
-> >
-> > On Mon, 11 May 2020 at 19:37, Oded Gabbay <oded.gabbay@gmail.com> wrote:
-> > >
-> > > On Mon, May 11, 2020 at 12:11 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > > >
-> > > > It's the default.
-> > > Thanks for catching that.
-> > >
-> > > >
-> > > > Also so much for "we're not going to tell the graphics people how to
-> > > > review their code", dma_fence is a pretty core piece of gpu driver
-> > > > infrastructure. And it's very much uapi relevant, including piles of
-> > > > corresponding userspace protocols and libraries for how to pass these
-> > > > around.
-> > > >
-> > > > Would be great if habanalabs would not use this (from a quick look
-> > > > it's not needed at all), since open source the userspace and playing
-> > > > by the usual rules isn't on the table. If that's not possible (because
-> > > > it's actually using the uapi part of dma_fence to interact with gpu
-> > > > drivers) then we have exactly what everyone promised we'd want to
-> > > > avoid.
-> > >
-> > > We don't use the uapi parts, we currently only using the fencing and
-> > > signaling ability of this module inside our kernel code. But maybe I
-> > > didn't understand what you request. You want us *not* to use this
-> > > well-written piece of kernel code because it is only used by graphics
-> > > drivers ?
-> > > I'm sorry but I don't get this argument, if this is indeed what you meant.
-> >
-> > We would rather drivers using a feature that has requirements on
-> > correct userspace implementations of the feature have a userspace that
-> > is open source and auditable.
-> >
-> > Fencing is tricky, cross-device fencing is really tricky, and having
-> > the ability for a closed userspace component to mess up other people's
-> > drivers, think i915 shared with closed habana userspace and shared
-> > fences, decreases ability to debug things.
-> >
-> > Ideally we wouldn't offer users known untested/broken scenarios, so
-> > yes we'd prefer that drivers that intend to expose a userspace fencing
-> > api around dma-fence would adhere to the rules of the gpu drivers.
-> >
-> > I'm not say you have to drop using dma-fence, but if you move towards
-> > cross-device stuff I believe other drivers would be correct in
-> > refusing to interact with fences from here.
->
-> The flip side is if you only used dma-fence.c "because it's there",
-> and not because it comes with an uapi attached and a cross-driver
-> kernel internal contract for how to interact with gpu drivers, then
-> there's really not much point in using it. It's a custom-rolled
-> wait_queue/event thing, that's all. Without the gpu uapi and gpu
-> cross-driver contract it would be much cleaner to just use wait_queue
-> directly, and that's a construct all kernel developers understand, not
-> just gpu folks. From a quick look at least habanalabs doesn't use any
-> of these uapi/cross-driver/gpu bits.
-> -Daniel
 
-Hi Daniel,
-I want to say explicitly that we don't use the dma-buf uapi parts, nor
-we intend to use them to communicate with any GPU device. We only use
-it as simple completion mechanism as it was convenient to use.
-I do understand I can exchange that mechanism with a simpler one, and
-I will add an internal task to do it (albeit not in a very high
-priority) and upstream it, its just that it is part of our data path
-so we need to thoroughly validate it first.
+(+Lukasz)
 
-Thanks,
-Oded
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+On 11/05/20 22:01, Francisco Jerez wrote:
+>> What I'm missing is an explanation for why this isn't using the
+>> infrastructure that was build for these kinds of things? The thermal
+>> framework, was AFAIU, supposed to help with these things, and the IPA
+>> thing in particular is used by ARM to do exactly this GPU/CPU power
+>> budget thing.
+>>
+>> If thermal/IPA is found wanting, why aren't we improving that?
+>
+> The GPU/CPU power budget "thing" is only a positive side effect of this
+> series on some TDP-bound systems.  Its ultimate purpose is improving the
+> energy efficiency of workloads which have a bottleneck on a device other
+> than the CPU, by giving the bottlenecking device driver some influence
+> over the response latency of CPUFREQ governors via a PM QoS interface.
+> This seems to be completely outside the scope of the thermal framework
+> and IPA AFAIU.
+>
+
+It's been a while since I've stared at IPA, but it does sound vaguely
+familiar.
+
+When thermally constrained, IPA figures out a budget and splits it between
+actors (cpufreq and devfreq devices) depending on how much juice they are
+asking for; see cpufreq_get_requested_power() and
+devfreq_cooling_get_requested_power(). There's also some weighing involved.
+
+If you look at the cpufreq cooling side of things, you'll see it also uses
+the PM QoS interface. For instance, should IPA decide to cap the CPUs
+(perhaps because say the GPU is the one drawing most of the juice), it'll
+lead to a maximum frequency capping request.
+
+So it does sound like that's what you want, only not just when thermally
+constrained.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
