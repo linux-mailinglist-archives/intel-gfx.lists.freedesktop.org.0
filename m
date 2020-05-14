@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DE141D28A1
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 09:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3341D28AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 09:23:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4E26EABE;
-	Thu, 14 May 2020 07:17:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED006EAC4;
+	Thu, 14 May 2020 07:23:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA9366EABD;
- Thu, 14 May 2020 07:16:59 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 14D92AAD0;
- Thu, 14 May 2020 07:17:01 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-7-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <6910cb3c-7169-fe1c-efc1-3acb8a218384@suse.de>
-Date: Thu, 14 May 2020 09:16:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E23CF6EAC3;
+ Thu, 14 May 2020 07:23:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DBEFAA0019;
+ Thu, 14 May 2020 07:23:06 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200511093554.211493-7-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/shmem-helpers: Don't call
- get/put_pages on imported dma-buf in vmap
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 14 May 2020 07:23:06 -0000
+Message-ID: <158944098687.2824.3199674269599398075@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200514062905.28668-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200514062905.28668-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Show_per-engine_default_property_values_in_sysfs_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,154 +39,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: multipart/mixed; boundary="===============1071435684=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1071435684==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="nGCX8FK1bzqHDMgBXJVQiHV5FdyVZEWtt"
+== Series Details ==
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---nGCX8FK1bzqHDMgBXJVQiHV5FdyVZEWtt
-Content-Type: multipart/mixed; boundary="VvyT2QdocWlyK4VPGbZQSjM5PWvkvK5Ey";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <6910cb3c-7169-fe1c-efc1-3acb8a218384@suse.de>
-Subject: Re: [PATCH 6/9] drm/shmem-helpers: Don't call get/put_pages on
- imported dma-buf in vmap
-References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
- <20200511093554.211493-7-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200511093554.211493-7-daniel.vetter@ffwll.ch>
+Series: drm/i915: Show per-engine default property values in sysfs (rev2)
+URL   : https://patchwork.freedesktop.org/series/76396/
+State : success
 
---VvyT2QdocWlyK4VPGbZQSjM5PWvkvK5Ey
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Summary ==
 
-Hi
+CI Bug Log - changes from CI_DRM_8481 -> Patchwork_17655
+====================================================
 
-Am 11.05.20 um 11:35 schrieb Daniel Vetter:
-> There's no direct harm, because for the shmem helpers these are noops
-> on imported buffers. The trouble is in the locks these take - I want
-> to change dma_buf_vmap locking, and so need to make sure that we only
-> ever take certain locks on one side of the dma-buf interface: Either
-> for exporters, or for importers.
->=20
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/drm_gem_shmem_helper.c | 17 +++++++++--------
->  1 file changed, 9 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
-rm_gem_shmem_helper.c
-> index 2a70159d50ef..b9cba5cc61c3 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -252,32 +252,33 @@ static void *drm_gem_shmem_vmap_locked(struct drm=
-_gem_shmem_object *shmem)
->  	if (shmem->vmap_use_count++ > 0)
->  		return shmem->vaddr;
-> =20
-> -	ret =3D drm_gem_shmem_get_pages(shmem);
-> -	if (ret)
-> -		goto err_zero_use;
-> -
->  	if (obj->import_attach) {
->  		shmem->vaddr =3D dma_buf_vmap(obj->import_attach->dmabuf);
->  	} else {
->  		pgprot_t prot =3D PAGE_KERNEL;
-> =20
-> +		ret =3D drm_gem_shmem_get_pages(shmem);
-> +		if (ret)
-> +			goto err;
-> +
->  		if (!shmem->map_cached)
->  			prot =3D pgprot_writecombine(prot);
->  		shmem->vaddr =3D vmap(shmem->pages, obj->size >> PAGE_SHIFT,
->  				    VM_MAP, prot);
-> +
-> +		if (!shmem->vaddr)
-> +			drm_gem_shmem_put_pages(shmem);
->  	}
-> =20
->  	if (!shmem->vaddr) {
->  		DRM_DEBUG_KMS("Failed to vmap pages\n");
->  		ret =3D -ENOMEM;
-> -		goto err_put_pages;
-> +		goto err;
->  	}
-> =20
->  	return shmem->vaddr;
-> =20
-> -err_put_pages:
-> -	drm_gem_shmem_put_pages(shmem);
+Summary
+-------
 
-I found the new code to be less readable. Maybe keep the error rollback
-as-is and protect _put_pages() with if (!import_attach).
+  **SUCCESS**
 
-In any case
+  No regressions found.
 
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/index.html
 
-> -err_zero_use:
-> +err:
->  	shmem->vmap_use_count =3D 0;
-> =20
->  	return ERR_PTR(ret);
->=20
+Known issues
+------------
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+  Here are the changes found in Patchwork_17655 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-tgl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#1803])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-tgl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/fi-tgl-y/igt@i915_selftest@live@execlists.html
+    - fi-kbl-7500u:       [PASS][3] -> [INCOMPLETE][4] ([CI#80] / [i915#1874])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cml-u2:          [INCOMPLETE][5] ([i915#656]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-cml-u2/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/fi-cml-u2/igt@i915_selftest@live@execlists.html
+    - fi-kbl-soraka:      [INCOMPLETE][7] ([CI#80] / [i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
+  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
 
 
---VvyT2QdocWlyK4VPGbZQSjM5PWvkvK5Ey--
+Participating hosts (48 -> 45)
+------------------------------
 
---nGCX8FK1bzqHDMgBXJVQiHV5FdyVZEWtt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+  Additional (1): fi-kbl-7560u 
+  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl688GkACgkQaA3BHVML
-eiOPdAf/e625C84ss+kTGUiHdD/8RpUIDtCnW4mIUGYRlX3NDTr8YtYdNyWryy0Q
-wi0aq69De6YiPgkVlI2tbMchOnIKGQhdpDC9idG6QTYGI1c+cz2ogejIeXDsohdU
-6Mn1KSfALoGKeumiEjT6oGG8EAWnIMiucrh99S8fJk25ka8lgH8obyuSnPnwWzHM
-1FBFriUydB5zw4SnzTgWzcJcrUTlsvbbX0h2tKJEfLuSODsTTQfuoRUDBJiOhZTD
-ogiiOTZFa9gRrD87CdLy5exdFVKPcHFcX/B6JFam07GGuASq/bVHyrN03/VZLTsZ
-6WO3wiZuigJIEp0hkjJDk7nO9iKyZQ==
-=22Ys
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---nGCX8FK1bzqHDMgBXJVQiHV5FdyVZEWtt--
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8481 -> Patchwork_17655
 
---===============1071435684==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  CI-20190529: 20190529
+  CI_DRM_8481: 46f34234505b4e0eb3332974b47a36f9b0825de0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5654: 5637a466a0b09535517751608f5525a8b468a76b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17655: 9bc1646cd691999a2a3be549212c5802368b520c @ git://anongit.freedesktop.org/gfx-ci/linux
 
+
+== Linux commits ==
+
+9bc1646cd691 drm/i915: Show per-engine default property values in sysfs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17655/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1071435684==--
