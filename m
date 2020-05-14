@@ -1,30 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788351D2E56
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 13:30:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F251D2E80
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 13:39:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39BEC6E329;
-	Thu, 14 May 2020 11:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140BF6E32B;
+	Thu, 14 May 2020 11:39:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12BAE6E329;
- Thu, 14 May 2020 11:30:16 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21198317-1500050 
- for multiple; Thu, 14 May 2020 12:29:42 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 May 2020 12:29:41 +0100
-Message-Id: <20200514112941.1018421-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.2
+Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com
+ [IPv6:2607:f8b0:4864:20::c41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1776E180;
+ Thu, 14 May 2020 11:39:05 +0000 (UTC)
+Received: by mail-oo1-xc41.google.com with SMTP id z26so282306oog.8;
+ Thu, 14 May 2020 04:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZSwtCexk9nrc5wXHZb6xl7x3Ukus0pVklq+X0lXtP9M=;
+ b=q8byuDEV/HBaHutEfKPBCsOyJyKXLTe4fdppUu5YAyVeuJZ/cfy0kQWEcbAeRjIVy6
+ AZkToLQ6x/5AVr9U+gRwDb9fIvkuXhFu+VIWabcrx71puBIQSHn8hH7/T08WuZAGb2B7
+ Yn2cYkz3VxMdDJbOOAyk7jH906xTaQoGoFsaxjiRg+KFqP1wIS1AldxFzTqZs2TIC8F3
+ HdlclyNH5C5/2cRr3L16eW33oGDt2+ZZuwoot7brtKW68FMdUhy5Vm/2oO1mPQ2NKV8s
+ yuUbUGhQxHy2Dmp+DUlMBgnV8IwEZIzwfAfefoJkjWWveDDJSK548DuLRV7v6Pqr5Zw0
+ Rb2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZSwtCexk9nrc5wXHZb6xl7x3Ukus0pVklq+X0lXtP9M=;
+ b=Qj07GzRDmOLBPGO8r4Saf5UBrHkhEpO57pPNmWLkf/CO5tueYFR6VaXJtWXjDO/6yb
+ 5SaANoatNOWTHbjQG4V3WahPicGe6k669PbHvKliQsIe3Xj2b99xqTMTV7j25E5MvQXX
+ +XqJQQFLvG2FhxZabVhnrsoKksDBI6BM5jgLhWHJ93gvycz6BPZ9T5Fq5pUQ/yTc3aFF
+ xbGh5cexZmaDcqn8vfq+/706aKn9U28l6WoKtY6mIsTI2nOIDwqyJ//mIY1SyzCrNgzI
+ NG35azU99FzckG9Jxx3gVutw71NEZr2xXKmoZ+dyu/zxeej31yPKZxV94T/PO2yyXRzr
+ a+eg==
+X-Gm-Message-State: AOAM531Zn6v5ouruNaurBpPwZku01Xa6vNoPdOlW64Ro0oOV/zqTTcFh
+ zR7kH9s+BkBoMyq1uEHHlePmSuAU9z+DOVmKbM4=
+X-Google-Smtp-Source: ABdhPJzpF/j77VZ1mUAB6oImvLDs5y+yw8Ffqf9KnZIjayJc7xQ/fTQmYbxSeR6K0/KuM1T7We9orB4e+Fb4bfMi4ag=
+X-Received: by 2002:a4a:a50e:: with SMTP id v14mr3145833ook.27.1589456345130; 
+ Thu, 14 May 2020 04:39:05 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Force timeslicing
- of the virtual request
+References: <20200511091142.208787-1-daniel.vetter@ffwll.ch>
+ <20200511091142.208787-3-daniel.vetter@ffwll.ch>
+ <CAFCwf10m14ModSuRbQAsWf5CSJvTeP7YRzcokD=o+m2Pa0TqKg@mail.gmail.com>
+ <CAPM=9tyukFdDiM6-Mxd+ouXCt9Z4t6LRZwxq7DGoX9drrHnMdQ@mail.gmail.com>
+ <CAKMK7uF=SzeEBtZ9xH+jPzeML4V0QQuwBnPVw+OL+MUgTaaLzQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uF=SzeEBtZ9xH+jPzeML4V0QQuwBnPVw+OL+MUgTaaLzQ@mail.gmail.com>
+From: Oded Gabbay <oded.gabbay@gmail.com>
+Date: Thu, 14 May 2020 14:38:38 +0300
+Message-ID: <CAFCwf110j5EDNH9nvrVX9fQ5JkEt5B217snyiTyfpFz8yAkxNg@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 3/3] misc/habalabs: don't set default
+ fence_ops->wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,143 +65,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Olof Johansson <olof@lixom.net>, Daniel Vetter <daniel.vetter@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Investigate the impact of timeslicing on the virtal request, both with
-independent and dependent workloads.
+On Tue, May 12, 2020 at 9:12 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> On Tue, May 12, 2020 at 4:14 AM Dave Airlie <airlied@gmail.com> wrote:
+> >
+> > On Mon, 11 May 2020 at 19:37, Oded Gabbay <oded.gabbay@gmail.com> wrote:
+> > >
+> > > On Mon, May 11, 2020 at 12:11 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > > >
+> > > > It's the default.
+> > > Thanks for catching that.
+> > >
+> > > >
+> > > > Also so much for "we're not going to tell the graphics people how to
+> > > > review their code", dma_fence is a pretty core piece of gpu driver
+> > > > infrastructure. And it's very much uapi relevant, including piles of
+> > > > corresponding userspace protocols and libraries for how to pass these
+> > > > around.
+> > > >
+> > > > Would be great if habanalabs would not use this (from a quick look
+> > > > it's not needed at all), since open source the userspace and playing
+> > > > by the usual rules isn't on the table. If that's not possible (because
+> > > > it's actually using the uapi part of dma_fence to interact with gpu
+> > > > drivers) then we have exactly what everyone promised we'd want to
+> > > > avoid.
+> > >
+> > > We don't use the uapi parts, we currently only using the fencing and
+> > > signaling ability of this module inside our kernel code. But maybe I
+> > > didn't understand what you request. You want us *not* to use this
+> > > well-written piece of kernel code because it is only used by graphics
+> > > drivers ?
+> > > I'm sorry but I don't get this argument, if this is indeed what you meant.
+> >
+> > We would rather drivers using a feature that has requirements on
+> > correct userspace implementations of the feature have a userspace that
+> > is open source and auditable.
+> >
+> > Fencing is tricky, cross-device fencing is really tricky, and having
+> > the ability for a closed userspace component to mess up other people's
+> > drivers, think i915 shared with closed habana userspace and shared
+> > fences, decreases ability to debug things.
+> >
+> > Ideally we wouldn't offer users known untested/broken scenarios, so
+> > yes we'd prefer that drivers that intend to expose a userspace fencing
+> > api around dma-fence would adhere to the rules of the gpu drivers.
+> >
+> > I'm not say you have to drop using dma-fence, but if you move towards
+> > cross-device stuff I believe other drivers would be correct in
+> > refusing to interact with fences from here.
+>
+> The flip side is if you only used dma-fence.c "because it's there",
+> and not because it comes with an uapi attached and a cross-driver
+> kernel internal contract for how to interact with gpu drivers, then
+> there's really not much point in using it. It's a custom-rolled
+> wait_queue/event thing, that's all. Without the gpu uapi and gpu
+> cross-driver contract it would be much cleaner to just use wait_queue
+> directly, and that's a construct all kernel developers understand, not
+> just gpu folks. From a quick look at least habanalabs doesn't use any
+> of these uapi/cross-driver/gpu bits.
+> -Daniel
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- tests/i915/gem_exec_balancer.c | 101 +++++++++++++++++++++++++++++++++
- 1 file changed, 101 insertions(+)
+Hi Daniel,
+I want to say explicitly that we don't use the dma-buf uapi parts, nor
+we intend to use them to communicate with any GPU device. We only use
+it as simple completion mechanism as it was convenient to use.
+I do understand I can exchange that mechanism with a simpler one, and
+I will add an internal task to do it (albeit not in a very high
+priority) and upstream it, its just that it is part of our data path
+so we need to thoroughly validate it first.
 
-diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-index d4944e3f1..607f1dc38 100644
---- a/tests/i915/gem_exec_balancer.c
-+++ b/tests/i915/gem_exec_balancer.c
-@@ -1531,6 +1531,104 @@ static void full(int i915, unsigned int flags)
- 	gem_quiescent_gpu(i915);
- }
- 
-+static void sliced(int i915)
-+{
-+	/*
-+	 * Let's investigate what happens when the virtual request is
-+	 * timesliced away.
-+	 *
-+	 * If the engine is busy with independent work, we want the virtual
-+	 * request to hop over to an idle engine (within its balancing set).
-+	 * However, if the work is dependent upon the virtual request,
-+	 * we most certainly do not want to reschedule that work ahead of
-+	 * the virtual request. [If we did, we should still have the saving
-+	 * grace of being able to move the virual request to another engine
-+	 * and so run both in parallel.] If we do neither, and get stuck
-+	 * on the dependent work and never run the virtual request, we hang.
-+	 */
-+
-+	igt_require(gem_scheduler_has_preemption(i915));
-+	igt_require(gem_scheduler_has_semaphores(i915));
-+
-+	for (int class = 0; class < 32; class++) {
-+		struct i915_engine_class_instance *ci;
-+		int64_t timeout = NSEC_PER_SEC;
-+		igt_spin_t *virtual, **load;
-+		unsigned int count;
-+		uint32_t ctx;
-+
-+		ci = list_engines(i915, 1u << class, &count);
-+		if (!ci)
-+			continue;
-+
-+		if (count < 2) {
-+			free(ci);
-+			continue;
-+		}
-+
-+		load = calloc(count, sizeof(*load));
-+		igt_assert(load);
-+
-+		ctx = load_balancer_create(i915, ci, count);
-+
-+		/* Independent load */
-+		virtual = igt_spin_new(i915, ctx,
-+				       .flags = IGT_SPIN_POLL_RUN);
-+		igt_spin_busywait_until_started(virtual);
-+		for (int i = 0; i < count; i++) {
-+			load[i] = igt_spin_new(i915, ctx,
-+					       .engine = i + 1,
-+					       .flags = IGT_SPIN_POLL_RUN);
-+			igt_spin_busywait_until_started(load[i]);
-+		}
-+		/*
-+		 * As we waited until all requests started, and we
-+		 * oversubscribed the engines, we know that we must have
-+		 * forced the virtual request to be timesliced away.
-+		 *
-+		 * We then expect for it to receive a timeslice on congested
-+		 * engines, so that the spinned completes quickly.
-+		 */
-+		igt_spin_end(virtual);
-+		igt_assert_eq(gem_wait(i915, virtual->handle, &timeout), 0);
-+
-+		for (int i = 0; i < count; i++)
-+			igt_spin_free(i915, load[i]);
-+		igt_spin_free(i915, virtual);
-+
-+		/* Dependent load */
-+		virtual = igt_spin_new(i915, ctx, .engine = 0,
-+				       .flags = (IGT_SPIN_FENCE_OUT |
-+						 IGT_SPIN_POLL_RUN));
-+		for (int i = 0; i < count; i++) {
-+			load[i] = igt_spin_new(i915, ctx,
-+					       .engine = i + 1,
-+					       .fence = virtual->out_fence,
-+					       .flags = IGT_SPIN_FENCE_IN);
-+			/*
-+			 * We could wait until load[i] starts, but we do not
-+			 * want to mandate that the scheduler must evict
-+			 * the virtual request, as load[i] depends on
-+			 * the virtual request.
-+			 */
-+		}
-+
-+		/* Wait long enough for the virtual timeslice [ms] to expire */
-+		igt_spin_busywait_until_started(virtual);
-+		usleep(250 * 1000); /* 250ms */
-+
-+		igt_spin_end(virtual);
-+		igt_assert_eq(sync_fence_wait(virtual->out_fence, 1000), 0);
-+		igt_assert_eq(sync_fence_status(virtual->out_fence), 1);
-+
-+		gem_context_destroy(i915, ctx);
-+		free(load);
-+		free(ci);
-+	}
-+
-+	gem_quiescent_gpu(i915);
-+}
-+
- static void nop(int i915)
- {
- 	struct drm_i915_gem_exec_object2 batch = {
-@@ -2014,6 +2112,9 @@ igt_main
- 	igt_subtest("semaphore")
- 		semaphore(i915);
- 
-+	igt_subtest("sliced")
-+		sliced(i915);
-+
- 	igt_subtest("smoke")
- 		smoketest(i915, 20);
- 
--- 
-2.26.2
-
+Thanks,
+Oded
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
