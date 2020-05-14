@@ -1,32 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB1EA1D2828
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 08:48:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E18E1D2883
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 09:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00CD86EAB5;
-	Thu, 14 May 2020 06:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2696EAB8;
+	Thu, 14 May 2020 07:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9A3706EAB4;
- Thu, 14 May 2020 06:48:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96600A47DA;
- Thu, 14 May 2020 06:48:50 +0000 (UTC)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A566E2DD;
+ Thu, 14 May 2020 07:08:24 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id DF15CAAD0;
+ Thu, 14 May 2020 07:08:24 +0000 (UTC)
+Date: Thu, 14 May 2020 09:08:19 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200514070819.GA6930@linux-uq9g>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-Date: Thu, 14 May 2020 06:48:50 -0000
-Message-ID: <158943893059.2824.10585008906553272505@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200514060732.3378396-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200514060732.3378396-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?q?=28rev14=29?=
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,103 +35,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave and Daniel,
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev14)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : success
+this is the forth pull request for drm-misc-next for what will become v5.8.
+It's fairly small number of patches without major changes. There's one fix
+to the UAPI headers, but it only affects comments.
 
-== Summary ==
+Best regards
+Thomsa
 
-CI Bug Log - changes from CI_DRM_8481 -> Patchwork_17654
-====================================================
+drm-misc-next-2020-05-14:
+drm-misc-next for 5.8:
 
-Summary
--------
+UAPI Changes:
 
-  **SUCCESS**
+Cross-subsystem Changes:
 
-  No regressions found.
+ * dma-buf: use atomic64_fetch_add() for context id
+ * Documentation: document bindings for ASUS ZOOT TM5P5, BOE NV133FHM-N62,
+                  hpd-gpios
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/index.html
+Core Changes:
 
-Known issues
-------------
+Driver Changes:
 
-  Here are the changes found in Patchwork_17654 that come from known issues:
+ * drm/ast: fix supend; cleanups
+ * drm/i2c: cleanups
+ * drm/panel: add MODULE_LICENSE to panel-visinox-rm69299; add support for
+              ASUS TM5P5i, BOE NV133FHM-N62i; fix size and bpp of BOE NV133FHM-N61
+	      add hpd-gpio to panel-simple
+ * drm/mcde: fix return value check in mcde_dsi_bind()
+ * drm/mgag200: use managed drmm_mode_config_init(); cleanups
+ * fbdev/pxa168fb: cleanups
 
-### IGT changes ###
+The following changes since commit 0ea2ea42b31abc1141f2fd3911f952a97d401fcb:
 
-#### Issues hit ####
+  drm/vkms: Hold gem object while still in-use (2020-05-06 21:51:46 -0400)
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+are available in the Git repository at:
 
-  
-#### Possible fixes ####
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2020-05-14
 
-  * igt@i915_selftest@live@execlists:
-    - fi-cml-u2:          [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-cml-u2/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-cml-u2/igt@i915_selftest@live@execlists.html
-    - fi-kbl-soraka:      [INCOMPLETE][5] ([CI#80] / [i915#656]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+for you to fetch changes up to 1c530d431c698f156538b8954b07df95337beb34:
 
-  
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  dma-buf: Use atomic_fetch_add() for the context id (2020-05-13 13:38:59 +0100)
 
+----------------------------------------------------------------
+drm-misc-next for 5.8:
 
-Participating hosts (48 -> 44)
-------------------------------
+UAPI Changes:
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-hsw-4770 fi-byt-clapper 
+Cross-subsystem Changes:
 
+ * dma-buf: use atomic64_fetch_add() for context id
+ * Documentation: document bindings for ASUS ZOOT TM5P5, BOE NV133FHM-N62,
+                  hpd-gpios
 
-Build changes
--------------
+Core Changes:
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8481 -> Patchwork_17654
+Driver Changes:
 
-  CI-20190529: 20190529
-  CI_DRM_8481: 46f34234505b4e0eb3332974b47a36f9b0825de0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5654: 5637a466a0b09535517751608f5525a8b468a76b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17654: b391c6a63abcab4ee99c9606550d21a62cc85730 @ git://anongit.freedesktop.org/gfx-ci/linux
+ * drm/ast: fix supend; cleanups
+ * drm/i2c: cleanups
+ * drm/panel: add MODULE_LICENSE to panel-visinox-rm69299; add support for
+              ASUS TM5P5i, BOE NV133FHM-N62i; fix size and bpp of BOE NV133FHM-N61
+	      add hpd-gpio to panel-simple
+ * drm/mcde: fix return value check in mcde_dsi_bind()
+ * drm/mgag200: use managed drmm_mode_config_init(); cleanups
+ * fbdev/pxa168fb: cleanups
 
+----------------------------------------------------------------
+Chris Wilson (1):
+      dma-buf: Use atomic_fetch_add() for the context id
 
-== Linux commits ==
+Douglas Anderson (5):
+      panel: simple: Fix size and bpp of BOE NV133FHM-N61
+      dt-bindings: display: simple: Add BOE NV133FHM-N62
+      panel: simple: Add BOE NV133FHM-N62
+      dt-bindings: display: Add hpd-gpios to panel-common bindings
+      drm/panel-simple: Support hpd-gpios for delaying prepare()
 
-b391c6a63abc drm/i915/psr: Use new DP VSC SDP compute routine on PSR
-6d1aa4db1cc0 drm/i915/dp: Add compute routine for DP PSR VSC SDP
-f8d2eda49214 drm/i915: Stop sending DP SDPs on ddi disable
-5ac865ae0f3c drm/i915: Program DP SDPs on pipe updates
-e373569ff8b1 drm/i915: Fix enabled infoframe states of lspcon
-99bcd01ba088 drm/i915: Add state readout for DP VSC SDP
-1723115921c6 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-c7d93732395b drm/i915: Program DP SDPs with computed configs
-2375c1f7c8e0 drm/i915: Include DP VSC SDP in the crtc state dump
-af8b261a6986 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-b53f926b3fa5 drm/i915: Include HDMI DRM infoframe in the crtc state dump
-bf5fbd357375 drm: Add logging function for DP VSC SDP
-0a10f4cd6cbe drm/i915/dp: Read out DP SDPs
-e1053fdca03e video/hdmi: Add Unpack only function for DRM infoframe
+Jason Yan (1):
+      video: fbdev: pxa168fb: make pxa168fb_init_mode() return void
 
-== Logs ==
+Konrad Dybcio (2):
+      dt-bindings: display: Document ASUS Z00T TM5P5 NT35596 panel compatible
+      drivers: drm: panel: Add ASUS TM5P5 NT35596 panel driver
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/index.html
+Mika Kahola (1):
+      uapi/drm/drm_fourcc.h: Note on platform specificity for format modifiers
+
+Randy Dunlap (1):
+      drm: panel: add MODULE_LICENSE to panel-visionox-rm69299.c
+
+Samuel Zou (2):
+      drm/ast: Make ast_primary_plane_helper_atomic_update static
+      drm/i2c/tda998x: Make tda998x_audio_digital_mute static
+
+Thomas Zimmermann (7):
+      drm/ast: Don't check new mode if CRTC is being disabled
+      drm/mgag200: Convert struct drm_device to struct mga_device with helper
+      drm/mgag200: Remove several references to struct mga_device.dev
+      drm/mgag200: Integrate init function into load function
+      drm/mgag200: Use managed mode-config initialization
+      drm/mgag200: Remove unused fields from struct mga_device
+      drm/mgag200: Embed connector instance in struct mga_device
+
+Wei Yongjun (1):
+      drm/mcde: dsi: Fix return value check in mcde_dsi_bind()
+
+ .../display/panel/asus,z00t-tm5p5-nt35596.yaml     |  56 ++++
+ .../bindings/display/panel/panel-common.yaml       |   6 +
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ drivers/dma-buf/dma-fence.c                        |   2 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |   8 +-
+ drivers/gpu/drm/i2c/tda998x_drv.c                  |   3 +-
+ drivers/gpu/drm/mcde/mcde_dsi.c                    |   7 +-
+ drivers/gpu/drm/mgag200/mgag200_cursor.c           |   4 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c              |   2 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.h              |  15 +-
+ drivers/gpu/drm/mgag200/mgag200_i2c.c              |  10 +-
+ drivers/gpu/drm/mgag200/mgag200_main.c             | 115 ++-----
+ drivers/gpu/drm/mgag200/mgag200_mode.c             | 127 ++++---
+ drivers/gpu/drm/panel/Kconfig                      |  10 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ .../gpu/drm/panel/panel-asus-z00t-tm5p5-n35596.c   | 367 +++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c               |  64 +++-
+ drivers/gpu/drm/panel/panel-visionox-rm69299.c     |   1 +
+ drivers/video/fbdev/pxa168fb.c                     |   5 +-
+ include/uapi/drm/drm_fourcc.h                      |  18 +-
+ 20 files changed, 654 insertions(+), 169 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/asus,z00t-tm5p5-nt35596.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-asus-z00t-tm5p5-n35596.c
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
