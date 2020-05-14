@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B211D3D9D
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 21:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 558451D3DA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2020 21:37:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF7606E3A4;
-	Thu, 14 May 2020 19:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA1956E3A8;
+	Thu, 14 May 2020 19:37:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447976E3A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 19:35:50 +0000 (UTC)
-IronPort-SDR: BVOAlIdYqHh1mQmQcwc7+msXD5r+xaig02Oesg3I546DiBH+qNIMwMquVJUCL4v/Vb5fbZgM8I
- H0+7HXaxmIGA==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA576E3A8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2020 19:37:11 +0000 (UTC)
+IronPort-SDR: O/aDsvugMPAJ8xDIZ06+nYTeh6ZNO8hcI33fZ7VEJse//+/O3WKEFHLeJLv6xFdsS1ujnSj4Cd
+ 1MMAOOGXSnhg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2020 12:35:49 -0700
-IronPort-SDR: Q5kVLt9hdfpWu/4/htHQCuHfzepZTq5KZcku/NOjCsa7WlCQmWrhbY8MSnL57t8IPGsx1ImCx+
- qepPTH3Dhj1A==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2020 12:37:10 -0700
+IronPort-SDR: Ge3qRsw20PL+9DbuafEZoBuHRa2INGTE4lPNzH4wucb4ZHrY3YSBsS/VQ6ScgUABfcg/+8Sa4w
+ lZKBczTwYPCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="341723577"
+X-IronPort-AV: E=Sophos;i="5.73,392,1583222400"; d="scan'208";a="266354443"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
  ([10.165.21.211])
- by orsmga001.jf.intel.com with ESMTP; 14 May 2020 12:35:49 -0700
-Date: Thu, 14 May 2020 12:36:55 -0700
+ by orsmga006.jf.intel.com with ESMTP; 14 May 2020 12:37:10 -0700
+Date: Thu, 14 May 2020 12:38:16 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200514193655.GA15561@intel.com>
+Message-ID: <20200514193816.GB15561@intel.com>
 References: <20200514152145.2449-1-stanislav.lisovskiy@intel.com>
- <20200514152145.2449-3-stanislav.lisovskiy@intel.com>
+ <20200514152145.2449-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200514152145.2449-3-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200514152145.2449-4-stanislav.lisovskiy@intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v8 2/7] drm/i915: Extract cdclk requirements
- checking to separate function
+Subject: Re: [Intel-gfx] [PATCH v8 3/7] drm/i915: Check plane configuration
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,103 +56,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 14, 2020 at 06:21:40PM +0300, Stanislav Lisovskiy wrote:
-> In Gen11+ whenever we might exceed DBuf bandwidth we might need to
-> recalculate CDCLK which DBuf bandwidth is scaled with.
-> Total Dbuf bw used might change based on particular plane needs.
+On Thu, May 14, 2020 at 06:21:41PM +0300, Stanislav Lisovskiy wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiY@intel.com>
 > 
-> Thus to calculate if cdclk needs to be changed it is not enough
-> anymore to check plane configuration and plane min cdclk, per DBuf
-> bw can be calculated only after wm/ddb calculation is done and
-> all required planes are added into the state. In order to keep
-> all min_cdclk related checks in one place let's extract it into
-> separate function, checking and modifying any_ms.
+> Checking with hweight8 if plane configuration had
+> changed seems to be wrong as different plane configs
+> can result in a same hamming weight.
+> So lets check the bitmask itself.
 > 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-Separating the need_cdclk_calc setting into a new function intel_atomic_check_cdclk()
-makes sense.
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
 Manasi
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 30 ++++++++++++++------
->  1 file changed, 22 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 005e324d0582..e93a553a344d 100644
+> index e93a553a344d..a9ab66d97360 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14572,8 +14572,7 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
->  		IS_IVYBRIDGE(dev_priv);
->  }
+> @@ -14614,7 +14614,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+>  		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+>  		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
 >  
-> -static int intel_atomic_check_planes(struct intel_atomic_state *state,
-> -				     bool *need_cdclk_calc)
-> +static int intel_atomic_check_planes(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
-> @@ -14623,6 +14622,22 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state,
->  			return ret;
->  	}
+> -		if (hweight8(old_active_planes) == hweight8(new_active_planes))
+> +		/*
+> +		 * Not only the number of planes, but if the plane configuration had
+> +		 * changed might already mean we need to recompute min CDCLK,
+> +		 * because different planes might consume different amount of Dbuf bandwidth
+> +		 * according to formula: Bw per plane = Pixel rate * bpp * pipe/plane scale factor
+> +		 */
+> +		if (old_active_planes == new_active_planes)
+>  			continue;
 >  
-> +	return 0;
-> +}
-> +
-> +static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
-> +				    bool *need_cdclk_calc)
-> +{
-> +	struct intel_cdclk_state *new_cdclk_state;
-> +	int i;
-> +	struct intel_plane_state *plane_state;
-> +	struct intel_plane *plane;
-> +	int ret;
-> +
-> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
-> +	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
-> +		*need_cdclk_calc = true;
-> +
->  	/*
->  	 * active_planes bitmask has been updated, and potentially
->  	 * affected planes are part of the state. We can now
-> @@ -14685,7 +14700,6 @@ static int intel_atomic_check(struct drm_device *dev,
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_atomic_state *state = to_intel_atomic_state(_state);
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
-> -	struct intel_cdclk_state *new_cdclk_state;
->  	struct intel_crtc *crtc;
->  	int ret, i;
->  	bool any_ms = false;
-> @@ -14796,14 +14810,10 @@ static int intel_atomic_check(struct drm_device *dev,
->  	if (ret)
->  		goto fail;
->  
-> -	ret = intel_atomic_check_planes(state, &any_ms);
-> +	ret = intel_atomic_check_planes(state);
->  	if (ret)
->  		goto fail;
->  
-> -	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
-> -	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
-> -		any_ms = true;
-> -
->  	/*
->  	 * distrust_bios_wm will force a full dbuf recomputation
->  	 * but the hardware state will only get updated accordingly
-> @@ -14833,6 +14843,10 @@ static int intel_atomic_check(struct drm_device *dev,
->  	if (ret)
->  		goto fail;
->  
-> +	ret = intel_atomic_check_cdclk(state, &any_ms);
-> +	if (ret)
-> +		goto fail;
-> +
->  	if (any_ms) {
->  		ret = intel_modeset_calc_cdclk(state);
->  		if (ret)
+>  		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
 > -- 
 > 2.24.1.485.gad05a3d8e5
 > 
