@@ -2,31 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E01D5053
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF0C1D505B
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:25:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF9189150;
-	Fri, 15 May 2020 14:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0196989AE6;
+	Fri, 15 May 2020 14:25:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9150F89150;
- Fri, 15 May 2020 14:24:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89EFDA0BA8;
- Fri, 15 May 2020 14:24:49 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82B8C89AE6;
+ Fri, 15 May 2020 14:25:44 +0000 (UTC)
+IronPort-SDR: DYgzVP+vEdF7/HCvA88FdNWZegqMn09SMzuRd/j5nDfGxNfK9g0wVteOKwyYGgafb4oVBxSK2a
+ 9hxyBIIkIiCA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2020 07:25:44 -0700
+IronPort-SDR: TgY3fOINZ9NscYQBtERM0IiWO+ovfwODOV2sLs4GwF5EPykqPM4V6GHnmNzZuY0rrekNJda0Ld
+ bJVEaON1keuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,395,1583222400"; d="scan'208";a="281232214"
+Received: from irsmsx152.ger.corp.intel.com ([163.33.192.66])
+ by orsmga002.jf.intel.com with ESMTP; 15 May 2020 07:25:42 -0700
+Received: from irsmsx606.ger.corp.intel.com (163.33.146.139) by
+ IRSMSX152.ger.corp.intel.com (163.33.192.66) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 15 May 2020 15:25:41 +0100
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 15 May 2020 15:25:41 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Fri, 15 May 2020 15:25:41 +0100
+From: "Saarinen, Jani" <jani.saarinen@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ =?utf-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v12 00/14] In order to readout DP SDPs,
+ refactors the handling of DP SDPs
+Thread-Index: AQHWKbYA9S5hlcm0nEW0iS76EfXfTainXtqAgAGwLQCAAAH8AIAAJMTA
+Date: Fri, 15 May 2020 14:25:41 +0000
+Message-ID: <e82f172de7a04c0589f4f7c551475535@intel.com>
+References: <20200514060732.3378396-1-gwan-gyeong.mun@intel.com>
+ <87eerm4vd0.fsf@intel.com> <20200515130612.GI6112@intel.com>
+ <87zha92vf5.fsf@intel.com>
+In-Reply-To: <87zha92vf5.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+x-originating-ip: [163.33.253.164]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 15 May 2020 14:24:49 -0000
-Message-ID: <158955268953.26212.2919583850514371875@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200514154006.4761-1-jani.nikula@intel.com>
-In-Reply-To: <20200514154006.4761-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/params=3A_don=27t_e?=
- =?utf-8?q?xpose_inject=5Fprobe=5Ffailure_in_debugfs?=
+Subject: Re: [Intel-gfx] [PATCH v12 00/14] In order to readout DP SDPs,
+ refactors the handling of DP SDPs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,109 +70,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
+ "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/4] drm/i915/params: don't expose inject_probe_failure in debugfs
-URL   : https://patchwork.freedesktop.org/series/77272/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-e80307f07467 drm/i915/params: don't expose inject_probe_failure in debugfs
-5bfd76f34ce0 drm/i915/params: fix i915.fake_lmem_start module param sysfs permissions
--:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#27: FILE: drivers/gpu/drm/i915/i915_params.c:177:
-+i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
- 	"Fake LMEM start offset (default: 0)");
-
-total: 0 errors, 0 warnings, 1 checks, 8 lines checked
-ed04031bb3e1 drm/i915/params: prevent changing module params runtime
--:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#48: FILE: drivers/gpu/drm/i915/i915_params.c:62:
-+i915_param_named_unsafe(enable_fbc, int, 0400,
- 	"Enable frame buffer compression for power savings "
-
--:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#57: FILE: drivers/gpu/drm/i915/i915_params.c:70:
-+i915_param_named_unsafe(panel_use_ssc, int, 0400,
- 	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
-
--:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#66: FILE: drivers/gpu/drm/i915/i915_params.c:78:
-+i915_param_named_unsafe(reset, int, 0400,
- 	"Attempt GPU resets (0=disabled, 1=full gpu reset, 2=engine reset [default])");
-
--:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#74: FILE: drivers/gpu/drm/i915/i915_params.c:85:
-+i915_param_named(error_capture, bool, 0400,
- 	"Record the GPU state following a hang. "
-
--:81: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#81: FILE: drivers/gpu/drm/i915/i915_params.c:91:
-+i915_param_named_unsafe(enable_hangcheck, bool, 0400,
- 	"Periodically check GPU activity for detecting hangs. "
-
--:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#87: FILE: drivers/gpu/drm/i915/i915_params.c:96:
-+i915_param_named_unsafe(enable_psr, int, 0400,
- 	"Enable PSR "
-
--:99: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#99: FILE: drivers/gpu/drm/i915/i915_params.c:111:
-+i915_param_named(fastboot, int, 0400,
- 	"Try to skip unnecessary mode sets at boot time "
-
--:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#105: FILE: drivers/gpu/drm/i915/i915_params.c:116:
-+i915_param_named_unsafe(load_detect_test, bool, 0400,
- 	"Force-enable the VGA load detect code for testing (default:false). "
-
--:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#110: FILE: drivers/gpu/drm/i915/i915_params.c:120:
-+i915_param_named_unsafe(force_reset_modeset_test, bool, 0400,
- 	"Force a modeset during gpu reset for testing (default:false). "
-
--:115: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#115: FILE: drivers/gpu/drm/i915/i915_params.c:124:
-+i915_param_named_unsafe(invert_brightness, int, 0400,
- 	"Invert backlight brightness "
-
--:124: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#124: FILE: drivers/gpu/drm/i915/i915_params.c:134:
-+i915_param_named(mmio_debug, int, 0400,
- 	"Enable the MMIO debug code for the first N failures (default: off). "
-
--:137: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#137: FILE: drivers/gpu/drm/i915/i915_params.c:169:
-+i915_param_named_unsafe(enable_dp_mst, bool, 0400,
- 	"Enable multi-stream transport (MST) for new DisplayPort sinks. (default: true)");
-
--:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#146: FILE: drivers/gpu/drm/i915/i915_params.c:177:
-+i915_param_named(enable_dpcd_backlight, int, 0400,
- 	"Enable support for DPCD backlight control"
-
-total: 0 errors, 0 warnings, 13 checks, 115 lines checked
-581762905710 drm/i915/params: switch to device specific parameters
--:755: WARNING:LONG_LINE: line over 100 characters
-#755: FILE: drivers/gpu/drm/i915/i915_drv.h:1664:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
-
--:755: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#755: FILE: drivers/gpu/drm/i915/i915_drv.h:1664:
-+#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
-
-total: 0 errors, 1 warnings, 1 checks, 680 lines checked
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxp
+bnRlbC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKYW5p
+IE5pa3VsYQ0KPiBTZW50OiBwZXJqYW50YWkgMTUuIHRvdWtva3V1dGEgMjAyMCAxNi4xMw0KPiBU
+bzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6
+IGxpbnV4LWZiZGV2QHZnZXIua2VybmVsLm9yZzsgZGFuaWVsLnZldHRlckBmZndsbC5jaDsgaW50
+ZWwtDQo+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmc7DQo+IGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbQ0KPiBTdWJqZWN0
+OiBSZTogW0ludGVsLWdmeF0gW1BBVENIIHYxMiAwMC8xNF0gSW4gb3JkZXIgdG8gcmVhZG91dCBE
+UCBTRFBzLCByZWZhY3RvcnMgdGhlDQo+IGhhbmRsaW5nIG9mIERQIFNEUHMNCj4gDQo+IE9uIEZy
+aSwgMTUgTWF5IDIwMjAsIFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+IHdyb3RlOg0KPiA+IE9uIFRodSwgTWF5IDE0LCAyMDIwIGF0IDAyOjE5OjIzUE0gKzAz
+MDAsIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+PiBPbiBUaHUsIDE0IE1heSAyMDIwLCBHd2FuLWd5
+ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+DQo+IHdyb3RlOg0KPiA+PiA+IElu
+IG9yZGVyIHRvIHJlYWRvdXQgRFAgU0RQcyAoU2Vjb25kYXJ5IERhdGEgUGFja2V0OiBEUCBIRFIg
+TWV0YWRhdGENCj4gPj4gPiBJbmZvZnJhbWUgU0RQLCBEUCBWU0MgU0RQKSwgaXQgcmVmYWN0b3Jz
+IGhhbmRsaW5nIERQIFNEUHMgY29kZXMuDQo+ID4+ID4gSXQgYWRkcyBuZXcgY29tcHV0ZSByb3V0
+aW5lcyBmb3IgRFAgSERSIE1ldGFkYXRhIEluZm9mcmFtZSBTRFAgYW5kDQo+ID4+ID4gRFAgVlND
+IFNEUC4NCj4gPj4gPiBBbmQgbmV3IHdyaXRpbmcgcm91dGluZXMgb2YgRFAgU0RQcyAoU2Vjb25k
+YXJ5IERhdGEgUGFja2V0KSB0aGF0DQo+ID4+ID4gdXNlcyBjb21wdXRlZCBjb25maWdzLg0KPiA+
+PiA+IE5ldyByZWFkaW5nIHJvdXRpbmVzIG9mIERQIFNEUHMgYXJlIGFkZGVkIGZvciByZWFkb3V0
+Lg0KPiA+PiA+IEl0IGFkZHMgYSBsb2dnaW5nIGZ1bmN0aW9uIGZvciBEUCBWU0MgU0RQLg0KPiA+
+PiA+IFdoZW4gcmVjZWl2aW5nIHZpZGVvIGl0IGlzIHZlcnkgdXNlZnVsIHRvIGJlIGFibGUgdG8g
+bG9nIERQIFZTQyBTRFAuDQo+ID4+ID4gVGhpcyBncmVhdGx5IHNpbXBsaWZpZXMgZGVidWdnaW5n
+Lg0KPiA+PiA+IEluIG9yZGVyIHRvIHVzZSBhIGNvbW1vbiBWU0MgU0RQIENvbG9yaW1ldHJ5IGNh
+bGN1bGF0aW5nIGNvZGUgb24NCj4gPj4gPiBQU1IsIGl0IHVzZXMgYSBuZXcgcHNyIHZzYyBzZHAg
+Y29tcHV0ZSByb3V0aW5lLg0KPiA+Pg0KPiA+PiBQdXNoZWQgdGhlIHNlcmllcyB0byBkcm0taW50
+ZWwtbmV4dC1xdWV1ZWQgd2l0aCBEYW5pZWwncyBpcmMgYWNrIGZvcg0KPiA+PiBtZXJnaW5nIHRo
+ZSB0d28gbm9uLWk5MTUgcGF0Y2hlcyB0aGF0IHJvdXRlIHRvby4NCj4gPg0KPiA+IGZpLWhzdy00
+NzcwIG5vdyBvb3BzZXMgYXQgYm9vdDoNCj4gDQo+IC9vXA0KPiANCj4gV2hhdCBkaWQgSSBtaXNz
+PyBXaGF0IHBhcnQgYWJvdXQgdGhlIENJIHJlcG9ydCBkaWQgSSBvdmVybG9vaz8NCkRhbW4sIGlu
+ZGVlZDoNCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNzI4NTMvDQpD
+aSByZXN1bHRzIGlzIHN1Y2Nlc3MgYnV0IGl0IGhhczoNCktub3duIGlzc3Vlcw0KLS0tLS0tLS0t
+LS0tDQoNCiAgSGVyZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE3NjU0IHRo
+YXQgY29tZSBmcm9tIGtub3duIGlzc3VlczoNCg0KIyMjIENJIGNoYW5nZXMgIyMjDQoNCiMjIyMg
+SXNzdWVzIGhpdCAjIyMjDQoNCiAgKiBib290Og0KICAgIC0gZmktaHN3LTQ3NzA6ICAgICAgICBb
+UEFTU11bMV0gLT4gW0ZBSUxdWzJdIChbQ0kjODBdKQ0KICAgWzFdOiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV84NDgxL2ZpLWhzdy00NzcwL2Jvb3QuaHRt
+bA0KICAgWzJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
+d29ya18xNzY1NC9maS1oc3ctNDc3MC9ib290Lmh0bWwNCg0KPiANCj4gQlIsDQo+IEphbmkuDQo+
+IA0KPiANCj4gPg0KPiA+IDwxPlsgICAgMy43MzY5MDNdIEJVRzoga2VybmVsIE5VTEwgcG9pbnRl
+ciBkZXJlZmVyZW5jZSwgYWRkcmVzczoNCj4gMDAwMDAwMDAwMDAwMDAwMA0KPiA+IDwxPlsgICAg
+My43MzY5MTZdICNQRjogc3VwZXJ2aXNvciByZWFkIGFjY2VzcyBpbiBrZXJuZWwgbW9kZQ0KPiA+
+IDwxPlsgICAgMy43MzY5MTZdICNQRjogZXJyb3JfY29kZSgweDAwMDApIC0gbm90LXByZXNlbnQg
+cGFnZQ0KPiA+IDw2PlsgICAgMy43MzY5MTddIFBHRCAwIFA0RCAwDQo+ID4gPDQ+WyAgICAzLjcz
+NjkxOV0gT29wczogMDAwMCBbIzFdIFBSRUVNUFQgU01QIFBUSQ0KPiA+IDw0PlsgICAgMy43MzY5
+MjFdIENQVTogMCBQSUQ6IDM2MyBDb21tOiBzeXN0ZW1kLXVkZXZkIE5vdCB0YWludGVkIDUuNy4w
+LXJjNS1DSS0NCj4gQ0lfRFJNXzg0ODUrICMxDQo+ID4gPDQ+WyAgICAzLjczNjkyMl0gSGFyZHdh
+cmUgbmFtZTogTEVOT1ZPIDEwQUdTMDA2MDEvU0hBUktCQVksIEJJT1MNCj4gRkJLVDM0QVVTIDA0
+LzI0LzIwMTMNCj4gPiA8ND5bICAgIDMuNzM2OTg2XSBSSVA6IDAwMTA6aW50ZWxfcHNyX2VuYWJs
+ZWQrMHg4LzB4NzAgW2k5MTVdDQo+ID4gPDQ+WyAgICAzLjczNjk4OF0gQ29kZTogMTggNDggYzcg
+YzYgNDAgMDkgNzkgYTAgZTggZTMgZTIgMDQgZTEgMGYgYjYgNDQgMjQgMDMgZTkgZjQNCj4gZmQg
+ZmYgZmYgOTAgNjYgMmUgMGYgMWYgODQgMDAgMDAgMDAgMDAgMDAgNDEgNTQgNTUgNTMgNDggODMg
+ZWMgMDggPDQ4PiA4YiA5ZiBkOCBmZSBmZiBmZg0KPiBmNiA4MyA1ZSAwZCAwMCAwMCAyMCA3NCAw
+OSA4MCBiYiA2YyBiNiAwMCAwMA0KPiA+IDw0PlsgICAgMy43MzcwMzZdIFJTUDogMDAxODpmZmZm
+YzkwMDAwNDdmOGEwIEVGTEFHUzogMDAwMTAyODYNCj4gPiA8ND5bICAgIDMuNzM3MDQyXSBSQVg6
+IDAwMDAwMDAwMDAwMDAwMDIgUkJYOiBmZmZmODg4M2ZmZDA0MDAwIFJDWDoNCj4gMDAwMDAwMDAw
+MDAwMDAwMQ0KPiA+IDw0PlsgICAgMy43MzcwNDhdIFJEWDogMDAwMDAwMDAwMDAwMDAwNyBSU0k6
+IGZmZmY4ODgzZmZkMDQwMDAgUkRJOg0KPiAwMDAwMDAwMDAwMDAwMTI4DQo+ID4gPDQ+WyAgICAz
+LjczNzA1NV0gUkJQOiBmZmZmODg4NDA2YWZlMjAwIFIwODogMDAwMDAwMDAwMDAwMDAwZiBSMDk6
+DQo+IDAwMDAwMDAwMDAwMDAwMDENCj4gPiA8ND5bICAgIDMuNzM3MDYxXSBSMTA6IDAwMDAwMDAw
+MDAwMDAwMDAgUjExOiAwMDAwMDAwMDAwMDAwMDAwIFIxMjoNCj4gMDAwMDAwMDAwMDAwMDAwMA0K
+PiA+IDw0PlsgICAgMy43MzcwNjhdIFIxMzogZmZmZjg4ODNmNzVkMDAwMCBSMTQ6IGZmZmY4ODg0
+MDZhZmUyMDAgUjE1Og0KPiBmZmZmODg4M2Y3NWQwODcwDQo+ID4gPDQ+WyAgICAzLjczNzA3NV0g
+RlM6ICAwMDAwN2Y3MTYxOGY5NjgwKDAwMDApIEdTOmZmZmY4ODg0MGVjMDAwMDAoMDAwMCkNCj4g
+a25sR1M6MDAwMDAwMDAwMDAwMDAwMA0KPiA+IDw0PlsgICAgMy43MzcwODJdIENTOiAgMDAxMCBE
+UzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwMzMNCj4gPiA8ND5bICAgIDMuNzM3
+MDg4XSBDUjI6IDAwMDAwMDAwMDAwMDAwMDAgQ1IzOiAwMDAwMDAwNDAyNTEwMDAyIENSNDoNCj4g
+MDAwMDAwMDAwMDE2MDZmMA0KPiA+IDw0PlsgICAgMy43MzcwOTRdIERSMDogMDAwMDAwMDAwMDAw
+MDAwMCBEUjE6IDAwMDAwMDAwMDAwMDAwMDAgRFIyOg0KPiAwMDAwMDAwMDAwMDAwMDAwDQo+ID4g
+PDQ+WyAgICAzLjczNzEwMV0gRFIzOiAwMDAwMDAwMDAwMDAwMDAwIERSNjogMDAwMDAwMDBmZmZl
+MGZmMCBEUjc6DQo+IDAwMDAwMDAwMDAwMDA0MDANCj4gPiA8ND5bICAgIDMuNzM3MTA3XSBDYWxs
+IFRyYWNlOg0KPiA+IDw0PlsgICAgMy43MzcxNzVdICBpbnRlbF9yZWFkX2RwX3NkcCsweDFhNC8w
+eDM4MCBbaTkxNV0NCj4gPiA8ND5bICAgIDMuNzM3MjQ2XSAgaHN3X2NydF9nZXRfY29uZmlnKzB4
+MTIvMHg0MCBbaTkxNV0NCj4gPiA8ND5bICAgIDMuNzM3MzE3XSAgaW50ZWxfbW9kZXNldF9zZXR1
+cF9od19zdGF0ZSsweDNiMy8weDE2YTAgW2k5MTVdDQo+ID4gLi4uDQo+IA0KPiAtLQ0KPiBKYW5p
+IE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyDQo+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5n
+IGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
