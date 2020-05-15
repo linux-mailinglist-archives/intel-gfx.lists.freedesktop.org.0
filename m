@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD1A1D5894
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 20:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A2C1D590A
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 20:25:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1575F6ECE6;
-	Fri, 15 May 2020 18:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D92976ECEE;
+	Fri, 15 May 2020 18:25:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A2F88861
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:02:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21208249-1500050 
- for multiple; Fri, 15 May 2020 19:02:15 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 May 2020 19:02:13 +0100
-Message-Id: <20200515180213.22520-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200515151027.8818-1-chris@chris-wilson.co.uk>
-References: <20200515151027.8818-1-chris@chris-wilson.co.uk>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 919D66E193
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:09:59 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0A2921042;
+ Fri, 15 May 2020 11:09:59 -0700 (PDT)
+Received: from e113632-lin (e113632-lin.cambridge.arm.com [10.1.194.46])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 785E73F71E;
+ Fri, 15 May 2020 11:09:57 -0700 (PDT)
+References: <20200428032258.2518-1-currojerez@riseup.net>
+ <20200511105701.GA2940@hirez.programming.kicks-ass.net>
+ <874ksmuqx6.fsf@riseup.net> <jhjwo5erb0e.mognet@arm.com>
+ <87a72at44d.fsf@riseup.net>
+User-agent: mu4e 0.9.17; emacs 26.3
+From: Valentin Schneider <valentin.schneider@arm.com>
+To: Francisco Jerez <currojerez@riseup.net>
+In-reply-to: <87a72at44d.fsf@riseup.net>
+Date: Fri, 15 May 2020 19:09:52 +0100
+Message-ID: <jhjv9kxqdcf.mognet@arm.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Measure dispatch latency
+X-Mailman-Approved-At: Fri, 15 May 2020 18:25:41 +0000
+Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
+ the intel_pstate driver (v2.99)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,671 +44,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ daniel.lezcano@linaro.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ chris.p.wilson@intel.com, "Pandruvada,
+ Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com,
+ Lukasz Luba <Lukasz.Luba@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A useful metric of the system's health is how fast we can tell the GPU
-to do various actions, so measure our latency.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_request.c | 612 ++++++++++++++++++
- 1 file changed, 612 insertions(+)
+On 15/05/20 01:48, Francisco Jerez wrote:
+> Valentin Schneider <valentin.schneider@arm.com> writes:
+>
+>> (+Lukasz)
+>>
+>> On 11/05/20 22:01, Francisco Jerez wrote:
+>>>> What I'm missing is an explanation for why this isn't using the
+>>>> infrastructure that was build for these kinds of things? The thermal
+>>>> framework, was AFAIU, supposed to help with these things, and the IPA
+>>>> thing in particular is used by ARM to do exactly this GPU/CPU power
+>>>> budget thing.
+>>>>
+>>>> If thermal/IPA is found wanting, why aren't we improving that?
+>>>
+>>> The GPU/CPU power budget "thing" is only a positive side effect of this
+>>> series on some TDP-bound systems.  Its ultimate purpose is improving the
+>>> energy efficiency of workloads which have a bottleneck on a device other
+>>> than the CPU, by giving the bottlenecking device driver some influence
+>>> over the response latency of CPUFREQ governors via a PM QoS interface.
+>>> This seems to be completely outside the scope of the thermal framework
+>>> and IPA AFAIU.
+>>>
+>>
+>> It's been a while since I've stared at IPA, but it does sound vaguely
+>> familiar.
+>>
+>> When thermally constrained, IPA figures out a budget and splits it between
+>> actors (cpufreq and devfreq devices) depending on how much juice they are
+>> asking for; see cpufreq_get_requested_power() and
+>> devfreq_cooling_get_requested_power(). There's also some weighing involved.
+>>
+>
+> I'm aware of those.  Main problem is that the current mechanism for IPA
+> to figure out the requested power of each actor is based on a rough
+> estimate of their past power consumption: If an actor was operating at a
+> highly energy-inefficient regime it will end up requesting more power
+> than another actor with the same load but more energy-efficient
+> behavior.
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 6014e8dfcbb1..bfb601214c4a 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -24,16 +24,20 @@
- 
- #include <linux/prime_numbers.h>
- #include <linux/pm_qos.h>
-+#include <linux/sort.h>
- 
- #include "gem/i915_gem_pm.h"
- #include "gem/selftests/mock_context.h"
- 
-+#include "gt/intel_engine_heartbeat.h"
- #include "gt/intel_engine_pm.h"
- #include "gt/intel_engine_user.h"
- #include "gt/intel_gt.h"
-+#include "gt/intel_gt_requests.h"
- 
- #include "i915_random.h"
- #include "i915_selftest.h"
-+#include "igt_flush_test.h"
- #include "igt_live_test.h"
- #include "igt_spinner.h"
- #include "lib_sw_fence.h"
-@@ -1524,6 +1528,613 @@ struct perf_series {
- 	struct intel_context *ce[];
- };
- 
-+#define COUNT 5
-+
-+static int cmp_u32(const void *A, const void *B)
-+{
-+	const u32 *a = A, *b = B;
-+
-+	return *a - *b;
-+}
-+
-+static u32 trifilter(u32 *a)
-+{
-+	u64 sum;
-+
-+	sort(a, COUNT, sizeof(*a), cmp_u32, NULL);
-+
-+	sum = mul_u32_u32(a[2], 2);
-+	sum += a[1];
-+	sum += a[3];
-+
-+	return (sum + 2) >> 2;
-+}
-+
-+static u64 cycles_to_ns(struct intel_engine_cs *engine, u32 cycles)
-+{
-+	u64 ns = i915_cs_timestamp_ticks_to_ns(engine->i915, cycles);
-+
-+	return DIV_ROUND_CLOSEST(ns, 1 << COUNT);
-+}
-+
-+static int measure_semaphore_response(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	u32 elapsed[COUNT], cycles;
-+	struct i915_request *rq;
-+	u32 *cs;
-+	int i;
-+
-+	rq = i915_request_create(ce);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	cs = intel_ring_begin(rq, 4 + 8 * ARRAY_SIZE(elapsed));
-+	if (IS_ERR(cs)) {
-+		i915_request_add(rq);
-+		return PTR_ERR(cs);
-+	}
-+
-+	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-+	*cs++ = offset;
-+	*cs++ = 0;
-+	*cs++ = 0xffffffff;
-+
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_GLOBAL_GTT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_EQ_SDD;
-+		*cs++ = i;
-+		*cs++ = offset;
-+		*cs++ = 0;
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+	}
-+
-+	intel_ring_advance(rq, cs);
-+	i915_request_add(rq);
-+
-+	if (wait_for(READ_ONCE(*sema) == 0xffffffff, 50)) {
-+		intel_gt_set_wedged(ce->engine->gt);
-+		return -EIO;
-+	}
-+
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		cycles = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
-+		WRITE_ONCE(sema[0], i);
-+		wmb(); /* flush the update to the cache, and beyond */
-+
-+		if (wait_for(READ_ONCE(sema[i]), 50)) {
-+			intel_gt_set_wedged(ce->engine->gt);
-+			return -EIO;
-+		}
-+
-+		elapsed[i - 1] = (sema[i] - cycles) << COUNT;
-+	}
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: semaphore response %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+static int measure_idle_dispatch(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	u32 elapsed[COUNT], cycles;
-+	u32 *cs;
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(elapsed); i++) {
-+		struct i915_request *rq;
-+		int err;
-+
-+		err = intel_gt_wait_for_idle(ce->engine->gt, HZ / 2);
-+		if (err)
-+			return err;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq))
-+			return PTR_ERR(rq);
-+
-+		cs = intel_ring_begin(rq, 4);
-+		if (IS_ERR(cs)) {
-+			i915_request_add(rq);
-+			return PTR_ERR(cs);
-+		}
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		intel_ring_advance(rq, cs);
-+
-+		preempt_disable();
-+		local_bh_disable();
-+		elapsed[i] = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
-+		i915_request_add(rq);
-+		local_bh_enable();
-+		preempt_enable();
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(elapsed); i++) {
-+		if (wait_for(READ_ONCE(sema[i]), 50)) {
-+			intel_gt_set_wedged(ce->engine->gt);
-+			return -EIO;
-+		}
-+
-+		elapsed[i] = (sema[i] - elapsed[i]) << COUNT;
-+	}
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: idle dispatch latency %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+static int measure_busy_dispatch(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	u32 elapsed[COUNT + 1], cycles;
-+	u32 *cs;
-+	int i;
-+
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq))
-+			return PTR_ERR(rq);
-+
-+		cs = intel_ring_begin(rq, 12);
-+		if (IS_ERR(cs)) {
-+			i915_request_add(rq);
-+			return PTR_ERR(cs);
-+		}
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_GLOBAL_GTT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_GTE_SDD;
-+		*cs++ = i;
-+		*cs++ = offset;
-+		*cs++ = 0;
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		intel_ring_advance(rq, cs);
-+
-+		if (i > 1 && wait_for(READ_ONCE(sema[i - 1]), 500)) {
-+			intel_gt_set_wedged(ce->engine->gt);
-+			return -EIO;
-+		}
-+
-+		preempt_disable();
-+		local_bh_disable();
-+		elapsed[i - 1] = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
-+		i915_request_add(rq);
-+		local_bh_enable();
-+		WRITE_ONCE(sema[0], i - 1);
-+		wmb(); /* flush the update to the cache, and beyond */
-+		preempt_enable();
-+	}
-+	WRITE_ONCE(sema[0], i - 1);
-+
-+	for (i = 1; i <= COUNT; i++)
-+		elapsed[i - 1] = (sema[i] - elapsed[i]) << COUNT;
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: busy dispatch latency %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+static int plug(struct intel_engine_cs *engine, u32 *sema, u32 mode, int value)
-+{
-+	const u32 offset =
-+		i915_ggtt_offset(engine->status_page.vma) +
-+		offset_in_page(sema);
-+	struct i915_request *rq;
-+	u32 *cs;
-+
-+	rq = i915_request_create(engine->kernel_context);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	cs = intel_ring_begin(rq, 4);
-+	if (IS_ERR(cs)) {
-+		i915_request_add(rq);
-+		return PTR_ERR(cs);
-+	}
-+
-+	*cs++ = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		mode;
-+	*cs++ = value;
-+	*cs++ = offset;
-+	*cs++ = 0;
-+
-+	intel_ring_advance(rq, cs);
-+	i915_request_add(rq);
-+
-+	return 0;
-+}
-+
-+static int measure_inter_request(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	u32 elapsed[COUNT + 1], cycles;
-+	struct i915_sw_fence *submit;
-+	int i, err;
-+
-+	err = plug(ce->engine, sema, MI_SEMAPHORE_SAD_NEQ_SDD, 0);
-+	if (err)
-+		return err;
-+
-+	submit = heap_fence_create(GFP_KERNEL);
-+	if (!submit) {
-+		WRITE_ONCE(sema[0], 1);
-+		return -ENOMEM;
-+	}
-+
-+	intel_engine_flush_submission(ce->engine);
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		struct i915_request *rq;
-+		u32 *cs;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq)) {
-+			WRITE_ONCE(sema[0], 1);
-+			return PTR_ERR(rq);
-+		}
-+
-+		err = i915_sw_fence_await_sw_fence_gfp(&rq->submit,
-+						       submit,
-+						       GFP_KERNEL);
-+		if (err < 0) {
-+			i915_sw_fence_commit(submit);
-+			heap_fence_put(submit);
-+			i915_request_add(rq);
-+			WRITE_ONCE(sema[0], 1);
-+			return err;
-+		}
-+
-+		cs = intel_ring_begin(rq, 4);
-+		if (IS_ERR(cs)) {
-+			i915_sw_fence_commit(submit);
-+			heap_fence_put(submit);
-+			i915_request_add(rq);
-+			WRITE_ONCE(sema[0], 1);
-+			return PTR_ERR(cs);
-+		}
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		intel_ring_advance(rq, cs);
-+		i915_request_add(rq);
-+	}
-+	local_bh_disable();
-+	i915_sw_fence_commit(submit);
-+	local_bh_enable();
-+	intel_engine_flush_submission(ce->engine);
-+	heap_fence_put(submit);
-+
-+	WRITE_ONCE(sema[0], 1);
-+	wmb(); /* flush the update to the cache, and beyond */
-+
-+	if (wait_for(READ_ONCE(sema[COUNT + 1]), 100)) {
-+		intel_gt_set_wedged(ce->engine->gt);
-+		return -EIO;
-+	}
-+
-+	for (i = 1; i <= COUNT; i++)
-+		elapsed[i - 1] = (sema[i + 1] - sema[i]) << COUNT;
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: inter-request latency %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+static int measure_context_switch(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	struct i915_request *fence = NULL;
-+	u32 elapsed[COUNT + 1], cycles;
-+	int i, j, err;
-+	u32 *cs;
-+
-+	err = plug(ce->engine, sema, MI_SEMAPHORE_SAD_NEQ_SDD, 0);
-+	if (err)
-+		return err;
-+
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		struct intel_context *arr[] = {
-+			ce, ce->engine->kernel_context
-+		};
-+
-+		for (j = 0; j < ARRAY_SIZE(arr); j++) {
-+			struct i915_request *rq;
-+
-+			rq = i915_request_create(arr[j]);
-+			if (IS_ERR(rq))
-+				return PTR_ERR(rq);
-+
-+			if (fence) {
-+				err = i915_request_await_dma_fence(rq,
-+								   &fence->fence);
-+				if (err) {
-+					i915_request_add(rq);
-+					return err;
-+				}
-+			}
-+
-+			cs = intel_ring_begin(rq, 4);
-+			if (IS_ERR(cs)) {
-+				i915_request_add(rq);
-+				return PTR_ERR(cs);
-+			}
-+
-+			*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+			*cs++ = ce->engine->mmio_base + 0x358;
-+			*cs++ = offset +
-+				sizeof(*sema) * (ARRAY_SIZE(arr) * i + j);
-+			*cs++ = 0;
-+
-+			intel_ring_advance(rq, cs);
-+
-+			i915_request_put(fence);
-+			fence = i915_request_get(rq);
-+
-+			i915_request_add(rq);
-+		}
-+	}
-+	i915_request_put(fence);
-+	intel_engine_flush_submission(ce->engine);
-+
-+	WRITE_ONCE(sema[0], 1);
-+	wmb(); /* flush the update to the cache, and beyond */
-+
-+	if (wait_for(READ_ONCE(sema[2 *i - 1]), 500)) {
-+		intel_gt_set_wedged(ce->engine->gt);
-+		return -EIO;
-+	}
-+
-+	for (i = 1; i <= COUNT; i++)
-+		elapsed[i - 1] = (sema[2 * i + 2] - sema[2 * i + 1]) << COUNT;
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: context switch latency %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+struct signal_cb {
-+	struct dma_fence_cb base;
-+	bool seen;
-+};
-+
-+static void signal_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
-+{
-+	struct signal_cb *s = container_of(cb, typeof(*s), base);
-+
-+	smp_store_mb(s->seen, true); /* be safe, be strong */
-+}
-+
-+static int measure_completion(struct intel_context *ce)
-+{
-+	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(sema);
-+	u32 elapsed[COUNT], cycles;
-+	u32 *cs;
-+	int i;
-+
-+	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
-+		struct signal_cb cb = { .seen = false };
-+		struct i915_request *rq;
-+
-+		rq = i915_request_create(ce);
-+		if (IS_ERR(rq))
-+			return PTR_ERR(rq);
-+
-+		cs = intel_ring_begin(rq, 12);
-+		if (IS_ERR(cs)) {
-+			i915_request_add(rq);
-+			return PTR_ERR(cs);
-+		}
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_GLOBAL_GTT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_EQ_SDD;
-+		*cs++ = i;
-+		*cs++ = offset;
-+		*cs++ = 0;
-+
-+		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+		*cs++ = ce->engine->mmio_base + 0x358;
-+		*cs++ = offset + sizeof(*sema) * i;
-+		*cs++ = 0;
-+
-+		intel_ring_advance(rq, cs);
-+
-+		dma_fence_add_callback(&rq->fence, &cb.base, signal_cb);
-+
-+		local_bh_disable();
-+		i915_request_add(rq);
-+		local_bh_enable();
-+
-+		if (wait_for(READ_ONCE(sema[i]), 50)) {
-+			intel_gt_set_wedged(ce->engine->gt);
-+			return -EIO;
-+		}
-+
-+		preempt_disable();
-+		WRITE_ONCE(sema[0], i);
-+		wmb();
-+		while (!READ_ONCE(cb.seen))
-+			cpu_relax();
-+
-+		elapsed[i - 1] = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
-+		preempt_enable();
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(elapsed); i++)
-+		elapsed[i] = (elapsed[i] - sema[i + 1]) << COUNT;
-+
-+	cycles = trifilter(elapsed);
-+	pr_info("%s: completion latency %d cycles, %lluns\n",
-+		ce->engine->name, cycles >> COUNT,
-+		cycles_to_ns(ce->engine, cycles));
-+
-+	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
-+}
-+
-+static void rps_pin(struct intel_gt *gt)
-+{
-+	/* Pin the frequency to max */
-+	atomic_inc(&gt->rps.num_waiters);
-+	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
-+
-+	mutex_lock(&gt->rps.lock);
-+	intel_rps_set(&gt->rps, gt->rps.max_freq);
-+	mutex_unlock(&gt->rps.lock);
-+}
-+
-+static void rps_unpin(struct intel_gt *gt)
-+{
-+	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
-+	atomic_dec(&gt->rps.num_waiters);
-+}
-+
-+static unsigned long engine_heartbeat_disable(struct intel_engine_cs *engine)
-+{
-+	unsigned long old;
-+
-+	old = fetch_and_zero(&engine->props.heartbeat_interval_ms);
-+
-+	intel_engine_pm_get(engine);
-+	intel_engine_park_heartbeat(engine);
-+
-+	return old;
-+}
-+
-+static void engine_heartbeat_enable(struct intel_engine_cs *engine,
-+				    unsigned long saved)
-+{
-+	intel_engine_pm_put(engine);
-+
-+	engine->props.heartbeat_interval_ms = saved;
-+}
-+
-+static int perf_request_latency(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct intel_engine_cs *engine;
-+	struct pm_qos_request qos;
-+	int err = 0;
-+
-+	if (INTEL_GEN(i915) < 8) /* per-engine CS timestamp, semaphores */
-+		return 0;
-+
-+	cpu_latency_qos_add_request(&qos, 0); /* disable cstates */
-+
-+	for_each_uabi_engine(engine, i915) {
-+		unsigned long saved_heartbeat;
-+		struct intel_context *ce;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			goto out;
-+
-+		err = intel_context_pin(ce);
-+		if (err) {
-+			intel_context_put(ce);
-+			goto out;
-+		}
-+
-+		saved_heartbeat = engine_heartbeat_disable(engine);
-+		rps_pin(engine->gt);
-+
-+		if (err == 0)
-+			err = measure_semaphore_response(ce);
-+		if (err == 0)
-+			err = measure_idle_dispatch(ce);
-+		if (err == 0)
-+			err = measure_busy_dispatch(ce);
-+		if (err == 0)
-+			err = measure_inter_request(ce);
-+		if (err == 0)
-+			err = measure_context_switch(ce);
-+		if (err == 0)
-+			err = measure_completion(ce);
-+
-+		rps_unpin(engine->gt);
-+		engine_heartbeat_enable(engine, saved_heartbeat);
-+
-+		intel_context_unpin(ce);
-+		intel_context_put(ce);
-+		if (err)
-+			goto out;
-+	}
-+
-+out:
-+	if (igt_flush_test(i915))
-+		err = -EIO;
-+
-+	cpu_latency_qos_remove_request(&qos);
-+	return err;
-+}
-+
- static int s_sync0(void *arg)
- {
- 	struct perf_series *ps = arg;
-@@ -2042,6 +2653,7 @@ static int perf_parallel_engines(void *arg)
- int i915_request_perf_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-+		SUBTEST(perf_request_latency),
- 		SUBTEST(perf_series_engines),
- 		SUBTEST(perf_parallel_engines),
- 	};
--- 
-2.20.1
+Right, we do mix load (busy time for either cpufreq and devfreq devices
+AFAIR) and current state (freq) into one single power value.
 
+> The IPA power allocator is therefore ineffective at improving
+> the energy efficiency of an agent beyond its past behavior --
+> Furthermore it seems to *rely* on individual agents being somewhat
+> energetically responsible in order for its power allocation result to be
+> anywhere close to optimal.  But improving the energy efficiency of an
+> agent seems useful in its own right, whether IPA is used to balance
+> power across agents or not.  That's precisely the purpose of this
+> series.
+>
+>> If you look at the cpufreq cooling side of things, you'll see it also uses
+>> the PM QoS interface. For instance, should IPA decide to cap the CPUs
+>> (perhaps because say the GPU is the one drawing most of the juice), it'll
+>> lead to a maximum frequency capping request.
+>>
+>> So it does sound like that's what you want, only not just when thermally
+>> constrained.
+>
+> Capping the CPU frequency from random device drivers is highly
+> problematic, because the CPU is a shared resource which a number of
+> different concurrent applications might be using beyond the GPU client.
+> The GPU driver has no visibility over its impact on the performance of
+> other applications.  And even in a single-task environment, in order to
+> behave as effectively as the present series the GPU driver would need to
+> monitor the utilization of *all* CPUs in the system and place a
+> frequency constraint on each one of them (since there is the potential
+> of the task scheduler migrating the process from one CPU to another
+> without notice).  Furthermore these frequency constraints would need to
+> be updated at high frequency in order to avoid performance degradation
+> whenever the balance of load between CPU and IO device fluctuates.
+>
+> The present series attempts to remove the burden of computing frequency
+> constraints out of individual device drivers into the CPUFREQ governor.
+> Instead the device driver provides a response latency constraint when it
+> encounters a bottleneck, which can be more easily derived from hardware
+> and protocol characteristics than a CPU frequency.  PM QoS aggregates
+> the response latency constraints provided by all applications and gives
+> CPUFREQ a single response latency target compatible with all of them (so
+> a device driver specifying a high latency target won't lead to
+> performance degradation in a concurrent application with lower latency
+> constraints).  The CPUFREQ governor then computes frequency constraints
+> for each CPU core that minimize energy usage without limiting
+> throughput, based on the results obtained from CPU performance counters,
+> while guaranteeing that a discontinuous transition in CPU utilization
+> leads to a proportional transition in the CPU frequency before the
+> specified response latency has elapsed.
+
+Right, I think I see your point there. I'm thinking the 'actual' IPA gurus
+(Lukasz or even Javi) may want to have a look at this.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
