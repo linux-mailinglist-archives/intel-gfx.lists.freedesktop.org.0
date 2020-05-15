@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A3D1D599D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CF51D59AA
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320C16ED16;
-	Fri, 15 May 2020 19:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43B806ED17;
+	Fri, 15 May 2020 19:08:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AFEB6ECEA;
- Fri, 15 May 2020 19:05:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 60374A0138;
- Fri, 15 May 2020 19:05:41 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD8BA6ED17
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 19:08:37 +0000 (UTC)
+IronPort-SDR: BcAXT0Wc2uKVYlzkq6u8snCor0e0NugNlueFLWE0dXF1JAQiGn4bkFmp/7huIlOyoVrCJastcz
+ B3NadfqbAquA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2020 12:08:37 -0700
+IronPort-SDR: vkpanUka0bVXV67QdaIqJjbx5o1so7BWS36K2lLLd9fRLiHomuljMGkC/V3IwMqN5Nd+3JBk+Q
+ EvJvZdCWjvgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,396,1583222400"; d="scan'208";a="438419085"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga005.jf.intel.com with ESMTP; 15 May 2020 12:08:37 -0700
+Date: Fri, 15 May 2020 12:09:44 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200515190944.GA20478@intel.com>
+References: <20200512174145.3186-1-ville.syrjala@linux.intel.com>
+ <20200512174145.3186-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 15 May 2020 19:05:41 -0000
-Message-ID: <158956954136.26211.9416764833511286992@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200514165436.17380-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200514165436.17380-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/selftests=3A_Add_tests_for?=
- =?utf-8?q?_timeslicing_virtual_engines?=
+Content-Disposition: inline
+In-Reply-To: <20200512174145.3186-5-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915: Add {preemph,
+ voltage}_max() vfuncs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,231 +50,303 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 12, 2020 at 08:41:42PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: series starting with [1/4] drm/i915/selftests: Add tests for timeslicing virtual engines
-URL   : https://patchwork.freedesktop.org/series/77274/
-State : failure
+> Different platforms have different max vswing/preemph settings.
+> Turn that into a pair vfuncs so we can decouple intel_dp.c and
+> intel_ddi.c further.
+> =
 
-== Summary ==
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_8488_full -> Patchwork_17666_full
-====================================================
+This is so much cleaner, thanks for the patch,
 
-Summary
--------
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-  **FAILURE**
+Manasi
 
-  Serious unknown changes coming with Patchwork_17666_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17666_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 21 ++----
+>  drivers/gpu/drm/i915/display/intel_ddi.h      |  3 -
+>  .../drm/i915/display/intel_display_types.h    |  3 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 67 ++++++-------------
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  4 --
+>  .../drm/i915/display/intel_dp_link_training.c | 20 +++++-
+>  6 files changed, 49 insertions(+), 69 deletions(-)
+> =
 
-  
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 798889f72495..f873fd03ac14 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2095,10 +2095,10 @@ static void bxt_ddi_vswing_sequence(struct intel_=
+encoder *encoder,
+>  				     ddi_translations[level].deemphasis);
+>  }
+>  =
 
-Possible new issues
--------------------
+> -u8 intel_ddi_dp_voltage_max(struct intel_encoder *encoder)
+> +static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	enum port port =3D encoder->port;
+>  	enum phy phy =3D intel_port_to_phy(dev_priv, port);
+>  	int n_entries;
+> @@ -2151,19 +2151,9 @@ u8 intel_ddi_dp_voltage_max(struct intel_encoder *=
+encoder)
+>   * used on all DDI platforms. Should that change we need to
+>   * rethink this code.
+>   */
+> -u8 intel_ddi_dp_pre_emphasis_max(struct intel_encoder *encoder, u8 volta=
+ge_swing)
+> +static u8 intel_ddi_dp_preemph_max(struct intel_dp *intel_dp)
+>  {
+> -	switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_3;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_1;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
+> -	default:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> -	}
+> +	return DP_TRAIN_PRE_EMPH_LEVEL_3;
+>  }
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17666_full:
+>  static void cnl_ddi_vswing_program(struct intel_encoder *encoder,
+> @@ -4510,6 +4500,9 @@ intel_ddi_init_dp_connector(struct intel_digital_po=
+rt *intel_dig_port)
+>  	else
+>  		intel_dig_port->dp.set_signal_levels =3D hsw_set_signal_levels;
+>  =
 
-### IGT changes ###
+> +	intel_dig_port->dp.voltage_max =3D intel_ddi_dp_voltage_max;
+> +	intel_dig_port->dp.preemph_max =3D intel_ddi_dp_preemph_max;
+> +
+>  	if (INTEL_GEN(dev_priv) < 12) {
+>  		intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+>  		intel_dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i=
+915/display/intel_ddi.h
+> index fbdf8ddde486..077e9dbbe367 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> @@ -42,9 +42,6 @@ void intel_ddi_compute_min_voltage_level(struct drm_i91=
+5_private *dev_priv,
+>  					 struct intel_crtc_state *crtc_state);
+>  u32 bxt_signal_levels(struct intel_dp *intel_dp);
+>  u32 ddi_signal_levels(struct intel_dp *intel_dp);
+> -u8 intel_ddi_dp_voltage_max(struct intel_encoder *encoder);
+> -u8 intel_ddi_dp_pre_emphasis_max(struct intel_encoder *encoder,
+> -				 u8 voltage_swing);
+>  int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
+>  				     bool enable);
+>  void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 87876fce91a5..46e91574f178 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1371,6 +1371,9 @@ struct intel_dp {
+>  	void (*set_idle_link_train)(struct intel_dp *intel_dp);
+>  	void (*set_signal_levels)(struct intel_dp *intel_dp);
+>  =
 
-#### Possible regressions ####
+> +	u8 (*preemph_max)(struct intel_dp *intel_dp);
+> +	u8 (*voltage_max)(struct intel_dp *intel_dp);
+> +
+>  	/* Displayport compliance testing */
+>  	struct intel_dp_compliance compliance;
+>  =
 
-  * igt@gem_exec_balancer@nop:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-tglb3/igt@gem_exec_balancer@nop.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-tglb7/igt@gem_exec_balancer@nop.html
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 4952918d0904..6d790633e667 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3947,58 +3947,24 @@ intel_dp_get_link_status(struct intel_dp *intel_d=
+p, u8 link_status[DP_LINK_STATU
+>  				DP_LINK_STATUS_SIZE) =3D=3D DP_LINK_STATUS_SIZE;
+>  }
+>  =
 
-  
-Known issues
-------------
+> -/* These are source-specific values. */
+> -u8
+> -intel_dp_voltage_max(struct intel_dp *intel_dp)
+> +static u8 intel_dp_voltage_max_2(struct intel_dp *intel_dp)
+>  {
+> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> -	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> -	enum port port =3D encoder->port;
+> +	return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
+> +}
+>  =
 
-  Here are the changes found in Patchwork_17666_full that come from known issues:
+> -	if (HAS_DDI(dev_priv))
+> -		return intel_ddi_dp_voltage_max(encoder);
+> -	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
+> -		 (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A))
+> -		return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
+> -	else
+> -		return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
+> +static u8 intel_dp_voltage_max_3(struct intel_dp *intel_dp)
+> +{
+> +	return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
+>  }
+>  =
 
-### IGT changes ###
+> -u8
+> -intel_dp_pre_emphasis_max(struct intel_dp *intel_dp, u8 voltage_swing)
+> +static u8 intel_dp_pre_empemph_max_2(struct intel_dp *intel_dp)
+>  {
+> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> -	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> -	enum port port =3D encoder->port;
+> +	return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> +}
+>  =
 
-#### Issues hit ####
+> -	if (HAS_DDI(dev_priv)) {
+> -		return intel_ddi_dp_pre_emphasis_max(encoder, voltage_swing);
+> -	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
+> -		   (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A)) {
+> -		switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_3;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_1;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
+> -		default:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> -		}
+> -	} else {
+> -		switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_1;
+> -		case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
+> -		default:
+> -			return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> -		}
+> -	}
+> +static u8 intel_dp_pre_empemph_max_3(struct intel_dp *intel_dp)
+> +{
+> +	return DP_TRAIN_PRE_EMPH_LEVEL_3;
+>  }
+>  =
 
-  * igt@gem_fenced_exec_thrash@2-spare-fences:
-    - shard-snb:          [PASS][3] -> [INCOMPLETE][4] ([i915#82])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-snb4/igt@gem_fenced_exec_thrash@2-spare-fences.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-snb1/igt@gem_fenced_exec_thrash@2-spare-fences.html
+>  static void vlv_set_signal_levels(struct intel_dp *intel_dp)
+> @@ -8325,6 +8291,15 @@ bool intel_dp_init(struct drm_i915_private *dev_pr=
+iv,
+>  	else
+>  		intel_dig_port->dp.set_signal_levels =3D g4x_set_signal_levels;
+>  =
 
-  * igt@i915_suspend@fence-restore-tiled2untiled:
-    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#69])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl1/igt@i915_suspend@fence-restore-tiled2untiled.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl10/igt@i915_suspend@fence-restore-tiled2untiled.html
+> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
+> +	    (HAS_PCH_SPLIT(dev_priv) && port !=3D PORT_A)) {
+> +		intel_dig_port->dp.preemph_max =3D intel_dp_pre_empemph_max_3;
+> +		intel_dig_port->dp.voltage_max =3D intel_dp_voltage_max_3;
+> +	} else {
+> +		intel_dig_port->dp.preemph_max =3D intel_dp_pre_empemph_max_2;
+> +		intel_dig_port->dp.voltage_max =3D intel_dp_voltage_max_2;
+> +	}
+> +
+>  	intel_dig_port->dp.output_reg =3D output_reg;
+>  	intel_dig_port->max_lanes =3D 4;
+>  	intel_dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 6659ce15a693..e8375a75c3ec 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -91,10 +91,6 @@ intel_dp_program_link_training_pattern(struct intel_dp=
+ *intel_dp,
+>  void
+>  intel_dp_set_signal_levels(struct intel_dp *intel_dp);
+>  void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
+> -u8
+> -intel_dp_voltage_max(struct intel_dp *intel_dp);
+> -u8
+> -intel_dp_pre_emphasis_max(struct intel_dp *intel_dp, u8 voltage_swing);
+>  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
+>  			   u8 *link_bw, u8 *rate_select);
+>  bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index e4f1843170b7..171d9e842fc0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -34,6 +34,21 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK=
+_STATUS_SIZE])
+>  		      link_status[3], link_status[4], link_status[5]);
+>  }
+>  =
 
-  * igt@kms_draw_crc@draw-method-rgb565-blt-ytiled:
-    - shard-skl:          [PASS][7] -> [FAIL][8] ([i915#52] / [i915#54])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl10/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl9/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
+> +static u8 dp_pre_emphasis_max(u8 voltage_swing)
+> +{
+> +	switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
+> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
+> +		return DP_TRAIN_PRE_EMPH_LEVEL_3;
+> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
+> +		return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
+> +		return DP_TRAIN_PRE_EMPH_LEVEL_1;
+> +	case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
+> +	default:
+> +		return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> +	}
+> +}
+> +
+>  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>  			       const u8 link_status[DP_LINK_STATUS_SIZE])
+>  {
+> @@ -53,11 +68,12 @@ void intel_dp_get_adjust_train(struct intel_dp *intel=
+_dp,
+>  			p =3D this_p;
+>  	}
+>  =
 
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-apl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180] / [i915#95])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-apl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-apl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
+> -	voltage_max =3D intel_dp_voltage_max(intel_dp);
+> +	voltage_max =3D intel_dp->voltage_max(intel_dp);
+>  	if (v >=3D voltage_max)
+>  		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>  =
 
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
-    - shard-kbl:          [PASS][11] -> [DMESG-WARN][12] ([i915#180]) +5 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
+> -	preemph_max =3D intel_dp_pre_emphasis_max(intel_dp, v);
+> +	preemph_max =3D min(intel_dp->preemph_max(intel_dp),
+> +			  dp_pre_emphasis_max(v));
+>  	if (p >=3D preemph_max)
+>  		p =3D preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>  =
 
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([fdo#108145] / [i915#265]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+> -- =
 
-  * igt@kms_psr@psr2_cursor_blt:
-    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109441]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-iclb1/igt@kms_psr@psr2_cursor_blt.html
+> 2.26.2
+> =
 
-  
-#### Possible fixes ####
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-skl:          [INCOMPLETE][17] ([i915#69]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl6/igt@gem_workarounds@suspend-resume-fd.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl1/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@kms_color@pipe-a-ctm-green-to-red:
-    - shard-skl:          [FAIL][19] ([i915#129]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl6/igt@kms_color@pipe-a-ctm-green-to-red.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl8/igt@kms_color@pipe-a-ctm-green-to-red.html
-
-  * {igt@kms_flip@flip-vs-expired-vblank@b-edp1}:
-    - shard-skl:          [FAIL][21] ([i915#79]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl2/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl4/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@a-dp1}:
-    - shard-kbl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24] +5 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-kbl7/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * {igt@kms_flip@flip-vs-suspend@a-vga1}:
-    - shard-snb:          [DMESG-WARN][25] ([i915#42]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-snb2/igt@kms_flip@flip-vs-suspend@a-vga1.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-snb6/igt@kms_flip@flip-vs-suspend@a-vga1.html
-
-  * {igt@kms_flip@flip-vs-suspend@c-dp1}:
-    - shard-apl:          [DMESG-WARN][27] ([i915#180]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-apl7/igt@kms_flip@flip-vs-suspend@c-dp1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-apl7/igt@kms_flip@flip-vs-suspend@c-dp1.html
-
-  * {igt@kms_flip@plain-flip-fb-recreate@b-edp1}:
-    - shard-skl:          [FAIL][29] ([i915#1883]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl6/igt@kms_flip@plain-flip-fb-recreate@b-edp1.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl2/igt@kms_flip@plain-flip-fb-recreate@b-edp1.html
-
-  * igt@kms_frontbuffer_tracking@psr-suspend:
-    - shard-skl:          [INCOMPLETE][31] ([i915#123] / [i915#69]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl8/igt@kms_frontbuffer_tracking@psr-suspend.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl9/igt@kms_frontbuffer_tracking@psr-suspend.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][33] ([i915#1188]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl6/igt@kms_hdr@bpc-switch.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl8/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][35] ([fdo#108145] / [i915#265]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_render:
-    - shard-iclb:         [SKIP][37] ([fdo#109441]) -> [PASS][38] +1 similar issue
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-iclb6/igt@kms_psr@psr2_sprite_render.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-iclb2/igt@kms_psr@psr2_sprite_render.html
-
-  * {igt@perf@blocking-parameterized}:
-    - shard-iclb:         [FAIL][39] ([i915#1542]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-iclb8/igt@perf@blocking-parameterized.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-iclb5/igt@perf@blocking-parameterized.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@cursor-dpms:
-    - shard-snb:          [INCOMPLETE][41] ([i915#82]) -> [SKIP][42] ([fdo#109271])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-snb1/igt@i915_pm_rpm@cursor-dpms.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-snb1/igt@i915_pm_rpm@cursor-dpms.html
-
-  * igt@kms_content_protection@atomic:
-    - shard-apl:          [FAIL][43] ([fdo#110321] / [fdo#110336] / [i915#95]) -> [TIMEOUT][44] ([i915#1319])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-apl6/igt@kms_content_protection@atomic.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-apl4/igt@kms_content_protection@atomic.html
-
-  * igt@kms_content_protection@legacy:
-    - shard-apl:          [FAIL][45] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][46] ([i915#1319])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-apl3/igt@kms_content_protection@legacy.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-apl6/igt@kms_content_protection@legacy.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [DMESG-FAIL][47] ([i915#180] / [i915#95]) -> [FAIL][48] ([i915#1121] / [i915#93] / [i915#95])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/shard-kbl4/igt@kms_fbcon_fbt@fbc-suspend.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/shard-kbl3/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
-  [i915#1121]: https://gitlab.freedesktop.org/drm/intel/issues/1121
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#123]: https://gitlab.freedesktop.org/drm/intel/issues/123
-  [i915#129]: https://gitlab.freedesktop.org/drm/intel/issues/129
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1883]: https://gitlab.freedesktop.org/drm/intel/issues/1883
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#42]: https://gitlab.freedesktop.org/drm/intel/issues/42
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8488 -> Patchwork_17666
-
-  CI-20190529: 20190529
-  CI_DRM_8488: d40ec60813532e485e9c63623c91babf556cfbe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17666: c391d6f84f905212fdc986357b120dae52e1989b @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
