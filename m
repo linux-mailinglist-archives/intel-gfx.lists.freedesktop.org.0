@@ -2,43 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BB91D425D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 02:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1E81D45CF
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 08:23:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939946EB94;
-	Fri, 15 May 2020 00:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A786E115;
+	Fri, 15 May 2020 06:23:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F21766E3D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 00:48:46 +0000 (UTC)
-Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 49NVCL3zfvzFfym;
- Thu, 14 May 2020 17:48:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1589503726; bh=7SOSWVn0DgNQFYknXarS1OGvoQXvfWLX4YqUUceqERM=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=CQijsDMTJp3yvinSZxvVP52/S362knRXOQ/E5vkL6QVNro0GNdmmfYZQOPvNhz+0K
- U4FjBcVFBB1DW0ysjHBvUcGvEhE23mSKQ7o3p7YEgItk0xhSfr1udxL8etRhUczyKg
- S0Fl8pmZaU9W0u9qHTE2Bpxqcyke8vPT0meD5iaI=
-X-Riseup-User-ID: C96C279AFD7B7060B8EA31CDDB86C231BFE047804274BA9CC84DA16DD6137CBB
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by bell.riseup.net (Postfix) with ESMTPSA id 49NVCL16p0zJmg9;
- Thu, 14 May 2020 17:48:46 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-In-Reply-To: <10201092.tPqIMJ2V0o@kreacher>
-References: <20200428032258.2518-1-currojerez@riseup.net>
- <20200511105701.GA2940@hirez.programming.kicks-ass.net>
- <874ksmuqx6.fsf@riseup.net> <10201092.tPqIMJ2V0o@kreacher>
-Date: Thu, 14 May 2020 17:48:57 -0700
-Message-ID: <878shut43q.fsf@riseup.net>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40B686E115
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 06:23:45 +0000 (UTC)
+IronPort-SDR: N7p4hcGcWFLLmS5t3gK8/UnAWGzEAJNTl6ZvVvb5z4nJZAmq1D9m/j1zMu9JJWp5k1uu9iEz3x
+ fglHx/yYUmIA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2020 23:23:44 -0700
+IronPort-SDR: D9FrKe8EXc363stulqIOntSK1DhaA1aOqplwi4kdQiBkt7edYyGZaH4DvtPhECUN7gkxXVoY0y
+ QK2hibk6ji8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,394,1583222400"; d="scan'208";a="287681799"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga004.fm.intel.com with ESMTP; 14 May 2020 23:23:40 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 May 2020 11:40:29 +0530
+Message-Id: <20200515061029.5008-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2.99)
+Subject: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Update CP as per the kernel
+ internal state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,165 +45,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- daniel.lezcano@linaro.org, chris.p.wilson@intel.com, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com
-Content-Type: multipart/mixed; boundary="===============1135254681=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1135254681==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+Content Protection property should be updated as per the kernel
+internal state. Let's say if Content protection is disabled
+by userspace, CP property should be set to UNDESIRED so that
+reauthentication will not happen until userspace request it again,
+but when kernel disables the HDCP due to any DDI disabling sequences
+like modeset/DPMS operation, kernel should set the property to
+DESIRED, so that when opportunity arises, kernel will start the
+HDCP authentication on its own.
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+Somewhere in the line, state machine to set content protection to
+DESIRED from kernel was broken and IGT coverage was missing for it.
+This patch fixes it.
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2:
+- Fixing hdcp CP state in intel_hdcp_atomic_check(), that will
+  require to check hdcp->value in intel_hdcp_update_pipe() in order
+  to avoid enabling hdcp, if it was already enabled.
 
-"Rafael J. Wysocki" <rjw@rjwysocki.net> writes:
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Link: https://patchwork.freedesktop.org/patch/350962/?series=72664&rev=2 #v1
+Link: https://patchwork.freedesktop.org/patch/359396/?series=72251&rev=3 #v2
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 27 +++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
-> On Monday, May 11, 2020 11:01:41 PM CEST Francisco Jerez wrote:
->>=20
->> --=3D=3D-=3D-=3D
->> Content-Type: multipart/mixed; boundary=3D"=3D-=3D-=3D"
->>=20
->> --=3D-=3D-=3D
->> Content-Type: text/plain; charset=3Dutf-8
->> Content-Disposition: inline
->> Content-Transfer-Encoding: quoted-printable
->>=20
->> Peter Zijlstra <peterz@infradead.org> writes:
->>=20
->> > On Mon, Apr 27, 2020 at 08:22:47PM -0700, Francisco Jerez wrote:
->> >> This addresses the technical concerns people brought up about my
->> >> previous v2 revision of this series.  Other than a few bug fixes, the
->> >> only major change relative to v2 is that the controller is now exposed
->> >> as a new CPUFREQ generic governor as requested by Rafael (named
->> >> "adaptive" in this RFC though other naming suggestions are welcome).
->> >> Main reason for calling this v2.99 rather than v3 is that I haven't
->> >> yet addressed all the documentation requests from the v2 thread --
->> >> Will spend some time doing that as soon as I have an ACK (ideally from
->> >> Rafael) that things are moving in the right direction.
->> >>=3D20
->> >> You can also find this series along with the WIP code for non-HWP
->> >> platforms in this branch:
->> >>=3D20
->> >> https://github.com/curro/linux/tree/intel_pstate-vlp-v2.99
->> >>=3D20
->> >> Thanks!
->> >>=3D20
->> >> [PATCHv2.99 01/11] PM: QoS: Add CPU_SCALING_RESPONSE global PM QoS li=
-mit.
->> >> [PATCHv2.99 02/11] drm/i915: Adjust PM QoS scaling response frequency=
- ba=3D
->> sed on GPU load.
->> >> [PATCHv2.99 03/11] OPTIONAL: drm/i915: Expose PM QoS control paramete=
-rs =3D
->> via debugfs.
->> >> [PATCHv2.99 04/11] cpufreq: Define ADAPTIVE frequency governor policy.
->> >> [PATCHv2.99 05/11] cpufreq: intel_pstate: Reorder intel_pstate_clear_=
-upd=3D
->> ate_util_hook() and intel_pstate_set_update_util_hook().
->> >> [PATCHv2.99 06/11] cpufreq: intel_pstate: Call intel_pstate_set_updat=
-e_u=3D
->> til_hook() once from the setpolicy hook.
->> >> [PATCHv2.99 07/11] cpufreq: intel_pstate: Implement VLP controller st=
-ati=3D
->> stics and target range calculation.
->> >> [PATCHv2.99 08/11] cpufreq: intel_pstate: Implement VLP controller fo=
-r H=3D
->> WP parts.
->> >> [PATCHv2.99 09/11] cpufreq: intel_pstate: Enable VLP controller based=
- on=3D
->>  ACPI FADT profile and CPUID.
->> >> [PATCHv2.99 10/11] OPTIONAL: cpufreq: intel_pstate: Add tracing of VL=
-P c=3D
->> ontroller status.
->> >> [PATCHv2.99 11/11] OPTIONAL: cpufreq: intel_pstate: Expose VLP contro=
-lle=3D
->> r parameters via debugfs.
->> >
->> > What I'm missing is an explanation for why this isn't using the
->> > infrastructure that was build for these kinds of things? The thermal
->> > framework, was AFAIU, supposed to help with these things, and the IPA
->> > thing in particular is used by ARM to do exactly this GPU/CPU power
->> > budget thing.
->> >
->> > If thermal/IPA is found wanting, why aren't we improving that?
->>=20
->> The GPU/CPU power budget "thing" is only a positive side effect of this
->> series on some TDP-bound systems.  Its ultimate purpose is improving the
->> energy efficiency of workloads which have a bottleneck on a device other
->> than the CPU, by giving the bottlenecking device driver some influence
->> over the response latency of CPUFREQ governors via a PM QoS interface.
->> This seems to be completely outside the scope of the thermal framework
->> and IPA AFAIU.
->>=20
->> >
->> > How much of that ADAPTIVE crud is actually intel_pstate specific? On a
->> > (really) quick read it appears to me that much of the controller bits
->> > there can be applied more generic, and thus should not be part of any
->> > one governor.
->> >
->>=20
->> The implementation of that is intel_pstate-specific right now, but the
->> basic algorithm could be made to work on any other governor in
->> principle, which is why it is exposed as a generic CPUFREQ governor.  I
->> don't care about taking out the generic CPUFREQ governor changes if you
->> don't like them, and going back to some driver-specific means of turning
->> it on and off (though Rafael might disagree with that).
->>=20
->> > Specifically, I want to use sched_util as cpufreq governor and use the
->> > intel_pstate as a passive driver.
->>=20
->> Yeah, getting a similar optimization into the schedutil governor has
->> been on my wish list for a while, but I haven't had the time to get very
->> far on that except for a handful of hacks.  The intel_pstate handling is
->> going to be necessary anyway in order to handle HWP systems gracefully,
->> at least in the near future until schedutil becomes a viable alternative
->> to intel_pstate in active mode on HWP systems.
->
-> FWIW, work is under way to make intel_pstate in the passive mode work on =
-HWP
-> systems.
->
-> I have a prototype patch for that, but it can be improved.  I'll post a n=
-ew
-> version of it for review, possibly next week.
->
-
-Looking forward to that, feel free to CC me on it.
-
-> Cheers!
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXr3m+gAKCRCDmTidfVK/
-W0/gAP0T+OHYIjOClcoTQZwv4uhseNP+fgblEwVRGCcRnok0dgD/UWqvORP9z/xr
-OeEtsNwkbv8fgaxGJZkYZbI9Z/qXcrk=
-=WEOL
------END PGP SIGNATURE-----
---==-=-=--
-
---===============1135254681==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 2cbc4619b4ce..f90f48819838 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -2083,6 +2083,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+ 		(conn_state->hdcp_content_type != hdcp->content_type &&
+ 		 conn_state->content_protection !=
+ 		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
++	bool desired_and_not_enabled = false;
+ 
+ 	/*
+ 	 * During the HDCP encryption session if Type change is requested,
+@@ -2105,8 +2106,15 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+ 	}
+ 
+ 	if (conn_state->content_protection ==
+-	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
+-	    content_protection_type_changed)
++	    DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++		mutex_lock(&hdcp->mutex);
++		/* Avoid enabling hdcp, if it already ENABLED */
++		desired_and_not_enabled =
++			hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
++		mutex_unlock(&hdcp->mutex);
++	}
++
++	if (desired_and_not_enabled || content_protection_type_changed)
+ 		intel_hdcp_enable(connector,
+ 				  crtc_state->cpu_transcoder,
+ 				  (u8)conn_state->hdcp_content_type);
+@@ -2155,6 +2163,19 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 		return;
+ 	}
+ 
++	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
++						   new_state->crtc);
++	/*
++	 * Fix the HDCP uapi content protection state in case of modeset.
++	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
++	 * need to be sent if there is transition from ENABLED->DESIRED.
++	 */
++	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
++	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
++	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
++		new_state->content_protection =
++			DRM_MODE_CONTENT_PROTECTION_DESIRED;
++
+ 	/*
+ 	 * Nothing to do if the state didn't change, or HDCP was activated since
+ 	 * the last commit. And also no change in hdcp content type.
+@@ -2167,8 +2188,6 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 			return;
+ 	}
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+-						   new_state->crtc);
+ 	crtc_state->mode_changed = true;
+ }
+ 
+-- 
+2.26.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1135254681==--
