@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A791D559D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 18:09:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4761D55C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 18:21:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3E06ECE0;
-	Fri, 15 May 2020 16:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF826ECF0;
+	Fri, 15 May 2020 16:21:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 008516E193;
- Fri, 15 May 2020 16:09:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EE4CDA3C0D;
- Fri, 15 May 2020 16:09:16 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C37BE6ECEB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 16:21:09 +0000 (UTC)
+IronPort-SDR: XD7JaMGvBX1H+Z6qc7/XvtEFSHRYacs41/is3mfeMKsgDlE6Fl/Ki5csRYqdZ3Er6omC0b66JQ
+ NNOgSskwpPjw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2020 09:21:09 -0700
+IronPort-SDR: yWlc2JpfAU5yjlnpbMcfC912tnHbvl4HDAJvZzGQZB+QHSAa4z+B+C0XiRtFcj9CpFYLak1ZNA
+ d6yj4Vge+W0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,395,1583222400"; d="scan'208";a="307461969"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 15 May 2020 09:21:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 15 May 2020 19:21:06 +0300
+Date: Fri, 15 May 2020 19:21:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200515162106.GL6112@intel.com>
+References: <20200514204553.27193-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 15 May 2020 16:09:16 -0000
-Message-ID: <158955895694.26212.1216969833076103234@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200514165436.17380-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200514165436.17380-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/selftests=3A_Add_tests_for?=
- =?utf-8?q?_timeslicing_virtual_engines?=
+Content-Disposition: inline
+In-Reply-To: <20200514204553.27193-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix AUX power domain toggling
+ across TypeC mode resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,78 +51,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, May 14, 2020 at 11:45:53PM +0300, Imre Deak wrote:
+> Make sure to select the port's AUX power domain while holding the TC
+> port lock. The domain depends on the port's current TC mode, which may
+> get changed under us if we're not holding the lock.
 
-Series: series starting with [1/4] drm/i915/selftests: Add tests for timeslicing virtual engines
-URL   : https://patchwork.freedesktop.org/series/77274/
-State : success
+Can we toss in a lockdep assert?
 
-== Summary ==
+Did this by any chance help with the MST issues you were seeing?
 
-CI Bug Log - changes from CI_DRM_8488 -> Patchwork_17666
-====================================================
+> =
 
-Summary
--------
+> This was left out from
+> commit 8c10e2262663 ("drm/i915: Keep the TypeC port mode fixed for detect=
+/AUX transfers")
+> =
 
-  **SUCCESS**
+> Cc: <stable@vger.kernel.org> # v5.4+
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> =
 
-  No regressions found.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 408c3c1c5e81..40d42dcff0b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1359,8 +1359,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	bool is_tc_port =3D intel_phy_is_tc(i915, phy);
+>  	i915_reg_t ch_ctl, ch_data[5];
+>  	u32 aux_clock_divider;
+> -	enum intel_display_power_domain aux_domain =3D
+> -		intel_aux_power_domain(intel_dig_port);
+> +	enum intel_display_power_domain aux_domain;
+>  	intel_wakeref_t aux_wakeref;
+>  	intel_wakeref_t pps_wakeref;
+>  	int i, ret, recv_bytes;
+> @@ -1375,6 +1374,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	if (is_tc_port)
+>  		intel_tc_port_lock(intel_dig_port);
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/index.html
+> +	aux_domain =3D intel_aux_power_domain(intel_dig_port);
+> +
+>  	aux_wakeref =3D intel_display_power_get(i915, aux_domain);
+>  	pps_wakeref =3D pps_lock(intel_dp);
+>  =
 
-Known issues
-------------
+> -- =
 
-  Here are the changes found in Patchwork_17666 that come from known issues:
+> 2.23.1
+> =
 
-### IGT changes ###
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-#### Possible fixes ####
+-- =
 
-  * igt@i915_selftest@live@execlists:
-    - fi-whl-u:           [INCOMPLETE][1] ([i915#656]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-whl-u/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/fi-whl-u/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (51 -> 44)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8488 -> Patchwork_17666
-
-  CI-20190529: 20190529
-  CI_DRM_8488: d40ec60813532e485e9c63623c91babf556cfbe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17666: c391d6f84f905212fdc986357b120dae52e1989b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c391d6f84f90 drm/i915/execlists: Optimise away false timeslicing on virtual engines
-408949995022 drm/i915/gt: Incorporate the virtual engine into timeslicing
-155df023a532 drm/i915/gt: Kick virtual siblings on timeslice out
-175d05822d38 drm/i915/selftests: Add tests for timeslicing virtual engines
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17666/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
