@@ -2,31 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97451D501B
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8621D5025
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:14:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DEB06E0D0;
-	Fri, 15 May 2020 14:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8F86ECAF;
+	Fri, 15 May 2020 14:14:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C4C596E0D0;
- Fri, 15 May 2020 14:11:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BF332A0099;
- Fri, 15 May 2020 14:11:34 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-Date: Fri, 15 May 2020 14:11:34 -0000
-Message-ID: <158955189477.26213.2616666449399570150@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1B656ECAF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 14:14:30 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id j5so3774236wrq.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 07:14:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=75mytnsZSW494ezzILP9HOEPjF4cYjBQvV72zHXjVsk=;
+ b=jIhdtQ/wrRK/lvciskioZccjkpI8vyqTPNOit2Gg21ag2loY+O+TNFVHPXd3tmj4ST
+ R0PcCu0ihnJuHE2HhFNC8D+MSHOzs1IgQyPF7tvgsPx95DlT/xTVPo3dDAx8APQU8sym
+ 0zShFPno9J6SNWtN3Hp6gaQbelareIxoDlNVo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=75mytnsZSW494ezzILP9HOEPjF4cYjBQvV72zHXjVsk=;
+ b=ItQ+CzLPlcLqnF3pNui3WZREzgLVLR7hH0iag0ibh/9s4J8yl7xrYtXqta04RjhIMA
+ efEFJNog+V0smJGkyDWopTflnOMARDebmjZhXlwJfKHynBE9QNZfO0wAIviKcSwembdR
+ q6N4zxX+HjQok+FQZO00HaUvFqwMwE7Ol1NVNsVHZMQGJhPit+cFt2C4wpZUSsgeM1/9
+ BJ+DrsKkbxMALZckcvZ5O9AQzDxzM0jWpvddmgeznXbAB5MmnRjhgKkQSNhJXLLafPLM
+ xJYBmIITaphuDfI41DMGRdD4PbuTFyweVtgTwe7MEZIaN41TkRwiV4S6G5LvMoohN+lW
+ ma0w==
+X-Gm-Message-State: AOAM532KH/eLyJWp1EschBSVPZmEtUxnn5Z9rK3vI6ZRMF/9enXAzFQn
+ F+jnJE93ljP70YQ++GvAQ5BFQQ==
+X-Google-Smtp-Source: ABdhPJx9P2iM/DwMwqAedF1D9rW6k90+F9vmbtNvRw8SIicpdiNm4dezPuj1b9Y1Ph9c4sLB/2tGDQ==
+X-Received: by 2002:a5d:6b83:: with SMTP id n3mr4822679wrx.213.1589552069335; 
+ Fri, 15 May 2020 07:14:29 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id e7sm4136911wrp.0.2020.05.15.07.14.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 May 2020 07:14:28 -0700 (PDT)
+Date: Fri, 15 May 2020 16:14:26 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200515141426.GI206103@phenom.ffwll.local>
 References: <20200514060732.3378396-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200514060732.3378396-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?q?=28rev14=29?=
+ <87eerm4vd0.fsf@intel.com> <20200515130612.GI6112@intel.com>
+ <87zha92vf5.fsf@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87zha92vf5.fsf@intel.com>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH v12 00/14] In order to readout DP SDPs,
+ refactors the handling of DP SDPs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,113 +68,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-fbdev@vger.kernel.org, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ laurent.pinchart@ideasonboard.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, May 15, 2020 at 04:13:18PM +0300, Jani Nikula wrote:
+> On Fri, 15 May 2020, Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> wr=
+ote:
+> > On Thu, May 14, 2020 at 02:19:23PM +0300, Jani Nikula wrote:
+> >> On Thu, 14 May 2020, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
+> >> > In order to readout DP SDPs (Secondary Data Packet: DP HDR Metadata
+> >> > Infoframe SDP, DP VSC SDP), it refactors handling DP SDPs codes.
+> >> > It adds new compute routines for DP HDR Metadata Infoframe SDP
+> >> > and DP VSC SDP. =
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev14)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : success
+> >> > And new writing routines of DP SDPs (Secondary Data Packet) that uses
+> >> > computed configs.
+> >> > New reading routines of DP SDPs are added for readout.
+> >> > It adds a logging function for DP VSC SDP.
+> >> > When receiving video it is very useful to be able to log DP VSC SDP.
+> >> > This greatly simplifies debugging.
+> >> > In order to use a common VSC SDP Colorimetry calculating code on PSR,
+> >> > it uses a new psr vsc sdp compute routine.
+> >> =
 
-== Summary ==
+> >> Pushed the series to drm-intel-next-queued with Daniel's irc ack for
+> >> merging the two non-i915 patches that route too.
+> >
+> > fi-hsw-4770 now oopses at boot:
+> =
 
-CI Bug Log - changes from CI_DRM_8481 -> Patchwork_17654
-====================================================
+> /o\
+> =
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17654 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-hsw-4770:        [PASS][1] -> [FAIL][2] ([CI#80])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-hsw-4770/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-hsw-4770/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][3] -> [SKIP][4] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cml-u2:          [INCOMPLETE][5] ([i915#656]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-cml-u2/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-cml-u2/igt@i915_selftest@live@execlists.html
-    - fi-kbl-soraka:      [INCOMPLETE][7] ([CI#80] / [i915#656]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8481/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-
-  
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
+> What did I miss? What part about the CI report did I overlook?
 
 Participating hosts (48 -> 45)
 ------------------------------
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
+  Additional (1): fi-kbl-7560u =
+
+  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u
 
 
-Build changes
--------------
+You kill machines at boot, CI won't tell you.
 
-  * Linux: CI_DRM_8481 -> Patchwork_17654
+This is (or at least was) because the network is shitty enough that we
+have more spurious failures because the ethernet went into the ether than
+because of people having killed the machine with their patches for real.
+Also it's hard to grab logs if the thing doesn't work at all, so cant give
+you any more data than the above.
 
-  CI-20190529: 20190529
-  CI_DRM_8481: 46f34234505b4e0eb3332974b47a36f9b0825de0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5654: 5637a466a0b09535517751608f5525a8b468a76b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17654: b391c6a63abcab4ee99c9606550d21a62cc85730 @ git://anongit.freedesktop.org/gfx-ci/linux
+Yes this sucks :-/
 
+Cheers, Daniel
 
-== Linux commits ==
+> =
 
-b391c6a63abc drm/i915/psr: Use new DP VSC SDP compute routine on PSR
-6d1aa4db1cc0 drm/i915/dp: Add compute routine for DP PSR VSC SDP
-f8d2eda49214 drm/i915: Stop sending DP SDPs on ddi disable
-5ac865ae0f3c drm/i915: Program DP SDPs on pipe updates
-e373569ff8b1 drm/i915: Fix enabled infoframe states of lspcon
-99bcd01ba088 drm/i915: Add state readout for DP VSC SDP
-1723115921c6 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-c7d93732395b drm/i915: Program DP SDPs with computed configs
-2375c1f7c8e0 drm/i915: Include DP VSC SDP in the crtc state dump
-af8b261a6986 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-b53f926b3fa5 drm/i915: Include HDMI DRM infoframe in the crtc state dump
-bf5fbd357375 drm: Add logging function for DP VSC SDP
-0a10f4cd6cbe drm/i915/dp: Read out DP SDPs
-e1053fdca03e video/hdmi: Add Unpack only function for DRM infoframe
+> BR,
+> Jani.
+> =
 
-== Logs ==
+> =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17654/index.html
+> >
+> > <1>[    3.736903] BUG: kernel NULL pointer dereference, address: 000000=
+0000000000
+> > <1>[    3.736916] #PF: supervisor read access in kernel mode
+> > <1>[    3.736916] #PF: error_code(0x0000) - not-present page
+> > <6>[    3.736917] PGD 0 P4D 0 =
+
+> > <4>[    3.736919] Oops: 0000 [#1] PREEMPT SMP PTI
+> > <4>[    3.736921] CPU: 0 PID: 363 Comm: systemd-udevd Not tainted 5.7.0=
+-rc5-CI-CI_DRM_8485+ #1
+> > <4>[    3.736922] Hardware name: LENOVO 10AGS00601/SHARKBAY, BIOS FBKT3=
+4AUS 04/24/2013
+> > <4>[    3.736986] RIP: 0010:intel_psr_enabled+0x8/0x70 [i915]
+> > <4>[    3.736988] Code: 18 48 c7 c6 40 09 79 a0 e8 e3 e2 04 e1 0f b6 44=
+ 24 03 e9 f4 fd ff ff 90 66 2e 0f 1f 84 00 00 00 00 00 41 54 55 53 48 83 ec=
+ 08 <48> 8b 9f d8 fe ff ff f6 83 5e 0d 00 00 20 74 09 80 bb 6c b6 00 00
+> > <4>[    3.737036] RSP: 0018:ffffc9000047f8a0 EFLAGS: 00010286
+> > <4>[    3.737042] RAX: 0000000000000002 RBX: ffff8883ffd04000 RCX: 0000=
+000000000001
+> > <4>[    3.737048] RDX: 0000000000000007 RSI: ffff8883ffd04000 RDI: 0000=
+000000000128
+> > <4>[    3.737055] RBP: ffff888406afe200 R08: 000000000000000f R09: 0000=
+000000000001
+> > <4>[    3.737061] R10: 0000000000000000 R11: 0000000000000000 R12: 0000=
+000000000000
+> > <4>[    3.737068] R13: ffff8883f75d0000 R14: ffff888406afe200 R15: ffff=
+8883f75d0870
+> > <4>[    3.737075] FS:  00007f71618f9680(0000) GS:ffff88840ec00000(0000)=
+ knlGS:0000000000000000
+> > <4>[    3.737082] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > <4>[    3.737088] CR2: 0000000000000000 CR3: 0000000402510002 CR4: 0000=
+0000001606f0
+> > <4>[    3.737094] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000=
+000000000000
+> > <4>[    3.737101] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000=
+000000000400
+> > <4>[    3.737107] Call Trace:
+> > <4>[    3.737175]  intel_read_dp_sdp+0x1a4/0x380 [i915]
+> > <4>[    3.737246]  hsw_crt_get_config+0x12/0x40 [i915]
+> > <4>[    3.737317]  intel_modeset_setup_hw_state+0x3b3/0x16a0 [i915]
+> > ...
+> =
+
+> -- =
+
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
