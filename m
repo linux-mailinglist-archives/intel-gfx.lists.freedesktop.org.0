@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9F61D5883
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 19:59:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD1A1D5894
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 20:02:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44A5E6ECD9;
-	Fri, 15 May 2020 17:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1575F6ECE6;
+	Fri, 15 May 2020 18:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD536ECD9
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 17:59:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A2F88861
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:02:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21208184-1500050 
- for multiple; Fri, 15 May 2020 18:58:34 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21208249-1500050 
+ for multiple; Fri, 15 May 2020 19:02:15 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 May 2020 18:58:32 +0100
-Message-Id: <20200515175832.22310-1-chris@chris-wilson.co.uk>
+Date: Fri, 15 May 2020 19:02:13 +0100
+Message-Id: <20200515180213.22520-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200515151027.8818-1-chris@chris-wilson.co.uk>
 References: <20200515151027.8818-1-chris@chris-wilson.co.uk>
@@ -54,7 +54,7 @@ Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
  1 file changed, 612 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 6014e8dfcbb1..c265501c26a8 100644
+index 6014e8dfcbb1..bfb601214c4a 100644
 --- a/drivers/gpu/drm/i915/selftests/i915_request.c
 +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
 @@ -24,16 +24,20 @@
@@ -583,7 +583,7 @@ index 6014e8dfcbb1..c265501c26a8 100644
 +	}
 +
 +	for (i = 0; i < ARRAY_SIZE(elapsed); i++)
-+		elapsed[i] = (sema[i + 1] - elapsed[i]) << COUNT;
++		elapsed[i] = (elapsed[i] - sema[i + 1]) << COUNT;
 +
 +	cycles = trifilter(elapsed);
 +	pr_info("%s: completion latency %d cycles, %lluns\n",
