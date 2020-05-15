@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9FA1D59B7
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 966F61D59CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:17:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D10846ED18;
-	Fri, 15 May 2020 19:11:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62C2E6ED07;
+	Fri, 15 May 2020 19:17:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 615326ED18;
- Fri, 15 May 2020 19:11:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BF74A00CC;
- Fri, 15 May 2020 19:11:37 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2186ED07
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 19:17:16 +0000 (UTC)
+IronPort-SDR: 51tCORDlrKYMI8O2C24/ffgkb4xeQwdvaOQxHKvMD316s/nnGmXniQsbDa2/awMRtrzd4pXYHu
+ JYeDkrj4YyAw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2020 12:17:15 -0700
+IronPort-SDR: HxTwupMpRYfzjg/vVkEbt/Woliunm9sRt2NlJ1C1QCcTUVwBnl1RkjFhyVbLhPFPFj+r1bjB74
+ zhqJBww1YK1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,396,1583222400"; d="scan'208";a="252467518"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga007.fm.intel.com with ESMTP; 15 May 2020 12:17:15 -0700
+Date: Fri, 15 May 2020 12:18:22 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200515191822.GB20478@intel.com>
+References: <20200512174145.3186-1-ville.syrjala@linux.intel.com>
+ <20200512174145.3186-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Fri, 15 May 2020 19:11:37 -0000
-Message-ID: <158956989734.26210.14429219623977526184@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200515061029.5008-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200515061029.5008-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Update_CP_as_per_the_kernel_internal_state_=28rev?=
- =?utf-8?q?4=29?=
+Content-Disposition: inline
+In-Reply-To: <20200512174145.3186-6-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Reverse preemph vs. voltage
+ swing preference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,115 +50,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 12, 2020 at 08:41:43PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: drm/i915/hdcp: Update CP as per the kernel internal state (rev4)
-URL   : https://patchwork.freedesktop.org/series/72251/
-State : success
+> The DP spec says:
+> "When the combination of the requested pre-emphasis level and
+>  voltage swing exceeds the capability of a DPTX, the DPTX shall
+>  set the pre-emphasis level according to the request and use the
+>  highest voltage swing it can output with the given pre-emphasis level."
+> and
+> "When a DPTX reads a request beyond the limits of this Standard,
+>  the DPTX shall set the pre-emphasis level according to the request
+>  and set the highest voltage swing level it can output with the
+>  given pre-emphasis level. If a DPTX is requested for 9.5dB of
+>  pre-emphasis level (may be supported for a DPTX) and cannot support
+>  that level, it shall set the pre-emphasis level to the next
+>  highest level, 6dB."
+> =
 
-== Summary ==
+> Ie. we should first validate the pre-emphasis, and then select
+> the appropriate vswing for it.
+> =
 
-CI Bug Log - changes from CI_DRM_8489 -> Patchwork_17671
-====================================================
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Summary
--------
+So basically reverse the logic for selecting the vswing and pre emphasis
 
-  **SUCCESS**
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 32 +++++++++----------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
+> =
 
-  No regressions found.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 171d9e842fc0..573f93779449 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -34,18 +34,18 @@ intel_dp_dump_link_status(const u8 link_status[DP_LIN=
+K_STATUS_SIZE])
+>  		      link_status[3], link_status[4], link_status[5]);
+>  }
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/index.html
+> -static u8 dp_pre_emphasis_max(u8 voltage_swing)
+> +static u8 dp_voltage_max(u8 preemph)
+>  {
+> -	switch (voltage_swing & DP_TRAIN_VOLTAGE_SWING_MASK) {
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_0:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_3;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_1:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_2;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_2:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_1;
+> -	case DP_TRAIN_VOLTAGE_SWING_LEVEL_3:
+> +	switch (preemph & DP_TRAIN_PRE_EMPHASIS_MASK) {
+> +	case DP_TRAIN_PRE_EMPH_LEVEL_0:
+> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
+> +	case DP_TRAIN_PRE_EMPH_LEVEL_1:
+> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
+> +	case DP_TRAIN_PRE_EMPH_LEVEL_2:
+> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_1;
+> +	case DP_TRAIN_PRE_EMPH_LEVEL_3:
+>  	default:
+> -		return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_0;
 
-Possible new issues
--------------------
+These vswing levels for that specific pre emph level comes from the Bspec
+or from the DP spec? It wasnt clear to me how level3 of vswing was the max =
+for pre emphasis level 0 and all others?
 
-  Here are the unknown changes that may have been introduced in Patchwork_17671:
+Manasi
 
-### IGT changes ###
+>  	}
+>  }
+>  =
 
-#### Suppressed ####
+> @@ -68,15 +68,15 @@ void intel_dp_get_adjust_train(struct intel_dp *intel=
+_dp,
+>  			p =3D this_p;
+>  	}
+>  =
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+> -	voltage_max =3D intel_dp->voltage_max(intel_dp);
+> -	if (v >=3D voltage_max)
+> -		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+> -
+> -	preemph_max =3D min(intel_dp->preemph_max(intel_dp),
+> -			  dp_pre_emphasis_max(v));
+> +	preemph_max =3D intel_dp->preemph_max(intel_dp);
+>  	if (p >=3D preemph_max)
+>  		p =3D preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>  =
 
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-dsi}:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
+> +	voltage_max =3D min(intel_dp->voltage_max(intel_dp),
+> +			  dp_voltage_max(p));
+> +	if (v >=3D voltage_max)
+> +		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+> +
+>  	for (lane =3D 0; lane < 4; lane++)
+>  		intel_dp->train_set[lane] =3D v | p;
+>  }
+> -- =
 
-  
-Known issues
-------------
+> 2.26.2
+> =
 
-  Here are the changes found in Patchwork_17671 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#1874])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-cfl-guc/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/fi-cfl-guc/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-lmem:        [INCOMPLETE][5] ([i915#656]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][7] ([i915#62]) -> [SKIP][8] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8489 -> Patchwork_17671
-
-  CI-20190529: 20190529
-  CI_DRM_8489: 4a38678eb36587a5fdcccbf0e9e888bf30e8bb3e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17671: 004791888c5f9a9fb0e43cdf29e3640f826a4b96 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-004791888c5f drm/i915/hdcp: Update CP as per the kernel internal state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17671/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
