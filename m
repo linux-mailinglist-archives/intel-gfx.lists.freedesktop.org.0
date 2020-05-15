@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB3911D57EF
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 19:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E571D5800
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 19:33:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE2E6ED12;
-	Fri, 15 May 2020 17:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998486ECD2;
+	Fri, 15 May 2020 17:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48ECF6ED12
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 17:30:58 +0000 (UTC)
-IronPort-SDR: pzVQuirdrCwqcAIUm+QeouehkH4hECVEFZXL/tsGQF0tB8QhRV0PfNLE4bXRtHPiUdd78KfKNk
- OUnvhq9EmTmQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2020 10:30:58 -0700
-IronPort-SDR: 4ojzq7Ji0R1QM9Lgy2aHLf1UV9DIblXQk/fLb9PCY/ZUBs3NEuW3bpiNquxNzg78bhYyZoEpxD
- zCIRpIno/v4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,396,1583222400"; d="scan'208";a="307476087"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 15 May 2020 10:30:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 May 2020 20:30:54 +0300
-Date: Fri, 15 May 2020 20:30:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200515173054.GM6112@intel.com>
-References: <20200514204553.27193-1-imre.deak@intel.com>
- <20200515162106.GL6112@intel.com>
- <20200515172445.GA20373@ideak-desk.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 124D66ECD9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 17:33:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21207902-1500050 
+ for multiple; Fri, 15 May 2020 18:32:25 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 May 2020 18:32:23 +0100
+Message-Id: <20200515173223.21723-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200515151027.8818-1-chris@chris-wilson.co.uk>
+References: <20200515151027.8818-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200515172445.GA20373@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix AUX power domain toggling
- across TypeC mode resets
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Measure dispatch latency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,103 +38,580 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 15, 2020 at 08:24:45PM +0300, Imre Deak wrote:
-> On Fri, May 15, 2020 at 07:21:06PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Thu, May 14, 2020 at 11:45:53PM +0300, Imre Deak wrote:
-> > > Make sure to select the port's AUX power domain while holding the TC
-> > > port lock. The domain depends on the port's current TC mode, which may
-> > > get changed under us if we're not holding the lock.
-> > =
+A useful metric of the system's health is how fast we can tell the GPU
+to do various actions, so measure our latency.
 
-> > Can we toss in a lockdep assert?
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_request.c | 521 ++++++++++++++++++
+ 1 file changed, 521 insertions(+)
 
-> Yes, can do that. However, now I realize, there is one more place to fix
-> in intel_dp_force(), where I think we could just drop the aux get/put.
-> =
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 6014e8dfcbb1..a47ac68955ec 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -24,16 +24,20 @@
+ 
+ #include <linux/prime_numbers.h>
+ #include <linux/pm_qos.h>
++#include <linux/sort.h>
+ 
+ #include "gem/i915_gem_pm.h"
+ #include "gem/selftests/mock_context.h"
+ 
++#include "gt/intel_engine_heartbeat.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
++#include "gt/intel_gt_requests.h"
+ 
+ #include "i915_random.h"
+ #include "i915_selftest.h"
++#include "igt_flush_test.h"
+ #include "igt_live_test.h"
+ #include "igt_spinner.h"
+ #include "lib_sw_fence.h"
+@@ -1524,6 +1528,522 @@ struct perf_series {
+ 	struct intel_context *ce[];
+ };
+ 
++#define COUNT 5
++
++static int cmp_u32(const void *A, const void *B)
++{
++	const u32 *a = A, *b = B;
++
++	return *a - *b;
++}
++
++static u32 trifilter(u32 *a)
++{
++	u64 sum;
++
++	sort(a, COUNT, sizeof(*a), cmp_u32, NULL);
++
++	sum = mul_u32_u32(a[2], 2);
++	sum += a[1];
++	sum += a[3];
++
++	return (sum + 2) >> 2;
++}
++
++static u64 cycles_to_ns(struct intel_engine_cs *engine, u32 cycles)
++{
++	u64 ns = i915_cs_timestamp_ticks_to_ns(engine->i915, cycles);
++
++	return DIV_ROUND_CLOSEST(ns, 1 << COUNT);
++}
++
++static int measure_semaphore_response(struct intel_context *ce)
++{
++	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
++	const u32 offset =
++		i915_ggtt_offset(ce->engine->status_page.vma) +
++		offset_in_page(sema);
++	u32 elapsed[COUNT], cycles;
++	struct i915_request *rq;
++	u32 *cs;
++	int i;
++
++	rq = i915_request_create(ce);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 4 + 8 * ARRAY_SIZE(elapsed));
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++	*cs++ = offset;
++	*cs++ = 0;
++	*cs++ = 0xffffffff;
++
++	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
++		*cs++ = MI_SEMAPHORE_WAIT |
++			MI_SEMAPHORE_GLOBAL_GTT |
++			MI_SEMAPHORE_POLL |
++			MI_SEMAPHORE_SAD_EQ_SDD;
++		*cs++ = i;
++		*cs++ = offset;
++		*cs++ = 0;
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++		*cs++ = ce->engine->mmio_base + 0x358;
++		*cs++ = offset + sizeof(*sema) * i;
++		*cs++ = 0;
++	}
++
++	intel_ring_advance(rq, cs);
++	i915_request_add(rq);
++
++	if (wait_for(READ_ONCE(*sema) == 0xffffffff, 50)) {
++		intel_gt_set_wedged(ce->engine->gt);
++		return -EIO;
++	}
++
++	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
++		cycles = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
++		WRITE_ONCE(sema[0], i);
++		wmb(); /* flush the update to the cache, and beyond */
++
++		if (wait_for(READ_ONCE(sema[i]), 50)) {
++			intel_gt_set_wedged(ce->engine->gt);
++			return -EIO;
++		}
++
++		elapsed[i - 1] = (sema[i] - cycles) << COUNT;
++	}
++
++	cycles = trifilter(elapsed);
++	pr_err("%s: semaphore response %d cycles, %lluns\n",
++	       ce->engine->name, cycles >> COUNT,
++	       cycles_to_ns(ce->engine, cycles));
++
++	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
++}
++
++static int measure_idle_dispatch(struct intel_context *ce)
++{
++	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
++	const u32 offset =
++		i915_ggtt_offset(ce->engine->status_page.vma) +
++		offset_in_page(sema);
++	u32 elapsed[COUNT], cycles;
++	u32 *cs;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(elapsed); i++) {
++		struct i915_request *rq;
++		int err;
++
++		err = intel_gt_wait_for_idle(ce->engine->gt, HZ / 2);
++		if (err)
++			return err;
++
++		rq = i915_request_create(ce);
++		if (IS_ERR(rq))
++			return PTR_ERR(rq);
++
++		cs = intel_ring_begin(rq, 4);
++		if (IS_ERR(cs)) {
++			i915_request_add(rq);
++			return PTR_ERR(cs);
++		}
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++		*cs++ = ce->engine->mmio_base + 0x358;
++		*cs++ = offset + sizeof(*sema) * i;
++		*cs++ = 0;
++
++		intel_ring_advance(rq, cs);
++
++		elapsed[i] = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
++
++		local_bh_disable();
++		i915_request_add(rq);
++		local_bh_enable();
++	}
++
++	for (i = 0; i < ARRAY_SIZE(elapsed); i++) {
++		if (wait_for(READ_ONCE(sema[i]), 50)) {
++			intel_gt_set_wedged(ce->engine->gt);
++			return -EIO;
++		}
++
++		elapsed[i] = (sema[i] - elapsed[i]) << COUNT;
++	}
++
++	cycles = trifilter(elapsed);
++	pr_err("%s: idle dispatch latency %d cycles, %lluns\n",
++	       ce->engine->name, cycles >> COUNT,
++	       cycles_to_ns(ce->engine, cycles));
++
++	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
++}
++
++static int measure_busy_dispatch(struct intel_context *ce)
++{
++	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
++	const u32 offset =
++		i915_ggtt_offset(ce->engine->status_page.vma) +
++		offset_in_page(sema);
++	u32 elapsed[COUNT + 1], cycles;
++	u32 *cs;
++	int i;
++
++	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
++		struct i915_request *rq;
++
++		rq = i915_request_create(ce);
++		if (IS_ERR(rq))
++			return PTR_ERR(rq);
++
++		cs = intel_ring_begin(rq, 12);
++		if (IS_ERR(cs)) {
++			i915_request_add(rq);
++			return PTR_ERR(cs);
++		}
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++		*cs++ = ce->engine->mmio_base + 0x358;
++		*cs++ = offset + sizeof(*sema) * i;
++		*cs++ = 0;
++
++		*cs++ = MI_SEMAPHORE_WAIT |
++			MI_SEMAPHORE_GLOBAL_GTT |
++			MI_SEMAPHORE_POLL |
++			MI_SEMAPHORE_SAD_GTE_SDD;
++		*cs++ = i;
++		*cs++ = offset;
++		*cs++ = 0;
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++		*cs++ = ce->engine->mmio_base + 0x358;
++		*cs++ = offset + sizeof(*sema) * i;
++		*cs++ = 0;
++
++		intel_ring_advance(rq, cs);
++
++		if (i > 1 && wait_for(READ_ONCE(sema[i - 1]), 500)) {
++			intel_gt_set_wedged(ce->engine->gt);
++			return -EIO;
++		}
++
++		elapsed[i - 1] = ENGINE_READ_FW(ce->engine, RING_TIMESTAMP);
++
++		local_bh_disable();
++		i915_request_add(rq);
++		local_bh_enable();
++
++		WRITE_ONCE(sema[0], i - 1);
++		wmb(); /* flush the update to the cache, and beyond */
++	}
++	WRITE_ONCE(sema[0], i - 1);
++
++	for (i = 1; i <= COUNT; i++)
++		elapsed[i - 1] = (sema[i] - elapsed[i]) << COUNT;
++
++	cycles = trifilter(elapsed);
++	pr_err("%s: busy dispatch latency %d cycles, %lluns\n",
++	       ce->engine->name, cycles >> COUNT,
++	       cycles_to_ns(ce->engine, cycles));
++
++	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
++}
++
++static int plug(struct intel_engine_cs *engine, u32 *sema, u32 mode, int value)
++{
++	const u32 offset =
++		i915_ggtt_offset(engine->status_page.vma) +
++		offset_in_page(sema);
++	struct i915_request *rq;
++	u32 *cs;
++
++	rq = i915_request_create(engine->kernel_context);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 4);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	*cs++ = MI_SEMAPHORE_WAIT |
++		MI_SEMAPHORE_GLOBAL_GTT |
++		MI_SEMAPHORE_POLL |
++		mode;
++	*cs++ = value;
++	*cs++ = offset;
++	*cs++ = 0;
++
++	intel_ring_advance(rq, cs);
++	i915_request_add(rq);
++
++	return 0;
++}
++
++static int measure_inter_request(struct intel_context *ce)
++{
++	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
++	const u32 offset =
++		i915_ggtt_offset(ce->engine->status_page.vma) +
++		offset_in_page(sema);
++	u32 elapsed[COUNT + 1], cycles;
++	struct i915_sw_fence *submit;
++	int i, err;
++
++	err = plug(ce->engine, sema, MI_SEMAPHORE_SAD_NEQ_SDD, 0);
++	if (err)
++		return err;
++
++	submit = heap_fence_create(GFP_KERNEL);
++	if (!submit) {
++		WRITE_ONCE(sema[0], 1);
++		return -ENOMEM;
++	}
++
++	intel_engine_flush_submission(ce->engine);
++	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
++		struct i915_request *rq;
++		u32 *cs;
++
++		rq = i915_request_create(ce);
++		if (IS_ERR(rq)) {
++			WRITE_ONCE(sema[0], 1);
++			return PTR_ERR(rq);
++		}
++
++		err = i915_sw_fence_await_sw_fence_gfp(&rq->submit,
++						       submit,
++						       GFP_KERNEL);
++		if (err < 0) {
++			i915_sw_fence_commit(submit);
++			heap_fence_put(submit);
++			i915_request_add(rq);
++			WRITE_ONCE(sema[0], 1);
++			return err;
++		}
++
++		cs = intel_ring_begin(rq, 4);
++		if (IS_ERR(cs)) {
++			i915_sw_fence_commit(submit);
++			heap_fence_put(submit);
++			i915_request_add(rq);
++			WRITE_ONCE(sema[0], 1);
++			return PTR_ERR(cs);
++		}
++
++		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++		*cs++ = ce->engine->mmio_base + 0x358;
++		*cs++ = offset + sizeof(*sema) * i;
++		*cs++ = 0;
++
++		intel_ring_advance(rq, cs);
++		i915_request_add(rq);
++	}
++	local_bh_disable();
++	i915_sw_fence_commit(submit);
++	local_bh_enable();
++	intel_engine_flush_submission(ce->engine);
++	heap_fence_put(submit);
++
++	WRITE_ONCE(sema[0], 1);
++	wmb(); /* flush the update to the cache, and beyond */
++
++	if (wait_for(READ_ONCE(sema[COUNT + 1]), 100)) {
++		intel_gt_set_wedged(ce->engine->gt);
++		return -EIO;
++	}
++
++	for (i = 1; i <= COUNT; i++)
++		elapsed[i - 1] = (sema[i + 1] - sema[i]) << COUNT;
++
++	cycles = trifilter(elapsed);
++	pr_err("%s: inter-request latency %d cycles, %lluns\n",
++	       ce->engine->name, cycles >> COUNT,
++	       cycles_to_ns(ce->engine, cycles));
++
++	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
++}
++
++static int measure_context_switch(struct intel_context *ce)
++{
++	u32 *sema = memset32(ce->engine->status_page.addr + 1000, 0, 21);
++	const u32 offset =
++		i915_ggtt_offset(ce->engine->status_page.vma) +
++		offset_in_page(sema);
++	struct i915_request *fence = NULL;
++	u32 elapsed[COUNT + 1], cycles;
++	int i, j, err;
++	u32 *cs;
++
++	err = plug(ce->engine, sema, MI_SEMAPHORE_SAD_NEQ_SDD, 0);
++	if (err)
++		return err;
++
++	for (i = 1; i <= ARRAY_SIZE(elapsed); i++) {
++		struct intel_context *arr[] = {
++			ce, ce->engine->kernel_context
++		};
++
++		for (j = 0; j < ARRAY_SIZE(arr); j++) {
++			struct i915_request *rq;
++
++			rq = i915_request_create(arr[j]);
++			if (IS_ERR(rq))
++				return PTR_ERR(rq);
++
++			if (fence) {
++				err = i915_request_await_dma_fence(rq,
++								   &fence->fence);
++				if (err) {
++					i915_request_add(rq);
++					return err;
++				}
++			}
++
++			cs = intel_ring_begin(rq, 4);
++			if (IS_ERR(cs)) {
++				i915_request_add(rq);
++				return PTR_ERR(cs);
++			}
++
++			*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++			*cs++ = ce->engine->mmio_base + 0x358;
++			*cs++ = offset +
++				sizeof(*sema) * (ARRAY_SIZE(arr) * i + j);
++			*cs++ = 0;
++
++			intel_ring_advance(rq, cs);
++
++			i915_request_put(fence);
++			fence = i915_request_get(rq);
++
++			i915_request_add(rq);
++		}
++	}
++	i915_request_put(fence);
++	intel_engine_flush_submission(ce->engine);
++
++	WRITE_ONCE(sema[0], 1);
++	wmb(); /* flush the update to the cache, and beyond */
++
++	if (wait_for(READ_ONCE(sema[2 *i - 1]), 500)) {
++		intel_gt_set_wedged(ce->engine->gt);
++		return -EIO;
++	}
++
++	for (i = 1; i <= COUNT; i++)
++		elapsed[i - 1] = (sema[2 * i + 2] - sema[2 * i + 1]) << COUNT;
++
++	cycles = trifilter(elapsed);
++	pr_err("%s: context switch latency %d cycles, %lluns\n",
++	       ce->engine->name, cycles >> COUNT,
++	       cycles_to_ns(ce->engine, cycles));
++
++	return intel_gt_wait_for_idle(ce->engine->gt, HZ);
++}
++
++static void rps_pin(struct intel_gt *gt)
++{
++	/* Pin the frequency to max */
++	atomic_inc(&gt->rps.num_waiters);
++	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
++
++	mutex_lock(&gt->rps.lock);
++	intel_rps_set(&gt->rps, gt->rps.max_freq);
++	mutex_unlock(&gt->rps.lock);
++}
++
++static void rps_unpin(struct intel_gt *gt)
++{
++	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
++	atomic_dec(&gt->rps.num_waiters);
++}
++
++static unsigned long engine_heartbeat_disable(struct intel_engine_cs *engine)
++{
++	unsigned long old;
++
++	old = fetch_and_zero(&engine->props.heartbeat_interval_ms);
++
++	intel_engine_pm_get(engine);
++	intel_engine_park_heartbeat(engine);
++
++	return old;
++}
++
++static void engine_heartbeat_enable(struct intel_engine_cs *engine,
++				    unsigned long saved)
++{
++	intel_engine_pm_put(engine);
++
++	engine->props.heartbeat_interval_ms = saved;
++}
++
++static int perf_request_latency(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	struct intel_engine_cs *engine;
++	struct pm_qos_request qos;
++	int err = 0;
++
++	if (INTEL_GEN(i915) < 8) /* per-engine CS timestamp, semaphores */
++		return 0;
++
++	cpu_latency_qos_add_request(&qos, 0); /* disable cstates */
++
++	for_each_uabi_engine(engine, i915) {
++		unsigned long saved_heartbeat;
++		struct intel_context *ce;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce))
++			goto out;
++
++		err = intel_context_pin(ce);
++		if (err) {
++			intel_context_put(ce);
++			goto out;
++		}
++
++		saved_heartbeat = engine_heartbeat_disable(engine);
++		rps_pin(engine->gt);
++
++		if (err == 0)
++			err = measure_semaphore_response(ce);
++		if (err == 0)
++			err = measure_idle_dispatch(ce);
++		if (err == 0)
++			err = measure_busy_dispatch(ce);
++		if (err == 0)
++			err = measure_inter_request(ce);
++		if (err == 0)
++			err = measure_context_switch(ce);
++
++		rps_unpin(engine->gt);
++		engine_heartbeat_enable(engine, saved_heartbeat);
++
++		intel_context_unpin(ce);
++		intel_context_put(ce);
++		if (err)
++			goto out;
++	}
++
++out:
++	if (igt_flush_test(i915))
++		err = -EIO;
++
++	cpu_latency_qos_remove_request(&qos);
++	return err;
++}
++
+ static int s_sync0(void *arg)
+ {
+ 	struct perf_series *ps = arg;
+@@ -2042,6 +2562,7 @@ static int perf_parallel_engines(void *arg)
+ int i915_request_perf_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
++		SUBTEST(perf_request_latency),
+ 		SUBTEST(perf_series_engines),
+ 		SUBTEST(perf_parallel_engines),
+ 	};
+-- 
+2.20.1
 
-> So are you ok to do that as a follow-up?
-
-Sure.
-
-> =
-
-> > Did this by any chance help with the MST issues you were seeing?
-> =
-
-> No, at least it didn't resolve it. Still some missing responses to MST
-> down messages. More precisely the sink does send interrupts as a
-> response, but the interrupt handler won't see the DP_DOWN_REP_MSG_RDY
-> being set in ESI.
-
-:(
-
-> =
-
-> > > This was left out from
-> > > commit 8c10e2262663 ("drm/i915: Keep the TypeC port mode fixed for de=
-tect/AUX transfers")
-> > > =
-
-> > > Cc: <stable@vger.kernel.org> # v5.4+
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
-> > >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
-m/i915/display/intel_dp.c
-> > > index 408c3c1c5e81..40d42dcff0b7 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -1359,8 +1359,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> > >  	bool is_tc_port =3D intel_phy_is_tc(i915, phy);
-> > >  	i915_reg_t ch_ctl, ch_data[5];
-> > >  	u32 aux_clock_divider;
-> > > -	enum intel_display_power_domain aux_domain =3D
-> > > -		intel_aux_power_domain(intel_dig_port);
-> > > +	enum intel_display_power_domain aux_domain;
-> > >  	intel_wakeref_t aux_wakeref;
-> > >  	intel_wakeref_t pps_wakeref;
-> > >  	int i, ret, recv_bytes;
-> > > @@ -1375,6 +1374,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> > >  	if (is_tc_port)
-> > >  		intel_tc_port_lock(intel_dig_port);
-> > >  =
-
-> > > +	aux_domain =3D intel_aux_power_domain(intel_dig_port);
-> > > +
-> > >  	aux_wakeref =3D intel_display_power_get(i915, aux_domain);
-> > >  	pps_wakeref =3D pps_lock(intel_dp);
-> > >  =
-
-> > > -- =
-
-> > > 2.23.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
