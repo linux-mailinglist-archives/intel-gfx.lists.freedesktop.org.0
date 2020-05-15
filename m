@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0D431D59DB
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:19:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6591D5A0B
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 21:32:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9AF36ED1A;
-	Fri, 15 May 2020 19:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3989D6ED1D;
+	Fri, 15 May 2020 19:32:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 415556ED1A
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 19:19:56 +0000 (UTC)
-IronPort-SDR: 66i1B24TJfcmOP4UazxK3DOsyGmbw+Jg2WiDuF8J76BePIpKRPM8n6LlayKbvWQIZ2kCXP3cLe
- bqt/tAJX6YlQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2020 12:19:55 -0700
-IronPort-SDR: Fit4fPRgyJHjB+OxvxxpInNNAR3VKlNDY5XSbZ2OnLUfbiggfZtl3URe3cHHBV3IFEyQa1o8bG
- FZX7POxCiitA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,396,1583222400"; d="scan'208";a="342069485"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga001.jf.intel.com with ESMTP; 15 May 2020 12:19:55 -0700
-Date: Fri, 15 May 2020 12:21:03 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200515192103.GC20478@intel.com>
-References: <20200512174145.3186-1-ville.syrjala@linux.intel.com>
- <20200512174145.3186-8-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 48BAE6ED1B;
+ Fri, 15 May 2020 19:32:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 432C2A0078;
+ Fri, 15 May 2020 19:32:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200512174145.3186-8-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Replace some hand rolled
- max()s
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Date: Fri, 15 May 2020 19:32:24 -0000
+Message-ID: <158957114424.26210.17918716255543080078@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200428213106.3139170-1-arnd@arndb.de>
+In-Reply-To: <20200428213106.3139170-1-arnd@arndb.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_avoid_unused_scale=5Fuser=5Fto=5Fhw=28=29_warning_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,65 +39,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 08:41:45PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> Use max() instead of hand rolling it.
-> =
+Series: drm/i915: avoid unused scale_user_to_hw() warning (rev2)
+URL   : https://patchwork.freedesktop.org/series/76682/
+State : success
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+== Summary ==
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+CI Bug Log - changes from CI_DRM_8489 -> Patchwork_17672
+====================================================
 
-Manasi
+Summary
+-------
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
-> =
+  **SUCCESS**
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index aa7af531bcb8..2493142a70e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -59,13 +59,8 @@ void intel_dp_get_adjust_train(struct intel_dp *intel_=
-dp,
->  	u8 preemph_max;
->  =
+  No regressions found.
 
->  	for (lane =3D 0; lane < intel_dp->lane_count; lane++) {
-> -		u8 this_v =3D drm_dp_get_adjust_request_voltage(link_status, lane);
-> -		u8 this_p =3D drm_dp_get_adjust_request_pre_emphasis(link_status, lane=
-);
-> -
-> -		if (this_v > v)
-> -			v =3D this_v;
-> -		if (this_p > p)
-> -			p =3D this_p;
-> +		v =3D max(v, drm_dp_get_adjust_request_voltage(link_status, lane));
-> +		p =3D max(p, drm_dp_get_adjust_request_pre_emphasis(link_status, lane)=
-);
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17672/index.html
 
->  	preemph_max =3D intel_dp->preemph_max(intel_dp);
-> -- =
+Known issues
+------------
 
-> 2.26.2
-> =
+  Here are the changes found in Patchwork_17672 that come from known issues:
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [INCOMPLETE][1] ([i915#656]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17672/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][3] ([i915#62]) -> [SKIP][4] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17672/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8489 -> Patchwork_17672
+
+  CI-20190529: 20190529
+  CI_DRM_8489: 4a38678eb36587a5fdcccbf0e9e888bf30e8bb3e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17672: e1447a6c671778f4a46985381ff0daca2ed4f3cc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e1447a6c6717 drm/i915: avoid unused scale_user_to_hw() warning
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17672/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
