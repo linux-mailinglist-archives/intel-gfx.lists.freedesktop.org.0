@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A2C1D590A
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 20:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C31C1D591D
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 20:35:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D92976ECEE;
-	Fri, 15 May 2020 18:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1186ECFF;
+	Fri, 15 May 2020 18:35:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 919D66E193
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:09:59 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0A2921042;
- Fri, 15 May 2020 11:09:59 -0700 (PDT)
-Received: from e113632-lin (e113632-lin.cambridge.arm.com [10.1.194.46])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 785E73F71E;
- Fri, 15 May 2020 11:09:57 -0700 (PDT)
-References: <20200428032258.2518-1-currojerez@riseup.net>
- <20200511105701.GA2940@hirez.programming.kicks-ass.net>
- <874ksmuqx6.fsf@riseup.net> <jhjwo5erb0e.mognet@arm.com>
- <87a72at44d.fsf@riseup.net>
-User-agent: mu4e 0.9.17; emacs 26.3
-From: Valentin Schneider <valentin.schneider@arm.com>
-To: Francisco Jerez <currojerez@riseup.net>
-In-reply-to: <87a72at44d.fsf@riseup.net>
-Date: Fri, 15 May 2020 19:09:52 +0100
-Message-ID: <jhjv9kxqdcf.mognet@arm.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF80C6ECEF;
+ Fri, 15 May 2020 18:35:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EB158A0BA8;
+ Fri, 15 May 2020 18:35:19 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 15 May 2020 18:25:41 +0000
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2.99)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 15 May 2020 18:35:19 -0000
+Message-ID: <158956771993.26210.1099466537400758908@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200514212206.10468-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200514212206.10468-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Improve_execute=5Fcb_struct_packing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,108 +38,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- daniel.lezcano@linaro.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- chris.p.wilson@intel.com, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com,
- Lukasz Luba <Lukasz.Luba@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 15/05/20 01:48, Francisco Jerez wrote:
-> Valentin Schneider <valentin.schneider@arm.com> writes:
->
->> (+Lukasz)
->>
->> On 11/05/20 22:01, Francisco Jerez wrote:
->>>> What I'm missing is an explanation for why this isn't using the
->>>> infrastructure that was build for these kinds of things? The thermal
->>>> framework, was AFAIU, supposed to help with these things, and the IPA
->>>> thing in particular is used by ARM to do exactly this GPU/CPU power
->>>> budget thing.
->>>>
->>>> If thermal/IPA is found wanting, why aren't we improving that?
->>>
->>> The GPU/CPU power budget "thing" is only a positive side effect of this
->>> series on some TDP-bound systems.  Its ultimate purpose is improving the
->>> energy efficiency of workloads which have a bottleneck on a device other
->>> than the CPU, by giving the bottlenecking device driver some influence
->>> over the response latency of CPUFREQ governors via a PM QoS interface.
->>> This seems to be completely outside the scope of the thermal framework
->>> and IPA AFAIU.
->>>
->>
->> It's been a while since I've stared at IPA, but it does sound vaguely
->> familiar.
->>
->> When thermally constrained, IPA figures out a budget and splits it between
->> actors (cpufreq and devfreq devices) depending on how much juice they are
->> asking for; see cpufreq_get_requested_power() and
->> devfreq_cooling_get_requested_power(). There's also some weighing involved.
->>
->
-> I'm aware of those.  Main problem is that the current mechanism for IPA
-> to figure out the requested power of each actor is based on a rough
-> estimate of their past power consumption: If an actor was operating at a
-> highly energy-inefficient regime it will end up requesting more power
-> than another actor with the same load but more energy-efficient
-> behavior.
+Series: drm/i915: Improve execute_cb struct packing
+URL   : https://patchwork.freedesktop.org/series/77281/
+State : success
 
-Right, we do mix load (busy time for either cpufreq and devfreq devices
-AFAIR) and current state (freq) into one single power value.
+== Summary ==
 
-> The IPA power allocator is therefore ineffective at improving
-> the energy efficiency of an agent beyond its past behavior --
-> Furthermore it seems to *rely* on individual agents being somewhat
-> energetically responsible in order for its power allocation result to be
-> anywhere close to optimal.  But improving the energy efficiency of an
-> agent seems useful in its own right, whether IPA is used to balance
-> power across agents or not.  That's precisely the purpose of this
-> series.
->
->> If you look at the cpufreq cooling side of things, you'll see it also uses
->> the PM QoS interface. For instance, should IPA decide to cap the CPUs
->> (perhaps because say the GPU is the one drawing most of the juice), it'll
->> lead to a maximum frequency capping request.
->>
->> So it does sound like that's what you want, only not just when thermally
->> constrained.
->
-> Capping the CPU frequency from random device drivers is highly
-> problematic, because the CPU is a shared resource which a number of
-> different concurrent applications might be using beyond the GPU client.
-> The GPU driver has no visibility over its impact on the performance of
-> other applications.  And even in a single-task environment, in order to
-> behave as effectively as the present series the GPU driver would need to
-> monitor the utilization of *all* CPUs in the system and place a
-> frequency constraint on each one of them (since there is the potential
-> of the task scheduler migrating the process from one CPU to another
-> without notice).  Furthermore these frequency constraints would need to
-> be updated at high frequency in order to avoid performance degradation
-> whenever the balance of load between CPU and IO device fluctuates.
->
-> The present series attempts to remove the burden of computing frequency
-> constraints out of individual device drivers into the CPUFREQ governor.
-> Instead the device driver provides a response latency constraint when it
-> encounters a bottleneck, which can be more easily derived from hardware
-> and protocol characteristics than a CPU frequency.  PM QoS aggregates
-> the response latency constraints provided by all applications and gives
-> CPUFREQ a single response latency target compatible with all of them (so
-> a device driver specifying a high latency target won't lead to
-> performance degradation in a concurrent application with lower latency
-> constraints).  The CPUFREQ governor then computes frequency constraints
-> for each CPU core that minimize energy usage without limiting
-> throughput, based on the results obtained from CPU performance counters,
-> while guaranteeing that a discontinuous transition in CPU utilization
-> leads to a proportional transition in the CPU frequency before the
-> specified response latency has elapsed.
+CI Bug Log - changes from CI_DRM_8489 -> Patchwork_17670
+====================================================
 
-Right, I think I see your point there. I'm thinking the 'actual' IPA gurus
-(Lukasz or even Javi) may want to have a look at this.
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17670/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17670 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2] ([CI#80] / [i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17670/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17670/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][5] ([i915#62]) -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8489/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17670/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8489 -> Patchwork_17670
+
+  CI-20190529: 20190529
+  CI_DRM_8489: 4a38678eb36587a5fdcccbf0e9e888bf30e8bb3e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17670: e8264f2c8bae92f36cbc0327777c9a70a9312d53 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e8264f2c8bae drm/i915: Improve execute_cb struct packing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17670/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
