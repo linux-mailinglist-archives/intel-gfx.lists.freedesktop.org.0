@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24B91D5042
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:21:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E01D5053
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2020 16:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C97586ECBB;
-	Fri, 15 May 2020 14:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF9189150;
+	Fri, 15 May 2020 14:24:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E5636ECBA;
- Fri, 15 May 2020 14:21:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9150F89150;
+ Fri, 15 May 2020 14:24:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96EA8A0BA8;
- Fri, 15 May 2020 14:21:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89EFDA0BA8;
+ Fri, 15 May 2020 14:24:49 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 15 May 2020 14:21:41 -0000
-Message-ID: <158955250158.26210.8991715165929497971@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 15 May 2020 14:24:49 -0000
+Message-ID: <158955268953.26212.2919583850514371875@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200514152152.19315-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200514152152.19315-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gt=3A_Kick_virtual_sibling?=
- =?utf-8?q?s_on_timeslice_out_=28rev2=29?=
+References: <20200514154006.4761-1-jani.nikula@intel.com>
+In-Reply-To: <20200514154006.4761-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/params=3A_don=27t_e?=
+ =?utf-8?q?xpose_inject=5Fprobe=5Ffailure_in_debugfs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,109 +48,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/3] drm/i915/gt: Kick virtual siblings on timeslice out (rev2)
-URL   : https://patchwork.freedesktop.org/series/77270/
-State : failure
+Series: series starting with [1/4] drm/i915/params: don't expose inject_probe_failure in debugfs
+URL   : https://patchwork.freedesktop.org/series/77272/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8488 -> Patchwork_17662
-====================================================
+$ dim checkpatch origin/drm-tip
+e80307f07467 drm/i915/params: don't expose inject_probe_failure in debugfs
+5bfd76f34ce0 drm/i915/params: fix i915.fake_lmem_start module param sysfs permissions
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/i915/i915_params.c:177:
++i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
+ 	"Fake LMEM start offset (default: 0)");
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+ed04031bb3e1 drm/i915/params: prevent changing module params runtime
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/i915/i915_params.c:62:
++i915_param_named_unsafe(enable_fbc, int, 0400,
+ 	"Enable frame buffer compression for power savings "
 
-  **FAILURE**
+-:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#57: FILE: drivers/gpu/drm/i915/i915_params.c:70:
++i915_param_named_unsafe(panel_use_ssc, int, 0400,
+ 	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
 
-  Serious unknown changes coming with Patchwork_17662 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17662, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/i915/i915_params.c:78:
++i915_param_named_unsafe(reset, int, 0400,
+ 	"Attempt GPU resets (0=disabled, 1=full gpu reset, 2=engine reset [default])");
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/index.html
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/i915/i915_params.c:85:
++i915_param_named(error_capture, bool, 0400,
+ 	"Record the GPU state following a hang. "
 
-Possible new issues
--------------------
+-:81: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#81: FILE: drivers/gpu/drm/i915/i915_params.c:91:
++i915_param_named_unsafe(enable_hangcheck, bool, 0400,
+ 	"Periodically check GPU activity for detecting hangs. "
 
-  Here are the unknown changes that may have been introduced in Patchwork_17662:
+-:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#87: FILE: drivers/gpu/drm/i915/i915_params.c:96:
++i915_param_named_unsafe(enable_psr, int, 0400,
+ 	"Enable PSR "
 
-### IGT changes ###
+-:99: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#99: FILE: drivers/gpu/drm/i915/i915_params.c:111:
++i915_param_named(fastboot, int, 0400,
+ 	"Try to skip unnecessary mode sets at boot time "
 
-#### Possible regressions ####
+-:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#105: FILE: drivers/gpu/drm/i915/i915_params.c:116:
++i915_param_named_unsafe(load_detect_test, bool, 0400,
+ 	"Force-enable the VGA load detect code for testing (default:false). "
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-cml-s/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/fi-cml-s/igt@i915_selftest@live@hangcheck.html
+-:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#110: FILE: drivers/gpu/drm/i915/i915_params.c:120:
++i915_param_named_unsafe(force_reset_modeset_test, bool, 0400,
+ 	"Force a modeset during gpu reset for testing (default:false). "
 
-  
-Known issues
-------------
+-:115: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#115: FILE: drivers/gpu/drm/i915/i915_params.c:124:
++i915_param_named_unsafe(invert_brightness, int, 0400,
+ 	"Invert backlight brightness "
 
-  Here are the changes found in Patchwork_17662 that come from known issues:
+-:124: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#124: FILE: drivers/gpu/drm/i915/i915_params.c:134:
++i915_param_named(mmio_debug, int, 0400,
+ 	"Enable the MMIO debug code for the first N failures (default: off). "
 
-### IGT changes ###
+-:137: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#137: FILE: drivers/gpu/drm/i915/i915_params.c:169:
++i915_param_named_unsafe(enable_dp_mst, bool, 0400,
+ 	"Enable multi-stream transport (MST) for new DisplayPort sinks. (default: true)");
 
-#### Issues hit ####
+-:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#146: FILE: drivers/gpu/drm/i915/i915_params.c:177:
++i915_param_named(enable_dpcd_backlight, int, 0400,
+ 	"Enable support for DPCD backlight control"
 
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#656])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/fi-icl-y/igt@i915_selftest@live@execlists.html
+total: 0 errors, 0 warnings, 13 checks, 115 lines checked
+581762905710 drm/i915/params: switch to device specific parameters
+-:755: WARNING:LONG_LINE: line over 100 characters
+#755: FILE: drivers/gpu/drm/i915/i915_drv.h:1664:
++#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [PASS][5] -> [FAIL][6] ([i915#262])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+-:755: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#755: FILE: drivers/gpu/drm/i915/i915_drv.h:1664:
++#define INTEL_DISPLAY_ENABLED(dev_priv) (WARN_ON(!HAS_DISPLAY(dev_priv)), !dev_priv->params.disable_display)
 
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([i915#976])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+total: 0 errors, 1 warnings, 1 checks, 680 lines checked
 
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-whl-u:           [INCOMPLETE][9] ([i915#656]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8488/fi-whl-u/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/fi-whl-u/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (51 -> 45)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8488 -> Patchwork_17662
-
-  CI-20190529: 20190529
-  CI_DRM_8488: d40ec60813532e485e9c63623c91babf556cfbe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5655: 2cc4c1edc3065590f9917930b6d049a90c4a38fd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17662: c97d13ddcd0aba47705effc904ab73eb21db101b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c97d13ddcd0a drm/i915/execlists: Optimise away false timeslicing on virtual engines
-d637137b7551 drm/i915/gt: Incorporate the virtual engine into timeslicing
-4b40173a09ce drm/i915/gt: Kick virtual siblings on timeslice out
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17662/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
