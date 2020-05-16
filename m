@@ -1,62 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69221D5DF1
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 May 2020 04:36:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DE41D5E39
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 May 2020 05:26:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B6C6ED23;
-	Sat, 16 May 2020 02:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC856ED22;
+	Sat, 16 May 2020 03:26:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
- [IPv6:2607:f8b0:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDADC6ED21;
- Sat, 16 May 2020 02:36:04 +0000 (UTC)
-Received: by mail-oi1-x243.google.com with SMTP id s198so4075957oie.6;
- Fri, 15 May 2020 19:36:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=KPeuzuHEDvzwNnkRCqowgBAU6EUQ7TCPeetBb+t1Bdo=;
- b=aGmFPqdutHEPouBg3Si9ID8mt8l+QV684XJPaZrlFTWA7mam49jOuR0mXI2jOavU8z
- lrkl20RBQ0BVaopc7Yb3YJqEUcJnp3ShFPF6HjwKi31C1ZqciisHIWuGF6Nu0c+75mKx
- nMNYULyB0bTOEw/EAx5Pn3EMUZcEUwXjbJ0GomitQYbc73J0qApYBwf+gQz8ygkF3Au8
- n2/uk/gL2wQJ0KDNbbGonwu02NtWBXva+NKSKSZG5MBrVFEV+AwhLGzJc3/DfDWTkYCQ
- eCPhu6V+nHt37Ub/Yy+Zpwcoki+EAfgTtg8e23OWIlxwNPpAUjWZlInl31PJ1r8H/tuU
- Ch6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=KPeuzuHEDvzwNnkRCqowgBAU6EUQ7TCPeetBb+t1Bdo=;
- b=ugLgTqVELb8HKNrtoqWmpKJjeTA4rJBhkG/LIzEBHkmX0k1VjLEg3Vg72qKGa2rTM0
- BMyMR3NRrLmgjwsAFIBvgV1zD8VqJM7+HKZo+0j9DIKsliKxxNvcI/QHgNmWF/jQsX/H
- hupxF+fa4hfl2bHOYHNUt5+mfLrdYCvboMiLvMxn531uO2AYKB5OMI9gzHRll6cXh1oV
- IexujLj7zC4WQfML/vc1qOJNONfwvQh1DVls0iANwS0f0wjCqLo2tUZOpxmI81/JzFoU
- RoERFwWrCFVT13cWm36E2E/xvcl7A3hQY3bGl5PzoG6iM/xdS56ExyNMhFqJDq4MrSLL
- Upuw==
-X-Gm-Message-State: AOAM533dx7ZeUEQpWGL0nhvb4BVTGcvW1sdSxEgRObm7HZaq4t/Sekfp
- GL+xFghZtIvP3Hax91cNp7s=
-X-Google-Smtp-Source: ABdhPJy47Nsv2i4H/OPmjeTG+IFTltW99Dl2+E64qa4UnzF9iYY27a+pUPAga7zdZ/0Ztw3+0h5YWA==
-X-Received: by 2002:aca:908:: with SMTP id 8mr4438837oij.170.1589596563884;
- Fri, 15 May 2020 19:36:03 -0700 (PDT)
-Received: from localhost.localdomain ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id t15sm1112821oov.32.2020.05.15.19.36.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 May 2020 19:36:03 -0700 (PDT)
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 15 May 2020 19:35:45 -0700
-Message-Id: <20200516023545.3332334-1-natechancellor@gmail.com>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 233636ED22;
+ Sat, 16 May 2020 03:26:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BD13A0BD0;
+ Sat, 16 May 2020 03:26:09 +0000 (UTC)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Subject: [Intel-gfx] [PATCH] drm/i915: Mark check_shadow_context_ppgtt as
- maybe unused
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <natechancellor@gmail.com>
+Date: Sat, 16 May 2020 03:26:09 -0000
+Message-ID: <158959956901.12903.10862959299459381815@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200516023545.3332334-1-natechancellor@gmail.com>
+In-Reply-To: <20200516023545.3332334-1-natechancellor@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Mark_check=5Fshadow=5Fcontext=5Fppgtt_as_maybe_unused?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,63 +38,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, clang-built-linux@googlegroups.com,
- Nathan Chancellor <natechancellor@gmail.com>,
- intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When CONFIG_DRM_I915_DEBUG_GEM is not set, clang warns:
+== Series Details ==
 
-drivers/gpu/drm/i915/gvt/scheduler.c:884:1: warning: function
-'check_shadow_context_ppgtt' is not needed and will not be emitted
-[-Wunneeded-internal-declaration]
-check_shadow_context_ppgtt(struct execlist_ring_context *c, struct
-intel_vgpu_mm *m)
-^
-1 warning generated.
+Series: drm/i915: Mark check_shadow_context_ppgtt as maybe unused
+URL   : https://patchwork.freedesktop.org/series/77317/
+State : success
 
-This warning is similar to -Wunused-function but rather than warning
-that the function is completely unused, it warns that it is used in some
-expression within the file but that expression will be evaluated to a
-constant or be optimized away in the final assembly, essentially making
-it appeared used but really isn't. Usually, this happens when a function
-or variable is only used in sizeof, where it will appear to be used but
-will be evaluated at compile time and not be required to be emitted.
+== Summary ==
 
-In this case, the function is only used in GEM_BUG_ON, which is defined
-as BUILD_BUG_ON_INVALID, which intentionally follows this pattern. To
-fix this warning, add __maybe_unused to make it clear that this is
-intentional depending on the configuration.
+CI Bug Log - changes from CI_DRM_8491 -> Patchwork_17678
+====================================================
 
-Fixes: bec3df930fbd ("drm/i915/gvt: Support PPGTT table load command")
-Link: https://github.com/ClangBuiltLinux/linux/issues/1027
-Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
----
- drivers/gpu/drm/i915/gvt/scheduler.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index f776c92de8d7..0fb1df71c637 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -880,7 +880,7 @@ static void update_guest_pdps(struct intel_vgpu *vgpu,
- 				gpa + i * 8, &pdp[7 - i], 4);
- }
- 
--static bool
-+static __maybe_unused bool
- check_shadow_context_ppgtt(struct execlist_ring_context *c, struct intel_vgpu_mm *m)
- {
- 	if (m->ppgtt_mm.root_entry_type == GTT_TYPE_PPGTT_ROOT_L4_ENTRY) {
+  **SUCCESS**
 
-base-commit: bdecf38f228bcca73b31ada98b5b7ba1215eb9c9
--- 
-2.26.2
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17678 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8491/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/fi-apl-guc/igt@i915_selftest@live@execlists.html
+    - fi-skl-6700k2:      [PASS][3] -> [INCOMPLETE][4] ([i915#1795] / [i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8491/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+    - fi-kbl-soraka:      [PASS][5] -> [INCOMPLETE][6] ([i915#656])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8491/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-guc:         [INCOMPLETE][7] ([i915#1795] / [i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8491/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/fi-skl-guc/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1795]: https://gitlab.freedesktop.org/drm/intel/issues/1795
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (50 -> 44)
+------------------------------
+
+  Additional (2): fi-kbl-7560u fi-skl-6600u 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8491 -> Patchwork_17678
+
+  CI-20190529: 20190529
+  CI_DRM_8491: 45b04894467fea442ac135a64318220fbf42cae5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5656: 3996584aa3fad5dd7a52cb90bb3cda87f645addf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17678: e8b666a33069df3d77f0c0ec0764f8dc69f8e56f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e8b666a33069 drm/i915: Mark check_shadow_context_ppgtt as maybe unused
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17678/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
