@@ -1,40 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6931D628A
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 May 2020 18:15:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C2C1D62E2
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 May 2020 19:07:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C64F6E1E5;
-	Sat, 16 May 2020 16:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88BB589491;
+	Sat, 16 May 2020 17:07:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 819776E1E5
- for <intel-gfx@lists.freedesktop.org>; Sat, 16 May 2020 16:15:48 +0000 (UTC)
-IronPort-SDR: b0BI7J5NBl8o7o7n+GrptmeVpouIss06+w0V2WQKhCTVVw5CCgfwVJ+ws6eR2phFQpYTRjyGAw
- dJkZc7YVzLiA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2020 09:15:48 -0700
-IronPort-SDR: eJtONBFdEdW9GpgkoPrLJ+yiTe619KmiVHUMVO0EaA876zBScVgJjwowT85PwAGASyh5nynhGe
- fszdGifwZKzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,398,1583222400"; d="scan'208";a="252449609"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 16 May 2020 09:15:45 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 16 May 2020 19:15:42 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88386E22A
+ for <intel-gfx@lists.freedesktop.org>; Sat, 16 May 2020 17:07:44 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21216026-1500050 
+ for multiple; Sat, 16 May 2020 18:07:37 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 16 May 2020 19:15:42 +0300
-Message-Id: <20200516161542.8032-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Date: Sat, 16 May 2020 18:07:34 +0100
+Message-Id: <20200516170735.9406-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix dbuf slice mask when turning off
- all the pipes
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Remove PIN_UPDATE for i915_vma_pin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +37,231 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBjdXJyZW50IGRidWYgc2xpY2UgY29tcHV0YXRpb24gb25seSBoYXBwZW5zIHdoZW4gdGhlcmUg
-YXJlCmFjdGl2ZSBwaXBlcy4gSWYgd2UgYXJlIHR1cm5pbmcgb2ZmIGFsbCB0aGUgcGlwZXMgd2Ug
-anVzdCBsZWF2ZQp0aGUgZGJ1ZiBzbGljZSBtYXNrIGF0IGl0J3MgcHJldmlvdXMgdmFsdWUsIHdo
-aWNoIG1heSBiZSBzb21ldGhpbmcKb3RoZXIgdGhhdCBCSVQoUzEpLiBJZiBydW50aW1lIFBNIHdp
-bGwga2ljayBpbiBpdCB3aWxsIGhvd2V2ZXIKdHVybiBvZmYgZXZlcnl0aGluZyBidXQgUzEuIFRo
-ZW4gb24gdGhlIG5leHQgYXRvbWljIGNvbW1pdCAoaWYKdGhlIG5ldyBkYnVmIHNsaWNlIG1hc2sg
-bWF0Y2hlcyB0aGUgc3RhbGUgdmFsdWUgd2UgbGVmdCBiZWhpbmQpCnRoZSBjb2RlIHdpbGwgbm90
-IHR1cm4gb24gdGhlIG90aGVyIHNsaWNlcyB3ZSBub3cgbmVlZC4gVGhpcyB3aWxsCmxlYWQgdG8g
-dW5kZXJydW5zIGFzIHRoZSBwbGFuZXMgYXJlIHRyeWluZyB0byB1c2UgYSBkYnVmIHNsaWNlCnRo
-YXQncyBub3QgcG93ZXJlZCB1cC4KClRvIHdvcmsgYXJvdW5kIGxldCdzIGp1c3QganVzdCBleHBs
-aWNpdGx5IHNldCB0aGUgZGJ1ZiBzbGljZSBtYXNrCnRvIEJJVChTMSkgd2hlbiB3ZSBhcmUgdHVy
-bmluZyBvZmYgYWxsIHRoZSBwaXBlcy4gUmVhbGx5IHRoZSBjb2RlCnNob3VsZCBqdXN0IGNhbGN1
-bGF0ZSB0aGlzIHN0dWZmIHRoZSBzYW1lIHdheSByZWdhcmRsZXNzIHdoZXRoZXIKdGhlIHBpcGVz
-IGFyZSBvbiBvciBvZmYsIGJ1dCB3ZSdyZSBub3QgcXVpdGUgdGhlcmUgeWV0IChuZWVkIGEKYml0
-IG1vcmUgd29yayBvbiB0aGUgZGJ1ZiBzdGF0ZSBmb3IgdGhhdCkuCgpDYzogQ2hyaXMgV2lsc29u
-IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBTdGFuaXNsYXYgTGlzb3Zza2l5IDxzdGFu
-aXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4KRml4ZXM6IDNjZjQzY2RjNjNmYiAoImRybS9pOTE1
-OiBJbnRyb2R1Y2UgcHJvcGVyIGRidWYgc3RhdGUiKQpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX3BtLmMgfCAxNiArKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwg
-MTYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IGEyMWUzNmVkMWE3
-Ny4uNGE1MjNkOGI4ODFmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9w
-bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTQwNzEsNiArNDA3
-MSwyMiBAQCBza2xfZGRiX2dldF9waXBlX2FsbG9jYXRpb25fbGltaXRzKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiwKIAkqbnVtX2FjdGl2ZSA9IGh3ZWlnaHQ4KGFjdGl2ZV9waXBl
-cyk7CiAKIAlpZiAoIWNydGNfc3RhdGUtPmh3LmFjdGl2ZSkgeworCQkvKgorCQkgKiBGSVhNRSBo
-YWNrIHRvIG1ha2Ugc3VyZSB3ZSBjb21wdXRlIHRoaXMgc2Vuc2libHkgd2hlbgorCQkgKiB0dXJu
-aW5nIG9mZiBhbGwgdGhlIHBpcGVzLiBPdGhlcndpc2Ugd2UgbGVhdmUgaXQgYXQKKwkJICogd2hh
-dGV2ZXIgd2UgaGFkIHByZXZpb3VzbHksIGFuZCB0aGVuIHJ1bnRpbWUgUE0gd2lsbAorCQkgKiBt
-ZXNzIGl0IHVwIGJ5IHR1cm5pbmcgb2ZmIGFsbCBidXQgUzEuIFJlbW92ZSB0aGlzCisJCSAqIG9u
-Y2UgdGhlIGRidWYgc3RhdGUgY29tcHV0YXRpb24gZmxvdyBiZWNvbWVzIHNhbmUuCisJCSAqLwor
-CQlpZiAoYWN0aXZlX3BpcGVzID09IDApIHsKKwkJCW5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3Ns
-aWNlcyA9IEJJVChEQlVGX1MxKTsKKworCQkJaWYgKG9sZF9kYnVmX3N0YXRlLT5lbmFibGVkX3Ns
-aWNlcyAhPSBuZXdfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpIHsKKwkJCQlyZXQgPSBpbnRl
-bF9hdG9taWNfc2VyaWFsaXplX2dsb2JhbF9zdGF0ZSgmbmV3X2RidWZfc3RhdGUtPmJhc2UpOwor
-CQkJCWlmIChyZXQpCisJCQkJCXJldHVybiByZXQ7CisJCQl9CisJCX0KIAkJYWxsb2MtPnN0YXJ0
-ID0gMDsKIAkJYWxsb2MtPmVuZCA9IDA7CiAJCXJldHVybiAwOwotLSAKMi4yNi4yCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+As we no longer use PIN_UPDATE (since commit 7d0aa0db4375 ("drm/i915/gem:
+Unbind all current vma on changing cache-level")) we can remove
+PIN_UPDATE itself. The benefit is just in simplifing the vma bind.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   | 142 ------------------
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   1 -
+ drivers/gpu/drm/i915/i915_vma.c               |   9 +-
+ 3 files changed, 3 insertions(+), 149 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index c9988b6d5c88..a0ed2fab0ff3 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1409,147 +1409,6 @@ static int igt_ppgtt_sanity_check(void *arg)
+ 	return err;
+ }
+ 
+-static int igt_ppgtt_pin_update(void *arg)
+-{
+-	struct i915_gem_context *ctx = arg;
+-	struct drm_i915_private *dev_priv = ctx->i915;
+-	unsigned long supported = INTEL_INFO(dev_priv)->page_sizes;
+-	struct drm_i915_gem_object *obj;
+-	struct i915_gem_engines_iter it;
+-	struct i915_address_space *vm;
+-	struct intel_context *ce;
+-	struct i915_vma *vma;
+-	unsigned int flags = PIN_USER | PIN_OFFSET_FIXED;
+-	unsigned int n;
+-	int first, last;
+-	int err = 0;
+-
+-	/*
+-	 * Make sure there's no funny business when doing a PIN_UPDATE -- in the
+-	 * past we had a subtle issue with being able to incorrectly do multiple
+-	 * alloc va ranges on the same object when doing a PIN_UPDATE, which
+-	 * resulted in some pretty nasty bugs, though only when using
+-	 * huge-gtt-pages.
+-	 */
+-
+-	vm = i915_gem_context_get_vm_rcu(ctx);
+-	if (!i915_vm_is_4lvl(vm)) {
+-		pr_info("48b PPGTT not supported, skipping\n");
+-		goto out_vm;
+-	}
+-
+-	first = ilog2(I915_GTT_PAGE_SIZE_64K);
+-	last = ilog2(I915_GTT_PAGE_SIZE_2M);
+-
+-	for_each_set_bit_from(first, &supported, last + 1) {
+-		unsigned int page_size = BIT(first);
+-
+-		obj = i915_gem_object_create_internal(dev_priv, page_size);
+-		if (IS_ERR(obj)) {
+-			err = PTR_ERR(obj);
+-			goto out_vm;
+-		}
+-
+-		vma = i915_vma_instance(obj, vm, NULL);
+-		if (IS_ERR(vma)) {
+-			err = PTR_ERR(vma);
+-			goto out_put;
+-		}
+-
+-		err = i915_vma_pin(vma, SZ_2M, 0, flags);
+-		if (err)
+-			goto out_put;
+-
+-		if (vma->page_sizes.sg < page_size) {
+-			pr_info("Unable to allocate page-size %x, finishing test early\n",
+-				page_size);
+-			goto out_unpin;
+-		}
+-
+-		err = igt_check_page_sizes(vma);
+-		if (err)
+-			goto out_unpin;
+-
+-		if (vma->page_sizes.gtt != page_size) {
+-			dma_addr_t addr = i915_gem_object_get_dma_address(obj, 0);
+-
+-			/*
+-			 * The only valid reason for this to ever fail would be
+-			 * if the dma-mapper screwed us over when we did the
+-			 * dma_map_sg(), since it has the final say over the dma
+-			 * address.
+-			 */
+-			if (IS_ALIGNED(addr, page_size)) {
+-				pr_err("page_sizes.gtt=%u, expected=%u\n",
+-				       vma->page_sizes.gtt, page_size);
+-				err = -EINVAL;
+-			} else {
+-				pr_info("dma address misaligned, finishing test early\n");
+-			}
+-
+-			goto out_unpin;
+-		}
+-
+-		err = i915_vma_bind(vma, I915_CACHE_NONE, PIN_UPDATE, NULL);
+-		if (err)
+-			goto out_unpin;
+-
+-		i915_vma_unpin(vma);
+-		i915_gem_object_put(obj);
+-	}
+-
+-	obj = i915_gem_object_create_internal(dev_priv, PAGE_SIZE);
+-	if (IS_ERR(obj)) {
+-		err = PTR_ERR(obj);
+-		goto out_vm;
+-	}
+-
+-	vma = i915_vma_instance(obj, vm, NULL);
+-	if (IS_ERR(vma)) {
+-		err = PTR_ERR(vma);
+-		goto out_put;
+-	}
+-
+-	err = i915_vma_pin(vma, 0, 0, flags);
+-	if (err)
+-		goto out_put;
+-
+-	/*
+-	 * Make sure we don't end up with something like where the pde is still
+-	 * pointing to the 2M page, and the pt we just filled-in is dangling --
+-	 * we can check this by writing to the first page where it would then
+-	 * land in the now stale 2M page.
+-	 */
+-
+-	n = 0;
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+-		if (!intel_engine_can_store_dword(ce->engine))
+-			continue;
+-
+-		err = gpu_write(ce, vma, n++, 0xdeadbeaf);
+-		if (err)
+-			break;
+-	}
+-	i915_gem_context_unlock_engines(ctx);
+-	if (err)
+-		goto out_unpin;
+-
+-	while (n--) {
+-		err = cpu_check(obj, n, 0xdeadbeaf);
+-		if (err)
+-			goto out_unpin;
+-	}
+-
+-out_unpin:
+-	i915_vma_unpin(vma);
+-out_put:
+-	i915_gem_object_put(obj);
+-out_vm:
+-	i915_vm_put(vm);
+-
+-	return err;
+-}
+-
+ static int igt_tmpfs_fallback(void *arg)
+ {
+ 	struct i915_gem_context *ctx = arg;
+@@ -1760,7 +1619,6 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(igt_shrink_thp),
+-		SUBTEST(igt_ppgtt_pin_update),
+ 		SUBTEST(igt_tmpfs_fallback),
+ 		SUBTEST(igt_ppgtt_smoke_huge),
+ 		SUBTEST(igt_ppgtt_sanity_check),
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
+index f6226df9f972..c9b0ee5e1d23 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.h
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
+@@ -42,7 +42,6 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
+ #define PIN_OFFSET_BIAS		BIT_ULL(6)
+ #define PIN_OFFSET_FIXED	BIT_ULL(7)
+ 
+-#define PIN_UPDATE		BIT_ULL(9)
+ #define PIN_GLOBAL		BIT_ULL(10) /* I915_VMA_GLOBAL_BIND */
+ #define PIN_USER		BIT_ULL(11) /* I915_VMA_LOCAL_BIND */
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index fc14ebf9a0b7..22198b758459 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -397,17 +397,15 @@ int i915_vma_bind(struct i915_vma *vma,
+ 
+ 	vma_flags = atomic_read(&vma->flags);
+ 	vma_flags &= I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
+-	if (flags & PIN_UPDATE)
+-		bind_flags |= vma_flags;
+-	else
+-		bind_flags &= ~vma_flags;
++
++	bind_flags &= ~vma_flags;
+ 	if (bind_flags == 0)
+ 		return 0;
+ 
+ 	GEM_BUG_ON(!vma->pages);
+ 
+ 	trace_i915_vma_bind(vma, bind_flags);
+-	if (work && (bind_flags & ~vma_flags) & vma->vm->bind_async_flags) {
++	if (work && bind_flags & vma->vm->bind_async_flags) {
+ 		struct dma_fence *prev;
+ 
+ 		work->vma = vma;
+@@ -868,7 +866,6 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
+ 	BUILD_BUG_ON(PIN_USER != I915_VMA_LOCAL_BIND);
+ 
+-	GEM_BUG_ON(flags & PIN_UPDATE);
+ 	GEM_BUG_ON(!(flags & (PIN_USER | PIN_GLOBAL)));
+ 
+ 	/* First try and grab the pin without rebinding the vma */
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
