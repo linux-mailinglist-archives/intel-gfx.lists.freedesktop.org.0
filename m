@@ -1,34 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E3B1D796B
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 15:14:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6441D799B
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 15:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8650989F5F;
-	Mon, 18 May 2020 13:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41D706E204;
+	Mon, 18 May 2020 13:20:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC6C89F5F
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 13:14:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21229926-1500050 for multiple; Mon, 18 May 2020 14:14:16 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8D8CD6E1FB;
+ Mon, 18 May 2020 13:20:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 880CDA0019;
+ Mon, 18 May 2020 13:20:27 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200518121354.20401-1-ville.syrjala@linux.intel.com>
-References: <20200516161542.8032-1-ville.syrjala@linux.intel.com>
- <20200518121354.20401-1-ville.syrjala@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158980765594.17769.1625000273900850456@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 18 May 2020 14:14:15 +0100
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix dbuf slice mask when
- turning off all the pipes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 18 May 2020 13:20:27 -0000
+Message-ID: <158980802755.31685.3567650747525897064@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200518085724.18815-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200518085724.18815-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Measure_dispatch_latency_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,34 +38,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTA1LTE4IDEzOjEzOjU0KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gVGhlIGN1cnJl
-bnQgZGJ1ZiBzbGljZSBjb21wdXRhdGlvbiBvbmx5IGhhcHBlbnMgd2hlbiB0aGVyZSBhcmUKPiBh
-Y3RpdmUgcGlwZXMuIElmIHdlIGFyZSB0dXJuaW5nIG9mZiBhbGwgdGhlIHBpcGVzIHdlIGp1c3Qg
-bGVhdmUKPiB0aGUgZGJ1ZiBzbGljZSBtYXNrIGF0IGl0J3MgcHJldmlvdXMgdmFsdWUsIHdoaWNo
-IG1heSBiZSBzb21ldGhpbmcKPiBvdGhlciB0aGF0IEJJVChTMSkuIElmIHJ1bnRpbWUgUE0gd2ls
-bCBraWNrIGluIGl0IHdpbGwgaG93ZXZlcgo+IHR1cm4gb2ZmIGV2ZXJ5dGhpbmcgYnV0IFMxLiBU
-aGVuIG9uIHRoZSBuZXh0IGF0b21pYyBjb21taXQgKGlmCj4gdGhlIG5ldyBkYnVmIHNsaWNlIG1h
-c2sgbWF0Y2hlcyB0aGUgc3RhbGUgdmFsdWUgd2UgbGVmdCBiZWhpbmQpCj4gdGhlIGNvZGUgd2ls
-bCBub3QgdHVybiBvbiB0aGUgb3RoZXIgc2xpY2VzIHdlIG5vdyBuZWVkLiBUaGlzIHdpbGwKPiBs
-ZWFkIHRvIHVuZGVycnVucyBhcyB0aGUgcGxhbmVzIGFyZSB0cnlpbmcgdG8gdXNlIGEgZGJ1ZiBz
-bGljZQo+IHRoYXQncyBub3QgcG93ZXJlZCB1cC4KPiAKPiBUbyB3b3JrIGFyb3VuZCBsZXQncyBq
-dXN0IGp1c3QgZXhwbGljaXRseSBzZXQgdGhlIGRidWYgc2xpY2UgbWFzawo+IHRvIEJJVChTMSkg
-d2hlbiB3ZSBhcmUgdHVybmluZyBvZmYgYWxsIHRoZSBwaXBlcy4gUmVhbGx5IHRoZSBjb2RlCj4g
-c2hvdWxkIGp1c3QgY2FsY3VsYXRlIHRoaXMgc3R1ZmYgdGhlIHNhbWUgd2F5IHJlZ2FyZGxlc3Mg
-d2hldGhlcgo+IHRoZSBwaXBlcyBhcmUgb24gb3Igb2ZmLCBidXQgd2UncmUgbm90IHF1aXRlIHRo
-ZXJlIHlldCAobmVlZCBhCj4gYml0IG1vcmUgd29yayBvbiB0aGUgZGJ1ZiBzdGF0ZSBmb3IgdGhh
-dCkuCj4gCj4gdjI6IExldCdzIG5vdCBwdXQgdGhlIGZpeCBpbnRvIGRlYWQgY29kZQo+IAo+IENj
-OiBTdGFuaXNsYXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4KPiBB
-Y2tlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+ICN2MQpBY2tl
-ZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gRml4ZXM6IDNj
-ZjQzY2RjNjNmYiAoImRybS9pOTE1OiBJbnRyb2R1Y2UgcHJvcGVyIGRidWYgc3RhdGUiKQo+IFNp
-Z25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915/selftests: Measure dispatch latency (rev5)
+URL   : https://patchwork.freedesktop.org/series/77308/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8494 -> Patchwork_17686
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17686/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17686 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2] ([i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17686/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-whl-u:           [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-whl-u/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17686/fi-whl-u/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8494 -> Patchwork_17686
+
+  CI-20190529: 20190529
+  CI_DRM_8494: 3d15348fde9b998e754da0b0655baf02b98e7f17 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5657: 649eae5c905a7460b44305800f95db83a6dd47cb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17686: 960f5e78842fef918f6f8172c2a7eefeb38adc7f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+960f5e78842f drm/i915/selftests: Measure dispatch latency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17686/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
