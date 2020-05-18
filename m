@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1148C1D8534
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 20:17:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7211D853A
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 20:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78DF56E46C;
-	Mon, 18 May 2020 18:17:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 490476E471;
+	Mon, 18 May 2020 18:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 661A9896C4
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 18:17:51 +0000 (UTC)
-IronPort-SDR: V4hY0+QRdMNQhta42Ou91IgwadYLg0PNHZOOubjDynlHEOO+CN7WCUSclSAqZDoLJXVMV6g3Ir
- tErKwGseszBg==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1736E46D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 18:17:52 +0000 (UTC)
+IronPort-SDR: 24VEfL/uwmM0yXSn/j3nsqibj9sucD/coS/XLKGCaolSg0BJSnqA1BuOuxSE0d8SYsV8c72S4l
+ m9QHzV1QJ0+Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 11:17:51 -0700
-IronPort-SDR: hlx2+AR8mR+0LcrjCjSKRfChQMoElfi0vUe3QG6ieTzbKWRKKoUKRHXIxVb2ttj9Xekt6Ck6dw
- NQSq2obDfnEw==
-X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="439318291"
+ 18 May 2020 11:17:52 -0700
+IronPort-SDR: aRNJ1t059QILTwclHsulRYT+CMyUDPgH9AFvQX2rVgOP6CHDlyMJ/1iqKD7QivCM11b8hpCN1z
+ tTufsFzeF65g==
+X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="439318297"
 Received: from jkrzyszt-desk.ger.corp.intel.com (HELO
  jkrzyszt-desk.igk.intel.com) ([172.22.244.18])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 11:17:50 -0700
+ 18 May 2020 11:17:51 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 20:17:19 +0200
-Message-Id: <20200518181720.14625-4-janusz.krzysztofik@linux.intel.com>
+Date: Mon, 18 May 2020 20:17:20 +0200
+Message-Id: <20200518181720.14625-5-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
 References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 3/4] drm/i915: Move GGTT cleanup from
+Subject: [Intel-gfx] [RFC PATCH 4/4] drm/i915: Move UC firmware cleanup from
  driver_release to _remove
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,135 +53,72 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GGTT including its scratch page is not cleaned up until driver release.
-Since DMA mappings still exist before scratch page cleanup, unmapping
-them on last device close after the driver has been already removed may
-be judged by intel-iommu code as a bug and result in kernel panic.
+UC firmware is stored in a GEM object.  Clean it up on driver remove to
+avoid intel-iommu triggered kernel panic on late DMA unmapping or even
+an RPM related warning on object late removal in no IOMMU setups.
 
-Since we abort requests and block user access to hardware on device
-removal, there seems not much sense in still keeping GGTT.  Clean it up
-on driver remove.  However, skip GGTT address space cleanup as its
-mutext may still be needed if there are objects to be freed.  That
-cleanup is always called on address space release after all.
-
-[   81.290284] ------------[ cut here ]------------
-[   81.291602] kernel BUG at drivers/iommu/intel-iommu.c:3591!
-[   81.293558] invalid opcode: 0000 [#1] PREEMPT SMP
-[   81.294695] CPU: 0 PID: 207 Comm: core_hotunplug Tainted: G     U            5.4.17 #2
-[   81.296579] Hardware name: Bochs Bochs, BIOS Bochs 01/01/2007
-[   81.297959] RIP: 0010:intel_unmap+0x200/0x230
-[   81.299015] Code: 00 e8 e4 45 c5 ff 85 c0 74 09 80 3d 2b 84 c0 00 00 74 19 65 ff 0d 78 9a b2 7e 0f 85 fa fe ff ff e8 95 57 b1 ff e9 f0 fe ff ff <0f> 0b e8 19 4c c5 ff 85 c0 75 de 48 c7 c2 48 d2 e1 81 be 57 00 00
-[   81.303425] RSP: 0018:ffffc9000013fda0 EFLAGS: 00010246
-[   81.304683] RAX: 0000000000000000 RBX: ffff8882228dd0b0 RCX: 0000000000000000
-[   81.306384] RDX: 0000000000001000 RSI: 00000000af801000 RDI: ffff8882228dd0b0
-[   81.308086] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
-[   81.309788] R10: 0000000000000000 R11: 0000000000000000 R12: 00000000af801000
-[   81.311489] R13: ffff888223a00000 R14: 0000000000001000 R15: ffff888223a0a2e8
-[   81.313191] FS:  00007f5408e3c940(0000) GS:ffff888228600000(0000) knlGS:0000000000000000
-[   81.315116] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   81.316495] CR2: 0000000001fc0048 CR3: 000000022464a000 CR4: 00000000000006b0
-[   81.318196] Call Trace:
-[   81.318967]  cleanup_scratch_page+0x44/0x80 [i915]
-[   81.320281]  i915_ggtt_driver_release+0x15b/0x220 [i915]
-[   81.321717]  i915_driver_release+0x33/0x90 [i915]
-[   81.322856]  drm_release+0xbc/0xd0
-[   81.323691]  __fput+0xcd/0x260
-[   81.324447]  task_work_run+0x90/0xc0
-[   81.325323]  do_syscall_64+0x3da/0x560
-[   81.326240]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-[   81.327457] RIP: 0033:0x7f54096ecba3
-[   81.328332] Code: 00 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 45 c3 0f 1f 40 00 48 83 ec 18 89 7c 24 0c e8
-[   81.332741] RSP: 002b:00007ffcc5165698 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
-[   81.334546] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00007f54096ecba3
-[   81.336247] RDX: 00000000005cc5d0 RSI: 0000000000000005 RDI: 0000000000000004
-[   81.337949] RBP: 0000000000000003 R08: 00000000005b8014 R09: 0000000000000004
-[   81.339650] R10: 00000000005cc650 R11: 0000000000000246 R12: 00000000004022f0
-[   81.341352] R13: 00007ffcc5165850 R14: 0000000000000000 R15: 0000000000000000
-[   81.343059] Modules linked in: i915 mfd_core intel_gtt prime_numbers
-[   81.345015] ---[ end trace 010aae55e56f8998 ]---
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-
-drm/i915: Defer GGTT vm address space fini to vm release
+<4> [93.335282] ------------[ cut here ]------------
+<4> [93.335515] pm_runtime_get_sync() failed: -13
+<4> [93.336056] WARNING: CPU: 6 PID: 200 at drivers/gpu/drm/i915/intel_runtime_pm.c:361 __intel_runtime_pm_get+0x4d/0x60 [i915]
+<4> [93.336104] Modules linked in: snd_hda_codec_hdmi mei_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel snd_hda_intel cdc_ether snd_intel_dspcfg usbnet snd_hda_codec mii snd_hwdep snd_hda_core e1000e snd_pcm ptp pps_core mei_me mei intel_lpss_pci prime_numbers
+<4> [93.336268] CPU: 6 PID: 200 Comm: kworker/u16:3 Tainted: G     U            5.7.0-rc4-CI-Trybot_6405+ #1
+<4> [93.336289] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake Y LPDDR4x T4 Crb, BIOS TGLSFWI1.R00.2457.A16.1912270059 12/27/2019
+<4> [93.336811] Workqueue: i915 __i915_gem_free_work [i915]
+<4> [93.337296] RIP: 0010:__intel_runtime_pm_get+0x4d/0x60 [i915]
+<4> [93.337332] Code: ff ff 48 89 df 5b 5d e9 a1 fa ff ff 80 3d 4b 7a 2e 00 00 75 e1 89 c6 48 c7 c7 a8 2d 40 a0 c6 05 39 7a 2e 00 01 e8 53 fc e9 e0 <0f> 0b eb c8 0f 1f 44 00 00 66 2e 0f 1f 84 00 00 00 00 00 41 57 41
+<4> [93.337357] RSP: 0018:ffffc9000144bdd8 EFLAGS: 00010282
+<4> [93.337384] RAX: 0000000000000000 RBX: ffff88838ee5bc40 RCX: 0000000000000001
+<4> [93.337409] RDX: 0000000080000001 RSI: ffff88839d264928 RDI: 00000000ffffffff
+<4> [93.337440] RBP: 0000000000000001 R08: ffff88839d264928 R09: 0000000000000000
+<4> [93.337467] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88838ee5bc40
+<4> [93.337493] R13: 0000000000000006 R14: ffffffff82769a30 R15: ffff88839376bab0
+<4> [93.337515] FS:  0000000000000000(0000) GS:ffff8883a4100000(0000) knlGS:0000000000000000
+<4> [93.337542] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [93.337563] CR2: 000055bc19b16ff8 CR3: 00000003a11c4005 CR4: 0000000000760ee0
+<4> [93.337583] PKRU: 55555554
+<4> [93.337605] Call Trace:
+<4> [93.338148]  i915_gem_object_release_mmap+0x23/0x70 [i915]
+<4> [93.338665]  __i915_gem_free_objects.isra.21+0x10a/0x4b0 [i915]
+<4> [93.338741]  process_one_work+0x268/0x600
+<4> [93.338785]  ? __schedule+0x307/0x8d0
+<4> [93.338878]  worker_thread+0x37/0x380
+<4> [93.338929]  ? process_one_work+0x600/0x600
+<4> [93.338963]  kthread+0x140/0x160
+<4> [93.339006]  ? kthread_park+0x80/0x80
+<4> [93.339057]  ret_from_fork+0x24/0x50
+<4> [93.339181] irq event stamp: 204220
+<4> [93.339219] hardirqs last  enabled at (204219): [<ffffffff8113399d>] console_unlock+0x4cd/0x5a0
+<4> [93.339250] hardirqs last disabled at (204220): [<ffffffff81001d50>] trace_hardirqs_off_thunk+0x1a/0x1c
+<4> [93.339277] softirqs last  enabled at (204208): [<ffffffff81e00395>] __do_softirq+0x395/0x49e
+<4> [93.339307] softirqs last disabled at (204197): [<ffffffff810bbc9a>] irq_exit+0xba/0xc0
+<4> [93.339330] ---[ end trace f066187622b8c484 ]---
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 13 +++++++++----
- drivers/gpu/drm/i915/gt/intel_gtt.h  |  1 +
- drivers/gpu/drm/i915/i915_drv.c      |  2 ++
- 3 files changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/i915_gem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 66165b10256e..ff2b4f74149a 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -701,7 +701,6 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
- 	ggtt->vm.cleanup(&ggtt->vm);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 87d3c4f5b6c6..f9d37c7e6d6f 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1191,6 +1191,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
  
- 	mutex_unlock(&ggtt->vm.mutex);
--	i915_address_space_fini(&ggtt->vm);
+ 	i915_gem_driver_remove__contexts(dev_priv);
  
- 	arch_phys_wc_del(ggtt->mtrr);
- 
-@@ -709,6 +708,15 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
- 		io_mapping_fini(&ggtt->iomap);
++	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
++
+ 	i915_gem_drain_freed_objects(dev_priv);
  }
  
-+void i915_ggtt_driver_remove(struct drm_i915_private *i915)
-+{
-+	struct i915_ggtt *ggtt = &i915->ggtt;
-+
-+	fini_aliasing_ppgtt(ggtt);
-+
-+	ggtt_cleanup_hw(ggtt);
-+}
-+
- /**
-  * i915_ggtt_driver_release - Clean up GGTT hardware initialization
-  * @i915: i915 device
-@@ -718,10 +726,7 @@ void i915_ggtt_driver_release(struct drm_i915_private *i915)
- 	struct i915_ggtt *ggtt = &i915->ggtt;
- 	struct pagevec *pvec;
+@@ -1202,7 +1204,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
  
--	fini_aliasing_ppgtt(ggtt);
--
- 	intel_ggtt_fini_fences(ggtt);
--	ggtt_cleanup_hw(ggtt);
+ 	intel_wa_list_free(&dev_priv->gt_wa_list);
  
- 	pvec = &i915->mm.wc_stash.pvec;
- 	if (pvec->nr) {
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index d93ebdf3fa0e..f140ce5c171a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -501,6 +501,7 @@ int i915_ggtt_enable_hw(struct drm_i915_private *i915);
- void i915_ggtt_enable_guc(struct i915_ggtt *ggtt);
- void i915_ggtt_disable_guc(struct i915_ggtt *ggtt);
- int i915_init_ggtt(struct drm_i915_private *i915);
-+void i915_ggtt_driver_remove(struct drm_i915_private *i915);
- void i915_ggtt_driver_release(struct drm_i915_private *i915);
+-	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
+ 	i915_gem_cleanup_userptr(dev_priv);
  
- static inline bool i915_ggtt_has_aperture(const struct i915_ggtt *ggtt)
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 34ee12f3f02d..e4d9f0f6f183 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -752,6 +752,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- err_mem_regions:
- 	intel_memory_regions_driver_release(dev_priv);
- err_ggtt:
-+	i915_ggtt_driver_remove(dev_priv);
- 	i915_ggtt_driver_release(dev_priv);
- err_perf:
- 	i915_perf_fini(dev_priv);
-@@ -768,6 +769,7 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
- 
- 	i915_perf_fini(dev_priv);
- 
-+	i915_ggtt_driver_remove(dev_priv);
- 	if (pdev->msi_enabled)
- 		pci_disable_msi(pdev);
- 
+ 	i915_gem_drain_freed_objects(dev_priv);
 -- 
 2.21.1
 
