@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5771D7A4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 15:46:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FAA1D7A97
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 16:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A876E19B;
-	Mon, 18 May 2020 13:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 282E56E1D8;
+	Mon, 18 May 2020 14:01:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 290D36E19B
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 13:46:27 +0000 (UTC)
-IronPort-SDR: Ir9ZXH5dS2voeeI4iZUW1cDtl4+KIHKxeJCtIbajJCih7Tx9KtOxAOqdnnwBooVaUJMNj4yIu3
- YHOZyo4Mb6eg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 06:46:26 -0700
-IronPort-SDR: ulkTxyPximFi+eDxk83JvuZyNAsm4RhLfivKAXdfI6DNhiHP7aqri7/RAvBdSFlpMPMZCykYBd
- PaEvwi/6ehMA==
-X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="439223042"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 06:46:25 -0700
-Date: Mon, 18 May 2020 16:42:21 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200518134221.GA12920@intel.com>
-References: <20200518122303.28083-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B54CA6E056;
+ Mon, 18 May 2020 14:01:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AEA6BA00E7;
+ Mon, 18 May 2020 14:01:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200518122303.28083-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/4] Revert "drm/i915: Clean up dbuf debugs
- during .atomic_check()"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Mon, 18 May 2020 14:01:56 -0000
+Message-ID: <158981051668.31688.9118003973778422267@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200518111804.11842-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200518111804.11842-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSERD?=
+ =?utf-8?q?P_minor_refactoring_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,115 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2020 at 03:23:00PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> Dbuf slice tracking busted across runtime PM. Back to the
-> drawing board.
-> =
+Series: HDCP minor refactoring (rev2)
+URL   : https://patchwork.freedesktop.org/series/77224/
+State : success
 
-> This reverts commit 70b1a26f299c729cc1a5099374cc02568b05ec7d.
-> =
+== Summary ==
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 26 +++++++-------------------
->  1 file changed, 7 insertions(+), 19 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_8494 -> Patchwork_17688
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index a21e36ed1a77..d40d22eb65da 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4105,6 +4105,10 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915=
-_private *dev_priv,
->  	 */
->  	dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc_state, active_pipes);
->  =
+Summary
+-------
 
-> +	DRM_DEBUG_KMS("DBuf slice mask %x pipe %c active pipes %x\n",
-> +		      dbuf_slice_mask,
-> +		      pipe_name(for_pipe), active_pipes);
-> +
+  **SUCCESS**
 
-Just wanted to say as a joke that if I would be adding those, you
-would say that those are redundant debugs.. and then figured out
-that those were mine initially :)
+  No regressions found.
 
-Ok - back to the drawing board!
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17688/index.html
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Known issues
+------------
 
->  	/*
->  	 * Figure out at which DBuf slice we start, i.e if we start at Dbuf S2
->  	 * and slice size is 1024, the offset would be 1024
-> @@ -4187,10 +4191,8 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915=
-_private *dev_priv,
->  	alloc->start =3D offset + start;
->  	alloc->end =3D offset + end;
->  =
+  Here are the changes found in Patchwork_17688 that come from known issues:
 
-> -	drm_dbg_kms(&dev_priv->drm,
-> -		    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x\n=
-",
-> -		    for_crtc->base.id, for_crtc->name,
-> -		    dbuf_slice_mask, alloc->start, alloc->end, active_pipes);
-> +	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
-> +		      alloc->start, alloc->end);
->  =
+### IGT changes ###
 
->  	return 0;
->  }
-> @@ -5704,10 +5706,7 @@ skl_ddb_add_affected_planes(const struct intel_crt=
-c_state *old_crtc_state,
->  static int
->  skl_compute_ddb(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> -	const struct intel_dbuf_state *old_dbuf_state;
-> -	const struct intel_dbuf_state *new_dbuf_state;
-> -	const struct intel_crtc_state *old_crtc_state;
-> +	struct intel_crtc_state *old_crtc_state;
->  	struct intel_crtc_state *new_crtc_state;
->  	struct intel_crtc *crtc;
->  	int ret, i;
-> @@ -5724,17 +5723,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
->  			return ret;
->  	}
->  =
+#### Issues hit ####
 
-> -	old_dbuf_state =3D intel_atomic_get_old_dbuf_state(state);
-> -	new_dbuf_state =3D intel_atomic_get_new_dbuf_state(state);
-> -
-> -	if (new_dbuf_state &&
-> -	    new_dbuf_state->enabled_slices !=3D old_dbuf_state->enabled_slices)
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Enabled dbuf slices 0x%x -> 0x%x (out of %d dbuf slices)\n",
-> -			    old_dbuf_state->enabled_slices,
-> -			    new_dbuf_state->enabled_slices,
-> -			    INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
-> -
->  	return 0;
->  }
->  =
+  * igt@i915_selftest@live@gt_engines:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17688/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
 
-> -- =
+  
+#### Possible fixes ####
 
-> 2.26.2
-> =
+  * igt@i915_selftest@live@execlists:
+    - fi-whl-u:           [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-whl-u/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17688/fi-whl-u/igt@i915_selftest@live@execlists.html
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (51 -> 45)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8494 -> Patchwork_17688
+
+  CI-20190529: 20190529
+  CI_DRM_8494: 3d15348fde9b998e754da0b0655baf02b98e7f17 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5657: 649eae5c905a7460b44305800f95db83a6dd47cb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17688: 9fb88404f720d350f3e12c74344955b517dfb964 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9fb88404f720 drm/i915/hdcp: No direct access to power_well desc
+f30e23a85aeb drm/i915/hdcp: Add update_pipe early return
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17688/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
