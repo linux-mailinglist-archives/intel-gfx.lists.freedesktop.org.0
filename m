@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB7A1D67FD
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 May 2020 14:49:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E411D70D9
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 08:24:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7A989FFD;
-	Sun, 17 May 2020 12:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 991C76E117;
+	Mon, 18 May 2020 06:24:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0177A89FFD
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 May 2020 12:49:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21220702-1500050 for multiple; Sun, 17 May 2020 13:49:38 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1EF6E0A6;
+ Mon, 18 May 2020 06:24:29 +0000 (UTC)
+IronPort-SDR: 9FyZldtlLavcdwkg6RAfmnwuvEXEsMzWah8twtUCsxQsO7ephTWo7YxIH/ffSjTn7mf/FEt6xW
+ GQI7hWEJwXaA==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2020 23:24:28 -0700
+IronPort-SDR: i/Efo5wE8sji1KgHmHKQOoWISCOrfbaG9dNAnzdGRzbN+bl1tSNbeTVj+LVpGkktlgEAS0whlt
+ u7ComdAa8dGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; 
+ d="asc'?scan'208";a="299674577"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga008.jf.intel.com with ESMTP; 17 May 2020 23:24:25 -0700
+Date: Mon, 18 May 2020 14:09:29 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Nathan Chancellor <natechancellor@gmail.com>
+Message-ID: <20200518060929.GS18545@zhen-hp.sh.intel.com>
+References: <20200516023545.3332334-1-natechancellor@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200302143943.32676-6-ville.syrjala@linux.intel.com>
-References: <20200302143943.32676-1-ville.syrjala@linux.intel.com>
- <20200302143943.32676-6-ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158971977642.10809.16745087788965571257@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Sun, 17 May 2020 13:49:36 +0100
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/selftests: Make the CS
- timestamp tests work on gen4-snb (sort of)
+In-Reply-To: <20200516023545.3332334-1-natechancellor@gmail.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark check_shadow_context_ppgtt
+ as maybe unused
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,32 +49,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
+ intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0263344053=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAzLTAyIDE0OjM5OjQzKQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gT24gcHJlLWl2
-YiB0aGUgQ1MgdGltZXN0YW1wIHJlZ2lzdGVyIGlzIG9ubHkgcHJlc2VudCBvbiBSQ1MgKGRlc3Bp
-dGUKPiB3aGF0IHNuYiBic3BlYyBjbGFpbXMpLiBMZXQncyB0ZXN0IGl0Lgo+IAo+IEFsc28gb24g
-Y3RnL2Vsay9pbGsgdGhlIHVzYWJsZSBwYXJ0IG9mIHRoZSB0aW1lc3RhbXAgaXMgdGhlIFVEVyBz
-bwo+IGxldCdzIHJlYWQgdGhhdCBpbnN0ZWFkIG9mIHRoZSBMRFcuIE9uIGN0Zy9lbGsgdGhlIDEw
-IG1zYnMgb2YgdGhlIExEVwo+IGRvIGFjdHVhbGx5IHdvcmssIGJ1dCB3ZSBjb25maWd1cmUgY3Nf
-dGltZXN0YW1wX2ZyZXF1ZW5jeV9oeiBhcyBpZgo+IHRoZXkgZGlkbid0IHNvICB0aGF0IHdlIGNh
-biB0cmVhdCBjdGcvZWxrIHRoZSBzYW1lIGFzIGlsay4KPiAKPiBUT0RPOiBmaWd1cmUgb3V0IHdo
-eSB0aGUgcmVzdWx0cyB3ZSBnZXQgYXJlbid0IHJlbGlhYmxlLiBPbiBzb21lCj4gaXRlcmF0aW9u
-cyB3ZSBjYW4gZ2V0IHRvdGFsbHkgd3JvbmcgKHRob3VnaCBjb25zaXN0ZW50KSB2YWx1ZXMsCj4g
-b24gb3RoZXIgaXRlcmF0aW9ucyB0aGUgdmFsdWVzIGFyZSBjb3JyZWN0LiBBbmQgc29tZWhvdyBj
-aGFuZ2luZwo+IHRoZSBvZmZzZXRzIGludG8gdGhlIGh3c3AgYWxzbyBzZWVtcyB0byBhZmZlY3Qg
-dGhlIGJlaGF2aW91ci4KPiBNYW51YWxseSByZWFkaW5nIHRoZSByZWdpc3RlciBhbHdheXMgc2Vl
-bXMgZmluZSwgc28gZmVlbHMgbGlrZQo+IHRoZSBwcm9ibGVtIGhhcyBzb21ldGhpbmcgdG8gZG8g
-d2l0aCB0aGUgc3RvcmUgcmF0aGVyIHRoYW4gdGhlIGFjdHVhbAo+IHJlZ2lzdGVyIHJlYWQuCgpP
-biBpOTY1Z20sIEkgZ2V0IGZhaXJseSByYW5kb20gb3V0cHV0IGZyb20gcmVhZGluZyB0aGUgQ1Nf
-VElNRVNUQU1QLgoKT25lIHN0ZXAgYXQgYSB0aW1lLCBmaXJzdCBsZXQncyBnZXQgdGhlIHRlc3Qg
-cmVzdWx0cyBmb3IgcmVhZGluZwpDU19USU1FU1RBTVAgdnMgdGhlIHVwZGF0ZWQgcmF3Y2xrIGFu
-ZCBzZWUgaG93IHdlbGwgd2UgZmFyZSBhY3Jvc3MgdGhlCmZhcm0uIFRoZW4gd2UgbWlnaHQgc2Vl
-IGlmIHRoZXJlJ3MgYSBwYXR0ZXJuIGhlcmUuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============0263344053==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="t54s24TTWYm6oOX+"
+Content-Disposition: inline
+
+
+--t54s24TTWYm6oOX+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2020.05.15 19:35:45 -0700, Nathan Chancellor wrote:
+> When CONFIG_DRM_I915_DEBUG_GEM is not set, clang warns:
+>=20
+> drivers/gpu/drm/i915/gvt/scheduler.c:884:1: warning: function
+> 'check_shadow_context_ppgtt' is not needed and will not be emitted
+> [-Wunneeded-internal-declaration]
+> check_shadow_context_ppgtt(struct execlist_ring_context *c, struct
+> intel_vgpu_mm *m)
+> ^
+> 1 warning generated.
+>=20
+> This warning is similar to -Wunused-function but rather than warning
+> that the function is completely unused, it warns that it is used in some
+> expression within the file but that expression will be evaluated to a
+> constant or be optimized away in the final assembly, essentially making
+> it appeared used but really isn't. Usually, this happens when a function
+> or variable is only used in sizeof, where it will appear to be used but
+> will be evaluated at compile time and not be required to be emitted.
+>=20
+> In this case, the function is only used in GEM_BUG_ON, which is defined
+> as BUILD_BUG_ON_INVALID, which intentionally follows this pattern. To
+> fix this warning, add __maybe_unused to make it clear that this is
+> intentional depending on the configuration.
+>=20
+> Fixes: bec3df930fbd ("drm/i915/gvt: Support PPGTT table load command")
+> Link: https://github.com/ClangBuiltLinux/linux/issues/1027
+> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/=
+gvt/scheduler.c
+> index f776c92de8d7..0fb1df71c637 100644
+> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+> @@ -880,7 +880,7 @@ static void update_guest_pdps(struct intel_vgpu *vgpu,
+>  				gpa + i * 8, &pdp[7 - i], 4);
+>  }
+> =20
+> -static bool
+> +static __maybe_unused bool
+>  check_shadow_context_ppgtt(struct execlist_ring_context *c, struct intel=
+_vgpu_mm *m)
+>  {
+>  	if (m->ppgtt_mm.root_entry_type =3D=3D GTT_TYPE_PPGTT_ROOT_L4_ENTRY) {
+>=20
+> base-commit: bdecf38f228bcca73b31ada98b5b7ba1215eb9c9
+
+Thanks for the fix!
+
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+I'll pick up for gvt-next-fixes pull.
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--t54s24TTWYm6oOX+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXsImmQAKCRCxBBozTXgY
+JxfOAJ94e1oxLhfjkCYgNWLtG0s7S2z1fACggFwQWbFs3UxsTHtWE9Ln1GA6M2A=
+=gdfP
+-----END PGP SIGNATURE-----
+
+--t54s24TTWYm6oOX+--
+
+--===============0263344053==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0263344053==--
