@@ -1,42 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E411D70D9
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 08:24:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3241D7118
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 08:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 991C76E117;
-	Mon, 18 May 2020 06:24:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8AAF6E11C;
+	Mon, 18 May 2020 06:33:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1EF6E0A6;
- Mon, 18 May 2020 06:24:29 +0000 (UTC)
-IronPort-SDR: 9FyZldtlLavcdwkg6RAfmnwuvEXEsMzWah8twtUCsxQsO7ephTWo7YxIH/ffSjTn7mf/FEt6xW
- GQI7hWEJwXaA==
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 933D96E11C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 06:33:33 +0000 (UTC)
+IronPort-SDR: QTAFeCrO5mj6jToo78hcwxhGIZBAhd7h6bnDD7aN73+JpQuMtRnsdq/GZW/qFAZNKTcubLj/k+
+ /sWxehpNadsw==
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2020 23:24:28 -0700
-IronPort-SDR: i/Efo5wE8sji1KgHmHKQOoWISCOrfbaG9dNAnzdGRzbN+bl1tSNbeTVj+LVpGkktlgEAS0whlt
- u7ComdAa8dGQ==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2020 23:33:33 -0700
+IronPort-SDR: KIE4eUOm/OA2bvkXrOOL24yT0+EKJC1emx1eNX3aPOUqk9yN4XaS7l1zJObT1MU6QYUPImFvaL
+ ODrr6n7EtPPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; 
- d="asc'?scan'208";a="299674577"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga008.jf.intel.com with ESMTP; 17 May 2020 23:24:25 -0700
-Date: Mon, 18 May 2020 14:09:29 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Nathan Chancellor <natechancellor@gmail.com>
-Message-ID: <20200518060929.GS18545@zhen-hp.sh.intel.com>
-References: <20200516023545.3332334-1-natechancellor@gmail.com>
+X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="252795439"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 17 May 2020 23:33:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 18 May 2020 09:33:29 +0300
+Date: Mon, 18 May 2020 09:33:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200518063329.GR6112@intel.com>
+References: <20200516161542.8032-1-ville.syrjala@linux.intel.com>
+ <20200517121234.GA7704@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200516023545.3332334-1-natechancellor@gmail.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark check_shadow_context_ppgtt
- as maybe unused
+Content-Disposition: inline
+In-Reply-To: <20200517121234.GA7704@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix dbuf slice mask when turning
+ off all the pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,107 +52,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0263344053=="
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Sun, May 17, 2020 at 03:12:49PM +0300, Lisovskiy, Stanislav wrote:
+> On Sat, May 16, 2020 at 07:15:42PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
---===============0263344053==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="t54s24TTWYm6oOX+"
-Content-Disposition: inline
+> > The current dbuf slice computation only happens when there are
+> > active pipes. If we are turning off all the pipes we just leave
+> > the dbuf slice mask at it's previous value, which may be something
+> > other that BIT(S1). If runtime PM will kick in it will however
+> > turn off everything but S1. Then on the next atomic commit (if
+> > the new dbuf slice mask matches the stale value we left behind)
+> > the code will not turn on the other slices we now need. This will
+> > lead to underruns as the planes are trying to use a dbuf slice
+> > that's not powered up.
+> > =
 
+> > To work around let's just just explicitly set the dbuf slice mask
+> > to BIT(S1) when we are turning off all the pipes. Really the code
+> > should just calculate this stuff the same way regardless whether
+> > the pipes are on or off, but we're not quite there yet (need a
+> > bit more work on the dbuf state for that).
+> > =
 
---t54s24TTWYm6oOX+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Fixes: 3cf43cdc63fb ("drm/i915: Introduce proper dbuf state")
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> > =
 
-On 2020.05.15 19:35:45 -0700, Nathan Chancellor wrote:
-> When CONFIG_DRM_I915_DEBUG_GEM is not set, clang warns:
->=20
-> drivers/gpu/drm/i915/gvt/scheduler.c:884:1: warning: function
-> 'check_shadow_context_ppgtt' is not needed and will not be emitted
-> [-Wunneeded-internal-declaration]
-> check_shadow_context_ppgtt(struct execlist_ring_context *c, struct
-> intel_vgpu_mm *m)
-> ^
-> 1 warning generated.
->=20
-> This warning is similar to -Wunused-function but rather than warning
-> that the function is completely unused, it warns that it is used in some
-> expression within the file but that expression will be evaluated to a
-> constant or be optimized away in the final assembly, essentially making
-> it appeared used but really isn't. Usually, this happens when a function
-> or variable is only used in sizeof, where it will appear to be used but
-> will be evaluated at compile time and not be required to be emitted.
->=20
-> In this case, the function is only used in GEM_BUG_ON, which is defined
-> as BUILD_BUG_ON_INVALID, which intentionally follows this pattern. To
-> fix this warning, add __maybe_unused to make it clear that this is
-> intentional depending on the configuration.
->=20
-> Fixes: bec3df930fbd ("drm/i915/gvt: Support PPGTT table load command")
-> Link: https://github.com/ClangBuiltLinux/linux/issues/1027
-> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> ---
->  drivers/gpu/drm/i915/gvt/scheduler.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/=
-gvt/scheduler.c
-> index f776c92de8d7..0fb1df71c637 100644
-> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
-> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-> @@ -880,7 +880,7 @@ static void update_guest_pdps(struct intel_vgpu *vgpu,
->  				gpa + i * 8, &pdp[7 - i], 4);
->  }
-> =20
-> -static bool
-> +static __maybe_unused bool
->  check_shadow_context_ppgtt(struct execlist_ring_context *c, struct intel=
-_vgpu_mm *m)
->  {
->  	if (m->ppgtt_mm.root_entry_type =3D=3D GTT_TYPE_PPGTT_ROOT_L4_ENTRY) {
->=20
-> base-commit: bdecf38f228bcca73b31ada98b5b7ba1215eb9c9
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
+el_pm.c
+> > index a21e36ed1a77..4a523d8b881f 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -4071,6 +4071,22 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i9=
+15_private *dev_priv,
+> >  	*num_active =3D hweight8(active_pipes);
+> >  =
 
-Thanks for the fix!
+> >  	if (!crtc_state->hw.active) {
+> > +		/*
+> > +		 * FIXME hack to make sure we compute this sensibly when
+> > +		 * turning off all the pipes. Otherwise we leave it at
+> > +		 * whatever we had previously, and then runtime PM will
+> > +		 * mess it up by turning off all but S1. Remove this
+> > +		 * once the dbuf state computation flow becomes sane.
+> > +		 */
+> > +		if (active_pipes =3D=3D 0) {
+> > +			new_dbuf_state->enabled_slices =3D BIT(DBUF_S1);
+> > +
+> > +			if (old_dbuf_state->enabled_slices !=3D new_dbuf_state->enabled_sli=
+ces) {
+> > +				ret =3D intel_atomic_serialize_global_state(&new_dbuf_state->base);
+> > +				if (ret)
+> > +					return ret;
+> > +			}
+> > +		}
+> =
 
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Rather weird, why we didnt have that issue before..
+> Just trying to figure out what's the reason - aren't we recovering the la=
+st
+> state of enabled slices from hw in gen9_dbuf_enable?
+> =
 
-I'll pick up for gvt-next-fixes pull.
+> As I understand you modify enabled_slices in dbuf global object recovering
+> the actual hw state there. =
 
---=20
-Open Source Technology Center, Intel ltd.
+> =
 
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+> Also from your patches I don't see the actual logic difference with what =
 
---t54s24TTWYm6oOX+
-Content-Type: application/pgp-signature; name="signature.asc"
+> was happening before dbuf_state in that sense.
+> I.e we were also bailing out in skl_get_pipe_alloc_limits, without modify=
+ing
+> dbuf_state before, however there was no issue.
 
------BEGIN PGP SIGNATURE-----
+We didn't have the old state so the pre/post update hooks were comparing
+the new value against the value that was mangled by the display core init
+to match the actual hw state.
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXsImmQAKCRCxBBozTXgY
-JxfOAJ94e1oxLhfjkCYgNWLtG0s7S2z1fACggFwQWbFs3UxsTHtWE9Ln1GA6M2A=
-=gdfP
------END PGP SIGNATURE-----
+The reason why it bit tgl so hard is that we tend to use two slices
+on tgl all the time, whereas on icl we use just the first slice most
+of the time.
 
---t54s24TTWYm6oOX+--
+-- =
 
---===============0263344053==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0263344053==--
