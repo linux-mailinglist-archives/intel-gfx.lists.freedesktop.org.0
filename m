@@ -2,61 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99AD1D74FD
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEBC51D7509
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:21:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B3E89D5F;
-	Mon, 18 May 2020 10:18:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 319126E147;
+	Mon, 18 May 2020 10:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4214E89D5F
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:18:20 +0000 (UTC)
-IronPort-SDR: XCYT54QQqJUwiI+qSH3n+BFSR5gYZLUbUESO834GnShnic5K2spGBDDtvkJGF/h/Gg4XzOWe/b
- iBxsWEp1f6/g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 03:18:19 -0700
-IronPort-SDR: SI/rUxReQeoURGAYM0Us9hN8deKuorHyC04iAJ3ZyGJWvnB4/ukFL9J2QVCtMyJPdT/G7Tnf9P
- O5atzreIzQWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="288519957"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga004.fm.intel.com with ESMTP; 18 May 2020 03:18:19 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 18 May 2020 03:18:18 -0700
-Received: from bgsmsx110.gar.corp.intel.com (10.223.4.212) by
- fmsmsx109.amr.corp.intel.com (10.18.116.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 18 May 2020 03:18:18 -0700
-Received: from bgsmsx101.gar.corp.intel.com ([169.254.1.232]) by
- BGSMSX110.gar.corp.intel.com ([169.254.11.22]) with mapi id 14.03.0439.000;
- Mon, 18 May 2020 15:48:15 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add update_pipe early
- return
-Thread-Index: AQHWKSIyg7MSvnyC/kGcvxDKPJCDGaitS9wAgABc93A=
-Date: Mon, 18 May 2020 10:18:15 +0000
-Message-ID: <300B57010B64FF488B0D7E85267A2FCB291F7E25@BGSMSX101.gar.corp.intel.com>
-References: <20200513121845.19437-1-anshuman.gupta@intel.com>
- <20200513121845.19437-2-anshuman.gupta@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F825066EB@BGSMSX104.gar.corp.intel.com>
-In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F825066EB@BGSMSX104.gar.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA7C6E147
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:21:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21227942-1500050 for multiple; Mon, 18 May 2020 11:21:47 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add update_pipe early
- return
+In-Reply-To: <6bbdd286-4a82-6ca5-a4f8-743c17050468@linux.intel.com>
+References: <20200518081440.17948-1-chris@chris-wilson.co.uk>
+ <20200518081440.17948-2-chris@chris-wilson.co.uk>
+ <6bbdd286-4a82-6ca5-a4f8-743c17050468@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <158979730634.17769.4332863397571750948@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 18 May 2020 11:21:46 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/selftests: Add tests for
+ timeslicing virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,68 +47,203 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
------Original Message-----
-From: Shankar, Uma <uma.shankar@intel.com> 
-Sent: Monday, May 18, 2020 3:45 PM
-To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-gfx@lists.freedesktop.org
-Subject: RE: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add update_pipe early return
-
-
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of 
-> Anshuman Gupta
-> Sent: Wednesday, May 13, 2020 5:49 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add update_pipe early 
-> return
+Quoting Tvrtko Ursulin (2020-05-18 11:12:29)
 > 
-> Currently intel_hdcp_update_pipe() is also getting called for non-hdcp 
-> connectors and got though its conditional code flow, which is 
-> completely unnecessary for non-hdcp connectors, therefore it make 
-> sense to have an early return. No functional change.
+> On 18/05/2020 09:14, Chris Wilson wrote:
+> > Make sure that we can execute a virtual request on an already busy
+> > engine, and conversely that we can execute a normal request if the
+> > engines are already fully occupied by virtual requests.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   drivers/gpu/drm/i915/gt/selftest_lrc.c | 179 +++++++++++++++++++++++++
+> >   1 file changed, 179 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > index 824f99c4cc7c..1fc54359bd53 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > @@ -3766,6 +3766,184 @@ static int live_virtual_mask(void *arg)
+> >       return 0;
+> >   }
+> >   
+> > +static int slicein_virtual_engine(struct intel_gt *gt,
+> > +                               struct intel_engine_cs **siblings,
+> > +                               unsigned int nsibling)
+> > +{
+> > +     struct intel_context *ce;
+> > +     struct i915_request *rq;
+> > +     struct igt_spinner spin;
+> > +     unsigned int n;
+> > +     int err = 0;
+> > +
+> > +     /*
+> > +      * Virtual requests must take part in timeslicing on the target engines.
+> > +      */
+> > +
+> > +     if (igt_spinner_init(&spin, gt))
+> > +             return -ENOMEM;
+> > +
+> > +     for (n = 0; n < nsibling; n++) {
+> > +             ce = intel_context_create(siblings[n]);
+> > +             if (IS_ERR(ce)) {
+> > +                     err = PTR_ERR(ce);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
+> > +             intel_context_put(ce);
+> > +
+> > +             if (IS_ERR(rq)) {
+> > +                     err = PTR_ERR(rq);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             i915_request_add(rq);
+> > +     }
+> > +
+> > +     ce = intel_execlists_create_virtual(siblings, nsibling);
+> > +     if (IS_ERR(ce)) {
+> > +             err = PTR_ERR(ce);
+> > +             goto out;
+> > +     }
+> > +
+> > +     rq = intel_context_create_request(ce);
+> > +     intel_context_put(ce);
+> > +     if (IS_ERR(rq)) {
+> > +             err = PTR_ERR(rq);
+> > +             goto out;
+> > +     }
+> > +
+> > +     i915_request_get(rq);
+> > +     i915_request_add(rq);
+> > +     if (i915_request_wait(rq, 0, HZ / 10) < 0) {
+> > +             GEM_TRACE_ERR("%s(%s) failed to slice in virtual request\n",
+> > +                           __func__, rq->engine->name);
+> > +             GEM_TRACE_DUMP();
+> > +             intel_gt_set_wedged(gt);
+> > +             err = -EIO;
+> > +     }
+> > +     i915_request_put(rq);
+> > +
+> > +out:
+> > +     igt_spinner_end(&spin);
+> > +     if (igt_flush_test(gt->i915))
+> > +             err = -EIO;
+> > +     igt_spinner_fini(&spin);
+> > +     return err;
+> > +}
+> > +
+> > +static int sliceout_virtual_engine(struct intel_gt *gt,
+> > +                                struct intel_engine_cs **siblings,
+> > +                                unsigned int nsibling)
+> > +{
+> > +     struct intel_context *ce;
+> > +     struct i915_request *rq;
+> > +     struct igt_spinner spin;
+> > +     unsigned int n;
+> > +     int err = 0;
+> > +
+> > +     /*
+> > +      * Virtual requests must allow others a fair timeslice.
+> > +      */
+> > +
+> > +     if (igt_spinner_init(&spin, gt))
+> > +             return -ENOMEM;
+> > +
+> > +     for (n = 0; n <= nsibling; n++) { /* oversubscribed */
+> > +             ce = intel_execlists_create_virtual(siblings, nsibling);
+> > +             if (IS_ERR(ce)) {
+> > +                     err = PTR_ERR(ce);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
+> > +             intel_context_put(ce);
+> > +
+> > +             if (IS_ERR(rq)) {
+> > +                     err = PTR_ERR(rq);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             i915_request_add(rq);
+> > +     }
+> > +
+> > +     for (n = 0; !err && n < nsibling; n++) {
+> > +             ce = intel_context_create(siblings[n]);
+> > +             if (IS_ERR(ce)) {
+> > +                     err = PTR_ERR(ce);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             rq = intel_context_create_request(ce);
+> > +             intel_context_put(ce);
+> > +
+> > +             if (IS_ERR(rq)) {
+> > +                     err = PTR_ERR(rq);
+> > +                     goto out;
+> > +             }
+> > +
+> > +             i915_request_get(rq);
+> > +             i915_request_add(rq);
+> > +             if (i915_request_wait(rq, 0, HZ / 10) < 0) {
+> > +                     GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
+> > +                                   __func__, siblings[n]->name);
+> > +                     GEM_TRACE_DUMP();
+> > +                     intel_gt_set_wedged(gt);
+> > +                     err = -EIO;
+> > +             }
+> > +             i915_request_put(rq);
+> > +     }
+> > +
+> > +out:
+> > +     igt_spinner_end(&spin);
+> > +     if (igt_flush_test(gt->i915))
+> > +             err = -EIO;
+> > +     igt_spinner_fini(&spin);
+> > +     return err;
+> > +}
+> > +
+> > +static int live_virtual_slice(void *arg)
+> > +{
+> > +     struct intel_gt *gt = arg;
+> > +     struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> > +     unsigned int class, inst;
+> > +     int err;
+> > +
+> > +     if (intel_uc_uses_guc_submission(&gt->uc))
+> > +             return 0;
+> 
+> Shouldn't the intel_engine_has_timeslices check below be enough? I am 
+> worried not to silently skip this seemingly pretty generic too much.
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Thanks Uma for review!
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+I haven't looked too hard which of these are execlists specific. I have
+a plan somewhere to recreate a bunch of these as functional tests for
+the i915_request layer.
+
+That would give us a rough progression like
+
+low level live_execlists_selftests
+-> mid level live_request_selftests
+ -> uapi gem_exec_scheduler at al
+
+> > +
+> > +     for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+> > +             unsigned int nsibling;
+> > +
+> > +             nsibling = 0;
+> > +             for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> > +                     struct intel_engine_cs *engine;
+> > +
+> > +                     engine = gt->engine_class[class][inst];
+> > +                     if (!engine)
+> > +                             break;
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 2cbc4619b4ce..d0a2bee9035a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2079,11 +2079,15 @@ void intel_hdcp_update_pipe(struct 
-> intel_atomic_state *state,
->  	struct intel_connector *connector =
->  				to_intel_connector(conn_state->connector);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	bool content_protection_type_changed =
-> +	bool content_protection_type_changed;
-> +
-> +	if (!connector->hdcp.shim)
-> +		return;
-> +
-> +	content_protection_type_changed =
->  		(conn_state->hdcp_content_type != hdcp->content_type &&
->  		 conn_state->content_protection !=
->  		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
-> -
->  	/*
->  	 * During the HDCP encryption session if Type change is requested,
->  	 * disable the HDCP and reenable it with new TYPE value.
-> --
-> 2.26.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> This should be continue I think, to account for vcs0 + vcs2 on Icelake.
+
+Oh, they all break atm iirc. Ah, no just the one I copied. Do I hear
+the plea for refactoring the duplicated code :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
