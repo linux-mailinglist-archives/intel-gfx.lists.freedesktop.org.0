@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725ED1D7BC3
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 16:48:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744B71D7BEA
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 16:55:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C225E89496;
-	Mon, 18 May 2020 14:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C095B6E41A;
+	Mon, 18 May 2020 14:55:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BCD089496
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 14:48:27 +0000 (UTC)
-IronPort-SDR: dBibK3DCx1Iwsg8GQjksQpUlvY5sybtHDXqe6eDoFv1z6NKRHwpPVo0FIUg6+YRyqb5Msa5FrC
- qa7FRclDDHkw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDCC16E41A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 14:55:51 +0000 (UTC)
+IronPort-SDR: fm9Y+4x2C+gPTopxbg8nY/Es+9j4WROKGrTvrFcupfEAfGxfjdIddwoINLQyxl1R8iwJNY88Hi
+ /P70x+DdUWkA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 07:48:26 -0700
-IronPort-SDR: xeGbHIZJauoTI6HWgVNr5tRuphlsbETdamzKP1oqHs01WTr5midg/qpk0faleu/K7zuFjsQaqG
- FEEoK1gzBllQ==
-X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="439242405"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
+ 18 May 2020 07:55:51 -0700
+IronPort-SDR: owtfmWN3rebyntllpwSDwpvsuMfOejZ/Eww3RqJdNzbfRyp1BnOGVM9qXyjhSPMzrikQjh92uy
+ jXxMWJWHsdXA==
+X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="439244564"
+Received: from coheno1-mobl.ger.corp.intel.com (HELO [10.214.214.153])
+ ([10.214.214.153])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 07:48:25 -0700
-Date: Mon, 18 May 2020 17:44:25 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200518144425.GB13077@intel.com>
-References: <20200518122303.28083-1-ville.syrjala@linux.intel.com>
- <20200518122303.28083-3-ville.syrjala@linux.intel.com>
+ 18 May 2020 07:55:49 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200518081440.17948-1-chris@chris-wilson.co.uk>
+ <20200518081440.17948-7-chris@chris-wilson.co.uk>
+ <adfc123c-7ae4-5d27-cd01-b3d050e3a25b@linux.intel.com>
+ <158980685142.17769.13828694630708094538@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3878c571-9353-67f7-b979-9d03209fa8c4@linux.intel.com>
+Date: Mon, 18 May 2020 15:55:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200518122303.28083-3-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 3/4] Revert "drm/i915: Nuke
- skl_ddb_get_hw_state()"
+In-Reply-To: <158980685142.17769.13828694630708094538@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/gt: Decouple inflight virtual
+ engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,88 +54,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2020 at 03:23:02PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
 
-> Dbuf slice tracking busted across runtime PM. Back to the
-> drawing board.
-> =
+On 18/05/2020 14:00, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-05-18 13:53:29)
+>>
+>> On 18/05/2020 09:14, Chris Wilson wrote:
+>>> Once a virtual engine has been bound to a sibling, it will remain bound
+>>> until we finally schedule out the last active request. We can not rebind
+>>> the context to a new sibling while it is inflight as the context save
+>>> will conflict, hence we wait. As we cannot then use any other sibliing
+>>> while the context is inflight, only kick the bound sibling while it
+>>> inflight and upon scheduling out the kick the rest (so that we can swap
+>>> engines on timeslicing if the previously bound engine becomes
+>>> oversubscribed).
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_lrc.c | 30 +++++++++++++----------------
+>>>    1 file changed, 13 insertions(+), 17 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> index 7a5ac3375225..fe8f3518d6b8 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> @@ -1398,9 +1398,8 @@ execlists_schedule_in(struct i915_request *rq, int idx)
+>>>    static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+>>>    {
+>>>        struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+>>> -     struct i915_request *next = READ_ONCE(ve->request);
+>>>    
+>>> -     if (next == rq || (next && next->execution_mask & ~rq->execution_mask))
+>>> +     if (READ_ONCE(ve->request))
+>>>                tasklet_hi_schedule(&ve->base.execlists.tasklet);
+>>>    }
+>>>    
+>>> @@ -1821,18 +1820,14 @@ first_virtual_engine(struct intel_engine_cs *engine)
+>>>                        rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
+>>>                struct i915_request *rq = READ_ONCE(ve->request);
+>>>    
+>>> -             if (!rq) { /* lazily cleanup after another engine handled rq */
+>>> +             /* lazily cleanup after another engine handled rq */
+>>> +             if (!rq || !virtual_matches(ve, rq, engine)) {
+>>>                        rb_erase_cached(rb, &el->virtual);
+>>>                        RB_CLEAR_NODE(rb);
+>>>                        rb = rb_first_cached(&el->virtual);
+>>>                        continue;
+>>>                }
+>>>    
+>>> -             if (!virtual_matches(ve, rq, engine)) {
+>>> -                     rb = rb_next(rb);
+>>> -                     continue;
+>>> -             }
+>>> -
+>>>                return ve;
+>>>        }
+>>>    
+>>> @@ -5478,7 +5473,6 @@ static void virtual_submission_tasklet(unsigned long data)
+>>>        if (unlikely(!mask))
+>>>                return;
+>>>    
+>>> -     local_irq_disable();
+>>>        for (n = 0; n < ve->num_siblings; n++) {
+>>>                struct intel_engine_cs *sibling = READ_ONCE(ve->siblings[n]);
+>>>                struct ve_node * const node = &ve->nodes[sibling->id];
+>>> @@ -5488,20 +5482,19 @@ static void virtual_submission_tasklet(unsigned long data)
+>>>                if (!READ_ONCE(ve->request))
+>>>                        break; /* already handled by a sibling's tasklet */
+>>>    
+>>> +             spin_lock_irq(&sibling->active.lock);
+>>> +
+>>>                if (unlikely(!(mask & sibling->mask))) {
+>>>                        if (!RB_EMPTY_NODE(&node->rb)) {
+>>> -                             spin_lock(&sibling->active.lock);
+>>>                                rb_erase_cached(&node->rb,
+>>>                                                &sibling->execlists.virtual);
+>>>                                RB_CLEAR_NODE(&node->rb);
+>>> -                             spin_unlock(&sibling->active.lock);
+>>>                        }
+>>> -                     continue;
+>>> -             }
+>>>    
+>>> -             spin_lock(&sibling->active.lock);
+>>> +                     goto unlock_engine;
+>>> +             }
+>>>    
+>>> -             if (!RB_EMPTY_NODE(&node->rb)) {
+>>> +             if (unlikely(!RB_EMPTY_NODE(&node->rb))) {
+>>>                        /*
+>>>                         * Cheat and avoid rebalancing the tree if we can
+>>>                         * reuse this node in situ.
+>>> @@ -5541,9 +5534,12 @@ static void virtual_submission_tasklet(unsigned long data)
+>>>                if (first && prio >= sibling->execlists.queue_priority_hint)
+>>>                        tasklet_hi_schedule(&sibling->execlists.tasklet);
+>>>    
+>>> -             spin_unlock(&sibling->active.lock);
+>>> +unlock_engine:
+>>> +             spin_unlock_irq(&sibling->active.lock);
+>>> +
+>>> +             if (intel_context_inflight(&ve->context))
+>>> +                     break;
+>>
+>> So virtual request may not be added to all siblings any longer. Will it
+>> still be able to schedule it on any if time slicing kicks in under these
+>> conditions?
+> 
+> Yes.
+>   
+>> This is equivalent to the hunk in first_virtual_engine which also
+>> removes it from all other siblings.
+>>
+>> I guess it's inline with what the commit messages says - that new
+>> sibling will be picked upon time slicing. I just don't quite see the
+>> path which would do it. Only path which shuffles the siblings array
+>> around is in dequeue, and dequeue on other that the engine which first
+>> picked it will not happen any more. I must be missing something..
+> 
+> It's all on the execlists_schedule_out. During timeslicing we call
+> unwind_incomplete_requests which moves the requests back to the priotree
+> (and in this patch back to the virtual engine).
+> 
+> But... We cannot use the virtual request on any other engine until it has
+> been scheduled out. That only happens after we complete execlists_dequeue()
+> and submit a new ELSP[]. Once the HW acks the change, we call
+> execlists_schedule_out on the virtual_request.
+> 
+> Now we known that intel_context_inflight() will return false so any
+> engine can pick up the request, and so it's time to kick the virtual
+> tasklet and in turn kick all the siblings.
+> 
+> So timeslicing works by not submitting the virtual request again and
+> when it expires on this sibling[0], we wake up all the other siblings
+> and the first that is idle wins the race.
 
-> This reverts commit 0cde0e0ff5f5ebd27507069250728c763c14ac81.
-> =
+If a virtual request is on hw and timeslice expires:
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 7 +++++++
->  drivers/gpu/drm/i915/intel_pm.h | 1 +
->  2 files changed, 8 insertions(+)
-> =
+1. Unwinds the request.
+       -> kicks the virtual tasklet
+2. Virtual tasklet runs and puts the request back on siblings.
+       -> kicks the physical tasklets
+3. Siblings tasklet runs and submits the request.
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index a92d57d9b759..cb57786fdc9f 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4315,6 +4315,12 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *=
-crtc,
->  	intel_display_power_put(dev_priv, power_domain, wakeref);
->  }
->  =
+So two tasklets latency even if no other runnable requests?
 
-> +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv)
-> +{
-> +	dev_priv->dbuf.enabled_slices =3D
-> +		intel_enabled_dbuf_slices_mask(dev_priv);
-> +}
-> +
+Regards,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
->  /*
->   * Determines the downscale amount of a plane for the purposes of waterm=
-ark calculations.
->   * The bspec defines downscale amount as:
-> @@ -6175,6 +6181,7 @@ void skl_wm_get_hw_state(struct drm_i915_private *d=
-ev_priv)
->  	struct intel_crtc *crtc;
->  	struct intel_crtc_state *crtc_state;
->  =
-
-> +	skl_ddb_get_hw_state(dev_priv);
->  	for_each_intel_crtc(&dev_priv->drm, crtc) {
->  		crtc_state =3D to_intel_crtc_state(crtc->base.state);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
-_pm.h
-> index 3fcc9b6e2cbf..9f75ac4c2bd1 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -39,6 +39,7 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_priva=
-te *dev_priv);
->  void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  			       struct skl_ddb_entry *ddb_y,
->  			       struct skl_ddb_entry *ddb_uv);
-> +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
->  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
->  			      struct skl_pipe_wm *out);
->  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
-> -- =
-
-> 2.26.2
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
