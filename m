@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669031D87FD
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 21:13:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2661D885A
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 21:41:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 957DD6E171;
-	Mon, 18 May 2020 19:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21C976E277;
+	Mon, 18 May 2020 19:41:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7C0FC6E170;
- Mon, 18 May 2020 19:13:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1B2036E277;
+ Mon, 18 May 2020 19:41:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79452A47E1;
- Mon, 18 May 2020 19:13:24 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 152AAA00E7;
+ Mon, 18 May 2020 19:41:52 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 18 May 2020 19:13:24 -0000
-Message-ID: <158982920449.31688.13937835666894456816@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 18 May 2020 19:41:52 -0000
+Message-ID: <158983091205.31685.17651749597415282742@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200518164414.26640-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200518164414.26640-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/7=5D_drm/i915=3A_Move_saturated_workl?=
- =?utf-8?q?oad_detection_back_to_the_context?=
+References: <20200518164750.11113-1-jani.nikula@intel.com>
+In-Reply-To: <20200518164750.11113-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/params=3A_don=27t_e?=
+ =?utf-8?q?xpose_inject=5Fprobe=5Ffailure_in_debugfs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +48,88 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/7] drm/i915: Move saturated workload detection back to the context
-URL   : https://patchwork.freedesktop.org/series/77365/
+Series: series starting with [1/3] drm/i915/params: don't expose inject_probe_failure in debugfs
+URL   : https://patchwork.freedesktop.org/series/77366/
 State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/compiler.h:199:9: warning: context imbalance in 'engines_sample' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+$ dim checkpatch origin/drm-tip
+960f6e1f205d drm/i915/params: don't expose inject_probe_failure in debugfs
+b47f6ca436b3 drm/i915/params: fix i915.fake_lmem_start module param sysfs permissions
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/i915/i915_params.c:177:
++i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
+ 	"Fake LMEM start offset (default: 0)");
+
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+2b633b42e776 drm/i915/params: prevent changing module params runtime
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/i915/i915_params.c:62:
++i915_param_named_unsafe(enable_fbc, int, 0400,
+ 	"Enable frame buffer compression for power savings "
+
+-:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#57: FILE: drivers/gpu/drm/i915/i915_params.c:70:
++i915_param_named_unsafe(panel_use_ssc, int, 0400,
+ 	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
+
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/i915/i915_params.c:78:
++i915_param_named_unsafe(reset, int, 0400,
+ 	"Attempt GPU resets (0=disabled, 1=full gpu reset, 2=engine reset [default])");
+
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/i915/i915_params.c:85:
++i915_param_named(error_capture, bool, 0400,
+ 	"Record the GPU state following a hang. "
+
+-:81: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#81: FILE: drivers/gpu/drm/i915/i915_params.c:91:
++i915_param_named_unsafe(enable_hangcheck, bool, 0400,
+ 	"Periodically check GPU activity for detecting hangs. "
+
+-:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#87: FILE: drivers/gpu/drm/i915/i915_params.c:96:
++i915_param_named_unsafe(enable_psr, int, 0400,
+ 	"Enable PSR "
+
+-:99: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#99: FILE: drivers/gpu/drm/i915/i915_params.c:111:
++i915_param_named(fastboot, int, 0400,
+ 	"Try to skip unnecessary mode sets at boot time "
+
+-:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#105: FILE: drivers/gpu/drm/i915/i915_params.c:116:
++i915_param_named_unsafe(load_detect_test, bool, 0400,
+ 	"Force-enable the VGA load detect code for testing (default:false). "
+
+-:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#110: FILE: drivers/gpu/drm/i915/i915_params.c:120:
++i915_param_named_unsafe(force_reset_modeset_test, bool, 0400,
+ 	"Force a modeset during gpu reset for testing (default:false). "
+
+-:115: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#115: FILE: drivers/gpu/drm/i915/i915_params.c:124:
++i915_param_named_unsafe(invert_brightness, int, 0400,
+ 	"Invert backlight brightness "
+
+-:124: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#124: FILE: drivers/gpu/drm/i915/i915_params.c:134:
++i915_param_named(mmio_debug, int, 0400,
+ 	"Enable the MMIO debug code for the first N failures (default: off). "
+
+-:137: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#137: FILE: drivers/gpu/drm/i915/i915_params.c:169:
++i915_param_named_unsafe(enable_dp_mst, bool, 0400,
+ 	"Enable multi-stream transport (MST) for new DisplayPort sinks. (default: true)");
+
+-:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#146: FILE: drivers/gpu/drm/i915/i915_params.c:177:
++i915_param_named(enable_dpcd_backlight, int, 0400,
+ 	"Enable support for DPCD backlight control"
+
+total: 0 errors, 0 warnings, 13 checks, 115 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
