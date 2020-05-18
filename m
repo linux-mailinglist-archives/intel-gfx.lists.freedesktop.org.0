@@ -2,41 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB681D72B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 10:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D411D729A
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 10:14:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93F946E1B8;
-	Mon, 18 May 2020 08:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B09436E143;
+	Mon, 18 May 2020 08:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF97F6E1B8
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 08:16:40 +0000 (UTC)
-IronPort-SDR: 3RoUXDvNHminxHYpau/kh9/CXN50k7qovuoB3gnW1R7XXXVVcYuUcAUoKEjfw2wIoxZDil32zz
- UHghhCH/STIQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 01:16:39 -0700
-IronPort-SDR: 1oJJD6Ut4OOwomqZWY4RLXpQukTaiUrNWxFHLUl3bKZ/vNeL/QRrg6TGjp9e0s1My3K3FJfAKA
- SYjQzdzeIvJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="439131512"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by orsmga005.jf.intel.com with ESMTP; 18 May 2020 01:16:35 -0700
-Date: Mon, 18 May 2020 13:37:36 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
- daniel.vetter@intel.com, ramalingam.c@intel.com
-Message-ID: <20200518080736.GN10565@intel.com>
-References: <20200515061029.5008-1-anshuman.gupta@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4703A6E17F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 08:14:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21226268-1500050 
+ for multiple; Mon, 18 May 2020 09:14:41 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 May 2020 09:14:33 +0100
+Message-Id: <20200518081440.17948-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200515061029.5008-1-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Update CP as per the
- kernel internal state
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Move saturated workload detection
+ back to the context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,108 +37,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-15 at 11:40:29 +0530, Anshuman Gupta wrote:
-> Content Protection property should be updated as per the kernel
-> internal state. Let's say if Content protection is disabled
-> by userspace, CP property should be set to UNDESIRED so that
-> reauthentication will not happen until userspace request it again,
-> but when kernel disables the HDCP due to any DDI disabling sequences
-> like modeset/DPMS operation, kernel should set the property to
-> DESIRED, so that when opportunity arises, kernel will start the
-> HDCP authentication on its own.
-> 
-> Somewhere in the line, state machine to set content protection to
-> DESIRED from kernel was broken and IGT coverage was missing for it.
-> This patch fixes it.
-> 
-> v2:
-> - Fixing hdcp CP state in intel_hdcp_atomic_check(), that will
->   require to check hdcp->value in intel_hdcp_update_pipe() in order
->   to avoid enabling hdcp, if it was already enabled.
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/350962/?series=72664&rev=2 #v1
-> Link: https://patchwork.freedesktop.org/patch/359396/?series=72251&rev=3 #v2
-Ram, Daniel, Jani,
-Above patch fixes HDCP uapi broken state.
-Could you please provide your inputs , is it ok to merges this patch in current form.
-Thanks,
-Anshuman Gupta.
+When we introduced the saturated workload detection to tell us to back
+off from semaphore usage [semaphores have a noticeable impact on
+contended bus cycles with the CPU for some heavy workloads], we first
+introduced it as a per-context tracker. This allows individual contexts
+to try and optimise their own usage, but we found that with the local
+tracking and the no-semaphore boosting, the first context to disable
+semaphores got a massive priority boost and so would starve the rest and
+all new contexts (as they started with semaphores enabled and lower
+priority). Hence we moved the saturated workload detection to the
+engine, and a consequence had to disable semaphores on virtual engines.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 27 +++++++++++++++++++----
->  1 file changed, 23 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 2cbc4619b4ce..f90f48819838 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2083,6 +2083,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  		(conn_state->hdcp_content_type != hdcp->content_type &&
->  		 conn_state->content_protection !=
->  		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
-> +	bool desired_and_not_enabled = false;
->  
->  	/*
->  	 * During the HDCP encryption session if Type change is requested,
-> @@ -2105,8 +2106,15 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  	}
->  
->  	if (conn_state->content_protection ==
-> -	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
-> -	    content_protection_type_changed)
-> +	    DRM_MODE_CONTENT_PROTECTION_DESIRED) {
-> +		mutex_lock(&hdcp->mutex);
-> +		/* Avoid enabling hdcp, if it already ENABLED */
-> +		desired_and_not_enabled =
-> +			hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
-> +		mutex_unlock(&hdcp->mutex);
-> +	}
-> +
-> +	if (desired_and_not_enabled || content_protection_type_changed)
->  		intel_hdcp_enable(connector,
->  				  crtc_state->cpu_transcoder,
->  				  (u8)conn_state->hdcp_content_type);
-> @@ -2155,6 +2163,19 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  		return;
->  	}
->  
-> +	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
-> +						   new_state->crtc);
-> +	/*
-> +	 * Fix the HDCP uapi content protection state in case of modeset.
-> +	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
-> +	 * need to be sent if there is transition from ENABLED->DESIRED.
-> +	 */
-> +	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
-> +	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-> +	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
-> +		new_state->content_protection =
-> +			DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +
->  	/*
->  	 * Nothing to do if the state didn't change, or HDCP was activated since
->  	 * the last commit. And also no change in hdcp content type.
-> @@ -2167,8 +2188,6 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  			return;
->  	}
->  
-> -	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
-> -						   new_state->crtc);
->  	crtc_state->mode_changed = true;
->  }
->  
-> -- 
-> 2.26.0
-> 
+Now that we do not have semaphore priority boosting, we can move the
+tracking back to the context and virtual engines can now utilise the
+faster inter-engine synchronisation.
+
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 --
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 --
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 15 ---------------
+ drivers/gpu/drm/i915/i915_request.c           |  4 ++--
+ 6 files changed, 5 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index e4aece20bc80..762a251d553b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -268,6 +268,7 @@ static int __intel_context_active(struct i915_active *active)
+ 	if (err)
+ 		goto err_timeline;
+ 
++	ce->saturated = 0;
+ 	return 0;
+ 
+ err_timeline:
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 4954b0df4864..aed26d93c2ca 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -78,6 +78,8 @@ struct intel_context {
+ 	} lrc;
+ 	u32 tag; /* cookie passed to HW to track this context on submission */
+ 
++	intel_engine_mask_t saturated; /* submitting semaphores too late? */
++
+ 	/* Time on GPU as tracked by the hw. */
+ 	struct {
+ 		struct ewma_runtime avg;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index d0a1078ef632..6d7fdba5adef 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -229,8 +229,6 @@ static int __engine_park(struct intel_wakeref *wf)
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
+ 
+-	engine->saturated = 0;
+-
+ 	/*
+ 	 * If one and only one request is completed between pm events,
+ 	 * we know that we are inside the kernel context and it is
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 2b6cdf47d428..c443b6bb884b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -332,8 +332,6 @@ struct intel_engine_cs {
+ 
+ 	struct intel_context *kernel_context; /* pinned */
+ 
+-	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+-
+ 	struct {
+ 		struct delayed_work work;
+ 		struct i915_request *systole;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 87e6c5bdd2dc..e597325d04f1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -5630,21 +5630,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 
+-	/*
+-	 * The decision on whether to submit a request using semaphores
+-	 * depends on the saturated state of the engine. We only compute
+-	 * this during HW submission of the request, and we need for this
+-	 * state to be globally applied to all requests being submitted
+-	 * to this engine. Virtual engines encompass more than one physical
+-	 * engine and so we cannot accurately tell in advance if one of those
+-	 * engines is already saturated and so cannot afford to use a semaphore
+-	 * and be pessimized in priority for doing so -- if we are the only
+-	 * context using semaphores after all other clients have stopped, we
+-	 * will be starved on the saturated system. Such a global switch for
+-	 * semaphores is less than ideal, but alas is the current compromise.
+-	 */
+-	ve->base.saturated = ALL_ENGINES;
+-
+ 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+ 
+ 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 526c1e9acbd5..31ef683d27b4 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -467,7 +467,7 @@ bool __i915_request_submit(struct i915_request *request)
+ 	 */
+ 	if (request->sched.semaphores &&
+ 	    i915_sw_fence_signaled(&request->semaphore))
+-		engine->saturated |= request->sched.semaphores;
++		request->context->saturated |= request->sched.semaphores;
+ 
+ 	engine->emit_fini_breadcrumb(request,
+ 				     request->ring->vaddr + request->postfix);
+@@ -919,7 +919,7 @@ already_busywaiting(struct i915_request *rq)
+ 	 *
+ 	 * See the are-we-too-late? check in __i915_request_submit().
+ 	 */
+-	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
++	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+ }
+ 
+ static int
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
