@@ -1,38 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B149E1D89BC
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 23:01:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B8FC1D8A1E
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 23:40:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28EF66E497;
-	Mon, 18 May 2020 21:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 989376E0BC;
+	Mon, 18 May 2020 21:40:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B218E6E48F;
- Mon, 18 May 2020 21:01:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C67256E0BC;
+ Mon, 18 May 2020 21:40:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21235473-1500050 for multiple; Mon, 18 May 2020 22:00:53 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200518150336.15265-1-aishwaryarj100@gmail.com>
-References: <20200518150336.15265-1-aishwaryarj100@gmail.com>
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21235680-1500050 
+ for multiple; Mon, 18 May 2020 22:39:37 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Aishwarya Ramakrishnan <aishwaryarj100@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <158983565244.7442.10004490488930800145@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 18 May 2020 22:00:52 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: Use ARRAY_SIZE for vgpu_types
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 18 May 2020 22:39:36 +0100
+Message-Id: <20200518213936.1539871-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t] lib/i915: Reset all engine properties to
+ defaults prior to the start of a test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,20 +37,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: aishwaryarj100@gmail.com
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Aishwarya Ramakrishnan (2020-05-18 16:03:36)
-> Prefer ARRAY_SIZE instead of using sizeof
-> 
-> Fixes coccicheck warning: Use ARRAY_SIZE
-> 
-> Signed-off-by: Aishwarya Ramakrishnan <aishwaryarj100@gmail.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+We need each test in an isolated context, so that bad results from one
+test do not interfere with the next. In particular, we want to clean up
+the device and reset it to the defaults so that they are known for the
+next test, and the test can focus on behaviour it wants to control.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ lib/i915/gem.c                   | 85 ++++++++++++++++++++++++++++++++
+ lib/igt_dummyload.c              |  2 -
+ lib/igt_gt.c                     |  2 -
+ tests/i915/gem_ctx_persistence.c |  1 -
+ 4 files changed, 85 insertions(+), 5 deletions(-)
+
+diff --git a/lib/i915/gem.c b/lib/i915/gem.c
+index cabd23768..3ef31ed33 100644
+--- a/lib/i915/gem.c
++++ b/lib/i915/gem.c
+@@ -22,6 +22,7 @@
+  *
+  */
+ 
++#include <dirent.h>
+ #include <fcntl.h>
+ #include <sys/ioctl.h>
+ 
+@@ -30,6 +31,89 @@
+ #include "igt_debugfs.h"
+ #include "igt_sysfs.h"
+ 
++static void __restore_defaults(int engine)
++{
++	struct dirent *de;
++	int defaults;
++	DIR *dir;
++
++	defaults = openat(engine, ".defaults", O_RDONLY);
++	if (defaults < 0)
++		return;
++
++	dir = fdopendir(defaults);
++	if (!dir) {
++		close(defaults);
++		return;
++	}
++
++	while ((de = readdir(dir))) {
++		char buf[256];
++		int fd, len;
++
++		if (*de->d_name == '.')
++			continue;
++
++		fd = openat(defaults, de->d_name, O_RDONLY);
++		if (fd < 0)
++			continue;
++
++		len = read(fd, buf, sizeof(buf));
++		close(fd);
++		if (len < 0)
++			continue;
++
++		fd = openat(engine, de->d_name, O_WRONLY);
++		if (fd < 0)
++			continue;
++
++		write(fd, buf, len);
++		close(fd);
++	}
++
++	closedir(dir);
++}
++
++static void restore_defaults(int i915)
++{
++	struct dirent *de;
++	int engines;
++	DIR *dir;
++	int sys;
++
++	sys = igt_sysfs_open(i915);
++	if (sys < 0)
++		return;
++
++	engines = openat(sys, "engine", O_RDONLY);
++	if (engines < 0)
++		goto close_sys;
++
++	dir = fdopendir(engines);
++	if (!dir) {
++		close(engines);
++		goto close_sys;
++	}
++
++	while ((de = readdir(dir))) {
++		int engine;
++
++		if (*de->d_name == '.')
++			continue;
++
++		engine = openat(engines, de->d_name, O_RDONLY);
++		if (engine < 0)
++			continue;
++
++		__restore_defaults(engine);
++		close(engine);
++	}
++
++	closedir(dir);
++close_sys:
++	close(sys);
++}
++
+ static void reset_device(int i915)
+ {
+ 	int dir;
+@@ -66,6 +150,7 @@ void igt_require_gem(int i915)
+ 	 * sequences of batches.
+ 	 */
+ 	reset_device(i915);
++	restore_defaults(i915);
+ 
+ 	err = 0;
+ 	if (ioctl(i915, DRM_IOCTL_I915_GEM_THROTTLE)) {
+diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+index 0b52eb5b5..a733bd674 100644
+--- a/lib/igt_dummyload.c
++++ b/lib/igt_dummyload.c
+@@ -355,8 +355,6 @@ igt_spin_factory(int fd, const struct igt_spin_factory *opts)
+ {
+ 	igt_spin_t *spin;
+ 
+-	igt_require_gem(fd);
+-
+ 	if (opts->engine != ALL_ENGINES) {
+ 		struct intel_execution_engine2 e;
+ 		int class;
+diff --git a/lib/igt_gt.c b/lib/igt_gt.c
+index a806b567a..101627973 100644
+--- a/lib/igt_gt.c
++++ b/lib/igt_gt.c
+@@ -172,8 +172,6 @@ igt_hang_t igt_allow_hang(int fd, unsigned ctx, unsigned flags)
+ 	 * to recover from reset and for it to remain wedged. It's hard to
+ 	 * say even if we do hang/reset making the test suspect.
+ 	 */
+-	igt_require_gem(fd);
+-
+ 	if (!igt_check_boolean_env_var("IGT_HANG", true))
+ 		igt_skip("hang injection disabled by user [IGT_HANG=0]\n");
+ 	gem_context_require_bannable(fd);
+diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+index ce9f02350..cca4c3a91 100644
+--- a/tests/i915/gem_ctx_persistence.c
++++ b/tests/i915/gem_ctx_persistence.c
+@@ -56,7 +56,6 @@ static void cleanup(int i915)
+ 			    DROP_RESET_ACTIVE | DROP_RESET_SEQNO |
+ 			    /* cleanup */
+ 			    DROP_ACTIVE | DROP_RETIRE | DROP_IDLE | DROP_FREED);
+-	igt_require_gem(i915);
+ }
+ 
+ static int wait_for_status(int fence, int timeout)
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
