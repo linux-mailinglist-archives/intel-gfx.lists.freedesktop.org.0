@@ -1,43 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212B01D7EC1
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 18:41:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C03031D7EE2
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 18:44:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C15E66E43F;
-	Mon, 18 May 2020 16:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC296E442;
+	Mon, 18 May 2020 16:44:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1D666E43F;
- Mon, 18 May 2020 16:41:37 +0000 (UTC)
-IronPort-SDR: FWTy1zy5R0YEFoGrEgoYsdc2I4T28Fljp9KIdZPoEj0Z+FdMRgfF+1AsTH1GLow1+QCN8fpsIp
- EglaedJQIVew==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 09:41:36 -0700
-IronPort-SDR: DdRupnlW915/XGPvI30A7NNVHB//e9zj/PopMfo4KDI956LyLV2p+C8eHaHwPaV9F0O+7DjFlY
- BbOEgU5Y+wQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,407,1583222400"; d="scan'208";a="264016714"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga003.jf.intel.com with ESMTP; 18 May 2020 09:41:33 -0700
-Date: Mon, 18 May 2020 22:11:31 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20200518164130.GA14897@intel.com>
-References: <20200429195502.39919-1-sean@poorly.run>
- <20200515144812.GB11877@intel.com>
- <CAMavQKKv-3Wh=9QP=2Bf_FsSVcp4eXxPB9c80nDZwz-Wmvmz=w@mail.gmail.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32856E441
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 16:44:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21232519-1500050 
+ for multiple; Mon, 18 May 2020 17:44:15 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 May 2020 17:44:08 +0100
+Message-Id: <20200518164414.26640-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAMavQKKv-3Wh=9QP=2Bf_FsSVcp4eXxPB9c80nDZwz-Wmvmz=w@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 00/16] drm/i915: Add support for HDCP 1.4
- over MST connectors
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Move saturated workload detection
+ back to the context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,109 +37,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-18 at 10:32:09 -0400, Sean Paul wrote:
-> On Fri, May 15, 2020 at 10:48 AM Ramalingam C <ramalingam.c@intel.com> wrote:
-> >
-> > On 2020-04-29 at 15:54:46 -0400, Sean Paul wrote:
-> > > From: Sean Paul <seanpaul@chromium.org>
-> > >
-> > > Changes in v6:
-> > > -Rebased on -tip
-> > > -Disabled HDCP over MST on GEN12
-> > > -Addressed Lyude's review comments in the QUERY_STREAM_ENCRYPTION_STATUS patch
-> >
-> > Sean,
-> >
-> > What is the test setup you have used?
-> >
-> 
-> Hi Ram,
-> Thanks for the feedback. To be completely honest it's really
-> frustrating that I'm just now getting questions and review feedback
-> (which I've been begging for on IRC) on this review that could have
-> been addressed ~5 months ago. It's super disruptive to have to keep
-> switching back to this after a long hiatus and many i915 refactors
-> complicating my rebases.
-Hi Sean,
+When we introduced the saturated workload detection to tell us to back
+off from semaphore usage [semaphores have a noticeable impact on
+contended bus cycles with the CPU for some heavy workloads], we first
+introduced it as a per-context tracker. This allows individual contexts
+to try and optimise their own usage, but we found that with the local
+tracking and the no-semaphore boosting, the first context to disable
+semaphores got a massive priority boost and so would starve the rest and
+all new contexts (as they started with semaphores enabled and lower
+priority). Hence we moved the saturated workload detection to the
+engine, and a consequence had to disable semaphores on virtual engines.
 
-As a developer I really feel bad for the delay happened in review.
-I couldn't spend required time for understanding MST part hence I
-couldn't review.
+Now that we do not have semaphore priority boosting, we can move the
+tracking back to the context and virtual engines can now utilise the
+faster inter-engine synchronisation.
 
-Just for this series now I have started preparing myself on these topics,
-hence started reviewing the series.
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 --
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 --
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 15 ---------------
+ drivers/gpu/drm/i915/i915_request.c           |  4 ++--
+ 6 files changed, 5 insertions(+), 21 deletions(-)
 
-If you are still interested to work on this, I can commit for regular reviews.
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index e4aece20bc80..762a251d553b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -268,6 +268,7 @@ static int __intel_context_active(struct i915_active *active)
+ 	if (err)
+ 		goto err_timeline;
+ 
++	ce->saturated = 0;
+ 	return 0;
+ 
+ err_timeline:
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 4954b0df4864..aed26d93c2ca 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -78,6 +78,8 @@ struct intel_context {
+ 	} lrc;
+ 	u32 tag; /* cookie passed to HW to track this context on submission */
+ 
++	intel_engine_mask_t saturated; /* submitting semaphores too late? */
++
+ 	/* Time on GPU as tracked by the hw. */
+ 	struct {
+ 		struct ewma_runtime avg;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index d0a1078ef632..6d7fdba5adef 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -229,8 +229,6 @@ static int __engine_park(struct intel_wakeref *wf)
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
+ 
+-	engine->saturated = 0;
+-
+ 	/*
+ 	 * If one and only one request is completed between pm events,
+ 	 * we know that we are inside the kernel context and it is
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 2b6cdf47d428..c443b6bb884b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -332,8 +332,6 @@ struct intel_engine_cs {
+ 
+ 	struct intel_context *kernel_context; /* pinned */
+ 
+-	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+-
+ 	struct {
+ 		struct delayed_work work;
+ 		struct i915_request *systole;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index d7ef3f8640d2..80885ba87db5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -5630,21 +5630,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 
+-	/*
+-	 * The decision on whether to submit a request using semaphores
+-	 * depends on the saturated state of the engine. We only compute
+-	 * this during HW submission of the request, and we need for this
+-	 * state to be globally applied to all requests being submitted
+-	 * to this engine. Virtual engines encompass more than one physical
+-	 * engine and so we cannot accurately tell in advance if one of those
+-	 * engines is already saturated and so cannot afford to use a semaphore
+-	 * and be pessimized in priority for doing so -- if we are the only
+-	 * context using semaphores after all other clients have stopped, we
+-	 * will be starved on the saturated system. Such a global switch for
+-	 * semaphores is less than ideal, but alas is the current compromise.
+-	 */
+-	ve->base.saturated = ALL_ENGINES;
+-
+ 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+ 
+ 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 526c1e9acbd5..31ef683d27b4 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -467,7 +467,7 @@ bool __i915_request_submit(struct i915_request *request)
+ 	 */
+ 	if (request->sched.semaphores &&
+ 	    i915_sw_fence_signaled(&request->semaphore))
+-		engine->saturated |= request->sched.semaphores;
++		request->context->saturated |= request->sched.semaphores;
+ 
+ 	engine->emit_fini_breadcrumb(request,
+ 				     request->ring->vaddr + request->postfix);
+@@ -919,7 +919,7 @@ already_busywaiting(struct i915_request *rq)
+ 	 *
+ 	 * See the are-we-too-late? check in __i915_request_submit().
+ 	 */
+-	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
++	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+ }
+ 
+ static int
+-- 
+2.20.1
 
-Thanks,
-Ram.
-> 
-> If no one wants this patchset, that's fine, please just let me know so
-> I don't waste any more time. If Intel is interested, could we please
-> stop the review trickle and lay out exactly what needs to be done to
-> get this landed?
-> 
-> Sean
-> 
-> 
-> > I am afraid our CI dont have the coverage for MST capability yet to provide
-> > the functional status of the code.
-> >
-> > -Ram.
-> > >
-> > > Sean Paul (16):
-> > >   drm/i915: Fix sha_text population code
-> > >   drm/i915: Clear the repeater bit on HDCP disable
-> > >   drm/i915: WARN if HDCP signalling is enabled upon disable
-> > >   drm/i915: Intercept Aksv writes in the aux hooks
-> > >   drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP
-> > >     signalling
-> > >   drm/i915: Factor out hdcp->value assignments
-> > >   drm/i915: Protect workers against disappearing connectors
-> > >   drm/i915: Don't fully disable HDCP on a port if multiple pipes are
-> > >     using it
-> > >   drm/i915: Support DP MST in enc_to_dig_port() function
-> > >   drm/i915: Use ddi_update_pipe in intel_dp_mst
-> > >   drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
-> > >   drm/i915: Plumb port through hdcp init
-> > >   drm/i915: Add connector to hdcp_shim->check_link()
-> > >   drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband
-> > >     message
-> > >   drm/i915: Print HDCP version info for all connectors
-> > >   drm/i915: Add HDCP 1.4 support for MST connectors
-> > >
-> > >  drivers/gpu/drm/drm_dp_mst_topology.c         | 142 ++++
-> > >  drivers/gpu/drm/i915/Makefile                 |   1 +
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  29 +-
-> > >  drivers/gpu/drm/i915/display/intel_ddi.h      |   2 +
-> > >  .../drm/i915/display/intel_display_debugfs.c  |  21 +-
-> > >  .../drm/i915/display/intel_display_types.h    |  30 +-
-> > >  drivers/gpu/drm/i915/display/intel_dp.c       | 654 +--------------
-> > >  drivers/gpu/drm/i915/display/intel_dp.h       |   9 +
-> > >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 743 ++++++++++++++++++
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  19 +
-> > >  drivers/gpu/drm/i915/display/intel_hdcp.c     | 217 +++--
-> > >  drivers/gpu/drm/i915/display/intel_hdcp.h     |   2 +-
-> > >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  25 +-
-> > >  .../drm/selftests/test-drm_dp_mst_helper.c    |  17 +
-> > >  include/drm/drm_dp_helper.h                   |   3 +
-> > >  include/drm/drm_dp_mst_helper.h               |  44 ++
-> > >  include/drm/drm_hdcp.h                        |   3 +
-> > >  17 files changed, 1235 insertions(+), 726 deletions(-)
-> > >  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > >
-> > > --
-> > > Sean Paul, Software Engineer, Google / Chromium OS
-> > >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
