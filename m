@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9D81D84CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 20:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE4241D84CD
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 20:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C48486E261;
-	Mon, 18 May 2020 18:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492A86E466;
+	Mon, 18 May 2020 18:15:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C83F6E261
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 18:14:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21233929-1500050 
- for multiple; Mon, 18 May 2020 19:14:23 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 19:14:23 +0100
-Message-Id: <20200518181423.6035-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7C9176E463;
+ Mon, 18 May 2020 18:15:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54AE4A00E7;
+ Mon, 18 May 2020 18:15:36 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Check for an
- initial-breadcrumb in wait_for_submit()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 18 May 2020 18:15:36 -0000
+Message-ID: <158982573634.31688.5608691001101250305@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200518143947.30606-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200518143947.30606-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Measure_dispatch_latency_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,39 +38,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we look at i915_request_is_started() we must be careful in case we
-are using a request that does not have the initial-breadcrumb and
-instead the is-started is being compared against the end of the previous
-request. This will make wait_for_submit() declare that a request has
-been already submitted too early.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/selftests: Measure dispatch latency (rev8)
+URL   : https://patchwork.freedesktop.org/series/77308/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index d83ee0d09002..cd276b3badb2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -75,7 +75,7 @@ static bool is_active(struct i915_request *rq)
- 	if (i915_request_on_hold(rq))
- 		return true;
- 
--	if (i915_request_started(rq))
-+	if (i915_request_has_initial_breadcrumb(rq) && i915_request_started(rq))
- 		return true;
- 
- 	return false;
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8495 -> Patchwork_17695
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17695 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-bsw-nick:        [INCOMPLETE][1] ([i915#1250] / [i915#1436]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8495/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [INCOMPLETE][3] ([i915#1874]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8495/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+    - fi-whl-u:           [INCOMPLETE][5] ([i915#656]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8495/fi-whl-u/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/fi-whl-u/igt@i915_selftest@live@execlists.html
+    - fi-kbl-guc:         [INCOMPLETE][7] ([i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8495/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][9] ([fdo#109271]) -> [FAIL][10] ([i915#62])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8495/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (52 -> 44)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8495 -> Patchwork_17695
+
+  CI-20190529: 20190529
+  CI_DRM_8495: 695b7d214a475060bb448c2609e4184fc450d69a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17695: 2633bb73f44c35def35771444a87a1cc99411d8a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2633bb73f44c drm/i915/selftests: Measure dispatch latency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17695/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
