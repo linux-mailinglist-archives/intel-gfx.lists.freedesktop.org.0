@@ -2,28 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D7B1D752A
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 284D41D752C
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF946E054;
-	Mon, 18 May 2020 10:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B85E6E135;
+	Mon, 18 May 2020 10:29:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C8166E054
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:29:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21228057-1500050 
- for multiple; Mon, 18 May 2020 11:29:11 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 11:29:11 +0100
-Message-Id: <20200518102911.3463-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91DB46E135
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:29:48 +0000 (UTC)
+IronPort-SDR: G7HOBJNiOI4ZfZa/q7SAu9e+apk2Lb4uKpn+usXHsZvUBOm7o/auloo0VjwQGuuziu+FqCRsi3
+ Xlug5f3IQ5DQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2020 03:29:46 -0700
+IronPort-SDR: DjbbaFbKOHV0jggXHZacWknyRoNJEghHAHTAuJL6AlqJzidbm+gpkbWFLfMBCpjCQUZpdRzgtV
+ ATaZO2DdIu/g==
+X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="439166136"
+Received: from coheno1-mobl.ger.corp.intel.com (HELO [10.214.214.153])
+ ([10.214.214.153])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2020 03:29:46 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200518081440.17948-1-chris@chris-wilson.co.uk>
+ <20200518081440.17948-4-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <dc22c47f-a1cd-1040-b9c0-ee95ed594dfe@linux.intel.com>
+Date: Mon, 18 May 2020 11:29:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Refactor sibling selection
+In-Reply-To: <20200518081440.17948-4-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/gt: Kick virtual siblings on
+ timeslice out
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,174 +52,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tvrtko spotted that some selftests were using 'break' not 'continue',
-which will fail for discontiguous engine layouts such as on Icelake
-(which may have vcs0 and vcs2).
 
-Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 68 ++++++++++----------------
- 1 file changed, 27 insertions(+), 41 deletions(-)
+On 18/05/2020 09:14, Chris Wilson wrote:
+> If we decide to timeslice out the current virtual request, we will
+> unsubmit it while it is still busy (ve->context.inflight == sibling[0]).
+> If the virtual tasklet and then the other sibling tasklets run before we
+> completely schedule out the active virtual request for the preemption,
+> those other tasklets will see that the virtul request is still inflight
+> on sibling[0] and leave it be. Therefore when we finally schedule-out
+> the virtual request and if we see that we have passed it back to the
+> virtual engine, reschedule the virtual tasklet so that it may be
+> resubmitted on any of the siblings.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 80885ba87db5..05486e801a63 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1402,7 +1402,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+>   	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+>   	struct i915_request *next = READ_ONCE(ve->request);
+>   
+> -	if (next && next->execution_mask & ~rq->execution_mask)
+> +	if (next == rq || (next && next->execution_mask & ~rq->execution_mask))
+>   		tasklet_hi_schedule(&ve->base.execlists.tasklet);
+>   }
+>   
+> 
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 824f99c4cc7c..94854a467e66 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3600,13 +3600,30 @@ static int nop_virtual_engine(struct intel_gt *gt,
- 	return err;
- }
- 
-+static unsigned int select_siblings(struct intel_gt *gt,
-+				    unsigned int class,
-+				    struct intel_engine_cs **siblings)
-+{
-+	unsigned int n = 0;
-+	unsigned int inst;
-+
-+	for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
-+		if (!gt->engine_class[class][inst])
-+			continue;
-+
-+		siblings[n++] = gt->engine_class[class][inst];
-+	}
-+
-+	return n;
-+}
-+
- static int live_virtual_engine(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	unsigned int class, inst;
-+	unsigned int class;
- 	int err;
- 
- 	if (intel_uc_uses_guc_submission(&gt->uc))
-@@ -3624,13 +3641,7 @@ static int live_virtual_engine(void *arg)
- 	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
- 		int nsibling, n;
- 
--		nsibling = 0;
--		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
--			if (!gt->engine_class[class][inst])
--				continue;
--
--			siblings[nsibling++] = gt->engine_class[class][inst];
--		}
-+		nsibling = select_siblings(gt, class, siblings);
- 		if (nsibling < 2)
- 			continue;
- 
-@@ -3739,7 +3750,7 @@ static int live_virtual_mask(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
--	unsigned int class, inst;
-+	unsigned int class;
- 	int err;
- 
- 	if (intel_uc_uses_guc_submission(&gt->uc))
-@@ -3748,13 +3759,7 @@ static int live_virtual_mask(void *arg)
- 	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
- 		unsigned int nsibling;
- 
--		nsibling = 0;
--		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
--			if (!gt->engine_class[class][inst])
--				break;
--
--			siblings[nsibling++] = gt->engine_class[class][inst];
--		}
-+		nsibling = select_siblings(gt, class, siblings);
- 		if (nsibling < 2)
- 			continue;
- 
-@@ -3876,7 +3881,7 @@ static int live_virtual_preserved(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
--	unsigned int class, inst;
-+	unsigned int class;
- 
- 	/*
- 	 * Check that the context image retains non-privileged (user) registers
-@@ -3894,13 +3899,7 @@ static int live_virtual_preserved(void *arg)
- 	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
- 		int nsibling, err;
- 
--		nsibling = 0;
--		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
--			if (!gt->engine_class[class][inst])
--				continue;
--
--			siblings[nsibling++] = gt->engine_class[class][inst];
--		}
-+		nsibling = select_siblings(gt, class, siblings);
- 		if (nsibling < 2)
- 			continue;
- 
-@@ -4111,7 +4110,7 @@ static int live_virtual_bond(void *arg)
- 	};
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
--	unsigned int class, inst;
-+	unsigned int class;
- 	int err;
- 
- 	if (intel_uc_uses_guc_submission(&gt->uc))
-@@ -4121,14 +4120,7 @@ static int live_virtual_bond(void *arg)
- 		const struct phase *p;
- 		int nsibling;
- 
--		nsibling = 0;
--		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
--			if (!gt->engine_class[class][inst])
--				break;
--
--			GEM_BUG_ON(nsibling == ARRAY_SIZE(siblings));
--			siblings[nsibling++] = gt->engine_class[class][inst];
--		}
-+		nsibling = select_siblings(gt, class, siblings);
- 		if (nsibling < 2)
- 			continue;
- 
-@@ -4266,7 +4258,7 @@ static int live_virtual_reset(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
--	unsigned int class, inst;
-+	unsigned int class;
- 
- 	/*
- 	 * Check that we handle a reset event within a virtual engine.
-@@ -4284,13 +4276,7 @@ static int live_virtual_reset(void *arg)
- 	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
- 		int nsibling, err;
- 
--		nsibling = 0;
--		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
--			if (!gt->engine_class[class][inst])
--				continue;
--
--			siblings[nsibling++] = gt->engine_class[class][inst];
--		}
-+		nsibling = select_siblings(gt, class, siblings);
- 		if (nsibling < 2)
- 			continue;
- 
--- 
-2.20.1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
