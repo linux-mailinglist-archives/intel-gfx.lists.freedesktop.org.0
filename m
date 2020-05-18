@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F361D8B45
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 00:50:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22A41D8B75
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB9F6E4A2;
-	Mon, 18 May 2020 22:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 316106E157;
+	Mon, 18 May 2020 23:07:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9FE5A6E4A1;
- Mon, 18 May 2020 22:50:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B632A6E157;
+ Mon, 18 May 2020 23:07:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 99A50A432F;
- Mon, 18 May 2020 22:50:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B4249A0BA8;
+ Mon, 18 May 2020 23:07:07 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 18 May 2020 22:50:40 -0000
-Message-ID: <158984224059.31688.14095484956104720105@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Date: Mon, 18 May 2020 23:07:07 -0000
+Message-ID: <158984322773.31686.13452132913319989342@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200518181423.6035-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200518181423.6035-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Check_for_an_initial-breadcrumb_in_wait=5Ffo?=
- =?utf-8?q?r=5Fsubmit=28=29?=
+References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Resolve_device_hotunplug_issues?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,96 +47,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/selftests: Check for an initial-breadcrumb in wait_for_submit()
-URL   : https://patchwork.freedesktop.org/series/77371/
-State : failure
+Series: drm/i915: Resolve device hotunplug issues
+URL   : https://patchwork.freedesktop.org/series/77372/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8498 -> Patchwork_17700
-====================================================
+$ dim checkpatch origin/drm-tip
+4d3df739b858 drm/i915: Drop user contexts on driver remove
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#19: 
+<4> [36.901117] CPU: 0 PID: 39 Comm: kworker/u8:1 Tainted: G     U  W         5.7.0-rc5-CI-CI_DRM_8485+ #1
 
-Summary
--------
+-:66: WARNING:UNNECESSARY_INT: Prefer 'unsigned long' over 'unsigned long int' as the int is unnecessary
+#66: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:937:
++		unsigned long int id;
 
-  **FAILURE**
+-:73: WARNING:UNNECESSARY_INT: Prefer 'unsigned long' over 'unsigned long int' as the int is unnecessary
+#73: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:944:
++			unsigned long int idx;
 
-  Serious unknown changes coming with Patchwork_17700 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17700, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 3 warnings, 0 checks, 59 lines checked
+8fd9c3d7066d drm/i915: Release GT resources on driver remove
+-:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#22: 
+<4> [39.201162] CPU: 6 PID: 7 Comm: kworker/u16:0 Tainted: G     U  W         5.7.0-rc5-CI-CI_DRM_8485+ #1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17700/index.html
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+6790fa9abcae drm/i915: Move GGTT cleanup from driver_release to _remove
+-:57: WARNING:BAD_SIGN_OFF: Duplicate signature
+#57: 
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-Possible new issues
--------------------
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+721e7aad8fe5 drm/i915: Move UC firmware cleanup from driver_release to _remove
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+<4> [93.336056] WARNING: CPU: 6 PID: 200 at drivers/gpu/drm/i915/intel_runtime_pm.c:361 __intel_runtime_pm_get+0x4d/0x60 [i915]
 
-  Here are the unknown changes that may have been introduced in Patchwork_17700:
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
 
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17700/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17700 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#1803])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-tgl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17700/fi-tgl-y/igt@i915_selftest@live@execlists.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][5] ([fdo#109271]) -> [FAIL][6] ([i915#62])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17700/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8498 -> Patchwork_17700
-
-  CI-20190529: 20190529
-  CI_DRM_8498: 1493c649ae92207a758afa50a639275bd6c80e2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17700: 45dd86e4e757389f0092db49380a1587abb41da3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-45dd86e4e757 drm/i915/selftests: Check for an initial-breadcrumb in wait_for_submit()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17700/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
