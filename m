@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD8E1D7258
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 09:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7DF1D725D
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 09:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7630489DB4;
-	Mon, 18 May 2020 07:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4B36E130;
+	Mon, 18 May 2020 07:58:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F11189DA7
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 07:58:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 393B489DA7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 07:58:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21226009-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21226010-1500050 
  for multiple; Mon, 18 May 2020 08:57:51 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 08:57:45 +0100
-Message-Id: <20200518075750.17223-3-chris@chris-wilson.co.uk>
+Date: Mon, 18 May 2020 08:57:46 +0100
+Message-Id: <20200518075750.17223-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200518075750.17223-1-chris@chris-wilson.co.uk>
 References: <20200518075750.17223-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/8] drm/i915/gt: Reuse the tasklet priority for
- virtual as their siblings
+Subject: [Intel-gfx] [PATCH 4/8] drm/i915/gt: Kick virtual siblings on
+ timeslice out
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,36 +45,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to keep all the tasklets in the same execution lists and so
-fifo ordered, be consistent and use the same priority for all.
+If we decide to timeslice out the current virtual request, we will
+unsubmit it while it is still busy (ve->context.inflight == sibling[0]).
+If the virtual tasklet and then the other sibling tasklets run before we
+completely schedule out the active virtual request for the preemption,
+those other tasklets will see that the virtul request is still inflight
+on sibling[0] and leave it be. Therefore when we finally schedule-out
+the virtual request and if we see that we have passed it back to the
+virtual engine, reschedule the virtual tasklet so that it may be
+resubmitted on any of the siblings.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index e597325d04f1..80885ba87db5 100644
+index 80885ba87db5..05486e801a63 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1403,7 +1403,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+@@ -1402,7 +1402,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
  	struct i915_request *next = READ_ONCE(ve->request);
  
- 	if (next && next->execution_mask & ~rq->execution_mask)
--		tasklet_schedule(&ve->base.execlists.tasklet);
-+		tasklet_hi_schedule(&ve->base.execlists.tasklet);
+-	if (next && next->execution_mask & ~rq->execution_mask)
++	if (next == rq || (next && next->execution_mask & ~rq->execution_mask))
+ 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
  }
  
- static inline void
-@@ -5560,7 +5560,7 @@ static void virtual_submit_request(struct i915_request *rq)
- 		GEM_BUG_ON(!list_empty(virtual_queue(ve)));
- 		list_move_tail(&rq->sched.link, virtual_queue(ve));
- 
--		tasklet_schedule(&ve->base.execlists.tasklet);
-+		tasklet_hi_schedule(&ve->base.execlists.tasklet);
- 	}
- 
- 	spin_unlock_irqrestore(&ve->base.active.lock, flags);
 -- 
 2.20.1
 
