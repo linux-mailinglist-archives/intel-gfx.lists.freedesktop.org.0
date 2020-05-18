@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CFA1D8B76
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 793DA1D8B83
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:14:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F11789D4A;
-	Mon, 18 May 2020 23:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE2836E4AF;
+	Mon, 18 May 2020 23:14:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 85CB789D4A;
- Mon, 18 May 2020 23:08:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83906A0BA8;
- Mon, 18 May 2020 23:08:17 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 791FA6E4A7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 23:14:16 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21236095-1500050 
+ for multiple; Tue, 19 May 2020 00:14:08 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 19 May 2020 00:14:04 +0100
+Message-Id: <20200518231407.6837-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Mon, 18 May 2020 23:08:17 -0000
-Message-ID: <158984329753.31686.10827235314175924579@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_Resolve_device_hotunplug_issues?=
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Don't set queue-priority hint
+ when supressing the reschedule
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,74 +37,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We recorded the execlists->queue_priority_hint update for the inflight
+request without kicking the tasklet. The next submitted request then
+failed to be scheduled as it had a lower priority than the hint, leaving
+the HW runnning with only the inflight request.
 
-Series: drm/i915: Resolve device hotunplug issues
-URL   : https://patchwork.freedesktop.org/series/77372/
-State : warning
+Fixes: 6cebcf746f3f ("drm/i915: Tweak scheduler's kick_submission()")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_scheduler.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index f4ea318781f0..cbb880b10c65 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -209,14 +209,6 @@ static void kick_submission(struct intel_engine_cs *engine,
+ 	if (!inflight)
+ 		goto unlock;
+ 
+-	ENGINE_TRACE(engine,
+-		     "bumping queue-priority-hint:%d for rq:%llx:%lld, inflight:%llx:%lld prio %d\n",
+-		     prio,
+-		     rq->fence.context, rq->fence.seqno,
+-		     inflight->fence.context, inflight->fence.seqno,
+-		     inflight->sched.attr.priority);
+-	engine->execlists.queue_priority_hint = prio;
 -
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2312:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2313:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2314:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2315:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2316:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2317:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/compiler.h:199:9: warning: context imbalance in 'engines_sample' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+ 	/*
+ 	 * If we are already the currently executing context, don't
+ 	 * bother evaluating if we should preempt ourselves.
+@@ -224,6 +216,14 @@ static void kick_submission(struct intel_engine_cs *engine,
+ 	if (inflight->context == rq->context)
+ 		goto unlock;
+ 
++	ENGINE_TRACE(engine,
++		     "bumping queue-priority-hint:%d for rq:%llx:%lld, inflight:%llx:%lld prio %d\n",
++		     prio,
++		     rq->fence.context, rq->fence.seqno,
++		     inflight->fence.context, inflight->fence.seqno,
++		     inflight->sched.attr.priority);
++
++	engine->execlists.queue_priority_hint = prio;
+ 	if (need_preempt(prio, rq_prio(inflight)))
+ 		tasklet_hi_schedule(&engine->execlists.tasklet);
+ 
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
