@@ -2,44 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3241D7118
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 08:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED49E1D717A
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 09:06:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8AAF6E11C;
-	Mon, 18 May 2020 06:33:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA8E89EA9;
+	Mon, 18 May 2020 07:06:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 933D96E11C
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 06:33:33 +0000 (UTC)
-IronPort-SDR: QTAFeCrO5mj6jToo78hcwxhGIZBAhd7h6bnDD7aN73+JpQuMtRnsdq/GZW/qFAZNKTcubLj/k+
- /sWxehpNadsw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2020 23:33:33 -0700
-IronPort-SDR: KIE4eUOm/OA2bvkXrOOL24yT0+EKJC1emx1eNX3aPOUqk9yN4XaS7l1zJObT1MU6QYUPImFvaL
- ODrr6n7EtPPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="252795439"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 May 2020 23:33:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 May 2020 09:33:29 +0300
-Date: Mon, 18 May 2020 09:33:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200518063329.GR6112@intel.com>
-References: <20200516161542.8032-1-ville.syrjala@linux.intel.com>
- <20200517121234.GA7704@intel.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1134B89EA9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 07:06:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1589785592;
+ bh=7hW4F41FdA0aMiYC2DflGM8bHCXJ6yKbBjWxEHa9OJo=;
+ h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+ b=F2EMdFl3dbWoN5QcSZCG85fVVKSCxjevSF0JI2zgqf4QAMlYc8r6PcDkHtX/bRjp9
+ 9rz8aXEMnChx1fVfGuxlI7+DZ95zMwOrjo2zS3UkNaulg4mIBsR+C5cPdac+yYmElX
+ 8oK4klX5Kv5WqBXYf0OUWJkFUiYL3bQYA/+04t8Q=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.3.24] ([46.85.162.73]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MjS9I-1jBwCg20mQ-00kvAt; Mon, 18
+ May 2020 09:06:32 +0200
+To: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
+References: <aab05507-450d-5643-20af-500dec6bc59b@gmx.li>
+From: Arno <star@gmx.li>
+Message-ID: <fab11a35-be96-40c4-3572-6879eb39364a@gmx.li>
+Date: Mon, 18 May 2020 09:06:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200517121234.GA7704@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix dbuf slice mask when turning
- off all the pipes
+In-Reply-To: <aab05507-450d-5643-20af-500dec6bc59b@gmx.li>
+Content-Language: en-US
+X-Provags-ID: V03:K1:mNTG/MuGurcE24U3WSLN7U0gw0IZqk9WhQGlmjik7KuNDBSazVU
+ LJccfOkdkKtXfGZViB3Nk+LP1kipZMXmY8QYbDQ9s9l8xpqWek/JaIjzx9FvTIaZAr7JpCr
+ hc1nZ7AwgbJ6aeVlUPoabOdp41z5RGREPYWBBioiHXMmUpLwPYTMmJ84s36o+B7rVy4gTYG
+ +owbByR2V7d3ojBB/HtXw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Q37BluNpCqc=:DlyMoIAliygRyS8D6kWiSO
+ +LbfLjCn4nTHjhB2lUrXT498xglfbjAAr8PG11LSpMPn9uAtlSrIc6iuLGTcWZx9b2Ds/Um7G
+ nCJlY5aVdyR5Us9n4/3Md84IZGp45Z7oEctEZX/AlJBqA1b/mcwcNkAicugpm0KDuwa0A43e3
+ 4shSfsXYtVRlutcvUP95Dfvx6kcDqGwkLESDUawk0qRd8dUWqFjNbXm9eVFATiFUItjCHyhAu
+ UX743sLSZfP4dxDvOkVRNzYqwv4h19Bj40bGvixDnFGUjfC6hX6fJOWcEcPjr0vkn/0iMn22D
+ uETQL1y2hmYlWmSHE33B12W4jR7Rdh8a/42D1b4G+heyQSRJRlEJLCPmou+c0itoKa/k4mVWg
+ cYCTfz96JSSjIHl82O9C4AnSSCk/54mf9AznRRJ06MFSy0FusuhYb4AC6fHcZM6n5qZKGNPp1
+ /8xU67EkGhrMymQhbt7ZOe/1gkHWsbyqGtt3AmdeXTPI8UjLeiyePd+mGaC1zPwUwAjlVbNLb
+ GMtHJ5lubJrRxvEGavzylmHHTsP42pKPD1Sf67Zy3Knbox1jI6tt1XoiPxlwEiyTJkcnjSdxr
+ TZunvq3wNRvLj7RntRStQZOVrA1DD/v4uz2B/s3NkWRtaYs7sf9GImByPhkyFl97sBGIZwgHa
+ wNhaXPD1ixKLMLuaNxLuVYCJaeQ2n/Wu7oCK9DXdPLvD9b7zJBl3EFEBU0M4RqMJFyduA8VVj
+ e/m3e5ytmGWTC9D9tcfois2zbNSAa9R5j0O6n/gt3myAI0fJmX3TuD7aqU+7VG/qINOVG47f4
+ 7hret+cE4dqTbSNacNGtX1gqgRfyIqBjPWFAA9eyfPxA0QBtjg00hCoaW5WnDVst/+J1cwyci
+ e/yaolBfwCR8cUadsw4MRy715PQn6D5UpTxneO4M/m25oeXuar4ie8ZGwsTd2OyqI+gcCZDt1
+ PXIECGlj5Der2Uf25yVL7aVHnOw9AgwqozNOXq7Vb0BiSmk75iFe0JfYq3vcrMlyUTb0C00PI
+ UMVnYb6w4aQKRD1LU1Py8YMQ8Fe8D17q55OoSAUdtnyGuBcUtqrx0Xe/KmADjL2pxJbj7yP6o
+ 8V20EjA17gWsZJI36OOAv9lHksRTroNbFQxr0aXRIiuQ7BpjyPR0he1hFssGF6Z/DcM0dQEp3
+ 2ExSlr2b9nA2zIxl4xtyFjy/IFCgvJWjVdDyisnO9fNvMb/AtnJ/uiKpg1DozPLflTbw0=
+Subject: Re: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR*
+ CPU pipe A FIFO underrun
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,105 +70,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0064606919=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, May 17, 2020 at 03:12:49PM +0300, Lisovskiy, Stanislav wrote:
-> On Sat, May 16, 2020 at 07:15:42PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+This is a multi-part message in MIME format.
+--===============0064606919==
+Content-Type: multipart/alternative;
+ boundary="------------3020A0786BC0570A271AB697"
+Content-Language: en-US
 
-> > The current dbuf slice computation only happens when there are
-> > active pipes. If we are turning off all the pipes we just leave
-> > the dbuf slice mask at it's previous value, which may be something
-> > other that BIT(S1). If runtime PM will kick in it will however
-> > turn off everything but S1. Then on the next atomic commit (if
-> > the new dbuf slice mask matches the stale value we left behind)
-> > the code will not turn on the other slices we now need. This will
-> > lead to underruns as the planes are trying to use a dbuf slice
-> > that's not powered up.
-> > =
+This is a multi-part message in MIME format.
+--------------3020A0786BC0570A271AB697
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-> > To work around let's just just explicitly set the dbuf slice mask
-> > to BIT(S1) when we are turning off all the pipes. Really the code
-> > should just calculate this stuff the same way regardless whether
-> > the pipes are on or off, but we're not quite there yet (need a
-> > bit more work on the dbuf state for that).
-> > =
+Is there another place to report this kind of issue? Didn't get any
+feedback. Did I make mistakes in my mail? I already tried the Ubuntu
+bug-tracker (see below) with no success.
 
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > Fixes: 3cf43cdc63fb ("drm/i915: Introduce proper dbuf state")
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/intel_pm.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > =
+Thank you,
 
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
-el_pm.c
-> > index a21e36ed1a77..4a523d8b881f 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -4071,6 +4071,22 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i9=
-15_private *dev_priv,
-> >  	*num_active =3D hweight8(active_pipes);
-> >  =
+Arno
 
-> >  	if (!crtc_state->hw.active) {
-> > +		/*
-> > +		 * FIXME hack to make sure we compute this sensibly when
-> > +		 * turning off all the pipes. Otherwise we leave it at
-> > +		 * whatever we had previously, and then runtime PM will
-> > +		 * mess it up by turning off all but S1. Remove this
-> > +		 * once the dbuf state computation flow becomes sane.
-> > +		 */
-> > +		if (active_pipes =3D=3D 0) {
-> > +			new_dbuf_state->enabled_slices =3D BIT(DBUF_S1);
-> > +
-> > +			if (old_dbuf_state->enabled_slices !=3D new_dbuf_state->enabled_sli=
-ces) {
-> > +				ret =3D intel_atomic_serialize_global_state(&new_dbuf_state->base);
-> > +				if (ret)
-> > +					return ret;
-> > +			}
-> > +		}
-> =
 
-> Rather weird, why we didnt have that issue before..
-> Just trying to figure out what's the reason - aren't we recovering the la=
-st
-> state of enabled slices from hw in gen9_dbuf_enable?
-> =
+Am 11.05.20 um 10:18 schrieb Arno:
+>
+> My laptop (core m5-6y54) starts flickering after returning from
+> Suspend (to RAM) or other commands touching the video driver (xrandr,
+> powertop --calibrate, ...)
+>
+> From kernel (tested with up to 5.7) I get the message:
+>
+> [drm:intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU pipe A
+> FIFO underrun
+>
+> I added a bug with more details here:
+>
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1872760
+>
+> but guys from Ubuntu seems not able to help (as it is an upstream bug) !=
+?
+>
+> This happend not in older kernels, but these have the problem not to
+> go in power save states. So I think the fix of that
+>
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1863489
+>
+> causes this regression.
+>
+> Hope someone can help. For a=C2=A0 laptop it is better to have both -
+> standby and power saving. Thank you.
+>
+> Arno
+>
+>
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-> As I understand you modify enabled_slices in dbuf global object recovering
-> the actual hw state there. =
+--------------3020A0786BC0570A271AB697
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> =
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <p>Is there another place to report this kind of issue? Didn't get
+      any feedback. Did I make mistakes in my mail? I already tried the
+      Ubuntu bug-tracker (see below) with no success.</p>
+    <p>Thank you,</p>
+    <p>Arno<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">Am 11.05.20 um 10:18 schrieb Arno:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:aab05507-450d-5643-20af-500dec6bc59b@gmx.li">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
+F-8">
+      <div class=3D"moz-text-html" lang=3D"x-unicode">
+        <p>My laptop (core m5-6y54) starts flickering after returning
+          from Suspend (to RAM) or other commands touching the video
+          driver (xrandr, powertop --calibrate, ...)</p>
+        <p>From kernel (tested with up to 5.7) I get the message:</p>
+        <p id=3D"yui_3_10_3_1_1589111239449_1529">[drm:intel_<wbr>cpu_fifo=
+_<wbr>underrun_<wbr>irq_handler
+          [i915]] *ERROR* CPU pipe A FIFO underrun</p>
+        <p>I added a bug with more details here:</p>
+        <p><a class=3D"moz-txt-link-freetext"
+            href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1=
+872760"
+            moz-do-not-send=3D"true">https://bugs.launchpad.net/ubuntu/+so=
+urce/linux/+bug/1872760</a></p>
+        <p>but guys from Ubuntu seems not able to help (as it is an
+          upstream bug) !?<br>
+        </p>
+        <p>This happend not in older kernels, but these have the problem
+          not to go in power save states. So I think the fix of that=C2=A0=
+</p>
+        <p><a class=3D"moz-txt-link-freetext"
+            href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1=
+863489"
+            moz-do-not-send=3D"true">https://bugs.launchpad.net/ubuntu/+so=
+urce/linux/+bug/1863489</a></p>
+        <p>causes this regression. <br>
+        </p>
+        <p>Hope someone can help. For a=C2=A0 laptop it is better to have
+          both - standby and power saving. Thank you.</p>
+        <p>Arno<br>
+        </p>
+        <p><br>
+        </p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">_____________________________=
+__________________
+Intel-gfx mailing list
+<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:Intel-gfx@lists.freed=
+esktop.org">Intel-gfx@lists.freedesktop.org</a>
+<a class=3D"moz-txt-link-freetext" href=3D"https://lists.freedesktop.org/m=
+ailman/listinfo/intel-gfx">https://lists.freedesktop.org/mailman/listinfo/=
+intel-gfx</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
 
-> Also from your patches I don't see the actual logic difference with what =
+--------------3020A0786BC0570A271AB697--
 
-> was happening before dbuf_state in that sense.
-> I.e we were also bailing out in skl_get_pipe_alloc_limits, without modify=
-ing
-> dbuf_state before, however there was no issue.
+--===============0064606919==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-We didn't have the old state so the pre/post update hooks were comparing
-the new value against the value that was mangled by the display core init
-to match the actual hw state.
-
-The reason why it bit tgl so hard is that we tend to use two slices
-on tgl all the time, whereas on icl we use just the first slice most
-of the time.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0064606919==--
