@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A081D7C8D
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 17:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D59C31D7CD3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 17:29:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 031336E19A;
-	Mon, 18 May 2020 15:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB8E389BD2;
+	Mon, 18 May 2020 15:29:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1392E6E19A
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 15:17:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21231503-1500050 for multiple; Mon, 18 May 2020 16:17:16 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D75C89BD2;
+ Mon, 18 May 2020 15:29:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 067F4A00E7;
+ Mon, 18 May 2020 15:29:13 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <158981488331.7442.6623043854034622709@build.alporthouse.com>
-References: <20200518143947.30606-1-chris@chris-wilson.co.uk>
- <87sgfxth6k.fsf@gaia.fi.intel.com>
- <158981488331.7442.6623043854034622709@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158981503574.7442.18064081457237643535@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 18 May 2020 16:17:15 +0100
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests: Measure dispatch
- latency
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 18 May 2020 15:29:12 -0000
+Message-ID: <158981575299.31688.11320051180915366989@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200518122303.28083-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200518122303.28083-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_Revert_=22drm/i915=3A_Clean_up_dbuf?=
+ =?utf-8?q?_debugs_during_=2Eatomic=5Fcheck=28=29=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +39,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-18 16:14:43)
-> Quoting Mika Kuoppala (2020-05-18 16:07:47)
-> > Chris Wilson <chris@chris-wilson.co.uk> writes:
-> > > +             cs = emit_timestamp_store(cs, ce, offset + i * sizeof(u32));
-> > 
-> > Is the dual writes here so that when you kick the semaphore, you get the
-> > latest no matter which side you were on?
-> 
-> We wait on the first write in the CPU before releasing the semaphore. It
-> was easier to copy the code, but now it can be an emit_store_dw() to
-> make it clearer that we are not using it as timestamp -- and avoid the
-> infinite wait if we hit CS_TIMESTAMP == 0.
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index c6dff5145a3c..887171ff21a0 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -1779,7 +1779,7 @@ static int measure_busy_dispatch(struct intel_context *ce)
-                        return PTR_ERR(cs);
-                }
+Series: series starting with [1/4] Revert "drm/i915: Clean up dbuf debugs during .atomic_check()"
+URL   : https://patchwork.freedesktop.org/series/77358/
+State : failure
 
--               cs = emit_timestamp_store(cs, ce, offset + i * sizeof(u32));
-+               cs = emit_store_dw(cs, offset + i * sizeof(u32), -1);
-                cs = emit_semaphore_poll_until(cs, offset, i);
-                cs = emit_timestamp_store(cs, ce, offset + i * sizeof(u32));
+== Summary ==
 
-@@ -1802,8 +1802,10 @@ static int measure_busy_dispatch(struct intel_context *ce)
-        wait_for(READ_ONCE(sema[i - 1]), 500);
-        semaphore_set(sema, i - 1);
+CI Bug Log - changes from CI_DRM_8494 -> Patchwork_17691
+====================================================
 
--       for (i = 1; i <= COUNT; i++)
-+       for (i = 1; i <= COUNT; i++) {
-+               GEM_BUG_ON(sema[i] == -1);
-                elapsed[i - 1] = (sema[i] - elapsed[i]) << COUNT;
-+       }
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17691 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17691, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17691:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-cml-s:           [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-cml-s/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/fi-cml-s/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17691 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#1803])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-tgl-y/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/fi-tgl-y/igt@i915_selftest@live@execlists.html
+    - fi-skl-6700k2:      [PASS][5] -> [INCOMPLETE][6] ([i915#1795] / [i915#656])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-whl-u:           [INCOMPLETE][7] ([i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-whl-u/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/fi-whl-u/igt@i915_selftest@live@execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][9] ([fdo#109271]) -> [FAIL][10] ([i915#62] / [i915#95])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8494/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1795]: https://gitlab.freedesktop.org/drm/intel/issues/1795
+  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8494 -> Patchwork_17691
+
+  CI-20190529: 20190529
+  CI_DRM_8494: 3d15348fde9b998e754da0b0655baf02b98e7f17 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5657: 649eae5c905a7460b44305800f95db83a6dd47cb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17691: 0ede4a7df84889e374e588f8cf93260914a21975 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0ede4a7df848 Revert "drm/i915: Introduce proper dbuf state"
+77a3d0811ea1 Revert "drm/i915: Nuke skl_ddb_get_hw_state()"
+3358451aea83 Revert "drm/i915: Move the dbuf pre/post plane update"
+4de007ca5a0f Revert "drm/i915: Clean up dbuf debugs during .atomic_check()"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17691/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
