@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CF91D725A
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 09:58:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD8E1D7258
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 09:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F4989D99;
-	Mon, 18 May 2020 07:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7630489DB4;
+	Mon, 18 May 2020 07:58:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED4989DA6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F11189DA7
  for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 07:58:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21226008-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21226009-1500050 
  for multiple; Mon, 18 May 2020 08:57:51 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 08:57:44 +0100
-Message-Id: <20200518075750.17223-2-chris@chris-wilson.co.uk>
+Date: Mon, 18 May 2020 08:57:45 +0100
+Message-Id: <20200518075750.17223-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200518075750.17223-1-chris@chris-wilson.co.uk>
 References: <20200518075750.17223-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915/selftests: Add tests for
- timeslicing virtual engines
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/gt: Reuse the tasklet priority for
+ virtual as their siblings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,212 +45,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure that we can execute a virtual request on an already busy
-engine, and conversely that we can execute a normal request if the
-engines are already fully occupied by virtual requests.
+In order to keep all the tasklets in the same execution lists and so
+fifo ordered, be consistent and use the same priority for all.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 179 +++++++++++++++++++++++++
- 1 file changed, 179 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 824f99c4cc7c..1fc54359bd53 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3766,6 +3766,184 @@ static int live_virtual_mask(void *arg)
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index e597325d04f1..80885ba87db5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1403,7 +1403,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 	struct i915_request *next = READ_ONCE(ve->request);
+ 
+ 	if (next && next->execution_mask & ~rq->execution_mask)
+-		tasklet_schedule(&ve->base.execlists.tasklet);
++		tasklet_hi_schedule(&ve->base.execlists.tasklet);
  }
  
-+static int slicein_virtual_engine(struct intel_gt *gt,
-+				  struct intel_engine_cs **siblings,
-+				  unsigned int nsibling)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	struct igt_spinner spin;
-+	unsigned int n;
-+	int err = 0;
-+
-+	/*
-+	 * Virtual requests must take part in timeslicing on the target engines.
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for (n = 0; n < nsibling; n++) {
-+		ce = intel_context_create(siblings[n]);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_add(rq);
-+	}
-+
-+	ce = intel_execlists_create_virtual(siblings, nsibling);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out;
-+	}
-+
-+	rq = intel_context_create_request(ce);
-+	intel_context_put(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out;
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+	if (i915_request_wait(rq, 0, HZ / 10) < 0) {
-+		GEM_TRACE_ERR("%s(%s) failed to slice in virtual request\n",
-+			      __func__, rq->engine->name);
-+		GEM_TRACE_DUMP();
-+		intel_gt_set_wedged(gt);
-+		err = -EIO;
-+	}
-+	i915_request_put(rq);
-+
-+out:
-+	igt_spinner_end(&spin);
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int sliceout_virtual_engine(struct intel_gt *gt,
-+				   struct intel_engine_cs **siblings,
-+				   unsigned int nsibling)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	struct igt_spinner spin;
-+	unsigned int n;
-+	int err = 0;
-+
-+	/*
-+	 * Virtual requests must allow others a fair timeslice.
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for (n = 0; n <= nsibling; n++) { /* oversubscribed */
-+		ce = intel_execlists_create_virtual(siblings, nsibling);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_add(rq);
-+	}
-+
-+	for (n = 0; !err && n < nsibling; n++) {
-+		ce = intel_context_create(siblings[n]);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
-+		rq = intel_context_create_request(ce);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto out;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+		if (i915_request_wait(rq, 0, HZ / 10) < 0) {
-+			GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
-+				      __func__, siblings[n]->name);
-+			GEM_TRACE_DUMP();
-+			intel_gt_set_wedged(gt);
-+			err = -EIO;
-+		}
-+		i915_request_put(rq);
-+	}
-+
-+out:
-+	igt_spinner_end(&spin);
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int live_virtual_slice(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
-+	unsigned int class, inst;
-+	int err;
-+
-+	if (intel_uc_uses_guc_submission(&gt->uc))
-+		return 0;
-+
-+	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
-+		unsigned int nsibling;
-+
-+		nsibling = 0;
-+		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
-+			struct intel_engine_cs *engine;
-+
-+			engine = gt->engine_class[class][inst];
-+			if (!engine)
-+				break;
-+
-+			if (!intel_engine_has_timeslices(engine))
-+				continue;
-+
-+			siblings[nsibling++] = engine;
-+		}
-+		if (nsibling < 2)
-+			continue;
-+
-+		err = slicein_virtual_engine(gt, siblings, nsibling);
-+		if (err)
-+			return err;
-+
-+		err = sliceout_virtual_engine(gt, siblings, nsibling);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int preserved_virtual_engine(struct intel_gt *gt,
- 				    struct intel_engine_cs **siblings,
- 				    unsigned int nsibling)
-@@ -4329,6 +4507,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_virtual_engine),
- 		SUBTEST(live_virtual_mask),
- 		SUBTEST(live_virtual_preserved),
-+		SUBTEST(live_virtual_slice),
- 		SUBTEST(live_virtual_bond),
- 		SUBTEST(live_virtual_reset),
- 	};
+ static inline void
+@@ -5560,7 +5560,7 @@ static void virtual_submit_request(struct i915_request *rq)
+ 		GEM_BUG_ON(!list_empty(virtual_queue(ve)));
+ 		list_move_tail(&rq->sched.link, virtual_queue(ve));
+ 
+-		tasklet_schedule(&ve->base.execlists.tasklet);
++		tasklet_hi_schedule(&ve->base.execlists.tasklet);
+ 	}
+ 
+ 	spin_unlock_irqrestore(&ve->base.active.lock, flags);
 -- 
 2.20.1
 
