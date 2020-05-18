@@ -1,45 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4BC1D7550
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:36:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0FF1D7554
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2020 12:38:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBCB36E409;
-	Mon, 18 May 2020 10:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4E489C93;
+	Mon, 18 May 2020 10:38:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A68796E409
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:36:19 +0000 (UTC)
-IronPort-SDR: gxqpv+Qxb/9jNyNrdQ3FxXdyyEDmN8pzWN0985s3HvR5DyrBXCVUrmHrTuUllMQrnWOM3W4ACf
- EomYJ1jeidVg==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0090F89C93
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 10:38:15 +0000 (UTC)
+IronPort-SDR: s2mzWydrkOr0MDXUdKFJxMwnVxcThnqT/TXUS0FRq/HHiahQiFwyykIBPOB4qS8gZTTRkRIt59
+ MVMA+hHVheqA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 03:36:18 -0700
-IronPort-SDR: vj/mG1d+2LOZNmTU9wyDjEUhppTkYA60qVavu7eKAdgHFZAmjRaERdMpNLkC/mL0cy2SKRp11A
- RS+nDiQXyVzg==
-X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="439167514"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2020 03:38:15 -0700
+IronPort-SDR: PwslWymKNqiO8QpzxyOS9w002s5XPPU6WFbrLJyfahz3LYl//B5evXdiT0n/IEN5VgXYLcZ2cI
+ kZr1F6ZGqLMQ==
+X-IronPort-AV: E=Sophos;i="5.73,406,1583222400"; d="scan'208";a="439167921"
 Received: from coheno1-mobl.ger.corp.intel.com (HELO [10.214.214.153])
  ([10.214.214.153])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 03:36:18 -0700
+ 18 May 2020 03:38:14 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200518081440.17948-1-chris@chris-wilson.co.uk>
- <20200518081440.17948-5-chris@chris-wilson.co.uk>
+References: <20200518102911.3463-1-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <86ec181e-b8fe-5ce1-3c9c-e4a733f8bf65@linux.intel.com>
-Date: Mon, 18 May 2020 11:36:15 +0100
+Message-ID: <c82c986c-6de6-b229-0ac6-8b2135894e52@linux.intel.com>
+Date: Mon, 18 May 2020 11:38:11 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200518081440.17948-5-chris@chris-wilson.co.uk>
+In-Reply-To: <20200518102911.3463-1-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/gt: Incorporate the virtual
- engine into timeslicing
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Refactor sibling
+ selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,116 +57,173 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 18/05/2020 09:14, Chris Wilson wrote:
-> It was quite the oversight to only factor in the normal queue to decide
-> the timeslicing switch priority. By leaving out the next virtual request
-> from the priority decision, we would not timeslice the current engine if
-> there was an available virtual request.
+On 18/05/2020 11:29, Chris Wilson wrote:
+> Tvrtko spotted that some selftests were using 'break' not 'continue',
+> which will fail for discontiguous engine layouts such as on Icelake
+> (which may have vcs0 and vcs2).
 > 
-> Testcase: igt/gem_exec_balancer/sliced
-> Fixes: 3df2deed411e ("drm/i915/execlists: Enable timeslice on partial virtual engine dequeue")
+> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 32 ++++++++++++++++++++++-------
->   1 file changed, 25 insertions(+), 7 deletions(-)
+>   drivers/gpu/drm/i915/gt/selftest_lrc.c | 68 ++++++++++----------------
+>   1 file changed, 27 insertions(+), 41 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 05486e801a63..120efb3eaf96 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1895,7 +1895,8 @@ static void defer_active(struct intel_engine_cs *engine)
->   
->   static bool
->   need_timeslice(const struct intel_engine_cs *engine,
-> -	       const struct i915_request *rq)
-> +	       const struct i915_request *rq,
-> +	       const struct rb_node *rb)
->   {
->   	int hint;
->   
-> @@ -1903,6 +1904,24 @@ need_timeslice(const struct intel_engine_cs *engine,
->   		return false;
->   
->   	hint = engine->execlists.queue_priority_hint;
-> +
-> +	if (rb) {
-> +		const struct virtual_engine *ve =
-> +			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
-> +		const struct intel_engine_cs *inflight =
-> +			intel_context_inflight(&ve->context);
-> +
-> +		if (!inflight || inflight == engine) {
-> +			struct i915_request *next;
-> +
-> +			rcu_read_lock();
-> +			next = READ_ONCE(ve->request);
-> +			if (next)
-> +				hint = max(hint, rq_prio(next));
-> +			rcu_read_unlock();
-> +		}
-> +	}
-> +
->   	if (!list_is_last(&rq->sched.link, &engine->active.requests))
->   		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
->   
-> @@ -1977,10 +1996,9 @@ static void set_timeslice(struct intel_engine_cs *engine)
->   	set_timer_ms(&engine->execlists.timer, duration);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 824f99c4cc7c..94854a467e66 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -3600,13 +3600,30 @@ static int nop_virtual_engine(struct intel_gt *gt,
+>   	return err;
 >   }
 >   
-> -static void start_timeslice(struct intel_engine_cs *engine)
-> +static void start_timeslice(struct intel_engine_cs *engine, int prio)
+> +static unsigned int select_siblings(struct intel_gt *gt,
+> +				    unsigned int class,
+> +				    struct intel_engine_cs **siblings)
+> +{
+> +	unsigned int n = 0;
+> +	unsigned int inst;
+> +
+> +	for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> +		if (!gt->engine_class[class][inst])
+> +			continue;
+> +
+> +		siblings[n++] = gt->engine_class[class][inst];
+> +	}
+> +
+> +	return n;
+> +}
+> +
+>   static int live_virtual_engine(void *arg)
 >   {
->   	struct intel_engine_execlists *execlists = &engine->execlists;
-> -	const int prio = queue_prio(execlists);
->   	unsigned long duration;
+>   	struct intel_gt *gt = arg;
+>   	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+>   	struct intel_engine_cs *engine;
+>   	enum intel_engine_id id;
+> -	unsigned int class, inst;
+> +	unsigned int class;
+>   	int err;
 >   
->   	if (!intel_engine_has_timeslices(engine))
-> @@ -2140,7 +2158,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   			__unwind_incomplete_requests(engine);
+>   	if (intel_uc_uses_guc_submission(&gt->uc))
+> @@ -3624,13 +3641,7 @@ static int live_virtual_engine(void *arg)
+>   	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+>   		int nsibling, n;
 >   
->   			last = NULL;
-> -		} else if (need_timeslice(engine, last) &&
-> +		} else if (need_timeslice(engine, last, rb) &&
->   			   timeslice_expired(execlists, last)) {
->   			if (i915_request_completed(last)) {
->   				tasklet_hi_schedule(&execlists->tasklet);
-> @@ -2188,7 +2206,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   				 * Even if ELSP[1] is occupied and not worthy
->   				 * of timeslices, our queue might be.
->   				 */
-> -				start_timeslice(engine);
-> +				start_timeslice(engine, queue_prio(execlists));
->   				return;
->   			}
->   		}
-> @@ -2223,7 +2241,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+> -		nsibling = 0;
+> -		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> -			if (!gt->engine_class[class][inst])
+> -				continue;
+> -
+> -			siblings[nsibling++] = gt->engine_class[class][inst];
+> -		}
+> +		nsibling = select_siblings(gt, class, siblings);
+>   		if (nsibling < 2)
+>   			continue;
 >   
->   			if (last && !can_merge_rq(last, rq)) {
->   				spin_unlock(&ve->base.active.lock);
-> -				start_timeslice(engine);
-> +				start_timeslice(engine, rq_prio(rq));
->   				return; /* leave this for another sibling */
->   			}
+> @@ -3739,7 +3750,7 @@ static int live_virtual_mask(void *arg)
+>   {
+>   	struct intel_gt *gt = arg;
+>   	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> -	unsigned int class, inst;
+> +	unsigned int class;
+>   	int err;
 >   
-> @@ -5519,7 +5537,7 @@ static void virtual_submission_tasklet(unsigned long data)
->   submit_engine:
->   		GEM_BUG_ON(RB_EMPTY_NODE(&node->rb));
->   		node->prio = prio;
-> -		if (first && prio > sibling->execlists.queue_priority_hint)
-> +		if (first && prio >= sibling->execlists.queue_priority_hint)
+>   	if (intel_uc_uses_guc_submission(&gt->uc))
+> @@ -3748,13 +3759,7 @@ static int live_virtual_mask(void *arg)
+>   	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+>   		unsigned int nsibling;
+>   
+> -		nsibling = 0;
+> -		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> -			if (!gt->engine_class[class][inst])
+> -				break;
+> -
+> -			siblings[nsibling++] = gt->engine_class[class][inst];
+> -		}
+> +		nsibling = select_siblings(gt, class, siblings);
+>   		if (nsibling < 2)
+>   			continue;
+>   
+> @@ -3876,7 +3881,7 @@ static int live_virtual_preserved(void *arg)
+>   {
+>   	struct intel_gt *gt = arg;
+>   	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> -	unsigned int class, inst;
+> +	unsigned int class;
+>   
+>   	/*
+>   	 * Check that the context image retains non-privileged (user) registers
+> @@ -3894,13 +3899,7 @@ static int live_virtual_preserved(void *arg)
+>   	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+>   		int nsibling, err;
+>   
+> -		nsibling = 0;
+> -		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> -			if (!gt->engine_class[class][inst])
+> -				continue;
+> -
+> -			siblings[nsibling++] = gt->engine_class[class][inst];
+> -		}
+> +		nsibling = select_siblings(gt, class, siblings);
+>   		if (nsibling < 2)
+>   			continue;
+>   
+> @@ -4111,7 +4110,7 @@ static int live_virtual_bond(void *arg)
+>   	};
+>   	struct intel_gt *gt = arg;
+>   	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> -	unsigned int class, inst;
+> +	unsigned int class;
+>   	int err;
+>   
+>   	if (intel_uc_uses_guc_submission(&gt->uc))
+> @@ -4121,14 +4120,7 @@ static int live_virtual_bond(void *arg)
+>   		const struct phase *p;
+>   		int nsibling;
+>   
+> -		nsibling = 0;
+> -		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> -			if (!gt->engine_class[class][inst])
+> -				break;
+> -
+> -			GEM_BUG_ON(nsibling == ARRAY_SIZE(siblings));
+> -			siblings[nsibling++] = gt->engine_class[class][inst];
+> -		}
+> +		nsibling = select_siblings(gt, class, siblings);
+>   		if (nsibling < 2)
+>   			continue;
+>   
+> @@ -4266,7 +4258,7 @@ static int live_virtual_reset(void *arg)
+>   {
+>   	struct intel_gt *gt = arg;
+>   	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> -	unsigned int class, inst;
+> +	unsigned int class;
+>   
+>   	/*
+>   	 * Check that we handle a reset event within a virtual engine.
+> @@ -4284,13 +4276,7 @@ static int live_virtual_reset(void *arg)
+>   	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+>   		int nsibling, err;
+>   
+> -		nsibling = 0;
+> -		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> -			if (!gt->engine_class[class][inst])
+> -				continue;
+> -
+> -			siblings[nsibling++] = gt->engine_class[class][inst];
+> -		}
+> +		nsibling = select_siblings(gt, class, siblings);
+>   		if (nsibling < 2)
+>   			continue;
+>   
+> 
 
-I got the rest but not why this is needed?
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
 Tvrtko
-
->   			tasklet_hi_schedule(&sibling->execlists.tasklet);
->   
->   		spin_unlock(&sibling->active.lock);
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
