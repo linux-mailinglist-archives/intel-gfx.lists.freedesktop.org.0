@@ -1,38 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582471D8BA1
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:30:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1A51D8BA2
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:31:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 262CC6E29B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 644526E4B0;
 	Mon, 18 May 2020 23:30:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF7D6E29B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 977F66E4B0
  for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2020 23:30:54 +0000 (UTC)
-IronPort-SDR: Tc+qK/aGzfiicqttiziw/bDm22AaFsG8H6jqvPIJxqBT1WNanxgoyS4UqHg4pLhyvrfp4UlwK8
- VrIj7KkhIUJg==
+IronPort-SDR: 4rVKz+korj00RanRuYlW3iMLeWocrP3LxgxJoa3B9jZgwMxrnFBGTRGy7GG5ieMWLcJ2xshfDM
+ rWhmq3TjJPww==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2020 16:30:54 -0700
-IronPort-SDR: PpbfKlwQ5C1duY5bnnlBP53jbX4E68DbD77FawXmAFsRIWbgBpv2C6y6Z4y7uBH1FaZw3laW+k
- U7CbjAfDZ4qw==
+IronPort-SDR: tLI30FDg0d3E0ZoGuFKv84yWmBiWatGIfS/Ol1Ug1PY9R3BGwuXV1LphR0s2NSqZYg+z/s+Da5
+ wV6ihDJTnemg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,408,1583222400"; d="scan'208";a="299932233"
+X-IronPort-AV: E=Sophos;i="5.73,408,1583222400"; d="scan'208";a="299932235"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by orsmga008.jf.intel.com with ESMTP; 18 May 2020 16:30:53 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 16:30:48 -0700
-Message-Id: <20200518233049.19759-1-lucas.demarchi@intel.com>
+Date: Mon, 18 May 2020 16:30:49 -0700
+Message-Id: <20200518233049.19759-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200518233049.19759-1-lucas.demarchi@intel.com>
+References: <20200518233049.19759-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: move trace_i915_reg_rw() to a
- separate file
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: trace intel_uncore_*_fw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,118 +53,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we can't call trace_i915_reg_rw() from some headers due to
-include order and i915_trace.h needing some struct definitions.
-
-Move the declaration of trace_i915_reg_rw() to another file so it can be
-included separately. Note that the trace points are still defined by
-i915_trace_point.c which contains all trace points for i915. As such the
-i915_trace_reg_rw() is just declared in a separate header, but its
-definition is still in a single place.
+Now that we have the declaration of trace_i915_reg_rw() in a separate
+header, start tracing intel_uncore_*_fw() mmio-accessors.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_trace.h        | 30 ++---------------
- drivers/gpu/drm/i915/i915_trace_reg_rw.h | 42 ++++++++++++++++++++++++
- 2 files changed, 44 insertions(+), 28 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_trace_reg_rw.h
+ drivers/gpu/drm/i915/intel_uncore.h | 27 ++++++++++++++++++++++-----
+ 1 file changed, 22 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index bc854ad60954..24b8e41600af 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -914,34 +914,6 @@ DEFINE_EVENT(i915_request, i915_request_wait_end,
- 	    TP_ARGS(rq)
- );
+diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+index 8d3aa8b9acf9..0f95b32ff0f0 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.h
++++ b/drivers/gpu/drm/i915/intel_uncore.h
+@@ -31,6 +31,7 @@
+ #include <linux/io-64-nonatomic-lo-hi.h>
  
--TRACE_EVENT_CONDITION(i915_reg_rw,
--	TP_PROTO(bool write, i915_reg_t reg, u64 val, int len, bool trace),
--
--	TP_ARGS(write, reg, val, len, trace),
--
--	TP_CONDITION(trace),
--
--	TP_STRUCT__entry(
--		__field(u64, val)
--		__field(u32, reg)
--		__field(u16, write)
--		__field(u16, len)
--		),
--
--	TP_fast_assign(
--		__entry->val = (u64)val;
--		__entry->reg = i915_mmio_reg_offset(reg);
--		__entry->write = write;
--		__entry->len = len;
--		),
--
--	TP_printk("%s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
--		__entry->write ? "write" : "read",
--		__entry->reg, __entry->len,
--		(u32)(__entry->val & 0xffffffff),
--		(u32)(__entry->val >> 32))
--);
--
- TRACE_EVENT(intel_gpu_freq_change,
- 	    TP_PROTO(u32 freq),
- 	    TP_ARGS(freq),
-@@ -1031,6 +1003,8 @@ DEFINE_EVENT(i915_context, i915_context_free,
- 	TP_ARGS(ctx)
- );
- 
+ #include "i915_reg.h"
 +#include "i915_trace_reg_rw.h"
-+
- #endif /* _I915_TRACE_H_ */
  
- /* This part must be outside protection */
-diff --git a/drivers/gpu/drm/i915/i915_trace_reg_rw.h b/drivers/gpu/drm/i915/i915_trace_reg_rw.h
-new file mode 100644
-index 000000000000..2b0f2f00fbc9
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_trace_reg_rw.h
-@@ -0,0 +1,42 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
+ struct drm_i915_private;
+ struct intel_runtime_pm;
+@@ -348,8 +349,9 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+ #undef __uncore_read
+ #undef __uncore_write
+ 
+-/* These are untraced mmio-accessors that are only valid to be used inside
+- * critical sections, such as inside IRQ handlers, where forcewake is explicitly
 +/*
-+ * protect against inclusions if it has already being included by the main file
-+ */
-+#if !defined(_I915_TRACE_REG_RW_H_) ||  defined(TRACE_HEADER_MULTI_READ)
-+#define _I915_TRACE_REG_RW_H_
++ * These are mmio-accessors that are only valid to be used inside critical
++ * sections, such as inside IRQ handlers, where forcewake is explicitly
+  * controlled.
+  *
+  * Think twice, and think again, before using these.
+@@ -374,9 +376,24 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+  * therefore generally be serialised, by either the dev_priv->uncore.lock or
+  * a more localised lock guarding all access to that bank of registers.
+  */
+-#define intel_uncore_read_fw(...) __raw_uncore_read32(__VA_ARGS__)
+-#define intel_uncore_write_fw(...) __raw_uncore_write32(__VA_ARGS__)
+-#define intel_uncore_write64_fw(...) __raw_uncore_write64(__VA_ARGS__)
++#define intel_uncore_read_fw(uncore, reg) ({ \
++	typeof(reg) reg___ = reg; \
++	u32 val___ = __raw_uncore_read32(uncore, (reg___)); \
++	trace_i915_reg_rw(false, reg___, val___, sizeof(val___), true); \
++	val___; })
 +
-+#include <linux/stringify.h>
-+#include <linux/types.h>
-+#include <linux/tracepoint.h>
++#define intel_uncore_write_fw(uncore, reg, val) ({ \
++	typeof(reg) reg___ = reg; \
++	typeof(val) val___ =  val; \
++	trace_i915_reg_rw(true, reg___, val___, sizeof(val___), true); \
++	__raw_uncore_write32(uncore, reg___, val___); })
 +
-+#include "i915_reg.h"
++#define intel_uncore_write64_fw(uncore, reg, val) ({ \
++	typeof(reg) reg___ = reg; \
++	typeof(val) val___ =  val; \
++	trace_i915_reg_rw(true, reg___, val___, sizeof(val___), true); \
++	__raw_uncore_write64(uncore, reg___, val___); })
 +
-+TRACE_EVENT_CONDITION(i915_reg_rw,
-+	TP_PROTO(bool write, i915_reg_t reg, u64 val, int len, bool trace),
-+
-+	TP_ARGS(write, reg, val, len, trace),
-+
-+	TP_CONDITION(trace),
-+
-+	TP_STRUCT__entry(
-+		__field(u64, val)
-+		__field(u32, reg)
-+		__field(u16, write)
-+		__field(u16, len)
-+		),
-+
-+	TP_fast_assign(
-+		__entry->val = (u64)val;
-+		__entry->reg = i915_mmio_reg_offset(reg);
-+		__entry->write = write;
-+		__entry->len = len;
-+		),
-+
-+	TP_printk("%s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
-+		__entry->write ? "write" : "read",
-+		__entry->reg, __entry->len,
-+		(u32)(__entry->val & 0xffffffff),
-+		(u32)(__entry->val >> 32))
-+);
-+
-+#endif
+ #define intel_uncore_posting_read_fw(...) ((void)intel_uncore_read_fw(__VA_ARGS__))
+ 
+ static inline void intel_uncore_rmw(struct intel_uncore *uncore,
 -- 
 2.26.0
 
