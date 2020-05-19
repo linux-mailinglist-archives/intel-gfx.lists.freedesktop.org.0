@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDC71D9F08
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 20:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B97E01D9F2D
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 20:22:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C14DF6E053;
-	Tue, 19 May 2020 18:20:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125D86E451;
+	Tue, 19 May 2020 18:22:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5CA126E053;
- Tue, 19 May 2020 18:20:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 55723A47DB;
- Tue, 19 May 2020 18:20:29 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F8A6E451
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:22:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21232245-1500050 
+ for multiple; Tue, 19 May 2020 19:22:14 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 19 May 2020 19:22:13 +0100
+Message-Id: <20200519182213.13284-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 19 May 2020 18:20:29 -0000
-Message-ID: <158991242932.31236.682019072250313408@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519132756.682888-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200519132756.682888-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
- =?utf-8?q?-fence=3A_add_might=5Fsleep_annotation_to_=5Fwait=28=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Suppress some random warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,85 +36,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Leave the error propagation in place, but limit the warnings to only
+show up in CI if the unlikely errors are hit.
 
-Series: dma-fence: add might_sleep annotation to _wait()
-URL   : https://patchwork.freedesktop.org/series/77417/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 +--
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c       | 3 +--
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 3 +--
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c    | 2 +-
+ 4 files changed, 4 insertions(+), 7 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index e4fb6c372537..219a36995b96 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1626,8 +1626,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+ 			err = i915_vma_bind(target->vma,
+ 					    target->vma->obj->cache_level,
+ 					    PIN_GLOBAL, NULL);
+-			if (drm_WARN_ONCE(&i915->drm, err,
+-				      "Unexpected failure to bind target VMA!"))
++			if (err)
+ 				return err;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+index 4c1c7232b024..12245a47e5fb 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+@@ -27,8 +27,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
+ 	void *dst;
+ 	int i;
+ 
+-	if (drm_WARN_ON(obj->base.dev,
+-			i915_gem_object_needs_bit17_swizzle(obj)))
++	if (GEM_WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
+ 		return -EINVAL;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index 5d5d7eef3f43..19dd21a95c47 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -148,8 +148,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 		last_pfn = page_to_pfn(page);
+ 
+ 		/* Check that the i965g/gm workaround works. */
+-		drm_WARN_ON(&i915->drm,
+-			    (gfp & __GFP_DMA32) && (last_pfn >= 0x00100000UL));
++		GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
+ 	}
+ 	if (sg) { /* loop terminated early; short sg table */
+ 		sg_page_sizes |= sg->length;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 8b0708708671..ec9d25680b41 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -235,7 +235,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
+ 	if (flags & I915_USERPTR_UNSYNCHRONIZED)
+ 		return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
+ 
+-	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
++	if (GEM_WARN_ON(obj->userptr.mm == NULL))
+ 		return -EINVAL;
+ 
+ 	mn = i915_mmu_notifier_find(obj->userptr.mm);
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8505 -> Patchwork_17713
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17713/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17713 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-bwr-2160:        [INCOMPLETE][1] ([i915#489]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8505/fi-bwr-2160/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17713/fi-bwr-2160/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][3] ([i915#227]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8505/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17713/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8505 -> Patchwork_17713
-
-  CI-20190529: 20190529
-  CI_DRM_8505: dd6f7db19af1ccb376719c8759afe6be9107315c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5660: bf43e3e45a17c16094fb3a47b363ccf1c95c28b9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17713: aa2f5c93ddcf64cf5de53d7d628cf6a70a109a35 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-aa2f5c93ddcf dma-fence: add might_sleep annotation to _wait()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17713/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
