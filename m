@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED941D8BE2
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 01:55:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32561D8C01
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 02:05:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084936E4B6;
-	Mon, 18 May 2020 23:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A256E21D;
+	Tue, 19 May 2020 00:05:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D779E6E21D;
- Mon, 18 May 2020 23:55:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CAB0BA00E7;
- Mon, 18 May 2020 23:55:28 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 18 May 2020 23:55:28 -0000
-Message-ID: <158984612879.31688.16334073804910962794@emeril.freedesktop.org>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF216E21D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 00:05:05 +0000 (UTC)
+IronPort-SDR: wMHfo2Lc1lVwtwVRQrYs85ATVQkCmqpdbVWDA4pN7mDXdHDrcLRYZ4s4aM+PdZ6tFGl4Vs90Lv
+ us/QQgLLKGLw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2020 17:05:04 -0700
+IronPort-SDR: pjWzAfHiddcTvTILw9C9ONfY2tFHGZamsoQG0rRWZ9FgdYR51SC55VJRBfAOr8kuxFjhnoETR2
+ PWEn1+iWmtKg==
+X-IronPort-AV: E=Sophos;i="5.73,408,1583222400"; d="scan'208";a="465770421"
+Received: from hyalamat-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.40.114])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2020 17:05:04 -0700
+Date: Mon, 18 May 2020 17:05:03 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200519000503.vdnambevshqueytl@ldmartin-desk1>
 X-Patchwork-Hint: ignore
-References: <20200518231407.6837-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200518231407.6837-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Don=27t_set_queue-prior?=
- =?utf-8?q?ity_hint_when_supressing_the_reschedule?=
+References: <20200518233049.19759-1-lucas.demarchi@intel.com>
+ <20200518233049.19759-2-lucas.demarchi@intel.com>
+ <158984490283.30033.8938623497603666915@build.alporthouse.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <158984490283.30033.8938623497603666915@build.alporthouse.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: trace intel_uncore_*_fw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +50,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 19, 2020 at 12:35:02AM +0100, Chris Wilson wrote:
+>Quoting Lucas De Marchi (2020-05-19 00:30:49)
+>> Now that we have the declaration of trace_i915_reg_rw() in a separate
+>> header, start tracing intel_uncore_*_fw() mmio-accessors.
+>
+>These were untraced on purpose.
 
-Series: series starting with [1/4] drm/i915: Don't set queue-priority hint when supressing the reschedule
-URL   : https://patchwork.freedesktop.org/series/77377/
-State : success
+humn... can you share why? I didn't find the purpose of being untraced
+anywhere.
 
-== Summary ==
+Right now I'm debugging the WA initialization and found it helpful to be
+able to trace them - https://gitlab.freedesktop.org/drm/intel/-/issues/1222#note_503179
 
-CI Bug Log - changes from CI_DRM_8498 -> Patchwork_17702
-====================================================
+thanks
+Lucas De Marchi
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17702/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17702 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][1] ([fdo#109271]) -> [FAIL][2] ([i915#62] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17702/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (52 -> 45)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8498 -> Patchwork_17702
-
-  CI-20190529: 20190529
-  CI_DRM_8498: 1493c649ae92207a758afa50a639275bd6c80e2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17702: c9d0c46590ba517d45fc548ffdac9d81a19ddd37 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c9d0c46590ba drm/i915/selftests: Check for an initial-breadcrumb in wait_for_submit()
-01cc89bf4af8 drm/i915/selftests: Restore to default heartbeat
-4aca4773f1ae drm/i915/selftests: Change priority overflow detection
-c3388b20997e drm/i915: Don't set queue-priority hint when supressing the reschedule
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17702/index.html
+>-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
