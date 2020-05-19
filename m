@@ -1,55 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A281D9FF3
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 20:47:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1148F1DA260
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 22:17:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 154E989B97;
-	Tue, 19 May 2020 18:47:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C3D6E38A;
+	Tue, 19 May 2020 20:17:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10FD26E453
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:47:46 +0000 (UTC)
-IronPort-SDR: wZFTJdmK8dAFJdGByFjtcZwWgCD0ZhIYWiKd8LakRQqa6evOv6uGph9C6I5tkcBzVzoW8P2/rL
- qJAumDdSiBTA==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2A236E38A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 20:17:11 +0000 (UTC)
+IronPort-SDR: HQXXSWElucTfyFBhE2HDdzWmldICvHtmF2PJKne0Sph+/XkK1V/79l9QH5KkGYKdICyH6XUbUQ
+ NsTzcQjiGU3Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2020 11:47:45 -0700
-IronPort-SDR: pRJqSQo1d+hOHEV3f4hSdKziTJKyttQjX+FIT6k1Dg8cKBz+n5St/KtUjcsvu4CLlTW79hQnPe
- Qm+7pxkaFJIA==
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2020 13:17:10 -0700
+IronPort-SDR: q/tu3ILSlP6TOCu4vIvcDaJI4aRPRlb2+rsDwjTxOSbgamHc9duz60kQ36fRl4B3hfwhYT9W/f
+ xCTm6cLFXASg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,410,1583222400"; d="scan'208";a="466083687"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
- by fmsmga005.fm.intel.com with ESMTP; 19 May 2020 11:47:45 -0700
-Received: from orsmsx126.amr.corp.intel.com (10.22.240.126) by
- ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 19 May 2020 11:47:44 -0700
-Received: from orsmsx115.amr.corp.intel.com ([169.254.4.3]) by
- ORSMSX126.amr.corp.intel.com ([169.254.4.235]) with mapi id 14.03.0439.000;
- Tue, 19 May 2020 11:47:44 -0700
-From: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
-To: "Atwood, Matthew S" <matthew.s.atwood@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
-Thread-Index: AQHWLfoqDoCzcpe6a0KGK1DZ2YGUBaivvmdQ
-Date: Tue, 19 May 2020 18:47:43 +0000
-Message-ID: <09614FAEEEACB8419B519675A649C8BF89A44680@ORSMSX115.amr.corp.intel.com>
-References: <20200519162534.10035-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200519162534.10035-1-matthew.s.atwood@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.140]
+X-IronPort-AV: E=Sophos;i="5.73,410,1583222400"; d="scan'208";a="466265148"
+Received: from sdhanava-desk2.jf.intel.com ([10.165.21.144])
+ by fmsmga006.fm.intel.com with ESMTP; 19 May 2020 13:17:10 -0700
+From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 19 May 2020 13:12:56 -0700
+Message-Id: <20200519201256.31226-1-swathi.dhanavanthri@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
+Subject: [Intel-gfx] [PATCH v2] drm/i915/ehl: Extend w/a 14010685332 to
+ JSP/MCC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,50 +50,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Maybe we can add JSL to the comment too.
-Other than that looks good to me.
+This is a permanent w/a for JSL/EHL.This is to be applied to the
+PCH types on JSL/EHL ie JSP/MCC
+Bspec: 52888
 
-Reviewed-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+v2: Fixed the wrong usage of logical OR(ville)
 
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Atwood
-Sent: Tuesday, May 19, 2020 9:26 AM
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
-
-Reflect recent Bspec changes.
-
-Bspec: 33451
-
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/i915_irq.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 90a2b9e399b0..fa1e15657663 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1484,6 +1484,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		wa_write_or(wal,
- 			    GEN7_FF_THREAD_MODE,
- 			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
-+
-+		/* Wa_22010271021:ehl */
-+		if (IS_ELKHARTLAKE(i915))
-+			wa_masked_en(wal,
-+				     GEN9_CS_DEBUG_MODE1,
-+				     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 4dc601dffc08..d60a66d8eb40 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2902,8 +2902,9 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+ 		GEN3_IRQ_RESET(uncore, SDE);
  
- 	if (IS_GEN_RANGE(i915, 9, 12)) {
+-	/* Wa_14010685332:icl */
+-	if (INTEL_PCH_TYPE(dev_priv) == PCH_ICP) {
++	/* Wa_14010685332:icl,jsl,ehl */
++	if ((INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) &&
++	   (INTEL_PCH_TYPE(dev_priv) <= PCH_MCC)) {
+ 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+ 				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+ 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
 -- 
-2.21.3
+2.20.1
 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
