@@ -1,56 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D09E1DA5E2
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 01:57:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF711DA5E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 01:59:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1E946E45E;
-	Tue, 19 May 2020 23:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC9446E486;
+	Tue, 19 May 2020 23:59:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89A706E45E
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 23:57:40 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id 50so1239975wrc.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 16:57:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3IVjLuF1pQZ0weED//GY3xwIzkFFebcdevr/PKP6Y2o=;
- b=aQT9DdlrSQ02hsQKdM49JsY+muoHrd5P7NMn+uLKdFLtFa2W53dVhok12/5TJqQE1L
- CXF6x9Mh8QihjVEPpldKjVzYyHM1i/qup5T60xiBqO+BiFE+f9kDC+SM/glC9Bjdah6t
- f8XLELS7x1LM1lRz2gQFYj/HrWcTe/ohL6sEa02wJX6mNjCNebDALHie+H86Rmx9Dmcx
- Zb99t7L37HcknL2BulQO18szCft/PuW4Bf2rDKi83ynrcQP5f+VmiU/UKlpHnbTpyalx
- 55Q5gY73otVOxbYyY71Z80Nnf+HAGSHXTf4z4Fi0k3iys1elW1tplAdxeaRZicJwPnxg
- GjPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3IVjLuF1pQZ0weED//GY3xwIzkFFebcdevr/PKP6Y2o=;
- b=ZVdJT4cIXss6z5OcQSF3zPB4Yg2lpLDdCNE1PQIr0yVUhjOMYx3p7VwzrWFKhNU0T+
- qSJegUzS9APq29vYptRYEijn0jrCMwJBSh/9TtBTsmoYT77jkMWzxFJ6hm6sTVqW/zM4
- X+G4uJ/Pt5krh4f23UNAcCBxMzf9QK+ptFuCFyaBGWG/uUQM0jVFK+b0o7IYac+ysEsV
- c/1Jt0Mk7wZb4VjWrPpxOASBbOYNkreAQ+QTtnb052X0wVLgJiwfLMQcTpcAbS5ovvB0
- Laaus1h0o0w7YcjnlhIJnPjEsoaHdY9uNhILETl8FLfnJ8Z+lBQlnKQTD3S62HmgSJi7
- lYKw==
-X-Gm-Message-State: AOAM533UVgvC65I/Ul5f8XHwgu15lDqYxpXJvP7ko3mzkBlz6+/Q0jQM
- /Vpst7TGtTI1XaABmsHjylgeobX3hXmr9qjvxNs=
-X-Google-Smtp-Source: ABdhPJwt/WPFZJMdNK8sNjaYtf0FczVaPeQm6q2Fy8skAhhinBuWkxQxvPbiDxERSm1GsuVs3c4SSgakgjDIVs/BduE=
-X-Received: by 2002:adf:ea09:: with SMTP id q9mr1353625wrm.399.1589932659071; 
- Tue, 19 May 2020 16:57:39 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EADBB6E47A;
+ Tue, 19 May 2020 23:59:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E4A94A0091;
+ Tue, 19 May 2020 23:59:20 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200504225227.464666-1-matthew.d.roper@intel.com>
- <20200504225227.464666-3-matthew.d.roper@intel.com>
- <83F5C7385F545743AD4FB2A62F75B073482C132A@ORSMSX108.amr.corp.intel.com>
-In-Reply-To: <83F5C7385F545743AD4FB2A62F75B073482C132A@ORSMSX108.amr.corp.intel.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Tue, 19 May 2020 16:57:27 -0700
-Message-ID: <CAKi4VA+wnY7eY-fLxcfQ1x2nsxg2=z7MRetOF02djtDDo3ENxQ@mail.gmail.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory
- support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 19 May 2020 23:59:20 -0000
+Message-ID: <158993276093.31238.16626778601427555656@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29u?=
+ =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev15=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +38,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- x86@kernel.org, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Ingo Molnar <mingo@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
- Borislav Petkov <bp@suse.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cc'ing x86@kernel.org and maintainers
+== Series Details ==
 
-On Wed, May 6, 2020 at 4:52 AM Srivatsa, Anusha
-<anusha.srivatsa@intel.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt
-> > Roper
-> > Sent: Tuesday, May 5, 2020 4:22 AM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
-> > Subject: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory support
-> >
-> > RKL re-uses the same stolen memory registers as TGL and ICL.
-> >
-> > Bspec: 52055
-> > Bspec: 49589
-> > Bspec: 49636
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->
-> Confirmed with Spec.
-> Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->
-> > ---
-> >  arch/x86/kernel/early-quirks.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> > index 2f9ec14be3b1..a4b5af03dcc1 100644
-> > --- a/arch/x86/kernel/early-quirks.c
-> > +++ b/arch/x86/kernel/early-quirks.c
-> > @@ -550,6 +550,7 @@ static const struct pci_device_id intel_early_ids[]
-> > __initconst = {
-> >       INTEL_ICL_11_IDS(&gen11_early_ops),
-> >       INTEL_EHL_IDS(&gen11_early_ops),
-> >       INTEL_TGL_12_IDS(&gen11_early_ops),
-> > +     INTEL_RKL_IDS(&gen11_early_ops),
+Series: Consider DBuf bandwidth when calculating CDCLK (rev15)
+URL   : https://patchwork.freedesktop.org/series/74739/
+State : failure
 
-Trying to apply to drm-intel-next-queued checkpatch rightfully complain:
+== Summary ==
 
-35aad4f58736 (HEAD -> drm-intel-next-queued) x86/gpu: add RKL stolen
-memory support
-The following files are outside of i915 maintenance scope:
-arch/x86/kernel/early-quirks.c
+CI Bug Log - changes from CI_DRM_8506 -> Patchwork_17718
+====================================================
 
-Can we get an ack?  Going forward, for simple changes like this, do
-you prefer to still ack on it
-or should we just apply to our tree?
+Summary
+-------
 
-thanks
-Lucas De Marchi
+  **FAILURE**
 
-> >  };
-> >
-> >  struct resource intel_graphics_stolen_res __ro_after_init =
-> > DEFINE_RES_MEM(0, 0);
-> > --
-> > 2.24.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  Serious unknown changes coming with Patchwork_17718 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17718, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17718:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@client:
+    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-bsw-kefka/igt@i915_selftest@live@client.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-bsw-kefka/igt@i915_selftest@live@client.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17718 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][3] -> [TIMEOUT][4] ([i915#1288])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-guc:         [PASS][5] -> [INCOMPLETE][6] ([i915#1874])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([i915#227])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-8809g:       [INCOMPLETE][9] ([i915#1874]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1288]: https://gitlab.freedesktop.org/drm/intel/issues/1288
+  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
+  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
 
 
+Participating hosts (49 -> 44)
+------------------------------
 
--- 
-Lucas De Marchi
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8506 -> Patchwork_17718
+
+  CI-20190529: 20190529
+  CI_DRM_8506: d6a73e9084ff6adfabbad014bc294d254484f304 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5661: a772a7c7a761c6125bc0af5284ad603478107737 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17718: 2be3fecc6320f61ccbd0898132dcb7eedae7640b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2be3fecc6320 drm/i915: Remove unneeded hack now for CDCLK
+b74b713c823f drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
+2405cfa20a90 drm/i915: Introduce for_each_dbuf_slice_in_mask macro
+4765b732c387 drm/i915: Plane configuration affects CDCLK in Gen11+
+cc857a15d370 drm/i915: Check plane configuration properly
+a2e2a5f43cd7 drm/i915: Extract cdclk requirements checking to separate function
+42922a1cf4d9 drm/i915: Decouple cdclk calculation from modeset checks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
