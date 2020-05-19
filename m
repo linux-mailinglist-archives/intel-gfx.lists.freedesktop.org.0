@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB0E1DA31C
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 22:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F9F1DA38E
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 23:29:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF2589F43;
-	Tue, 19 May 2020 20:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614D56E0AD;
+	Tue, 19 May 2020 21:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B19B589C69;
- Tue, 19 May 2020 20:54:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AB936A0138;
- Tue, 19 May 2020 20:54:57 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 319036E0C1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 21:29:24 +0000 (UTC)
+IronPort-SDR: oW04+mZOv9a4y2DsnZEO7kIAia48MS8akqmVAmAqz9AfucSU5UTYvG1tpbym9EoyAjpp7Hep2i
+ Nj9E288q0aTA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2020 14:29:23 -0700
+IronPort-SDR: huOJOPXTSRKV+r63sg+zbzSLvTtbWamlVW6KqDqRuM51VeUZe5UZPNa8qnm8czsiLdH36ehiJW
+ RTa8u/wpT4ZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,411,1583222400"; d="scan'208";a="466133405"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga005.fm.intel.com with ESMTP; 19 May 2020 14:29:21 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 00:25:25 +0300
+Message-Id: <20200519212525.20492-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200519131117.17190-7-stanislav.lisovskiy@intel.com>
+References: <20200519131117.17190-7-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 19 May 2020 20:54:57 -0000
-Message-ID: <158992169766.31236.2695978018400545459@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519145131.2893-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200519145131.2893-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Neuter_virtual_rq-=3Eengine_on_retire?=
+Subject: [Intel-gfx] [PATCH v9 6/7] drm/i915: Adjust CDCLK accordingly to
+ our DBuf bw needs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,89 +48,528 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+According to BSpec max BW per slice is calculated using formula
+Max BW = CDCLK * 64. Currently when calculating min CDCLK we
+account only per plane requirements, however in order to avoid
+FIFO underruns we need to estimate accumulated BW consumed by
+all planes(ddb entries basically) residing on that particular
+DBuf slice. This will allow us to put CDCLK lower and save power
+when we don't need that much bandwidth or gain additional
+performance once plane consumption grows.
 
-Series: drm/i915: Neuter virtual rq->engine on retire
-URL   : https://patchwork.freedesktop.org/series/77425/
-State : success
+v2: - Fix long line warning
+    - Limited new DBuf bw checks to only gens >= 11
 
-== Summary ==
+v3: - Lets track used Dbuf bw per slice and per crtc in bw state
+      (or may be in DBuf state in future), that way we don't need
+      to have all crtcs in state and those only if we detect if
+      are actually going to change cdclk, just same way as we
+      do with other stuff, i.e intel_atomic_serialize_global_state
+      and co. Just as per Ville's paradigm.
+    - Made dbuf bw calculation procedure look nicer by introducing
+      for_each_dbuf_slice_in_mask - we often will now need to iterate
+      slices using mask.
+    - According to experimental results CDCLK * 64 accounts for
+      overall bandwidth across all dbufs, not per dbuf.
 
-CI Bug Log - changes from CI_DRM_8506 -> Patchwork_17714
-====================================================
+v4: - Fixed missing const(Ville)
+    - Removed spurious whitespaces(Ville)
+    - Fixed local variable init(reduced scope where not needed)
+    - Added some comments about data rate for planar formats
+    - Changed struct intel_crtc_bw to intel_dbuf_bw
+    - Moved dbuf bw calculation to intel_compute_min_cdclk(Ville)
 
-Summary
--------
+v5: - Removed unneeded macro
 
-  **SUCCESS**
+v6: - Prevent too frequent CDCLK switching back and forth:
+      Always switch to higher CDCLK when needed to prevent bandwidth
+      issues, however don't switch to lower CDCLK earlier than once
+      in 30 minutes in order to prevent constant modeset blinking.
+      We could of course not switch back at all, however this is
+      bad from power consumption point of view.
 
-  No regressions found.
+v7: - Fixed to track cdclk using bw_state, modeset will be now
+      triggered only when CDCLK change is really needed.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17714/index.html
+v8: - Lock global state if bw_state->min_cdclk is changed.
+    - Try getting bw_state only if there are crtcs in the commit
+      (need to have read-locked global state)
 
-Known issues
-------------
+v9: - Do not do Dbuf bw check for gens < 9 - triggers WARN
+      as ddb_size is 0.
 
-  Here are the changes found in Patchwork_17714 that come from known issues:
+v10: - Lock global state for older gens as well.
 
-### IGT changes ###
+v11: - Define new bw_calc_min_cdclk hook, instead of using
+       a condition(Manasi Navare)
 
-#### Issues hit ####
+v12: - Fixed rebase conflict
 
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#1874])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17714/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c      | 119 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bw.h      |  10 ++
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  28 ++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |   1 -
+ drivers/gpu/drm/i915/display/intel_display.c |  39 +++++-
+ drivers/gpu/drm/i915/i915_drv.h              |   1 +
+ drivers/gpu/drm/i915/intel_pm.c              |  31 ++++-
+ drivers/gpu/drm/i915/intel_pm.h              |   4 +
+ 8 files changed, 218 insertions(+), 15 deletions(-)
 
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17714/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index fef04e2d954e..cb614b624e20 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -6,11 +6,12 @@
+ #include <drm/drm_atomic_state_helper.h>
+ 
+ #include "intel_bw.h"
++#include "intel_pm.h"
+ #include "intel_display_types.h"
+ #include "intel_sideband.h"
+ #include "intel_atomic.h"
+ #include "intel_pm.h"
+-
++#include "intel_cdclk.h"
+ 
+ /* Parameters for Qclk Geyserville (QGV) */
+ struct intel_qgv_point {
+@@ -343,7 +344,6 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+ 
+ 	return data_rate;
+ }
+-
+ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+ 			  const struct intel_crtc_state *crtc_state)
+ {
+@@ -420,6 +420,121 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ 	return to_intel_bw_state(bw_state);
+ }
+ 
++int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	int i;
++	const struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int max_bw = 0;
++	int slice_id;
++	struct intel_bw_state *new_bw_state = NULL;
++	struct intel_bw_state *old_bw_state = NULL;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		enum plane_id plane_id;
++		struct intel_dbuf_bw *crtc_bw;
++
++		new_bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(new_bw_state))
++			return PTR_ERR(new_bw_state);
++
++		crtc_bw = &new_bw_state->dbuf_bw[crtc->pipe];
++
++		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
++
++		for_each_plane_id_on_crtc(crtc, plane_id) {
++			const struct skl_ddb_entry *plane_alloc =
++				&crtc_state->wm.skl.plane_ddb_y[plane_id];
++			const struct skl_ddb_entry *uv_plane_alloc =
++				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
++			unsigned int data_rate = crtc_state->data_rate[plane_id];
++			unsigned int dbuf_mask = 0;
++
++			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, plane_alloc);
++			dbuf_mask |= skl_ddb_dbuf_slice_mask(dev_priv, uv_plane_alloc);
++
++			/*
++			 * FIXME: To calculate that more properly we probably need to
++			 * to split per plane data_rate into data_rate_y and data_rate_uv
++			 * for multiplanar formats in order not to get accounted those twice
++			 * if they happen to reside on different slices.
++			 * However for pre-icl this would work anyway because we have only single
++			 * slice and for icl+ uv plane has non-zero data rate.
++			 * So in worst case those calculation are a bit pessimistic, which
++			 * shouldn't pose any significant problem anyway.
++			 */
++			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
++				crtc_bw->used_bw[slice_id] += data_rate;
++		}
++
++		for_each_dbuf_slice(slice_id) {
++			/*
++			 * Current experimental observations show that contrary to BSpec
++			 * we get underruns once we exceed 64 * CDCLK for slices in total.
++			 * As a temporary measure in order not to keep CDCLK bumped up all the
++			 * time we calculate CDCLK according to this formula for  overall bw
++			 * consumed by slices.
++			 */
++			max_bw += crtc_bw->used_bw[slice_id];
++		}
++
++		new_bw_state->min_cdclk = max_bw / 64;
++
++		old_bw_state = intel_atomic_get_old_bw_state(state);
++	}
++
++	if (!old_bw_state)
++		return 0;
++
++	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
++		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
++{
++	int i;
++	const struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int min_cdclk = 0;
++	struct intel_bw_state *new_bw_state = NULL;
++	struct intel_bw_state *old_bw_state = NULL;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		struct intel_cdclk_state *cdclk_state;
++
++		new_bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(new_bw_state))
++			return PTR_ERR(new_bw_state);
++
++		cdclk_state = intel_atomic_get_cdclk_state(state);
++		if (IS_ERR(cdclk_state))
++			return PTR_ERR(cdclk_state);
++
++		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++
++		new_bw_state->min_cdclk = min_cdclk;
++
++		old_bw_state = intel_atomic_get_old_bw_state(state);
++	}
++
++	if (!old_bw_state)
++		return 0;
++
++	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
++		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index bbcaaa73ec1b..af1a981dec84 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -10,13 +10,19 @@
+ 
+ #include "intel_display.h"
+ #include "intel_global_state.h"
++#include "intel_display_power.h"
+ 
+ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc_state;
+ 
++struct intel_dbuf_bw {
++	int used_bw[I915_MAX_DBUF_SLICES];
++};
++
+ struct intel_bw_state {
+ 	struct intel_global_state base;
++	struct intel_dbuf_bw dbuf_bw[I915_MAX_PIPES];
+ 
+ 	/*
+ 	 * Contains a bit mask, used to determine, whether correspondent
+@@ -36,6 +42,8 @@ struct intel_bw_state {
+ 
+ 	/* bitmask of active pipes */
+ 	u8 active_pipes;
++
++	int min_cdclk;
+ };
+ 
+ #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+@@ -56,5 +64,7 @@ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+ 			  const struct intel_crtc_state *crtc_state);
+ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ 				  u32 points_mask);
++int intel_bw_calc_min_cdclk(struct intel_atomic_state *state);
++int skl_bw_calc_min_cdclk(struct intel_atomic_state *state);
+ 
+ #endif /* __INTEL_BW_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 9419a4724357..4c38d20db9c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -21,10 +21,12 @@
+  * DEALINGS IN THE SOFTWARE.
+  */
+ 
++#include <linux/time.h>
+ #include "intel_atomic.h"
+ #include "intel_cdclk.h"
+ #include "intel_display_types.h"
+ #include "intel_sideband.h"
++#include "intel_bw.h"
+ 
+ /**
+  * DOC: CDCLK / RAWCLK
+@@ -2093,11 +2095,9 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ {
+ 	struct intel_atomic_state *state = cdclk_state->base.state;
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc *crtc;
+ 	struct intel_crtc_state *crtc_state;
+ 	int min_cdclk, i;
+-	enum pipe pipe;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		int ret;
+@@ -2117,8 +2117,18 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ 	}
+ 
+ 	min_cdclk = cdclk_state->force_min_cdclk;
+-	for_each_pipe(dev_priv, pipe)
+-		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		struct intel_bw_state *bw_state;
++
++		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
++		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
++	}
+ 
+ 	return min_cdclk;
+ }
+@@ -2790,25 +2800,30 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ {
+ 	if (INTEL_GEN(dev_priv) >= 12) {
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = tgl_calc_voltage_level;
+ 		dev_priv->cdclk.table = icl_cdclk_table;
+ 	} else if (IS_ELKHARTLAKE(dev_priv)) {
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = ehl_calc_voltage_level;
+ 		dev_priv->cdclk.table = icl_cdclk_table;
+ 	} else if (INTEL_GEN(dev_priv) >= 11) {
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = icl_calc_voltage_level;
+ 		dev_priv->cdclk.table = icl_cdclk_table;
+ 	} else if (IS_CANNONLAKE(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = cnl_calc_voltage_level;
+ 		dev_priv->cdclk.table = cnl_cdclk_table;
+ 	} else if (IS_GEN9_LP(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = bxt_calc_voltage_level;
+@@ -2817,18 +2832,23 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 		else
+ 			dev_priv->cdclk.table = bxt_cdclk_table;
+ 	} else if (IS_GEN9_BC(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = skl_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = skl_modeset_calc_cdclk;
+ 	} else if (IS_BROADWELL(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = intel_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = bdw_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = bdw_modeset_calc_cdclk;
+ 	} else if (IS_CHERRYVIEW(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = intel_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = chv_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = vlv_modeset_calc_cdclk;
+ 	} else if (IS_VALLEYVIEW(dev_priv)) {
++		dev_priv->display.bw_calc_min_cdclk = intel_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = vlv_set_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = vlv_modeset_calc_cdclk;
+ 	} else {
++		dev_priv->display.bw_calc_min_cdclk = intel_bw_calc_min_cdclk;
+ 		dev_priv->display.modeset_calc_cdclk = fixed_modeset_calc_cdclk;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index 5731806e4cee..d62e11d620c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -7,7 +7,6 @@
+ #define __INTEL_CDCLK_H__
+ 
+ #include <linux/types.h>
+-
+ #include "i915_drv.h"
+ #include "intel_display.h"
+ #include "intel_global_state.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8068dc96d5aa..c9f93036ff44 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14703,16 +14703,14 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 				    bool *need_cdclk_calc)
+ {
+-	struct intel_cdclk_state *new_cdclk_state;
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	int i;
+ 	struct intel_plane_state *plane_state;
+ 	struct intel_plane *plane;
+ 	int ret;
+-
+-	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+-	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
+-		*need_cdclk_calc = true;
+-
++	struct intel_cdclk_state *new_cdclk_state;
++	struct intel_crtc_state *new_crtc_state;
++	struct intel_crtc *crtc;
+ 	/*
+ 	 * active_planes bitmask has been updated, and potentially
+ 	 * affected planes are part of the state. We can now
+@@ -14724,6 +14722,35 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 			return ret;
+ 	}
+ 
++	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
++
++	if (new_cdclk_state && new_cdclk_state->force_min_cdclk_changed)
++		*need_cdclk_calc = true;
++
++	ret = dev_priv->display.bw_calc_min_cdclk(state);
++	if (ret)
++		return ret;
++
++	if (!new_cdclk_state)
++		return 0;
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		struct intel_bw_state *bw_state;
++		int min_cdclk = 0;
++
++		min_cdclk = max(new_cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
++		/*
++		 * Currently do this change only if we need to increase
++		 */
++		if (bw_state->min_cdclk > min_cdclk)
++			*need_cdclk_calc = true;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 825a54b521d9..a4fdd2e0a8f4 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -273,6 +273,7 @@ struct drm_i915_display_funcs {
+ 	void (*set_cdclk)(struct drm_i915_private *dev_priv,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe);
++	int (*bw_calc_min_cdclk)(struct intel_atomic_state *state);
+ 	int (*get_fifo_size)(struct drm_i915_private *dev_priv,
+ 			     enum i9xx_plane_id i9xx_plane);
+ 	int (*compute_pipe_wm)(struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 4d885ef0bac5..937d91c28de9 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -4031,10 +4031,9 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+ 	return offset;
+ }
+ 
+-static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
++u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+ {
+ 	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+-
+ 	drm_WARN_ON(&dev_priv->drm, ddb_size == 0);
+ 
+ 	if (INTEL_GEN(dev_priv) < 11)
+@@ -4043,6 +4042,34 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+ 	return ddb_size;
+ }
+ 
++u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
++			    const struct skl_ddb_entry *entry)
++{
++	u32 slice_mask = 0;
++	u16 ddb_size = intel_get_ddb_size(dev_priv);
++	u16 num_supported_slices = INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
++	u16 slice_size = ddb_size / num_supported_slices;
++	u16 start_slice;
++	u16 end_slice;
++
++	if (!skl_ddb_entry_size(entry))
++		return 0;
++
++	start_slice = entry->start / slice_size;
++	end_slice = (entry->end - 1) / slice_size;
++
++	/*
++	 * Per plane DDB entry can in a really worst case be on multiple slices
++	 * but single entry is anyway contigious.
++	 */
++	while (start_slice <= end_slice) {
++		slice_mask |= BIT(start_slice);
++		start_slice++;
++	}
++
++	return slice_mask;
++}
++
+ static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_state,
+ 				  u8 active_pipes);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+index 6636d2a057cd..d665bf77ae80 100644
+--- a/drivers/gpu/drm/i915/intel_pm.h
++++ b/drivers/gpu/drm/i915/intel_pm.h
+@@ -39,6 +39,10 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *dev_priv);
+ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+ 			       struct skl_ddb_entry *ddb_y,
+ 			       struct skl_ddb_entry *ddb_uv);
++void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
++u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
++u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
++			    const struct skl_ddb_entry *entry);
+ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+ 			      struct skl_pipe_wm *out);
+ void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+-- 
+2.24.1.485.gad05a3d8e5
 
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-8809g:       [INCOMPLETE][5] ([i915#1874]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17714/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8506 -> Patchwork_17714
-
-  CI-20190529: 20190529
-  CI_DRM_8506: d6a73e9084ff6adfabbad014bc294d254484f304 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5661: a772a7c7a761c6125bc0af5284ad603478107737 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17714: a0cd84201117cc81f472e452c31a43ac972ed941 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a0cd84201117 drm/i915: Neuter virtual rq->engine on retire
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17714/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
