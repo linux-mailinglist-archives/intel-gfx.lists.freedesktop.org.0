@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118A61D8C83
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 02:46:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBF91D8C8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 02:50:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5717C6E4CF;
-	Tue, 19 May 2020 00:45:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C519E6E235;
+	Tue, 19 May 2020 00:50:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8C7596E4CF;
- Tue, 19 May 2020 00:45:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 931526E235;
+ Tue, 19 May 2020 00:50:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 85E94A3C0D;
- Tue, 19 May 2020 00:45:58 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 81D9AA47E1;
+ Tue, 19 May 2020 00:50:49 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 19 May 2020 00:45:58 -0000
-Message-ID: <158984915851.31237.9151033829026453691@emeril.freedesktop.org>
+To: "John Hubbard" <jhubbard@nvidia.com>
+Date: Tue, 19 May 2020 00:50:49 -0000
+Message-ID: <158984944949.31236.4614267923759080575@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200518233049.19759-1-lucas.demarchi@intel.com>
-In-Reply-To: <20200518233049.19759-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_move_trace=5Fi915=5Freg?=
- =?utf-8?q?=5Frw=28=29_to_a_separate_file?=
+References: <20200519002124.2025955-1-jhubbard@nvidia.com>
+In-Reply-To: <20200519002124.2025955-1-jhubbard@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mm/gup=2C_drm/i915=3A_refactor_gup=5Ffast=2C_convert_to_pin?=
+ =?utf-8?b?X3VzZXJfcGFnZXMoKQ==?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,67 +48,23 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915: move trace_i915_reg_rw() to a separate file
-URL   : https://patchwork.freedesktop.org/series/77378/
-State : success
+Series: mm/gup, drm/i915: refactor gup_fast, convert to pin_user_pages()
+URL   : https://patchwork.freedesktop.org/series/77381/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8498 -> Patchwork_17703
-====================================================
+$ dim checkpatch origin/drm-tip
+5dd288837ad8 mm/gup: move __get_user_pages_fast() down a few lines in gup.c
+-:111: CHECK:SPACING: No space is necessary after a cast
+#111: FILE: mm/gup.c:2764:
++	len = (unsigned long) nr_pages << PAGE_SHIFT;
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 124 lines checked
+4bab9b886ef9 mm/gup: refactor and de-duplicate gup_fast() code
+d8a6c141995a mm/gup: introduce pin_user_pages_fast_only()
+ace503a8f42c drm/i915: convert get_user_pages() --> pin_user_pages()
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17703/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17703 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#151])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17703/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8498 -> Patchwork_17703
-
-  CI-20190529: 20190529
-  CI_DRM_8498: 1493c649ae92207a758afa50a639275bd6c80e2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17703: 7f37c24c1d4bef1f645fce042cfff357a2130fe3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7f37c24c1d4b drm/i915: trace intel_uncore_*_fw()
-caee6db994c4 drm/i915: move trace_i915_reg_rw() to a separate file
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17703/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
