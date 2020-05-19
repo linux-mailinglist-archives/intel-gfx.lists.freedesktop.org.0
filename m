@@ -2,28 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97E01D9F2D
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 20:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A281D9FF3
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 20:47:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 125D86E451;
-	Tue, 19 May 2020 18:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 154E989B97;
+	Tue, 19 May 2020 18:47:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18F8A6E451
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:22:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21232245-1500050 
- for multiple; Tue, 19 May 2020 19:22:14 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 May 2020 19:22:13 +0100
-Message-Id: <20200519182213.13284-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10FD26E453
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:47:46 +0000 (UTC)
+IronPort-SDR: wZFTJdmK8dAFJdGByFjtcZwWgCD0ZhIYWiKd8LakRQqa6evOv6uGph9C6I5tkcBzVzoW8P2/rL
+ qJAumDdSiBTA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2020 11:47:45 -0700
+IronPort-SDR: pRJqSQo1d+hOHEV3f4hSdKziTJKyttQjX+FIT6k1Dg8cKBz+n5St/KtUjcsvu4CLlTW79hQnPe
+ Qm+7pxkaFJIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,410,1583222400"; d="scan'208";a="466083687"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+ by fmsmga005.fm.intel.com with ESMTP; 19 May 2020 11:47:45 -0700
+Received: from orsmsx126.amr.corp.intel.com (10.22.240.126) by
+ ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 19 May 2020 11:47:44 -0700
+Received: from orsmsx115.amr.corp.intel.com ([169.254.4.3]) by
+ ORSMSX126.amr.corp.intel.com ([169.254.4.235]) with mapi id 14.03.0439.000;
+ Tue, 19 May 2020 11:47:44 -0700
+From: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
+To: "Atwood, Matthew S" <matthew.s.atwood@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
+Thread-Index: AQHWLfoqDoCzcpe6a0KGK1DZ2YGUBaivvmdQ
+Date: Tue, 19 May 2020 18:47:43 +0000
+Message-ID: <09614FAEEEACB8419B519675A649C8BF89A44680@ORSMSX115.amr.corp.intel.com>
+References: <20200519162534.10035-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20200519162534.10035-1-matthew.s.atwood@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Suppress some random warnings
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,81 +62,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Leave the error propagation in place, but limit the warnings to only
-show up in CI if the unlikely errors are hit.
+Maybe we can add JSL to the comment too.
+Other than that looks good to me.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+
+-----Original Message-----
+From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Atwood
+Sent: Tuesday, May 19, 2020 9:26 AM
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
+
+Reflect recent Bspec changes.
+
+Bspec: 33451
+
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_phys.c       | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c    | 2 +-
- 4 files changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index e4fb6c372537..219a36995b96 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1626,8 +1626,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
- 			err = i915_vma_bind(target->vma,
- 					    target->vma->obj->cache_level,
- 					    PIN_GLOBAL, NULL);
--			if (drm_WARN_ONCE(&i915->drm, err,
--				      "Unexpected failure to bind target VMA!"))
-+			if (err)
- 				return err;
- 		}
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 90a2b9e399b0..fa1e15657663 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1484,6 +1484,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		wa_write_or(wal,
+ 			    GEN7_FF_THREAD_MODE,
+ 			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
++
++		/* Wa_22010271021:ehl */
++		if (IS_ELKHARTLAKE(i915))
++			wa_masked_en(wal,
++				     GEN9_CS_DEBUG_MODE1,
++				     FF_DOP_CLOCK_GATE_DISABLE);
  	}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index 4c1c7232b024..12245a47e5fb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -27,8 +27,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
- 	void *dst;
- 	int i;
  
--	if (drm_WARN_ON(obj->base.dev,
--			i915_gem_object_needs_bit17_swizzle(obj)))
-+	if (GEM_WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
- 		return -EINVAL;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 5d5d7eef3f43..19dd21a95c47 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -148,8 +148,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 		last_pfn = page_to_pfn(page);
- 
- 		/* Check that the i965g/gm workaround works. */
--		drm_WARN_ON(&i915->drm,
--			    (gfp & __GFP_DMA32) && (last_pfn >= 0x00100000UL));
-+		GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
- 	}
- 	if (sg) { /* loop terminated early; short sg table */
- 		sg_page_sizes |= sg->length;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 8b0708708671..ec9d25680b41 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -235,7 +235,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
- 	if (flags & I915_USERPTR_UNSYNCHRONIZED)
- 		return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
- 
--	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
-+	if (GEM_WARN_ON(obj->userptr.mm == NULL))
- 		return -EINVAL;
- 
- 	mn = i915_mmu_notifier_find(obj->userptr.mm);
+ 	if (IS_GEN_RANGE(i915, 9, 12)) {
 -- 
-2.20.1
+2.21.3
 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
