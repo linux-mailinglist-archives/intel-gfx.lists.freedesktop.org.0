@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C3F1D8CD1
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 03:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D41661D8D10
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 03:20:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91466E293;
-	Tue, 19 May 2020 01:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 464026E239;
+	Tue, 19 May 2020 01:20:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C19396E293
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 01:02:47 +0000 (UTC)
-IronPort-SDR: nfPiz+dYqHy7of8yGuAYfrV/vTvf2FgoSUCzlr8SLpYdnkDxtpZyf/oFtVG1xT5YfDKpf07D6d
- 1NXoSqL4Sixw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2020 18:02:47 -0700
-IronPort-SDR: bPQ8RpD4vLDb/UmF0zzusA4Qo25qhq3ed10+smrgzMx830HiT4r8DVl/rKoaETo+J2xB9syMPv
- mixxD27IN1Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,408,1583222400"; d="scan'208";a="373566809"
-Received: from sdhanava-desk2.jf.intel.com ([10.165.21.144])
- by fmsmga001.fm.intel.com with ESMTP; 18 May 2020 18:02:47 -0700
-From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 May 2020 17:58:32 -0700
-Message-Id: <20200519005832.27748-1-swathi.dhanavanthri@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 935326E239;
+ Tue, 19 May 2020 01:20:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84203A47DB;
+ Tue, 19 May 2020 01:20:33 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Extend w/a 14010685332 to JSP/MCC
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "John Hubbard" <jhubbard@nvidia.com>
+Date: Tue, 19 May 2020 01:20:33 -0000
+Message-ID: <158985123351.31239.10766458886430429630@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200519002124.2025955-1-jhubbard@nvidia.com>
+In-Reply-To: <20200519002124.2025955-1-jhubbard@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgbW0v?=
+ =?utf-8?q?gup=2C_drm/i915=3A_refactor_gup=5Ffast=2C_convert_to_pin=5Fuser?=
+ =?utf-8?b?X3BhZ2VzKCk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,38 +39,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a permanent w/a for JSL/EHL.This is to be applied to the
-PCH types on JSL/EHL ie JSP/MCC
-Bspec: 52888
+== Series Details ==
 
-Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
----
- drivers/gpu/drm/i915/i915_irq.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: mm/gup, drm/i915: refactor gup_fast, convert to pin_user_pages()
+URL   : https://patchwork.freedesktop.org/series/77381/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 4dc601dffc08..1974369cebb8 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -2902,8 +2902,8 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		GEN3_IRQ_RESET(uncore, SDE);
- 
--	/* Wa_14010685332:icl */
--	if (INTEL_PCH_TYPE(dev_priv) == PCH_ICP) {
-+	/* Wa_14010685332:icl,jsl,ehl */
-+	if (INTEL_PCH_TYPE(dev_priv) == PCH_ICP || PCH_JSP || PCH_MCC) {
- 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
- 				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
- 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8498 -> Patchwork_17704
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17704/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17704 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2] ([i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17704/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][3] -> [FAIL][4] ([i915#262])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17704/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8498 -> Patchwork_17704
+
+  CI-20190529: 20190529
+  CI_DRM_8498: 1493c649ae92207a758afa50a639275bd6c80e2e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17704: ace503a8f42c4de5395983002282f6d0302543bc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ace503a8f42c drm/i915: convert get_user_pages() --> pin_user_pages()
+d8a6c141995a mm/gup: introduce pin_user_pages_fast_only()
+4bab9b886ef9 mm/gup: refactor and de-duplicate gup_fast() code
+5dd288837ad8 mm/gup: move __get_user_pages_fast() down a few lines in gup.c
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17704/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
