@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4241D9C7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 18:25:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5401D9D61
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 19:00:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BCFD89F3C;
-	Tue, 19 May 2020 16:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2876E04E;
+	Tue, 19 May 2020 17:00:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4152189F3C
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 16:25:36 +0000 (UTC)
-IronPort-SDR: LT3Yb8EfOu8tmHLY4D37YUuUNzK9iO/OlwtqwENA9+pvtMkxwN1uLr+jBqjEowGuXcN4kMc+Uu
- SrZLJI+rmkmQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2020 09:25:35 -0700
-IronPort-SDR: rQYCUoP0UsRPYIoSE5OW7bfRzcUv0HeIrAlUmRRkZcQML5Tq898eAeRlGby3vzAJK1F01+wP/r
- aCay3bBh1rUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,410,1583222400"; d="scan'208";a="466185463"
-Received: from unknown (HELO msatwood-mobl.intel.com) ([10.212.134.205])
- by fmsmga006.fm.intel.com with ESMTP; 19 May 2020 09:25:35 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 May 2020 09:25:34 -0700
-Message-Id: <20200519162534.10035-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.21.3
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91B146E04E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 17:00:28 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21231393-1500050 for multiple; Tue, 19 May 2020 18:00:06 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Wa_22010271021
+In-Reply-To: <20200519145131.2893-1-chris@chris-wilson.co.uk>
+References: <20200519145131.2893-1-chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158990760488.8153.1957849509074612932@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 19 May 2020 18:00:04 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Neuter virtual rq->engine on
+ retire
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,35 +44,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reflect recent Bspec changes.
+Quoting Chris Wilson (2020-05-19 15:51:31)
+> We do not hold a reference to rq->engine, and so if it is a virtual
+> engine it may have already been freed by the time we free the request.
+> The last reference we hold on the virtual engine is via rq->context,
+> and that is released on request retirement. So if we find ourselves
+> retiring a virtual request, redirect it to a real sibling.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1906
+> Fixes: 43acd6516ca9 ("drm/i915: Keep a per-engine request pool")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_request.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 31ef683d27b4..a816218cc693 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -242,9 +242,26 @@ static void remove_from_engine(struct i915_request *rq)
+>                 spin_lock(&engine->active.lock);
+>                 locked = engine;
+>         }
+> +
+>         list_del_init(&rq->sched.link);
+>         clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+>         clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
+> +
+> +       /*
+> +        * During i915_fence_release we stash one request on the
+> +        * rq->engine for use as an emergency reserve. However, we
+> +        * neither want to keep a request on a virtual engine, nor do
+> +        * we hold a reference to a virtual engine at that point. So
+> +        * if rq->engine is virtual, replace it with a real one. Which
+> +        * one is immaterial at this point as the request has been
+> +        * retired, and if it was a virtual engine will not have any
+> +        * signaling or other related paraphernalia.
+> +        *
+> +        * However, it would be nice if we didn't have to...
+> +        */
+> +       if (intel_engine_is_virtual(rq->engine))
 
-Bspec: 33451
+Hmm. execlists_dequeue will assert that rq->engine == veng before
+finding out that the request was completed. Annoyingly we would need
+some veng magic to cmpxchg(&ve->request, rq, NULL)
 
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+> +               rq->engine = intel_virtual_engine_get_sibling(rq->engine, 0);
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 90a2b9e399b0..fa1e15657663 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1484,6 +1484,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		wa_write_or(wal,
- 			    GEN7_FF_THREAD_MODE,
- 			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
-+
-+		/* Wa_22010271021:ehl */
-+		if (IS_ELKHARTLAKE(i915))
-+			wa_masked_en(wal,
-+				     GEN9_CS_DEBUG_MODE1,
-+				     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
- 
- 	if (IS_GEN_RANGE(i915, 9, 12)) {
--- 
-2.21.3
-
+Back to the drawing board for a bit. Although removing the assert might
+be the easiest course of action.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
