@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 194EF1D9135
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 09:40:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 734241D9200
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 10:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 649AE6E528;
-	Tue, 19 May 2020 07:40:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07F526E2E0;
+	Tue, 19 May 2020 08:27:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9847A6E2E4;
- Tue, 19 May 2020 07:40:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9190AA00C7;
- Tue, 19 May 2020 07:40:30 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5856E2E0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 08:27:32 +0000 (UTC)
+IronPort-SDR: r76SZeTFliI7xuw1X0U8KqK4/FqqkFRFTI0F/76WREI+Ip8wV4F6+OdSDzhwLiAf+XmmnfhAfp
+ vukHnVHHqNUA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2020 01:27:32 -0700
+IronPort-SDR: vfVESI/gCcveURi1IvuQEG3lkLdOaUCPn3sSl4bTlNFNF5CjYQ2r+TYPNwhcZXjWfc5TLSYHUF
+ qYmNNwgzIgiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,409,1583222400"; d="scan'208";a="299505031"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 19 May 2020 01:27:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 19 May 2020 11:27:29 +0300
+Date: Tue, 19 May 2020 11:27:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+Message-ID: <20200519082729.GT6112@intel.com>
+References: <20200519005832.27748-1-swathi.dhanavanthri@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 19 May 2020 07:40:30 -0000
-Message-ID: <158987403056.31237.10072989633465265173@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519063123.20673-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200519063123.20673-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915=3A_Don=27t_set_queue-pri?=
- =?utf-8?q?ority_hint_when_supressing_the_reschedule?=
+Content-Disposition: inline
+In-Reply-To: <20200519005832.27748-1-swathi.dhanavanthri@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Extend w/a 14010685332 to
+ JSP/MCC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,90 +51,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, May 18, 2020 at 05:58:32PM -0700, Swathi Dhanavanthri wrote:
+> This is a permanent w/a for JSL/EHL.This is to be applied to the
+> PCH types on JSL/EHL ie JSP/MCC
+> Bspec: 52888
+> =
 
-Series: series starting with [01/12] drm/i915: Don't set queue-priority hint when supressing the reschedule
-URL   : https://patchwork.freedesktop.org/series/77389/
-State : success
+> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> =
 
-== Summary ==
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 4dc601dffc08..1974369cebb8 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2902,8 +2902,8 @@ static void gen11_display_irq_reset(struct drm_i915=
+_private *dev_priv)
+>  	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+>  		GEN3_IRQ_RESET(uncore, SDE);
+>  =
 
-CI Bug Log - changes from CI_DRM_8498 -> Patchwork_17707
-====================================================
+> -	/* Wa_14010685332:icl */
+> -	if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_ICP) {
+> +	/* Wa_14010685332:icl,jsl,ehl */
+> +	if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_ICP || PCH_JSP || PCH_MCC) {
 
-Summary
--------
+That's not how c works.
 
-  **SUCCESS**
+>  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+>  				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+>  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> -- =
 
-  No regressions found.
+> 2.20.1
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17707/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Known issues
-------------
+-- =
 
-  Here are the changes found in Patchwork_17707 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8498/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17707/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Missing    (8): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8498 -> Patchwork_17707
-
-  CI-20190529: 20190529
-  CI_DRM_8498: 1493c649ae92207a758afa50a639275bd6c80e2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5659: 66ab5e42811fee3dea8c21ab29e70e323a0650de @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17707: 2dd47ed241085a15e7df5e1f79ac259a94eff274 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2dd47ed24108 drm/i915/gt: Resubmit the virtual engine on schedule-out
-36097b3facaf drm/i915/gt: Decouple inflight virtual engines
-05075f82f723 drm/i915/gt: Use virtual_engine during execlists_dequeue
-be9b4c6a092f drm/i915/gt: Incorporate the virtual engine into timeslicing
-0bbb9df18350 drm/i915/gt: Kick virtual siblings on timeslice out
-dabfa4752751 drm/i915/selftests: Add tests for timeslicing virtual engines
-1ebfae936ba7 drm/i915: Move saturated workload detection back to the context
-841b9993f566 drm/i915/execlists: Shortcircuit queue_prio() for no internal levels
-447b4e777a40 drm/i915/selftests: Check for an initial-breadcrumb in wait_for_submit()
-160ec59b6ea7 drm/i915/selftests: Restore to default heartbeat
-1d8f35d7152c drm/i915/selftests: Change priority overflow detection
-364ab8bd9968 drm/i915: Don't set queue-priority hint when supressing the reschedule
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17707/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
