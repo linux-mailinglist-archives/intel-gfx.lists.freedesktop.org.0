@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1674E1D9013
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 08:31:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183EE1D900D
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2020 08:31:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CBFB6E4F4;
-	Tue, 19 May 2020 06:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8EBF6E4EA;
+	Tue, 19 May 2020 06:31:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E55756E4EA
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 06:31:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C046E4F3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2020 06:31:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21237968-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21237969-1500050 
  for multiple; Tue, 19 May 2020 07:31:27 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 May 2020 07:31:17 +0100
-Message-Id: <20200519063123.20673-6-chris@chris-wilson.co.uk>
+Date: Tue, 19 May 2020 07:31:18 +0100
+Message-Id: <20200519063123.20673-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200519063123.20673-1-chris@chris-wilson.co.uk>
 References: <20200519063123.20673-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/12] drm/i915: Move saturated workload
- detection back to the context
+Subject: [Intel-gfx] [PATCH 07/12] drm/i915/selftests: Add tests for
+ timeslicing virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,131 +45,253 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we introduced the saturated workload detection to tell us to back
-off from semaphore usage [semaphores have a noticeable impact on
-contended bus cycles with the CPU for some heavy workloads], we first
-introduced it as a per-context tracker. This allows individual contexts
-to try and optimise their own usage, but we found that with the local
-tracking and the no-semaphore boosting, the first context to disable
-semaphores got a massive priority boost and so would starve the rest and
-all new contexts (as they started with semaphores enabled and lower
-priority). Hence we moved the saturated workload detection to the
-engine, and a consequence had to disable semaphores on virtual engines.
+Make sure that we can execute a virtual request on an already busy
+engine, and conversely that we can execute a normal request if the
+engines are already fully occupied by virtual requests.
 
-Now that we do not have semaphore priority boosting, we can move the
-tracking back to the context and virtual engines can now utilise the
-faster inter-engine synchronisation.
-
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
- drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 --
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 --
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 15 ---------------
- drivers/gpu/drm/i915/i915_request.c           |  4 ++--
- 6 files changed, 5 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 200 ++++++++++++++++++++++++-
+ 1 file changed, 197 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index e4aece20bc80..762a251d553b 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -268,6 +268,7 @@ static int __intel_context_active(struct i915_active *active)
- 	if (err)
- 		goto err_timeline;
- 
-+	ce->saturated = 0;
- 	return 0;
- 
- err_timeline:
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 4954b0df4864..aed26d93c2ca 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -78,6 +78,8 @@ struct intel_context {
- 	} lrc;
- 	u32 tag; /* cookie passed to HW to track this context on submission */
- 
-+	intel_engine_mask_t saturated; /* submitting semaphores too late? */
-+
- 	/* Time on GPU as tracked by the hw. */
- 	struct {
- 		struct ewma_runtime avg;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index d0a1078ef632..6d7fdba5adef 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -229,8 +229,6 @@ static int __engine_park(struct intel_wakeref *wf)
- 	struct intel_engine_cs *engine =
- 		container_of(wf, typeof(*engine), wakeref);
- 
--	engine->saturated = 0;
--
- 	/*
- 	 * If one and only one request is completed between pm events,
- 	 * we know that we are inside the kernel context and it is
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 2b6cdf47d428..c443b6bb884b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -332,8 +332,6 @@ struct intel_engine_cs {
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
--	intel_engine_mask_t saturated; /* submitting semaphores too late? */
--
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 06544c56a137..8998fe1f739d 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -5633,21 +5633,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
- 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 
--	/*
--	 * The decision on whether to submit a request using semaphores
--	 * depends on the saturated state of the engine. We only compute
--	 * this during HW submission of the request, and we need for this
--	 * state to be globally applied to all requests being submitted
--	 * to this engine. Virtual engines encompass more than one physical
--	 * engine and so we cannot accurately tell in advance if one of those
--	 * engines is already saturated and so cannot afford to use a semaphore
--	 * and be pessimized in priority for doing so -- if we are the only
--	 * context using semaphores after all other clients have stopped, we
--	 * will be starved on the saturated system. Such a global switch for
--	 * semaphores is less than ideal, but alas is the current compromise.
--	 */
--	ve->base.saturated = ALL_ENGINES;
--
- 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
- 
- 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 526c1e9acbd5..31ef683d27b4 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -467,7 +467,7 @@ bool __i915_request_submit(struct i915_request *request)
- 	 */
- 	if (request->sched.semaphores &&
- 	    i915_sw_fence_signaled(&request->semaphore))
--		engine->saturated |= request->sched.semaphores;
-+		request->context->saturated |= request->sched.semaphores;
- 
- 	engine->emit_fini_breadcrumb(request,
- 				     request->ring->vaddr + request->postfix);
-@@ -919,7 +919,7 @@ already_busywaiting(struct i915_request *rq)
- 	 *
- 	 * See the are-we-too-late? check in __i915_request_submit().
- 	 */
--	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
-+	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index f6949cd55e92..ef38dd52945c 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -3591,9 +3591,11 @@ static int nop_virtual_engine(struct intel_gt *gt,
+ 	return err;
  }
  
- static int
+-static unsigned int select_siblings(struct intel_gt *gt,
+-				    unsigned int class,
+-				    struct intel_engine_cs **siblings)
++static unsigned int
++__select_siblings(struct intel_gt *gt,
++		  unsigned int class,
++		  struct intel_engine_cs **siblings,
++		  bool (*filter)(const struct intel_engine_cs *))
+ {
+ 	unsigned int n = 0;
+ 	unsigned int inst;
+@@ -3602,12 +3604,23 @@ static unsigned int select_siblings(struct intel_gt *gt,
+ 		if (!gt->engine_class[class][inst])
+ 			continue;
+ 
++		if (filter && !filter(gt->engine_class[class][inst]))
++			continue;
++
+ 		siblings[n++] = gt->engine_class[class][inst];
+ 	}
+ 
+ 	return n;
+ }
+ 
++static unsigned int
++select_siblings(struct intel_gt *gt,
++		unsigned int class,
++		struct intel_engine_cs **siblings)
++{
++	return __select_siblings(gt, class, siblings, NULL);
++}
++
+ static int live_virtual_engine(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -3762,6 +3775,186 @@ static int live_virtual_mask(void *arg)
+ 	return 0;
+ }
+ 
++static long slice_timeout(struct intel_engine_cs *engine)
++{
++	long timeout;
++
++	/* Enough time for a timeslice to kick in, and kick out */
++	timeout = 2 * msecs_to_jiffies_timeout(timeslice(engine));
++
++	/* Enough time for the nop request to complete */
++	timeout += HZ / 5;
++
++	return timeout;
++}
++
++static int slicein_virtual_engine(struct intel_gt *gt,
++				  struct intel_engine_cs **siblings,
++				  unsigned int nsibling)
++{
++	const long timeout = slice_timeout(siblings[0]);
++	struct intel_context *ce;
++	struct i915_request *rq;
++	struct igt_spinner spin;
++	unsigned int n;
++	int err = 0;
++
++	/*
++	 * Virtual requests must take part in timeslicing on the target engines.
++	 */
++
++	if (igt_spinner_init(&spin, gt))
++		return -ENOMEM;
++
++	for (n = 0; n < nsibling; n++) {
++		ce = intel_context_create(siblings[n]);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			goto out;
++		}
++
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out;
++		}
++
++		i915_request_add(rq);
++	}
++
++	ce = intel_execlists_create_virtual(siblings, nsibling);
++	if (IS_ERR(ce)) {
++		err = PTR_ERR(ce);
++		goto out;
++	}
++
++	rq = intel_context_create_request(ce);
++	intel_context_put(ce);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out;
++	}
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++	if (i915_request_wait(rq, 0, timeout) < 0) {
++		GEM_TRACE_ERR("%s(%s) failed to slice in virtual request\n",
++			      __func__, rq->engine->name);
++		GEM_TRACE_DUMP();
++		intel_gt_set_wedged(gt);
++		err = -EIO;
++	}
++	i915_request_put(rq);
++
++out:
++	igt_spinner_end(&spin);
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++	igt_spinner_fini(&spin);
++	return err;
++}
++
++static int sliceout_virtual_engine(struct intel_gt *gt,
++				   struct intel_engine_cs **siblings,
++				   unsigned int nsibling)
++{
++	const long timeout = slice_timeout(siblings[0]);
++	struct intel_context *ce;
++	struct i915_request *rq;
++	struct igt_spinner spin;
++	unsigned int n;
++	int err = 0;
++
++	/*
++	 * Virtual requests must allow others a fair timeslice.
++	 */
++
++	if (igt_spinner_init(&spin, gt))
++		return -ENOMEM;
++
++	/* XXX We do not handle oversubscription and fairness with normal rq */
++	for (n = 0; n < nsibling; n++) {
++		ce = intel_execlists_create_virtual(siblings, nsibling);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			goto out;
++		}
++
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out;
++		}
++
++		i915_request_add(rq);
++	}
++
++	for (n = 0; !err && n < nsibling; n++) {
++		ce = intel_context_create(siblings[n]);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			goto out;
++		}
++
++		rq = intel_context_create_request(ce);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out;
++		}
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++		if (i915_request_wait(rq, 0, timeout) < 0) {
++			GEM_TRACE_ERR("%s(%s) failed to slice out virtual request\n",
++				      __func__, siblings[n]->name);
++			GEM_TRACE_DUMP();
++			intel_gt_set_wedged(gt);
++			err = -EIO;
++		}
++		i915_request_put(rq);
++	}
++
++out:
++	igt_spinner_end(&spin);
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++	igt_spinner_fini(&spin);
++	return err;
++}
++
++static int live_virtual_slice(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
++	unsigned int class;
++	int err;
++
++	if (intel_uc_uses_guc_submission(&gt->uc))
++		return 0;
++
++	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
++		unsigned int nsibling;
++
++		nsibling = __select_siblings(gt, class, siblings,
++					     intel_engine_has_timeslices);
++		if (nsibling < 2)
++			continue;
++
++		err = slicein_virtual_engine(gt, siblings, nsibling);
++		if (err)
++			return err;
++
++		err = sliceout_virtual_engine(gt, siblings, nsibling);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ static int preserved_virtual_engine(struct intel_gt *gt,
+ 				    struct intel_engine_cs **siblings,
+ 				    unsigned int nsibling)
+@@ -4297,6 +4490,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_virtual_engine),
+ 		SUBTEST(live_virtual_mask),
+ 		SUBTEST(live_virtual_preserved),
++		SUBTEST(live_virtual_slice),
+ 		SUBTEST(live_virtual_bond),
+ 		SUBTEST(live_virtual_reset),
+ 	};
 -- 
 2.20.1
 
