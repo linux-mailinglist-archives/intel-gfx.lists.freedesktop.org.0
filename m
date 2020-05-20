@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3DA81DB8BE
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A7EC1DB950
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 18:30:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A25D56E866;
-	Wed, 20 May 2020 15:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E79456E871;
+	Wed, 20 May 2020 16:30:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A826B6E82E;
- Wed, 20 May 2020 15:54:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F3F6E871;
+ Wed, 20 May 2020 16:30:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21242999-1500050 
- for multiple; Wed, 20 May 2020 16:54:11 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21243470-1500050 
+ for multiple; Wed, 20 May 2020 17:29:47 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 16:54:10 +0100
-Message-Id: <20200520155410.2544056-1-chris@chris-wilson.co.uk>
+Date: Wed, 20 May 2020 17:29:46 +0100
+Message-Id: <20200520162946.2602017-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.27.0.rc0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rc6_residency: Check we
- conserve power while waiting
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_schedule: Verify
+ timeslicing between submit-fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,122 +43,168 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check that if we submit a request that is held up by an external fence,
-that we conserve power during the wait as the GPU is idle.
+Use a spinner to create a fence, and then use that as to synchronise
+another batch to cancel the spinner.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- tests/i915/i915_pm_rc6_residency.c | 82 ++++++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+ tests/i915/gem_exec_schedule.c | 121 +++++++++++++++++++++++++++++++--
+ 1 file changed, 116 insertions(+), 5 deletions(-)
 
-diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
-index 144bcd028..810415b48 100644
---- a/tests/i915/i915_pm_rc6_residency.c
-+++ b/tests/i915/i915_pm_rc6_residency.c
-@@ -38,6 +38,7 @@
- #include "igt_perf.h"
- #include "igt_rapl.h"
- #include "igt_sysfs.h"
-+#include "sw_sync.h"
+diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+index 62e387cc1..0a7deb5a1 100644
+--- a/tests/i915/gem_exec_schedule.c
++++ b/tests/i915/gem_exec_schedule.c
+@@ -65,6 +65,11 @@
  
- #define SLEEP_DURATION 3 /* in seconds */
+ IGT_TEST_DESCRIPTION("Check that we can control the order of execution");
  
-@@ -447,6 +448,80 @@ static void rc6_idle(int i915)
++static unsigned int offset_in_page(void *addr)
++{
++	return (uintptr_t)addr & 4095;
++}
++
+ static inline
+ uint32_t __sync_read_u32(int fd, uint32_t handle, uint64_t offset)
+ {
+@@ -670,6 +675,110 @@ static void lateslice(int i915, unsigned int engine)
+ 	igt_spin_free(i915, spin[1]);
+ }
+ 
++static void cancel_spinner(int i915,
++			   uint32_t ctx, unsigned int engine,
++			   igt_spin_t *spin)
++{
++	struct drm_i915_gem_exec_object2 obj = {
++		.handle = gem_create(i915, 4096),
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.flags = engine | I915_EXEC_FENCE_SUBMIT,
++		.rsvd1 = ctx, /* same vm */
++		.rsvd2 = spin->out_fence,
++	};
++	uint32_t *map, *cs;
++
++	map = gem_mmap__device_coherent(i915, obj.handle, 0, 4096, PROT_WRITE);
++	cs = map;
++
++	*cs++ = MI_STORE_DWORD_IMM;
++	*cs++ = spin->obj[IGT_SPIN_BATCH].offset +
++		offset_in_page(spin->condition);
++	*cs++ = spin->obj[IGT_SPIN_BATCH].offset >> 32;
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	*cs++ = MI_BATCH_BUFFER_END;
++	munmap(map, 4096);
++
++	gem_execbuf(i915, &execbuf);
++	gem_close(i915, obj.handle);
++}
++
++static void submit_slice(int i915,
++			 const struct intel_execution_engine2 *e,
++			 unsigned int flags)
++#define EARLY_SUBMIT 0x1
++#define LATE_SUBMIT 0x2
++{
++	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , 1) = {};
++	const struct intel_execution_engine2 *cancel;
++	struct drm_i915_gem_context_param param = {
++		.ctx_id = gem_context_create(i915),
++		.param = I915_CONTEXT_PARAM_ENGINES,
++		.value = to_user_pointer(&engines),
++		.size = sizeof(engines),
++	};
++
++	/*
++	 * When using a submit fence, we do not want to block concurrent work,
++	 * especially when that work is coperating with the spinner.
++	 */
++
++	igt_require(gem_scheduler_has_semaphores(i915));
++	igt_require(gem_scheduler_has_preemption(i915));
++	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
++
++	__for_each_physical_engine(i915, cancel) {
++		igt_spin_t *bg, *spin;
++		int timeline = -1;
++		int fence = -1;
++
++		if (!gem_class_can_store_dword(i915, cancel->class))
++			continue;
++
++		igt_debug("Testing cancellation from %s\n", e->name);
++
++		bg = igt_spin_new(i915, .engine = e->flags);
++
++		if (flags & LATE_SUBMIT) {
++			timeline = sw_sync_timeline_create();
++			fence = sw_sync_timeline_create_fence(timeline, 1);
++		}
++
++		engines.engines[0].engine_class = e->class;
++		engines.engines[0].engine_instance = e->instance;
++		gem_context_set_param(i915, &param);
++		spin = igt_spin_new(i915, .ctx = param.ctx_id,
++				    .fence = fence,
++				    .flags =
++				    IGT_SPIN_POLL_RUN |
++				    (flags & LATE_SUBMIT ? IGT_SPIN_FENCE_IN : 0) |
++				    IGT_SPIN_FENCE_OUT);
++		if (fence != -1)
++			close(fence);
++
++		if (flags & EARLY_SUBMIT)
++			igt_spin_busywait_until_started(spin);
++
++		engines.engines[0].engine_class = cancel->class;
++		engines.engines[0].engine_instance = cancel->instance;
++		gem_context_set_param(i915, &param);
++		cancel_spinner(i915, param.ctx_id, 0, spin);
++
++		if (timeline != -1)
++			close(timeline);
++
++		gem_sync(i915, spin->handle);
++		igt_spin_free(i915, spin);
++		igt_spin_free(i915, bg);
++	}
++
++	gem_context_destroy(i915, param.ctx_id);
++}
++
+ static uint32_t __batch_create(int i915, uint32_t offset)
+ {
+ 	const uint32_t bbe = MI_BATCH_BUFFER_END;
+@@ -812,11 +921,6 @@ static void semaphore_codependency(int i915)
  	}
  }
  
-+static void rc6_fence(int i915)
-+{
-+	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
-+	const int tolerance = 20; /* Some RC6 is better than none! */
-+	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const struct intel_execution_engine2 *e;
-+	struct power_sample sample[2];
-+	unsigned long slept;
-+	uint64_t rc6, ts[2];
-+	struct rapl rapl;
-+	int fd;
-+
-+	igt_require_sw_sync();
-+
-+	fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
-+	igt_drop_caches_set(i915, DROP_IDLE);
-+	igt_require(__pmu_wait_for_rc6(fd));
-+	gpu_power_open(&rapl);
-+
-+	/* While idle check full RC6. */
-+	rapl_read(&rapl, &sample[0]);
-+	rc6 = -__pmu_read_single(fd, &ts[0]);
-+	slept = measured_usleep(duration_ns / 1000);
-+	rc6 += __pmu_read_single(fd, &ts[1]);
-+	igt_debug("slept=%lu perf=%"PRIu64", rc6=%"PRIu64"\n",
-+		  slept, ts[1] - ts[0], rc6);
-+	if (rapl_read(&rapl, &sample[1]))  {
-+		double idle = power_J(&rapl, &sample[0], &sample[1]);
-+		igt_log(IGT_LOG_DOMAIN,
-+			idle > 1e-3 && gen > 6 ? IGT_LOG_WARN : IGT_LOG_INFO,
-+			"Total energy used while idle: %.1fmJ\n", idle * 1e3);
-+	}
-+	assert_within_epsilon(rc6, ts[1] - ts[0], 5);
-+
-+	/* Submit but delay execution, we should be idle and conserving power */
-+	__for_each_physical_engine(i915, e) {
-+		igt_spin_t *spin;
-+		int timeline;
-+		int fence;
-+
-+		timeline = sw_sync_timeline_create();
-+		fence = sw_sync_timeline_create_fence(timeline, 1);
-+		spin = igt_spin_new(i915,
-+				    .engine = e->flags,
-+				    .fence = fence,
-+				    .flags = IGT_SPIN_FENCE_IN);
-+		close(fence);
-+
-+		rapl_read(&rapl, &sample[0]);
-+		rc6 = -__pmu_read_single(fd, &ts[0]);
-+		slept = measured_usleep(duration_ns / 1000);
-+		rc6 += __pmu_read_single(fd, &ts[1]);
-+		igt_debug("%s: slept=%lu perf=%"PRIu64", rc6=%"PRIu64"\n",
-+			  e->name, slept, ts[1] - ts[0], rc6);
-+		if (rapl_read(&rapl, &sample[1]))  {
-+			uint64_t power = power_J(&rapl, &sample[0], &sample[1]);
-+			igt_info("Total energy used for %s: %.1fmJ (%.1fmW)\n",
-+				 e->name,
-+				 power * 1e3,
-+				 power * 1e12 / slept);
-+		}
-+
-+		igt_assert(gem_bo_busy(i915, spin->handle));
-+		igt_spin_free(i915, spin);
-+
-+		close(timeline);
-+
-+		assert_within_epsilon(rc6, ts[1] - ts[0], tolerance);
-+	}
-+
-+	rapl_close(&rapl);
-+	close(fd);
-+}
-+
- igt_main
+-static unsigned int offset_in_page(void *addr)
+-{
+-	return (uintptr_t)addr & 4095;
+-}
+-
+ static void semaphore_resolve(int i915)
  {
- 	int i915 = -1;
-@@ -463,6 +538,13 @@ igt_main
- 		rc6_idle(i915);
- 	}
+ 	const struct intel_execution_engine2 *e;
+@@ -2454,6 +2558,13 @@ igt_main
+ 		test_each_engine("lateslice", fd, e)
+ 			lateslice(fd, e->flags);
  
-+	igt_subtest("rc6-fence") {
-+		igt_require_gem(i915);
-+		gem_quiescent_gpu(i915);
++		test_each_engine("submit-early-slice", fd, e)
++			submit_slice(fd, e, EARLY_SUBMIT);
++		test_each_engine("submit-golden-slice", fd, e)
++			submit_slice(fd, e, 0);
++		test_each_engine("submit-late-slice", fd, e)
++			submit_slice(fd, e, LATE_SUBMIT);
 +
-+		rc6_fence(i915);
-+	}
-+
- 	igt_subtest_group {
- 		unsigned int rc6_enabled = 0;
- 		unsigned int devid = 0;
+ 		igt_subtest("semaphore-user")
+ 			semaphore_userlock(fd);
+ 		igt_subtest("semaphore-codependency")
 -- 
 2.27.0.rc0
 
