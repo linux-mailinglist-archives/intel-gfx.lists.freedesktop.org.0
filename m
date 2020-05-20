@@ -2,30 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDEA1DAEAE
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 11:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E972C1DAEEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 11:38:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A1E66E402;
-	Wed, 20 May 2020 09:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3017089F3B;
+	Wed, 20 May 2020 09:38:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 325AE6E3F7;
- Wed, 20 May 2020 09:26:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2C391A47E1;
- Wed, 20 May 2020 09:26:19 +0000 (UTC)
+X-Greylist: delayed 463 seconds by postgrey-1.36 at gabe;
+ Wed, 20 May 2020 09:38:19 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4EDC89F3B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 09:38:19 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f0bab00d907527c3c1e360d.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f0b:ab00:d907:527c:3c1e:360d])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 6F3701EC032C;
+ Wed, 20 May 2020 11:30:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1589967031;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=teHER3drpZC90YV39aV0JKoBgNp1orOkwIEOsr66nLA=;
+ b=kQ8DtzJUg1v/fjf2FfUfjDuzC0tAMDIqK1AKZWVIHAJfzvTxLH85PT9mZ7UZlvEPHYul1s
+ gje3F5/VhcVN+VoGjcW4SB/QBnBxb4q2X2tbU++u+CuU/Aiyq3WMf2CQSwSKp2pLBdYs2y
+ HgHZvVHfNGsmY3Jev7HTOk9sW/79emM=
+Date: Wed, 20 May 2020 11:30:25 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Message-ID: <20200520093025.GD1457@zn.tnic>
+References: <20200504225227.464666-1-matthew.d.roper@intel.com>
+ <20200504225227.464666-3-matthew.d.roper@intel.com>
+ <83F5C7385F545743AD4FB2A62F75B073482C132A@ORSMSX108.amr.corp.intel.com>
+ <CAKi4VA+wnY7eY-fLxcfQ1x2nsxg2=z7MRetOF02djtDDo3ENxQ@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 20 May 2020 09:26:19 -0000
-Message-ID: <158996677915.30692.8245021056160734416@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519222342.6395-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200519222342.6395-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Trace_the_CS_interrupt_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <CAKi4VA+wnY7eY-fLxcfQ1x2nsxg2=z7MRetOF02djtDDo3ENxQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 02/22] x86/gpu: add RKL stolen memory
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,79 +55,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ x86@kernel.org, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ Ingo Molnar <mingo@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Borislav Petkov <bp@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 19, 2020 at 04:57:27PM -0700, Lucas De Marchi wrote:
+> The following files are outside of i915 maintenance scope:
+> arch/x86/kernel/early-quirks.c
+> 
+> Can we get an ack?
 
-Series: drm/i915/gt: Trace the CS interrupt (rev3)
-URL   : https://patchwork.freedesktop.org/series/77441/
-State : success
+Acked-by: Borislav Petkov <bp@suse.de>
 
-== Summary ==
+> Going forward, for simple changes like this, do you prefer to still
+> ack on it or should we just apply to our tree?
 
-CI Bug Log - changes from CI_DRM_8509 -> Patchwork_17725
-====================================================
+Well, we are very quickly to give an ACK for trivial stuff like that
+if we get CCed upfront on the patch. It keeps us aware of what's being
+changed outside of tip.
 
-Summary
--------
+Thx.
 
-  **SUCCESS**
+-- 
+Regards/Gruss,
+    Boris.
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17725/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17725 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-dsi}:       [INCOMPLETE][1] ([i915#1803]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8509/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17725/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8509 -> Patchwork_17725
-
-  CI-20190529: 20190529
-  CI_DRM_8509: ea6a2729d3d286137415319de4161042b0337e87 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5662: e79462659e0f45cd3f4f766f58cb792303c6bf9b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17725: 81e6479a4bb661a040268cad16453f4e2b38f8ab @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-81e6479a4bb6 drm/i915/gt: Trace the CS interrupt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17725/index.html
+https://people.kernel.org/tglx/notes-about-netiquette
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
