@@ -1,32 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8AE1DB3FD
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 14:45:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9075C1DB45D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 15:00:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0421B89DB2;
-	Wed, 20 May 2020 12:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B6F6E7FE;
+	Wed, 20 May 2020 13:00:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7998189DB2;
- Wed, 20 May 2020 12:45:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76E45A47EA;
- Wed, 20 May 2020 12:45:40 +0000 (UTC)
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6BD389DFE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 13:00:44 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 15:00:08 +0200
+Message-Id: <20200520130030.1014994-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 20 May 2020 12:45:40 -0000
-Message-ID: <158997874048.30687.14716993311944328982@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200518164750.11113-1-jani.nikula@intel.com>
-In-Reply-To: <20200518164750.11113-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/params=3A_don=27t_expos?=
- =?utf-8?q?e_inject=5Fprobe=5Ffailure_in_debugfs_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 01/23] Revert "drm/i915/gem: Drop relocation
+ slowpath".
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,74 +33,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This reverts commit 7dc8f1143778 ("drm/i915/gem: Drop relocation
+slowpath"). We need the slowpath relocation for taking ww-mutex
+inside the page fault handler, and we will take this mutex when
+pinning all objects.
 
-Series: series starting with [1/3] drm/i915/params: don't expose inject_probe_failure in debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/77366/
-State : warning
+[mlankhorst: Adjusted for reloc_gpu_flush() changes]
 
-== Summary ==
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 246 +++++++++++++++++-
+ 1 file changed, 245 insertions(+), 1 deletion(-)
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/compiler.h:199:9: warning: context imbalance in 'engines_sample' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index e4fb6c372537..9be3938b591f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1706,7 +1706,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 		 * we would try to acquire the struct mutex again. Obviously
+ 		 * this is bad and so lockdep complains vehemently.
+ 		 */
+-		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
++		pagefault_disable();
++		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
++		pagefault_enable();
+ 		if (unlikely(copied)) {
+ 			remain = -EFAULT;
+ 			goto out;
+@@ -1754,6 +1756,246 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 	return remain;
+ }
+ 
++static int
++eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
++{
++	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
++	struct drm_i915_gem_relocation_entry *relocs =
++		u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < entry->relocation_count; i++) {
++		u64 offset = eb_relocate_entry(eb, ev, &relocs[i]);
++
++		if ((s64)offset < 0) {
++			err = (int)offset;
++			goto err;
++		}
++	}
++	err = 0;
++err:
++	reloc_cache_reset(&eb->reloc_cache);
++	return err;
++}
++
++static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
++{
++	const char __user *addr, *end;
++	unsigned long size;
++	char __maybe_unused c;
++
++	size = entry->relocation_count;
++	if (size == 0)
++		return 0;
++
++	if (size > N_RELOC(ULONG_MAX))
++		return -EINVAL;
++
++	addr = u64_to_user_ptr(entry->relocs_ptr);
++	size *= sizeof(struct drm_i915_gem_relocation_entry);
++	if (!access_ok(addr, size))
++		return -EFAULT;
++
++	end = addr + size;
++	for (; addr < end; addr += PAGE_SIZE) {
++		int err = __get_user(c, addr);
++		if (err)
++			return err;
++	}
++	return __get_user(c, end - 1);
++}
++
++static int eb_copy_relocations(const struct i915_execbuffer *eb)
++{
++	struct drm_i915_gem_relocation_entry *relocs;
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < count; i++) {
++		const unsigned int nreloc = eb->exec[i].relocation_count;
++		struct drm_i915_gem_relocation_entry __user *urelocs;
++		unsigned long size;
++		unsigned long copied;
++
++		if (nreloc == 0)
++			continue;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			goto err;
++
++		urelocs = u64_to_user_ptr(eb->exec[i].relocs_ptr);
++		size = nreloc * sizeof(*relocs);
++
++		relocs = kvmalloc_array(size, 1, GFP_KERNEL);
++		if (!relocs) {
++			err = -ENOMEM;
++			goto err;
++		}
++
++		/* copy_from_user is limited to < 4GiB */
++		copied = 0;
++		do {
++			unsigned int len =
++				min_t(u64, BIT_ULL(31), size - copied);
++
++			if (__copy_from_user((char *)relocs + copied,
++					     (char __user *)urelocs + copied,
++					     len))
++				goto end;
++
++			copied += len;
++		} while (copied < size);
++
++		/*
++		 * As we do not update the known relocation offsets after
++		 * relocating (due to the complexities in lock handling),
++		 * we need to mark them as invalid now so that we force the
++		 * relocation processing next time. Just in case the target
++		 * object is evicted and then rebound into its old
++		 * presumed_offset before the next execbuffer - if that
++		 * happened we would make the mistake of assuming that the
++		 * relocations were valid.
++		 */
++		if (!user_access_begin(urelocs, size))
++			goto end;
++
++		for (copied = 0; copied < nreloc; copied++)
++			unsafe_put_user(-1,
++					&urelocs[copied].presumed_offset,
++					end_user);
++		user_access_end();
++
++		eb->exec[i].relocs_ptr = (uintptr_t)relocs;
++	}
++
++	return 0;
++
++end_user:
++	user_access_end();
++end:
++	kvfree(relocs);
++	err = -EFAULT;
++err:
++	while (i--) {
++		relocs = u64_to_ptr(typeof(*relocs), eb->exec[i].relocs_ptr);
++		if (eb->exec[i].relocation_count)
++			kvfree(relocs);
++	}
++	return err;
++}
++
++static int eb_prefault_relocations(const struct i915_execbuffer *eb)
++{
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++
++	for (i = 0; i < count; i++) {
++		int err;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
++static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
++{
++	bool have_copy = false;
++	struct eb_vma *ev;
++	int err = 0, flush;
++
++repeat:
++	if (signal_pending(current)) {
++		err = -ERESTARTSYS;
++		goto out;
++	}
++
++	/*
++	 * We take 3 passes through the slowpatch.
++	 *
++	 * 1 - we try to just prefault all the user relocation entries and
++	 * then attempt to reuse the atomic pagefault disabled fast path again.
++	 *
++	 * 2 - we copy the user entries to a local buffer here outside of the
++	 * local and allow ourselves to wait upon any rendering before
++	 * relocations
++	 *
++	 * 3 - we already have a local copy of the relocation entries, but
++	 * were interrupted (EAGAIN) whilst waiting for the objects, try again.
++	 */
++	if (!err) {
++		err = eb_prefault_relocations(eb);
++	} else if (!have_copy) {
++		err = eb_copy_relocations(eb);
++		have_copy = err == 0;
++	} else {
++		cond_resched();
++		err = 0;
++	}
++	if (err)
++		goto out;
++
++	list_for_each_entry(ev, &eb->relocs, reloc_link) {
++		if (!have_copy) {
++			pagefault_disable();
++			err = eb_relocate_vma(eb, ev);
++			pagefault_enable();
++			if (err)
++				break;
++		} else {
++			err = eb_relocate_vma_slow(eb, ev);
++			if (err)
++				break;
++		}
++	}
++
++	flush = reloc_gpu_flush(&eb->reloc_cache);
++	if (err && !have_copy)
++		goto repeat;
++
++	if (!err)
++		err = flush;
++
++	if (err)
++		goto err;
++
++	/*
++	 * Leave the user relocations as are, this is the painfully slow path,
++	 * and we want to avoid the complication of dropping the lock whilst
++	 * having buffers reserved in the aperture and so causing spurious
++	 * ENOSPC for random operations.
++	 */
++
++err:
++	if (err == -EAGAIN)
++		goto repeat;
++
++out:
++	if (have_copy) {
++		const unsigned int count = eb->buffer_count;
++		unsigned int i;
++
++		for (i = 0; i < count; i++) {
++			const struct drm_i915_gem_exec_object2 *entry =
++				&eb->exec[i];
++			struct drm_i915_gem_relocation_entry *relocs;
++
++			if (!entry->relocation_count)
++				continue;
++
++			relocs = u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++			kvfree(relocs);
++		}
++	}
++
++	return err;
++}
++
+ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+@@ -1782,6 +2024,8 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ 		flush = reloc_gpu_flush(&eb->reloc_cache);
+ 		if (!err)
+ 			err = flush;
++		else
++			return eb_relocate_slow(eb);
+ 	}
+ 
+ 	return err;
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
