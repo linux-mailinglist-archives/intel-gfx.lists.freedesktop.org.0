@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34AD21DB8A9
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DA81DB8BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:54:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291ED6E17E;
-	Wed, 20 May 2020 15:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25D56E866;
+	Wed, 20 May 2020 15:54:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 26AC86E17E;
- Wed, 20 May 2020 15:50:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 15827A47E0;
- Wed, 20 May 2020 15:50:05 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A826B6E82E;
+ Wed, 20 May 2020 15:54:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21242999-1500050 
+ for multiple; Wed, 20 May 2020 16:54:11 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 16:54:10 +0100
+Message-Id: <20200520155410.2544056-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0.rc0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Wed, 20 May 2020 15:50:05 -0000
-Message-ID: <158998980505.30692.1949857255836224498@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev18=29?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rc6_residency: Check we
+ conserve power while waiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,90 +37,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Check that if we submit a request that is held up by an external fence,
+that we conserve power during the wait as the GPU is idle.
 
-Series: Consider DBuf bandwidth when calculating CDCLK (rev18)
-URL   : https://patchwork.freedesktop.org/series/74739/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+---
+ tests/i915/i915_pm_rc6_residency.c | 82 ++++++++++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
 
-== Summary ==
+diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
+index 144bcd028..810415b48 100644
+--- a/tests/i915/i915_pm_rc6_residency.c
++++ b/tests/i915/i915_pm_rc6_residency.c
+@@ -38,6 +38,7 @@
+ #include "igt_perf.h"
+ #include "igt_rapl.h"
+ #include "igt_sysfs.h"
++#include "sw_sync.h"
+ 
+ #define SLEEP_DURATION 3 /* in seconds */
+ 
+@@ -447,6 +448,80 @@ static void rc6_idle(int i915)
+ 	}
+ }
+ 
++static void rc6_fence(int i915)
++{
++	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
++	const int tolerance = 20; /* Some RC6 is better than none! */
++	const int gen = intel_gen(intel_get_drm_devid(i915));
++	const struct intel_execution_engine2 *e;
++	struct power_sample sample[2];
++	unsigned long slept;
++	uint64_t rc6, ts[2];
++	struct rapl rapl;
++	int fd;
++
++	igt_require_sw_sync();
++
++	fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
++	igt_drop_caches_set(i915, DROP_IDLE);
++	igt_require(__pmu_wait_for_rc6(fd));
++	gpu_power_open(&rapl);
++
++	/* While idle check full RC6. */
++	rapl_read(&rapl, &sample[0]);
++	rc6 = -__pmu_read_single(fd, &ts[0]);
++	slept = measured_usleep(duration_ns / 1000);
++	rc6 += __pmu_read_single(fd, &ts[1]);
++	igt_debug("slept=%lu perf=%"PRIu64", rc6=%"PRIu64"\n",
++		  slept, ts[1] - ts[0], rc6);
++	if (rapl_read(&rapl, &sample[1]))  {
++		double idle = power_J(&rapl, &sample[0], &sample[1]);
++		igt_log(IGT_LOG_DOMAIN,
++			idle > 1e-3 && gen > 6 ? IGT_LOG_WARN : IGT_LOG_INFO,
++			"Total energy used while idle: %.1fmJ\n", idle * 1e3);
++	}
++	assert_within_epsilon(rc6, ts[1] - ts[0], 5);
++
++	/* Submit but delay execution, we should be idle and conserving power */
++	__for_each_physical_engine(i915, e) {
++		igt_spin_t *spin;
++		int timeline;
++		int fence;
++
++		timeline = sw_sync_timeline_create();
++		fence = sw_sync_timeline_create_fence(timeline, 1);
++		spin = igt_spin_new(i915,
++				    .engine = e->flags,
++				    .fence = fence,
++				    .flags = IGT_SPIN_FENCE_IN);
++		close(fence);
++
++		rapl_read(&rapl, &sample[0]);
++		rc6 = -__pmu_read_single(fd, &ts[0]);
++		slept = measured_usleep(duration_ns / 1000);
++		rc6 += __pmu_read_single(fd, &ts[1]);
++		igt_debug("%s: slept=%lu perf=%"PRIu64", rc6=%"PRIu64"\n",
++			  e->name, slept, ts[1] - ts[0], rc6);
++		if (rapl_read(&rapl, &sample[1]))  {
++			uint64_t power = power_J(&rapl, &sample[0], &sample[1]);
++			igt_info("Total energy used for %s: %.1fmJ (%.1fmW)\n",
++				 e->name,
++				 power * 1e3,
++				 power * 1e12 / slept);
++		}
++
++		igt_assert(gem_bo_busy(i915, spin->handle));
++		igt_spin_free(i915, spin);
++
++		close(timeline);
++
++		assert_within_epsilon(rc6, ts[1] - ts[0], tolerance);
++	}
++
++	rapl_close(&rapl);
++	close(fd);
++}
++
+ igt_main
+ {
+ 	int i915 = -1;
+@@ -463,6 +538,13 @@ igt_main
+ 		rc6_idle(i915);
+ 	}
+ 
++	igt_subtest("rc6-fence") {
++		igt_require_gem(i915);
++		gem_quiescent_gpu(i915);
++
++		rc6_fence(i915);
++	}
++
+ 	igt_subtest_group {
+ 		unsigned int rc6_enabled = 0;
+ 		unsigned int devid = 0;
+-- 
+2.27.0.rc0
 
-CI Bug Log - changes from CI_DRM_8511 -> Patchwork_17733
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17733 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][1] -> [TIMEOUT][2] ([i915#1288])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [SKIP][3] ([fdo#109271]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1288]: https://gitlab.freedesktop.org/drm/intel/issues/1288
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8511 -> Patchwork_17733
-
-  CI-20190529: 20190529
-  CI_DRM_8511: 504ee538bd65abff745914a6f0b7aad62bbc1d11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5664: 404e2fa06b9c5986dec3fa210234fe8b034b157e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17733: 727bc2568e96653db48fa5821212abe6fb01b7a8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-727bc2568e96 drm/i915: Remove unneeded hack now for CDCLK
-cea1d50d43c0 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
-89ece93a82af drm/i915: Introduce for_each_dbuf_slice_in_mask macro
-f6fbdfa19ab0 drm/i915: Plane configuration affects CDCLK in Gen11+
-c013d7e44c52 drm/i915: Check plane configuration properly
-b0928a963b24 drm/i915: Extract cdclk requirements checking to separate function
-27d0a2a78122 drm/i915: Decouple cdclk calculation from modeset checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
