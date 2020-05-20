@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DFD71DBE42
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 21:47:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A5A1DBE62
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 21:50:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A63A089C86;
-	Wed, 20 May 2020 19:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 365E16E897;
+	Wed, 20 May 2020 19:50:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
- [IPv6:2607:f8b0:4864:20::f44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE7E089C86
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 19:47:51 +0000 (UTC)
-Received: by mail-qv1-xf44.google.com with SMTP id er16so1973508qvb.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 12:47:51 -0700 (PDT)
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com
+ [IPv6:2607:f8b0:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8A746E896
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 19:50:51 +0000 (UTC)
+Received: by mail-il1-x141.google.com with SMTP id j3so4510696ilk.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 12:50:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id;
- bh=mpTmYaLtBWGjoVuR6nTgbHoI9VJvsp2OI4i6YxeEkIo=;
- b=JitvZelNIV6pPj+Udr6dZrQVDcev5EE8tiHE0UHm3bWligE4vUE8gG9/GpYLRzx9tH
- 7TlTpintRL8/5CKxjzIOP4T6m45ygoSclPYirPp8xSC3WTi5Fj9IX9QBS4Jm3zhFUE1A
- UJognTMgYpsUv3Q9pskY7QfoCOXSWDF+QeQTmleyb+b/6mvwAG3DFQ/ogFxt5YLuVP9A
- 0JxKrc2QNXjHkypH79cXF6cWtcNoGuwDjHPcY2ZtOfkNt6QQyTaMZiVMJAnCYoedWE1g
- H0u6iFxQ5E44ZbfJn8LLISvvmwTIcZImNIM1YUBfA4WRTjyaZU3hrnBL/uCRf2ByGJHU
- 0DZw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=dES2NvnWqSmRLKblNkb72ldUkwAw4mVk4pzdiCGX9aw=;
+ b=Wfg3CFnB73KX9N8b5qhhBi7LaxODIlaGZaTLZdEgfyGYXImZE4d97OSlPH7cyXrLGY
+ aaukRfNIJ8ovoaz0zXvz4tkzh5b3X8Ga85PhxOeB0zoK+bqYyl21rPh6mr7OuAIL81UN
+ //Wu6wRc57KR72f0cqgwWv0mdKwujYObxjcGT5wjfd7is3pMI3phVKKzT0n2enHci471
+ jqP53jZVeX56XWzsTufWrS6QPxrSLMjm4GOMPZJx9X89La4hHhFE1QefUaCnL9EG80B1
+ Z1f2jKmBHTBj/CUZgb4oMXiBjKKf93knLILrTgAI9TCxdBCl6/rH1kWlbOLdEADNFi7Y
+ UK4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=mpTmYaLtBWGjoVuR6nTgbHoI9VJvsp2OI4i6YxeEkIo=;
- b=qaeHvknjJqUm9FOYZiRAQy6pNcRdCVgM2gq4FvzEuEQPihX/F+hh4mo6n/u4FGNURr
- YSit1WNTHNhyT8aMG7oVwTiOLJ5g6bhELkRVGovUJ1iXhHWbMbbXK24Pbebe9Pyn/h95
- aPqC1WzTF3uKh5LHfgXmk6bY/MV9vmrToAc83iKVxq1dWn9L0I48LX+k4GkYymMewNh5
- 7aKkjKLmB4bhL4T4Yhz3cLvkMCKteCKy4Sau308zd046sLD6uWs58B+L3nQsmifMmvKQ
- pS5jfGYgp7R9uubCtNocUyEQ46NPjEaLJ1n83nbxNrOI4YAZja/jUrI14El9dWV/Zc+o
- 2NIQ==
-X-Gm-Message-State: AOAM532RsQdjUJsODfSJEjRBKFkdlhRltsxluJiwB7kTT1hFCm9PWWb6
- /CxH4uyyZnnE3P3h6fMya2p8hw==
-X-Google-Smtp-Source: ABdhPJwlSDmgwzKN0IIexj/FaHyA5YRcxC74WJ5M7iv1fwTJ0nriHlS+KCg+OkUL0/5UBIcADdSF/g==
-X-Received: by 2002:ad4:4b26:: with SMTP id s6mr6627217qvw.146.1590004070868; 
- Wed, 20 May 2020 12:47:50 -0700 (PDT)
-Received: from localhost (mobile-166-177-187-115.mycingular.net.
- [166.177.187.115])
- by smtp.gmail.com with ESMTPSA id g3sm3063163qtu.90.2020.05.20.12.47.49
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 20 May 2020 12:47:50 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=dES2NvnWqSmRLKblNkb72ldUkwAw4mVk4pzdiCGX9aw=;
+ b=KhzFgyBjMOsF5O0s7DOX2yVdOOQyVhU33pVah+pPfgMSCoLVlmOrVo1Ae8az/v1Wvw
+ Dni6L0Jw2INNGFf2ngriDwe4zJY54IYhvYCBHPuItyrPjou0lMCqeJltlDlIR1zp/MJm
+ WrcPmaV8wbDbz+bxcokyU47QzhWsLqKsn5NFvSuhA6G/iE82ZRgltmpcoHvkOtCFCDwU
+ 3odU3rRkW3fqnoW/RqQA90F88CN1cexPoU24g2b4SXU3lefZIMBCumK7jUAKzy7zy2He
+ MekmORUUroy7O+IyHwQTLRChA0LCtMcWeSA1l4FWfsJRclZ3WsR7siqNMCpZmHM0vzri
+ VSYw==
+X-Gm-Message-State: AOAM530poveF615RNRlYoYQzRotSMnnlBGa8u2rjvLPNkh0ebA1Sg6XN
+ romzmwiEx5Z7+te8X/cwRt2gWKaEgAefV1Jzeeqefw==
+X-Google-Smtp-Source: ABdhPJxort0pw/NsodJ5qR0bPClMay/zT/zTBWo3WXd0LR8svsV5QFFIiXMcWn/dcP2Jo9XLX+KQDXEdssQpBlUhFA8=
+X-Received: by 2002:a05:6e02:f4e:: with SMTP id
+ y14mr5535473ilj.165.1590004251277; 
+ Wed, 20 May 2020 12:50:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200520064602.GA20133@intel.com>
+ <20200520130808.44095-1-sean@poorly.run>
+In-Reply-To: <20200520130808.44095-1-sean@poorly.run>
 From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 15:47:44 -0400
-Message-Id: <20200520194744.48936-1-sean@poorly.run>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Avoid duplicate HDCP enables
+Date: Wed, 20 May 2020 15:50:15 -0400
+Message-ID: <CAMavQK+1f1DUJmCeUa5GvOLUBKiXtXH04VZtStqWmhXGazQD-g@mail.gmail.com>
+To: dri-devel <dri-devel@lists.freedesktop.org>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Add additional R0' wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +63,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: seanpaul@chromium.org
-MIME-Version: 1.0
+Cc: Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+On Wed, May 20, 2020 at 9:08 AM Sean Paul <sean@poorly.run> wrote:
+>
+> From: Sean Paul <seanpaul@chromium.org>
+>
+> We're seeing some R0' mismatches in the field, particularly with
+> repeaters. I'm guessing the (already lenient) 300ms wait time isn't
+> enough for some setups. So add an additional wait when R0' is
+> mismatched.
+>
 
-If userspace sets the CP property to DESIRED while it's already ENABLED,
-the driver will try to re-enable HDCP. On some displays, this will
-result in R0' mismatches. I'm guessing this is because the display is
-still sending back Ri instead of re-authenticating.
+I think my guess was wrong and now suspect this issue is fixed with
+"drm/i915/hdcp: Avoid duplicate HDCP enables".
 
-At any rate, we can fix this inefficiency easily enough by just nooping
-the DESIRED property set if HDCP is already ENABLED.
+While this patch probably still has some value in cases where R0' is
+slow to update, I don't have any concrete examples where it helps.
 
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
----
-
-I suspect this is the actual root cause I was chasing with
-"drm/i915/hdcp: Add additional R0' wait". I was able to reproduce the
-R0` messages by marking HDCP desired while it was already enabled. This
-_should_ work, but it seems like some displays handle it more graciously
-than others.
+Sean
 
 
- drivers/gpu/drm/i915/display/intel_hdcp.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 2cbc4619b4ce..f770fe0c5595 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2156,12 +2156,16 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
- 	}
- 
- 	/*
--	 * Nothing to do if the state didn't change, or HDCP was activated since
--	 * the last commit. And also no change in hdcp content type.
-+	 * Nothing to do if content type is unchanged and one of:
-+	 *  - state didn't change
-+	 *  - HDCP was activated since the last commit
-+	 *  - attempting to set to desired while already enabled
- 	 */
- 	if (old_cp == new_cp ||
- 	    (old_cp == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
--	     new_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED)) {
-+	     new_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED) ||
-+	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-+	     new_cp == DRM_MODE_CONTENT_PROTECTION_DESIRED)) {
- 		if (old_state->hdcp_content_type ==
- 				new_state->hdcp_content_type)
- 			return;
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+>
+> Changes in v2:
+> - Actually add the delay in R0` wait (Ram)
+> ---
+>
+> Apologies, v1 was generated from a forward port from the CrOS kernel and
+> patch got confused and put the diff in V' wait instead of R0' wait.
+>
+> Pay closer attention, Sean.
+>
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 2cbc4619b4ce..3c2d8c0a6da6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -743,6 +743,9 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>                 if (!wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+>                               (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1))
+>                         break;
+> +
+> +               /* Maybe the sink is lazy, give it some more time */
+> +               usleep_range(10000, 50000);
+>         }
+>
+>         if (i == tries) {
+> --
+> Sean Paul, Software Engineer, Google / Chromium OS
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
