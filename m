@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38B0B1DB781
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 16:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 544F61DB7A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:02:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB716E85C;
-	Wed, 20 May 2020 14:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963926E85F;
+	Wed, 20 May 2020 15:02:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5384F6E85C;
- Wed, 20 May 2020 14:55:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4DBA7A00C7;
- Wed, 20 May 2020 14:55:00 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767096E85F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 15:02:26 +0000 (UTC)
+IronPort-SDR: BaxiU4S7CBl6G27s3uhVHm7pbll7j0yuDRX3YUokLiu/3zMn8TlG+9HRXWVmVG1pGx91d1fvaV
+ TmRPO6NdUW1Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2020 08:02:24 -0700
+IronPort-SDR: Gu1k5JjbWtifgMD/kxV/fJsw7CIfGj8b3E+dolxT9HjUMlyZwW4MaRYSZh9pjbtbMgKCi7L8kZ
+ hyuqkoFdlgCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,414,1583222400"; d="scan'208";a="289383754"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga004.fm.intel.com with ESMTP; 20 May 2020 08:02:23 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 17:58:27 +0300
+Message-Id: <20200520145827.15887-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200519131117.17190-4-stanislav.lisovskiy@intel.com>
+References: <20200519131117.17190-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Wed, 20 May 2020 14:55:00 -0000
-Message-ID: <158998650029.30691.5120641634684213917@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200520130737.11240-1-animesh.manna@intel.com>
-In-Reply-To: <20200520130737.11240-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dsb=3A_Pre_allocate_and_late_cleanup_of_cmd_buffer_=28rev?=
- =?utf-8?b?MTAp?=
+Subject: [Intel-gfx] [PATCH v9 3/7] drm/i915: Check plane configuration
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,84 +48,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Checking with hweight8 if plane configuration had
+changed seems to be wrong as different plane configs
+can result in a same hamming weight.
+So lets check the bitmask itself.
 
-Series: drm/i915/dsb: Pre allocate and late cleanup of cmd buffer (rev10)
-URL   : https://patchwork.freedesktop.org/series/73036/
-State : success
+v2: Fixed "from" field which got corrupted for some weird reason
 
-== Summary ==
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-CI Bug Log - changes from CI_DRM_8511 -> Patchwork_17732
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index b6f4076dfd5a..8a2212115baf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14683,7 +14683,13 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+ 		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+ 		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+ 
+-		if (hweight8(old_active_planes) == hweight8(new_active_planes))
++		/*
++		 * Not only the number of planes, but if the plane configuration had
++		 * changed might already mean we need to recompute min CDCLK,
++		 * because different planes might consume different amount of Dbuf bandwidth
++		 * according to formula: Bw per plane = Pixel rate * bpp * pipe/plane scale factor
++		 */
++		if (old_active_planes == new_active_planes)
+ 			continue;
+ 
+ 		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
+-- 
+2.24.1.485.gad05a3d8e5
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17732/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17732 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [SKIP][1] ([fdo#109271]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17732/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][3] ([fdo#109271]) -> [FAIL][4] ([i915#62])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17732/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8511 -> Patchwork_17732
-
-  CI-20190529: 20190529
-  CI_DRM_8511: 504ee538bd65abff745914a6f0b7aad62bbc1d11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5664: 404e2fa06b9c5986dec3fa210234fe8b034b157e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17732: 8c8cb1efb20f5c596ec7ace6e9a023abb400ccd6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8c8cb1efb20f drm/i915/dsb: Pre allocate and late cleanup of cmd buffer
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17732/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
