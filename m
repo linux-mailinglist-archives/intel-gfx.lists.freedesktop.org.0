@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBDE1DC008
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 22:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB291DC060
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 22:42:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87C16E899;
-	Wed, 20 May 2020 20:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAA56E8A4;
+	Wed, 20 May 2020 20:42:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CFD116E899;
- Wed, 20 May 2020 20:23:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C7800A008A;
- Wed, 20 May 2020 20:23:42 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B7E6E8A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 20:42:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21245723-1500050 
+ for multiple; Wed, 20 May 2020 21:41:54 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 21:41:52 +0100
+Message-Id: <20200520204152.3032831-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0.rc0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sean Paul" <sean@poorly.run>
-Date: Wed, 20 May 2020 20:23:42 -0000
-Message-ID: <159000622278.30687.1620441284828994335@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200520194744.48936-1-sean@poorly.run>
-In-Reply-To: <20200520194744.48936-1-sean@poorly.run>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Avoid_duplicate_HDCP_enables?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Cancel the flush worker more
+ thoroughly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,78 +37,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since the worker may rearm, we currently are only guaranteed to flush
+the work if we cancel the timer. If the work was running at the time we
+try and cancel it, we will wait for it to complete, but it may leave
+items in the pool and requeue the work. If we rearrange the immediate
+discard of the pool then cancel the work, we know that the work cannot
+rearm and so our flush will be final.
 
-Series: drm/i915/hdcp: Avoid duplicate HDCP enables
-URL   : https://patchwork.freedesktop.org/series/77487/
-State : success
+<0> [314.146044] i915_mod-1321    2.... 299799443us : intel_gt_fini_buffer_pool: intel_gt_fini_buffer_pool:227 GEM_BUG_ON(!list_empty(&pool->cache_list[n]))
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8515 -> Patchwork_17734
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 1495054a4305..77487732d53f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -212,8 +212,8 @@ void intel_gt_flush_buffer_pool(struct intel_gt *gt)
+ {
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+ 
+-	if (cancel_delayed_work_sync(&pool->work))
+-		pool_free_imm(pool);
++	pool_free_imm(pool);
++	cancel_delayed_work_sync(&pool->work);
+ }
+ 
+ void intel_gt_fini_buffer_pool(struct intel_gt *gt)
+-- 
+2.27.0.rc0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17734/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17734 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-dsi}:       [INCOMPLETE][1] ([i915#1803]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8515/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17734/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-
-
-Participating hosts (49 -> 44)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8515 -> Patchwork_17734
-
-  CI-20190529: 20190529
-  CI_DRM_8515: 41f9bb782f3bb2f30be09683184bbeecb1fd31bb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5665: c5e5b0ce26fc321591a6d0235c639a1e8ec3cdfa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17734: db5d2afbad0bfe5323ee6ec2751931912e80af74 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-db5d2afbad0b drm/i915/hdcp: Avoid duplicate HDCP enables
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17734/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
