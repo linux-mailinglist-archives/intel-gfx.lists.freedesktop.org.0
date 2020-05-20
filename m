@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B020E1DC12A
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 23:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C891DC152
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 23:25:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118846E8B6;
-	Wed, 20 May 2020 21:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA1D6E8B5;
+	Wed, 20 May 2020 21:25:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5995B6E8B5;
- Wed, 20 May 2020 21:15:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 51ABFA47EA;
- Wed, 20 May 2020 21:15:55 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57CC96E8B5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 21:25:43 +0000 (UTC)
+IronPort-SDR: KnMljCQg8QoiT37L2vQ1uvWtmR6XkCyGLwc/6/j7ysjJuifxT1N9d9gb9EoZlHnJzOlRzAkPa/
+ cglNr9uW+aVw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2020 14:25:42 -0700
+IronPort-SDR: tJmIlyPJErcjZGXoV+/PYSRLfVefXdwYsWVNn2FhlEsyQSxZx1NQFXi2zjEGg7QcqnoispfrzW
+ FsJBiD1rbJDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466538599"
+Received: from rkeati1x-mobl.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.254.5.73])
+ by fmsmga005.fm.intel.com with ESMTP; 20 May 2020 14:25:42 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 May 2020 14:27:56 -0700
+Message-Id: <20200520212756.354623-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 20 May 2020 21:15:55 -0000
-Message-ID: <159000935530.30688.6296058440042102623@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200520204152.3032831-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200520204152.3032831-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Cancel_the_flush_worker_more_thoroughly?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Add psr_safest_params
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,92 +45,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Cancel the flush worker more thoroughly
-URL   : https://patchwork.freedesktop.org/series/77490/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8515 -> Patchwork_17736
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17736/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17736 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@active:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-FAIL][2] ([i915#666])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8515/fi-kbl-x1275/igt@i915_selftest@live@active.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17736/fi-kbl-x1275/igt@i915_selftest@live@active.html
-    - fi-bdw-5557u:       [PASS][3] -> [DMESG-FAIL][4] ([i915#765])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8515/fi-bdw-5557u/igt@i915_selftest@live@active.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17736/fi-bdw-5557u/igt@i915_selftest@live@active.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-dsi}:       [INCOMPLETE][5] ([i915#1803]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8515/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17736/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1803]: https://gitlab.freedesktop.org/drm/intel/issues/1803
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8515 -> Patchwork_17736
-
-  CI-20190529: 20190529
-  CI_DRM_8515: 41f9bb782f3bb2f30be09683184bbeecb1fd31bb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5665: c5e5b0ce26fc321591a6d0235c639a1e8ec3cdfa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17736: a3dd258ba77810fb22af04b0e198f8a1cb0bf11b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a3dd258ba778 drm/i915/gt: Cancel the flush worker more thoroughly
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17736/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBwYXJhbWV0ZXIgaXMgbWVhbnQgdG8gYmUgdXNlZCB3aGVuIFBTUiBpc3N1ZXMgYXJlIGZv
+dW5kIGFzIHNvbWUKaXNzdWVzIGluIHRoZSBwYXN0IHdhcyBkdWUgd3JvbmcgdmFsdWVzIHNldCBp
+biBWQlQgc28gdGhpcyB3b3VsZCBiZQphIHF1aWNrIGFuZCBlYXN5IHdheSB0byBhc2sgdXNlcnMg
+b3IgZm9yIHVzIHRvIGNoZWNrIGlmIHRoZSBpc3N1ZSBpcwpkdWUgVkJUIHZhbHVlcy4KCkNjOiBH
+d2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
+IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAzNyArKysrKysrKysrKysrKysr
+KystLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmMgICAgICAgfCAgNSAr
+KysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oICAgICAgIHwgIDEgKwogMyBm
+aWxlcyBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCmluZGV4IGI3YTJjMTAyNjQ4YS4uODU5Nzgw
+ODUzZjQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
+ci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKQEAgLTQy
+Niw2ICs0MjYsMTIgQEAgc3RhdGljIHUzMiBpbnRlbF9wc3IxX2dldF90cF90aW1lKHN0cnVjdCBp
+bnRlbF9kcCAqaW50ZWxfZHApCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpCiAJCXZh
+bCB8PSBFRFBfUFNSX1RQNF9USU1FXzBVUzsKIAorCWlmIChpOTE1X21vZHBhcmFtcy5wc3Jfc2Fm
+ZXN0X3BhcmFtcykgeworCQl2YWwgfD0gRURQX1BTUl9UUDFfVElNRV8yNTAwdXM7CisJCXZhbCB8
+PSBFRFBfUFNSX1RQMl9UUDNfVElNRV8yNTAwdXM7CisJCWdvdG8gY2hlY2tfdHAzX3NlbDsKKwl9
+CisKIAlpZiAoZGV2X3ByaXYtPnZidC5wc3IudHAxX3dha2V1cF90aW1lX3VzID09IDApCiAJCXZh
+bCB8PSBFRFBfUFNSX1RQMV9USU1FXzB1czsKIAllbHNlIGlmIChkZXZfcHJpdi0+dmJ0LnBzci50
+cDFfd2FrZXVwX3RpbWVfdXMgPD0gMTAwKQpAQCAtNDQ0LDYgKzQ1MCw3IEBAIHN0YXRpYyB1MzIg
+aW50ZWxfcHNyMV9nZXRfdHBfdGltZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCWVsc2UK
+IAkJdmFsIHw9IEVEUF9QU1JfVFAyX1RQM19USU1FXzI1MDB1czsKIAorY2hlY2tfdHAzX3NlbDoK
+IAlpZiAoaW50ZWxfZHBfc291cmNlX3N1cHBvcnRzX2hicjIoaW50ZWxfZHApICYmCiAJICAgIGRy
+bV9kcF90cHMzX3N1cHBvcnRlZChpbnRlbF9kcC0+ZHBjZCkpCiAJCXZhbCB8PSBFRFBfUFNSX1RQ
+MV9UUDNfU0VMOwpAQCAtNDk1LDE4ICs1MDIsMTMgQEAgc3RhdGljIHZvaWQgaHN3X2FjdGl2YXRl
+X3BzcjEoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAlpbnRlbF9kZV93cml0ZShkZXZfcHJp
+diwgRURQX1BTUl9DVEwoZGV2X3ByaXYtPnBzci50cmFuc2NvZGVyKSwgdmFsKTsKIH0KIAotc3Rh
+dGljIHZvaWQgaHN3X2FjdGl2YXRlX3BzcjIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKK3N0
+YXRpYyB1MzIgaW50ZWxfcHNyMl9nZXRfdHBfdGltZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2Rw
+KQogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50
+ZWxfZHApOwotCXUzMiB2YWw7Ci0KLQl2YWwgPSBwc3JfY29tcHV0ZV9pZGxlX2ZyYW1lcyhpbnRl
+bF9kcCkgPDwgRURQX1BTUjJfSURMRV9GUkFNRV9TSElGVDsKLQotCXZhbCB8PSBFRFBfUFNSMl9F
+TkFCTEUgfCBFRFBfU1VfVFJBQ0tfRU5BQkxFOwotCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49
+IDEwIHx8IElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpKQotCQl2YWwgfD0gRURQX1lfQ09PUkRJTkFU
+RV9FTkFCTEU7CisJdTMyIHZhbCA9IDA7CiAKLQl2YWwgfD0gRURQX1BTUjJfRlJBTUVfQkVGT1JF
+X1NVKGRldl9wcml2LT5wc3Iuc2lua19zeW5jX2xhdGVuY3kgKyAxKTsKKwlpZiAoaTkxNV9tb2Rw
+YXJhbXMucHNyX3NhZmVzdF9wYXJhbXMpCisJCXJldHVybiBFRFBfUFNSMl9UUDJfVElNRV8yNTAw
+dXM7CiAKIAlpZiAoZGV2X3ByaXYtPnZidC5wc3IucHNyMl90cDJfdHAzX3dha2V1cF90aW1lX3Vz
+ID49IDAgJiYKIAkgICAgZGV2X3ByaXYtPnZidC5wc3IucHNyMl90cDJfdHAzX3dha2V1cF90aW1l
+X3VzIDw9IDUwKQpAQCAtNTE4LDYgKzUyMCwyMyBAQCBzdGF0aWMgdm9pZCBoc3dfYWN0aXZhdGVf
+cHNyMihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCWVsc2UKIAkJdmFsIHw9IEVEUF9QU1Iy
+X1RQMl9USU1FXzI1MDB1czsKIAorCXJldHVybiB2YWw7Cit9CisKK3N0YXRpYyB2b2lkIGhzd19h
+Y3RpdmF0ZV9wc3IyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCit7CisJc3RydWN0IGRybV9p
+OTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7CisJdTMyIHZhbDsK
+KworCXZhbCA9IHBzcl9jb21wdXRlX2lkbGVfZnJhbWVzKGludGVsX2RwKSA8PCBFRFBfUFNSMl9J
+RExFX0ZSQU1FX1NISUZUOworCisJdmFsIHw9IEVEUF9QU1IyX0VOQUJMRSB8IEVEUF9TVV9UUkFD
+S19FTkFCTEU7CisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTAgfHwgSVNfR0VNSU5JTEFL
+RShkZXZfcHJpdikpCisJCXZhbCB8PSBFRFBfWV9DT09SRElOQVRFX0VOQUJMRTsKKworCXZhbCB8
+PSBFRFBfUFNSMl9GUkFNRV9CRUZPUkVfU1UoZGV2X3ByaXYtPnBzci5zaW5rX3N5bmNfbGF0ZW5j
+eSArIDEpOworCXZhbCB8PSBpbnRlbF9wc3IyX2dldF90cF90aW1lKGludGVsX2RwKTsKKwogCS8q
+CiAJICogUFNSMiBIVyBpcyBpbmNvcnJlY3RseSB1c2luZyBFRFBfUFNSX1RQMV9UUDNfU0VMIGFu
+ZCBCU3BlYyBpcwogCSAqIHJlY29tbWVuZGluZyBrZWVwIHRoaXMgYml0IHVuc2V0IHdoaWxlIFBT
+UjIgaXMgZW5hYmxlZC4KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFy
+YW1zLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5jCmluZGV4IGFkZDAwZWMx
+Zjc4Ny4uMzA3ZTQ2NjdmYzYyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X3BhcmFtcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmMKQEAgLTg4
+LDYgKzg4LDExIEBAIGk5MTVfcGFyYW1fbmFtZWRfdW5zYWZlKGVuYWJsZV9wc3IsIGludCwgMDYw
+MCwKIAkiKDA9ZGlzYWJsZWQsIDE9ZW5hYmxlZCkgIgogCSJEZWZhdWx0OiAtMSAodXNlIHBlci1j
+aGlwIGRlZmF1bHQpIik7CiAKK2k5MTVfcGFyYW1fbmFtZWQocHNyX3NhZmVzdF9wYXJhbXMsIGJv
+b2wsIDA0MDAsCisJIlJlcGxhY2UgUFNSIFZCVCBwYXJhbWV0ZXJzIGJ5IHRoZSBzYWZlc3QgYW5k
+IG5vdCBvcHRpbWFsIG9uZXMuIFRoaXMgIgorCSJpcyBoZWxwZnVsbCB0byBkZXRlY3QgaWYgUFNS
+IGlzc3VlcyBhcmUgcmVsYXRlZCB0byBiYWQgdmFsdWVzIHNldCBpbiAiCisJIiBWQlQuICgwPXVz
+ZSBWQlQgcGFyYW10ZXJzLCAxPXVzZSBzYWZlc3QgcGFyYW1ldGVycykiKTsKKwogaTkxNV9wYXJh
+bV9uYW1lZF91bnNhZmUoZm9yY2VfcHJvYmUsIGNoYXJwLCAwNDAwLAogCSJGb3JjZSBwcm9iZSB0
+aGUgZHJpdmVyIGZvciBzcGVjaWZpZWQgZGV2aWNlcy4gIgogCSJTZWUgQ09ORklHX0RSTV9JOTE1
+X0ZPUkNFX1BST0JFIGZvciBkZXRhaWxzLiIpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9wYXJhbXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmgK
+aW5kZXggNDUzMjM3MzJmMDk5Li4yYTk5YzkwOGM3YzggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfcGFyYW1zLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
+YXJhbXMuaApAQCAtNTMsNiArNTMsNyBAQCBzdHJ1Y3QgZHJtX3ByaW50ZXI7CiAJcGFyYW0oaW50
+LCBlbmFibGVfZGMsIC0xLCAwNDAwKSBcCiAJcGFyYW0oaW50LCBlbmFibGVfZmJjLCAtMSwgMDYw
+MCkgXAogCXBhcmFtKGludCwgZW5hYmxlX3BzciwgLTEsIDA2MDApIFwKKwlwYXJhbShib29sLCBw
+c3Jfc2FmZXN0X3BhcmFtcywgZmFsc2UsIDA2MDApIFwKIAlwYXJhbShpbnQsIGRpc2FibGVfcG93
+ZXJfd2VsbCwgLTEsIDA0MDApIFwKIAlwYXJhbShpbnQsIGVuYWJsZV9pcHMsIDEsIDA2MDApIFwK
+IAlwYXJhbShpbnQsIGludmVydF9icmlnaHRuZXNzLCAwLCAwNjAwKSBcCi0tIAoyLjI2LjIKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
