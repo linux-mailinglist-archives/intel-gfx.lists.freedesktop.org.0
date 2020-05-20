@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85481DB221
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 13:45:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D8A1DB260
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 13:54:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6E289E50;
-	Wed, 20 May 2020 11:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B576E144;
+	Wed, 20 May 2020 11:54:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B51189E50;
- Wed, 20 May 2020 11:45:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 367A1A0099;
- Wed, 20 May 2020 11:45:24 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663C06E144;
+ Wed, 20 May 2020 11:54:25 +0000 (UTC)
+IronPort-SDR: r0gG71Z+4/jrtYAztOXkpdM18MEpK/e4a5Luo6Si2uKivQdT7HN+zQgfvldoU6vgT/jy5Bg6Qb
+ a3unnSaz5JOQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2020 04:54:24 -0700
+IronPort-SDR: 548hAoLLqFaimhpa4RNIPHFro/nXwBWsiz9VedL8E2ZllwHA41jaski1d2GZw5rbgcVNKj2bJC
+ 1LJ4S7PoO9dw==
+X-IronPort-AV: E=Sophos;i="5.73,413,1583222400"; d="scan'208";a="264659300"
+Received: from dmiller1-mobl.ger.corp.intel.com (HELO [10.214.251.106])
+ ([10.214.251.106])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2020 04:54:22 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+References: <20200520103853.2484519-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <0b2857c3-25aa-775c-b559-3de68b9ec032@linux.intel.com>
+Date: Wed, 20 May 2020 12:54:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
-Date: Wed, 20 May 2020 11:45:24 -0000
-Message-ID: <158997512418.30687.5853539040414881609@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200519162534.10035-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200519162534.10035-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/ehl=3A_Wa=5F22010271021_=28rev2=29?=
+In-Reply-To: <20200520103853.2484519-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tools/intel_gpu_top:
+ Include total package power
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,208 +51,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/ehl: Wa_22010271021 (rev2)
-URL   : https://patchwork.freedesktop.org/series/77428/
-State : failure
+On 20/05/2020 11:38, Chris Wilson wrote:
+> With integrated graphics the TDP is shared between the gpu and the cpu,
+> knowing the total energy consumed by the package is relevant to
+> understanding throttling.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   tools/intel_gpu_top.c | 195 ++++++++++++++++++++++++++++--------------
+>   1 file changed, 133 insertions(+), 62 deletions(-)
+> 
+> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+> index 8197482dd..e64cec338 100644
+> --- a/tools/intel_gpu_top.c
+> +++ b/tools/intel_gpu_top.c
+> @@ -69,6 +69,12 @@ struct engine {
+>   	struct pmu_counter sema;
+>   };
+>   
+> +struct rapl {
+> +	uint64_t power, type;
+> +	double scale;
+> +	int fd;
+> +};
+> +
+>   struct engines {
+>   	unsigned int num_engines;
+>   	unsigned int num_counters;
+> @@ -76,9 +82,7 @@ struct engines {
+>   	int fd;
+>   	struct pmu_pair ts;
+>   
+> -	int rapl_fd;
+> -	double rapl_scale;
+> -	const char *rapl_unit;
+> +	struct rapl r_gpu, r_pkg;
+>   
+>   	int imc_fd;
+>   	double imc_reads_scale;
+> @@ -90,13 +94,124 @@ struct engines {
+>   	struct pmu_counter freq_act;
+>   	struct pmu_counter irq;
+>   	struct pmu_counter rc6;
+> -	struct pmu_counter rapl;
+> +	struct pmu_counter s_gpu, s_pkg;
+>   	struct pmu_counter imc_reads;
+>   	struct pmu_counter imc_writes;
+>   
+>   	struct engine engine;
+>   };
+>   
+> +__attribute__((format(scanf,3,4)))
+> +static int igt_sysfs_scanf(int dir, const char *attr, const char *fmt, ...)
+> +{
+> +	FILE *file;
+> +	int fd;
+> +	int ret = -1;
+> +
+> +	fd = openat(dir, attr, O_RDONLY);
+> +	if (fd < 0)
+> +		return -1;
+> +
+> +	file = fdopen(fd, "r");
+> +	if (file) {
+> +		va_list ap;
+> +
+> +		va_start(ap, fmt);
+> +		ret = vfscanf(file, fmt, ap);
+> +		va_end(ap);
+> +
+> +		fclose(file);
+> +	} else {
+> +		close(fd);
+> +	}
+> +
+> +	return ret;
+> +}
 
-== Summary ==
+It's a bit naughty to add this helper only to be used from RAPL. We 
+should either consolidate to use this one or have this patch use 
+existing filenamd_to_* helpers.
 
-CI Bug Log - changes from CI_DRM_8506_full -> Patchwork_17716_full
-====================================================
+> +
+> +static int rapl_parse(struct rapl *r, const char *str)
+> +{
+> +	locale_t locale, oldlocale;
+> +	bool result = true;
+> +	char buf[128];
+> +	int dir;
+> +
+> +	memset(r, 0, sizeof(*r));
+> +
+> +	dir = open("/sys/devices/power", O_RDONLY);
+> +	if (dir < 0)
+> +		return -errno;
+> +
+> +	/* Replace user environment with plain C to match kernel format */
+> +	locale = newlocale(LC_ALL, "C", 0);
+> +	oldlocale = uselocale(locale);
+> +
+> +	result &= igt_sysfs_scanf(dir, "type", "%"PRIu64, &r->type) == 1;
+> +
+> +	snprintf(buf, sizeof(buf), "events/energy-%s", str);
+> +	result &= igt_sysfs_scanf(dir, buf, "event=%"PRIx64, &r->power) == 1;
+> +
+> +	snprintf(buf, sizeof(buf), "events/energy-%s.scale", str);
+> +	result &= igt_sysfs_scanf(dir, buf, "%lf", &r->scale) == 1;
+> +
+> +	uselocale(oldlocale);
+> +	freelocale(locale);
+> +
+> +	close(dir);
+> +
+> +	if (!result)
+> +		return -EINVAL;
+> +
+> +	if (isnan(r->scale) || !r->scale)
+> +		return -ERANGE;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rapl_open(struct rapl *r, const char *domain)
+> +{
+> +	r->fd = rapl_parse(r, domain);
+> +	if (r->fd < 0)
+> +		goto err;
+> +
+> +	r->fd = igt_perf_open(r->type, r->power);
+> +	if (r->fd < 0) {
+> +		r->fd = -errno;
+> +		goto err;
+> +	}
+> +
+> +	return 0;
+> +
+> +err:
+> +	errno = 0;
+> +	return r->fd;
+> +}
+> +
+> +static int gpu_power_open(struct rapl *r)
+> +{
+> +	return rapl_open(r, "gpu");
+> +}
+> +
+> +static int pkg_power_open(struct rapl *r)
+> +{
+> +	return rapl_open(r, "pkg");
+> +}
+> +
+> +static inline bool rapl_valid(struct rapl *r)
+> +{
+> +	return r->fd >= 0;
+> +}
+> +
+> +static inline int ram_power_open(struct rapl *r)
+> +{
+> +	return rapl_open(r, "ram");
+> +}
+> +
+> +static inline void rapl_close(struct rapl *r)
+> +{
+> +	close(r->fd);
+> +	r->fd = -1;
+> +}
+> +
+>   static uint64_t
+>   get_pmu_config(int dirfd, const char *name, const char *counter)
+>   {
+> @@ -338,38 +453,6 @@ static double filename_to_double(const char *filename)
+>   	return v;
+>   }
+>   
+> -#define RAPL_ROOT "/sys/devices/power/"
+> -#define RAPL_EVENT "/sys/devices/power/events/"
+> -
+> -static uint64_t rapl_type_id(void)
+> -{
+> -	return filename_to_u64(RAPL_ROOT "type", 10);
+> -}
+> -
+> -static uint64_t rapl_gpu_power(void)
+> -{
+> -	return filename_to_u64(RAPL_EVENT "energy-gpu", 0);
+> -}
+> -
+> -static double rapl_gpu_power_scale(void)
+> -{
+> -	return filename_to_double(RAPL_EVENT "energy-gpu.scale");
+> -}
+> -
+> -static const char *rapl_gpu_power_unit(void)
+> -{
+> -	char buf[32];
+> -
+> -	if (filename_to_buf(RAPL_EVENT "energy-gpu.unit",
+> -			    buf, sizeof(buf)) == 0)
+> -		if (!strcmp(buf, "Joules"))
+> -			return strdup("Watts");
+> -		else
+> -			return strdup(buf);
+> -	else
+> -		return NULL;
+> -}
+> -
+>   #define IMC_ROOT "/sys/devices/uncore_imc/"
+>   #define IMC_EVENT "/sys/devices/uncore_imc/events/"
+>   
+> @@ -496,24 +579,8 @@ static int pmu_init(struct engines *engines)
+>   		}
+>   	}
+>   
+> -	engines->rapl_fd = -1;
+> -	if (rapl_type_id()) {
+> -		engines->rapl_scale = rapl_gpu_power_scale();
+> -		engines->rapl_unit = rapl_gpu_power_unit();
+> -		if (!engines->rapl_unit)
+> -			return -1;
+> -
+> -		engines->rapl.config = rapl_gpu_power();
+> -		if (!engines->rapl.config)
+> -			return -1;
+> -
+> -		engines->rapl_fd = igt_perf_open(rapl_type_id(),
+> -						 engines->rapl.config);
+> -		if (engines->rapl_fd < 0)
+> -			return -1;
+> -
+> -		engines->rapl.present = true;
+> -	}
+> +	engines->s_gpu.present = gpu_power_open(&engines->r_gpu) >= 0;
+> +	engines->s_pkg.present = pkg_power_open(&engines->r_pkg) >= 0;
+>   
+>   	engines->imc_fd = -1;
+>   	if (imc_type_id()) {
+> @@ -633,9 +700,13 @@ static void pmu_sample(struct engines *engines)
+>   
+>   	engines->ts.prev = engines->ts.cur;
+>   
+> -	if (engines->rapl_fd >= 0)
+> -		__update_sample(&engines->rapl,
+> -				pmu_read_single(engines->rapl_fd));
+> +	if (engines->s_gpu.present)
+> +		__update_sample(&engines->s_gpu,
+> +				pmu_read_single(engines->r_gpu.fd));
+> +
+> +	if (engines->s_pkg.present)
+> +		__update_sample(&engines->s_pkg,
+> +				pmu_read_single(engines->r_pkg.fd));
+>   
+>   	if (engines->imc_fd >= 0) {
+>   		pmu_read_multi(engines->imc_fd, 2, val);
+> @@ -1052,8 +1123,8 @@ print_header(struct engines *engines, double t,
+>   		.items = rc6_items,
+>   	};
+>   	struct cnt_item power_items[] = {
+> -		{ &engines->rapl, 4, 2, 1.0, t, engines->rapl_scale, "value",
+> -		  "W" },
+> +		{ &engines->s_gpu, 4, 2, 1.0, t, engines->r_gpu.scale, "gpu", "W" },
+> +		{ &engines->s_pkg, 4, 2, 1.0, t, engines->r_pkg.scale, "pkg", "W" },
+>   		{ NULL, 0, 0, 0.0, 0.0, 0.0, "unit", "W" },
+>   		{ },
+>   	};
+> @@ -1083,10 +1154,10 @@ print_header(struct engines *engines, double t,
+>   		printf("\033[H\033[J");
+>   
+>   		if (lines++ < con_h)
+> -			printf("intel-gpu-top - %s/%s MHz;  %s%% RC6; %s %s; %s irqs/s\n",
+> +			printf("intel-gpu-top - %s/%s MHz;  %s%% RC6; %s/%s W; %s irqs/s\n",
 
-Summary
--------
+Detecting the unit was also a good thing to have so why drop it?
 
-  **FAILURE**
+Regards,
 
-  Serious unknown changes coming with Patchwork_17716_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17716_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Tvrtko
 
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17716_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-kbl:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-kbl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-kbl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17716_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-apl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-apl4/igt@gem_softpin@noreloc-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-apl4/igt@gem_softpin@noreloc-s3.html
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-kbl7/igt@gem_workarounds@suspend-resume-fd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-kbl7/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
-    - shard-skl:          [PASS][7] -> [FAIL][8] ([IGT#5])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl8/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([i915#1188]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl3/igt@kms_hdr@bpc-switch-dpms.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-kbl:          [PASS][11] -> [INCOMPLETE][12] ([i915#155])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-kbl2/igt@kms_hdr@bpc-switch-suspend.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-kbl4/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_psr@psr2_primary_page_flip:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109441]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-iclb1/igt@kms_psr@psr2_primary_page_flip.html
-
-  * igt@kms_setmode@basic:
-    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#31])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl3/igt@kms_setmode@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl8/igt@kms_setmode@basic.html
-
-  * igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend:
-    - shard-snb:          [PASS][17] -> [DMESG-WARN][18] ([i915#42])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-snb2/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-snb4/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-offscreen:
-    - shard-skl:          [FAIL][19] ([i915#54]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl4/igt@kms_cursor_crc@pipe-b-cursor-64x21-offscreen.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-64x21-offscreen.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@b-edp1}:
-    - shard-skl:          [INCOMPLETE][21] ([i915#198]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl5/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl6/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][23] ([i915#180]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * {igt@kms_flip@flip-vs-suspend@a-dp1}:
-    - shard-kbl:          [DMESG-WARN][25] ([i915#180]) -> [PASS][26] +4 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-kbl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-kbl7/igt@kms_flip@flip-vs-suspend@a-dp1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-mmap-cpu:
-    - shard-snb:          [SKIP][27] ([fdo#109271]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-snb1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-mmap-cpu.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-snb1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-mmap-cpu.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][29] ([i915#1188]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][31] ([fdo#108145] / [i915#265]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [SKIP][33] ([fdo#109441]) -> [PASS][34] +2 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-iclb5/igt@kms_psr@psr2_cursor_render.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-
-  * {igt@prime_vgem@sync@rcs0}:
-    - shard-iclb:         [INCOMPLETE][35] ([i915#409]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-iclb8/igt@prime_vgem@sync@rcs0.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-iclb1/igt@prime_vgem@sync@rcs0.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-tglb:         [FAIL][37] ([i915#454]) -> [SKIP][38] ([i915#468])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-tglb3/igt@i915_pm_dc@dc6-psr.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [DMESG-FAIL][39] ([i915#180] / [i915#95]) -> [FAIL][40] ([i915#1121] / [i915#93] / [i915#95])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#1121]: https://gitlab.freedesktop.org/drm/intel/issues/1121
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#409]: https://gitlab.freedesktop.org/drm/intel/issues/409
-  [i915#42]: https://gitlab.freedesktop.org/drm/intel/issues/42
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8506 -> Patchwork_17716
-
-  CI-20190529: 20190529
-  CI_DRM_8506: d6a73e9084ff6adfabbad014bc294d254484f304 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5661: a772a7c7a761c6125bc0af5284ad603478107737 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17716: 60adbb75a3d8f272c58ce2f5dc5bded2a5b2dc79 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17716/index.html
+>   			       freq_items[1].buf, freq_items[0].buf,
+> -			       rc6_items[0].buf, power_items[0].buf,
+> -			       engines->rapl_unit,
+> +			       rc6_items[0].buf,
+> +			       power_items[0].buf, power_items[1].buf,
+>   			       irq_items[0].buf);
+>   
+>   		if (lines++ < con_h)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
