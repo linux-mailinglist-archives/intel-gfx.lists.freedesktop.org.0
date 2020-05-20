@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154081DAE6D
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 11:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 023ED1DAE75
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 11:15:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 643FC6E394;
-	Wed, 20 May 2020 09:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 949616E11F;
+	Wed, 20 May 2020 09:15:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C24DD6E394
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 09:13:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 513766E11F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 09:15:14 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21237628-1500050 
- for multiple; Wed, 20 May 2020 10:12:32 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21237656-1500050 
+ for multiple; Wed, 20 May 2020 10:15:02 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 10:12:30 +0100
-Message-Id: <20200520091230.29974-1-chris@chris-wilson.co.uk>
+Date: Wed, 20 May 2020 10:15:01 +0100
+Message-Id: <20200520091501.30109-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200520091230.29974-1-chris@chris-wilson.co.uk>
+References: <20200520091230.29974-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Disable semaphore inter-engine sync
  without timeslicing
@@ -44,9 +46,10 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Since the remove of the no-semaphore boosting, we rely on timeslicing to
-reorder past inter-dependency hogs across the engines. However, if we
-require preemption to support timeslicing, and not all machine support
-preemption.
+reorder past inter-dependency hogs across the engines. However, we
+require preemption to support timeslicing into user payloads, and not all
+machine support preemption so we do not universally enable timeslicing
+even when it would preempt our own inter-engine semaphores.
 
 Testcase: igt/gem_exec_schedule/semaphore-codependency # bdw/bsw
 Fixes: 18e4af04d218 ("drm/i915: Drop no-semaphore boosting")
