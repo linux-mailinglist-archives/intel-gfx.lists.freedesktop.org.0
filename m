@@ -2,54 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B181DB89F
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AD21DB8A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 17:50:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D19F6E7F1;
-	Wed, 20 May 2020 15:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291ED6E17E;
+	Wed, 20 May 2020 15:50:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B6A6E7F1
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 15:46:41 +0000 (UTC)
-IronPort-SDR: ALYceZFiVigxMNb06fC9MV3vh9hYaRw51yzt2oRwx7vLqGwvPonDM99q/HTxbOlSzfp3DqcPEs
- fTK0KRoq1Ozg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2020 08:46:40 -0700
-IronPort-SDR: ZlGQ1ZjmUXwi9OcVpMgoJu/zrCbzcvI5f4Xtugx7G34OA59WpWe2g3OYL5LAHdHygYSBUafVtS
- t6ywo8/Y2kWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,414,1583222400"; d="scan'208";a="264726670"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga003.jf.intel.com with ESMTP; 20 May 2020 08:46:40 -0700
-Received: from fmsmsx119.amr.corp.intel.com (10.18.124.207) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 20 May 2020 08:46:40 -0700
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.235]) by
- FMSMSX119.amr.corp.intel.com ([169.254.14.95]) with mapi id 14.03.0439.000;
- Wed, 20 May 2020 08:46:39 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915/ehl: Extend w/a 14010685332 to
- JSP/MCC
-Thread-Index: AQHWLhqAamHxvt2rfkymC0OqBP2Oa6ixlXmA
-Date: Wed, 20 May 2020 15:46:40 +0000
-Message-ID: <85b3f8350a50dc28d57f9828ae897ae3808f4493.camel@intel.com>
-References: <20200519201256.31226-1-swathi.dhanavanthri@intel.com>
-In-Reply-To: <20200519201256.31226-1-swathi.dhanavanthri@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.5.73]
-Content-ID: <8B5A0247049D5B49B709C0305F4FD840@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 26AC86E17E;
+ Wed, 20 May 2020 15:50:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 15827A47E0;
+ Wed, 20 May 2020 15:50:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/ehl: Extend w/a 14010685332 to
- JSP/MCC
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 20 May 2020 15:50:05 -0000
+Message-ID: <158998980505.30692.1949857255836224498@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ29u?=
+ =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev18=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +38,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-05-19 at 13:12 -0700, Swathi Dhanavanthri wrote:
-> This is a permanent w/a for JSL/EHL.This is to be applied to the
-> PCH types on JSL/EHL ie JSP/MCC
-> Bspec: 52888
-> 
-> v2: Fixed the wrong usage of logical OR(ville)
-> 
-> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 4dc601dffc08..d60a66d8eb40 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2902,8 +2902,9 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
->  		GEN3_IRQ_RESET(uncore, SDE);
->  
-> -	/* Wa_14010685332:icl */
-> -	if (INTEL_PCH_TYPE(dev_priv) == PCH_ICP) {
-> +	/* Wa_14010685332:icl,jsl,ehl */
-> +	if ((INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) &&
-> +	   (INTEL_PCH_TYPE(dev_priv) <= PCH_MCC)) {
+== Series Details ==
 
-Not comfortable with this checks based on order of intel_pch enum but looks like we do it else where too.
-Anyways, before send patch please run "dim
-checkpatch" to catch style errors also no need of the parenthesis.
+Series: Consider DBuf bandwidth when calculating CDCLK (rev18)
+URL   : https://patchwork.freedesktop.org/series/74739/
+State : success
 
->  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
->  				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
->  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8511 -> Patchwork_17733
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17733 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][1] -> [TIMEOUT][2] ([i915#1288])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [SKIP][3] ([fdo#109271]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8511/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1288]: https://gitlab.freedesktop.org/drm/intel/issues/1288
+
+
+Participating hosts (48 -> 43)
+------------------------------
+
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8511 -> Patchwork_17733
+
+  CI-20190529: 20190529
+  CI_DRM_8511: 504ee538bd65abff745914a6f0b7aad62bbc1d11 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5664: 404e2fa06b9c5986dec3fa210234fe8b034b157e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17733: 727bc2568e96653db48fa5821212abe6fb01b7a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+727bc2568e96 drm/i915: Remove unneeded hack now for CDCLK
+cea1d50d43c0 drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
+89ece93a82af drm/i915: Introduce for_each_dbuf_slice_in_mask macro
+f6fbdfa19ab0 drm/i915: Plane configuration affects CDCLK in Gen11+
+c013d7e44c52 drm/i915: Check plane configuration properly
+b0928a963b24 drm/i915: Extract cdclk requirements checking to separate function
+27d0a2a78122 drm/i915: Decouple cdclk calculation from modeset checks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
