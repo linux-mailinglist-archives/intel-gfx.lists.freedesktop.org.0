@@ -2,76 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E545D1DB0E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 13:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5251DB1F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 13:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05E296E10F;
-	Wed, 20 May 2020 11:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3B276E7D3;
+	Wed, 20 May 2020 11:42:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B1E6E10F
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 11:03:25 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id e1so2694766wrt.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 04:03:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=ct4iwtkqSx7W80DKvDt8WvEkiq9KjVIacJ0yr7BAVII=;
- b=gCn4N7N304bnLXil/a63o+C7lXWE4O+dUD5kr4U/QwkYok3WIYIss7MpTiwkIvDJDu
- Yb14/i8NGGvtiwnPpTQWB1oc/MHjv9gyvs+HjkbrsA9GEiFTSWKwCkg07hWlb9e22xpX
- cG1iXAAYqHj6N5FDXXS8FFy8ELfjoCREHTKlM=
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
+ [IPv6:2607:f8b0:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146966E7D3;
+ Wed, 20 May 2020 11:42:09 +0000 (UTC)
+Received: by mail-pf1-x441.google.com with SMTP id x2so1419090pfx.7;
+ Wed, 20 May 2020 04:42:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=dKXzWhu+iFDbZVZX01MEhKWZN1XL+SAEWrAks0ZBIaY=;
+ b=C7A/Z8ijmJS3emxjDt0Rl1yt9Gwhnb2K6HtJgynS6ev0QY/kT1M9KjV3nXkHvhcwj+
+ JN63xyk9+pMYyyuuMLRA3Hznk8U8QNSmOtW0KVmFydM3NcaCdKObI6v8Z3JbjKXz8y/S
+ T1frAhHCzi4356lXy52ThG/ohKiJtIq4EGos8+W4VB0eV+r6CRVDig+HuNgbhdy3rquz
+ vUuHbMKvsmDra2KORC4sQSDAw8W7I//vSsQdTvf9jlVnxgrNByZjK/7+NVO8w4Bor3LS
+ XaxaTrSKKKJnVLAM5b8jr7qeWSWUn+HO8kB6AHh+FdnYOemXnEFR4BvlUfwpRn9gckcN
+ qESA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=ct4iwtkqSx7W80DKvDt8WvEkiq9KjVIacJ0yr7BAVII=;
- b=NQEsOLQiDC4TAzpWj4XtcMcpNhDPgPJ3gRRe/Yar44YYJq/d8vqCVt7GhdrShbM0Op
- zPhtQOfyhj+L+zDK98WsO99jU0/g9gdiSvCuEG0Sy7l4WxG+MtEkwdttyBlRvUqK4oS3
- X2YMElFLw7DpUs+I70mn2Ld5pLjyl6Rjvm9kyxlyjs7VpMEGifc2MY8FK9kah+Ira1/T
- xMKXkmXaSb7l/rxGtqbbp9+Mf+wgLj353Lfnt75EZpHcXSdtMHeem/9f/q98q9bUZrGR
- TNXRwcdBPFIdp3EOzt7br9jsP4ndpijs0M5Abjwi3/j43pTaxBX5+SVpUEy0JuShRkEs
- LdDA==
-X-Gm-Message-State: AOAM532QEG10xez+GcXgtlTIFk2Nh0GupeOsoWopASbtEY7MWmU44pYw
- 6jqvma0WLT/OaPu/xC2Z6eVSPQ==
-X-Google-Smtp-Source: ABdhPJzCd29Xl/wTekkJzbG2hFf7ELniw9c+535re3/QWPV7VzmtBOKv2TwjIms44WqcPc+fmic+SA==
-X-Received: by 2002:adf:fe90:: with SMTP id l16mr3672440wrr.222.1589972604221; 
- Wed, 20 May 2020 04:03:24 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u65sm2743050wmg.8.2020.05.20.04.03.22
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=dKXzWhu+iFDbZVZX01MEhKWZN1XL+SAEWrAks0ZBIaY=;
+ b=nursYRBUlLmVzWqvMqFd+3WsCu9mwHtWkzdmq/H4S4KBCdnqIc2UykbzTC7RKw+ubR
+ hVIhrCvLg5byBu6/f+bi8jpru6rKj5bYixK0h8RPcebqq5Lx3WagZtuvs1xMmb+lA7gx
+ L3/rJvx/FziJHbg2ACD7vqFDV3frAPnYCrMZAzcSnXj0rpH5rEcHK2k4E3LYiiDIv327
+ MMgzSL47n2kKTY3JRR62Q/Nzq6vHrLPLhYbf2tNkPcZEVw6j/NqeE9uK+vuBHGv6NOA5
+ xm3xFXXo0OuP1F58ycfdsBo+2JrJ5IYtwMFkEEKXVeEaQesxbD9jJCk1s1bvnsFapKPG
+ 9pdA==
+X-Gm-Message-State: AOAM532WWH8dZcp39LyWWJIoIim3JLP1VlgsX+iL2RZqJvRKHYRKzS1G
+ 65c5gopgdqqqKZ5N8i8SgVM=
+X-Google-Smtp-Source: ABdhPJxaAdJx2bktnsQOfRncfFbAGb2TcQ6dQaypHVTQuqvd+1pVnW5EjUbIHBaXY5FFqodXHkD2Zw==
+X-Received: by 2002:a63:b904:: with SMTP id z4mr3804221pge.25.1589974928484;
+ Wed, 20 May 2020 04:42:08 -0700 (PDT)
+Received: from localhost.localdomain ([106.254.212.20])
+ by smtp.gmail.com with ESMTPSA id x6sm2104450pfn.90.2020.05.20.04.42.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 May 2020 04:03:23 -0700 (PDT)
-Date: Wed, 20 May 2020 13:03:20 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <20200520110320.GT206103@phenom.ffwll.local>
-Mail-Followup-To: Christian =?iso-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, 
- DRI Development <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Oded Gabbay <oded.gabbay@gmail.com>, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, linux-rdma@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-References: <20200519132756.682888-1-daniel.vetter@ffwll.ch>
- <be86b73c-2fb3-a6c0-5a12-004af051210f@amd.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <be86b73c-2fb3-a6c0-5a12-004af051210f@amd.com>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] dma-fence: add might_sleep annotation to
- _wait()
+ Wed, 20 May 2020 04:42:07 -0700 (PDT)
+From: Sidong Yang <realwakka@gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 20 May 2020 20:41:56 +0900
+Message-Id: <20200520114156.26480-1-realwakka@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm: Replace deprecated function in
+ drm_crtc_helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,110 +65,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oded Gabbay <oded.gabbay@gmail.com>, amd-gfx@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- Ben Skeggs <bskeggs@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, linux-media@vger.kernel.org,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, Sidong Yang <realwakka@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 20, 2020 at 08:54:36AM +0200, Christian K=F6nig wrote:
-> Am 19.05.20 um 15:27 schrieb Daniel Vetter:
-> > Do it uncontionally, there's a separate peek function with
-> > dma_fence_is_signalled() which can be called from atomic context.
-> > =
+Replace deprecated function drm_modeset_lock/unlock_all with
+helper function DRM_MODESET_LOCK_ALL_BEGIN/END.
 
-> > v2: Consensus calls for an unconditional might_sleep (Chris,
-> > Christian)
-> > =
+Signed-off-by: Sidong Yang <realwakka@gmail.com>
+---
+ drivers/gpu/drm/drm_crtc_helper.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-> > Full audit:
-> > - dma-fence.h: Uses MAX_SCHEDULE_TIMOUT, good chance this sleeps
-> > - dma-resv.c: Timeout always at least 1
-> > - st-dma-fence.c: Save to sleep in testcases
-> > - amdgpu_cs.c: Both callers are for variants of the wait ioctl
-> > - amdgpu_device.c: Two callers in vram recover code, both right next
-> >    to mutex_lock.
-> > - amdgpu_vm.c: Use in the vm_wait ioctl, next to _reserve/unreserve
-> > - remaining functions in amdgpu: All for test_ib implementations for
-> >    various engines, caller for that looks all safe (debugfs, driver
-> >    load, reset)
-> > - etnaviv: another wait ioctl
-> > - habanalabs: another wait ioctl
-> > - nouveau_fence.c: hardcoded 15*HZ ... glorious
-> > - nouveau_gem.c: hardcoded 2*HZ ... so not even super consistent, but
-> >    this one does have a WARN_ON :-/ At least this one is only a
-> >    fallback path for when kmalloc fails. Maybe this should be put onto
-> >    some worker list instead, instead of a work per unamp ...
-> > - i915/selftests: Hardecoded HZ / 4 or HZ / 8
-> > - i915/gt/selftests: Going up the callchain looks safe looking at
-> >    nearby callers
-> > - i915/gt/intel_gt_requests.c. Wrapped in a mutex_lock
-> > - i915/gem_i915_gem_wait.c: The i915-version which is called instead
-> >    for i915 fences already has a might_sleep() annotation, so all good
-> > =
+diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
+index a4d36aca45ea..c7379c719952 100644
+--- a/drivers/gpu/drm/drm_crtc_helper.c
++++ b/drivers/gpu/drm/drm_crtc_helper.c
+@@ -217,11 +217,14 @@ static void __drm_helper_disable_unused_functions(struct drm_device *dev)
+  */
+ void drm_helper_disable_unused_functions(struct drm_device *dev)
+ {
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
++
+ 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE, ret);
+ 	__drm_helper_disable_unused_functions(dev);
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+ }
+ EXPORT_SYMBOL(drm_helper_disable_unused_functions);
+ 
+@@ -938,13 +941,14 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
+ {
+ 	struct drm_crtc *crtc;
+ 	struct drm_encoder *encoder;
++	struct drm_modeset_acquire_ctx ctx;
+ 	const struct drm_crtc_helper_funcs *crtc_funcs;
+ 	int encoder_dpms;
+-	bool ret;
++	int ret;
+ 
+ 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE, ret);
+ 	drm_for_each_crtc(crtc, dev) {
+ 
+ 		if (!crtc->enabled)
+@@ -979,7 +983,7 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
+ 
+ 	/* disable the unused connectors while restoring the modesetting */
+ 	__drm_helper_disable_unused_functions(dev);
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+ }
+ EXPORT_SYMBOL(drm_helper_resume_force_mode);
+ 
+@@ -999,9 +1003,10 @@ EXPORT_SYMBOL(drm_helper_resume_force_mode);
+ int drm_helper_force_disable_all(struct drm_device *dev)
+ {
+ 	struct drm_crtc *crtc;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret = 0;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE, ret);
+ 	drm_for_each_crtc(crtc, dev)
+ 		if (crtc->enabled) {
+ 			struct drm_mode_set set = {
+@@ -1013,7 +1018,7 @@ int drm_helper_force_disable_all(struct drm_device *dev)
+ 				goto out;
+ 		}
+ out:
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+ 	return ret;
+ }
+ EXPORT_SYMBOL(drm_helper_force_disable_all);
+-- 
+2.17.1
 
-> > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Ben Skeggs <bskeggs@redhat.com>
-> > Cc: "VMware Graphics" <linux-graphics-maintainer@vmware.com>
-> > Cc: Oded Gabbay <oded.gabbay@gmail.com>
-> > Cc: linux-media@vger.kernel.org
-> > Cc: linaro-mm-sig@lists.linaro.org
-> > Cc: linux-rdma@vger.kernel.org
-> > Cc: amd-gfx@lists.freedesktop.org
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> =
-
-> Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
-
-intel-gfx-ci approves too, thanks to both of you for reviews, patch merged
-to drm-misc-next.
--Daniel
-
-> =
-
-> > ---
-> >   drivers/dma-buf/dma-fence.c | 2 ++
-> >   1 file changed, 2 insertions(+)
-> > =
-
-> > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> > index 90edf2b281b0..656e9ac2d028 100644
-> > --- a/drivers/dma-buf/dma-fence.c
-> > +++ b/drivers/dma-buf/dma-fence.c
-> > @@ -208,6 +208,8 @@ dma_fence_wait_timeout(struct dma_fence *fence, boo=
-l intr, signed long timeout)
-> >   	if (WARN_ON(timeout < 0))
-> >   		return -EINVAL;
-> > +	might_sleep();
-> > +
-> >   	trace_dma_fence_wait_start(fence);
-> >   	if (fence->ops->wait)
-> >   		ret =3D fence->ops->wait(fence, intr, timeout);
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
