@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4F41DACEF
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 10:10:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3BE1DAD46
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 10:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A57616E5CE;
-	Wed, 20 May 2020 08:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3156B89C88;
+	Wed, 20 May 2020 08:27:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B47B6E125;
- Wed, 20 May 2020 08:10:52 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A94C89C88;
+ Wed, 20 May 2020 08:27:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2495DA0138;
- Wed, 20 May 2020 08:10:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44316A47E6;
+ Wed, 20 May 2020 08:27:06 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 20 May 2020 08:10:52 -0000
-Message-ID: <158996225211.30691.12781609763362110132@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 20 May 2020 08:27:06 -0000
+Message-ID: <158996322624.30687.17984864272900631625@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200520073459.9787-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200520073459.9787-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Measure_CS=5FTIMESTAMP_=28rev4=29?=
+References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ29u?=
+ =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev15=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,20 +47,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/selftests: Measure CS_TIMESTAMP (rev4)
-URL   : https://patchwork.freedesktop.org/series/77320/
-State : warning
+Series: Consider DBuf bandwidth when calculating CDCLK (rev15)
+URL   : https://patchwork.freedesktop.org/series/74739/
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-d4d9394cab86 drm/i915/selftests: Measure CS_TIMESTAMP
--:72: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#72: FILE: drivers/gpu/drm/i915/gt/selftest_gt_pm.c:53:
-+		udelay(1000);
+CI Bug Log - changes from CI_DRM_8506 -> Patchwork_17718
+====================================================
 
-total: 0 errors, 0 warnings, 1 checks, 131 lines checked
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17718 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][1] -> [TIMEOUT][2] ([i915#1288])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@client:
+    - fi-bsw-kefka:       [PASS][3] -> [INCOMPLETE][4] ([i915#1909])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-bsw-kefka/igt@i915_selftest@live@client.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-bsw-kefka/igt@i915_selftest@live@client.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-guc:         [PASS][5] -> [INCOMPLETE][6] ([i915#1874])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([i915#227])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-8809g:       [INCOMPLETE][9] ([i915#1874]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8506/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1288]: https://gitlab.freedesktop.org/drm/intel/issues/1288
+  [i915#1874]: https://gitlab.freedesktop.org/drm/intel/issues/1874
+  [i915#1909]: https://gitlab.freedesktop.org/drm/intel/issues/1909
+  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
+
+
+Participating hosts (49 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8506 -> Patchwork_17718
+
+  CI-20190529: 20190529
+  CI_DRM_8506: d6a73e9084ff6adfabbad014bc294d254484f304 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5661: a772a7c7a761c6125bc0af5284ad603478107737 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17718: 2be3fecc6320f61ccbd0898132dcb7eedae7640b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2be3fecc6320 drm/i915: Remove unneeded hack now for CDCLK
+b74b713c823f drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
+2405cfa20a90 drm/i915: Introduce for_each_dbuf_slice_in_mask macro
+4765b732c387 drm/i915: Plane configuration affects CDCLK in Gen11+
+cc857a15d370 drm/i915: Check plane configuration properly
+a2e2a5f43cd7 drm/i915: Extract cdclk requirements checking to separate function
+42922a1cf4d9 drm/i915: Decouple cdclk calculation from modeset checks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17718/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
