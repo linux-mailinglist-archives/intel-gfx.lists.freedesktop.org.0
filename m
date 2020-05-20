@@ -1,61 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A2F21DAA8F
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 08:23:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EE41DAAE7
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 08:46:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76F46E570;
-	Wed, 20 May 2020 06:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 320CB6E119;
+	Wed, 20 May 2020 06:46:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7346E570
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 06:23:40 +0000 (UTC)
-IronPort-SDR: W0GBCDoDxp+ZC+dyS2lfsK4qH9DooiwZFHdAf3Dx6tig0dCay7fCY6coF0l65zUzJZf3WrHwfO
- oxCg2r2UpFlA==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B93726E119;
+ Wed, 20 May 2020 06:46:07 +0000 (UTC)
+IronPort-SDR: 30OS06+JXioAvNKnoKlE7e1VEHwvFlGR5FoxKcRb3ad54jbB2JGG1ahjX7Un2O+ZLCply7yiYY
+ NfkH8Vtk/CWQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2020 23:23:36 -0700
-IronPort-SDR: nKFsqOrTem3PP8D2qIdiMRV4P28lcb+FchvPiZfl5av81SUccN6HKzFrBYlnHFW79bmMPkxgff
- TIddKDCk5oKg==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2020 23:46:07 -0700
+IronPort-SDR: Aj5KZkBdL0g/mI4hNPJ861qXldplmDAVL/rJY4F8EgcZQTZmTFso/jd/dMA9YTSqqc82eDi72q
+ EhjgiDeo4hAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,413,1583222400"; d="scan'208";a="466412643"
-Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
- by fmsmga006.fm.intel.com with ESMTP; 19 May 2020 23:23:33 -0700
-Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
- irsmsx110.ger.corp.intel.com (163.33.3.25) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 20 May 2020 07:22:02 +0100
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 20 May 2020 07:22:02 +0100
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Wed, 20 May 2020 07:22:02 +0100
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "Navare, Manasi D" <manasi.d.navare@intel.com>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29uc2lkZXIgREJ1ZiBiYW5k?=
- =?utf-8?Q?width_when_calculating_CDCLK_(rev15)?=
-Thread-Index: AQHWLjmSPzdLW8dBdkyTsPnHElJlkKiwgMUp
-Date: Wed, 20 May 2020 06:22:02 +0000
-Message-ID: <50aa41497acc456b823c14fa7ab55837@intel.com>
-References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>,
- <158993276093.31238.16626778601427555656@emeril.freedesktop.org>
-In-Reply-To: <158993276093.31238.16626778601427555656@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
+X-IronPort-AV: E=Sophos;i="5.73,413,1583222400"; d="scan'208";a="253589451"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga007.fm.intel.com with ESMTP; 19 May 2020 23:46:04 -0700
+Date: Wed, 20 May 2020 12:16:02 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200520064602.GA20133@intel.com>
+References: <20200519221621.19931-1-sean@poorly.run>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev15=29?=
+Content-Disposition: inline
+In-Reply-To: <20200519221621.19931-1-sean@poorly.run>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Add additional R0' wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,92 +47,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2VsZiB0ZXN0IGZhaWx1cmUgYXMgdXN1YWwuIEFuZCBhcyB1c3VhbCBub3QgcmVsYXRlZCB0byB0
-aGUgcGF0Y2guDQoNCkJlc3QgUmVnYXJkcywNCg0KTGlzb3Zza2l5IFN0YW5pc2xhdg0KDQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBQYXRjaHdvcmsgPHBh
-dGNod29ya0BlbWVyaWwuZnJlZWRlc2t0b3Aub3JnPg0KU2VudDogV2VkbmVzZGF5LCBNYXkgMjAs
-IDIwMjAgMjo1OSBBTQ0KVG86IExpc292c2tpeSwgU3RhbmlzbGF2DQpDYzogaW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZw0KU3ViamVjdDog4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Ig
-Q29uc2lkZXIgREJ1ZiBiYW5kd2lkdGggd2hlbiBjYWxjdWxhdGluZyBDRENMSyAocmV2MTUpDQoN
-Cj09IFNlcmllcyBEZXRhaWxzID09DQoNClNlcmllczogQ29uc2lkZXIgREJ1ZiBiYW5kd2lkdGgg
-d2hlbiBjYWxjdWxhdGluZyBDRENMSyAocmV2MTUpDQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3Jr
-LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNzQ3MzkvDQpTdGF0ZSA6IGZhaWx1cmUNCg0KPT0gU3Vt
-bWFyeSA9PQ0KDQpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV84NTA2IC0+IFBhdGNo
-d29ya18xNzcxOA0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PQ0KDQpTdW1tYXJ5DQotLS0tLS0tDQoNCiAgKipGQUlMVVJFKioNCg0KICBTZXJpb3Vz
-IHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTc3MTggYWJzb2x1dGVseSBu
-ZWVkIHRvIGJlDQogIHZlcmlmaWVkIG1hbnVhbGx5Lg0KDQogIElmIHlvdSB0aGluayB0aGUgcmVw
-b3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8gZG8gd2l0aCB0aGUgY2hhbmdlcw0KICBpbnRy
-b2R1Y2VkIGluIFBhdGNod29ya18xNzcxOCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRv
-IGFsbG93IHRoZW0NCiAgdG8gZG9jdW1lbnQgdGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3
-aWxsIHJlZHVjZSBmYWxzZSBwb3NpdGl2ZXMgaW4gQ0kuDQoNCiAgRXh0ZXJuYWwgVVJMOiBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNzcxOC9pbmRl
-eC5odG1sDQoNClBvc3NpYmxlIG5ldyBpc3N1ZXMNCi0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KICBI
-ZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2Vk
-IGluIFBhdGNod29ya18xNzcxODoNCg0KIyMjIElHVCBjaGFuZ2VzICMjIw0KDQojIyMjIFBvc3Np
-YmxlIHJlZ3Jlc3Npb25zICMjIyMNCg0KICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAY2xpZW50
-Og0KICAgIC0gZmktYnN3LWtlZmthOiAgICAgICBbUEFTU11bMV0gLT4gW0lOQ09NUExFVEVdWzJd
-DQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJN
-Xzg1MDYvZmktYnN3LWtlZmthL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAY2xpZW50Lmh0bWwNCiAg
-IFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MTc3MTgvZmktYnN3LWtlZmthL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAY2xpZW50Lmh0bWwNCg0K
-DQpLbm93biBpc3N1ZXMNCi0tLS0tLS0tLS0tLQ0KDQogIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZv
-dW5kIGluIFBhdGNod29ya18xNzcxOCB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6DQoNCiMj
-IyBJR1QgY2hhbmdlcyAjIyMNCg0KIyMjIyBJc3N1ZXMgaGl0ICMjIyMNCg0KICAqIGlndEBpOTE1
-X3BtX3JwbUBtb2R1bGUtcmVsb2FkOg0KICAgIC0gZmktZ2xrLWRzaTogICAgICAgICBbUEFTU11b
-M10gLT4gW1RJTUVPVVRdWzRdIChbaTkxNSMxMjg4XSkNCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fODUwNi9maS1nbGstZHNpL2lndEBpOTE1
-X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwNCiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTc3MTgvZmktZ2xrLWRzaS9pZ3RAaTkxNV9w
-bV9ycG1AbW9kdWxlLXJlbG9hZC5odG1sDQoNCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4
-ZWNsaXN0czoNCiAgICAtIGZpLWtibC1ndWM6ICAgICAgICAgW1BBU1NdWzVdIC0+IFtJTkNPTVBM
-RVRFXVs2XSAoW2k5MTUjMTg3NF0pDQogICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvQ0lfRFJNXzg1MDYvZmkta2JsLWd1Yy9pZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlQGV4ZWNsaXN0cy5odG1sDQogICBbNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE3NzE4L2ZpLWtibC1ndWMvaWd0QGk5MTVfc2VsZnRlc3RA
-bGl2ZUBleGVjbGlzdHMuaHRtbA0KDQogICogaWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFz
-dDoNCiAgICAtIGZpLWtibC03NTAwdTogICAgICAgW1BBU1NdWzddIC0+IFtGQUlMXVs4XSAoW2k5
-MTUjMjI3XSkNCiAgIFs3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fODUwNi9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFz
-dC5odG1sDQogICBbOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
-UGF0Y2h3b3JrXzE3NzE4L2ZpLWtibC03NTAwdS9pZ3RAa21zX2NoYW1lbGl1bUBoZG1pLWhwZC1m
-YXN0Lmh0bWwNCg0KDQojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMNCg0KICAqIGlndEBpOTE1X3Nl
-bGZ0ZXN0QGxpdmVAZXhlY2xpc3RzOg0KICAgIC0gZmkta2JsLTg4MDlnOiAgICAgICBbSU5DT01Q
-TEVURV1bOV0gKFtpOTE1IzE4NzRdKSAtPiBbUEFTU11bMTBdDQogICBbOV06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzg1MDYvZmkta2JsLTg4MDlnL2ln
-dEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZXhlY2xpc3RzLmh0bWwNCiAgIFsxMF06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE3NzE4L2ZpLWtibC04ODA5
-Zy9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4ZWNsaXN0cy5odG1sDQoNCg0KICBbaTkxNSMxMjg4
-XTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTI4OA0K
-ICBbaTkxNSMxODc0XTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9p
-c3N1ZXMvMTg3NA0KICBbaTkxNSMyMjddOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcv
-ZHJtL2ludGVsL2lzc3Vlcy8yMjcNCg0KDQpQYXJ0aWNpcGF0aW5nIGhvc3RzICg0OSAtPiA0NCkN
-Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQogIEFkZGl0aW9uYWwgKDEpOiBmaS1r
-YmwtNzU2MHUNCiAgTWlzc2luZyAgICAoNik6IGZpLWlsay1tNTQwIGZpLWhzdy00MjAwdSBmaS1i
-eXQtc3F1YXdrcyBmaS1ic3ctY3lhbiBmaS1ieXQtY2xhcHBlciBmaS1iZHctc2FtdXMNCg0KDQpC
-dWlsZCBjaGFuZ2VzDQotLS0tLS0tLS0tLS0tDQoNCiAgKiBMaW51eDogQ0lfRFJNXzg1MDYgLT4g
-UGF0Y2h3b3JrXzE3NzE4DQoNCiAgQ0ktMjAxOTA1Mjk6IDIwMTkwNTI5DQogIENJX0RSTV84NTA2
-OiBkNmE3M2U5MDg0ZmY2YWRmYWJiYWQwMTRiYzI5NGQyNTQ0ODRmMzA0IEAgZ2l0Oi8vYW5vbmdp
-dC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQogIElHVF81NjYxOiBhNzcyYTdjN2E3NjFj
-NjEyNWJjMGFmNTI4NGFkNjAzNDc4MTA3NzM3IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5v
-cmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzDQogIFBhdGNod29ya18xNzcxODogMmJlM2ZlY2M2
-MzIwZjYxY2NiZDA4OTgxMzJkY2I3ZWVkYWU3NjQwYiBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0
-b3Aub3JnL2dmeC1jaS9saW51eA0KDQoNCj09IExpbnV4IGNvbW1pdHMgPT0NCg0KMmJlM2ZlY2M2
-MzIwIGRybS9pOTE1OiBSZW1vdmUgdW5uZWVkZWQgaGFjayBub3cgZm9yIENEQ0xLDQpiNzRiNzEz
-YzgyM2YgZHJtL2k5MTU6IEFkanVzdCBDRENMSyBhY2NvcmRpbmdseSB0byBvdXIgREJ1ZiBidyBu
-ZWVkcw0KMjQwNWNmYTIwYTkwIGRybS9pOTE1OiBJbnRyb2R1Y2UgZm9yX2VhY2hfZGJ1Zl9zbGlj
-ZV9pbl9tYXNrIG1hY3JvDQo0NzY1YjczMmMzODcgZHJtL2k5MTU6IFBsYW5lIGNvbmZpZ3VyYXRp
-b24gYWZmZWN0cyBDRENMSyBpbiBHZW4xMSsNCmNjODU3YTE1ZDM3MCBkcm0vaTkxNTogQ2hlY2sg
-cGxhbmUgY29uZmlndXJhdGlvbiBwcm9wZXJseQ0KYTJlMmE1ZjQzY2Q3IGRybS9pOTE1OiBFeHRy
-YWN0IGNkY2xrIHJlcXVpcmVtZW50cyBjaGVja2luZyB0byBzZXBhcmF0ZSBmdW5jdGlvbg0KNDI5
-MjJhMWNmNGQ5IGRybS9pOTE1OiBEZWNvdXBsZSBjZGNsayBjYWxjdWxhdGlvbiBmcm9tIG1vZGVz
-ZXQgY2hlY2tzDQoNCj09IExvZ3MgPT0NCg0KRm9yIG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE3NzE4L2luZGV4Lmh0
-bWwNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On 2020-05-19 at 18:16:21 -0400, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> We're seeing some R0' mismatches in the field, particularly with
+I think you want to say Vprime verification? delay is added in between
+the retry for vprime verfication.
+
+-Ram
+> repeaters. I'm guessing the (already lenient) 300ms wait time isn't
+> enough for some setups. So add an additional wait when R0' is
+> mismatched.
+> 
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 2cbc4619b4ce..924a717a4fa4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -592,6 +592,9 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  						  bstatus);
+>  		if (!ret)
+>  			break;
+> +
+> +		/* Maybe the sink is lazy, give it some more time */
+> +		usleep_range(10000, 50000);
+>  	}
+>  
+>  	if (i == tries) {
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
