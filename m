@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4119B1DACB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 09:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C311DACB8
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2020 09:55:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 313096E7D5;
-	Wed, 20 May 2020 07:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B093D6E5D1;
+	Wed, 20 May 2020 07:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440DC6E5BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 07:55:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB506E5A2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 May 2020 07:55:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21236575-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21236576-1500050 
  for multiple; Wed, 20 May 2020 08:55:05 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 08:54:44 +0100
-Message-Id: <20200520075503.10388-3-chris@chris-wilson.co.uk>
+Date: Wed, 20 May 2020 08:54:45 +0100
+Message-Id: <20200520075503.10388-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200520075503.10388-1-chris@chris-wilson.co.uk>
 References: <20200520075503.10388-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/22] drm/i915: Avoid using rq->engine after
- free during i915_fence_release
+Subject: [Intel-gfx] [PATCH 04/22] drm/i915: Move saturated workload
+ detection back to the context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,61 +45,131 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to be valid to dereference during the i915_fence_release, after
-retiring the fence and releasing its refererences, we assume that
-rq->engine can only be a real engine (that stay intact until the device
-is shutdown after all fences have been flushed). However, due to a quirk
-of preempt-to-busy, we may retire a request that still belongs to a
-virtual engine and so eventually free it with rq->engine being invalid.
-To avoid dereferencing that invalid engine, we look at the
-execution_mask which if it indicates it may be executed on more than one
-engine, we know it originated on a virtual engine and may still be on
-one.
+When we introduced the saturated workload detection to tell us to back
+off from semaphore usage [semaphores have a noticeable impact on
+contended bus cycles with the CPU for some heavy workloads], we first
+introduced it as a per-context tracker. This allows individual contexts
+to try and optimise their own usage, but we found that with the local
+tracking and the no-semaphore boosting, the first context to disable
+semaphores got a massive priority boost and so would starve the rest and
+all new contexts (as they started with semaphores enabled and lower
+priority). Hence we moved the saturated workload detection to the
+engine, and a consequence had to disable semaphores on virtual engines.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1906
-Fixes: 43acd6516ca9 ("drm/i915: Keep a per-engine request pool")
+Now that we do not have semaphore priority boosting, we can move the
+tracking back to the context and virtual engines can now utilise the
+faster inter-engine synchronisation.
+
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 --
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 --
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 15 ---------------
+ drivers/gpu/drm/i915/i915_request.c           |  4 ++--
+ 6 files changed, 5 insertions(+), 21 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index e4aece20bc80..762a251d553b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -268,6 +268,7 @@ static int __intel_context_active(struct i915_active *active)
+ 	if (err)
+ 		goto err_timeline;
+ 
++	ce->saturated = 0;
+ 	return 0;
+ 
+ err_timeline:
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 4954b0df4864..aed26d93c2ca 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -78,6 +78,8 @@ struct intel_context {
+ 	} lrc;
+ 	u32 tag; /* cookie passed to HW to track this context on submission */
+ 
++	intel_engine_mask_t saturated; /* submitting semaphores too late? */
++
+ 	/* Time on GPU as tracked by the hw. */
+ 	struct {
+ 		struct ewma_runtime avg;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index d0a1078ef632..6d7fdba5adef 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -229,8 +229,6 @@ static int __engine_park(struct intel_wakeref *wf)
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
+ 
+-	engine->saturated = 0;
+-
+ 	/*
+ 	 * If one and only one request is completed between pm events,
+ 	 * we know that we are inside the kernel context and it is
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 2b6cdf47d428..c443b6bb884b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -332,8 +332,6 @@ struct intel_engine_cs {
+ 
+ 	struct intel_context *kernel_context; /* pinned */
+ 
+-	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+-
+ 	struct {
+ 		struct delayed_work work;
+ 		struct i915_request *systole;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3214a4ecc31a..42cb0cae2845 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -5651,21 +5651,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+ 
+-	/*
+-	 * The decision on whether to submit a request using semaphores
+-	 * depends on the saturated state of the engine. We only compute
+-	 * this during HW submission of the request, and we need for this
+-	 * state to be globally applied to all requests being submitted
+-	 * to this engine. Virtual engines encompass more than one physical
+-	 * engine and so we cannot accurately tell in advance if one of those
+-	 * engines is already saturated and so cannot afford to use a semaphore
+-	 * and be pessimized in priority for doing so -- if we are the only
+-	 * context using semaphores after all other clients have stopped, we
+-	 * will be starved on the saturated system. Such a global switch for
+-	 * semaphores is less than ideal, but alas is the current compromise.
+-	 */
+-	ve->base.saturated = ALL_ENGINES;
+-
+ 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+ 
+ 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 526c1e9acbd5..6e357183bece 100644
+index 6e357183bece..8e5511bc0f22 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -121,8 +121,29 @@ static void i915_fence_release(struct dma_fence *fence)
- 	i915_sw_fence_fini(&rq->submit);
- 	i915_sw_fence_fini(&rq->semaphore);
+@@ -488,7 +488,7 @@ bool __i915_request_submit(struct i915_request *request)
+ 	 */
+ 	if (request->sched.semaphores &&
+ 	    i915_sw_fence_signaled(&request->semaphore))
+-		engine->saturated |= request->sched.semaphores;
++		request->context->saturated |= request->sched.semaphores;
  
--	/* Keep one request on each engine for reserved use under mempressure */
--	if (!cmpxchg(&rq->engine->request_pool, NULL, rq))
-+	/*
-+	 * Keep one request on each engine for reserved use under mempressure
-+	 *
-+	 * We do not hold a reference to the engine here and so have to be
-+	 * very careful in what rq->engine we poke. The virtual engine is
-+	 * referenced via the rq->context and we released that ref during
-+	 * i915_request_retire(), ergo we must not dereference a virtual
-+	 * engine here. Not that we would want to, as the only consumer of
-+	 * the reserved engine->request_pool is the powermanagent parking,
-+	 * which must-not-fail, and that is only run on the physical engines.
-+	 *
-+	 * Since the request must have been executed to be have completed,
-+	 * we know that it will have been processed by the HW and will
-+	 * not be unsubmitted again, so rq->engine and rq->execution_mask
-+	 * at this point is stable. rq->execution_mask will be a single
-+	 * bit if the last and only engine it could execution on was a
-+	 * physical engine, if it's multiple bits then it started on and
-+	 * could still be on a virtual engine. Thus if the mask is not a
-+	 * power-of-two we assume that rq->engine may still be a virtual
-+	 * engien and so a dangling invalid pointer that we cannot dereference
-+	 */
-+	if (is_power_of_2(rq->execution_mask) &&
-+	    !cmpxchg(&rq->engine->request_pool, NULL, rq))
- 		return;
+ 	engine->emit_fini_breadcrumb(request,
+ 				     request->ring->vaddr + request->postfix);
+@@ -940,7 +940,7 @@ already_busywaiting(struct i915_request *rq)
+ 	 *
+ 	 * See the are-we-too-late? check in __i915_request_submit().
+ 	 */
+-	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
++	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+ }
  
- 	kmem_cache_free(global.slab_requests, rq);
+ static int
 -- 
 2.20.1
 
