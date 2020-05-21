@@ -2,33 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9C61DCA57
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 11:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7410B1DCA5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 11:44:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6E06E920;
-	Thu, 21 May 2020 09:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D45D86E928;
+	Thu, 21 May 2020 09:44:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17A446E920
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 09:42:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16A16E925
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 09:44:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21245311-1500050 for multiple; Thu, 21 May 2020 10:42:26 +0100
+ 21245333-1500050 for multiple; Thu, 21 May 2020 10:44:17 +0100
 MIME-Version: 1.0
-In-Reply-To: <5afb5457-733b-b057-dd6b-5040f5f9b5e8@linux.intel.com>
+In-Reply-To: <159005356958.32320.5047736211612324801@build.alporthouse.com>
 References: <20200521085320.906-1-chris@chris-wilson.co.uk>
- <5afb5457-733b-b057-dd6b-5040f5f9b5e8@linux.intel.com>
+ <20200521085320.906-2-chris@chris-wilson.co.uk>
+ <55150b9c-37f4-7d80-3282-80d18d21d719@linux.intel.com>
+ <159005323613.32320.14516950460163840293@build.alporthouse.com>
+ <159005356958.32320.5047736211612324801@build.alporthouse.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159005414614.32320.874522293139874706@build.alporthouse.com>
+Message-ID: <159005425694.32320.3220801731152833885@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Thu, 21 May 2020 10:42:26 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Disable semaphore
- inter-engine sync without timeslicing
+Date: Thu, 21 May 2020 10:44:16 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Avoid using rq->engine after
+ free during i915_fence_release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,76 +49,86 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-05-21 10:10:10)
+Quoting Chris Wilson (2020-05-21 10:32:49)
+> Quoting Chris Wilson (2020-05-21 10:27:16)
+> > Quoting Tvrtko Ursulin (2020-05-21 10:13:14)
+> > > 
+> > > On 21/05/2020 09:53, Chris Wilson wrote:
+> > > > In order to be valid to dereference during the i915_fence_release, after
+> > > > retiring the fence and releasing its refererences, we assume that
+> > > > rq->engine can only be a real engine (that stay intact until the device
+> > > > is shutdown after all fences have been flushed). However, due to a quirk
+> > > > of preempt-to-busy, we may retire a request that still belongs to a
+> > > > virtual engine and so eventually free it with rq->engine being invalid.
+> > > > To avoid dereferencing that invalid engine, we look at the
+> > > > execution_mask which if it indicates it may be executed on more than one
+> > > > engine, we know it originated on a virtual engine and may still be on
+> > > > one.
+> > > > 
+> > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1906
+> > > > Fixes: 43acd6516ca9 ("drm/i915: Keep a per-engine request pool")
+> > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > ---
+> > > >   drivers/gpu/drm/i915/i915_request.c | 25 +++++++++++++++++++++++--
+> > > >   1 file changed, 23 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> > > > index 526c1e9acbd5..6e357183bece 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_request.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_request.c
+> > > > @@ -121,8 +121,29 @@ static void i915_fence_release(struct dma_fence *fence)
+> > > >       i915_sw_fence_fini(&rq->submit);
+> > > >       i915_sw_fence_fini(&rq->semaphore);
+> > > >   
+> > > > -     /* Keep one request on each engine for reserved use under mempressure */
+> > > > -     if (!cmpxchg(&rq->engine->request_pool, NULL, rq))
+> > > > +     /*
+> > > > +      * Keep one request on each engine for reserved use under mempressure
+> > > > +      *
+> > > > +      * We do not hold a reference to the engine here and so have to be
+> > > > +      * very careful in what rq->engine we poke. The virtual engine is
+> > > > +      * referenced via the rq->context and we released that ref during
+> > > > +      * i915_request_retire(), ergo we must not dereference a virtual
+> > > > +      * engine here. Not that we would want to, as the only consumer of
+> > > > +      * the reserved engine->request_pool is the powermanagent parking,
+> > > 
+> > > power management
+> > > 
+> > > > +      * which must-not-fail, and that is only run on the physical engines.
+> > > > +      *
+> > > > +      * Since the request must have been executed to be have completed,
+> > > > +      * we know that it will have been processed by the HW and will
+> > > > +      * not be unsubmitted again, so rq->engine and rq->execution_mask
+> > > > +      * at this point is stable. rq->execution_mask will be a single
+> > > > +      * bit if the last and only engine it could execution on was a
+> > > > +      * physical engine, if it's multiple bits then it started on and
+> > > > +      * could still be on a virtual engine. Thus if the mask is not a
+> > > > +      * power-of-two we assume that rq->engine may still be a virtual
+> > > > +      * engien and so a dangling invalid pointer that we cannot 
+> > > 
+> > > engine
+> > > 
+> > > But.. submit fence can mask out execution_mask bits and make it appear 
+> > > the request was on a physical engine. What then?
+> > 
+> > Then we execute along a single engine and it is never returned to the
+> > virtual engine (in __unwind_incomplete_requests). 
 > 
-> On 21/05/2020 09:53, Chris Wilson wrote:
-> > Since the remove of the no-semaphore boosting, we rely on timeslicing to
-> > reorder past inter-dependency hogs across the engines. However, we
-> > require preemption to support timeslicing into user payloads, and not all
-> > machine support preemption so we do not universally enable timeslicing
-> > even when it would preempt our own inter-engine semaphores.
-> > 
-> > Testcase: igt/gem_exec_schedule/semaphore-codependency # bdw/bsw
-> > Fixes: 18e4af04d218 ("drm/i915: Drop no-semaphore boosting")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 4 ++--
-> >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 900ea8b7fc8f..f5d59d18cd5b 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -230,7 +230,7 @@ static void intel_context_set_gem(struct intel_context *ce,
-> >               ce->timeline = intel_timeline_get(ctx->timeline);
-> >   
-> >       if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
-> > -         intel_engine_has_semaphores(ce->engine))
-> > +         intel_engine_has_timeslices(ce->engine))
-> >               __set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
-> >   }
-> >   
-> > @@ -1969,7 +1969,7 @@ static int __apply_priority(struct intel_context *ce, void *arg)
-> >   {
-> >       struct i915_gem_context *ctx = arg;
-> >   
-> > -     if (!intel_engine_has_semaphores(ce->engine))
-> > +     if (!intel_engine_has_timeslices(ce->engine))
-> >               return 0;
-> >   
-> >       if (ctx->sched.priority >= I915_PRIORITY_NORMAL)
-> > 
+>          * For example, consider the flow of a bonded request through a virtual
+>          * engine. The request is created with a wide engine mask (all engines
+>          * that we might execute on). On processing the bond, the request mask
+>          * is reduced to one or more engines. If the request is subsequently
+>          * bound to a single engine, it will then be constrained to only
+>          * execute on that engine and never returned to the virtual engine
+>          * after timeslicing away, see __unwind_incomplete_requests(). Thus we
+>          * know that if the rq->execution_mask is a single bit, only rq->engine
+
+rq->engine can only be a physical engine, with the exact corresponding mask.
+
+>          * can be the exact corresponding engine->mask.
 > 
-> __i915_request_await_execution is okay to keep using semaphores?
-
-I think so. Using semaphores there still benefits from synchronising
-with a master in ELSP[1]. The danger is that it does increase the
-hangcheck possibility for the bond request, such that a slow request
-before the master would result in us declaring the bond hung. The
-question is whether that is worse than executing the bond before the
-master.
-
-I should be able to write a test to demonstrate the hang in the bond.
-For example, if we do something like:
-
-on master engine:
-	submit spin
-	submit master -> submit fence -> submit bond
-	for(;;)
-		submit high priority spin
-		terminate previous spin
-	
-Hmm. But without preemption... master will execute before we get a
-chance to submit the high priority spinners. So this will not actually
-hang.
-
-Ok, so this is safer than it seems :)
-
-Just need to write that test and execute it on broadwell to verify my
-claim.
--Chris
+> -Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
