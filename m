@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A07E1DC3D5
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8001DC3E6
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:39:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94E5D6E8D5;
-	Thu, 21 May 2020 00:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A3C6E8F1;
+	Thu, 21 May 2020 00:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6D8B6E8C8
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:09 +0000 (UTC)
-IronPort-SDR: I8YMRzLjOmkPFWpLkV8Qc3pzyYk1htDuMUX3C4f4SGmjgGiR2FKH3KyCOBYbnPZ93UncrOc8hI
- kUiSyOhW3pGA==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09DD66E8CB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:10 +0000 (UTC)
+IronPort-SDR: v6NIXOrYhYYj1Rk+jp+2J60zV5QRIgMHTxvyb36N7k4yJzMWYoVTzsznCy5ht2Tmw/hGoC+TF5
+ b/hzZxls5pcA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:09 -0700
-IronPort-SDR: N8K5m8lTUGOPWsEiqEPcM9sFv9mv7QqKPRVwA7smdldt99xNGGRqDbTEx3kiyjBhS0TOK+gyzG
- +/S2szdT8a1A==
+IronPort-SDR: R0Pvt+RdiL+hzoJhctLbd6Wtld8ZeUuuGda3yZ0DLoervRmsEEs7de2Joz+J0XfyoM8w3rnRoW
+ PVellXDhhksQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720889"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720891"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:38 -0700
-Message-Id: <20200521003803.18936-13-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:39 -0700
+Message-Id: <20200521003803.18936-14-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/37] drm/i915/dg1: Add DG1 PCI IDs
+Subject: [Intel-gfx] [PATCH 13/37] drm/i915/dg1: Add fake PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,55 +52,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+DG1 has the south engine display on the same PCI device. Ideally we
+could use HAS_PCH_SPLIT(), but that macro is used all across the code
+base to rather signify a range of gens. So add a fake one for DG1 to be
+used where needed.
 
-Bspec: 44463
-
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: James Ausmus <james.ausmus@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_pci.c | 3 ++-
- include/drm/i915_pciids.h       | 4 ++++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/intel_pch.c | 6 ++++++
+ drivers/gpu/drm/i915/intel_pch.h | 4 ++++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index e5a851a2dfe7..f1a3a59093c9 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -879,7 +879,7 @@ static const struct intel_device_info rkl_info = {
- 	.has_master_unit_irq = 1, \
- 	.has_snoop_pcie = 1
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+index 102b03d24f90..f148354008f0 100644
+--- a/drivers/gpu/drm/i915/intel_pch.c
++++ b/drivers/gpu/drm/i915/intel_pch.c
+@@ -174,6 +174,12 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ {
+ 	struct pci_dev *pch = NULL;
  
--static const struct intel_device_info intel_dg1_info = {
-+static const struct intel_device_info dg1_info = {
- 	GEN12_DGFX_FEATURES,
- 	PLATFORM(INTEL_DG1),
- 	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-@@ -964,6 +964,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_EHL_IDS(&ehl_info),
- 	INTEL_TGL_12_IDS(&tgl_info),
- 	INTEL_RKL_IDS(&rkl_info),
-+	INTEL_DG1_IDS(&dg1_info),
- 	{0, 0, 0}
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index bc989de2aac2..f44fe822880d 100644
---- a/include/drm/i915_pciids.h
-+++ b/include/drm/i915_pciids.h
-@@ -614,4 +614,8 @@
- 	INTEL_VGA_DEVICE(0x4C90, info), \
- 	INTEL_VGA_DEVICE(0x4C9A, info)
- 
-+/* DG1 */
-+#define INTEL_DG1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x4905, info)
++	/* DG1 has south engine display on the same PCI device */
++	if (IS_DG1(dev_priv)) {
++		dev_priv->pch_type = PCH_DG1;
++		return;
++	}
 +
- #endif /* _I915_PCIIDS_H */
+ 	/*
+ 	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
+ 	 * make graphics device passthrough work easy for VMM, that only
+diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
+index 3053d1ce398b..06d2cd50af0b 100644
+--- a/drivers/gpu/drm/i915/intel_pch.h
++++ b/drivers/gpu/drm/i915/intel_pch.h
+@@ -26,6 +26,9 @@ enum intel_pch {
+ 	PCH_JSP,	/* Jasper Lake PCH */
+ 	PCH_MCC,        /* Mule Creek Canyon PCH */
+ 	PCH_TGP,	/* Tiger Lake PCH */
++
++	/* Fake PCHs, functionality handled on the same PCI dev */
++	PCH_DG1 = 1024,
+ };
+ 
+ #define INTEL_PCH_DEVICE_ID_MASK		0xff80
+@@ -56,6 +59,7 @@ enum intel_pch {
+ 
+ #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+ #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
++#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
+ #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_JSP)
+ #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MCC)
+ #define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
 -- 
 2.26.2
 
