@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B382D1DCA89
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 11:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C711DCA9C
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 12:00:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1156C6E925;
-	Thu, 21 May 2020 09:56:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A85486E926;
+	Thu, 21 May 2020 10:00:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03ED06E923;
- Thu, 21 May 2020 09:56:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B79F6E923;
+ Thu, 21 May 2020 10:00:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F28D7A47E6;
- Thu, 21 May 2020 09:56:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53C79A47EA;
+ Thu, 21 May 2020 10:00:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 21 May 2020 09:56:10 -0000
-Message-ID: <159005497096.4441.17877207523556777793@emeril.freedesktop.org>
+Date: Thu, 21 May 2020 10:00:44 -0000
+Message-ID: <159005524431.4442.4017266924503351335@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200520200252.2808-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200520200252.2808-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Trace_the_CS_interrupt_=28rev9=29?=
+References: <20200521085320.906-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200521085320.906-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_drm/i915=3A_Disable_semaphore_inter-engine?=
+ =?utf-8?q?_sync_without_timeslicing_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,96 +48,23 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Trace the CS interrupt (rev9)
-URL   : https://patchwork.freedesktop.org/series/77441/
-State : failure
+Series: series starting with drm/i915: Disable semaphore inter-engine sync without timeslicing (rev2)
+URL   : https://patchwork.freedesktop.org/series/77503/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8517 -> Patchwork_17745
-====================================================
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17745 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17745, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17745/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17745:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-apl-guc:         NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17745/fi-apl-guc/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17745 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][2] -> [DMESG-FAIL][3] ([i915#165])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8517/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17745/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][4] ([i915#62]) -> [SKIP][5] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8517/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17745/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8517 -> Patchwork_17745
-
-  CI-20190529: 20190529
-  CI_DRM_8517: 7c5c05e694bf83e9d4ef64172ef6c9d55aa334a5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5666: dfa3b1fdc9813a48314a43faaacb7dacc06112d6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17745: daf509d8a40bef29edb99364bc2d970a4cb5cbee @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-daf509d8a40b drm/i915/gt: Trace the CS interrupt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17745/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
