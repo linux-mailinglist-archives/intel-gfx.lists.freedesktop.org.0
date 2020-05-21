@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7269C1DC3D0
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A98861DC3CF
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58B06E8CB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB5086E8CF;
 	Thu, 21 May 2020 00:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0316E8C8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A51016E8C8
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:07 +0000 (UTC)
-IronPort-SDR: asmjAoyGmmPeVEJI6YXu8YvfVQ/WhmTPwCz5PyuY6qjJ7bbc4EEHF8xoBy6QgN7H0E1neTv9GC
- VB8+ijyXcQkA==
+IronPort-SDR: ekf460Pio7AObffCgOwheo6MzQp6snHYK9D2tEng5e09vTmuiSbqSd9mlHZ2WkonSnLchm8r7o
+ zxzFnUd9ZkxA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:07 -0700
-IronPort-SDR: 1IExdj4OmNbtRxh+Kbzjrtjy0id0iReTPmkfTbQx0LdQ5gSqu4sLn4sWul+f6DtFn7SnsvrV3S
- FvfjLkz00NdA==
+IronPort-SDR: RtfcoyLM7gGYPo5rireP1TgfM5LzD9axs/X1SYj35h0QjI6691UQOZQLdrhDpnVbn/kwHeBmEp
+ 7rGjUs//4lRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720854"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720857"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:06 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:07 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:28 -0700
-Message-Id: <20200521003803.18936-3-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:29 -0700
+Message-Id: <20200521003803.18936-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/37] drm/i915/rkl: Add DDC pin mapping
+Subject: [Intel-gfx] [PATCH 03/37] drm/i915/rkl: Setup ports/phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,60 +54,100 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-The pin mapping for the final two outputs varies according to which PCH
-is present on the platform:  with TGP the pins are remapped into the TC
-range, whereas with CMP they stay in the traditional combo output range.
+RKL uses DDI's A, B, TC1, and TC2 which need to map to combo PHY's A-D.
 
 Bspec: 49181
+Cc: Imre Deak <imre.deak@intel.com>
 Cc: Aditya Swarup <aditya.swarup@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20200504225227.464666-16-matthew.d.roper@intel.com
+Link: https://patchwork.freedesktop.org/patch/msgid/20200504225227.464666-14-matthew.d.roper@intel.com
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 34 ++++++++++++--------
+ drivers/gpu/drm/i915/i915_reg.h              |  4 ++-
+ 2 files changed, 24 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 010f37240710..a31a98d26882 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3082,6 +3082,24 @@ static u8 mcc_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
- 	return ddc_pin;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 321438ea7077..5b641c1fdfe6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7212,30 +7212,33 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	if (phy == PHY_NONE)
+ 		return false;
+-
+-	if (IS_ELKHARTLAKE(dev_priv))
++	else if (IS_ROCKETLAKE(dev_priv))
++		return phy <= PHY_D;
++	else if (IS_ELKHARTLAKE(dev_priv))
+ 		return phy <= PHY_C;
+-
+-	if (INTEL_GEN(dev_priv) >= 11)
++	else if (INTEL_GEN(dev_priv) >= 11)
+ 		return phy <= PHY_B;
+-
+-	return false;
++	else
++		return false;
  }
  
-+static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
-+{
-+	enum phy phy = intel_port_to_phy(dev_priv, port);
-+
-+	WARN_ON(port == PORT_C);
-+
-+	/*
-+	 * Pin mapping for RKL depends on which PCH is present.  With TGP, the
-+	 * final two outputs use type-c pins, even though they're actually
-+	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
-+	 * all outputs.
-+	 */
-+	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && phy >= PHY_C)
-+		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
-+
-+	return GMBUS_PIN_1_BXT + phy;
-+}
-+
- static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
- 			      enum port port)
+ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
  {
-@@ -3119,7 +3137,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
- 		return ddc_pin;
- 	}
- 
--	if (HAS_PCH_MCC(dev_priv))
+-	if (INTEL_GEN(dev_priv) >= 12)
 +	if (IS_ROCKETLAKE(dev_priv))
-+		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
-+	else if (HAS_PCH_MCC(dev_priv))
- 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
- 	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
++		return false;
++	else if (INTEL_GEN(dev_priv) >= 12)
+ 		return phy >= PHY_D && phy <= PHY_I;
+-
+-	if (INTEL_GEN(dev_priv) >= 11 && !IS_ELKHARTLAKE(dev_priv))
++	else if (INTEL_GEN(dev_priv) >= 11 && !IS_ELKHARTLAKE(dev_priv))
+ 		return phy >= PHY_C && phy <= PHY_F;
+-
+-	return false;
++	else
++		return false;
+ }
+ 
+ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+ {
+-	if (IS_ELKHARTLAKE(i915) && port == PORT_D)
++	if (IS_ROCKETLAKE(i915) && port >= PORT_D)
++		return (enum phy)port - 1;
++	else if (IS_ELKHARTLAKE(i915) && port == PORT_D)
+ 		return PHY_A;
+ 
+ 	return (enum phy)port;
+@@ -16725,7 +16728,12 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
+ 		return;
+ 
+-	if (INTEL_GEN(dev_priv) >= 12) {
++	if (IS_ROCKETLAKE(dev_priv)) {
++		intel_ddi_init(dev_priv, PORT_A);
++		intel_ddi_init(dev_priv, PORT_B);
++		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
++		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
++	} else if (INTEL_GEN(dev_priv) >= 12) {
+ 		intel_ddi_init(dev_priv, PORT_A);
+ 		intel_ddi_init(dev_priv, PORT_B);
+ 		intel_ddi_init(dev_priv, PORT_D);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e9d50fe0f375..5ad8b91bc3a4 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1869,9 +1869,11 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define _ICL_COMBOPHY_A			0x162000
+ #define _ICL_COMBOPHY_B			0x6C000
+ #define _EHL_COMBOPHY_C			0x160000
++#define _RKL_COMBOPHY_D			0x161000
+ #define _ICL_COMBOPHY(phy)		_PICK(phy, _ICL_COMBOPHY_A, \
+ 					      _ICL_COMBOPHY_B, \
+-					      _EHL_COMBOPHY_C)
++					      _EHL_COMBOPHY_C, \
++					      _RKL_COMBOPHY_D)
+ 
+ /* CNL/ICL Port CL_DW registers */
+ #define _ICL_PORT_CL_DW(dw, phy)	(_ICL_COMBOPHY(phy) + \
 -- 
 2.26.2
 
