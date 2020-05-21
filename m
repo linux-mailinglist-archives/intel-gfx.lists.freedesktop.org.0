@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A821DC87E
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 10:29:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3051DC90E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 10:54:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5BC06E916;
-	Thu, 21 May 2020 08:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5518D6E915;
+	Thu, 21 May 2020 08:54:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAEA96E915;
- Thu, 21 May 2020 08:29:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E4D42A00FD;
- Thu, 21 May 2020 08:29:42 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 403066E915
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 08:54:06 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21249346-1500050 
+ for multiple; Thu, 21 May 2020 09:53:20 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 May 2020 09:53:19 +0100
+Message-Id: <20200521085320.906-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 21 May 2020 08:29:42 -0000
-Message-ID: <159004978290.4442.2910863192856827384@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200521071059.31726-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200521071059.31726-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Measure_CS=5FTIMESTAMP_=28rev5=29?=
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Disable semaphore inter-engine
+ sync without timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +37,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since the remove of the no-semaphore boosting, we rely on timeslicing to
+reorder past inter-dependency hogs across the engines. However, we
+require preemption to support timeslicing into user payloads, and not all
+machine support preemption so we do not universally enable timeslicing
+even when it would preempt our own inter-engine semaphores.
 
-Series: drm/i915/selftests: Measure CS_TIMESTAMP (rev5)
-URL   : https://patchwork.freedesktop.org/series/77320/
-State : success
+Testcase: igt/gem_exec_schedule/semaphore-codependency # bdw/bsw
+Fixes: 18e4af04d218 ("drm/i915: Drop no-semaphore boosting")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 900ea8b7fc8f..f5d59d18cd5b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -230,7 +230,7 @@ static void intel_context_set_gem(struct intel_context *ce,
+ 		ce->timeline = intel_timeline_get(ctx->timeline);
+ 
+ 	if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
+-	    intel_engine_has_semaphores(ce->engine))
++	    intel_engine_has_timeslices(ce->engine))
+ 		__set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
+ }
+ 
+@@ -1969,7 +1969,7 @@ static int __apply_priority(struct intel_context *ce, void *arg)
+ {
+ 	struct i915_gem_context *ctx = arg;
+ 
+-	if (!intel_engine_has_semaphores(ce->engine))
++	if (!intel_engine_has_timeslices(ce->engine))
+ 		return 0;
+ 
+ 	if (ctx->sched.priority >= I915_PRIORITY_NORMAL)
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8516 -> Patchwork_17744
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17744 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8516/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
-
-  
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8516 -> Patchwork_17744
-
-  CI-20190529: 20190529
-  CI_DRM_8516: 5db9df14788c0a6038aa05e180cde8065d724e43 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5665: c5e5b0ce26fc321591a6d0235c639a1e8ec3cdfa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17744: f49741c693787f2bf8cadf68d744a0dcb55813ac @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f49741c69378 drm/i915/selftests: Measure CS_TIMESTAMP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
