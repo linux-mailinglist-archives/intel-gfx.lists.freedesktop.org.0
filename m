@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97EAA1DC804
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 09:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 610E31DC83A
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 10:08:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB0DC6E90B;
-	Thu, 21 May 2020 07:52:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4156E90F;
+	Thu, 21 May 2020 08:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 42C446E90A;
- Thu, 21 May 2020 07:52:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBC906E90E;
+ Thu, 21 May 2020 08:07:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 190FEA00C7;
- Thu, 21 May 2020 07:52:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D5BDAA47E1;
+ Thu, 21 May 2020 08:07:58 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 21 May 2020 07:52:36 -0000
-Message-ID: <159004755607.4442.1220055600091216950@emeril.freedesktop.org>
+Date: Thu, 21 May 2020 08:07:58 -0000
+Message-ID: <159004847884.4441.17333467781491764993@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200520200252.2808-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200520200252.2808-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Trace_the_CS_interrupt_=28rev8=29?=
+References: <20200521071059.31726-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200521071059.31726-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/selftests=3A_Measure_CS=5FTIMESTAMP_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,56 +47,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Trace the CS interrupt (rev8)
-URL   : https://patchwork.freedesktop.org/series/77441/
-State : success
+Series: drm/i915/selftests: Measure CS_TIMESTAMP (rev5)
+URL   : https://patchwork.freedesktop.org/series/77320/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8516 -> Patchwork_17743
-====================================================
+$ dim checkpatch origin/drm-tip
+f49741c69378 drm/i915/selftests: Measure CS_TIMESTAMP
+-:68: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#68: FILE: drivers/gpu/drm/i915/gt/selftest_gt_pm.c:52:
++		udelay(1000);
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 148 lines checked
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17743/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8516 -> Patchwork_17743
-
-  CI-20190529: 20190529
-  CI_DRM_8516: 5db9df14788c0a6038aa05e180cde8065d724e43 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5665: c5e5b0ce26fc321591a6d0235c639a1e8ec3cdfa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17743: 69a4b2642f607d164470a3cf5f601e232f583022 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-69a4b2642f60 drm/i915/gt: Trace the CS interrupt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17743/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
