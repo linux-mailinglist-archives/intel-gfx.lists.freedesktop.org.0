@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A57D1DC3DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF581DC3E4
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD8EC6E8E0;
-	Thu, 21 May 2020 00:38:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E3E66E8E7;
+	Thu, 21 May 2020 00:38:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD006E8DB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFAB46E8DA
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:15 +0000 (UTC)
-IronPort-SDR: V03q8nwyEn5XI8elgijXHEAFC0buseeyhwB48yFKDrUBc6AarjnCZdxoPnyN3uo1E30ZCKBPjz
- 3lQIYjvoplzQ==
+IronPort-SDR: PTEEomfk3QxWn5RETWil2VahtDGnXxO4DhvZbhJ/vw1xYR8596rgYLlIPHzey+c+YSpke72rAA
+ S1Pq0AOUDQhw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:15 -0700
-IronPort-SDR: 3uiw+JYpBLTdfvCC4Vxhm6IDN3Rtz7z2PK8yA5K7s/lnjU9/JcOyfekgKbNFgpS78zprM8k7WU
- y+1m0Y5IWfxA==
+IronPort-SDR: 4O7wijS/ZGIIhB6G+aZYuC4x3vPK2Scdxjh5E9/+2a3iPpCoI/XO1C2TJUGQ+d+oWE+8mcsZ0F
+ fQy0AYFWyrpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720962"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720966"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:15 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:38:00 -0700
-Message-Id: <20200521003803.18936-35-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:38:01 -0700
+Message-Id: <20200521003803.18936-36-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 34/37] drm/i915/dg1: enable PORT C/D aka D/E
+Subject: [Intel-gfx] [PATCH 35/37] drm/i915/dg1: Load DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,72 +52,72 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For DG1 we have a little of mix up wrt to DDI/port names and indexes.
-Bspec refers to the ports as DDIA, DDIB, DDI USBC1 and DDI USBC2
-(besides the DDIA, DDIB, DDIC, DDID), but the previous naming is the
-most unambiguous one. This means that for any register on Display Engine
-we should use the index of A, B, D and E. However in some places this is
-not true:
+From: Matt Atwood <matthew.s.atwood@intel.com>
 
-- VBT: uses C and D and have to be mapped to D/E
+Add support to load DMC v2.0.2 on DG1
 
-- IO/Combo: uses C and D, but we already differentiate those when
-  we created the phy vs port distinction.
+While we're at it, tweak the TGL and RKL firmware size definition to
+follow the convention used in previous platforms. Remove obsolete
+commenting.
 
-Ths additional mapping for VBT and phy are already covered in previous
-patches, so now we can initialize the DDI as D/E.
+Bpec: 49230
 
-Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_csr.c | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 016f02d912e0..7f4e51ff0d63 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7213,10 +7213,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
- {
- 	if (phy == PHY_NONE)
- 		return false;
--	else if (IS_DG1(dev_priv))
--		/* FIXME: Enable only two ports for now */
--		return phy <= PHY_B;
--	else if (IS_ROCKETLAKE(dev_priv))
-+	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 		return phy <= PHY_D;
- 	else if (IS_ELKHARTLAKE(dev_priv))
- 		return phy <= PHY_C;
-@@ -7240,7 +7237,7 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+index 319932b03e88..1f05876620fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_csr.c
++++ b/drivers/gpu/drm/i915/display/intel_csr.c
+@@ -38,15 +38,19 @@
+  * low-power state and comes back to normal.
+  */
  
- enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
- {
--	if (IS_ROCKETLAKE(i915) && port >= PORT_D)
-+	if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >= PORT_D)
- 		return (enum phy)port - 1;
- 	else if (IS_ELKHARTLAKE(i915) && port == PORT_D)
- 		return PHY_A;
-@@ -16763,9 +16760,18 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		return;
+-#define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
++#define DG1_CSR_PATH			"i915/dg1_dmc_ver2_02.bin"
++#define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
++#define DG1_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
++MODULE_FIRMWARE(DG1_CSR_PATH);
  
- 	if (IS_DG1(dev_priv)) {
--		/* FIXME: Enable only two ports for now */
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
-+
-+		/*
-+		 * Bspec lists the ports as A, B, C (USBC1) and D (USBC2).
-+		 * However from the Display Engine perspective all registers are
-+		 * actually wired to handle C and D as offsets of D/E. Instead
-+		 * of fighting all our macros for handling them specially for
-+		 * DG1, just call them D/E
-+		 */
-+		intel_ddi_init(dev_priv, PORT_D);
-+		intel_ddi_init(dev_priv, PORT_E);
- 	} else if (IS_ROCKETLAKE(dev_priv)) {
- 		/*
- 		 * If HTI (aka HDPORT) is enabled at boot, it may have taken
+ #define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
+ #define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
++#define RKL_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+ MODULE_FIRMWARE(RKL_CSR_PATH);
+ 
+ #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_06.bin"
+ #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 6)
+-#define TGL_CSR_MAX_FW_SIZE		0x6000
++#define TGL_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+ MODULE_FIRMWARE(TGL_CSR_PATH);
+ 
+ #define ICL_CSR_PATH			"i915/icl_dmc_ver1_09.bin"
+@@ -686,15 +690,18 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+ 	 */
+ 	intel_csr_runtime_pm_get(dev_priv);
+ 
+-	if (IS_ROCKETLAKE(dev_priv)) {
++	if (IS_DG1(dev_priv)) {
++		csr->fw_path = DG1_CSR_PATH;
++		csr->required_version = DG1_CSR_VERSION_REQUIRED;
++		csr->max_fw_size = DG1_CSR_MAX_FW_SIZE;
++	} else if (IS_ROCKETLAKE(dev_priv)) {
+ 		csr->fw_path = RKL_CSR_PATH;
+ 		csr->required_version = RKL_CSR_VERSION_REQUIRED;
+-		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
++		csr->max_fw_size = RKL_CSR_MAX_FW_SIZE;
+ 	} else if (INTEL_GEN(dev_priv) >= 12) {
+ 		csr->fw_path = TGL_CSR_PATH;
+ 		csr->required_version = TGL_CSR_VERSION_REQUIRED;
+-		/* Allow to load fw via parameter using the last known size */
+-		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
++		csr->max_fw_size = TGL_CSR_MAX_FW_SIZE;
+ 	} else if (IS_GEN(dev_priv, 11)) {
+ 		csr->fw_path = ICL_CSR_PATH;
+ 		csr->required_version = ICL_CSR_VERSION_REQUIRED;
 -- 
 2.26.2
 
