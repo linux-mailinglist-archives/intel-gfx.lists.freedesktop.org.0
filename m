@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484C71DC3E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:39:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BD41DC3EA
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:39:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149FA6E8ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 606506E8F0;
 	Thu, 21 May 2020 00:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A57236E8DB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3F936E8DA
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:14 +0000 (UTC)
-IronPort-SDR: XdDhBmdts0+2dfwwQVboEWNqR2oz5q7OP0k0IYzsF7yBhy2o61C/XpBqx1dwYH5jI3/PgOOBqx
- BkjlGelrgX5w==
+IronPort-SDR: YjYf4FWRYA0ftN2XeF/9tIUtYPYrMfCpEfHAVMptJFCMsRI5W+gGfPS3lpzCfvGDEhHDLfGsZv
+ Jnr9Ipa2bLIA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:14 -0700
-IronPort-SDR: /pUelxWQukPdTVhI2/xffQjPTtgKJCAuhlhenRWk8RQb1Xk/J2hYcHBsUTSKNmLZiO6UfAWhR2
- zNziAm0VAiaA==
+IronPort-SDR: L0ZN61DnQ1ygdsi5uPBwIz6EmnYAmBEHf0ECM/VOUG/GJIZdriX4kQESxtXpnErNzBGSgS1a5o
+ dw8x1uGMsgTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720954"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720957"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:14 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:57 -0700
-Message-Id: <20200521003803.18936-32-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:58 -0700
+Message-Id: <20200521003803.18936-33-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 31/37] drm/i915/dg1: Update voltage swing tables
- for DP
+Subject: [Intel-gfx] [PATCH 32/37] drm/i915/dg1: provide port/phy mapping
+ for vbt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,68 +48,54 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: fernando.pacheco@intel.com, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KCkRHMSdzIHZzd2lu
-ZyB0YWJsZXMgYXJlIHRoZSBzYW1lIGZvciBlRFAgYW5kIEhETUkgYnV0IGhhdmUgc2xpZ2h0CmRp
-ZmZlcmVuY2VzIGZyb20gSUNML1RHTCBmb3IgRFAuCgpCc3BlYzogNDkyOTEKQ2M6IENsaW50b24g
-VGF5bG9yIDxDbGludG9uLkEuVGF5bG9yQGludGVsLmNvbT4KQ2M6IEpvc8OpIFJvYmVydG8gZGUg
-U291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpDYzogUmFkaGFrcmlzaG5hIFNyaXBhZGEgPHJh
-ZGhha3Jpc2huYS5zcmlwYWRhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8
-bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hp
-IDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZGkuYyB8IDM0ICsrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNo
-YW5nZWQsIDM0IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYwppbmRleCBhYTIyNDY1YmI1NmUuLjEzNjY5ODEzZTE3YiAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC01ODIsNiArNTgyLDM0IEBAIHN0YXRpYyBj
-b25zdCBzdHJ1Y3QgY25sX2RkaV9idWZfdHJhbnMgZWhsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRp
-b25zX2RwW10gPSB7CiAJeyAweDYsIDB4N0YsIDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogOTAwICAg
-OTAwICAgICAgMC4wICAgKi8KIH07CiAKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY25sX2RkaV9idWZf
-dHJhbnMgZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicltdID0geworCQkJCQkJ
-LyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KKwl7IDB4QSwgMHgzMiwgMHgzRiwgMHgwMCwgMHgw
-MCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLworCXsgMHhBLCAweDQ4LCAweDM1LCAweDAw
-LCAweDBBIH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICovCisJeyAweEMsIDB4NjMsIDB4MkYs
-IDB4MDAsIDB4MTAgfSwJLyogMzUwICAgNzAwICAgICAgNi4wICAgKi8KKwl7IDB4NiwgMHg3Riwg
-MHgyQywgMHgwMCwgMHgxMyB9LAkvKiAzNTAgICA5MDAgICAgICA4LjIgICAqLworCXsgMHhBLCAw
-eDQzLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDUwMCAgIDUwMCAgICAgIDAuMCAgICovCisJeyAw
-eEMsIDB4NjAsIDB4MzYsIDB4MDAsIDB4MDkgfSwJLyogNTAwICAgNzAwICAgICAgMi45ICAgKi8K
-Kwl7IDB4NiwgMHg3RiwgMHgzMCwgMHgwMCwgMHgwRiB9LAkvKiA1MDAgICA5MDAgICAgICA1LjEg
-ICAqLworCXsgMHhDLCAweDYwLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDY1MCAgIDcwMCAgICAg
-IDAuNiAgICovCisJeyAweDYsIDB4N0YsIDB4MzcsIDB4MDAsIDB4MDggfSwJLyogNjAwICAgOTAw
-ICAgICAgMy41ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiA5MDAg
-ICA5MDAgICAgICAwLjAgICAqLworfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBjbmxfZGRpX2J1
-Zl90cmFucyBkZzFfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyMltdID0geworCQkJ
-CQkJLyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KKwl7IDB4QSwgMHgzMiwgMHgzRiwgMHgwMCwg
-MHgwMCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLworCXsgMHhBLCAweDQ4LCAweDM1LCAw
-eDAwLCAweDBBIH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICovCisJeyAweEMsIDB4NjMsIDB4
-MkYsIDB4MDAsIDB4MTAgfSwJLyogMzUwICAgNzAwICAgICAgNi4wICAgKi8KKwl7IDB4NiwgMHg3
-RiwgMHgyQywgMHgwMCwgMHgxMyB9LAkvKiAzNTAgICA5MDAgICAgICA4LjIgICAqLworCXsgMHhB
-LCAweDQzLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDUwMCAgIDUwMCAgICAgIDAuMCAgICovCisJ
-eyAweEMsIDB4NjAsIDB4MzYsIDB4MDAsIDB4MDkgfSwJLyogNTAwICAgNzAwICAgICAgMi45ICAg
-Ki8KKwl7IDB4NiwgMHg3RiwgMHgzMCwgMHgwMCwgMHgwRiB9LAkvKiA1MDAgICA5MDAgICAgICA1
-LjEgICAqLworCXsgMHhDLCAweDU4LCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDY1MCAgIDcwMCAg
-ICAgIDAuNiAgICovCisJeyAweDYsIDB4N0YsIDB4MzUsIDB4MDAsIDB4MEEgfSwJLyogNjAwICAg
-OTAwICAgICAgMy41ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiA5
-MDAgICA5MDAgICAgICAwLjAgICAqLworfTsKKwogc3RydWN0IGljbF9tZ19waHlfZGRpX2J1Zl90
-cmFucyB7CiAJdTMyIGNyaV90eGRlZW1waF9vdmVycmlkZV8xMV82OwogCXUzMiBjcmlfdHhkZWVt
-cGhfb3ZlcnJpZGVfNV8wOwpAQCAtOTY1LDYgKzk5MywxMiBAQCBpY2xfZ2V0X2NvbWJvX2J1Zl90
-cmFucyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGludCB0eXBlLCBpbnQgcmF0
-ZSwKIAl9IGVsc2UgaWYgKHR5cGUgPT0gSU5URUxfT1VUUFVUX0VEUCAmJiBkZXZfcHJpdi0+dmJ0
-LmVkcC5sb3dfdnN3aW5nKSB7CiAJCSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKGljbF9jb21ib19w
-aHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMik7CiAJCXJldHVybiBpY2xfY29tYm9fcGh5X2Rk
-aV90cmFuc2xhdGlvbnNfZWRwX2hicjI7CisJfSBlbHNlIGlmIChJU19ERzEoZGV2X3ByaXYpICYm
-IHJhdGUgPiAyNzAwMDApIHsKKwkJKm5fZW50cmllcyA9IEFSUkFZX1NJWkUoZGcxX2NvbWJvX3Bo
-eV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjIpOworCQlyZXR1cm4gZGcxX2NvbWJvX3BoeV9kZGlf
-dHJhbnNsYXRpb25zX2RwX2hicjI7CisJfSBlbHNlIGlmIChJU19ERzEoZGV2X3ByaXYpKSB7CisJ
-CSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKGRnMV9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19k
-cF9oYnIpOworCQlyZXR1cm4gZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjsK
-IAl9CiAKIAkqbl9lbnRyaWVzID0gQVJSQVlfU0laRShpY2xfY29tYm9fcGh5X2RkaV90cmFuc2xh
-dGlvbnNfZHBfaGJyMik7Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+From: Matt Roper <matthew.d.roper@intel.com>
+
+As with RKL, DG1's VBT outputs are indexed according to PHY rather than
+DDI.
+
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 9349364f4164..fb7b5e2f033e 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1670,7 +1670,7 @@ static enum port dvo_port_to_port(struct drm_i915_private *dev_priv,
+ 		[PORT_E] = { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
+ 	};
+ 
+-	if (IS_ROCKETLAKE(dev_priv))
++	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+ 		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
+ 					  ARRAY_SIZE(rkl_port_mapping[0]),
+ 					  rkl_port_mapping,
+@@ -2635,10 +2635,12 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *dev_priv,
+ 		aux_ch = AUX_CH_B;
+ 		break;
+ 	case DP_AUX_C:
+-		aux_ch = IS_ROCKETLAKE(dev_priv) ? AUX_CH_D : AUX_CH_C;
++		aux_ch = (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) ?
++			AUX_CH_D : AUX_CH_C;
+ 		break;
+ 	case DP_AUX_D:
+-		aux_ch = IS_ROCKETLAKE(dev_priv) ? AUX_CH_E : AUX_CH_D;
++		aux_ch = (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) ?
++			AUX_CH_E : AUX_CH_D;
+ 		break;
+ 	case DP_AUX_E:
+ 		aux_ch = AUX_CH_E;
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
