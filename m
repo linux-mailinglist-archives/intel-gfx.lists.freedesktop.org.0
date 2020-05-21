@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9B41DD31A
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 18:32:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025D11DD3B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 19:03:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 154F76E94B;
-	Thu, 21 May 2020 16:32:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D09ED6E038;
+	Thu, 21 May 2020 17:03:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 050DF6E05C;
- Thu, 21 May 2020 16:32:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F18E6A3C0D;
- Thu, 21 May 2020 16:32:29 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A397C6E038
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 17:03:03 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21251136-1500050 
+ for multiple; Thu, 21 May 2020 18:02:57 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 May 2020 18:02:55 +0100
+Message-Id: <20200521170255.27035-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 21 May 2020 16:32:29 -0000
-Message-ID: <159007874996.4441.16937251268858717974@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200521144949.25357-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200521144949.25357-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_PIN=5FUPDATE_for_i915=5Fvma=5Fpin?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Stop cross-poluting PIN_GLOBAL
+ with PIN_USER with no-ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,76 +37,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In order to keep userptr distinct from ggtt mmaps in the eyes of
+lockdep, we need to avoid marking those userptr vma as PIN_GLOBAL. (So
+long as we comply with only using them as local PIN_USER!)
 
-Series: drm/i915: Remove PIN_UPDATE for i915_vma_pin
-URL   : https://patchwork.freedesktop.org/series/77515/
-State : success
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1880
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 66165b10256e..1220abb2af6b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -424,22 +424,17 @@ static int ggtt_bind_vma(struct i915_vma *vma,
+ 	struct drm_i915_gem_object *obj = vma->obj;
+ 	u32 pte_flags;
+ 
++	if (i915_vma_is_bound(vma, ~flags & (I915_VMA_LOCAL_BIND | I915_VMA_GLOBAL_BIND)))
++		return 0;
++
+ 	/* Applicable to VLV (gen8+ do not support RO in the GGTT) */
+ 	pte_flags = 0;
+ 	if (i915_gem_object_is_readonly(obj))
+ 		pte_flags |= PTE_READ_ONLY;
+ 
+ 	vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
+-
+ 	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
+ 
+-	/*
+-	 * Without aliasing PPGTT there's no difference between
+-	 * GLOBAL/LOCAL_BIND, it's all the same ptes. Hence unconditionally
+-	 * upgrade to both bound if we bind either to avoid double-binding.
+-	 */
+-	atomic_or(I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND, &vma->flags);
+-
+ 	return 0;
+ }
+ 
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8518 -> Patchwork_17752
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17752/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17752 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][1] ([fdo#109271]) -> [FAIL][2] ([i915#62])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8518/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17752/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (47 -> 41)
-------------------------------
-
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8518 -> Patchwork_17752
-
-  CI-20190529: 20190529
-  CI_DRM_8518: 869a68b66e355733cbebd96443ed56bbf57d7040 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5668: 00d214488f7361c7eceaa8a4a960031f4b467bd5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17752: 0442695d05a4d2823b4d4a761f52ab8c21f58980 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0442695d05a4 drm/i915: Remove PIN_UPDATE for i915_vma_pin
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17752/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
