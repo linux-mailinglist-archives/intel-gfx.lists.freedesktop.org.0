@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CC61DC3D3
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E84701DC3D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A23B6E8D1;
-	Thu, 21 May 2020 00:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 723126E8D7;
+	Thu, 21 May 2020 00:38:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68AB86E8C8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A186A6E8CB
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:09 +0000 (UTC)
-IronPort-SDR: 319DRAQ+qcBJPZbjSPOLVwhuaeRU5QOpzyrEiO1onvxkJVlE+eWnbLyd/P2KwhHExG0VBAVWx1
- LE36tS6zKQ5A==
+IronPort-SDR: sg55hnCBhwyNbfzpu494Q/XIFA1rH6GN1QwR0KTeF1AtaTI3x+ZJTECbTrzcksgFntJ36dBX8h
+ ixsgyalFEN5w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:09 -0700
-IronPort-SDR: DFWgJCqDsaRQAgl+4wwIiOh3B+dUoFOx4bBOb7XNokxMnZHAgNhC0GwtLBvP6JkUEWvacrJ+D6
- 4gffVyOD3C8w==
+IronPort-SDR: bqpHvNsYlaBVrk6HGlxQTyL9/TOvjhBN5NHKTF6N2NYL9gfqWm7Jqrv+BbfgJDfIcT4WLZljSG
+ IQ0PYVssUStA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720883"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720886"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:08 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:36 -0700
-Message-Id: <20200521003803.18936-11-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:37 -0700
+Message-Id: <20200521003803.18936-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/37] drm/i915: add pcie snoop flag
+Subject: [Intel-gfx] [PATCH 11/37] drm/i915/dg1: add initial DG-1 definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,82 +47,74 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: fernando.pacheco@intel.com, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
-
-Gen 12 dgfx devices are coherent with system memory even over PCIe.
-Therefore supporting coherent userptr should be possible.
-
-Cc: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 ++-
- drivers/gpu/drm/i915/i915_drv.h             | 1 +
- drivers/gpu/drm/i915/i915_pci.c             | 3 ++-
- drivers/gpu/drm/i915/intel_device_info.h    | 1 +
- 4 files changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 8b0708708671..0a375befd893 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -757,7 +757,8 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
- 	int ret;
- 	u32 handle;
- 
--	if (!HAS_LLC(dev_priv) && !HAS_SNOOP(dev_priv)) {
-+	if (!HAS_LLC(dev_priv) && !HAS_SNOOP(dev_priv) &&
-+	    !HAS_SNOOP_PCIE(dev_priv)) {
- 		/* We cannot support coherent userptr objects on hw without
- 		 * LLC and broken snooping.
- 		 */
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 162b1ead88d3..a9846205a5e2 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1566,6 +1566,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- #define HAS_LLC(dev_priv)	(INTEL_INFO(dev_priv)->has_llc)
- #define HAS_SNOOP(dev_priv)	(INTEL_INFO(dev_priv)->has_snoop)
-+#define HAS_SNOOP_PCIE(dev_priv)(INTEL_INFO(dev_priv)->has_snoop_pcie)
- #define HAS_EDRAM(dev_priv)	((dev_priv)->edram_size_mb)
- #define HAS_SECURE_BATCHES(dev_priv) (INTEL_GEN(dev_priv) < 6)
- #define HAS_WT(dev_priv)	((IS_HASWELL(dev_priv) || \
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 7e3252fbad8e..be52d1b76b2e 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -874,7 +874,8 @@ static const struct intel_device_info rkl_info = {
- 
- #define GEN12_DGFX_FEATURES \
- 	GEN12_FEATURES, \
--	.is_dgfx = 1
-+	.is_dgfx = 1, \
-+	.has_snoop_pcie = 1
- 
- #undef GEN
- #undef PLATFORM
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index ced979c9b366..4bcaa0d6a9e6 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -128,6 +128,7 @@ enum intel_ppgtt_type {
- 	func(has_rps); \
- 	func(has_runtime_pm); \
- 	func(has_snoop); \
-+	func(has_snoop_pcie); \
- 	func(has_coherent_ggtt); \
- 	func(unfenced_needs_alignment); \
- 	func(hws_needs_physical);
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQWJkaWVsIEphbnVsZ3VlIDxhYmRpZWwuamFudWxndWVAbGludXguaW50ZWwuY29tPgoK
+QnNwZWM6IDMzNjE3LCAzMzYxNwoKQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
+emFAaW50ZWwuY29tPgpDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xv
+c3B1cmlvQGludGVsLmNvbT4KQ2M6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRl
+bC5jb20+CkNjOiBWYW5zaGlkaGFyIEtvbmRhIDx2YW5zaGlkaGFyLnIua29uZGFAaW50ZWwuY29t
+PgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CkNjOiBBcmF2
+aW5kIElkZGFtc2V0dHkgPGFyYXZpbmQuaWRkYW1zZXR0eUBpbnRlbC5jb20+CkNjOiBNYXR0IFJv
+cGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBBYmRpZWwgSmFu
+dWxndWUgPGFiZGllbC5qYW51bGd1ZUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1
+Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgfCAgNyArKysrKysrCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3BjaS5jICAgICAgICAgIHwgMTIgKysrKysrKysrKysrCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaW50ZWxfZGV2aWNlX2luZm8uaCB8ICAxICsKIDQgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0
+aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCmluZGV4IGE5ODQ2MjA1YTVlMi4uMzgyNzAz
+YTZjMTdkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKQEAgLTE0MjEsNiArMTQyMSw3IEBAIElT
+X1NVQlBMQVRGT1JNKGNvbnN0IHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAogI2RlZmlu
+ZSBJU19FTEtIQVJUTEFLRShkZXZfcHJpdikJSVNfUExBVEZPUk0oZGV2X3ByaXYsIElOVEVMX0VM
+S0hBUlRMQUtFKQogI2RlZmluZSBJU19USUdFUkxBS0UoZGV2X3ByaXYpCUlTX1BMQVRGT1JNKGRl
+dl9wcml2LCBJTlRFTF9USUdFUkxBS0UpCiAjZGVmaW5lIElTX1JPQ0tFVExBS0UoZGV2X3ByaXYp
+CUlTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9ST0NLRVRMQUtFKQorI2RlZmluZSBJU19ERzEo
+ZGV2X3ByaXYpICAgICAgICBJU19QTEFURk9STShkZXZfcHJpdiwgSU5URUxfREcxKQogI2RlZmlu
+ZSBJU19IU1dfRUFSTFlfU0RWKGRldl9wcml2KSAoSVNfSEFTV0VMTChkZXZfcHJpdikgJiYgXAog
+CQkJCSAgICAoSU5URUxfREVWSUQoZGV2X3ByaXYpICYgMHhGRjAwKSA9PSAweDBDMDApCiAjZGVm
+aW5lIElTX0JEV19VTFQoZGV2X3ByaXYpIFwKQEAgLTE1NDEsNiArMTU0MiwxMiBAQCBJU19TVUJQ
+TEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKICNkZWZpbmUgSVNf
+UktMX1JFVklEKHAsIHNpbmNlLCB1bnRpbCkgXAogCShJU19ST0NLRVRMQUtFKHApICYmIElTX1JF
+VklEKHAsIHNpbmNlLCB1bnRpbCkpCiAKKyNkZWZpbmUgREcxX1JFVklEX0EwCQkweDAKKyNkZWZp
+bmUgREcxX1JFVklEX0IwCQkweDEKKworI2RlZmluZSBJU19ERzFfUkVWSUQocCwgc2luY2UsIHVu
+dGlsKSBcCisJKElTX0RHMShwKSAmJiBJU19SRVZJRChwLCBzaW5jZSwgdW50aWwpKQorCiAjZGVm
+aW5lIElTX0xQKGRldl9wcml2KQkoSU5URUxfSU5GTyhkZXZfcHJpdiktPmlzX2xwKQogI2RlZmlu
+ZSBJU19HRU45X0xQKGRldl9wcml2KQkoSVNfR0VOKGRldl9wcml2LCA5KSAmJiBJU19MUChkZXZf
+cHJpdikpCiAjZGVmaW5lIElTX0dFTjlfQkMoZGV2X3ByaXYpCShJU19HRU4oZGV2X3ByaXYsIDkp
+ICYmICFJU19MUChkZXZfcHJpdikpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3BjaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwppbmRleCBiZTUyZDFi
+NzZiMmUuLmU1YTg1MWEyZGZlNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wY2kuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jCkBAIC04NzQsOSAr
+ODc0LDIxIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gcmtsX2luZm8g
+PSB7CiAKICNkZWZpbmUgR0VOMTJfREdGWF9GRUFUVVJFUyBcCiAJR0VOMTJfRkVBVFVSRVMsIFwK
+KwkubWVtb3J5X3JlZ2lvbnMgPSBSRUdJT05fU01FTSB8IFJFR0lPTl9MTUVNLCBcCiAJLmlzX2Rn
+ZnggPSAxLCBcCisJLmhhc19tYXN0ZXJfdW5pdF9pcnEgPSAxLCBcCiAJLmhhc19zbm9vcF9wY2ll
+ID0gMQogCitzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGludGVsX2RnMV9p
+bmZvID0geworCUdFTjEyX0RHRlhfRkVBVFVSRVMsCisJUExBVEZPUk0oSU5URUxfREcxKSwKKwku
+cGlwZV9tYXNrID0gQklUKFBJUEVfQSkgfCBCSVQoUElQRV9CKSB8IEJJVChQSVBFX0MpIHwgQklU
+KFBJUEVfRCksCisJLnJlcXVpcmVfZm9yY2VfcHJvYmUgPSAxLAorCS5lbmdpbmVfbWFzayA9CisJ
+CUJJVChSQ1MwKSB8IEJJVChCQ1MwKSB8IEJJVChWRUNTMCkgfAorCQlCSVQoVkNTMCkgfCBCSVQo
+VkNTMiksCit9OworCiAjdW5kZWYgR0VOCiAjdW5kZWYgUExBVEZPUk0KIApkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKaW5kZXggYzI0NWMxMGM5YmVlLi4yMDcyNDRiOWE4
+NTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwpAQCAtNjIsNiAr
+NjIsNyBAQCBzdGF0aWMgY29uc3QgY2hhciAqIGNvbnN0IHBsYXRmb3JtX25hbWVzW10gPSB7CiAJ
+UExBVEZPUk1fTkFNRShFTEtIQVJUTEFLRSksCiAJUExBVEZPUk1fTkFNRShUSUdFUkxBS0UpLAog
+CVBMQVRGT1JNX05BTUUoUk9DS0VUTEFLRSksCisJUExBVEZPUk1fTkFNRShERzEpLAogfTsKICN1
+bmRlZiBQTEFURk9STV9OQU1FCiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
+dGVsX2RldmljZV9pbmZvLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
+by5oCmluZGV4IDRiY2FhMGQ2YTllNi4uNjQyNjBmYWFjMDA2IDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX2RldmljZV9pbmZvLmgKQEAgLTgxLDYgKzgxLDcgQEAgZW51bSBpbnRlbF9wbGF0
+Zm9ybSB7CiAJLyogZ2VuMTIgKi8KIAlJTlRFTF9USUdFUkxBS0UsCiAJSU5URUxfUk9DS0VUTEFL
+RSwKKwlJTlRFTF9ERzEsCiAJSU5URUxfTUFYX1BMQVRGT1JNUwogfTsKIAotLSAKMi4yNi4yCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
