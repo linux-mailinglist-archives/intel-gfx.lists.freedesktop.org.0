@@ -1,33 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158C61DC869
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 10:20:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A821DC87E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 10:29:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E146E910;
-	Thu, 21 May 2020 08:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5BC06E916;
+	Thu, 21 May 2020 08:29:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 695376E910
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 08:20:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21248913-1500050 for multiple; Thu, 21 May 2020 09:19:57 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EAEA96E915;
+ Thu, 21 May 2020 08:29:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E4D42A00FD;
+ Thu, 21 May 2020 08:29:42 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200521003803.18936-27-lucas.demarchi@intel.com>
-References: <20200521003803.18936-1-lucas.demarchi@intel.com>
- <20200521003803.18936-27-lucas.demarchi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159004919688.32320.12584310519381075712@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 21 May 2020 09:19:56 +0100
-Subject: Re: [Intel-gfx] [PATCH 26/37] drm/i915/dg1: Handle GRF/IC ECC error
- irq
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 21 May 2020 08:29:42 -0000
+Message-ID: <159004978290.4442.2910863192856827384@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200521071059.31726-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200521071059.31726-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Measure_CS=5FTIMESTAMP_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,97 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, fernando.pacheco@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2020-05-21 01:37:52)
-> From: Fernando Pacheco <fernando.pacheco@intel.com>
-> 
-> The error detection and correction capability
-> for GRF and instruction cache (IC) will utilize
-> the new interrupt and error handling infrastructure
-> for dgfx products. The GFX device can generate
-> a number of classes of error under the new
-> infrastructure: correctable, non-fatal, and
-> fatal errors.
-> 
-> The non-fatal and fatal error classes distinguish
-> between levels of severity for uncorrectable errors.
-> All ECC uncorrectable errors will be reported as
-> fatal to produce the desired system response. Fatal
-> errors are expected to route as PCIe error messages
-> which should result in OS issuing a GFX device FLR.
-> But the option exists to route fatal errors as
-> interrupts.
-> 
-> Driver will only handle logging of errors. Anything
-> more will be handled at system level.
-> 
-> For errors that will route as interrupts, three
-> bits in the Master Interrupt Register will be used
-> to convey the class of error.
-> 
-> For each class of error:
-> 1. Determine source of error (IP block) by reading
->    the Device Error Source Register (RW1C) that
->    corresponds to the class of error being serviced.
-> 2. If the generating IP block is GT, read and log the
->    GT Error Register (RW1C) that corresponds to the
->    class of error being serviced. Non-GT errors will
->    be logged in aggregate for now.
-> 
-> Bspec: 50875
-> 
-> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Fernando Pacheco <fernando.pacheco@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Fernando Pacheco <fernando.pacheco@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 121 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h |  28 ++++++++
->  2 files changed, 149 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index ebc80e8b1599..17e679b910da 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2515,6 +2515,124 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
->         return IRQ_HANDLED;
->  }
->  
-> +static const char *
-> +hardware_error_type_to_str(const enum hardware_error hw_err)
-> +{
-> +       switch (hw_err) {
-> +       case HARDWARE_ERROR_CORRECTABLE:
-> +               return "CORRECTABLE";
-> +       case HARDWARE_ERROR_NONFATAL:
-> +               return "NONFATAL";
-> +       case HARDWARE_ERROR_FATAL:
-> +               return "FATAL";
-> +       default:
-> +               return "UNKNOWN";
-> +       }
-> +}
-> +
-> +static void
-> +gen12_gt_hw_error_handler(struct drm_i915_private * const i915,
-> +                         const enum hardware_error hw_err)
-> +{
-> +       void __iomem * const regs = i915->uncore.regs;
-> +       const char *hw_err_str = hardware_error_type_to_str(hw_err);
-> +       u32 other_errors = ~(EU_GRF_ERROR | EU_IC_ERROR);
-> +       u32 errstat;
-> +
-> +       lockdep_assert_held(&i915->irq_lock);
+== Series Details ==
 
-Wrong place and wrong locks.
--Chris
+Series: drm/i915/selftests: Measure CS_TIMESTAMP (rev5)
+URL   : https://patchwork.freedesktop.org/series/77320/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8516 -> Patchwork_17744
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17744 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8516/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/fi-bwr-2160/igt@i915_selftest@live@gt_engines.html
+
+  
+  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
+
+
+Participating hosts (46 -> 42)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8516 -> Patchwork_17744
+
+  CI-20190529: 20190529
+  CI_DRM_8516: 5db9df14788c0a6038aa05e180cde8065d724e43 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5665: c5e5b0ce26fc321591a6d0235c639a1e8ec3cdfa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17744: f49741c693787f2bf8cadf68d744a0dcb55813ac @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f49741c69378 drm/i915/selftests: Measure CS_TIMESTAMP
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17744/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
