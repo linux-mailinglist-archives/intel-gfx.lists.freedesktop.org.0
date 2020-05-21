@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5E11DC3CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6171DC3D8
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF7A6E8D4;
-	Thu, 21 May 2020 00:38:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCCD6E8D3;
+	Thu, 21 May 2020 00:38:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A58D6E8CB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87B836E8C8
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:11 +0000 (UTC)
-IronPort-SDR: EhQkwVq+GPjueNBHB4XFP3eXJqSdapubD6Bvmo41J9SwYJaDsxkAlGfnQriW/73w+G2hTK4NzJ
- v1gSSZn1XrNA==
+IronPort-SDR: lh3q4otQkMjbc5wjThshO/qZWZUfALU2Lnv/Ok4MOTtP5Itkf15+karSZ3JglrsjviJGDWUY9H
+ KPzQNFHbCqVA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:11 -0700
-IronPort-SDR: IqOFiutTHaHnFjMT44h3qNwSjB2BNXEemaVZY1ZGUjuGUoUUNJZJDFs+fhbNvNViZl/55Kp6fg
- Xa8EYMg99PQA==
+IronPort-SDR: dkYw/pqDgQx3kV/J1PwEkwe31bWpn7E4kKjzEvUsFqUWaiP/8CbtU8CMdqW6q/buHGSIw6NfcK
+ frMPX0g4jNZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720908"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720912"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:10 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:11 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:44 -0700
-Message-Id: <20200521003803.18936-19-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:45 -0700
+Message-Id: <20200521003803.18936-20-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 18/37] drm/i915/dg1: add support for the master
- unit interrupt
+Subject: [Intel-gfx] [PATCH 19/37] drm/i915/dg1: Wait for pcode/uncore
+ handshake at startup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,146 +48,74 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: fernando.pacheco@intel.com, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG1 has master unit interrupt register which is used to indicate the
-correct source of interrupt.
-
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: Daniele Spurio Ceraolo <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs.c |  4 +++
- drivers/gpu/drm/i915/i915_irq.c     | 56 +++++++++++++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h     |  4 +++
- 3 files changed, 61 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index bca036ac6621..4e13f7d7dc5d 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -492,6 +492,10 @@ static int i915_interrupt_info(struct seq_file *m, void *data)
- 		seq_printf(m, "PCU interrupt enable:\t%08x\n",
- 			   I915_READ(GEN8_PCU_IER));
- 	} else if (INTEL_GEN(dev_priv) >= 11) {
-+		if (HAS_MASTER_UNIT_IRQ(dev_priv))
-+			seq_printf(m, "Master Unit Interrupt Control:  %08x\n",
-+				   I915_READ(DG1_MSTR_UNIT_INTR));
-+
- 		seq_printf(m, "Master Interrupt Control:  %08x\n",
- 			   I915_READ(GEN11_GFX_MSTR_IRQ));
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 95996db46939..2e950387c179 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -2583,6 +2583,46 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
- 				   gen11_master_intr_enable);
- }
- 
-+static u32 dg1_master_intr_disable_and_ack(void __iomem * const regs)
-+{
-+	u32 val;
-+
-+	/* First disable interrupts */
-+	raw_reg_write(regs, DG1_MSTR_UNIT_INTR, 0);
-+
-+	/* Get the indication levels and ack the master unit */
-+	val = raw_reg_read(regs, DG1_MSTR_UNIT_INTR);
-+	if (unlikely(!val))
-+		return 0;
-+
-+	raw_reg_write(regs, DG1_MSTR_UNIT_INTR, val);
-+
-+	/*
-+	 * Now with master disabled, get a sample of level indications
-+	 * for this interrupt and ack them right away - we keep GEN11_MASTER_IRQ
-+	 * out as this bit doesn't exist anymore for DG1
-+	 */
-+	val = raw_reg_read(regs, GEN11_GFX_MSTR_IRQ) & ~GEN11_MASTER_IRQ;
-+	if (unlikely(!val))
-+		return 0;
-+
-+	raw_reg_write(regs, GEN11_GFX_MSTR_IRQ, val);
-+
-+	return val;
-+}
-+
-+static inline void dg1_master_intr_enable(void __iomem * const regs)
-+{
-+	raw_reg_write(regs, DG1_MSTR_UNIT_INTR, DG1_MSTR_IRQ);
-+}
-+
-+static irqreturn_t dg1_irq_handler(int irq, void *arg)
-+{
-+	return __gen11_irq_handler(arg,
-+				   dg1_master_intr_disable_and_ack,
-+				   dg1_master_intr_enable);
-+}
-+
- /* Called from drm generic code, passed 'crtc' which
-  * we use as a pipe index
-  */
-@@ -2917,7 +2957,10 @@ static void gen11_irq_reset(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 
--	gen11_master_intr_disable(dev_priv->uncore.regs);
-+	if (HAS_MASTER_UNIT_IRQ(dev_priv))
-+		dg1_master_intr_disable_and_ack(dev_priv->uncore.regs);
-+	else
-+		gen11_master_intr_disable(dev_priv->uncore.regs);
- 
- 	gen11_gt_irq_reset(&dev_priv->gt);
- 	gen11_display_irq_reset(dev_priv);
-@@ -3511,8 +3554,13 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
- 
- 	I915_WRITE(GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
- 
--	gen11_master_intr_enable(uncore->regs);
--	POSTING_READ(GEN11_GFX_MSTR_IRQ);
-+	if (HAS_MASTER_UNIT_IRQ(dev_priv)) {
-+		dg1_master_intr_enable(uncore->regs);
-+		POSTING_READ(DG1_MSTR_UNIT_INTR);
-+	} else {
-+		gen11_master_intr_enable(uncore->regs);
-+		POSTING_READ(GEN11_GFX_MSTR_IRQ);
-+	}
- }
- 
- static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
-@@ -4037,6 +4085,8 @@ static irq_handler_t intel_irq_handler(struct drm_i915_private *dev_priv)
- 		else
- 			return i8xx_irq_handler;
- 	} else {
-+		if (HAS_MASTER_UNIT_IRQ(dev_priv))
-+			return dg1_irq_handler;
- 		if (INTEL_GEN(dev_priv) >= 11)
- 			return gen11_irq_handler;
- 		else if (INTEL_GEN(dev_priv) >= 8)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 95e903c01b2b..c1fde43867dc 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7651,6 +7651,10 @@ enum {
- #define  GEN11_GT_DW1_IRQ		(1 << 1)
- #define  GEN11_GT_DW0_IRQ		(1 << 0)
- 
-+#define DG1_MSTR_UNIT_INTR		_MMIO(0x190008)
-+#define  DG1_MSTR_IRQ			(1 << 31)
-+#define  DG1_MSTR_UNIT(u)		(1 << (u))
-+
- #define GEN11_DISPLAY_INT_CTL		_MMIO(0x44200)
- #define  GEN11_DISPLAY_IRQ_ENABLE	(1 << 31)
- #define  GEN11_AUDIO_CODEC_IRQ		(1 << 24)
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KCkRHMSBkb2VzIHNv
+bWUgYWRkaXRpb25hbCBwY29kZS91bmNvcmUgaGFuZHNoYWtpbmcgYXQKYm9vdCB0aW1lOyB0aGlz
+IGhhbmRzaGFraW5nIG11c3QgY29tcGxldGUgYmVmb3JlIHZhcmlvdXMgb3RoZXIgcGNvZGUKY29t
+bWFuZHMgYXJlIGVmZmVjdGl2ZSBhbmQgYmVmb3JlIGdlbmVyYWwgd29yayBpcyBzdWJtaXR0ZWQg
+dG8gdGhlIEdQVS4KV2UgbmVlZCB0byBwb2xsIGEgbmV3IHBjb2RlIG1haWxib3ggZHVyaW5nIHN0
+YXJ0dXAgdW50aWwgaXQgcmVwb3J0cyB0aGF0CnRoaXMgaGFuZHNoYWtpbmcgaXMgY29tcGxldGUu
+CgpUaGUgYnNwZWMgZG9lc24ndCBnaXZlIGd1aWRhbmNlIG9uIGhvdyBsb25nIHdlIG1heSBuZWVk
+IHRvIHdhaXQgZm9yIHRoaXMKaGFuZHNoYWtpbmcgdG8gY29tcGxldGUuICBGb3Igbm93LCBsZXQn
+cyBqdXN0IHNldCBhIHJlYWxseSBsb25nIHRpbWVvdXQ7CmlmIHdlIHN0aWxsIGRvbid0IGdldCBh
+IGNvbXBsZXRpb24gc3RhdHVzIGJ5IHRoZSBlbmQgb2YgdGhhdCB0aW1lb3V0LAp3ZSdsbCBqdXN0
+IGNvbnRpbnVlIG9uIGFuZCBob3BlIGZvciB0aGUgYmVzdC4KCkJzcGVjOiA1MjA2NQpDYzogQ2xp
+bnRvbiBUYXlsb3IgPENsaW50b24uQS5UYXlsb3JAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFJhZGhha3Jpc2huYSBTcmlw
+YWRhIDxyYWRoYWtyaXNobmEuc3JpcGFkYUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hdHQg
+Um9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1Y2FzIERl
+IE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfZHJ2LmMgICAgICAgfCAgMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggICAgICAgfCAgMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5k
+LmMgfCAxNSArKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGVi
+YW5kLmggfCAgMiArKwogNCBmaWxlcyBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfZHJ2LmMKaW5kZXggMzRlZTEyZjNmMDJkLi41OGI5YzZiNzc4YWEgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kcnYuYwpAQCAtODUsNiArODUsNyBAQAogI2luY2x1ZGUgImludGVsX2d2dC5o
+IgogI2luY2x1ZGUgImludGVsX21lbW9yeV9yZWdpb24uaCIKICNpbmNsdWRlICJpbnRlbF9wbS5o
+IgorI2luY2x1ZGUgImludGVsX3NpZGViYW5kLmgiCiAjaW5jbHVkZSAidmx2X3N1c3BlbmQuaCIK
+IAogc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGRyaXZlcjsKQEAgLTc0MSw2ICs3NDIsOCBAQCBz
+dGF0aWMgaW50IGk5MTVfZHJpdmVyX2h3X3Byb2JlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdikKIAkgKi8KIAlpbnRlbF9kcmFtX2RldGVjdChkZXZfcHJpdik7CiAKKwlpbnRlbF9w
+Y29kZV9pbml0KGRldl9wcml2KTsKKwogCWludGVsX2J3X2luaXRfaHcoZGV2X3ByaXYpOwogCiAJ
+cmV0dXJuIDA7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCBjMWZkZTQzODY3ZGMuLjUzYjBh
+ZDE4MDVmNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAorKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC05MTI4LDYgKzkxMjgsOSBAQCBl
+bnVtIHsKICNkZWZpbmUgICAgIEdFTjlfU0FHVl9ESVNBQkxFCQkJMHgwCiAjZGVmaW5lICAgICBH
+RU45X1NBR1ZfSVNfRElTQUJMRUQJCTB4MQogI2RlZmluZSAgICAgR0VOOV9TQUdWX0VOQUJMRQkJ
+CTB4MworI2RlZmluZSAgIERHMV9QQ09ERV9TVEFUVVMJCQkweDdFCisjZGVmaW5lICAgICBERzFf
+Q0hFQ0tfVU5DT1JFX0lOSVRfU1RBVFVTCTB4MAorI2RlZmluZSAgICAgREcxX1VOQ09SRV9JTklU
+X0NPTVBMRVRFCQkweDEKICNkZWZpbmUgR0VOMTJfUENPREVfUkVBRF9TQUdWX0JMT0NLX1RJTUVf
+VVMJMHgyMwogI2RlZmluZSBHRU42X1BDT0RFX0RBVEEJCQkJX01NSU8oMHgxMzgxMjgpCiAjZGVm
+aW5lICAgR0VONl9QQ09ERV9GUkVRX0lBX1JBVElPX1NISUZUCTgKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9zaWRlYmFuZC5jCmluZGV4IDkxNmNjZDFjMGU5Ni4uOGIwOTM1MjUyNDBkIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zaWRlYmFuZC5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMKQEAgLTU0MywzICs1NDMsMTggQEAgaW50IHNr
+bF9wY29kZV9yZXF1ZXN0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1MzIgbWJveCwg
+dTMyIHJlcXVlc3QsCiAJcmV0dXJuIHJldCA/IHJldCA6IHN0YXR1czsKICN1bmRlZiBDT05ECiB9
+CisKK3ZvaWQgaW50ZWxfcGNvZGVfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkK
+K3sKKwlpbnQgcmV0OworCisJaWYgKCFJU19ER0ZYKGk5MTUpKQorCQlyZXR1cm47CisKKwlyZXQg
+PSBza2xfcGNvZGVfcmVxdWVzdChpOTE1LCBERzFfUENPREVfU1RBVFVTLAorCQkJCURHMV9DSEVD
+S19VTkNPUkVfSU5JVF9TVEFUVVMsCisJCQkJREcxX1VOQ09SRV9JTklUX0NPTVBMRVRFLAorCQkJ
+CURHMV9VTkNPUkVfSU5JVF9DT01QTEVURSwgNTApOworCWlmIChyZXQpCisJCWRybV9lcnIoJmk5
+MTUtPmRybSwgIlBjb2RlIGRpZCBub3QgcmVwb3J0IHVuY29yZSBpbml0aWFsaXphdGlvbiBjb21w
+bGV0aW9uIVxuIik7Cit9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9z
+aWRlYmFuZC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuaAppbmRleCA3
+ZmI5NTc0NWE0NDQuLjA5NGM3YjE5YzVkNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaW50ZWxfc2lkZWJhbmQuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zaWRl
+YmFuZC5oCkBAIC0xMzgsNCArMTM4LDYgQEAgaW50IHNhbmR5YnJpZGdlX3Bjb2RlX3dyaXRlX3Rp
+bWVvdXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIHUzMiBtYm94LAogaW50IHNrbF9w
+Y29kZV9yZXF1ZXN0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1MzIgbWJveCwgdTMy
+IHJlcXVlc3QsCiAJCSAgICAgIHUzMiByZXBseV9tYXNrLCB1MzIgcmVwbHksIGludCB0aW1lb3V0
+X2Jhc2VfbXMpOwogCit2b2lkIGludGVsX3Bjb2RlX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmk5MTUpOworCiAjZW5kaWYgLyogX0lOVEVMX1NJREVCQU5EX0ggKi8KLS0gCjIuMjYuMgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
