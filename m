@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F001DC3C6
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7269C1DC3D0
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2020 02:38:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F94E6E8CA;
-	Thu, 21 May 2020 00:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58B06E8CB;
+	Thu, 21 May 2020 00:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50F2B6E8C9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0316E8C8
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2020 00:38:07 +0000 (UTC)
-IronPort-SDR: 9D9cUnyylBlEsvfXxlJ9wE0eFNXKA9mwDKLF8h0t6fM9R6JE/hH7h5tZARRiGS01vvtKj0k22+
- 3MNNyUHEYlKA==
+IronPort-SDR: asmjAoyGmmPeVEJI6YXu8YvfVQ/WhmTPwCz5PyuY6qjJ7bbc4EEHF8xoBy6QgN7H0E1neTv9GC
+ VB8+ijyXcQkA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 May 2020 17:38:07 -0700
-IronPort-SDR: q1g1tQ7LIQzAN2ZwuMjjSMkm9cufDiG1+fhNt9gE4uwxKJWHnu3tEpZjqsSKhLQCwmOX3CnZOS
- qnL+0z7ydp2g==
+IronPort-SDR: 1IExdj4OmNbtRxh+Kbzjrtjy0id0iReTPmkfTbQx0LdQ5gSqu4sLn4sWul+f6DtFn7SnsvrV3S
+ FvfjLkz00NdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720851"
+X-IronPort-AV: E=Sophos;i="5.73,415,1583222400"; d="scan'208";a="466720854"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 20 May 2020 17:38:06 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 May 2020 17:37:27 -0700
-Message-Id: <20200521003803.18936-2-lucas.demarchi@intel.com>
+Date: Wed, 20 May 2020 17:37:28 -0700
+Message-Id: <20200521003803.18936-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200521003803.18936-1-lucas.demarchi@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/37] drm/i915/rkl: Add DPLL4 support
+Subject: [Intel-gfx] [PATCH 02/37] drm/i915/rkl: Add DDC pin mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,81 +54,60 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-Rocket Lake has a third DPLL (called 'DPLL4') that must be used to
-enable a third display.  Unlike EHL's variant of DPLL4, the RKL variant
-behaves the same as DPLL0/1.  And despite its name, the DPLL4 registers
-are offset as if it were DPLL2, so no extra offset handling is needed
-either.
+The pin mapping for the final two outputs varies according to which PCH
+is present on the platform:  with TGP the pins are remapped into the TC
+range, whereas with CMP they stay in the traditional combo output range.
 
-Bspec: 49202
-Bspec: 49443
-Bspec: 50288
-Bspec: 50289
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Bspec: 49181
+Cc: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20200504225227.464666-20-matthew.d.roper@intel.com
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20200504225227.464666-16-matthew.d.roper@intel.com
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 28 +++++++++++++++++--
- 1 file changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index b45185b80bec..196d9eb3a77b 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3506,13 +3506,19 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 010f37240710..a31a98d26882 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3082,6 +3082,24 @@ static u8 mcc_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
+ 	return ddc_pin;
+ }
+ 
++static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
++{
++	enum phy phy = intel_port_to_phy(dev_priv, port);
++
++	WARN_ON(port == PORT_C);
++
++	/*
++	 * Pin mapping for RKL depends on which PCH is present.  With TGP, the
++	 * final two outputs use type-c pins, even though they're actually
++	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
++	 * all outputs.
++	 */
++	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && phy >= PHY_C)
++		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
++
++	return GMBUS_PIN_1_BXT + phy;
++}
++
+ static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
+ 			      enum port port)
+ {
+@@ -3119,7 +3137,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+ 		return ddc_pin;
  	}
  
--	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
-+	if (IS_ROCKETLAKE(dev_priv)) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
- 			BIT(DPLL_ID_ICL_DPLL0);
--	else
-+	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A) {
-+		dpll_mask =
-+			BIT(DPLL_ID_EHL_DPLL4) |
-+			BIT(DPLL_ID_ICL_DPLL1) |
-+			BIT(DPLL_ID_ICL_DPLL0);
-+	} else {
- 		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+	}
- 
- 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
- 						&port_dpll->hw_state,
-@@ -4275,6 +4281,20 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
-+static const struct dpll_info rkl_plls[] = {
-+	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0, 0 },
-+	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1, 0 },
-+	{ "DPLL 4", &combo_pll_funcs, DPLL_ID_EHL_DPLL4, 0 },
-+	{ },
-+};
-+
-+static const struct intel_dpll_mgr rkl_pll_mgr = {
-+	.dpll_info = rkl_plls,
-+	.get_dplls = icl_get_dplls,
-+	.put_dplls = icl_put_dplls,
-+	.dump_hw_state = icl_dump_hw_state,
-+};
-+
- /**
-  * intel_shared_dpll_init - Initialize shared DPLLs
-  * @dev: drm device
-@@ -4288,7 +4308,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
- 	const struct dpll_info *dpll_info;
- 	int i;
- 
--	if (INTEL_GEN(dev_priv) >= 12)
+-	if (HAS_PCH_MCC(dev_priv))
 +	if (IS_ROCKETLAKE(dev_priv))
-+		dpll_mgr = &rkl_pll_mgr;
-+	else if (INTEL_GEN(dev_priv) >= 12)
- 		dpll_mgr = &tgl_pll_mgr;
- 	else if (IS_ELKHARTLAKE(dev_priv))
- 		dpll_mgr = &ehl_pll_mgr;
++		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
++	else if (HAS_PCH_MCC(dev_priv))
+ 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
+ 	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+ 		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
 -- 
 2.26.2
 
