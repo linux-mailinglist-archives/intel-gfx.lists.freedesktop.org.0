@@ -1,54 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8AC11DE5B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 13:40:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47671DE610
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 14:02:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8F36E04B;
-	Fri, 22 May 2020 11:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E4D6E9CE;
+	Fri, 22 May 2020 12:02:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
- [IPv6:2a00:1450:4864:20::142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 509786E04B;
- Fri, 22 May 2020 11:40:45 +0000 (UTC)
-Received: by mail-lf1-x142.google.com with SMTP id z206so2692950lfc.6;
- Fri, 22 May 2020 04:40:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Hj2fTCjbxOKsyZP7M3oTIyRA9mJ2Bc+fUg1m8uH2yYk=;
- b=Fctbeo2rUCXQwGpTpFGVse8+WCb+g1DgkimSxd0aywjWQzd7bhxHHSHfy1FP+QqJ5E
- HQGcAIndvBPaVq+mvvXrYxa60iZ270cp/hL7v335T389bW5HYMkEi/Mut44zha6NDaG4
- UCrNm9pJDDi2UNXl+PlD6bv/w4smxNEG9g8AyCyft6tAOApW/apnSn16+WYKI0WwO/LX
- QygL+8MKePZCy7xTU8Q+o6DXxVRskTBMwRQQsFJ+VR7QHRA9Pic1hmOdE0dfFierlTBM
- XmumN0HJD7IHx+R0ZAzFlmPROpUU2YmKdDsZd/Q7eTLT58JceLPdRakROdwY5S4uTJxp
- Cehw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Hj2fTCjbxOKsyZP7M3oTIyRA9mJ2Bc+fUg1m8uH2yYk=;
- b=JqbN1yforlZRw2ykbuNW78en4n6UBzcDaXgimXHgVpqL17L8nSonQLgT9xDPfBDeM6
- ++7x6csNRI4thQZ87pcqjhn2xRmZ6WP2FHhvI9OSwCQUAGZQxPb4hc3OUyCyRX1FoZ+g
- DIniuDpLm5XI8z/1LYn1IjgCHPPYXIwGg5YI+OSp/22OAqCswS1NrIHRphTabFHzPkel
- 2yHxhQMtPzdxyJTV/DrmeqMrdXBuZRjsuZNlk6Z73CeW3vbZ/jDFCWq7Z6K17KsckfX4
- WCld5OnF7qX3lf4CnImOnzGFpySiOy1MkI/LEw4/le82pwHaENpKC4kqt12++oBu9NnI
- 192w==
-X-Gm-Message-State: AOAM531xTm1tUjVdJnLobZRcZurv9aCPMkS2TJznfzQr5ZSTDnYbSPnE
- 8kCynyi8NEMX0fvQz1VkjreEiJ9Xyr52qSCFihU=
-X-Google-Smtp-Source: ABdhPJyCH6J7CaJtTe9PzunF+afSux/PTZRtv8MDXaAqacG2ZKbC4Y+MdKt3boWpmeIuz1KBImEFTAKzX+qejKOKM8k=
-X-Received: by 2002:ac2:53a2:: with SMTP id j2mr7071822lfh.139.1590147643673; 
- Fri, 22 May 2020 04:40:43 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD4C36E9CE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 May 2020 12:02:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21259679-1500050 for multiple; Fri, 22 May 2020 13:02:06 +0100
 MIME-Version: 1.0
-References: <20200519002124.2025955-1-jhubbard@nvidia.com>
-In-Reply-To: <20200519002124.2025955-1-jhubbard@nvidia.com>
-From: Souptick Joarder <jrdr.linux@gmail.com>
-Date: Fri, 22 May 2020 17:10:32 +0530
-Message-ID: <CAFqt6zZTZrB=LiGQpcOtZfnr7-CL4tkLHz8eXFvxwCTcfKy4sQ@mail.gmail.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [Intel-gfx] [PATCH 0/4] mm/gup, drm/i915: refactor gup_fast,
- convert to pin_user_pages()
+In-Reply-To: <20200522104207.19439-1-chris@chris-wilson.co.uk>
+References: <20200522104207.19439-1-chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <159014892558.32320.14917683830875571843@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 22 May 2020 13:02:05 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Avoid iterating an empty list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,72 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
- Linux-MM <linux-mm@kvack.org>, Matthew Wilcox <willy@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi John,
+Quoting Chris Wilson (2020-05-22 11:42:07)
+> Our __sgt_iter assumes that the scattergather list has at least one
+> element. But during construction we may fail in allocating the first
+> page, and so mark the first element as the terminator. This is
+> unexpected!
+> 
+> [22555.524752] RIP: 0010:shmem_get_pages+0x506/0x710 [i915]
+> [22555.524759] Code: 49 8b 2c 24 31 c0 66 89 44 24 40 48 85 ed 0f 84 62 01 00 00 4c 8b 75 00 8b 5d 08 44 8b 7d 0c 48 8b 0d 7e 34 07 e2 49 83 e6 fc <49> 8b 16 41 01 df 48 89 cf 48 89 d0 48 c1 e8 2d 48 85 c9 0f 84 c8
+> [22555.524765] RSP: 0018:ffffc9000053f9d0 EFLAGS: 00010246
+> [22555.524770] RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffff8881ffffa000
+> [22555.524774] RDX: fffffffffffffff4 RSI: ffffffffffffffff RDI: ffffffff821efe00
+> [22555.524778] RBP: ffff8881b099ab00 R08: 0000000000000000 R09: 00000000fffffff4
+> [22555.524782] R10: 0000000000000002 R11: 00000000ffec0a02 R12: ffff8881cd3c8d60
+> [22555.524786] R13: 00000000fffffff4 R14: 0000000000000000 R15: 0000000000000000
+> [22555.524790] FS:  00007f4fbeb9b9c0(0000) GS:ffff8881f8580000(0000) knlGS:0000000000000000
+> [22555.524795] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [22555.524799] CR2: 0000000000000000 CR3: 00000001ec7f0004 CR4: 00000000001606e0
+> [22555.524803] Call Trace:
+> [22555.524919]  __i915_gem_object_get_pages+0x4f/0x60 [i915]
+> 
 
+Fixes: 85d1225ec066 ("drm/i915: Introduce & use new lightweight SGL iterators")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v4.8+
 
-On Tue, May 19, 2020 at 5:51 AM John Hubbard <jhubbard@nvidia.com> wrote:
->
-> This needs to go through Andrew's -mm tree, due to adding a new gup.c
-> routine. However, I would really love to have some testing from the
-> drm/i915 folks, because I haven't been able to run-time test that part
-> of it.
->
-> Otherwise, though, the series has passed my basic run time testing:
-> some LTP tests, some xfs and etx4 non-destructive xfstests, and an
-> assortment of other smaller ones: vm selftests, io_uring_register, a
-> few more. But that's only on one particular machine. Also, cross-compile
-> tests for half a dozen arches all pass.
->
-> Details:
->
-> In order to convert the drm/i915 driver from get_user_pages() to
-> pin_user_pages(), a FOLL_PIN equivalent of __get_user_pages_fast() was
-> required. That led to refactoring __get_user_pages_fast(), with the
-> following goals:
->
-> 1) As above: provide a pin_user_pages*() routine for drm/i915 to call,
->    in place of __get_user_pages_fast(),
->
-> 2) Get rid of the gup.c duplicate code for walking page tables with
->    interrupts disabled. This duplicate code is a minor maintenance
->    problem anyway.
->
-> 3) Make it easy for an upcoming patch from Souptick, which aims to
->    convert __get_user_pages_fast() to use a gup_flags argument, instead
->    of a bool writeable arg.  Also, if this series looks good, we can
->    ask Souptick to change the name as well, to whatever the consensus
->    is. My initial recommendation is: get_user_pages_fast_only(), to
->    match the new pin_user_pages_only().
-
-Shall I hold my changes till 5.8-rc1 , when this series will appear upstream ?
->
-> John Hubbard (4):
->   mm/gup: move __get_user_pages_fast() down a few lines in gup.c
->   mm/gup: refactor and de-duplicate gup_fast() code
->   mm/gup: introduce pin_user_pages_fast_only()
->   drm/i915: convert get_user_pages() --> pin_user_pages()
->
->  drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  22 +--
->  include/linux/mm.h                          |   3 +
->  mm/gup.c                                    | 150 ++++++++++++--------
->  3 files changed, 107 insertions(+), 68 deletions(-)
->
->
-> base-commit: 642b151f45dd54809ea00ecd3976a56c1ec9b53d
-> --
-> 2.26.2
->
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 15 +++++++++------
+>  1 file changed, 9 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 5d5d7eef3f43..7aff3514d97a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -39,7 +39,6 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>         unsigned long last_pfn = 0;     /* suppress gcc warning */
+>         unsigned int max_segment = i915_sg_segment_size();
+>         unsigned int sg_page_sizes;
+> -       struct pagevec pvec;
+>         gfp_t noreclaim;
+>         int ret;
+>  
+> @@ -192,13 +191,17 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>         sg_mark_end(sg);
+>  err_pages:
+>         mapping_clear_unevictable(mapping);
+> -       pagevec_init(&pvec);
+> -       for_each_sgt_page(page, sgt_iter, st) {
+> -               if (!pagevec_add(&pvec, page))
+> +       if (sg != st->sgl) {
+> +               struct pagevec pvec;
+> +
+> +               pagevec_init(&pvec);
+> +               for_each_sgt_page(page, sgt_iter, st) {
+> +                       if (!pagevec_add(&pvec, page))
+> +                               check_release_pagevec(&pvec);
+> +               }
+> +               if (pagevec_count(&pvec))
+>                         check_release_pagevec(&pvec);
+>         }
+> -       if (pagevec_count(&pvec))
+> -               check_release_pagevec(&pvec);
+>         sg_free_table(st);
+>         kfree(st);
+>  
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
