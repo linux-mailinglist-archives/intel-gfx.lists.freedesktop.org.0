@@ -2,31 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8641DDE86
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 06:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841FC1DFA2D
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 20:13:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09BF46E973;
-	Fri, 22 May 2020 04:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 911876E1B4;
+	Sat, 23 May 2020 18:13:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7337F6E08E;
- Fri, 22 May 2020 04:07:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6C8A5A0138;
- Fri, 22 May 2020 04:07:46 +0000 (UTC)
+Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
+ [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 972D66E090;
+ Fri, 22 May 2020 05:19:33 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5ec760530000>; Thu, 21 May 2020 22:17:08 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Thu, 21 May 2020 22:19:33 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Thu, 21 May 2020 22:19:33 -0700
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 22 May
+ 2020 05:19:32 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 22 May 2020 05:19:32 +0000
+Received: from sandstorm.nvidia.com (Not Verified[10.2.48.182]) by
+ hqnvemgw03.nvidia.com with Trustwave SEG (v7, 5, 8, 10121)
+ id <B5ec760e40002>; Thu, 21 May 2020 22:19:32 -0700
+From: John Hubbard <jhubbard@nvidia.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Date: Thu, 21 May 2020 22:19:27 -0700
+Message-ID: <20200522051931.54191-1-jhubbard@nvidia.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 22 May 2020 04:07:46 -0000
-Message-ID: <159012046641.3046.3402705091069441883@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200522030109.4845-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200522030109.4845-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Avoid_waiting_inside_mmu=5Fnotifier=5Finvalidate?=
- =?utf-8?q?=5Frange?=
+X-NVConfidentiality: public
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1590124628; bh=hhCuG4lTr8DGvhmADVoRUDXJfb9QfkbC0ipkPVPTT7E=;
+ h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+ MIME-Version:X-NVConfidentiality:Content-Transfer-Encoding:
+ Content-Type;
+ b=FdOAmhGrmXVMJza0Fp11gi+KN7tPFZCcxwJ84N3GZOaBBjhCcAkKDPUSALSQYikAU
+ MzT0Zbeo5nS3tAjstxwkYQ8FA8wrGmkUzrf9deBBmgnpmHBkK5mydRsXFWDPKBnudG
+ p1GvWq8+hVB3Bl9d9Tr47KvpTBKuS9fU3pJqPA4pNQxhqQ3ESaHIIOeURRW+rbP6Ua
+ kmolkd/z3pcX2mE9bz5e1E4P40PUlMtpjg+SKJN75igFfPsWSdJiAoU+IyFynQ93uQ
+ pqb8YqUVrl+Fa97koH4oxUZEg0J7tk5+Y2oIeWBII3a+M8IXtIAIh79z60ir5gA5BI
+ 2SVPpX0yT9bHQ==
+X-Mailman-Approved-At: Sat, 23 May 2020 18:13:37 +0000
+Subject: [Intel-gfx] [PATCH v2 0/4] mm/gup, drm/i915: refactor gup_fast,
+ convert to pin_user_pages()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,76 +63,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, John Hubbard <jhubbard@nvidia.com>,
+ intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Souptick Joarder <jrdr.linux@gmail.com>, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The purpose of posting this series is to launch a test in the
+intel-gfx-ci tree. (The patches have already been merged into Andrew's
+linux-mm tree.)
 
-Series: drm/i915/gem: Avoid waiting inside mmu_notifier_invalidate_range
-URL   : https://patchwork.freedesktop.org/series/77529/
-State : success
+This applies to today's linux.git (note the base-commit tag at the
+bottom).
 
-== Summary ==
+Changes since V1:
 
-CI Bug Log - changes from CI_DRM_8523 -> Patchwork_17755
-====================================================
+* Fixed a bug in the refactoring patch: added FOLL_FAST_ONLY to the
+  list of gup_flags *not* to WARN() on. This lead to a failure in the
+  first intel-gfx-ci test run [1].
 
-Summary
--------
+[1] https://lore.kernel.org/r/159008745422.32320.5724805750977048669@build.alporthouse.com
 
-  **SUCCESS**
+Original cover letter:
 
-  No regressions found.
+This needs to go through Andrew's -mm tree, due to adding a new gup.c
+routine. However, I would really love to have some testing from the
+drm/i915 folks, because I haven't been able to run-time test that part
+of it.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17755/index.html
+Otherwise, though, the series has passed my basic run time testing:
+some LTP tests, some xfs and etx4 non-destructive xfstests, and an
+assortment of other smaller ones: vm selftests, io_uring_register, a
+few more. But that's only on one particular machine. Also, cross-compile
+tests for half a dozen arches all pass.
 
-Known issues
-------------
+Details:
 
-  Here are the changes found in Patchwork_17755 that come from known issues:
+In order to convert the drm/i915 driver from get_user_pages() to
+pin_user_pages(), a FOLL_PIN equivalent of __get_user_pages_fast() was
+required. That led to refactoring __get_user_pages_fast(), with the
+following goals:
 
-### IGT changes ###
+1) As above: provide a pin_user_pages*() routine for drm/i915 to call,
+   in place of __get_user_pages_fast(),
 
-#### Possible fixes ####
+2) Get rid of the gup.c duplicate code for walking page tables with
+   interrupts disabled. This duplicate code is a minor maintenance
+   problem anyway.
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][1] ([i915#1250] / [i915#1436]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8523/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17755/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+3) Make it easy for an upcoming patch from Souptick, which aims to
+   convert __get_user_pages_fast() to use a gup_flags argument, instead
+   of a bool writeable arg.  Also, if this series looks good, we can
+   ask Souptick to change the name as well, to whatever the consensus
+   is. My initial recommendation is: get_user_pages_fast_only(), to
+   match the new pin_user_pages_only().
 
-  
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+John Hubbard (4):
+  mm/gup: move __get_user_pages_fast() down a few lines in gup.c
+  mm/gup: refactor and de-duplicate gup_fast() code
+  mm/gup: introduce pin_user_pages_fast_only()
+  drm/i915: convert get_user_pages() --> pin_user_pages()
 
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8523 -> Patchwork_17755
-
-  CI-20190529: 20190529
-  CI_DRM_8523: f96c380f22d4a7808efbab0fccee2e95a0dc10ad @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5672: 4653b6464daf3403c22b8ce7d8e376d9ee6cb493 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17755: e1781eb0d5c008c72d2024e723c8cfe4f1f940eb @ git://anongit.freedesktop.org/gfx-ci/linux
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  22 +--
+ include/linux/mm.h                          |   3 +
+ mm/gup.c                                    | 153 ++++++++++++--------
+ 3 files changed, 109 insertions(+), 69 deletions(-)
 
 
-== Linux commits ==
+base-commit: 051143e1602d90ea71887d92363edd539d411de5
+-- 
+2.26.2
 
-e1781eb0d5c0 drm/i915/gem: Avoid waiting inside mmu_notifier_invalidate_range
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17755/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
