@@ -1,47 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07A11DF0AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 22:33:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7F01DF0F3
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 23:15:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F23FF6E107;
-	Fri, 22 May 2020 20:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44CCF6E11E;
+	Fri, 22 May 2020 21:15:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB1C36E107
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 May 2020 20:33:19 +0000 (UTC)
-IronPort-SDR: eNFRzf1hVVi2uSkG8TavFdb4hzBJAfhVok4qbolkPcw+Ez+WOKXI3GgcTpW9AYHBEtLmM6ogLQ
- bJOfgfhyrFww==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2020 13:33:19 -0700
-IronPort-SDR: X+jSMzB3x3Wp6F99iiXCp8mi4G0YrBo4wjjeZHkiYU8h1BvZkwqYmPD66yWVa+uyuZGZF5GteH
- 6hEzYpjDbWVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,423,1583222400"; d="scan'208";a="440980408"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
- by orsmga005.jf.intel.com with ESMTP; 22 May 2020 13:33:19 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
- ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 22 May 2020 13:33:18 -0700
-Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
- ORSMSX153.amr.corp.intel.com (10.22.226.247) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 22 May 2020 13:33:18 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Date: Fri, 22 May 2020 13:26:30 -0700
-Message-ID: <20200522202630.7604-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200507010103.16040-1-vivek.kasireddy@intel.com>
-References: <20200507010103.16040-1-vivek.kasireddy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E74506E11E;
+ Fri, 22 May 2020 21:15:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E084EA7DFA;
+ Fri, 22 May 2020 21:15:11 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.22.254.138]
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Dont forget to clean up the
- connector on error (v2)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Date: Fri, 22 May 2020 21:15:11 -0000
+Message-ID: <159018211189.3047.3658712874937210497@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200507010103.16040-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20200507010103.16040-1-vivek.kasireddy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_Dont_forget_to_clean_up_the_connector_on_error_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,41 +39,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If an error is encountered during the DSI initialization setup, the
-drm connector object also needs to be cleaned up along with the encoder.
-The error can happen due to a missing mode in the VBT or for other
-reasons.
+== Series Details ==
 
-v2: Rephrase the commit message to make it more clear.
+Series: drm/i915/dsi: Dont forget to clean up the connector on error (rev2)
+URL   : https://patchwork.freedesktop.org/series/77011/
+State : success
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 1 +
- 1 file changed, 1 insertion(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 4fec5bd64920..f93f72463df5 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1954,6 +1954,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 	return;
- 
- err:
-+	drm_connector_cleanup(connector);
- 	drm_encoder_cleanup(&encoder->base);
- 	kfree(intel_dsi);
- 	kfree(intel_connector);
--- 
-2.21.1
+CI Bug Log - changes from CI_DRM_8527 -> Patchwork_17763
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17763/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8527 -> Patchwork_17763
+
+  CI-20190529: 20190529
+  CI_DRM_8527: 5931295af1b8254640f0defa759a7363f6c896f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5675: 74f7488fe4f8acf901b18fc9c6c4d45a972dcad5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17763: 1f70c324c426077d0583c0397886ffc5d02588e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1f70c324c426 drm/i915/dsi: Dont forget to clean up the connector on error (v2)
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17763/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
