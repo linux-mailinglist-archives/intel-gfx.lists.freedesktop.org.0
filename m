@@ -1,29 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CE11DE4AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 12:42:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32E541DE543
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 13:22:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604B06E9BD;
-	Fri, 22 May 2020 10:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501F46E479;
+	Fri, 22 May 2020 11:22:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96AF06E9BD
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 May 2020 10:42:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21258638-1500050 
- for multiple; Fri, 22 May 2020 11:42:08 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 May 2020 11:42:07 +0100
-Message-Id: <20200522104207.19439-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1BB2D6E3E5;
+ Fri, 22 May 2020 11:22:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 15EEFA7DFA;
+ Fri, 22 May 2020 11:22:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Avoid iterating an empty list
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 22 May 2020 11:22:00 -0000
+Message-ID: <159014652006.3045.17222337340689925317@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200522104207.19439-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200522104207.19439-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Avoid_iterating_an_empty_list?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,77 +38,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Our __sgt_iter assumes that the scattergather list has at least one
-element. But during construction we may fail in allocating the first
-page, and so mark the first element as the terminator. This is
-unexpected!
+== Series Details ==
 
-[22555.524752] RIP: 0010:shmem_get_pages+0x506/0x710 [i915]
-[22555.524759] Code: 49 8b 2c 24 31 c0 66 89 44 24 40 48 85 ed 0f 84 62 01 00 00 4c 8b 75 00 8b 5d 08 44 8b 7d 0c 48 8b 0d 7e 34 07 e2 49 83 e6 fc <49> 8b 16 41 01 df 48 89 cf 48 89 d0 48 c1 e8 2d 48 85 c9 0f 84 c8
-[22555.524765] RSP: 0018:ffffc9000053f9d0 EFLAGS: 00010246
-[22555.524770] RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffff8881ffffa000
-[22555.524774] RDX: fffffffffffffff4 RSI: ffffffffffffffff RDI: ffffffff821efe00
-[22555.524778] RBP: ffff8881b099ab00 R08: 0000000000000000 R09: 00000000fffffff4
-[22555.524782] R10: 0000000000000002 R11: 00000000ffec0a02 R12: ffff8881cd3c8d60
-[22555.524786] R13: 00000000fffffff4 R14: 0000000000000000 R15: 0000000000000000
-[22555.524790] FS:  00007f4fbeb9b9c0(0000) GS:ffff8881f8580000(0000) knlGS:0000000000000000
-[22555.524795] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[22555.524799] CR2: 0000000000000000 CR3: 00000001ec7f0004 CR4: 00000000001606e0
-[22555.524803] Call Trace:
-[22555.524919]  __i915_gem_object_get_pages+0x4f/0x60 [i915]
+Series: drm/i915/gem: Avoid iterating an empty list
+URL   : https://patchwork.freedesktop.org/series/77553/
+State : success
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 5d5d7eef3f43..7aff3514d97a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -39,7 +39,6 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 	unsigned long last_pfn = 0;	/* suppress gcc warning */
- 	unsigned int max_segment = i915_sg_segment_size();
- 	unsigned int sg_page_sizes;
--	struct pagevec pvec;
- 	gfp_t noreclaim;
- 	int ret;
- 
-@@ -192,13 +191,17 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 	sg_mark_end(sg);
- err_pages:
- 	mapping_clear_unevictable(mapping);
--	pagevec_init(&pvec);
--	for_each_sgt_page(page, sgt_iter, st) {
--		if (!pagevec_add(&pvec, page))
-+	if (sg != st->sgl) {
-+		struct pagevec pvec;
-+
-+		pagevec_init(&pvec);
-+		for_each_sgt_page(page, sgt_iter, st) {
-+			if (!pagevec_add(&pvec, page))
-+				check_release_pagevec(&pvec);
-+		}
-+		if (pagevec_count(&pvec))
- 			check_release_pagevec(&pvec);
- 	}
--	if (pagevec_count(&pvec))
--		check_release_pagevec(&pvec);
- 	sg_free_table(st);
- 	kfree(st);
- 
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_8524 -> Patchwork_17757
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17757 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][1] ([i915#227]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8524/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [FAIL][3] ([i915#62] / [i915#95]) -> [SKIP][4] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8524/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-tgl-y fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8524 -> Patchwork_17757
+
+  CI-20190529: 20190529
+  CI_DRM_8524: 14a61eda3439d0655e4438f77310479a6da8c583 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5673: f37cd37470612616f65914bca35497ca13aeb11a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17757: 40aca02e9196eb820853fdfd5a36513c48526dea @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+40aca02e9196 drm/i915/gem: Avoid iterating an empty list
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
