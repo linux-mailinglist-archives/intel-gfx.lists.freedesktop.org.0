@@ -2,30 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E541DE543
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 13:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AC11DE5B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 13:40:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 501F46E479;
-	Fri, 22 May 2020 11:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8F36E04B;
+	Fri, 22 May 2020 11:40:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BB2D6E3E5;
- Fri, 22 May 2020 11:22:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 15EEFA7DFA;
- Fri, 22 May 2020 11:22:00 +0000 (UTC)
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
+ [IPv6:2a00:1450:4864:20::142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 509786E04B;
+ Fri, 22 May 2020 11:40:45 +0000 (UTC)
+Received: by mail-lf1-x142.google.com with SMTP id z206so2692950lfc.6;
+ Fri, 22 May 2020 04:40:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Hj2fTCjbxOKsyZP7M3oTIyRA9mJ2Bc+fUg1m8uH2yYk=;
+ b=Fctbeo2rUCXQwGpTpFGVse8+WCb+g1DgkimSxd0aywjWQzd7bhxHHSHfy1FP+QqJ5E
+ HQGcAIndvBPaVq+mvvXrYxa60iZ270cp/hL7v335T389bW5HYMkEi/Mut44zha6NDaG4
+ UCrNm9pJDDi2UNXl+PlD6bv/w4smxNEG9g8AyCyft6tAOApW/apnSn16+WYKI0WwO/LX
+ QygL+8MKePZCy7xTU8Q+o6DXxVRskTBMwRQQsFJ+VR7QHRA9Pic1hmOdE0dfFierlTBM
+ XmumN0HJD7IHx+R0ZAzFlmPROpUU2YmKdDsZd/Q7eTLT58JceLPdRakROdwY5S4uTJxp
+ Cehw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Hj2fTCjbxOKsyZP7M3oTIyRA9mJ2Bc+fUg1m8uH2yYk=;
+ b=JqbN1yforlZRw2ykbuNW78en4n6UBzcDaXgimXHgVpqL17L8nSonQLgT9xDPfBDeM6
+ ++7x6csNRI4thQZ87pcqjhn2xRmZ6WP2FHhvI9OSwCQUAGZQxPb4hc3OUyCyRX1FoZ+g
+ DIniuDpLm5XI8z/1LYn1IjgCHPPYXIwGg5YI+OSp/22OAqCswS1NrIHRphTabFHzPkel
+ 2yHxhQMtPzdxyJTV/DrmeqMrdXBuZRjsuZNlk6Z73CeW3vbZ/jDFCWq7Z6K17KsckfX4
+ WCld5OnF7qX3lf4CnImOnzGFpySiOy1MkI/LEw4/le82pwHaENpKC4kqt12++oBu9NnI
+ 192w==
+X-Gm-Message-State: AOAM531xTm1tUjVdJnLobZRcZurv9aCPMkS2TJznfzQr5ZSTDnYbSPnE
+ 8kCynyi8NEMX0fvQz1VkjreEiJ9Xyr52qSCFihU=
+X-Google-Smtp-Source: ABdhPJyCH6J7CaJtTe9PzunF+afSux/PTZRtv8MDXaAqacG2ZKbC4Y+MdKt3boWpmeIuz1KBImEFTAKzX+qejKOKM8k=
+X-Received: by 2002:ac2:53a2:: with SMTP id j2mr7071822lfh.139.1590147643673; 
+ Fri, 22 May 2020 04:40:43 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 22 May 2020 11:22:00 -0000
-Message-ID: <159014652006.3045.17222337340689925317@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200522104207.19439-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200522104207.19439-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Avoid_iterating_an_empty_list?=
+References: <20200519002124.2025955-1-jhubbard@nvidia.com>
+In-Reply-To: <20200519002124.2025955-1-jhubbard@nvidia.com>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Date: Fri, 22 May 2020 17:10:32 +0530
+Message-ID: <CAFqt6zZTZrB=LiGQpcOtZfnr7-CL4tkLHz8eXFvxwCTcfKy4sQ@mail.gmail.com>
+To: John Hubbard <jhubbard@nvidia.com>
+Subject: Re: [Intel-gfx] [PATCH 0/4] mm/gup, drm/i915: refactor gup_fast,
+ convert to pin_user_pages()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,87 +61,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Linux-MM <linux-mm@kvack.org>, Matthew Wilcox <willy@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gem: Avoid iterating an empty list
-URL   : https://patchwork.freedesktop.org/series/77553/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8524 -> Patchwork_17757
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17757 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][1] ([i915#227]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8524/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [FAIL][3] ([i915#62] / [i915#95]) -> [SKIP][4] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8524/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Hi John,
 
 
-Participating hosts (45 -> 41)
-------------------------------
+On Tue, May 19, 2020 at 5:51 AM John Hubbard <jhubbard@nvidia.com> wrote:
+>
+> This needs to go through Andrew's -mm tree, due to adding a new gup.c
+> routine. However, I would really love to have some testing from the
+> drm/i915 folks, because I haven't been able to run-time test that part
+> of it.
+>
+> Otherwise, though, the series has passed my basic run time testing:
+> some LTP tests, some xfs and etx4 non-destructive xfstests, and an
+> assortment of other smaller ones: vm selftests, io_uring_register, a
+> few more. But that's only on one particular machine. Also, cross-compile
+> tests for half a dozen arches all pass.
+>
+> Details:
+>
+> In order to convert the drm/i915 driver from get_user_pages() to
+> pin_user_pages(), a FOLL_PIN equivalent of __get_user_pages_fast() was
+> required. That led to refactoring __get_user_pages_fast(), with the
+> following goals:
+>
+> 1) As above: provide a pin_user_pages*() routine for drm/i915 to call,
+>    in place of __get_user_pages_fast(),
+>
+> 2) Get rid of the gup.c duplicate code for walking page tables with
+>    interrupts disabled. This duplicate code is a minor maintenance
+>    problem anyway.
+>
+> 3) Make it easy for an upcoming patch from Souptick, which aims to
+>    convert __get_user_pages_fast() to use a gup_flags argument, instead
+>    of a bool writeable arg.  Also, if this series looks good, we can
+>    ask Souptick to change the name as well, to whatever the consensus
+>    is. My initial recommendation is: get_user_pages_fast_only(), to
+>    match the new pin_user_pages_only().
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-tgl-y fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8524 -> Patchwork_17757
-
-  CI-20190529: 20190529
-  CI_DRM_8524: 14a61eda3439d0655e4438f77310479a6da8c583 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5673: f37cd37470612616f65914bca35497ca13aeb11a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17757: 40aca02e9196eb820853fdfd5a36513c48526dea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-40aca02e9196 drm/i915/gem: Avoid iterating an empty list
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17757/index.html
+Shall I hold my changes till 5.8-rc1 , when this series will appear upstream ?
+>
+> John Hubbard (4):
+>   mm/gup: move __get_user_pages_fast() down a few lines in gup.c
+>   mm/gup: refactor and de-duplicate gup_fast() code
+>   mm/gup: introduce pin_user_pages_fast_only()
+>   drm/i915: convert get_user_pages() --> pin_user_pages()
+>
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  22 +--
+>  include/linux/mm.h                          |   3 +
+>  mm/gup.c                                    | 150 ++++++++++++--------
+>  3 files changed, 107 insertions(+), 68 deletions(-)
+>
+>
+> base-commit: 642b151f45dd54809ea00ecd3976a56c1ec9b53d
+> --
+> 2.26.2
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
