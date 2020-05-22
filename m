@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE5DB1DFA29
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 20:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 234FF1DDCDB
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 03:59:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA246E1C0;
-	Sat, 23 May 2020 18:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 596006E2A9;
+	Fri, 22 May 2020 01:59:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF416E060;
- Thu, 21 May 2020 23:38:44 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5ec710b40001>; Thu, 21 May 2020 16:37:24 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Thu, 21 May 2020 16:38:44 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Thu, 21 May 2020 16:38:44 -0700
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 21 May
- 2020 23:38:43 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via
- Frontend Transport; Thu, 21 May 2020 23:38:43 +0000
-Received: from sandstorm.nvidia.com (Not Verified[10.2.48.182]) by
- rnnvemgw01.nvidia.com with Trustwave SEG (v7, 5, 8, 10121)
- id <B5ec711020004>; Thu, 21 May 2020 16:38:43 -0700
-From: John Hubbard <jhubbard@nvidia.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Date: Thu, 21 May 2020 16:38:41 -0700
-Message-ID: <20200521233841.1279742-1-jhubbard@nvidia.com>
-X-Mailer: git-send-email 2.26.2
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30CAB6E2A9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 May 2020 01:59:18 +0000 (UTC)
+IronPort-SDR: RMjcTCLvwGERsWgYAFW8ayCvegdYp+JCJJMOcAlQsF+Q71sdawy0ZEwbi07hbkivzPDXFA7Zva
+ 0+XqzDN4X2uA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2020 18:59:18 -0700
+IronPort-SDR: TE0d4HrUR3AjWOgARGQyWHmYXvSqCkay9nCfSdfG5KLVs19V/zMRakpNbaHleW15L/zPgVieTQ
+ Zmoi4Ex9n/CA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,420,1583222400"; d="scan'208";a="300520832"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga002.fm.intel.com with ESMTP; 21 May 2020 18:59:18 -0700
+Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 21 May 2020 18:59:18 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.235]) by
+ fmsmsx116.amr.corp.intel.com ([169.254.2.9]) with mapi id 14.03.0439.000;
+ Thu, 21 May 2020 18:59:18 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3] drm/i915/ehl: Extend w/a 14010685332 to
+ JSP/MCC
+Thread-Index: AQHWLzwCNlyEXTkYV0SEwUz2soa8kKiz0LcA
+Date: Fri, 22 May 2020 01:59:17 +0000
+Message-ID: <06ea30b367d4c152accb7d01e88faa45fe1a0c18.camel@intel.com>
+References: <20200521064448.29522-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20200521064448.29522-1-swathi.dhanavanthri@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.15.8]
+Content-ID: <9D05AF4CA32994438D20E16EF3C2E1D6@intel.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1590104244; bh=oK3cn3yjsB7kmSIMJxAJI0j+n+7vBZVJ7t2DXnyjgUI=;
- h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
- MIME-Version:X-NVConfidentiality:Content-Transfer-Encoding:
- Content-Type;
- b=izCdN89AWfExilHUwGQewVpC/TR2eV0PG31JIjZgDPHNR7BymtQsj13yg+A1XApO1
- Ygum2vlEXMeDgkBjbCncWJsg8iHcSjtXVdwiUhGhkaTGTM/gu+LdUcnevDhwXTwJAU
- d/FJRU0sldpoVEw2n7Wdu0aVAs224oYw4bvIo0h1mFTXZMxU1Rd9ARWwIXMvdR6m5b
- 17W3ETWgvQmu4GR+nl3xiJHeV/jEEhdSpBhO/Z+Mq0xT76DGr99gH5WkZEb6C0xA2s
- brVRbZiat6q0a7vVARoEq+/4dtxXTO5rlj529m9CGd6dXmOVYIlW8xHp7/e3OAtZUW
- rnXmFsdDGOFAA==
-X-Mailman-Approved-At: Sat, 23 May 2020 18:13:37 +0000
-Subject: [Intel-gfx] [PATCH] mm/gup: fixup gup.c for "mm/gup: refactor and
- de-duplicate gup_fast() code"
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/ehl: Extend w/a 14010685332 to
+ JSP/MCC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,72 +62,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, John Hubbard <jhubbard@nvidia.com>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Souptick Joarder <jrdr.linux@gmail.com>, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Include FOLL_FAST_ONLY in the list of flags to *not* WARN()
-on, in internal_get_user_pages_fast().
-
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Wilcox <willy@infradead.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Souptick Joarder <jrdr.linux@gmail.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: John Hubbard <jhubbard@nvidia.com>
----
-
-Hi Andrew, Chris,
-
-Andrew: This is a fixup that applies to today's (20200521) linux-next.
-In that tree, this fixes up:
-
-commit dfb8dfe80808 ("mm/gup: refactor and de-duplicate gup_fast() code")
-
-Chris: I'd like to request another CI run for the drm/i915 changes, so
-for that, would you prefer that I post a v2 of the series [1], or
-is it easier for you to just apply this patch here, on top of [2]?
-
-[1] https://lore.kernel.org/r/20200519002124.2025955-1-jhubbard@nvidia.com
-
-[2] https://lore.kernel.org/r/158985123351.31239.10766458886430429630@emeril.freedesktop.org
-
-thanks,
-John Hubbard
-NVIDIA
-
- mm/gup.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/mm/gup.c b/mm/gup.c
-index dd8895f2fafa1..ada6aa79576dc 100644
---- a/mm/gup.c
-+++ b/mm/gup.c
-@@ -2724,7 +2724,8 @@ static int internal_get_user_pages_fast(unsigned long start, int nr_pages,
- 	int nr_pinned = 0, ret = 0;
- 
- 	if (WARN_ON_ONCE(gup_flags & ~(FOLL_WRITE | FOLL_LONGTERM |
--				       FOLL_FORCE | FOLL_PIN | FOLL_GET)))
-+				       FOLL_FORCE | FOLL_PIN | FOLL_GET |
-+				       FOLL_FAST_ONLY)))
- 		return -EINVAL;
- 
- 	start = untagged_addr(start) & PAGE_MASK;
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTA1LTIwIGF0IDIzOjQ0IC0wNzAwLCBTd2F0aGkgRGhhbmF2YW50aHJpIHdy
+b3RlOg0KPiBUaGlzIGlzIGEgcGVybWFuZW50IHcvYSBmb3IgSlNML0VITC5UaGlzIGlzIHRvIGJl
+IGFwcGxpZWQgdG8gdGhlDQo+IFBDSCB0eXBlcyBvbiBKU0wvRUhMIGllIEpTUC9NQ0MNCj4gQnNw
+ZWM6IDUyODg4DQo+IA0KPiB2MjogRml4ZWQgdGhlIHdyb25nIHVzYWdlIG9mIGxvZ2ljYWwgT1Io
+dmlsbGUpDQo+IHYzOiBSZW1vdmVkIGV4dHJhIGJyYWNlcywgY2hhbmdlZCB0aGUgY2hlY2soam9z
+ZSkNCj4gDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
+QGludGVsLmNvbT4NCg0KPiBTaWduZWQtb2ZmLWJ5OiBTd2F0aGkgRGhhbmF2YW50aHJpIDxzd2F0
+aGkuZGhhbmF2YW50aHJpQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2lycS5jIHwgNiArKysrLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMo
+KyksIDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9pcnEuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMNCj4gaW5kZXgg
+NGRjNjAxZGZmYzA4Li5iYzgyZDBkOGFkNWIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfaXJxLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEu
+Yw0KPiBAQCAtMjkwMiw4ICsyOTAyLDEwIEBAIHN0YXRpYyB2b2lkIGdlbjExX2Rpc3BsYXlfaXJx
+X3Jlc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAlpZiAoSU5URUxf
+UENIX1RZUEUoZGV2X3ByaXYpID49IFBDSF9JQ1ApDQo+ICAJCUdFTjNfSVJRX1JFU0VUKHVuY29y
+ZSwgU0RFKTsNCj4gIA0KPiAtCS8qIFdhXzE0MDEwNjg1MzMyOmljbCAqLw0KPiAtCWlmIChJTlRF
+TF9QQ0hfVFlQRShkZXZfcHJpdikgPT0gUENIX0lDUCkgew0KPiArCS8qIFdhXzE0MDEwNjg1MzMy
+OmljbCxqc2wsZWhsICovDQo+ICsJaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA9PSBQQ0hf
+SUNQIHx8DQo+ICsJICAgIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA9PSBQQ0hfSlNQIHx8DQo+
+ICsJICAgIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA9PSBQQ0hfTUNDKSB7DQo+ICAJCWludGVs
+X3VuY29yZV9ybXcodW5jb3JlLCBTT1VUSF9DSElDS0VOMSwNCj4gIAkJCQkgU0JDTEtfUlVOX1JF
+RkNMS19ESVMsIFNCQ0xLX1JVTl9SRUZDTEtfRElTKTsNCj4gIAkJaW50ZWxfdW5jb3JlX3Jtdyh1
+bmNvcmUsIFNPVVRIX0NISUNLRU4xLA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
