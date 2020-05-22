@@ -2,30 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073FB1DDD5E
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2020 04:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8321DFA28
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 20:13:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330756E2C4;
-	Fri, 22 May 2020 02:47:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534496E185;
+	Sat, 23 May 2020 18:13:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC2086E2C4;
- Fri, 22 May 2020 02:47:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21254549-1500050 for multiple; Fri, 22 May 2020 03:47:00 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200521233841.1279742-1-jhubbard@nvidia.com>
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2F296E96C;
+ Fri, 22 May 2020 02:56:16 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5ec73f000000>; Thu, 21 May 2020 19:54:56 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Thu, 21 May 2020 19:56:16 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Thu, 21 May 2020 19:56:16 -0700
+Received: from [10.2.48.182] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 22 May
+ 2020 02:56:15 +0000
+To: Chris Wilson <chris@chris-wilson.co.uk>, Andrew Morton
+ <akpm@linux-foundation.org>
 References: <20200521233841.1279742-1-jhubbard@nvidia.com>
-To: Andrew Morton <akpm@linux-foundation.org>,
- John Hubbard <jhubbard@nvidia.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159011561851.32320.15372940900085926477@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 22 May 2020 03:46:58 +0100
+ <159011561851.32320.15372940900085926477@build.alporthouse.com>
+X-Nvconfidentiality: public
+From: John Hubbard <jhubbard@nvidia.com>
+Message-ID: <19baba24-1f05-9497-2d23-36c2af09d080@nvidia.com>
+Date: Thu, 21 May 2020 19:56:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <159011561851.32320.15372940900085926477@build.alporthouse.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1590116096; bh=ZAaG0RT29C3mMCelcOYrNPFdgL+X0u5fdvmv/XTgbkc=;
+ h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=TJWMmnVXno2KwLrQrVCBptO62ixYJXrnhmGBvfspnNjIVECJQuuUtf1JeHSN6fv7P
+ XwX/TlqcFZ6qoSxl/wadKFem1hPdciMiZTSzHaO8MPq6/UTnri7pGV+AQForDp/6Gp
+ Xql98VL2kl7HJMdj/zhWZ4H18Mb+pTQZ3KM57Zh7dgSJVV5g0qswajsa4oLSTqUAmv
+ zc/evDP3vS7BHBsJrkNzolR2q/x3MiEtqy3esU26QF5FXHmR/qj1bCBtKO+sfUtfJz
+ eDnXjhUNbzvLztmlFWeBo5JQrKOUPA+JDHBf59Vnrrdx3AcmX+yFVQjh7k0UJlcipA
+ 8OOcXDtb3wVVQ==
+X-Mailman-Approved-At: Sat, 23 May 2020 18:13:37 +0000
 Subject: Re: [Intel-gfx] [PATCH] mm/gup: fixup gup.c for "mm/gup: refactor
  and de-duplicate gup_fast() code"
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -41,46 +68,55 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, John Hubbard <jhubbard@nvidia.com>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- linux-mm@kvack.org, Souptick Joarder <jrdr.linux@gmail.com>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, linux-mm@kvack.org,
+ Souptick Joarder <jrdr.linux@gmail.com>, Matthew Auld <matthew.auld@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting John Hubbard (2020-05-22 00:38:41)
-> Include FOLL_FAST_ONLY in the list of flags to *not* WARN()
-> on, in internal_get_user_pages_fast().
+On 2020-05-21 19:46, Chris Wilson wrote:
+> Quoting John Hubbard (2020-05-22 00:38:41)
+>> Include FOLL_FAST_ONLY in the list of flags to *not* WARN()
+>> on, in internal_get_user_pages_fast().
+>>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: David Airlie <airlied@linux.ie>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matthew Wilcox <willy@infradead.org>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Souptick Joarder <jrdr.linux@gmail.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+>> ---
+>>
+>> Hi Andrew, Chris,
+>>
+>> Andrew: This is a fixup that applies to today's (20200521) linux-next.
+>> In that tree, this fixes up:
+>>
+>> commit dfb8dfe80808 ("mm/gup: refactor and de-duplicate gup_fast() code")
+>>
+>> Chris: I'd like to request another CI run for the drm/i915 changes, so
+>> for that, would you prefer that I post a v2 of the series [1], or
+>> is it easier for you to just apply this patch here, on top of [2]?
 > 
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Wilcox <willy@infradead.org>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Souptick Joarder <jrdr.linux@gmail.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
-> ---
+> If you post your series again with this patch included to intel-gfx, CI
+> will pick it up. Or I'll do that in the morning.
+> -Chris
 > 
-> Hi Andrew, Chris,
-> 
-> Andrew: This is a fixup that applies to today's (20200521) linux-next.
-> In that tree, this fixes up:
-> 
-> commit dfb8dfe80808 ("mm/gup: refactor and de-duplicate gup_fast() code")
-> 
-> Chris: I'd like to request another CI run for the drm/i915 changes, so
-> for that, would you prefer that I post a v2 of the series [1], or
-> is it easier for you to just apply this patch here, on top of [2]?
 
-If you post your series again with this patch included to intel-gfx, CI
-will pick it up. Or I'll do that in the morning.
--Chris
+OK, perfect. I'll post a version for linux.git in a moment here.
+
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
