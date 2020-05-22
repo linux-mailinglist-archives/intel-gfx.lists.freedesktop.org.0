@@ -2,34 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EC31DF18D
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 00:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BCFA1DFA2C
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 20:13:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE2D6E12A;
-	Fri, 22 May 2020 22:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5FA06E1E2;
+	Sat, 23 May 2020 18:13:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F2B6E12A
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 May 2020 22:00:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21265851-1500050 for multiple; Fri, 22 May 2020 23:00:10 +0100
+Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
+ [216.228.121.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9D456EA38;
+ Fri, 22 May 2020 22:22:10 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5ec850860001>; Fri, 22 May 2020 15:21:58 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Fri, 22 May 2020 15:22:10 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Fri, 22 May 2020 15:22:10 -0700
+Received: from [10.2.52.1] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 22 May
+ 2020 22:22:10 +0000
+To: Souptick Joarder <jrdr.linux@gmail.com>
+References: <20200519002124.2025955-1-jhubbard@nvidia.com>
+ <CAFqt6zZTZrB=LiGQpcOtZfnr7-CL4tkLHz8eXFvxwCTcfKy4sQ@mail.gmail.com>
+From: John Hubbard <jhubbard@nvidia.com>
+X-Nvconfidentiality: public
+Message-ID: <6391e8c2-0b3e-80c3-b59f-63d0fb96bdb4@nvidia.com>
+Date: Fri, 22 May 2020 15:22:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <7805def3c6354f17bf7d57c416f000aa@intel.com>
-References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>,
- <159004412790.4443.16666170953617018239@emeril.freedesktop.org>
- <7805def3c6354f17bf7d57c416f000aa@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>, "Vudum,
- Lakshminarayana" <lakshminarayana.vudum@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx]  ✗ Fi.CI.IGT: failure for Consider DBuf bandwidth when calculating CDCLK (rev18)
-Message-ID: <159018481048.32320.7761007190791714467@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 22 May 2020 23:00:10 +0100
+In-Reply-To: <CAFqt6zZTZrB=LiGQpcOtZfnr7-CL4tkLHz8eXFvxwCTcfKy4sQ@mail.gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1590186118; bh=O9O6+RtPM2flqTtnO+2Mzi65L6kjI2yOB1OXyUMSITs=;
+ h=X-PGP-Universal:Subject:To:CC:References:From:X-Nvconfidentiality:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=SvLtugFEJ9WaldeXt+dm3SwBqigdt2J9ZvySOYhS49EDlHvnhYaJAgLAoVXqC5YKb
+ bUBa8YhbnaSkbR5Y4l4bOQ3nnu1dIp0mpBdCkP/SzdXR1qYCf3zzNXYsSC2gVYVYDG
+ iYC2SSqhenJXAc8846FwAX7sZx8XoXs9r31gd3LHb2erXn5A01u+azAs82iWTVnXrJ
+ aA/TNc7Yd2u3tjbcIsjmovd+ui8GZ1E2HEfpl6ScuUnoZAzwX6Kn6nHc2pRl0wrCHZ
+ 8zYdxnJ3xNNE3XrP82KJ2NOPFJYpmUoSviJP6YoyL/Jk7iQ7wUTdXmvdiHGEE2IS+z
+ lQb8mQnBoAvlA==
+X-Mailman-Approved-At: Sat, 23 May 2020 18:13:37 +0000
+Subject: Re: [Intel-gfx] [PATCH 0/4] mm/gup, drm/i915: refactor gup_fast,
+ convert to pin_user_pages()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,19 +66,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Linux-MM <linux-mm@kvack.org>, Matthew Wilcox <willy@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lisovskiy, Stanislav (2020-05-21 10:35:42)
-> Seems to be unrelated issue. There seems to be some list corruption happening in drm fb manipulation code.
-> if those patches would be causing that (like some severe mem corruption)- it would happen much more broadly than single test and single platform. Moreover there is no direct  connection to the changes.
+On 2020-05-22 04:40, Souptick Joarder wrote:
+...
+>> 3) Make it easy for an upcoming patch from Souptick, which aims to
+>>     convert __get_user_pages_fast() to use a gup_flags argument, instead
+>>     of a bool writeable arg.  Also, if this series looks good, we can
+>>     ask Souptick to change the name as well, to whatever the consensus
+>>     is. My initial recommendation is: get_user_pages_fast_only(), to
+>>     match the new pin_user_pages_only().
+> 
+> Shall I hold my changes till 5.8-rc1 , when this series will appear upstream ?
 
-The fi-glk-dsi failure in module reload is a result of this series.
-Somehow you have angered the i915 pm around snd_hda_intel.
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17733/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
--Chris
+I don't really see any problem with your posting something that is based on
+the latest linux-next (which has my changes now). Should be fine. And in
+fact it would be nice to get that done in this round, so that the pin* and
+get* APIs look the same.
+
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
