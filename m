@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A751DFB38
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2020 23:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F31401E00C7
+	for <lists+intel-gfx@lfdr.de>; Sun, 24 May 2020 18:57:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C18A6E215;
-	Sat, 23 May 2020 21:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA18D89E14;
+	Sun, 24 May 2020 16:56:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A60C46E215;
- Sat, 23 May 2020 21:35:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 984B5A363B;
- Sat, 23 May 2020 21:35:19 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C06589BFB;
+ Sun, 24 May 2020 16:56:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21280005-1500050 
+ for multiple; Sun, 24 May 2020 17:56:47 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 24 May 2020 17:56:49 +0100
+Message-Id: <20200524165649.3940178-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0.rc0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "John Hubbard" <jhubbard@nvidia.com>
-Date: Sat, 23 May 2020 21:35:19 -0000
-Message-ID: <159026971959.11803.9509138959379201176@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200522051931.54191-1-jhubbard@nvidia.com>
-In-Reply-To: <20200522051931.54191-1-jhubbard@nvidia.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgbW0v?=
- =?utf-8?q?gup=2C_drm/i915=3A_refactor_gup=5Ffast=2C_convert_to_pin=5Fuser?=
- =?utf-8?b?X3BhZ2VzKCk=?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_reloc: Exercise concurrent
+ relocations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,204 +37,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While we may chide userspace if they try to use the same batches from
+multiple threads (the order of operations is undetermined), we do try to
+ensure that each ioctl appears to be atomic from the perspective of
+userspace.
 
-Series: mm/gup, drm/i915: refactor gup_fast, convert to pin_user_pages()
-URL   : https://patchwork.freedesktop.org/series/77598/
-State : failure
+In particular, relocations within execbuf are expected to be consistent
+for the executing batch. That is we want the relocations applied by
+this execbuf to be visible for the associated batch, and we especially
+do not want to execute the batch with conflicting relocations from
+another thread.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_reloc.c | 196 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 196 insertions(+)
 
-CI Bug Log - changes from CI_DRM_8529_full -> Patchwork_17765_full
-====================================================
+diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
+index 3951aab2f..467ec5a74 100644
+--- a/tests/i915/gem_exec_reloc.c
++++ b/tests/i915/gem_exec_reloc.c
+@@ -1010,6 +1010,197 @@ static void parallel(int i915)
+ 	munmap(reloc, reloc_sz);
+ }
+ 
++#define CONCURRENT 1024
++
++static uint64_t concurrent_relocs(int i915, int idx, int count)
++{
++	struct drm_i915_gem_relocation_entry *reloc;
++	const int gen = intel_gen(intel_get_drm_devid(i915));
++	unsigned long sz;
++	int offset;
++
++	sz = count * sizeof(*reloc);
++	sz = ALIGN(sz, 4096);
++
++	reloc = mmap(0, sz, PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
++	igt_assert(reloc != MAP_FAILED);
++
++	offset = 1;
++	if (gen >= 4 && gen < 8)
++		offset += 1;
++
++	for (int n = 0; n < count; n++) {
++		reloc[n].presumed_offset = ~0ull;
++		reloc[n].offset = (4 * n + offset) * sizeof(uint32_t);
++		reloc[n].delta = (count * idx + n) * sizeof(uint32_t);
++	}
++	mprotect(reloc, sz, PROT_READ);
++
++	return to_user_pointer(reloc);
++}
++
++static int flags_to_index(const struct intel_execution_engine2 *e)
++{
++	return (e->flags & 63) | ((e->flags >> 13) & 3) << 4;
++}
++
++static void xchg_u32(void *array, unsigned i, unsigned j)
++{
++	uint32_t *u32 = array;
++	uint32_t tmp = u32[i];
++	u32[i] = u32[j];
++	u32[j] = tmp;
++}
++
++static void concurrent_child(int i915,
++			     const struct intel_execution_engine2 *e,
++			     uint32_t *common, int num_common,
++			     int in, int out)
++{
++	int idx = flags_to_index(e);
++	uint64_t relocs = concurrent_relocs(i915, idx, CONCURRENT);
++	struct drm_i915_gem_exec_object2 obj[num_common + 2];
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(obj),
++		.buffer_count = ARRAY_SIZE(obj),
++		.flags = e->flags | I915_EXEC_HANDLE_LUT,
++	};
++	uint32_t *batch = &obj[num_common + 1].handle;
++	unsigned long count = 0;
++	uint32_t *x;
++	int err = 0;
++
++	memset(obj, 0, sizeof(obj));
++	obj[0].handle = gem_create(i915, 64 * CONCURRENT * 4);
++
++	igt_permute_array(common, num_common, xchg_u32);
++	for (int n = 1; n <= num_common; n++) {
++		obj[n].handle = common[n - 1];
++		obj[n].relocation_count = CONCURRENT;
++		obj[n].relocs_ptr = relocs;
++	}
++
++	obj[num_common + 1].relocation_count = CONCURRENT;
++	obj[num_common + 1].relocs_ptr = relocs;
++
++	x = gem_mmap__device_coherent(i915, obj[0].handle,
++				      0, 64 * CONCURRENT * 4, PROT_READ);
++	x += idx * CONCURRENT;
++
++	do {
++		read(in, batch, sizeof(*batch));
++		if (!*batch)
++			break;
++
++		gem_execbuf(i915, &execbuf);
++		gem_sync(i915, *batch); /* write hazards lies */
++
++		for (int n = 0; n < CONCURRENT; n++) {
++			if (x[n] != *batch) {
++				igt_warn("%s: Invalid store [bad reloc] found at index %d\n",
++					 e->name, n);
++				err = -EINVAL;
++				break;
++			}
++		}
++
++		write(out, &err, sizeof(err));
++		count++;
++	} while (err == 0);
++
++	gem_close(i915, obj[0].handle);
++	igt_info("%s: completed %ld cycles\n", e->name, count);
++}
++
++static uint32_t create_concurrent_batch(int i915, unsigned int count)
++{
++	const int gen = intel_gen(intel_get_drm_devid(i915));
++	size_t sz = ALIGN(4 * (1 + 4 * count), 4096);
++	uint32_t handle = gem_create(i915, sz);
++	uint32_t *map, *cs;
++
++	cs = map = gem_mmap__device_coherent(i915, handle, 0, sz, PROT_WRITE);
++	for (int n = 0; n < count; n++) {
++		if (gen >= 4) {
++			*cs++ = MI_STORE_DWORD_IMM;
++			*cs++ = 0;
++			*cs++ = 0;
++			*cs++ = handle;
++		} else {
++			*cs++ = MI_STORE_DWORD_IMM - 1;
++			*cs++ = 0;
++			*cs++ = handle;
++			*cs++ = 0;
++		}
++	}
++	*cs++ = MI_BATCH_BUFFER_END;
++	munmap(map, sz);
++
++	return handle;
++}
++
++static void concurrent(int i915, int num_common)
++{
++	const struct intel_execution_engine2 *e;
++	int in[2], out[2];
++	uint32_t common[16];
++	uint32_t batch;
++	int nchild;
++	int result;
++
++	pipe(in);
++	pipe(out);
++
++	for (int n = 0; n < num_common; n++)
++		common[n] = gem_create(i915, 4 * 4 * CONCURRENT);
++
++	nchild = 0;
++	__for_each_physical_engine(i915, e) {
++		if (!gem_class_can_store_dword(i915, e->class))
++			continue;
++
++		igt_fork(child, 1)
++			concurrent_child(i915, e,
++					 common, num_common,
++					 in[0], out[1]);
++
++		nchild++;
++	}
++	close(in[0]);
++	close(out[1]);
++	igt_require(nchild > 1);
++
++	igt_until_timeout(5) {
++		batch = create_concurrent_batch(i915, CONCURRENT);
++
++		for (int n = 0; n < nchild; n++)
++			write(in[1], &batch, sizeof(batch));
++
++		for (int n = 0; n < nchild; n++) {
++			result = -1;
++			read(out[0], &result, sizeof(result));
++			if (result < 0)
++				break;
++		}
++
++		gem_close(i915, batch);
++	}
++
++	batch = 0;
++	for (int n = 0; n < nchild; n++)
++		write(in[1], &batch, sizeof(batch));
++
++	close(in[1]);
++	close(out[0]);
++
++	igt_waitchildren();
++
++	for (int n = 0; n < num_common; n++)
++		gem_close(i915, common[n]);
++
++	igt_assert_eq(result, 0);
++}
++
+ igt_main
+ {
+ 	const struct intel_execution_engine2 *e;
+@@ -1149,6 +1340,11 @@ igt_main
+ 	igt_subtest("basic-parallel")
+ 		parallel(fd);
+ 
++	igt_subtest("basic-concurrent0")
++		concurrent(fd, 0);
++	igt_subtest("basic-concurrent16")
++		concurrent(fd, 16);
++
+ 	igt_fixture
+ 		close(fd);
+ }
+-- 
+2.27.0.rc0
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17765_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17765_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17765_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipa-toggle:
-    - shard-glk:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-glk9/igt@kms_cursor_legacy@cursorb-vs-flipa-toggle.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-glk5/igt@kms_cursor_legacy@cursorb-vs-flipa-toggle.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17765_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#1436] / [i915#716])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-kbl6/igt@gen9_exec_parse@allowed-all.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-kbl4/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-kbl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-kbl2/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-kbl2/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [PASS][7] -> [DMESG-WARN][8] ([i915#180] / [i915#93] / [i915#95])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-kbl6/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [PASS][9] -> [FAIL][10] ([i915#1188])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
-    - shard-kbl:          [PASS][11] -> [INCOMPLETE][12] ([i915#155])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([fdo#108145] / [i915#265])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109441]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-iclb6/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  
-#### Possible fixes ####
-
-  * {igt@gem_ctx_isolation@preservation-s3@bcs0}:
-    - shard-kbl:          [DMESG-WARN][17] ([i915#180]) -> [PASS][18] +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-kbl7/igt@gem_ctx_isolation@preservation-s3@bcs0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-kbl1/igt@gem_ctx_isolation@preservation-s3@bcs0.html
-
-  * igt@gem_ctx_persistence@processes:
-    - shard-skl:          [FAIL][19] ([i915#1528]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-skl8/igt@gem_ctx_persistence@processes.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-skl10/igt@gem_ctx_persistence@processes.html
-
-  * {igt@kms_flip@flip-vs-suspend-interruptible@c-dp1}:
-    - shard-apl:          [DMESG-WARN][21] ([i915#180]) -> [PASS][22] +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-apl3/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-apl6/igt@kms_flip@flip-vs-suspend-interruptible@c-dp1.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][23] ([fdo#108145] / [i915#265]) -> [PASS][24] +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][25] ([fdo#109441]) -> [PASS][26] +2 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-iclb3/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc3co-vpb-simulation:
-    - shard-iclb:         [SKIP][27] -> [SKIP][28] ([i915#588])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-iclb3/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
-
-  * igt@i915_pm_dc@dc6-dpms:
-    - shard-tglb:         [SKIP][29] ([i915#468]) -> [FAIL][30] ([i915#454])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-tglb2/igt@i915_pm_dc@dc6-dpms.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-tglb5/igt@i915_pm_dc@dc6-dpms.html
-
-  * igt@kms_content_protection@atomic-dpms:
-    - shard-apl:          [FAIL][31] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][32] ([i915#1319]) +1 similar issue
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-apl7/igt@kms_content_protection@atomic-dpms.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-apl6/igt@kms_content_protection@atomic-dpms.html
-
-  * igt@kms_content_protection@srm:
-    - shard-apl:          [FAIL][33] ([fdo#110321]) -> [TIMEOUT][34] ([i915#1319])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-apl4/igt@kms_content_protection@srm.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-apl3/igt@kms_content_protection@srm.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max:
-    - shard-apl:          [FAIL][35] ([fdo#108145] / [i915#265]) -> [FAIL][36] ([fdo#108145] / [i915#265] / [i915#95])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-apl8/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-apl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-max.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [SKIP][37] ([fdo#109642] / [fdo#111068]) -> [FAIL][38] ([i915#608])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8529/shard-iclb5/igt@kms_psr2_su@page_flip.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/shard-iclb2/igt@kms_psr2_su@page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1528]: https://gitlab.freedesktop.org/drm/intel/issues/1528
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8529 -> Patchwork_17765
-
-  CI-20190529: 20190529
-  CI_DRM_8529: 9ae23ae1b437ee0d75ed2153eca05ecbd8c417bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5676: ff03d458f708583c8f9296f97c38df312055651a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17765: d301b652c2daccd5d53d400be39d95579c590701 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17765/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
