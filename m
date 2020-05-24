@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3DE1E27CB
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 18:58:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4A11E27CC
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 18:58:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8FA897AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE94189805;
 	Tue, 26 May 2020 16:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F31886E0C2;
- Sat, 23 May 2020 22:33:48 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5ec9a4c00000>; Sat, 23 May 2020 15:33:36 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Sat, 23 May 2020 15:33:48 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Sat, 23 May 2020 15:33:48 -0700
-Received: from [10.2.58.199] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 23 May
- 2020 22:33:48 +0000
-To: Chris Wilson <chris@chris-wilson.co.uk>, Andrew Morton
- <akpm@linux-foundation.org>
-References: <20200522051931.54191-1-jhubbard@nvidia.com>
- <159022688563.11139.3402294435382936623@build.alporthouse.com>
-From: John Hubbard <jhubbard@nvidia.com>
-X-Nvconfidentiality: public
-Message-ID: <d87cdee8-aa0f-91ca-ea86-e89c4536458f@nvidia.com>
-Date: Sat, 23 May 2020 15:33:47 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <159022688563.11139.3402294435382936623@build.alporthouse.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Language: en-US
+X-Greylist: delayed 720 seconds by postgrey-1.36 at gabe;
+ Sun, 24 May 2020 02:27:40 UTC
+Received: from aliyun-sdnproxy-4.icoremail.net (aliyun-cloud.icoremail.net
+ [47.90.73.12])
+ by gabe.freedesktop.org (Postfix) with SMTP id DABD36E239
+ for <intel-gfx@lists.freedesktop.org>; Sun, 24 May 2020 02:27:40 +0000 (UTC)
+Received: from localhost.localdomain (unknown [222.205.77.158])
+ by mail-app2 (Coremail) with SMTP id by_KCgDnzpEj18leS73BAQ--.41369S4;
+ Sun, 24 May 2020 10:08:39 +0800 (CST)
+From: Dinghao Liu <dinghao.liu@zju.edu.cn>
+To: dinghao.liu@zju.edu.cn,
+	kjlu@umn.edu
+Date: Sun, 24 May 2020 10:08:32 +0800
+Message-Id: <20200524020835.7989-1-dinghao.liu@zju.edu.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: by_KCgDnzpEj18leS73BAQ--.41369S4
+X-Coremail-Antispam: 1UD129KBjvdXoWrKw4UCw4xCFWUury3tr17Awb_yoWfAFcEkr
+ yYvr97Wr4DZFs5AF13Xa13Zry0vFnFvrWkt3W7ta4Svry3Z3y8WrWkZF1UWw17WayjgFZF
+ qa1vvF4kArn7GjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUb-kFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AK
+ wVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20x
+ vE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1l84ACjcxK6I8E
+ 87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c
+ 8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+ Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+ xGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc2xSY4AK
+ 67AK6r4UMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_GFWkJr1UJwCFx2IqxV
+ CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
+ 6r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
+ WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG
+ 6rW3Jr0E3s1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JV
+ W8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbpwZ7UUUUU==
+X-CM-SenderInfo: qrrzjiaqtzq6lmxovvfxof0/1tbiAgEJBlZdtORShQANsN
 X-Mailman-Approved-At: Tue, 26 May 2020 16:58:17 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 0/4] mm/gup, drm/i915: refactor gup_fast,
- convert to pin_user_pages()
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix runtime PM imbalance on
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,79 +57,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, linux-mm@kvack.org,
- Souptick Joarder <jrdr.linux@gmail.com>, Matthew Auld <matthew.auld@intel.com>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-23 02:41, Chris Wilson wrote:
-> Quoting John Hubbard (2020-05-22 06:19:27)
->> The purpose of posting this series is to launch a test in the
->> intel-gfx-ci tree. (The patches have already been merged into Andrew's
->> linux-mm tree.)
->>
->> This applies to today's linux.git (note the base-commit tag at the
->> bottom).
->>
->> Changes since V1:
->>
->> * Fixed a bug in the refactoring patch: added FOLL_FAST_ONLY to the
->>    list of gup_flags *not* to WARN() on. This lead to a failure in the
->>    first intel-gfx-ci test run [1].
->>
->> [1] https://lore.kernel.org/r/159008745422.32320.5724805750977048669@build.alporthouse.com
-> 
-> Ran this through our CI, warn and subsequent lockup were gone. That
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-	t=1590273216; bh=oK85oUq4LCrgTs8kxvJryKE7a7GUQfAveFtGpNOU2dQ=;
-	h=X-PGP-Universal:Subject:To:CC:References:From:X-Nvconfidentiality:
-	 Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-	 X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-	 Content-Transfer-Encoding;
-	b=QoI4eJbYYVxcoARKgFJdRrxzB/GBPqy5yKIF46/pjR75LEiZvvAX947VBwywSMYhx
-	 It8aQpMm6kMaF/rxiv0IPBf3tNGxNziWBAAhDXCyNqmvAS5s1HfdQh5ZoYbyDynKbJ
-	 uF+u9JjBOYo5uTnn3IUaGPRgl/p9k6OhwRhbJ9nYreDwIF1/1pPeo97jwP2jW7AtDf
-	 xDO5iJhGmwLYHPzRLilgiDdLbNhIGAP1XJ/4t/DByshidOUalduU7HxVQ9IOnysnCw
-	 QcqSlpyPgx5LkJOvs63gO8n28hHJnoJ4FggNXC3D311lBWRuD7iekdP5WuvmrxUb8N
-	 rZKwTpl0vJl9w==
+When drm_dev_init() returns an error code, a pairing
+runtime PM usage counter decrement is needed to keep
+the counter balanced. For error paths after this call,
+things are the same.
 
+Signed-off-by: Dinghao Liu <dinghao.liu@zju.edu.cn>
+---
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Yea! Thanks again for these test runs. I really don't like posting
-patches that I can't run-time test, but this CI system mitigates
-that pretty well.
-
-
-> lockup is worrying me now, but that doesn't seem to be an issue from
-> this series.
-
-
-I do think it's worth following up on. And it seems like it would be
-very easy to repro: just hack in a forced failure at the call site of
-pin_user_pages_fast_only(), and follow the breadcrumbs.
-
-
-> 
-> The i915 changes were simple enough, I would have computed the pin flags
-> just once (since the readonly bit is static, that would be interesting
-> if that was allowed to change mid gup :)
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> -Chris
-> 
-
-Thanks for the review! And if lifting that check up higher in the call
-stack is desired, I'm all in favor of that being done...in a separate
-patch. :)
-
-I'm trying to keep a very light touch when converting these call sites.
-
-thanks,
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 754d0eb6beaa..fdf01461acc6 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -200,6 +200,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	drm_mode_config_cleanup(&i915->drm);
+ 	drm_dev_fini(&i915->drm);
+ put_device:
++	pm_runtime_put_noidle(&pdev->dev);
+ 	put_device(&pdev->dev);
+ err:
+ 	return NULL;
 -- 
-John Hubbard
-NVIDIA
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
