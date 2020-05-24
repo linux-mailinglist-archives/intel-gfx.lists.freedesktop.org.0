@@ -2,29 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31401E00C7
-	for <lists+intel-gfx@lfdr.de>; Sun, 24 May 2020 18:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B6E1E03EC
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 01:40:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA18D89E14;
-	Sun, 24 May 2020 16:56:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 088AA89CF5;
+	Sun, 24 May 2020 23:40:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C06589BFB;
- Sun, 24 May 2020 16:56:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4217C89CF5
+ for <intel-gfx@lists.freedesktop.org>; Sun, 24 May 2020 23:40:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21280005-1500050 
- for multiple; Sun, 24 May 2020 17:56:47 +0100
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21282173-1500050 
+ for multiple; Mon, 25 May 2020 00:38:58 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 24 May 2020 17:56:49 +0100
-Message-Id: <20200524165649.3940178-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0.rc0
+Date: Mon, 25 May 2020 00:39:00 +0100
+Message-Id: <20200524233900.25598-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_reloc: Exercise concurrent
- relocations
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix early deref of 'dsb'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,246 +36,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While we may chide userspace if they try to use the same batches from
-multiple threads (the order of operations is undetermined), we do try to
-ensure that each ioctl appears to be atomic from the perspective of
-userspace.
-
-In particular, relocations within execbuf are expected to be consistent
-for the executing batch. That is we want the relocations applied by
-this execbuf to be visible for the associated batch, and we especially
-do not want to execute the batch with conflicting relocations from
-another thread.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_exec_reloc.c | 196 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 196 insertions(+)
-
-diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
-index 3951aab2f..467ec5a74 100644
---- a/tests/i915/gem_exec_reloc.c
-+++ b/tests/i915/gem_exec_reloc.c
-@@ -1010,6 +1010,197 @@ static void parallel(int i915)
- 	munmap(reloc, reloc_sz);
- }
- 
-+#define CONCURRENT 1024
-+
-+static uint64_t concurrent_relocs(int i915, int idx, int count)
-+{
-+	struct drm_i915_gem_relocation_entry *reloc;
-+	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	unsigned long sz;
-+	int offset;
-+
-+	sz = count * sizeof(*reloc);
-+	sz = ALIGN(sz, 4096);
-+
-+	reloc = mmap(0, sz, PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
-+	igt_assert(reloc != MAP_FAILED);
-+
-+	offset = 1;
-+	if (gen >= 4 && gen < 8)
-+		offset += 1;
-+
-+	for (int n = 0; n < count; n++) {
-+		reloc[n].presumed_offset = ~0ull;
-+		reloc[n].offset = (4 * n + offset) * sizeof(uint32_t);
-+		reloc[n].delta = (count * idx + n) * sizeof(uint32_t);
-+	}
-+	mprotect(reloc, sz, PROT_READ);
-+
-+	return to_user_pointer(reloc);
-+}
-+
-+static int flags_to_index(const struct intel_execution_engine2 *e)
-+{
-+	return (e->flags & 63) | ((e->flags >> 13) & 3) << 4;
-+}
-+
-+static void xchg_u32(void *array, unsigned i, unsigned j)
-+{
-+	uint32_t *u32 = array;
-+	uint32_t tmp = u32[i];
-+	u32[i] = u32[j];
-+	u32[j] = tmp;
-+}
-+
-+static void concurrent_child(int i915,
-+			     const struct intel_execution_engine2 *e,
-+			     uint32_t *common, int num_common,
-+			     int in, int out)
-+{
-+	int idx = flags_to_index(e);
-+	uint64_t relocs = concurrent_relocs(i915, idx, CONCURRENT);
-+	struct drm_i915_gem_exec_object2 obj[num_common + 2];
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(obj),
-+		.buffer_count = ARRAY_SIZE(obj),
-+		.flags = e->flags | I915_EXEC_HANDLE_LUT,
-+	};
-+	uint32_t *batch = &obj[num_common + 1].handle;
-+	unsigned long count = 0;
-+	uint32_t *x;
-+	int err = 0;
-+
-+	memset(obj, 0, sizeof(obj));
-+	obj[0].handle = gem_create(i915, 64 * CONCURRENT * 4);
-+
-+	igt_permute_array(common, num_common, xchg_u32);
-+	for (int n = 1; n <= num_common; n++) {
-+		obj[n].handle = common[n - 1];
-+		obj[n].relocation_count = CONCURRENT;
-+		obj[n].relocs_ptr = relocs;
-+	}
-+
-+	obj[num_common + 1].relocation_count = CONCURRENT;
-+	obj[num_common + 1].relocs_ptr = relocs;
-+
-+	x = gem_mmap__device_coherent(i915, obj[0].handle,
-+				      0, 64 * CONCURRENT * 4, PROT_READ);
-+	x += idx * CONCURRENT;
-+
-+	do {
-+		read(in, batch, sizeof(*batch));
-+		if (!*batch)
-+			break;
-+
-+		gem_execbuf(i915, &execbuf);
-+		gem_sync(i915, *batch); /* write hazards lies */
-+
-+		for (int n = 0; n < CONCURRENT; n++) {
-+			if (x[n] != *batch) {
-+				igt_warn("%s: Invalid store [bad reloc] found at index %d\n",
-+					 e->name, n);
-+				err = -EINVAL;
-+				break;
-+			}
-+		}
-+
-+		write(out, &err, sizeof(err));
-+		count++;
-+	} while (err == 0);
-+
-+	gem_close(i915, obj[0].handle);
-+	igt_info("%s: completed %ld cycles\n", e->name, count);
-+}
-+
-+static uint32_t create_concurrent_batch(int i915, unsigned int count)
-+{
-+	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	size_t sz = ALIGN(4 * (1 + 4 * count), 4096);
-+	uint32_t handle = gem_create(i915, sz);
-+	uint32_t *map, *cs;
-+
-+	cs = map = gem_mmap__device_coherent(i915, handle, 0, sz, PROT_WRITE);
-+	for (int n = 0; n < count; n++) {
-+		if (gen >= 4) {
-+			*cs++ = MI_STORE_DWORD_IMM;
-+			*cs++ = 0;
-+			*cs++ = 0;
-+			*cs++ = handle;
-+		} else {
-+			*cs++ = MI_STORE_DWORD_IMM - 1;
-+			*cs++ = 0;
-+			*cs++ = handle;
-+			*cs++ = 0;
-+		}
-+	}
-+	*cs++ = MI_BATCH_BUFFER_END;
-+	munmap(map, sz);
-+
-+	return handle;
-+}
-+
-+static void concurrent(int i915, int num_common)
-+{
-+	const struct intel_execution_engine2 *e;
-+	int in[2], out[2];
-+	uint32_t common[16];
-+	uint32_t batch;
-+	int nchild;
-+	int result;
-+
-+	pipe(in);
-+	pipe(out);
-+
-+	for (int n = 0; n < num_common; n++)
-+		common[n] = gem_create(i915, 4 * 4 * CONCURRENT);
-+
-+	nchild = 0;
-+	__for_each_physical_engine(i915, e) {
-+		if (!gem_class_can_store_dword(i915, e->class))
-+			continue;
-+
-+		igt_fork(child, 1)
-+			concurrent_child(i915, e,
-+					 common, num_common,
-+					 in[0], out[1]);
-+
-+		nchild++;
-+	}
-+	close(in[0]);
-+	close(out[1]);
-+	igt_require(nchild > 1);
-+
-+	igt_until_timeout(5) {
-+		batch = create_concurrent_batch(i915, CONCURRENT);
-+
-+		for (int n = 0; n < nchild; n++)
-+			write(in[1], &batch, sizeof(batch));
-+
-+		for (int n = 0; n < nchild; n++) {
-+			result = -1;
-+			read(out[0], &result, sizeof(result));
-+			if (result < 0)
-+				break;
-+		}
-+
-+		gem_close(i915, batch);
-+	}
-+
-+	batch = 0;
-+	for (int n = 0; n < nchild; n++)
-+		write(in[1], &batch, sizeof(batch));
-+
-+	close(in[1]);
-+	close(out[0]);
-+
-+	igt_waitchildren();
-+
-+	for (int n = 0; n < num_common; n++)
-+		gem_close(i915, common[n]);
-+
-+	igt_assert_eq(result, 0);
-+}
-+
- igt_main
- {
- 	const struct intel_execution_engine2 *e;
-@@ -1149,6 +1340,11 @@ igt_main
- 	igt_subtest("basic-parallel")
- 		parallel(fd);
- 
-+	igt_subtest("basic-concurrent0")
-+		concurrent(fd, 0);
-+	igt_subtest("basic-concurrent16")
-+		concurrent(fd, 16);
-+
- 	igt_fixture
- 		close(fd);
- }
--- 
-2.27.0.rc0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYzoxNzcgaW50ZWxfZHNiX3Jl
+Z193cml0ZSgpIHdhcm46IHZhcmlhYmxlIGRlcmVmZXJlbmNlZCBiZWZvcmUgY2hlY2sgJ2RzYicg
+KHNlZSBsaW5lIDE3NSkKCkZpeGVzOiBhZmVkYTRmM2IxYzggKCJkcm0vaTkxNS9kc2I6IFByZSBh
+bGxvY2F0ZSBhbmQgbGF0ZSBjbGVhbnVwIG9mIGNtZCBidWZmZXIiKQpTaWduZWQtb2ZmLWJ5OiBD
+aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBBbmltZXNoIE1hbm5hIDxhbmlt
+ZXNoLm1hbm5hQGludGVsLmNvbT4KQ2M6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5j
+b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYyB8IDYgKysr
+Ky0tCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jCmluZGV4IDQ3NTEwNmU5MWZhNy4u
+MjRlNmQ2M2UyZDQ3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RzYi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMK
+QEAgLTE2OSwxNSArMTY5LDE3IEBAIHZvaWQgaW50ZWxfZHNiX2luZGV4ZWRfcmVnX3dyaXRlKGNv
+bnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogdm9pZCBpbnRlbF9kc2Jf
+cmVnX3dyaXRlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJ
+IGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQogewotCXN0cnVjdCBpbnRlbF9kc2IgKmRzYiA9IGNy
+dGNfc3RhdGUtPmRzYjsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMo
+Y3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKLQl1MzIgKmJ1ZiA9IGRzYi0+Y21kX2J1ZjsK
+KwlzdHJ1Y3QgaW50ZWxfZHNiICpkc2I7CisJdTMyICpidWY7CiAKKwlkc2IgPSBjcnRjX3N0YXRl
+LT5kc2I7CiAJaWYgKCFkc2IpIHsKIAkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIHJlZywgdmFs
+KTsKIAkJcmV0dXJuOwogCX0KKwogCWJ1ZiA9IGRzYi0+Y21kX2J1ZjsKIAlpZiAoZHJtX1dBUk5f
+T04oJmRldl9wcml2LT5kcm0sIGRzYi0+ZnJlZV9wb3MgPj0gRFNCX0JVRl9TSVpFKSkgewogCQlk
+cm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkRTQiBidWZmZXIgb3ZlcmZsb3dcbiIpOwotLSAK
+Mi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
