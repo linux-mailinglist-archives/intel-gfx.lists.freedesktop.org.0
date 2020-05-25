@@ -1,65 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E861E0859
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 10:00:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0BB1E0863
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 10:03:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B386989CB2;
-	Mon, 25 May 2020 08:00:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43DF16E043;
+	Mon, 25 May 2020 08:03:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4331F89CB2
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 08:00:36 +0000 (UTC)
-IronPort-SDR: nhaLPnvSN4zWe++W7jyxV2Ou4C662TOVGLY0fWwNjOcZWpvJ2G4wGuRy+umQsi0dlXLpT6Z5LQ
- Lzo5b2uOxGJw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2020 01:00:35 -0700
-IronPort-SDR: CSWBc6h4zMXqKThmCMfbvt0XNBVDlRT1Vus38fS4JLYPUFvT2IXK/rVYn2qUZU70BX09j9b5ol
- EaGptMA4886Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,432,1583222400"; d="scan'208";a="256170598"
-Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
- by fmsmga008.fm.intel.com with ESMTP; 25 May 2020 01:00:34 -0700
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- IRSMSX153.ger.corp.intel.com (163.33.192.75) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 25 May 2020 09:00:33 +0100
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 25 May 2020 09:00:33 +0100
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Mon, 25 May 2020 09:00:33 +0100
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "Vudum, Lakshminarayana"
- <lakshminarayana.vudum@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0gIOKclyBGaS5DSS5JR1Q6IGZhaWx1cmUgZm9yIENvbnNp?=
- =?utf-8?B?ZGVyIERCdWYgYmFuZHdpZHRoIHdoZW4gY2FsY3VsYXRpbmcgQ0RDTEsgKHJl?=
- =?utf-8?Q?v18)?=
-Thread-Index: AQHWLzzWVtq0RL/yrkqgRfO1sNWvVaiyRqrbgAJS0QCAABX0AIADxr1R
-Date: Mon, 25 May 2020 08:00:33 +0000
-Message-ID: <d391e915b930423ea02677a0b0afed3e@intel.com>
-References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>,
- <159004412790.4443.16666170953617018239@emeril.freedesktop.org>
- <7805def3c6354f17bf7d57c416f000aa@intel.com>
- <159018481048.32320.7761007190791714467@build.alporthouse.com>,
- <159018952416.11139.8295799937981887072@build.alporthouse.com>
-In-Reply-To: <159018952416.11139.8295799937981887072@build.alporthouse.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 626756E02A;
+ Mon, 25 May 2020 08:03:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5BE04A008A;
+ Mon, 25 May 2020 08:03:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK_=28rev18=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 25 May 2020 08:03:25 -0000
+Message-ID: <159039380534.4528.13983440138222693007@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200525075347.582-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525075347.582-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915/gt=3A_Stop_cross-?=
+ =?utf-8?q?polluting_PIN=5FGLOBAL_with_PIN=5FUSER_with_no-ppgtt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,34 +39,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SSBoYXZlIHNlZW4gdGhvc2UgZmFpbHVyZXMgaW4gb3RoZXIgcGF0Y2hlcyBhcyB3ZWxsLCBpLmUg
-YmVmb3JlIG15IHBhdGNoZXMgbGFuZGVkLg0KDQpCZXN0IFJlZ2FyZHMsDQoNCkxpc292c2tpeSBT
-dGFuaXNsYXYNCg0KT3JnYW5pemF0aW9uOiBJbnRlbCBGaW5sYW5kIE95IC0gQklDIDAzNTc2MDYt
-NCAtIFdlc3RlbmRpbmthdHUgNywgMDIxNjAgRXNwb28NCg0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KRnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxz
-b24uY28udWs+DQpTZW50OiBTYXR1cmRheSwgTWF5IDIzLCAyMDIwIDI6MTg6NDQgQU0NClRvOiBM
-aXNvdnNraXksIFN0YW5pc2xhdjsgVnVkdW0sIExha3NobWluYXJheWFuYTsgaW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZw0KU3ViamVjdDogUmU6IFtJbnRlbC1nZnhdICDinJcgRmkuQ0ku
-SUdUOiBmYWlsdXJlIGZvciBDb25zaWRlciBEQnVmIGJhbmR3aWR0aCB3aGVuIGNhbGN1bGF0aW5n
-IENEQ0xLIChyZXYxOCkNCg0KUXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMjAtMDUtMjIgMjM6MDA6
-MTApDQo+IFF1b3RpbmcgTGlzb3Zza2l5LCBTdGFuaXNsYXYgKDIwMjAtMDUtMjEgMTA6MzU6NDIp
-DQo+ID4gU2VlbXMgdG8gYmUgdW5yZWxhdGVkIGlzc3VlLiBUaGVyZSBzZWVtcyB0byBiZSBzb21l
-IGxpc3QgY29ycnVwdGlvbiBoYXBwZW5pbmcgaW4gZHJtIGZiIG1hbmlwdWxhdGlvbiBjb2RlLg0K
-PiA+IGlmIHRob3NlIHBhdGNoZXMgd291bGQgYmUgY2F1c2luZyB0aGF0IChsaWtlIHNvbWUgc2V2
-ZXJlIG1lbSBjb3JydXB0aW9uKS0gaXQgd291bGQgaGFwcGVuIG11Y2ggbW9yZSBicm9hZGx5IHRo
-YW4gc2luZ2xlIHRlc3QgYW5kIHNpbmdsZSBwbGF0Zm9ybS4gTW9yZW92ZXIgdGhlcmUgaXMgbm8g
-ZGlyZWN0ICBjb25uZWN0aW9uIHRvIHRoZSBjaGFuZ2VzLg0KPg0KPiBUaGUgZmktZ2xrLWRzaSBm
-YWlsdXJlIGluIG1vZHVsZSByZWxvYWQgaXMgYSByZXN1bHQgb2YgdGhpcyBzZXJpZXMuDQo+IFNv
-bWVob3cgeW91IGhhdmUgYW5nZXJlZCB0aGUgaTkxNSBwbSBhcm91bmQgc25kX2hkYV9pbnRlbC4N
-Cj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTc3
-MzMvZmktZ2xrLWRzaS9pZ3RAaTkxNV9wbV9ycG1AbW9kdWxlLXJlbG9hZC5odG1sDQoNCkNJIHNh
-eXMgImRybS9pOTE1OiBBZGp1c3QgQ0RDTEsgYWNjb3JkaW5nbHkgdG8gb3VyIERCdWYgYncgbmVl
-ZHMiIGlzIHRoZQ0KY3VscHJpdC4NCi1DaHJpcw0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [01/12] drm/i915/gt: Stop cross-polluting PIN_GLOBAL with PIN_USER with no-ppgtt
+URL   : https://patchwork.freedesktop.org/series/77627/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e73ba84bc40f drm/i915/gt: Stop cross-polluting PIN_GLOBAL with PIN_USER with no-ppgtt
+b10c80198f71 drm/i915/gt: Cancel the flush worker more thoroughly
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+<0> [314.146044] i915_mod-1321    2.... 299799443us : intel_gt_fini_buffer_pool: intel_gt_fini_buffer_pool:227 GEM_BUG_ON(!list_empty(&pool->cache_list[n]))
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+176bca8e32c4 drm/i915/gem: Suppress some random warnings
+f248457f5a24 drm/i915/execlists: Shortcircuit queue_prio() for no internal levels
+95ae398ab244 drm/i915: Improve execute_cb struct packing
+fa5d2c8489c4 dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+-:427: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#427: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
+
+total: 0 errors, 1 warnings, 1 checks, 1147 lines checked
+b8b1cf238ad3 drm/i915: Unpeel awaits on a proxy fence
+01d3dc2a8e96 drm/i915: Add list_for_each_entry_safe_continue_reverse
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+total: 0 errors, 0 warnings, 3 checks, 12 lines checked
+aeb35c7b979b drm/i915/gem: Async GPU relocations only
+df5c0d3ea02f drm/i915/gem: Lift GPU relocation allocation
+c3e6e121ab28 drm/i915/gem: Add all GPU reloc awaits/signals en masse
+a2f70c5c2f5c drm/i915/gem: Make relocations atomic within execbuf
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
