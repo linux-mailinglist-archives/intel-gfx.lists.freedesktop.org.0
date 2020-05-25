@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD50C1E128E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 18:23:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2311E1308
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 18:49:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7980F89BB2;
-	Mon, 25 May 2020 16:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F0E6E0C6;
+	Mon, 25 May 2020 16:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B746689BA3;
- Mon, 25 May 2020 16:22:57 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B51136E0C5;
+ Mon, 25 May 2020 16:49:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1D0EA432F;
- Mon, 25 May 2020 16:22:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AFE7CA0019;
+ Mon, 25 May 2020 16:49:45 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 25 May 2020 16:22:57 -0000
-Message-ID: <159042377769.4525.11070890872574204154@emeril.freedesktop.org>
+Date: Mon, 25 May 2020 16:49:45 -0000
+Message-ID: <159042538569.4527.15378531045523495488@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200525141957.3061-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200525141957.3061-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Cancel_the_flus?=
- =?utf-8?q?h_worker_more_thoroughly?=
+References: <20200525120411.6543-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525120411.6543-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Force_the_GT_reset_on_shutdown_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [CI,1/2] drm/i915/gt: Cancel the flush worker more thoroughly
-URL   : https://patchwork.freedesktop.org/series/77637/
+Series: drm/i915/gt: Force the GT reset on shutdown (rev3)
+URL   : https://patchwork.freedesktop.org/series/77633/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8532 -> Patchwork_17772
+CI Bug Log - changes from CI_DRM_8532 -> Patchwork_17773
 ====================================================
 
 Summary
@@ -64,35 +63,13 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17772/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17773/index.html
 
-Known issues
-------------
 
-  Here are the changes found in Patchwork_17772 that come from known issues:
+Changes
+-------
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2] ([i915#489])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8532/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17772/fi-bwr-2160/igt@i915_selftest@live@sanitycheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][3] ([fdo#109271]) -> [FAIL][4] ([i915#62] / [i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8532/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17772/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+  No changes found
 
 
 Participating hosts (50 -> 44)
@@ -104,22 +81,21 @@ Participating hosts (50 -> 44)
 Build changes
 -------------
 
-  * Linux: CI_DRM_8532 -> Patchwork_17772
+  * Linux: CI_DRM_8532 -> Patchwork_17773
 
   CI-20190529: 20190529
   CI_DRM_8532: b1b6bf3b5bb13d79e0264498dfb7f71656149870 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5678: c1f30ee09ac2e7eb3e8e90245239731a169a6050 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17772: 0f7413d99e00c6d41186e88ca5bf59a8e63a49ce @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_17773: 07c36cc6f9acbb3e23aa80a03cf69063566dff38 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-0f7413d99e00 drm/i915/gem: Suppress some random warnings
-31e98f3454a9 drm/i915/gt: Cancel the flush worker more thoroughly
+07c36cc6f9ac drm/i915/gt: Force the GT reset on shutdown
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17772/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17773/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
