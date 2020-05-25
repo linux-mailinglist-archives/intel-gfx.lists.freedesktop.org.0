@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ADEE1E083F
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 09:54:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C48571E083B
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 09:54:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9960D899F3;
-	Mon, 25 May 2020 07:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D070F899D4;
+	Mon, 25 May 2020 07:54:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED15899BB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F547899BE
  for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 07:53:59 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21284196-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21284197-1500050 
  for multiple; Mon, 25 May 2020 08:53:45 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 May 2020 08:53:36 +0100
-Message-Id: <20200525075347.582-1-chris@chris-wilson.co.uk>
+Date: Mon, 25 May 2020 08:53:37 +0100
+Message-Id: <20200525075347.582-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200525075347.582-1-chris@chris-wilson.co.uk>
+References: <20200525075347.582-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/12] drm/i915/gt: Stop cross-polluting
- PIN_GLOBAL with PIN_USER with no-ppgtt
+Subject: [Intel-gfx] [PATCH 02/12] drm/i915/gt: Cancel the flush worker more
+ thoroughly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,46 +45,35 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to keep userptr distinct from ggtt mmaps in the eyes of
-lockdep, we need to avoid marking those userptr vma as PIN_GLOBAL. (So
-long as we comply with only using them as local PIN_USER!)
+Since the worker may rearm, we currently are only guaranteed to flush
+the work if we cancel the timer. If the work was running at the time we
+try and cancel it, we will wait for it to complete, but it may leave
+items in the pool and requeue the work. If we rearrange the immediate
+discard of the pool then cancel the work, we know that the work cannot
+rearm and so our flush will be final.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/1880
+<0> [314.146044] i915_mod-1321    2.... 299799443us : intel_gt_fini_buffer_pool: intel_gt_fini_buffer_pool:227 GEM_BUG_ON(!list_empty(&pool->cache_list[n]))
+
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 66165b10256e..8c275f8588c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -424,22 +424,17 @@ static int ggtt_bind_vma(struct i915_vma *vma,
- 	struct drm_i915_gem_object *obj = vma->obj;
- 	u32 pte_flags;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 1495054a4305..418ae184cecf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -212,8 +212,9 @@ void intel_gt_flush_buffer_pool(struct intel_gt *gt)
+ {
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
  
-+	if (i915_vma_is_bound(vma, ~flags & I915_VMA_BIND_MASK))
-+		return 0;
-+
- 	/* Applicable to VLV (gen8+ do not support RO in the GGTT) */
- 	pte_flags = 0;
- 	if (i915_gem_object_is_readonly(obj))
- 		pte_flags |= PTE_READ_ONLY;
- 
- 	vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
--
- 	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
- 
--	/*
--	 * Without aliasing PPGTT there's no difference between
--	 * GLOBAL/LOCAL_BIND, it's all the same ptes. Hence unconditionally
--	 * upgrade to both bound if we bind either to avoid double-binding.
--	 */
--	atomic_or(I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND, &vma->flags);
--
- 	return 0;
+-	if (cancel_delayed_work_sync(&pool->work))
++	do {
+ 		pool_free_imm(pool);
++	} while (cancel_delayed_work_sync(&pool->work));
  }
  
+ void intel_gt_fini_buffer_pool(struct intel_gt *gt)
 -- 
 2.20.1
 
