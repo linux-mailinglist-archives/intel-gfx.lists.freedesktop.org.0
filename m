@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E176D1E0FE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 15:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8367D1E0FFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 15:57:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CAAA89E3B;
-	Mon, 25 May 2020 13:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD15689E43;
+	Mon, 25 May 2020 13:57:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDB489E3B
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 13:53:42 +0000 (UTC)
-IronPort-SDR: SXzFeqJkZOr7Xw6HVICN2vi7zHo3Ob2ZNmFsMZyor7SNk08pIQuOoYIDT7WcnAuD86LMUdKEQR
- 5ZrBvsd+LOEA==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F86089E43
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 13:57:26 +0000 (UTC)
+IronPort-SDR: 7JYVRxwO1V0KX4kX3dzZxzmyessOWyC+6KswRgu54bn5Yc30tEkbFaUJvxepg6/MB63MInqU1H
+ w20dqGsavR7w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2020 06:53:41 -0700
-IronPort-SDR: WWYxPlYVTekEU+7s9glBBrNklAzxHLpwjlz+ZL6iMOR6YBs98+IwuNs7FCbyKm3t1e1JB7fppU
- ZsgxmvZYnB+g==
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2020 06:57:25 -0700
+IronPort-SDR: FZeCNU4ixac28TxDRfPEz3i6ZLmo8xvlRi7DFF0OzaFmYYgOdPf+yT5RGDtSonkBERk8n+7KSE
+ Jw5JLV3cgwZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,433,1583222400"; d="scan'208";a="413516993"
+X-IronPort-AV: E=Sophos;i="5.73,433,1583222400"; d="scan'208";a="441738068"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga004.jf.intel.com with ESMTP; 25 May 2020 06:53:40 -0700
+ by orsmga005.jf.intel.com with ESMTP; 25 May 2020 06:57:24 -0700
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 97C0D5C2C45; Mon, 25 May 2020 16:51:18 +0300 (EEST)
+ id 047CA5C2C45; Mon, 25 May 2020 16:55:02 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200525075347.582-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525075347.582-3-chris@chris-wilson.co.uk>
 References: <20200525075347.582-1-chris@chris-wilson.co.uk>
- <20200525075347.582-2-chris@chris-wilson.co.uk>
-Date: Mon, 25 May 2020 16:51:18 +0300
-Message-ID: <87imgkt961.fsf@gaia.fi.intel.com>
+ <20200525075347.582-3-chris@chris-wilson.co.uk>
+Date: Mon, 25 May 2020 16:55:02 +0300
+Message-ID: <87ftbot8zt.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915/gt: Cancel the flush worker
- more thoroughly
+Subject: Re: [Intel-gfx] [PATCH 03/12] drm/i915/gem: Suppress some random
+ warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +57,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> Since the worker may rearm, we currently are only guaranteed to flush
-> the work if we cancel the timer. If the work was running at the time we
-> try and cancel it, we will wait for it to complete, but it may leave
-> items in the pool and requeue the work. If we rearrange the immediate
-> discard of the pool then cancel the work, we know that the work cannot
-> rearm and so our flush will be final.
->
-> <0> [314.146044] i915_mod-1321    2.... 299799443us : intel_gt_fini_buffer_pool: intel_gt_fini_buffer_pool:227 GEM_BUG_ON(!list_empty(&pool->cache_list[n]))
+> Leave the error propagation in place, but limit the warnings to only
+> show up in CI if the unlikely errors are hit.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> index 1495054a4305..418ae184cecf 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> @@ -212,8 +212,9 @@ void intel_gt_flush_buffer_pool(struct intel_gt *gt)
->  {
->  	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
->  
-> -	if (cancel_delayed_work_sync(&pool->work))
-> +	do {
->  		pool_free_imm(pool);
-> +	} while (cancel_delayed_work_sync(&pool->work));
-
-Yeah changing of order makes sense. If you want
-a guarantee that the finit goes as you expect, you
-could add two cancel_delayed_work_sync and assert
-that the final one return false.
 
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
->  }
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 +--
+>  drivers/gpu/drm/i915/gem/i915_gem_phys.c       | 3 +--
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 3 +--
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c    | 2 +-
+>  4 files changed, 4 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index e4fb6c372537..219a36995b96 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1626,8 +1626,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>  			err = i915_vma_bind(target->vma,
+>  					    target->vma->obj->cache_level,
+>  					    PIN_GLOBAL, NULL);
+> -			if (drm_WARN_ONCE(&i915->drm, err,
+> -				      "Unexpected failure to bind target VMA!"))
+> +			if (err)
+>  				return err;
+>  		}
+>  	}
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> index 4c1c7232b024..12245a47e5fb 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> @@ -27,8 +27,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
+>  	void *dst;
+>  	int i;
 >  
->  void intel_gt_fini_buffer_pool(struct intel_gt *gt)
+> -	if (drm_WARN_ON(obj->base.dev,
+> -			i915_gem_object_needs_bit17_swizzle(obj)))
+> +	if (GEM_WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
+>  		return -EINVAL;
+>  
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 7aff3514d97a..7cf8548ff708 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -147,8 +147,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>  		last_pfn = page_to_pfn(page);
+>  
+>  		/* Check that the i965g/gm workaround works. */
+> -		drm_WARN_ON(&i915->drm,
+> -			    (gfp & __GFP_DMA32) && (last_pfn >= 0x00100000UL));
+> +		GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
+>  	}
+>  	if (sg) { /* loop terminated early; short sg table */
+>  		sg_page_sizes |= sg->length;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index 8b0708708671..2226146b01c9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -235,7 +235,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
+>  	if (flags & I915_USERPTR_UNSYNCHRONIZED)
+>  		return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
+>  
+> -	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
+> +	if (GEM_WARN_ON(!obj->userptr.mm))
+>  		return -EINVAL;
+>  
+>  	mn = i915_mmu_notifier_find(obj->userptr.mm);
 > -- 
 > 2.20.1
 >
