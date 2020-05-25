@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12DE01E105B
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 16:20:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4341E10A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 16:36:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A22189E3E;
-	Mon, 25 May 2020 14:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA2E89F2D;
+	Mon, 25 May 2020 14:36:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50B9589C29
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 14:20:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21287753-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 15:19:54 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 May 2020 15:19:57 +0100
-Message-Id: <20200525141957.3061-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200525141957.3061-1-chris@chris-wilson.co.uk>
-References: <20200525141957.3061-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C9D489F2A;
+ Mon, 25 May 2020 14:36:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66B00A47EA;
+ Mon, 25 May 2020 14:36:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gem: Suppress some random warnings
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 25 May 2020 14:36:07 -0000
+Message-ID: <159041736741.4528.805714939286640610@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200525124912.16019-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525124912.16019-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Only_query_DP_state_of_a_DDI_encoder?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,81 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Leave the error propagation in place, but limit the warnings to only
-show up in CI if the unlikely errors are hit.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_phys.c       | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 3 +--
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c    | 2 +-
- 4 files changed, 4 insertions(+), 7 deletions(-)
+Series: drm/i915/display: Only query DP state of a DDI encoder
+URL   : https://patchwork.freedesktop.org/series/77635/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index e4fb6c372537..219a36995b96 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1626,8 +1626,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
- 			err = i915_vma_bind(target->vma,
- 					    target->vma->obj->cache_level,
- 					    PIN_GLOBAL, NULL);
--			if (drm_WARN_ONCE(&i915->drm, err,
--				      "Unexpected failure to bind target VMA!"))
-+			if (err)
- 				return err;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index 4c1c7232b024..12245a47e5fb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -27,8 +27,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
- 	void *dst;
- 	int i;
- 
--	if (drm_WARN_ON(obj->base.dev,
--			i915_gem_object_needs_bit17_swizzle(obj)))
-+	if (GEM_WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
- 		return -EINVAL;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 7aff3514d97a..7cf8548ff708 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -147,8 +147,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 		last_pfn = page_to_pfn(page);
- 
- 		/* Check that the i965g/gm workaround works. */
--		drm_WARN_ON(&i915->drm,
--			    (gfp & __GFP_DMA32) && (last_pfn >= 0x00100000UL));
-+		GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
- 	}
- 	if (sg) { /* loop terminated early; short sg table */
- 		sg_page_sizes |= sg->length;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 8b0708708671..2226146b01c9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -235,7 +235,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
- 	if (flags & I915_USERPTR_UNSYNCHRONIZED)
- 		return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
- 
--	if (drm_WARN_ON(obj->base.dev, obj->userptr.mm == NULL))
-+	if (GEM_WARN_ON(!obj->userptr.mm))
- 		return -EINVAL;
- 
- 	mn = i915_mmu_notifier_find(obj->userptr.mm);
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8530 -> Patchwork_17770
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17770/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17770 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-hsw-4770:        [FAIL][1] ([i915#1892]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8530/fi-hsw-4770/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17770/fi-hsw-4770/boot.html
+
+  
+  [i915#1892]: https://gitlab.freedesktop.org/drm/intel/issues/1892
+
+
+Participating hosts (49 -> 44)
+------------------------------
+
+  Additional (2): fi-kbl-7560u fi-whl-u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8530 -> Patchwork_17770
+
+  CI-20190529: 20190529
+  CI_DRM_8530: 5837860f93ba9d456fc0432300968332c0aa65b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5678: c1f30ee09ac2e7eb3e8e90245239731a169a6050 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17770: 2c9b4a36cccde04c5c805aa0fc45faa685302bb1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2c9b4a36cccd drm/i915/display: Only query DP state of a DDI encoder
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17770/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
