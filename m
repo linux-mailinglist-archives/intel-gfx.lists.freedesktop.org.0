@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029961E0864
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 10:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0A3F1E0867
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2020 10:04:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52A6C6E02A;
-	Mon, 25 May 2020 08:03:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 185466E04E;
+	Mon, 25 May 2020 08:04:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F31536E02A
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2020 08:03:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21284325-1500050 for multiple; Mon, 25 May 2020 09:03:35 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6B26B6E045;
+ Mon, 25 May 2020 08:04:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 68A3FA008A;
+ Mon, 25 May 2020 08:04:38 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <d391e915b930423ea02677a0b0afed3e@intel.com>
-References: <20200519131117.17190-1-stanislav.lisovskiy@intel.com>,
- <159004412790.4443.16666170953617018239@emeril.freedesktop.org>
- <7805def3c6354f17bf7d57c416f000aa@intel.com>
- <159018481048.32320.7761007190791714467@build.alporthouse.com>,
- <159018952416.11139.8295799937981887072@build.alporthouse.com>
- <d391e915b930423ea02677a0b0afed3e@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>, "Vudum,
- Lakshminarayana" <lakshminarayana.vudum@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [Intel-gfx]  ✗ Fi.CI.IGT: failure for Consider DBuf bandwidth when calculating CDCLK (rev18)
-Message-ID: <159039381690.30979.6896983521245965877@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 25 May 2020 09:03:36 +0100
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 25 May 2020 08:04:38 -0000
+Message-ID: <159039387842.4526.14414525126755043548@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200525075347.582-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525075347.582-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B01/12=5D_drm/i915/gt=3A_Stop_cross-poll?=
+ =?utf-8?q?uting_PIN=5FGLOBAL_with_PIN=5FUSER_with_no-ppgtt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,16 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lisovskiy, Stanislav (2020-05-25 09:00:33)
-> I have seen those failures in other patches as well, i.e before my patches landed.
+== Series Details ==
 
-Look again. CI is very clear, as is the bisect and revert.
--Chris
+Series: series starting with [01/12] drm/i915/gt: Stop cross-polluting PIN_GLOBAL with PIN_USER with no-ppgtt
+URL   : https://patchwork.freedesktop.org/series/77627/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
++./include/linux/compiler.h:199:9: warning: context imbalance in 'engines_sample' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
