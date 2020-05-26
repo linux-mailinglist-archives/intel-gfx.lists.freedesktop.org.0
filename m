@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BF81E2626
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 17:58:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3B31E2642
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 18:00:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 225B8898E4;
-	Tue, 26 May 2020 15:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 260D06E20E;
+	Tue, 26 May 2020 16:00:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF3078989A;
- Tue, 26 May 2020 15:58:15 +0000 (UTC)
-IronPort-SDR: 7sjg/2SHq4F5Cj0Pgi9EWQcZbK9+zD98FK1ZpRRGaGqFOXmqEmixPfsJ9zOgsTogAUG986jtDY
- 6vAIvSXZoFOA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF358989A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 16:00:11 +0000 (UTC)
+IronPort-SDR: QrsYiuxMVmXu3u3S02zzpbKzvqkSE8Y6PEHnFjmRi0vE3+nIwU/b3CYQ8MH5x1l3E9jbPRwfnt
+ mBo/4OXpgt3A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 08:58:15 -0700
-IronPort-SDR: 41XbdDFyTAolUyohPt2P/grcDnUQtlxhFisIHGTYQSjB/6fOG+INGi0p6AmwCCUWfHv+hUd643
- /aJc9b621fjQ==
-X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="468348613"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 09:00:10 -0700
+IronPort-SDR: /xMX7MeWVDBMfA1QwkUxAKPhUW4Ga/TkN/rB5Z3QhGAmfgwmGZC1GBz5yVcXqkgkx6l5mo4AsH
+ fvXeiBkLClPw==
+X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="468349222"
 Received: from ggueta-mobl.ger.corp.intel.com (HELO [10.214.234.171])
  ([10.214.234.171])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 08:58:13 -0700
+ 26 May 2020 09:00:08 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200526141723.401469-1-chris@chris-wilson.co.uk>
+References: <20200526090753.11329-1-chris@chris-wilson.co.uk>
+ <20200526090753.11329-2-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <3f1bd2ad-f9a2-c6dc-b878-3982eb01f150@linux.intel.com>
-Date: Tue, 26 May 2020 16:58:05 +0100
+Message-ID: <6016e5c6-cd09-dd3f-b102-49e76fa28518@linux.intel.com>
+Date: Tue, 26 May 2020 17:00:06 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200526141723.401469-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200526090753.11329-2-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/perf_pmu: Update inter-engine
- semaphore detection
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Do not schedule normal
+ requests immediately along virtual
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,45 +52,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 26/05/2020 15:17, Chris Wilson wrote:
-> The kernel no longer uses semaphores between engines, unless it can do
-> so by preempting them with timeslices. Update the semaphore-busy to only
-> run when we expect semaphore usage, i.e. not on bdw/bsw.
+On 26/05/2020 10:07, Chris Wilson wrote:
+> When we push a virtual request onto the HW, we update the rq->engine to
+> point to the physical engine. A request that is then submitted by the
+> user that waits upon the virtual engine, but along the physical engine
+> in use, will then see that it is due to be submitted to the same engine
+> and take a shortcut (and be queued without waiting for the completion
+> fence). However, the virtual request may be preempted (either by higher
+> priority users, or by timeslicing) and removed from the physical engine
+> to be migrated over to one of its siblings. The dependent normal request
+> however is oblivious to the removal of the virtual request and remains
+> queued to execute on HW, believing that once it reaches the head of its
+> queue all of its predecessors will have completed executing!
 > 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1939
+> v2: Beware restriction of signal->execution_mask prior to submission.
+> 
+> Fixes: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
+> Testcase: igt/gem_exec_balancer/sliced
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.3+
 > ---
->   tests/perf_pmu.c | 1 +
->   1 file changed, 1 insertion(+)
+>   drivers/gpu/drm/i915/i915_request.c | 25 +++++++++++++++++++++----
+>   1 file changed, 21 insertions(+), 4 deletions(-)
 > 
-> diff --git a/tests/perf_pmu.c b/tests/perf_pmu.c
-> index e54a0d47e..e80f730cf 100644
-> --- a/tests/perf_pmu.c
-> +++ b/tests/perf_pmu.c
-> @@ -822,6 +822,7 @@ sema_busy(int gem_fd,
->   	int fd;
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 33bbad623e02..0b07ccc7e9bc 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1237,6 +1237,25 @@ i915_request_await_execution(struct i915_request *rq,
+>   	return 0;
+>   }
 >   
->   	igt_require(gem_scheduler_has_semaphores(gem_fd));
-> +	igt_require(gem_scheduler_has_preemption(gem_fd));
->   
->   	fd = open_group(gem_fd,
->   			I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
-> 
+> +static int
+> +await_request_submit(struct i915_request *to, struct i915_request *from)
+> +{
+> +	/*
+> +	 * If we are waiting on a virtual engine, then it may be
+> +	 * constrained to execute on a single engine *prior* to submission.
+> +	 * When it is submitted, it will be first submitted to the virtual
+> +	 * engine and then passed to the physical engine. We cannot allow
+> +	 * the waiter to be submitted immediately to the physical engine
+> +	 * as it may then bypass the virtual request.
+> +	 */
+> +	if (to->engine == READ_ONCE(from->engine))
+> +		return i915_sw_fence_await_sw_fence_gfp(&to->submit,
+> +							&from->submit,
+> +							I915_FENCE_GFP);
+> +	else
 
-Test with perhaps too intimate knowledge of i915..
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+When can engines be different and the mask test below brought us here?
 
 Regards,
 
 Tvrtko
+
+> +		return __i915_request_await_execution(to, from, NULL);
+> +}
+> +
+>   static int
+>   i915_request_await_request(struct i915_request *to, struct i915_request *from)
+>   {
+> @@ -1258,10 +1277,8 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+>   			return ret;
+>   	}
+>   
+> -	if (to->engine == READ_ONCE(from->engine))
+> -		ret = i915_sw_fence_await_sw_fence_gfp(&to->submit,
+> -						       &from->submit,
+> -						       I915_FENCE_GFP);
+> +	if (is_power_of_2(to->execution_mask | READ_ONCE(from->execution_mask)))
+> +		ret = await_request_submit(to, from);
+>   	else
+>   		ret = emit_semaphore_wait(to, from, I915_FENCE_GFP);
+>   	if (ret < 0)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
