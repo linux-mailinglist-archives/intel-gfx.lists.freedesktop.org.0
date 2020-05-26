@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DE61E1F85
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 12:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D701E1FDC
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 12:38:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 708236E14B;
-	Tue, 26 May 2020 10:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D538A6E03D;
+	Tue, 26 May 2020 10:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1600C6E14A;
- Tue, 26 May 2020 10:19:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0F06EA73C8;
- Tue, 26 May 2020 10:19:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D3216E03D;
+ Tue, 26 May 2020 10:38:55 +0000 (UTC)
+IronPort-SDR: kBonFqtWbrvIczzt3ZI6tVMRmgcmijf4UpimWYFWyNeUVXV4qmJSNjt829MRyK4Uxi/D/10wPc
+ m/umiw7Gel8g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 03:38:54 -0700
+IronPort-SDR: A8Q+Ti1v2n+M61mElrsvkou9QHEbckaSJbS7xStxUBFeCL5NuIWLt67HsAG1NJZ87fimOI9snI
+ Jry4jw9XyIxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="345131161"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga001.jf.intel.com with ESMTP; 26 May 2020 03:38:51 -0700
+Date: Tue, 26 May 2020 16:08:52 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200526103851.GB20441@intel.com>
+References: <20200429195502.39919-1-sean@poorly.run>
+ <20200515144812.GB11877@intel.com>
+ <CAMavQKKv-3Wh=9QP=2Bf_FsSVcp4eXxPB9c80nDZwz-Wmvmz=w@mail.gmail.com>
+ <20200518164130.GA14897@intel.com>
+ <CAMavQKL495j9aVj_0_jnwATW-rmyU5V=coBB-keQ78+1bmREUg@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 26 May 2020 10:19:19 -0000
-Message-ID: <159048835905.28044.15047793011394254680@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200526090753.11329-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200526090753.11329-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Reorder_await=5Fexecuti?=
- =?utf-8?q?on_before_await=5Frequest?=
+Content-Disposition: inline
+In-Reply-To: <CAMavQKL495j9aVj_0_jnwATW-rmyU5V=coBB-keQ78+1bmREUg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v6 00/16] drm/i915: Add support for HDCP 1.4
+ over MST connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +52,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-05-20 at 09:11:38 -0400, Sean Paul wrote:
+> On Mon, May 18, 2020 at 12:41 PM Ramalingam C <ramalingam.c@intel.com> wrote:
+> >
+> > On 2020-05-18 at 10:32:09 -0400, Sean Paul wrote:
+> > > On Fri, May 15, 2020 at 10:48 AM Ramalingam C <ramalingam.c@intel.com> wrote:
+> > > >
+> > > > On 2020-04-29 at 15:54:46 -0400, Sean Paul wrote:
+> > > > > From: Sean Paul <seanpaul@chromium.org>
+> > > > >
+> > > > > Changes in v6:
+> > > > > -Rebased on -tip
+> > > > > -Disabled HDCP over MST on GEN12
+> > > > > -Addressed Lyude's review comments in the QUERY_STREAM_ENCRYPTION_STATUS patch
+> > > >
+> > > > Sean,
+> > > >
+> > > > What is the test setup you have used?
+> > > >
+> > >
+> > > Hi Ram,
+> > > Thanks for the feedback. To be completely honest it's really
+> > > frustrating that I'm just now getting questions and review feedback
+> > > (which I've been begging for on IRC) on this review that could have
+> > > been addressed ~5 months ago. It's super disruptive to have to keep
+> > > switching back to this after a long hiatus and many i915 refactors
+> > > complicating my rebases.
+> > Hi Sean,
+> >
+> > As a developer I really feel bad for the delay happened in review.
+> > I couldn't spend required time for understanding MST part hence I
+> > couldn't review.
+> >
+> > Just for this series now I have started preparing myself on these topics,
+> > hence started reviewing the series.
+> >
+> > If you are still interested to work on this, I can commit for regular reviews.
+> >
+> 
+> Thanks Ram. I'm still incentivized to get this in. Once you have had a
+> chance to look over the whole series, I'll revise again.
+Sean
 
-Series: series starting with [1/2] drm/i915: Reorder await_execution before await_request
-URL   : https://patchwork.freedesktop.org/series/77653/
-State : success
+I have already gone through the whole series when I commented before.
+Most of the prepation patches are looking good. I am having questions
+on MST HDCP enabling sequence and what is the decision on streams to be
+encrypted on the MST HDCP link (all/selective) etc.
 
-== Summary ==
+Which were posted on https://patchwork.freedesktop.org/patch/363798/?series=70393&rev=6
 
-CI Bug Log - changes from CI_DRM_8537 -> Patchwork_17775
-====================================================
+And also, could you please explain the level of testing this series has
+gone through?
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17775/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17775 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#165])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8537/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17775/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-
-
-Participating hosts (50 -> 45)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8537 -> Patchwork_17775
-
-  CI-20190529: 20190529
-  CI_DRM_8537: 05a47cd761c49c3fa87648c30df0fd4d64b0b8c5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5678: c1f30ee09ac2e7eb3e8e90245239731a169a6050 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17775: 95d84329d1e9e74b00a4372c6b5b24a4d5a58d0c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-95d84329d1e9 drm/i915/gt: Do not schedule normal requests immediately along virtual
-acc962187d69 drm/i915: Reorder await_execution before await_request
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17775/index.html
+-Ram
+> 
+> Sean
+> 
+> 
+> 
+> > Thanks,
+> > Ram.
+> > >
+> > > If no one wants this patchset, that's fine, please just let me know so
+> > > I don't waste any more time. If Intel is interested, could we please
+> > > stop the review trickle and lay out exactly what needs to be done to
+> > > get this landed?
+> > >
+> > > Sean
+> > >
+> > >
+> > > > I am afraid our CI dont have the coverage for MST capability yet to provide
+> > > > the functional status of the code.
+> > > >
+> > > > -Ram.
+> > > > >
+> > > > > Sean Paul (16):
+> > > > >   drm/i915: Fix sha_text population code
+> > > > >   drm/i915: Clear the repeater bit on HDCP disable
+> > > > >   drm/i915: WARN if HDCP signalling is enabled upon disable
+> > > > >   drm/i915: Intercept Aksv writes in the aux hooks
+> > > > >   drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP
+> > > > >     signalling
+> > > > >   drm/i915: Factor out hdcp->value assignments
+> > > > >   drm/i915: Protect workers against disappearing connectors
+> > > > >   drm/i915: Don't fully disable HDCP on a port if multiple pipes are
+> > > > >     using it
+> > > > >   drm/i915: Support DP MST in enc_to_dig_port() function
+> > > > >   drm/i915: Use ddi_update_pipe in intel_dp_mst
+> > > > >   drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
+> > > > >   drm/i915: Plumb port through hdcp init
+> > > > >   drm/i915: Add connector to hdcp_shim->check_link()
+> > > > >   drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband
+> > > > >     message
+> > > > >   drm/i915: Print HDCP version info for all connectors
+> > > > >   drm/i915: Add HDCP 1.4 support for MST connectors
+> > > > >
+> > > > >  drivers/gpu/drm/drm_dp_mst_topology.c         | 142 ++++
+> > > > >  drivers/gpu/drm/i915/Makefile                 |   1 +
+> > > > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  29 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_ddi.h      |   2 +
+> > > > >  .../drm/i915/display/intel_display_debugfs.c  |  21 +-
+> > > > >  .../drm/i915/display/intel_display_types.h    |  30 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_dp.c       | 654 +--------------
+> > > > >  drivers/gpu/drm/i915/display/intel_dp.h       |   9 +
+> > > > >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 743 ++++++++++++++++++
+> > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  19 +
+> > > > >  drivers/gpu/drm/i915/display/intel_hdcp.c     | 217 +++--
+> > > > >  drivers/gpu/drm/i915/display/intel_hdcp.h     |   2 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  25 +-
+> > > > >  .../drm/selftests/test-drm_dp_mst_helper.c    |  17 +
+> > > > >  include/drm/drm_dp_helper.h                   |   3 +
+> > > > >  include/drm/drm_dp_mst_helper.h               |  44 ++
+> > > > >  include/drm/drm_hdcp.h                        |   3 +
+> > > > >  17 files changed, 1235 insertions(+), 726 deletions(-)
+> > > > >  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > > > >
+> > > > > --
+> > > > > Sean Paul, Software Engineer, Google / Chromium OS
+> > > > >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
