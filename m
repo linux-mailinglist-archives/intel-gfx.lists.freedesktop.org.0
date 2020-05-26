@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFDC1E29C1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 20:10:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1191C1E29F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 20:23:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C672B6E245;
-	Tue, 26 May 2020 18:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9586E03B;
+	Tue, 26 May 2020 18:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 455E76E245
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 18:10:51 +0000 (UTC)
-IronPort-SDR: AotivmX/e3s4JFAnXPuKfL++ZjakVPWGR7btIopCEpxC6NWfhERwc8kbxNOP84aYWQy5Nnn/9G
- 08wGrGIHnw2g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 11:10:50 -0700
-IronPort-SDR: cLOQcFuMZGlo8BYKdbciXJEHKNjQtE19yWFDAqp1KMf29BUsKOmEuAxUSBBqoz11l3JW2Oeg/W
- ESMpYm2YpGmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="468441446"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga006.fm.intel.com with ESMTP; 26 May 2020 11:10:50 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.18.124.199) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 26 May 2020 11:10:50 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.9]) by
- fmsmsx101.amr.corp.intel.com ([169.254.1.249]) with mapi id 14.03.0439.000;
- Tue, 26 May 2020 11:10:49 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 09/37] drm/i915: Add has_master_unit_irq flag
-Thread-Index: AQHWLwgeNqKArjn1nUWky7e7zkF5Oai7KemA
-Date: Tue, 26 May 2020 18:10:49 +0000
-Message-ID: <b27eff53f136a335ec857b07e1c332fd6dac0146.camel@intel.com>
-References: <20200521003803.18936-1-lucas.demarchi@intel.com>
- <20200521003803.18936-10-lucas.demarchi@intel.com>
-In-Reply-To: <20200521003803.18936-10-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.255.73.147]
-Content-ID: <C0E1F2D38530164392F974F6A19C0BA6@intel.com>
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC006E24E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 18:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1590517404;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=5+EU/K2kj/k8K0E7hESfXaQ4YimAcr8+UqvyVfx2X4A=;
+ b=PIKlKpTvki22GI2GiUVN/ib6fASFudlamnHZx5fja/RShN2AbqE0+LHzwBF/pzsSPm6Wxx
+ tvkBQ+MjDY2c/bY2sRDJ8wo6ARwfAOis/ltHxfM/KR+Ii1DKHEpCvhH7ANvsJZDZNfZu7u
+ 85vxyBR0yBPTf8UE+/JQG02TfvX3QiA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-169-g6Gi8_IIO7aRX8Un7vznuA-1; Tue, 26 May 2020 14:23:19 -0400
+X-MC-Unique: g6Gi8_IIO7aRX8Un7vznuA-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 51C4C8018AD;
+ Tue, 26 May 2020 18:23:17 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-120-19.rdu2.redhat.com
+ [10.10.120.19])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id BAE0079C40;
+ Tue, 26 May 2020 18:23:14 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue, 26 May 2020 14:23:08 -0400
+Message-Id: <20200526182313.4005-1-lyude@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 09/37] drm/i915: Add has_master_unit_irq flag
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Subject: [Intel-gfx] [PATCH 0/2] drm/probe_helper,
+ i915: Validate MST modes against PBN limits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,43 +56,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>,
- "fernando.pacheco@intel.com" <fernando.pacheco@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTA1LTIwIGF0IDE3OjM3IC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
-DQo+IEZyb206IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+DQo+IA0K
-PiBBZGQgZmxhZyB0byBkaWZmZXJlbnRpYXRlIHBsYXRmb3JtcyB3aXRoIGFuZCB3aXRob3V0IHRo
-ZSBtYXN0ZXINCj4gSVJRIGNvbnRyb2wgYml0Lg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0
-byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6
-IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYt
-Ynk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiAtLS0NCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgfCAyICsrDQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIHwgMSArDQo+ICAyIGZpbGVzIGNo
-YW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+IGlu
-ZGV4IGJlZDEyNzk5NDk1Yi4uMTYyYjFlYWQ4OGQzIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-ZHJ2LmgNCj4gQEAgLTE1ODAsNiArMTU4MCw4IEBAIElTX1NVQlBMQVRGT1JNKGNvbnN0IHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1LA0KPiAgI2RlZmluZSBIQVNfTE9HSUNBTF9SSU5HX1BS
-RUVNUFRJT04oZGV2X3ByaXYpIFwNCj4gIAkJKElOVEVMX0lORk8oZGV2X3ByaXYpLT5oYXNfbG9n
-aWNhbF9yaW5nX3ByZWVtcHRpb24pDQo+ICANCj4gKyNkZWZpbmUgSEFTX01BU1RFUl9VTklUX0lS
-UShkZXZfcHJpdikgKElOVEVMX0lORk8oZGV2X3ByaXYpLT5oYXNfbWFzdGVyX3VuaXRfaXJxKQ0K
-PiArDQo+ICAjZGVmaW5lIEhBU19FWEVDTElTVFMoZGV2X3ByaXYpIEhBU19MT0dJQ0FMX1JJTkdf
-Q09OVEVYVFMoZGV2X3ByaXYpDQo+ICANCj4gICNkZWZpbmUgSU5URUxfUFBHVFQoZGV2X3ByaXYp
-IChJTlRFTF9JTkZPKGRldl9wcml2KS0+cHBndHRfdHlwZSkNCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+IGluZGV4IGM5MTJhY2QwNjEwOS4uY2VkOTc5YzliMzY2
-IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5o
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgNCj4gQEAg
-LTEyMSw2ICsxMjEsNyBAQCBlbnVtIGludGVsX3BwZ3R0X3R5cGUgew0KPiAgCWZ1bmMoaGFzX2xv
-Z2ljYWxfcmluZ19jb250ZXh0cyk7IFwNCj4gIAlmdW5jKGhhc19sb2dpY2FsX3JpbmdfZWxzcSk7
-IFwNCj4gIAlmdW5jKGhhc19sb2dpY2FsX3JpbmdfcHJlZW1wdGlvbik7IFwNCj4gKwlmdW5jKGhh
-c19tYXN0ZXJfdW5pdF9pcnEpOyBcDQo+ICAJZnVuYyhoYXNfcG9vbGVkX2V1KTsgXA0KPiAgCWZ1
-bmMoaGFzX3JjNik7IFwNCj4gIAlmdW5jKGhhc19yYzZwKTsgXA0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Something we've been missing for a while with drivers that support MST
+is being able to prune modes that can't be set due to bandwidth
+limitations. So, let's go ahead and add that. This also adds a new hook
+that was needed, mode_valid_ctx, so that we can grab additional locks as
+needed when validating modes.
+
+Lee Shawn C (1):
+  drm/i915/mst: filter out the display mode exceed sink's capability
+
+Lyude Paul (1):
+  drm/probe_helper: Add drm_connector_helper_funcs.mode_valid_ctx
+
+ drivers/gpu/drm/drm_crtc_helper_internal.h  |  6 +-
+ drivers/gpu/drm/drm_probe_helper.c          | 65 ++++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 39 +++++++++++--
+ include/drm/drm_modeset_helper_vtables.h    | 41 +++++++++++++
+ 4 files changed, 123 insertions(+), 28 deletions(-)
+
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
