@@ -2,41 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83DE01E2969
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 19:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B706B1E296B
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 19:51:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACEFB6E047;
-	Tue, 26 May 2020 17:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC096E182;
+	Tue, 26 May 2020 17:51:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB5E6E047
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 17:49:29 +0000 (UTC)
-IronPort-SDR: unSfg6voFMikXXic8ybUjCP+j0dCe+PY36Ub6JsEUhVrE/Nbhsu1CmTdr1dni6MR8bKnF2AvcU
- 0gtvxm+sPjdg==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59F26E182
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 17:51:05 +0000 (UTC)
+IronPort-SDR: aIZYhv7qepMLp7RVrUGM792Uwxr7CIQmbfKQb1yvQ1Nm0fy7voeEdvmPEv7XTUW+3N7pkIKPYR
+ l9uQokja/tKw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 10:49:28 -0700
-IronPort-SDR: F8I6wDZy8soAdj4oj7HtgUlv777+mD5/9eg7ZzjDkNZxZG5l+LFA7Akr1f8j5/zKiRp+L07sXL
- YWtu5OUt2ipw==
-X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="468433945"
-Received: from shivagup-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.227.40])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 10:49:28 -0700
-Date: Tue, 26 May 2020 10:49:27 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200526174927.haclk2ircclmv7vg@ldmartin-desk1>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 10:51:05 -0700
+IronPort-SDR: 6O3anlu1pPk+B+i1YLqPRpZiZ38KrOyZMXWVzQtcfXWmP4C6uNJG4zVWtz0XSNJrxfeWRjPGaO
+ PwvasECkWLlg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="255486231"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by orsmga007.jf.intel.com with ESMTP; 26 May 2020 10:51:04 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.9]) by
+ fmsmsx107.amr.corp.intel.com ([169.254.6.191]) with mapi id 14.03.0439.000;
+ Tue, 26 May 2020 10:51:04 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 11/37] drm/i915/dg1: add initial DG-1
+ definitions
+Thread-Index: AQHWLwgqCOCrlgd2TEGDMRtBSD0puqi7JGUA
+Date: Tue, 26 May 2020 17:51:04 +0000
+Message-ID: <7b87b8e4f7185c069808b313c0d922957c1d5d3b.camel@intel.com>
 References: <20200521003803.18936-1-lucas.demarchi@intel.com>
- <20200521003803.18936-36-lucas.demarchi@intel.com>
- <585e94ab19c0f9cabdc09b7b4e2493fcacdc7fae.camel@intel.com>
+ <20200521003803.18936-12-lucas.demarchi@intel.com>
+In-Reply-To: <20200521003803.18936-12-lucas.demarchi@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.255.73.147]
+Content-ID: <ECEED98C74892D49A7444C4692099249@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <585e94ab19c0f9cabdc09b7b4e2493fcacdc7fae.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 35/37] drm/i915/dg1: Load DMC
+Subject: Re: [Intel-gfx] [PATCH 11/37] drm/i915/dg1: add initial DG-1
+ definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,95 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>,
+Cc: "Auld, Matthew" <matthew.auld@intel.com>,
  "fernando.pacheco@intel.com" <fernando.pacheco@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 26, 2020 at 10:42:30AM -0700, Jose Souza wrote:
->On Wed, 2020-05-20 at 17:38 -0700, Lucas De Marchi wrote:
->> From: Matt Atwood <matthew.s.atwood@intel.com>
->>
->> Add support to load DMC v2.0.2 on DG1
->>
->> While we're at it, tweak the TGL and RKL firmware size definition to
->> follow the convention used in previous platforms. Remove obsolete
->> commenting.
->>
->> Bpec: 49230
->>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_csr.c | 19 +++++++++++++------
->>  1 file changed, 13 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
->> index 319932b03e88..1f05876620fe 100644
->> --- a/drivers/gpu/drm/i915/display/intel_csr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_csr.c
->> @@ -38,15 +38,19 @@
->>   * low-power state and comes back to normal.
->>   */
->>
->> -#define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
->
->Why GEN12_CSR_MAX_FW_SIZE was replaced by platform size if the size is still the same for all?
-
-Previous platforms used it per platform rather than gen, so I guess
-this is what Matt Atwood intended to do and wrote in the last paragraph
-in the commit message.
-
-I think we could go either way... no strong opinion on one vs the other.
-
-Lucas De Marchi
-
->
->> +#define DG1_CSR_PATH			"i915/dg1_dmc_ver2_02.bin"
->> +#define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
->> +#define DG1_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
->> +MODULE_FIRMWARE(DG1_CSR_PATH);
->>
->>  #define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
->>  #define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
->> +#define RKL_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
->>  MODULE_FIRMWARE(RKL_CSR_PATH);
->>
->>  #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_06.bin"
->>  #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 6)
->> -#define TGL_CSR_MAX_FW_SIZE		0x6000
->> +#define TGL_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
->>  MODULE_FIRMWARE(TGL_CSR_PATH);
->>
->>  #define ICL_CSR_PATH			"i915/icl_dmc_ver1_09.bin"
->> @@ -686,15 +690,18 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
->>  	 */
->>  	intel_csr_runtime_pm_get(dev_priv);
->>
->> -	if (IS_ROCKETLAKE(dev_priv)) {
->> +	if (IS_DG1(dev_priv)) {
->> +		csr->fw_path = DG1_CSR_PATH;
->> +		csr->required_version = DG1_CSR_VERSION_REQUIRED;
->> +		csr->max_fw_size = DG1_CSR_MAX_FW_SIZE;
->> +	} else if (IS_ROCKETLAKE(dev_priv)) {
->>  		csr->fw_path = RKL_CSR_PATH;
->>  		csr->required_version = RKL_CSR_VERSION_REQUIRED;
->> -		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
->> +		csr->max_fw_size = RKL_CSR_MAX_FW_SIZE;
->>  	} else if (INTEL_GEN(dev_priv) >= 12) {
->>  		csr->fw_path = TGL_CSR_PATH;
->>  		csr->required_version = TGL_CSR_VERSION_REQUIRED;
->> -		/* Allow to load fw via parameter using the last known size */
->> -		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
->> +		csr->max_fw_size = TGL_CSR_MAX_FW_SIZE;
->>  	} else if (IS_GEN(dev_priv, 11)) {
->>  		csr->fw_path = ICL_CSR_PATH;
->>  		csr->required_version = ICL_CSR_VERSION_REQUIRED;
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTA1LTIwIGF0IDE3OjM3IC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+DQo+IEZyb206IEFiZGllbCBKYW51bGd1ZSA8YWJkaWVsLmphbnVsZ3VlQGxpbnV4LmludGVsLmNv
+bT4NCj4gDQo+IEJzcGVjOiAzMzYxNywgMzM2MTcNCj4gDQo+IENjOiBKb3PDqSBSb2JlcnRvIGRl
+IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVy
+aW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+DQo+IENjOiBTdHVhcnQgU3VtbWVy
+cyA8c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPg0KPiBDYzogVmFuc2hpZGhhciBLb25kYSA8dmFu
+c2hpZGhhci5yLmtvbmRhQGludGVsLmNvbT4NCj4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMu
+ZGVtYXJjaGlAaW50ZWwuY29tPg0KPiBDYzogQXJhdmluZCBJZGRhbXNldHR5IDxhcmF2aW5kLmlk
+ZGFtc2V0dHlAaW50ZWwuY29tPg0KPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGlu
+dGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogQWJkaWVsIEphbnVsZ3VlIDxhYmRpZWwuamFudWxn
+dWVAbGludXguaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBMdWNhcyBEZSBNYXJjaGkgPGx1
+Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2Rydi5oICAgICAgICAgIHwgIDcgKysrKysrKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9wY2kuYyAgICAgICAgICB8IDEyICsrKysrKysrKysrKw0KPiAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyB8ICAxICsNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2ludGVsX2RldmljZV9pbmZvLmggfCAgMSArDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDIxIGluc2Vy
+dGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
+di5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiBpbmRleCBhOTg0NjIwNWE1
+ZTIuLjM4MjcwM2E2YzE3ZCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+IEBAIC0x
+NDIxLDYgKzE0MjEsNyBAQCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSwNCj4gICNkZWZpbmUgSVNfRUxLSEFSVExBS0UoZGV2X3ByaXYpCUlTX1BMQVRG
+T1JNKGRldl9wcml2LCBJTlRFTF9FTEtIQVJUTEFLRSkNCj4gICNkZWZpbmUgSVNfVElHRVJMQUtF
+KGRldl9wcml2KQlJU19QTEFURk9STShkZXZfcHJpdiwgSU5URUxfVElHRVJMQUtFKQ0KPiAgI2Rl
+ZmluZSBJU19ST0NLRVRMQUtFKGRldl9wcml2KQlJU19QTEFURk9STShkZXZfcHJpdiwgSU5URUxf
+Uk9DS0VUTEFLRSkNCj4gKyNkZWZpbmUgSVNfREcxKGRldl9wcml2KSAgICAgICAgSVNfUExBVEZP
+Uk0oZGV2X3ByaXYsIElOVEVMX0RHMSkNCj4gICNkZWZpbmUgSVNfSFNXX0VBUkxZX1NEVihkZXZf
+cHJpdikgKElTX0hBU1dFTEwoZGV2X3ByaXYpICYmIFwNCj4gIAkJCQkgICAgKElOVEVMX0RFVklE
+KGRldl9wcml2KSAmIDB4RkYwMCkgPT0gMHgwQzAwKQ0KPiAgI2RlZmluZSBJU19CRFdfVUxUKGRl
+dl9wcml2KSBcDQo+IEBAIC0xNTQxLDYgKzE1NDIsMTIgQEAgSVNfU1VCUExBVEZPUk0oY29uc3Qg
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ICAjZGVmaW5lIElTX1JLTF9SRVZJRChw
+LCBzaW5jZSwgdW50aWwpIFwNCj4gIAkoSVNfUk9DS0VUTEFLRShwKSAmJiBJU19SRVZJRChwLCBz
+aW5jZSwgdW50aWwpKQ0KPiAgDQo+ICsjZGVmaW5lIERHMV9SRVZJRF9BMAkJMHgwDQo+ICsjZGVm
+aW5lIERHMV9SRVZJRF9CMAkJMHgxDQo+ICsNCj4gKyNkZWZpbmUgSVNfREcxX1JFVklEKHAsIHNp
+bmNlLCB1bnRpbCkgXA0KPiArCShJU19ERzEocCkgJiYgSVNfUkVWSUQocCwgc2luY2UsIHVudGls
+KSkNCj4gKw0KPiAgI2RlZmluZSBJU19MUChkZXZfcHJpdikJKElOVEVMX0lORk8oZGV2X3ByaXYp
+LT5pc19scCkNCj4gICNkZWZpbmUgSVNfR0VOOV9MUChkZXZfcHJpdikJKElTX0dFTihkZXZfcHJp
+diwgOSkgJiYgSVNfTFAoZGV2X3ByaXYpKQ0KPiAgI2RlZmluZSBJU19HRU45X0JDKGRldl9wcml2
+KQkoSVNfR0VOKGRldl9wcml2LCA5KSAmJiAhSVNfTFAoZGV2X3ByaXYpKQ0KPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcGNpLmMNCj4gaW5kZXggYmU1MmQxYjc2YjJlLi5lNWE4NTFhMmRmZTcgMTAwNjQ0DQo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiBAQCAtODc0LDkgKzg3NCwyMSBAQCBzdGF0aWMgY29u
+c3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHJrbF9pbmZvID0gew0KPiAgDQo+ICAjZGVmaW5l
+IEdFTjEyX0RHRlhfRkVBVFVSRVMgXA0KPiAgCUdFTjEyX0ZFQVRVUkVTLCBcDQo+ICsJLm1lbW9y
+eV9yZWdpb25zID0gUkVHSU9OX1NNRU0gfCBSRUdJT05fTE1FTSwgXA0KPiAgCS5pc19kZ2Z4ID0g
+MSwgXA0KPiArCS5oYXNfbWFzdGVyX3VuaXRfaXJxID0gMSwgXA0KDQpBbHNvIGhhc19tYXN0ZXJf
+dW5pdF9pcnEgaXMgd3JvbmcsIGl0IHNob3VsZCBiZSBhZGRlZCBvbmx5IHRvIGludGVsX2RnMV9p
+bmZvLCBUR0wgZG9uJ3QgaGF2ZSBERzFfTVNUUl9VTklUX0lOVFIgYWNjb3JkaW5nIHRvIHRoZSAi
+ZHJtL2k5MTUvZGcxOiBhZGQNCnN1cHBvcnQgZm9yIHRoZSBtYXN0ZXIgdW5pdCBpbnRlcnJ1cHQi
+IGFuZCBCU3BlYzogNTA4NjINCg0KPiAgCS5oYXNfc25vb3BfcGNpZSA9IDENCj4gIA0KPiArc3Rh
+dGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBpbnRlbF9kZzFfaW5mbyA9IHsNCj4g
+KwlHRU4xMl9ER0ZYX0ZFQVRVUkVTLA0KPiArCVBMQVRGT1JNKElOVEVMX0RHMSksDQo+ICsJLnBp
+cGVfbWFzayA9IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQikgfCBCSVQoUElQRV9DKSB8IEJJVChQ
+SVBFX0QpLA0KPiArCS5yZXF1aXJlX2ZvcmNlX3Byb2JlID0gMSwNCj4gKwkuZW5naW5lX21hc2sg
+PQ0KPiArCQlCSVQoUkNTMCkgfCBCSVQoQkNTMCkgfCBCSVQoVkVDUzApIHwNCj4gKwkJQklUKFZD
+UzApIHwgQklUKFZDUzIpLA0KPiArfTsNCj4gKw0KPiAgI3VuZGVmIEdFTg0KPiAgI3VuZGVmIFBM
+QVRGT1JNDQo+ICANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rl
+dmljZV9pbmZvLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jDQo+
+IGluZGV4IGMyNDVjMTBjOWJlZS4uMjA3MjQ0YjlhODUyIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMNCj4gQEAgLTYyLDYgKzYyLDcgQEAgc3RhdGljIGNv
+bnN0IGNoYXIgKiBjb25zdCBwbGF0Zm9ybV9uYW1lc1tdID0gew0KPiAgCVBMQVRGT1JNX05BTUUo
+RUxLSEFSVExBS0UpLA0KPiAgCVBMQVRGT1JNX05BTUUoVElHRVJMQUtFKSwNCj4gIAlQTEFURk9S
+TV9OQU1FKFJPQ0tFVExBS0UpLA0KPiArCVBMQVRGT1JNX05BTUUoREcxKSwNCj4gIH07DQo+ICAj
+dW5kZWYgUExBVEZPUk1fTkFNRQ0KPiAgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2
+aWNlX2luZm8uaA0KPiBpbmRleCA0YmNhYTBkNmE5ZTYuLjY0MjYwZmFhYzAwNiAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaA0KPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+IEBAIC04MSw2ICs4MSw3
+IEBAIGVudW0gaW50ZWxfcGxhdGZvcm0gew0KPiAgCS8qIGdlbjEyICovDQo+ICAJSU5URUxfVElH
+RVJMQUtFLA0KPiAgCUlOVEVMX1JPQ0tFVExBS0UsDQo+ICsJSU5URUxfREcxLA0KPiAgCUlOVEVM
+X01BWF9QTEFURk9STVMNCj4gIH07DQo+ICANCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeAo=
