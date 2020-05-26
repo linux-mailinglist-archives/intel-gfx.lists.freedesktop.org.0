@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762CD1E1AD9
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 07:58:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E29B1E1D55
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 10:29:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF02E89915;
-	Tue, 26 May 2020 05:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C156E0F6;
+	Tue, 26 May 2020 08:29:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 065F689915
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 05:58:05 +0000 (UTC)
-IronPort-SDR: FsQQdfFrV5H9Q9SfM8Zv1Iv7nMSQ6QJxKDLHcsCf5TflrhVaFNA3J7jzlSjX78YyBpeS/jrM8T
- 904sNu63KJqA==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AC06E0F6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 08:29:52 +0000 (UTC)
+IronPort-SDR: cDsM4V9Q2EOTZ7l0twExVJ7v65YIRWb9nZcpJI36VoSIlc92ONJFYX+wq3ooq9oCsAYGeYKXGQ
+ cTYHT83HnjFw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2020 22:58:05 -0700
-IronPort-SDR: J3BR6kzAZ5CgffETOeT6o/yEY9HGKMcEz3/f3cKi9MsSbE9u3+Zqr34eFJRw24RDRsih3m21hg
- TDD54hMD6lBw==
-X-IronPort-AV: E=Sophos;i="5.73,436,1583222400"; d="scan'208";a="441956483"
-Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.215.137.24])
- ([10.215.137.24])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2020 22:58:02 -0700
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 01:29:51 -0700
+IronPort-SDR: PdH2TkbgXlSkzwslOc+Dk14MdFhjk0yibPX3c9I5HRmJWLRBeguiO+k7GWQqpI+xHzOLz6zOL/
+ 2Dr0l4iDc/5Q==
+X-IronPort-AV: E=Sophos;i="5.73,436,1583222400"; d="scan'208";a="468211825"
+Received: from ggueta-mobl.ger.corp.intel.com (HELO [10.214.234.171])
+ ([10.214.234.171])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 01:29:50 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200524233900.25598-1-chris@chris-wilson.co.uk>
-From: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <7176606b-53c6-ef9b-4cfe-57bdb17ed671@intel.com>
-Date: Tue, 26 May 2020 11:27:57 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+References: <20200525202901.32244-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <35df1c6a-dc43-b123-c80c-8d1af00ea1b4@linux.intel.com>
+Date: Tue, 26 May 2020 09:29:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200524233900.25598-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200525202901.32244-1-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix early deref of 'dsb'
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Do not schedule normal
+ requests immediately along virtual
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,40 +51,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: stable@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI1LTA1LTIwMjAgMDU6MDksIENocmlzIFdpbHNvbiB3cm90ZToKPiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jOjE3NyBpbnRlbF9kc2JfcmVnX3dyaXRlKCkgd2Fy
-bjogdmFyaWFibGUgZGVyZWZlcmVuY2VkIGJlZm9yZSBjaGVjayAnZHNiJyAoc2VlIGxpbmUgMTc1
-KQo+Cj4gRml4ZXM6IGFmZWRhNGYzYjFjOCAoImRybS9pOTE1L2RzYjogUHJlIGFsbG9jYXRlIGFu
-ZCBsYXRlIGNsZWFudXAgb2YgY21kIGJ1ZmZlciIpCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmls
-bGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gu
-bWFubmFAaW50ZWwuY29tPgo+IENjOiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29t
-PgoKVGhhbmtzIENocmlzIGZvciBjYXRjaGluZy4KUmV2aWV3ZWQtYnk6IEFuaW1lc2ggTWFubmEg
-PGFuaW1lc2gubWFubmFAaW50ZWwuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHNiLmMgfCA2ICsrKystLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kc2IuYwo+IGluZGV4IDQ3NTEwNmU5MWZhNy4uMjRlNmQ2M2UyZDQ3IDEwMDY0NAo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jCj4gQEAgLTE2OSwxNSArMTY5
-LDE3IEBAIHZvaWQgaW50ZWxfZHNiX2luZGV4ZWRfcmVnX3dyaXRlKGNvbnN0IHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAo+ICAgdm9pZCBpbnRlbF9kc2JfcmVnX3dyaXRlKGNv
-bnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAo+ICAgCQkJIGk5MTVfcmVn
-X3QgcmVnLCB1MzIgdmFsKQo+ICAgewo+IC0Jc3RydWN0IGludGVsX2RzYiAqZHNiID0gY3J0Y19z
-dGF0ZS0+ZHNiOwo+ICAgCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0Yyhj
-cnRjX3N0YXRlLT51YXBpLmNydGMpOwo+ICAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwo+IC0JdTMyICpidWYgPSBkc2ItPmNtZF9i
-dWY7Cj4gKwlzdHJ1Y3QgaW50ZWxfZHNiICpkc2I7Cj4gKwl1MzIgKmJ1ZjsKPiAgIAo+ICsJZHNi
-ID0gY3J0Y19zdGF0ZS0+ZHNiOwo+ICAgCWlmICghZHNiKSB7Cj4gICAJCWludGVsX2RlX3dyaXRl
-KGRldl9wcml2LCByZWcsIHZhbCk7Cj4gICAJCXJldHVybjsKPiAgIAl9Cj4gKwo+ICAgCWJ1ZiA9
-IGRzYi0+Y21kX2J1ZjsKPiAgIAlpZiAoZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIGRzYi0+
-ZnJlZV9wb3MgPj0gRFNCX0JVRl9TSVpFKSkgewo+ICAgCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYt
-PmRybSwgIkRTQiBidWZmZXIgb3ZlcmZsb3dcbiIpOwpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+
+On 25/05/2020 21:28, Chris Wilson wrote:
+> When we push a virtual request onto the HW, we update the rq->engine to
+> point to the physical engine. A request that is then submitted by the
+> user that waits upon the virtual engine, but along the physical engine
+> in use, will then see that it is due to be submitted to the same engine
+> and take a shortcut (and be queued without waiting for the completion
+> fence). However, the virtual request may be preempted (either by higher
+> priority users, or by timeslicing) and removed from the physical engine
+> to be migrated over to one of its siblings. The dependent normal request
+> however is oblivious to the removal of the virtual request and remains
+> queued to execute on HW, believing that once it reaches the head of its
+> queue all of its predecessors will have completed executing!
+> 
+> Fixes: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
+> Testcase: igt/gem_exec_balancer/sliced
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.3+
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index c282719ad3ac..51588209bddd 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1074,7 +1074,7 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+>   			return ret;
+>   	}
+>   
+> -	if (to->engine == from->engine)
+> +	if (is_power_of_2(to->execution_mask | READ_ONCE(from->execution_mask)))
+>   		ret = i915_sw_fence_await_sw_fence_gfp(&to->submit,
+>   						       &from->submit,
+>   						       I915_FENCE_GFP);
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
