@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BC01E25D0
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 17:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0BF81E2626
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 17:58:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06FF789B18;
-	Tue, 26 May 2020 15:43:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 225B8898E4;
+	Tue, 26 May 2020 15:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1EBAD89AEA;
- Tue, 26 May 2020 15:43:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 18355A47E8;
- Tue, 26 May 2020 15:43:43 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF3078989A;
+ Tue, 26 May 2020 15:58:15 +0000 (UTC)
+IronPort-SDR: 7sjg/2SHq4F5Cj0Pgi9EWQcZbK9+zD98FK1ZpRRGaGqFOXmqEmixPfsJ9zOgsTogAUG986jtDY
+ 6vAIvSXZoFOA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 08:58:15 -0700
+IronPort-SDR: 41XbdDFyTAolUyohPt2P/grcDnUQtlxhFisIHGTYQSjB/6fOG+INGi0p6AmwCCUWfHv+hUd643
+ /aJc9b621fjQ==
+X-IronPort-AV: E=Sophos;i="5.73,437,1583222400"; d="scan'208";a="468348613"
+Received: from ggueta-mobl.ger.corp.intel.com (HELO [10.214.234.171])
+ ([10.214.234.171])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 08:58:13 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200526141723.401469-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3f1bd2ad-f9a2-c6dc-b878-3982eb01f150@linux.intel.com>
+Date: Tue, 26 May 2020 16:58:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 26 May 2020 15:43:43 -0000
-Message-ID: <159050782306.28043.7616248334619090505@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200526150739.26147-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200526150739.26147-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Clear_LOCAL=5FBIND_from_shared_GGTT_on_resume?=
+In-Reply-To: <20200526141723.401469-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/perf_pmu: Update inter-engine
+ semaphore detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,64 +51,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/gt: Clear LOCAL_BIND from shared GGTT on resume
-URL   : https://patchwork.freedesktop.org/series/77666/
-State : success
+On 26/05/2020 15:17, Chris Wilson wrote:
+> The kernel no longer uses semaphores between engines, unless it can do
+> so by preempting them with timeslices. Update the semaphore-busy to only
+> run when we expect semaphore usage, i.e. not on bdw/bsw.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1939
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   tests/perf_pmu.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/tests/perf_pmu.c b/tests/perf_pmu.c
+> index e54a0d47e..e80f730cf 100644
+> --- a/tests/perf_pmu.c
+> +++ b/tests/perf_pmu.c
+> @@ -822,6 +822,7 @@ sema_busy(int gem_fd,
+>   	int fd;
+>   
+>   	igt_require(gem_scheduler_has_semaphores(gem_fd));
+> +	igt_require(gem_scheduler_has_preemption(gem_fd));
+>   
+>   	fd = open_group(gem_fd,
+>   			I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
+> 
 
-== Summary ==
+Test with perhaps too intimate knowledge of i915..
 
-CI Bug Log - changes from CI_DRM_8539 -> Patchwork_17779
-====================================================
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Summary
--------
+Regards,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17779/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8539 -> Patchwork_17779
-
-  CI-20190529: 20190529
-  CI_DRM_8539: 6590da76d8c6a2952b3cde70859bad41c59ed444 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5678: c1f30ee09ac2e7eb3e8e90245239731a169a6050 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17779: f2bb7a370b1aa4fee6d41385fab9a42099942db3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f2bb7a370b1a drm/i915/gt: Clear LOCAL_BIND from shared GGTT on resume
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17779/index.html
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
