@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC64A1E1F26
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 11:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F851E1F3E
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 12:00:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA83A6E125;
-	Tue, 26 May 2020 09:52:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6948B6E13F;
+	Tue, 26 May 2020 10:00:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8B16E125
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 09:52:44 +0000 (UTC)
-IronPort-SDR: yur9dn5G8jr4RCagI0uvcL77yJwaGgSMvUctySE1ZjJojbjLwITOREPWdDuDn2MVSlntmD6zc9
- muJW34ci3Hyg==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E54C46E139;
+ Tue, 26 May 2020 10:00:48 +0000 (UTC)
+IronPort-SDR: UBGcoyGq4YJ+xySkinmxVJ6X7rvT1Rmgl4tL/pIzmI3KN8mxR2IB6sFHUQCPzWe1xBNc4zfRm9
+ +SiPzuuWL2VA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2020 02:52:43 -0700
-IronPort-SDR: 0nNbTr9ShgVzZUek2J9tc9JMkH+rMJPAA9XhT9DL07UuOjmWwt0If/ktX/Z45Wjsepo6fvWwgQ
- Bt+kSmXcA5KA==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 03:00:48 -0700
+IronPort-SDR: szVmd2xzDbIDlo7gUFSjYUShiKVCYp56FziRag+KZ6gbDC5OwzLyffnZz0AKb9i9jHctkfUiq3
+ 3rNTw+NznYKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,436,1583222400"; d="scan'208";a="442023669"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 26 May 2020 02:52:41 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 May 2020 12:48:52 +0300
-Message-Id: <20200526094852.6967-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+X-IronPort-AV: E=Sophos;i="5.73,436,1583222400"; d="scan'208";a="310212894"
+Received: from unknown (HELO [10.252.61.10]) ([10.252.61.10])
+ by FMSMGA003.fm.intel.com with ESMTP; 26 May 2020 03:00:45 -0700
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
+ <20200512085944.222637-3-daniel.vetter@ffwll.ch>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <22c105a0-2c29-a609-2043-905093158215@linux.intel.com>
+Date: Tue, 26 May 2020 12:00:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1] drm/i915: Fix wrong CDCLK adjustment changes
+In-Reply-To: <20200512085944.222637-3-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 02/17] dma-fence: basic lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,243 +50,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Previous patch didn't take into account all pipes
-but only those in state, which could cause wrong
-CDCLK conclcusions and calculations.
-Also there was a severe issue with min_cdclk being
-assigned to 0 every compare cycle.
-
-Too bad this was found by me only after merge.
-This could be also causing the issues in test, however
-not clear - anyway marking this as fixing the
-"Adjust CDCLK accordingly to our DBuf bw needs".
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Fixes: cd1915460861 ("Adjust CDCLK accordingly to our DBuf bw needs")
----
- drivers/gpu/drm/i915/display/intel_bw.c      | 51 ++++++++++++--------
- drivers/gpu/drm/i915/display/intel_cdclk.c   | 19 +++++---
- drivers/gpu/drm/i915/display/intel_display.c | 26 +++++-----
- 3 files changed, 53 insertions(+), 43 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index a79bd7aeb03b..8096138abecc 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -437,6 +437,7 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
- 	struct intel_crtc *crtc;
- 	int max_bw = 0;
- 	int slice_id;
-+	enum pipe pipe;
- 	int i;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-@@ -447,7 +448,9 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
- 		if (IS_ERR(new_bw_state))
- 			return PTR_ERR(new_bw_state);
- 
--		crtc_bw = &new_bw_state->dbuf_bw[crtc->pipe];
-+		old_bw_state = intel_atomic_get_old_bw_state(state);
-+
-+		crtc_bw = &new_bw_state->dbuf_bw[pipe];
- 
- 		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
- 
-@@ -478,6 +481,15 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
- 			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
- 				crtc_bw->used_bw[slice_id] += data_rate;
- 		}
-+	}
-+
-+	if (!old_bw_state)
-+		return 0;
-+
-+	for_each_pipe(dev_priv, pipe) {
-+		struct intel_dbuf_bw *crtc_bw;
-+
-+		crtc_bw = &new_bw_state->dbuf_bw[pipe];
- 
- 		for_each_dbuf_slice(slice_id) {
- 			/*
-@@ -490,14 +502,9 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
- 			 */
- 			max_bw += crtc_bw->used_bw[slice_id];
- 		}
--
--		new_bw_state->min_cdclk = max_bw / 64;
--
--		old_bw_state = intel_atomic_get_old_bw_state(state);
- 	}
- 
--	if (!old_bw_state)
--		return 0;
-+	new_bw_state->min_cdclk = max_bw / 64;
- 
- 	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
- 		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
-@@ -511,34 +518,38 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
- 
- int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
- {
--	int i;
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct intel_bw_state *new_bw_state = NULL;
-+	struct intel_bw_state *old_bw_state = NULL;
- 	const struct intel_crtc_state *crtc_state;
- 	struct intel_crtc *crtc;
- 	int min_cdclk = 0;
--	struct intel_bw_state *new_bw_state = NULL;
--	struct intel_bw_state *old_bw_state = NULL;
-+	enum pipe pipe;
-+	int i;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		struct intel_cdclk_state *cdclk_state;
--
- 		new_bw_state = intel_atomic_get_bw_state(state);
- 		if (IS_ERR(new_bw_state))
- 			return PTR_ERR(new_bw_state);
- 
--		cdclk_state = intel_atomic_get_cdclk_state(state);
--		if (IS_ERR(cdclk_state))
--			return PTR_ERR(cdclk_state);
--
--		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
--
--		new_bw_state->min_cdclk = min_cdclk;
--
- 		old_bw_state = intel_atomic_get_old_bw_state(state);
- 	}
- 
- 	if (!old_bw_state)
- 		return 0;
- 
-+	for_each_pipe(dev_priv, pipe) {
-+		struct intel_cdclk_state *cdclk_state;
-+
-+		cdclk_state = intel_atomic_get_new_cdclk_state(state);
-+		if (!cdclk_state)
-+			return 0;
-+
-+		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
-+	}
-+
-+	new_bw_state->min_cdclk = min_cdclk;
-+
- 	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
- 		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index f9b0fc7317de..08468b121d02 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2084,9 +2084,12 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
- {
- 	struct intel_atomic_state *state = cdclk_state->base.state;
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct intel_bw_state *bw_state = NULL;
- 	struct intel_crtc *crtc;
- 	struct intel_crtc_state *crtc_state;
- 	int min_cdclk, i;
-+	enum pipe pipe;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
- 		int ret;
-@@ -2095,6 +2098,10 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
- 		if (min_cdclk < 0)
- 			return min_cdclk;
- 
-+		bw_state = intel_atomic_get_bw_state(state);
-+		if (IS_ERR(bw_state))
-+			return PTR_ERR(bw_state);
-+
- 		if (cdclk_state->min_cdclk[i] == min_cdclk)
- 			continue;
- 
-@@ -2106,15 +2113,11 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
- 	}
- 
- 	min_cdclk = cdclk_state->force_min_cdclk;
-+	for_each_pipe(dev_priv, pipe) {
-+		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
- 
--	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		struct intel_bw_state *bw_state;
--
--		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
--
--		bw_state = intel_atomic_get_bw_state(state);
--		if (IS_ERR(bw_state))
--			return PTR_ERR(bw_state);
-+		if (!bw_state)
-+			continue;
- 
- 		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f40b909952cc..66af8f3053ed 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -14708,13 +14708,14 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
- 				    bool *need_cdclk_calc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
--	int i;
-+	struct intel_cdclk_state *new_cdclk_state;
- 	struct intel_plane_state *plane_state;
-+	struct intel_bw_state *new_bw_state;
- 	struct intel_plane *plane;
-+	int min_cdclk = 0;
-+	enum pipe pipe;
- 	int ret;
--	struct intel_cdclk_state *new_cdclk_state;
--	struct intel_crtc_state *new_crtc_state;
--	struct intel_crtc *crtc;
-+	int i;
- 	/*
- 	 * active_planes bitmask has been updated, and potentially
- 	 * affected planes are part of the state. We can now
-@@ -14735,23 +14736,18 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
- 
--	if (!new_cdclk_state)
--		return 0;
--
--	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
--		struct intel_bw_state *bw_state;
--		int min_cdclk = 0;
-+	new_bw_state = intel_atomic_get_new_bw_state(state);
- 
--		min_cdclk = max(new_cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
-+	if (!new_cdclk_state || !new_bw_state)
-+		return 0;
- 
--		bw_state = intel_atomic_get_bw_state(state);
--		if (IS_ERR(bw_state))
--			return PTR_ERR(bw_state);
-+	for_each_pipe(dev_priv, pipe) {
-+		min_cdclk = max(new_cdclk_state->min_cdclk[pipe], min_cdclk);
- 
- 		/*
- 		 * Currently do this change only if we need to increase
- 		 */
--		if (bw_state->min_cdclk > min_cdclk)
-+		if (new_bw_state->min_cdclk > min_cdclk)
- 			*need_cdclk_calc = true;
- 	}
- 
--- 
-2.24.1.485.gad05a3d8e5
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T3AgMTItMDUtMjAyMCBvbSAxMDo1OSBzY2hyZWVmIERhbmllbCBWZXR0ZXI6Cj4gRGVzaWduIGlz
+IHNpbWlsYXIgdG8gdGhlIGxvY2tkZXAgYW5ub3RhdGlvbnMgZm9yIHdvcmtlcnMsIGJ1dCB3aXRo
+Cj4gc29tZSB0d2lzdHM6Cj4KPiAtIFdlIHVzZSBhIHJlYWQtbG9jayBmb3IgdGhlIGV4ZWN1dGlv
+bi93b3JrZXIvY29tcGxldGlvbiBzaWRlLCBzbyB0aGF0Cj4gICB0aGlzIGV4cGxpY2l0IGFubm90
+YXRpb24gY2FuIGJlIG1vcmUgbGliZXJhbGx5IHNwcmlua2xlZCBhcm91bmQuCj4gICBXaXRoIHJl
+YWQgbG9ja3MgbG9ja2RlcCBpc24ndCBnb2luZyB0byBjb21wbGFpbiBpZiB0aGUgcmVhZC1zaWRl
+Cj4gICBpc24ndCBuZXN0ZWQgdGhlIHNhbWUgd2F5IHVuZGVyIGFsbCBjaXJjdW1zdGFuY2VzLCBz
+byBBQkJBIGRlYWRsb2Nrcwo+ICAgYXJlIG9rLiBXaGljaCB0aGV5IGFyZSwgc2luY2UgdGhpcyBp
+cyBhbiBhbm5vdGF0aW9uIG9ubHkuCj4KPiAtIFdlJ3JlIHVzaW5nIG5vbi1yZWN1cnNpdmUgbG9j
+a2RlcCByZWFkIGxvY2sgbW9kZSwgc2luY2UgaW4gcmVjdXJzaXZlCj4gICByZWFkIGxvY2sgbW9k
+ZSBsb2NrZGVwIGRvZXMgbm90IGNhdGNoIHJlYWQgc2lkZSBoYXphcmRzLiBBbmQgd2UKPiAgIF92
+ZXJ5XyBtdWNoIHdhbnQgcmVhZCBzaWRlIGhhemFyZHMgdG8gYmUgY2F1Z2h0LiBGb3IgZnVsbCBk
+ZXRhaWxzIG9mCj4gICB0aGlzIGxpbWl0YXRpb24gc2VlCj4KPiAgIGNvbW1pdCBlOTE0OTg1ODk3
+NDYwNjVlM2FlOTVkOWEwMGIwNjhlNTI1ZWVjMzRmCj4gICBBdXRob3I6IFBldGVyIFppamxzdHJh
+IDxwZXRlcnpAaW5mcmFkZWFkLm9yZz4KPiAgIERhdGU6ICAgV2VkIEF1ZyAyMyAxMzoxMzoxMSAy
+MDE3ICswMjAwCj4KPiAgICAgICBsb2NraW5nL2xvY2tkZXAvc2VsZnRlc3RzOiBBZGQgbWl4ZWQg
+cmVhZC13cml0ZSBBQkJBIHRlc3RzCj4KPiAtIFRvIGFsbG93IG5lc3Rpbmcgb2YgdGhlIHJlYWQt
+c2lkZSBleHBsaWNpdCBhbm5vdGF0aW9ucyB3ZSBleHBsaWNpdGx5Cj4gICBrZWVwIHRyYWNrIG9m
+IHRoZSBuZXN0aW5nLiBsb2NrX2lzX2hlbGQoKSBhbGxvd3MgdXMgdG8gZG8gdGhhdC4KPgo+IC0g
+VGhlIHdhaXQtc2lkZSBhbm5vdGF0aW9uIGlzIGEgd3JpdGUgbG9jaywgYW5kIGVudGlyZWx5IGRv
+bmUgd2l0aGluCj4gICBkbWFfZmVuY2Vfd2FpdCgpIGZvciBldmVyeW9uZSBieSBkZWZhdWx0Lgo+
+Cj4gLSBUbyBiZSBhYmxlIHRvIGZyZWVseSBhbm5vdGF0ZSBoZWxwZXIgZnVuY3Rpb25zIEkgd2Fu
+dCB0byBtYWtlIGl0IG9rCj4gICB0byBjYWxsIGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGlu
+ZyBmcm9tIHNvZnQvaGFyZGlycSBjb250ZXh0Lgo+ICAgRmlyc3QgYXR0ZW1wdCB3YXMgdXNpbmcg
+dGhlIGhhcmRpcnEgbG9ja2luZyBjb250ZXh0IGZvciB0aGUgd3JpdGUKPiAgIHNpZGUgaW4gbG9j
+a2RlcCwgYnV0IHRoaXMgZm9yY2VzIGFsbCBub3JtYWwgc3BpbmxvY2tzIG5lc3RlZCB3aXRoaW4K
+PiAgIGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGluZyB0byBiZSBzcGlubG9ja3MuIFRoYXQg
+Ym9sbG9ja3MuCj4KPiAgIFRoZSBhcHByb2FjaCBub3cgaXMgdG8gc2ltcGxlIGNoZWNrIGluX2F0
+b21pYygpLCBhbmQgZm9yIHRoZXNlIGNhc2VzCj4gICBlbnRpcmVseSByZWx5IG9uIHRoZSBtaWdo
+dF9zbGVlcCgpIGNoZWNrIGluIGRtYV9mZW5jZV93YWl0KCkuIFRoYXQKPiAgIHdpbGwgY2F0Y2gg
+YW55IHdyb25nIG5lc3RpbmcgYWdhaW5zdCBzcGlubG9ja3MgZnJvbSBzb2Z0L2hhcmRpcnEKPiAg
+IGNvbnRleHRzLgo+Cj4gVGhlIGlkZWEgaGVyZSBpcyB0aGF0IGV2ZXJ5IGNvZGUgcGF0aCB0aGF0
+J3MgY3JpdGljYWwgZm9yIGV2ZW50dWFsbHkKPiBzaWduYWxsaW5nIGEgZG1hX2ZlbmNlIHNob3Vs
+ZCBiZSBhbm5vdGF0ZWQgd2l0aAo+IGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGluZy4gVGhl
+IGFubm90YXRpb24gaWRlYWxseSBzdGFydHMgcmlnaHQKPiBhZnRlciBhIGRtYV9mZW5jZSBpcyBw
+dWJsaXNoZWQgKGFkZGVkIHRvIGEgZG1hX3Jlc3YsIGV4cG9zZWQgYXMgYQo+IHN5bmNfZmlsZSBm
+ZCwgYXR0YWNoZWQgdG8gYSBkcm1fc3luY29iaiBmZCwgb3IgYW55dGhpbmcgZWxzZSB0aGF0Cj4g
+bWFrZXMgdGhlIGRtYV9mZW5jZSB2aXNpYmxlIHRvIG90aGVyIGtlcm5lbCB0aHJlYWRzKSwgdXAg
+dG8gYW5kCj4gaW5jbHVkaW5nIHRoZSBkbWFfZmVuY2Vfd2FpdCgpLiBFeGFtcGxlcyBhcmUgaXJx
+IGhhbmRsZXJzLCB0aGUKPiBzY2hlZHVsZXIgcnQgdGhyZWFkcywgdGhlIHRhaWwgb2YgZXhlY2J1
+ZiAoYWZ0ZXIgdGhlIGNvcnJlc3BvbmRpbmcKPiBmZW5jZXMgYXJlIHZpc2libGUpLCBhbnkgd29y
+a2VycyB0aGF0IGVuZCB1cCBzaWduYWxsaW5nIGRtYV9mZW5jZXMgYW5kCj4gcmVhbGx5IGFueXRo
+aW5nIGVsc2UuIE5vdCBhbm5vdGF0ZWQgc2hvdWxkIGJlIGNvZGUgcGF0aHMgdGhhdCBvbmx5Cj4g
+Y29tcGxldGUgZmVuY2VzIG9wcG9ydHVuaXN0aWNhbGx5IGFzIHRoZSBncHUgcHJvZ3Jlc3Nlcywg
+bGlrZSBlLmcuCj4gc2hyaW5rZXIvZXZpY3Rpb24gY29kZS4KPgo+IFRoZSBtYWluIGNsYXNzIG9m
+IGRlYWRsb2NrcyB0aGlzIGlzIHN1cHBvc2VkIHRvIGNhdGNoIGFyZToKPgo+IFRocmVhZCBBOgo+
+Cj4gCW11dGV4X2xvY2soQSk7Cj4gCW11dGV4X3VubG9jayhBKTsKPgo+IAlkbWFfZmVuY2Vfc2ln
+bmFsKCk7Cj4KPiBUaHJlYWQgQjoKPgo+IAltdXRleF9sb2NrKEEpOwo+IAlkbWFfZmVuY2Vfd2Fp
+dCgpOwo+IAltdXRleF91bmxvY2soQSk7Cj4KPiBUaHJlYWQgQiBpcyBibG9ja2VkIG9uIEEgc2ln
+bmFsbGluZyB0aGUgZmVuY2UsIGJ1dCBBIG5ldmVyIGdldHMgYXJvdW5kCj4gdG8gdGhhdCBiZWNh
+dXNlIGl0IGNhbm5vdCBhY3F1aXJlIHRoZSBsb2NrIEEuCj4KPiBOb3RlIHRoYXQgZG1hX2ZlbmNl
+X3dhaXQoKSBpcyBhbGxvd2VkIHRvIGJlIG5lc3RlZCB3aXRoaW4KPiBkbWFfZmVuY2VfYmVnaW4v
+ZW5kX3NpZ25hbGxpbmcgc2VjdGlvbnMuIFRvIGFsbG93IHRoaXMgdG8gaGFwcGVuIHRoZQo+IHJl
+YWQgbG9jayBuZWVkcyB0byBiZSB1cGdyYWRlZCB0byBhIHdyaXRlIGxvY2ssIHdoaWNoIG1lYW5z
+IHRoYXQgYW55Cj4gb3RoZXIgbG9jayBpcyBhY3F1aXJlZCBiZXR3ZWVuIHRoZSBkbWFfZmVuY2Vf
+YmVnaW5fc2lnbmFsbGluZygpIGNhbGwgYW5kCj4gdGhlIGNhbGwgdG8gZG1hX2ZlbmNlX3dhaXQo
+KSwgYW5kIHN0aWxsIGhlbGQsIHRoaXMgd2lsbCByZXN1bHQgaW4gYW4KPiBpbW1lZGlhdGUgbG9j
+a2RlcCBjb21wbGFpbnQuIFRoZSBvbmx5IG90aGVyIG9wdGlvbiB3b3VsZCBiZSB0byBub3QKPiBh
+bm5vdGF0ZSBzdWNoIGNhbGxzLCBkZWZlYXRpbmcgdGhlIHBvaW50LiBUaGVyZWZvcmUgdGhlc2Ug
+YW5ub3RhdGlvbnMKPiBjYW5ub3QgYmUgc3ByaW5rbGVkIG92ZXIgdGhlIGNvZGUgZW50aXJlbHkg
+bWluZGxlc3MgdG8gYXZvaWQgZmFsc2UKPiBwb3NpdGl2ZXMuCj4KPiB2MjogaGFuZGxlIHNvZnQv
+aGFyZGlycSBjdHggYmV0dGVyIGFnYWluc3Qgd3JpdGUgc2lkZSBhbmQgZG9udCBmb3JnZXQKPiBF
+WFBPUlRfU1lNQk9MLCBkcml2ZXJzIGNhbid0IHVzZSB0aGlzIG90aGVyd2lzZS4KPgo+IENjOiBs
+aW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5h
+cm8ub3JnCj4gQ2M6IGxpbnV4LXJkbWFAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGFtZC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+PiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1hYXJ0
+ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IENo
+cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBTaWduZWQtb2ZmLWJ5
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiAtLS0KClRoaXMgaXMg
+c29tZXRoaW5nIHdlIGRlZmluaXRlbHkgbmVlZCwgYWxsIGRyaXZlcnMgbmVlZCB0byBmb2xsb3cg
+dGhlIHNhbWUgcnVsZXMsIGluIG9yZGVyIHRvIHB1dCBzb21lIGxpZ2h0IGluIHRoZSBkYXJrbmVz
+cy4gOikKClJldmlld2VkLWJ5OiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RA
+bGludXguaW50ZWwuY29tPgoKPiAgZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS5jIHwgNTMgKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+ICBpbmNsdWRlL2xpbnV4L2RtYS1m
+ZW5jZS5oICAgfCAxMiArKysrKysrKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCA2NSBpbnNlcnRpb25z
+KCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS5jIGIvZHJpdmVy
+cy9kbWEtYnVmL2RtYS1mZW5jZS5jCj4gaW5kZXggNjgwMjEyNTM0OWZiLi5kNWMwZmQyZWZjNzAg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS5jCj4gKysrIGIvZHJpdmVy
+cy9kbWEtYnVmL2RtYS1mZW5jZS5jCj4gQEAgLTExMCw2ICsxMTAsNTIgQEAgdTY0IGRtYV9mZW5j
+ZV9jb250ZXh0X2FsbG9jKHVuc2lnbmVkIG51bSkKPiAgfQo+ICBFWFBPUlRfU1lNQk9MKGRtYV9m
+ZW5jZV9jb250ZXh0X2FsbG9jKTsKPiAgCj4gKyNpZmRlZiBDT05GSUdfTE9DS0RFUAo+ICtzdHJ1
+Y3QgbG9ja2RlcF9tYXAJZG1hX2ZlbmNlX2xvY2tkZXBfbWFwID0gewo+ICsJLm5hbWUgPSAiZG1h
+X2ZlbmNlX21hcCIKPiArfTsKPiArCj4gK2Jvb2wgZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmco
+dm9pZCkKPiArewo+ICsJLyogZXhwbGljaXRseSBuZXN0aW5nIC4uLiAqLwo+ICsJaWYgKGxvY2tf
+aXNfaGVsZF90eXBlKCZkbWFfZmVuY2VfbG9ja2RlcF9tYXAsIDEpKQo+ICsJCXJldHVybiB0cnVl
+Owo+ICsKPiArCS8qIHJlbHkgb24gbWlnaHRfc2xlZXAgY2hlY2sgZm9yIHNvZnQvaGFyZGlycSBs
+b2NrcyAqLwo+ICsJaWYgKGluX2F0b21pYygpKQo+ICsJCXJldHVybiB0cnVlOwo+ICsKPiArCS8q
+IC4uLiBhbmQgbm9uLXJlY3Vyc2l2ZSByZWFkbG9jayAqLwo+ICsJbG9ja19hY3F1aXJlKCZkbWFf
+ZmVuY2VfbG9ja2RlcF9tYXAsIDAsIDAsIDEsIDEsIE5VTEwsIF9SRVRfSVBfKTsKPiArCj4gKwly
+ZXR1cm4gZmFsc2U7Cj4gK30KPiArRVhQT1JUX1NZTUJPTChkbWFfZmVuY2VfYmVnaW5fc2lnbmFs
+bGluZyk7Cj4gKwo+ICt2b2lkIGRtYV9mZW5jZV9lbmRfc2lnbmFsbGluZyhib29sIGNvb2tpZSkK
+PiArewo+ICsJaWYgKGNvb2tpZSkKPiArCQlyZXR1cm47Cj4gKwo+ICsJbG9ja19yZWxlYXNlKCZk
+bWFfZmVuY2VfbG9ja2RlcF9tYXAsIF9SRVRfSVBfKTsKPiArfQo+ICtFWFBPUlRfU1lNQk9MKGRt
+YV9mZW5jZV9lbmRfc2lnbmFsbGluZyk7Cj4gKwo+ICt2b2lkIF9fZG1hX2ZlbmNlX21pZ2h0X3dh
+aXQodm9pZCkKPiArewo+ICsJYm9vbCB0bXA7Cj4gKwo+ICsJdG1wID0gbG9ja19pc19oZWxkX3R5
+cGUoJmRtYV9mZW5jZV9sb2NrZGVwX21hcCwgMSk7Cj4gKwlpZiAodG1wKQo+ICsJCWxvY2tfcmVs
+ZWFzZSgmZG1hX2ZlbmNlX2xvY2tkZXBfbWFwLCBfVEhJU19JUF8pOwo+ICsJbG9ja19tYXBfYWNx
+dWlyZSgmZG1hX2ZlbmNlX2xvY2tkZXBfbWFwKTsKPiArCWxvY2tfbWFwX3JlbGVhc2UoJmRtYV9m
+ZW5jZV9sb2NrZGVwX21hcCk7Cj4gKwlpZiAodG1wKQo+ICsJCWxvY2tfYWNxdWlyZSgmZG1hX2Zl
+bmNlX2xvY2tkZXBfbWFwLCAwLCAwLCAxLCAxLCBOVUxMLCBfVEhJU19JUF8pOwo+ICt9Cj4gKyNl
+bmRpZgo+ICsKPiArCj4gIC8qKgo+ICAgKiBkbWFfZmVuY2Vfc2lnbmFsX2xvY2tlZCAtIHNpZ25h
+bCBjb21wbGV0aW9uIG9mIGEgZmVuY2UKPiAgICogQGZlbmNlOiB0aGUgZmVuY2UgdG8gc2lnbmFs
+Cj4gQEAgLTE3MCwxNCArMjE2LDE5IEBAIGludCBkbWFfZmVuY2Vfc2lnbmFsKHN0cnVjdCBkbWFf
+ZmVuY2UgKmZlbmNlKQo+ICB7Cj4gIAl1bnNpZ25lZCBsb25nIGZsYWdzOwo+ICAJaW50IHJldDsK
+PiArCWJvb2wgdG1wOwo+ICAKPiAgCWlmICghZmVuY2UpCj4gIAkJcmV0dXJuIC1FSU5WQUw7Cj4g
+IAo+ICsJdG1wID0gZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmcoKTsKPiArCj4gIAlzcGluX2xv
+Y2tfaXJxc2F2ZShmZW5jZS0+bG9jaywgZmxhZ3MpOwo+ICAJcmV0ID0gZG1hX2ZlbmNlX3NpZ25h
+bF9sb2NrZWQoZmVuY2UpOwo+ICAJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZShmZW5jZS0+bG9jaywg
+ZmxhZ3MpOwo+ICAKPiArCWRtYV9mZW5jZV9lbmRfc2lnbmFsbGluZyh0bXApOwo+ICsKPiAgCXJl
+dHVybiByZXQ7Cj4gIH0KPiAgRVhQT1JUX1NZTUJPTChkbWFfZmVuY2Vfc2lnbmFsKTsKPiBAQCAt
+MjExLDYgKzI2Miw4IEBAIGRtYV9mZW5jZV93YWl0X3RpbWVvdXQoc3RydWN0IGRtYV9mZW5jZSAq
+ZmVuY2UsIGJvb2wgaW50ciwgc2lnbmVkIGxvbmcgdGltZW91dCkKPiAgCWlmICh0aW1lb3V0ID4g
+MCkKPiAgCQltaWdodF9zbGVlcCgpOwo+ICAKPiArCV9fZG1hX2ZlbmNlX21pZ2h0X3dhaXQoKTsK
+PiArCj4gIAl0cmFjZV9kbWFfZmVuY2Vfd2FpdF9zdGFydChmZW5jZSk7Cj4gIAlpZiAoZmVuY2Ut
+Pm9wcy0+d2FpdCkKPiAgCQlyZXQgPSBmZW5jZS0+b3BzLT53YWl0KGZlbmNlLCBpbnRyLCB0aW1l
+b3V0KTsKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9kbWEtZmVuY2UuaCBiL2luY2x1ZGUv
+bGludXgvZG1hLWZlbmNlLmgKPiBpbmRleCAzMzQ3YzU0ZjNhODcuLjNmMjg4ZjdkYjJlZiAxMDA2
+NDQKPiAtLS0gYS9pbmNsdWRlL2xpbnV4L2RtYS1mZW5jZS5oCj4gKysrIGIvaW5jbHVkZS9saW51
+eC9kbWEtZmVuY2UuaAo+IEBAIC0zNTcsNiArMzU3LDE4IEBAIGRtYV9mZW5jZV9nZXRfcmN1X3Nh
+ZmUoc3RydWN0IGRtYV9mZW5jZSBfX3JjdSAqKmZlbmNlcCkKPiAgCX0gd2hpbGUgKDEpOwo+ICB9
+Cj4gIAo+ICsjaWZkZWYgQ09ORklHX0xPQ0tERVAKPiArYm9vbCBkbWFfZmVuY2VfYmVnaW5fc2ln
+bmFsbGluZyh2b2lkKTsKPiArdm9pZCBkbWFfZmVuY2VfZW5kX3NpZ25hbGxpbmcoYm9vbCBjb29r
+aWUpOwo+ICsjZWxzZQo+ICtzdGF0aWMgaW5saW5lIGJvb2wgZG1hX2ZlbmNlX2JlZ2luX3NpZ25h
+bGxpbmcodm9pZCkKPiArewo+ICsJcmV0dXJuIHRydWU7Cj4gK30KPiArc3RhdGljIGlubGluZSB2
+b2lkIGRtYV9mZW5jZV9lbmRfc2lnbmFsbGluZyhib29sIGNvb2tpZSkge30KPiArc3RhdGljIGlu
+bGluZSB2b2lkIF9fZG1hX2ZlbmNlX21pZ2h0X3dhaXQodm9pZCkge30KPiArI2VuZGlmCj4gKwo+
+ICBpbnQgZG1hX2ZlbmNlX3NpZ25hbChzdHJ1Y3QgZG1hX2ZlbmNlICpmZW5jZSk7Cj4gIGludCBk
+bWFfZmVuY2Vfc2lnbmFsX2xvY2tlZChzdHJ1Y3QgZG1hX2ZlbmNlICpmZW5jZSk7Cj4gIHNpZ25l
+ZCBsb25nIGRtYV9mZW5jZV9kZWZhdWx0X3dhaXQoc3RydWN0IGRtYV9mZW5jZSAqZmVuY2UsCgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
