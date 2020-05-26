@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052591E1DF5
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 11:08:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B661E1E16
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2020 11:13:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7A6899E8;
-	Tue, 26 May 2020 09:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E551B89BA1;
+	Tue, 26 May 2020 09:13:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E55C6899E8
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 09:08:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21294444-1500050 
- for multiple; Tue, 26 May 2020 10:07:55 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 May 2020 10:07:53 +0100
-Message-Id: <20200526090753.11329-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200526090753.11329-1-chris@chris-wilson.co.uk>
-References: <20200526090753.11329-1-chris@chris-wilson.co.uk>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8060189612
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2020 09:12:59 +0000 (UTC)
+IronPort-SDR: vX8VFfjvyN0EUNSJ0lrL2CoObqZS+IUJjkU11q4CyVY6C37paKw0fFnTTlT63qwv/9GCF76ihd
+ B5nMEHLLBLRQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2020 02:12:59 -0700
+IronPort-SDR: 9m+w+RmftQRjKpgkd4raeHMKx7c/Etb0il76EEVrFuRDwi1hKwm3MJsGN3PwNMp8r3xZTIE/Ff
+ vv1XlMhbfG5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,436,1583222400"; d="scan'208";a="256408563"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 26 May 2020 02:12:58 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 8CD0F5C2C40; Tue, 26 May 2020 12:10:35 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200525151459.12083-1-chris@chris-wilson.co.uk>
+References: <20200525120411.6543-1-chris@chris-wilson.co.uk>
+ <20200525151459.12083-1-chris@chris-wilson.co.uk>
+Date: Tue, 26 May 2020 12:10:35 +0300
+Message-ID: <87a71vt62c.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Do not schedule normal
- requests immediately along virtual
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Force the GT reset on shutdown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,81 +48,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we push a virtual request onto the HW, we update the rq->engine to
-point to the physical engine. A request that is then submitted by the
-user that waits upon the virtual engine, but along the physical engine
-in use, will then see that it is due to be submitted to the same engine
-and take a shortcut (and be queued without waiting for the completion
-fence). However, the virtual request may be preempted (either by higher
-priority users, or by timeslicing) and removed from the physical engine
-to be migrated over to one of its siblings. The dependent normal request
-however is oblivious to the removal of the virtual request and remains
-queued to execute on HW, believing that once it reaches the head of its
-queue all of its predecessors will have completed executing!
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-v2: Beware restriction of signal->execution_mask prior to submission.
+> Before we return control to the system, and letting it reuse all the
+> pages being accessed by HW, we must disable the HW. At the moment, we
+> dare not reset the GPU if it will clobber the display, but once we know
+> the display has been disabled, we can proceed with the reset as we
+> shutdown the module. We know the next user must reinitialise the HW for
+> their purpose.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/489
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: stable@kernel.org
 
-Fixes: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
-Testcase: igt/gem_exec_balancer/sliced
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: <stable@vger.kernel.org> # v5.3+
----
- drivers/gpu/drm/i915/i915_request.c | 25 +++++++++++++++++++++----
- 1 file changed, 21 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 33bbad623e02..0b07ccc7e9bc 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1237,6 +1237,25 @@ i915_request_await_execution(struct i915_request *rq,
- 	return 0;
- }
- 
-+static int
-+await_request_submit(struct i915_request *to, struct i915_request *from)
-+{
-+	/*
-+	 * If we are waiting on a virtual engine, then it may be
-+	 * constrained to execute on a single engine *prior* to submission.
-+	 * When it is submitted, it will be first submitted to the virtual
-+	 * engine and then passed to the physical engine. We cannot allow
-+	 * the waiter to be submitted immediately to the physical engine
-+	 * as it may then bypass the virtual request.
-+	 */
-+	if (to->engine == READ_ONCE(from->engine))
-+		return i915_sw_fence_await_sw_fence_gfp(&to->submit,
-+							&from->submit,
-+							I915_FENCE_GFP);
-+	else
-+		return __i915_request_await_execution(to, from, NULL);
-+}
-+
- static int
- i915_request_await_request(struct i915_request *to, struct i915_request *from)
- {
-@@ -1258,10 +1277,8 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
- 			return ret;
- 	}
- 
--	if (to->engine == READ_ONCE(from->engine))
--		ret = i915_sw_fence_await_sw_fence_gfp(&to->submit,
--						       &from->submit,
--						       I915_FENCE_GFP);
-+	if (is_power_of_2(to->execution_mask | READ_ONCE(from->execution_mask)))
-+		ret = await_request_submit(to, from);
- 	else
- 		ret = emit_semaphore_wait(to, from, I915_FENCE_GFP);
- 	if (ret < 0)
--- 
-2.20.1
-
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index f069551e412f..ebc29b6ee86c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -616,6 +616,11 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
+>  void intel_gt_driver_release(struct intel_gt *gt)
+>  {
+>  	struct i915_address_space *vm;
+> +	intel_wakeref_t wakeref;
+> +
+> +	/* Scrub all HW state upon release */
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		__intel_gt_reset(gt, ALL_ENGINES);
+>  
+>  	vm = fetch_and_zero(&gt->vm);
+>  	if (vm) /* FIXME being called twice on error paths :( */
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
