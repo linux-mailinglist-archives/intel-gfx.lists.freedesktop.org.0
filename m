@@ -1,58 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F9D1E3DF5
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 11:48:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5641E3E06
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 11:50:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC5089A94;
-	Wed, 27 May 2020 09:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3D878984C;
+	Wed, 27 May 2020 09:50:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66FE1896B0
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 09:48:06 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id h4so2414189wmb.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 02:48:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=w14YFhZuDwO6AvcycIgjfoGJ600rZsKKEQPGlxaD5MA=;
- b=FW09Yrjl0md2D0eXeDsWGwcFK+AUQoddpIP5OUm6JsEd63Gq6ep/btek63GFxfPVcN
- asG6mr85r/1qzxttg6jRvOCENjnvnioo8dXb6xDf5eYQtA0q2AhQNIsbE6monuyrqs/Z
- 9cNsKTDEN/01RtFXYIgBZ0pi9Cg7Fgmg/xEkU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=w14YFhZuDwO6AvcycIgjfoGJ600rZsKKEQPGlxaD5MA=;
- b=KheqkjD/BSN2YiKQ1M+DlBpfqk9R0bYVOtfF19qMVGm4I2YXUdd+A/VuSbr5ubmn2J
- rwbp+XMaQdRhaIJs5f6+hoElhXj/0hsnRxUYTkhqANtiniWeSZtyCoZA0cpDSu3G4Txy
- 5hPUbC8U7aIdwGFL0FCdALoGWgHrcNVCgOKaxxdexVAveArUKUMAYsgLAVYTQeH+9fEd
- uytU9GFYGDOW1LeYcd62X/blghnzjO77S65zJCWE8HFQPewQF2AYop50VuAAk19d62HX
- jor4/S768yILXgzDPxovWY3puNVYsK6zGcm6jDF0zIcjUd/bPLwtpxJP3B5EVa7ZUDFm
- NsLA==
-X-Gm-Message-State: AOAM532nX7YVC2bKy4ZyeyD8TMPWTEOeyni7zQ6rpn0siFF5Frc2Qdyl
- mMSdsDqT0AEd/NyJKpcnHU5lGw==
-X-Google-Smtp-Source: ABdhPJx+zYPkR1EP83OOnF4McQb574M7Xynj0o63im1XV8g6Cjj5pGw/+3pyUHnMZeS2KIMsHaJCmg==
-X-Received: by 2002:a05:600c:147:: with SMTP id
- w7mr3495135wmm.89.1590572885017; 
- Wed, 27 May 2020 02:48:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s8sm2353489wrg.50.2020.05.27.02.48.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 May 2020 02:48:04 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 27 May 2020 11:47:57 +0200
-Message-Id: <20200527094757.1414174-2-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
-References: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2A6998984C;
+ Wed, 27 May 2020 09:50:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 228CEA0019;
+ Wed, 27 May 2020 09:50:49 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/atomic-helper: reset vblank on crtc
- reset
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 27 May 2020 09:50:49 -0000
+Message-ID: <159057304911.342.11567526575336304683@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Special_handling_for_bonded_requests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,246 +38,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Sam Ravnborg <sam@ravnborg.org>,
- Emil Velikov <emil.velikov@collabora.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Sean Paul <seanpaul@chromium.org>,
- Jyri Sarha <jsarha@ti.com>, linux-tegra@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>, Boris Brezillon <bbrezillon@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, zhengbin <zhengbin13@huawei.com>,
- Brian Masney <masneyb@onstation.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only when vblanks are supported ofc.
+== Series Details ==
 
-Some drivers do this already, but most unfortunately missed it. This
-opens up bugs after driver load, before the crtc is enabled for the
-first time. syzbot spotted this when loading vkms as a secondary
-output. Given how many drivers are buggy it's best to solve this once
-and for all in shared helper code.
+Series: drm/i915: Special handling for bonded requests
+URL   : https://patchwork.freedesktop.org/series/77688/
+State : success
 
-Aside from moving the few existing calls to drm_crtc_vblank_reset into
-helpers (i915 doesn't use helpers, so keeps its own) I think the
-regression risk is minimal: atomic helpers already rely on drivers
-calling drm_crtc_vblank_on/off correctly in their hooks when they
-support vblanks. And driver that's failing to handle vblanks after
-this is missing those calls already, and vblanks could only work by
-accident when enabling a CRTC for the first time right after boot.
+== Summary ==
 
-Big thanks to Tetsuo for helping track down what's going wrong here.
+CI Bug Log - changes from CI_DRM_8541 -> Patchwork_17782
+====================================================
 
-There's only a few drivers which already had the necessary call and
-needed some updating:
-- komeda, atmel and tidss also needed to be changed to call
-  __drm_atomic_helper_crtc_reset() intead of open coding it
-- tegra and msm even had it in the same place already, just code
-  motion, and malidp already uses __drm_atomic_helper_crtc_reset().
+Summary
+-------
 
-Only call left is in i915, which doesn't use drm_mode_config_reset,
-but has its own fastboot infrastructure. So that's the only case where
-we actually want this in the driver still.
+  **SUCCESS**
 
-I've also reviewed all other drivers which set up vblank support with
-drm_vblank_init. After the previous patch fixing mxsfb all atomic
-drivers do call drm_crtc_vblank_on/off as they should, the remaining
-drivers are either legacy kms or legacy dri1 drivers, so not affected
-by this change to atomic helpers.
+  No regressions found.
 
-Link: https://syzkaller.appspot.com/bug?id=0ba17d70d062b2595e1f061231474800f076c7cb
-Reported-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Reported-by: syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com
-Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Mihail Atanassov <mihail.atanassov@arm.com>
-Cc: Brian Starkey <brian.starkey@arm.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Boris Brezillon <bbrezillon@kernel.org>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Jyri Sarha <jsarha@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Brian Masney <masneyb@onstation.org>
-Cc: Emil Velikov <emil.velikov@collabora.com>
-Cc: zhengbin <zhengbin13@huawei.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: linux-tegra@vger.kernel.org
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/arm/display/komeda/komeda_crtc.c | 7 ++-----
- drivers/gpu/drm/arm/malidp_drv.c                 | 1 -
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c   | 7 ++-----
- drivers/gpu/drm/drm_atomic_state_helper.c        | 4 ++++
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c        | 2 --
- drivers/gpu/drm/tegra/dc.c                       | 1 -
- drivers/gpu/drm/tidss/tidss_crtc.c               | 3 +--
- drivers/gpu/drm/tidss/tidss_kms.c                | 4 ----
- 8 files changed, 9 insertions(+), 20 deletions(-)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17782/index.html
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-index 56bd938961ee..f33418d6e1a0 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-@@ -492,10 +492,8 @@ static void komeda_crtc_reset(struct drm_crtc *crtc)
- 	crtc->state = NULL;
- 
- 	state = kzalloc(sizeof(*state), GFP_KERNEL);
--	if (state) {
--		crtc->state = &state->base;
--		crtc->state->crtc = crtc;
--	}
-+	if (state)
-+		__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
- static struct drm_crtc_state *
-@@ -616,7 +614,6 @@ static int komeda_crtc_add(struct komeda_kms_dev *kms,
- 		return err;
- 
- 	drm_crtc_helper_add(crtc, &komeda_crtc_helper_funcs);
--	drm_crtc_vblank_reset(crtc);
- 
- 	crtc->port = kcrtc->master->of_output_port;
- 
-diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-index c2507b7d8512..02904392e370 100644
---- a/drivers/gpu/drm/arm/malidp_drv.c
-+++ b/drivers/gpu/drm/arm/malidp_drv.c
-@@ -870,7 +870,6 @@ static int malidp_bind(struct device *dev)
- 	drm->irq_enabled = true;
- 
- 	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
--	drm_crtc_vblank_reset(&malidp->crtc);
- 	if (ret < 0) {
- 		DRM_ERROR("failed to initialise vblank\n");
- 		goto vblank_fail;
-diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-index 10985134ce0b..ce246b96330b 100644
---- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-+++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-@@ -411,10 +411,8 @@ static void atmel_hlcdc_crtc_reset(struct drm_crtc *crtc)
- 	}
- 
- 	state = kzalloc(sizeof(*state), GFP_KERNEL);
--	if (state) {
--		crtc->state = &state->base;
--		crtc->state->crtc = crtc;
--	}
-+	if (state)
-+		__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
- static struct drm_crtc_state *
-@@ -528,7 +526,6 @@ int atmel_hlcdc_crtc_create(struct drm_device *dev)
- 	}
- 
- 	drm_crtc_helper_add(&crtc->base, &lcdc_crtc_helper_funcs);
--	drm_crtc_vblank_reset(&crtc->base);
- 
- 	drm_mode_crtc_set_gamma_size(&crtc->base, ATMEL_HLCDC_CLUT_SIZE);
- 	drm_crtc_enable_color_mgmt(&crtc->base, 0, false,
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index 8fce6a115dfe..843964252239 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -32,6 +32,7 @@
- #include <drm/drm_device.h>
- #include <drm/drm_plane.h>
- #include <drm/drm_print.h>
-+#include <drm/drm_vblank.h>
- #include <drm/drm_writeback.h>
- 
- #include <linux/slab.h>
-@@ -93,6 +94,9 @@ __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
- 	if (crtc_state)
- 		__drm_atomic_helper_crtc_state_reset(crtc_state, crtc);
- 
-+	if (crtc->dev->num_crtcs)
-+		drm_crtc_vblank_reset(crtc);
-+
- 	crtc->state = crtc_state;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_crtc_reset);
-diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-index ca3368c828d0..9606185c284b 100644
---- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-@@ -1117,8 +1117,6 @@ static void mdp5_crtc_reset(struct drm_crtc *crtc)
- 		mdp5_crtc_destroy_state(crtc, crtc->state);
- 
- 	__drm_atomic_helper_crtc_reset(crtc, &mdp5_cstate->base);
--
--	drm_crtc_vblank_reset(crtc);
- }
- 
- static const struct drm_crtc_funcs mdp5_crtc_funcs = {
-diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-index 83f31c6e891c..9b308b572eac 100644
---- a/drivers/gpu/drm/tegra/dc.c
-+++ b/drivers/gpu/drm/tegra/dc.c
-@@ -1168,7 +1168,6 @@ static void tegra_crtc_reset(struct drm_crtc *crtc)
- 		tegra_crtc_atomic_destroy_state(crtc, crtc->state);
- 
- 	__drm_atomic_helper_crtc_reset(crtc, &state->base);
--	drm_crtc_vblank_reset(crtc);
- }
- 
- static struct drm_crtc_state *
-diff --git a/drivers/gpu/drm/tidss/tidss_crtc.c b/drivers/gpu/drm/tidss/tidss_crtc.c
-index 89a226912de8..4d01c4af61cd 100644
---- a/drivers/gpu/drm/tidss/tidss_crtc.c
-+++ b/drivers/gpu/drm/tidss/tidss_crtc.c
-@@ -352,8 +352,7 @@ static void tidss_crtc_reset(struct drm_crtc *crtc)
- 		return;
- 	}
- 
--	crtc->state = &tcrtc->base;
--	crtc->state->crtc = crtc;
-+	__drm_atomic_helper_crtc_reset(crtc, &tcrtc->base);
- }
- 
- static struct drm_crtc_state *tidss_crtc_duplicate_state(struct drm_crtc *crtc)
-diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
-index 4b99e9fa84a5..e6ab59eed259 100644
---- a/drivers/gpu/drm/tidss/tidss_kms.c
-+++ b/drivers/gpu/drm/tidss/tidss_kms.c
-@@ -278,10 +278,6 @@ int tidss_modeset_init(struct tidss_device *tidss)
- 	if (ret)
- 		return ret;
- 
--	/* Start with vertical blanking interrupt reporting disabled. */
--	for (i = 0; i < tidss->num_crtcs; ++i)
--		drm_crtc_vblank_reset(tidss->crtcs[i]);
--
- 	drm_mode_config_reset(ddev);
- 
- 	dev_dbg(tidss->dev, "%s done\n", __func__);
--- 
-2.26.2
+Known issues
+------------
 
+  Here are the changes found in Patchwork_17782 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@coherency:
+    - fi-gdg-551:         [PASS][1] -> [DMESG-FAIL][2] ([i915#1748])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8541/fi-gdg-551/igt@i915_selftest@live@coherency.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17782/fi-gdg-551/igt@i915_selftest@live@coherency.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [DMESG-FAIL][4] ([i915#165])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8541/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17782/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#1748]: https://gitlab.freedesktop.org/drm/intel/issues/1748
+
+
+Participating hosts (50 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8541 -> Patchwork_17782
+
+  CI-20190529: 20190529
+  CI_DRM_8541: 6f35fec9320a0ee5178075dd3d9df6507f55af68 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5680: f7e3772175c53f0c910f4513831791cb5bdcab04 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17782: 10e39c0f7a03edbe826ad25606a4d465b1817d6b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+10e39c0f7a03 drm/i915: Special handling for bonded requests
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17782/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
