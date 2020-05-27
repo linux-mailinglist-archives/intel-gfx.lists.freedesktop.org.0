@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890AB1E4F8E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 22:50:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13821E4F8D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 22:49:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D087C6E0FF;
-	Wed, 27 May 2020 20:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADA26E0FB;
+	Wed, 27 May 2020 20:49:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB8CE6E0FF
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 20:50:00 +0000 (UTC)
-IronPort-SDR: Y2UH689uQ3AuTRFHntoUJaNpmg2kD5RZnJXQOQElhVJv6VufrYEkNN01acnqcWD+4fNr5tow3u
- Cgg4/UtD9r8A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 13:50:00 -0700
-IronPort-SDR: jiXSCnJqTXjh/QzSmZrUeMnaT5qtADkmlydV0PSJAb5s32r3VpjM5YmlZuL2mGwuW19GwJwkCP
- PlbeSas//aMA==
-X-IronPort-AV: E=Sophos;i="5.73,442,1583222400"; d="scan'208";a="291735506"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 13:49:59 -0700
-Date: Wed, 27 May 2020 23:49:55 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200527204955.GB20870@ideak-desk.fi.intel.com>
-References: <20200527200022.28003-1-stanislav.lisovskiy@intel.com>
- <20200527202649.GA20870@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C22256E0FA;
+ Wed, 27 May 2020 20:49:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA1FAA432F;
+ Wed, 27 May 2020 20:49:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200527202649.GA20870@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Minor link training logic
- fixes for dp_mst
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 27 May 2020 20:49:56 -0000
+Message-ID: <159061259673.341.5318961055631366254@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_global_state_use-after-frees_with_a_refcount?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,72 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2020 at 11:26:49PM +0300, Imre Deak wrote:
-> On Wed, May 27, 2020 at 11:00:22PM +0300, Stanislav Lisovskiy wrote:
-> > First of all *_needs_link_retraining function should return
-> > false is link_train is set to true but not false.
-> > 
-> > Also if we detect channel eq problem when checking mst status
-> > we simply bail out, without setting link_train to false again,
-> > which might end up in a situation that we don't do link retraining
-> > when needed.
-> > 
-> > There were some issues, when we had several problems with dp mst
-> > and at the same time the log was floode by messages about
-> > "channel eq not ok, need retraining" however the actual training
-> > seems to be never done.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 1768731678a1..9288dc1f8914 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -5627,6 +5627,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
-> >  			drm_dbg_kms(&i915->drm,
-> >  				    "channel EQ not ok, retraining\n");
-> >  			need_retrain = true;
-> > +			intel_dp->link_trained = false;
-> >  		}
-> >  
-> >  		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
-> > @@ -5654,7 +5655,7 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
-> >  {
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> >  
-> > -	if (!intel_dp->link_trained)
-> > +	if (intel_dp->link_trained)
-> 
-> intel_dp->link_trained is set when we trained the link during a modeset,
-> it doesn't mean that the link status is good, as you seem to interpret
-> it. With this change I don't see how we would retrain the link when this
-> is called from intel_dp_short_pulse(). Could you describe more the
-> failing scenario?
+== Series Details ==
 
-One reason we wouldn't retrain when needed is that the sink is not seen
-as connected in intel_dp_retrain_link().
+Series: drm/i915: Fix global state use-after-frees with a refcount
+URL   : https://patchwork.freedesktop.org/series/77715/
+State : success
 
-> 
-> >  		return false;
-> >  
-> >  	/*
-> > -- 
-> > 2.24.1.485.gad05a3d8e5
-> > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8544 -> Patchwork_17796
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17796/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17796 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [FAIL][1] ([i915#262]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8544/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17796/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][3] ([fdo#109271]) -> [FAIL][4] ([i915#62])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8544/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17796/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8544 -> Patchwork_17796
+
+  CI-20190529: 20190529
+  CI_DRM_8544: c6c0a18e985d7a3fd4451e0e786e6522371ea9ee @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5680: f7e3772175c53f0c910f4513831791cb5bdcab04 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17796: 1fac3818bc7097e659306e2db4a082c9e1099dd2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1fac3818bc70 drm/i915: Fix global state use-after-frees with a refcount
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17796/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
