@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0E21E4EC2
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 22:02:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6551E4F44
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 22:26:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F22BB88089;
-	Wed, 27 May 2020 20:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599676E3C1;
+	Wed, 27 May 2020 20:26:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E5089A57
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 20:02:49 +0000 (UTC)
-IronPort-SDR: 9JrP5TtCFUT1zPxi2WYeRdwwvguAOkvQXrNZTHA/3Qb0JADVkvSuLFAKTjl4T5eUWCbJwxgT5J
- YFA0BoKmWm9Q==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7BD06E3C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 20:26:55 +0000 (UTC)
+IronPort-SDR: M4BZG/ShE0ex+tYJKwZLAuViOrPc8fEBvmL6XUGuLkWfh565Uyyq+XJVybkdC/apGcn32oX1ez
+ WX0EQROwS+aQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 13:02:49 -0700
-IronPort-SDR: /rj2GopLbm7nfVKOayWRncRd/yn4GofBtMq33WQU2VXNfwKyv+LqoEfZ4+Kt4Oyp3z4iUBWkNh
- xtdhJ18xqjMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,442,1583222400"; d="scan'208";a="284921405"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 27 May 2020 13:02:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 May 2020 23:02:45 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 May 2020 23:02:45 +0300
-Message-Id: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2020 13:26:55 -0700
+IronPort-SDR: YVBegKNsENa+ZkJlMZlEZCtGnZI+G9iUhy+ODA0WrLDR9K7FImJUhYTuoL3oyDEfl8XhmV0tH+
+ ttyzWKYWIeRg==
+X-IronPort-AV: E=Sophos;i="5.73,442,1583222400"; d="scan'208";a="414338564"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2020 13:26:53 -0700
+Date: Wed, 27 May 2020 23:26:49 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200527202649.GA20870@ideak-desk.fi.intel.com>
+References: <20200527200022.28003-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix global state use-after-frees with
- a refcount
+Content-Disposition: inline
+In-Reply-To: <20200527200022.28003-1-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Minor link training logic
+ fixes for dp_mst
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,97 +48,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
-aWxlIHRoZSBjdXJyZW50IGxvY2tpbmcvc2VyaWFsaXphdGlvbiBvZiB0aGUgZ2xvYmFsIHN0YXRl
-CnN1ZmZpY2VzIGZvciBwcm90ZWN0aW5nIHRoZSBvYmotPnN0YXRlIGFjY2VzcyBhbmQgdGhlIGFj
-dHVhbApoYXJkd2FyZSByZXByb2dyYW1taW5nLCB3ZSBkbyBoYXZlIGEgcHJvYmxlbSB3aXRoIGFj
-Y2Vzc2luZwp0aGUgb2xkL25ldyBzdGF0ZXMgZHVyaW5nIG5vbmJsb2NraW5nIGNvbW1pdHMuCgpU
-aGUgc3RhdGUgY29tcHV0YXRpb24gYW5kIHN3YXAgd2lsbCBiZSBwcm90ZWN0ZWQgYnkgdGhlIGNy
-dGMKbG9ja3MsIGJ1dCB0aGUgY29tbWl0X3RhaWxzIGNhbiBmaW5pc2ggb3V0IG9mIG9yZGVyLCB0
-aHVzIGFsc28KY2F1c2luZyB0aGUgYXRvbWljIHN0YXRlcyB0byBiZSBjbGVhbmVkIHVwIG91dCBv
-ZiBvcmRlci4gVGhpcwp3b3VsZCBtZWFuIHRoZSBjb21taXQgdGhhdCBzdGFydGVkIGZpcnN0IGJ1
-dCBmaW5pc2hlZCBsYXN0IGhhcwpoYWQgaXRzIG5ldyBzdGF0ZSBmcmVlZCBhcyB0aGUgbm8tbG9u
-Z2VyLW5lZWRlZCBvbGQgc3RhdGUgYnkgdGhlCm90aGVyIGNvbW1pdC4KClRvIGZpeCB0aGlzIGxl
-dCdzIGp1c3QgcmVmY291bnQgdGhlIHN0YXRlcy4gb2JqLT5zdGF0ZSBhbW91bnRzCnRvIG9uZSBy
-ZWZlcmVuY2UsIGFuZCB0aGUgaW50ZWxfYXRvbWljX3N0YXRlIGhvbGRzIGV4dHJhIHJlZmVyZW5j
-ZXMKdG8gYm90aCBpdHMgbmV3IGFuZCBvbGQgZ2xvYmFsIG9iaiBzdGF0ZXMuCgpGaXhlczogMGVm
-MTkwNWVjZjJlICgiZHJtL2k5MTU6IEludHJvZHVjZSBiZXR0ZXIgZ2xvYmFsIHN0YXRlIGhhbmRs
-aW5nIikKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4KLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZ2xvYmFsX3N0
-YXRlLmMgfCA0NSArKysrKysrKysrKysrKysrLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZ2xvYmFsX3N0YXRlLmggfCAgMyArKwogMiBmaWxlcyBjaGFuZ2VkLCA0MiBpbnNlcnRp
-b25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZ2xvYmFsX3N0YXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2dsb2JhbF9zdGF0ZS5jCmluZGV4IDIxMmQ0ZWU2ODIwNS4uN2ExOTIxNWFkODQ0
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2dsb2JhbF9z
-dGF0ZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZ2xvYmFsX3N0
-YXRlLmMKQEAgLTEwLDYgKzEwLDI4IEBACiAjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV90eXBlcy5o
-IgogI2luY2x1ZGUgImludGVsX2dsb2JhbF9zdGF0ZS5oIgogCitzdGF0aWMgdm9pZCBfX2ludGVs
-X2F0b21pY19nbG9iYWxfc3RhdGVfZnJlZShzdHJ1Y3Qga3JlZiAqa3JlZikKK3sKKwlzdHJ1Y3Qg
-aW50ZWxfZ2xvYmFsX3N0YXRlICpvYmpfc3RhdGUgPQorCQljb250YWluZXJfb2Yoa3JlZiwgc3Ry
-dWN0IGludGVsX2dsb2JhbF9zdGF0ZSwgcmVmKTsKKwlzdHJ1Y3QgaW50ZWxfZ2xvYmFsX29iaiAq
-b2JqID0gb2JqX3N0YXRlLT5vYmo7CisKKwlvYmotPmZ1bmNzLT5hdG9taWNfZGVzdHJveV9zdGF0
-ZShvYmosIG9ial9zdGF0ZSk7Cit9CisKK3N0YXRpYyB2b2lkIGludGVsX2F0b21pY19nbG9iYWxf
-c3RhdGVfcHV0KHN0cnVjdCBpbnRlbF9nbG9iYWxfc3RhdGUgKm9ial9zdGF0ZSkKK3sKKwlrcmVm
-X3B1dCgmb2JqX3N0YXRlLT5yZWYsIF9faW50ZWxfYXRvbWljX2dsb2JhbF9zdGF0ZV9mcmVlKTsK
-K30KKworc3RhdGljIHN0cnVjdCBpbnRlbF9nbG9iYWxfc3RhdGUgKgoraW50ZWxfYXRvbWljX2ds
-b2JhbF9zdGF0ZV9nZXQoc3RydWN0IGludGVsX2dsb2JhbF9zdGF0ZSAqb2JqX3N0YXRlKQorewor
-CWtyZWZfZ2V0KCZvYmpfc3RhdGUtPnJlZik7CisKKwlyZXR1cm4gb2JqX3N0YXRlOworfQorCiB2
-b2lkIGludGVsX2F0b21pY19nbG9iYWxfb2JqX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2LAogCQkJCSAgc3RydWN0IGludGVsX2dsb2JhbF9vYmogKm9iaiwKIAkJCQkgIHN0
-cnVjdCBpbnRlbF9nbG9iYWxfc3RhdGUgKnN0YXRlLApAQCAtMTcsNiArMzksMTAgQEAgdm9pZCBp
-bnRlbF9hdG9taWNfZ2xvYmFsX29ial9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiwKIHsKIAltZW1zZXQob2JqLCAwLCBzaXplb2YoKm9iaikpOwogCisJc3RhdGUtPm9iaiA9
-IG9iajsKKworCWtyZWZfaW5pdCgmc3RhdGUtPnJlZik7CisKIAlvYmotPnN0YXRlID0gc3RhdGU7
-CiAJb2JqLT5mdW5jcyA9IGZ1bmNzOwogCWxpc3RfYWRkX3RhaWwoJm9iai0+aGVhZCwgJmRldl9w
-cml2LT5nbG9iYWxfb2JqX2xpc3QpOwpAQCAtMjgsNyArNTQsOSBAQCB2b2lkIGludGVsX2F0b21p
-Y19nbG9iYWxfb2JqX2NsZWFudXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQog
-CiAJbGlzdF9mb3JfZWFjaF9lbnRyeV9zYWZlKG9iaiwgbmV4dCwgJmRldl9wcml2LT5nbG9iYWxf
-b2JqX2xpc3QsIGhlYWQpIHsKIAkJbGlzdF9kZWwoJm9iai0+aGVhZCk7Ci0JCW9iai0+ZnVuY3Mt
-PmF0b21pY19kZXN0cm95X3N0YXRlKG9iaiwgb2JqLT5zdGF0ZSk7CisKKwkJZHJtX1dBUk5fT04o
-JmRldl9wcml2LT5kcm0sIGtyZWZfcmVhZCgmb2JqLT5zdGF0ZS0+cmVmKSAhPSAxKTsKKwkJaW50
-ZWxfYXRvbWljX2dsb2JhbF9zdGF0ZV9wdXQob2JqLT5zdGF0ZSk7CiAJfQogfQogCkBAIC05Nywx
-MCArMTI1LDE0IEBAIGludGVsX2F0b21pY19nZXRfZ2xvYmFsX29ial9zdGF0ZShzdHJ1Y3QgaW50
-ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAlpZiAoIW9ial9zdGF0ZSkKIAkJcmV0dXJuIEVSUl9Q
-VFIoLUVOT01FTSk7CiAKKwlvYmpfc3RhdGUtPm9iaiA9IG9iajsKIAlvYmpfc3RhdGUtPmNoYW5n
-ZWQgPSBmYWxzZTsKIAorCWtyZWZfaW5pdCgmb2JqX3N0YXRlLT5yZWYpOworCiAJc3RhdGUtPmds
-b2JhbF9vYmpzW2luZGV4XS5zdGF0ZSA9IG9ial9zdGF0ZTsKLQlzdGF0ZS0+Z2xvYmFsX29ianNb
-aW5kZXhdLm9sZF9zdGF0ZSA9IG9iai0+c3RhdGU7CisJc3RhdGUtPmdsb2JhbF9vYmpzW2luZGV4
-XS5vbGRfc3RhdGUgPQorCQlpbnRlbF9hdG9taWNfZ2xvYmFsX3N0YXRlX2dldChvYmotPnN0YXRl
-KTsKIAlzdGF0ZS0+Z2xvYmFsX29ianNbaW5kZXhdLm5ld19zdGF0ZSA9IG9ial9zdGF0ZTsKIAlz
-dGF0ZS0+Z2xvYmFsX29ianNbaW5kZXhdLnB0ciA9IG9iajsKIAlvYmpfc3RhdGUtPnN0YXRlID0g
-c3RhdGU7CkBAIC0xNjMsNyArMTk1LDkgQEAgdm9pZCBpbnRlbF9hdG9taWNfc3dhcF9nbG9iYWxf
-c3RhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCW5ld19vYmpfc3RhdGUt
-PnN0YXRlID0gTlVMTDsKIAogCQlzdGF0ZS0+Z2xvYmFsX29ianNbaV0uc3RhdGUgPSBvbGRfb2Jq
-X3N0YXRlOwotCQlvYmotPnN0YXRlID0gbmV3X29ial9zdGF0ZTsKKworCQlpbnRlbF9hdG9taWNf
-Z2xvYmFsX3N0YXRlX3B1dChvYmotPnN0YXRlKTsKKwkJb2JqLT5zdGF0ZSA9IGludGVsX2F0b21p
-Y19nbG9iYWxfc3RhdGVfZ2V0KG5ld19vYmpfc3RhdGUpOwogCX0KIH0KIApAQCAtMTcyLDEwICsy
-MDYsOSBAQCB2b2lkIGludGVsX2F0b21pY19jbGVhcl9nbG9iYWxfc3RhdGUoc3RydWN0IGludGVs
-X2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJaW50IGk7CiAKIAlmb3IgKGkgPSAwOyBpIDwgc3RhdGUt
-Pm51bV9nbG9iYWxfb2JqczsgaSsrKSB7Ci0JCXN0cnVjdCBpbnRlbF9nbG9iYWxfb2JqICpvYmog
-PSBzdGF0ZS0+Z2xvYmFsX29ianNbaV0ucHRyOworCQlpbnRlbF9hdG9taWNfZ2xvYmFsX3N0YXRl
-X3B1dChzdGF0ZS0+Z2xvYmFsX29ianNbaV0ub2xkX3N0YXRlKTsKKwkJaW50ZWxfYXRvbWljX2ds
-b2JhbF9zdGF0ZV9wdXQoc3RhdGUtPmdsb2JhbF9vYmpzW2ldLm5ld19zdGF0ZSk7CiAKLQkJb2Jq
-LT5mdW5jcy0+YXRvbWljX2Rlc3Ryb3lfc3RhdGUob2JqLAotCQkJCQkJIHN0YXRlLT5nbG9iYWxf
-b2Jqc1tpXS5zdGF0ZSk7CiAJCXN0YXRlLT5nbG9iYWxfb2Jqc1tpXS5wdHIgPSBOVUxMOwogCQlz
-dGF0ZS0+Z2xvYmFsX29ianNbaV0uc3RhdGUgPSBOVUxMOwogCQlzdGF0ZS0+Z2xvYmFsX29ianNb
-aV0ub2xkX3N0YXRlID0gTlVMTDsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZ2xvYmFsX3N0YXRlLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2dsb2JhbF9zdGF0ZS5oCmluZGV4IGU2MTYzYTQ2OTAyOS4uMWYxNmZhMzA3M2M5IDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2dsb2JhbF9zdGF0
-ZS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZ2xvYmFsX3N0YXRl
-LmgKQEAgLTYsNiArNiw3IEBACiAjaWZuZGVmIF9fSU5URUxfR0xPQkFMX1NUQVRFX0hfXwogI2Rl
-ZmluZSBfX0lOVEVMX0dMT0JBTF9TVEFURV9IX18KIAorI2luY2x1ZGUgPGxpbnV4L2tyZWYuaD4K
-ICNpbmNsdWRlIDxsaW51eC9saXN0Lmg+CiAKIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlOwpAQCAt
-NTQsNyArNTUsOSBAQCBzdHJ1Y3QgaW50ZWxfZ2xvYmFsX29iaiB7CiAJCWZvcl9lYWNoX2lmKG9i
-aikKIAogc3RydWN0IGludGVsX2dsb2JhbF9zdGF0ZSB7CisJc3RydWN0IGludGVsX2dsb2JhbF9v
-YmogKm9iajsKIAlzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZTsKKwlzdHJ1Y3Qga3Jl
-ZiByZWY7CiAJYm9vbCBjaGFuZ2VkOwogfTsKIAotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Wed, May 27, 2020 at 11:00:22PM +0300, Stanislav Lisovskiy wrote:
+> First of all *_needs_link_retraining function should return
+> false is link_train is set to true but not false.
+> 
+> Also if we detect channel eq problem when checking mst status
+> we simply bail out, without setting link_train to false again,
+> which might end up in a situation that we don't do link retraining
+> when needed.
+> 
+> There were some issues, when we had several problems with dp mst
+> and at the same time the log was floode by messages about
+> "channel eq not ok, need retraining" however the actual training
+> seems to be never done.
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 1768731678a1..9288dc1f8914 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5627,6 +5627,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>  			drm_dbg_kms(&i915->drm,
+>  				    "channel EQ not ok, retraining\n");
+>  			need_retrain = true;
+> +			intel_dp->link_trained = false;
+>  		}
+>  
+>  		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
+> @@ -5654,7 +5655,7 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+>  {
+>  	u8 link_status[DP_LINK_STATUS_SIZE];
+>  
+> -	if (!intel_dp->link_trained)
+> +	if (intel_dp->link_trained)
+
+intel_dp->link_trained is set when we trained the link during a modeset,
+it doesn't mean that the link status is good, as you seem to interpret
+it. With this change I don't see how we would retrain the link when this
+is called from intel_dp_short_pulse(). Could you describe more the
+failing scenario?
+
+>  		return false;
+>  
+>  	/*
+> -- 
+> 2.24.1.485.gad05a3d8e5
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
