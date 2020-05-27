@@ -2,57 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1679C1E4047
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 13:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC7A1E4056
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 13:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77526899BC;
-	Wed, 27 May 2020 11:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3075289A67;
+	Wed, 27 May 2020 11:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0359E899BC
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 11:39:32 +0000 (UTC)
-IronPort-SDR: W5eKEAbTfE4H6UX2DIZihQCdZ39RFTWZLCZbMPUvB5shOypdBLURdtb/jf+6Q+RlRVJZb/LdQz
- 18ahVuV0WonA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 04:39:32 -0700
-IronPort-SDR: h6nHSQIUvo2hn+BKTvC5N2QssEeXlO9XyEXuYidog6NanO+sIdsb3BDfnLm1woMT5Yhs2YZDi8
- MGAX29IX9ZoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,441,1583222400"; d="scan'208";a="302069086"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga002.fm.intel.com with ESMTP; 27 May 2020 04:39:32 -0700
-Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 27 May 2020 04:39:32 -0700
-Received: from bgsmsx152.gar.corp.intel.com (10.224.48.50) by
- FMSMSX153.amr.corp.intel.com (10.18.125.6) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 27 May 2020 04:39:32 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.115]) by
- BGSMSX152.gar.corp.intel.com ([169.254.6.135]) with mapi id 14.03.0439.000;
- Wed, 27 May 2020 17:09:29 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Fix the encoder type check
-Thread-Index: AQHWIejO3/5W5QfIDESnjtjrnMPVkai78spg
-Date: Wed, 27 May 2020 11:39:28 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8251137B@BGSMSX104.gar.corp.intel.com>
-References: <20200504074851.13139-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20200504074851.13139-1-vandita.kulkarni@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D98AF89A4E;
+ Wed, 27 May 2020 11:45:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D298CA73C7;
+ Wed, 27 May 2020 11:45:27 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix the encoder type check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Wed, 27 May 2020 11:45:27 -0000
+Message-ID: <159057992783.345.4886543948146880905@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200527110132.16679-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20200527110132.16679-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915=3A_Add_debugfs_for_requesting_HDCP_version?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +38,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: i915: Add debugfs for requesting HDCP version
+URL   : https://patchwork.freedesktop.org/series/77693/
+State : warning
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Vandita
-> Kulkarni
-> Sent: Monday, May 4, 2020 1:19 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix the encoder type check
-> 
-> For all ddi, encoder->type holds output type as ddi, assigning it to individual o/p
-> types is no more valid.
-> 
-> Fixes: 362bfb995b78 ("drm/i915/tgl: Add DKL PHY vswing table for HDMI")
+== Summary ==
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+$ dim checkpatch origin/drm-tip
+ee34d42eee76 drm/i915: Add support for considering HDCP ver requested via debugfs
+a44896d4d874 drm/i915: Add a new debugfs to request HDCP version
+-:38: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#38: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2190:
++{
++
 
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 5601673c3f30..10d70daf714b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2579,14 +2579,14 @@ static void icl_ddi_vswing_sequence(struct
-> intel_encoder *encoder,
-> 
->  static void
->  tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder, int link_clock,
-> -				u32 level)
-> +				u32 level, enum intel_output_type type)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
->  	const struct tgl_dkl_phy_ddi_buf_trans *ddi_translations;
->  	u32 n_entries, val, ln, dpcnt_mask, dpcnt_val;
-> 
-> -	if (encoder->type == INTEL_OUTPUT_HDMI) {
-> +	if (type == INTEL_OUTPUT_HDMI) {
->  		n_entries = ARRAY_SIZE(tgl_dkl_phy_hdmi_ddi_trans);
->  		ddi_translations = tgl_dkl_phy_hdmi_ddi_trans;
->  	} else {
-> @@ -2638,7 +2638,7 @@ static void tgl_ddi_vswing_sequence(struct
-> intel_encoder *encoder,
->  	if (intel_phy_is_combo(dev_priv, phy))
->  		icl_combo_phy_ddi_vswing_sequence(encoder, level, type);
->  	else
-> -		tgl_dkl_phy_ddi_vswing_sequence(encoder, link_clock, level);
-> +		tgl_dkl_phy_ddi_vswing_sequence(encoder, link_clock, level,
-> type);
->  }
-> 
->  static u32 translate_signal_level(struct intel_dp *intel_dp, int signal_levels)
-> --
-> 2.21.0.5.gaeb582a
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-:53: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#53: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2205:
++	seq_printf(m, "Requested Versions:\n");
+
+-:55: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#55: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2207:
++		seq_printf(m, "HDCP1.4\n");
+
+-:57: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#57: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2209:
++		seq_printf(m, "HDCP2.2\n");
+
+-:63: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#63: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2215:
++static int i915_hdcp_ver_request_open(struct inode *inode,
++				     struct file *file)
+
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2236:
++static ssize_t i915_hdcp_ver_request_write(struct file *file,
++					  const char __user *ubuf,
+
+-:106: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#106: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2258:
++
++
+
+-:139: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
+#139: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2314:
++		debugfs_create_file("i915_hdcp_version_request", S_IRUGO, root,
+
+total: 0 errors, 4 warnings, 4 checks, 110 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
