@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F431E42EC
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 15:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADEC1E431F
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 15:14:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 791186E2EC;
-	Wed, 27 May 2020 13:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16DF6E0A1;
+	Wed, 27 May 2020 13:14:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B162B6E2EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 13:07:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC3E6E0A1;
+ Wed, 27 May 2020 13:14:44 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21309517-1500050 for multiple; Wed, 27 May 2020 14:05:44 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200527130214.1239-1-chris@chris-wilson.co.uk>
-References: <20200527130214.1239-1-chris@chris-wilson.co.uk>
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21309621-1500050 
+ for multiple; Wed, 27 May 2020 14:14:10 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <159058474373.30979.15365604573895964133@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 27 May 2020 14:05:43 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Prevent timeslicing into
- unpreemptible requests
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 27 May 2020 14:14:09 +0100
+Message-Id: <20200527131409.699882-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0.rc0
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Randomise bonded
+ submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,25 +37,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-27 14:02:14)
-> We have a I915_REQUEST_NOPREEMPT flag that we set when we must prevent
-> the HW from preempting during the course of this request. We need to
-> honour this flag and protect the HW even if we have a heartbeat request,
-> or other maximum priority barrier, pending. As such, restrict the
-> timeslicing check to avoid preempting into the topmost priority band,
-> leaving the unpreemptable requests in blissful peace running
-> uninterrupted on the HW.
-> 
+Randomly submit a paired spinner and its cancellation as a bonded
+(submit fence) pair. Apply congestion to the engine with more bonded
+pairs to see if the execution order fails. If we prevent a cancellation
+from running, then the spinner will remain spinning forever.
 
-Fixes: 2a98f4e65bba ("drm/i915: add infrastructure to hold off preemption on a request")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tests/i915/gem_exec_balancer.c | 108 +++++++++++++++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 80ae82416..98715d726 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -1154,6 +1154,111 @@ static void bonded_semaphore(int i915)
+ 	gem_context_destroy(i915, ctx);
+ }
+ 
++static void __bonded_dual(int i915,
++			  const struct i915_engine_class_instance *siblings,
++			  unsigned int count)
++{
++	struct drm_i915_gem_exec_object2 batch = {};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&batch),
++		.buffer_count = 1,
++	};
++	unsigned long cycles = 0;
++	uint32_t A, B;
++
++	A = gem_context_create(i915);
++	set_load_balancer(i915, A, siblings, count, NULL);
++
++	B = gem_context_create(i915);
++	set_load_balancer(i915, B, siblings, count, NULL);
++
++	igt_until_timeout(5) {
++		unsigned int master = rand() % count + 1;
++		int timeline, fence;
++		igt_spin_t *a, *b;
++
++		timeline = sw_sync_timeline_create();
++		fence = sw_sync_timeline_create_fence(timeline, 1);
++
++		a = igt_spin_new(i915, A,
++				 .engine = master,
++				 .fence = fence,
++				 .flags = (IGT_SPIN_FENCE_IN |
++					   IGT_SPIN_POLL_RUN |
++					   IGT_SPIN_NO_PREEMPTION |
++					   IGT_SPIN_FENCE_OUT));
++		b = igt_spin_new(i915, B,
++				 .engine = master,
++				 .fence = fence,
++				 .flags = (IGT_SPIN_FENCE_IN |
++					   IGT_SPIN_POLL_RUN |
++					   IGT_SPIN_NO_PREEMPTION |
++					   IGT_SPIN_FENCE_OUT));
++
++		close(fence);
++
++		if (rand() % 1)
++			igt_swap(a, b);
++
++		batch.handle = create_semaphore_to_spinner(i915, a);
++		execbuf.rsvd1 = a->execbuf.rsvd1;
++		execbuf.rsvd2 = a->out_fence;
++		do {
++			execbuf.flags = rand() % count + 1;
++		} while (execbuf.flags == master);
++		execbuf.flags |= I915_EXEC_FENCE_SUBMIT;
++		gem_execbuf(i915, &execbuf);
++		gem_close(i915, batch.handle);
++
++		batch.handle = create_semaphore_to_spinner(i915, b);
++		execbuf.rsvd1 = b->execbuf.rsvd1;
++		execbuf.rsvd2 = b->out_fence;
++		do {
++			execbuf.flags = rand() % count + 1;
++		} while (execbuf.flags == master);
++		execbuf.flags |= I915_EXEC_FENCE_SUBMIT;
++		gem_execbuf(i915, &execbuf);
++		gem_close(i915, batch.handle);
++
++		close(timeline);
++
++		gem_sync(i915, a->handle);
++		gem_sync(i915, b->handle);
++
++		igt_spin_free(i915, a);
++		igt_spin_free(i915, b);
++		cycles++;
++	}
++
++	igt_info("%lu cycles\n", cycles);
++
++	gem_context_destroy(i915, A);
++	gem_context_destroy(i915, B);
++}
++
++static void bonded_dual(int i915)
++{
++	/*
++	 * The purpose of bonded submission is to execute one or more requests
++	 * concurrently. However, the very nature of that requires coordinated
++	 * submission across multiple engines.
++	 */
++	igt_require(gem_scheduler_has_preemption(i915));
++
++	for (int class = 1; class < 32; class++) {
++		struct i915_engine_class_instance *siblings;
++		unsigned int count;
++
++		siblings = list_engines(i915, 1u << class, &count);
++		if (count > 1) {
++			igt_fork(child, count + 1)
++				__bonded_dual(i915, siblings, count);
++			igt_waitchildren();
++		}
++		free(siblings);
++	}
++}
++
+ static void __bonded_nohang(int i915, uint32_t ctx,
+ 			    const struct i915_engine_class_instance *siblings,
+ 			    unsigned int count,
+@@ -2284,6 +2389,9 @@ igt_main
+ 	igt_subtest("bonded-semaphore")
+ 		bonded_semaphore(i915);
+ 
++	igt_subtest("bonded-dual")
++		bonded_dual(i915);
++
+ 	igt_fixture {
+ 		igt_stop_hang_detector();
+ 	}
+-- 
+2.27.0.rc0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
