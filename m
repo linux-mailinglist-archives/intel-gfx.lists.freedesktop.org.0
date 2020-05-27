@@ -2,43 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 793561E477A
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 17:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BFE1E47CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 17:42:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 689E76E32B;
-	Wed, 27 May 2020 15:31:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 714BA6E330;
+	Wed, 27 May 2020 15:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFAB06E32E;
- Wed, 27 May 2020 15:31:32 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3CA63208E4;
- Wed, 27 May 2020 15:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1590593492;
- bh=FYlTjZDDWzv75K1cm++7jCZ9U5TmYAzARky7QAXahI0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jXXSlSss9GQcJwOVQ18QpEkpPQ0UHggQ0gnw7GFrNNzCuPWE5+rTO8d+c6uVeB6Cs
- 78bnb0WIkRzmYIS3AQo7EY1dOw9IStfAv5KBXtOZEmWdm4DU6tsewCwDtPxhwIJtUo
- seapiYMExTH/ZC9Us+4q6KTSv6ZC6Zm+15xcQP3E=
-Date: Wed, 27 May 2020 17:31:30 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Ashwin H <ashwinh@vmware.com>
-Message-ID: <20200527153130.GA525531@kroah.com>
-References: <d29f87f3f3abb4e496866253bd170faad976f687.1589305630.git.ashwinh@vmware.com>
- <20200513055548.GA743118@kroah.com>
- <89DE19F6-4CB0-4324-A630-C8574C8D591C@vmware.com>
- <20200513063455.GA752913@kroah.com>
- <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2A616E32F;
+ Wed, 27 May 2020 15:42:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21311271-1500050 for multiple; Wed, 27 May 2020 16:42:05 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH v4.19.x] make 'user_access_begin()' do
- 'access_ok()'
+In-Reply-To: <20200527140526.1458215-1-arnd@arndb.de>
+References: <20200527140526.1458215-1-arnd@arndb.de>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Message-ID: <159059412490.30979.15190382623249962766@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 27 May 2020 16:42:04 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/pmu: avoid an
+ maybe-uninitialized warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,45 +43,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "x86@kernel.org" <x86@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
- "rostedt@goodmis.org" <rostedt@goodmis.org>,
- Steven Rostedt <srostedt@vmware.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- "stable@kernel.org" <stable@kernel.org>, Srivatsa Bhat <srivatsab@vmware.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Michał Winiarski <michal.winiarski@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 13, 2020 at 05:08:19PM +0000, Ashwin H wrote:
-> > Ok, but what does that mean for us?
-> > 
-> > You need to say why you are sending a patch, otherwise we will guess wrong.
+Quoting Arnd Bergmann (2020-05-27 15:05:08)
+> Conditional spinlocks make it hard for gcc and for lockdep to
+> follow the code flow. This one causes a warning with at least
+> gcc-9 and higher:
 > 
-> In drivers/gpu/drm/i915/i915_gem_execbuffer.c, ioctl functions does user_access_begin() without doing access_ok(Checks if a user space pointer is valid)  first.
-> A local attacker can craft a malicious ioctl function call to overwrite arbitrary kernel memory, resulting in a Denial of Service or privilege escalation (CVE-2018-20669)
+> In file included from include/linux/irq.h:14,
+>                  from drivers/gpu/drm/i915/i915_pmu.c:7:
+> drivers/gpu/drm/i915/i915_pmu.c: In function 'i915_sample':
+> include/linux/spinlock.h:289:3: error: 'flags' may be used uninitialized in this function [-Werror=maybe-uninitialized]
+>   289 |   _raw_spin_unlock_irqrestore(lock, flags); \
+>       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/i915_pmu.c:288:17: note: 'flags' was declared here
+>   288 |   unsigned long flags;
+>       |                 ^~~~~
 > 
-> This patch makes sure that user_access_begin always does access_ok. 
-> user_access_begin has been modified to do access_ok internally.
+> Split out the part between the locks into a separate function
+> for readability and to let the compiler figure out what the
+> logic actually is.
+> 
+> Fixes: d79e1bd676f0 ("drm/i915/pmu: Only use exclusive mmio access for gen7")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> I have no idea why I see three separate issues like this pop up in i915,
+> there are not a lot of them elsewhere.
 
-I had this in the tree, but it broke the build on alpha, sh, and maybe a
-few others :(
+gcc v8:
+add/remove: 1/0 grow/shrink: 0/1 up/down: 99/-164 (-65)
+Function                                     old     new   delta
+engine_sample                                  -      99     +99
+i915_sample                                  871     707    -164
 
-See:
-	https://lore.kernel.org/r/20200527140225.GA214763@roeck-us.net
-for the details.
+Which is compelling. Is gcc 9 simliar?
 
-Can you dig out all of the needed follow-on patches as well, and send
-them all as a patch series for 4.19.y so that I can queue them all up at
-once?
-
-thanks,
-
-greg k-h
+Given the above reduction, I find it hard to argue with.
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
