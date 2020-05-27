@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3411E4716
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 17:16:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 793561E477A
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 17:31:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDAFB6E320;
-	Wed, 27 May 2020 15:16:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 689E76E32B;
+	Wed, 27 May 2020 15:31:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCA336E31E;
- Wed, 27 May 2020 15:16:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CECEBA0BA8;
- Wed, 27 May 2020 15:16:13 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFAB06E32E;
+ Wed, 27 May 2020 15:31:32 +0000 (UTC)
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3CA63208E4;
+ Wed, 27 May 2020 15:31:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1590593492;
+ bh=FYlTjZDDWzv75K1cm++7jCZ9U5TmYAzARky7QAXahI0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=jXXSlSss9GQcJwOVQ18QpEkpPQ0UHggQ0gnw7GFrNNzCuPWE5+rTO8d+c6uVeB6Cs
+ 78bnb0WIkRzmYIS3AQo7EY1dOw9IStfAv5KBXtOZEmWdm4DU6tsewCwDtPxhwIJtUo
+ seapiYMExTH/ZC9Us+4q6KTSv6ZC6Zm+15xcQP3E=
+Date: Wed, 27 May 2020 17:31:30 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Ashwin H <ashwinh@vmware.com>
+Message-ID: <20200527153130.GA525531@kroah.com>
+References: <d29f87f3f3abb4e496866253bd170faad976f687.1589305630.git.ashwinh@vmware.com>
+ <20200513055548.GA743118@kroah.com>
+ <89DE19F6-4CB0-4324-A630-C8574C8D591C@vmware.com>
+ <20200513063455.GA752913@kroah.com>
+ <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Date: Wed, 27 May 2020 15:16:13 -0000
-Message-ID: <159059257381.343.16102302189381531823@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200527140526.1458215-1-arnd@arndb.de>
-In-Reply-To: <20200527140526.1458215-1-arnd@arndb.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/pmu=3A_avoid_an_maybe-unin?=
- =?utf-8?q?itialized_warning?=
+Content-Disposition: inline
+In-Reply-To: <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH v4.19.x] make 'user_access_begin()' do
+ 'access_ok()'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,78 +51,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "x86@kernel.org" <x86@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
+ "rostedt@goodmis.org" <rostedt@goodmis.org>,
+ Steven Rostedt <srostedt@vmware.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ "stable@kernel.org" <stable@kernel.org>, Srivatsa Bhat <srivatsab@vmware.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, May 13, 2020 at 05:08:19PM +0000, Ashwin H wrote:
+> > Ok, but what does that mean for us?
+> > 
+> > You need to say why you are sending a patch, otherwise we will guess wrong.
+> 
+> In drivers/gpu/drm/i915/i915_gem_execbuffer.c, ioctl functions does user_access_begin() without doing access_ok(Checks if a user space pointer is valid)  first.
+> A local attacker can craft a malicious ioctl function call to overwrite arbitrary kernel memory, resulting in a Denial of Service or privilege escalation (CVE-2018-20669)
+> 
+> This patch makes sure that user_access_begin always does access_ok. 
+> user_access_begin has been modified to do access_ok internally.
 
-Series: series starting with [1/3] drm/i915/pmu: avoid an maybe-uninitialized warning
-URL   : https://patchwork.freedesktop.org/series/77706/
-State : success
+I had this in the tree, but it broke the build on alpha, sh, and maybe a
+few others :(
 
-== Summary ==
+See:
+	https://lore.kernel.org/r/20200527140225.GA214763@roeck-us.net
+for the details.
 
-CI Bug Log - changes from CI_DRM_8543 -> Patchwork_17791
-====================================================
+Can you dig out all of the needed follow-on patches as well, and send
+them all as a patch series for 4.19.y so that I can queue them all up at
+once?
 
-Summary
--------
+thanks,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17791/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17791 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][1] ([i915#1250] / [i915#1436]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8543/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17791/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-
-  
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-
-
-Participating hosts (51 -> 43)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8543 -> Patchwork_17791
-
-  CI-20190529: 20190529
-  CI_DRM_8543: 3fcc7e306e95013f1f4c527e0dda96197e1243bf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5680: f7e3772175c53f0c910f4513831791cb5bdcab04 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17791: c333523a465573fc6e237bcd98a186a63f085d12 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c333523a4655 drm/i915/selftests: avoid bogus maybe-uninitialized warning
-459542001c2c drm/i915: work around false-positive maybe-uninitialized warning
-b6493a221e8d drm/i915/pmu: avoid an maybe-uninitialized warning
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17791/index.html
+greg k-h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
