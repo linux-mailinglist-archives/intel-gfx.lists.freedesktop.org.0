@@ -2,44 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2F91E3DB1
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 11:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 046741E3DC8
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 11:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A3C189B98;
-	Wed, 27 May 2020 09:36:57 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F62589B98
- for <Intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 09:36:56 +0000 (UTC)
-IronPort-SDR: ZZraEyMU19bX2RZwGQpJK9Ci3ers/eHpN4SMnMuZH9r0CvPNaLGyyKlUkABo/YZH1OUPzYXABf
- 1oc/J8BYsxKg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 02:36:55 -0700
-IronPort-SDR: XAPXeCNOcxGwH9Da0oxKkVSJW7md6/u/N64jmQSXwAxxXrXMOjiKmhAQe9UkXdV6Q2Xud8hQWQ
- fmLI1URuOckA==
-X-IronPort-AV: E=Sophos;i="5.73,440,1583222400"; d="scan'208";a="291535165"
-Received: from gkazakev-mobl1.ger.corp.intel.com (HELO [10.214.254.180])
- ([10.214.254.180])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2020 02:36:54 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
- <159057120157.30979.18380265534198859105@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <34f248f6-264b-e5ae-e084-ce4ab402457b@linux.intel.com>
-Date: Wed, 27 May 2020 10:36:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41D806E027;
+	Wed, 27 May 2020 09:43:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
+ [IPv6:2607:f8b0:4864:20::e41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC54B6E027
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 09:43:38 +0000 (UTC)
+Received: by mail-vs1-xe41.google.com with SMTP id b28so11387892vsa.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 02:43:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=i6Ssa/L/JIU86vB8L0eO6HBz7U1NYigtktNrlPclxdY=;
+ b=DJmxeEykJci8qyZGRV5N9yWmAl/+7Sd2Nbk0QTtuG6AnEP/JACYQ61hrrrvZCjpM1f
+ SpnQe+Sh9n5ln5exKlcWPDnr2+vwdqjn++A22y0IEDScznFWqLVpIXwLsDl7bG36TPqt
+ CcUEdyiUaMvNhdmWDXxCz+CcaNmNPZGZ/WHtpEzgG0Le9YDo0KJs225HDyWx2zL0GbXK
+ 17JqyBMZVMxaTjZGFu8cuCAKqOpFaAeJtQuNZBDnn/rCSCy6peM6j358fZuLY9YclC7j
+ 6GIssz8V9qsd9y4KniDc6N2WUJ/HHkehTrGTIlgUlFPIi7in9O0fe53ov12dkuZCb2qu
+ fMgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=i6Ssa/L/JIU86vB8L0eO6HBz7U1NYigtktNrlPclxdY=;
+ b=sTo5a+rUfR3/5DlPc4pGx4G7AaRaDUsCM2lGO4a47jWz3S4FVF+ZIykMUXG6zVR0a6
+ sFfpmSFzZXJJ2J0pO3Dtx5RkNT9W7HhCjJukWTWCYrqXcux7jaKyjsomneE0aNEqLmBk
+ dk4FF4ac11OMAbrph8UoTUYKKuTgA6HmnDp1rK9IQXqL5CMSYMzivrqi5O7R67GoAvEs
+ V/F8Fdy41DvmOioh7NbgmFDmvuoEluiFIy4sNdDYEVMI4lXiAu0faDQz4VQgdKAD6+uC
+ 8f+cAuVZoHLXgSgS5lxilzKDPrEzjP5jzGvYZydkx/MEAdP5i3G+Zt7a7Uk2rHUhRC69
+ 7QVw==
+X-Gm-Message-State: AOAM532Y85Y33UqNaOVRiTdqmsGbJ1g7JyovsRqCx4sInchylXw7OkAU
+ /t7I920VQrmTxaw5fNKh5FN7PnvGrMS2hRBWysw=
+X-Google-Smtp-Source: ABdhPJx23yVQpd6kihb0W68ZCCVGbUjTs841kw0t1zwufzeKyLIbvXW3fgN2+/e1Cy2PnP3MY9NN9KI3dc8cACGlEoI=
+X-Received: by 2002:a05:6102:109d:: with SMTP id
+ s29mr4103928vsr.119.1590572617964; 
+ Wed, 27 May 2020 02:43:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <159057120157.30979.18380265534198859105@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Special handling for bonded
- requests
+References: <20200526150739.26147-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200526150739.26147-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 27 May 2020 10:42:46 +0100
+Message-ID: <CAM0jSHNX59Axp0bzUkC4v4K1KZXi0NiqkJCo1p4zN1TqQxjKug@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear LOCAL_BIND from shared
+ GGTT on resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,126 +62,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xiaogang Li <xiaogang.li@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 27/05/2020 10:20, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-05-27 09:53:22)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Our generic mechanism for specifying aligned request start,
->> I915_EXEC_FENCE_SUBMIT, has a bit too relaxed rules when it comes to the
->> actual use case of media scalability on Tigerlake.
->>
->> While the submit fence can provide the aligned start, the  actual media
->> pipeline expects that execution remains in lockstep from then onwards.
->> Otherwise the hardware cannot handle well one of the pair getting
->> preempted leading to GPU hangs and corrupted media playback.
->>
->> This puts us in a difficult position where the only visible solution,
->> which does not involve adding new uapi, is to give more meaning to the
->> generic submit fence. At least when used between the video engines.
->>
->> The special semantics this patch applies in that case are two fold. First
->> is that both of the aligned pairs will be marked as non-preemptable and
->> second is ensuring both are not sharing ELSP ports with any other context.
->>
->> Non-preemptable property will ensure that once the start has been aligned
->> the requests remain executing until completion.
->>
->> Single port ELSP property will ensure there are no possible inversions
->> between different independent pairs of aligned requests.
-> 
-> Nak.
-> 
->> Going forward we can think of introducing new uapi to request this
->> behaviour as a separate, more explicit flag, and at that point retire this
->> semi-generic special handling.
-> 
-> As CI will say, such behaviour will already need a new flag. Forcing
-> no-preemption should be a privileged flag, so I would expect some
-> acknowledge that this is a HW problem that we have to workaround.
-
-I don't know how hw exactly works so from my side it's only empirical.
-
-I agree new flag is needed but we also need a fix ASAP for TGL. And I 
-don't think we can add new uapi in a reasonable time frame here. We 
-would need the ctx set_parallel extension with a dont-preempt flag and 
-multi-batch execbuf. And a lot of work in media-driver which will not be 
-ready for TGL. I don't think a flag at the I915_EXEC_FENCE_SUBMIT level 
-is a solution.
-
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Suggested-by: Xiaogang Li <xiaogang.li@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_context.h |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_lrc.c     | 46 +++++++++++++++++++++----
->>   2 files changed, 41 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
->> index 07be021882cc..576d11c0cdd9 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_context.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
->> @@ -212,7 +212,7 @@ intel_context_force_single_submission(const struct intel_context *ce)
->>   static inline void
->>   intel_context_set_single_submission(struct intel_context *ce)
->>   {
->> -       __set_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
->> +       set_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
->>   }
->>   
->>   static inline bool
->> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> index 3214a4ecc31a..88cf20fd92c8 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> @@ -1734,8 +1734,7 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
->>   
->>   static bool ctx_single_port_submission(const struct intel_context *ce)
->>   {
->> -       return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
->> -               intel_context_force_single_submission(ce));
->> +       return intel_context_force_single_submission(ce);
->>   }
->>   
->>   static bool can_merge_ctx(const struct intel_context *prev,
->> @@ -4929,9 +4928,41 @@ static void execlists_park(struct intel_engine_cs *engine)
->>          cancel_timer(&engine->execlists.preempt);
->>   }
->>   
->> +static void
->> +mark_bonded_pair(struct i915_request *rq, struct i915_request *signal)
->> +{
->> +       /*
->> +        * Give (temporary) special meaning to a pair requests with requested
->> +        * aligned start along the video engines.
->> +        *
->> +        * They should be non-preemptable and have all ELSP ports to themselves
->> +        * to avoid any deadlocks caused by inversions.
-> 
-> This sentence needs expanding, because you are implying that this is an
-> issue we need to address in the code. If there is a deadlock resulting
-> from incorrect submission ordering, that is a bug in the code.
-
-If we add no-preempt I think we have to have single elsp because there 
-is no ordering between unrelated pairs and then elsp inversion certainly 
-sounds like a deadlock.
-
-ctx-A: vcs0 + vcs1
-ctx-B: vcs0 + vcs1
-
-There is no ordering between A and B but we'd have to pick same port for 
-both pairs of A and B respectively. I don't see that we can do that 
-since all four submissions are async.
-
-Regards,
-
-Tvrtko
+On Tue, 26 May 2020 at 16:07, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> We only restore GLOBAL binds upon resume as we expect these to be pinned
+> for use by HW, whereas the LOCAL binds can be recreated on demand once
+> userspace is resumed. For the LOCAL bind to be recreated in the global
+> GTT, we need to clear its presence flag on deciding not to restore the
+> mapping upon resume.
+>
+> Fixes: bf0840cdb304 ("drm/i915/gt: Stop cross-polluting PIN_GLOBAL with PIN_USER with no-ppgtt")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
