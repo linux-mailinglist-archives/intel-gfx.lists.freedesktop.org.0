@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33AFA1E4C32
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 19:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC021E4C3B
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2020 19:44:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E9CC89948;
-	Wed, 27 May 2020 17:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5581E6E373;
+	Wed, 27 May 2020 17:44:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6034C898F0;
- Wed, 27 May 2020 17:43:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5E99FA363B;
- Wed, 27 May 2020 17:43:19 +0000 (UTC)
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E2E6E191;
+ Wed, 27 May 2020 17:44:17 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id E7FAD8063B;
+ Wed, 27 May 2020 19:44:14 +0200 (CEST)
+Date: Wed, 27 May 2020 19:44:13 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200527174413.GA98921@ravnborg.org>
+References: <20200527111134.1571781-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 27 May 2020 17:43:19 -0000
-Message-ID: <159060139938.341.11894243742201998122@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200527151235.25663-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200527151235.25663-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Remove_local_entries_from_GGTT_on_suspend_=28rev3?=
- =?utf-8?q?=29?=
+Content-Disposition: inline
+In-Reply-To: <20200527111134.1571781-1-daniel.vetter@ffwll.ch>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=MOBOZvRl c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=VwQbUJbxAAAA:8 a=7gkXJVJtAAAA:8
+ a=e5mUnYsNAAAA:8 a=XJwfjo96hc9i5sMrGfkA:9 a=Jokcs-bknmqL94pQ:21
+ a=swgEPVSOk_qj554C:21 a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22
+ a=E9Po1WZjFZOl8hwRPBS3:22 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH] drm: use drm_dev_has_vblank more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,95 +45,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Remove local entries from GGTT on suspend (rev3)
-URL   : https://patchwork.freedesktop.org/series/77708/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8544 -> Patchwork_17795
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17795/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17795 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#1242])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8544/fi-hsw-4770/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17795/fi-hsw-4770/igt@gem_exec_suspend@basic-s0.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [FAIL][3] ([i915#262]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8544/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17795/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][5] ([fdo#109271]) -> [FAIL][6] ([i915#62])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8544/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17795/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8544 -> Patchwork_17795
-
-  CI-20190529: 20190529
-  CI_DRM_8544: c6c0a18e985d7a3fd4451e0e786e6522371ea9ee @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5680: f7e3772175c53f0c910f4513831791cb5bdcab04 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17795: 3c30dfc380bfcf268228645cf7cc68f9734067f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3c30dfc380bf drm/i915/gt: Remove local entries from GGTT on suspend
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17795/index.html
+On Wed, May 27, 2020 at 01:11:34PM +0200, Daniel Vetter wrote:
+> For historical reasons it's called dev->num_crtcs, which is rather
+> confusing ever since kms was added. But now we have a nice helper, so
+> let's use it for better readability!
+> 
+> Only code change is in atomic helpers: vblank support means that
+> dev->irq_enabled must be set too. Another one of these quirky things
+> ... But since it's implied we can simplify that check.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+>  drivers/gpu/drm/drm_atomic_helper.c |  2 +-
+>  drivers/gpu/drm/drm_irq.c           |  2 +-
+>  drivers/gpu/drm/drm_vblank.c        | 14 +++++++-------
+>  3 files changed, 9 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index 0a541368246e..bfcc7857a9a1 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -1097,7 +1097,7 @@ disable_outputs(struct drm_device *dev, struct drm_atomic_state *old_state)
+>  		else if (funcs->dpms)
+>  			funcs->dpms(crtc, DRM_MODE_DPMS_OFF);
+>  
+> -		if (!(dev->irq_enabled && dev->num_crtcs))
+> +		if (!drm_dev_has_vblank(dev))
+>  			continue;
+>  
+>  		ret = drm_crtc_vblank_get(crtc);
+> diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
+> index 588be45abd7a..09d6e9e2e075 100644
+> --- a/drivers/gpu/drm/drm_irq.c
+> +++ b/drivers/gpu/drm/drm_irq.c
+> @@ -181,7 +181,7 @@ int drm_irq_uninstall(struct drm_device *dev)
+>  	 * vblank/irq handling. KMS drivers must ensure that vblanks are all
+>  	 * disabled when uninstalling the irq handler.
+>  	 */
+> -	if (dev->num_crtcs) {
+> +	if (drm_dev_has_vblank(dev)) {
+>  		spin_lock_irqsave(&dev->vbl_lock, irqflags);
+>  		for (i = 0; i < dev->num_crtcs; i++) {
+>  			struct drm_vblank_crtc *vblank = &dev->vblank[i];
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index e278d6407f8e..162d9f7e692a 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -605,7 +605,7 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+>  	int linedur_ns = 0, framedur_ns = 0;
+>  	int dotclock = mode->crtc_clock;
+>  
+> -	if (!dev->num_crtcs)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return;
+>  
+>  	if (WARN_ON(pipe >= dev->num_crtcs))
+> @@ -1065,7 +1065,7 @@ void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
+>  	unsigned int pipe = drm_crtc_index(crtc);
+>  	ktime_t now;
+>  
+> -	if (dev->num_crtcs > 0) {
+> +	if (drm_dev_has_vblank(dev)) {
+>  		seq = drm_vblank_count_and_time(dev, pipe, &now);
+>  	} else {
+>  		seq = 0;
+> @@ -1137,7 +1137,7 @@ static int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
+>  	unsigned long irqflags;
+>  	int ret = 0;
+>  
+> -	if (!dev->num_crtcs)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return -EINVAL;
+>  
+>  	if (WARN_ON(pipe >= dev->num_crtcs))
+> @@ -1506,7 +1506,7 @@ static void drm_legacy_vblank_pre_modeset(struct drm_device *dev,
+>  	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
+>  
+>  	/* vblank is not initialized (IRQ not installed ?), or has been freed */
+> -	if (!dev->num_crtcs)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return;
+>  
+>  	if (WARN_ON(pipe >= dev->num_crtcs))
+> @@ -1533,7 +1533,7 @@ static void drm_legacy_vblank_post_modeset(struct drm_device *dev,
+>  	unsigned long irqflags;
+>  
+>  	/* vblank is not initialized (IRQ not installed ?), or has been freed */
+> -	if (!dev->num_crtcs)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return;
+>  
+>  	if (WARN_ON(pipe >= dev->num_crtcs))
+> @@ -1558,7 +1558,7 @@ int drm_legacy_modeset_ctl_ioctl(struct drm_device *dev, void *data,
+>  	unsigned int pipe;
+>  
+>  	/* If drm_vblank_init() hasn't been called yet, just no-op */
+> -	if (!dev->num_crtcs)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return 0;
+>  
+>  	/* KMS drivers handle this internally */
+> @@ -1896,7 +1896,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
+>  	unsigned long irqflags;
+>  	bool disable_irq, fence_cookie;
+>  
+> -	if (WARN_ON_ONCE(!dev->num_crtcs))
+> +	if (WARN_ON_ONCE(!drm_dev_has_vblank(dev)))
+>  		return false;
+>  
+>  	if (WARN_ON(pipe >= dev->num_crtcs))
+> -- 
+> 2.26.2
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
