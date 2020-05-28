@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DC61E5AB6
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:25:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A221E5B1C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:44:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01E896E500;
-	Thu, 28 May 2020 08:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8206E03F;
+	Thu, 28 May 2020 08:44:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2628D6E503
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 08:25:45 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id x6so13315348wrm.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 01:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=dZm4qqnvnFfi9AnD6QwHMa98Owv4lt6xBotC4KU/1vk=;
- b=czup3S4I54O/SmAYJ1Yp032Bx7qbeA/atZsIzCP1VOKKssxod9difMHd2pgQRQxnAl
- XPPDdkNnsr4nGucu0jsfvEjhEvgKy1XhTyVyjk00Kpj5+6kbsaTM3Rf0jqixp6tjilap
- QsF7jrQHPymmQ1iI926fYhE6+fP62b0lLwEik=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=dZm4qqnvnFfi9AnD6QwHMa98Owv4lt6xBotC4KU/1vk=;
- b=RoJoOHzoV1w0O4fpX5/f7eWtjsBXIqb7kj/T5yxArxiLoXdng3ydRuVtmOZqN5NvVg
- buaphMoBbiUAKjrz5DnOMHFoXx68Y0RBCc+D560F2k/eCIRJY40/asSDfG7dWKZPEH9l
- t+zk8fnVWiMPwVGRWg++XIMV8uN2k9gxZF8JBlXS5CpvblnnK5UN6fRxzyzEGdD6Z50B
- IN+M07Ru0A94m/nNS1/aE/5FqLRQ/ZL+lJ/lYq/UNPl2R0vYBkx1mCGJQ8IHSnSKycB8
- neWEsJqbKkvsj70tvYq6H5uy7ps43p1WNwROPPj9USWsaBEkAsZ/Wpiq/xaGKaK84Jcq
- bIqg==
-X-Gm-Message-State: AOAM531hb4UWC1humSS81cHtuxbcRlebr/feEi1HWDonsHX9kyurpmlS
- MfNncbaDMnlHgA9+FVWAhp1ZNg==
-X-Google-Smtp-Source: ABdhPJxgiT43pQLH7LRt5KZW/Vdlek75Gu2WZPGjirY+tzqkiyl5+Cnx66FgSLx0/C9mCLO0V0lQfg==
-X-Received: by 2002:a5d:4286:: with SMTP id k6mr2309159wrq.140.1590654343729; 
- Thu, 28 May 2020 01:25:43 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j4sm3492917wma.7.2020.05.28.01.25.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 May 2020 01:25:43 -0700 (PDT)
-Date: Thu, 28 May 2020 10:25:41 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Stefan Agner <stefan@agner.ch>
-Message-ID: <20200528082541.GS206103@phenom.ffwll.local>
-References: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
- <20200528054643.GQ206103@phenom.ffwll.local>
- <7911368105b92200b661f0fed39f5642@agner.ch>
- <CAKMK7uGzbadiY1EQKQvQcBND4Ja73WZRF8-DoxLJNTsGBJS0jw@mail.gmail.com>
- <c8294901e201cd40a41111b05ecccd43@agner.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8EB1A89B49;
+ Thu, 28 May 2020 08:44:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89384A47EB;
+ Thu, 28 May 2020 08:44:35 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <c8294901e201cd40a41111b05ecccd43@agner.ch>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/mxsfb: Call drm_crtc_vblank_on/off
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 28 May 2020 08:44:35 -0000
+Message-ID: <159065547553.685.13852141827295785834@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200528074324.5765-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200528074324.5765-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gt=3A_Prevent_timeslicing_?=
+ =?utf-8?q?into_unpreemptable_requests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,128 +39,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Marek Vasut <marex@denx.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- NXP Linux Team <linux-imx@nxp.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 28, 2020 at 10:19:46AM +0200, Stefan Agner wrote:
-> On 2020-05-28 10:06, Daniel Vetter wrote:
-> > On Thu, May 28, 2020 at 9:56 AM Stefan Agner <stefan@agner.ch> wrote:
-> >>
-> >> Hi Daniel,
-> >>
-> >> On 2020-05-28 07:46, Daniel Vetter wrote:
-> >> > On Wed, May 27, 2020 at 11:47:56AM +0200, Daniel Vetter wrote:
-> >> >> mxsfb has vblank support, is atomic, but doesn't call
-> >> >> drm_crtc_vblank_on/off as it should. Not good.
-> >> >>
-> >> >> With my next patch to add the drm_crtc_vblank_reset to helpers this
-> >> >> means not even the very first crtc enabling will vblanks work anymore,
-> >> >> since they'll just stay off forever.
-> >> >>
-> >> >> Since mxsfb doesn't have any vblank waits of its own in the
-> >> >> enable/disable flow, nor an enable/disable_vblank callback we can do
-> >> >> the on/off as the first respectively last operation, and it should all
-> >> >> work.
-> >> >>
-> >> >> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> >> >> Cc: Marek Vasut <marex@denx.de>
-> >> >> Cc: Stefan Agner <stefan@agner.ch>
-> >> >> Cc: Shawn Guo <shawnguo@kernel.org>
-> >> >> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> >> >> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> >> >> Cc: Fabio Estevam <festevam@gmail.com>
-> >> >> Cc: NXP Linux Team <linux-imx@nxp.com>
-> >> >> Cc: linux-arm-kernel@lists.infradead.org
-> >> >
-> >> > Ping for some ack/review on this one here, it's holding up the subsystem
-> >> > wide fix in patch 2.
-> >>
-> >> Sorry for the delay.
-> >>
-> >> I guess that has the same effect as patch 14 in Laurent's patchset would
-> >> have:
-> >> https://lore.kernel.org/dri-devel/20200309195216.31042-15-laurent.pinchart@ideasonboard.com/
-> > 
-> > Uh, looking at that patch I realized that mxsfb indeed calls
-> > drm_vblank_init before mode_config.num_crtc is set. Which means it
-> > never had working vblank support in upstream. That also explains the
-> > lack of fireworks, since all other drivers that actually do initialize
-> > vblank support have the drm_crtc_vblank_on/off calls - without them
-> > the driver doesn't survive for very long.
-> > 
-> > tldr; I don't need this patch here to apply the 2nd one, so no
-> > conflict potential at all. And the patch from Laurent does fix up
-> > everything correctly, so we should be good.
-> 
-> Uh I see, that is somehow unfortunate and fortunate at the same time!
-> 
-> Ok, I hope we get this cleaned up soon.
+== Series Details ==
 
-I recommend igt tests for actually making sure your driver does something,
-instead of just thinking you've enabled a feature :-)
--Daniel
+Series: series starting with [1/3] drm/i915/gt: Prevent timeslicing into unpreemptable requests
+URL   : https://patchwork.freedesktop.org/series/77730/
+State : failure
 
-> 
-> --
-> Stefan
-> 
-> > -Daniel
-> > 
-> >> But should be rather trivial to rebase. So until Laurent's patchset is
-> >> ready, we can go with this fix.
-> >>
-> >> Acked-by: Stefan Agner <stefan@agner.ch>
-> >>
-> >> --
-> >> Stefan
-> >>
-> >> >
-> >> > Thanks, Daniel
-> >> >
-> >> >> ---
-> >> >>  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 2 ++
-> >> >>  1 file changed, 2 insertions(+)
-> >> >>
-> >> >> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> >> >> index 497cf443a9af..1891cd6deb2f 100644
-> >> >> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> >> >> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> >> >> @@ -124,6 +124,7 @@ static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
-> >> >>      drm_panel_prepare(mxsfb->panel);
-> >> >>      mxsfb_crtc_enable(mxsfb);
-> >> >>      drm_panel_enable(mxsfb->panel);
-> >> >> +    drm_crtc_vblank_on(&pipe->crtc);
-> >> >>  }
-> >> >>
-> >> >>  static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
-> >> >> @@ -133,6 +134,7 @@ static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
-> >> >>      struct drm_crtc *crtc = &pipe->crtc;
-> >> >>      struct drm_pending_vblank_event *event;
-> >> >>
-> >> >> +    drm_crtc_vblank_off(&pipe->crtc);
-> >> >>      drm_panel_disable(mxsfb->panel);
-> >> >>      mxsfb_crtc_disable(mxsfb);
-> >> >>      drm_panel_unprepare(mxsfb->panel);
-> >> >> --
-> >> >> 2.26.2
-> >> >>
+== Summary ==
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+CI Bug Log - changes from CI_DRM_8545 -> Patchwork_17801
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17801 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17801, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17801/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17801:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8545/fi-bwr-2160/igt@i915_selftest@live@gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17801/fi-bwr-2160/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_busy@basic@modeset:
+    - fi-ivb-3770:        [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8545/fi-ivb-3770/igt@kms_busy@basic@modeset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17801/fi-ivb-3770/igt@kms_busy@basic@modeset.html
+
+  
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (2): fi-bdw-gvtdvm fi-cfl-8700k 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8545 -> Patchwork_17801
+
+  CI-20190529: 20190529
+  CI_DRM_8545: 76540f7be4ff04851e47d0865c2bb07a15106bcb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5681: 2991a5d60b1bbf2b2b6004669cd0f9471bd687a2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17801: ee61f90a8c75a2e40c30cda9beba279a8e6e0500 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ee61f90a8c75 drm/i915: Track i915_vma with its own reference counter
+78e4f820cf01 drm/i915/gt: Don't declare hangs if engine is stalled
+006567321620 drm/i915/gt: Prevent timeslicing into unpreemptable requests
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17801/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
