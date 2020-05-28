@@ -1,32 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1591E5AB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:24:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3DC61E5AB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:25:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6C936E4F9;
-	Thu, 28 May 2020 08:24:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E896E500;
+	Thu, 28 May 2020 08:25:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 795666E4F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 08:24:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318663-1500050 
- for multiple; Thu, 28 May 2020 09:24:28 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 09:24:27 +0100
-Message-Id: <20200528082427.21402-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200528082427.21402-1-chris@chris-wilson.co.uk>
-References: <20200528082427.21402-1-chris@chris-wilson.co.uk>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2628D6E503
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 08:25:45 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id x6so13315348wrm.13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 01:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=dZm4qqnvnFfi9AnD6QwHMa98Owv4lt6xBotC4KU/1vk=;
+ b=czup3S4I54O/SmAYJ1Yp032Bx7qbeA/atZsIzCP1VOKKssxod9difMHd2pgQRQxnAl
+ XPPDdkNnsr4nGucu0jsfvEjhEvgKy1XhTyVyjk00Kpj5+6kbsaTM3Rf0jqixp6tjilap
+ QsF7jrQHPymmQ1iI926fYhE6+fP62b0lLwEik=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=dZm4qqnvnFfi9AnD6QwHMa98Owv4lt6xBotC4KU/1vk=;
+ b=RoJoOHzoV1w0O4fpX5/f7eWtjsBXIqb7kj/T5yxArxiLoXdng3ydRuVtmOZqN5NvVg
+ buaphMoBbiUAKjrz5DnOMHFoXx68Y0RBCc+D560F2k/eCIRJY40/asSDfG7dWKZPEH9l
+ t+zk8fnVWiMPwVGRWg++XIMV8uN2k9gxZF8JBlXS5CpvblnnK5UN6fRxzyzEGdD6Z50B
+ IN+M07Ru0A94m/nNS1/aE/5FqLRQ/ZL+lJ/lYq/UNPl2R0vYBkx1mCGJQ8IHSnSKycB8
+ neWEsJqbKkvsj70tvYq6H5uy7ps43p1WNwROPPj9USWsaBEkAsZ/Wpiq/xaGKaK84Jcq
+ bIqg==
+X-Gm-Message-State: AOAM531hb4UWC1humSS81cHtuxbcRlebr/feEi1HWDonsHX9kyurpmlS
+ MfNncbaDMnlHgA9+FVWAhp1ZNg==
+X-Google-Smtp-Source: ABdhPJxgiT43pQLH7LRt5KZW/Vdlek75Gu2WZPGjirY+tzqkiyl5+Cnx66FgSLx0/C9mCLO0V0lQfg==
+X-Received: by 2002:a5d:4286:: with SMTP id k6mr2309159wrq.140.1590654343729; 
+ Thu, 28 May 2020 01:25:43 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j4sm3492917wma.7.2020.05.28.01.25.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 28 May 2020 01:25:43 -0700 (PDT)
+Date: Thu, 28 May 2020 10:25:41 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Stefan Agner <stefan@agner.ch>
+Message-ID: <20200528082541.GS206103@phenom.ffwll.local>
+References: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
+ <20200528054643.GQ206103@phenom.ffwll.local>
+ <7911368105b92200b661f0fed39f5642@agner.ch>
+ <CAKMK7uGzbadiY1EQKQvQcBND4Ja73WZRF8-DoxLJNTsGBJS0jw@mail.gmail.com>
+ <c8294901e201cd40a41111b05ecccd43@agner.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Remove local entries from GGTT
- on suspend
+Content-Disposition: inline
+In-Reply-To: <c8294901e201cd40a41111b05ecccd43@agner.ch>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/mxsfb: Call drm_crtc_vblank_on/off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,169 +68,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Marek Vasut <marex@denx.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ NXP Linux Team <linux-imx@nxp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Across suspend/resume, we clear the entire GGTT and rebuild from
-scratch. In particular, we only preserve the global entries for use by
-the HW, and delay reinstating the local binds until required by the
-user. This means that we can evict and recover any local binds in the
-global GTT, saving any time in preserving their state.
+On Thu, May 28, 2020 at 10:19:46AM +0200, Stefan Agner wrote:
+> On 2020-05-28 10:06, Daniel Vetter wrote:
+> > On Thu, May 28, 2020 at 9:56 AM Stefan Agner <stefan@agner.ch> wrote:
+> >>
+> >> Hi Daniel,
+> >>
+> >> On 2020-05-28 07:46, Daniel Vetter wrote:
+> >> > On Wed, May 27, 2020 at 11:47:56AM +0200, Daniel Vetter wrote:
+> >> >> mxsfb has vblank support, is atomic, but doesn't call
+> >> >> drm_crtc_vblank_on/off as it should. Not good.
+> >> >>
+> >> >> With my next patch to add the drm_crtc_vblank_reset to helpers this
+> >> >> means not even the very first crtc enabling will vblanks work anymore,
+> >> >> since they'll just stay off forever.
+> >> >>
+> >> >> Since mxsfb doesn't have any vblank waits of its own in the
+> >> >> enable/disable flow, nor an enable/disable_vblank callback we can do
+> >> >> the on/off as the first respectively last operation, and it should all
+> >> >> work.
+> >> >>
+> >> >> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> >> >> Cc: Marek Vasut <marex@denx.de>
+> >> >> Cc: Stefan Agner <stefan@agner.ch>
+> >> >> Cc: Shawn Guo <shawnguo@kernel.org>
+> >> >> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> >> >> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> >> >> Cc: Fabio Estevam <festevam@gmail.com>
+> >> >> Cc: NXP Linux Team <linux-imx@nxp.com>
+> >> >> Cc: linux-arm-kernel@lists.infradead.org
+> >> >
+> >> > Ping for some ack/review on this one here, it's holding up the subsystem
+> >> > wide fix in patch 2.
+> >>
+> >> Sorry for the delay.
+> >>
+> >> I guess that has the same effect as patch 14 in Laurent's patchset would
+> >> have:
+> >> https://lore.kernel.org/dri-devel/20200309195216.31042-15-laurent.pinchart@ideasonboard.com/
+> > 
+> > Uh, looking at that patch I realized that mxsfb indeed calls
+> > drm_vblank_init before mode_config.num_crtc is set. Which means it
+> > never had working vblank support in upstream. That also explains the
+> > lack of fireworks, since all other drivers that actually do initialize
+> > vblank support have the drm_crtc_vblank_on/off calls - without them
+> > the driver doesn't survive for very long.
+> > 
+> > tldr; I don't need this patch here to apply the 2nd one, so no
+> > conflict potential at all. And the patch from Laurent does fix up
+> > everything correctly, so we should be good.
+> 
+> Uh I see, that is somehow unfortunate and fortunate at the same time!
+> 
+> Ok, I hope we get this cleaned up soon.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/1947
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 23 ++++++++++-
- drivers/gpu/drm/i915/i915_vma.c      | 59 +++++++++++++++-------------
- drivers/gpu/drm/i915/i915_vma.h      |  1 +
- 3 files changed, 54 insertions(+), 29 deletions(-)
+I recommend igt tests for actually making sure your driver does something,
+instead of just thinking you've enabled a feature :-)
+-Daniel
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index ffe285b0b3bd..323c328d444a 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -108,13 +108,32 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
- 
- void i915_ggtt_suspend(struct i915_ggtt *ggtt)
- {
--	struct i915_vma *vma;
-+	struct i915_vma *vma, *vn;
-+	int open;
-+
-+	mutex_lock(&ggtt->vm.mutex);
-+
-+	/* Skip rewriting PTE on VMA unbind. */
-+	open = atomic_xchg(&ggtt->vm.open, 0);
- 
--	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link)
-+	list_for_each_entry_safe(vma, vn, &ggtt->vm.bound_list, vm_link) {
-+		GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
- 		i915_vma_wait_for_bind(vma);
- 
-+		if (i915_vma_is_pinned(vma))
-+			continue;
-+
-+		if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
-+			__i915_vma_evict(vma);
-+			drm_mm_remove_node(&vma->node);
-+		}
-+	}
-+
- 	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
- 	ggtt->invalidate(ggtt);
-+	atomic_set(&ggtt->vm.open, open);
-+
-+	mutex_unlock(&ggtt->vm.mutex);
- 
- 	intel_gt_check_and_clear_faults(ggtt->vm.gt);
- }
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 22198b758459..9b30ddc49e4b 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1229,31 +1229,9 @@ int i915_vma_move_to_active(struct i915_vma *vma,
- 	return 0;
- }
- 
--int __i915_vma_unbind(struct i915_vma *vma)
-+void __i915_vma_evict(struct i915_vma *vma)
- {
--	int ret;
--
--	lockdep_assert_held(&vma->vm->mutex);
--
--	if (i915_vma_is_pinned(vma)) {
--		vma_print_allocator(vma, "is pinned");
--		return -EAGAIN;
--	}
--
--	/*
--	 * After confirming that no one else is pinning this vma, wait for
--	 * any laggards who may have crept in during the wait (through
--	 * a residual pin skipping the vm->mutex) to complete.
--	 */
--	ret = i915_vma_sync(vma);
--	if (ret)
--		return ret;
--
--	if (!drm_mm_node_allocated(&vma->node))
--		return 0;
--
- 	GEM_BUG_ON(i915_vma_is_pinned(vma));
--	GEM_BUG_ON(i915_vma_is_active(vma));
- 
- 	if (i915_vma_is_map_and_fenceable(vma)) {
- 		/* Force a pagefault for domain tracking on next user access */
-@@ -1292,6 +1270,33 @@ int __i915_vma_unbind(struct i915_vma *vma)
- 
- 	i915_vma_detach(vma);
- 	vma_unbind_pages(vma);
-+}
-+
-+int __i915_vma_unbind(struct i915_vma *vma)
-+{
-+	int ret;
-+
-+	lockdep_assert_held(&vma->vm->mutex);
-+
-+	if (!drm_mm_node_allocated(&vma->node))
-+		return 0;
-+
-+	if (i915_vma_is_pinned(vma)) {
-+		vma_print_allocator(vma, "is pinned");
-+		return -EAGAIN;
-+	}
-+
-+	/*
-+	 * After confirming that no one else is pinning this vma, wait for
-+	 * any laggards who may have crept in during the wait (through
-+	 * a residual pin skipping the vm->mutex) to complete.
-+	 */
-+	ret = i915_vma_sync(vma);
-+	if (ret)
-+		return ret;
-+
-+	GEM_BUG_ON(i915_vma_is_active(vma));
-+	__i915_vma_evict(vma);
- 
- 	drm_mm_remove_node(&vma->node); /* pairs with i915_vma_release() */
- 	return 0;
-@@ -1303,13 +1308,13 @@ int i915_vma_unbind(struct i915_vma *vma)
- 	intel_wakeref_t wakeref = 0;
- 	int err;
- 
--	if (!drm_mm_node_allocated(&vma->node))
--		return 0;
--
- 	/* Optimistic wait before taking the mutex */
- 	err = i915_vma_sync(vma);
- 	if (err)
--		goto out_rpm;
-+		return err;
-+
-+	if (!drm_mm_node_allocated(&vma->node))
-+		return 0;
- 
- 	if (i915_vma_is_pinned(vma)) {
- 		vma_print_allocator(vma, "is pinned");
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 8ad1daabcd58..d0d01f909548 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -203,6 +203,7 @@ bool i915_vma_misplaced(const struct i915_vma *vma,
- 			u64 size, u64 alignment, u64 flags);
- void __i915_vma_set_map_and_fenceable(struct i915_vma *vma);
- void i915_vma_revoke_mmap(struct i915_vma *vma);
-+void __i915_vma_evict(struct i915_vma *vma);
- int __i915_vma_unbind(struct i915_vma *vma);
- int __must_check i915_vma_unbind(struct i915_vma *vma);
- void i915_vma_unlink_ctx(struct i915_vma *vma);
+> 
+> --
+> Stefan
+> 
+> > -Daniel
+> > 
+> >> But should be rather trivial to rebase. So until Laurent's patchset is
+> >> ready, we can go with this fix.
+> >>
+> >> Acked-by: Stefan Agner <stefan@agner.ch>
+> >>
+> >> --
+> >> Stefan
+> >>
+> >> >
+> >> > Thanks, Daniel
+> >> >
+> >> >> ---
+> >> >>  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 2 ++
+> >> >>  1 file changed, 2 insertions(+)
+> >> >>
+> >> >> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> >> >> index 497cf443a9af..1891cd6deb2f 100644
+> >> >> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> >> >> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> >> >> @@ -124,6 +124,7 @@ static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
+> >> >>      drm_panel_prepare(mxsfb->panel);
+> >> >>      mxsfb_crtc_enable(mxsfb);
+> >> >>      drm_panel_enable(mxsfb->panel);
+> >> >> +    drm_crtc_vblank_on(&pipe->crtc);
+> >> >>  }
+> >> >>
+> >> >>  static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
+> >> >> @@ -133,6 +134,7 @@ static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
+> >> >>      struct drm_crtc *crtc = &pipe->crtc;
+> >> >>      struct drm_pending_vblank_event *event;
+> >> >>
+> >> >> +    drm_crtc_vblank_off(&pipe->crtc);
+> >> >>      drm_panel_disable(mxsfb->panel);
+> >> >>      mxsfb_crtc_disable(mxsfb);
+> >> >>      drm_panel_unprepare(mxsfb->panel);
+> >> >> --
+> >> >> 2.26.2
+> >> >>
+
 -- 
-2.20.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
