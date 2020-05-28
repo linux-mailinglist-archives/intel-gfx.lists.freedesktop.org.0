@@ -1,93 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E7E1E61A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 15:05:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD451E6261
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 15:34:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9476F6E523;
-	Thu, 28 May 2020 13:05:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C1346E134;
+	Thu, 28 May 2020 13:34:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680062.outbound.protection.outlook.com [40.107.68.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C998F6E1D2;
- Thu, 28 May 2020 11:20:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oOP69MZpOBlh7oSf+qsW/YYdgEqNhxz92zJZogapmXy4vEywGzq39+rMHfsLBdR94fTsIVGEjdvWQd0c7Dw/rbHbKCSosL9xJSOQelbKOF/rP7h2STpqmHiTDn9eSeRI3oe7vMXBgztkUO1bNcLQcIKRDJ+THJOeY18yv3aayzpJry/tPqpBSqlbaN3xNFZSKOIkm9/wtYB16hyBirVDyxQC+vs1KCeVKmnKw+qw53bwstX1bbzpmYV19gPkD6zWpxDoPAGlINsdvPDtpq8z30G9M09nLQdd5wS+5Uw5Xk4uxQoBlFITkTWh8MVcz3wp1AyVEOYsNXXy6G+NePFtFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oo5Dh9xGDTR81/adAM/fo7RTuDqeGnYI/OcCyaKkeoE=;
- b=ksJRWk+W5C+0iSwyAkFfQva0Q1SZYRrT3gFnz3IZ5YPntW2SQcYvl7rz9frBKNflo/uYu1HhUvzZBVmhiH7umXBGa8ro70IRRqLi5Lcjy0XQn2QI9ncQUjcsU/DB4Y/aen7QeKtFpyeto0aaOGYi3N3owoiT5XRG2nF/FurNWnpdLHG53SHZ827m1N0E72Xk3EHjtRXIHDmt2/9GFV+umrP1K0XQgVuUsZR09jBSYplPTzKejFyB1UIsX4Q9gQKGVEWuTtdO/oA7DLe3EN8t93C+bpGarUaGVIxPnDHlKgBy/7OkxuTKAVAmVcGy7rzL4nLk8bzDzCnE++DosVd1vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vmware.com; dmarc=pass action=none header.from=vmware.com;
- dkim=pass header.d=vmware.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmware.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oo5Dh9xGDTR81/adAM/fo7RTuDqeGnYI/OcCyaKkeoE=;
- b=S1emaa+nEFJweaZgsdWfohjtWlFcKbsd40kk7hD+/WKrt8WBXjgJgwUOTy5XWH2DrLCDVhrcNA4whxZUCRJBT4OdY0d8O21ZiXehvoJxNZ5+AnxMKGhupdC3UBhSmhytlcyr61e1uX4xW6dfDpwyec59xx4j/gf26GIuRGbald0=
-Received: from MN2PR05MB6381.namprd05.prod.outlook.com (2603:10b6:208:d6::24)
- by MN2PR05MB6877.namprd05.prod.outlook.com (2603:10b6:208:18f::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.7; Thu, 28 May
- 2020 11:20:37 +0000
-Received: from MN2PR05MB6381.namprd05.prod.outlook.com
- ([fe80::7803:13e7:2e4d:58ff]) by MN2PR05MB6381.namprd05.prod.outlook.com
- ([fe80::7803:13e7:2e4d:58ff%3]) with mapi id 15.20.3066.007; Thu, 28 May 2020
- 11:20:37 +0000
-From: Ashwin H <ashwinh@vmware.com>
-To: Greg KH <gregkh@linuxfoundation.org>
-Thread-Topic: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
-Thread-Index: AQHWKIdKPHhk+fo7OUe7+WKkK8SJkqilhT4AgABhFAD//6nZgIAAsMCggBXlzwCAAQnu4IAAQWZg
-Date: Thu, 28 May 2020 11:20:37 +0000
-Message-ID: <MN2PR05MB63812E53E1526A18DD593BD6CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
-References: <d29f87f3f3abb4e496866253bd170faad976f687.1589305630.git.ashwinh@vmware.com>
- <20200513055548.GA743118@kroah.com>
- <89DE19F6-4CB0-4324-A630-C8574C8D591C@vmware.com>
- <20200513063455.GA752913@kroah.com>
- <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
- <20200527153130.GA525531@kroah.com>
- <MN2PR05MB63818AE71850AD653E60E517CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
-In-Reply-To: <MN2PR05MB63818AE71850AD653E60E517CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=vmware.com;
-x-originating-ip: [106.51.141.116]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3ae88b23-9a59-47d7-4a5a-08d802f925c0
-x-ms-traffictypediagnostic: MN2PR05MB6877:
-x-ld-processed: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR05MB6877772F7360796F61AB57E2CD8E0@MN2PR05MB6877.namprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0417A3FFD2
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TbQrHt9VzRyisIgjAB8lsUL6guPf8/yh6L6W+RaiUpIM9cT0HntKdM+e8dAj6IHRQuk9VzwY8YiNApaJwGxTIf2qG7/xbqiKJ8Xa6ohTJf9Cc/E1bjfX3n1m2RFVYcE5f+F+/ss6TCwFy070btU1SwbroIecVP4E4bBxqZ/hUeyTAg/XkNXH72fgfZ0QdQT4htbf/XmH8aw31iNV2/pS1ux0Aivm+fq7C3yZ3NbQqxokgyh+tRHckfGgHfT4AlpEFhjHsltdVyG9Kg+kpx2RVMpP3oAxAq+Z2jgh1DbdjLPw7Z6awTJGQqfXngunwo0IUQlKCzJOckK9r+y90O5pjKiqpZ059L1fwqNC26AthLS25//by8ihgSQiigOJGxnhuYJu2dF33HXjEy+TOM7gXQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR05MB6381.namprd05.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(366004)(346002)(376002)(396003)(136003)(71200400001)(316002)(7696005)(86362001)(2906002)(186003)(26005)(83380400001)(9686003)(4326008)(2940100002)(64756008)(45080400002)(5660300002)(76116006)(8676002)(52536014)(66476007)(53546011)(966005)(6916009)(55236004)(66946007)(54906003)(55016002)(66446008)(66556008)(8936002)(478600001)(33656002)(6506007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: x2L1EK5KzGWptHKcTY00Em2RIyH2xG7uXUfMVMQ7+JiX/GgkMayO6qfoiCrVN+d2S7kjHxDk8zRRiU5SrOBCu/t/zsWk58xQC8UUhHJ2jaVgpsHVgbEZeBngx/AAkFI9LDl8axF+Hw/bigjEQWI/ZyAp+FdW5+xXz3ZPofrvaIQarT0uqlu17/qLenwbIPsy/KtI67SGxCu2IMTPn8/IlgQuaeZXsBDqIF403E/SzynNIfgGGU/DFGw6I7KRqkNaRri1WSuta57Ex9+VjiBsgPBKpl0FPJ0CKsMs704AMzSL/1h69NlGrcHl9zbUVB1xyj9obkf/M9Cr8U5xLfMp8fw+7F5mWO3mPAQxYAOihBtOh/9UDtKiwBrib5xWhG7kah/xzdo9S+7b3PL2+Qa4yY810QmP6t6csv8b4FI/NxErePH1BsWSwFyYKdN5ocwCD4rCqpfOaQCg16BeR9IAs2+GFmD0LGnytTvy9OSVuzwz8Ad9l6ly38MUxxMU5yeD
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0016E134
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 13:34:47 +0000 (UTC)
+IronPort-SDR: ncBGnpwYxPYnhhj0L+Cg9RBBw0Z3YCf9DXqEYVa5vlw3GrwqYjl3m9Z+jzm4GhiVDVrYByU2sZ
+ +6xpc7LkWVqA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2020 06:34:46 -0700
+IronPort-SDR: VjfSgmhhWfZEei8/Ya2o3EtR2nbfHfpgurp9Uil0zo+6d2iGM5Ct+n/A6R0JA5EsgqZhtiSrKE
+ mu8bVGgMBeIA==
+X-IronPort-AV: E=Sophos;i="5.73,444,1583222400"; d="scan'208";a="414600644"
+Received: from nshani-mobl.ger.corp.intel.com (HELO [10.214.219.87])
+ ([10.214.219.87])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2020 06:34:45 -0700
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
+ <20200518181720.14625-2-janusz.krzysztofik@linux.intel.com>
+ <cb70ca21-a61f-a641-2655-1da02bb97ea7@linux.intel.com>
+ <182683d9d94fda2aa9fef57c6ea4473efb5cb1d7.camel@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <13a082a5-d5a4-093c-6821-4b5177662d12@linux.intel.com>
+Date: Thu, 28 May 2020 14:34:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: vmware.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae88b23-9a59-47d7-4a5a-08d802f925c0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2020 11:20:37.4797 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tWLfp6yKByd1o2zMyiEJ/l+nP8/VJ32hku4yLnTjE12vrbBW83T7AeXpgli8p3OiWi+fUIUU4MT+9/DGp50+Uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB6877
-X-Mailman-Approved-At: Thu, 28 May 2020 13:05:45 +0000
-Subject: Re: [Intel-gfx] [PATCH v4.19.x] make 'user_access_begin()' do
- 'access_ok()'
+In-Reply-To: <182683d9d94fda2aa9fef57c6ea4473efb5cb1d7.camel@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 1/4] drm/i915: Drop user contexts on
+ driver remove
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,112 +55,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "x86@kernel.org" <x86@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
- "rostedt@goodmis.org" <rostedt@goodmis.org>,
- Steven Rostedt <srostedt@vmware.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- "stable@kernel.org" <stable@kernel.org>, Srivatsa Bhat <srivatsab@vmware.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 28/05/2020 13:10, Janusz Krzysztofik wrote:
+> Hi Tvrtko,
+> 
+> On Thu, 2020-05-28 at 11:14 +0100, Tvrtko Ursulin wrote:
+>> On 18/05/2020 19:17, Janusz Krzysztofik wrote:
+>>> Contexts associated with open device file descriptors together with
+>>> their assigned address spaces are now closed on device file close.  On
+>>
+>> i915_gem_driver_remove looks like module unload to me, not device file
+>> close. So..
+> 
+> Not only module unload ...
+> 
+>>
+>>> address space closure its associated DMA mappings are revoked.  If the
+>>> device is removed while being open, subsequent attempts to revoke
+>>> those mappings while closing the device file descriptor may may be
+>>> judged by intel-iommu code as a bug and result in kernel panic.
+>>>
+>>> Since user contexts become useless after the device is no longer
+>>> available, drop them on device removal.
+>>>
+>>> <4> [36.900985] ------------[ cut here ]------------
+>>> <2> [36.901005] kernel BUG at drivers/iommu/intel-iommu.c:3717!
+>>> <4> [36.901105] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+>>> <4> [36.901117] CPU: 0 PID: 39 Comm: kworker/u8:1 Tainted: G     U  W         5.7.0-rc5-CI-CI_DRM_8485+ #1
+>>> <4> [36.901133] Hardware name: Intel Corporation Elkhart Lake Embedded Platform/ElkhartLake LPDDR4x T3 CRB, BIOS EHLSFWI1.R00.1484.A00.1911290833 11/29/2019
+>>> <4> [36.901250] Workqueue: i915 __i915_vm_release [i915]
+>>> <4> [36.901264] RIP: 0010:intel_unmap+0x1f5/0x230
+>>> <4> [36.901274] Code: 01 e8 9f bc a9 ff 85 c0 74 09 80 3d df 60 09 01 00 74 19 65 ff 0d 13 12 97 7e 0f 85 fc fe ff ff e8 82 b0 95 ff e9 f2 fe ff ff <0f> 0b e8 d4 bd a9 ff 85 c0 75 de 48 c7 c2 10 84 2c 82 be 54 00 00
+>>> <4> [36.901302] RSP: 0018:ffffc900001ebdc0 EFLAGS: 00010246
+>>> <4> [36.901313] RAX: 0000000000000000 RBX: ffff8882561dd000 RCX: 0000000000000000
+>>> <4> [36.901324] RDX: 0000000000001000 RSI: 00000000ffd9c000 RDI: ffff888274c94000
+>>> <4> [36.901336] RBP: ffff888274c940b0 R08: 0000000000000000 R09: 0000000000000001
+>>> <4> [36.901348] R10: 000000000a25d812 R11: 00000000112af2d4 R12: ffff888252c70200
+>>> <4> [36.901360] R13: 00000000ffd9c000 R14: 0000000000001000 R15: ffff8882561dd010
+>>> <4> [36.901372] FS:  0000000000000000(0000) GS:ffff888278000000(0000) knlGS:0000000000000000
+>>> <4> [36.901386] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>>> <4> [36.901396] CR2: 00007f06def54950 CR3: 0000000255844000 CR4: 0000000000340ef0
+>>> <4> [36.901408] Call Trace:
+>>> <4> [36.901418]  ? process_one_work+0x1de/0x600
+>>> <4> [36.901494]  cleanup_page_dma+0x37/0x70 [i915]
+>>> <4> [36.901573]  free_pd+0x9/0x20 [i915]
+>>> <4> [36.901644]  gen8_ppgtt_cleanup+0x59/0xc0 [i915]
+>>> <4> [36.901721]  __i915_vm_release+0x14/0x30 [i915]
+>>> <4> [36.901733]  process_one_work+0x268/0x600
+>>> <4> [36.901744]  ? __schedule+0x307/0x8d0
+>>> <4> [36.901756]  worker_thread+0x37/0x380
+>>> <4> [36.901766]  ? process_one_work+0x600/0x600
+>>> <4> [36.901775]  kthread+0x140/0x160
+>>> <4> [36.901783]  ? kthread_park+0x80/0x80
+>>> <4> [36.901792]  ret_from_fork+0x24/0x50
+>>> <4> [36.901804] Modules linked in: mei_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel ax88179_178a usbnet mii mei_me mei prime_numbers intel_lpss_pci
+>>> <4> [36.901857] ---[ end trace 52d1b4d81f8d1ea7 ]---
+>>>
+>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c | 38 +++++++++++++++++++++
+>>>    drivers/gpu/drm/i915/gem/i915_gem_context.h |  1 +
+>>>    drivers/gpu/drm/i915/i915_gem.c             |  2 ++
+>>>    3 files changed, 41 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> index 900ea8b7fc8f..0096a69fbfd3 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> @@ -927,6 +927,44 @@ void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
+>>>    	rcu_barrier(); /* and flush the left over RCU frees */
+>>>    }
+>>>    
+>>> +void i915_gem_driver_remove__contexts(struct drm_i915_private *i915)
+>>> +{
+>>> +	struct i915_gem_context *ctx, *cn;
+>>> +
+>>> +	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
+>>> +		struct drm_i915_file_private *file_priv = ctx->file_priv;
+>>> +		struct i915_gem_context *entry;
+>>> +		unsigned long int id;
+>>> +
+>>> +		if (i915_gem_context_is_closed(ctx) || IS_ERR(file_priv))
+>>> +			continue;
+>>> +
+>>> +		xa_for_each(&file_priv->context_xa, id, entry) {
+>>
+>> ... how is driver unload possible with open drm file descriptors, or
+>> active contexts?
+> 
+> ... but also PCI driver unbind or PCI device remove, with the module
+> still loaded.  That may perfectly happen even if a device file
+> descriptor is still kept open.
 
-> -----Original Message-----
-> From: Ashwin H
-> Sent: Thursday, May 28, 2020 1:01 PM
-> To: Greg KH <gregkh@linuxfoundation.org>
-> Cc: x86@kernel.org; dri-devel@lists.freedesktop.org; intel-
-> gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org; stable@kernel.org;
-> Srivatsa Bhat <srivatsab@vmware.com>; srivatsa@csail.mit.edu;
-> rostedt@goodmis.org; Steven Rostedt <srostedt@vmware.com>; Linus
-> Torvalds <torvalds@linux-foundation.org>
-> Subject: RE: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
-> 
-> 
-> 
-> > -----Original Message-----
-> > From: Greg KH <gregkh@linuxfoundation.org>
-> > Sent: Wednesday, May 27, 2020 9:02 PM
-> > To: Ashwin H <ashwinh@vmware.com>
-> > Cc: x86@kernel.org; dri-devel@lists.freedesktop.org; intel-
-> > gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org;
-> > stable@kernel.org; Srivatsa Bhat <srivatsab@vmware.com>;
-> > srivatsa@csail.mit.edu; rostedt@goodmis.org; Steven Rostedt
-> > <srostedt@vmware.com>; Linus Torvalds <torvalds@linux-foundation.org>
-> > Subject: Re: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
-> >
-> > On Wed, May 13, 2020 at 05:08:19PM +0000, Ashwin H wrote:
-> > > > Ok, but what does that mean for us?
-> > > >
-> > > > You need to say why you are sending a patch, otherwise we will
-> > > > guess
-> > wrong.
-> > >
-> > > In drivers/gpu/drm/i915/i915_gem_execbuffer.c, ioctl functions does
-> > user_access_begin() without doing access_ok(Checks if a user space
-> > pointer is valid)  first.
-> > > A local attacker can craft a malicious ioctl function call to
-> > > overwrite arbitrary kernel memory, resulting in a Denial of Service
-> > > or privilege escalation (CVE-2018-20669)
-> > >
-> > > This patch makes sure that user_access_begin always does access_ok.
-> > > user_access_begin has been modified to do access_ok internally.
-> >
-> > I had this in the tree, but it broke the build on alpha, sh, and maybe
-> > a few others :(
-> >
-> Thanks Greg for including this patch.
-> I am sorry that this patch caused the failure. As I see this is not a build failure
-> but tests have failed.
-> Build results:
-> 	total: 155 pass: 155 fail: 0
-> Qemu test results:
-> 	total: 421 pass: 390 fail: 31
-> Failed tests:
-> 	<all alpha>
-> 	<all sh>
-> 	<all sheb>
-> 
-> > See:
-> > 	https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F
-> > %2Flore.kernel.org%2Fr%2F20200527140225.GA214763%40roeck-
-> >
-> us.net&amp;data=02%7C01%7Cashwinh%40vmware.com%7Cd8f60bb8a4584
-> >
-> 7caa10f08d802530997%7Cb39138ca3cee4b4aa4d6cd83d9dd62f0%7C0%7C0%7
-> >
-> C637261902960990057&amp;sdata=Vjv9v0QhebfcOGSq1UUDKshTDA%2FOV
-> > 4aKbqzKKJkEQxM%3D&amp;reserved=0
-> > for the details.
-> >
-> > Can you dig out all of the needed follow-on patches as well, and send
-> > them all as a patch series for 4.19.y so that I can queue them all up at once?
-> >
-> 
-> I will check for follow-on patches and get back.
+I see. What do we do, or plan to do, with those left open drm fds after 
+the driver is unbound from the device? Is there a path connected to keep 
+saying -ENODEV (Or is a different errno standard for this case, like 
+ENXIO?) from that point onward for everything done with that fd. So 
+userspace couldn't do anything more with it, attempt to create a new 
+context etc. Is the DRM core handling this?
 
-This seems to be the issue in alpha and SH
-https://lore.kernel.org/lkml/6a4fe075-a644-1b06-305b-9e55b8c9575b@roeck-us.net/#t
+Regards,
 
-alpha and SH had buggy implementation of access_ok
-
-Thanks,
-Ashwin
+Tvrtko
 
 > 
-> > thanks,
-> >
-> > greg k-h
+>> If something is going wrong sounds like something else.
+> 
+> I think we might consider that "something" as intel-iommu code, but see
+> also the last paragraph of my response below.
+> 
+>>
+>> drm postclose -> i915_gem_context_close -> closes all contexts and puts
+>> all vm. What can remain dangling? An active context? But there is idling
+>> via i915_gem_driver_remove -> i915_gem_suspend_late.
+> 
+> Idling doesn't release DMA mappings which may then be released as late
+> as on i915_gem_driver_release.  If that doesn't happen on device remove
+> only later on last device close, intel-iommu triggers a bug.
+> 
+> I reported that issue to intel-iommu maintainers several months ago[1].
+> They even agreed that was something that might need to be fixed[2], I
+> provided them with information how the issue could be reproduced
+> easily[3] but no progress has been reported since then.  If you think
+> the issue should be definitely fixed on intel-iommu side, please help
+> me to convince intel-iommu maintainers to take care of that.
+> 
+> However, please note DMA-API also complains about DMA mappings still
+> left active when device is removed.  That may indicate we should rather
+> fix that on our side.
 > 
 > Thanks,
-> Ashwin
-
+> Janusz
+> 
+> [1] https://marc.info/?l=linux-kernel&m=156689857510234&w=2
+> [2] https://marc.info/?l=linux-kernel&m=156706978013967&w=2
+> [3] https://marc.info/?l=linux-kernel&m=156749651025416&w=2
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> +			struct i915_address_space *vm;
+>>> +			unsigned long int idx;
+>>> +
+>>> +			if (entry != ctx)
+>>> +				continue;
+>>> +
+>>> +			xa_erase(&file_priv->context_xa, id);
+>>> +
+>>> +			if (id)
+>>> +				break;
+>>> +
+>>> +			xa_for_each(&file_priv->vm_xa, idx, vm) {
+>>> +				xa_erase(&file_priv->vm_xa, idx);
+>>> +				i915_vm_put(vm);
+>>> +			}
+>>> +
+>>> +			break;
+>>> +		}
+>>> +
+>>> +		context_close(ctx);
+>>> +	}
+>>> +
+>>> +	i915_gem_driver_release__contexts(i915);
+>>> +}
+>>> +
+>>>    static int gem_context_register(struct i915_gem_context *ctx,
+>>>    				struct drm_i915_file_private *fpriv,
+>>>    				u32 *id)
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>>> index 3702b2fb27ab..62808bea9239 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>>> @@ -110,6 +110,7 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
+>>>    
+>>>    /* i915_gem_context.c */
+>>>    void i915_gem_init__contexts(struct drm_i915_private *i915);
+>>> +void i915_gem_driver_remove__contexts(struct drm_i915_private *i915);
+>>>    void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
+>>>    
+>>>    int i915_gem_context_open(struct drm_i915_private *i915,
+>>> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+>>> index 0cbcb9f54e7d..87d3c4f5b6c6 100644
+>>> --- a/drivers/gpu/drm/i915/i915_gem.c
+>>> +++ b/drivers/gpu/drm/i915/i915_gem.c
+>>> @@ -1189,6 +1189,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+>>>    	/* Flush any outstanding unpin_work. */
+>>>    	i915_gem_drain_workqueue(dev_priv);
+>>>    
+>>> +	i915_gem_driver_remove__contexts(dev_priv);
+>>> +
+>>>    	i915_gem_drain_freed_objects(dev_priv);
+>>>    }
+>>>    
+>>>
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
