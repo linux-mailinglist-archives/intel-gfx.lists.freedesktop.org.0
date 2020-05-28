@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21C0E1E6634
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 17:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E66061E66FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 18:01:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 002D96E59B;
-	Thu, 28 May 2020 15:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 373C96E5A3;
+	Thu, 28 May 2020 16:01:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CDCCF6E595;
- Thu, 28 May 2020 15:34:48 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C05D6E59F;
+ Thu, 28 May 2020 16:01:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B075CA011B;
- Thu, 28 May 2020 15:34:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05A61A0003;
+ Thu, 28 May 2020 16:01:13 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 28 May 2020 15:34:48 -0000
-Message-ID: <159068008869.685.12575894882153144580@emeril.freedesktop.org>
+Date: Thu, 28 May 2020 16:01:12 -0000
+Message-ID: <159068167299.684.16680020034672861070@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200528144539.31316-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200528144539.31316-1-chris@chris-wilson.co.uk>
+References: <20200528150452.7880-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200528150452.7880-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Mark_the_buffer_pool_as_active_for_the_cmdparser?=
+ =?utf-8?q?/i915/gt=3A_Restore_both_GGTT_bindings_on_resume?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gem: Mark the buffer pool as active for the cmdparser
-URL   : https://patchwork.freedesktop.org/series/77749/
+Series: drm/i915/gt: Restore both GGTT bindings on resume
+URL   : https://patchwork.freedesktop.org/series/77750/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8547 -> Patchwork_17803
+CI Bug Log - changes from CI_DRM_8547 -> Patchwork_17804
 ====================================================
 
 Summary
@@ -63,12 +63,12 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17803/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17804/index.html
 
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_17803 that come from known issues:
+  Here are the changes found in Patchwork_17804 that come from known issues:
 
 ### IGT changes ###
 
@@ -77,38 +77,37 @@ Known issues
   * igt@i915_pm_rpm@module-reload:
     - fi-kbl-x1275:       [FAIL][1] ([i915#62]) -> [SKIP][2] ([fdo#109271])
    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8547/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17803/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17804/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
 
   
   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
   [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
-Participating hosts (50 -> 44)
+Participating hosts (50 -> 43)
 ------------------------------
 
-  Additional (1): fi-kbl-7560u 
   Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_8547 -> Patchwork_17803
+  * Linux: CI_DRM_8547 -> Patchwork_17804
 
   CI-20190529: 20190529
   CI_DRM_8547: 055c59085e117a2433d3862d645e049e30f3a2dc @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5682: e5371a99a877be134c6ad5361a5f03843a66f775 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17803: b52716aad58146379ec2bdfef5ad751855a37365 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_17804: e7cf0f47d10925d3fc7df4ee60361be3c496df0c @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-b52716aad581 drm/i915/gem: Mark the buffer pool as active for the cmdparser
+e7cf0f47d109 drm/i915/gt: Restore both GGTT bindings on resume
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17803/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17804/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
