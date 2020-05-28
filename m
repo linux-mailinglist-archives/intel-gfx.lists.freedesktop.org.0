@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7541E6B50
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 21:42:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2131E6B67
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 21:44:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1457A6E0B7;
-	Thu, 28 May 2020 19:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5A96E1FB;
+	Thu, 28 May 2020 19:44:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A922E6E0B7
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 19:42:47 +0000 (UTC)
-IronPort-SDR: RW75Jr6tTuqJsOt6JHMvSS61FqE3HluEJI78mgob/L4uveS1TU+OohTlZhGzEKgAuCrgnbkvaM
- wCbTj5Ie6tzw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 12:42:47 -0700
-IronPort-SDR: wdOUR229PweJfZ6K+duQQjyzF7xFEGuxI8TT5EQsOo7a64xvcsf+hZPNJ8j5u9RuqMWO9kB63k
- 4U3KloOg5rNQ==
-X-IronPort-AV: E=Sophos;i="5.73,446,1583222400"; d="scan'208";a="443095230"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 12:42:45 -0700
-Date: Thu, 28 May 2020 22:38:52 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200528193852.GA24971@intel.com>
-References: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E0FEF6E1F1;
+ Thu, 28 May 2020 19:44:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DAB3AA00C7;
+ Thu, 28 May 2020 19:44:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix global state use-after-frees
- with a refcount
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Thu, 28 May 2020 19:44:12 -0000
+Message-ID: <159069505289.686.3214868391702279311@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200520130030.1014994-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200520130030.1014994-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/23=5D_Revert_=22drm/i915/gem=3A_?=
+ =?utf-8?q?Drop_relocation_slowpath=22=2E_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,213 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2020 at 11:02:45PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> While the current locking/serialization of the global state
-> suffices for protecting the obj->state access and the actual
-> hardware reprogramming, we do have a problem with accessing
-> the old/new states during nonblocking commits.
-> =
+Series: series starting with [01/23] Revert "drm/i915/gem: Drop relocation slowpath". (rev2)
+URL   : https://patchwork.freedesktop.org/series/77472/
+State : warning
 
-> The state computation and swap will be protected by the crtc
-> locks, but the commit_tails can finish out of order, thus also
-> causing the atomic states to be cleaned up out of order. This
-> would mean the commit that started first but finished last has
-> had its new state freed as the no-longer-needed old state by the
-> other commit.
-> =
+== Summary ==
 
-> To fix this let's just refcount the states. obj->state amounts
-> to one reference, and the intel_atomic_state holds extra references
-> to both its new and old global obj states.
-> =
+$ dim checkpatch origin/drm-tip
+d9487c8b0b0d Revert "drm/i915/gem: Drop relocation slowpath".
+-:80: WARNING:LINE_SPACING: Missing a blank line after declarations
+#80: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1802:
++		int err = __get_user(c, addr);
++		if (err)
 
-> Fixes: 0ef1905ecf2e ("drm/i915: Introduce better global state handling")
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_global_state.c | 45 ++++++++++++++++---
->  .../gpu/drm/i915/display/intel_global_state.h |  3 ++
->  2 files changed, 42 insertions(+), 6 deletions(-)
-> =
+total: 0 errors, 1 warnings, 0 checks, 264 lines checked
+a6440b9f94ef drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:493: WARNING:LONG_LINE: line over 100 characters
+#493: FILE: drivers/gpu/drm/i915/i915_gem.c:1341:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/=
-gpu/drm/i915/display/intel_global_state.c
-> index 212d4ee68205..7a19215ad844 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.c
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
-> @@ -10,6 +10,28 @@
->  #include "intel_display_types.h"
->  #include "intel_global_state.h"
->  =
+total: 0 errors, 1 warnings, 0 checks, 473 lines checked
+e8da908480c7 drm/i915: Remove locking from i915_gem_object_prepare_read/write
+ef08f55abbdc drm/i915: Parse command buffer earlier in eb_relocate(slow)
+f044defb7a38 Revert "drm/i915/gem: Split eb_vma into its own allocation"
+1c64f1102879 drm/i915/gem: Make eb_add_lut interruptible wait on object lock.
+e4ec453ceb93 drm/i915: Use per object locking in execbuf, v10.
+-:463: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#463: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1398:
+ 
++
 
-> +static void __intel_atomic_global_state_free(struct kref *kref)
-> +{
-> +	struct intel_global_state *obj_state =3D
-> +		container_of(kref, struct intel_global_state, ref);
-> +	struct intel_global_obj *obj =3D obj_state->obj;
-> +
-> +	obj->funcs->atomic_destroy_state(obj, obj_state);
-> +}
-> +
-> +static void intel_atomic_global_state_put(struct intel_global_state *obj=
-_state)
-> +{
-> +	kref_put(&obj_state->ref, __intel_atomic_global_state_free);
-> +}
-> +
-> +static struct intel_global_state *
-> +intel_atomic_global_state_get(struct intel_global_state *obj_state)
-> +{
-> +	kref_get(&obj_state->ref);
-> +
-> +	return obj_state;
-> +}
-> +
->  void intel_atomic_global_obj_init(struct drm_i915_private *dev_priv,
->  				  struct intel_global_obj *obj,
->  				  struct intel_global_state *state,
-> @@ -17,6 +39,10 @@ void intel_atomic_global_obj_init(struct drm_i915_priv=
-ate *dev_priv,
->  {
->  	memset(obj, 0, sizeof(*obj));
->  =
+-:510: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#510: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1510:
++static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			      struct i915_vma *vma,
 
-> +	state->obj =3D obj;
-> +
-> +	kref_init(&state->ref);
-> +
->  	obj->state =3D state;
->  	obj->funcs =3D funcs;
->  	list_add_tail(&obj->head, &dev_priv->global_obj_list);
-> @@ -28,7 +54,9 @@ void intel_atomic_global_obj_cleanup(struct drm_i915_pr=
-ivate *dev_priv)
->  =
+-:530: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#530: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1583:
++static int reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			    struct i915_vma *vma,
 
->  	list_for_each_entry_safe(obj, next, &dev_priv->global_obj_list, head) {
->  		list_del(&obj->head);
-> -		obj->funcs->atomic_destroy_state(obj, obj->state);
-> +
-> +		drm_WARN_ON(&dev_priv->drm, kref_read(&obj->state->ref) !=3D 1);
-> +		intel_atomic_global_state_put(obj->state);
->  	}
->  }
->  =
+-:542: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#542: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1608:
++^I$
 
-> @@ -97,10 +125,14 @@ intel_atomic_get_global_obj_state(struct intel_atomi=
-c_state *state,
->  	if (!obj_state)
->  		return ERR_PTR(-ENOMEM);
->  =
+-:801: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#801: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2947:
++	eb.reloc_pool = eb.batch_pool = NULL;
 
-> +	obj_state->obj =3D obj;
->  	obj_state->changed =3D false;
->  =
+total: 1 errors, 0 warnings, 4 checks, 803 lines checked
+456650be2110 drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
 
-> +	kref_init(&obj_state->ref);
-> +
->  	state->global_objs[index].state =3D obj_state;
-> -	state->global_objs[index].old_state =3D obj->state;
-> +	state->global_objs[index].old_state =3D
-> +		intel_atomic_global_state_get(obj->state);
->  	state->global_objs[index].new_state =3D obj_state;
->  	state->global_objs[index].ptr =3D obj;
->  	obj_state->state =3D state;
-> @@ -163,7 +195,9 @@ void intel_atomic_swap_global_state(struct intel_atom=
-ic_state *state)
->  		new_obj_state->state =3D NULL;
->  =
+total: 0 errors, 1 warnings, 0 checks, 209 lines checked
+ae010588e8f7 drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line over 100 characters
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1097:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
 
->  		state->global_objs[i].state =3D old_obj_state;
-> -		obj->state =3D new_obj_state;
-> +
-> +		intel_atomic_global_state_put(obj->state);
-> +		obj->state =3D intel_atomic_global_state_get(new_obj_state);
->  	}
->  }
->  =
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+702fdc1c44ab drm/i915: Nuke arguments to eb_pin_engine
+5252cb40e5b1 drm/i915: Pin engine before pinning all objects, v4.
+acc7cf29898a drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
++
++
 
-> @@ -172,10 +206,9 @@ void intel_atomic_clear_global_state(struct intel_at=
-omic_state *state)
->  	int i;
->  =
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3441:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
 
->  	for (i =3D 0; i < state->num_global_objs; i++) {
-> -		struct intel_global_obj *obj =3D state->global_objs[i].ptr;
-> +		intel_atomic_global_state_put(state->global_objs[i].old_state);
-> +		intel_atomic_global_state_put(state->global_objs[i].new_state);
+total: 0 errors, 0 warnings, 2 checks, 435 lines checked
+be4ae42ef97a drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:596:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
 
-Shouldn't we clean old_state only? =
+-:213: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#213: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2462:
++	 * hsw should have this fixed, but bdw mucks it up again. */
 
+total: 0 errors, 1 warnings, 1 checks, 850 lines checked
+ee11c6a35842 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+0a8312f18acd drm/i915: Kill last user of intel_context_create_request outside of selftests
+e275216d5a7b drm/i915: Convert i915_perf to ww locking as well
+c4ecc3f83b68 drm/i915: Dirty hack to fix selftests locking inversion
+43ec8d9fdd0d drm/i915/selftests: Fix locking inversion in lrc selftest.
+6ff9944cb187 drm/i915: Use ww pinning for intel_context_create_request()
+238eed520bff drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
+-:108: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#108: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c:154:
++^I^Ii915_gem_ww_ctx_fini(&eb.ww); $
 
-As I understand in absence of any transaction you now have a pool of
-global_obj each has a state with single kref taken.
+total: 1 errors, 0 warnings, 0 checks, 347 lines checked
+a213e785a229 drm/i915: Add ww locking to vm_fault_gtt
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-So when we are going to get a new state, we do +1 kref to old_state(which i=
-s current global obj->state)
-in order to prevent it being cleared by competing commit.
-However the new state doesn't have any kref taken by that moment.
-Then you swap do -1 kref for the old state and do +1 kref for new state, =
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+653a74d11741 drm/i915: Add ww locking to pin_to_display_plane
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-which means that when you -1 kref again for old state in atomic_clear also, =
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+07aa2ba0b445 drm/i915: Ensure we hold the pin mutex
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-it will be destroyed, however regarding the new state, as I understand
-it still has only single kref grabbed when it was swapped, =
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
 
-so isn't it going to be now removed? unless we are lucky and somebody
-haven't grabbed it already as an old_state in the next commit?
-
-Stan
->  =
-
-> -		obj->funcs->atomic_destroy_state(obj,
-> -						 state->global_objs[i].state);
->  		state->global_objs[i].ptr =3D NULL;
->  		state->global_objs[i].state =3D NULL;
->  		state->global_objs[i].old_state =3D NULL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/=
-gpu/drm/i915/display/intel_global_state.h
-> index e6163a469029..1f16fa3073c9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> @@ -6,6 +6,7 @@
->  #ifndef __INTEL_GLOBAL_STATE_H__
->  #define __INTEL_GLOBAL_STATE_H__
->  =
-
-> +#include <linux/kref.h>
->  #include <linux/list.h>
->  =
-
->  struct drm_i915_private;
-> @@ -54,7 +55,9 @@ struct intel_global_obj {
->  		for_each_if(obj)
->  =
-
->  struct intel_global_state {
-> +	struct intel_global_obj *obj;
->  	struct intel_atomic_state *state;
-> +	struct kref ref;
->  	bool changed;
->  };
->  =
-
-> -- =
-
-> 2.26.2
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
