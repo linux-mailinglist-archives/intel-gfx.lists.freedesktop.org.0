@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 871B11E5AAC
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:24:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1591E5AB0
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 10:24:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD316E4F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6C936E4F9;
 	Thu, 28 May 2020 08:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 959D16E4F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 08:24:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795666E4F3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 08:24:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318662-1500050 
- for multiple; Thu, 28 May 2020 09:24:27 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318663-1500050 
+ for multiple; Thu, 28 May 2020 09:24:28 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 09:24:26 +0100
-Message-Id: <20200528082427.21402-1-chris@chris-wilson.co.uk>
+Date: Thu, 28 May 2020 09:24:27 +0100
+Message-Id: <20200528082427.21402-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200528082427.21402-1-chris@chris-wilson.co.uk>
+References: <20200528082427.21402-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Restore both GGTT bindings on
- resume
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Remove local entries from GGTT
+ on suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,39 +45,160 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We should be able to skip restoing LOCAL (user) binds within the GGTT on
-resume and let them be restored upon demand. However, our consistency
-checks demand that the bind flags match the node state, and we cannot
-simply clear the flags we need to evict as well. For now, make sure we
-restore the bind flags exactly upon resume.
+Across suspend/resume, we clear the entire GGTT and rebuild from
+scratch. In particular, we only preserve the global entries for use by
+the HW, and delay reinstating the local binds until required by the
+user. This means that we can evict and recover any local binds in the
+global GTT, saving any time in preserving their state.
 
-Fixes: 0109a16ef391 ("drm/i915/gt: Clear LOCAL_BIND from shared GGTT on resume")
-Fixes: bf0840cdb304 ("drm/i915/gt: Stop cross-polluting PIN_GLOBAL with PIN_USER with no-ppgtt")
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1947
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 23 ++++++++++-
+ drivers/gpu/drm/i915/i915_vma.c      | 59 +++++++++++++++-------------
+ drivers/gpu/drm/i915/i915_vma.h      |  1 +
+ 3 files changed, 54 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 317172ad5ef3..ffe285b0b3bd 100644
+index ffe285b0b3bd..323c328d444a 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -1183,13 +1183,11 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
- 	/* clflush objects bound into the GGTT and rebind them. */
- 	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link) {
- 		struct drm_i915_gem_object *obj = vma->obj;
--
--		if (!(clear_bind(vma) & I915_VMA_GLOBAL_BIND))
--			continue;
-+		unsigned int was_bound = clear_bind(vma);
+@@ -108,13 +108,32 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
  
- 		WARN_ON(i915_vma_bind(vma,
- 				      obj ? obj->cache_level : 0,
--				      PIN_GLOBAL, NULL));
-+				      was_bound, NULL));
- 		if (obj) { /* only used during resume => exclusive access */
- 			flush |= fetch_and_zero(&obj->write_domain);
- 			obj->read_domains |= I915_GEM_DOMAIN_GTT;
+ void i915_ggtt_suspend(struct i915_ggtt *ggtt)
+ {
+-	struct i915_vma *vma;
++	struct i915_vma *vma, *vn;
++	int open;
++
++	mutex_lock(&ggtt->vm.mutex);
++
++	/* Skip rewriting PTE on VMA unbind. */
++	open = atomic_xchg(&ggtt->vm.open, 0);
+ 
+-	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link)
++	list_for_each_entry_safe(vma, vn, &ggtt->vm.bound_list, vm_link) {
++		GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+ 		i915_vma_wait_for_bind(vma);
+ 
++		if (i915_vma_is_pinned(vma))
++			continue;
++
++		if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
++			__i915_vma_evict(vma);
++			drm_mm_remove_node(&vma->node);
++		}
++	}
++
+ 	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
+ 	ggtt->invalidate(ggtt);
++	atomic_set(&ggtt->vm.open, open);
++
++	mutex_unlock(&ggtt->vm.mutex);
+ 
+ 	intel_gt_check_and_clear_faults(ggtt->vm.gt);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 22198b758459..9b30ddc49e4b 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1229,31 +1229,9 @@ int i915_vma_move_to_active(struct i915_vma *vma,
+ 	return 0;
+ }
+ 
+-int __i915_vma_unbind(struct i915_vma *vma)
++void __i915_vma_evict(struct i915_vma *vma)
+ {
+-	int ret;
+-
+-	lockdep_assert_held(&vma->vm->mutex);
+-
+-	if (i915_vma_is_pinned(vma)) {
+-		vma_print_allocator(vma, "is pinned");
+-		return -EAGAIN;
+-	}
+-
+-	/*
+-	 * After confirming that no one else is pinning this vma, wait for
+-	 * any laggards who may have crept in during the wait (through
+-	 * a residual pin skipping the vm->mutex) to complete.
+-	 */
+-	ret = i915_vma_sync(vma);
+-	if (ret)
+-		return ret;
+-
+-	if (!drm_mm_node_allocated(&vma->node))
+-		return 0;
+-
+ 	GEM_BUG_ON(i915_vma_is_pinned(vma));
+-	GEM_BUG_ON(i915_vma_is_active(vma));
+ 
+ 	if (i915_vma_is_map_and_fenceable(vma)) {
+ 		/* Force a pagefault for domain tracking on next user access */
+@@ -1292,6 +1270,33 @@ int __i915_vma_unbind(struct i915_vma *vma)
+ 
+ 	i915_vma_detach(vma);
+ 	vma_unbind_pages(vma);
++}
++
++int __i915_vma_unbind(struct i915_vma *vma)
++{
++	int ret;
++
++	lockdep_assert_held(&vma->vm->mutex);
++
++	if (!drm_mm_node_allocated(&vma->node))
++		return 0;
++
++	if (i915_vma_is_pinned(vma)) {
++		vma_print_allocator(vma, "is pinned");
++		return -EAGAIN;
++	}
++
++	/*
++	 * After confirming that no one else is pinning this vma, wait for
++	 * any laggards who may have crept in during the wait (through
++	 * a residual pin skipping the vm->mutex) to complete.
++	 */
++	ret = i915_vma_sync(vma);
++	if (ret)
++		return ret;
++
++	GEM_BUG_ON(i915_vma_is_active(vma));
++	__i915_vma_evict(vma);
+ 
+ 	drm_mm_remove_node(&vma->node); /* pairs with i915_vma_release() */
+ 	return 0;
+@@ -1303,13 +1308,13 @@ int i915_vma_unbind(struct i915_vma *vma)
+ 	intel_wakeref_t wakeref = 0;
+ 	int err;
+ 
+-	if (!drm_mm_node_allocated(&vma->node))
+-		return 0;
+-
+ 	/* Optimistic wait before taking the mutex */
+ 	err = i915_vma_sync(vma);
+ 	if (err)
+-		goto out_rpm;
++		return err;
++
++	if (!drm_mm_node_allocated(&vma->node))
++		return 0;
+ 
+ 	if (i915_vma_is_pinned(vma)) {
+ 		vma_print_allocator(vma, "is pinned");
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 8ad1daabcd58..d0d01f909548 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -203,6 +203,7 @@ bool i915_vma_misplaced(const struct i915_vma *vma,
+ 			u64 size, u64 alignment, u64 flags);
+ void __i915_vma_set_map_and_fenceable(struct i915_vma *vma);
+ void i915_vma_revoke_mmap(struct i915_vma *vma);
++void __i915_vma_evict(struct i915_vma *vma);
+ int __i915_vma_unbind(struct i915_vma *vma);
+ int __must_check i915_vma_unbind(struct i915_vma *vma);
+ void i915_vma_unlink_ctx(struct i915_vma *vma);
 -- 
 2.20.1
 
