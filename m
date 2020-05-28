@@ -2,56 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6C51E56F8
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 07:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E2B1E572B
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 08:02:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 568676E177;
-	Thu, 28 May 2020 05:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFC06E3AC;
+	Thu, 28 May 2020 06:02:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FD66E177
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 05:46:48 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id n5so1892425wmd.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2020 22:46:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Ippx2MHf4bBIL8gswP/FHgb+jqJ3Lt0DInexFTWRZ30=;
- b=IJNgsJJOTWhZyjqt5tRNB2c6yFml1Jns6RP9JQv6paJ9WNg/5Slp2PlqulABwgH/X4
- bSPPL+ig62+FFK7mdLOMQcqWiZIY2PrwNwGL+rycfovS2EvIzNRcFKLT/DhDqWso4J9j
- Jv0FD0G8cxcC1AwI65zh8L7k71+qRo873c7jY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Ippx2MHf4bBIL8gswP/FHgb+jqJ3Lt0DInexFTWRZ30=;
- b=FbtzVrwQ4nvyYh+r1p6Vx3wcxSGRnCcr9JDrr1Bw94KXecsHGRFU0h02mg010mdiLV
- 7Zi0kwfIIx9Qh/OBL8Qtxu8ofMwuiYCzLOarmkLzRTE45VZqeTvZsJpqYajdZ/qlnDaU
- /aiXxTxxd2S/vxC/B0KAm9j3DN/7fHYtmmhsuQUtSHe8dJ+H/hTRFQ5Z5yg5oSPUYeuD
- 97txs2pQXMhy3QcN/vGpmLcDiAx18zZsrhALrInoh0O2CIlyi5yXcs6MNodU20tIM5s7
- NvDIqC1bF7I4rE+f8nRsCgq9wq/UW7M89BhD3f4mCGqyQARs0v+zdgZ/n6wkgU9lOxkr
- PnDg==
-X-Gm-Message-State: AOAM530S33rPcGMrM89u2ZQe67hJr/h7hUQ0NQgh0LDdBr8x8hvLCz8o
- 8lG+eOcKtbKC9sY0HeNUxNzjJQ==
-X-Google-Smtp-Source: ABdhPJwuag71of/p+Z9jCVFiTwZqc0Sg36w1Cu6Df/y3upnKUUn7+x132HaZweIfbIdVnWbpjuQAeQ==
-X-Received: by 2002:a1c:22d7:: with SMTP id i206mr1583884wmi.186.1590644806739; 
- Wed, 27 May 2020 22:46:46 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 5sm4905641wmd.19.2020.05.27.22.46.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 May 2020 22:46:45 -0700 (PDT)
-Date: Thu, 28 May 2020 07:46:44 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20200528054643.GQ206103@phenom.ffwll.local>
-References: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551FC6E3AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 06:02:30 +0000 (UTC)
+IronPort-SDR: iGm8bgihNO60HR8o8OwO5NzoFLrVp290kxEraV+4IH6+BhrU1QwJWgP59V5TutqKquzNbT+WtB
+ Wf2viJUpy6uw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2020 23:02:29 -0700
+IronPort-SDR: jFytJNg/s0l6lCxpavbqmRHYFasg4LOeYEjY7yPUB8fpCN/XUEiJwkuLLk2RBRtVoJpj1S/kPS
+ r0X8Vzochc/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,443,1583222400"; d="scan'208";a="291883989"
+Received: from unknown (HELO karthik-2012-Client-Platform.iind.intel.com)
+ ([10.223.74.217])
+ by fmsmga004.fm.intel.com with ESMTP; 27 May 2020 23:02:28 -0700
+From: Karthik B S <karthik.b.s@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2020 11:09:26 +0530
+Message-Id: <20200528053931.29282-1-karthik.b.s@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200527094757.1414174-1-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/mxsfb: Call drm_crtc_vblank_on/off
+Subject: [Intel-gfx] [PATCH v3 0/5] Asynchronous flip implementation for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,78 +45,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Stefan Agner <stefan@agner.ch>, NXP Linux Team <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, linux-arm-kernel@lists.infradead.org
+Cc: paulo.r.zanoni@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2020 at 11:47:56AM +0200, Daniel Vetter wrote:
-> mxsfb has vblank support, is atomic, but doesn't call
-> drm_crtc_vblank_on/off as it should. Not good.
-> 
-> With my next patch to add the drm_crtc_vblank_reset to helpers this
-> means not even the very first crtc enabling will vblanks work anymore,
-> since they'll just stay off forever.
-> 
-> Since mxsfb doesn't have any vblank waits of its own in the
-> enable/disable flow, nor an enable/disable_vblank callback we can do
-> the on/off as the first respectively last operation, and it should all
-> work.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Stefan Agner <stefan@agner.ch>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: linux-arm-kernel@lists.infradead.org
+Without async flip support in the kernel, fullscreen apps where game
+resolution is equal to the screen resolution, must perform an extra blit
+per frame prior to flipping.
 
-Ping for some ack/review on this one here, it's holding up the subsystem
-wide fix in patch 2.
+Asynchronous page flips will also boost the FPS of Mesa benchmarks.
 
-Thanks, Daniel
+v2: Few patches have been squashed and patches have been shuffled as
+    per the reviews on the previous version.
 
-> ---
->  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> index 497cf443a9af..1891cd6deb2f 100644
-> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> @@ -124,6 +124,7 @@ static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
->  	drm_panel_prepare(mxsfb->panel);
->  	mxsfb_crtc_enable(mxsfb);
->  	drm_panel_enable(mxsfb->panel);
-> +	drm_crtc_vblank_on(&pipe->crtc);
->  }
->  
->  static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
-> @@ -133,6 +134,7 @@ static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
->  	struct drm_crtc *crtc = &pipe->crtc;
->  	struct drm_pending_vblank_event *event;
->  
-> +	drm_crtc_vblank_off(&pipe->crtc);
->  	drm_panel_disable(mxsfb->panel);
->  	mxsfb_crtc_disable(mxsfb);
->  	drm_panel_unprepare(mxsfb->panel);
-> -- 
-> 2.26.2
-> 
+v3: Few patches have been squashed and patches have been shuffled as
+    per the reviews on the previous version.
+
+Karthik B S (5):
+  drm/i915: Add enable/disable flip done and flip done handler
+  drm/i915: Add support for async flips in I915
+  drm/i915: Add checks specific to async flips
+  drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+  drm/i915: Enable async flips in i915
+
+ drivers/gpu/drm/i915/display/intel_display.c | 71 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_sprite.c  |  8 ++-
+ drivers/gpu/drm/i915/i915_irq.c              | 52 ++++++++++++++
+ drivers/gpu/drm/i915/i915_irq.h              |  2 +
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 5 files changed, 133 insertions(+), 1 deletion(-)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
