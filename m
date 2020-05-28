@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B290E1E6BD2
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 22:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BA61E6BD1
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 22:02:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D045C6E210;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1B6A6E20A;
 	Thu, 28 May 2020 20:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51A526E20A
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 20:02:48 +0000 (UTC)
-IronPort-SDR: ot53eXkKFQnHzG3KlpvcSMKjP/EZaOsgfmujC7xeDCFBXR6Y8KLiGKjtr/BMFP4dwDGAqYDpQA
- Pga4Lml+ZLAA==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39626E20A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 20:02:47 +0000 (UTC)
+IronPort-SDR: z6zDK5zTwXd/xleUHtTsP2OILCPimAtC8AerVa6FFjGJRRqK7vXYNiEy9DzzxXS93GlUZeggCb
+ HhwLrhdpLdaA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 May 2020 13:02:47 -0700
-IronPort-SDR: Y3hmyNe40AIBbc3EHg/8laYbSpwEQL47qWdbyAimXzaVMhLWST0NJ8MwrYOi8LdLutToYB78C9
- B6ddFPopbNow==
-X-IronPort-AV: E=Sophos;i="5.73,446,1583222400"; d="scan'208";a="443102118"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 13:02:46 -0700
-Date: Thu, 28 May 2020 22:58:52 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200528195852.GA25073@intel.com>
-References: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
- <20200528193852.GA24971@intel.com>
+IronPort-SDR: zPH6d3f5op0PMTs4SJMJGfSinxRCLfBDfFZmKJ3O9KouOHWzUU+RAXHp4FDj96oWTnsxCnHypZ
+ bXTBLnJEfqLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,446,1583222400"; d="scan'208";a="469258883"
+Received: from jmcenteg-mobl.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.255.69.53])
+ by fmsmga006.fm.intel.com with ESMTP; 28 May 2020 13:02:46 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2020 13:03:53 -0700
+Message-Id: <20200528200356.36756-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200528193852.GA24971@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix global state use-after-frees
- with a refcount
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/display/hsw+: Do not program the
+ same vswing entry twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,244 +46,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 28, 2020 at 10:38:52PM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, May 27, 2020 at 11:02:45PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > While the current locking/serialization of the global state
-> > suffices for protecting the obj->state access and the actual
-> > hardware reprogramming, we do have a problem with accessing
-> > the old/new states during nonblocking commits.
-> > =
-
-> > The state computation and swap will be protected by the crtc
-> > locks, but the commit_tails can finish out of order, thus also
-> > causing the atomic states to be cleaned up out of order. This
-> > would mean the commit that started first but finished last has
-> > had its new state freed as the no-longer-needed old state by the
-> > other commit.
-> > =
-
-> > To fix this let's just refcount the states. obj->state amounts
-> > to one reference, and the intel_atomic_state holds extra references
-> > to both its new and old global obj states.
-> > =
-
-> > Fixes: 0ef1905ecf2e ("drm/i915: Introduce better global state handling")
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  .../gpu/drm/i915/display/intel_global_state.c | 45 ++++++++++++++++---
-> >  .../gpu/drm/i915/display/intel_global_state.h |  3 ++
-> >  2 files changed, 42 insertions(+), 6 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/driver=
-s/gpu/drm/i915/display/intel_global_state.c
-> > index 212d4ee68205..7a19215ad844 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_global_state.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
-> > @@ -10,6 +10,28 @@
-> >  #include "intel_display_types.h"
-> >  #include "intel_global_state.h"
-> >  =
-
-> > +static void __intel_atomic_global_state_free(struct kref *kref)
-> > +{
-> > +	struct intel_global_state *obj_state =3D
-> > +		container_of(kref, struct intel_global_state, ref);
-> > +	struct intel_global_obj *obj =3D obj_state->obj;
-> > +
-> > +	obj->funcs->atomic_destroy_state(obj, obj_state);
-> > +}
-> > +
-> > +static void intel_atomic_global_state_put(struct intel_global_state *o=
-bj_state)
-> > +{
-> > +	kref_put(&obj_state->ref, __intel_atomic_global_state_free);
-> > +}
-> > +
-> > +static struct intel_global_state *
-> > +intel_atomic_global_state_get(struct intel_global_state *obj_state)
-> > +{
-> > +	kref_get(&obj_state->ref);
-> > +
-> > +	return obj_state;
-> > +}
-> > +
-> >  void intel_atomic_global_obj_init(struct drm_i915_private *dev_priv,
-> >  				  struct intel_global_obj *obj,
-> >  				  struct intel_global_state *state,
-> > @@ -17,6 +39,10 @@ void intel_atomic_global_obj_init(struct drm_i915_pr=
-ivate *dev_priv,
-> >  {
-> >  	memset(obj, 0, sizeof(*obj));
-> >  =
-
-> > +	state->obj =3D obj;
-> > +
-> > +	kref_init(&state->ref);
-> > +
-> >  	obj->state =3D state;
-> >  	obj->funcs =3D funcs;
-> >  	list_add_tail(&obj->head, &dev_priv->global_obj_list);
-> > @@ -28,7 +54,9 @@ void intel_atomic_global_obj_cleanup(struct drm_i915_=
-private *dev_priv)
-> >  =
-
-> >  	list_for_each_entry_safe(obj, next, &dev_priv->global_obj_list, head)=
- {
-> >  		list_del(&obj->head);
-> > -		obj->funcs->atomic_destroy_state(obj, obj->state);
-> > +
-> > +		drm_WARN_ON(&dev_priv->drm, kref_read(&obj->state->ref) !=3D 1);
-> > +		intel_atomic_global_state_put(obj->state);
-> >  	}
-> >  }
-> >  =
-
-> > @@ -97,10 +125,14 @@ intel_atomic_get_global_obj_state(struct intel_ato=
-mic_state *state,
-> >  	if (!obj_state)
-> >  		return ERR_PTR(-ENOMEM);
-> >  =
-
-> > +	obj_state->obj =3D obj;
-> >  	obj_state->changed =3D false;
-> >  =
-
-> > +	kref_init(&obj_state->ref);
-> > +
-> >  	state->global_objs[index].state =3D obj_state;
-> > -	state->global_objs[index].old_state =3D obj->state;
-> > +	state->global_objs[index].old_state =3D
-> > +		intel_atomic_global_state_get(obj->state);
-> >  	state->global_objs[index].new_state =3D obj_state;
-> >  	state->global_objs[index].ptr =3D obj;
-> >  	obj_state->state =3D state;
-> > @@ -163,7 +195,9 @@ void intel_atomic_swap_global_state(struct intel_at=
-omic_state *state)
-> >  		new_obj_state->state =3D NULL;
-> >  =
-
-> >  		state->global_objs[i].state =3D old_obj_state;
-> > -		obj->state =3D new_obj_state;
-> > +
-> > +		intel_atomic_global_state_put(obj->state);
-> > +		obj->state =3D intel_atomic_global_state_get(new_obj_state);
-> >  	}
-> >  }
-> >  =
-
-> > @@ -172,10 +206,9 @@ void intel_atomic_clear_global_state(struct intel_=
-atomic_state *state)
-> >  	int i;
-> >  =
-
-> >  	for (i =3D 0; i < state->num_global_objs; i++) {
-> > -		struct intel_global_obj *obj =3D state->global_objs[i].ptr;
-> > +		intel_atomic_global_state_put(state->global_objs[i].old_state);
-> > +		intel_atomic_global_state_put(state->global_objs[i].new_state);
-> =
-
-> Shouldn't we clean old_state only? =
-
-> =
-
-> As I understand in absence of any transaction you now have a pool of
-> global_obj each has a state with single kref taken.
-> =
-
-> So when we are going to get a new state, we do +1 kref to old_state(which=
- is current global obj->state)
-> in order to prevent it being cleared by competing commit.
-> However the new state doesn't have any kref taken by that moment.
-> Then you swap do -1 kref for the old state and do +1 kref for new state, =
-
-> which means that when you -1 kref again for old state in atomic_clear als=
-o, =
-
-> it will be destroyed, however regarding the new state, as I understand
-> it still has only single kref grabbed when it was swapped, =
-
-> so isn't it going to be now removed? unless we are lucky and somebody
-> haven't grabbed it already as an old_state in the next commit?
-> =
-
-> Stan
-
-Ah actually I got it - forgot that kref is init as 1. =
-
-But then you probably don't even need to increment kref for new state =
-
-when swapping.
-Before assigning new obj->state you release one kref in swap(which makes se=
-nse)
-Then you just do only intel_atomic_global_state_put(old_state) in atomic_cl=
-ear
-and then no need in doing intel_atomic_global_state_get(new_state) during
-swap. =
-
-I.e we always call intel_atomic_global_state_get/put only regarding "old" =
-
-obj->state and each new_state will be disposed when it becomes old_state.
-
-Stan
-
-> >  =
-
-> > -		obj->funcs->atomic_destroy_state(obj,
-> > -						 state->global_objs[i].state);
-> >  		state->global_objs[i].ptr =3D NULL;
-> >  		state->global_objs[i].state =3D NULL;
-> >  		state->global_objs[i].old_state =3D NULL;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/driver=
-s/gpu/drm/i915/display/intel_global_state.h
-> > index e6163a469029..1f16fa3073c9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> > @@ -6,6 +6,7 @@
-> >  #ifndef __INTEL_GLOBAL_STATE_H__
-> >  #define __INTEL_GLOBAL_STATE_H__
-> >  =
-
-> > +#include <linux/kref.h>
-> >  #include <linux/list.h>
-> >  =
-
-> >  struct drm_i915_private;
-> > @@ -54,7 +55,9 @@ struct intel_global_obj {
-> >  		for_each_if(obj)
-> >  =
-
-> >  struct intel_global_state {
-> > +	struct intel_global_obj *obj;
-> >  	struct intel_atomic_state *state;
-> > +	struct kref ref;
-> >  	bool changed;
-> >  };
-> >  =
-
-> > -- =
-
-> > 2.26.2
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SXQgd2lsbCBiZSBwcm9ncmFtZWQgcmlnaHQgYmVmb3JlIHRoZSBsaW5rIHRyYWluaW5nLCBzbyBu
+byBuZWVkIHRvIGRvCml0IHR3aWNlLgpJdCB3aWxsIG5vdCBzdHJpY3RseSBmb2xsb3cgQlNwZWMg
+c2VxdWVuY2VzIGJ1dCBtb3N0IG9mIHRoaXMgc2VxdWVuY2VzCmFyZSBub3QgbWF0Y2hpbmcgYW55
+d2F5cy4KClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
+aW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMg
+fCAxOSArKysrLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
+LCAxNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
+YwppbmRleCBhYTIyNDY1YmI1NmUuLmMxMDBlZmM2YTJjNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0zMTE1LDcgKzMxMTUsNiBAQCBzdGF0aWMgdm9pZCB0
+Z2xfZGRpX3ByZV9lbmFibGVfZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJ
+ZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoZGV2X3ByaXYsIGVuY29kZXItPnBvcnQp
+OwogCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZW5jX3RvX2RpZ19wb3J0
+KGVuY29kZXIpOwogCWJvb2wgaXNfbXN0ID0gaW50ZWxfY3J0Y19oYXNfdHlwZShjcnRjX3N0YXRl
+LCBJTlRFTF9PVVRQVVRfRFBfTVNUKTsKLQlpbnQgbGV2ZWwgPSBpbnRlbF9kZGlfZHBfbGV2ZWwo
+aW50ZWxfZHApOwogCWVudW0gdHJhbnNjb2RlciB0cmFuc2NvZGVyID0gY3J0Y19zdGF0ZS0+Y3B1
+X3RyYW5zY29kZXI7CiAKIAlpbnRlbF9kcF9zZXRfbGlua19wYXJhbXMoaW50ZWxfZHAsIGNydGNf
+c3RhdGUtPnBvcnRfY2xvY2ssCkBAIC0zMTkwLDkgKzMxODksMTAgQEAgc3RhdGljIHZvaWQgdGds
+X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCSAq
+IGRvd24gdGhpcyBmdW5jdGlvbi4KIAkgKi8KIAotCS8qIDcuZSBDb25maWd1cmUgdm9sdGFnZSBz
+d2luZyBhbmQgcmVsYXRlZCBJTyBzZXR0aW5ncyAqLwotCXRnbF9kZGlfdnN3aW5nX3NlcXVlbmNl
+KGVuY29kZXIsIGNydGNfc3RhdGUtPnBvcnRfY2xvY2ssIGxldmVsLAotCQkJCWVuY29kZXItPnR5
+cGUpOworCS8qCisJICogNy5lIENvbmZpZ3VyZSB2b2x0YWdlIHN3aW5nIGFuZCByZWxhdGVkIElP
+IHNldHRpbmdzCisJICogSXQgd2lsbCBiZSBkb25lIGluIGludGVsX2RwX3N0YXJ0X2xpbmtfdHJh
+aW4oKSwgbm8gbmVlZCB0byBkbyB0d2ljZQorCSAqLwogCiAJLyoKIAkgKiA3LmYgQ29tYm8gUEhZ
+OiBDb25maWd1cmUgUE9SVF9DTF9EVzEwIFN0YXRpYyBQb3dlciBEb3duIHRvIHBvd2VyIHVwCkBA
+IC0zMjU3LDcgKzMyNTcsNiBAQCBzdGF0aWMgdm9pZCBoc3dfZGRpX3ByZV9lbmFibGVfZHAoc3Ry
+dWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9y
+dF90b19waHkoZGV2X3ByaXYsIHBvcnQpOwogCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
+Z19wb3J0ID0gZW5jX3RvX2RpZ19wb3J0KGVuY29kZXIpOwogCWJvb2wgaXNfbXN0ID0gaW50ZWxf
+Y3J0Y19oYXNfdHlwZShjcnRjX3N0YXRlLCBJTlRFTF9PVVRQVVRfRFBfTVNUKTsKLQlpbnQgbGV2
+ZWwgPSBpbnRlbF9kZGlfZHBfbGV2ZWwoaW50ZWxfZHApOwogCiAJaWYgKElOVEVMX0dFTihkZXZf
+cHJpdikgPCAxMSkKIAkJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sCkBAIC0zMjc5LDE2ICsz
+Mjc4LDYgQEAgc3RhdGljIHZvaWQgaHN3X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9h
+dG9taWNfc3RhdGUgKnN0YXRlLAogCiAJaWNsX3Byb2dyYW1fbWdfZHBfbW9kZShkaWdfcG9ydCwg
+Y3J0Y19zdGF0ZSk7CiAKLQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkKLQkJaWNsX2Rk
+aV92c3dpbmdfc2VxdWVuY2UoZW5jb2RlciwgY3J0Y19zdGF0ZS0+cG9ydF9jbG9jaywKLQkJCQkJ
+bGV2ZWwsIGVuY29kZXItPnR5cGUpOwotCWVsc2UgaWYgKElTX0NBTk5PTkxBS0UoZGV2X3ByaXYp
+KQotCQljbmxfZGRpX3Zzd2luZ19zZXF1ZW5jZShlbmNvZGVyLCBsZXZlbCwgZW5jb2Rlci0+dHlw
+ZSk7Ci0JZWxzZSBpZiAoSVNfR0VOOV9MUChkZXZfcHJpdikpCi0JCWJ4dF9kZGlfdnN3aW5nX3Nl
+cXVlbmNlKGVuY29kZXIsIGxldmVsLCBlbmNvZGVyLT50eXBlKTsKLQllbHNlCi0JCWludGVsX3By
+ZXBhcmVfZHBfZGRpX2J1ZmZlcnMoZW5jb2RlciwgY3J0Y19zdGF0ZSk7Ci0KIAlpZiAoaW50ZWxf
+cGh5X2lzX2NvbWJvKGRldl9wcml2LCBwaHkpKSB7CiAJCWJvb2wgbGFuZV9yZXZlcnNhbCA9CiAJ
+CQlkaWdfcG9ydC0+c2F2ZWRfcG9ydF9iaXRzICYgRERJX0JVRl9QT1JUX1JFVkVSU0FMOwotLSAK
+Mi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
