@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D21BA1E706F
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 01:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9311E70F1
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 01:56:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 185C06E842;
-	Thu, 28 May 2020 23:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34ED86E845;
+	Thu, 28 May 2020 23:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC9166E840;
- Thu, 28 May 2020 23:33:50 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D0BF6E840;
+ Thu, 28 May 2020 23:56:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6350A47E2;
- Thu, 28 May 2020 23:33:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F245FA00C7;
+ Thu, 28 May 2020 23:56:22 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 28 May 2020 23:33:50 -0000
-Message-ID: <159070883090.685.12767714975309141112@emeril.freedesktop.org>
+Date: Thu, 28 May 2020 23:56:22 -0000
+Message-ID: <159071018296.686.4502188080206239386@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200528211547.29392-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200528211547.29392-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Track_i915=5Fvma_with_its_own_reference_counter?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Track_i915=5Fvma_with_its_own_reference_counter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,58 +49,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915: Track i915_vma with its own reference counter
 URL   : https://patchwork.freedesktop.org/series/77763/
-State : warning
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_8550 -> Patchwork_17810
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17810 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17810, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17810:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_busy@basic@modeset:
+    - fi-ivb-3770:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8550/fi-ivb-3770/igt@kms_busy@basic@modeset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/fi-ivb-3770/igt@kms_busy@basic@modeset.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17810 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4] ([i915#198])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8550/fi-skl-lmem/igt@i915_selftest@live@sanitycheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/fi-skl-lmem/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-skl-lmem:        [PASS][5] -> [FAIL][6] ([fdo#103375])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8550/fi-skl-lmem/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/fi-skl-lmem/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][7] ([i915#541]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8550/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8550 -> Patchwork_17810
+
+  CI-20190529: 20190529
+  CI_DRM_8550: 0f5fdd75c2eaf3734f28639a9efc47a997f18839 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5683: 757b6e72d546fd2dbc3801a73796d67b0854021b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17810: 55980f47bd93a87db93357529f1be537aebd2677 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 55980f47bd93 drm/i915: Track i915_vma with its own reference counter
--:2210: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#2210: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:267:
-+		spinlock_t lock;
 
--:3974: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#3974: FILE: drivers/gpu/drm/i915/i915_vma.h:386:
-+	spinlock_t lock;
+== Logs ==
 
--:4221: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4221: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:394:
-+						if (offset < hole_start + vma->size)
-
--:4232: WARNING:LONG_LINE: line over 100 characters
-#4232: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:402:
-+						       __func__, p->name, err, npages, prime, offset,
-
--:4242: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4242: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:419:
-+						if (offset + vma->node.size > hole_end)
-
--:4258: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4258: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:428:
-+						if (offset < hole_start + vma->node.size)
-
--:4270: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4270: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:451:
-+						if (offset + vma->node.size > hole_end)
-
--:4286: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4286: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:460:
-+						if (offset < hole_start + vma->node.size)
-
--:4298: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4298: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:484:
-+						if (offset + vma->size >= hole_end)
-
--:4314: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4314: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:493:
-+						if (offset < hole_start + vma->size)
-
--:4326: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#4326: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:516:
-+						if (offset + vma->size >= hole_end)
-
-total: 0 errors, 9 warnings, 2 checks, 4754 lines checked
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17810/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
