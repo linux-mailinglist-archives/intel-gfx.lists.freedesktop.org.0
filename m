@@ -2,47 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB7B1E6325
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 16:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CA41E63B8
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 16:23:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38C3F6E56D;
-	Thu, 28 May 2020 14:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB3988130;
+	Thu, 28 May 2020 14:23:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 265B96E56D
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:00:19 +0000 (UTC)
-IronPort-SDR: pekE7RCHdEcVxxkUVmwwqm71ihaedq/Go8tLZJL/7grKb3Z7NMouL/C06vDAlSMtMKjZJR1ifc
- BiRaq5fmSFJg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 07:00:18 -0700
-IronPort-SDR: KZdVBZfgKdxpIQERmwqxnavcXSA7TSZ3CM4kWvGTpgONP7O1k/Orx1fiDSdy9bdjVs4kEFT6O7
- U0XTZXZ8nlZg==
-X-IronPort-AV: E=Sophos;i="5.73,444,1583222400"; d="scan'208";a="414606311"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 07:00:17 -0700
-Message-ID: <0eb46cc353976119fdde30aab60a64d54b6eb016.camel@linux.intel.com>
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 16:00:15 +0200
-In-Reply-To: <159067328625.10651.8021433055100838752@build.alporthouse.com>
-References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
- <20200518181720.14625-2-janusz.krzysztofik@linux.intel.com>
- <cb70ca21-a61f-a641-2655-1da02bb97ea7@linux.intel.com>
- <182683d9d94fda2aa9fef57c6ea4473efb5cb1d7.camel@linux.intel.com>
- <13a082a5-d5a4-093c-6821-4b5177662d12@linux.intel.com>
- <159067328625.10651.8021433055100838752@build.alporthouse.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com
+ [IPv6:2607:f8b0:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A99DE89216
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:23:03 +0000 (UTC)
+Received: by mail-ot1-x341.google.com with SMTP id h7so2490908otr.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 07:23:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=mfUajei3iY431nisNFP6PkBPo+jJ4W41Aia4LnYABWQ=;
+ b=WDzd8SjjNwXMO9jBFUV22UICn3QjNtcIylC9U7B5hY6KJbg26B2840mcDU5p4vDnUv
+ Nr2/JmqmCShZ5RHiRzLG/iiQrswuopP6l/PjjSpVLaGCA/ItEoLa3w9ZwykJpdQf2c6i
+ n28dNbkFyHKyZVM6cJTF+DTySwOnOIkSVXCnc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=mfUajei3iY431nisNFP6PkBPo+jJ4W41Aia4LnYABWQ=;
+ b=fn59vVVD58Ig7bOpZJoUcMxu0Iwg1Oapvl64SuOo9FY3sP3WF/JFFApTZWLul7jtnD
+ 459gInUiROU4kp61mqB0+A8L9ya19WpZvS3GosIgvNrh2TmXEkMqsrNbHk/Br6o5Td2R
+ hVNKV2EdTB14Bat1nS/DOUILkqx9AatsJXnxJh6ZiA4BG71/rd8bcRanOryfAHCM94Fj
+ G3r6kBEFwF5CxPmFWZlw1Br3/sGAAgKh67Kzp7VK3MYkKcipkaLUrrXMNpfWHW+vzQ4p
+ 9BArwCF5uN+zkKel2k36dj4ODpty3EowZz2OnlntDFqjMYnI9AWI3Asgbg4Q+D1t6AL4
+ p9Eg==
+X-Gm-Message-State: AOAM531qsp92u1Z6nmbKG0Ib0BXAujcWwn9/nXBouBRN29l9HzeUEIM9
+ zt/zZNoBMAiJpV4FyGMq++1BPPKviDZXw6vwcCNjfw==
+X-Google-Smtp-Source: ABdhPJwNxg9CMM36a6ht/5xuPEOxoI2pKA/i8iJaW3IruTtJtLbKte8opXy9jpqttbU0T/qneElqZ9s39dTzaiuFbOY=
+X-Received: by 2002:a9d:1d1:: with SMTP id e75mr2300297ote.303.1590675782856; 
+ Thu, 28 May 2020 07:23:02 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 1/4] drm/i915: Drop user contexts on
- driver remove
+References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
+ <20200512085944.222637-3-daniel.vetter@ffwll.ch>
+ <81b3a3be-b818-9e7c-e93e-ecf161bec94c@shipmail.org>
+In-Reply-To: <81b3a3be-b818-9e7c-e93e-ecf161bec94c@shipmail.org>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 28 May 2020 16:22:51 +0200
+Message-ID: <CAKMK7uHb-DTKqiBKbcKuVeWPmRBsnq2QjWXQ44oLDE=qxLVvJA@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m_=28Intel=29?= <thomas_os@shipmail.org>
+Subject: Re: [Intel-gfx] [RFC 02/17] dma-fence: basic lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,139 +60,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
-
-On Thu, 2020-05-28 at 14:41 +0100, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-05-28 14:34:42)
-> > On 28/05/2020 13:10, Janusz Krzysztofik wrote:
-> > > Hi Tvrtko,
-> > > 
-> > > On Thu, 2020-05-28 at 11:14 +0100, Tvrtko Ursulin wrote:
-> > > > On 18/05/2020 19:17, Janusz Krzysztofik wrote:
-> > > > > Contexts associated with open device file descriptors together with
-> > > > > their assigned address spaces are now closed on device file close.  On
-> > > > 
-> > > > i915_gem_driver_remove looks like module unload to me, not device file
-> > > > close. So..
-> > > 
-> > > Not only module unload ...
-> > > 
-> > > > > address space closure its associated DMA mappings are revoked.  If the
-> > > > > device is removed while being open, subsequent attempts to revoke
-> > > > > those mappings while closing the device file descriptor may may be
-> > > > > judged by intel-iommu code as a bug and result in kernel panic.
-> > > > > 
-> > > > > Since user contexts become useless after the device is no longer
-> > > > > available, drop them on device removal.
-> > > > > 
-> > > > > <4> [36.900985] ------------[ cut here ]------------
-> > > > > <2> [36.901005] kernel BUG at drivers/iommu/intel-iommu.c:3717!
-> > > > > <4> [36.901105] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
-> > > > > <4> [36.901117] CPU: 0 PID: 39 Comm: kworker/u8:1 Tainted: G     U  W         5.7.0-rc5-CI-CI_DRM_8485+ #1
-> > > > > <4> [36.901133] Hardware name: Intel Corporation Elkhart Lake Embedded Platform/ElkhartLake LPDDR4x T3 CRB, BIOS EHLSFWI1.R00.1484.A00.1911290833 11/29/2019
-> > > > > <4> [36.901250] Workqueue: i915 __i915_vm_release [i915]
-> > > > > <4> [36.901264] RIP: 0010:intel_unmap+0x1f5/0x230
-> > > > > <4> [36.901274] Code: 01 e8 9f bc a9 ff 85 c0 74 09 80 3d df 60 09 01 00 74 19 65 ff 0d 13 12 97 7e 0f 85 fc fe ff ff e8 82 b0 95 ff e9 f2 fe ff ff <0f> 0b e8 d4 bd a9 ff 85 c0 75 de 48 c7 c2 10 84 2c 82 be 54 00 00
-> > > > > <4> [36.901302] RSP: 0018:ffffc900001ebdc0 EFLAGS: 00010246
-> > > > > <4> [36.901313] RAX: 0000000000000000 RBX: ffff8882561dd000 RCX: 0000000000000000
-> > > > > <4> [36.901324] RDX: 0000000000001000 RSI: 00000000ffd9c000 RDI: ffff888274c94000
-> > > > > <4> [36.901336] RBP: ffff888274c940b0 R08: 0000000000000000 R09: 0000000000000001
-> > > > > <4> [36.901348] R10: 000000000a25d812 R11: 00000000112af2d4 R12: ffff888252c70200
-> > > > > <4> [36.901360] R13: 00000000ffd9c000 R14: 0000000000001000 R15: ffff8882561dd010
-> > > > > <4> [36.901372] FS:  0000000000000000(0000) GS:ffff888278000000(0000) knlGS:0000000000000000
-> > > > > <4> [36.901386] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > > > > <4> [36.901396] CR2: 00007f06def54950 CR3: 0000000255844000 CR4: 0000000000340ef0
-> > > > > <4> [36.901408] Call Trace:
-> > > > > <4> [36.901418]  ? process_one_work+0x1de/0x600
-> > > > > <4> [36.901494]  cleanup_page_dma+0x37/0x70 [i915]
-> > > > > <4> [36.901573]  free_pd+0x9/0x20 [i915]
-> > > > > <4> [36.901644]  gen8_ppgtt_cleanup+0x59/0xc0 [i915]
-> > > > > <4> [36.901721]  __i915_vm_release+0x14/0x30 [i915]
-> > > > > <4> [36.901733]  process_one_work+0x268/0x600
-> > > > > <4> [36.901744]  ? __schedule+0x307/0x8d0
-> > > > > <4> [36.901756]  worker_thread+0x37/0x380
-> > > > > <4> [36.901766]  ? process_one_work+0x600/0x600
-> > > > > <4> [36.901775]  kthread+0x140/0x160
-> > > > > <4> [36.901783]  ? kthread_park+0x80/0x80
-> > > > > <4> [36.901792]  ret_from_fork+0x24/0x50
-> > > > > <4> [36.901804] Modules linked in: mei_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel ax88179_178a usbnet mii mei_me mei prime_numbers intel_lpss_pci
-> > > > > <4> [36.901857] ---[ end trace 52d1b4d81f8d1ea7 ]---
-> > > > > 
-> > > > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > > > ---
-> > > > >    drivers/gpu/drm/i915/gem/i915_gem_context.c | 38 +++++++++++++++++++++
-> > > > >    drivers/gpu/drm/i915/gem/i915_gem_context.h |  1 +
-> > > > >    drivers/gpu/drm/i915/i915_gem.c             |  2 ++
-> > > > >    3 files changed, 41 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > > index 900ea8b7fc8f..0096a69fbfd3 100644
-> > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > > > @@ -927,6 +927,44 @@ void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
-> > > > >     rcu_barrier(); /* and flush the left over RCU frees */
-> > > > >    }
-> > > > >    
-> > > > > +void i915_gem_driver_remove__contexts(struct drm_i915_private *i915)
-> > > > > +{
-> > > > > +   struct i915_gem_context *ctx, *cn;
-> > > > > +
-> > > > > +   list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
-> > > > > +           struct drm_i915_file_private *file_priv = ctx->file_priv;
-> > > > > +           struct i915_gem_context *entry;
-> > > > > +           unsigned long int id;
-> > > > > +
-> > > > > +           if (i915_gem_context_is_closed(ctx) || IS_ERR(file_priv))
-> > > > > +                   continue;
-> > > > > +
-> > > > > +           xa_for_each(&file_priv->context_xa, id, entry) {
-> > > > 
-> > > > ... how is driver unload possible with open drm file descriptors, or
-> > > > active contexts?
-> > > 
-> > > ... but also PCI driver unbind or PCI device remove, with the module
-> > > still loaded.  That may perfectly happen even if a device file
-> > > descriptor is still kept open.
-> > 
-> > I see. What do we do, or plan to do, with those left open drm fds after 
-> > the driver is unbound from the device? Is there a path connected to keep 
-> > saying -ENODEV (Or is a different errno standard for this case, like 
-> > ENXIO?) from that point onward for everything done with that fd. So 
-> > userspace couldn't do anything more with it, attempt to create a new 
-> > context etc. Is the DRM core handling this?
-> 
-> We mark the device as wedged, so any attempt to use the GPU results in
-> -EIO. There's a loose edge in the faulthandler, but marking the ggtt as
-> closed and SIGBUS on trying to fault in an non-existent page takes care
-> of that.
-> 
-> There's a very expensive srcu in every drm_ioctl for checking unplugged
-> that we don't need because we already do the -EIO.
-
-Thanks for help with that explanation.
-
-> 
-> In particular this patch is worthless, or worse misdirection. The issue
-> is not the contexts or page directories and this is not fixing the
-> problem and only a few of the symptoms.
-
-Please note this patch is only a part of a series.  My findings are
-that it is needed for the solution the series proposes to be effective.
-The idea is to release all DMA mappings still on driver remove.  I
-would really appreciate your comments on that idea and maybe on other
-patches of the series as well.
-
-Thanks,
-Janusz
- 
-> -Chris
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCBNYXkgMjgsIDIwMjAgYXQgMzozNyBQTSBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwp
+Cjx0aG9tYXNfb3NAc2hpcG1haWwub3JnPiB3cm90ZToKPgo+IE9uIDIwMjAtMDUtMTIgMTA6NTks
+IERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPiBEZXNpZ24gaXMgc2ltaWxhciB0byB0aGUgbG9ja2Rl
+cCBhbm5vdGF0aW9ucyBmb3Igd29ya2VycywgYnV0IHdpdGgKPiA+IHNvbWUgdHdpc3RzOgo+ID4K
+PiA+IC0gV2UgdXNlIGEgcmVhZC1sb2NrIGZvciB0aGUgZXhlY3V0aW9uL3dvcmtlci9jb21wbGV0
+aW9uIHNpZGUsIHNvIHRoYXQKPiA+ICAgIHRoaXMgZXhwbGljaXQgYW5ub3RhdGlvbiBjYW4gYmUg
+bW9yZSBsaWJlcmFsbHkgc3ByaW5rbGVkIGFyb3VuZC4KPiA+ICAgIFdpdGggcmVhZCBsb2NrcyBs
+b2NrZGVwIGlzbid0IGdvaW5nIHRvIGNvbXBsYWluIGlmIHRoZSByZWFkLXNpZGUKPiA+ICAgIGlz
+bid0IG5lc3RlZCB0aGUgc2FtZSB3YXkgdW5kZXIgYWxsIGNpcmN1bXN0YW5jZXMsIHNvIEFCQkEg
+ZGVhZGxvY2tzCj4gPiAgICBhcmUgb2suIFdoaWNoIHRoZXkgYXJlLCBzaW5jZSB0aGlzIGlzIGFu
+IGFubm90YXRpb24gb25seS4KPiA+Cj4gPiAtIFdlJ3JlIHVzaW5nIG5vbi1yZWN1cnNpdmUgbG9j
+a2RlcCByZWFkIGxvY2sgbW9kZSwgc2luY2UgaW4gcmVjdXJzaXZlCj4gPiAgICByZWFkIGxvY2sg
+bW9kZSBsb2NrZGVwIGRvZXMgbm90IGNhdGNoIHJlYWQgc2lkZSBoYXphcmRzLiBBbmQgd2UKPiA+
+ICAgIF92ZXJ5XyBtdWNoIHdhbnQgcmVhZCBzaWRlIGhhemFyZHMgdG8gYmUgY2F1Z2h0LiBGb3Ig
+ZnVsbCBkZXRhaWxzIG9mCj4gPiAgICB0aGlzIGxpbWl0YXRpb24gc2VlCj4gPgo+ID4gICAgY29t
+bWl0IGU5MTQ5ODU4OTc0NjA2NWUzYWU5NWQ5YTAwYjA2OGU1MjVlZWMzNGYKPiA+ICAgIEF1dGhv
+cjogUGV0ZXIgWmlqbHN0cmEgPHBldGVyekBpbmZyYWRlYWQub3JnPgo+ID4gICAgRGF0ZTogICBX
+ZWQgQXVnIDIzIDEzOjEzOjExIDIwMTcgKzAyMDAKPiA+Cj4gPiAgICAgICAgbG9ja2luZy9sb2Nr
+ZGVwL3NlbGZ0ZXN0czogQWRkIG1peGVkIHJlYWQtd3JpdGUgQUJCQSB0ZXN0cwo+ID4KPiA+IC0g
+VG8gYWxsb3cgbmVzdGluZyBvZiB0aGUgcmVhZC1zaWRlIGV4cGxpY2l0IGFubm90YXRpb25zIHdl
+IGV4cGxpY2l0bHkKPiA+ICAgIGtlZXAgdHJhY2sgb2YgdGhlIG5lc3RpbmcuIGxvY2tfaXNfaGVs
+ZCgpIGFsbG93cyB1cyB0byBkbyB0aGF0Lgo+ID4KPiA+IC0gVGhlIHdhaXQtc2lkZSBhbm5vdGF0
+aW9uIGlzIGEgd3JpdGUgbG9jaywgYW5kIGVudGlyZWx5IGRvbmUgd2l0aGluCj4gPiAgICBkbWFf
+ZmVuY2Vfd2FpdCgpIGZvciBldmVyeW9uZSBieSBkZWZhdWx0Lgo+ID4KPiA+IC0gVG8gYmUgYWJs
+ZSB0byBmcmVlbHkgYW5ub3RhdGUgaGVscGVyIGZ1bmN0aW9ucyBJIHdhbnQgdG8gbWFrZSBpdCBv
+awo+ID4gICAgdG8gY2FsbCBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxpbmcgZnJvbSBzb2Z0
+L2hhcmRpcnEgY29udGV4dC4KPiA+ICAgIEZpcnN0IGF0dGVtcHQgd2FzIHVzaW5nIHRoZSBoYXJk
+aXJxIGxvY2tpbmcgY29udGV4dCBmb3IgdGhlIHdyaXRlCj4gPiAgICBzaWRlIGluIGxvY2tkZXAs
+IGJ1dCB0aGlzIGZvcmNlcyBhbGwgbm9ybWFsIHNwaW5sb2NrcyBuZXN0ZWQgd2l0aGluCj4gPiAg
+ICBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxpbmcgdG8gYmUgc3BpbmxvY2tzLiBUaGF0IGJv
+bGxvY2tzLgo+ID4KPiA+ICAgIFRoZSBhcHByb2FjaCBub3cgaXMgdG8gc2ltcGxlIGNoZWNrIGlu
+X2F0b21pYygpLCBhbmQgZm9yIHRoZXNlIGNhc2VzCj4gPiAgICBlbnRpcmVseSByZWx5IG9uIHRo
+ZSBtaWdodF9zbGVlcCgpIGNoZWNrIGluIGRtYV9mZW5jZV93YWl0KCkuIFRoYXQKPiA+ICAgIHdp
+bGwgY2F0Y2ggYW55IHdyb25nIG5lc3RpbmcgYWdhaW5zdCBzcGlubG9ja3MgZnJvbSBzb2Z0L2hh
+cmRpcnEKPiA+ICAgIGNvbnRleHRzLgo+ID4KPiA+IFRoZSBpZGVhIGhlcmUgaXMgdGhhdCBldmVy
+eSBjb2RlIHBhdGggdGhhdCdzIGNyaXRpY2FsIGZvciBldmVudHVhbGx5Cj4gPiBzaWduYWxsaW5n
+IGEgZG1hX2ZlbmNlIHNob3VsZCBiZSBhbm5vdGF0ZWQgd2l0aAo+ID4gZG1hX2ZlbmNlX2JlZ2lu
+L2VuZF9zaWduYWxsaW5nLiBUaGUgYW5ub3RhdGlvbiBpZGVhbGx5IHN0YXJ0cyByaWdodAo+ID4g
+YWZ0ZXIgYSBkbWFfZmVuY2UgaXMgcHVibGlzaGVkIChhZGRlZCB0byBhIGRtYV9yZXN2LCBleHBv
+c2VkIGFzIGEKPiA+IHN5bmNfZmlsZSBmZCwgYXR0YWNoZWQgdG8gYSBkcm1fc3luY29iaiBmZCwg
+b3IgYW55dGhpbmcgZWxzZSB0aGF0Cj4gPiBtYWtlcyB0aGUgZG1hX2ZlbmNlIHZpc2libGUgdG8g
+b3RoZXIga2VybmVsIHRocmVhZHMpLCB1cCB0byBhbmQKPiA+IGluY2x1ZGluZyB0aGUgZG1hX2Zl
+bmNlX3dhaXQoKS4gRXhhbXBsZXMgYXJlIGlycSBoYW5kbGVycywgdGhlCj4gPiBzY2hlZHVsZXIg
+cnQgdGhyZWFkcywgdGhlIHRhaWwgb2YgZXhlY2J1ZiAoYWZ0ZXIgdGhlIGNvcnJlc3BvbmRpbmcK
+PiA+IGZlbmNlcyBhcmUgdmlzaWJsZSksIGFueSB3b3JrZXJzIHRoYXQgZW5kIHVwIHNpZ25hbGxp
+bmcgZG1hX2ZlbmNlcyBhbmQKPiA+IHJlYWxseSBhbnl0aGluZyBlbHNlLiBOb3QgYW5ub3RhdGVk
+IHNob3VsZCBiZSBjb2RlIHBhdGhzIHRoYXQgb25seQo+ID4gY29tcGxldGUgZmVuY2VzIG9wcG9y
+dHVuaXN0aWNhbGx5IGFzIHRoZSBncHUgcHJvZ3Jlc3NlcywgbGlrZSBlLmcuCj4gPiBzaHJpbmtl
+ci9ldmljdGlvbiBjb2RlLgo+ID4KPiA+IFRoZSBtYWluIGNsYXNzIG9mIGRlYWRsb2NrcyB0aGlz
+IGlzIHN1cHBvc2VkIHRvIGNhdGNoIGFyZToKPiA+Cj4gPiBUaHJlYWQgQToKPiA+Cj4gPiAgICAg
+ICBtdXRleF9sb2NrKEEpOwo+ID4gICAgICAgbXV0ZXhfdW5sb2NrKEEpOwo+ID4KPiA+ICAgICAg
+IGRtYV9mZW5jZV9zaWduYWwoKTsKPiA+Cj4gPiBUaHJlYWQgQjoKPiA+Cj4gPiAgICAgICBtdXRl
+eF9sb2NrKEEpOwo+ID4gICAgICAgZG1hX2ZlbmNlX3dhaXQoKTsKPiA+ICAgICAgIG11dGV4X3Vu
+bG9jayhBKTsKPiA+Cj4gPiBUaHJlYWQgQiBpcyBibG9ja2VkIG9uIEEgc2lnbmFsbGluZyB0aGUg
+ZmVuY2UsIGJ1dCBBIG5ldmVyIGdldHMgYXJvdW5kCj4gPiB0byB0aGF0IGJlY2F1c2UgaXQgY2Fu
+bm90IGFjcXVpcmUgdGhlIGxvY2sgQS4KPiA+Cj4gPiBOb3RlIHRoYXQgZG1hX2ZlbmNlX3dhaXQo
+KSBpcyBhbGxvd2VkIHRvIGJlIG5lc3RlZCB3aXRoaW4KPiA+IGRtYV9mZW5jZV9iZWdpbi9lbmRf
+c2lnbmFsbGluZyBzZWN0aW9ucy4gVG8gYWxsb3cgdGhpcyB0byBoYXBwZW4gdGhlCj4gPiByZWFk
+IGxvY2sgbmVlZHMgdG8gYmUgdXBncmFkZWQgdG8gYSB3cml0ZSBsb2NrLCB3aGljaCBtZWFucyB0
+aGF0IGFueQo+ID4gb3RoZXIgbG9jayBpcyBhY3F1aXJlZCBiZXR3ZWVuIHRoZSBkbWFfZmVuY2Vf
+YmVnaW5fc2lnbmFsbGluZygpIGNhbGwgYW5kCj4gPiB0aGUgY2FsbCB0byBkbWFfZmVuY2Vfd2Fp
+dCgpLCBhbmQgc3RpbGwgaGVsZCwgdGhpcyB3aWxsIHJlc3VsdCBpbiBhbgo+ID4gaW1tZWRpYXRl
+IGxvY2tkZXAgY29tcGxhaW50LiBUaGUgb25seSBvdGhlciBvcHRpb24gd291bGQgYmUgdG8gbm90
+Cj4gPiBhbm5vdGF0ZSBzdWNoIGNhbGxzLCBkZWZlYXRpbmcgdGhlIHBvaW50LiBUaGVyZWZvcmUg
+dGhlc2UgYW5ub3RhdGlvbnMKPiA+IGNhbm5vdCBiZSBzcHJpbmtsZWQgb3ZlciB0aGUgY29kZSBl
+bnRpcmVseSBtaW5kbGVzcyB0byBhdm9pZCBmYWxzZQo+ID4gcG9zaXRpdmVzLgo+ID4KPiA+IHYy
+OiBoYW5kbGUgc29mdC9oYXJkaXJxIGN0eCBiZXR0ZXIgYWdhaW5zdCB3cml0ZSBzaWRlIGFuZCBk
+b250IGZvcmdldAo+ID4gRVhQT1JUX1NZTUJPTCwgZHJpdmVycyBjYW4ndCB1c2UgdGhpcyBvdGhl
+cndpc2UuCj4gPgo+ID4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwo+ID4gQ2M6IGxp
+bmFyby1tbS1zaWdAbGlzdHMubGluYXJvLm9yZwo+ID4gQ2M6IGxpbnV4LXJkbWFAdmdlci5rZXJu
+ZWwub3JnCj4gPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBpbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0Bj
+aHJpcy13aWxzb24uY28udWs+Cj4gPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFu
+a2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3Rp
+YW4ua29lbmlnQGFtZC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5p
+ZWwudmV0dGVyQGludGVsLmNvbT4KPgo+IExHVE0uIFBlcmhhcHMgc29tZSBpbi1jb2RlIGRvY3Vt
+ZW50YXRpb24gb24gaG93IHRvIHVzZSB0aGUgbmV3IGZ1bmN0aW9ucwo+IGFyZSBjYWxsZWQuCgpT
+ZWUgY292ZXIgbGV0dGVyLCB0aGF0J3MgZ29pbmcgdG8gYmUgZG9uZSBmb3IgbmV4dCByb3VuZC4g
+Rm9yIHRoaXMgb25lCmhlcmUgSSBqdXN0IHdhbnRlZCB0byBzaG93Y2FzZSBhIGJpdCBob3cgaXQn
+cyB1c2VkIGluIGEgZmV3IGRpZmZlcmVudApwbGFjZXMsIG1vc3RseSBzZWxlY3RlZCB0byBnZXQg
+YXMgbXVjaCBmZWVkYmFjayBmcm9tIGFjcm9zcyBkaWZmZXJlbnQKZHJpdmVycy4gSGVuY2UgZS5n
+LiBhbm5vdGF0aW5nIGRybS9zY2hlZHVsZXIuCgo+IE90aGVyd2lzZSBmb3IgcGF0Y2ggMiBhbmQg
+MywKPgo+IFJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0cm9tIDx0aG9tYXMuaGVsbHN0cm9tQGlu
+dGVsLmNvbT4KCkkgdGhpbmsgSSdsbCBqdXN0IGNjIHlvdSBmb3IgdGhlIG5leHQgcm91bmQgd2l0
+aCBkb2NzLCBzbyB5b3UgY2FuIG1ha2UKc3VyZSBpdCBsb29rcyBvayA6LSkKLURhbmllbAotLSAK
+RGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgw
+KSA3OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
