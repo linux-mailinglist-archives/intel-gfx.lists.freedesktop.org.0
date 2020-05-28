@@ -1,45 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC3A51E5B8C
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 11:13:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7001E5C8C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 11:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3386E12C;
-	Thu, 28 May 2020 09:13:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A51A16E12C
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 09:13:44 +0000 (UTC)
-IronPort-SDR: 0VElOQpABibJ7nAdnR9p9dXJVXFKUCA9UXzIj1NCb5d56fnNjFKGTya6a81rZawEywbW6PeuYr
- +QwpZwePonsQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 02:13:44 -0700
-IronPort-SDR: eF1q3kl0KR2D8viNoqxCaZQucZ27IJRwNjxDfswKgJ0ssTWyw2qCakgYRreIIFWf7CT2MDb2Xy
- EyH3TIAQe0OQ==
-X-IronPort-AV: E=Sophos;i="5.73,444,1583222400"; d="scan'208";a="270789162"
-Received: from jkrzyszt-desk.ger.corp.intel.com ([172.22.244.18])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 02:13:43 -0700
-Message-ID: <916916be1f7fbdfddad7c8d9a8ada2cc02964f15.camel@linux.intel.com>
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: =?UTF-8?Q?Micha=C5=82?= Winiarski <michal@hardline.pl>, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 11:13:41 +0200
-In-Reply-To: <159060693971.4890.1652554590442980189@macragge.hardline.pl>
-References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
- <20200518181720.14625-5-janusz.krzysztofik@linux.intel.com>
- <159060693971.4890.1652554590442980189@macragge.hardline.pl>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id A52E589C05;
+	Thu, 28 May 2020 09:58:04 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E115489C05
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 09:58:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21319861-1500050 for multiple; Thu, 28 May 2020 10:57:29 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 4/4] drm/i915: Move UC firmware cleanup
- from driver_release to _remove
+In-Reply-To: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
+References: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <159065984908.10651.3817818286053938468@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 28 May 2020 10:57:29 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Special handling for bonded
+ requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,101 +40,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Xiaogang Li <xiaogang.li@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgTWljaGHFgiwKCk9uIFdlZCwgMjAyMC0wNS0yNyBhdCAyMToxNSArMDIwMCwgTWljaGHFgiBX
-aW5pYXJza2kgd3JvdGU6Cj4gUXVvdGluZyBKYW51c3ogS3J6eXN6dG9maWsgKDIwMjAtMDUtMTgg
-MjA6MTc6MjApCj4gPiBVQyBmaXJtd2FyZSBpcyBzdG9yZWQgaW4gYSBHRU0gb2JqZWN0LiAgQ2xl
-YW4gaXQgdXAgb24gZHJpdmVyIHJlbW92ZSB0bwo+IAkJCQkJIF4gZG91YmxlIHdoaXRlc3BhY2UK
-ClRoYXQncyBhIHJlc3VsdCBvZiBteSBhZGRpY3Rpb24gdG8gYW4gb2xkLWZhc2hpb25lZCBzdHls
-ZSBvZiBzZXBhcmF0aW5nCnNlbnRlbmNlcyB3aXRoIGRvdWJsZSBzcGFjZS4gIEJUVywgdGhhdCdz
-IGhvdyBteSB2aSBlZGl0b3Igc3RpbGwgam9pbnMKdHdvIGxpbmVzIHdoZW4gZmlyc3Qgb2YgdGhl
-bSBlbmRzIHdpdGggYSBmdWxsIHN0b3AuCgo+ID4gYXZvaWQgaW50ZWwtaW9tbXUgdHJpZ2dlcmVk
-IGtlcm5lbCBwYW5pYyBvbiBsYXRlIERNQSB1bm1hcHBpbmcgb3IgZXZlbgo+ID4gYW4gUlBNIHJl
-bGF0ZWQgd2FybmluZyBvbiBvYmplY3QgbGF0ZSByZW1vdmFsIGluIG5vIElPTU1VIHNldHVwcy4K
-PiAKPiBUaGlzIGlzIG5vIGxvbmdlciB0aGUgY2FzZSBhZnRlcjoKPiBkcm0vaTkxNS9nZW06IExh
-emlseSBhY3F1aXJlIHRoZSBkZXZpY2Ugd2FrZXJlZiBmb3IgZnJlZWluZyBvYmplY3RzCj4gCj4g
-UmlnaHQ/CgpOb3QgcmVhbGx5LiAgVGhhdCB3YXMgb25seSBhIGZpcnN0IHN0ZXAgaW4gdGhhdCBk
-aXJlY3Rpb24sIHNvbWUKb3BlcmF0aW9ucyBjYWxsZWQgZnJvbSB0aGF0IHByb2Nlc3NpbmcgcGF0
-aCBzdGlsbCB0cnkgdG8gYWNxdWlyZSB0aGUKd2FrYXJlZiB1bmNvbmRpdGlvbmFsbHkuCgo+IAo+
-ID4gPDQ+IFs5My4zMzUyODJdIC0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQo+
-ID4gPDQ+IFs5My4zMzU1MTVdIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKSBmYWlsZWQ6IC0xMwo+ID4g
-PDQ+IFs5My4zMzYwNTZdIFdBUk5JTkc6IENQVTogNiBQSUQ6IDIwMCBhdCBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmM6MzYxIF9faW50ZWxfcnVudGltZV9wbV9nZXQrMHg0
-ZC8weDYwIFtpOTE1XQo+ID4gPDQ+IFs5My4zMzYxMDRdIE1vZHVsZXMgbGlua2VkIGluOiBzbmRf
-aGRhX2NvZGVjX2hkbWkgbWVpX2hkY3AgaTkxNSB4ODZfcGtnX3RlbXBfdGhlcm1hbCBjb3JldGVt
-cCBjcmN0MTBkaWZfcGNsbXVsIGNyYzMyX3BjbG11bCBnaGFzaF9jbG11bG5pX2ludGVsIHNuZF9o
-ZGFfaW50ZWwgY2RjX2V0aGVyIHNuZF9pbnRlbF9kc3BjZmcgdXNibmV0IHNuZF9oZGFfY29kZWMg
-bWlpIHNuZF9od2RlcCBzbmRfaGRhX2NvcmUgZTEwMDBlIHNuZF9wY20gcHRwIHBwc19jb3JlIG1l
-aV9tZSBtZWkgaW50ZWxfbHBzc19wY2kgcHJpbWVfbnVtYmVycwo+ID4gPDQ+IFs5My4zMzYyNjhd
-IENQVTogNiBQSUQ6IDIwMCBDb21tOiBrd29ya2VyL3UxNjozIFRhaW50ZWQ6IEcgICAgIFUgICAg
-ICAgICAgICA1LjcuMC1yYzQtQ0ktVHJ5Ym90XzY0MDUrICMxCj4gPiA8ND4gWzkzLjMzNjI4OV0g
-SGFyZHdhcmUgbmFtZTogSW50ZWwgQ29ycG9yYXRpb24gVGlnZXIgTGFrZSBDbGllbnQgUGxhdGZv
-cm0vVGlnZXJMYWtlIFkgTFBERFI0eCBUNCBDcmIsIEJJT1MgVEdMU0ZXSTEuUjAwLjI0NTcuQTE2
-LjE5MTIyNzAwNTkgMTIvMjcvMjAxOQo+ID4gPDQ+IFs5My4zMzY4MTFdIFdvcmtxdWV1ZTogaTkx
-NSBfX2k5MTVfZ2VtX2ZyZWVfd29yayBbaTkxNV0KPiA+IDw0PiBbOTMuMzM3Mjk2XSBSSVA6IDAw
-MTA6X19pbnRlbF9ydW50aW1lX3BtX2dldCsweDRkLzB4NjAgW2k5MTVdCj4gPiA8ND4gWzkzLjMz
-NzMzMl0gQ29kZTogZmYgZmYgNDggODkgZGYgNWIgNWQgZTkgYTEgZmEgZmYgZmYgODAgM2QgNGIg
-N2EgMmUgMDAgMDAgNzUgZTEgODkgYzYgNDggYzcgYzcgYTggMmQgNDAgYTAgYzYgMDUgMzkgN2Eg
-MmUgMDAgMDEgZTggNTMgZmMgZTkgZTAgPDBmPiAwYiBlYiBjOCAwZiAxZiA0NCAwMCAwMCA2NiAy
-ZSAwZiAxZiA4NCAwMCAwMCAwMCAwMCAwMCA0MSA1NyA0MQo+ID4gPDQ+IFs5My4zMzczNTddIFJT
-UDogMDAxODpmZmZmYzkwMDAxNDRiZGQ4IEVGTEFHUzogMDAwMTAyODIKPiA+IDw0PiBbOTMuMzM3
-Mzg0XSBSQVg6IDAwMDAwMDAwMDAwMDAwMDAgUkJYOiBmZmZmODg4MzhlZTViYzQwIFJDWDogMDAw
-MDAwMDAwMDAwMDAwMQo+ID4gPDQ+IFs5My4zMzc0MDldIFJEWDogMDAwMDAwMDA4MDAwMDAwMSBS
-U0k6IGZmZmY4ODgzOWQyNjQ5MjggUkRJOiAwMDAwMDAwMGZmZmZmZmZmCj4gPiA8ND4gWzkzLjMz
-NzQ0MF0gUkJQOiAwMDAwMDAwMDAwMDAwMDAxIFIwODogZmZmZjg4ODM5ZDI2NDkyOCBSMDk6IDAw
-MDAwMDAwMDAwMDAwMDAKPiA+IDw0PiBbOTMuMzM3NDY3XSBSMTA6IDAwMDAwMDAwMDAwMDAwMDAg
-UjExOiAwMDAwMDAwMDAwMDAwMDAwIFIxMjogZmZmZjg4ODM4ZWU1YmM0MAo+ID4gPDQ+IFs5My4z
-Mzc0OTNdIFIxMzogMDAwMDAwMDAwMDAwMDAwNiBSMTQ6IGZmZmZmZmZmODI3NjlhMzAgUjE1OiBm
-ZmZmODg4MzkzNzZiYWIwCj4gPiA8ND4gWzkzLjMzNzUxNV0gRlM6ICAwMDAwMDAwMDAwMDAwMDAw
-KDAwMDApIEdTOmZmZmY4ODgzYTQxMDAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+
-ID4gPDQ+IFs5My4zMzc1NDJdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAw
-MDAwODAwNTAwMzMKPiA+IDw0PiBbOTMuMzM3NTYzXSBDUjI6IDAwMDA1NWJjMTliMTZmZjggQ1Iz
-OiAwMDAwMDAwM2ExMWM0MDA1IENSNDogMDAwMDAwMDAwMDc2MGVlMAo+ID4gPDQ+IFs5My4zMzc1
-ODNdIFBLUlU6IDU1NTU1NTU0Cj4gPiA8ND4gWzkzLjMzNzYwNV0gQ2FsbCBUcmFjZToKPiA+IDw0
-PiBbOTMuMzM4MTQ4XSAgaTkxNV9nZW1fb2JqZWN0X3JlbGVhc2VfbW1hcCsweDIzLzB4NzAgW2k5
-MTVdCj4gPiA8ND4gWzkzLjMzODY2NV0gIF9faTkxNV9nZW1fZnJlZV9vYmplY3RzLmlzcmEuMjEr
-MHgxMGEvMHg0YjAgW2k5MTVdCj4gPiA8ND4gWzkzLjMzODc0MV0gIHByb2Nlc3Nfb25lX3dvcmsr
-MHgyNjgvMHg2MDAKPiA+IDw0PiBbOTMuMzM4Nzg1XSAgPyBfX3NjaGVkdWxlKzB4MzA3LzB4OGQw
-Cj4gPiA8ND4gWzkzLjMzODg3OF0gIHdvcmtlcl90aHJlYWQrMHgzNy8weDM4MAo+ID4gPDQ+IFs5
-My4zMzg5MjldICA/IHByb2Nlc3Nfb25lX3dvcmsrMHg2MDAvMHg2MDAKPiA+IDw0PiBbOTMuMzM4
-OTYzXSAga3RocmVhZCsweDE0MC8weDE2MAo+ID4gPDQ+IFs5My4zMzkwMDZdICA/IGt0aHJlYWRf
-cGFyaysweDgwLzB4ODAKPiA+IDw0PiBbOTMuMzM5MDU3XSAgcmV0X2Zyb21fZm9yaysweDI0LzB4
-NTAKPiA+IDw0PiBbOTMuMzM5MTgxXSBpcnEgZXZlbnQgc3RhbXA6IDIwNDIyMAo+ID4gPDQ+IFs5
-My4zMzkyMTldIGhhcmRpcnFzIGxhc3QgIGVuYWJsZWQgYXQgKDIwNDIxOSk6IFs8ZmZmZmZmZmY4
-MTEzMzk5ZD5dIGNvbnNvbGVfdW5sb2NrKzB4NGNkLzB4NWEwCj4gPiA8ND4gWzkzLjMzOTI1MF0g
-aGFyZGlycXMgbGFzdCBkaXNhYmxlZCBhdCAoMjA0MjIwKTogWzxmZmZmZmZmZjgxMDAxZDUwPl0g
-dHJhY2VfaGFyZGlycXNfb2ZmX3RodW5rKzB4MWEvMHgxYwo+ID4gPDQ+IFs5My4zMzkyNzddIHNv
-ZnRpcnFzIGxhc3QgIGVuYWJsZWQgYXQgKDIwNDIwOCk6IFs8ZmZmZmZmZmY4MWUwMDM5NT5dIF9f
-ZG9fc29mdGlycSsweDM5NS8weDQ5ZQo+ID4gPDQ+IFs5My4zMzkzMDddIHNvZnRpcnFzIGxhc3Qg
-ZGlzYWJsZWQgYXQgKDIwNDE5Nyk6IFs8ZmZmZmZmZmY4MTBiYmM5YT5dIGlycV9leGl0KzB4YmEv
-MHhjMAo+ID4gPDQ+IFs5My4zMzkzMzBdIC0tLVsgZW5kIHRyYWNlIGYwNjYxODc2MjJiOGM0ODQg
-XS0tLQo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5r
-cnp5c3p0b2Zpa0BsaW51eC5pbnRlbC5jb20+Cj4gCj4gUmV2aWV3ZWQtYnk6IE1pY2hhxYIgV2lu
-aWFyc2tpIDxtaWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4KClRoYW5rcywKSmFudXN6Cgo+IAo+
-IC1NaWNoYcWCCj4gCj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5j
-IHwgMyArKy0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYwo+ID4gaW5kZXggODdkM2M0ZjViNmM2
-Li5mOWQzN2M3ZTZkNmYgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dlbS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCj4gPiBAQCAt
-MTE5MSw2ICsxMTkxLDggQEAgdm9pZCBpOTE1X2dlbV9kcml2ZXJfcmVtb3ZlKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiA+ICAKPiA+ICAgICAgICAgaTkxNV9nZW1fZHJpdmVy
-X3JlbW92ZV9fY29udGV4dHMoZGV2X3ByaXYpOwo+ID4gIAo+ID4gKyAgICAgICBpbnRlbF91Y19j
-bGVhbnVwX2Zpcm13YXJlcygmZGV2X3ByaXYtPmd0LnVjKTsKPiA+ICsKPiA+ICAgICAgICAgaTkx
-NV9nZW1fZHJhaW5fZnJlZWRfb2JqZWN0cyhkZXZfcHJpdik7Cj4gPiAgfQo+ID4gIAo+ID4gQEAg
-LTEyMDIsNyArMTIwNCw2IEBAIHZvaWQgaTkxNV9nZW1fZHJpdmVyX3JlbGVhc2Uoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ID4gIAo+ID4gICAgICAgICBpbnRlbF93YV9saXN0
-X2ZyZWUoJmRldl9wcml2LT5ndF93YV9saXN0KTsKPiA+ICAKPiA+IC0gICAgICAgaW50ZWxfdWNf
-Y2xlYW51cF9maXJtd2FyZXMoJmRldl9wcml2LT5ndC51Yyk7Cj4gPiAgICAgICAgIGk5MTVfZ2Vt
-X2NsZWFudXBfdXNlcnB0cihkZXZfcHJpdik7Cj4gPiAgCj4gPiAgICAgICAgIGk5MTVfZ2VtX2Ry
-YWluX2ZyZWVkX29iamVjdHMoZGV2X3ByaXYpOwo+ID4gLS0gCj4gPiAyLjIxLjEKPiA+IAo+ID4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IEludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKPiA+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+
-IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Tvrtko Ursulin (2020-05-27 09:53:22)
+> +static void
+> +mark_bonded_pair(struct i915_request *rq, struct i915_request *signal)
+> +{
+> +       /*
+> +        * Give (temporary) special meaning to a pair requests with requested
+> +        * aligned start along the video engines.
+> +        *
+> +        * They should be non-preemptable and have all ELSP ports to themselves
+> +        * to avoid any deadlocks caused by inversions.
+> +        *
+> +        * Gen11+
+> +        */
+> +       if (INTEL_GEN(rq->i915) < 11 ||
+> +           rq->engine->class != VIDEO_DECODE_CLASS ||
+> +           rq->engine->class != signal->engine->class)
+> +               return;
+> +
+> +       set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags);
+> +       set_bit(I915_FENCE_FLAG_NOPREEMPT, &signal->fence.flags);
+> +
+> +       intel_context_set_single_submission(rq->context);
+> +       intel_context_set_single_submission(signal->context);
+
+The thought that just popped into my head:
+
+This can be after signal is already submitted into ELSP[1].
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
