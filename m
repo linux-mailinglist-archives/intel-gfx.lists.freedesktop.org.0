@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA8201E6F36
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 00:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4961E6F49
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 00:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECE5A6E7F1;
-	Thu, 28 May 2020 22:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB156E231;
+	Thu, 28 May 2020 22:40:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8376D6E231;
- Thu, 28 May 2020 22:35:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 293C76E226;
+ Thu, 28 May 2020 22:40:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72F72A011B;
- Thu, 28 May 2020 22:35:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1B204A0019;
+ Thu, 28 May 2020 22:40:35 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 28 May 2020 22:35:48 -0000
-Message-ID: <159070534844.684.8258709081558930398@emeril.freedesktop.org>
+Date: Thu, 28 May 2020 22:40:35 -0000
+Message-ID: <159070563508.685.1237813921092177418@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200528205727.20309-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200528205727.20309-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Start_timeslice_on_partial_submission?=
+References: <20200528211524.29107-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200528211524.29107-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/11=5D_drm/i915/gt=3A_Start_times?=
+ =?utf-8?q?lice_on_partial_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,66 +48,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Start timeslice on partial submission
-URL   : https://patchwork.freedesktop.org/series/77761/
-State : success
+Series: series starting with [01/11] drm/i915/gt: Start timeslice on partial submission
+URL   : https://patchwork.freedesktop.org/series/77762/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8549 -> Patchwork_17808
-====================================================
+$ dim checkpatch origin/drm-tip
+dc44da7a88e6 drm/i915/gt: Start timeslice on partial submission
+af3a1406b2d8 drm/i915/gem: Mark the buffer pool as active for the cmdparser
+7c0380bdfab2 drm/i915/gem: Async GPU relocations only
+283e921c4b08 drm/i915: Add list_for_each_entry_safe_continue_reverse
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-Summary
--------
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-  **SUCCESS**
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-  No regressions found.
+total: 0 errors, 0 warnings, 3 checks, 12 lines checked
+fb12696a43ec drm/i915/gem: Separate reloc validation into an earlier step
+-:101: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#101: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1408:
++				return (int)offset;
++			} else {
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17808/index.html
+total: 0 errors, 1 warnings, 0 checks, 217 lines checked
+10ad05422c96 drm/i915/gem: Lift GPU relocation allocation
+c2d55803a60c drm/i915/gem: Build the reloc request first
+71c20a444d9e drm/i915/gem: Add all GPU reloc awaits/signals en masse
+eba65e7de8ae dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
 
-Known issues
-------------
+-:438: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#438: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
 
-  Here are the changes found in Patchwork_17808 that come from known issues:
+total: 0 errors, 1 warnings, 1 checks, 1158 lines checked
+372342371047 drm/i915: Unpeel awaits on a proxy fence
+70c78cfa6ea5 drm/i915/gem: Make relocations atomic within execbuf
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@coherency:
-    - fi-gdg-551:         [PASS][1] -> [DMESG-FAIL][2] ([i915#1748])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8549/fi-gdg-551/igt@i915_selftest@live@coherency.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17808/fi-gdg-551/igt@i915_selftest@live@coherency.html
-
-  
-  [i915#1748]: https://gitlab.freedesktop.org/drm/intel/issues/1748
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8549 -> Patchwork_17808
-
-  CI-20190529: 20190529
-  CI_DRM_8549: e50e9c6bf4efd00b02d91ff470993bbd0db94f67 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5682: e5371a99a877be134c6ad5361a5f03843a66f775 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17808: 2ea880d898ed9a9a66cfdfc5706d8f1089f8d652 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2ea880d898ed drm/i915/gt: Start timeslice on partial submission
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17808/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
