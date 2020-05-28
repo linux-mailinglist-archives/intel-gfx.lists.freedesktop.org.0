@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 074511E5912
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 09:41:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EEBE1E5929
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 09:43:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 159D76E1A3;
-	Thu, 28 May 2020 07:41:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9641F89893;
+	Thu, 28 May 2020 07:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9986E1A3
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 07:41:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 247AF89893
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 07:43:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318031-1500050 
- for multiple; Thu, 28 May 2020 08:41:12 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318077-1500050 
+ for multiple; Thu, 28 May 2020 08:43:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 08:41:09 +0100
-Message-Id: <20200528074109.28235-11-chris@chris-wilson.co.uk>
+Date: Thu, 28 May 2020 08:43:22 +0100
+Message-Id: <20200528074324.5765-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200528074109.28235-1-chris@chris-wilson.co.uk>
-References: <20200528074109.28235-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915/gem: Make relocations atomic
- within execbuf
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Prevent timeslicing into
+ unpreemptable requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,281 +43,196 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although we may chide userspace for reusing the same batches
-concurrently from multiple threads, at the same time we must be very
-careful to only execute the batch and its relocations as supplied by the
-user. If we are not careful, we may allow another thread to rewrite the
-current batch with its own relocations. We must order the relocations
-and their batch such that they are an atomic pair on the GPU, and that
-the ioctl itself appears atomic to userspace. The order of execution may
-be undetermined, but it will not be subverted.
+We have a I915_REQUEST_NOPREEMPT flag that we set when we must prevent
+the HW from preempting during the course of this request. We need to
+honour this flag and protect the HW even if we have a heartbeat request,
+or other maximum priority barrier, pending. As such, restrict the
+timeslicing check to avoid preempting into the topmost priority band,
+leaving the unpreemptable requests in blissful peace running
+uninterrupted on the HW.
 
-We could do this by moving the relocations into the main request, if it
-were not for the situation where we need a second engine to perform the
-relocations for us. Instead, we use the dependency tracking to only
-publish the write fence on the main request and not on the relocation
-request, so that concurrent updates are queued after the batch has
-consumed its relocations.
+v2: Set the I915_PRIORITY_BARRIER to be less than
+I915_PRIORITY_UNPREEMPTABLE so that we never submit a request
+(heartbeat or barrier) that can legitimately preempt the current
+non-premptable request.
 
-Testcase: igt/gem_exec_reloc/basic-concurrent
-Fixes: ef398881d27d ("drm/i915/gem: Limit struct_mutex to eb_reserve")
+Fixes: 2a98f4e65bba ("drm/i915: add infrastructure to hold off preemption on a request")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 91 ++++++++++++++-----
- .../i915/gem/selftests/i915_gem_execbuffer.c  | 10 +-
- 2 files changed, 71 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c        |   1 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c     | 118 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_priolist_types.h |   2 +-
+ 3 files changed, 119 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 673671cff039..a5a8d5183f91 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -5,6 +5,7 @@
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3214a4ecc31a..197efd9ea1e9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1928,6 +1928,7 @@ need_timeslice(const struct intel_engine_cs *engine,
+ 	if (!list_is_last(&rq->sched.link, &engine->active.requests))
+ 		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
  
- #include <linux/intel-iommu.h>
-+#include <linux/dma-fence-proxy.h>
- #include <linux/dma-resv.h>
- #include <linux/sync_file.h>
- #include <linux/uaccess.h>
-@@ -259,6 +260,8 @@ struct i915_execbuffer {
- 		bool has_fence : 1;
- 		bool needs_unfenced : 1;
- 
-+		struct dma_fence *fence;
-+
- 		struct i915_request *rq;
- 		struct i915_vma *rq_vma;
- 		u32 *rq_cmd;
-@@ -555,16 +558,6 @@ eb_add_vma(struct i915_execbuffer *eb,
- 	ev->exec = entry;
- 	ev->flags = entry->flags;
- 
--	if (eb->lut_size > 0) {
--		ev->handle = entry->handle;
--		hlist_add_head(&ev->node,
--			       &eb->buckets[hash_32(entry->handle,
--						    eb->lut_size)]);
--	}
--
--	if (entry->relocation_count)
--		list_add_tail(&ev->reloc_link, &eb->relocs);
--
- 	/*
- 	 * SNA is doing fancy tricks with compressing batch buffers, which leads
- 	 * to negative relocation deltas. Usually that works out ok since the
-@@ -581,9 +574,21 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		if (eb->reloc_cache.has_fence)
- 			ev->flags |= EXEC_OBJECT_NEEDS_FENCE;
- 
-+		INIT_LIST_HEAD(&ev->reloc_link);
-+
- 		eb->batch = ev;
- 	}
- 
-+	if (entry->relocation_count)
-+		list_add_tail(&ev->reloc_link, &eb->relocs);
-+
-+	if (eb->lut_size > 0) {
-+		ev->handle = entry->handle;
-+		hlist_add_head(&ev->node,
-+			       &eb->buckets[hash_32(entry->handle,
-+						    eb->lut_size)]);
-+	}
-+
- 	if (eb_pin_vma(eb, entry, ev)) {
- 		if (entry->offset != vma->node.start) {
- 			entry->offset = vma->node.start | UPDATE;
-@@ -923,6 +928,7 @@ static void reloc_cache_init(struct reloc_cache *cache,
- 	cache->has_fence = cache->gen < 4;
- 	cache->needs_unfenced = INTEL_INFO(i915)->unfenced_needs_alignment;
- 	cache->node.flags = 0;
-+	cache->fence = NULL;
++	GEM_BUG_ON(hint == I915_PRIORITY_UNPREEMPTABLE);
+ 	return hint >= effective_prio(rq);
  }
  
- static inline void *unmask_page(unsigned long p)
-@@ -1054,6 +1060,7 @@ static void reloc_gpu_flush(struct reloc_cache *cache)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 66f710b1b61e..3e35a45d6218 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -823,7 +823,7 @@ slice_semaphore_queue(struct intel_engine_cs *outer,
+ 		}
  	}
  
- 	intel_gt_chipset_flush(rq->engine->gt);
-+	i915_request_get(rq);
- 	i915_request_add(rq);
- }
+-	err = release_queue(outer, vma, n, INT_MAX);
++	err = release_queue(outer, vma, n, I915_PRIORITY_BARRIER);
+ 	if (err)
+ 		goto out;
  
-@@ -1290,16 +1297,6 @@ eb_relocate_entry(struct i915_execbuffer *eb,
- 	if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
- 		return 0;
- 
--	/*
--	 * If we write into the object, we need to force the synchronisation
--	 * barrier, either with an asynchronous clflush or if we executed the
--	 * patching using the GPU (though that should be serialised by the
--	 * timeline). To be completely sure, and since we are required to
--	 * do relocations we are already stalling, disable the user's opt
--	 * out of our synchronisation.
--	 */
--	ev->flags &= ~EXEC_OBJECT_ASYNC;
--
- 	/* and update the user's relocation entry */
- 	return relocate_entry(eb, ev->vma, reloc, target->vma);
- }
-@@ -1533,12 +1530,17 @@ static int reloc_move_to_gpu(struct reloc_cache *cache, struct eb_vma *ev)
- 
- 	obj->write_domain = I915_GEM_DOMAIN_RENDER;
- 	obj->read_domains = I915_GEM_DOMAIN_RENDER;
-+	ev->flags |= EXEC_OBJECT_ASYNC;
- 
- 	err = i915_request_await_object(rq, obj, true);
- 	if (err == 0) {
- 		dma_resv_add_excl_fence(vma->resv, &rq->fence);
- 		err = __i915_vma_move_to_active(vma, rq);
- 	}
-+	if (err == 0) {
-+		if (dma_resv_reserve_shared(vma->resv, 1) == 0)
-+			dma_resv_add_shared_fence(vma->resv, cache->fence);
-+	}
- 
+@@ -1289,6 +1289,121 @@ static int live_timeslice_queue(void *arg)
  	return err;
  }
-@@ -1607,14 +1609,28 @@ static int reloc_gpu_alloc(struct i915_execbuffer *eb)
- 	return __reloc_gpu_alloc(eb, engine);
- }
  
-+static void free_reloc_fence(struct i915_execbuffer *eb)
++static int live_timeslice_nopreempt(void *arg)
 +{
-+	struct dma_fence *f = fetch_and_zero(&eb->reloc_cache.fence);
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++	struct igt_spinner spin;
++	int err = 0;
 +
-+	dma_fence_signal(f);
-+	dma_fence_put(f);
-+}
++	/*
++	 * We should not timeslice into a request that is marked with
++	 * I915_REQUEST_NOPREEMPT.
++	 */
++	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
++		return 0;
 +
- static int reloc_gpu(struct i915_execbuffer *eb)
- {
- 	struct eb_vma *ev;
- 	int err;
- 
-+	eb->reloc_cache.fence = __dma_fence_create_proxy(0, 0);
-+	if (!eb->reloc_cache.fence)
++	if (igt_spinner_init(&spin, gt))
 +		return -ENOMEM;
 +
- 	err = reloc_gpu_alloc(eb);
--	if (err)
-+	if (err) {
-+		free_reloc_fence(eb);
- 		return err;
-+	}
- 	GEM_BUG_ON(!eb->reloc_cache.rq);
- 
- 	err = lock_relocs(eb);
-@@ -1673,6 +1689,15 @@ static int eb_relocate(struct i915_execbuffer *eb)
- 	return 0;
- }
- 
-+static void eb_reloc_signal(struct i915_execbuffer *eb, struct i915_request *rq)
-+{
-+	dma_fence_proxy_set_real(eb->reloc_cache.fence, &rq->fence);
-+	i915_request_put(eb->reloc_cache.rq);
++	for_each_engine(engine, gt, id) {
++		struct intel_context *ce;
++		struct i915_request *rq;
++		unsigned long timeslice;
 +
-+	dma_fence_put(eb->reloc_cache.fence);
-+	eb->reloc_cache.fence = NULL;
++		if (!intel_engine_has_preemption(engine))
++			continue;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			break;
++		}
++
++		engine_heartbeat_disable(engine);
++		timeslice = xchg(&engine->props.timeslice_duration_ms, 1);
++
++		/* Create an unpreemptible spinner */
++
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out_heartbeat;
++		}
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		if (!igt_wait_for_spinner(&spin, rq)) {
++			i915_request_put(rq);
++			err = -ETIME;
++			goto out_spin;
++		}
++
++		set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags);
++		i915_request_put(rq);
++
++		/* Followed by a maximum priority barrier (heartbeat) */
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(rq);
++			goto out_spin;
++		}
++
++		rq = intel_context_create_request(ce);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out_spin;
++		}
++
++		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		/*
++		 * Wait until the barrier is in ELSP, and we know timeslicing
++		 * will have been activated.
++		 */
++		if (wait_for_submit(engine, rq, HZ / 2)) {
++			i915_request_put(rq);
++			err = -ETIME;
++			goto out_spin;
++		}
++
++		/*
++		 * Since the ELSP[0] request is unpreemptible, it should not
++		 * allow the maximum priority barrier through. Wait long
++		 * enough to see if it is timesliced in by mistake.
++		 */
++		if (i915_request_wait(rq, 0, timeslice_threshold(engine)) >= 0) {
++			pr_err("%s: I915_PRIORITY_BARRIER request completed, bypassing no-preempt request\n",
++			       engine->name);
++			err = -EINVAL;
++		}
++		i915_request_put(rq);
++
++out_spin:
++		igt_spinner_end(&spin);
++out_heartbeat:
++		xchg(&engine->props.timeslice_duration_ms, timeslice);
++		engine_heartbeat_enable(engine);
++		if (err)
++			break;
++
++		if (igt_flush_test(gt->i915)) {
++			err = -EIO;
++			break;
++		}
++	}
++
++	igt_spinner_fini(&spin);
++	return err;
 +}
 +
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
+ static int live_busywait_preempt(void *arg)
  {
- 	const unsigned int count = eb->buffer_count;
-@@ -1916,10 +1941,15 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	if (err)
- 		goto err_batch_unlock;
+ 	struct intel_gt *gt = arg;
+@@ -4475,6 +4590,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_timeslice_preempt),
+ 		SUBTEST(live_timeslice_rewind),
+ 		SUBTEST(live_timeslice_queue),
++		SUBTEST(live_timeslice_nopreempt),
+ 		SUBTEST(live_busywait_preempt),
+ 		SUBTEST(live_preempt),
+ 		SUBTEST(live_late_preempt),
+diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
+index 5003a71113cb..8aa7866ec6b6 100644
+--- a/drivers/gpu/drm/i915/i915_priolist_types.h
++++ b/drivers/gpu/drm/i915/i915_priolist_types.h
+@@ -42,7 +42,7 @@ enum {
+  * active request.
+  */
+ #define I915_PRIORITY_UNPREEMPTABLE INT_MAX
+-#define I915_PRIORITY_BARRIER INT_MAX
++#define I915_PRIORITY_BARRIER (I915_PRIORITY_UNPREEMPTABLE - 1)
  
--	/* Wait for all writes (and relocs) into the batch to complete */
--	err = i915_sw_fence_await_reservation(&pw->base.chain,
--					      pw->batch->resv, NULL, false,
--					      0, I915_FENCE_GFP);
-+	/* Wait for all writes (or relocs) into the batch to complete */
-+	if (!eb->reloc_cache.fence || list_empty(&eb->batch->reloc_link))
-+		err = i915_sw_fence_await_reservation(&pw->base.chain,
-+						      pw->batch->resv, NULL,
-+						      false, 0, I915_FENCE_GFP);
-+	else
-+		err = i915_sw_fence_await_dma_fence(&pw->base.chain,
-+						    &eb->reloc_cache.rq->fence,
-+						    0, I915_FENCE_GFP);
- 	if (err < 0)
- 		goto err_batch_unlock;
- 
-@@ -2044,6 +2074,15 @@ static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
- {
- 	int err;
- 
-+	if (eb->reloc_cache.fence) {
-+		err = i915_request_await_dma_fence(eb->request,
-+						   &eb->reloc_cache.rq->fence);
-+		if (err)
-+			return err;
-+
-+		eb_reloc_signal(eb, eb->request);
-+	}
-+
- 	err = eb_move_to_gpu(eb);
- 	if (err)
- 		return err;
-@@ -2703,6 +2742,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (batch->private)
- 		intel_gt_buffer_pool_put(batch->private);
- err_vma:
-+	if (eb.reloc_cache.fence)
-+		eb_reloc_signal(&eb, eb.reloc_cache.rq);
- 	if (eb.trampoline)
- 		i915_vma_unpin(eb.trampoline);
- 	eb_unpin_engine(&eb);
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-index d14315e04d98..e5de4220193b 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-@@ -23,7 +23,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	const u64 mask =
- 		GENMASK_ULL(eb->reloc_cache.use_64bit_reloc ? 63 : 31, 0);
- 	const u32 *map = page_mask_bits(obj->mm.mapping);
--	struct i915_request *rq;
- 	struct eb_vma ev;
- 	int err;
- 	int i;
-@@ -40,6 +39,8 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto unpin_vma;
- 
-+	eb->reloc_cache.fence = &eb->reloc_cache.rq->fence;
-+
- 	i915_vma_lock(ev.vma);
- 	err = reloc_move_to_gpu(&eb->reloc_cache, &ev);
- 	i915_vma_unlock(ev.vma);
-@@ -72,8 +73,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto unpin_vma;
- 
--	GEM_BUG_ON(!eb->reloc_cache.rq);
--	rq = i915_request_get(eb->reloc_cache.rq);
- 	reloc_gpu_flush(&eb->reloc_cache);
- 
- 	err = i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2);
-@@ -82,7 +81,7 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 		goto put_rq;
- 	}
- 
--	if (!i915_request_completed(rq)) {
-+	if (!i915_request_completed(eb->reloc_cache.rq)) {
- 		pr_err("%s: did not wait for relocations!\n", eb->engine->name);
- 		err = -EINVAL;
- 		goto put_rq;
-@@ -101,7 +100,8 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 		igt_hexdump(map, 4096);
- 
- put_rq:
--	i915_request_put(rq);
-+	i915_request_put(eb->reloc_cache.rq);
-+	eb->reloc_cache.rq = NULL;
- unpin_vma:
- 	i915_vma_unpin(ev.vma);
- 	return err;
+ struct i915_priolist {
+ 	struct list_head requests[I915_PRIORITY_COUNT];
 -- 
 2.20.1
 
