@@ -1,45 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90AB91E604D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 14:10:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C4E1E6177
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 14:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE616E42C;
-	Thu, 28 May 2020 12:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A27E6E51B;
+	Thu, 28 May 2020 12:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4263B6E42C
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 12:10:40 +0000 (UTC)
-IronPort-SDR: 8hQkt2VkEIx1Pm7VHiibBb+UkFX6E3R5+R5gmvPxM2f4Qr0TA1cL43gFfojy9Pw9tX0KKEmZ8Y
- 2Bjf1stRhtSw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 05:10:38 -0700
-IronPort-SDR: l2PUsl8pqxVTo24JbPFDcp6qzndeFd5A0UReFBzqUUr26LOXuEbyqEODzc8pLPRNrm05SJ76s7
- uberslK1JdKg==
-X-IronPort-AV: E=Sophos;i="5.73,444,1583222400"; d="scan'208";a="469094504"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 05:10:37 -0700
-Message-ID: <182683d9d94fda2aa9fef57c6ea4473efb5cb1d7.camel@linux.intel.com>
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2020 14:10:35 +0200
-In-Reply-To: <cb70ca21-a61f-a641-2655-1da02bb97ea7@linux.intel.com>
-References: <20200518181720.14625-1-janusz.krzysztofik@linux.intel.com>
- <20200518181720.14625-2-janusz.krzysztofik@linux.intel.com>
- <cb70ca21-a61f-a641-2655-1da02bb97ea7@linux.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7918F6E519;
+ Thu, 28 May 2020 12:53:12 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 84DFCAA35;
+ Thu, 28 May 2020 12:53:10 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Rob Herring <robh@kernel.org>
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+ <20200511093554.211493-8-daniel.vetter@ffwll.ch>
+ <d6dc2421-b875-7fd7-74a6-ec78aebdcd84@suse.de>
+ <CAKMK7uEcP0aj0r-TevAMdz8_fUH_DnJCDfJxiVf1_H+qweS_5Q@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <742324eb-c063-3148-6802-7fcf447ae741@suse.de>
+Date: Thu, 28 May 2020 14:53:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 1/4] drm/i915: Drop user contexts on
- driver remove
+In-Reply-To: <CAKMK7uEcP0aj0r-TevAMdz8_fUH_DnJCDfJxiVf1_H+qweS_5Q@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/shmem-helpers: Redirect mmap for
+ imported dma-buf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,194 +67,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0347746504=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0347746504==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="TQyiAQixWTGYjPxuMxfyZX8pfIhOLLZV9"
 
-On Thu, 2020-05-28 at 11:14 +0100, Tvrtko Ursulin wrote:
-> On 18/05/2020 19:17, Janusz Krzysztofik wrote:
-> > Contexts associated with open device file descriptors together with
-> > their assigned address spaces are now closed on device file close.  On
-> 
-> i915_gem_driver_remove looks like module unload to me, not device file 
-> close. So..
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--TQyiAQixWTGYjPxuMxfyZX8pfIhOLLZV9
+Content-Type: multipart/mixed; boundary="TGHMCy0a1F4w2RjkJMK6pNizs74k30mKg";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Rob Herring <robh@kernel.org>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <742324eb-c063-3148-6802-7fcf447ae741@suse.de>
+Subject: Re: [PATCH 7/9] drm/shmem-helpers: Redirect mmap for imported dma-buf
+References: <20200511093554.211493-1-daniel.vetter@ffwll.ch>
+ <20200511093554.211493-8-daniel.vetter@ffwll.ch>
+ <d6dc2421-b875-7fd7-74a6-ec78aebdcd84@suse.de>
+ <CAKMK7uEcP0aj0r-TevAMdz8_fUH_DnJCDfJxiVf1_H+qweS_5Q@mail.gmail.com>
+In-Reply-To: <CAKMK7uEcP0aj0r-TevAMdz8_fUH_DnJCDfJxiVf1_H+qweS_5Q@mail.gmail.com>
 
-Not only module unload ...
+--TGHMCy0a1F4w2RjkJMK6pNizs74k30mKg
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> > address space closure its associated DMA mappings are revoked.  If the
-> > device is removed while being open, subsequent attempts to revoke
-> > those mappings while closing the device file descriptor may may be
-> > judged by intel-iommu code as a bug and result in kernel panic.
-> > 
-> > Since user contexts become useless after the device is no longer
-> > available, drop them on device removal.
-> > 
-> > <4> [36.900985] ------------[ cut here ]------------
-> > <2> [36.901005] kernel BUG at drivers/iommu/intel-iommu.c:3717!
-> > <4> [36.901105] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
-> > <4> [36.901117] CPU: 0 PID: 39 Comm: kworker/u8:1 Tainted: G     U  W         5.7.0-rc5-CI-CI_DRM_8485+ #1
-> > <4> [36.901133] Hardware name: Intel Corporation Elkhart Lake Embedded Platform/ElkhartLake LPDDR4x T3 CRB, BIOS EHLSFWI1.R00.1484.A00.1911290833 11/29/2019
-> > <4> [36.901250] Workqueue: i915 __i915_vm_release [i915]
-> > <4> [36.901264] RIP: 0010:intel_unmap+0x1f5/0x230
-> > <4> [36.901274] Code: 01 e8 9f bc a9 ff 85 c0 74 09 80 3d df 60 09 01 00 74 19 65 ff 0d 13 12 97 7e 0f 85 fc fe ff ff e8 82 b0 95 ff e9 f2 fe ff ff <0f> 0b e8 d4 bd a9 ff 85 c0 75 de 48 c7 c2 10 84 2c 82 be 54 00 00
-> > <4> [36.901302] RSP: 0018:ffffc900001ebdc0 EFLAGS: 00010246
-> > <4> [36.901313] RAX: 0000000000000000 RBX: ffff8882561dd000 RCX: 0000000000000000
-> > <4> [36.901324] RDX: 0000000000001000 RSI: 00000000ffd9c000 RDI: ffff888274c94000
-> > <4> [36.901336] RBP: ffff888274c940b0 R08: 0000000000000000 R09: 0000000000000001
-> > <4> [36.901348] R10: 000000000a25d812 R11: 00000000112af2d4 R12: ffff888252c70200
-> > <4> [36.901360] R13: 00000000ffd9c000 R14: 0000000000001000 R15: ffff8882561dd010
-> > <4> [36.901372] FS:  0000000000000000(0000) GS:ffff888278000000(0000) knlGS:0000000000000000
-> > <4> [36.901386] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > <4> [36.901396] CR2: 00007f06def54950 CR3: 0000000255844000 CR4: 0000000000340ef0
-> > <4> [36.901408] Call Trace:
-> > <4> [36.901418]  ? process_one_work+0x1de/0x600
-> > <4> [36.901494]  cleanup_page_dma+0x37/0x70 [i915]
-> > <4> [36.901573]  free_pd+0x9/0x20 [i915]
-> > <4> [36.901644]  gen8_ppgtt_cleanup+0x59/0xc0 [i915]
-> > <4> [36.901721]  __i915_vm_release+0x14/0x30 [i915]
-> > <4> [36.901733]  process_one_work+0x268/0x600
-> > <4> [36.901744]  ? __schedule+0x307/0x8d0
-> > <4> [36.901756]  worker_thread+0x37/0x380
-> > <4> [36.901766]  ? process_one_work+0x600/0x600
-> > <4> [36.901775]  kthread+0x140/0x160
-> > <4> [36.901783]  ? kthread_park+0x80/0x80
-> > <4> [36.901792]  ret_from_fork+0x24/0x50
-> > <4> [36.901804] Modules linked in: mei_hdcp i915 x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel ax88179_178a usbnet mii mei_me mei prime_numbers intel_lpss_pci
-> > <4> [36.901857] ---[ end trace 52d1b4d81f8d1ea7 ]---
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 38 +++++++++++++++++++++
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.h |  1 +
-> >   drivers/gpu/drm/i915/i915_gem.c             |  2 ++
-> >   3 files changed, 41 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 900ea8b7fc8f..0096a69fbfd3 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -927,6 +927,44 @@ void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
-> >   	rcu_barrier(); /* and flush the left over RCU frees */
-> >   }
-> >   
-> > +void i915_gem_driver_remove__contexts(struct drm_i915_private *i915)
-> > +{
-> > +	struct i915_gem_context *ctx, *cn;
-> > +
-> > +	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
-> > +		struct drm_i915_file_private *file_priv = ctx->file_priv;
-> > +		struct i915_gem_context *entry;
-> > +		unsigned long int id;
-> > +
-> > +		if (i915_gem_context_is_closed(ctx) || IS_ERR(file_priv))
-> > +			continue;
-> > +
-> > +		xa_for_each(&file_priv->context_xa, id, entry) {
-> 
-> ... how is driver unload possible with open drm file descriptors, or 
-> active contexts? 
+Hi
 
-... but also PCI driver unbind or PCI device remove, with the module
-still loaded.  That may perfectly happen even if a device file
-descriptor is still kept open.
+Am 27.05.20 um 21:34 schrieb Daniel Vetter:
+> On Wed, May 27, 2020 at 8:32 PM Thomas Zimmermann <tzimmermann@suse.de>=
+ wrote:
+>>
+>> Hi Daniel,
+>>
+>> what's your plan for this patch set? I'd need this patch for the udl
+>> shmem cleanup.
+>=20
+> I was pinging some people for a tested-by, I kinda don't want to push
+> this entirely untested. I think at least one of the rendering drivers
+> using shmem would be nice to run this on, I've pinged Rob Herring a
+> bit.
 
-> If something is going wrong sounds like something else.
+OK, makes sense. FWIW I tested the patchset with udl as secondary
+adapter. No problems noticed.
 
-I think we might consider that "something" as intel-iommu code, but see
-also the last paragraph of my response below.
+Tested-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-> 
-> drm postclose -> i915_gem_context_close -> closes all contexts and puts 
-> all vm. What can remain dangling? An active context? But there is idling 
-> via i915_gem_driver_remove -> i915_gem_suspend_late.
+Best regards
+Thomas
 
-Idling doesn't release DMA mappings which may then be released as late
-as on i915_gem_driver_release.  If that doesn't happen on device remove
-only later on last device close, intel-iommu triggers a bug.
+> -Daniel
+>=20
+>>
+>> Best regards
+>> Thomas
+>>
+>> Am 11.05.20 um 11:35 schrieb Daniel Vetter:
+>>> Currently this seems to work by converting the sgt into a pages array=
+,
+>>> and then treating it like a native object. Do the right thing and
+>>> redirect mmap to the exporter.
+>>>
+>>> With this nothing is calling get_pages anymore on imported dma-buf,
+>>> and we can start to remove the use of the ->pages array for that case=
+=2E
+>>>
+>>> v2: Rebase
+>>>
+>>> Cc: Gerd Hoffmann <kraxel@redhat.com>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/drm_gem_shmem_helper.c | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm=
+/drm_gem_shmem_helper.c
+>>> index b9cba5cc61c3..117a7841e284 100644
+>>> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+>>> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+>>> @@ -551,6 +551,9 @@ int drm_gem_shmem_mmap(struct drm_gem_object *obj=
+, struct vm_area_struct *vma)
+>>>       /* Remove the fake offset */
+>>>       vma->vm_pgoff -=3D drm_vma_node_start(&obj->vma_node);
+>>>
+>>> +     if (obj->import_attach)
+>>> +             return dma_buf_mmap(obj->dma_buf, vma, 0);
+>>> +
+>>>       shmem =3D to_drm_gem_shmem_obj(obj);
+>>>
+>>>       ret =3D drm_gem_shmem_get_pages(shmem);
+>>>
+>>
+>> --
+>> Thomas Zimmermann
+>> Graphics Driver Developer
+>> SUSE Software Solutions Germany GmbH
+>> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+>> (HRB 36809, AG N=C3=BCrnberg)
+>> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+>>
+>=20
+>=20
 
-I reported that issue to intel-iommu maintainers several months ago[1].
-They even agreed that was something that might need to be fixed[2], I
-provided them with information how the issue could be reproduced
-easily[3] but no progress has been reported since then.  If you think
-the issue should be definitely fixed on intel-iommu side, please help
-me to convince intel-iommu maintainers to take care of that.
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
-However, please note DMA-API also complains about DMA mappings still
-left active when device is removed.  That may indicate we should rather
-fix that on our side.
 
-Thanks,
-Janusz
+--TGHMCy0a1F4w2RjkJMK6pNizs74k30mKg--
 
-[1] https://marc.info/?l=linux-kernel&m=156689857510234&w=2
-[2] https://marc.info/?l=linux-kernel&m=156706978013967&w=2
-[3] https://marc.info/?l=linux-kernel&m=156749651025416&w=2
+--TQyiAQixWTGYjPxuMxfyZX8pfIhOLLZV9
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > +			struct i915_address_space *vm;
-> > +			unsigned long int idx;
-> > +
-> > +			if (entry != ctx)
-> > +				continue;
-> > +
-> > +			xa_erase(&file_priv->context_xa, id);
-> > +
-> > +			if (id)
-> > +				break;
-> > +
-> > +			xa_for_each(&file_priv->vm_xa, idx, vm) {
-> > +				xa_erase(&file_priv->vm_xa, idx);
-> > +				i915_vm_put(vm);
-> > +			}
-> > +
-> > +			break;
-> > +		}
-> > +
-> > +		context_close(ctx);
-> > +	}
-> > +
-> > +	i915_gem_driver_release__contexts(i915);
-> > +}
-> > +
-> >   static int gem_context_register(struct i915_gem_context *ctx,
-> >   				struct drm_i915_file_private *fpriv,
-> >   				u32 *id)
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > index 3702b2fb27ab..62808bea9239 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> > @@ -110,6 +110,7 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
-> >   
-> >   /* i915_gem_context.c */
-> >   void i915_gem_init__contexts(struct drm_i915_private *i915);
-> > +void i915_gem_driver_remove__contexts(struct drm_i915_private *i915);
-> >   void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
-> >   
-> >   int i915_gem_context_open(struct drm_i915_private *i915,
-> > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> > index 0cbcb9f54e7d..87d3c4f5b6c6 100644
-> > --- a/drivers/gpu/drm/i915/i915_gem.c
-> > +++ b/drivers/gpu/drm/i915/i915_gem.c
-> > @@ -1189,6 +1189,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
-> >   	/* Flush any outstanding unpin_work. */
-> >   	i915_gem_drain_workqueue(dev_priv);
-> >   
-> > +	i915_gem_driver_remove__contexts(dev_priv);
-> > +
-> >   	i915_gem_drain_freed_objects(dev_priv);
-> >   }
-> >   
-> > 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl7PtDAACgkQaA3BHVML
+eiNb8ggAvudKy0nLjLJaPUfuqIFNobVtPMsq3tbj5d5ErAmj4Iv4A61oWBFK/zML
+YwbVk/9Woll+pxdeNH4sgNg4cs+be6vtquVldkCqc5BwQMfs0z7/Tv+N8kn3vau5
+eZ4kyrD1H0v6giERuBU3SBnY40YRW+iE9FV6KKtaAQPcDq6z2aSeicsiblR/aU5e
+QhQgQQ3v8jw1OEequu+JQs41fkfVmVuSdh7OVezA4zlTDC/F9jdm8qmEoflPjKxZ
+va84DRHvEb9mkorrq+7qqjMNZ4JqYBWLTxjjgY1Sxo0/6QyAuM6qznkWn9r7E6D8
+rmcCvJ6bEex09Xeq9KBDH4b8eRJ6ug==
+=raaC
+-----END PGP SIGNATURE-----
+
+--TQyiAQixWTGYjPxuMxfyZX8pfIhOLLZV9--
+
+--===============0347746504==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0347746504==--
