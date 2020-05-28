@@ -2,35 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F3B1E67D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 18:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA891E68D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 19:47:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1336E5A5;
-	Thu, 28 May 2020 16:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C0756E5BD;
+	Thu, 28 May 2020 17:47:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB506E5A5
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 16:52:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21325284-1500050 for multiple; Thu, 28 May 2020 17:52:15 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A95516E5BD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 17:47:10 +0000 (UTC)
+IronPort-SDR: XmEz1QXVHpgaag5XbHP+IU3PGfWF9/w1rz/osC+JeUhMZ7jRw552dJLpmIm9aFtgnnu9wQqBuP
+ KHN/iZUqMcQQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2020 10:47:10 -0700
+IronPort-SDR: E2/RZ2qWKZBZ3V8zzPzTX3/FU6j3HNrlr0baoijJVhxpl7oyxA8m9NNWyVqhKTjfziqMIjLH+3
+ 7erpi6EDGAag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,445,1583222400"; d="scan'208";a="469203372"
+Received: from przanoni-mobl.amr.corp.intel.com ([10.254.98.134])
+ by fmsmga005.fm.intel.com with ESMTP; 28 May 2020 10:47:09 -0700
+Message-ID: <98b06b60080abbfc178fad96ffbe9757ae0e8d53.camel@intel.com>
+From: Paulo Zanoni <paulo.r.zanoni@intel.com>
+To: Karthik B S <karthik.b.s@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2020 10:47:09 -0700
+In-Reply-To: <20200528053931.29282-1-karthik.b.s@intel.com>
+References: <20200528053931.29282-1-karthik.b.s@intel.com>
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
 MIME-Version: 1.0
-In-Reply-To: <159068465505.10651.12715126559491848988@build.alporthouse.com>
-References: <20200528074324.5765-1-chris@chris-wilson.co.uk>
- <20200528074324.5765-2-chris@chris-wilson.co.uk>
- <871rn4jafd.fsf@gaia.fi.intel.com>
- <159068465505.10651.12715126559491848988@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <159068473554.10651.2928642743441484729@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 28 May 2020 17:52:15 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Don't declare hangs if
- engine is stalled
+Subject: Re: [Intel-gfx] [PATCH v3 0/5] Asynchronous flip implementation for
+ i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,75 +47,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-28 17:50:55)
-> Quoting Mika Kuoppala (2020-05-28 17:23:18)
-> > Chris Wilson <chris@chris-wilson.co.uk> writes:
-> > 
-> > > If the ring submission is stalled on an external request, nothing can be
-> > > submitted, not even the heartbeat in the kernel context. Since nothing
-> > > is running, resetting the engine/device does not unblock the system and
-> > > is pointless. We can see if the heartbeat is supposed to be running
-> > > before declaring foul.
-> > >
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > ---
-> > >  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 19 ++++++++++++++++---
-> > >  1 file changed, 16 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> > > index 5136c8bf112d..f67ad937eefb 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> > > @@ -48,8 +48,10 @@ static void show_heartbeat(const struct i915_request *rq,
-> > >       struct drm_printer p = drm_debug_printer("heartbeat");
-> > >  
-> > >       intel_engine_dump(engine, &p,
-> > > -                       "%s heartbeat {prio:%d} not ticking\n",
-> > > +                       "%s heartbeat {seqno:%llx:%lld, prio:%d} not ticking\n",
-> > >                         engine->name,
-> > > +                       rq->fence.context,
-> > > +                       rq->fence.seqno,
-> > >                         rq->sched.attr.priority);
-> > >  }
-> > >  
-> > > @@ -76,8 +78,19 @@ static void heartbeat(struct work_struct *wrk)
-> > >               goto out;
-> > >  
-> > >       if (engine->heartbeat.systole) {
-> > > -             if (engine->schedule &&
-> > > -                 rq->sched.attr.priority < I915_PRIORITY_BARRIER) {
-> > > +             if (!i915_sw_fence_signaled(&rq->submit)) {
-> > > +                     /*
-> > > +                      * Not yet submitted, system is stalled.
-> > > +                      *
-> > > +                      * This more often happens for ring submission,
-> > > +                      * where all contexts are funnelled into a common
-> > > +                      * ringbuffer. If one context is blocked on an
-> > > +                      * external fence, not only is it not submitted,
-> > > +                      * but all other contexts, including the kernel
-> > > +                      * context are stuck waiting for the signal.
-> > > +                      */
-> > 
-> > The solution how to save the system evades me.
-> > But piling the heartbeat on top does not help with it in
-> > any case.
-> 
-> Last resort could be hangcheck again, but over a much much longer
-> interval, say 2 minutes with work queued to the engine, but it remains
-> idle, mark the device as wedged (and stop using it altogether). We have
-> to be really confident that the cure is worth it.
-
-To be effective we would also need to brute force complete the requests
-waiting on external fences so that we could power down the device. Hmm,
-that reminds me I need something similar to power down an active device
-at suspend.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RW0gcXVpLCAyMDIwLTA1LTI4IMOgcyAxMTowOSArMDUzMCwgS2FydGhpayBCIFMgZXNjcmV2ZXU6
+Cj4gV2l0aG91dCBhc3luYyBmbGlwIHN1cHBvcnQgaW4gdGhlIGtlcm5lbCwgZnVsbHNjcmVlbiBh
+cHBzIHdoZXJlIGdhbWUKPiByZXNvbHV0aW9uIGlzIGVxdWFsIHRvIHRoZSBzY3JlZW4gcmVzb2x1
+dGlvbiwgbXVzdCBwZXJmb3JtIGFuIGV4dHJhIGJsaXQKPiBwZXIgZnJhbWUgcHJpb3IgdG8gZmxp
+cHBpbmcuCj4gCj4gQXN5bmNocm9ub3VzIHBhZ2UgZmxpcHMgd2lsbCBhbHNvIGJvb3N0IHRoZSBG
+UFMgb2YgTWVzYSBiZW5jaG1hcmtzLgo+IAo+IHYyOiBGZXcgcGF0Y2hlcyBoYXZlIGJlZW4gc3F1
+YXNoZWQgYW5kIHBhdGNoZXMgaGF2ZSBiZWVuIHNodWZmbGVkIGFzCj4gICAgIHBlciB0aGUgcmV2
+aWV3cyBvbiB0aGUgcHJldmlvdXMgdmVyc2lvbi4KPiAKPiB2MzogRmV3IHBhdGNoZXMgaGF2ZSBi
+ZWVuIHNxdWFzaGVkIGFuZCBwYXRjaGVzIGhhdmUgYmVlbiBzaHVmZmxlZCBhcwo+ICAgICBwZXIg
+dGhlIHJldmlld3Mgb24gdGhlIHByZXZpb3VzIHZlcnNpb24uCgpIZWxsbwoKSSBhc2tlZCBxdWl0
+ZSBhIGZldyBxdWVzdGlvbnMgaW4gdGhlIHJldmlldyBvZiB2MiwgYnV0IG5ldmVyIGdvdCBhbnkK
+cmVwbGllcy4gSSBzZWUgc29tZSB0aGluZ3MgcmVnYXJkaW5nIHRob3NlIHF1ZXN0aW9ucyBhcmUg
+ZGlmZmVyZW50IGluCnYzLCBidXQgSSBzdGlsbCB3b3VsZCByZWFsbHkgbGlrZSB0byBoYXZlIHRo
+b3NlIGFuc3dlcnMgaW4gZGlyZWN0CnRleHQvZW1haWwgZm9ybSBpbiBvcmRlciB0byBjbGFyaWZ5
+IG15IHVuZGVyc3RhbmRpbmcgb2YgeW91ciBvcmlnaW5hbAppbnRlbnQgKGFuZCBhbHNvIGhlbHAg
+bWUgdW5kZXJzdGFuZCB3aHkgdGhpbmdzIGFyZSBkaWZmZXJlbnQgaW4gdjMpLgpXb3VsZCB5b3Ug
+bWluZCByZXBseWluZyB0byB0aG9zZSBlbWFpbHM/CgpUaGFua3MsClBhdWxvCgo+IAo+IEthcnRo
+aWsgQiBTICg1KToKPiAgIGRybS9pOTE1OiBBZGQgZW5hYmxlL2Rpc2FibGUgZmxpcCBkb25lIGFu
+ZCBmbGlwIGRvbmUgaGFuZGxlcgo+ICAgZHJtL2k5MTU6IEFkZCBzdXBwb3J0IGZvciBhc3luYyBm
+bGlwcyBpbiBJOTE1Cj4gICBkcm0vaTkxNTogQWRkIGNoZWNrcyBzcGVjaWZpYyB0byBhc3luYyBm
+bGlwcwo+ICAgZHJtL2k5MTU6IERvIG5vdCBjYWxsIGRybV9jcnRjX2FybV92YmxhbmtfZXZlbnQg
+aW4gYXN5bmMgZmxpcHMKPiAgIGRybS9pOTE1OiBFbmFibGUgYXN5bmMgZmxpcHMgaW4gaTkxNQo+
+IAo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDcxICsr
+KysrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+c3ByaXRlLmMgIHwgIDggKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAg
+ICAgICAgICAgIHwgNTIgKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9pcnEuaCAgICAgICAgICAgICAgfCAgMiArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggICAgICAgICAgICAgIHwgIDEgKwo+ICA1IGZpbGVzIGNoYW5nZWQsIDEzMyBpbnNlcnRp
+b25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
