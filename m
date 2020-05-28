@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38C01E58A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 09:32:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D361E5918
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 09:41:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C906E3D8;
-	Thu, 28 May 2020 07:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D12696E3DF;
+	Thu, 28 May 2020 07:41:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7CF6E3D8
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 07:32:15 +0000 (UTC)
-IronPort-SDR: BTCSteOOHO+kpB1tY4+igCFtWc6OdXifL0MHPgJ9hOvNUdruPgBaS1o0txNbRycezE8e4sGtGs
- 4dRfl6GdQqyA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 00:32:09 -0700
-IronPort-SDR: 1Qr/ddcJUD2Eiu4+Asu2ok+uVbNMigvDEriQ/93bbgCIjtqhKsQ+CNQ7v9XvTHje9v8XF11t4K
- C0HLmKnhW4mw==
-X-IronPort-AV: E=Sophos;i="5.73,444,1583222400"; d="scan'208";a="414514797"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 00:31:57 -0700
-Date: Thu, 28 May 2020 10:28:02 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200528072802.GA30109@intel.com>
-References: <20200527200022.28003-1-stanislav.lisovskiy@intel.com>
- <20200527205426.GA10731@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 581376E3E7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 07:41:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21318020-1500050 
+ for multiple; Thu, 28 May 2020 08:41:10 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2020 08:40:59 +0100
+Message-Id: <20200528074109.28235-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200527205426.GA10731@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Minor link training logic
- fixes for dp_mst
+Subject: [Intel-gfx] [PATCH 01/11] drm/i915/gt: Prevent timeslicing into
+ unpreemptable requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,81 +37,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2020 at 01:54:27PM -0700, Manasi Navare wrote:
-> On Wed, May 27, 2020 at 11:00:22PM +0300, Stanislav Lisovskiy wrote:
-> > First of all *_needs_link_retraining function should return
-> > false is link_train is set to true but not false.
-> > 
-> > Also if we detect channel eq problem when checking mst status
-> > we simply bail out, without setting link_train to false again,
-> > which might end up in a situation that we don't do link retraining
-> > when needed.
-> > 
-> > There were some issues, when we had several problems with dp mst
-> > and at the same time the log was floode by messages about
-> > "channel eq not ok, need retraining" however the actual training
-> > seems to be never done.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 1768731678a1..9288dc1f8914 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -5627,6 +5627,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
-> >  			drm_dbg_kms(&i915->drm,
-> >  				    "channel EQ not ok, retraining\n");
-> >  			need_retrain = true;
-> > +			intel_dp->link_trained = false;
-> >  		}
-> >  
-> >  		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
-> > @@ -5654,7 +5655,7 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
-> >  {
-> >  	u8 link_status[DP_LINK_STATUS_SIZE];
-> >  
-> > -	if (!intel_dp->link_trained)
-> > +	if (intel_dp->link_trained)
-> 
-> This is not correct. Since link_trained is set when link training is completed as part of a
-> complete modeset. If link training is not done, like at hotplug, then in that case we should
-> not retrain since the pipe has not been configured for this new hotplug and link training
-> has not been done.
->
+We have a I915_REQUEST_NOPREEMPT flag that we set when we must prevent
+the HW from preempting during the course of this request. We need to
+honour this flag and protect the HW even if we have a heartbeat request,
+or other maximum priority barrier, pending. As such, restrict the
+timeslicing check to avoid preempting into the topmost priority band,
+leaving the unpreemptable requests in blissful peace running
+uninterrupted on the HW.
+
+v2: Set the I915_PRIORITY_BARRIER to be less than
+I915_PRIORITY_UNPREEMPTABLE so that we never submit a request
+(heartbeat or barrier) that can legitimately preempt the current
+non-premptable request.
+
+Fixes: 2a98f4e65bba ("drm/i915: add infrastructure to hold off preemption on a request")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c        |   1 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c     | 118 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_priolist_types.h |   2 +-
+ 3 files changed, 119 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3214a4ecc31a..197efd9ea1e9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1928,6 +1928,7 @@ need_timeslice(const struct intel_engine_cs *engine,
+ 	if (!list_is_last(&rq->sched.link, &engine->active.requests))
+ 		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
  
-Ok, I was confusing the link training and retraining - assuming those are same procedure.
-So we can't retrain until the training has been completed.
-Thanks for clarification - will dig further then.
++	GEM_BUG_ON(hint == I915_PRIORITY_UNPREEMPTABLE);
+ 	return hint >= effective_prio(rq);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 66f710b1b61e..3e35a45d6218 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -823,7 +823,7 @@ slice_semaphore_queue(struct intel_engine_cs *outer,
+ 		}
+ 	}
+ 
+-	err = release_queue(outer, vma, n, INT_MAX);
++	err = release_queue(outer, vma, n, I915_PRIORITY_BARRIER);
+ 	if (err)
+ 		goto out;
+ 
+@@ -1289,6 +1289,121 @@ static int live_timeslice_queue(void *arg)
+ 	return err;
+ }
+ 
++static int live_timeslice_nopreempt(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++	struct igt_spinner spin;
++	int err = 0;
++
++	/*
++	 * We should not timeslice into a request that is marked with
++	 * I915_REQUEST_NOPREEMPT.
++	 */
++	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
++		return 0;
++
++	if (igt_spinner_init(&spin, gt))
++		return -ENOMEM;
++
++	for_each_engine(engine, gt, id) {
++		struct intel_context *ce;
++		struct i915_request *rq;
++		unsigned long timeslice;
++
++		if (!intel_engine_has_preemption(engine))
++			continue;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			break;
++		}
++
++		engine_heartbeat_disable(engine);
++		timeslice = xchg(&engine->props.timeslice_duration_ms, 1);
++
++		/* Create an unpreemptible spinner */
++
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out_heartbeat;
++		}
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		if (!igt_wait_for_spinner(&spin, rq)) {
++			i915_request_put(rq);
++			err = -ETIME;
++			goto out_spin;
++		}
++
++		set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags);
++		i915_request_put(rq);
++
++		/* Followed by a maximum priority barrier (heartbeat) */
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(rq);
++			goto out_spin;
++		}
++
++		rq = intel_context_create_request(ce);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto out_spin;
++		}
++
++		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		/*
++		 * Wait until the barrier is in ELSP, and we know timeslicing
++		 * will have been activated.
++		 */
++		if (wait_for_submit(engine, rq, HZ / 2)) {
++			i915_request_put(rq);
++			err = -ETIME;
++			goto out_spin;
++		}
++
++		/*
++		 * Since the ELSP[0] request is unpreemptible, it should not
++		 * allow the maximum priority barrier through. Wait long
++		 * enough to see if it is timesliced in by mistake.
++		 */
++		if (i915_request_wait(rq, 0, timeslice_threshold(engine)) >= 0) {
++			pr_err("%s: I915_PRIORITY_BARRIER request completed, bypassing no-preempt request\n",
++			       engine->name);
++			err = -EINVAL;
++		}
++		i915_request_put(rq);
++
++out_spin:
++		igt_spinner_end(&spin);
++out_heartbeat:
++		xchg(&engine->props.timeslice_duration_ms, timeslice);
++		engine_heartbeat_enable(engine);
++		if (err)
++			break;
++
++		if (igt_flush_test(gt->i915)) {
++			err = -EIO;
++			break;
++		}
++	}
++
++	igt_spinner_fini(&spin);
++	return err;
++}
++
+ static int live_busywait_preempt(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -4475,6 +4590,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_timeslice_preempt),
+ 		SUBTEST(live_timeslice_rewind),
+ 		SUBTEST(live_timeslice_queue),
++		SUBTEST(live_timeslice_nopreempt),
+ 		SUBTEST(live_busywait_preempt),
+ 		SUBTEST(live_preempt),
+ 		SUBTEST(live_late_preempt),
+diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
+index 5003a71113cb..8aa7866ec6b6 100644
+--- a/drivers/gpu/drm/i915/i915_priolist_types.h
++++ b/drivers/gpu/drm/i915/i915_priolist_types.h
+@@ -42,7 +42,7 @@ enum {
+  * active request.
+  */
+ #define I915_PRIORITY_UNPREEMPTABLE INT_MAX
+-#define I915_PRIORITY_BARRIER INT_MAX
++#define I915_PRIORITY_BARRIER (I915_PRIORITY_UNPREEMPTABLE - 1)
+ 
+ struct i915_priolist {
+ 	struct list_head requests[I915_PRIORITY_COUNT];
+-- 
+2.20.1
 
-> Retraining is expected to happen only in cases where there is a short pulse or a spurious long pulse
-> when link training through modeset is already complete and hence the old logic of returnin a false
-> when !intel_dp->link_trained is correct.
-
-Yes, that is the scenario which I was suspecting to be happening in our recent MST failures.
-We sometimes get a lot of short pulses requiring rettraining however it doesn't happen in practice.
-
-
-Stan
-
-> 
-> Regards
-> Manasi
-> 
-> >  		return false;
-> >  
-> >  	/*
-> > -- 
-> > 2.24.1.485.gad05a3d8e5
-> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
