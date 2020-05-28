@@ -1,38 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3951E6429
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 16:40:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7C61E645C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 16:45:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 382646E584;
-	Thu, 28 May 2020 14:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4403B6E58E;
+	Thu, 28 May 2020 14:45:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 241366E584;
- Thu, 28 May 2020 14:40:19 +0000 (UTC)
-IronPort-SDR: 71skjs7t0xKwX8tpnvDMxq7l8XDg2RJYJTWnXp4lsT+TW5ulPACW6YvGjb7Eq6uuf2ou9to8DM
- 1ivup0vBDP9w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 07:40:18 -0700
-IronPort-SDR: btbwKYi2CTmKiySvF9jhms0TA7uJyGwg4z+fW4FpnvCbI6Eu5iSdkLS0y6iHh8F5nrQgGR78F9
- zxBH1ICa0kSg==
-X-IronPort-AV: E=Sophos;i="5.73,445,1583222400"; d="scan'208";a="442970603"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.251.87.93])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2020 07:40:14 -0700
-Date: Thu, 28 May 2020 17:40:12 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200528144012.GA141827@jlahtine-desk.ger.corp.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEA866E58E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:45:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21323555-1500050 
+ for multiple; Thu, 28 May 2020 15:45:39 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2020 15:45:39 +0100
+Message-Id: <20200528144539.31316-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Mark the buffer pool as active
+ for the cmdparser
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,68 +37,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+If the execbuf is interrupted after building the cmdparser pipeline, and
+before we commit to submitting the request to HW, we would attempt to
+clean up the cmdparser early. While we held active references to the vma
+being parsed and constructed, we did not hold an active reference for
+the buffer pool itself. The result was that an interrupted execbuf could
+still have run the cmdparser pipeline, but since the buffer pool was
+idle, its target vma could have been recycled.
 
-Two bigger fixes to corner case kernel access faults
-and three workload scheduling fixups this week.
+Note this problem only occurs if the cmdparser is running async due to
+pipelined waits on busy fences, and the execbuf is interrupted.
 
-CI_DINF_191 at:
-https://intel-gfx-ci.01.org/tree/drm-intel-next-fixes/combined-alt.html?
+Fixes: 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser")
+Fixes: 16e87459673a ("drm/i915/gt: Move the batch buffer pool from the engine to the gt")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 56 ++++++++++++++++---
+ 1 file changed, 48 insertions(+), 8 deletions(-)
 
-I got gvt-next-fixes pull today, I'll pull it next week so it
-has time to run through CI.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 219a36995b96..0829ac8a55bf 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1987,6 +1987,38 @@ static const struct dma_fence_work_ops eb_parse_ops = {
+ 	.release = __eb_parse_release,
+ };
+ 
++static inline int
++__parser_mark_active(struct i915_vma *vma,
++		     struct intel_timeline *tl,
++		     struct dma_fence *fence)
++{
++	struct intel_gt_buffer_pool_node *node = vma->private;
++
++	return i915_active_ref(&node->active, tl, fence);
++}
++
++static int
++parser_mark_active(struct eb_parse_work *pw, struct intel_timeline *tl)
++{
++	int err;
++
++	mutex_lock(&tl->mutex);
++
++	err = __parser_mark_active(pw->shadow, tl, &pw->base.dma);
++	if (err)
++		goto unlock;
++
++	if (pw->trampoline) {
++		err = __parser_mark_active(pw->trampoline, tl, &pw->base.dma);
++		if (err)
++			goto unlock;
++	}
++
++unlock:
++	mutex_unlock(&tl->mutex);
++	return err;
++}
++
+ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 			     struct i915_vma *shadow,
+ 			     struct i915_vma *trampoline)
+@@ -2021,20 +2053,25 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	pw->shadow = shadow;
+ 	pw->trampoline = trampoline;
+ 
++	/* Mark active refs for this worker, in case we get interrupted */
++	err = parser_mark_active(pw, eb->context->timeline);
++	if (err)
++		goto err_commit;
++
+ 	err = dma_resv_lock_interruptible(pw->batch->resv, NULL);
+ 	if (err)
+-		goto err_trampoline;
++		goto err_commit;
+ 
+ 	err = dma_resv_reserve_shared(pw->batch->resv, 1);
+ 	if (err)
+-		goto err_batch_unlock;
++		goto err_commit_unlock;
+ 
+ 	/* Wait for all writes (and relocs) into the batch to complete */
+ 	err = i915_sw_fence_await_reservation(&pw->base.chain,
+ 					      pw->batch->resv, NULL, false,
+ 					      0, I915_FENCE_GFP);
+ 	if (err < 0)
+-		goto err_batch_unlock;
++		goto err_commit_unlock;
+ 
+ 	/* Keep the batch alive and unwritten as we parse */
+ 	dma_resv_add_shared_fence(pw->batch->resv, &pw->base.dma);
+@@ -2049,11 +2086,13 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	dma_fence_work_commit_imm(&pw->base);
+ 	return 0;
+ 
+-err_batch_unlock:
++err_commit_unlock:
+ 	dma_resv_unlock(pw->batch->resv);
+-err_trampoline:
+-	if (trampoline)
+-		i915_active_release(&trampoline->active);
++err_commit:
++	i915_sw_fence_set_error_once(&pw->base.chain, err);
++	dma_fence_work_commit_imm(&pw->base);
++	return err;
++
+ err_shadow:
+ 	i915_active_release(&shadow->active);
+ err_batch:
+@@ -2099,6 +2138,7 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 		goto err;
+ 	}
+ 	i915_gem_object_set_readonly(shadow->obj);
++	shadow->private = pool;
+ 
+ 	trampoline = NULL;
+ 	if (CMDPARSER_USES_GGTT(eb->i915)) {
+@@ -2112,6 +2152,7 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 			shadow = trampoline;
+ 			goto err_shadow;
+ 		}
++		shadow->private = pool;
+ 
+ 		eb->batch_flags |= I915_DISPATCH_SECURE;
+ 	}
+@@ -2128,7 +2169,6 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 	eb->trampoline = trampoline;
+ 	eb->batch_start_offset = 0;
+ 
+-	shadow->private = pool;
+ 	return 0;
+ 
+ err_trampoline:
+-- 
+2.20.1
 
-PS. Update on igt@i915_selftest@live@gt_pm is that subtest was
-updated and the added part is failing for now. The granularity
-of the kernel selftests is short one level from normal IGT due
-to nature of how they integrate to CI.
-
-Regards, Joonas
-
-***
-
-drm-intel-next-fixes-2020-05-28:
-
-One empty list iteration bug (Cc: stable), One use after free fix
-and three workload scheduling fixups.
-
-The following changes since commit d96536f0fe699729a0974eb5b65eb0d87cc747e1:
-
-  drm/i915: Fix AUX power domain toggling across TypeC mode resets (2020-05-19 17:54:07 +0300)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2020-05-28
-
-for you to fetch changes up to 757a9395f33c51c4e6eff2c7c0fbd50226a58224:
-
-  drm/i915/gem: Avoid iterating an empty list (2020-05-25 15:40:43 +0300)
-
-----------------------------------------------------------------
-One empty list iteration bug (Cc: stable), One use after free fix
-and three workload scheduling fixups.
-
-----------------------------------------------------------------
-Chris Wilson (5):
-      drm/i915: Don't set queue-priority hint when supressing the reschedule
-      drm/i915/gt: Remove errant assertion in __intel_context_do_pin
-      drm/i915: Disable semaphore inter-engine sync without timeslicing
-      drm/i915: Avoid using rq->engine after free during i915_fence_release
-      drm/i915/gem: Avoid iterating an empty list
-
- drivers/gpu/drm/i915/gem/i915_gem_context.c |  4 ++--
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c   | 15 ++++++++-----
- drivers/gpu/drm/i915/gt/intel_context.c     |  2 --
- drivers/gpu/drm/i915/i915_request.c         | 35 +++++++++++++++++++++++++++--
- drivers/gpu/drm/i915/i915_scheduler.c       | 16 ++++++-------
- 5 files changed, 52 insertions(+), 20 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
