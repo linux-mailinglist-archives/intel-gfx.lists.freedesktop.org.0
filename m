@@ -2,39 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA231E61A7
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 15:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E7E1E61A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2020 15:05:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E87D36E406;
-	Thu, 28 May 2020 13:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9476F6E523;
+	Thu, 28 May 2020 13:05:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D7996E126
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 May 2020 09:29:38 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA5B431B;
- Thu, 28 May 2020 02:29:37 -0700 (PDT)
-Received: from [10.37.12.44] (unknown [10.37.12.44])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 304353F6C4;
- Thu, 28 May 2020 02:29:34 -0700 (PDT)
-To: Valentin Schneider <valentin.schneider@arm.com>,
- Francisco Jerez <currojerez@riseup.net>
-References: <20200428032258.2518-1-currojerez@riseup.net>
- <20200511105701.GA2940@hirez.programming.kicks-ass.net>
- <874ksmuqx6.fsf@riseup.net> <jhjwo5erb0e.mognet@arm.com>
- <87a72at44d.fsf@riseup.net> <jhjv9kxqdcf.mognet@arm.com>
-From: Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <d6ad1c7e-7bce-4f16-3606-a9777ac07cc1@arm.com>
-Date: Thu, 28 May 2020 10:29:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <jhjv9kxqdcf.mognet@arm.com>
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680062.outbound.protection.outlook.com [40.107.68.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C998F6E1D2;
+ Thu, 28 May 2020 11:20:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oOP69MZpOBlh7oSf+qsW/YYdgEqNhxz92zJZogapmXy4vEywGzq39+rMHfsLBdR94fTsIVGEjdvWQd0c7Dw/rbHbKCSosL9xJSOQelbKOF/rP7h2STpqmHiTDn9eSeRI3oe7vMXBgztkUO1bNcLQcIKRDJ+THJOeY18yv3aayzpJry/tPqpBSqlbaN3xNFZSKOIkm9/wtYB16hyBirVDyxQC+vs1KCeVKmnKw+qw53bwstX1bbzpmYV19gPkD6zWpxDoPAGlINsdvPDtpq8z30G9M09nLQdd5wS+5Uw5Xk4uxQoBlFITkTWh8MVcz3wp1AyVEOYsNXXy6G+NePFtFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Oo5Dh9xGDTR81/adAM/fo7RTuDqeGnYI/OcCyaKkeoE=;
+ b=ksJRWk+W5C+0iSwyAkFfQva0Q1SZYRrT3gFnz3IZ5YPntW2SQcYvl7rz9frBKNflo/uYu1HhUvzZBVmhiH7umXBGa8ro70IRRqLi5Lcjy0XQn2QI9ncQUjcsU/DB4Y/aen7QeKtFpyeto0aaOGYi3N3owoiT5XRG2nF/FurNWnpdLHG53SHZ827m1N0E72Xk3EHjtRXIHDmt2/9GFV+umrP1K0XQgVuUsZR09jBSYplPTzKejFyB1UIsX4Q9gQKGVEWuTtdO/oA7DLe3EN8t93C+bpGarUaGVIxPnDHlKgBy/7OkxuTKAVAmVcGy7rzL4nLk8bzDzCnE++DosVd1vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vmware.com; dmarc=pass action=none header.from=vmware.com;
+ dkim=pass header.d=vmware.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmware.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Oo5Dh9xGDTR81/adAM/fo7RTuDqeGnYI/OcCyaKkeoE=;
+ b=S1emaa+nEFJweaZgsdWfohjtWlFcKbsd40kk7hD+/WKrt8WBXjgJgwUOTy5XWH2DrLCDVhrcNA4whxZUCRJBT4OdY0d8O21ZiXehvoJxNZ5+AnxMKGhupdC3UBhSmhytlcyr61e1uX4xW6dfDpwyec59xx4j/gf26GIuRGbald0=
+Received: from MN2PR05MB6381.namprd05.prod.outlook.com (2603:10b6:208:d6::24)
+ by MN2PR05MB6877.namprd05.prod.outlook.com (2603:10b6:208:18f::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.7; Thu, 28 May
+ 2020 11:20:37 +0000
+Received: from MN2PR05MB6381.namprd05.prod.outlook.com
+ ([fe80::7803:13e7:2e4d:58ff]) by MN2PR05MB6381.namprd05.prod.outlook.com
+ ([fe80::7803:13e7:2e4d:58ff%3]) with mapi id 15.20.3066.007; Thu, 28 May 2020
+ 11:20:37 +0000
+From: Ashwin H <ashwinh@vmware.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Thread-Topic: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
+Thread-Index: AQHWKIdKPHhk+fo7OUe7+WKkK8SJkqilhT4AgABhFAD//6nZgIAAsMCggBXlzwCAAQnu4IAAQWZg
+Date: Thu, 28 May 2020 11:20:37 +0000
+Message-ID: <MN2PR05MB63812E53E1526A18DD593BD6CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
+References: <d29f87f3f3abb4e496866253bd170faad976f687.1589305630.git.ashwinh@vmware.com>
+ <20200513055548.GA743118@kroah.com>
+ <89DE19F6-4CB0-4324-A630-C8574C8D591C@vmware.com>
+ <20200513063455.GA752913@kroah.com>
+ <MN2PR05MB63814CDAAF6828285929736ACDBF0@MN2PR05MB6381.namprd05.prod.outlook.com>
+ <20200527153130.GA525531@kroah.com>
+ <MN2PR05MB63818AE71850AD653E60E517CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
+In-Reply-To: <MN2PR05MB63818AE71850AD653E60E517CD8E0@MN2PR05MB6381.namprd05.prod.outlook.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=vmware.com;
+x-originating-ip: [106.51.141.116]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3ae88b23-9a59-47d7-4a5a-08d802f925c0
+x-ms-traffictypediagnostic: MN2PR05MB6877:
+x-ld-processed: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR05MB6877772F7360796F61AB57E2CD8E0@MN2PR05MB6877.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0417A3FFD2
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TbQrHt9VzRyisIgjAB8lsUL6guPf8/yh6L6W+RaiUpIM9cT0HntKdM+e8dAj6IHRQuk9VzwY8YiNApaJwGxTIf2qG7/xbqiKJ8Xa6ohTJf9Cc/E1bjfX3n1m2RFVYcE5f+F+/ss6TCwFy070btU1SwbroIecVP4E4bBxqZ/hUeyTAg/XkNXH72fgfZ0QdQT4htbf/XmH8aw31iNV2/pS1ux0Aivm+fq7C3yZ3NbQqxokgyh+tRHckfGgHfT4AlpEFhjHsltdVyG9Kg+kpx2RVMpP3oAxAq+Z2jgh1DbdjLPw7Z6awTJGQqfXngunwo0IUQlKCzJOckK9r+y90O5pjKiqpZ059L1fwqNC26AthLS25//by8ihgSQiigOJGxnhuYJu2dF33HXjEy+TOM7gXQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR05MB6381.namprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(39860400002)(366004)(346002)(376002)(396003)(136003)(71200400001)(316002)(7696005)(86362001)(2906002)(186003)(26005)(83380400001)(9686003)(4326008)(2940100002)(64756008)(45080400002)(5660300002)(76116006)(8676002)(52536014)(66476007)(53546011)(966005)(6916009)(55236004)(66946007)(54906003)(55016002)(66446008)(66556008)(8936002)(478600001)(33656002)(6506007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: x2L1EK5KzGWptHKcTY00Em2RIyH2xG7uXUfMVMQ7+JiX/GgkMayO6qfoiCrVN+d2S7kjHxDk8zRRiU5SrOBCu/t/zsWk58xQC8UUhHJ2jaVgpsHVgbEZeBngx/AAkFI9LDl8axF+Hw/bigjEQWI/ZyAp+FdW5+xXz3ZPofrvaIQarT0uqlu17/qLenwbIPsy/KtI67SGxCu2IMTPn8/IlgQuaeZXsBDqIF403E/SzynNIfgGGU/DFGw6I7KRqkNaRri1WSuta57Ex9+VjiBsgPBKpl0FPJ0CKsMs704AMzSL/1h69NlGrcHl9zbUVB1xyj9obkf/M9Cr8U5xLfMp8fw+7F5mWO3mPAQxYAOihBtOh/9UDtKiwBrib5xWhG7kah/xzdo9S+7b3PL2+Qa4yY810QmP6t6csv8b4FI/NxErePH1BsWSwFyYKdN5ocwCD4rCqpfOaQCg16BeR9IAs2+GFmD0LGnytTvy9OSVuzwz8Ad9l6ly38MUxxMU5yeD
+MIME-Version: 1.0
+X-OriginatorOrg: vmware.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae88b23-9a59-47d7-4a5a-08d802f925c0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2020 11:20:37.4797 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tWLfp6yKByd1o2zMyiEJ/l+nP8/VJ32hku4yLnTjE12vrbBW83T7AeXpgli8p3OiWi+fUIUU4MT+9/DGp50+Uw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB6877
 X-Mailman-Approved-At: Thu, 28 May 2020 13:05:45 +0000
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2.99)
+Subject: Re: [Intel-gfx] [PATCH v4.19.x] make 'user_access_begin()' do
+ 'access_ok()'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,148 +100,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amit.kucheria@verdurent.com, linux-pm@vger.kernel.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- daniel.lezcano@linaro.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- chris.p.wilson@intel.com, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>, rui.zhang@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "x86@kernel.org" <x86@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
+ "rostedt@goodmis.org" <rostedt@goodmis.org>,
+ Steven Rostedt <srostedt@vmware.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ "stable@kernel.org" <stable@kernel.org>, Srivatsa Bhat <srivatsab@vmware.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 5/15/20 7:09 PM, Valentin Schneider wrote:
+> -----Original Message-----
+> From: Ashwin H
+> Sent: Thursday, May 28, 2020 1:01 PM
+> To: Greg KH <gregkh@linuxfoundation.org>
+> Cc: x86@kernel.org; dri-devel@lists.freedesktop.org; intel-
+> gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org; stable@kernel.org;
+> Srivatsa Bhat <srivatsab@vmware.com>; srivatsa@csail.mit.edu;
+> rostedt@goodmis.org; Steven Rostedt <srostedt@vmware.com>; Linus
+> Torvalds <torvalds@linux-foundation.org>
+> Subject: RE: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
 > 
-> On 15/05/20 01:48, Francisco Jerez wrote:
->> Valentin Schneider <valentin.schneider@arm.com> writes:
->>
->>> (+Lukasz)
->>>
->>> On 11/05/20 22:01, Francisco Jerez wrote:
->>>>> What I'm missing is an explanation for why this isn't using the
->>>>> infrastructure that was build for these kinds of things? The thermal
->>>>> framework, was AFAIU, supposed to help with these things, and the IPA
->>>>> thing in particular is used by ARM to do exactly this GPU/CPU power
->>>>> budget thing.
->>>>>
->>>>> If thermal/IPA is found wanting, why aren't we improving that?
->>>>
->>>> The GPU/CPU power budget "thing" is only a positive side effect of this
->>>> series on some TDP-bound systems.  Its ultimate purpose is improving the
->>>> energy efficiency of workloads which have a bottleneck on a device other
->>>> than the CPU, by giving the bottlenecking device driver some influence
->>>> over the response latency of CPUFREQ governors via a PM QoS interface.
->>>> This seems to be completely outside the scope of the thermal framework
->>>> and IPA AFAIU.
->>>>
->>>
->>> It's been a while since I've stared at IPA, but it does sound vaguely
->>> familiar.
->>>
->>> When thermally constrained, IPA figures out a budget and splits it between
->>> actors (cpufreq and devfreq devices) depending on how much juice they are
->>> asking for; see cpufreq_get_requested_power() and
->>> devfreq_cooling_get_requested_power(). There's also some weighing involved.
->>>
->>
->> I'm aware of those.  Main problem is that the current mechanism for IPA
->> to figure out the requested power of each actor is based on a rough
->> estimate of their past power consumption: If an actor was operating at a
->> highly energy-inefficient regime it will end up requesting more power
->> than another actor with the same load but more energy-efficient
->> behavior.
+> 
+> 
+> > -----Original Message-----
+> > From: Greg KH <gregkh@linuxfoundation.org>
+> > Sent: Wednesday, May 27, 2020 9:02 PM
+> > To: Ashwin H <ashwinh@vmware.com>
+> > Cc: x86@kernel.org; dri-devel@lists.freedesktop.org; intel-
+> > gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org;
+> > stable@kernel.org; Srivatsa Bhat <srivatsab@vmware.com>;
+> > srivatsa@csail.mit.edu; rostedt@goodmis.org; Steven Rostedt
+> > <srostedt@vmware.com>; Linus Torvalds <torvalds@linux-foundation.org>
+> > Subject: Re: [PATCH v4.19.x] make 'user_access_begin()' do 'access_ok()'
+> >
+> > On Wed, May 13, 2020 at 05:08:19PM +0000, Ashwin H wrote:
+> > > > Ok, but what does that mean for us?
+> > > >
+> > > > You need to say why you are sending a patch, otherwise we will
+> > > > guess
+> > wrong.
+> > >
+> > > In drivers/gpu/drm/i915/i915_gem_execbuffer.c, ioctl functions does
+> > user_access_begin() without doing access_ok(Checks if a user space
+> > pointer is valid)  first.
+> > > A local attacker can craft a malicious ioctl function call to
+> > > overwrite arbitrary kernel memory, resulting in a Denial of Service
+> > > or privilege escalation (CVE-2018-20669)
+> > >
+> > > This patch makes sure that user_access_begin always does access_ok.
+> > > user_access_begin has been modified to do access_ok internally.
+> >
+> > I had this in the tree, but it broke the build on alpha, sh, and maybe
+> > a few others :(
+> >
+> Thanks Greg for including this patch.
+> I am sorry that this patch caused the failure. As I see this is not a build failure
+> but tests have failed.
+> Build results:
+> 	total: 155 pass: 155 fail: 0
+> Qemu test results:
+> 	total: 421 pass: 390 fail: 31
+> Failed tests:
+> 	<all alpha>
+> 	<all sh>
+> 	<all sheb>
+> 
+> > See:
+> > 	https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F
+> > %2Flore.kernel.org%2Fr%2F20200527140225.GA214763%40roeck-
+> >
+> us.net&amp;data=02%7C01%7Cashwinh%40vmware.com%7Cd8f60bb8a4584
+> >
+> 7caa10f08d802530997%7Cb39138ca3cee4b4aa4d6cd83d9dd62f0%7C0%7C0%7
+> >
+> C637261902960990057&amp;sdata=Vjv9v0QhebfcOGSq1UUDKshTDA%2FOV
+> > 4aKbqzKKJkEQxM%3D&amp;reserved=0
+> > for the details.
+> >
+> > Can you dig out all of the needed follow-on patches as well, and send
+> > them all as a patch series for 4.19.y so that I can queue them all up at once?
+> >
+> 
+> I will check for follow-on patches and get back.
 
-This can be tweaked by changing the weight of an actor (unfortunately
-not in a real-time by kernel). We usually setup them once, in DT.
-So, it's possible to set different weight for the LITTLE cores (which
-are more energy-efficient) and the big cores (in a good way or bad).
+This seems to be the issue in alpha and SH
+https://lore.kernel.org/lkml/6a4fe075-a644-1b06-305b-9e55b8c9575b@roeck-us.net/#t
+
+alpha and SH had buggy implementation of access_ok
+
+Thanks,
+Ashwin
 
 > 
-> Right, we do mix load (busy time for either cpufreq and devfreq devices
-> AFAIR) and current state (freq) into one single power value.
+> > thanks,
+> >
+> > greg k-h
 > 
->> The IPA power allocator is therefore ineffective at improving
->> the energy efficiency of an agent beyond its past behavior --
->> Furthermore it seems to *rely* on individual agents being somewhat
->> energetically responsible in order for its power allocation result to be
->> anywhere close to optimal.  But improving the energy efficiency of an
->> agent seems useful in its own right, whether IPA is used to balance
->> power across agents or not.  That's precisely the purpose of this
->> series.
-
-I don't fully agree here, i.e. in a properly setup platform we promote
-more energy-efficient LITTLE cores when there is a limited power budget. 
-That would cause capping on big cores and scheduler should see it.
-There are some limitations in the IPA, but the requirements where
-different back then, mainline code was different, etc.
-
->>
->>> If you look at the cpufreq cooling side of things, you'll see it also uses
->>> the PM QoS interface. For instance, should IPA decide to cap the CPUs
->>> (perhaps because say the GPU is the one drawing most of the juice), it'll
->>> lead to a maximum frequency capping request.
->>>
->>> So it does sound like that's what you want, only not just when thermally
->>> constrained.
->>
->> Capping the CPU frequency from random device drivers is highly
->> problematic, because the CPU is a shared resource which a number of
->> different concurrent applications might be using beyond the GPU client.
->> The GPU driver has no visibility over its impact on the performance of
->> other applications.  And even in a single-task environment, in order to
->> behave as effectively as the present series the GPU driver would need to
->> monitor the utilization of *all* CPUs in the system and place a
->> frequency constraint on each one of them (since there is the potential
->> of the task scheduler migrating the process from one CPU to another
->> without notice).  Furthermore these frequency constraints would need to
->> be updated at high frequency in order to avoid performance degradation
->> whenever the balance of load between CPU and IO device fluctuates.
->>
->> The present series attempts to remove the burden of computing frequency
->> constraints out of individual device drivers into the CPUFREQ governor.
->> Instead the device driver provides a response latency constraint when it
->> encounters a bottleneck, which can be more easily derived from hardware
->> and protocol characteristics than a CPU frequency.  PM QoS aggregates
->> the response latency constraints provided by all applications and gives
->> CPUFREQ a single response latency target compatible with all of them (so
->> a device driver specifying a high latency target won't lead to
->> performance degradation in a concurrent application with lower latency
->> constraints).  The CPUFREQ governor then computes frequency constraints
->> for each CPU core that minimize energy usage without limiting
->> throughput, based on the results obtained from CPU performance counters,
->> while guaranteeing that a discontinuous transition in CPU utilization
->> leads to a proportional transition in the CPU frequency before the
->> specified response latency has elapsed.
-> 
-> Right, I think I see your point there. I'm thinking the 'actual' IPA gurus
-> (Lukasz or even Javi) may want to have a look at this.
-> 
-
-This patch set AFAIU has different goals than IPA or any other thermal
-governor.
-
-I don't know the details of this Intel platform and the mechanisms
-which are there for thermal and power budget, so I might be wrong in
-some points (correct me where needed).
-
-Main differences comparing to IPA in regards the platform:
-- the series works on a platform which does not actually control the
-frequency (AFAIK Intel freq can be changed by FW due to any reason).
-IPA has been designed for platform which has full control over the
-frequency.
-- It does not work on Heterogeneous CPUs.
-IPA is aware of big, LITTLE or even a different tracks used
-- this patch set ignores the temperature probably assuming it is done
-by something else (FW or thermal governor).
-IPA has the PID built on top of temp sensor and must control it.
-
-Different platforms, different behaviors, different requirements.
-I agree IPA has to catch up with the new mainline solutions, though.
-
-Regards,
-Lukasz
+> Thanks,
+> Ashwin
 
 _______________________________________________
 Intel-gfx mailing list
