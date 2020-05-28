@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A391E6FE3
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 01:03:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21BA1E706F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 01:33:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3016E0C2;
-	Thu, 28 May 2020 23:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 185C06E842;
+	Thu, 28 May 2020 23:33:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E8806E096;
- Thu, 28 May 2020 23:02:58 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC9166E840;
+ Thu, 28 May 2020 23:33:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 57AA0A0BC6;
- Thu, 28 May 2020 23:02:58 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E6350A47E2;
+ Thu, 28 May 2020 23:33:50 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 28 May 2020 23:02:58 -0000
-Message-ID: <159070697832.684.9922440788498861811@emeril.freedesktop.org>
+Date: Thu, 28 May 2020 23:33:50 -0000
+Message-ID: <159070883090.685.12767714975309141112@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200528211524.29107-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200528211524.29107-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/i915/gt=3A_Start_timeslice_on?=
- =?utf-8?q?_partial_submission?=
+References: <20200528211547.29392-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200528211547.29392-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Track_i915=5Fvma_with_its_own_reference_counter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,78 +47,60 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [01/11] drm/i915/gt: Start timeslice on partial submission
-URL   : https://patchwork.freedesktop.org/series/77762/
-State : success
+Series: drm/i915: Track i915_vma with its own reference counter
+URL   : https://patchwork.freedesktop.org/series/77763/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8549 -> Patchwork_17809
-====================================================
+$ dim checkpatch origin/drm-tip
+55980f47bd93 drm/i915: Track i915_vma with its own reference counter
+-:2210: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#2210: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:267:
++		spinlock_t lock;
 
-Summary
--------
+-:3974: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#3974: FILE: drivers/gpu/drm/i915/i915_vma.h:386:
++	spinlock_t lock;
 
-  **SUCCESS**
+-:4221: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4221: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:394:
++						if (offset < hole_start + vma->size)
 
-  No regressions found.
+-:4232: WARNING:LONG_LINE: line over 100 characters
+#4232: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:402:
++						       __func__, p->name, err, npages, prime, offset,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17809/index.html
+-:4242: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4242: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:419:
++						if (offset + vma->node.size > hole_end)
 
-New tests
----------
+-:4258: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4258: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:428:
++						if (offset < hole_start + vma->node.size)
 
-  New tests have been introduced between CI_DRM_8549 and Patchwork_17809:
+-:4270: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4270: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:451:
++						if (offset + vma->node.size > hole_end)
 
-### New IGT tests (1) ###
+-:4286: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4286: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:460:
++						if (offset < hole_start + vma->node.size)
 
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 41 pass(s)
-    - Exec time: [0.03, 0.10] s
+-:4298: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4298: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:484:
++						if (offset + vma->size >= hole_end)
 
-  
+-:4314: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4314: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:493:
++						if (offset < hole_start + vma->size)
 
+-:4326: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4326: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:516:
++						if (offset + vma->size >= hole_end)
 
-Changes
--------
+total: 0 errors, 9 warnings, 2 checks, 4754 lines checked
 
-  No changes found
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8549 -> Patchwork_17809
-
-  CI-20190529: 20190529
-  CI_DRM_8549: e50e9c6bf4efd00b02d91ff470993bbd0db94f67 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5682: e5371a99a877be134c6ad5361a5f03843a66f775 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17809: 70c78cfa6ea58dde569696417b5e00d7ad6b7151 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-70c78cfa6ea5 drm/i915/gem: Make relocations atomic within execbuf
-372342371047 drm/i915: Unpeel awaits on a proxy fence
-eba65e7de8ae dma-buf: Proxy fence, an unsignaled fence placeholder
-71c20a444d9e drm/i915/gem: Add all GPU reloc awaits/signals en masse
-c2d55803a60c drm/i915/gem: Build the reloc request first
-10ad05422c96 drm/i915/gem: Lift GPU relocation allocation
-fb12696a43ec drm/i915/gem: Separate reloc validation into an earlier step
-283e921c4b08 drm/i915: Add list_for_each_entry_safe_continue_reverse
-7c0380bdfab2 drm/i915/gem: Async GPU relocations only
-af3a1406b2d8 drm/i915/gem: Mark the buffer pool as active for the cmdparser
-dc44da7a88e6 drm/i915/gt: Start timeslice on partial submission
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17809/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
