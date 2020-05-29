@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA42A1E8B78
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 00:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CDF1E8B7B
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 00:46:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42276E984;
-	Fri, 29 May 2020 22:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE9A6E983;
+	Fri, 29 May 2020 22:46:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 804676E983;
- Fri, 29 May 2020 22:41:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6CCB86E983;
+ Fri, 29 May 2020 22:46:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7A98FA011B;
- Fri, 29 May 2020 22:41:39 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66B8BA0019;
+ Fri, 29 May 2020 22:46:08 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 29 May 2020 22:41:39 -0000
-Message-ID: <159079209947.3334.15091278971358351414@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.aiemd@gmail.com>
+Date: Fri, 29 May 2020 22:46:08 -0000
+Message-ID: <159079236839.3334.5709039006042752330@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200529201534.474853-1-arnd@arndb.de>
-In-Reply-To: <20200529201534.474853-1-arnd@arndb.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgY29t?=
- =?utf-8?q?pact-test-array?=
+References: <20200529163351.5228-1-nirmoy.das@amd.com>
+In-Reply-To: <20200529163351.5228-1-nirmoy.das@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BRFC=2C1/1=5D_drm/mm=3A_add_ig=5Ffra?=
+ =?utf-8?q?g_selftest?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,66 +48,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: compact-test-array
-URL   : https://patchwork.freedesktop.org/series/77802/
-State : success
+Series: series starting with [RFC,1/1] drm/mm: add ig_frag selftest
+URL   : https://patchwork.freedesktop.org/series/77803/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8556 -> Patchwork_17822
-====================================================
+$ dim checkpatch origin/drm-tip
+320cc6810801 drm/mm: add ig_frag selftest
+-:82: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#82: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1068:
++
++}
 
-Summary
--------
+-:106: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#106: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1092:
++				 error_factor)/100;
+ 				              ^
 
-  **SUCCESS**
+-:125: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Nirmoy Das <nirmoy.aiemd@gmail.com>'
 
-  No regressions found.
+total: 0 errors, 1 warnings, 2 checks, 86 lines checked
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17822/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17822 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@active:
-    - fi-bsw-n3050:       [DMESG-FAIL][1] ([i915#541]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8556/fi-bsw-n3050/igt@i915_selftest@live@active.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17822/fi-bsw-n3050/igt@i915_selftest@live@active.html
-
-  
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8556 -> Patchwork_17822
-
-  CI-20190529: 20190529
-  CI_DRM_8556: a12abc504361cc53eeb53c2948aebbd88709a901 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5684: bd399f5eb8263bb4a84ae6a5bb1a13d329e0515d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17822: 546e4806fc80f3557d3395a9a101d9c21e985323 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-546e4806fc80 compact-test-array
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17822/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
