@@ -2,46 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A571E7690
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 09:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B49D1E7714
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 09:41:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 600BD6E86F;
-	Fri, 29 May 2020 07:25:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 329046E86F
- for <Intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 07:25:16 +0000 (UTC)
-IronPort-SDR: pQ4OVUQ2exwZk5WCKg1lOhJrsPw3jJfqUgH109SfTDRNhA48vqlwqkECOYiL+DaJfSRRHyjKWj
- G7YxlDksc+Fg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2020 00:25:15 -0700
-IronPort-SDR: ouwR8BxWfwRe5PF05rlQd+DeaddwjwU9rGfzY23ngzfBo11NVME6380ip880MzGS/vTQaoRXzr
- PsGD92XkDXow==
-X-IronPort-AV: E=Sophos;i="5.73,447,1583222400"; d="scan'208";a="443277437"
-Received: from esperlin-mobl.ger.corp.intel.com (HELO [10.214.231.68])
- ([10.214.231.68])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2020 00:25:14 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20200527085322.25861-1-tvrtko.ursulin@linux.intel.com>
- <159065984908.10651.3817818286053938468@build.alporthouse.com>
- <8f1c20cb-b538-97c1-a953-772d75c232bd@linux.intel.com>
- <159069741815.10651.7846303087037389376@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <62dc8d12-4c5a-69a3-581b-99b231c8be8c@linux.intel.com>
-Date: Fri, 29 May 2020 08:25:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 264976E876;
+	Fri, 29 May 2020 07:41:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
+ [209.85.214.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1FFC6E875;
+ Fri, 29 May 2020 07:41:12 +0000 (UTC)
+Received: by mail-pl1-f194.google.com with SMTP id t16so758507plo.7;
+ Fri, 29 May 2020 00:41:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cxdWIOmMtZof5Zd2ToCNUZnFH4PwEYqbI1WQa7Nahtk=;
+ b=UZlrYH3upf5Y0Wev0dpd2tLxtfcL3DS9fRPNaLOqtPhi6ZymY7q21cSS3isnWyQIOg
+ 497/SMtbRG01y+S61hgJ8ER2FmPqwpB7M4IYjzUs6f1JNOSLnN5hh9npENOpbz1joXJd
+ od+pKE42bbjWYE/9SNENg52fTQnX5mdbTIK6v6wEq0TNi9OFoK3haITKvhcaVUMMc5WE
+ LjNCKg6ZbClwx6OOw3RLGoF9n0kMoL31X4JlmFdiDdGknO9N0hEmNAY7GxvD5lP7JRox
+ hCDIzp31SgBKgohQM1C+ZZRwQciXmxFbiJAad0ao+mw7fQA6grYDhgj12c5TbtVEGYGZ
+ HGAQ==
+X-Gm-Message-State: AOAM531BDWu5oFJScz/atjIKe/g0yeEPf7I99JjGAi4+g6KJ7ROR93UJ
+ DKUM7dqHGFqqrOyQWAlywow=
+X-Google-Smtp-Source: ABdhPJx/Y2UkOfRCeSrfHd17IdoL/kq5WzGQ2U9aMMVJNt5xrKYQiwN4acpehMl/gpWlkneskvxS6A==
+X-Received: by 2002:a17:90b:1002:: with SMTP id
+ gm2mr8188726pjb.197.1590738072133; 
+ Fri, 29 May 2020 00:41:12 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+ by smtp.gmail.com with ESMTPSA id s1sm6842049pjp.27.2020.05.29.00.41.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 May 2020 00:41:10 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+ id E3ADF40605; Fri, 29 May 2020 07:41:09 +0000 (UTC)
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: keescook@chromium.org, yzaikin@google.com, nixiaoming@huawei.com,
+ ebiederm@xmission.com, axboe@kernel.dk, clemens@ladisch.de, arnd@arndb.de,
+ gregkh@linuxfoundation.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, benh@kernel.crashing.org, rdna@fb.com,
+ viro@zeniv.linux.org.uk, mark@fasheh.com, jlbec@evilplan.org,
+ joseph.qi@linux.alibaba.com, vbabka@suse.cz, sfr@canb.auug.org.au,
+ jack@suse.cz, amir73il@gmail.com, rafael@kernel.org, tytso@mit.edu
+Date: Fri, 29 May 2020 07:40:55 +0000
+Message-Id: <20200529074108.16928-1-mcgrof@kernel.org>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-In-Reply-To: <159069741815.10651.7846303087037389376@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Special handling for bonded
- requests
+Subject: [Intel-gfx] [PATCH 00/13] sysctl: spring cleaning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,102 +64,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xiaogang Li <xiaogang.li@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, julia.lawall@lip6.fr,
+ Luis Chamberlain <mcgrof@kernel.org>, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Me and Xiaoming are working on some kernel/sysctl.c spring cleaning.
+During a recent linux-next merge conflict it became clear that
+the kitchen sink on kernel/sysctl.c creates too many conflicts,
+and so we need to do away with stuffing everyone's knobs on this
+one file.
 
-On 28/05/2020 21:23, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-05-28 11:20:07)
->>
->> On 28/05/2020 10:57, Chris Wilson wrote:
->>> Quoting Tvrtko Ursulin (2020-05-27 09:53:22)
->>>> +static void
->>>> +mark_bonded_pair(struct i915_request *rq, struct i915_request *signal)
->>>> +{
->>>> +       /*
->>>> +        * Give (temporary) special meaning to a pair requests with requested
->>>> +        * aligned start along the video engines.
->>>> +        *
->>>> +        * They should be non-preemptable and have all ELSP ports to themselves
->>>> +        * to avoid any deadlocks caused by inversions.
->>>> +        *
->>>> +        * Gen11+
->>>> +        */
->>>> +       if (INTEL_GEN(rq->i915) < 11 ||
->>>> +           rq->engine->class != VIDEO_DECODE_CLASS ||
->>>> +           rq->engine->class != signal->engine->class)
->>>> +               return;
->>>> +
->>>> +       set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags);
->>>> +       set_bit(I915_FENCE_FLAG_NOPREEMPT, &signal->fence.flags);
->>>> +
->>>> +       intel_context_set_single_submission(rq->context);
->>>> +       intel_context_set_single_submission(signal->context);
->>>
->>> The thought that just popped into my head:
->>>
->>> This can be after signal is already submitted into ELSP[1].
->>
->> Yep I knew that but thought it would still work.
->>
->> Master in vcs0 port1, slave in vcs1 port0 or queued.
->>
->> If queued that means at worst case another bonded pair is running on
->> same engines, so they should be able to complete.
->>
->> If slave submitted to vcs1 port0 then it will stay there until whatever
->> is in vcs0 port0 finishes and lets master in.
->>
->> Do you see a possibility for things to go bad?
-> 
-> Because the master is already submitted in port1, the bond can go into
-> port0. Then a second bond turns up for the master in port0, and we're
-> back at square one.
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 37855ae8f8b3..698608e11df3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2502,6 +2502,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
->          lockdep_unpin_lock(&tl->mutex, rq->cookie);
->   
->          trace_i915_request_add(rq);
-> +       set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
->   
->          prev = __i915_request_commit(rq);
-> 
-> Will do the trick.
-> 
-> (Plus fixing up the rules for assert_pending_valid).
+This is part of that work. This is not expected to get merged yet, but
+since our delta is pretty considerable at this point, we need to piece
+meal this and collect reviews for what we have so far. This follows up
+on some of his recent work.
 
-Hmm yes, my logic was flawed by missing to see the async disconnect 
-between master and slave submission on both ends. That's why Xiaogang 
-was saying slaves must not have no-preempt set... But sentinel on 
-everything? Or just everything vcs and gen11+?
+This series focuses on a new helper to deal with subdirectories and
+empty subdirectories. The terminology that we will embrace will be
+that things like "fs", "kernel", "debug" are based directories, and
+directories underneath this are subdirectories.
 
-So if we indeed had slave preemptible the deadlock would have been 
-avoided I think, but can the media pipeline handle that is the question.
+In this case, the cleanup ends up also trimming the amount of
+code we have for sysctls.
 
-Another question is that it sounds it could be possible to work around 
-this in userspace, combined with this patch (original thread), if a 
-fence was used to block master until slave is submitted.
+If this seems reasonable we'll kdocify this a bit too.
 
-  split_fence = sw_fence_create()
-  execbuf(master, in_fence = split_fence) = master_fence
-  execbuf(slave, submit_fence = master_fence)
-  sw_fence_advance(split_fence)
+This code has been boot tested without issues, and I'm letting 0day do
+its thing to test against many kconfig builds. If you however spot
+any issues please let us know.
 
-That would make sure the single port and no-preempt properties are 
-applied before either master or slave can enter elsp.
+Luis Chamberlain (9):
+  sysctl: add new register_sysctl_subdir() helper
+  cdrom: use new sysctl subdir helper register_sysctl_subdir()
+  hpet: use new sysctl subdir helper register_sysctl_subdir()
+  i915: use new sysctl subdir helper register_sysctl_subdir()
+  macintosh/mac_hid.c: use new sysctl subdir helper
+    register_sysctl_subdir()
+  ocfs2: use new sysctl subdir helper register_sysctl_subdir()
+  test_sysctl: use new sysctl subdir helper register_sysctl_subdir()
+  sysctl: add helper to register empty subdir
+  fs: move binfmt_misc sysctl to its own file
 
-Sounds tempting to try, thoughts?
+Xiaoming Ni (4):
+  inotify: simplify sysctl declaration with register_sysctl_subdir()
+  firmware_loader: simplify sysctl declaration with
+    register_sysctl_subdir()
+  eventpoll: simplify sysctl declaration with register_sysctl_subdir()
+  random: simplify sysctl declaration with register_sysctl_subdir()
 
-Regards,
+ drivers/base/firmware_loader/fallback.c       |  4 +
+ drivers/base/firmware_loader/fallback.h       | 11 +++
+ drivers/base/firmware_loader/fallback_table.c | 22 ++++-
+ drivers/cdrom/cdrom.c                         | 23 +----
+ drivers/char/hpet.c                           | 22 +----
+ drivers/char/random.c                         | 14 +++-
+ drivers/gpu/drm/i915/i915_perf.c              | 22 +----
+ drivers/macintosh/mac_hid.c                   | 25 +-----
+ fs/binfmt_misc.c                              |  1 +
+ fs/eventpoll.c                                | 10 ++-
+ fs/notify/inotify/inotify_user.c              | 11 ++-
+ fs/ocfs2/stackglue.c                          | 27 +-----
+ include/linux/inotify.h                       |  3 -
+ include/linux/poll.h                          |  2 -
+ include/linux/sysctl.h                        | 21 ++++-
+ kernel/sysctl.c                               | 84 +++++++++++--------
+ lib/test_sysctl.c                             | 23 +----
+ 17 files changed, 144 insertions(+), 181 deletions(-)
 
-Tvrtko
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
