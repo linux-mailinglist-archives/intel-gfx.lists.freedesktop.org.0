@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7992B1E77FD
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 10:14:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A03C1E7802
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 10:15:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA8956E89A;
-	Fri, 29 May 2020 08:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC916E89D;
+	Fri, 29 May 2020 08:15:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
- [IPv6:2607:f8b0:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A785D6E89B
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 08:14:52 +0000 (UTC)
-Received: by mail-pf1-x441.google.com with SMTP id d66so935445pfd.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 01:14:52 -0700 (PDT)
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0FE76E89D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 08:15:11 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id w20so1066555pga.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 01:15:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=SKFY0Nk0lzZnsZYwS+0R6Jqxi22p/kGuawoexff+HFM=;
- b=GEzFK/LKfNFU6UJpyxaByBf5ZKjfm5yaMIo+HTxEbbGqjeJ2NKC1wQHBTEziYuM2/c
- zdLFnp7ddR2lTanx16yKCGNuhGrn+P++lavG8tEoUTeqsy/vItUpiclup3Hw3sRiYEui
- 6wOwumpgIOr98WMOxg6/ewEsbQVEUFI/4pWuI=
+ bh=vO7oMyHAmtFgCk2sYz6KxFOeu6MNzidQmmJ2G/1pEM0=;
+ b=F0HxDleJOoUvcttpU1UIgZwwGo1qsAu0SBmow0w21SBCMiqJuBybCtCeetr2YSSb4u
+ +fkjyKNAyrdR6LI67eZ9RazJfkaoRWRSfWH45gbXJFqdNmob97+GWbiwux22WJi7UR4k
+ 7hajvHhSt2gRzwMsACsyTc1hVkQyehLvyrnLw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=SKFY0Nk0lzZnsZYwS+0R6Jqxi22p/kGuawoexff+HFM=;
- b=bY74q81+MrWJnQmf7zR5HWp5Vva2byN3a09zqYzRjULtjklbRUQoVJ38Tfef1yiqyS
- VYczq38ZRWCgrmeNlisDPyucKd3m/4X+RB/8aQNeOYvZzg9btSwXoQn4xByS7AwrDaS3
- xLizmbikr3RfzYzTfS/T/GOdRmNbGBwDwtFeDqkesEMDtP8OSegYeVlVlx/HJcBYR83H
- tvytxL6x0SVR1nO+hQurxZXG6zS3m6Rx4ei0f0Dv9GdJtYO8sh6qYJgRibxnGmnFHD9M
- 1Yx4bXytkZOX1gKViBoAFkbEU2tABnoDkFBDNbT2gVjZKLDUyuMK4poG3Y0kHetEXK7h
- UtiA==
-X-Gm-Message-State: AOAM530pkYTt5OKq8Nazuvut4kOzx1UFDS8JjuVP7t1ODcPvlk3b836m
- VrZ9PJaqdcXJfKeG/HX4dyCV1g==
-X-Google-Smtp-Source: ABdhPJyK2FUwFmtdobHKhZ8I1QHoKW4hEbYErArP63rQknnJfHipw8t38GV0zrMxKfzrK+yxeI5VDw==
-X-Received: by 2002:a62:8703:: with SMTP id i3mr7543110pfe.212.1590740092307; 
- Fri, 29 May 2020 01:14:52 -0700 (PDT)
+ bh=vO7oMyHAmtFgCk2sYz6KxFOeu6MNzidQmmJ2G/1pEM0=;
+ b=QtfhwVp+uK516A6NWn5ELJFdmzkkQzQpfWnlO91lcdBPyO7TSfK5t5xVhqqYPpTeyl
+ 0a0vH50o4nNdXnLcglZmnB3eJlRqP1fOinQcfa8VfdGbA94GHvuSmb0kSAwHD0wTiGdg
+ WvdfkZoDnmCNxqUXhjrd3Oedw2pGKqBrx4trWK/R3OruyGYG/k3HiTNSglFUagSJ8oAy
+ JfRB+X2sM7D5R/XVqdqE2U+sDkuyechJ724tMuvS8liCvSxpS75FI+eElIu7S+WU40jD
+ 8nFemE90H/DMabLbWFSAVZN8NAPBO1LGzfAP29DLLK3pxDuERXp42UhKQ6iXF2VK81Qq
+ buHQ==
+X-Gm-Message-State: AOAM530hbLEO6q65m8zo97mGAhSiI5/+dMJF72pLkiQWN70NUC8r3n+C
+ vHGiOfi4txIyWJpuwpDVGNghcA==
+X-Google-Smtp-Source: ABdhPJyNTEBK6lvlRch0b3eSKkfLXX3ub632bw+/rFINA2CK9LgJdaFmN+AJlEWxtJSWAZIJVMFXUQ==
+X-Received: by 2002:a62:1e84:: with SMTP id e126mr7611560pfe.67.1590740111285; 
+ Fri, 29 May 2020 01:15:11 -0700 (PDT)
 Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id b140sm6448091pfb.119.2020.05.29.01.14.51
+ by smtp.gmail.com with ESMTPSA id k194sm253258pfd.26.2020.05.29.01.15.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 May 2020 01:14:51 -0700 (PDT)
-Date: Fri, 29 May 2020 01:14:50 -0700
+ Fri, 29 May 2020 01:15:10 -0700 (PDT)
+Date: Fri, 29 May 2020 01:15:09 -0700
 From: Kees Cook <keescook@chromium.org>
 To: Luis Chamberlain <mcgrof@kernel.org>
-Message-ID: <202005290113.53AEED2176@keescook>
+Message-ID: <202005290115.487C95B@keescook>
 References: <20200529074108.16928-1-mcgrof@kernel.org>
- <20200529074108.16928-14-mcgrof@kernel.org>
+ <20200529074108.16928-13-mcgrof@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200529074108.16928-14-mcgrof@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 13/13] fs: move binfmt_misc sysctl to its
- own file
+In-Reply-To: <20200529074108.16928-13-mcgrof@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH 12/13] sysctl: add helper to register empty
+ subdir
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,57 +80,14 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2020 at 07:41:08AM +0000, Luis Chamberlain wrote:
-> This moves the binfmt_misc sysctl to its own file to help remove
-> clutter from kernel/sysctl.c.
+On Fri, May 29, 2020 at 07:41:07AM +0000, Luis Chamberlain wrote:
+> The way to create a subdirectory from the base set of directories
+> is a bit obscure, so provide a helper which makes this clear, and
+> also helps remove boiler plate code required to do this work.
 > 
 > Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
-> ---
->  fs/binfmt_misc.c | 1 +
->  kernel/sysctl.c  | 7 -------
->  2 files changed, 1 insertion(+), 7 deletions(-)
-> 
-> diff --git a/fs/binfmt_misc.c b/fs/binfmt_misc.c
-> index f69a043f562b..656b3f5f3bbf 100644
-> --- a/fs/binfmt_misc.c
-> +++ b/fs/binfmt_misc.c
-> @@ -821,6 +821,7 @@ static int __init init_misc_binfmt(void)
->  	int err = register_filesystem(&bm_fs_type);
->  	if (!err)
->  		insert_binfmt(&misc_format);
-> +	register_sysctl_empty_subdir("fs", "binfmt_misc");
->  	return err;
 
-Nit: let's make the dir before registering the filesystem. I can't
-imagine a realistic situation where userspace is reacting so fast it
-would actually fail to mount the fs on /proc/sys/fs/binfmt_misc, but why
-risk it?
-
--Kees
-
->  }
->  
-> diff --git a/kernel/sysctl.c b/kernel/sysctl.c
-> index 460532cd5ac8..7714e7b476c2 100644
-> --- a/kernel/sysctl.c
-> +++ b/kernel/sysctl.c
-> @@ -3042,13 +3042,6 @@ static struct ctl_table fs_table[] = {
->  		.extra1		= SYSCTL_ZERO,
->  		.extra2		= SYSCTL_TWO,
->  	},
-> -#if defined(CONFIG_BINFMT_MISC) || defined(CONFIG_BINFMT_MISC_MODULE)
-> -	{
-> -		.procname	= "binfmt_misc",
-> -		.mode		= 0555,
-> -		.child		= sysctl_mount_point,
-> -	},
-> -#endif
->  	{
->  		.procname	= "pipe-max-size",
->  		.data		= &pipe_max_size,
-> -- 
-> 2.26.2
-> 
+Reviewed-by: Kees Cook <keescook@chromium.org>
 
 -- 
 Kees Cook
