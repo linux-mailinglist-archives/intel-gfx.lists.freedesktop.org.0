@@ -2,32 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4778D1E828A
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 17:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 845491E82D4
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 18:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BA2E6E93C;
-	Fri, 29 May 2020 15:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4E936E93D;
+	Fri, 29 May 2020 16:02:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 706F289E06;
- Fri, 29 May 2020 15:52:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21336802-1500050 for multiple; Fri, 29 May 2020 16:52:10 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 435946E93D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 16:02:03 +0000 (UTC)
+IronPort-SDR: zZx/dE3VyLtXkiZxjm8K9uoafvGZ/4HF7+xoLvP6bLD/kEpN0js0Q3f3dnHzSJmWGBeN4xopIX
+ RwClg+8WEqAw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 09:02:00 -0700
+IronPort-SDR: SQ2uzvvEHTkohGLUzz79l8AiNxmErEITp6tfhnhIm/FW1LeHBT5qEhPbYuw7N4eTRH7ia12ZfU
+ 570steZJgoRg==
+X-IronPort-AV: E=Sophos;i="5.73,449,1583222400"; d="scan'208";a="443439612"
+Received: from esperlin-mobl.ger.corp.intel.com (HELO [10.214.231.68])
+ ([10.214.231.68])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 09:01:58 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200529122851.8540-1-chris@chris-wilson.co.uk>
+ <20200529143926.3245-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1ecf4b4c-49fa-5356-7329-0a29a33322df@linux.intel.com>
+Date: Fri, 29 May 2020 17:01:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <cdb604b7-0817-c786-45f6-3c2f9a395c70@amd.com>
-References: <20200529163351.5228-1-nirmoy.das@amd.com>
- <cdb604b7-0817-c786-45f6-3c2f9a395c70@amd.com>
-To: Nirmoy <nirmodas@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>,
- dri-devel@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159076753114.8851.15594151673471255964@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 29 May 2020 16:52:11 +0100
-Subject: Re: [Intel-gfx] [RFC PATCH 1/1] drm/mm: add ig_frag selftest
+In-Reply-To: <20200529143926.3245-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check for awaits on still
+ currently executing requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,155 +52,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@amd.com>,
- christian.koenig@amd.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Nirmoy (2020-05-29 16:40:53)
-> This works correctly most of the times but sometimes
+
+On 29/05/2020 15:39, Chris Wilson wrote:
+> With the advent of preempt-to-busy, a request may still be on the GPU as
+> we unwind. And in the case of a unpreemptible [due to HW] request, that
+> request will remain indefinitely on the GPU even though we have
+> returned it back to our submission queue, and cleared the active bit.
 > 
-> 20k insertions can take more than 8 times of 10k insertion time.
-
-The pressure is on to improve then :)
-
-> Regards,
+> We only run the execution callbacks on transferring the request from our
+> submission queue to the execution queue, but if this is a bonded request
+> that the HW is waiting for, we will not submit it (as we wait for a
+> fresh execution) even though it is still being executed.
 > 
-> Nirmoy
+> As we know that there are always preemption points between requests, we
+> know that only the currently executing request may be still active even
+> though we have cleared the flag. However, we do not precisely know which
+> request is in ELSP[0] due to a delay in processing events, and
+> furthermore we only store the last request in a context in our state
+> tracker.
 > 
-> On 5/29/20 6:33 PM, Nirmoy Das wrote:
-> > This patch introduces fragmentation in the address range
-> > and measures time taken by 10k and 20k insertions. ig_frag()
-> > will fail if time taken by 20k insertions takes more than 4 times
-> > of 10k insertions as we know that insertions scale quadratically.
-> > Also tolerate 10% error because of kernel scheduler's jitters.
-> >
-> > Output:
-> > <snip>
-> > [ 8092.653518] drm_mm: Testing DRM range manger (struct drm_mm), with random_seed=0x9bfb4117 max_iterations=8192 max_prime=128
-> > [ 8092.653520] drm_mm: igt_sanitycheck - ok!
-> > [ 8092.653525] igt_debug 0x0000000000000000-0x0000000000000200: 512: free
-> > [ 8092.653526] igt_debug 0x0000000000000200-0x0000000000000600: 1024: used
-> > [ 8092.653527] igt_debug 0x0000000000000600-0x0000000000000a00: 1024: free
-> > [ 8092.653528] igt_debug 0x0000000000000a00-0x0000000000000e00: 1024: used
-> > [ 8092.653529] igt_debug 0x0000000000000e00-0x0000000000001000: 512: free
-> > [ 8092.653529] igt_debug total: 4096, used 2048 free 2048
-> > [ 8112.569813] drm_mm: best fragmented insert of 10000 and 20000 insertions took 504 and 1996 msecs
-> > [ 8112.723254] drm_mm: bottom-up fragmented insert of 10000 and 20000 insertions took 44 and 108 msecs
-> > [ 8112.813212] drm_mm: top-down fragmented insert of 10000 and 20000 insertions took 40 and 44 msecs
-> > [ 8112.847733] drm_mm: evict fragmented insert of 10000 and 20000 insertions took 8 and 20 msecs
-> > <snip>
-> >
-> > Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
-> > ---
-> >   drivers/gpu/drm/selftests/drm_mm_selftests.h |  1 +
-> >   drivers/gpu/drm/selftests/test-drm_mm.c      | 73 ++++++++++++++++++++
-> >   2 files changed, 74 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/selftests/drm_mm_selftests.h b/drivers/gpu/drm/selftests/drm_mm_selftests.h
-> > index 6b943ea1c57d..8c87c964176b 100644
-> > --- a/drivers/gpu/drm/selftests/drm_mm_selftests.h
-> > +++ b/drivers/gpu/drm/selftests/drm_mm_selftests.h
-> > @@ -14,6 +14,7 @@ selftest(insert, igt_insert)
-> >   selftest(replace, igt_replace)
-> >   selftest(insert_range, igt_insert_range)
-> >   selftest(align, igt_align)
-> > +selftest(frag, igt_frag)
-> >   selftest(align32, igt_align32)
-> >   selftest(align64, igt_align64)
-> >   selftest(evict, igt_evict)
-> > diff --git a/drivers/gpu/drm/selftests/test-drm_mm.c b/drivers/gpu/drm/selftests/test-drm_mm.c
-> > index 9aabe82dcd3a..05d8f3659b4d 100644
-> > --- a/drivers/gpu/drm/selftests/test-drm_mm.c
-> > +++ b/drivers/gpu/drm/selftests/test-drm_mm.c
-> > @@ -1033,6 +1033,79 @@ static int igt_insert_range(void *ignored)
-> >       return 0;
-> >   }
-> >   
-> > +static int get_insert_time(unsigned int num_insert,
-> > +                        const struct insert_mode *mode)
-> > +{
-> > +     struct drm_mm mm;
-> > +     struct drm_mm_node *nodes, *node, *next;
-> > +     unsigned int size = 4096, align = 8192;
-> > +     unsigned long start;
-> > +     unsigned int i;
-> > +     int ret = -EINVAL;
-> > +
-> > +     drm_mm_init(&mm, 1, U64_MAX - 2);
-> > +     nodes = vzalloc(array_size(num_insert, sizeof(*nodes)));
-> > +     if (!nodes)
-> > +             goto err;
-> > +
-> > +     start = jiffies;
+> Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
+> Testcase: igt/gem_exec_balancer/bonded-dual
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 49 ++++++++++++++++++++++++++++-
+>   1 file changed, 48 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index e5aba6824e26..c5d7220de529 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -363,6 +363,53 @@ static void __llist_add(struct llist_node *node, struct llist_head *head)
+>   	head->first = node;
+>   }
+>   
+> +static struct i915_request * const *
+> +__engine_active(struct intel_engine_cs *engine)
+> +{
+> +	return READ_ONCE(engine->execlists.active);
+> +}
+> +
+> +static bool __request_in_flight(const struct i915_request *signal)
+> +{
+> +	struct i915_request * const *port, *rq;
+> +	bool inflight = false;
+> +
+> +	if (!i915_request_is_ready(signal))
+> +		return false;
+> +
+> +	/*
+> +	 * Even if we have unwound the request, it may still be on
+> +	 * the GPU (preempt-to-busy). If that request is inside an
+> +	 * unpreemptible critical section, it will not be removed. Some
+> +	 * GPU functions may even be stuck waiting for the paired request
+> +	 * (__await_execution) to be submitted and cannot be preempted
+> +	 * until the bond is executing.
+> +	 *
+> +	 * As we know that there are always preemption points between
+> +	 * requests, we know that only the currently executing request
+> +	 * may be still active even though we have cleared the flag.
+> +	 * However, we can't rely on our tracking of ELSP[0] to known
+> +	 * which request is currently active and so maybe stuck, as
+> +	 * the tracking maybe an event behind. Instead assume that
+> +	 * if the context is still inflight, then it is still active
+> +	 * even if the active flag has been cleared.
+> +	 */
+> +	if (!intel_context_inflight(signal->context))
+> +		return false;
+> +
+> +	rcu_read_lock();
+> +	for (port = __engine_active(signal->engine); (rq = *port); port++) {
+> +		if (rq->context == signal->context) {
+> +			inflight = i915_seqno_passed(rq->fence.seqno,
+> +						     signal->fence.seqno);
+> +			break;
+> +		}
+> +	}
+> +	rcu_read_unlock();
+> +
+> +	return inflight;
+> +}
+> +
+>   static int
+>   __await_execution(struct i915_request *rq,
+>   		  struct i915_request *signal,
+> @@ -393,7 +440,7 @@ __await_execution(struct i915_request *rq,
+>   	}
+>   
+>   	spin_lock_irq(&signal->lock);
+> -	if (i915_request_is_active(signal)) {
+> +	if (i915_request_is_active(signal) || __request_in_flight(signal)) {
+>   		if (hook) {
+>   			hook(rq, &signal->fence);
+>   			i915_request_put(signal);
+> 
 
-Use ktime_t start = ktime_now();
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> > +     for (i = 0; i < num_insert; i++) {
-> > +             if (!expect_insert(&mm, &nodes[i], size, align, i, mode)) {
-> > +                     pr_err("%s insert failed\n", mode->name);
-> > +                     goto out;
-> > +             }
-> > +     }
-> > +
-> > +     ret = jiffies_to_msecs(jiffies - start);
+Regards,
 
-ret = ktime_sub(ktime_now(), start);
-
-The downside to using ktime is remembering it is s64 and so requires care
-and attention in doing math.
-
-> > +out:
-> > +     drm_mm_for_each_node_safe(node, next, &mm)
-> > +             drm_mm_remove_node(node);
-> > +     drm_mm_takedown(&mm);
-> > +     vfree(nodes);
-> > +err:
-> > +     return ret;
-> > +
-> > +}
-> > +
-> > +static int igt_frag(void *ignored)
-> > +{
-> > +     const struct insert_mode *mode;
-> > +     unsigned int insert_time1, insert_time2;
-> > +     unsigned int insert_size = 10000;
-> > +     unsigned int scale_factor = 4;
-> > +     /* tolerate 10% excess insertion duration */
-> > +     unsigned int error_factor = 110;
-> > +     int ret = -EINVAL;
-> > +
-> > +     for (mode = insert_modes; mode->name; mode++) {
-> > +             unsigned int expected_time;
-> > +
-> > +             insert_time1 = get_insert_time(insert_size, mode);
-> > +             if (insert_time1 < 0)
-> > +                     goto err;
-
-Ah, can you propagate the actual error. I see you are returning EINVAL
-for ENOMEM errors. Just wait until it hits and you have to debug why :)
-
-> > +             insert_time2 = get_insert_time((insert_size * 2), mode);
-> > +             if (insert_time2 < 0)
-> > +                     goto err;
-> > +
-> > +             expected_time = (scale_factor * insert_time1 *
-> > +                              error_factor)/100;
-> > +             if (insert_time2 > expected_time) {
-> > +                     pr_err("%s fragmented insert took more %u msecs\n",
-> > +                            mode->name, insert_time2 - expected_time);
-> > +                     goto err;
-> > +             }
-> > +
-> > +             pr_info("%s fragmented insert of %u and %u insertions took %u and %u msecs\n",
-> > +                     mode->name, insert_size, insert_size * 2, insert_time1,
-> > +                     insert_time2);
-
-Put the info first before the error. We always want the full details,
-with the error message explaining why it's unhappy.
--Chris
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
