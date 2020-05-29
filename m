@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6D01E7D46
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4331E7D4D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:33:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD5A6E8E7;
-	Fri, 29 May 2020 12:32:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E84189F41;
+	Fri, 29 May 2020 12:33:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E51F76E8E4;
- Fri, 29 May 2020 12:32:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2B8EA0099;
- Fri, 29 May 2020 12:32:15 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13CAA89F41;
+ Fri, 29 May 2020 12:33:22 +0000 (UTC)
+IronPort-SDR: iqqS54Bu776Gs22riHvGBdpvdYnzeqZmn+YO8PfbgLlGx0RiFbSucf3hV8exErsPJuBmxfTw9I
+ AmDLzrOl/WIw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 05:33:21 -0700
+IronPort-SDR: BH8cx+3xgrjE2I/A+UZDj1fS2eA+3s+/PeyvoU5yUDuOW2JZwAkkAAeK5uWjfg2fQ9QrlsI/wc
+ 5J4tTI4APi+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,448,1583222400"; d="scan'208";a="303113842"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orsmga008.jf.intel.com with ESMTP; 29 May 2020 05:33:19 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id 3CB2EFC; Fri, 29 May 2020 15:33:17 +0300 (EEST)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org
+Date: Fri, 29 May 2020 15:33:17 +0300
+Message-Id: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 29 May 2020 12:32:15 -0000
-Message-ID: <159075553592.3333.16778826386164749927@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200529115731.7666-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200529115731.7666-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_Track_i915=5Fvma_wit?=
- =?utf-8?q?h_its_own_reference_counter?=
+Subject: [Intel-gfx] [PATCH v1] drm/i915/dsi: Drop double check for ACPI
+ companion device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,74 +50,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+acpi_dev_get_resources() does perform the NULL pointer check against
+ACPI companion device which is given as function parameter. Thus,
+there is no need to duplicate this check in the caller.
 
-Series: series starting with [1/2] drm/i915: Track i915_vma with its own reference counter
-URL   : https://patchwork.freedesktop.org/series/77784/
-State : warning
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 24 ++++++++------------
+ 1 file changed, 10 insertions(+), 14 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index 574dcfec9577..6f9e08cda964 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -426,23 +426,19 @@ static void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
+ {
+ 	struct drm_device *drm_dev = intel_dsi->base.base.dev;
+ 	struct device *dev = &drm_dev->pdev->dev;
+-	struct acpi_device *acpi_dev;
++	struct acpi_device *acpi_dev = ACPI_COMPANION(dev);
+ 	struct list_head resource_list;
+ 	struct i2c_adapter_lookup lookup;
+ 
+-	acpi_dev = ACPI_COMPANION(dev);
+-	if (acpi_dev) {
+-		memset(&lookup, 0, sizeof(lookup));
+-		lookup.slave_addr = slave_addr;
+-		lookup.intel_dsi = intel_dsi;
+-		lookup.dev_handle = acpi_device_handle(acpi_dev);
 -
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2280:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2281:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2282:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2283:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1423:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1477:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+-		INIT_LIST_HEAD(&resource_list);
+-		acpi_dev_get_resources(acpi_dev, &resource_list,
+-				       i2c_adapter_lookup,
+-				       &lookup);
+-		acpi_dev_free_resource_list(&resource_list);
+-	}
++	memset(&lookup, 0, sizeof(lookup));
++	lookup.slave_addr = slave_addr;
++	lookup.intel_dsi = intel_dsi;
++	lookup.dev_handle = acpi_device_handle(acpi_dev);
++
++	INIT_LIST_HEAD(&resource_list);
++	acpi_dev_get_resources(acpi_dev, &resource_list,
++			       i2c_adapter_lookup, &lookup);
++	acpi_dev_free_resource_list(&resource_list);
+ }
+ #else
+ static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
