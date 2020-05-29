@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825B21E7F81
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 16:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB8B1E7F88
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 16:03:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B906E903;
-	Fri, 29 May 2020 14:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5616E90A;
+	Fri, 29 May 2020 14:03:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga07-in.huawei.com [45.249.212.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E766E8D9;
- Fri, 29 May 2020 11:59:18 +0000 (UTC)
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id 9A782686155B6A948EA5;
- Fri, 29 May 2020 19:59:12 +0800 (CST)
-Received: from [127.0.0.1] (10.67.102.197) by DGGEMS411-HUB.china.huawei.com
- (10.3.19.211) with Microsoft SMTP Server id 14.3.487.0; Fri, 29 May 2020
- 19:59:08 +0800
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF9A6E5B2;
+ Fri, 29 May 2020 12:09:09 +0000 (UTC)
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id E74388EB0A5E1AEFF5D3;
+ Fri, 29 May 2020 20:09:04 +0800 (CST)
+Received: from [127.0.0.1] (10.67.102.197) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.487.0; Fri, 29 May 2020
+ 20:09:02 +0800
 To: Greg KH <gregkh@linuxfoundation.org>, Luis Chamberlain <mcgrof@kernel.org>
 References: <20200529074108.16928-1-mcgrof@kernel.org>
- <20200529074108.16928-10-mcgrof@kernel.org>
- <20200529102613.GA1345939@kroah.com>
+ <20200529074108.16928-12-mcgrof@kernel.org>
+ <20200529102644.GB1345939@kroah.com>
 From: Xiaoming Ni <nixiaoming@huawei.com>
-Message-ID: <066dcdb1-c1db-e154-8697-f3a8907a538c@huawei.com>
-Date: Fri, 29 May 2020 19:59:07 +0800
+Message-ID: <289b2d65-bf28-1246-7f4f-2411e3f27e16@huawei.com>
+Date: Fri, 29 May 2020 20:09:01 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.1.2
 MIME-Version: 1.0
-In-Reply-To: <20200529102613.GA1345939@kroah.com>
+In-Reply-To: <20200529102644.GB1345939@kroah.com>
 X-Originating-IP: [10.67.102.197]
 X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Fri, 29 May 2020 14:03:34 +0000
-Subject: Re: [Intel-gfx] [PATCH 09/13] firmware_loader: simplify sysctl
- declaration with register_sysctl_subdir()
+Subject: Re: [Intel-gfx] [PATCH 11/13] random: simplify sysctl declaration
+ with register_sysctl_subdir()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,152 +61,58 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 2020/5/29 18:26, Greg KH wrote:
-> On Fri, May 29, 2020 at 07:41:04AM +0000, Luis Chamberlain wrote:
+> On Fri, May 29, 2020 at 07:41:06AM +0000, Luis Chamberlain wrote:
 >> From: Xiaoming Ni <nixiaoming@huawei.com>
 >>
->> Move the firmware config sysctl table to fallback_table.c and use the
->> new register_sysctl_subdir() helper. This removes the clutter from
+>> Move random_table sysctl from kernel/sysctl.c to drivers/char/random.c
+>> and use register_sysctl_subdir() to help remove the clutter out of
 >> kernel/sysctl.c.
 >>
 >> Signed-off-by: Xiaoming Ni <nixiaoming@huawei.com>
 >> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
 >> ---
->>   drivers/base/firmware_loader/fallback.c       |  4 ++++
->>   drivers/base/firmware_loader/fallback.h       | 11 ++++++++++
->>   drivers/base/firmware_loader/fallback_table.c | 22 +++++++++++++++++--
->>   include/linux/sysctl.h                        |  1 -
->>   kernel/sysctl.c                               |  7 ------
->>   5 files changed, 35 insertions(+), 10 deletions(-)
-> 
-> So it now takes more lines than the old stuff?  :(
-> 
-CONFIG_FW_LOADER = m
-Before cleaning, no matter whether ko is loaded or not, the sysctl
-interface will be created, but now we need to add register and
-unregister interfaces, so the number of lines of code has increased
-
+>>   drivers/char/random.c  | 14 ++++++++++++--
+>>   include/linux/sysctl.h |  1 -
+>>   kernel/sysctl.c        |  5 -----
+>>   3 files changed, 12 insertions(+), 8 deletions(-)
 >>
->> diff --git a/drivers/base/firmware_loader/fallback.c b/drivers/base/firmware_loader/fallback.c
->> index d9ac7296205e..8190653ae9a3 100644
->> --- a/drivers/base/firmware_loader/fallback.c
->> +++ b/drivers/base/firmware_loader/fallback.c
->> @@ -200,12 +200,16 @@ static struct class firmware_class = {
->>   
->>   int register_sysfs_loader(void)
->>   {
->> +	int ret = register_firmware_config_sysctl();
->> +	if (ret != 0)
->> +		return ret;
-> 
-> checkpatch :(
-This is my fault,  thanks for your guidance
-
-> 
->>   	return class_register(&firmware_class);
-> 
-> And if that fails?
-> 
-Yes, it is better to call register_firmware_config_sysctl() after 
-class_register().
-thanks for your guidance.
-
-
+>> diff --git a/drivers/char/random.c b/drivers/char/random.c
+>> index a7cf6aa65908..73fd4b6e9c18 100644
+>> --- a/drivers/char/random.c
+>> +++ b/drivers/char/random.c
+>> @@ -2101,8 +2101,7 @@ static int proc_do_entropy(struct ctl_table *table, int write,
 >>   }
 >>   
->>   void unregister_sysfs_loader(void)
->>   {
->>   	class_unregister(&firmware_class);
->> +	unregister_firmware_config_sysctl();
->>   }
->>   
->>   static ssize_t firmware_loading_show(struct device *dev,
->> diff --git a/drivers/base/firmware_loader/fallback.h b/drivers/base/firmware_loader/fallback.h
->> index 06f4577733a8..7d2cb5f6ceb8 100644
->> --- a/drivers/base/firmware_loader/fallback.h
->> +++ b/drivers/base/firmware_loader/fallback.h
->> @@ -42,6 +42,17 @@ void fw_fallback_set_default_timeout(void);
->>   
->>   int register_sysfs_loader(void);
->>   void unregister_sysfs_loader(void);
->> +#ifdef CONFIG_SYSCTL
->> +extern int register_firmware_config_sysctl(void);
->> +extern void unregister_firmware_config_sysctl(void);
->> +#else
->> +static inline int register_firmware_config_sysctl(void)
->> +{
->> +	return 0;
->> +}
->> +static inline void unregister_firmware_config_sysctl(void) { }
->> +#endif /* CONFIG_SYSCTL */
->> +
->>   #else /* CONFIG_FW_LOADER_USER_HELPER */
->>   static inline int firmware_fallback_sysfs(struct firmware *fw, const char *name,
->>   					  struct device *device,
->> diff --git a/drivers/base/firmware_loader/fallback_table.c b/drivers/base/firmware_loader/fallback_table.c
->> index 46a731dede6f..4234aa5ee5df 100644
->> --- a/drivers/base/firmware_loader/fallback_table.c
->> +++ b/drivers/base/firmware_loader/fallback_table.c
->> @@ -24,7 +24,7 @@ struct firmware_fallback_config fw_fallback_config = {
->>   EXPORT_SYMBOL_NS_GPL(fw_fallback_config, FIRMWARE_LOADER_PRIVATE);
->>   
->>   #ifdef CONFIG_SYSCTL
->> -struct ctl_table firmware_config_table[] = {
->> +static struct ctl_table firmware_config_table[] = {
+>>   static int sysctl_poolsize = INPUT_POOL_WORDS * 32;
+>> -extern struct ctl_table random_table[];
+>> -struct ctl_table random_table[] = {
+>> +static struct ctl_table random_table[] = {
 >>   	{
->>   		.procname	= "force_sysfs_fallback",
->>   		.data		= &fw_fallback_config.force_sysfs_fallback,
->> @@ -45,4 +45,22 @@ struct ctl_table firmware_config_table[] = {
->>   	},
+>>   		.procname	= "poolsize",
+>>   		.data		= &sysctl_poolsize,
+>> @@ -2164,6 +2163,17 @@ struct ctl_table random_table[] = {
+>>   #endif
 >>   	{ }
 >>   };
->> -#endif
 >> +
->> +static struct ctl_table_header *hdr;
->> +int register_firmware_config_sysctl(void)
+>> +/*
+>> + * rand_initialize() is called before sysctl_init(),
+>> + * so we cannot call register_sysctl_init() in rand_initialize()
+>> + */
+>> +static int __init random_sysctls_init(void)
 >> +{
->> +	if (hdr)
->> +		return -EEXIST;
+>> +	register_sysctl_subdir("kernel", "random", random_table);
 > 
-> How can hdr be set?
+> No error checking?
 > 
-It's my mistake, register_firmware_config_sysctl() is not exported,
-there will be no repeated calls.
-thanks for your guidance.
-
->> +	hdr = register_sysctl_subdir("kernel", "firmware_config",
->> +				     firmware_config_table);
->> +	if (!hdr)
->> +		return -ENOMEM;
->> +	return 0;
->> +}
->> +
->> +void unregister_firmware_config_sysctl(void)
->> +{
->> +	if (hdr)
->> +		unregister_sysctl_table(hdr);
-> 
-> Why can't unregister_sysctl_table() take a null pointer value?
-Sorry, I didn't notice that the unregister_sysctl_table() already checks
-the input parameters.
-thanks for your guidance.
-
-
-> And what sets 'hdr' (worst name for a static variable) to NULL so that
-> it knows not to be unregistered again as it looks like
-> register_firmware_config_sysctl() could be called multiple times.
-
-How about renaming hdr to firmware_config_sysct_table_header?
-
-+ if (hdr)
-+ 	return -EEXIST;
-After deleting this code in register_firmware_config_sysctl(), and 
-considering register_firmware_config_sysctl() and 
-unregister_firmware_config_sysctl() are not exported, whether there is
-no need to add  "hdr = NULL;" ?
+> :(
+It was my mistake, I forgot to add a comment here.
+Same as the comment of register_sysctl_init(),
+There is almost no failure here during the system initialization phase,
+and failure in time does not affect the main function.
 
 Thanks
 Xiaoming Ni
-
 
 
 
