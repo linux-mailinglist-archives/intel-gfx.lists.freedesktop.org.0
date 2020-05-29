@@ -2,60 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256571E80D4
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 16:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38641E8144
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 17:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6626E921;
-	Fri, 29 May 2020 14:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ADE36E928;
+	Fri, 29 May 2020 15:08:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com
- [IPv6:2607:f8b0:4864:20::1044])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1E56E922
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 14:49:18 +0000 (UTC)
-Received: by mail-pj1-x1044.google.com with SMTP id k2so1420652pjs.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 07:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=IteRcXXajwbtNBJuddDZT526vs0ZDhNnSpFmn8yamV0=;
- b=N2lJ9F/4/3HpzR/J93sxrFdqGlVz2QNhGMFIycNuy00m6veP+w2xnnditHihQIFXnL
- XCqnug4fq5fbhUlWxzOjXXHpHuSdsRGl38B/e6pOTxpS3O0ArAhFReLuF1TrhT95SEC1
- m9Mxjr53v0I0p+Z26i7nqIoQoQyWYIDSUoGm8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=IteRcXXajwbtNBJuddDZT526vs0ZDhNnSpFmn8yamV0=;
- b=A+gXSRuRMSNVPiS0J5W7tGF5Ri/8KpsIJeR0J/c+0d6M9hKA5KhOTbl7aSolheySuV
- 4X29QJYiI9R27a8MoV4ukkRKCce0Vr10Xw6k9VZdlLoge3yj83z+0uWpbowUugxfMM3B
- jWjBqbeo/P74YB1LWshiadB3IVZt8VL2PYicjd/HERD01BXhMq6wOv/cFn5L9DRGdzy1
- sFANwXpKiuub8Bl96zv94EKjNg9FT38DRKg949dBksOrp5k1R9Pn0l+Nn50WsV/NXxuZ
- O0wpI2XIYlha0iS0CXONGsjtxMUkwivz1JqMh55yhfbTIJxQyACGczS0zL2Cs8C830Gs
- jOzg==
-X-Gm-Message-State: AOAM533cNqHBn4X70I9L5xeRW1Y2gLMKw36gogcuiJZz/7PgbnzV9W2w
- MhRmvfqTnx0XjOKjmHohxNz07Q==
-X-Google-Smtp-Source: ABdhPJzFHib1KyRD9/QyczMF6fwrQXT/kFQagYx7n1WCZ6zEYqL92DxL1gm98yo73HrZ3ypBekLGug==
-X-Received: by 2002:a17:902:ab8b:: with SMTP id
- f11mr9427824plr.145.1590763757769; 
- Fri, 29 May 2020 07:49:17 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id w185sm1049497pfw.145.2020.05.29.07.49.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 May 2020 07:49:16 -0700 (PDT)
-Date: Fri, 29 May 2020 07:49:15 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Message-ID: <202005290748.043EFFA3F@keescook>
-References: <20200529074108.16928-1-mcgrof@kernel.org>
- <20200529074108.16928-7-mcgrof@kernel.org>
- <202005290121.C78B4AC@keescook>
- <20200529114912.GC11244@42.do-not-panic.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58F556E927;
+ Fri, 29 May 2020 15:08:31 +0000 (UTC)
+IronPort-SDR: Y1Pg40VyqvIkJ0/9aI1cxzSSOWEn7DDgyVeWXaeGnBYUqZz8i6FoTN+MycNm7Qo+xhEhZC95yi
+ VMd/Al3Qsoqw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 08:08:30 -0700
+IronPort-SDR: uDu3gk76dL9wBWcvJbmgXDg3PF9gHOjCYB/juA5NYehQ/+/p/IMeqH297U/uLzTY+7dDZso0Tl
+ 3rZyfrWRScfA==
+X-IronPort-AV: E=Sophos;i="5.73,449,1583222400"; d="scan'208";a="443420925"
+Received: from esperlin-mobl.ger.corp.intel.com (HELO [10.214.231.68])
+ ([10.214.231.68])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 08:08:28 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200529135802.1286704-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <83048191-b634-6079-6026-89d7811838bb@linux.intel.com>
+Date: Fri, 29 May 2020 16:08:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200529114912.GC11244@42.do-not-panic.com>
-Subject: Re: [Intel-gfx] [PATCH 06/13] ocfs2: use new sysctl subdir helper
- register_sysctl_subdir()
+In-Reply-To: <20200529135802.1286704-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v3] i915/gem_exec_balancer:
+ Randomise bonded submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,30 +51,397 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jack@suse.cz, rafael@kernel.org, airlied@linux.ie, benh@kernel.crashing.org,
- amir73il@gmail.com, clemens@ladisch.de, dri-devel@lists.freedesktop.org,
- joseph.qi@linux.alibaba.com, sfr@canb.auug.org.au, mark@fasheh.com,
- rdna@fb.com, yzaikin@google.com, arnd@arndb.de,
- intel-gfx@lists.freedesktop.org, julia.lawall@lip6.fr, jlbec@evilplan.org,
- nixiaoming@huawei.com, vbabka@suse.cz, axboe@kernel.dk, tytso@mit.edu,
- gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
- ebiederm@xmission.com, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com,
- viro@zeniv.linux.org.uk
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2020 at 11:49:12AM +0000, Luis Chamberlain wrote:
-> Yikes, sense, you're right. Nope, I left the random config tests to
-> 0day. Will fix, thanks!
 
-Yeah, I do the same for randconfig, but I always do an "allmodconfig"
-build before sending stuff. It's a good smoke test.
+On 29/05/2020 14:58, Chris Wilson wrote:
+> Randomly submit a paired spinner and its cancellation as a bonded
+> (submit fence) pair. Apply congestion to the engine with more bonded
+> pairs to see if the execution order fails. If we prevent a cancellation
+> from running, then the spinner will remain spinning forever.
+> 
+> v2: Test both immediate submission and fenced submission
+> v3: Copy-n-paste a single context variant
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   tests/i915/gem_exec_balancer.c | 341 +++++++++++++++++++++++++++++++++
+>   1 file changed, 341 insertions(+)
+> 
+> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+> index 80ae82416..07fe45920 100644
+> --- a/tests/i915/gem_exec_balancer.c
+> +++ b/tests/i915/gem_exec_balancer.c
+> @@ -1154,6 +1154,342 @@ static void bonded_semaphore(int i915)
+>   	gem_context_destroy(i915, ctx);
+>   }
+>   
+> +static void __bonded_pair(int i915,
+> +			  const struct i915_engine_class_instance *siblings,
+> +			  unsigned int count,
+> +			  unsigned int flags,
+> +			  unsigned long *out)
+> +#define B_FENCE 0x1
+> +#define B_HOSTILE 0x2
+> +#define B_MANY 0x4
+> +{
+> +	struct drm_i915_gem_exec_object2 batch = {};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&batch),
+> +		.buffer_count = 1,
+> +	};
+> +	unsigned long cycles = 0;
+> +	unsigned int spinner;
+> +	igt_spin_t *a;
+> +	int timeline;
+> +	uint32_t A;
+> +
+> +	srandom(getpid());
+> +
+> +	spinner = IGT_SPIN_POLL_RUN;
+> +	if (flags & B_HOSTILE)
+> +		spinner |= IGT_SPIN_NO_PREEMPTION;
+> +
+> +	A = gem_context_create(i915);
+> +	set_load_balancer(i915, A, siblings, count, NULL);
+> +	a = igt_spin_new(i915, A, .flags = spinner);
+> +	igt_spin_end(a);
+> +	gem_sync(i915, a->handle);
+> +
+> +	timeline = sw_sync_timeline_create();
+> +
+> +	igt_until_timeout(2) {
+> +		unsigned int master;
+> +		int fence;
+> +
+> +		master = 1;
+> +		if (flags & B_MANY)
+> +			master = rand() % count + 1;
+> +
+> +		fence = -1;
+> +		if (flags & B_FENCE)
+> +			fence = sw_sync_timeline_create_fence(timeline,
+> +							      cycles + 1);
+> +
+> +		igt_spin_reset(a);
+> +		a->execbuf.flags = master | I915_EXEC_FENCE_OUT;
+> +		if (fence != -1) {
+> +			a->execbuf.rsvd2 = fence;
+> +			a->execbuf.flags |= I915_EXEC_FENCE_IN;
+> +		}
+> +		gem_execbuf_wr(i915, &a->execbuf);
+> +
+> +		batch.handle = create_semaphore_to_spinner(i915, a);
+> +		execbuf.rsvd1 = a->execbuf.rsvd1;
+> +		execbuf.rsvd2 = a->execbuf.rsvd2 >> 32;
+> +		do {
+> +			execbuf.flags = rand() % count + 1;
+> +		} while (execbuf.flags == master);
+> +		execbuf.flags |= I915_EXEC_FENCE_SUBMIT;
+> +		gem_execbuf(i915, &execbuf);
+> +		gem_close(i915, batch.handle);
+> +
+> +		if (fence != -1) {
+> +			sw_sync_timeline_inc(timeline, 1);
+> +			close(fence);
+> +		}
+> +		close(a->execbuf.rsvd2 >> 32);
+> +
+> +		gem_sync(i915, a->handle);
+> +
+> +		cycles++;
+> +	}
+> +
+> +	close(timeline);
+> +	igt_spin_free(i915, a);
+> +	gem_context_destroy(i915, A);
+> +
+> +	*out = cycles;
+> +}
+> +
+> +static void bonded_pair(int i915)
+> +{
+> +	static const unsigned int phases[] = {
+> +		0,
+> +		B_FENCE,
+> +		B_MANY,
+> +		B_HOSTILE,
+> +		B_HOSTILE | B_FENCE,
+> +	};
+> +	unsigned long *cycles;
+> +
+> +	/*
+> +	 * The purpose of bonded submission is to execute one or more requests
+> +	 * concurrently. However, the very nature of that requires coordinated
+> +	 * submission across multiple engines.
+> +	 */
+> +	igt_require(gem_scheduler_has_preemption(i915));
+> +
+> +	cycles = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+> +
+> +	for (int class = 0; class < 32; class++) {
+> +		struct i915_engine_class_instance *siblings;
+> +		unsigned int count;
+> +
+> +		siblings = list_engines(i915, 1u << class, &count);
+> +		if (count < 2)
+> +			continue;
+> +
+> +		igt_info("Class %u, 1 thread\n", class);
+> +		for (int i = 0; i < ARRAY_SIZE(phases); i++) {
+> +			cycles[0] = 0;
+> +			__bonded_pair(i915,
+> +				      siblings, count,
+> +				      phases[i],
+> +				      &cycles[0]);
+> +			gem_quiescent_gpu(i915);
+> +			igt_info("%s %s %s submission, %lu cycles\n",
+> +				 phases[i] & B_HOSTILE ? "Non-preemptible" : "Preemptible",
+> +				 phases[i] & B_MANY ? "many-master" : "single-master",
+> +				 phases[i] & B_FENCE ? "fenced" : "immediate",
+> +				 cycles[0]);
+> +		}
+> +
+> +		igt_info("Class %u, %d threads\n", class, count + 1);
+> +		for (int i = 0; i < ARRAY_SIZE(phases); i++) {
+> +			memset(cycles, 0, (count + 1) * sizeof(*cycles));
+> +			igt_fork(child, count + 1)
+> +				__bonded_pair(i915,
+> +					      siblings, count,
+> +					      phases[i],
+> +					      &cycles[child]);
+> +			igt_waitchildren();
+> +			gem_quiescent_gpu(i915);
+> +
+> +			for (int child = 1; child < count + 1; child++)
+> +				cycles[0] += cycles[child];
+> +
+> +			igt_info("%s %s %s submission, %lu cycles\n",
+> +				 phases[i] & B_HOSTILE ? "Non-preemptible" : "Preemptible",
+> +				 phases[i] & B_MANY ? "many-master" : "single-master",
+> +				 phases[i] & B_FENCE ? "fenced" : "immediate",
+> +				 cycles[0]);
+> +		}
+> +		free(siblings);
+> +	}
+> +
+> +	munmap(cycles, 4096);
+> +}
+> +
+> +static void __bonded_dual(int i915,
+> +			  const struct i915_engine_class_instance *siblings,
+> +			  unsigned int count,
+> +			  unsigned int flags,
+> +			  unsigned long *out)
+> +{
+> +	struct drm_i915_gem_exec_object2 batch = {};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&batch),
+> +		.buffer_count = 1,
+> +	};
+> +	unsigned long cycles = 0;
+> +	unsigned int spinner;
+> +	igt_spin_t *a, *b;
+> +	int timeline;
+> +	uint32_t A, B;
+> +
+> +	srandom(getpid());
+> +
+> +	spinner = IGT_SPIN_POLL_RUN;
+> +	if (flags & B_HOSTILE)
+> +		spinner |= IGT_SPIN_NO_PREEMPTION;
+> +
+> +	A = gem_context_create(i915);
+> +	set_load_balancer(i915, A, siblings, count, NULL);
+> +	a = igt_spin_new(i915, A, .flags = spinner);
+> +	igt_spin_end(a);
+> +	gem_sync(i915, a->handle);
+> +
+> +	B = gem_context_create(i915);
+> +	set_load_balancer(i915, B, siblings, count, NULL);
+> +	b = igt_spin_new(i915, B, .flags = spinner);
+> +	igt_spin_end(b);
+> +	gem_sync(i915, b->handle);
+> +
+> +	timeline = sw_sync_timeline_create();
+> +
+> +	igt_until_timeout(2) {
+> +		unsigned int master;
+> +		int fence;
+> +
+> +		master = 1;
+> +		if (flags & B_MANY)
+> +			master = rand() % count + 1;
+> +
+> +		fence = -1;
+> +		if (flags & B_FENCE)
+> +			fence = sw_sync_timeline_create_fence(timeline,
+> +							      cycles + 1);
+> +
+> +		igt_spin_reset(a);
+> +		a->execbuf.flags = master | I915_EXEC_FENCE_OUT;
+> +		if (fence != -1) {
+> +			a->execbuf.rsvd2 = fence;
+> +			a->execbuf.flags |= I915_EXEC_FENCE_IN;
+> +		}
+> +		gem_execbuf_wr(i915, &a->execbuf);
+> +
+> +		igt_spin_reset(b);
+> +		b->execbuf.flags = master | I915_EXEC_FENCE_OUT;
+> +		if (fence != -1) {
+> +			b->execbuf.rsvd2 = fence;
+> +			b->execbuf.flags |= I915_EXEC_FENCE_IN;
+> +		}
+> +		gem_execbuf_wr(i915, &b->execbuf);
+> +
+> +		if (rand() % 1)
+> +			igt_swap(a, b);
+> +
+> +		batch.handle = create_semaphore_to_spinner(i915, a);
+> +		execbuf.rsvd1 = a->execbuf.rsvd1;
+> +		execbuf.rsvd2 = a->execbuf.rsvd2 >> 32;
+> +		do {
+> +			execbuf.flags = rand() % count + 1;
+> +		} while (execbuf.flags == master);
+> +		execbuf.flags |= I915_EXEC_FENCE_SUBMIT;
+> +		gem_execbuf(i915, &execbuf);
+> +		gem_close(i915, batch.handle);
+> +
+> +		batch.handle = create_semaphore_to_spinner(i915, b);
+> +		execbuf.rsvd1 = b->execbuf.rsvd1;
+> +		execbuf.rsvd2 = b->execbuf.rsvd2 >> 32;
+> +		do {
+> +			execbuf.flags = rand() % count + 1;
+> +		} while (execbuf.flags == master);
+> +		execbuf.flags |= I915_EXEC_FENCE_SUBMIT;
+> +		gem_execbuf(i915, &execbuf);
+> +		gem_close(i915, batch.handle);
+> +
+> +		if (fence != -1) {
+> +			sw_sync_timeline_inc(timeline, 1);
+> +			close(fence);
+> +		}
+> +		close(a->execbuf.rsvd2 >> 32);
+> +		close(b->execbuf.rsvd2 >> 32);
+> +
+> +		gem_sync(i915, a->handle);
+> +		gem_sync(i915, b->handle);
+> +
+> +		cycles++;
+> +	}
+> +
+> +	close(timeline);
+> +
+> +	igt_spin_free(i915, a);
+> +	igt_spin_free(i915, b);
+> +
+> +	gem_context_destroy(i915, A);
+> +	gem_context_destroy(i915, B);
+> +
+> +	*out = cycles;
+> +}
+> +
+> +static void bonded_dual(int i915)
+> +{
+> +	static const unsigned int phases[] = {
+> +		0,
+> +		B_FENCE,
+> +		B_MANY,
+> +		B_HOSTILE,
+> +		B_HOSTILE | B_FENCE,
+> +	};
+> +	unsigned long *cycles;
+> +
+> +
+> +	/*
+> +	 * This is the same test as bonded_pair() but with the slight extra
+> +	 * stress of having two inflight clients and interchanging them
+> +	 * in a thread.
+> +	 */
+> +	igt_require(gem_scheduler_has_preemption(i915));
+> +
+> +	cycles = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+> +
+> +	for (int class = 0; class < 32; class++) {
+> +		struct i915_engine_class_instance *siblings;
+> +		unsigned int count;
+> +
+> +		siblings = list_engines(i915, 1u << class, &count);
+> +		if (count < 2)
+> +			continue;
+> +
+> +		igt_info("Class %u, 1 thread\n", class);
+> +		for (int i = 0; i < ARRAY_SIZE(phases); i++) {
+> +			cycles[0] = 0;
+> +			__bonded_dual(i915,
+> +				      siblings, count,
+> +				      phases[i],
+> +				      &cycles[0]);
+> +			gem_quiescent_gpu(i915);
+> +			igt_info("%s %s %s submission, %lu cycles\n",
+> +				 phases[i] & B_HOSTILE ? "Non-preemptible" : "Preemptible",
+> +				 phases[i] & B_MANY ? "many-master" : "single-master",
+> +				 phases[i] & B_FENCE ? "fenced" : "immediate",
+> +				 cycles[0]);
+> +		}
+> +
+> +		igt_info("Class %u, %d threads\n", class, count + 1);
+> +		for (int i = 0; i < ARRAY_SIZE(phases); i++) {
+> +			memset(cycles, 0, (count + 1) * sizeof(*cycles));
+> +			igt_fork(child, count + 1)
+> +				__bonded_dual(i915,
+> +					      siblings, count,
+> +					      phases[i],
+> +					      &cycles[child]);
+> +			igt_waitchildren();
+> +			gem_quiescent_gpu(i915);
+> +
+> +			for (int child = 1; child < count + 1; child++)
+> +				cycles[0] += cycles[child];
+> +
+> +			igt_info("%s %s %s submission, %lu cycles\n",
+> +				 phases[i] & B_HOSTILE ? "Non-preemptible" : "Preemptible",
+> +				 phases[i] & B_MANY ? "many-master" : "single-master",
+> +				 phases[i] & B_FENCE ? "fenced" : "immediate",
+> +				 cycles[0]);
+> +		}
+> +
+> +		free(siblings);
+> +	}
+> +
+> +	munmap(cycles, 4096);
+> +}
+> +
+>   static void __bonded_nohang(int i915, uint32_t ctx,
+>   			    const struct i915_engine_class_instance *siblings,
+>   			    unsigned int count,
+> @@ -2284,6 +2620,11 @@ igt_main
+>   	igt_subtest("bonded-semaphore")
+>   		bonded_semaphore(i915);
+>   
+> +	igt_subtest("bonded-pair")
+> +		bonded_pair(i915);
+> +	igt_subtest("bonded-dual")
+> +		bonded_dual(i915);
+> +
+>   	igt_fixture {
+>   		igt_stop_hang_detector();
+>   	}
+> 
 
--- 
-Kees Cook
+
+"Runner" (non underscore functions) could have been shared easily but okay:
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
