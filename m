@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F3481E771A
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 09:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 007A11E7720
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 09:41:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC4A6E87B;
-	Fri, 29 May 2020 07:41:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2894A6E884;
+	Fri, 29 May 2020 07:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
- [209.85.216.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12D76E87C;
- Fri, 29 May 2020 07:41:15 +0000 (UTC)
-Received: by mail-pj1-f67.google.com with SMTP id s88so259037pjb.5;
- Fri, 29 May 2020 00:41:15 -0700 (PDT)
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com
+ [209.85.215.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C40E26E87B;
+ Fri, 29 May 2020 07:41:16 +0000 (UTC)
+Received: by mail-pg1-f194.google.com with SMTP id d10so1018283pgn.4;
+ Fri, 29 May 2020 00:41:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2jHA8VIMvKgrxc1AW+DPbkuZZuKskUQcNv9lMPkimBs=;
- b=QTryRgBA76q5MWaw5M4wiGrHJeR6pAxsWgjfXN4fH0+4BU+61hpKvx4iDveXeTLS3c
- tihaOjDEIPfV8Zjt0q7xK4iylaVjQJ6CzJvfvW3nypkoXye345ZTVil5Yxl6tA3NEEgo
- 39TKuJloyFoeRSB3hensFegtCFBAgkR9pgelBGeUSShP775nlda/FRFAVVS29dZX+WMm
- Duzr5c3d0NZK/Ocl5Aa7xP+RcPu/VYrMcwjDDgeCmpg3kyua7FHMC664tZz8W3Zu7oHR
- eHAeyb9cOxxe4urDsGE41+10E0Tscfssg6UrJ9PUqdcnOppwnYSchfzJcsayJDfjFEhA
- 3Pwg==
-X-Gm-Message-State: AOAM532LwuhCuWday8qOQc9oxCL7bfiFso7E5kyybRfxuloG70HMKxk8
- AJs+FRF+ENNWAztM/mKVI4w=
-X-Google-Smtp-Source: ABdhPJwLKp4Ek16GIR6wfTGzoNi9sGCN2B5VA54FGeDyqorTPtnWjcRjvN0kcQMGbXM4anhxYRPvyw==
-X-Received: by 2002:a17:90a:b011:: with SMTP id
- x17mr8088274pjq.175.1590738075444; 
- Fri, 29 May 2020 00:41:15 -0700 (PDT)
+ bh=/vA3i/UOi3UGtI8x+kS8OZpNUo79BRU7m0khtdFXp1w=;
+ b=RtH3pGw4aVr3DhineH3Lyc8JZqi7+fPS+5k3cYbgcug8s/dPrqcCjm50MwfL51sVBW
+ X7M+SuJzmyXMS9Cu/Y4wzgt4/JhRIEIiW+G50xFYuRRZIdebSBZcdKc+uXiwt1jCJOZo
+ Si6dmRA202cJkjrUsVHj3R9+XV9sb3rswpezLJSm3BpRidGqFgGml7uSgSzV+OCjyeDH
+ oIzIbrIEiLhWQSOEqnh50k++/USaE185gJE+uhPsCxBNQqXp2m7gdQ/oznMk0t+HeCds
+ c4C+7GOj0SVIzjZbT6N2ycLArq7b/w30G/cmZxuruqwjbNLuYFjqtt3+NvGBvm5VAH/e
+ OFRQ==
+X-Gm-Message-State: AOAM533Aj7GKfC1pR4su7HuKr2lBzdJpkSyUgfaFQxqp+1J1Rm9RQeVp
+ iaxoP28kPi0SkRcnM3MqXKA=
+X-Google-Smtp-Source: ABdhPJwVflgyvahnPxBVjITKozn64OGLurCkYnovebI0IemGuS43xiHECvCCud24IYthmkf9lnECTw==
+X-Received: by 2002:aa7:8658:: with SMTP id a24mr7517245pfo.135.1590738076317; 
+ Fri, 29 May 2020 00:41:16 -0700 (PDT)
 Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
- by smtp.gmail.com with ESMTPSA id a7sm6765760pfa.187.2020.05.29.00.41.11
+ by smtp.gmail.com with ESMTPSA id q189sm6758936pfc.112.2020.05.29.00.41.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Fri, 29 May 2020 00:41:12 -0700 (PDT)
 Received: by 42.do-not-panic.com (Postfix, from userid 1000)
- id 67FA942309; Fri, 29 May 2020 07:41:10 +0000 (UTC)
+ id 916034230A; Fri, 29 May 2020 07:41:10 +0000 (UTC)
 From: Luis Chamberlain <mcgrof@kernel.org>
 To: keescook@chromium.org, yzaikin@google.com, nixiaoming@huawei.com,
  ebiederm@xmission.com, axboe@kernel.dk, clemens@ladisch.de, arnd@arndb.de,
@@ -47,13 +46,13 @@ To: keescook@chromium.org, yzaikin@google.com, nixiaoming@huawei.com,
  viro@zeniv.linux.org.uk, mark@fasheh.com, jlbec@evilplan.org,
  joseph.qi@linux.alibaba.com, vbabka@suse.cz, sfr@canb.auug.org.au,
  jack@suse.cz, amir73il@gmail.com, rafael@kernel.org, tytso@mit.edu
-Date: Fri, 29 May 2020 07:40:58 +0000
-Message-Id: <20200529074108.16928-4-mcgrof@kernel.org>
+Date: Fri, 29 May 2020 07:40:59 +0000
+Message-Id: <20200529074108.16928-5-mcgrof@kernel.org>
 X-Mailer: git-send-email 2.23.0.rc1
 In-Reply-To: <20200529074108.16928-1-mcgrof@kernel.org>
 References: <20200529074108.16928-1-mcgrof@kernel.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/13] hpet: use new sysctl subdir helper
+Subject: [Intel-gfx] [PATCH 04/13] i915: use new sysctl subdir helper
  register_sysctl_subdir()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,7 +78,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 This simplifies the code considerably. The following coccinelle
 SmPL grammar rule was used to transform this code.
 
-// pycocci sysctl-subdir.cocci drivers/char/hpet.c
+// pycocci sysctl-subdir.cocci drivers/gpu/drm/i915/i915_perf.c
 
 @c1@
 expression E1;
@@ -164,26 +163,25 @@ header =
 +register_sysctl_subdir(E2, E1, sysctls);
 
 Generated-by: Coccinelle SmPL
-
 Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
 ---
- drivers/char/hpet.c | 22 +---------------------
+ drivers/gpu/drm/i915/i915_perf.c | 22 +---------------------
  1 file changed, 1 insertion(+), 21 deletions(-)
 
-diff --git a/drivers/char/hpet.c b/drivers/char/hpet.c
-index ed3b7dab678d..169c970d5ff8 100644
---- a/drivers/char/hpet.c
-+++ b/drivers/char/hpet.c
-@@ -746,26 +746,6 @@ static struct ctl_table hpet_table[] = {
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 665bb076e84d..52509b573794 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -4203,26 +4203,6 @@ static struct ctl_table oa_table[] = {
  	{}
  };
  
--static struct ctl_table hpet_root[] = {
+-static struct ctl_table i915_root[] = {
 -	{
--	 .procname = "hpet",
+-	 .procname = "i915",
 -	 .maxlen = 0,
 -	 .mode = 0555,
--	 .child = hpet_table,
+-	 .child = oa_table,
 -	 },
 -	{}
 -};
@@ -193,23 +191,23 @@ index ed3b7dab678d..169c970d5ff8 100644
 -	 .procname = "dev",
 -	 .maxlen = 0,
 -	 .mode = 0555,
--	 .child = hpet_root,
+-	 .child = i915_root,
 -	 },
 -	{}
 -};
 -
- static struct ctl_table_header *sysctl_header;
+ /**
+  * i915_perf_init - initialize i915-perf state on module bind
+  * @i915: i915 device instance
+@@ -4383,7 +4363,7 @@ static int destroy_config(int id, void *p, void *data)
  
- /*
-@@ -1059,7 +1039,7 @@ static int __init hpet_init(void)
- 	if (result < 0)
- 		return -ENODEV;
- 
+ void i915_perf_sysctl_register(void)
+ {
 -	sysctl_header = register_sysctl_table(dev_root);
-+	sysctl_header = register_sysctl_subdir("dev", "hpet", hpet_table);
++	sysctl_header = register_sysctl_subdir("dev", "i915", oa_table);
+ }
  
- 	result = acpi_bus_register_driver(&hpet_acpi_driver);
- 	if (result < 0) {
+ void i915_perf_sysctl_unregister(void)
 -- 
 2.26.2
 
