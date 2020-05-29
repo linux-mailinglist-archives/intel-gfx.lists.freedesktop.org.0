@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4331E7D4D
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:33:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A22781E7DAE
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:53:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E84189F41;
-	Fri, 29 May 2020 12:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEADB6E8ED;
+	Fri, 29 May 2020 12:53:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13CAA89F41;
- Fri, 29 May 2020 12:33:22 +0000 (UTC)
-IronPort-SDR: iqqS54Bu776Gs22riHvGBdpvdYnzeqZmn+YO8PfbgLlGx0RiFbSucf3hV8exErsPJuBmxfTw9I
- AmDLzrOl/WIw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2020 05:33:21 -0700
-IronPort-SDR: BH8cx+3xgrjE2I/A+UZDj1fS2eA+3s+/PeyvoU5yUDuOW2JZwAkkAAeK5uWjfg2fQ9QrlsI/wc
- 5J4tTI4APi+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,448,1583222400"; d="scan'208";a="303113842"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga008.jf.intel.com with ESMTP; 29 May 2020 05:33:19 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 3CB2EFC; Fri, 29 May 2020 15:33:17 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org
-Date: Fri, 29 May 2020 15:33:17 +0300
-Message-Id: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8EBE46E8EB;
+ Fri, 29 May 2020 12:53:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FE09A0019;
+ Fri, 29 May 2020 12:53:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1] drm/i915/dsi: Drop double check for ACPI
- companion device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 29 May 2020 12:53:25 -0000
+Message-ID: <159075680549.3334.9686418329491772961@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200529115731.7666-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200529115731.7666-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Track_i915=5Fvma_with_i?=
+ =?utf-8?q?ts_own_reference_counter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,62 +39,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-acpi_dev_get_resources() does perform the NULL pointer check against
-ACPI companion device which is given as function parameter. Thus,
-there is no need to duplicate this check in the caller.
+== Series Details ==
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 24 ++++++++------------
- 1 file changed, 10 insertions(+), 14 deletions(-)
+Series: series starting with [1/2] drm/i915: Track i915_vma with its own reference counter
+URL   : https://patchwork.freedesktop.org/series/77784/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 574dcfec9577..6f9e08cda964 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -426,23 +426,19 @@ static void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
- {
- 	struct drm_device *drm_dev = intel_dsi->base.base.dev;
- 	struct device *dev = &drm_dev->pdev->dev;
--	struct acpi_device *acpi_dev;
-+	struct acpi_device *acpi_dev = ACPI_COMPANION(dev);
- 	struct list_head resource_list;
- 	struct i2c_adapter_lookup lookup;
- 
--	acpi_dev = ACPI_COMPANION(dev);
--	if (acpi_dev) {
--		memset(&lookup, 0, sizeof(lookup));
--		lookup.slave_addr = slave_addr;
--		lookup.intel_dsi = intel_dsi;
--		lookup.dev_handle = acpi_device_handle(acpi_dev);
--
--		INIT_LIST_HEAD(&resource_list);
--		acpi_dev_get_resources(acpi_dev, &resource_list,
--				       i2c_adapter_lookup,
--				       &lookup);
--		acpi_dev_free_resource_list(&resource_list);
--	}
-+	memset(&lookup, 0, sizeof(lookup));
-+	lookup.slave_addr = slave_addr;
-+	lookup.intel_dsi = intel_dsi;
-+	lookup.dev_handle = acpi_device_handle(acpi_dev);
-+
-+	INIT_LIST_HEAD(&resource_list);
-+	acpi_dev_get_resources(acpi_dev, &resource_list,
-+			       i2c_adapter_lookup, &lookup);
-+	acpi_dev_free_resource_list(&resource_list);
- }
- #else
- static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
--- 
-2.26.2
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8553 -> Patchwork_17815
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17815 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17815, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17815:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@evict:
+    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-bsw-kefka/igt@i915_selftest@live@evict.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-bsw-kefka/igt@i915_selftest@live@evict.html
+    - fi-kbl-soraka:      [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-kbl-soraka/igt@i915_selftest@live@evict.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-kbl-soraka/igt@i915_selftest@live@evict.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-icl-u2:          [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-icl-u2/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-icl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-bsw-nick:        [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-bsw-nick/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-bsw-nick/igt@i915_selftest@live@requests.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gem_contexts:
+    - {fi-tgl-dsi}:       [PASS][9] -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17815 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6700k2:      [PASS][11] -> [INCOMPLETE][12] ([i915#151])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-bsw-n3050:       [PASS][13] -> [INCOMPLETE][14] ([i915#392])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-skl-lmem:        [PASS][15] -> [INCOMPLETE][16] ([i915#198])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-skl-lmem/igt@i915_selftest@live@sanitycheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-skl-lmem/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][17] -> [FAIL][18] ([i915#262])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][19] ([fdo#109271]) -> [FAIL][20] ([i915#62] / [i915#95])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (51 -> 43)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8553 -> Patchwork_17815
+
+  CI-20190529: 20190529
+  CI_DRM_8553: 9f1b8b4fcb466dc714b1f825fd93e3bbd29c7de6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5683: 757b6e72d546fd2dbc3801a73796d67b0854021b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17815: fd7715d1f5e5a7f7b988d0a52a4750ef8c2d812c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fd7715d1f5e5 drm/i915: Discard a misplaced GGTT vma
+5ddf1d723df5 drm/i915: Track i915_vma with its own reference counter
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17815/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
