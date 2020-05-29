@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6FE61E8BBF
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 01:07:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9967E1E8BE3
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 01:26:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1BE6E986;
-	Fri, 29 May 2020 23:07:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDD66E988;
+	Fri, 29 May 2020 23:26:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C8436E986;
- Fri, 29 May 2020 23:07:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96B35A0BC6;
- Fri, 29 May 2020 23:07:28 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 608976E988
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 23:26:49 +0000 (UTC)
+IronPort-SDR: ELwAHXWzNc/unjG6pf4r2xMenU/VrwgRhMLTR4yqQH0VucNhymQqCpyiaIyl8vvRxw5iETPiVw
+ AyhPayQfqU1g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 16:26:48 -0700
+IronPort-SDR: 64DozeFP1bFKKF5EmDl4qjdrt9RtNlu6sEHcKYkQNh9AfAtMPRRTJGWaXYHyPzrXgG6qBu9Vaq
+ 2AN67Ed5vxeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,450,1583222400"; d="scan'208";a="302995563"
+Received: from kjbenoix-mobl.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.254.186.10])
+ by fmsmga002.fm.intel.com with ESMTP; 29 May 2020 16:26:48 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 May 2020 16:27:57 -0700
+Message-Id: <20200529232757.37832-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.aiemd@gmail.com>
-Date: Fri, 29 May 2020 23:07:28 -0000
-Message-ID: <159079364859.3331.16558261407505252053@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200529163351.5228-1-nirmoy.das@amd.com>
-In-Reply-To: <20200529163351.5228-1-nirmoy.das@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BRFC=2C1/1=5D_drm/mm=3A_add_ig=5Ffrag_selft?=
- =?utf-8?q?est?=
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Update TC DP vswing table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,76 +45,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [RFC,1/1] drm/mm: add ig_frag selftest
-URL   : https://patchwork.freedesktop.org/series/77803/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8556 -> Patchwork_17823
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17823/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17823 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@active:
-    - fi-bsw-n3050:       [DMESG-FAIL][1] ([i915#541]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8556/fi-bsw-n3050/igt@i915_selftest@live@active.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17823/fi-bsw-n3050/igt@i915_selftest@live@active.html
-
-  
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8556 -> Patchwork_17823
-
-  CI-20190529: 20190529
-  CI_DRM_8556: a12abc504361cc53eeb53c2948aebbd88709a901 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5684: bd399f5eb8263bb4a84ae6a5bb1a13d329e0515d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17823: 320cc6810801929affc6303c2481c0d2b735414e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-320cc6810801 drm/mm: add ig_frag selftest
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17823/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U21hbGwgdXBkYXRlcyBpbiBka2xfZGVfZW1waGFzaXNfY29udHJvbCBmaWVsZC4KCkJTcGVjOiA0
+OTI5MgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
+dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwg
+NiArKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggYWEyMjQ2NWJi
+NTZlLi5jZDIxMWY0OGM0MDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+ZGkuYwpAQCAtNjM5LDExICs2MzksMTEgQEAgc3RydWN0IHRnbF9ka2xfcGh5X2RkaV9idWZfdHJh
+bnMgewogc3RhdGljIGNvbnN0IHN0cnVjdCB0Z2xfZGtsX3BoeV9kZGlfYnVmX3RyYW5zIHRnbF9k
+a2xfcGh5X2RwX2RkaV90cmFuc1tdID0gewogCQkJCS8qIFZTCXByZS1lbXAJTm9uLXRyYW5zIG1W
+CVByZS1lbXBoIGRCICovCiAJeyAweDcsIDB4MCwgMHgwMCB9LAkvKiAwCTAJNDAwbVYJCTAgZEIg
+Ki8KLQl7IDB4NSwgMHgwLCAweDAzIH0sCS8qIDAJMQk0MDBtVgkJMy41IGRCICovCi0JeyAweDIs
+IDB4MCwgMHgwYiB9LAkvKiAwCTIJNDAwbVYJCTYgZEIgKi8KKwl7IDB4NSwgMHgwLCAweDA1IH0s
+CS8qIDAJMQk0MDBtVgkJMy41IGRCICovCisJeyAweDIsIDB4MCwgMHgwQiB9LAkvKiAwCTIJNDAw
+bVYJCTYgZEIgKi8KIAl7IDB4MCwgMHgwLCAweDE5IH0sCS8qIDAJMwk0MDBtVgkJOS41IGRCICov
+CiAJeyAweDUsIDB4MCwgMHgwMCB9LAkvKiAxCTAJNjAwbVYJCTAgZEIgKi8KLQl7IDB4MiwgMHgw
+LCAweDAzIH0sCS8qIDEJMQk2MDBtVgkJMy41IGRCICovCisJeyAweDIsIDB4MCwgMHgwOCB9LAkv
+KiAxCTEJNjAwbVYJCTMuNSBkQiAqLwogCXsgMHgwLCAweDAsIDB4MTQgfSwJLyogMQkyCTYwMG1W
+CQk2IGRCICovCiAJeyAweDIsIDB4MCwgMHgwMCB9LAkvKiAyCTAJODAwbVYJCTAgZEIgKi8KIAl7
+IDB4MCwgMHgwLCAweDBCIH0sCS8qIDIJMQk4MDBtVgkJMy41IGRCICovCi0tIAoyLjI2LjIKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
