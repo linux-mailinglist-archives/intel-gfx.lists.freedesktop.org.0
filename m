@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAEE1E7F94
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 16:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 461AF1E7FCA
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 16:11:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2E3C6E90E;
-	Fri, 29 May 2020 14:04:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DE96E912;
+	Fri, 29 May 2020 14:11:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26D786E90E
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 14:04:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21335319-1500050 for multiple; Fri, 29 May 2020 15:03:56 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7EA886E911;
+ Fri, 29 May 2020 14:11:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79169A011B;
+ Fri, 29 May 2020 14:11:15 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200529122851.8540-1-chris@chris-wilson.co.uk>
-References: <20200529085809.23691-2-chris@chris-wilson.co.uk>
- <20200529122851.8540-1-chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159076103728.8851.9543681736260643381@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 29 May 2020 15:03:57 +0100
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Check for awaits on still
- currently executing requests
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 29 May 2020 14:11:15 -0000
+Message-ID: <159076147546.3333.4861790408662905004@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200529130019.17977-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200529130019.17977-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Discard_a_misplaced_GGTT_vma?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,63 +38,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-05-29 13:28:51)
-> With the advent of preempt-to-busy, a request may still be on the GPU as
-> we unwind. And in the case of a unpreemptible [due to HW] request, that
-> request will remain indefinitely on the GPU even though we have
-> returned it back to our submission queue, and cleared the active bit.
-> 
-> We only run the execution callbacks on transferring the request from our
-> submission queue to the execution queue, but if this is a bonded request
-> that the HW is waiting for, we will not submit it (as we wait for a
-> fresh execution) even though it is still being executed.
-> 
-> As we know that there are always preemption points between requests, we
-> know that only the currently executing request may be still active even
-> though we have cleared the flag.
-> 
-> Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
-> Testcase: igt/gem_exec_balancer/bonded-dual
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_request.c | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index e5aba6824e26..2f0e9a63002d 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -363,6 +363,23 @@ static void __llist_add(struct llist_node *node, struct llist_head *head)
->         head->first = node;
->  }
->  
-> +static bool __request_in_flight(const struct i915_request *signal)
-> +{
-> +       /*
-> +        * Even if we have unwound the request, it may still be on
-> +        * the GPU (preempt-to-busy). If that request is inside an
-> +        * unpreemptible critical section, it will not be removed. Some
-> +        * GPU functions may even be stuck waiting for the paired request
-> +        * (__await_execution) to be submitted and cannot be preempted
-> +        * until the bond is executing.
-> +        *
-> +        * As we know that there are always preemption points between
-> +        * requests, we know that only the currently executing request
-> +        * may be still active even though we have cleared the flag.
-> +        */
-> +       return signal == execlists_active(&signal->engine->execlists);
+== Series Details ==
 
-Iff and only if there is one request in ELSP[0]. And presuming
-process_csb has been run recently.
+Series: drm/i915: Discard a misplaced GGTT vma
+URL   : https://patchwork.freedesktop.org/series/77786/
+State : success
 
-I think I'm back at intel_context_inflight(signal).
--Chris
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8553 -> Patchwork_17818
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17818/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17818 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [TIMEOUT][1] ([i915#1288]) -> [TIMEOUT][2] ([i915#1288] / [i915#1958])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8553/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17818/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+  [i915#1288]: https://gitlab.freedesktop.org/drm/intel/issues/1288
+  [i915#1958]: https://gitlab.freedesktop.org/drm/intel/issues/1958
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8553 -> Patchwork_17818
+
+  CI-20190529: 20190529
+  CI_DRM_8553: 9f1b8b4fcb466dc714b1f825fd93e3bbd29c7de6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5683: 757b6e72d546fd2dbc3801a73796d67b0854021b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17818: c92c12f5de38ad38c279bbcd5f131392a3c78732 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c92c12f5de38 drm/i915: Discard a misplaced GGTT vma
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17818/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
