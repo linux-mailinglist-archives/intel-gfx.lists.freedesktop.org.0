@@ -1,31 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE91A1E7744
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 09:42:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B8AA1E77FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 10:13:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36F046E87E;
-	Fri, 29 May 2020 07:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5958C6E898;
+	Fri, 29 May 2020 08:13:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2957A6E87E;
- Fri, 29 May 2020 07:42:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 245A5A66C9;
- Fri, 29 May 2020 07:42:37 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luis Chamberlain" <mcgrof@kernel.org>
-Date: Fri, 29 May 2020 07:42:37 -0000
-Message-ID: <159073815714.3331.13774765168949742999@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E922E6E897;
+ Fri, 29 May 2020 08:13:34 +0000 (UTC)
+IronPort-SDR: Z+Ho7H6NPzpCSXRMTNwHpMqWEOmoCWJc09gPwXoAhn0DClid0B18niQX/+2a0yTqo+GHaiZnUI
+ K26g4xx8Xcgg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 01:13:34 -0700
+IronPort-SDR: D2OwS10W8ZRNlx/6Re2YsoM7kJBRLFponE5d5dxkGBhZBaxQ/ruwwvpzbgjrVkk988jxA2/K/b
+ SWs0rrYn6mJA==
+X-IronPort-AV: E=Sophos;i="5.73,447,1583222400"; d="scan'208";a="443289103"
+Received: from vtsikino-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.43.186])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 01:13:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luis Chamberlain <mcgrof@kernel.org>, keescook@chromium.org,
+ yzaikin@google.com, nixiaoming@huawei.com, ebiederm@xmission.com,
+ axboe@kernel.dk, clemens@ladisch.de, arnd@arndb.de, gregkh@linuxfoundation.org,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, benh@kernel.crashing.org, rdna@fb.com,
+ viro@zeniv.linux.org.uk, mark@fasheh.com, jlbec@evilplan.org,
+ joseph.qi@linux.alibaba.com, vbabka@suse.cz, sfr@canb.auug.org.au,
+ jack@suse.cz, amir73il@gmail.com, rafael@kernel.org, tytso@mit.edu
+In-Reply-To: <20200529074108.16928-2-mcgrof@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200529074108.16928-1-mcgrof@kernel.org>
-In-Reply-To: <20200529074108.16928-1-mcgrof@kernel.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?ysctl=3A_spring_cleaning?=
+ <20200529074108.16928-2-mcgrof@kernel.org>
+Date: Fri, 29 May 2020 11:13:21 +0300
+Message-ID: <87d06n17mm.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 01/13] sysctl: add new
+ register_sysctl_subdir() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +56,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, julia.lawall@lip6.fr,
+ Luis Chamberlain <mcgrof@kernel.org>, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 29 May 2020, Luis Chamberlain <mcgrof@kernel.org> wrote:
+> Often enough all we need to do is create a subdirectory so that
+> we can stuff sysctls underneath it. However, *if* that directory
+> was already created early on the boot sequence we really have no
+> need to use the full boiler plate code for it, we can just use
+> local variables to help us guide sysctl to place the new leaf files.
 
-Series: sysctl: spring cleaning
-URL   : https://patchwork.freedesktop.org/series/77780/
-State : failure
+I find it hard to figure out the lifetime requirements for the tables
+passed in; when it's okay to use local variables and when you need
+longer lifetimes. It's not documented, everyone appears to be using
+static tables for this. It's far from obvious.
 
-== Summary ==
+BR,
+Jani.
 
-Applying: sysctl: add new register_sysctl_subdir() helper
-error: sha1 information is lacking or useless (include/linux/sysctl.h).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 sysctl: add new register_sysctl_subdir() helper
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
