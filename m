@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609D11E7D36
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:29:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD941E7D3F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2020 14:31:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7AF26E8E3;
-	Fri, 29 May 2020 12:29:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC8A6E8E5;
+	Fri, 29 May 2020 12:31:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262D26E8E3
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 12:29:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21334157-1500050 
- for multiple; Fri, 29 May 2020 13:28:52 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 May 2020 13:28:51 +0100
-Message-Id: <20200529122851.8540-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200529085809.23691-2-chris@chris-wilson.co.uk>
-References: <20200529085809.23691-2-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 596836E8E4;
+ Fri, 29 May 2020 12:31:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53A35A0099;
+ Fri, 29 May 2020 12:31:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Check for awaits on still
- currently executing requests
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 29 May 2020 12:31:05 -0000
+Message-ID: <159075546533.3334.5171415593386465490@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200529115731.7666-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200529115731.7666-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Track_i915=5Fvma?=
+ =?utf-8?q?_with_its_own_reference_counter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,73 +39,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the advent of preempt-to-busy, a request may still be on the GPU as
-we unwind. And in the case of a unpreemptible [due to HW] request, that
-request will remain indefinitely on the GPU even though we have
-returned it back to our submission queue, and cleared the active bit.
+== Series Details ==
 
-We only run the execution callbacks on transferring the request from our
-submission queue to the execution queue, but if this is a bonded request
-that the HW is waiting for, we will not submit it (as we wait for a
-fresh execution) even though it is still being executed.
+Series: series starting with [1/2] drm/i915: Track i915_vma with its own reference counter
+URL   : https://patchwork.freedesktop.org/series/77784/
+State : warning
 
-As we know that there are always preemption points between requests, we
-know that only the currently executing request may be still active even
-though we have cleared the flag.
+== Summary ==
 
-Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
-Testcase: igt/gem_exec_balancer/bonded-dual
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+$ dim checkpatch origin/drm-tip
+5ddf1d723df5 drm/i915: Track i915_vma with its own reference counter
+-:2232: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#2232: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:267:
++		spinlock_t lock;
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index e5aba6824e26..2f0e9a63002d 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -363,6 +363,23 @@ static void __llist_add(struct llist_node *node, struct llist_head *head)
- 	head->first = node;
- }
- 
-+static bool __request_in_flight(const struct i915_request *signal)
-+{
-+	/*
-+	 * Even if we have unwound the request, it may still be on
-+	 * the GPU (preempt-to-busy). If that request is inside an
-+	 * unpreemptible critical section, it will not be removed. Some
-+	 * GPU functions may even be stuck waiting for the paired request
-+	 * (__await_execution) to be submitted and cannot be preempted
-+	 * until the bond is executing.
-+	 *
-+	 * As we know that there are always preemption points between
-+	 * requests, we know that only the currently executing request
-+	 * may be still active even though we have cleared the flag.
-+	 */
-+	return signal == execlists_active(&signal->engine->execlists);
-+}
-+
- static int
- __await_execution(struct i915_request *rq,
- 		  struct i915_request *signal,
-@@ -393,7 +410,7 @@ __await_execution(struct i915_request *rq,
- 	}
- 
- 	spin_lock_irq(&signal->lock);
--	if (i915_request_is_active(signal)) {
-+	if (i915_request_is_active(signal) || __request_in_flight(signal)) {
- 		if (hook) {
- 			hook(rq, &signal->fence);
- 			i915_request_put(signal);
--- 
-2.20.1
+-:4006: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#4006: FILE: drivers/gpu/drm/i915/i915_vma.h:386:
++	spinlock_t lock;
+
+-:4253: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4253: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:394:
++						if (offset < hole_start + vma->size)
+
+-:4264: WARNING:LONG_LINE: line over 100 characters
+#4264: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:402:
++						       __func__, p->name, err, npages, prime, offset,
+
+-:4274: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4274: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:419:
++						if (offset + vma->node.size > hole_end)
+
+-:4290: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4290: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:428:
++						if (offset < hole_start + vma->node.size)
+
+-:4302: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4302: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:451:
++						if (offset + vma->node.size > hole_end)
+
+-:4318: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4318: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:460:
++						if (offset < hole_start + vma->node.size)
+
+-:4330: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4330: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:484:
++						if (offset + vma->size >= hole_end)
+
+-:4346: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4346: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:493:
++						if (offset < hole_start + vma->size)
+
+-:4358: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#4358: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:516:
++						if (offset + vma->size >= hole_end)
+
+total: 0 errors, 9 warnings, 2 checks, 4783 lines checked
+fd7715d1f5e5 drm/i915: Discard a misplaced GGTT vma
 
 _______________________________________________
 Intel-gfx mailing list
