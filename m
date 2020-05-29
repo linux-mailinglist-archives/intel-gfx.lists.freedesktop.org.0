@@ -2,37 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9967E1E8BE3
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 01:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 986931E8C61
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 01:57:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDD66E988;
-	Fri, 29 May 2020 23:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 145CA6E989;
+	Fri, 29 May 2020 23:56:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 608976E988
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 23:26:49 +0000 (UTC)
-IronPort-SDR: ELwAHXWzNc/unjG6pf4r2xMenU/VrwgRhMLTR4yqQH0VucNhymQqCpyiaIyl8vvRxw5iETPiVw
- AyhPayQfqU1g==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74516E989
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 May 2020 23:56:55 +0000 (UTC)
+IronPort-SDR: g1/ojztwHNYa30XCtKn9yab8PSNgAetVigQMw8kmjDtavlQjXAkBtxIQm0RKAvC/VtGL4yPzqD
+ pCg9bb+Jg/2A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2020 16:26:48 -0700
-IronPort-SDR: 64DozeFP1bFKKF5EmDl4qjdrt9RtNlu6sEHcKYkQNh9AfAtMPRRTJGWaXYHyPzrXgG6qBu9Vaq
- 2AN67Ed5vxeg==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2020 16:56:55 -0700
+IronPort-SDR: UtI+jL4oHjMIasBzbHovMVr+hNqfDpvuTVv3f6XhnntMEEvS/C8Nvn1XZHBO7wwZVViUHAhHSg
+ H3ElhehYjDZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,450,1583222400"; d="scan'208";a="302995563"
-Received: from kjbenoix-mobl.amr.corp.intel.com (HELO
- josouza-MOBL2.amr.corp.intel.com) ([10.254.186.10])
- by fmsmga002.fm.intel.com with ESMTP; 29 May 2020 16:26:48 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 May 2020 16:27:57 -0700
-Message-Id: <20200529232757.37832-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.26.2
+X-IronPort-AV: E=Sophos;i="5.73,450,1583222400"; d="scan'208";a="271382323"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga006.jf.intel.com with ESMTP; 29 May 2020 16:56:55 -0700
+Date: Fri, 29 May 2020 16:57:38 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200529235738.GA3731@intel.com>
+References: <20200526094852.6967-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Update TC DP vswing table
+Content-Disposition: inline
+In-Reply-To: <20200526094852.6967-1-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Fix wrong CDCLK adjustment
+ changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,32 +49,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U21hbGwgdXBkYXRlcyBpbiBka2xfZGVfZW1waGFzaXNfY29udHJvbCBmaWVsZC4KCkJTcGVjOiA0
-OTI5MgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwg
-NiArKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggYWEyMjQ2NWJi
-NTZlLi5jZDIxMWY0OGM0MDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZGkuYwpAQCAtNjM5LDExICs2MzksMTEgQEAgc3RydWN0IHRnbF9ka2xfcGh5X2RkaV9idWZfdHJh
-bnMgewogc3RhdGljIGNvbnN0IHN0cnVjdCB0Z2xfZGtsX3BoeV9kZGlfYnVmX3RyYW5zIHRnbF9k
-a2xfcGh5X2RwX2RkaV90cmFuc1tdID0gewogCQkJCS8qIFZTCXByZS1lbXAJTm9uLXRyYW5zIG1W
-CVByZS1lbXBoIGRCICovCiAJeyAweDcsIDB4MCwgMHgwMCB9LAkvKiAwCTAJNDAwbVYJCTAgZEIg
-Ki8KLQl7IDB4NSwgMHgwLCAweDAzIH0sCS8qIDAJMQk0MDBtVgkJMy41IGRCICovCi0JeyAweDIs
-IDB4MCwgMHgwYiB9LAkvKiAwCTIJNDAwbVYJCTYgZEIgKi8KKwl7IDB4NSwgMHgwLCAweDA1IH0s
-CS8qIDAJMQk0MDBtVgkJMy41IGRCICovCisJeyAweDIsIDB4MCwgMHgwQiB9LAkvKiAwCTIJNDAw
-bVYJCTYgZEIgKi8KIAl7IDB4MCwgMHgwLCAweDE5IH0sCS8qIDAJMwk0MDBtVgkJOS41IGRCICov
-CiAJeyAweDUsIDB4MCwgMHgwMCB9LAkvKiAxCTAJNjAwbVYJCTAgZEIgKi8KLQl7IDB4MiwgMHgw
-LCAweDAzIH0sCS8qIDEJMQk2MDBtVgkJMy41IGRCICovCisJeyAweDIsIDB4MCwgMHgwOCB9LAkv
-KiAxCTEJNjAwbVYJCTMuNSBkQiAqLwogCXsgMHgwLCAweDAsIDB4MTQgfSwJLyogMQkyCTYwMG1W
-CQk2IGRCICovCiAJeyAweDIsIDB4MCwgMHgwMCB9LAkvKiAyCTAJODAwbVYJCTAgZEIgKi8KIAl7
-IDB4MCwgMHgwLCAweDBCIH0sCS8qIDIJMQk4MDBtVgkJMy41IGRCICovCi0tIAoyLjI2LjIKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, May 26, 2020 at 12:48:52PM +0300, Stanislav Lisovskiy wrote:
+> Previous patch didn't take into account all pipes
+> but only those in state, which could cause wrong
+> CDCLK conclcusions and calculations.
+> Also there was a severe issue with min_cdclk being
+> assigned to 0 every compare cycle.
+> 
+> Too bad this was found by me only after merge.
+> This could be also causing the issues in test, however
+> not clear - anyway marking this as fixing the
+> "Adjust CDCLK accordingly to our DBuf bw needs".
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Fixes: cd1915460861 ("Adjust CDCLK accordingly to our DBuf bw needs")
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c      | 51 ++++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_cdclk.c   | 19 +++++---
+>  drivers/gpu/drm/i915/display/intel_display.c | 26 +++++-----
+>  3 files changed, 53 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index a79bd7aeb03b..8096138abecc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -437,6 +437,7 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  	struct intel_crtc *crtc;
+>  	int max_bw = 0;
+>  	int slice_id;
+> +	enum pipe pipe;
+>  	int i;
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> @@ -447,7 +448,9 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  		if (IS_ERR(new_bw_state))
+>  			return PTR_ERR(new_bw_state);
+>  
+> -		crtc_bw = &new_bw_state->dbuf_bw[crtc->pipe];
+> +		old_bw_state = intel_atomic_get_old_bw_state(state);
+> +
+> +		crtc_bw = &new_bw_state->dbuf_bw[pipe];
+>  
+>  		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
+>  
+> @@ -478,6 +481,15 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
+>  				crtc_bw->used_bw[slice_id] += data_rate;
+>  		}
+> +	}
+> +
+> +	if (!old_bw_state)
+> +		return 0;
+> +
+> +	for_each_pipe(dev_priv, pipe) {
+> +		struct intel_dbuf_bw *crtc_bw;
+> +
+
+So the condition !old_bw_state() will make sure we loop through
+only the active pipes and compute crtc_bw only for those right?
+
+Manasi
+
+> +		crtc_bw = &new_bw_state->dbuf_bw[pipe];
+>  
+>  		for_each_dbuf_slice(slice_id) {
+>  			/*
+> @@ -490,14 +502,9 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  			 */
+>  			max_bw += crtc_bw->used_bw[slice_id];
+>  		}
+> -
+> -		new_bw_state->min_cdclk = max_bw / 64;
+> -
+> -		old_bw_state = intel_atomic_get_old_bw_state(state);
+>  	}
+>  
+> -	if (!old_bw_state)
+> -		return 0;
+> +	new_bw_state->min_cdclk = max_bw / 64;
+>  
+>  	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+>  		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+> @@ -511,34 +518,38 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  
+>  int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  {
+> -	int i;
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_bw_state *new_bw_state = NULL;
+> +	struct intel_bw_state *old_bw_state = NULL;
+>  	const struct intel_crtc_state *crtc_state;
+>  	struct intel_crtc *crtc;
+>  	int min_cdclk = 0;
+> -	struct intel_bw_state *new_bw_state = NULL;
+> -	struct intel_bw_state *old_bw_state = NULL;
+> +	enum pipe pipe;
+> +	int i;
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> -		struct intel_cdclk_state *cdclk_state;
+> -
+>  		new_bw_state = intel_atomic_get_bw_state(state);
+>  		if (IS_ERR(new_bw_state))
+>  			return PTR_ERR(new_bw_state);
+>  
+> -		cdclk_state = intel_atomic_get_cdclk_state(state);
+> -		if (IS_ERR(cdclk_state))
+> -			return PTR_ERR(cdclk_state);
+> -
+> -		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> -
+> -		new_bw_state->min_cdclk = min_cdclk;
+> -
+>  		old_bw_state = intel_atomic_get_old_bw_state(state);
+>  	}
+>  
+>  	if (!old_bw_state)
+>  		return 0;
+>  
+> +	for_each_pipe(dev_priv, pipe) {
+> +		struct intel_cdclk_state *cdclk_state;
+> +
+> +		cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +		if (!cdclk_state)
+> +			return 0;
+> +
+> +		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
+> +	}
+> +
+> +	new_bw_state->min_cdclk = min_cdclk;
+> +
+>  	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+>  		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index f9b0fc7317de..08468b121d02 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2084,9 +2084,12 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>  {
+>  	struct intel_atomic_state *state = cdclk_state->base.state;
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_bw_state *bw_state = NULL;
+>  	struct intel_crtc *crtc;
+>  	struct intel_crtc_state *crtc_state;
+>  	int min_cdclk, i;
+> +	enum pipe pipe;
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+>  		int ret;
+> @@ -2095,6 +2098,10 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>  		if (min_cdclk < 0)
+>  			return min_cdclk;
+>  
+> +		bw_state = intel_atomic_get_bw_state(state);
+> +		if (IS_ERR(bw_state))
+> +			return PTR_ERR(bw_state);
+> +
+>  		if (cdclk_state->min_cdclk[i] == min_cdclk)
+>  			continue;
+>  
+> @@ -2106,15 +2113,11 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>  	}
+>  
+>  	min_cdclk = cdclk_state->force_min_cdclk;
+> +	for_each_pipe(dev_priv, pipe) {
+> +		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
+>  
+> -	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> -		struct intel_bw_state *bw_state;
+> -
+> -		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> -
+> -		bw_state = intel_atomic_get_bw_state(state);
+> -		if (IS_ERR(bw_state))
+> -			return PTR_ERR(bw_state);
+> +		if (!bw_state)
+> +			continue;
+>  
+>  		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f40b909952cc..66af8f3053ed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14708,13 +14708,14 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+>  				    bool *need_cdclk_calc)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> -	int i;
+> +	struct intel_cdclk_state *new_cdclk_state;
+>  	struct intel_plane_state *plane_state;
+> +	struct intel_bw_state *new_bw_state;
+>  	struct intel_plane *plane;
+> +	int min_cdclk = 0;
+> +	enum pipe pipe;
+>  	int ret;
+> -	struct intel_cdclk_state *new_cdclk_state;
+> -	struct intel_crtc_state *new_crtc_state;
+> -	struct intel_crtc *crtc;
+> +	int i;
+>  	/*
+>  	 * active_planes bitmask has been updated, and potentially
+>  	 * affected planes are part of the state. We can now
+> @@ -14735,23 +14736,18 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>  
+> -	if (!new_cdclk_state)
+> -		return 0;
+> -
+> -	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> -		struct intel_bw_state *bw_state;
+> -		int min_cdclk = 0;
+> +	new_bw_state = intel_atomic_get_new_bw_state(state);
+>  
+> -		min_cdclk = max(new_cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+> +	if (!new_cdclk_state || !new_bw_state)
+> +		return 0;
+>  
+> -		bw_state = intel_atomic_get_bw_state(state);
+> -		if (IS_ERR(bw_state))
+> -			return PTR_ERR(bw_state);
+> +	for_each_pipe(dev_priv, pipe) {
+> +		min_cdclk = max(new_cdclk_state->min_cdclk[pipe], min_cdclk);
+>  
+>  		/*
+>  		 * Currently do this change only if we need to increase
+>  		 */
+> -		if (bw_state->min_cdclk > min_cdclk)
+> +		if (new_bw_state->min_cdclk > min_cdclk)
+>  			*need_cdclk_calc = true;
+>  	}
+>  
+> -- 
+> 2.24.1.485.gad05a3d8e5
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
