@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1BBC1E98DA
-	for <lists+intel-gfx@lfdr.de>; Sun, 31 May 2020 18:33:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C8B1E9A0A
+	for <lists+intel-gfx@lfdr.de>; Sun, 31 May 2020 21:13:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C16089D7D;
-	Sun, 31 May 2020 16:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81C889C98;
+	Sun, 31 May 2020 19:13:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF08F89D7C;
- Sun, 31 May 2020 16:32:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D305689C80;
+ Sun, 31 May 2020 19:13:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21353374-1500050 
- for multiple; Sun, 31 May 2020 17:32:49 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21354289-1500050 
+ for multiple; Sun, 31 May 2020 20:13:09 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 31 May 2020 17:32:46 +0100
-Message-Id: <20200531163246.123451-1-chris@chris-wilson.co.uk>
+Date: Sun, 31 May 2020 20:13:07 +0100
+Message-Id: <20200531191307.180023-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.27.0.rc2
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Disable
@@ -55,7 +55,7 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
  1 file changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-index 026f8347e..5bd4e74fc 100644
+index 026f8347e..0e3b52900 100644
 --- a/tests/i915/gem_exec_balancer.c
 +++ b/tests/i915/gem_exec_balancer.c
 @@ -1350,6 +1350,11 @@ static void __bonded_dual(int i915,
@@ -64,7 +64,7 @@ index 026f8347e..5bd4e74fc 100644
  
 +static uint32_t preparser_disable(void)
 +{
-+	return 0x5 << 23 | 1 << 8; /* preparser masked disable */
++	return 0x5 << 23 | 1 << 8 | 1; /* preparser masked disable */
 +}
 +
  static uint32_t sync_from(int i915, uint32_t addr, uint32_t target)
