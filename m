@@ -2,44 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551691E8E0C
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 May 2020 07:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1BBC1E98DA
+	for <lists+intel-gfx@lfdr.de>; Sun, 31 May 2020 18:33:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9891B6E9B7;
-	Sat, 30 May 2020 05:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C16089D7D;
+	Sun, 31 May 2020 16:32:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 321D56E9B7
- for <intel-gfx@lists.freedesktop.org>; Sat, 30 May 2020 05:54:16 +0000 (UTC)
-IronPort-SDR: 4ifjhRDfX7Kr7cUIPnoFHb+ORGQyZ9TNOj+Zpj8TAXyedT0E3nAtSS7OQWH/K4zSIZyoyH3+kj
- 8YMBI3Nrk5yg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2020 22:54:15 -0700
-IronPort-SDR: G8Su2CEKrfOHDdoBoaaUbYSlAyCtnq/6Xk4b2lOlEK9EM5epIuHAzHJQOV8TyZZE1gAHTRG2uP
- Y1FhcJfpiJlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,451,1583222400"; d="scan'208";a="267771614"
-Received: from lkp-server01.sh.intel.com (HELO 9f9df8056aac) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 29 May 2020 22:54:14 -0700
-Received: from kbuild by 9f9df8056aac with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1jeuRh-0000bd-I7; Sat, 30 May 2020 05:54:13 +0000
-Date: Sat, 30 May 2020 13:53:32 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202005301318.3mRNJxfp%lkp@intel.com>
-References: <20200525075347.582-6-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF08F89D7C;
+ Sun, 31 May 2020 16:32:55 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21353374-1500050 
+ for multiple; Sun, 31 May 2020 17:32:49 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 31 May 2020 17:32:46 +0100
+Message-Id: <20200531163246.123451-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0.rc2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200525075347.582-6-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 06/12] dma-buf: Proxy fence,
- an unsignaled fence placeholder
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Disable
+ pre-parser for rewritten batches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,168 +37,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+As we rewrite the batches on the fly to implement the non-preemptible
+lock, we need to tell Tigerlake to read the batch afresh each time.
+Amusingly, the disable is a part of an arb-check, so we have to be
+careful not to include the arbitration point inside our unpreemptible
+loop.
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on drm-tip/drm-tip]
-[cannot apply to drm-intel/for-linux-next linus/master v5.7-rc7 next-20200529]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
-
-url:    https://github.com/0day-ci/linux/commits/Chris-Wilson/drm-i915-gt-Stop-cross-polluting-PIN_GLOBAL-with-PIN_USER-with-no-ppgtt/20200525-160038
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-compiler: gcc-9 (Debian 9.3.0-13) 9.3.0
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kbuild test robot <lkp@intel.com>
-
-
-cppcheck warnings: (new ones prefixed by >>)
-
->> drivers/dma-buf/st-dma-fence-proxy.c:127:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:109:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:127:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:146:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:136:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:146:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:175:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:155:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:175:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:217:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:185:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:217:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:254:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:238:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:254:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:293:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:265:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:293:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:321:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:303:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:321:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:348:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:331:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:348:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:377:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:358:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:377:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:404:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:387:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:404:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:435:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:414:0: note: Variable 'err' is reassigned a value before the old one has been used.
-    int err = -EINVAL;
-   ^
-   drivers/dma-buf/st-dma-fence-proxy.c:435:6: note: Variable 'err' is reassigned a value before the old one has been used.
-    err = 0;
-        ^
-   drivers/dma-buf/st-dma-fence-proxy.c:466:6: warning: Variable 'err' is reassigned a value before the old one has been used. [redundantAssignment]
-    err = 0;
-
-vim +/err +127 drivers/dma-buf/st-dma-fence-proxy.c
-
-   105	
-   106	static int wrap_target(void *arg)
-   107	{
-   108		struct fences f;
-   109		int err = -EINVAL;
-   110	
-   111		if (create_fences(&f, false))
-   112			return -ENOMEM;
-   113	
-   114		if (dma_fence_proxy_get_real(f.proxy) != f.proxy) {
-   115			pr_err("Unwrapped proxy fenced reported a target fence!\n");
-   116			goto err_free;
-   117		}
-   118	
-   119		dma_fence_proxy_set_real(f.proxy, f.real);
-   120		rcu_assign_pointer(f.slot, dma_fence_get(f.real)); /* free_fences() */
-   121	
-   122		if (dma_fence_proxy_get_real(f.proxy) != f.real) {
-   123			pr_err("Wrapped proxy fenced did not report the target fence!\n");
-   124			goto err_free;
-   125		}
-   126	
- > 127		err = 0;
-   128	err_free:
-   129		free_fences(&f);
-   130		return err;
-   131	}
-   132	
-
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ tests/i915/gem_exec_balancer.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 026f8347e..5bd4e74fc 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -1350,6 +1350,11 @@ static void __bonded_dual(int i915,
+ 	*out = cycles;
+ }
+ 
++static uint32_t preparser_disable(void)
++{
++	return 0x5 << 23 | 1 << 8; /* preparser masked disable */
++}
++
+ static uint32_t sync_from(int i915, uint32_t addr, uint32_t target)
+ {
+ 	uint32_t handle = gem_create(i915, 4096);
+@@ -1363,14 +1368,14 @@ static uint32_t sync_from(int i915, uint32_t addr, uint32_t target)
+ 	*cs++ = 0;
+ 	*cs++ = 0;
+ 
+-	*cs++ = MI_NOOP;
++	*cs++ = preparser_disable();
+ 	*cs++ = MI_NOOP;
+ 	*cs++ = MI_NOOP;
+ 	*cs++ = MI_NOOP;
+ 
+ 	/* wait for them to cancel us */
+ 	*cs++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
+-	*cs++ = addr + 16;
++	*cs++ = addr + 24;
+ 	*cs++ = 0;
+ 
+ 	/* self-heal */
+@@ -1393,14 +1398,14 @@ static uint32_t sync_to(int i915, uint32_t addr, uint32_t target)
+ 
+ 	cs = map = gem_mmap__device_coherent(i915, handle, 0, 4096, PROT_WRITE);
+ 
+-	*cs++ = MI_NOOP;
++	*cs++ = preparser_disable();
+ 	*cs++ = MI_NOOP;
+ 	*cs++ = MI_NOOP;
+ 	*cs++ = MI_NOOP;
+ 
+ 	/* wait to be cancelled */
+ 	*cs++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
+-	*cs++ = addr;
++	*cs++ = addr + 8;
+ 	*cs++ = 0;
+ 
+ 	/* cancel their spin as a compliment */
+-- 
+2.27.0.rc2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
