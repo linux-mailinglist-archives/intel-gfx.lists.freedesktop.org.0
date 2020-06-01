@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1B21E9FBB
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 10:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5D41E9FBF
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 10:03:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C3589DF7;
-	Mon,  1 Jun 2020 08:03:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3235089E5F;
+	Mon,  1 Jun 2020 08:03:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40CE789DB8
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 08:03:21 +0000 (UTC)
-IronPort-SDR: VRFckdT/g+pLX8cp2RCYbqFcFp9heZ9blVs0roBqkIn4neYXkR4ACreD5jSM91F2VjtWvXwOtM
- tXapCMEwyQOA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2020 01:03:20 -0700
-IronPort-SDR: UmFfCgAF/xC5DDgLIHLk9bP56+MyWmJoavgIHFC1KKRg1/ceD2ETv9VjNbJqjPBnlC1XVqbRGF
- 3YpMYvFz/jwg==
-X-IronPort-AV: E=Sophos;i="5.73,460,1583222400"; d="scan'208";a="257903453"
-Received: from unknown (HELO intel.com) ([10.237.72.89])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2020 01:03:19 -0700
-Date: Mon, 1 Jun 2020 10:59:29 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200601075929.GA2431@intel.com>
-References: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
- <20200528193852.GA24971@intel.com>
- <20200528195852.GA25073@intel.com>
- <20200529051143.GD6112@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86AAC89E5F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 08:03:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21357072-1500050 
+ for multiple; Mon, 01 Jun 2020 09:03:30 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Jun 2020 09:03:26 +0100
+Message-Id: <20200601080326.28384-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200601072446.19548-11-chris@chris-wilson.co.uk>
+References: <20200601072446.19548-11-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200529051143.GD6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix global state use-after-frees
- with a refcount
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Enable busy-stats for
+ ring-scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,283 +39,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2020 at 08:11:43AM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, May 28, 2020 at 10:58:52PM +0300, Lisovskiy, Stanislav wrote:
-> > On Thu, May 28, 2020 at 10:38:52PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Wed, May 27, 2020 at 11:02:45PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > =
-
-> > > > While the current locking/serialization of the global state
-> > > > suffices for protecting the obj->state access and the actual
-> > > > hardware reprogramming, we do have a problem with accessing
-> > > > the old/new states during nonblocking commits.
-> > > > =
-
-> > > > The state computation and swap will be protected by the crtc
-> > > > locks, but the commit_tails can finish out of order, thus also
-> > > > causing the atomic states to be cleaned up out of order. This
-> > > > would mean the commit that started first but finished last has
-> > > > had its new state freed as the no-longer-needed old state by the
-> > > > other commit.
-> > > > =
-
-> > > > To fix this let's just refcount the states. obj->state amounts
-> > > > to one reference, and the intel_atomic_state holds extra references
-> > > > to both its new and old global obj states.
-> > > > =
-
-> > > > Fixes: 0ef1905ecf2e ("drm/i915: Introduce better global state handl=
-ing")
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  .../gpu/drm/i915/display/intel_global_state.c | 45 +++++++++++++++=
-+---
-> > > >  .../gpu/drm/i915/display/intel_global_state.h |  3 ++
-> > > >  2 files changed, 42 insertions(+), 6 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/dr=
-ivers/gpu/drm/i915/display/intel_global_state.c
-> > > > index 212d4ee68205..7a19215ad844 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_global_state.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
-> > > > @@ -10,6 +10,28 @@
-> > > >  #include "intel_display_types.h"
-> > > >  #include "intel_global_state.h"
-> > > >  =
-
-> > > > +static void __intel_atomic_global_state_free(struct kref *kref)
-> > > > +{
-> > > > +	struct intel_global_state *obj_state =3D
-> > > > +		container_of(kref, struct intel_global_state, ref);
-> > > > +	struct intel_global_obj *obj =3D obj_state->obj;
-> > > > +
-> > > > +	obj->funcs->atomic_destroy_state(obj, obj_state);
-> > > > +}
-> > > > +
-> > > > +static void intel_atomic_global_state_put(struct intel_global_stat=
-e *obj_state)
-> > > > +{
-> > > > +	kref_put(&obj_state->ref, __intel_atomic_global_state_free);
-> > > > +}
-> > > > +
-> > > > +static struct intel_global_state *
-> > > > +intel_atomic_global_state_get(struct intel_global_state *obj_state)
-> > > > +{
-> > > > +	kref_get(&obj_state->ref);
-> > > > +
-> > > > +	return obj_state;
-> > > > +}
-> > > > +
-> > > >  void intel_atomic_global_obj_init(struct drm_i915_private *dev_pri=
-v,
-> > > >  				  struct intel_global_obj *obj,
-> > > >  				  struct intel_global_state *state,
-> > > > @@ -17,6 +39,10 @@ void intel_atomic_global_obj_init(struct drm_i91=
-5_private *dev_priv,
-> > > >  {
-> > > >  	memset(obj, 0, sizeof(*obj));
-> > > >  =
-
-> > > > +	state->obj =3D obj;
-> > > > +
-> > > > +	kref_init(&state->ref);
-> > > > +
-> > > >  	obj->state =3D state;
-> > > >  	obj->funcs =3D funcs;
-> > > >  	list_add_tail(&obj->head, &dev_priv->global_obj_list);
-> > > > @@ -28,7 +54,9 @@ void intel_atomic_global_obj_cleanup(struct drm_i=
-915_private *dev_priv)
-> > > >  =
-
-> > > >  	list_for_each_entry_safe(obj, next, &dev_priv->global_obj_list, h=
-ead) {
-> > > >  		list_del(&obj->head);
-> > > > -		obj->funcs->atomic_destroy_state(obj, obj->state);
-> > > > +
-> > > > +		drm_WARN_ON(&dev_priv->drm, kref_read(&obj->state->ref) !=3D 1);
-> > > > +		intel_atomic_global_state_put(obj->state);
-> > > >  	}
-> > > >  }
-> > > >  =
-
-> > > > @@ -97,10 +125,14 @@ intel_atomic_get_global_obj_state(struct intel=
-_atomic_state *state,
-> > > >  	if (!obj_state)
-> > > >  		return ERR_PTR(-ENOMEM);
-> > > >  =
-
-> > > > +	obj_state->obj =3D obj;
-> > > >  	obj_state->changed =3D false;
-> > > >  =
-
-> > > > +	kref_init(&obj_state->ref);
-> > > > +
-> > > >  	state->global_objs[index].state =3D obj_state;
-> > > > -	state->global_objs[index].old_state =3D obj->state;
-> > > > +	state->global_objs[index].old_state =3D
-> > > > +		intel_atomic_global_state_get(obj->state);
-> > > >  	state->global_objs[index].new_state =3D obj_state;
-> > > >  	state->global_objs[index].ptr =3D obj;
-> > > >  	obj_state->state =3D state;
-> > > > @@ -163,7 +195,9 @@ void intel_atomic_swap_global_state(struct inte=
-l_atomic_state *state)
-> > > >  		new_obj_state->state =3D NULL;
-> > > >  =
-
-> > > >  		state->global_objs[i].state =3D old_obj_state;
-> > > > -		obj->state =3D new_obj_state;
-> > > > +
-> > > > +		intel_atomic_global_state_put(obj->state);
-> > > > +		obj->state =3D intel_atomic_global_state_get(new_obj_state);
-> > > >  	}
-> > > >  }
-> > > >  =
-
-> > > > @@ -172,10 +206,9 @@ void intel_atomic_clear_global_state(struct in=
-tel_atomic_state *state)
-> > > >  	int i;
-> > > >  =
-
-> > > >  	for (i =3D 0; i < state->num_global_objs; i++) {
-> > > > -		struct intel_global_obj *obj =3D state->global_objs[i].ptr;
-> > > > +		intel_atomic_global_state_put(state->global_objs[i].old_state);
-> > > > +		intel_atomic_global_state_put(state->global_objs[i].new_state);
-> > > =
-
-> > > Shouldn't we clean old_state only? =
-
-> > > =
-
-> > > As I understand in absence of any transaction you now have a pool of
-> > > global_obj each has a state with single kref taken.
-> > > =
-
-> > > So when we are going to get a new state, we do +1 kref to old_state(w=
-hich is current global obj->state)
-> > > in order to prevent it being cleared by competing commit.
-> > > However the new state doesn't have any kref taken by that moment.
-> > > Then you swap do -1 kref for the old state and do +1 kref for new sta=
-te, =
-
-> > > which means that when you -1 kref again for old state in atomic_clear=
- also, =
-
-> > > it will be destroyed, however regarding the new state, as I understand
-> > > it still has only single kref grabbed when it was swapped, =
-
-> > > so isn't it going to be now removed? unless we are lucky and somebody
-> > > haven't grabbed it already as an old_state in the next commit?
-> > > =
-
-> > > Stan
-> > =
-
-> > Ah actually I got it - forgot that kref is init as 1. =
-
-> > But then you probably don't even need to increment kref for new state =
-
-> > when swapping.
-> > Before assigning new obj->state you release one kref in swap(which make=
-s sense)
-> > Then you just do only intel_atomic_global_state_put(old_state) in atomi=
-c_clear
-> > and then no need in doing intel_atomic_global_state_get(new_state) duri=
-ng
-> > swap. =
-
-> > I.e we always call intel_atomic_global_state_get/put only regarding "ol=
-d" =
-
-> > obj->state and each new_state will be disposed when it becomes old_stat=
-e.
-> =
-
-> =
-
-> IMO the approach of handing off references is just hard to follow. =
-
-> Better to just get/put explicitly whenever you assign a pointer.
-> I already dislike handing off the original kref_init() reference,
-> and almost added a get+put there too. Maybe I really should do that...
-
-Agree, tbh I don't like the idea that kref_init already implicitly holds
-a reference - it even confused me initially. =
-
-Typical smartpointer usually increments the ref only when assignment
-is done.
-
-
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-> =
-
-> > =
-
-> > Stan
-> > =
-
-> > > >  =
-
-> > > > -		obj->funcs->atomic_destroy_state(obj,
-> > > > -						 state->global_objs[i].state);
-> > > >  		state->global_objs[i].ptr =3D NULL;
-> > > >  		state->global_objs[i].state =3D NULL;
-> > > >  		state->global_objs[i].old_state =3D NULL;
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/dr=
-ivers/gpu/drm/i915/display/intel_global_state.h
-> > > > index e6163a469029..1f16fa3073c9 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> > > > @@ -6,6 +6,7 @@
-> > > >  #ifndef __INTEL_GLOBAL_STATE_H__
-> > > >  #define __INTEL_GLOBAL_STATE_H__
-> > > >  =
-
-> > > > +#include <linux/kref.h>
-> > > >  #include <linux/list.h>
-> > > >  =
-
-> > > >  struct drm_i915_private;
-> > > > @@ -54,7 +55,9 @@ struct intel_global_obj {
-> > > >  		for_each_if(obj)
-> > > >  =
-
-> > > >  struct intel_global_state {
-> > > > +	struct intel_global_obj *obj;
-> > > >  	struct intel_atomic_state *state;
-> > > > +	struct kref ref;
-> > > >  	bool changed;
-> > > >  };
-> > > >  =
-
-> > > > -- =
-
-> > > > 2.26.2
-> > > > =
-
-> > > > _______________________________________________
-> > > > Intel-gfx mailing list
-> > > > Intel-gfx@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q291cGxlIHVwIHRoZSBjb250ZXh0IGluL291dCBhY2NvdW50aW5nIHRvIHJlY29yZCBob3cgbG9u
+ZyBlYWNoIGVuZ2luZQppcyBidXN5IGhhbmRsaW5nIHJlcXVlc3RzLiBUaGlzIGlzIGV4cG9zZWQg
+dG8gdXNlcnNwYWNlIGZvciBtb3JlIGFjY3VyYXRlCm1lYXN1cmVtZW50cywgYW5kIGFsc28gZW5h
+YmxlcyBvdXIgc29mdC1ycHMgdGltZXIuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNo
+cmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
+bF9lbmdpbmVfc3RhdHMuaCAgfCA0OSArKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF9scmMuYyAgICAgICAgICAgfCAzNCArLS0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX3Jpbmdfc2NoZWR1bGVyLmMgICAgfCAgNCArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9zZWxmdGVzdF9lbmdpbmVfcG0uYyAgfCA5MCArKysrKysrKysrKysrKysrKysrCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuYyAgICAgICAgfCAgNSArKwogNSBmaWxlcyBj
+aGFuZ2VkLCAxNDkgaW5zZXJ0aW9ucygrKSwgMzMgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3N0YXRzLmgKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfc3RhdHMuaCBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9zdGF0cy5oCm5ldyBmaWxlIG1vZGUg
+MTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uNTg0OTFlYWUzNDgyCi0tLSAvZGV2L251bGwKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3N0YXRzLmgKQEAgLTAsMCAr
+MSw0OSBAQAorLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVCAqLworLyoKKyAqIENvcHly
+aWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCisgKi8KKworI2lmbmRlZiBfX0lOVEVMX0VO
+R0lORV9TVEFUU19IX18KKyNkZWZpbmUgX19JTlRFTF9FTkdJTkVfU1RBVFNfSF9fCisKKyNpbmNs
+dWRlIDxsaW51eC9hdG9taWMuaD4KKyNpbmNsdWRlIDxsaW51eC9rdGltZS5oPgorI2luY2x1ZGUg
+PGxpbnV4L3NlcWxvY2suaD4KKworI2luY2x1ZGUgImk5MTVfZ2VtLmgiIC8qIEdFTV9CVUdfT04g
+Ki8KKyNpbmNsdWRlICJpbnRlbF9lbmdpbmUuaCIKKworc3RhdGljIGlubGluZSB2b2lkIGludGVs
+X2VuZ2luZV9jb250ZXh0X2luKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKK3sKKwl1
+bnNpZ25lZCBsb25nIGZsYWdzOworCisJaWYgKGF0b21pY19hZGRfdW5sZXNzKCZlbmdpbmUtPnN0
+YXRzLmFjdGl2ZSwgMSwgMCkpCisJCXJldHVybjsKKworCXdyaXRlX3NlcWxvY2tfaXJxc2F2ZSgm
+ZW5naW5lLT5zdGF0cy5sb2NrLCBmbGFncyk7CisJaWYgKCFhdG9taWNfYWRkX3VubGVzcygmZW5n
+aW5lLT5zdGF0cy5hY3RpdmUsIDEsIDApKSB7CisJCWVuZ2luZS0+c3RhdHMuc3RhcnQgPSBrdGlt
+ZV9nZXQoKTsKKwkJYXRvbWljX2luYygmZW5naW5lLT5zdGF0cy5hY3RpdmUpOworCX0KKwl3cml0
+ZV9zZXF1bmxvY2tfaXJxcmVzdG9yZSgmZW5naW5lLT5zdGF0cy5sb2NrLCBmbGFncyk7Cit9CisK
+K3N0YXRpYyBpbmxpbmUgdm9pZCBpbnRlbF9lbmdpbmVfY29udGV4dF9vdXQoc3RydWN0IGludGVs
+X2VuZ2luZV9jcyAqZW5naW5lKQoreworCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CisKKwlHRU1fQlVH
+X09OKCFhdG9taWNfcmVhZCgmZW5naW5lLT5zdGF0cy5hY3RpdmUpKTsKKworCWlmIChhdG9taWNf
+YWRkX3VubGVzcygmZW5naW5lLT5zdGF0cy5hY3RpdmUsIC0xLCAxKSkKKwkJcmV0dXJuOworCisJ
+d3JpdGVfc2VxbG9ja19pcnFzYXZlKCZlbmdpbmUtPnN0YXRzLmxvY2ssIGZsYWdzKTsKKwlpZiAo
+YXRvbWljX2RlY19hbmRfdGVzdCgmZW5naW5lLT5zdGF0cy5hY3RpdmUpKSB7CisJCWVuZ2luZS0+
+c3RhdHMudG90YWwgPQorCQkJa3RpbWVfYWRkKGVuZ2luZS0+c3RhdHMudG90YWwsCisJCQkJICBr
+dGltZV9zdWIoa3RpbWVfZ2V0KCksIGVuZ2luZS0+c3RhdHMuc3RhcnQpKTsKKwl9CisJd3JpdGVf
+c2VxdW5sb2NrX2lycXJlc3RvcmUoJmVuZ2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOworfQorCisj
+ZW5kaWYgLyogX19JTlRFTF9FTkdJTkVfU1RBVFNfSF9fICovCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
+dGVsX2xyYy5jCmluZGV4IDZmYzA5NjZiNzVmZi4uMTNlZjRmNThjYjA4IDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF9scmMuYwpAQCAtMTM5LDYgKzEzOSw3IEBACiAjaW5jbHVkZSAiaTkxNV92
+Z3B1LmgiCiAjaW5jbHVkZSAiaW50ZWxfY29udGV4dC5oIgogI2luY2x1ZGUgImludGVsX2VuZ2lu
+ZV9wbS5oIgorI2luY2x1ZGUgImludGVsX2VuZ2luZV9zdGF0cy5oIgogI2luY2x1ZGUgImludGVs
+X2d0LmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9ndF9yZXF1
+ZXN0cy5oIgpAQCAtMTE4NywzOSArMTE4OCw2IEBAIGV4ZWNsaXN0c19jb250ZXh0X3N0YXR1c19j
+aGFuZ2Uoc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEsIHVuc2lnbmVkIGxvbmcgc3RhdHVzKQogCQkJ
+CSAgIHN0YXR1cywgcnEpOwogfQogCi1zdGF0aWMgdm9pZCBpbnRlbF9lbmdpbmVfY29udGV4dF9p
+bihzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCi17Ci0JdW5zaWduZWQgbG9uZyBmbGFn
+czsKLQotCWlmIChhdG9taWNfYWRkX3VubGVzcygmZW5naW5lLT5zdGF0cy5hY3RpdmUsIDEsIDAp
+KQotCQlyZXR1cm47Ci0KLQl3cml0ZV9zZXFsb2NrX2lycXNhdmUoJmVuZ2luZS0+c3RhdHMubG9j
+aywgZmxhZ3MpOwotCWlmICghYXRvbWljX2FkZF91bmxlc3MoJmVuZ2luZS0+c3RhdHMuYWN0aXZl
+LCAxLCAwKSkgewotCQllbmdpbmUtPnN0YXRzLnN0YXJ0ID0ga3RpbWVfZ2V0KCk7Ci0JCWF0b21p
+Y19pbmMoJmVuZ2luZS0+c3RhdHMuYWN0aXZlKTsKLQl9Ci0Jd3JpdGVfc2VxdW5sb2NrX2lycXJl
+c3RvcmUoJmVuZ2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOwotfQotCi1zdGF0aWMgdm9pZCBpbnRl
+bF9lbmdpbmVfY29udGV4dF9vdXQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQotewot
+CXVuc2lnbmVkIGxvbmcgZmxhZ3M7Ci0KLQlHRU1fQlVHX09OKCFhdG9taWNfcmVhZCgmZW5naW5l
+LT5zdGF0cy5hY3RpdmUpKTsKLQotCWlmIChhdG9taWNfYWRkX3VubGVzcygmZW5naW5lLT5zdGF0
+cy5hY3RpdmUsIC0xLCAxKSkKLQkJcmV0dXJuOwotCi0Jd3JpdGVfc2VxbG9ja19pcnFzYXZlKCZl
+bmdpbmUtPnN0YXRzLmxvY2ssIGZsYWdzKTsKLQlpZiAoYXRvbWljX2RlY19hbmRfdGVzdCgmZW5n
+aW5lLT5zdGF0cy5hY3RpdmUpKSB7Ci0JCWVuZ2luZS0+c3RhdHMudG90YWwgPQotCQkJa3RpbWVf
+YWRkKGVuZ2luZS0+c3RhdHMudG90YWwsCi0JCQkJICBrdGltZV9zdWIoa3RpbWVfZ2V0KCksIGVu
+Z2luZS0+c3RhdHMuc3RhcnQpKTsKLQl9Ci0Jd3JpdGVfc2VxdW5sb2NrX2lycXJlc3RvcmUoJmVu
+Z2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOwotfQotCiBzdGF0aWMgdm9pZAogZXhlY2xpc3RzX2No
+ZWNrX2NvbnRleHQoY29uc3Qgc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAogCQkJY29uc3Qgc3Ry
+dWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfcmluZ19zY2hlZHVsZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX3Jpbmdfc2NoZWR1bGVyLmMKaW5kZXggYzhjZDQzNWQxYzUxLi5hYWZmNTU0ODY1YjEg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmdfc2NoZWR1bGVy
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZ19zY2hlZHVsZXIuYwpA
+QCAtOSw2ICs5LDcgQEAKIAogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCiAjaW5jbHVkZSAiaW50ZWxf
+Y29udGV4dC5oIgorI2luY2x1ZGUgImludGVsX2VuZ2luZV9zdGF0cy5oIgogI2luY2x1ZGUgImlu
+dGVsX2d0LmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9ndF9y
+ZXF1ZXN0cy5oIgpAQCAtNTksNiArNjAsNyBAQCBzdGF0aWMgc3RydWN0IGk5MTVfcmVxdWVzdCAq
+CiBzY2hlZHVsZV9pbihzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsIHN0cnVjdCBpOTE1
+X3JlcXVlc3QgKnJxKQogewogCV9faW50ZWxfZ3RfcG1fZ2V0KGVuZ2luZS0+Z3QpOworCWludGVs
+X2VuZ2luZV9jb250ZXh0X2luKGVuZ2luZSk7CiAJcmV0dXJuIGk5MTVfcmVxdWVzdF9nZXQocnEp
+OwogfQogCkBAIC03MSw2ICs3Myw3IEBAIHNjaGVkdWxlX291dChzdHJ1Y3QgaW50ZWxfZW5naW5l
+X2NzICplbmdpbmUsIHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKQogCQlpbnRlbF9lbmdpbmVfYWRk
+X3JldGlyZShlbmdpbmUsIGNlLT50aW1lbGluZSk7CiAKIAlpOTE1X3JlcXVlc3RfcHV0KHJxKTsK
+KwlpbnRlbF9lbmdpbmVfY29udGV4dF9vdXQoZW5naW5lKTsKIAlpbnRlbF9ndF9wbV9wdXRfYXN5
+bmMoZW5naW5lLT5ndCk7CiB9CiAKQEAgLTc0Nyw2ICs3NTAsNyBAQCBpbnQgaW50ZWxfcmluZ19z
+Y2hlZHVsZXJfc2V0dXAoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQogCWVuZ2luZS0+
+bGVnYWN5LnJpbmcgPSByaW5nOwogCiAJZW5naW5lLT5mbGFncyB8PSBJOTE1X0VOR0lORV9ORUVE
+U19CUkVBRENSVU1CX1RBU0tMRVQ7CisJZW5naW5lLT5mbGFncyB8PSBJOTE1X0VOR0lORV9TVVBQ
+T1JUU19TVEFUUzsKIAogCS8qIEZpbmFsbHksIHRha2Ugb3duZXJzaGlwIGFuZCByZXNwb25zaWJp
+bGl0eSBmb3IgY2xlYW51cCEgKi8KIAllbmdpbmUtPnJlbGVhc2UgPSByaW5nX3JlbGVhc2U7CmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9lbmdpbmVfcG0uYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2VuZ2luZV9wbS5jCmluZGV4IGNiZjZi
+MDczNTI3Mi4uNjRjZmEyZmRjOWJmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9zZWxmdGVzdF9lbmdpbmVfcG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxm
+dGVzdF9lbmdpbmVfcG0uYwpAQCAtNyw2ICs3LDk1IEBACiAjaW5jbHVkZSAiaTkxNV9zZWxmdGVz
+dC5oIgogI2luY2x1ZGUgInNlbGZ0ZXN0X2VuZ2luZS5oIgogI2luY2x1ZGUgInNlbGZ0ZXN0cy9p
+Z3RfYXRvbWljLmgiCisjaW5jbHVkZSAic2VsZnRlc3RzL2lndF9mbHVzaF90ZXN0LmgiCisjaW5j
+bHVkZSAic2VsZnRlc3RzL2lndF9zcGlubmVyLmgiCisKK3N0YXRpYyBpbnQgbGl2ZV9lbmdpbmVf
+YnVzeV9zdGF0cyh2b2lkICphcmcpCit7CisJc3RydWN0IGludGVsX2d0ICpndCA9IGFyZzsKKwlz
+dHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7CisJZW51bSBpbnRlbF9lbmdpbmVfaWQgaWQ7
+CisJc3RydWN0IGlndF9zcGlubmVyIHNwaW47CisJaW50IGVycjsKKworCS8qCisJICogQ2hlY2sg
+dGhhdCBpZiBhbiBlbmdpbmUgc3VwcG9ydHMgYnVzeS1zdGF0cywgdGhleSB0ZWxsIHRoZSB0cnV0
+aC4KKwkgKi8KKworCWlmIChpZ3Rfc3Bpbm5lcl9pbml0KCZzcGluLCBndCkpCisJCXJldHVybiAt
+RU5PTUVNOworCisJR0VNX0JVR19PTihpbnRlbF9ndF9wbV9pc19hd2FrZShndCkpOworCWZvcl9l
+YWNoX2VuZ2luZShlbmdpbmUsIGd0LCBpZCkgeworCQlzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpycTsK
+KwkJa3RpbWVfdCBkdCwgZGU7CisKKwkJaWYgKCFpbnRlbF9lbmdpbmVfc3VwcG9ydHNfc3RhdHMo
+ZW5naW5lKSkKKwkJCWNvbnRpbnVlOworCisJCWlmICghaW50ZWxfZW5naW5lX2Nhbl9zdG9yZV9k
+d29yZChlbmdpbmUpKQorCQkJY29udGludWU7CisKKwkJaWYgKGludGVsX2d0X3BtX3dhaXRfZm9y
+X2lkbGUoZ3QpKSB7CisJCQllcnIgPSAtRUJVU1k7CisJCQlicmVhazsKKwkJfQorCisJCXByZWVt
+cHRfZGlzYWJsZSgpOworCQlkdCA9IGt0aW1lX2dldCgpOworCQlkZSA9IGludGVsX2VuZ2luZV9n
+ZXRfYnVzeV90aW1lKGVuZ2luZSk7CisJCXVkZWxheSgxMDApOworCQlkdCA9IGt0aW1lX3N1Yihr
+dGltZV9nZXQoKSwgZHQpOworCQlkZSA9IGt0aW1lX3N1YihpbnRlbF9lbmdpbmVfZ2V0X2J1c3lf
+dGltZShlbmdpbmUpLCBkZSk7CisJCXByZWVtcHRfZW5hYmxlKCk7CisJCWlmIChkZSA+IDEwKSB7
+CisJCQlwcl9lcnIoIiVzOiByZXBvcnRlZCAlbGxkbnMgWyVkJSVdIGJ1c3luZXNzIHdoaWxlIHNs
+ZWVwaW5nIFtmb3IgJWxsZG5zXVxuIiwKKwkJCSAgICAgICBlbmdpbmUtPm5hbWUsCisJCQkgICAg
+ICAgZGUsIChpbnQpZGl2NjRfdTY0KDEwMCAqIGRlLCBkdCksIGR0KTsKKwkJCWVyciA9IC1FSU5W
+QUw7CisJCQlicmVhazsKKwkJfQorCisJCXJxID0gaWd0X3NwaW5uZXJfY3JlYXRlX3JlcXVlc3Qo
+JnNwaW4sCisJCQkJCQllbmdpbmUtPmtlcm5lbF9jb250ZXh0LAorCQkJCQkJTUlfTk9PUCk7CisJ
+CWlmIChJU19FUlIocnEpKSB7CisJCQllcnIgPSBQVFJfRVJSKHJxKTsKKwkJCWJyZWFrOworCQl9
+CisJCWk5MTVfcmVxdWVzdF9hZGQocnEpOworCisJCWlmICghaWd0X3dhaXRfZm9yX3NwaW5uZXIo
+JnNwaW4sIHJxKSkgeworCQkJaW50ZWxfZ3Rfc2V0X3dlZGdlZChlbmdpbmUtPmd0KTsKKwkJCWVy
+ciA9IC1FVElNRTsKKwkJCWJyZWFrOworCQl9CisKKwkJcHJlZW1wdF9kaXNhYmxlKCk7CisJCWR0
+ID0ga3RpbWVfZ2V0KCk7CisJCWRlID0gaW50ZWxfZW5naW5lX2dldF9idXN5X3RpbWUoZW5naW5l
+KTsKKwkJdWRlbGF5KDEwMCk7CisJCWR0ID0ga3RpbWVfc3ViKGt0aW1lX2dldCgpLCBkdCk7CisJ
+CWRlID0ga3RpbWVfc3ViKGludGVsX2VuZ2luZV9nZXRfYnVzeV90aW1lKGVuZ2luZSksIGRlKTsK
+KwkJcHJlZW1wdF9lbmFibGUoKTsKKwkJaWYgKDEwMCAqIGRlIDwgOTUgKiBkdCkgeworCQkJcHJf
+ZXJyKCIlczogcmVwb3J0ZWQgb25seSAlbGxkbnMgWyVkJSVdIGJ1c3luZXNzIHdoaWxlIHNwaW5u
+aW5nIFtmb3IgJWxsZG5zXVxuIiwKKwkJCSAgICAgICBlbmdpbmUtPm5hbWUsCisJCQkgICAgICAg
+ZGUsIChpbnQpZGl2NjRfdTY0KDEwMCAqIGRlLCBkdCksIGR0KTsKKwkJCWVyciA9IC1FSU5WQUw7
+CisJCQlicmVhazsKKwkJfQorCisJCWlndF9zcGlubmVyX2VuZCgmc3Bpbik7CisJCWlmIChpZ3Rf
+Zmx1c2hfdGVzdChndC0+aTkxNSkpIHsKKwkJCWVyciA9IC1FSU87CisJCQlicmVhazsKKwkJfQor
+CX0KKworCWlndF9zcGlubmVyX2ZpbmkoJnNwaW4pOworCXJldHVybiBlcnI7Cit9CiAKIHN0YXRp
+YyBpbnQgbGl2ZV9lbmdpbmVfcG0odm9pZCAqYXJnKQogewpAQCAtNzcsNiArMTY2LDcgQEAgc3Rh
+dGljIGludCBsaXZlX2VuZ2luZV9wbSh2b2lkICphcmcpCiBpbnQgbGl2ZV9lbmdpbmVfcG1fc2Vs
+ZnRlc3RzKHN0cnVjdCBpbnRlbF9ndCAqZ3QpCiB7CiAJc3RhdGljIGNvbnN0IHN0cnVjdCBpOTE1
+X3N1YnRlc3QgdGVzdHNbXSA9IHsKKwkJU1VCVEVTVChsaXZlX2VuZ2luZV9idXN5X3N0YXRzKSwK
+IAkJU1VCVEVTVChsaXZlX2VuZ2luZV9wbSksCiAJfTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9z
+ZWxmdGVzdF9ycHMuYwppbmRleCA1MDQ5YzNkZDA4YTYuLjVlMzY0ZmIzMWFlYSAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcnBzLmMKQEAgLTEyNTIsNiArMTI1MiwxMSBAQCBpbnQg
+bGl2ZV9ycHNfZHluYW1pYyh2b2lkICphcmcpCiAJaWYgKGlndF9zcGlubmVyX2luaXQoJnNwaW4s
+IGd0KSkKIAkJcmV0dXJuIC1FTk9NRU07CiAKKwlpZiAoaW50ZWxfcnBzX2hhc19pbnRlcnJ1cHRz
+KHJwcykpCisJCXByX2luZm8oIlJQUyBoYXMgaW50ZXJydXB0IHN1cHBvcnRcbiIpOworCWlmIChp
+bnRlbF9ycHNfdXNlc190aW1lcihycHMpKQorCQlwcl9pbmZvKCJSUFMgaGFzIHRpbWVyIHN1cHBv
+cnRcbiIpOworCiAJZm9yX2VhY2hfZW5naW5lKGVuZ2luZSwgZ3QsIGlkKSB7CiAJCXN0cnVjdCBp
+OTE1X3JlcXVlc3QgKnJxOwogCQlzdHJ1Y3QgewotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
