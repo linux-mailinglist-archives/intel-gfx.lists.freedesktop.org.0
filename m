@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C391EA857
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 19:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 747E51EA86F
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 19:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9308D89C68;
-	Mon,  1 Jun 2020 17:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7257B89EA3;
+	Mon,  1 Jun 2020 17:34:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3865789C68;
- Mon,  1 Jun 2020 17:20:02 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4FBD955D;
- Mon,  1 Jun 2020 10:20:01 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E1F23F305;
- Mon,  1 Jun 2020 10:20:01 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id A8C52682B70; Mon,  1 Jun 2020 18:19:59 +0100 (BST)
-Date: Mon, 1 Jun 2020 18:19:59 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200601171959.GO159988@e110455-lin.cambridge.arm.com>
-References: <20200527094757.1414174-2-daniel.vetter@ffwll.ch>
- <20200527095332.1439425-1-daniel.vetter@ffwll.ch>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95DBE89EA3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 17:34:44 +0000 (UTC)
+IronPort-SDR: emodvG7b9+r1woE5znq15nzpWJT6xBQ9V+0qq8CoCt2KqHhrtZcBbaHzqB8cfSF5xJER/ofcz9
+ yeHNlT6MzJyg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 10:34:44 -0700
+IronPort-SDR: rsv+m5s8KVGHrPliz6bopC5ddsqZgRmMQAxM4c46uzpPY9d91uoKlnki/kNlZetQqjTPmab+J4
+ SwETNFrrE3wQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,461,1583222400"; d="scan'208";a="293266170"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga004.fm.intel.com with ESMTP; 01 Jun 2020 10:34:41 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Jun 2020 20:30:58 +0300
+Message-Id: <20200601173058.5084-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200527095332.1439425-1-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helper: reset vblank on crtc
- reset
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix wrong CDCLK adjustment changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,193 +45,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Sam Ravnborg <sam@ravnborg.org>,
- Emil Velikov <emil.velikov@collabora.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Jyri Sarha <jsarha@ti.com>, Sean Paul <seanpaul@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, linux-tegra@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>, Boris Brezillon <bbrezillon@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, zhengbin <zhengbin13@huawei.com>,
- Brian Masney <masneyb@onstation.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dan.carpenter@oracle.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBNYXkgMjcsIDIwMjAgYXQgMTE6NTM6MzJBTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbmx5IHdoZW4gdmJsYW5rcyBhcmUgc3VwcG9ydGVkIG9mYy4KPiAKPiBTb21lIGRy
-aXZlcnMgZG8gdGhpcyBhbHJlYWR5LCBidXQgbW9zdCB1bmZvcnR1bmF0ZWx5IG1pc3NlZCBpdC4g
-VGhpcwo+IG9wZW5zIHVwIGJ1Z3MgYWZ0ZXIgZHJpdmVyIGxvYWQsIGJlZm9yZSB0aGUgY3J0YyBp
-cyBlbmFibGVkIGZvciB0aGUKPiBmaXJzdCB0aW1lLiBzeXpib3Qgc3BvdHRlZCB0aGlzIHdoZW4g
-bG9hZGluZyB2a21zIGFzIGEgc2Vjb25kYXJ5Cj4gb3V0cHV0LiBHaXZlbiBob3cgbWFueSBkcml2
-ZXJzIGFyZSBidWdneSBpdCdzIGJlc3QgdG8gc29sdmUgdGhpcyBvbmNlCj4gYW5kIGZvciBhbGwg
-aW4gc2hhcmVkIGhlbHBlciBjb2RlLgo+IAo+IEFzaWRlIGZyb20gbW92aW5nIHRoZSBmZXcgZXhp
-c3RpbmcgY2FsbHMgdG8gZHJtX2NydGNfdmJsYW5rX3Jlc2V0IGludG8KPiBoZWxwZXJzIChpOTE1
-IGRvZXNuJ3QgdXNlIGhlbHBlcnMsIHNvIGtlZXBzIGl0cyBvd24pIEkgdGhpbmsgdGhlCj4gcmVn
-cmVzc2lvbiByaXNrIGlzIG1pbmltYWw6IGF0b21pYyBoZWxwZXJzIGFscmVhZHkgcmVseSBvbiBk
-cml2ZXJzCj4gY2FsbGluZyBkcm1fY3J0Y192Ymxhbmtfb24vb2ZmIGNvcnJlY3RseSBpbiB0aGVp
-ciBob29rcyB3aGVuIHRoZXkKPiBzdXBwb3J0IHZibGFua3MuIEFuZCBkcml2ZXIgdGhhdCdzIGZh
-aWxpbmcgdG8gaGFuZGxlIHZibGFua3MgYWZ0ZXIKPiB0aGlzIGlzIG1pc3NpbmcgdGhvc2UgY2Fs
-bHMgYWxyZWFkeSwgYW5kIHZibGFua3MgY291bGQgb25seSB3b3JrIGJ5Cj4gYWNjaWRlbnQgd2hl
-biBlbmFibGluZyBhIENSVEMgZm9yIHRoZSBmaXJzdCB0aW1lIHJpZ2h0IGFmdGVyIGJvb3QuCj4g
-Cj4gQmlnIHRoYW5rcyB0byBUZXRzdW8gZm9yIGhlbHBpbmcgdHJhY2sgZG93biB3aGF0J3MgZ29p
-bmcgd3JvbmcgaGVyZS4KPiAKPiBUaGVyZSdzIG9ubHkgYSBmZXcgZHJpdmVycyB3aGljaCBhbHJl
-YWR5IGhhZCB0aGUgbmVjZXNzYXJ5IGNhbGwgYW5kCj4gbmVlZGVkIHNvbWUgdXBkYXRpbmc6Cj4g
-LSBrb21lZGEsIGF0bWVsIGFuZCB0aWRzcyBhbHNvIG5lZWRlZCB0byBiZSBjaGFuZ2VkIHRvIGNh
-bGwKPiAgIF9fZHJtX2F0b21pY19oZWxwZXJfY3J0Y19yZXNldCgpIGludGVhZCBvZiBvcGVuIGNv
-ZGluZyBpdAo+IC0gdGVncmEgYW5kIG1zbSBldmVuIGhhZCBpdCBpbiB0aGUgc2FtZSBwbGFjZSBh
-bHJlYWR5LCBqdXN0IGNvZGUKPiAgIG1vdGlvbiwgYW5kIG1hbGlkcCBhbHJlYWR5IHVzZXMgX19k
-cm1fYXRvbWljX2hlbHBlcl9jcnRjX3Jlc2V0KCkuCj4gCj4gT25seSBjYWxsIGxlZnQgaXMgaW4g
-aTkxNSwgd2hpY2ggZG9lc24ndCB1c2UgZHJtX21vZGVfY29uZmlnX3Jlc2V0LAo+IGJ1dCBoYXMg
-aXRzIG93biBmYXN0Ym9vdCBpbmZyYXN0cnVjdHVyZS4gU28gdGhhdCdzIHRoZSBvbmx5IGNhc2Ug
-d2hlcmUKPiB3ZSBhY3R1YWxseSB3YW50IHRoaXMgaW4gdGhlIGRyaXZlciBzdGlsbC4KPiAKPiBJ
-J3ZlIGFsc28gcmV2aWV3ZWQgYWxsIG90aGVyIGRyaXZlcnMgd2hpY2ggc2V0IHVwIHZibGFuayBz
-dXBwb3J0IHdpdGgKPiBkcm1fdmJsYW5rX2luaXQuIEFmdGVyIHRoZSBwcmV2aW91cyBwYXRjaCBm
-aXhpbmcgbXhzZmIgYWxsIGF0b21pYwo+IGRyaXZlcnMgZG8gY2FsbCBkcm1fY3J0Y192Ymxhbmtf
-b24vb2ZmIGFzIHRoZXkgc2hvdWxkLCB0aGUgcmVtYWluaW5nCj4gZHJpdmVycyBhcmUgZWl0aGVy
-IGxlZ2FjeSBrbXMgb3IgbGVnYWN5IGRyaTEgZHJpdmVycywgc28gbm90IGFmZmVjdGVkCj4gYnkg
-dGhpcyBjaGFuZ2UgdG8gYXRvbWljIGhlbHBlcnMuCj4gCj4gdjI6IFVzZSB0aGUgZHJtX2Rldl9o
-YXNfdmJsYW5rKCkgaGVscGVyLgo+IAo+IExpbms6IGh0dHBzOi8vc3l6a2FsbGVyLmFwcHNwb3Qu
-Y29tL2J1Zz9pZD0wYmExN2Q3MGQwNjJiMjU5NWUxZjA2MTIzMTQ3NDgwMGYwNzZjN2NiCj4gUmVw
-b3J0ZWQtYnk6IFRldHN1byBIYW5kYSA8cGVuZ3Vpbi1rZXJuZWxASS1sb3ZlLlNBS1VSQS5uZS5q
-cD4KPiBSZXBvcnRlZC1ieTogc3l6Ym90KzA4NzFiMTRjYTJlMmZiNjRmNmUzQHN5emthbGxlci5h
-cHBzcG90bWFpbC5jb20KPiBDYzogVGV0c3VvIEhhbmRhIDxwZW5ndWluLWtlcm5lbEBJLWxvdmUu
-U0FLVVJBLm5lLmpwPgo+IENjOiAiSmFtZXMgKFFpYW4pIFdhbmciIDxqYW1lcy5xaWFuLndhbmdA
-YXJtLmNvbT4KPiBDYzogTGl2aXUgRHVkYXUgPGxpdml1LmR1ZGF1QGFybS5jb20+Cj4gQ2M6IE1p
-aGFpbCBBdGFuYXNzb3YgPG1paGFpbC5hdGFuYXNzb3ZAYXJtLmNvbT4KPiBDYzogQnJpYW4gU3Rh
-cmtleSA8YnJpYW4uc3RhcmtleUBhcm0uY29tPgo+IENjOiBTYW0gUmF2bmJvcmcgPHNhbUByYXZu
-Ym9yZy5vcmc+Cj4gQ2M6IEJvcmlzIEJyZXppbGxvbiA8YmJyZXppbGxvbkBrZXJuZWwub3JnPgo+
-IENjOiBOaWNvbGFzIEZlcnJlIDxuaWNvbGFzLmZlcnJlQG1pY3JvY2hpcC5jb20+Cj4gQ2M6IEFs
-ZXhhbmRyZSBCZWxsb25pIDxhbGV4YW5kcmUuYmVsbG9uaUBib290bGluLmNvbT4KPiBDYzogTHVk
-b3ZpYyBEZXNyb2NoZXMgPGx1ZG92aWMuZGVzcm9jaGVzQG1pY3JvY2hpcC5jb20+Cj4gQ2M6IE1h
-YXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6
-IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz4KPiBDYzogVGhvbWFzIFppbW1lcm1h
-bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4gQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51
-eC5pZT4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+IENjOiBUaGllcnJ5
-IFJlZGluZyA8dGhpZXJyeS5yZWRpbmdAZ21haWwuY29tPgo+IENjOiBKb25hdGhhbiBIdW50ZXIg
-PGpvbmF0aGFuaEBudmlkaWEuY29tPgo+IENjOiBKeXJpIFNhcmhhIDxqc2FyaGFAdGkuY29tPgo+
-IENjOiBUb21pIFZhbGtlaW5lbiA8dG9taS52YWxrZWluZW5AdGkuY29tPgo+IENjOiBSb2IgQ2xh
-cmsgPHJvYmRjbGFya0BnbWFpbC5jb20+Cj4gQ2M6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21p
-dW0ub3JnPgo+IENjOiBCcmlhbiBNYXNuZXkgPG1hc25leWJAb25zdGF0aW9uLm9yZz4KPiBDYzog
-RW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KPiBDYzogemhlbmdiaW4g
-PHpoZW5nYmluMTNAaHVhd2VpLmNvbT4KPiBDYzogVGhvbWFzIEdsZWl4bmVyIDx0Z2x4QGxpbnV0
-cm9uaXguZGU+Cj4gQ2M6IGxpbnV4LXRlZ3JhQHZnZXIua2VybmVsLm9yZwo+IFNpZ25lZC1vZmYt
-Ynk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL2tvbWVkYV9jcnRjLmMgfCA3ICsrLS0tLS0K
-PiAgZHJpdmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMgICAgICAgICAgICAgICAgIHwgMSAt
-CgpGb3IgdGhlIGtvbWVkYSBhbmQgbWFsaWRwIGRyaXZlcnM6CgpBY2tlZC1ieTogTGl2aXUgRHVk
-YXUgPGxpdml1LmR1ZGF1QGFybS5jb20+CgpCZXN0IHJlZ2FyZHMsCkxpdml1Cgo+ICBkcml2ZXJz
-L2dwdS9kcm0vYXRtZWwtaGxjZGMvYXRtZWxfaGxjZGNfY3J0Yy5jICAgfCA3ICsrLS0tLS0KPiAg
-ZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfc3RhdGVfaGVscGVyLmMgICAgICAgIHwgNCArKysr
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9tZHA1L21kcDVfY3J0Yy5jICAgICAgICB8IDIg
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL3RlZ3JhL2RjLmMgICAgICAgICAgICAgICAgICAgICAgIHwg
-MSAtCj4gIGRyaXZlcnMvZ3B1L2RybS90aWRzcy90aWRzc19jcnRjLmMgICAgICAgICAgICAgICB8
-IDMgKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS90aWRzcy90aWRzc19rbXMuYyAgICAgICAgICAgICAg
-ICB8IDQgLS0tLQo+ICA4IGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMjAgZGVsZXRp
-b25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21l
-ZGEva29tZWRhX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEva29t
-ZWRhX2NydGMuYwo+IGluZGV4IDU2YmQ5Mzg5NjFlZS4uZjMzNDE4ZDZlMWEwIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEva29tZWRhX2NydGMuYwo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEva29tZWRhX2NydGMuYwo+IEBA
-IC00OTIsMTAgKzQ5Miw4IEBAIHN0YXRpYyB2b2lkIGtvbWVkYV9jcnRjX3Jlc2V0KHN0cnVjdCBk
-cm1fY3J0YyAqY3J0YykKPiAgCWNydGMtPnN0YXRlID0gTlVMTDsKPiAgCj4gIAlzdGF0ZSA9IGt6
-YWxsb2Moc2l6ZW9mKCpzdGF0ZSksIEdGUF9LRVJORUwpOwo+IC0JaWYgKHN0YXRlKSB7Cj4gLQkJ
-Y3J0Yy0+c3RhdGUgPSAmc3RhdGUtPmJhc2U7Cj4gLQkJY3J0Yy0+c3RhdGUtPmNydGMgPSBjcnRj
-Owo+IC0JfQo+ICsJaWYgKHN0YXRlKQo+ICsJCV9fZHJtX2F0b21pY19oZWxwZXJfY3J0Y19yZXNl
-dChjcnRjLCAmc3RhdGUtPmJhc2UpOwo+ICB9Cj4gIAo+ICBzdGF0aWMgc3RydWN0IGRybV9jcnRj
-X3N0YXRlICoKPiBAQCAtNjE2LDcgKzYxNCw2IEBAIHN0YXRpYyBpbnQga29tZWRhX2NydGNfYWRk
-KHN0cnVjdCBrb21lZGFfa21zX2RldiAqa21zLAo+ICAJCXJldHVybiBlcnI7Cj4gIAo+ICAJZHJt
-X2NydGNfaGVscGVyX2FkZChjcnRjLCAma29tZWRhX2NydGNfaGVscGVyX2Z1bmNzKTsKPiAtCWRy
-bV9jcnRjX3ZibGFua19yZXNldChjcnRjKTsKPiAgCj4gIAljcnRjLT5wb3J0ID0ga2NydGMtPm1h
-c3Rlci0+b2Zfb3V0cHV0X3BvcnQ7Cj4gIAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YXJtL21hbGlkcF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vbWFsaWRwX2Rydi5jCj4gaW5k
-ZXggYzI1MDdiN2Q4NTEyLi4wMjkwNDM5MmUzNzAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2FybS9tYWxpZHBfZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYXJtL21hbGlkcF9k
-cnYuYwo+IEBAIC04NzAsNyArODcwLDYgQEAgc3RhdGljIGludCBtYWxpZHBfYmluZChzdHJ1Y3Qg
-ZGV2aWNlICpkZXYpCj4gIAlkcm0tPmlycV9lbmFibGVkID0gdHJ1ZTsKPiAgCj4gIAlyZXQgPSBk
-cm1fdmJsYW5rX2luaXQoZHJtLCBkcm0tPm1vZGVfY29uZmlnLm51bV9jcnRjKTsKPiAtCWRybV9j
-cnRjX3ZibGFua19yZXNldCgmbWFsaWRwLT5jcnRjKTsKPiAgCWlmIChyZXQgPCAwKSB7Cj4gIAkJ
-RFJNX0VSUk9SKCJmYWlsZWQgdG8gaW5pdGlhbGlzZSB2YmxhbmtcbiIpOwo+ICAJCWdvdG8gdmJs
-YW5rX2ZhaWw7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hdG1lbC1obGNkYy9hdG1l
-bF9obGNkY19jcnRjLmMgYi9kcml2ZXJzL2dwdS9kcm0vYXRtZWwtaGxjZGMvYXRtZWxfaGxjZGNf
-Y3J0Yy5jCj4gaW5kZXggMTA5ODUxMzRjZTBiLi5jZTI0NmI5NjMzMGIgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2F0bWVsLWhsY2RjL2F0bWVsX2hsY2RjX2NydGMuYwo+ICsrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hdG1lbC1obGNkYy9hdG1lbF9obGNkY19jcnRjLmMKPiBAQCAtNDExLDEw
-ICs0MTEsOCBAQCBzdGF0aWMgdm9pZCBhdG1lbF9obGNkY19jcnRjX3Jlc2V0KHN0cnVjdCBkcm1f
-Y3J0YyAqY3J0YykKPiAgCX0KPiAgCj4gIAlzdGF0ZSA9IGt6YWxsb2Moc2l6ZW9mKCpzdGF0ZSks
-IEdGUF9LRVJORUwpOwo+IC0JaWYgKHN0YXRlKSB7Cj4gLQkJY3J0Yy0+c3RhdGUgPSAmc3RhdGUt
-PmJhc2U7Cj4gLQkJY3J0Yy0+c3RhdGUtPmNydGMgPSBjcnRjOwo+IC0JfQo+ICsJaWYgKHN0YXRl
-KQo+ICsJCV9fZHJtX2F0b21pY19oZWxwZXJfY3J0Y19yZXNldChjcnRjLCAmc3RhdGUtPmJhc2Up
-Owo+ICB9Cj4gIAo+ICBzdGF0aWMgc3RydWN0IGRybV9jcnRjX3N0YXRlICoKPiBAQCAtNTI4LDcg
-KzUyNiw2IEBAIGludCBhdG1lbF9obGNkY19jcnRjX2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2KQo+ICAJfQo+ICAKPiAgCWRybV9jcnRjX2hlbHBlcl9hZGQoJmNydGMtPmJhc2UsICZsY2Rj
-X2NydGNfaGVscGVyX2Z1bmNzKTsKPiAtCWRybV9jcnRjX3ZibGFua19yZXNldCgmY3J0Yy0+YmFz
-ZSk7Cj4gIAo+ICAJZHJtX21vZGVfY3J0Y19zZXRfZ2FtbWFfc2l6ZSgmY3J0Yy0+YmFzZSwgQVRN
-RUxfSExDRENfQ0xVVF9TSVpFKTsKPiAgCWRybV9jcnRjX2VuYWJsZV9jb2xvcl9tZ210KCZjcnRj
-LT5iYXNlLCAwLCBmYWxzZSwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9t
-aWNfc3RhdGVfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19zdGF0ZV9oZWxw
-ZXIuYwo+IGluZGV4IDhmY2U2YTExNWRmZS4uOWFkNzQwNDUxNThlIDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX3N0YXRlX2hlbHBlci5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2RybV9hdG9taWNfc3RhdGVfaGVscGVyLmMKPiBAQCAtMzIsNiArMzIsNyBAQAo+ICAj
-aW5jbHVkZSA8ZHJtL2RybV9kZXZpY2UuaD4KPiAgI2luY2x1ZGUgPGRybS9kcm1fcGxhbmUuaD4K
-PiAgI2luY2x1ZGUgPGRybS9kcm1fcHJpbnQuaD4KPiArI2luY2x1ZGUgPGRybS9kcm1fdmJsYW5r
-Lmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX3dyaXRlYmFjay5oPgo+ICAKPiAgI2luY2x1ZGUgPGxp
-bnV4L3NsYWIuaD4KPiBAQCAtOTMsNiArOTQsOSBAQCBfX2RybV9hdG9taWNfaGVscGVyX2NydGNf
-cmVzZXQoc3RydWN0IGRybV9jcnRjICpjcnRjLAo+ICAJaWYgKGNydGNfc3RhdGUpCj4gIAkJX19k
-cm1fYXRvbWljX2hlbHBlcl9jcnRjX3N0YXRlX3Jlc2V0KGNydGNfc3RhdGUsIGNydGMpOwo+ICAK
-PiArCWlmIChkcm1fZGV2X2hhc192YmxhbmsoY3J0Yy0+ZGV2KSkKPiArCQlkcm1fY3J0Y192Ymxh
-bmtfcmVzZXQoY3J0Yyk7Cj4gKwo+ICAJY3J0Yy0+c3RhdGUgPSBjcnRjX3N0YXRlOwo+ICB9Cj4g
-IEVYUE9SVF9TWU1CT0woX19kcm1fYXRvbWljX2hlbHBlcl9jcnRjX3Jlc2V0KTsKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL21zbS9kaXNwL21kcDUvbWRwNV9jcnRjLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vbXNtL2Rpc3AvbWRwNS9tZHA1X2NydGMuYwo+IGluZGV4IGNhMzM2OGM4MjhkMC4u
-OTYwNjE4NWMyODRiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9tZHA1
-L21kcDVfY3J0Yy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21zbS9kaXNwL21kcDUvbWRwNV9j
-cnRjLmMKPiBAQCAtMTExNyw4ICsxMTE3LDYgQEAgc3RhdGljIHZvaWQgbWRwNV9jcnRjX3Jlc2V0
-KHN0cnVjdCBkcm1fY3J0YyAqY3J0YykKPiAgCQltZHA1X2NydGNfZGVzdHJveV9zdGF0ZShjcnRj
-LCBjcnRjLT5zdGF0ZSk7Cj4gIAo+ICAJX19kcm1fYXRvbWljX2hlbHBlcl9jcnRjX3Jlc2V0KGNy
-dGMsICZtZHA1X2NzdGF0ZS0+YmFzZSk7Cj4gLQo+IC0JZHJtX2NydGNfdmJsYW5rX3Jlc2V0KGNy
-dGMpOwo+ICB9Cj4gIAo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9jcnRjX2Z1bmNzIG1kcDVf
-Y3J0Y19mdW5jcyA9IHsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3RlZ3JhL2RjLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vdGVncmEvZGMuYwo+IGluZGV4IDgzZjMxYzZlODkxYy4uOWIzMDhi
-NTcyZWFjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90ZWdyYS9kYy5jCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL3RlZ3JhL2RjLmMKPiBAQCAtMTE2OCw3ICsxMTY4LDYgQEAgc3RhdGlj
-IHZvaWQgdGVncmFfY3J0Y19yZXNldChzdHJ1Y3QgZHJtX2NydGMgKmNydGMpCj4gIAkJdGVncmFf
-Y3J0Y19hdG9taWNfZGVzdHJveV9zdGF0ZShjcnRjLCBjcnRjLT5zdGF0ZSk7Cj4gIAo+ICAJX19k
-cm1fYXRvbWljX2hlbHBlcl9jcnRjX3Jlc2V0KGNydGMsICZzdGF0ZS0+YmFzZSk7Cj4gLQlkcm1f
-Y3J0Y192YmxhbmtfcmVzZXQoY3J0Yyk7Cj4gIH0KPiAgCj4gIHN0YXRpYyBzdHJ1Y3QgZHJtX2Ny
-dGNfc3RhdGUgKgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdGlkc3MvdGlkc3NfY3J0
-Yy5jIGIvZHJpdmVycy9ncHUvZHJtL3RpZHNzL3RpZHNzX2NydGMuYwo+IGluZGV4IDg5YTIyNjkx
-MmRlOC4uNGQwMWM0YWY2MWNkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90aWRzcy90
-aWRzc19jcnRjLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdGlkc3MvdGlkc3NfY3J0Yy5jCj4g
-QEAgLTM1Miw4ICszNTIsNyBAQCBzdGF0aWMgdm9pZCB0aWRzc19jcnRjX3Jlc2V0KHN0cnVjdCBk
-cm1fY3J0YyAqY3J0YykKPiAgCQlyZXR1cm47Cj4gIAl9Cj4gIAo+IC0JY3J0Yy0+c3RhdGUgPSAm
-dGNydGMtPmJhc2U7Cj4gLQljcnRjLT5zdGF0ZS0+Y3J0YyA9IGNydGM7Cj4gKwlfX2RybV9hdG9t
-aWNfaGVscGVyX2NydGNfcmVzZXQoY3J0YywgJnRjcnRjLT5iYXNlKTsKPiAgfQo+ICAKPiAgc3Rh
-dGljIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqdGlkc3NfY3J0Y19kdXBsaWNhdGVfc3RhdGUoc3Ry
-dWN0IGRybV9jcnRjICpjcnRjKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdGlkc3Mv
-dGlkc3Nfa21zLmMgYi9kcml2ZXJzL2dwdS9kcm0vdGlkc3MvdGlkc3Nfa21zLmMKPiBpbmRleCA0
-Yjk5ZTlmYTg0YTUuLmU2YWI1OWVlZDI1OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-dGlkc3MvdGlkc3Nfa21zLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdGlkc3MvdGlkc3Nfa21z
-LmMKPiBAQCAtMjc4LDEwICsyNzgsNiBAQCBpbnQgdGlkc3NfbW9kZXNldF9pbml0KHN0cnVjdCB0
-aWRzc19kZXZpY2UgKnRpZHNzKQo+ICAJaWYgKHJldCkKPiAgCQlyZXR1cm4gcmV0Owo+ICAKPiAt
-CS8qIFN0YXJ0IHdpdGggdmVydGljYWwgYmxhbmtpbmcgaW50ZXJydXB0IHJlcG9ydGluZyBkaXNh
-YmxlZC4gKi8KPiAtCWZvciAoaSA9IDA7IGkgPCB0aWRzcy0+bnVtX2NydGNzOyArK2kpCj4gLQkJ
-ZHJtX2NydGNfdmJsYW5rX3Jlc2V0KHRpZHNzLT5jcnRjc1tpXSk7Cj4gLQo+ICAJZHJtX21vZGVf
-Y29uZmlnX3Jlc2V0KGRkZXYpOwo+ICAKPiAgCWRldl9kYmcodGlkc3MtPmRldiwgIiVzIGRvbmVc
-biIsIF9fZnVuY19fKTsKPiAtLSAKPiAyLjI2LjIKPiAKCi0tIAo9PT09PT09PT09PT09PT09PT09
-PQp8IEkgd291bGQgbGlrZSB0byB8CnwgZml4IHRoZSB3b3JsZCwgIHwKfCBidXQgdGhleSdyZSBu
-b3QgfAp8IGdpdmluZyBtZSB0aGUgICB8CiBcIHNvdXJjZSBjb2RlISAgLwogIC0tLS0tLS0tLS0t
-LS0tLQogICAgwq9cXyjjg4QpXy/CrwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+Previous patch didn't take into account all pipes
+but only those in state, which could cause wrong
+CDCLK conclcusions and calculations.
+Also there was a severe issue with min_cdclk being
+assigned to 0 every compare cycle.
+
+Too bad this was found by me only after merge.
+This could be also causing the issues in test, however
+not clear - anyway marking this as fixing the
+"Adjust CDCLK accordingly to our DBuf bw needs".
+
+v2: - s/pipe/crtc->pipe/
+    - save a bit of instructions by
+      skipping inactive pipes, without
+      getting 0 DBuf slice mask for it.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Fixes: cd1915460861 ("Adjust CDCLK accordingly to our DBuf bw needs")
+---
+ drivers/gpu/drm/i915/display/intel_bw.c      | 52 +++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 19 ++++---
+ drivers/gpu/drm/i915/display/intel_display.c | 26 +++++-----
+ 3 files changed, 55 insertions(+), 42 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index a79bd7aeb03b..bd060404d249 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -437,6 +437,7 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 	struct intel_crtc *crtc;
+ 	int max_bw = 0;
+ 	int slice_id;
++	enum pipe pipe;
+ 	int i;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+@@ -447,10 +448,15 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 		if (IS_ERR(new_bw_state))
+ 			return PTR_ERR(new_bw_state);
+ 
++		old_bw_state = intel_atomic_get_old_bw_state(state);
++
+ 		crtc_bw = &new_bw_state->dbuf_bw[crtc->pipe];
+ 
+ 		memset(&crtc_bw->used_bw, 0, sizeof(crtc_bw->used_bw));
+ 
++		if (!crtc_state->hw.active)
++			continue;
++
+ 		for_each_plane_id_on_crtc(crtc, plane_id) {
+ 			const struct skl_ddb_entry *plane_alloc =
+ 				&crtc_state->wm.skl.plane_ddb_y[plane_id];
+@@ -478,6 +484,15 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 			for_each_dbuf_slice_in_mask(slice_id, dbuf_mask)
+ 				crtc_bw->used_bw[slice_id] += data_rate;
+ 		}
++	}
++
++	if (!old_bw_state)
++		return 0;
++
++	for_each_pipe(dev_priv, pipe) {
++		struct intel_dbuf_bw *crtc_bw;
++
++		crtc_bw = &new_bw_state->dbuf_bw[pipe];
+ 
+ 		for_each_dbuf_slice(slice_id) {
+ 			/*
+@@ -490,14 +505,9 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 			 */
+ 			max_bw += crtc_bw->used_bw[slice_id];
+ 		}
+-
+-		new_bw_state->min_cdclk = max_bw / 64;
+-
+-		old_bw_state = intel_atomic_get_old_bw_state(state);
+ 	}
+ 
+-	if (!old_bw_state)
+-		return 0;
++	new_bw_state->min_cdclk = max_bw / 64;
+ 
+ 	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+ 		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+@@ -511,34 +521,38 @@ int skl_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 
+ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ {
+-	int i;
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_bw_state *new_bw_state = NULL;
++	struct intel_bw_state *old_bw_state = NULL;
+ 	const struct intel_crtc_state *crtc_state;
+ 	struct intel_crtc *crtc;
+ 	int min_cdclk = 0;
+-	struct intel_bw_state *new_bw_state = NULL;
+-	struct intel_bw_state *old_bw_state = NULL;
++	enum pipe pipe;
++	int i;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+-		struct intel_cdclk_state *cdclk_state;
+-
+ 		new_bw_state = intel_atomic_get_bw_state(state);
+ 		if (IS_ERR(new_bw_state))
+ 			return PTR_ERR(new_bw_state);
+ 
+-		cdclk_state = intel_atomic_get_cdclk_state(state);
+-		if (IS_ERR(cdclk_state))
+-			return PTR_ERR(cdclk_state);
+-
+-		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+-
+-		new_bw_state->min_cdclk = min_cdclk;
+-
+ 		old_bw_state = intel_atomic_get_old_bw_state(state);
+ 	}
+ 
+ 	if (!old_bw_state)
+ 		return 0;
+ 
++	for_each_pipe(dev_priv, pipe) {
++		struct intel_cdclk_state *cdclk_state;
++
++		cdclk_state = intel_atomic_get_new_cdclk_state(state);
++		if (!cdclk_state)
++			return 0;
++
++		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
++	}
++
++	new_bw_state->min_cdclk = min_cdclk;
++
+ 	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
+ 		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index f9b0fc7317de..08468b121d02 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -2084,9 +2084,12 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ {
+ 	struct intel_atomic_state *state = cdclk_state->base.state;
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_bw_state *bw_state = NULL;
+ 	struct intel_crtc *crtc;
+ 	struct intel_crtc_state *crtc_state;
+ 	int min_cdclk, i;
++	enum pipe pipe;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		int ret;
+@@ -2095,6 +2098,10 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ 		if (min_cdclk < 0)
+ 			return min_cdclk;
+ 
++		bw_state = intel_atomic_get_bw_state(state);
++		if (IS_ERR(bw_state))
++			return PTR_ERR(bw_state);
++
+ 		if (cdclk_state->min_cdclk[i] == min_cdclk)
+ 			continue;
+ 
+@@ -2106,15 +2113,11 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ 	}
+ 
+ 	min_cdclk = cdclk_state->force_min_cdclk;
++	for_each_pipe(dev_priv, pipe) {
++		min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
+ 
+-	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+-		struct intel_bw_state *bw_state;
+-
+-		min_cdclk = max(cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
+-
+-		bw_state = intel_atomic_get_bw_state(state);
+-		if (IS_ERR(bw_state))
+-			return PTR_ERR(bw_state);
++		if (!bw_state)
++			continue;
+ 
+ 		min_cdclk = max(bw_state->min_cdclk, min_cdclk);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f40b909952cc..66af8f3053ed 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14708,13 +14708,14 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 				    bool *need_cdclk_calc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	int i;
++	struct intel_cdclk_state *new_cdclk_state;
+ 	struct intel_plane_state *plane_state;
++	struct intel_bw_state *new_bw_state;
+ 	struct intel_plane *plane;
++	int min_cdclk = 0;
++	enum pipe pipe;
+ 	int ret;
+-	struct intel_cdclk_state *new_cdclk_state;
+-	struct intel_crtc_state *new_crtc_state;
+-	struct intel_crtc *crtc;
++	int i;
+ 	/*
+ 	 * active_planes bitmask has been updated, and potentially
+ 	 * affected planes are part of the state. We can now
+@@ -14735,23 +14736,18 @@ static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (!new_cdclk_state)
+-		return 0;
+-
+-	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+-		struct intel_bw_state *bw_state;
+-		int min_cdclk = 0;
++	new_bw_state = intel_atomic_get_new_bw_state(state);
+ 
+-		min_cdclk = max(new_cdclk_state->min_cdclk[crtc->pipe], min_cdclk);
++	if (!new_cdclk_state || !new_bw_state)
++		return 0;
+ 
+-		bw_state = intel_atomic_get_bw_state(state);
+-		if (IS_ERR(bw_state))
+-			return PTR_ERR(bw_state);
++	for_each_pipe(dev_priv, pipe) {
++		min_cdclk = max(new_cdclk_state->min_cdclk[pipe], min_cdclk);
+ 
+ 		/*
+ 		 * Currently do this change only if we need to increase
+ 		 */
+-		if (bw_state->min_cdclk > min_cdclk)
++		if (new_bw_state->min_cdclk > min_cdclk)
+ 			*need_cdclk_calc = true;
+ 	}
+ 
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
