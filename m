@@ -1,58 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC011EA438
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 14:49:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F191EA569
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 15:56:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5567A6E260;
-	Mon,  1 Jun 2020 12:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12C2589DED;
+	Mon,  1 Jun 2020 13:56:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE0166E08C
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 12:49:49 +0000 (UTC)
-IronPort-SDR: cyAdrH9guDCx6+7buIbT3FCMa1VE+n8jLBslCw6wlk/9AN8bhlFni4zM8Raz7NinmjGSm1Z5gF
- xoxkjoiq2Sdg==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F180889DED
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 13:56:52 +0000 (UTC)
+IronPort-SDR: fAN8P+vsb7PUZE6/Lz58MkqyqMaUba36/nF/Ai61RlQLy1BnVY3fVMRqJ9xr5j38qMgK9dPrKS
+ vECjVtKkLADQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2020 05:49:48 -0700
-IronPort-SDR: K3y4zi83dtSyVMV6ygjQ3P3cdGILxAzIlvqBz/aNhvIYx2KaIxoOR2CxJQcjQ14cPv6eAFHzTi
- KF6KdR/w8r4g==
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 06:56:52 -0700
+IronPort-SDR: V0mrz8j1eKMV9jKdl5QbtvJ0WXEqG4ru2tB+SzRByYOvDNw/2OTKKpWEpHSrYWiWluO+ErBvPR
+ 2MG8UWxoq8ag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,460,1583222400"; d="scan'208";a="293180025"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga004.fm.intel.com with ESMTP; 01 Jun 2020 05:49:48 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 1 Jun 2020 05:49:48 -0700
-Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
- fmsmsx109.amr.corp.intel.com (10.18.116.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 1 Jun 2020 05:49:47 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.115]) by
- BGSMSX101.gar.corp.intel.com ([169.254.1.23]) with mapi id 14.03.0439.000;
- Mon, 1 Jun 2020 18:19:45 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [RFC] drm/i915: lpsp with hdmi/dp outputs
-Thread-Index: AQHWN/+DXwK47U+O70e74aNiXdDPH6jDtRGg
-Date: Mon, 1 Jun 2020 12:49:44 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F82516D51@BGSMSX104.gar.corp.intel.com>
-References: <20200601101516.21018-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200601101516.21018-1-anshuman.gupta@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+X-IronPort-AV: E=Sophos;i="5.73,461,1583222400"; d="scan'208";a="293199788"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga004.fm.intel.com with ESMTP; 01 Jun 2020 06:56:51 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 0AC175C2C42; Mon,  1 Jun 2020 16:54:24 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200601121423.19842-1-chris@chris-wilson.co.uk>
+References: <20200601121423.19842-1-chris@chris-wilson.co.uk>
+Date: Mon, 01 Jun 2020 16:54:24 +0300
+Message-ID: <87v9kasxgv.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] drm/i915: lpsp with hdmi/dp outputs
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Trim the ironlake+ irq handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +47,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZg0KPiBBbnNo
-dW1hbiBHdXB0YQ0KPiBTZW50OiBNb25kYXksIEp1bmUgMSwgMjAyMCAzOjQ1IFBNDQo+IFRvOiBp
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwu
-b3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhdIFtSRkNdIGRybS9pOTE1OiBscHNwIHdpdGggaGRt
-aS9kcCBvdXRwdXRzDQo+IA0KPiBHZW4xMiBodyBhcmUgZmFpbGluZyB0byBlbmFibGUgbHBzcCBj
-b25maWd1cmF0aW9uIGR1ZSB0byBQRzMgd2FzIGxlZnQgb24gZHVlIHRvDQo+IHZhbGlkIHVzZ2Fl
-IGNvdW50IG9mIFBPV0VSX0RPTUFJTl9BVURJTy4NCj4gSXQgaXMgbm90IHJlcXVpcmVkIHRvIGdl
-dCBQT1dFUl9ET01BSU5fQVVESU8gcmVmLWNvdW50IHdoZW4gZW5hYmxpbmcgYSBjcnRjLA0KPiBp
-dCBzaG91bGQgYmUgYWx3YXlzIGk5MTVfYXVkaW9fY29tcG9uZW50IHJlcXVlc3QgdG8gZ2V0L3B1
-dA0KPiBBVURJT19QT1dFUl9ET01BSU4uDQo+IA0KPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9y
-Zw0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4N
-Cj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5j
-b20+DQo+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRl
-bC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMgfCA2ICsrKysrLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMSBk
-ZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMNCj4gaW5kZXggNmMzYjExZGUyZGFmLi5mMzFhNTc5ZDdhNTIgMTAwNjQ0DQo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC03
-MzU2LDcgKzczNTYsMTEgQEAgc3RhdGljIHU2NCBnZXRfY3J0Y19wb3dlcl9kb21haW5zKHN0cnVj
-dA0KPiBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiAgCQltYXNrIHw9IEJJVF9VTEwo
-aW50ZWxfZW5jb2Rlci0+cG93ZXJfZG9tYWluKTsNCj4gIAl9DQo+IA0KPiAtCWlmIChIQVNfRERJ
-KGRldl9wcml2KSAmJiBjcnRjX3N0YXRlLT5oYXNfYXVkaW8pDQo+ICsJLyoNCj4gKwkgKiBHZW4x
-MiBjYW4gZHJpdmUgbHBzcCBvbiBoZG1pL2RwIG91dHB1cywgaXQgZG9lc24ndCByZXF1aXJlIHRv
-DQo+ICsJICogZW5hYmxlIEFVRElPIHBvd2VyIGluIG9yZGVyIHRvIGVuYWJsZSBhIGNydGMuDQo+
-ICsJICovDQo+ICsJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPCAxMiAmJiBIQVNfRERJKGRldl9w
-cml2KSAmJg0KPiArY3J0Y19zdGF0ZS0+aGFzX2F1ZGlvKQ0KPiAgCQltYXNrIHw9IEJJVF9VTEwo
-UE9XRVJfRE9NQUlOX0FVRElPKTsNCg0KQXMgcGFydCBvZiBkZGlfZ2V0X2NvbmZpZyB3ZSBkZXRl
-cm1pbmUgaGFzX2F1ZGlvIHVzaW5nIHBvd2VyIHdlbGwgZW5hYmxlZDoNCnBpcGVfY29uZmlnLT5o
-YXNfYXVkaW8gPQ0KICAgICAgICAgICAgICAgIGludGVsX2RkaV9pc19hdWRpb19lbmFibGVkKGRl
-dl9wcml2LCBjcHVfdHJhbnNjb2Rlcik7DQoNCklmIGF1ZGlvIHBvd2VyIGRvbWFpbiBpcyBub3Qg
-ZW5hYmxlZCwgd2UgbWF5IGVuZCB1cCB3aXRoIHRoaXMgYXMgZmFsc2UuDQpMYXRlciB0aGlzIG1h
-eSBnZXQgY2hlY2tlZCBpbiBpbnRlbF9lbmFibGVfZGRpX2hkbWkgdG8gY2FsbCBhdWRpbyBjb2Rl
-YyBlbmFibGUNCg0KaWYgKGNydGNfc3RhdGUtPmhhc19hdWRpbykNCiAgICAgICAgICAgICAgICBp
-bnRlbF9hdWRpb19jb2RlY19lbmFibGUoZW5jb2RlciwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0ZSk7
-DQoNClRoaXMgbWF5IGNhdXNlIGRldGVjdGlvbiB0byBmYWlsLiBQbGVhc2UgdmVyaWZ5IHRoaXMg
-dXNlY2FzZSBvbmNlIGFuZCBjb25maXJtLg0KDQpSZWdhcmRzLA0KVW1hIFNoYW5rYXINCg0KPiAg
-CWlmIChjcnRjX3N0YXRlLT5zaGFyZWRfZHBsbCkNCj4gLS0NCj4gMi4yNi4yDQo+IA0KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBJbnRlbC1nZngg
-bWFpbGluZyBsaXN0DQo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngNCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Ever noticed that our interrupt handlers are where we spend most of our
+> time on a busy system? In part this is unavoidable as each interrupt
+> requires to poll and reset several registers, but we can try and do so as
+> efficiently as possible.
+>
+> Function                                     old     new   delta
+> ilk_irq_handler                             2317    2156    -161
+>
+> v2: Restore the irqreturn_t ret
+>
+> Function                                     old     new   delta
+> ilk_irq_handler.cold                          63      72      +9
+> ilk_irq_handler                             2221    2080    -141
+>
+> A slight improvement in the baseline overnight as well!
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 59 +++++++++++++++++----------------
+>  1 file changed, 30 insertions(+), 29 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 63579ab71cf6..01d4e3cad69d 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2097,67 +2097,68 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
+>   */
+>  static irqreturn_t ilk_irq_handler(int irq, void *arg)
+>  {
+> -	struct drm_i915_private *dev_priv = arg;
+> +	struct drm_i915_private *i915 = arg;
+> +	void __iomem * const regs = i915->uncore.regs;
+>  	u32 de_iir, gt_iir, de_ier, sde_ier = 0;
+>  	irqreturn_t ret = IRQ_NONE;
+>  
+> -	if (!intel_irqs_enabled(dev_priv))
+> +	if (unlikely(!intel_irqs_enabled(i915)))
+
+Doesn't hurt anymore.
+
+And dont have to worry about ret so only thing different is
+void of forcewake dance.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>  		return IRQ_NONE;
+>  
+>  	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+> -	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> +	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  
+>  	/* disable master interrupt before clearing iir  */
+> -	de_ier = I915_READ(DEIER);
+> -	I915_WRITE(DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+> +	de_ier = raw_reg_read(regs, DEIER);
+> +	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+>  
+>  	/* Disable south interrupts. We'll only write to SDEIIR once, so further
+>  	 * interrupts will will be stored on its back queue, and then we'll be
+>  	 * able to process them after we restore SDEIER (as soon as we restore
+>  	 * it, we'll get an interrupt if SDEIIR still has something to process
+>  	 * due to its back queue). */
+> -	if (!HAS_PCH_NOP(dev_priv)) {
+> -		sde_ier = I915_READ(SDEIER);
+> -		I915_WRITE(SDEIER, 0);
+> +	if (!HAS_PCH_NOP(i915)) {
+> +		sde_ier = raw_reg_read(regs, SDEIER);
+> +		raw_reg_write(regs, SDEIER, 0);
+>  	}
+>  
+>  	/* Find, clear, then process each source of interrupt */
+>  
+> -	gt_iir = I915_READ(GTIIR);
+> +	gt_iir = raw_reg_read(regs, GTIIR);
+>  	if (gt_iir) {
+> -		I915_WRITE(GTIIR, gt_iir);
+> -		ret = IRQ_HANDLED;
+> -		if (INTEL_GEN(dev_priv) >= 6)
+> -			gen6_gt_irq_handler(&dev_priv->gt, gt_iir);
+> +		raw_reg_write(regs, GTIIR, gt_iir);
+> +		if (INTEL_GEN(i915) >= 6)
+> +			gen6_gt_irq_handler(&i915->gt, gt_iir);
+>  		else
+> -			gen5_gt_irq_handler(&dev_priv->gt, gt_iir);
+> +			gen5_gt_irq_handler(&i915->gt, gt_iir);
+> +		ret = IRQ_HANDLED;
+>  	}
+>  
+> -	de_iir = I915_READ(DEIIR);
+> +	de_iir = raw_reg_read(regs, DEIIR);
+>  	if (de_iir) {
+> -		I915_WRITE(DEIIR, de_iir);
+> -		ret = IRQ_HANDLED;
+> -		if (INTEL_GEN(dev_priv) >= 7)
+> -			ivb_display_irq_handler(dev_priv, de_iir);
+> +		raw_reg_write(regs, DEIIR, de_iir);
+> +		if (INTEL_GEN(i915) >= 7)
+> +			ivb_display_irq_handler(i915, de_iir);
+>  		else
+> -			ilk_display_irq_handler(dev_priv, de_iir);
+> +			ilk_display_irq_handler(i915, de_iir);
+> +		ret = IRQ_HANDLED;
+>  	}
+>  
+> -	if (INTEL_GEN(dev_priv) >= 6) {
+> -		u32 pm_iir = I915_READ(GEN6_PMIIR);
+> +	if (INTEL_GEN(i915) >= 6) {
+> +		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
+>  		if (pm_iir) {
+> -			I915_WRITE(GEN6_PMIIR, pm_iir);
+> -			ret = IRQ_HANDLED;
+> -			gen6_rps_irq_handler(&dev_priv->gt.rps, pm_iir);
+> +			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
+> +			gen6_rps_irq_handler(&i915->gt.rps, pm_iir);
+>  		}
+> +		ret = IRQ_HANDLED;
+>  	}
+>  
+> -	I915_WRITE(DEIER, de_ier);
+> -	if (!HAS_PCH_NOP(dev_priv))
+> -		I915_WRITE(SDEIER, sde_ier);
+> +	raw_reg_write(regs, DEIER, de_ier);
+> +	if (sde_ier)
+> +		raw_reg_write(regs, SDEIER, sde_ier);
+>  
+>  	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+> -	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> +	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  
+>  	return ret;
+>  }
+> -- 
+> 2.20.1
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
