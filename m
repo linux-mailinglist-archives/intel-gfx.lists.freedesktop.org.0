@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37B31E9F2C
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 09:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 408A71E9F1F
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 09:25:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B94F6E186;
-	Mon,  1 Jun 2020 07:25:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 638776E14F;
+	Mon,  1 Jun 2020 07:25:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA6C6E175
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 07:25:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 219DE6E0DA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 07:25:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21356603-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21356604-1500050 
  for multiple; Mon, 01 Jun 2020 08:24:52 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Jun 2020 08:24:13 +0100
-Message-Id: <20200601072446.19548-3-chris@chris-wilson.co.uk>
+Date: Mon,  1 Jun 2020 08:24:14 +0100
+Message-Id: <20200601072446.19548-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200601072446.19548-1-chris@chris-wilson.co.uk>
 References: <20200601072446.19548-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/36] drm/i915/gt: Move legacy context wa to
- intel_workarounds
+Subject: [Intel-gfx] [PATCH 04/36] drm/i915: Trim the ironlake+ irq handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,117 +44,121 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the central mechanism for recording and verifying that we restore
-the w/a for the older devices as well.
+Ever noticed that our interrupt handlers are where we spend most of our
+time on a busy system? In part this is unavoidable as each interrupt
+requires to poll and reset several registers, but we can try and so as
+efficiently as possible.
+
+Function                                     old     new   delta
+ilk_irq_handler                             2317    2156    -161
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 28 -----------------
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 31 +++++++++++++++++++
- 2 files changed, 31 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 59 ++++++++++++++++-----------------
+ 1 file changed, 28 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 96881cd8b17b..d9c1701061b9 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -429,32 +429,6 @@ static void reset_finish(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 63579ab71cf6..07c0c7ea3795 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2097,69 +2097,66 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
+  */
+ static irqreturn_t ilk_irq_handler(int irq, void *arg)
  {
+-	struct drm_i915_private *dev_priv = arg;
++	struct drm_i915_private *i915 = arg;
++	void __iomem * const regs = i915->uncore.regs;
+ 	u32 de_iir, gt_iir, de_ier, sde_ier = 0;
+-	irqreturn_t ret = IRQ_NONE;
+ 
+-	if (!intel_irqs_enabled(dev_priv))
++	if (!unlikely(intel_irqs_enabled(i915)))
+ 		return IRQ_NONE;
+ 
+ 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+-	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
++	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 
+ 	/* disable master interrupt before clearing iir  */
+-	de_ier = I915_READ(DEIER);
+-	I915_WRITE(DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
++	de_ier = raw_reg_read(regs, DEIER);
++	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+ 
+ 	/* Disable south interrupts. We'll only write to SDEIIR once, so further
+ 	 * interrupts will will be stored on its back queue, and then we'll be
+ 	 * able to process them after we restore SDEIER (as soon as we restore
+ 	 * it, we'll get an interrupt if SDEIIR still has something to process
+ 	 * due to its back queue). */
+-	if (!HAS_PCH_NOP(dev_priv)) {
+-		sde_ier = I915_READ(SDEIER);
+-		I915_WRITE(SDEIER, 0);
++	if (!HAS_PCH_NOP(i915)) {
++		sde_ier = raw_reg_read(regs, SDEIER);
++		raw_reg_write(regs, SDEIER, 0);
+ 	}
+ 
+ 	/* Find, clear, then process each source of interrupt */
+ 
+-	gt_iir = I915_READ(GTIIR);
++	gt_iir = raw_reg_read(regs, GTIIR);
+ 	if (gt_iir) {
+-		I915_WRITE(GTIIR, gt_iir);
+-		ret = IRQ_HANDLED;
+-		if (INTEL_GEN(dev_priv) >= 6)
+-			gen6_gt_irq_handler(&dev_priv->gt, gt_iir);
++		raw_reg_write(regs, GTIIR, gt_iir);
++		if (INTEL_GEN(i915) >= 6)
++			gen6_gt_irq_handler(&i915->gt, gt_iir);
+ 		else
+-			gen5_gt_irq_handler(&dev_priv->gt, gt_iir);
++			gen5_gt_irq_handler(&i915->gt, gt_iir);
+ 	}
+ 
+-	de_iir = I915_READ(DEIIR);
++	de_iir = raw_reg_read(regs, DEIIR);
+ 	if (de_iir) {
+-		I915_WRITE(DEIIR, de_iir);
+-		ret = IRQ_HANDLED;
+-		if (INTEL_GEN(dev_priv) >= 7)
+-			ivb_display_irq_handler(dev_priv, de_iir);
++		raw_reg_write(regs, DEIIR, de_iir);
++		if (INTEL_GEN(i915) >= 7)
++			ivb_display_irq_handler(i915, de_iir);
+ 		else
+-			ilk_display_irq_handler(dev_priv, de_iir);
++			ilk_display_irq_handler(i915, de_iir);
+ 	}
+ 
+-	if (INTEL_GEN(dev_priv) >= 6) {
+-		u32 pm_iir = I915_READ(GEN6_PMIIR);
++	if (INTEL_GEN(i915) >= 6) {
++		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
+ 		if (pm_iir) {
+-			I915_WRITE(GEN6_PMIIR, pm_iir);
+-			ret = IRQ_HANDLED;
+-			gen6_rps_irq_handler(&dev_priv->gt.rps, pm_iir);
++			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
++			gen6_rps_irq_handler(&i915->gt.rps, pm_iir);
+ 		}
+ 	}
+ 
+-	I915_WRITE(DEIER, de_ier);
+-	if (!HAS_PCH_NOP(dev_priv))
+-		I915_WRITE(SDEIER, sde_ier);
++	raw_reg_write(regs, DEIER, de_ier);
++	if (sde_ier)
++		raw_reg_write(regs, SDEIER, sde_ier);
+ 
+ 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+-	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
++	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 
+-	return ret;
++	return IRQ_HANDLED;
  }
  
--static int rcs_resume(struct intel_engine_cs *engine)
--{
--	struct drm_i915_private *i915 = engine->i915;
--	struct intel_uncore *uncore = engine->uncore;
--
--	/*
--	 * Disable CONSTANT_BUFFER before it is loaded from the context
--	 * image. For as it is loaded, it is executed and the stored
--	 * address may no longer be valid, leading to a GPU hang.
--	 *
--	 * This imposes the requirement that userspace reload their
--	 * CONSTANT_BUFFER on every batch, fortunately a requirement
--	 * they are already accustomed to from before contexts were
--	 * enabled.
--	 */
--	if (IS_GEN(i915, 4))
--		intel_uncore_write(uncore, ECOSKPD,
--			   _MASKED_BIT_ENABLE(ECO_CONSTANT_BUFFER_SR_DISABLE));
--
--	if (IS_GEN_RANGE(i915, 6, 7))
--		intel_uncore_write(uncore, INSTPM,
--				   _MASKED_BIT_ENABLE(INSTPM_FORCE_ORDERING));
--
--	return xcs_resume(engine);
--}
--
- static void reset_cancel(struct intel_engine_cs *engine)
- {
- 	struct i915_request *request;
-@@ -1139,8 +1113,6 @@ static void setup_rcs(struct intel_engine_cs *engine)
- 
- 	if (IS_HASWELL(i915))
- 		engine->emit_bb_start = hsw_emit_bb_start;
--
--	engine->resume = rcs_resume;
- }
- 
- static void setup_vcs(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index fa1e15657663..94d66a9d760d 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -199,6 +199,18 @@ wa_masked_dis(struct i915_wa_list *wal, i915_reg_t reg, u32 val)
- #define WA_SET_FIELD_MASKED(addr, mask, value) \
- 	wa_write_masked_or(wal, (addr), 0, _MASKED_FIELD((mask), (value)))
- 
-+static void gen6_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				      struct i915_wa_list *wal)
-+{
-+	WA_SET_BIT_MASKED(INSTPM, INSTPM_FORCE_ORDERING);
-+}
-+
-+static void gen7_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				      struct i915_wa_list *wal)
-+{
-+	WA_SET_BIT_MASKED(INSTPM, INSTPM_FORCE_ORDERING);
-+}
-+
- static void gen8_ctx_workarounds_init(struct intel_engine_cs *engine,
- 				      struct i915_wa_list *wal)
- {
-@@ -638,6 +650,10 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 		chv_ctx_workarounds_init(engine, wal);
- 	else if (IS_BROADWELL(i915))
- 		bdw_ctx_workarounds_init(engine, wal);
-+	else if (IS_GEN(i915, 7))
-+		gen7_ctx_workarounds_init(engine, wal);
-+	else if (IS_GEN(i915, 6))
-+		gen6_ctx_workarounds_init(engine, wal);
- 	else if (INTEL_GEN(i915) < 8)
- 		return;
- 	else
-@@ -1583,6 +1599,21 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		       0, _MASKED_BIT_ENABLE(VS_TIMER_DISPATCH),
- 		       /* XXX bit doesn't stick on Broadwater */
- 		       IS_I965G(i915) ? 0 : VS_TIMER_DISPATCH);
-+
-+	if (IS_GEN(i915, 4))
-+		/*
-+		 * Disable CONSTANT_BUFFER before it is loaded from the context
-+		 * image. For as it is loaded, it is executed and the stored
-+		 * address may no longer be valid, leading to a GPU hang.
-+		 *
-+		 * This imposes the requirement that userspace reload their
-+		 * CONSTANT_BUFFER on every batch, fortunately a requirement
-+		 * they are already accustomed to from before contexts were
-+		 * enabled.
-+		 */
-+		wa_add(wal, ECOSKPD,
-+		       0, _MASKED_BIT_ENABLE(ECO_CONSTANT_BUFFER_SR_DISABLE),
-+		       0 /* XXX bit doesn't stick on Broadwater */);
- }
- 
- static void
+ static void bxt_hpd_irq_handler(struct drm_i915_private *dev_priv,
 -- 
 2.20.1
 
