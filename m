@@ -1,29 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E3F1EA581
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 16:04:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331BF1EA593
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 16:11:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35DC86E0A1;
-	Mon,  1 Jun 2020 14:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E167B6E0AB;
+	Mon,  1 Jun 2020 14:11:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5C56E0A1
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 14:03:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21361386-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 15:03:57 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Jun 2020 15:03:55 +0100
-Message-Id: <20200601140355.20243-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0736D6E0AB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 14:11:36 +0000 (UTC)
+IronPort-SDR: tpZKwh6cGJr6rnNWmnl3ukd0FfK9ewJ4gZ9WnwB6/DlWtWOL2rXk2Z09yEfGdw3Rb62OopEiJ7
+ iINWhe8BeRZw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 07:11:35 -0700
+IronPort-SDR: v7m78UPn8DEChwiItaInx6x52ZTOhZuNnhwCmsDPZ+ru71aSYuSWp+GbKDAzPXJInfdukqOQHs
+ wZPaXUNQY+Vg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,461,1583222400"; d="scan'208";a="272009343"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 01 Jun 2020 07:11:32 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 01 Jun 2020 17:11:32 +0300
+Date: Mon, 1 Jun 2020 17:11:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200601141132.GK6112@intel.com>
+References: <20200601101516.21018-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Trim the ironlake+ irq handler
+Content-Disposition: inline
+In-Reply-To: <20200601101516.21018-1-anshuman.gupta@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RFC] drm/i915: lpsp with hdmi/dp outputs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,138 +50,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ever noticed that our interrupt handlers are where we spend most of our
-time on a busy system? In part this is unavoidable as each interrupt
-requires to poll and reset several registers, but we can try and do so as
-efficiently as possible.
+On Mon, Jun 01, 2020 at 03:45:16PM +0530, Anshuman Gupta wrote:
+> Gen12 hw are failing to enable lpsp configuration due to PG3 was left on
+> due to valid usgae count of POWER_DOMAIN_AUDIO.
+> It is not required to get POWER_DOMAIN_AUDIO ref-count when enabling
+> a crtc, it should be always i915_audio_component request to get/put
+> AUDIO_POWER_DOMAIN.
+> =
 
-Function                                     old     new   delta
-ilk_irq_handler                             2317    2156    -161
+> Cc: stable@vger.kernel.org
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> =
 
-v2: Restore the irqreturn_t ret
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 6c3b11de2daf..f31a579d7a52 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7356,7 +7356,11 @@ static u64 get_crtc_power_domains(struct intel_crt=
+c_state *crtc_state)
+>  		mask |=3D BIT_ULL(intel_encoder->power_domain);
+>  	}
+>  =
 
-Function                                     old     new   delta
-ilk_irq_handler.cold                          63      72      +9
-ilk_irq_handler                             2221    2080    -141
+> -	if (HAS_DDI(dev_priv) && crtc_state->has_audio)
+> +	/*
+> +	 * Gen12 can drive lpsp on hdmi/dp outpus, it doesn't require to
+> +	 * enable AUDIO power in order to enable a crtc
 
-A slight improvement in the baseline overnight as well!
+Nothing requires audio power to enable a crtc. What this is saying is
+that if we want audio then we must enable the audio power. If you
+didn't want audio then you wouldn't have .has_audio set.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_irq.c | 57 +++++++++++++++++----------------
- 1 file changed, 29 insertions(+), 28 deletions(-)
+That said, looks like audio is moving into the always on well, but not
+yet in tgl.
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 63579ab71cf6..490574669eaa 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -2097,67 +2097,68 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
-  */
- static irqreturn_t ilk_irq_handler(int irq, void *arg)
- {
--	struct drm_i915_private *dev_priv = arg;
-+	struct drm_i915_private *i915 = arg;
-+	void __iomem * const regs = i915->uncore.regs;
- 	u32 de_iir, gt_iir, de_ier, sde_ier = 0;
- 	irqreturn_t ret = IRQ_NONE;
- 
--	if (!intel_irqs_enabled(dev_priv))
-+	if (unlikely(!intel_irqs_enabled(i915)))
- 		return IRQ_NONE;
- 
- 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
--	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-+	disable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
- 	/* disable master interrupt before clearing iir  */
--	de_ier = I915_READ(DEIER);
--	I915_WRITE(DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
-+	de_ier = raw_reg_read(regs, DEIER);
-+	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
- 
- 	/* Disable south interrupts. We'll only write to SDEIIR once, so further
- 	 * interrupts will will be stored on its back queue, and then we'll be
- 	 * able to process them after we restore SDEIER (as soon as we restore
- 	 * it, we'll get an interrupt if SDEIIR still has something to process
- 	 * due to its back queue). */
--	if (!HAS_PCH_NOP(dev_priv)) {
--		sde_ier = I915_READ(SDEIER);
--		I915_WRITE(SDEIER, 0);
-+	if (!HAS_PCH_NOP(i915)) {
-+		sde_ier = raw_reg_read(regs, SDEIER);
-+		raw_reg_write(regs, SDEIER, 0);
- 	}
- 
- 	/* Find, clear, then process each source of interrupt */
- 
--	gt_iir = I915_READ(GTIIR);
-+	gt_iir = raw_reg_read(regs, GTIIR);
- 	if (gt_iir) {
--		I915_WRITE(GTIIR, gt_iir);
--		ret = IRQ_HANDLED;
--		if (INTEL_GEN(dev_priv) >= 6)
--			gen6_gt_irq_handler(&dev_priv->gt, gt_iir);
-+		raw_reg_write(regs, GTIIR, gt_iir);
-+		if (INTEL_GEN(i915) >= 6)
-+			gen6_gt_irq_handler(&i915->gt, gt_iir);
- 		else
--			gen5_gt_irq_handler(&dev_priv->gt, gt_iir);
-+			gen5_gt_irq_handler(&i915->gt, gt_iir);
-+		ret = IRQ_HANDLED;
- 	}
- 
--	de_iir = I915_READ(DEIIR);
-+	de_iir = raw_reg_read(regs, DEIIR);
- 	if (de_iir) {
--		I915_WRITE(DEIIR, de_iir);
--		ret = IRQ_HANDLED;
--		if (INTEL_GEN(dev_priv) >= 7)
--			ivb_display_irq_handler(dev_priv, de_iir);
-+		raw_reg_write(regs, DEIIR, de_iir);
-+		if (INTEL_GEN(i915) >= 7)
-+			ivb_display_irq_handler(i915, de_iir);
- 		else
--			ilk_display_irq_handler(dev_priv, de_iir);
-+			ilk_display_irq_handler(i915, de_iir);
-+		ret = IRQ_HANDLED;
- 	}
- 
--	if (INTEL_GEN(dev_priv) >= 6) {
--		u32 pm_iir = I915_READ(GEN6_PMIIR);
-+	if (INTEL_GEN(i915) >= 6) {
-+		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
- 		if (pm_iir) {
--			I915_WRITE(GEN6_PMIIR, pm_iir);
-+			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
-+			gen6_rps_irq_handler(&i915->gt.rps, pm_iir);
- 			ret = IRQ_HANDLED;
--			gen6_rps_irq_handler(&dev_priv->gt.rps, pm_iir);
- 		}
- 	}
- 
--	I915_WRITE(DEIER, de_ier);
--	if (!HAS_PCH_NOP(dev_priv))
--		I915_WRITE(SDEIER, sde_ier);
-+	raw_reg_write(regs, DEIER, de_ier);
-+	if (sde_ier)
-+		raw_reg_write(regs, SDEIER, sde_ier);
- 
- 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
--	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-+	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
- 	return ret;
- }
--- 
-2.20.1
+.
+> +	 */
+> +	if (INTEL_GEN(dev_priv) < 12 && HAS_DDI(dev_priv) && crtc_state->has_au=
+dio)
+>  		mask |=3D BIT_ULL(POWER_DOMAIN_AUDIO);
+>  =
 
+>  	if (crtc_state->shared_dpll)
+> -- =
+
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
