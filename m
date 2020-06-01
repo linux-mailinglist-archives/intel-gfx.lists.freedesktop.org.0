@@ -1,56 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652821EA57D
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 16:02:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E3F1EA581
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 16:04:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14ADC89EA6;
-	Mon,  1 Jun 2020 14:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35DC86E0A1;
+	Mon,  1 Jun 2020 14:04:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
- [IPv6:2607:f8b0:4864:20::f43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972F289DFA
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 14:02:24 +0000 (UTC)
-Received: by mail-qv1-xf43.google.com with SMTP id e20so48398qvu.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 07:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id;
- bh=mW02zzuOr16mPZJm2itcCCjrTYGwnpsAij7awL7hCSQ=;
- b=MffQyk5gTdqB176GKHU0nC2N01AtPhnEt1GATofbCH8N8l0q6X5HlSfmpTC3Po+WYR
- 1CV2s4YJ7x7IQhIkTAFCU5di+nQeR7sct0DCes/9hVLw61STNU3tHKDvMbym1hHVC1Ki
- z8rGaUkmu5khvkg4AyMab38Zy0EMH3jkBvSRzVuTxY7Lp86lzox3494UWVSNV8P9Imop
- CrkKiITCWlbedjToec/URsux7P6ThNMfN6//36gymF0w62++c8g7JcNXtC8gZyWX2Cmz
- u+E9fXhJEr7nxdzEuY4+BGGdnZ5dQ2F5w2JT7nbLAINxE/7Xl5ZDJExGTP9djpCTGrWx
- TYmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=mW02zzuOr16mPZJm2itcCCjrTYGwnpsAij7awL7hCSQ=;
- b=Gt7z9ej2iOA2f76d3J0FbywRWdwiOWWcJe3RBhs447Um6+XWTqD4xKSpSTWZz++3rI
- Y81QaBCvKQ6/SfMbPxC18aVlUz7Uu+pCc5ytwXxKPh5ZjjQYPDG9jlLYPSiNrdyHzErc
- XE0ZqDfkoSq20MTfDFbwco/30P7leNGMVG59Sv4DYQegkbHHtpJlcayKep4R8hxnkhe2
- SnTCnjJfiWMUYcuQJ5QrCnTLYAoNl4i1hO3tlUuWWCAu5UXhBcvpixUfhMcZXwPM3wfB
- +YxIx0gcjn8YKbuibDl9+Sv5IONR44xk94dKQJGRPABanLCQXRcaeBdXmjBR+VQQv+zZ
- bTRw==
-X-Gm-Message-State: AOAM531U0uO5wViwA0a+gjKiEnQ9wICbaad3lxLGVxQWRB6/udL0Izag
- N2dgr1h2KGq2vBCndUufmOFTnQ==
-X-Google-Smtp-Source: ABdhPJy/KrxKXKjKetBXghKiWMcCW10QUrtNsWULrX810oXNnLv0Je+okGaP+jlgwuU2mUjS1PA7yw==
-X-Received: by 2002:ad4:47b1:: with SMTP id a17mr20358633qvz.16.1591020143522; 
- Mon, 01 Jun 2020 07:02:23 -0700 (PDT)
-Received: from localhost (mobile-166-170-56-31.mycingular.net. [166.170.56.31])
- by smtp.gmail.com with ESMTPSA id j5sm13108612qtr.73.2020.06.01.07.02.22
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 01 Jun 2020 07:02:22 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Jun 2020 10:02:17 -0400
-Message-Id: <20200601140217.51709-1-sean@poorly.run>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915/panel: Reduce race window between
- bl_update_status and bl_enable
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5C56E0A1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 14:03:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21361386-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 15:03:57 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Jun 2020 15:03:55 +0100
+Message-Id: <20200601140355.20243-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI] drm/i915: Trim the ironlake+ irq handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +36,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: seanpaul@chromium.org
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+Ever noticed that our interrupt handlers are where we spend most of our
+time on a busy system? In part this is unavoidable as each interrupt
+requires to poll and reset several registers, but we can try and do so as
+efficiently as possible.
 
-If the backlight is updated while the panel is being enabled, the value
-from userspace (which is stored in panel->backlight.device->props.brightness)
-can be replaced by the hardware's minimum level. There's really no good
-way to tell if this is happening in enable_backlight() since
-props.brightness can be initialized to the same value as is being set by
-userspace. So we'll try to reduce the race window as much as possible.
+Function                                     old     new   delta
+ilk_irq_handler                             2317    2156    -161
 
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
+v2: Restore the irqreturn_t ret
+
+Function                                     old     new   delta
+ilk_irq_handler.cold                          63      72      +9
+ilk_irq_handler                             2221    2080    -141
+
+A slight improvement in the baseline overnight as well!
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
+ drivers/gpu/drm/i915/i915_irq.c | 57 +++++++++++++++++----------------
+ 1 file changed, 29 insertions(+), 28 deletions(-)
 
-I don't think there's any way to eliminate this race since grabbing
-bd->op_lock in panel_enable would cause a lock inversion deadlock with
-the connection_mutex lock in backlight_device_update_status
-
-Suggestions very much welcome!
-
- drivers/gpu/drm/i915/display/intel_panel.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 3c5056dbf607..abdfb9cc281b 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -1285,8 +1285,22 @@ static int intel_backlight_device_update_status(struct backlight_device *bd)
- 	struct intel_connector *connector = bl_get_data(bd);
- 	struct intel_panel *panel = &connector->panel;
- 	struct drm_device *dev = connector->base.dev;
-+	int value;
-+
-+	/*
-+	 * Before we attempt to grab the connection mutex, cache the incoming
-+	 * brightness value. If we're in the middle of a modeset,
-+	 * intel_panel_enable_backlight will be called and could pave over
-+	 * props.brightness. This is still racey, but the race window should be
-+	 * significantly smaller and reflects the inherent raceyness of the
-+	 * updating props.brightness outside of bd->op_lock.
-+	 */
-+	value = bd->props.brightness;
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 63579ab71cf6..490574669eaa 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2097,67 +2097,68 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
+  */
+ static irqreturn_t ilk_irq_handler(int irq, void *arg)
+ {
+-	struct drm_i915_private *dev_priv = arg;
++	struct drm_i915_private *i915 = arg;
++	void __iomem * const regs = i915->uncore.regs;
+ 	u32 de_iir, gt_iir, de_ier, sde_ier = 0;
+ 	irqreturn_t ret = IRQ_NONE;
  
- 	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
-+
-+	bd->props.brightness = value;
-+
- 	DRM_DEBUG_KMS("updating intel_backlight, brightness=%d/%d\n",
- 		      bd->props.brightness, bd->props.max_brightness);
- 	intel_panel_set_backlight(connector->base.state, bd->props.brightness,
+-	if (!intel_irqs_enabled(dev_priv))
++	if (unlikely(!intel_irqs_enabled(i915)))
+ 		return IRQ_NONE;
+ 
+ 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+-	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
++	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 
+ 	/* disable master interrupt before clearing iir  */
+-	de_ier = I915_READ(DEIER);
+-	I915_WRITE(DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
++	de_ier = raw_reg_read(regs, DEIER);
++	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+ 
+ 	/* Disable south interrupts. We'll only write to SDEIIR once, so further
+ 	 * interrupts will will be stored on its back queue, and then we'll be
+ 	 * able to process them after we restore SDEIER (as soon as we restore
+ 	 * it, we'll get an interrupt if SDEIIR still has something to process
+ 	 * due to its back queue). */
+-	if (!HAS_PCH_NOP(dev_priv)) {
+-		sde_ier = I915_READ(SDEIER);
+-		I915_WRITE(SDEIER, 0);
++	if (!HAS_PCH_NOP(i915)) {
++		sde_ier = raw_reg_read(regs, SDEIER);
++		raw_reg_write(regs, SDEIER, 0);
+ 	}
+ 
+ 	/* Find, clear, then process each source of interrupt */
+ 
+-	gt_iir = I915_READ(GTIIR);
++	gt_iir = raw_reg_read(regs, GTIIR);
+ 	if (gt_iir) {
+-		I915_WRITE(GTIIR, gt_iir);
+-		ret = IRQ_HANDLED;
+-		if (INTEL_GEN(dev_priv) >= 6)
+-			gen6_gt_irq_handler(&dev_priv->gt, gt_iir);
++		raw_reg_write(regs, GTIIR, gt_iir);
++		if (INTEL_GEN(i915) >= 6)
++			gen6_gt_irq_handler(&i915->gt, gt_iir);
+ 		else
+-			gen5_gt_irq_handler(&dev_priv->gt, gt_iir);
++			gen5_gt_irq_handler(&i915->gt, gt_iir);
++		ret = IRQ_HANDLED;
+ 	}
+ 
+-	de_iir = I915_READ(DEIIR);
++	de_iir = raw_reg_read(regs, DEIIR);
+ 	if (de_iir) {
+-		I915_WRITE(DEIIR, de_iir);
+-		ret = IRQ_HANDLED;
+-		if (INTEL_GEN(dev_priv) >= 7)
+-			ivb_display_irq_handler(dev_priv, de_iir);
++		raw_reg_write(regs, DEIIR, de_iir);
++		if (INTEL_GEN(i915) >= 7)
++			ivb_display_irq_handler(i915, de_iir);
+ 		else
+-			ilk_display_irq_handler(dev_priv, de_iir);
++			ilk_display_irq_handler(i915, de_iir);
++		ret = IRQ_HANDLED;
+ 	}
+ 
+-	if (INTEL_GEN(dev_priv) >= 6) {
+-		u32 pm_iir = I915_READ(GEN6_PMIIR);
++	if (INTEL_GEN(i915) >= 6) {
++		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
+ 		if (pm_iir) {
+-			I915_WRITE(GEN6_PMIIR, pm_iir);
++			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
++			gen6_rps_irq_handler(&i915->gt.rps, pm_iir);
+ 			ret = IRQ_HANDLED;
+-			gen6_rps_irq_handler(&dev_priv->gt.rps, pm_iir);
+ 		}
+ 	}
+ 
+-	I915_WRITE(DEIER, de_ier);
+-	if (!HAS_PCH_NOP(dev_priv))
+-		I915_WRITE(SDEIER, sde_ier);
++	raw_reg_write(regs, DEIER, de_ier);
++	if (sde_ier)
++		raw_reg_write(regs, SDEIER, sde_ier);
+ 
+ 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+-	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
++	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 
+ 	return ret;
+ }
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
