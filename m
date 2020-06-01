@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9471E9FA3
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 09:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC1B21E9FBB
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 10:03:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4576E1BC;
-	Mon,  1 Jun 2020 07:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C3589DF7;
+	Mon,  1 Jun 2020 08:03:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AAE8A6E1B9;
- Mon,  1 Jun 2020 07:56:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A4C74A66C7;
- Mon,  1 Jun 2020 07:56:29 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40CE789DB8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 08:03:21 +0000 (UTC)
+IronPort-SDR: VRFckdT/g+pLX8cp2RCYbqFcFp9heZ9blVs0roBqkIn4neYXkR4ACreD5jSM91F2VjtWvXwOtM
+ tXapCMEwyQOA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 01:03:20 -0700
+IronPort-SDR: UmFfCgAF/xC5DDgLIHLk9bP56+MyWmJoavgIHFC1KKRg1/ceD2ETv9VjNbJqjPBnlC1XVqbRGF
+ 3YpMYvFz/jwg==
+X-IronPort-AV: E=Sophos;i="5.73,460,1583222400"; d="scan'208";a="257903453"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 01:03:19 -0700
+Date: Mon, 1 Jun 2020 10:59:29 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200601075929.GA2431@intel.com>
+References: <20200527200245.13184-1-ville.syrjala@linux.intel.com>
+ <20200528193852.GA24971@intel.com>
+ <20200528195852.GA25073@intel.com>
+ <20200529051143.GD6112@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 01 Jun 2020 07:56:29 -0000
-Message-ID: <159099818964.14891.14266739176950401576@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200601072446.19548-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200601072446.19548-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/36=5D_drm/i915=3A_Handle_very_early_eng?=
- =?utf-8?q?ine_initialisation_failure?=
+Content-Disposition: inline
+In-Reply-To: <20200529051143.GD6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix global state use-after-frees
+ with a refcount
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,128 +51,282 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, May 29, 2020 at 08:11:43AM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, May 28, 2020 at 10:58:52PM +0300, Lisovskiy, Stanislav wrote:
+> > On Thu, May 28, 2020 at 10:38:52PM +0300, Lisovskiy, Stanislav wrote:
+> > > On Wed, May 27, 2020 at 11:02:45PM +0300, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > =
 
-Series: series starting with [01/36] drm/i915: Handle very early engine initialisation failure
-URL   : https://patchwork.freedesktop.org/series/77857/
-State : failure
+> > > > While the current locking/serialization of the global state
+> > > > suffices for protecting the obj->state access and the actual
+> > > > hardware reprogramming, we do have a problem with accessing
+> > > > the old/new states during nonblocking commits.
+> > > > =
 
-== Summary ==
+> > > > The state computation and swap will be protected by the crtc
+> > > > locks, but the commit_tails can finish out of order, thus also
+> > > > causing the atomic states to be cleaned up out of order. This
+> > > > would mean the commit that started first but finished last has
+> > > > had its new state freed as the no-longer-needed old state by the
+> > > > other commit.
+> > > > =
 
-CI Bug Log - changes from CI_DRM_8560 -> Patchwork_17826
-====================================================
+> > > > To fix this let's just refcount the states. obj->state amounts
+> > > > to one reference, and the intel_atomic_state holds extra references
+> > > > to both its new and old global obj states.
+> > > > =
 
-Summary
--------
+> > > > Fixes: 0ef1905ecf2e ("drm/i915: Introduce better global state handl=
+ing")
+> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  .../gpu/drm/i915/display/intel_global_state.c | 45 +++++++++++++++=
++---
+> > > >  .../gpu/drm/i915/display/intel_global_state.h |  3 ++
+> > > >  2 files changed, 42 insertions(+), 6 deletions(-)
+> > > > =
 
-  **FAILURE**
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/dr=
+ivers/gpu/drm/i915/display/intel_global_state.c
+> > > > index 212d4ee68205..7a19215ad844 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_global_state.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
+> > > > @@ -10,6 +10,28 @@
+> > > >  #include "intel_display_types.h"
+> > > >  #include "intel_global_state.h"
+> > > >  =
 
-  Serious unknown changes coming with Patchwork_17826 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17826, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> > > > +static void __intel_atomic_global_state_free(struct kref *kref)
+> > > > +{
+> > > > +	struct intel_global_state *obj_state =3D
+> > > > +		container_of(kref, struct intel_global_state, ref);
+> > > > +	struct intel_global_obj *obj =3D obj_state->obj;
+> > > > +
+> > > > +	obj->funcs->atomic_destroy_state(obj, obj_state);
+> > > > +}
+> > > > +
+> > > > +static void intel_atomic_global_state_put(struct intel_global_stat=
+e *obj_state)
+> > > > +{
+> > > > +	kref_put(&obj_state->ref, __intel_atomic_global_state_free);
+> > > > +}
+> > > > +
+> > > > +static struct intel_global_state *
+> > > > +intel_atomic_global_state_get(struct intel_global_state *obj_state)
+> > > > +{
+> > > > +	kref_get(&obj_state->ref);
+> > > > +
+> > > > +	return obj_state;
+> > > > +}
+> > > > +
+> > > >  void intel_atomic_global_obj_init(struct drm_i915_private *dev_pri=
+v,
+> > > >  				  struct intel_global_obj *obj,
+> > > >  				  struct intel_global_state *state,
+> > > > @@ -17,6 +39,10 @@ void intel_atomic_global_obj_init(struct drm_i91=
+5_private *dev_priv,
+> > > >  {
+> > > >  	memset(obj, 0, sizeof(*obj));
+> > > >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17826/index.html
+> > > > +	state->obj =3D obj;
+> > > > +
+> > > > +	kref_init(&state->ref);
+> > > > +
+> > > >  	obj->state =3D state;
+> > > >  	obj->funcs =3D funcs;
+> > > >  	list_add_tail(&obj->head, &dev_priv->global_obj_list);
+> > > > @@ -28,7 +54,9 @@ void intel_atomic_global_obj_cleanup(struct drm_i=
+915_private *dev_priv)
+> > > >  =
 
-Possible new issues
--------------------
+> > > >  	list_for_each_entry_safe(obj, next, &dev_priv->global_obj_list, h=
+ead) {
+> > > >  		list_del(&obj->head);
+> > > > -		obj->funcs->atomic_destroy_state(obj, obj->state);
+> > > > +
+> > > > +		drm_WARN_ON(&dev_priv->drm, kref_read(&obj->state->ref) !=3D 1);
+> > > > +		intel_atomic_global_state_put(obj->state);
+> > > >  	}
+> > > >  }
+> > > >  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_17826:
+> > > > @@ -97,10 +125,14 @@ intel_atomic_get_global_obj_state(struct intel=
+_atomic_state *state,
+> > > >  	if (!obj_state)
+> > > >  		return ERR_PTR(-ENOMEM);
+> > > >  =
 
-### IGT changes ###
+> > > > +	obj_state->obj =3D obj;
+> > > >  	obj_state->changed =3D false;
+> > > >  =
 
-#### Possible regressions ####
+> > > > +	kref_init(&obj_state->ref);
+> > > > +
+> > > >  	state->global_objs[index].state =3D obj_state;
+> > > > -	state->global_objs[index].old_state =3D obj->state;
+> > > > +	state->global_objs[index].old_state =3D
+> > > > +		intel_atomic_global_state_get(obj->state);
+> > > >  	state->global_objs[index].new_state =3D obj_state;
+> > > >  	state->global_objs[index].ptr =3D obj;
+> > > >  	obj_state->state =3D state;
+> > > > @@ -163,7 +195,9 @@ void intel_atomic_swap_global_state(struct inte=
+l_atomic_state *state)
+> > > >  		new_obj_state->state =3D NULL;
+> > > >  =
 
-  * igt@i915_selftest@live@gt_engines:
-    - fi-cml-s:           [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8560/fi-cml-s/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17826/fi-cml-s/igt@i915_selftest@live@gt_engines.html
+> > > >  		state->global_objs[i].state =3D old_obj_state;
+> > > > -		obj->state =3D new_obj_state;
+> > > > +
+> > > > +		intel_atomic_global_state_put(obj->state);
+> > > > +		obj->state =3D intel_atomic_global_state_get(new_obj_state);
+> > > >  	}
+> > > >  }
+> > > >  =
 
-  
-New tests
----------
+> > > > @@ -172,10 +206,9 @@ void intel_atomic_clear_global_state(struct in=
+tel_atomic_state *state)
+> > > >  	int i;
+> > > >  =
 
-  New tests have been introduced between CI_DRM_8560 and Patchwork_17826:
+> > > >  	for (i =3D 0; i < state->num_global_objs; i++) {
+> > > > -		struct intel_global_obj *obj =3D state->global_objs[i].ptr;
+> > > > +		intel_atomic_global_state_put(state->global_objs[i].old_state);
+> > > > +		intel_atomic_global_state_put(state->global_objs[i].new_state);
+> > > =
 
-### New IGT tests (1) ###
+> > > Shouldn't we clean old_state only? =
 
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 42 pass(s)
-    - Exec time: [0.02, 0.11] s
+> > > =
 
-  
+> > > As I understand in absence of any transaction you now have a pool of
+> > > global_obj each has a state with single kref taken.
+> > > =
+
+> > > So when we are going to get a new state, we do +1 kref to old_state(w=
+hich is current global obj->state)
+> > > in order to prevent it being cleared by competing commit.
+> > > However the new state doesn't have any kref taken by that moment.
+> > > Then you swap do -1 kref for the old state and do +1 kref for new sta=
+te, =
+
+> > > which means that when you -1 kref again for old state in atomic_clear=
+ also, =
+
+> > > it will be destroyed, however regarding the new state, as I understand
+> > > it still has only single kref grabbed when it was swapped, =
+
+> > > so isn't it going to be now removed? unless we are lucky and somebody
+> > > haven't grabbed it already as an old_state in the next commit?
+> > > =
+
+> > > Stan
+> > =
+
+> > Ah actually I got it - forgot that kref is init as 1. =
+
+> > But then you probably don't even need to increment kref for new state =
+
+> > when swapping.
+> > Before assigning new obj->state you release one kref in swap(which make=
+s sense)
+> > Then you just do only intel_atomic_global_state_put(old_state) in atomi=
+c_clear
+> > and then no need in doing intel_atomic_global_state_get(new_state) duri=
+ng
+> > swap. =
+
+> > I.e we always call intel_atomic_global_state_get/put only regarding "ol=
+d" =
+
+> > obj->state and each new_state will be disposed when it becomes old_stat=
+e.
+> =
+
+> =
+
+> IMO the approach of handing off references is just hard to follow. =
+
+> Better to just get/put explicitly whenever you assign a pointer.
+> I already dislike handing off the original kref_init() reference,
+> and almost added a get+put there too. Maybe I really should do that...
+
+Agree, tbh I don't like the idea that kref_init already implicitly holds
+a reference - it even confused me initially. =
+
+Typical smartpointer usually increments the ref only when assignment
+is done.
 
 
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Participating hosts (50 -> 44)
-------------------------------
+> =
 
-  Additional (1): fi-ehl-1 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+> > =
 
+> > Stan
+> > =
 
-Build changes
--------------
+> > > >  =
 
-  * Linux: CI_DRM_8560 -> Patchwork_17826
+> > > > -		obj->funcs->atomic_destroy_state(obj,
+> > > > -						 state->global_objs[i].state);
+> > > >  		state->global_objs[i].ptr =3D NULL;
+> > > >  		state->global_objs[i].state =3D NULL;
+> > > >  		state->global_objs[i].old_state =3D NULL;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/dr=
+ivers/gpu/drm/i915/display/intel_global_state.h
+> > > > index e6163a469029..1f16fa3073c9 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_global_state.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
+> > > > @@ -6,6 +6,7 @@
+> > > >  #ifndef __INTEL_GLOBAL_STATE_H__
+> > > >  #define __INTEL_GLOBAL_STATE_H__
+> > > >  =
 
-  CI-20190529: 20190529
-  CI_DRM_8560: 02fe287fdb4a3d6bceb1bb61b3c8538b4b941b3c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5687: 668a5be752186b6e08f361bac34da37309d08393 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17826: ac90fd42eb1dc9c16ba67d9a551bb2b3c238cd42 @ git://anongit.freedesktop.org/gfx-ci/linux
+> > > > +#include <linux/kref.h>
+> > > >  #include <linux/list.h>
+> > > >  =
 
+> > > >  struct drm_i915_private;
+> > > > @@ -54,7 +55,9 @@ struct intel_global_obj {
+> > > >  		for_each_if(obj)
+> > > >  =
 
-== Linux commits ==
+> > > >  struct intel_global_state {
+> > > > +	struct intel_global_obj *obj;
+> > > >  	struct intel_atomic_state *state;
+> > > > +	struct kref ref;
+> > > >  	bool changed;
+> > > >  };
+> > > >  =
 
-ac90fd42eb1d drm/i915/gem: Bind the fence async for execbuf
-9c2cdb286a07 drm/i915/gem: Asynchronous GTT unbinding
-d90d92d26c5c drm/i915/gem: Separate the ww_mutex walker into its own list
-68f85c40ff48 drm/i915: Export a preallocate variant of i915_active_acquire()
-b253079dbe95 drm/i915/gem: Assign context id for async work
-308d42d80cb3 drm/i915: Always defer fenced work to the worker
-7cf3aad63437 drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
-9675274fc27c drm/i915/gt: Declare when we enabled timeslicing
-9b560a7e6079 drm/i915/gem: Allow combining submit-fences with syncobj
-d03f86e3977c drm/i915/gem: Teach execbuf how to wait on future syncobj
-dda5123316b5 drm/syncobj: Allow use of dma-fence-proxy
-f3cd5ea0ff2c drm/i915/gem: Make relocations atomic within execbuf
-06d2116fd5f4 drm/i915: Unpeel awaits on a proxy fence
-6b9cc101590e dma-buf: Proxy fence, an unsignaled fence placeholder
-710af09a4672 drm/i915/gem: Add all GPU reloc awaits/signals en masse
-6f01210067aa drm/i915/gem: Build the reloc request first
-c26758f43cfe drm/i915/gem: Lift GPU relocation allocation
-b2abfeed9589 drm/i915/gem: Separate reloc validation into an earlier step
-9b9d4aa5ab50 drm/i915: Add list_for_each_entry_safe_continue_reverse
-033b56b47071 drm/i915/gem: Async GPU relocations only
-143d1995d466 drm/i915/gem: Mark the buffer pool as active for the cmdparser
-3148cd01132a drm/i915/gt: Enable ring scheduling for gen6/7
-8c829f7c5554 drm/i915/gt: Implement ring scheduler for gen6/7
-99a81a3f55b0 drm/i915: Relinquish forcewake immediately after manual grouping
-118524c684c6 drm/i915/gt: Track if an engine requires forcewake w/a
-0760ab97f627 drm/i915/gt: Enable busy-stats for ring-scheduler
-15787ec4da9d drm/i915/gt: Infrastructure for ring scheduling
-703dea6710a7 drm/i915: Support inter-engine semaphores on gen6/7
-58305c0b593a drm/i915/gt: Use client timeline address for seqno writes
-eacfbfb97087 drm/i915/gt: Support creation of 'internal' rings
-ce9a7aebf8d2 drm/i915/gt: Couple tasklet scheduling for all CS interrupts
-cf0807656a76 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
-5b9d253c3510 drm/i915: Trim the ironlake+ irq handler
-8f9e2ddc2328 drm/i915/gt: Move legacy context wa to intel_workarounds
-284e5e82f9e8 drm/i915/gt: Split low level gen2-7 CS emitters
-96d738818236 drm/i915: Handle very early engine initialisation failure
+> > > > -- =
 
-== Logs ==
+> > > > 2.26.2
+> > > > =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17826/index.html
+> > > > _______________________________________________
+> > > > Intel-gfx mailing list
+> > > > Intel-gfx@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
