@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60E71E9F55
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 09:34:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5C51E9F58
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Jun 2020 09:35:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94E656E1B5;
-	Mon,  1 Jun 2020 07:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA53A6E1B7;
+	Mon,  1 Jun 2020 07:35:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 476716E1B2;
- Mon,  1 Jun 2020 07:34:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 41CE3A47EB;
- Mon,  1 Jun 2020 07:34:55 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD69A6E1B7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 07:35:49 +0000 (UTC)
+IronPort-SDR: Blj+EvueS7KSLO94iRHcTmfgzbDI1Z7XE2Ze7vtOAUy/RnTN9loaymG+d3ursDT/RYyZlwgELi
+ AdbVopfteXMg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2020 00:35:49 -0700
+IronPort-SDR: /1zs70k0CjWaBxtXQcvVUHJI9ZNwawV0GTWrtVrgJixgR51j27oHHaojltpZxOexOFrmivbJW2
+ bgaiVuhHYX4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,460,1583222400"; d="scan'208";a="470199282"
+Received: from unknown (HELO kkadiyal.iind.intel.com) ([10.223.74.161])
+ by fmsmga006.fm.intel.com with ESMTP; 01 Jun 2020 00:35:47 -0700
+From: Kishore Kadiyala <kishore.kadiyala@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Jun 2020 13:05:44 +0530
+Message-Id: <20200601073544.11291-1-kishore.kadiyala@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 01 Jun 2020 07:34:55 -0000
-Message-ID: <159099689524.14890.11404278274057905125@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200601072446.19548-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200601072446.19548-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/36=5D_drm/i915=3A_Handle_very_ea?=
- =?utf-8?q?rly_engine_initialisation_failure?=
+Subject: [Intel-gfx] [PATCH v6] drm/i915: Add Plane color encoding support
+ for YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,156 +45,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently the plane property doesn't have support for YCBCR_BT2020,
+which enables the corresponding color conversion mode on plane CSC.
+Enabling the plane property for the planes for GLK & ICL+ platforms.
+Also as per spec, update the Plane Color CSC from YUV601_TO_RGB709
+to YUV601_TO_RGB601.
 
-Series: series starting with [01/36] drm/i915: Handle very early engine initialisation failure
-URL   : https://patchwork.freedesktop.org/series/77857/
-State : warning
+V2: Enabling support for YCBCT_BT2020 for HDR planes on
+    platforms GLK & ICL
 
-== Summary ==
+V3: Refined the condition check to handle GLK & ICL+ HDR planes
+    Also added BT2020 handling in glk_plane_color_ctl.
 
-$ dim checkpatch origin/drm-tip
-96d738818236 drm/i915: Handle very early engine initialisation failure
-284e5e82f9e8 drm/i915/gt: Split low level gen2-7 CS emitters
--:9: WARNING:TYPO_SPELLING: 'wnat' may be misspelled - perhaps 'want'?
-#9: 
-with requests, and we will wnat to reuse them outside of this context.
+V4: Combine If-else into single If
 
--:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#27: 
-new file mode 100644
+V5: Drop the checking for HDR planes and enable YCBCR_BT2020
+    for platforms GLK & ICL+.
 
--:179: WARNING:LONG_LINE: line over 100 characters
-#179: FILE: drivers/gpu/drm/i915/gt/gen2_engine_cs.c:148:
-+	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
+V6: As per Spec, update PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709
+    to PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601 as per Ville's
+    feedback.
 
--:202: WARNING:LONG_LINE: line over 100 characters
-#202: FILE: drivers/gpu/drm/i915/gt/gen2_engine_cs.c:171:
-+	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
+V7: Rebased
 
--:220: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#220: FILE: drivers/gpu/drm/i915/gt/gen2_engine_cs.c:189:
-+}
-+#undef GEN5_WA_STORES
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++----
+ drivers/gpu/drm/i915/display/intel_sprite.c  |  9 +++++++--
+ drivers/gpu/drm/i915/i915_reg.h              |  2 +-
+ 3 files changed, 19 insertions(+), 7 deletions(-)
 
--:798: WARNING:LONG_LINE: line over 100 characters
-#798: FILE: drivers/gpu/drm/i915/gt/gen6_engine_cs.c:377:
-+	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
-
--:818: WARNING:LONG_LINE: line over 100 characters
-#818: FILE: drivers/gpu/drm/i915/gt/gen6_engine_cs.c:397:
-+	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
-
--:843: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#843: FILE: drivers/gpu/drm/i915/gt/gen6_engine_cs.c:422:
-+}
-+#undef GEN7_XCS_WA
-
-total: 0 errors, 6 warnings, 2 checks, 1812 lines checked
-8f9e2ddc2328 drm/i915/gt: Move legacy context wa to intel_workarounds
-5b9d253c3510 drm/i915: Trim the ironlake+ irq handler
-cf0807656a76 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
-ce9a7aebf8d2 drm/i915/gt: Couple tasklet scheduling for all CS interrupts
-eacfbfb97087 drm/i915/gt: Support creation of 'internal' rings
-58305c0b593a drm/i915/gt: Use client timeline address for seqno writes
-703dea6710a7 drm/i915: Support inter-engine semaphores on gen6/7
-15787ec4da9d drm/i915/gt: Infrastructure for ring scheduling
--:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#79: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 842 lines checked
-0760ab97f627 drm/i915/gt: Enable busy-stats for ring-scheduler
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 232 lines checked
-118524c684c6 drm/i915/gt: Track if an engine requires forcewake w/a
-99a81a3f55b0 drm/i915: Relinquish forcewake immediately after manual grouping
-8c829f7c5554 drm/i915/gt: Implement ring scheduler for gen6/7
--:68: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#68: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:324:
-+				*cs++ = i915_mmio_reg_offset(
-
--:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#70: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:326:
-+				*cs++ = _MASKED_BIT_ENABLE(
-
--:105: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#105: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:361:
-+				*cs++ = _MASKED_BIT_DISABLE(
-
-total: 0 errors, 0 warnings, 3 checks, 512 lines checked
-3148cd01132a drm/i915/gt: Enable ring scheduling for gen6/7
-143d1995d466 drm/i915/gem: Mark the buffer pool as active for the cmdparser
-033b56b47071 drm/i915/gem: Async GPU relocations only
-9b9d4aa5ab50 drm/i915: Add list_for_each_entry_safe_continue_reverse
--:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#20: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
-total: 0 errors, 0 warnings, 3 checks, 12 lines checked
-b2abfeed9589 drm/i915/gem: Separate reloc validation into an earlier step
--:101: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#101: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1408:
-+				return (int)offset;
-+			} else {
-
-total: 0 errors, 1 warnings, 0 checks, 217 lines checked
-c26758f43cfe drm/i915/gem: Lift GPU relocation allocation
-6f01210067aa drm/i915/gem: Build the reloc request first
-710af09a4672 drm/i915/gem: Add all GPU reloc awaits/signals en masse
-6b9cc101590e dma-buf: Proxy fence, an unsignaled fence placeholder
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
-
--:438: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#438: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
-+	spinlock_t lock;
-
-total: 0 errors, 1 warnings, 1 checks, 1158 lines checked
-06d2116fd5f4 drm/i915: Unpeel awaits on a proxy fence
-f3cd5ea0ff2c drm/i915/gem: Make relocations atomic within execbuf
-dda5123316b5 drm/syncobj: Allow use of dma-fence-proxy
-d03f86e3977c drm/i915/gem: Teach execbuf how to wait on future syncobj
-9b560a7e6079 drm/i915/gem: Allow combining submit-fences with syncobj
-9675274fc27c drm/i915/gt: Declare when we enabled timeslicing
-7cf3aad63437 drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
-308d42d80cb3 drm/i915: Always defer fenced work to the worker
-b253079dbe95 drm/i915/gem: Assign context id for async work
-68f85c40ff48 drm/i915: Export a preallocate variant of i915_active_acquire()
-d90d92d26c5c drm/i915/gem: Separate the ww_mutex walker into its own list
-9c2cdb286a07 drm/i915/gem: Asynchronous GTT unbinding
-ac90fd42eb1d drm/i915/gem: Bind the fence async for execbuf
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8f9f9b20d5f5..a9f752d26b4e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4812,11 +4812,18 @@ u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
+ 	plane_color_ctl |= glk_plane_color_ctl_alpha(plane_state);
+ 
+ 	if (fb->format->is_yuv && !icl_is_hdr_plane(dev_priv, plane->id)) {
+-		if (plane_state->hw.color_encoding == DRM_COLOR_YCBCR_BT709)
++		switch (plane_state->hw.color_encoding) {
++		case DRM_COLOR_YCBCR_BT709:
+ 			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709;
+-		else
+-			plane_color_ctl |= PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709;
+-
++			break;
++		case DRM_COLOR_YCBCR_BT2020:
++			plane_color_ctl |=
++				PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020;
++			break;
++		default:
++			plane_color_ctl |=
++				PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601;
++		}
+ 		if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
+ 			plane_color_ctl |= PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE;
+ 	} else if (fb->format->is_yuv) {
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 571c36f929bd..3cd461bf9131 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -3061,6 +3061,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	struct intel_plane *plane;
+ 	enum drm_plane_type plane_type;
+ 	unsigned int supported_rotations;
++	unsigned int supported_csc;
+ 	const u64 *modifiers;
+ 	const u32 *formats;
+ 	int num_formats;
+@@ -3135,9 +3136,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 					   DRM_MODE_ROTATE_0,
+ 					   supported_rotations);
+ 
++	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
++
++	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
++		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
++
+ 	drm_plane_create_color_properties(&plane->base,
+-					  BIT(DRM_COLOR_YCBCR_BT601) |
+-					  BIT(DRM_COLOR_YCBCR_BT709),
++					  supported_csc,
+ 					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+ 					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+ 					  DRM_COLOR_YCBCR_BT709,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e9d50fe0f375..578cfe11cbb9 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -6932,7 +6932,7 @@ enum {
+ #define   PLANE_COLOR_INPUT_CSC_ENABLE		(1 << 20) /* ICL+ */
+ #define   PLANE_COLOR_PIPE_CSC_ENABLE		(1 << 23) /* Pre-ICL */
+ #define   PLANE_COLOR_CSC_MODE_BYPASS			(0 << 17)
+-#define   PLANE_COLOR_CSC_MODE_YUV601_TO_RGB709		(1 << 17)
++#define   PLANE_COLOR_CSC_MODE_YUV601_TO_RGB601		(1 << 17)
+ #define   PLANE_COLOR_CSC_MODE_YUV709_TO_RGB709		(2 << 17)
+ #define   PLANE_COLOR_CSC_MODE_YUV2020_TO_RGB2020	(3 << 17)
+ #define   PLANE_COLOR_CSC_MODE_RGB709_TO_RGB2020	(4 << 17)
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
