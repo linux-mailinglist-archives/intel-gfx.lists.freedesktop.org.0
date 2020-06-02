@@ -1,55 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807771EB8DC
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 11:52:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A751EB8D9
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 11:51:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2BF6E117;
-	Tue,  2 Jun 2020 09:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F01736E0F8;
+	Tue,  2 Jun 2020 09:51:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA6A6E0F8
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 09:51:53 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id q11so2727814wrp.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 02:51:53 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 793316E0F8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 09:51:54 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id l10so2691526wrr.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 02:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+TUQlURBiYUvX4eGj1cmnygFBEIqoBCMKPSr5vwFyYk=;
- b=i+OdYT4kLo1/b2shX9NxpycnXGOHsI3rZsaVnWOdzITJvXO5gFAWmpKtZqPyupqMFD
- M6ib1JemUVtn9Hw8BFc2WCjBh+qkBr4tpUAL/SjeWMQpnu98ZGSsOUVZMKTw6i8KRCMk
- 92oJBMisxnekYBP5clqL/6nt91hi8i2nDOh50=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=oZCX7aP5skMs1QZGNYbvejJPa9/Eiu5Qr/CWi7xzV1k=;
+ b=J2O3xlXAth+t+Ol4fW8PEM7q3aJ8QTEw8dgcvfmG1GVybtkn8/J2J6dD00DuasRXkG
+ m+fSfZaqFjxj0UwZwq4nHCwbAmvlNhKCSyfgUS0pw6Ipz6CIpiM9m0/OfgSy0uJMMpO3
+ wLbKzWPni9dX40KaCABPPhoGr3nG5r6CsHhE4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+TUQlURBiYUvX4eGj1cmnygFBEIqoBCMKPSr5vwFyYk=;
- b=MpZrq5pS2bnmW4Y5aAdQFWCE3lcpkPpZc9+zVh1xbo94bg5ArMcDCzMJpnhHdbh3Zl
- 24WQCpSpWeKLAUn3/DIbDbQoCiR3HmTk00UYBCNQpXQDF2V3ym2kFC7PXyn/1bf/5WJn
- aZ2Gr0kjVJaLqTKS2hh4+zT+I6JamB/DJdoamaubIL/alThdLwWAXpIOHq/O/H/7Q/TB
- PmWZURdTXguGQ2nxtmnIu+JIjahIL3tEpkXMMANw/eqLbGtiDVq7zRISGPHiQZz7Kcb9
- 1BuW0OC649/AH33a5A+fTCNsvDYZHAs/Agc8uNUvAzX1AlUU1806XizDLZ11YdeiFC0S
- 2t0Q==
-X-Gm-Message-State: AOAM531DN5hgUjtvCdf1IcsIQEOBBJs3TD0PKeMvjtwbUVnmgXqXwKct
- pNVnR8HRDVK4JmaPnSzRvUIoHA==
-X-Google-Smtp-Source: ABdhPJwGhsG45NVOnFfrcSqMCGUUP5Na6EQs7omzLU2JngUUImZOWaj0hrPPGW7fd1TjkTghzVGsVA==
-X-Received: by 2002:a5d:4b85:: with SMTP id b5mr25214853wrt.8.1591091512202;
- Tue, 02 Jun 2020 02:51:52 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=oZCX7aP5skMs1QZGNYbvejJPa9/Eiu5Qr/CWi7xzV1k=;
+ b=MLqjMTn78FBY1IKHNtvsEf8uQUcIECDIwSx6rX9TMA0Mj22pd2Wu22Liimdxuv5bk+
+ 03+sytfMx72gixgdc8n/4iwoGpUW4EiNu2RFFEeK9f/40IOZu3udX/vdW4sjhZWGKVsW
+ AxcVlebscedMnt/oLmTj4biPsu5AT0HPo5RDnHOpFv7fdjnoEhJwp64CKiAilxC5twzV
+ q/sQzEqTWTFVZhE1etG6TURVRWdJKjGErjx12RV0uxGWW6wgEToDoZMZ+TN9Pg+2WHyR
+ 8tba28+iM0+4tsBCEFAHHXelk8911O9c/DGNdCBqEPmW4alv/WuuSbOilOAgdL2itFyF
+ glkg==
+X-Gm-Message-State: AOAM531AjgkFTUz+0GAiIAjJGshvJPLqGWAwkOt+yJTsW5BQ9vW0HBBE
+ cnXwcEe2R/6O08UhdszwbafsDw==
+X-Google-Smtp-Source: ABdhPJxOTxGK5LwxDbdhktUyYdeYEYORTX/UTTXjl3/yDTUBMXajiDd+bs8jE6TX+IqPXNBuou2sdw==
+X-Received: by 2002:a05:6000:47:: with SMTP id
+ k7mr24437210wrx.233.1591091513116; 
+ Tue, 02 Jun 2020 02:51:53 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a6sm2996443wrn.38.2020.06.02.02.51.50
+ by smtp.gmail.com with ESMTPSA id a6sm2996443wrn.38.2020.06.02.02.51.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 02 Jun 2020 02:51:51 -0700 (PDT)
+ Tue, 02 Jun 2020 02:51:52 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  2 Jun 2020 11:51:38 +0200
-Message-Id: <20200602095140.36678-1-daniel.vetter@ffwll.ch>
+Date: Tue,  2 Jun 2020 11:51:39 +0200
+Message-Id: <20200602095140.36678-2-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200602095140.36678-1-daniel.vetter@ffwll.ch>
+References: <20200602095140.36678-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/atomic-helper: reset vblank on crtc
- reset
+Subject: [Intel-gfx] [PATCH 2/3] drm/malidp: Don't call drm_crtc_vblank_off
+ on unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,285 +65,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Sam Ravnborg <sam@ravnborg.org>,
- Emil Velikov <emil.velikov@collabora.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Thierry Reding <treding@nvidia.com>,
- syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com,
- Thomas Zimmermann <tzimmermann@suse.de>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Sean Paul <seanpaul@chromium.org>,
- Jyri Sarha <jsarha@ti.com>, linux-tegra@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>, Boris Brezillon <bbrezillon@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, zhengbin <zhengbin13@huawei.com>,
- Brian Masney <masneyb@onstation.org>
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only when vblanks are supported ofc.
+This is already done as part of the drm_atomic_helper_shutdown(),
+and in that case only for the crtc which are actually on.
 
-Some drivers do this already, but most unfortunately missed it. This
-opens up bugs after driver load, before the crtc is enabled for the
-first time. syzbot spotted this when loading vkms as a secondary
-output. Given how many drivers are buggy it's best to solve this once
-and for all in shared helper code.
-
-Aside from moving the few existing calls to drm_crtc_vblank_reset into
-helpers (i915 doesn't use helpers, so keeps its own) I think the
-regression risk is minimal: atomic helpers already rely on drivers
-calling drm_crtc_vblank_on/off correctly in their hooks when they
-support vblanks. And driver that's failing to handle vblanks after
-this is missing those calls already, and vblanks could only work by
-accident when enabling a CRTC for the first time right after boot.
-
-Big thanks to Tetsuo for helping track down what's going wrong here.
-
-There's only a few drivers which already had the necessary call and
-needed some updating:
-- komeda, atmel and tidss also needed to be changed to call
-  __drm_atomic_helper_crtc_reset() intead of open coding it
-- tegra and msm even had it in the same place already, just code
-  motion, and malidp already uses __drm_atomic_helper_crtc_reset().
-
-Only call left is in i915, which doesn't use drm_mode_config_reset,
-but has its own fastboot infrastructure. So that's the only case where
-we actually want this in the driver still.
-
-I've also reviewed all other drivers which set up vblank support with
-drm_vblank_init. After the previous patch fixing mxsfb all atomic
-drivers do call drm_crtc_vblank_on/off as they should, the remaining
-drivers are either legacy kms or legacy dri1 drivers, so not affected
-by this change to atomic helpers.
-
-v2: Use the drm_dev_has_vblank() helper.
-
-v3: Laurent pointed out that omap and rcar-du used drm_crtc_vblank_off
-instead of drm_crtc_vblank_reset. Adjust them too.
-
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Acked-by: Liviu Dudau <liviu.dudau@arm.com>
-Acked-by: Thierry Reding <treding@nvidia.com>
-Link: https://syzkaller.appspot.com/bug?id=0ba17d70d062b2595e1f061231474800f076c7cb
-Reported-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Reported-by: syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com
-Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Mihail Atanassov <mihail.atanassov@arm.com>
-Cc: Brian Starkey <brian.starkey@arm.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Boris Brezillon <bbrezillon@kernel.org>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Jyri Sarha <jsarha@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Brian Masney <masneyb@onstation.org>
-Cc: Emil Velikov <emil.velikov@collabora.com>
-Cc: zhengbin <zhengbin13@huawei.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: linux-tegra@vger.kernel.org
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Brian Starkey <brian.starkey@arm.com>
+Cc:
 ---
- drivers/gpu/drm/arm/display/komeda/komeda_crtc.c | 7 ++-----
- drivers/gpu/drm/arm/malidp_drv.c                 | 1 -
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c   | 7 ++-----
- drivers/gpu/drm/drm_atomic_state_helper.c        | 4 ++++
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c        | 2 --
- drivers/gpu/drm/omapdrm/omap_drv.c               | 3 ---
- drivers/gpu/drm/rcar-du/rcar_du_crtc.c           | 3 ---
- drivers/gpu/drm/tegra/dc.c                       | 1 -
- drivers/gpu/drm/tidss/tidss_crtc.c               | 3 +--
- drivers/gpu/drm/tidss/tidss_kms.c                | 4 ----
- 10 files changed, 9 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/arm/malidp_drv.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-index 56bd938961ee..f33418d6e1a0 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-@@ -492,10 +492,8 @@ static void komeda_crtc_reset(struct drm_crtc *crtc)
- 	crtc->state = NULL;
- 
- 	state = kzalloc(sizeof(*state), GFP_KERNEL);
--	if (state) {
--		crtc->state = &state->base;
--		crtc->state->crtc = crtc;
--	}
-+	if (state)
-+		__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
- static struct drm_crtc_state *
-@@ -616,7 +614,6 @@ static int komeda_crtc_add(struct komeda_kms_dev *kms,
- 		return err;
- 
- 	drm_crtc_helper_add(crtc, &komeda_crtc_helper_funcs);
--	drm_crtc_vblank_reset(crtc);
- 
- 	crtc->port = kcrtc->master->of_output_port;
- 
 diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-index c2507b7d8512..02904392e370 100644
+index 02904392e370..db6ba5c78042 100644
 --- a/drivers/gpu/drm/arm/malidp_drv.c
 +++ b/drivers/gpu/drm/arm/malidp_drv.c
-@@ -870,7 +870,6 @@ static int malidp_bind(struct device *dev)
- 	drm->irq_enabled = true;
- 
- 	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
--	drm_crtc_vblank_reset(&malidp->crtc);
- 	if (ret < 0) {
- 		DRM_ERROR("failed to initialise vblank\n");
- 		goto vblank_fail;
-diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-index 10985134ce0b..ce246b96330b 100644
---- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-+++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
-@@ -411,10 +411,8 @@ static void atmel_hlcdc_crtc_reset(struct drm_crtc *crtc)
- 	}
- 
- 	state = kzalloc(sizeof(*state), GFP_KERNEL);
--	if (state) {
--		crtc->state = &state->base;
--		crtc->state->crtc = crtc;
--	}
-+	if (state)
-+		__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
- static struct drm_crtc_state *
-@@ -528,7 +526,6 @@ int atmel_hlcdc_crtc_create(struct drm_device *dev)
- 	}
- 
- 	drm_crtc_helper_add(&crtc->base, &lcdc_crtc_helper_funcs);
--	drm_crtc_vblank_reset(&crtc->base);
- 
- 	drm_mode_crtc_set_gamma_size(&crtc->base, ATMEL_HLCDC_CLUT_SIZE);
- 	drm_crtc_enable_color_mgmt(&crtc->base, 0, false,
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index 8fce6a115dfe..9ad74045158e 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -32,6 +32,7 @@
- #include <drm/drm_device.h>
- #include <drm/drm_plane.h>
- #include <drm/drm_print.h>
-+#include <drm/drm_vblank.h>
- #include <drm/drm_writeback.h>
- 
- #include <linux/slab.h>
-@@ -93,6 +94,9 @@ __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
- 	if (crtc_state)
- 		__drm_atomic_helper_crtc_state_reset(crtc_state, crtc);
- 
-+	if (drm_dev_has_vblank(crtc->dev))
-+		drm_crtc_vblank_reset(crtc);
-+
- 	crtc->state = crtc_state;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_crtc_reset);
-diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-index ca3368c828d0..9606185c284b 100644
---- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-@@ -1117,8 +1117,6 @@ static void mdp5_crtc_reset(struct drm_crtc *crtc)
- 		mdp5_crtc_destroy_state(crtc, crtc->state);
- 
- 	__drm_atomic_helper_crtc_reset(crtc, &mdp5_cstate->base);
--
--	drm_crtc_vblank_reset(crtc);
- }
- 
- static const struct drm_crtc_funcs mdp5_crtc_funcs = {
-diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
-index 242d28281784..7a7066cded79 100644
---- a/drivers/gpu/drm/omapdrm/omap_drv.c
-+++ b/drivers/gpu/drm/omapdrm/omap_drv.c
-@@ -642,9 +642,6 @@ static int omapdrm_init(struct omap_drm_private *priv, struct device *dev)
- 		goto err_cleanup_modeset;
- 	}
- 
--	for (i = 0; i < priv->num_pipes; i++)
--		drm_crtc_vblank_off(priv->pipes[i].crtc);
--
- 	omap_fbdev_init(ddev);
- 
- 	drm_kms_helper_poll_init(ddev);
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-index d73e88ddecd0..e2959e32fd19 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-@@ -1271,9 +1271,6 @@ int rcar_du_crtc_create(struct rcar_du_group *rgrp, unsigned int swindex,
- 
- 	drm_crtc_helper_add(crtc, &crtc_helper_funcs);
- 
--	/* Start with vertical blanking interrupt reporting disabled. */
--	drm_crtc_vblank_off(crtc);
--
- 	/* Register the interrupt handler. */
- 	if (rcar_du_has(rcdu, RCAR_DU_FEATURE_CRTC_IRQ_CLOCK)) {
- 		/* The IRQ's are associated with the CRTC (sw)index. */
-diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-index 83f31c6e891c..9b308b572eac 100644
---- a/drivers/gpu/drm/tegra/dc.c
-+++ b/drivers/gpu/drm/tegra/dc.c
-@@ -1168,7 +1168,6 @@ static void tegra_crtc_reset(struct drm_crtc *crtc)
- 		tegra_crtc_atomic_destroy_state(crtc, crtc->state);
- 
- 	__drm_atomic_helper_crtc_reset(crtc, &state->base);
--	drm_crtc_vblank_reset(crtc);
- }
- 
- static struct drm_crtc_state *
-diff --git a/drivers/gpu/drm/tidss/tidss_crtc.c b/drivers/gpu/drm/tidss/tidss_crtc.c
-index 89a226912de8..4d01c4af61cd 100644
---- a/drivers/gpu/drm/tidss/tidss_crtc.c
-+++ b/drivers/gpu/drm/tidss/tidss_crtc.c
-@@ -352,8 +352,7 @@ static void tidss_crtc_reset(struct drm_crtc *crtc)
- 		return;
- 	}
- 
--	crtc->state = &tcrtc->base;
--	crtc->state->crtc = crtc;
-+	__drm_atomic_helper_crtc_reset(crtc, &tcrtc->base);
- }
- 
- static struct drm_crtc_state *tidss_crtc_duplicate_state(struct drm_crtc *crtc)
-diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
-index 4b99e9fa84a5..e6ab59eed259 100644
---- a/drivers/gpu/drm/tidss/tidss_kms.c
-+++ b/drivers/gpu/drm/tidss/tidss_kms.c
-@@ -278,10 +278,6 @@ int tidss_modeset_init(struct tidss_device *tidss)
- 	if (ret)
- 		return ret;
- 
--	/* Start with vertical blanking interrupt reporting disabled. */
--	for (i = 0; i < tidss->num_crtcs; ++i)
--		drm_crtc_vblank_reset(tidss->crtcs[i]);
--
- 	drm_mode_config_reset(ddev);
- 
- 	dev_dbg(tidss->dev, "%s done\n", __func__);
+@@ -928,7 +928,6 @@ static void malidp_unbind(struct device *dev)
+ 	drm_dev_unregister(drm);
+ 	drm_kms_helper_poll_fini(drm);
+ 	pm_runtime_get_sync(dev);
+-	drm_crtc_vblank_off(&malidp->crtc);
+ 	malidp_se_irq_fini(hwdev);
+ 	malidp_de_irq_fini(hwdev);
+ 	drm->irq_enabled = false;
 -- 
 2.26.2
 
