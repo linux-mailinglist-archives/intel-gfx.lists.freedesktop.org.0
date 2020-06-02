@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA341EB8DD
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 11:52:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3DB1EB8EC
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 11:55:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 253A86E126;
-	Tue,  2 Jun 2020 09:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F286E0F4;
+	Tue,  2 Jun 2020 09:55:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 879436E11C
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 09:51:55 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id r7so2744422wro.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 02:51:55 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 807B36E0F4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 09:55:17 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id h5so2717352wrc.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 02:55:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zBJStSFyGwXYFshx7uTxuda0k6lYRaHuTLZX4FygES0=;
- b=OMB/lHCdSerDMq5F3y0UdSeHZ1ySwvyYooKPapUvZTfZu7LNtNnovnTNxvMpuczG6U
- HnSjsqYfil3JP3XgX2Zmf7kLid3N9MrQxQ4dC6FZot6Uoy5eMCmh56mfszctvWhGsWpi
- RaZqz5ifvDVqRksaho9/inr0SJdqwLkdXgcq8=
+ bh=I+Uzz4Q5qO5ZTX6q4vn0R9ZfiBdftapYOGYcasChACw=;
+ b=Gqoa9L9tROgitus4ET+BWcmGS1ZqVQ3XSdXTqfjbCVlbfh1zOK/ixpLLNJbwfSu0Ea
+ 6LpaEVW79dkJ6KETbIJWV/GGtgNxvwH5JS58OzOGMbw+5jORK+MEwuEox9tKQIwlMzdO
+ XKgQ7KI0jgyDBbIlzMgk+xx/8xfkhQdTIm+qg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zBJStSFyGwXYFshx7uTxuda0k6lYRaHuTLZX4FygES0=;
- b=cmm1R7pLhlELSqHzRjD7SMZNBoh7grumR3jbMphS4hNbF/OySLFe2BoVdOZQNb954d
- uhb/wQ2uoP3osnni9Mp+p05bAk9F8jAJHVz9c9Cg8LSwFMV+pu/His836frq77bM2H+e
- 4r2OLa5Hizpvz1RGOC9Ppf0R8G535qS1kv+retBKpGjUwOk6SNm+Tq/E6nBdP1ZPZ5cj
- fNFITU0F9LkisndZ9Jn7UQtUnPJGX8TwX4v0mzjVsD9hveDgOUufehKTGxdSmmxn2IT9
- xJ176EUL3FoIe4NPU5qK4OresKsJwoTcQT0+tuKV+hfCFliO7iunCKYcFSEkmppqqucI
- 7+NQ==
-X-Gm-Message-State: AOAM530QGx7HjOXMTwldnZp7p16055TID/kjOb1+Khh4rqAQjhuIzI1I
- rjEXSWzi9KO0FfvBXdP3/6iHPQ==
-X-Google-Smtp-Source: ABdhPJxuFjAFdXbTEEKA3QY6AgrPXluPeV2VnPbk43I0VIgYZ1wE1DPthaEbQ3kpgkImnXdTgRMjkg==
-X-Received: by 2002:adf:f552:: with SMTP id j18mr24368390wrp.279.1591091514182; 
- Tue, 02 Jun 2020 02:51:54 -0700 (PDT)
+ bh=I+Uzz4Q5qO5ZTX6q4vn0R9ZfiBdftapYOGYcasChACw=;
+ b=dp0/wIDc/30514bSDRvBx0GQV80GtkwVfWcv6j6MsFg5t+V5kQJoPgvPXgzkrOET0i
+ Awilo9BMjAcZcMrOv7/vxST0b8jCXBg1NC19nb4OCIX+akX45yk6GKCayBPJLaIC2z84
+ uXitDB9z/ecNdaCdH1McpbbFXGaomM5EVLZSJ1o5QJLhuloH8wZ8xUf8DeJPukI1Hz3e
+ V1dSe8z0iwwsSJ0YMYuYUlRaDwPq526UbySYxtJhVd4EHT9mhFL6WqjC7f6SnSRLiAcJ
+ qxxSsoEalbfhHvRV/x7HT7ymxZEUPMLMhql2Gv4n9+HSslGds5nxRzxK7IqVXhvscTf1
+ M9UA==
+X-Gm-Message-State: AOAM532KAZ0ySKJuKdzTVrPJ9WOLPmFBC2e5XXFbdv2A0A8Qh+zlQsEc
+ wRAlE5fzJneyeP+Gvkhh4e6cew==
+X-Google-Smtp-Source: ABdhPJwAHJAJ5nX/yY4jBwec61op048ceDu9R0jIXfVdzNruIdMkQpqGrC2T99XHNXe8/nsJgMPzVw==
+X-Received: by 2002:adf:d852:: with SMTP id k18mr10439549wrl.177.1591091716134; 
+ Tue, 02 Jun 2020 02:55:16 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a6sm2996443wrn.38.2020.06.02.02.51.53
+ by smtp.gmail.com with ESMTPSA id t8sm2840846wro.56.2020.06.02.02.55.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 02 Jun 2020 02:51:53 -0700 (PDT)
+ Tue, 02 Jun 2020 02:55:15 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  2 Jun 2020 11:51:40 +0200
-Message-Id: <20200602095140.36678-3-daniel.vetter@ffwll.ch>
+Date: Tue,  2 Jun 2020 11:55:05 +0200
+Message-Id: <20200602095505.37509-1-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200602095140.36678-1-daniel.vetter@ffwll.ch>
-References: <20200602095140.36678-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200602095140.36678-2-daniel.vetter@ffwll.ch>
+References: <20200602095140.36678-2-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/hdlcd: Don't call drm_crtc_vblank_off
- on unbind
+Subject: [Intel-gfx] [PATCH] drm/malidp: Don't call drm_crtc_vblank_off on
+ unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +72,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is already taken care of by drm_atomic_helper_shutdown(), and
-in that case only for the CRTC which are actually on.
+This is already done as part of the drm_atomic_helper_shutdown(),
+and in that case only for the crtc which are actually on.
 
-Only tricky bit here is that we kill the interrupt handling before we
-shut down crtc, so need to reorder that.
+v2: I overlooked that malidp also needs to have it's interrupt shut
+down reordered.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Liviu Dudau <liviu.dudau@arm.com>
 Cc: Brian Starkey <brian.starkey@arm.com>
-Cc:
 ---
- drivers/gpu/drm/arm/hdlcd_drv.c | 3 +--
+ drivers/gpu/drm/arm/malidp_drv.c | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
-index 194419f47c5e..26bc5d7766f5 100644
---- a/drivers/gpu/drm/arm/hdlcd_drv.c
-+++ b/drivers/gpu/drm/arm/hdlcd_drv.c
-@@ -347,9 +347,8 @@ static void hdlcd_drm_unbind(struct device *dev)
- 	of_node_put(hdlcd->crtc.port);
- 	hdlcd->crtc.port = NULL;
+diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
+index 02904392e370..cdb817a7c611 100644
+--- a/drivers/gpu/drm/arm/malidp_drv.c
++++ b/drivers/gpu/drm/arm/malidp_drv.c
+@@ -928,11 +928,10 @@ static void malidp_unbind(struct device *dev)
+ 	drm_dev_unregister(drm);
+ 	drm_kms_helper_poll_fini(drm);
  	pm_runtime_get_sync(dev);
--	drm_crtc_vblank_off(&hdlcd->crtc);
--	drm_irq_uninstall(drm);
- 	drm_atomic_helper_shutdown(drm);
-+	drm_irq_uninstall(drm);
- 	pm_runtime_put(dev);
- 	if (pm_runtime_enabled(dev))
- 		pm_runtime_disable(dev);
+-	drm_crtc_vblank_off(&malidp->crtc);
++	drm_atomic_helper_shutdown(drm);
+ 	malidp_se_irq_fini(hwdev);
+ 	malidp_de_irq_fini(hwdev);
+ 	drm->irq_enabled = false;
+-	drm_atomic_helper_shutdown(drm);
+ 	component_unbind_all(dev, drm);
+ 	of_node_put(malidp->crtc.port);
+ 	malidp->crtc.port = NULL;
 -- 
 2.26.2
 
