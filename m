@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4DA1EBD62
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 15:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 508051EBD9D
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jun 2020 16:04:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 859BD6E3D6;
-	Tue,  2 Jun 2020 13:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 708AC6E3C1;
+	Tue,  2 Jun 2020 14:04:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB0CF6E134;
- Tue,  2 Jun 2020 13:53:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A4DECA47EA;
- Tue,  2 Jun 2020 13:53:18 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D33496E3C1;
+ Tue,  2 Jun 2020 14:04:46 +0000 (UTC)
+IronPort-SDR: dzIIg2tXv2Qj6ixV702afWpSIJlOr/7VjEZsyVkwXnq6Kme8PreY638cXSF5j57FZ6rXlSONhi
+ cSGdkuetlqrw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2020 07:04:45 -0700
+IronPort-SDR: 7h7Kvx18xqX939MM1JLbdthTWfp4n2FsX5T05kW+jn/UZwDd0oQoxFc5HLZjmew0EAfxlY+6+G
+ z44kqi5f1WhQ==
+X-IronPort-AV: E=Sophos;i="5.73,464,1583222400"; d="scan'208";a="416192081"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.9.244])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2020 07:04:41 -0700
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Tue, 02 Jun 2020 13:53:18 -0000
-Message-ID: <159110599865.21428.6554267277325012916@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200602122130.45630-1-hdegoede@redhat.com>
-In-Reply-To: <20200602122130.45630-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgcGlu?=
- =?utf-8?q?ctrl=3A_baytrail=3A_Fix_pin_being_driven_low_for_a_while_on_gpi?=
- =?utf-8?b?b2RfZ2V0KC4uLiwgR1BJT0RfT1VUX0hJR0gp?=
+In-Reply-To: <20200528033559.GG23961@zhen-hp.sh.intel.com>
+References: <20200528033559.GG23961@zhen-hp.sh.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Tue, 02 Jun 2020 17:04:38 +0300
+Message-ID: <159110667839.24106.18398193602690473504@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,96 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Zhenyu Wang (2020-05-28 06:35:59)
+> 
+> Hi,
+> 
+> Here's two queued warning fixes for gvt-next. One is for clang warning
+> on debug only function and another one from coccicheck to use ARRAY_SIZE.
 
-Series: pinctrl: baytrail: Fix pin being driven low for a while on gpiod_get(..., GPIOD_OUT_HIGH)
-URL   : https://patchwork.freedesktop.org/series/77917/
-State : failure
+Pulled now, thanks for the PR.
 
-== Summary ==
+Regards, Joonas
 
-CI Bug Log - changes from CI_DRM_8571 -> Patchwork_17842
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17842 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17842, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17842/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17842:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8571/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17842/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17842 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([i915#262])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8571/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17842/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-
-
-Participating hosts (50 -> 45)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8571 -> Patchwork_17842
-
-  CI-20190529: 20190529
-  CI_DRM_8571: 0536dff30eff69abcf6355bdd9b9fdf45a560099 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5690: bea881189520a9cccbb1c1cb454ac5b6fdaea40e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17842: 3632b22bc93f0e4441d082dfeebfaaf05976684c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3632b22bc93f pinctrl: baytrail: Fix pin being driven low for a while on gpiod_get(..., GPIOD_OUT_HIGH)
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17842/index.html
+> 
+> Thanks
+> --
+> The following changes since commit 3a36aa237e4ed04553c0998cf5f47eda3e206e4f:
+> 
+>   drm/i915: Update DRIVER_DATE to 20200515 (2020-05-15 14:49:24 +0300)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-next-fixes-2020-05-28
+> 
+> for you to fetch changes up to cb7ee52284a244fd14caec73df0d49e02891aac4:
+> 
+>   drm/i915/gvt: Use ARRAY_SIZE for vgpu_types (2020-05-19 17:18:50 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-next-fixes-2020-05-28
+> 
+> - Fix one clang warning on debug only function (Nathan)
+> - Use ARRAY_SIZE for coccicheck warn (Aishwarya)
+> 
+> ----------------------------------------------------------------
+> Aishwarya Ramakrishnan (1):
+>       drm/i915/gvt: Use ARRAY_SIZE for vgpu_types
+> 
+> Nathan Chancellor (1):
+>       drm/i915: Mark check_shadow_context_ppgtt as maybe unused
+> 
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 2 +-
+>  drivers/gpu/drm/i915/gvt/vgpu.c      | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> 
+> -- 
+> Open Source Technology Center, Intel ltd.
+> 
+> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
