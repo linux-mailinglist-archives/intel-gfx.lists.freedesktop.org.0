@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5C3D1ECDCB
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 12:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BEAF1ECDFD
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 13:07:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2641689D39;
-	Wed,  3 Jun 2020 10:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 545CC89AB3;
+	Wed,  3 Jun 2020 11:07:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E40789D39
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 10:47:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21383043-1500050 
- for multiple; Wed, 03 Jun 2020 11:47:01 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Jun 2020 11:46:57 +0100
-Message-Id: <20200603104657.25651-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 754F089AB3
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 11:07:39 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id r1so697885uam.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Jun 2020 04:07:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=pTvyoEMtocb1XnI8Xj+dz9ZoEqZRoX1YcaRMMa8N9l4=;
+ b=X9WCYtB6+czfwdJef2SS1Cimfzv43aAA038fb+CEvPG64tWYf4e422F/n07HEVjsai
+ JSi7JBET8D5XE+68Pyp1pF97BBvBgnQq9nOjG5WRfkrsuqJjtWiM145ILzDss4i8o5Gp
+ TqRbB1PHsOVlgvy0colY8NoKrYG/nUuoTKxPM6FlzGQn/IcTfjADD0+enTvnlJ52Ayvk
+ nmUcObBhXYMtEH/np9d62ozXnkqV2mPACyqFkfeCXiOSraIsl9eDKoEFCwk5j6UjEPde
+ kREzsBMR6j6SypEedpBEKiqVys/lt2uJHRLd5LlTCq+sDXq6R/oAxukEBykGwOqVWJdK
+ GZrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=pTvyoEMtocb1XnI8Xj+dz9ZoEqZRoX1YcaRMMa8N9l4=;
+ b=pbnmrMgw8kG4e1NqtUGzihWs6oMXsdBk3rJR1ppP++xvVZX/Y0ltA5TZVgPPLS0ief
+ 2ZaQVW0/EEUmMicQ1vQafWT6Nf5jo2cPPhGx/BbKU4C0g7AGUfuXvXjXyuUX1HMq76MT
+ axo3/FpETC+drMWVsVFTOg/8ZsED2C2LXqRDN2O9jPm/Mt7QercMvDHp2h8KSj34WSw7
+ uOzA+QRsMHssvkuqRii+UQhtiw6yadOqNNHVN92ltm8AAni8UoxRmh6rF17W53NzpXER
+ SGR/FjHb+20D/feoSBKG7qL/GtlqwQzPkkL66sfoABAtZqXFh4euXR7yepMOMBNL6Com
+ LWBg==
+X-Gm-Message-State: AOAM5307mBZ0VvH+MkcXLil4ShWwqHINXNdBl6sQtLTvEvYQwncHvijC
+ 9DnDQZ+p1tWMYprPD9du632CI+CGxBGyNv+HQka7KDIa
+X-Google-Smtp-Source: ABdhPJxEvoiGMwhxrRcgorGWOW4iZ8zWK0rrK3GQA+ljBj/2un3X3phX/u+/+gp2s0wJMHoKNXTgDMZKArx7c9pmfJY=
+X-Received: by 2002:ab0:186d:: with SMTP id j45mr21868293uag.104.1591182458466; 
+ Wed, 03 Jun 2020 04:07:38 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Suppress the error message for GT
- init failure on error injection
+References: <20200603104657.25651-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200603104657.25651-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 3 Jun 2020 12:07:11 +0100
+Message-ID: <CAM0jSHNLTTkN8t2MsFKC9LRkN5-tsmnTzoqQRgy4cves=Z5Ywg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Suppress the error message for
+ GT init failure on error injection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,39 +61,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we injected an error (such as pretending the GuC firmware was
-broken), then suppress the error message as it is expected and our CI
-complains if it sees any *ERROR*.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 6bdb434a442d..f1d5333f9456 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -214,8 +214,8 @@ int intel_gt_resume(struct intel_gt *gt)
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
- 	if (err) {
--		drm_err(&gt->i915->drm,
--			"Failed to initialize GPU, declaring it wedged!\n");
-+		i915_probe_error(gt->i915,
-+				 "Failed to initialize GPU, declaring it wedged!\n");
- 		goto err_wedged;
- 	}
- 
--- 
-2.20.1
-
+On Wed, 3 Jun 2020 at 11:47, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> If we injected an error (such as pretending the GuC firmware was
+> broken), then suppress the error message as it is expected and our CI
+> complains if it sees any *ERROR*.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
