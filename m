@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B13B1ED8CE
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 00:56:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 959931ED8FA
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 01:13:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46E526E0E0;
-	Wed,  3 Jun 2020 22:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC82C89A1F;
+	Wed,  3 Jun 2020 23:13:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9EA466E0E0;
- Wed,  3 Jun 2020 22:56:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 90B43A00E7;
- Wed,  3 Jun 2020 22:56:35 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CF6A89A1F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 23:13:00 +0000 (UTC)
+IronPort-SDR: icc1AthNF8zlEP0bMFJUpV+qNB4tG3pTQce1S+ZjaWYAxlrhYDpAaIQQzPmJEp/nvyjxdUFli9
+ 67tVbgYm10Zg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2020 16:12:59 -0700
+IronPort-SDR: s2lR3eb51ze4NiOZBODRJjFPAEg5V8lQOP+vHi9tuCLuuyN57l3iH40gYp6RvjeECKIAi5ydOP
+ MYRGupS/sudQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,470,1583222400"; d="scan'208";a="471335136"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga005.fm.intel.com with SMTP; 03 Jun 2020 16:12:59 -0700
+Date: Wed, 3 Jun 2020 16:12:59 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20200603231259.GC2992531@mdroper-desk1.amr.corp.intel.com>
+References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+ <20200603211529.3005059-3-matthew.d.roper@intel.com>
+ <20200603223432.GA23488@aswarup-mobl>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 03 Jun 2020 22:56:35 -0000
-Message-ID: <159122499556.12265.7309677309374973839@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200603211040.8190-1-imre.deak@intel.com>
-In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/dp=5Fmst=3A_Fix_dis?=
- =?utf-8?q?abling_MST_on_a_port_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200603223432.GA23488@aswarup-mobl>
+Subject: Re: [Intel-gfx] [PATCH v3 02/15] drm/i915/rkl: Program BW_BUDDY0
+ registers instead of BW_BUDDY1/2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +50,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jun 03, 2020 at 03:34:32PM -0700, Aditya Swarup wrote:
+> On Wed, Jun 03, 2020 at 02:15:16PM -0700, Matt Roper wrote:
+> > RKL uses the same BW_BUDDY programming table as TGL, but programs the
+> > values into a single set BUDDY0 set of registers rather than the
+> > BUDDY1/BUDDY2 sets used by TGL.
+> > 
+> > Bspec: 49218
+> > Cc: Aditya Swarup <aditya.swarup@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 44 +++++++++++--------
+> >  drivers/gpu/drm/i915/i915_reg.h               | 14 ++++--
+> >  2 files changed, 35 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 72312b67b57a..2c1ce50b572b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -5254,7 +5254,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+> >  	enum intel_dram_type type = dev_priv->dram_info.type;
+> >  	u8 num_channels = dev_priv->dram_info.num_channels;
+> >  	const struct buddy_page_mask *table;
+> > -	int i;
+> > +	int config, min_buddy, max_buddy, i;
+> >  
+> >  	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+> >  		/* Wa_1409767108: tgl */
+> > @@ -5262,29 +5262,35 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+> >  	else
+> >  		table = tgl_buddy_page_masks;
+> >  
+> > -	for (i = 0; table[i].page_mask != 0; i++)
+> > -		if (table[i].num_channels == num_channels &&
+> > -		    table[i].type == type)
+> > +	if (IS_ROCKETLAKE(dev_priv)) {
+> > +		min_buddy = max_buddy = 0;
+> > +	} else {
+> > +		min_buddy = 1;
+> > +		max_buddy = 2;
+> > +	}
+> > +
+> > +	for (config = 0; table[config].page_mask != 0; config++)
+> > +		if (table[config].num_channels == num_channels &&
+> > +		    table[config].type == type)
+> >  			break;
+> >  
+> > -	if (table[i].page_mask == 0) {
+> > +	if (table[config].page_mask == 0) {
+> >  		drm_dbg(&dev_priv->drm,
+> >  			"Unknown memory configuration; disabling address buddy logic.\n");
+> > -		intel_de_write(dev_priv, BW_BUDDY1_CTL, BW_BUDDY_DISABLE);
+> > -		intel_de_write(dev_priv, BW_BUDDY2_CTL, BW_BUDDY_DISABLE);
+> > +		for (i = min_buddy; i <= max_buddy; i++)
+> > +			intel_de_write(dev_priv, BW_BUDDY_CTL(i),
+> > +				       BW_BUDDY_DISABLE);
+> >  	} else {
+> > -		intel_de_write(dev_priv, BW_BUDDY1_PAGE_MASK,
+> > -			       table[i].page_mask);
+> > -		intel_de_write(dev_priv, BW_BUDDY2_PAGE_MASK,
+> > -			       table[i].page_mask);
+> > -
+> > -		/* Wa_22010178259:tgl */
+> > -		intel_de_rmw(dev_priv, BW_BUDDY1_CTL,
+> > -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
+> > -		intel_de_rmw(dev_priv, BW_BUDDY2_CTL,
+> > -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
+> > +		for (i = min_buddy; i <= max_buddy; i++) {
+> > +			intel_de_write(dev_priv, BW_BUDDY_PAGE_MASK(i),
+> > +				       table[config].page_mask);
+> > +
+> > +			/* Wa_22010178259:tgl,rkl */
+> > +			intel_de_rmw(dev_priv, BW_BUDDY_CTL(i),
+> > +				     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > +				     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > +						    0x8));
+> We should be using REG_FIELD_PREP() in i915_reg.h to declare
+> TLB_REQ_TIMER value and then use the value here.
 
-Series: series starting with [1/3] drm/i915/dp_mst: Fix disabling MST on a port (rev2)
-URL   : https://patchwork.freedesktop.org/series/77969/
-State : warning
+Any specific reason why?  The value "8" doesn't have any specific
+hardware meaning that would be meaningful to define in the general
+register definitions.  It's just a value that this specific hardware
+workaround asked for in this case.  I'm not sure if we want to spread
+the definition of the workaround into the register file if the value
+isn't going to be meaningful to other driver programming or workarounds.
 
-== Summary ==
 
-$ dim checkpatch origin/drm-tip
-240b4ea78683 drm/i915/dp_mst: Fix disabling MST on a port
-36ebc90ef54b drm/dp_mst: Sanitize mgr->qlock locking in drm_dp_mst_wait_tx_reply()
-10ec0f0a95d1 drm/i915/dp_mst: Work around out-of-spec adapters filtering short pulses
--:13: WARNING:TYPO_SPELLING: 'specificatin' may be misspelled - perhaps 'specification'?
-#13: 
-specificatin DP sources should detect short pulses in the
+Matt
 
-total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+> > +		}
+> >  	}
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 578cfe11cbb9..3e79cefc510a 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -7837,13 +7837,19 @@ enum {
+> >  #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
+> >  #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
+> >  
+> > -#define BW_BUDDY1_CTL			_MMIO(0x45140)
+> > -#define BW_BUDDY2_CTL			_MMIO(0x45150)
+> > +#define _BW_BUDDY0_CTL			0x45130
+> > +#define _BW_BUDDY1_CTL			0x45140
+> > +#define BW_BUDDY_CTL(x)			_MMIO(_PICK_EVEN(x, \
+> > +							 _BW_BUDDY0_CTL, \
+> > +							 _BW_BUDDY1_CTL))
+> >  #define   BW_BUDDY_DISABLE		REG_BIT(31)
+> >  #define   BW_BUDDY_TLB_REQ_TIMER_MASK	REG_GENMASK(21, 16)
+> >  
+> > -#define BW_BUDDY1_PAGE_MASK		_MMIO(0x45144)
+> > -#define BW_BUDDY2_PAGE_MASK		_MMIO(0x45154)
+> > +#define _BW_BUDDY0_PAGE_MASK		0x45134
+> > +#define _BW_BUDDY1_PAGE_MASK		0x45144
+> > +#define BW_BUDDY_PAGE_MASK(x)		_MMIO(_PICK_EVEN(x, \
+> > +							 _BW_BUDDY0_PAGE_MASK, \
+> > +							 _BW_BUDDY1_PAGE_MASK))
+> >  
+> >  #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
+> >  #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
+> > -- 
+> > 2.24.1
+> > 
 
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
