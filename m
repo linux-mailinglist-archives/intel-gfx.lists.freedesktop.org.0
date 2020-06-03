@@ -1,39 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8EE21ED7F5
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 23:15:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D424D1ED808
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 23:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5602089F0A;
-	Wed,  3 Jun 2020 21:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A71E289FDE;
+	Wed,  3 Jun 2020 21:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 806E189EEB
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 21:15:49 +0000 (UTC)
-IronPort-SDR: 9sksPWVNc8s6BS7aGNPdG8T5y8eSb8lPT8C8pBFY0d6hBqg9y2k+/zCehBbBhf1vzcoNXsfyXl
- LmmCef92i7NQ==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4182289FDE;
+ Wed,  3 Jun 2020 21:27:06 +0000 (UTC)
+IronPort-SDR: Lwc0BuM0mE4VVORW9r9t7WkJqZcKiVGL4V9VwjW2z2JjkJnTadnLqFoDYi8YoF+RkzbWHax3cz
+ /jQHd/cNyndQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2020 14:15:48 -0700
-IronPort-SDR: PLKb/cyLwlB2GO8H7HH/XXTebQLSdnLzEv/hU9uV+ahKYDSVGRTtnUOCwI29c12kvgc2trY7QT
- WQm8K5go7wKg==
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2020 14:27:05 -0700
+IronPort-SDR: BQR0fl+yYqAEp4qiyU4/6n5jf/GehxYwkkDQMFnSLRq5eicxkwemcBQuyqDGzvB559/mvfv1KK
+ /T0z/79yz0Ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,469,1583222400"; d="scan'208";a="258715118"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by fmsmga008.fm.intel.com with ESMTP; 03 Jun 2020 14:15:48 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Jun 2020 14:15:29 -0700
-Message-Id: <20200603211529.3005059-16-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200603211529.3005059-1-matthew.d.roper@intel.com>
-References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,469,1583222400"; d="scan'208";a="471280239"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga005.fm.intel.com with ESMTP; 03 Jun 2020 14:27:04 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.9]) by
+ FMSMSX106.amr.corp.intel.com ([10.18.124.204]) with mapi id 14.03.0439.000;
+ Wed, 3 Jun 2020 14:27:04 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
+ Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915/dp_mst: Fix disabling MST on
+ a port
+Thread-Index: AQHWOet4jUL+jsGcPEa9lNVjXQ73tKjH3VQA
+Date: Wed, 3 Jun 2020 21:27:03 +0000
+Message-ID: <dc4e459534b6815b932c16ec38a1e2714d94ec07.camel@intel.com>
+References: <20200603211040.8190-1-imre.deak@intel.com>
+In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.182.158]
+Content-ID: <E3187F1A507F784DA9D9DCD715090548@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 15/15] drm/i915/rkl: Add initial workarounds
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp_mst: Fix disabling MST on a
+ port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,207 +60,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RKL and TGL share some general gen12 workarounds, but each platform also
-has its own platform-specific workarounds.
-
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c |  5 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 88 +++++++++++++--------
- 2 files changed, 59 insertions(+), 34 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 3cd461bf9131..63ac79f88fa2 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -2842,8 +2842,9 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
- static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
- 					enum plane_id plane_id)
- {
--	/* Wa_14010477008:tgl[a0..c0] */
--	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
-+	/* Wa_14010477008:tgl[a0..c0],rkl[all] */
-+	if (IS_ROCKETLAKE(dev_priv) ||
-+	    IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
- 		return false;
- 
- 	return plane_id < PLANE_SPRITE4;
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 30cd798b9664..d2f8e285491f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -590,8 +590,8 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
- }
- 
--static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
--				     struct i915_wa_list *wal)
-+static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				       struct i915_wa_list *wal)
- {
- 	/*
- 	 * Wa_1409142259:tgl
-@@ -601,12 +601,28 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 * Wa_1409207793:tgl
- 	 * Wa_1409178076:tgl
- 	 * Wa_1408979724:tgl
-+	 * Wa_14010443199:rkl
-+	 * Wa_14010698770:rkl
- 	 */
- 	WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
- 			  GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
- 
-+	/* WaDisableGPGPUMidThreadPreemption:gen12 */
-+	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
-+			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
-+			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
-+}
-+
-+static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				     struct i915_wa_list *wal)
-+{
-+	gen12_ctx_workarounds_init(engine, wal);
-+
- 	/*
--	 * Wa_1604555607:gen12 and Wa_1608008084:gen12
-+	 * Wa_1604555607:tgl
-+	 *
-+	 * Note that the implementation of this workaround is further modified
-+	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
- 	 * FF_MODE2 register will return the wrong value when read. The default
- 	 * value for this register is zero for all fields and there are no bit
- 	 * masks. So instead of doing a RMW we should just write the TDS timer
-@@ -614,11 +630,6 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 */
- 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK,
- 	       FF_MODE2_TDS_TIMER_128, 0);
--
--	/* WaDisableGPGPUMidThreadPreemption:tgl */
--	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
--			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
--			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
- }
- 
- static void
-@@ -633,8 +644,10 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 
- 	wa_init_start(wal, name, engine->name);
- 
--	if (IS_GEN(i915, 12))
-+	if (IS_TIGERLAKE(i915))
- 		tgl_ctx_workarounds_init(engine, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_ctx_workarounds_init(engine, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_ctx_workarounds_init(engine, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -946,9 +959,16 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- }
- 
- static void
--tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+gen12_gt_workarounds_init(struct drm_i915_private *i915,
-+			  struct i915_wa_list *wal)
- {
- 	wa_init_mcr(i915, wal);
-+}
-+
-+static void
-+tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+{
-+	gen12_gt_workarounds_init(i915, wal);
- 
- 	/* Wa_1409420604:tgl */
- 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-@@ -966,8 +986,10 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- static void
- gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
--	if (IS_GEN(i915, 12))
-+	if (IS_TIGERLAKE(i915))
- 		tgl_gt_workarounds_init(i915, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_gt_workarounds_init(i915, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_gt_workarounds_init(i915, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -1385,18 +1407,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    GEN9_CTX_PREEMPT_REG,
- 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
- 
--		/*
--		 * Wa_1607030317:tgl
--		 * Wa_1607186500:tgl
--		 * Wa_1607297627:tgl there is 3 entries for this WA on BSpec, 2
--		 * of then says it is fixed on B0 the other one says it is
--		 * permanent
--		 */
--		wa_masked_en(wal,
--			     GEN6_RC_SLEEP_PSMI_CONTROL,
--			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
--
- 		/*
- 		 * Wa_1606679103:tgl
- 		 * (see also Wa_1606682166:icl)
-@@ -1415,24 +1425,38 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    VSUNIT_CLKGATE_DIS_TGL);
- 	}
- 
--	if (IS_TIGERLAKE(i915)) {
--		/* Wa_1606931601:tgl */
-+	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
-+		/* Wa_1606931601:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
- 
--		/* Wa_1409804808:tgl */
-+		/* Wa_1409804808:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
- 			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
- 
--		/* Wa_1606700617:tgl */
--		wa_masked_en(wal,
--			     GEN9_CS_DEBUG_MODE1,
--			     FF_DOP_CLOCK_GATE_DISABLE);
--
- 		/*
- 		 * Wa_1409085225:tgl
--		 * Wa_14010229206:tgl
-+		 * Wa_14010229206:tgl,rkl
- 		 */
- 		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
-+
-+		/*
-+		 * Wa_1607030317:tgl
-+		 * Wa_1607186500:tgl
-+		 * Wa_1607297627:tgl,rkl there are multiple entries for this
-+		 * WA in the BSpec; some indicate this is an A0-only WA,
-+		 * others indicate it applies to all steppings.
-+		 */
-+		wa_masked_en(wal,
-+			     GEN6_RC_SLEEP_PSMI_CONTROL,
-+			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
-+			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
-+	}
-+
-+	if (IS_TIGERLAKE(i915)) {
-+		/* Wa_1606700617:tgl */
-+		wa_masked_en(wal,
-+			     GEN9_CS_DEBUG_MODE1,
-+			     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
- 
- 	if (IS_GEN(i915, 11)) {
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTA2LTA0IGF0IDAwOjEwICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEN1
+cnJlbnRseSBNU1Qgb24gYSBwb3J0IGNhbiBnZXQgZW5hYmxlZC9kaXNhYmxlZCBmcm9tIHRoZSBo
+b3RwbHVnIHdvcmsNCj4gYW5kIGdldCBkaXNhYmxlZCBmcm9tIHRoZSBzaG9ydCBwdWxzZSB3b3Jr
+IGluIGEgcmFjeSB3YXkuIEZpeCB0aGlzIGJ5DQo+IHJlbHlpbmcgb24gdGhlIE1TVCBzdGF0ZSBj
+aGVja2luZyBpbiB0aGUgaG90cGx1ZyB3b3JrIGFuZCBqdXN0IHNjaGVkdWxlDQo+IGEgaG90cGx1
+ZyB3b3JrIGZyb20gdGhlIHNob3J0IHB1bHNlIGhhbmRsZXIgaWYgc29tZSBwcm9ibGVtIGhhcHBl
+bmVkDQo+IGR1cmluZyB0aGUgTVNUIGludGVycnVwdCBoYW5kbGluZy4NCg0KTmljZQ0KDQo+IA0K
+PiBUaGlzIHJlbW92ZXMgdGhlIGV4cGxpY2l0IE1TVCBkaXNhYmxpbmcgaW4gY2FzZSBvZiBhbiBB
+VVggZmFpbHVyZSwgYnV0DQo+IGlmIEFVWCBmYWlscywgdGhlbiBwcm9iYWJseSB0aGUgZGV0ZWN0
+aW9uIHdpbGwgYWxzbyBmYWlsIGR1cmluZyB0aGUNCj4gc2NoZWR1bGVkIGhvdHBsdWcgd29yayBh
+bmQgaXQncyBub3QgZ3VhcmFudGVlZCB0aGF0IHdlJ2xsIHNlZQ0KPiBpbnRlcm1pdHRlbnQgZXJy
+b3JzIGFueXdheS4NCj4gDQo+IFdoaWxlIGF0IGl0IGFsc28gc2ltcGxpZnkgdGhlIGVycm9yIGNo
+ZWNraW5nIG9mIHRoZSBNU1QgaW50ZXJydXB0DQo+IGhhbmRsZXIuDQo+IA0KDQpSZXZpZXdlZC1i
+eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gU2ln
+bmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDMzICsrKy0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDI5IGRlbGV0
+aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBp
+bmRleCA1NWZkYTA3NGMwYWQuLmJlZmJjYWNkZGFhMSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBAQCAtNTYwNCw3ICs1NjA0LDcgQEAgaW50ZWxfZHBf
+Y2hlY2tfbXN0X3N0YXR1cyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiAgCQl9DQo+ICAJ
+fQ0KPiAgDQo+IC0JcmV0dXJuIG5lZWRfcmV0cmFpbjsNCj4gKwlyZXR1cm4gbmVlZF9yZXRyYWlu
+ID8gLUVJTlZBTCA6IDA7DQo+ICB9DQo+ICANCj4gIHN0YXRpYyBib29sDQo+IEBAIC03MjU1LDM1
+ICs3MjU1LDEwIEBAIGludGVsX2RwX2hwZF9wdWxzZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0
+ICppbnRlbF9kaWdfcG9ydCwgYm9vbCBsb25nX2hwZCkNCj4gIAl9DQo+ICANCj4gIAlpZiAoaW50
+ZWxfZHAtPmlzX21zdCkgew0KPiAtCQlzd2l0Y2ggKGludGVsX2RwX2NoZWNrX21zdF9zdGF0dXMo
+aW50ZWxfZHApKSB7DQo+IC0JCWNhc2UgLUVJTlZBTDoNCj4gLQkJCS8qDQo+IC0JCQkgKiBJZiB3
+ZSB3ZXJlIGluIE1TVCBtb2RlLCBhbmQgZGV2aWNlIGlzIG5vdA0KPiAtCQkJICogdGhlcmUsIGdl
+dCBvdXQgb2YgTVNUIG1vZGUNCj4gLQkJCSAqLw0KPiAtCQkJZHJtX2RiZ19rbXMoJmk5MTUtPmRy
+bSwNCj4gLQkJCQkgICAgIk1TVCBkZXZpY2UgbWF5IGhhdmUgZGlzYXBwZWFyZWQgJWQgdnMgJWRc
+biIsDQo+IC0JCQkJICAgIGludGVsX2RwLT5pc19tc3QsDQo+IC0JCQkJICAgIGludGVsX2RwLT5t
+c3RfbWdyLm1zdF9zdGF0ZSk7DQo+IC0JCQlpbnRlbF9kcC0+aXNfbXN0ID0gZmFsc2U7DQo+IC0J
+CQlkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9zZXRfbXN0KCZpbnRlbF9kcC0+bXN0X21nciwNCj4g
+LQkJCQkJCQlpbnRlbF9kcC0+aXNfbXN0KTsNCj4gLQ0KPiAtCQkJcmV0dXJuIElSUV9OT05FOw0K
+PiAtCQljYXNlIDE6DQo+IC0JCQlyZXR1cm4gSVJRX05PTkU7DQo+IC0JCWRlZmF1bHQ6DQo+IC0J
+CQlicmVhazsNCj4gLQkJfQ0KPiAtCX0NCj4gLQ0KPiAtCWlmICghaW50ZWxfZHAtPmlzX21zdCkg
+ew0KPiAtCQlib29sIGhhbmRsZWQ7DQo+IC0NCj4gLQkJaGFuZGxlZCA9IGludGVsX2RwX3Nob3J0
+X3B1bHNlKGludGVsX2RwKTsNCj4gLQ0KPiAtCQlpZiAoIWhhbmRsZWQpDQo+ICsJCWlmIChpbnRl
+bF9kcF9jaGVja19tc3Rfc3RhdHVzKGludGVsX2RwKSA8IDApDQo+ICAJCQlyZXR1cm4gSVJRX05P
+TkU7DQo+ICsJfSBlbHNlIGlmICghaW50ZWxfZHBfc2hvcnRfcHVsc2UoaW50ZWxfZHApKSB7DQo+
+ICsJCXJldHVybiBJUlFfTk9ORTsNCj4gIAl9DQo+ICANCj4gIAlyZXR1cm4gSVJRX0hBTkRMRUQ7
+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
