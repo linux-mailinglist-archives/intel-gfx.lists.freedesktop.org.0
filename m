@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EDB1ECBAA
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 10:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5FF1ECD25
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 12:05:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B54891BF;
-	Wed,  3 Jun 2020 08:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3341289CF2;
+	Wed,  3 Jun 2020 10:05:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0A11891BF
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 08:38:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21381402-1500050 
- for multiple; Wed, 03 Jun 2020 09:38:35 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Jun 2020 09:38:31 +0100
-Message-Id: <20200603083831.1789770-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200603083831.1789770-1-chris@chris-wilson.co.uk>
-References: <20200603083831.1789770-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEEB89CF2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 10:05:52 +0000 (UTC)
+IronPort-SDR: Q/v2d7nUnmanSH6+PenHJg/Dy+c5udQLAPJPq/VwDz173Sq0m9vTReE6sbOgWUUSIo4/adii4m
+ pEQOfsN2BQQw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2020 03:05:51 -0700
+IronPort-SDR: aGKqsFG6QYBsdex8XypsLUfdNcskzgd+owH3ClvYc78+3rstPTOjvwG9yuNlptUExynoGa9aBE
+ AeAcvYxsE3pg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,467,1583222400"; d="scan'208";a="312553661"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 03 Jun 2020 03:05:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Jun 2020 13:05:48 +0300
+Date: Wed, 3 Jun 2020 13:05:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200603100548.GN6112@intel.com>
+References: <20200601101516.21018-1-anshuman.gupta@intel.com>
+ <20200601141132.GK6112@intel.com> <20200602122807.GN4452@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] HAX:fair
+Content-Disposition: inline
+In-Reply-To: <20200602122807.GN4452@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RFC] drm/i915: lpsp with hdmi/dp outputs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,189 +51,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
----
- tests/intel-ci/fast-feedback.testlist | 163 +-------------------------
- 1 file changed, 3 insertions(+), 160 deletions(-)
+On Tue, Jun 02, 2020 at 05:58:07PM +0530, Anshuman Gupta wrote:
+> On 2020-06-01 at 17:11:32 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Mon, Jun 01, 2020 at 03:45:16PM +0530, Anshuman Gupta wrote:
+> > > Gen12 hw are failing to enable lpsp configuration due to PG3 was left=
+ on
+> > > due to valid usgae count of POWER_DOMAIN_AUDIO.
+> > > It is not required to get POWER_DOMAIN_AUDIO ref-count when enabling
+> > > a crtc, it should be always i915_audio_component request to get/put
+> > > AUDIO_POWER_DOMAIN.
+> > > =
 
-diff --git a/tests/intel-ci/fast-feedback.testlist b/tests/intel-ci/fast-feedback.testlist
-index 04f6affcf..9cf460894 100644
---- a/tests/intel-ci/fast-feedback.testlist
-+++ b/tests/intel-ci/fast-feedback.testlist
-@@ -1,162 +1,5 @@
- # Keep alphabetically sorted by default
- 
--igt@core_auth@basic-auth
--igt@debugfs_test@read_all_entries
--igt@fbdev@mmap
--igt@gem_basic@bad-close
--igt@gem_basic@create-close
--igt@gem_basic@create-fd-close
--igt@gem_busy@busy@all
--igt@gem_close_race@basic-process
--igt@gem_close_race@basic-threads
--igt@gem_ctx_create@basic
--igt@gem_ctx_create@basic-files
--igt@gem_ctx_exec@basic
--igt@gem_exec_basic@basic
--igt@gem_exec_create@basic
--igt@gem_exec_fence@basic-busy
--igt@gem_exec_fence@basic-wait
--igt@gem_exec_fence@basic-await
--igt@gem_exec_fence@nb-await
--igt@gem_exec_gttfill@basic
--igt@gem_exec_parallel@engines
--igt@gem_exec_store@basic
--igt@gem_exec_suspend@basic-s0
--igt@gem_exec_suspend@basic-s3
--igt@gem_flink_basic@bad-flink
--igt@gem_flink_basic@bad-open
--igt@gem_flink_basic@basic
--igt@gem_flink_basic@double-flink
--igt@gem_flink_basic@flink-lifetime
--igt@gem_linear_blits@basic
--igt@gem_mmap@basic
--igt@gem_mmap_gtt@basic
--igt@gem_render_linear_blits@basic
--igt@gem_render_tiled_blits@basic
--igt@gem_ringfill@basic-all
--igt@gem_sync@basic-all
--igt@gem_sync@basic-each
--igt@gem_tiled_blits@basic
--igt@gem_tiled_fence_blits@basic
--igt@gem_tiled_pread_basic
--igt@gem_wait@busy@all
--igt@gem_wait@wait@all
--igt@i915_getparams_basic@basic-eu-total
--igt@i915_getparams_basic@basic-subslice-total
--igt@i915_hangman@error-state-basic
--igt@kms_addfb_basic@addfb25-bad-modifier
--igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling
--igt@kms_addfb_basic@addfb25-modifier-no-flag
--igt@kms_addfb_basic@addfb25-x-tiled
--igt@kms_addfb_basic@addfb25-x-tiled-mismatch
--igt@kms_addfb_basic@addfb25-yf-tiled
--igt@kms_addfb_basic@addfb25-y-tiled
--igt@kms_addfb_basic@addfb25-y-tiled-small
--igt@kms_addfb_basic@bad-pitch-0
--igt@kms_addfb_basic@bad-pitch-1024
--igt@kms_addfb_basic@bad-pitch-128
--igt@kms_addfb_basic@bad-pitch-256
--igt@kms_addfb_basic@bad-pitch-32
--igt@kms_addfb_basic@bad-pitch-63
--igt@kms_addfb_basic@bad-pitch-65536
--igt@kms_addfb_basic@bad-pitch-999
--igt@kms_addfb_basic@basic
--igt@kms_addfb_basic@basic-x-tiled
--igt@kms_addfb_basic@basic-y-tiled
--igt@kms_addfb_basic@bo-too-small
--igt@kms_addfb_basic@bo-too-small-due-to-tiling
--igt@kms_addfb_basic@clobberred-modifier
--igt@kms_addfb_basic@framebuffer-vs-set-tiling
--igt@kms_addfb_basic@invalid-get-prop
--igt@kms_addfb_basic@invalid-get-prop-any
--igt@kms_addfb_basic@invalid-set-prop
--igt@kms_addfb_basic@invalid-set-prop-any
--igt@kms_addfb_basic@no-handle
--igt@kms_addfb_basic@size-max
--igt@kms_addfb_basic@small-bo
--igt@kms_addfb_basic@tile-pitch-mismatch
--igt@kms_addfb_basic@too-high
--igt@kms_addfb_basic@too-wide
--igt@kms_addfb_basic@unused-handle
--igt@kms_addfb_basic@unused-modifier
--igt@kms_addfb_basic@unused-offsets
--igt@kms_addfb_basic@unused-pitches
--igt@kms_busy@basic
--igt@kms_chamelium@dp-hpd-fast
--igt@kms_chamelium@dp-edid-read
--igt@kms_chamelium@dp-crc-fast
--igt@kms_chamelium@hdmi-hpd-fast
--igt@kms_chamelium@hdmi-edid-read
--igt@kms_chamelium@hdmi-crc-fast
--igt@kms_chamelium@vga-hpd-fast
--igt@kms_chamelium@vga-edid-read
--igt@kms_chamelium@common-hpd-after-suspend
--igt@kms_prop_blob@basic
--igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic
--igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy
--igt@kms_cursor_legacy@basic-flip-after-cursor-atomic
--igt@kms_cursor_legacy@basic-flip-after-cursor-legacy
--igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size
--igt@kms_cursor_legacy@basic-flip-before-cursor-atomic
--igt@kms_cursor_legacy@basic-flip-before-cursor-legacy
--igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size
--igt@kms_flip@basic-flip-vs-dpms
--igt@kms_flip@basic-flip-vs-modeset
--igt@kms_flip@basic-flip-vs-wf_vblank
--igt@kms_flip@basic-plain-flip
--igt@kms_force_connector_basic@force-connector-state
--igt@kms_force_connector_basic@force-edid
--igt@kms_force_connector_basic@force-load-detect
--igt@kms_force_connector_basic@prune-stale-modes
--igt@kms_frontbuffer_tracking@basic
--igt@kms_pipe_crc_basic@hang-read-crc-pipe-a
--igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a
--igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence
--igt@kms_pipe_crc_basic@read-crc-pipe-a
--igt@kms_pipe_crc_basic@read-crc-pipe-b
--igt@kms_pipe_crc_basic@read-crc-pipe-c
--igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence
--igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a
--igt@kms_psr@primary_page_flip
--igt@kms_psr@cursor_plane_move
--igt@kms_psr@sprite_plane_onoff
--igt@kms_psr@primary_mmap_gtt
--igt@kms_setmode@basic-clone-single-crtc
--igt@i915_pm_backlight@basic-brightness
--igt@i915_pm_rpm@basic-pci-d3-state
--igt@i915_pm_rpm@basic-rte
--igt@i915_pm_rps@basic-api
--igt@prime_self_import@basic-llseek-bad
--igt@prime_self_import@basic-llseek-size
--igt@prime_self_import@basic-with_fd_dup
--igt@prime_self_import@basic-with_one_bo
--igt@prime_self_import@basic-with_one_bo_two_files
--igt@prime_self_import@basic-with_two_bos
--igt@prime_vgem@basic-fence-flip
--igt@prime_vgem@basic-fence-mmap
--igt@prime_vgem@basic-fence-read
--igt@prime_vgem@basic-gtt
--igt@prime_vgem@basic-read
--igt@prime_vgem@basic-write
--igt@vgem_basic@setversion
--igt@vgem_basic@create
--igt@vgem_basic@debugfs
--igt@vgem_basic@dmabuf-export
--igt@vgem_basic@dmabuf-fence
--igt@vgem_basic@dmabuf-fence-before
--igt@vgem_basic@dmabuf-mmap
--igt@vgem_basic@mmap
--igt@vgem_basic@second-client
--igt@vgem_basic@sysfs
--
--# All tests that do module unloading and reloading are executed last.
--# They will sometimes reveal issues of earlier tests leaving the
--# driver in a broken state that is not otherwise noticed in that test.
--
--igt@vgem_basic@unload
--igt@i915_module_load@reload
--igt@i915_pm_rpm@module-reload
--
--# Kernel selftests
--igt@i915_selftest@live
--igt@dmabuf@all
-+igt@gem_exec_schedule@fair-none
-+igt@gem_exec_schedule@fair-pace
-+igt@gem_exec_schedule@fair-flow
--- 
-2.27.0
+> > > Cc: stable@vger.kernel.org
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 6 +++++-
+> > >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > > =
 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+> > > index 6c3b11de2daf..f31a579d7a52 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -7356,7 +7356,11 @@ static u64 get_crtc_power_domains(struct intel=
+_crtc_state *crtc_state)
+> > >  		mask |=3D BIT_ULL(intel_encoder->power_domain);
+> > >  	}
+> > >  =
+
+> > > -	if (HAS_DDI(dev_priv) && crtc_state->has_audio)
+> > > +	/*
+> > > +	 * Gen12 can drive lpsp on hdmi/dp outpus, it doesn't require to
+> > > +	 * enable AUDIO power in order to enable a crtc
+> > =
+
+> > Nothing requires audio power to enable a crtc. What this is saying is
+> > that if we want audio then we must enable the audio power. If you
+> > didn't want audio then you wouldn't have .has_audio set.
+> IMO i915_audio_component_get_power also enables audio power, and
+> i915_audio_component_put_power releases the usage count based upon audio
+> runtime idleness but here get_crtc_power_domains() gets the POWER_DOMAIN_=
+AUDIO usages
+> count, which will be released only when this crtc get disbaled.
+> It may enable AUDIO power despite of fact that audio driver has released =
+the
+> usage count.
+> Please correct me if i am wrong here.
+
+The audio component stuff doesn't actually do the audio enable/disable
+sequence.
+
+> =
+
+> > =
+
+> > That said, looks like audio is moving into the always on well, but not
+> > yet in tgl.
+> Still some of audio functional stuff lies in PG3, not completely removed
+> from PG3.
+> Thanks,
+> Anshuman Gupta.
+> > =
+
+> > .
+> > > +	 */
+> > > +	if (INTEL_GEN(dev_priv) < 12 && HAS_DDI(dev_priv) && crtc_state->ha=
+s_audio)
+> > >  		mask |=3D BIT_ULL(POWER_DOMAIN_AUDIO);
+> > >  =
+
+> > >  	if (crtc_state->shared_dpll)
+> > > -- =
+
+> > > 2.26.2
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
