@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B10A1ECF03
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 13:50:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100301ED000
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 14:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3717E89BD4;
-	Wed,  3 Jun 2020 11:50:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD4B189ACC;
+	Wed,  3 Jun 2020 12:42:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E98D89A6D;
- Wed,  3 Jun 2020 11:50:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 565C0A0019;
- Wed,  3 Jun 2020 11:50:24 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8693489ACC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 12:42:39 +0000 (UTC)
+IronPort-SDR: khLwMnDkMLyMuP5q1fT2V+UsdbXyr1hP6z5Tlfnghju1W8oXfocV993Zx+cuDWjCBYwNXBypfD
+ 2/EyFPXLRiRQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2020 05:42:38 -0700
+IronPort-SDR: JKdmbu5ZaZGWfvzBKf+0apqrTao7M1ZfYLvArxS2y7qAoSZNEPXrA2+FfAMoK5L+9LWb+j8sv4
+ RoyxHl0kPr1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,467,1583222400"; d="scan'208";a="257998723"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 03 Jun 2020 05:42:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Jun 2020 15:42:35 +0300
+Date: Wed, 3 Jun 2020 15:42:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200603124235.GP6112@intel.com>
+References: <20200528200356.36756-1-jose.souza@intel.com>
+ <20200529065148.GG6112@intel.com>
+ <f1176dfde6ee0cb1bad4ca2c2895c10359d55365.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 03 Jun 2020 11:50:24 -0000
-Message-ID: <159118502432.12265.1100695372224956185@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200603104657.25651-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200603104657.25651-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Suppress_the_error_message_for_GT_init_failure_on_e?=
- =?utf-8?q?rror_injection?=
+Content-Disposition: inline
+In-Reply-To: <f1176dfde6ee0cb1bad4ca2c2895c10359d55365.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display/hsw+: Do not program
+ the same vswing entry twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,151 +53,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, May 29, 2020 at 08:52:38PM +0000, Souza, Jose wrote:
+> On Fri, 2020-05-29 at 09:51 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, May 28, 2020 at 01:03:53PM -0700, Jos=E9 Roberto de Souza wrote:
+> > > It will be programed right before the link training, so no need to do
+> > > it twice.
+> > > It will not strictly follow BSpec sequences but most of this sequences
+> > > are not matching anyways.
+> > > =
 
-Series: drm/i915/gt: Suppress the error message for GT init failure on error injection
-URL   : https://patchwork.freedesktop.org/series/77949/
-State : success
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 19 ++++---------------
+> > >  1 file changed, 4 insertions(+), 15 deletions(-)
+> > > =
 
-== Summary ==
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index aa22465bb56e..c100efc6a2c4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -3115,7 +3115,6 @@ static void tgl_ddi_pre_enable_dp(struct intel_=
+atomic_state *state,
+> > >  	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> > >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > >  	bool is_mst =3D intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST=
+);
+> > > -	int level =3D intel_ddi_dp_level(intel_dp);
+> > >  	enum transcoder transcoder =3D crtc_state->cpu_transcoder;
+> > >  =
 
-CI Bug Log - changes from CI_DRM_8575 -> Patchwork_17850
-====================================================
+> > >  	intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
+> > > @@ -3190,9 +3189,10 @@ static void tgl_ddi_pre_enable_dp(struct intel=
+_atomic_state *state,
+> > >  	 * down this function.
+> > >  	 */
+> > >  =
 
-Summary
--------
+> > > -	/* 7.e Configure voltage swing and related IO settings */
+> > > -	tgl_ddi_vswing_sequence(encoder, crtc_state->port_clock, level,
+> > > -				encoder->type);
+> > > +	/*
+> > > +	 * 7.e Configure voltage swing and related IO settings
+> > > +	 * It will be done in intel_dp_start_link_train(), no need to do tw=
+ice
+> > > +	 */
+> > =
 
-  **SUCCESS**
+> > Hmm. Do we still set it up before turning on the port?
+> =
 
-  No regressions found.
+> No.
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/index.html
+> intel_dp_start_link_train()
+> 	intel_dp_link_training_clock_recovery()
+> 		intel_dp->prepare_link_retrain(intel_dp)/intel_ddi_prepare_link_retrain=
+();/* Port is enabled here in training mode */
+> =
 
-Known issues
-------------
+> 		....
+> =
 
-  Here are the changes found in Patchwork_17850 that come from known issues:
+> 		intel_dp_reset_link_train()
+> 			intel_dp_set_signal_levels() /* Vswing table is set here */
+> Guess is safer keep programming it twice then?
 
-### IGT changes ###
+Probably.
 
-#### Issues hit ####
+> =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#151] / [i915#1844] / [i915#1909] / [i915#392])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
+> =
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+> > =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> > >  =
 
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-icl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+> > >  	/*
+> > >  	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power=
+ up
+> > > @@ -3257,7 +3257,6 @@ static void hsw_ddi_pre_enable_dp(struct intel_=
+atomic_state *state,
+> > >  	enum phy phy =3D intel_port_to_phy(dev_priv, port);
+> > >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > >  	bool is_mst =3D intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST=
+);
+> > > -	int level =3D intel_ddi_dp_level(intel_dp);
+> > >  =
 
-  
-#### Possible fixes ####
+> > >  	if (INTEL_GEN(dev_priv) < 11)
+> > >  		drm_WARN_ON(&dev_priv->drm,
+> > > @@ -3279,16 +3278,6 @@ static void hsw_ddi_pre_enable_dp(struct intel=
+_atomic_state *state,
+> > >  =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+> > >  	icl_program_mg_dp_mode(dig_port, crtc_state);
+> > >  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-tgl-y/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> > > -	if (INTEL_GEN(dev_priv) >=3D 11)
+> > > -		icl_ddi_vswing_sequence(encoder, crtc_state->port_clock,
+> > > -					level, encoder->type);
+> > > -	else if (IS_CANNONLAKE(dev_priv))
+> > > -		cnl_ddi_vswing_sequence(encoder, level, encoder->type);
+> > > -	else if (IS_GEN9_LP(dev_priv))
+> > > -		bxt_ddi_vswing_sequence(encoder, level, encoder->type);
+> > > -	else
+> > > -		intel_prepare_dp_ddi_buffers(encoder, crtc_state);
+> > =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-guc:         [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> > This last one definitely has to stay IIRC. HSW/BDW/SKL buf trans
+> > stuff works quite bit differently than the BXT+ style more manual
+> > programming.
+> > =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+> > > -
+> > >  	if (intel_phy_is_combo(dev_priv, phy)) {
+> > >  		bool lane_reversal =3D
+> > >  			dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+> > > -- =
 
-  
-#### Warnings ####
+> > > 2.26.2
+> > > =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][21] ([fdo#109271]) -> [DMESG-FAIL][22] ([i915#62])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+-- =
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92]) -> [DMESG-WARN][26] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8575/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#1844]: https://gitlab.freedesktop.org/drm/intel/issues/1844
-  [i915#1909]: https://gitlab.freedesktop.org/drm/intel/issues/1909
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (51 -> 45)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8575 -> Patchwork_17850
-
-  CI-20190529: 20190529
-  CI_DRM_8575: b261605291bae8f267174f92df7513a3a7184573 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5692: c98c9ad6d06c4eb8b05b23ef0bbe0159730e387f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17850: cde9b765b01965ff9ab1c632022242467263c608 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cde9b765b019 drm/i915/gt: Suppress the error message for GT init failure on error injection
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17850/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
