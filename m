@@ -1,28 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B991ED2CA
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 16:57:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D7C1ED33D
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 17:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5FE89CD7;
-	Wed,  3 Jun 2020 14:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2E989D56;
+	Wed,  3 Jun 2020 15:22:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A71B89C83
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 14:57:19 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Jun 2020 16:57:13 +0200
-Message-Id: <20200603145713.3835124-24-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200603145713.3835124-1-maarten.lankhorst@linux.intel.com>
-References: <20200603145713.3835124-1-maarten.lankhorst@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3F0A889D56;
+ Wed,  3 Jun 2020 15:22:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37A1CA47EA;
+ Wed,  3 Jun 2020 15:22:35 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/24] drm/i915: Kill context before taking
- ctx->mutex
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 03 Jun 2020 15:22:35 -0000
+Message-ID: <159119775519.12266.10502034296357750307@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200514184040.20700-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200514184040.20700-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/dp=3A_Include_the_AUX_CH_name_in_the_debug_messages_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,74 +38,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Killing context before taking ctx->mutex fixes a hang in
-gem_ctx_persistence.close-replace-race, where lut_close
-takes obj->resv.lock which is already held by execbuf,
-causing a stalling indefinitely.
+== Series Details ==
 
-[ 1904.342847] 2 locks held by gem_ctx_persist/11520:
-[ 1904.342849]  #0: ffff8882188e4968 (&ctx->mutex){+.+.}-{3:3}, at: context_close+0xe6/0x850 [i915]
-[ 1904.342941]  #1: ffff88821c58a5a8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: lut_close+0x2c2/0xba0 [i915]
-[ 1904.343033] 3 locks held by gem_ctx_persist/11521:
-[ 1904.343035]  #0: ffffc900008ff938 (reservation_ww_class_acquire){+.+.}-{0:0}, at: i915_gem_do_execbuffer+0x103d/0x54c0 [i915]
-[ 1904.343157]  #1: ffff88821c58a5a8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: eb_validate_vmas+0x602/0x2010 [i915]
-[ 1904.343267]  #2: ffff88820afd9200 (&vm->mutex/1){+.+.}-{3:3}, at: i915_vma_pin_ww+0x335/0x2300 [i915]
+Series: drm/dp: Include the AUX CH name in the debug messages (rev2)
+URL   : https://patchwork.freedesktop.org/series/77276/
+State : success
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 ++++++++++-----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 2048b21ac8b2..05df7ffff624 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -623,6 +623,18 @@ static void context_close(struct i915_gem_context *ctx)
- 	i915_gem_context_set_closed(ctx);
- 	mutex_unlock(&ctx->engines_mutex);
- 
-+	/*
-+	 * If the user has disabled hangchecking, we can not be sure that
-+	 * the batches will ever complete after the context is closed,
-+	 * keeping the context and all resources pinned forever. So in this
-+	 * case we opt to forcibly kill off all remaining requests on
-+	 * context close.
-+	 */
-+	if (!i915_gem_context_is_persistent(ctx) ||
-+	    !i915_modparams.enable_hangcheck)
-+		kill_context(ctx);
-+
-+
- 	mutex_lock(&ctx->mutex);
- 
- 	set_closed_name(ctx);
-@@ -641,18 +653,6 @@ static void context_close(struct i915_gem_context *ctx)
- 	lut_close(ctx);
- 
- 	mutex_unlock(&ctx->mutex);
--
--	/*
--	 * If the user has disabled hangchecking, we can not be sure that
--	 * the batches will ever complete after the context is closed,
--	 * keeping the context and all resources pinned forever. So in this
--	 * case we opt to forcibly kill off all remaining requests on
--	 * context close.
--	 */
--	if (!i915_gem_context_is_persistent(ctx) ||
--	    !i915_modparams.enable_hangcheck)
--		kill_context(ctx);
--
- 	i915_gem_context_put(ctx);
- }
- 
--- 
-2.26.2
+CI Bug Log - changes from CI_DRM_8579 -> Patchwork_17851
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17851 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-byt-n2820:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-byt-n2820/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-byt-n2820/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1}:
+    - fi-bwr-2160:        [FAIL][7] ([i915#1928]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@b-dvi-d1.html
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1}:
+    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-kbl-x1275/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-kbl-x1275/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8579/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1928]: https://gitlab.freedesktop.org/drm/intel/issues/1928
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8579 -> Patchwork_17851
+
+  CI-20190529: 20190529
+  CI_DRM_8579: 289eb12c88c49a4ac8d325dc457d8878c7f5bdc0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5694: a9b6c4c74bfddf7d3d2da3be08804fe315945cea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17851: b40213e78a826fd098477aa050e49072f8cc61a5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b40213e78a82 drm/dp: Include the AUX CH name in the debug messages
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17851/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
