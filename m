@@ -1,41 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040511ED7D9
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 23:10:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626661ED7E7
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jun 2020 23:15:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDDB389DA2;
-	Wed,  3 Jun 2020 21:10:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA56D89E57;
+	Wed,  3 Jun 2020 21:15:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31A2289DA2;
- Wed,  3 Jun 2020 21:10:45 +0000 (UTC)
-IronPort-SDR: qX4d8cTJdq7sf/oVMbVuYkrgIbpcDgCo9N/N2r25QSWlYgJ3CzsaReMVSkSNZ3Z+H+iJRGjZ09
- 2ML9HP23BPPA==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B154F89E57
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jun 2020 21:15:38 +0000 (UTC)
+IronPort-SDR: Ifrvnqg78bcmhV012O+ekQcHd3o90c8teXzTVT3A28Pl1EPRGknX52FlSjsg+qx3mhocEo8aWJ
+ K+U2y5a75weA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2020 14:10:44 -0700
-IronPort-SDR: QZK9j0hJeAGQu7VKZDfEAagfOBafcA7pYtYbxTWG+XJS9DCZ1vxXz0n9EwDXrPVlGCVnhh9HwM
- AvAi3jitfzFA==
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2020 14:15:38 -0700
+IronPort-SDR: 3Zk7OXP4oZWEwDBOMpwv2ODW/lRj+uhoxt56pCsuemppf7ZJN9Hrvjecgz/qS301iHPqGe4oR9
+ +HPIdtVKHhPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,469,1583222400"; d="scan'208";a="269199544"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 03 Jun 2020 14:10:43 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  4 Jun 2020 00:10:40 +0300
-Message-Id: <20200603211040.8190-3-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
-In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
-References: <20200603211040.8190-1-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,469,1583222400"; d="scan'208";a="258715064"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
+ by fmsmga008.fm.intel.com with ESMTP; 03 Jun 2020 14:15:37 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 Jun 2020 14:15:14 -0700
+Message-Id: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/dp_mst: Work around out-of-spec
- adapters filtering short pulses
+Subject: [Intel-gfx] [PATCH v3 00/15] Remaining RKL patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,112 +44,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some TypeC -> native DP adapters, at least the Club CAC-1557 adapter,
-incorrectly filter out HPD short pulses with a duration less than ~540
-usec, leading to MST probe failures.
-
-According to the DP alt mode specification adapters should forward short
-pulses with a duration greater than 250 usec. According to the DP
-specificatin DP sources should detect short pulses in the
-500 usec -> 2 ms range. Based on this filtering out short pulses with a
-duration less than 540 usec is incorrect.
-
-To make such adapters work add support for a driver polling on MST
-inerrupt flags, and wire this up in the i915 driver. The sink can clear
-an interrupt it raised after 110 ms if the source doesn't respond, so
-use a 50 ms poll period to avoid missing an interrupt. Polling of the
-MST interrupt flags is explicitly allowed by the DP specification.
-
-This fixes MST probe failures I saw using this adapter and a DELL U2515H
-monitor.
-
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/drm_dp_mst_topology.c       | 18 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 15 +++++++++++++++
- include/drm/drm_dp_mst_helper.h             |  1 +
- 3 files changed, 31 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 5bc72e800b85..d1bf340a95a8 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -1178,11 +1178,23 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp_mst_branch *mstb,
- 				    struct drm_dp_sideband_msg_tx *txmsg)
- {
- 	struct drm_dp_mst_topology_mgr *mgr = mstb->mgr;
-+	unsigned long wait_expires = jiffies + msecs_to_jiffies(4000);
- 	int ret;
- 
--	ret = wait_event_timeout(mgr->tx_waitq,
--				 check_txmsg_state(mgr, txmsg),
--				 (4 * HZ));
-+	for (;;) {
-+		ret = wait_event_timeout(mgr->tx_waitq,
-+					 check_txmsg_state(mgr, txmsg),
-+					 mgr->cbs->update_hpd_irq_state ?
-+						msecs_to_jiffies(50) :
-+						wait_expires);
-+
-+		if (ret || !mgr->cbs->update_hpd_irq_state ||
-+		    time_after(jiffies, wait_expires))
-+			break;
-+
-+		mgr->cbs->update_hpd_irq_state(mgr);
-+	}
-+
- 	mutex_lock(&mgr->qlock);
- 	if (ret > 0) {
- 		if (txmsg->state == DRM_DP_SIDEBAND_TX_TIMEOUT) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index d18b406f2a7d..1ff7d0096262 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -765,8 +765,23 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	return NULL;
- }
- 
-+static void
-+intel_dp_mst_update_hpd_irq_state(struct drm_dp_mst_topology_mgr *mgr)
-+{
-+	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+
-+	spin_lock_irq(&i915->irq_lock);
-+	i915->hotplug.short_port_mask |= BIT(dig_port->base.port);
-+	spin_unlock_irq(&i915->irq_lock);
-+
-+	queue_work(i915->hotplug.dp_wq, &i915->hotplug.dig_port_work);
-+}
-+
- static const struct drm_dp_mst_topology_cbs mst_cbs = {
- 	.add_connector = intel_dp_add_mst_connector,
-+	.update_hpd_irq_state = intel_dp_mst_update_hpd_irq_state,
- };
- 
- static struct intel_dp_mst_encoder *
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index 9e1ffcd7cb68..c902f4380200 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -475,6 +475,7 @@ struct drm_dp_mst_topology_mgr;
- struct drm_dp_mst_topology_cbs {
- 	/* create a connector for a port */
- 	struct drm_connector *(*add_connector)(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port, const char *path);
-+	void (*update_hpd_irq_state)(struct drm_dp_mst_topology_mgr *mgr);
- };
- 
- #define DP_MAX_PAYLOAD (sizeof(unsigned long) * 8)
--- 
-2.23.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SSBnb3QgcHVsbGVkIGF3YXkgYnkgYW5vdGhlciB0YXNrIGZvciBhIGZldyB3ZWVrcyBhbmQgaGFk
+IHRvIHB1dCB0aGUgUktMCnVwc3RyZWFtaW5nIG9uIGhvbGQsIHNvIHRoZXNlIHJlbWFpbmluZyBw
+YXRjaGVzIG5lZWRlZCBhIGJpdCBvZgphZGRpdGlvbmFsIHJlYmFzaW5nIG9uIHRvcCBvZiBvdGhl
+ciBjaGFuZ2VzIHRoYXQgaGF2ZSBsYW5kZWQgaW4gdGhlCm1lYW50aW1lLCBidXQgdGhlcmUgd2Vy
+ZW4ndCBhbnkgc2VyaW91cyBjb25mbGljdHMuCgpUaGUgZnVuY3Rpb25hbCBjaGFuZ2VzIGZyb20g
+dGhlIGxhc3Qgc2VyaWVzIGFyZSByZWxhdGl2ZWx5IHNtYWxsOgogLSBBZGRpdGlvbmFsIHBhdGNo
+IHRvIG9ubHkgcHJvZ3JhbSBBQk9YX0NUTCBvbiBSS0wgYW5kIG5vdCB0aGUgZXh0cmEKICAgQUJP
+WHsxLDJ9X0NUTCByZWdpc3RlcnMgdGhhdCBUR0wgYWRkZWQuICBUaGUgYnNwZWMgZG9jdW1lbnRh
+dGlvbiBoZXJlCiAgIGlzbid0IGZ1bGx5IHVwZGF0ZWQgeWV0LCBidXQgd2UndmUgY29uZmlybWVk
+IGV4cGVyaW1lbnRhdGxseSB0aGF0IFJLTAogICBkb2Vzbid0IGhhdmUgdGhlIGFkZGl0aW9uYWwg
+cmVnaXN0ZXIgaW5zdGFuY2VzLgoKIC0gV2Ugbm93IHNldHVwIHRoZSB0cmFuc2NvZGVyIG1hc2sg
+cHJvcGVybHkgaW4gdGhlIGRldmljZV9pbmZvIGFuZCB1c2UKICAgZm9yX2VhY2hfY3B1X3RyYW5z
+Y29kZXJfbWFza2VkKCkgZm9yIG91ciBsb29wcy4KCkEgY291cGxlIG9mIHRoZSBwYXRjaGVzIGlu
+Y2x1ZGVkIGhlcmUgYWxyZWFkeSBoYXZlIHItYidzLCBidXQgc2luY2UgaXQncwpiZWVuIGEgd2hp
+bGUgc2luY2UgdGhleSB3ZXJlIG9yaWdpbmFsbHkgcG9zdGVkIGl0J3MgcHJvYmFibHkgd29ydGgK
+Z2V0dGluZyBhbm90aGVyIENJIHJ1biBiZWZvcmUgYXBwbHlpbmcgdGhlbS4KCkFkaXR5YSBTd2Fy
+dXAgKDEpOgogIGRybS9pOTE1L3JrbDogRG9uJ3QgdHJ5IHRvIHJlYWQgb3V0IERTSSB0cmFuc2Nv
+ZGVycwoKSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSAoMSk6CiAgZHJtL2k5MTUvcmtsOiBEaXNhYmxl
+IFBTUjIKCkx1Y2FzIERlIE1hcmNoaSAoMSk6CiAgZHJtL2k5MTUvcmtsOiBwcm92aWRlIHBvcnQv
+cGh5IG1hcHBpbmcgZm9yIHZidAoKTWF0dCBSb3BlciAoMTIpOgogIGRybS9pOTE1L3JrbDogU2V0
+IHRyYW5zY29kZXIgbWFzayBwcm9wZXJseQogIGRybS9pOTE1L3JrbDogUHJvZ3JhbSBCV19CVURE
+WTAgcmVnaXN0ZXJzIGluc3RlYWQgb2YgQldfQlVERFkxLzIKICBkcm0vaTkxNS9ya2w6IFJLTCBo
+YXMgbm8gTUJVU19BQk9YX0NUTHsxLDJ9CiAgZHJtL2k5MTUvcmtsOiBIYW5kbGUgbmV3IERQQ0xL
+QV9DRkdDUjAgbGF5b3V0CiAgZHJtL2k5MTUvcmtsOiBTZXR1cCBwb3J0cy9waHlzCiAgZHJtL2k5
+MTUvcmtsOiBVcGRhdGUgVEdQJ3MgcGluIG1hcHBpbmcgd2hlbiBwYWlyZWQgd2l0aCBSS0wKICBk
+cm0vaTkxNS9ya2w6IEFkZCBEREMgcGluIG1hcHBpbmcKICBkcm0vaTkxNS9ya2w6IERvbid0IHRy
+eSB0byBhY2Nlc3MgdHJhbnNjb2RlciBECiAgZHJtL2k5MTUvcmtsOiBIYW5kbGUgY29tcCBtYXN0
+ZXIvc2xhdmUgcmVsYXRpb25zaGlwcyBmb3IgUEhZcwogIGRybS9pOTE1L3JrbDogQWRkIERQTEw0
+IHN1cHBvcnQKICBkcm0vaTkxNS9ya2w6IEhhbmRsZSBIVEkKICBkcm0vaTkxNS9ya2w6IEFkZCBp
+bml0aWFsIHdvcmthcm91bmRzCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9i
+aW9zLmMgICAgIHwgNzIgKysrKysrKysrKy0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfY29tYm9fcGh5LmMgICAgfCAyNSArKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMgICAgICB8IDE4ICsrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jICB8IDgyICsrKysrKysrKysrKy0tLS0tCiAuLi4vZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgICAgfCA0NiArKysrKy0tLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCA1MCArKysrKysrKysr
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5oIHwgIDEgKwog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgICAgIHwgMjIgKysrKy0K
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgICAgICB8IDE1ICsrKysK
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgICB8ICA1ICstCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jICAgfCA4OCArKysrKysr
+KysrKystLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAg
+ICAgfCAgNSArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyAgICAgICAgICAgICAg
+IHwgMjMgKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMgICAgICAgICAgICAg
+ICB8ICA1ICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAg
+fCAzMCArKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oICAg
+ICAgfCAgMSArCiAxNiBmaWxlcyBjaGFuZ2VkLCAzNzIgaW5zZXJ0aW9ucygrKSwgMTE2IGRlbGV0
+aW9ucygtKQoKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
