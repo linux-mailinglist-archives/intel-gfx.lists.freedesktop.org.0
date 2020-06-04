@@ -1,45 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1F91EE90F
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 19:02:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1001EE927
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 19:09:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3FA56E51B;
-	Thu,  4 Jun 2020 17:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 933D46E520;
+	Thu,  4 Jun 2020 17:09:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADB656E51B
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 17:02:01 +0000 (UTC)
-IronPort-SDR: f+rdOv0KrHlnxs7N3DeKsH+XoeYgbN6RrEOrPWePJp9mCsGjIuRN9Ahx/KXr1Ng02PByM7kixf
- e5sKcv2W+PAA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31A9B6E520
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 17:09:18 +0000 (UTC)
+IronPort-SDR: 4CPF2yjjN/e5er5rlFyO7xpdWCP8e4V5rp/852EN/TrOH0qBpT6Cn8Qe9Oi65968znWvZ5+m+C
+ NMTW9p9Kc/LA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 10:02:00 -0700
-IronPort-SDR: BkXgUFlTIZtqcBQex7Ar6qnu4wuAf/3MluVthQr3ja5TNgPbGaeXWlqsrwoHxBFXfcwY2W4VJt
- 0rYps0q5bNsA==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 10:09:17 -0700
+IronPort-SDR: iSyoWaHT8mhWbpWSrBWA7mkXpk9NPTcQ0wyQSRuotUFvFvOPrabFss5M2p65IvkISqemfBd0Rv
+ ck1qYk1n8RgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="273169519"
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="312953541"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 04 Jun 2020 10:01:58 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 04 Jun 2020 10:09:14 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Jun 2020 20:01:57 +0300
-Date: Thu, 4 Jun 2020 20:01:57 +0300
+ Thu, 04 Jun 2020 20:09:14 +0300
+Date: Thu, 4 Jun 2020 20:09:14 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200604170157.GZ6112@intel.com>
+Message-ID: <20200604170914.GA6112@intel.com>
 References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
- <20200603211529.3005059-3-matthew.d.roper@intel.com>
+ <20200603211529.3005059-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200603211529.3005059-3-matthew.d.roper@intel.com>
+In-Reply-To: <20200603211529.3005059-6-matthew.d.roper@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 02/15] drm/i915/rkl: Program BW_BUDDY0
- registers instead of BW_BUDDY1/2
+Subject: Re: [Intel-gfx] [PATCH v3 05/15] drm/i915/rkl: Setup ports/phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,137 +51,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 03, 2020 at 02:15:16PM -0700, Matt Roper wrote:
-> RKL uses the same BW_BUDDY programming table as TGL, but programs the
-> values into a single set BUDDY0 set of registers rather than the
-> BUDDY1/BUDDY2 sets used by TGL.
-
-Maybe we just want some kind of HAS_ABOX() so we could use the same
-thing here and in the ABOX_CTL programming?
-
+On Wed, Jun 03, 2020 at 02:15:19PM -0700, Matt Roper wrote:
+> RKL uses DDI's A, B, TC1, and TC2 which need to map to combo PHY's A-D.
 > =
 
-> Bspec: 49218
+> Bspec: 49181
+> Cc: Imre Deak <imre.deak@intel.com>
 > Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  .../drm/i915/display/intel_display_power.c    | 44 +++++++++++--------
->  drivers/gpu/drm/i915/i915_reg.h               | 14 ++++--
->  2 files changed, 35 insertions(+), 23 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 34 ++++++++++++--------
+>  drivers/gpu/drm/i915/i915_reg.h              |  4 ++-
+>  2 files changed, 24 insertions(+), 14 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 72312b67b57a..2c1ce50b572b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -5254,7 +5254,7 @@ static void tgl_bw_buddy_init(struct drm_i915_priva=
-te *dev_priv)
->  	enum intel_dram_type type =3D dev_priv->dram_info.type;
->  	u8 num_channels =3D dev_priv->dram_info.num_channels;
->  	const struct buddy_page_mask *table;
-> -	int i;
-> +	int config, min_buddy, max_buddy, i;
->  =
-
->  	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
->  		/* Wa_1409767108: tgl */
-> @@ -5262,29 +5262,35 @@ static void tgl_bw_buddy_init(struct drm_i915_pri=
-vate *dev_priv)
->  	else
->  		table =3D tgl_buddy_page_masks;
->  =
-
-> -	for (i =3D 0; table[i].page_mask !=3D 0; i++)
-> -		if (table[i].num_channels =3D=3D num_channels &&
-> -		    table[i].type =3D=3D type)
-> +	if (IS_ROCKETLAKE(dev_priv)) {
-> +		min_buddy =3D max_buddy =3D 0;
-> +	} else {
-> +		min_buddy =3D 1;
-> +		max_buddy =3D 2;
-> +	}
-> +
-> +	for (config =3D 0; table[config].page_mask !=3D 0; config++)
-> +		if (table[config].num_channels =3D=3D num_channels &&
-> +		    table[config].type =3D=3D type)
->  			break;
->  =
-
-> -	if (table[i].page_mask =3D=3D 0) {
-> +	if (table[config].page_mask =3D=3D 0) {
->  		drm_dbg(&dev_priv->drm,
->  			"Unknown memory configuration; disabling address buddy logic.\n");
-> -		intel_de_write(dev_priv, BW_BUDDY1_CTL, BW_BUDDY_DISABLE);
-> -		intel_de_write(dev_priv, BW_BUDDY2_CTL, BW_BUDDY_DISABLE);
-> +		for (i =3D min_buddy; i <=3D max_buddy; i++)
-> +			intel_de_write(dev_priv, BW_BUDDY_CTL(i),
-> +				       BW_BUDDY_DISABLE);
->  	} else {
-> -		intel_de_write(dev_priv, BW_BUDDY1_PAGE_MASK,
-> -			       table[i].page_mask);
-> -		intel_de_write(dev_priv, BW_BUDDY2_PAGE_MASK,
-> -			       table[i].page_mask);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index b4f8c88c779f..019fef8023ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7218,30 +7218,33 @@ bool intel_phy_is_combo(struct drm_i915_private *=
+dev_priv, enum phy phy)
+>  {
+>  	if (phy =3D=3D PHY_NONE)
+>  		return false;
 > -
-> -		/* Wa_22010178259:tgl */
-> -		intel_de_rmw(dev_priv, BW_BUDDY1_CTL,
-> -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
-> -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
-> -		intel_de_rmw(dev_priv, BW_BUDDY2_CTL,
-> -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
-> -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
-> +		for (i =3D min_buddy; i <=3D max_buddy; i++) {
-> +			intel_de_write(dev_priv, BW_BUDDY_PAGE_MASK(i),
-> +				       table[config].page_mask);
-> +
-> +			/* Wa_22010178259:tgl,rkl */
-> +			intel_de_rmw(dev_priv, BW_BUDDY_CTL(i),
-> +				     BW_BUDDY_TLB_REQ_TIMER_MASK,
-> +				     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK,
-> +						    0x8));
-> +		}
->  	}
+> -	if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_ROCKETLAKE(dev_priv))
+> +		return phy <=3D PHY_D;
+
+Or just 'return true' since combo PHYs is all we have.
+
+/me weeps when looking at these functions.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +	else if (IS_ELKHARTLAKE(dev_priv))
+>  		return phy <=3D PHY_C;
+> -
+> -	if (INTEL_GEN(dev_priv) >=3D 11)
+> +	else if (INTEL_GEN(dev_priv) >=3D 11)
+>  		return phy <=3D PHY_B;
+> -
+> -	return false;
+> +	else
+> +		return false;
 >  }
 >  =
 
+>  bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+>  {
+> -	if (INTEL_GEN(dev_priv) >=3D 12)
+> +	if (IS_ROCKETLAKE(dev_priv))
+> +		return false;
+> +	else if (INTEL_GEN(dev_priv) >=3D 12)
+>  		return phy >=3D PHY_D && phy <=3D PHY_I;
+> -
+> -	if (INTEL_GEN(dev_priv) >=3D 11 && !IS_ELKHARTLAKE(dev_priv))
+> +	else if (INTEL_GEN(dev_priv) >=3D 11 && !IS_ELKHARTLAKE(dev_priv))
+>  		return phy >=3D PHY_C && phy <=3D PHY_F;
+> -
+> -	return false;
+> +	else
+> +		return false;
+>  }
+>  =
+
+>  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+>  {
+> -	if (IS_ELKHARTLAKE(i915) && port =3D=3D PORT_D)
+> +	if (IS_ROCKETLAKE(i915) && port >=3D PORT_D)
+> +		return (enum phy)port - 1;
+> +	else if (IS_ELKHARTLAKE(i915) && port =3D=3D PORT_D)
+>  		return PHY_A;
+>  =
+
+>  	return (enum phy)port;
+> @@ -16829,7 +16832,12 @@ static void intel_setup_outputs(struct drm_i915_=
+private *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
+>  		return;
+>  =
+
+> -	if (INTEL_GEN(dev_priv) >=3D 12) {
+> +	if (IS_ROCKETLAKE(dev_priv)) {
+> +		intel_ddi_init(dev_priv, PORT_A);
+> +		intel_ddi_init(dev_priv, PORT_B);
+> +		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
+> +		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
+> +	} else if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+>  		intel_ddi_init(dev_priv, PORT_D);
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
-> index 578cfe11cbb9..3e79cefc510a 100644
+> index db031269a05a..85137d268c4a 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7837,13 +7837,19 @@ enum {
->  #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
->  #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
+> @@ -1869,9 +1869,11 @@ static inline bool i915_mmio_reg_valid(i915_reg_t =
+reg)
+>  #define _ICL_COMBOPHY_A			0x162000
+>  #define _ICL_COMBOPHY_B			0x6C000
+>  #define _EHL_COMBOPHY_C			0x160000
+> +#define _RKL_COMBOPHY_D			0x161000
+>  #define _ICL_COMBOPHY(phy)		_PICK(phy, _ICL_COMBOPHY_A, \
+>  					      _ICL_COMBOPHY_B, \
+> -					      _EHL_COMBOPHY_C)
+> +					      _EHL_COMBOPHY_C, \
+> +					      _RKL_COMBOPHY_D)
 >  =
 
-> -#define BW_BUDDY1_CTL			_MMIO(0x45140)
-> -#define BW_BUDDY2_CTL			_MMIO(0x45150)
-> +#define _BW_BUDDY0_CTL			0x45130
-> +#define _BW_BUDDY1_CTL			0x45140
-> +#define BW_BUDDY_CTL(x)			_MMIO(_PICK_EVEN(x, \
-> +							 _BW_BUDDY0_CTL, \
-> +							 _BW_BUDDY1_CTL))
->  #define   BW_BUDDY_DISABLE		REG_BIT(31)
->  #define   BW_BUDDY_TLB_REQ_TIMER_MASK	REG_GENMASK(21, 16)
->  =
-
-> -#define BW_BUDDY1_PAGE_MASK		_MMIO(0x45144)
-> -#define BW_BUDDY2_PAGE_MASK		_MMIO(0x45154)
-> +#define _BW_BUDDY0_PAGE_MASK		0x45134
-> +#define _BW_BUDDY1_PAGE_MASK		0x45144
-> +#define BW_BUDDY_PAGE_MASK(x)		_MMIO(_PICK_EVEN(x, \
-> +							 _BW_BUDDY0_PAGE_MASK, \
-> +							 _BW_BUDDY1_PAGE_MASK))
->  =
-
->  #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
->  #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
+>  /* CNL/ICL Port CL_DW registers */
+>  #define _ICL_PORT_CL_DW(dw, phy)	(_ICL_COMBOPHY(phy) + \
 > -- =
 
 > 2.24.1
