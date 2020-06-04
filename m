@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC0371EE8EE
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 18:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29EC41EE902
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 18:59:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF456E506;
-	Thu,  4 Jun 2020 16:55:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869566E517;
+	Thu,  4 Jun 2020 16:59:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3A8D6E506
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 16:55:33 +0000 (UTC)
-IronPort-SDR: LaeAmJTOrQdsVNr+3v0LqHD7Xf+JJcPhRm7wkAAwbgwqg/wZoU5PhqlwRFBEzo/HiMnUJCAxsC
- ypmwrk111PJg==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF38B6E517
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 16:59:04 +0000 (UTC)
+IronPort-SDR: 5O0KZSKnYvYA41pYvB2vB2XvE/9nKDs3vSTF1by65AhG/AjgG4DO7UyIoIi0GnokigSZZvrYo+
+ TmF+LvqnCCRw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 09:55:32 -0700
-IronPort-SDR: wKKD8NsMYRKKK99KEs3qESDG3OwBFj+V8LuffsawX/2+aNBmw7euzCeCdarxDbGE+/UjeLsS+h
- 79blPp14ovYw==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 09:59:03 -0700
+IronPort-SDR: jEXXsC10BP6FyaY6020u7ze59JQK5+pK8q6YSWkOqSbHjTSogHP7N0hYcll5sYbZOjkSkfwuO5
+ REd918l0L7dA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="258940984"
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="273168449"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 04 Jun 2020 09:55:29 -0700
+ by orsmga006.jf.intel.com with SMTP; 04 Jun 2020 09:59:01 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Jun 2020 19:55:29 +0300
-Date: Thu, 4 Jun 2020 19:55:29 +0300
+ Thu, 04 Jun 2020 19:59:00 +0300
+Date: Thu, 4 Jun 2020 19:59:00 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200604165529.GW6112@intel.com>
+Message-ID: <20200604165900.GX6112@intel.com>
 References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
- <20200603211529.3005059-10-matthew.d.roper@intel.com>
+ <20200603211529.3005059-11-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200603211529.3005059-10-matthew.d.roper@intel.com>
+In-Reply-To: <20200603211529.3005059-11-matthew.d.roper@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 09/15] drm/i915/rkl: Don't try to access
- transcoder D
+Subject: Re: [Intel-gfx] [PATCH v3 10/15] drm/i915/rkl: Don't try to read
+ out DSI transcoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +58,81 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 03, 2020 at 02:15:23PM -0700, Matt Roper wrote:
-> There are a couple places in our driver that loop over transcoders A..D
-> for gen11+; since RKL only has three pipes/transcoders, this can lead to
-> unclaimed register reads/writes.  We should add checks for transcoder
-> existence where appropriate.
+On Wed, Jun 03, 2020 at 02:15:24PM -0700, Matt Roper wrote:
+> From: Aditya Swarup <aditya.swarup@intel.com>
 > =
 
-> v2: Move one transcoder check that wound up in the wrong function after
->     conflict resolution.  It belongs in bdw_get_trans_port_sync_config
->     rather than bxt_get_dsi_transcoder_state.
+> RKL doesn't have DSI outputs, so we shouldn't try to read out the DSI
+> transcoder registers.
 > =
 
-> v3: Switch loops to use for_each_cpu_transcoder_masked() since this
->     iterator already checks the platform's transcoder mask for us.
->     (Ville)
+> v2(MattR):
+>  - Just set the 'extra panel mask' to edp | dsi0 | dsi1 and then mask
+>    against the platform's cpu_transcoder_mask to filter out the ones
+>    that don't exist on a given platform.  (Ville)
 > =
 
-> Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/i915_irq.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 11 +++--------
+>  1 file changed, 3 insertions(+), 8 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index f3ea81a17352..40a71c4a1ef5 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2885,13 +2885,15 @@ static void gen11_display_irq_reset(struct drm_i9=
-15_private *dev_priv)
->  {
->  	struct intel_uncore *uncore =3D &dev_priv->uncore;
->  	enum pipe pipe;
-> +	u32 trans_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 019fef8023ca..bcc6dc4e321b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -10904,19 +10904,13 @@ static bool hsw_get_transcoder_state(struct int=
+el_crtc *crtc,
+>  	struct drm_device *dev =3D crtc->base.dev;
+>  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+>  	enum intel_display_power_domain power_domain;
+> -	unsigned long panel_transcoder_mask =3D 0;
+> +	unsigned long panel_transcoder_mask =3D BIT(TRANSCODER_EDP) |
+> +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1);
+
+TRANSCODER_DSI_0/1 alias TRANSCODER_DSI_A/C which we do not
+want in this mask.
+
+>  	unsigned long enabled_panel_transcoders =3D 0;
+>  	enum transcoder panel_transcoder;
+>  	intel_wakeref_t wf;
+>  	u32 tmp;
 >  =
 
->  	intel_uncore_write(uncore, GEN11_DISPLAY_INT_CTL, 0);
->  =
+> -	if (INTEL_GEN(dev_priv) >=3D 11)
+> -		panel_transcoder_mask |=3D
+> -			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1);
+> -
+> -	if (HAS_TRANSCODER(dev_priv, TRANSCODER_EDP))
+> -		panel_transcoder_mask |=3D BIT(TRANSCODER_EDP);
+> -
+>  	/*
+>  	 * The pipe->transcoder mapping is fixed with the exception of the eDP
+>  	 * and DSI transcoders handled below.
+> @@ -10927,6 +10921,7 @@ static bool hsw_get_transcoder_state(struct intel=
+_crtc *crtc,
+>  	 * XXX: Do intel_display_power_get_if_enabled before reading this (for
+>  	 * consistency and less surprising code; it's in always on power).
+>  	 */
+> +	panel_transcoder_mask &=3D INTEL_INFO(dev_priv)->cpu_transcoder_mask;
+>  	for_each_set_bit(panel_transcoder,
+>  			 &panel_transcoder_mask,
+>  			 ARRAY_SIZE(INTEL_INFO(dev_priv)->trans_offsets)) {
 
->  	if (INTEL_GEN(dev_priv) >=3D 12) {
->  		enum transcoder trans;
->  =
+Can't we just use for_each_cpu_transcoder_masked() ?
 
-> -		for (trans =3D TRANSCODER_A; trans <=3D TRANSCODER_D; trans++) {
-> +		for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
->  			enum intel_display_power_domain domain;
->  =
-
->  			domain =3D POWER_DOMAIN_TRANSCODER(trans);
-> @@ -3413,6 +3415,8 @@ static void gen8_de_irq_postinstall(struct drm_i915=
-_private *dev_priv)
->  	u32 de_port_masked =3D gen8_de_port_aux_mask(dev_priv);
->  	u32 de_port_enables;
->  	u32 de_misc_masked =3D GEN8_DE_EDP_PSR;
-> +	u32 trans_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
->  	enum pipe pipe;
->  =
-
->  	if (INTEL_GEN(dev_priv) <=3D 10)
-> @@ -3433,7 +3437,7 @@ static void gen8_de_irq_postinstall(struct drm_i915=
-_private *dev_priv)
->  	if (INTEL_GEN(dev_priv) >=3D 12) {
->  		enum transcoder trans;
->  =
-
-> -		for (trans =3D TRANSCODER_A; trans <=3D TRANSCODER_D; trans++) {
-> +		for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
->  			enum intel_display_power_domain domain;
->  =
-
->  			domain =3D POWER_DOMAIN_TRANSCODER(trans);
 > -- =
 
 > 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
