@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFA51EED5C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 23:35:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D101A1EEDA6
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 00:12:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 465B56E5CC;
-	Thu,  4 Jun 2020 21:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2F56E5D2;
+	Thu,  4 Jun 2020 22:12:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58DDC6E5CC
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 21:35:01 +0000 (UTC)
-Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 49dJw50p69zFgk1;
- Thu,  4 Jun 2020 14:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1591306501; bh=7FGJtCto7hIQ26vzj80Du8HkmFfqsGbfPbPE9B4IiJM=;
- h=From:To:Subject:In-Reply-To:References:Date:From;
- b=rXXb481PBVIGCyufa4j49ScGZhN8p7XEVd/vpUi+Tt6toBtLHzl1FBch3pSwHHRBD
- qfLw5+hEk8qecX0UaNOHXM/i468KYqiJzx7Okgys3u2j5ayDKfmEVq3RebQMhLrDQs
- oJ3UAP9BT6KjCgKCWPYcrqVBdu67AF818eyc90ck=
-X-Riseup-User-ID: 0EE8310E3B42FAD231C9FB03EE7C27677F7EC702E5A110B7E09EB3208884564A
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by bell.riseup.net (Postfix) with ESMTPSA id 49dJw46TlzzJmhc;
- Thu,  4 Jun 2020 14:35:00 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200604182658.878417-1-ayaz.siddiqui@intel.com>
-References: <20200604182658.878417-1-ayaz.siddiqui@intel.com>
-Date: Thu, 04 Jun 2020 14:34:57 -0700
-Message-ID: <87eequpla6.fsf@riseup.net>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E86D06E5D2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 22:12:41 +0000 (UTC)
+IronPort-SDR: gxTnYTQ8blV8TpPz9My7qm30ukXlBzzA/28ZbM3HdbbBJQXjXNlOarr72/DP0ksbYfJqu2i4tO
+ hBMjk/D1lWIw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 15:12:41 -0700
+IronPort-SDR: cvqJeUYoy2GtN0mly2IC239vvFNm46e5+s9iCv5WDvt86xNgME5B30Dt/sb5pGcllB0a8MZtUX
+ oO8IN29vr6sA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="305048993"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga008.jf.intel.com with ESMTP; 04 Jun 2020 15:12:40 -0700
+Date: Thu, 4 Jun 2020 15:12:40 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200604221240.GC3023929@mdroper-desk1.amr.corp.intel.com>
+References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+ <20200603211529.3005059-3-matthew.d.roper@intel.com>
+ <20200604170157.GZ6112@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Initialize reserved and
- unspecified MOCS indices
+Content-Disposition: inline
+In-Reply-To: <20200604170157.GZ6112@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 02/15] drm/i915/rkl: Program BW_BUDDY0
+ registers instead of BW_BUDDY1/2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,195 +50,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1321833672=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1321833672==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+On Thu, Jun 04, 2020 at 08:01:57PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Wed, Jun 03, 2020 at 02:15:16PM -0700, Matt Roper wrote:
+> > RKL uses the same BW_BUDDY programming table as TGL, but programs the
+> > values into a single set BUDDY0 set of registers rather than the
+> > BUDDY1/BUDDY2 sets used by TGL.
+> =
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+> Maybe we just want some kind of HAS_ABOX() so we could use the same
+> thing here and in the ABOX_CTL programming?
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Although these are both related to how the display controller accesses
+memory, I don't think they're quite a 1:1 mapping.  TGL has
+MBUX_ABOX_CTL{0,1,2} (and we're directed to program all three), but only
+has BW_BUDDY_CTL{1,2} and no 0 instance.
 
-Ayaz A Siddiqui <ayaz.siddiqui@intel.com> writes:
+For now I'll just add separate bw_buddy and abox masks to our platform
+device info structure.
 
-> In order to avoid functional breakage of mis-programmed applications that
-> have grown to depend on unused MOCS entries, we are programming
-> those entries to be equal to fully cached ("L3 + LLC") entry as per the
-> recommendation from architecture team.
->
-> These reserved and unspecified entries should not be used as they may be
-> changed to less performant variants with better coherency in the future
-> if more entries are needed.
->
 
-This change seems highly questionable to me...  If a future kernel
-release introduces a new MOCS entry with more strict coherency
-semantics, and an application starts relying on it, that application
-won't work when run on an older kernel version with this patch is
-applied.  IOW setting uninitialized entries to the most strict caching
-setting available (UC) ensures forwards compatibility with future
-userspace, which seems like a more important design principle than
-giving full caching to broken userspace that accidentally makes use of
-an undefined MOCS entry not part of the kernel ABI.
+Matt
 
-> Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_mocs.c | 93 ++++++++++++++++++++++++++--
->  1 file changed, 89 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/=
-gt/intel_mocs.c
-> index 632e08a4592b..1089bd5fdba2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> @@ -234,10 +234,6 @@ static const struct drm_i915_mocs_entry broxton_mocs=
-_table[] =3D {
->  		   L3_1_UC)
->=20=20
->  static const struct drm_i915_mocs_entry tgl_mocs_table[] =3D {
-> -	/* Base - Error (Reserved for Non-Use) */
-> -	MOCS_ENTRY(0, 0x0, 0x0),
-> -	/* Base - Reserved */
-> -	MOCS_ENTRY(1, 0x0, 0x0),
->=20=20
->  	GEN11_MOCS_ENTRIES,
->=20=20
-> @@ -265,6 +261,95 @@ static const struct drm_i915_mocs_entry tgl_mocs_tab=
-le[] =3D {
->  	MOCS_ENTRY(61,
->  		   LE_1_UC | LE_TC_1_LLC,
->  		   L3_3_WB),
-> +
-> +	/* NOTE:
-> +	 * Reserved and unspecified MOCS indices have been set to (L3 + LCC).
-> +	 * These reserved entry should never be used, they may be chanaged
-> +	 * to low performant variants with better coherency in the future if
-> +	 * more entries are needed.
-> +	 */
-> +
-> +	/* Reserved index 0 and 1 */
-> +	MOCS_ENTRY(0, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(1, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +
-> +	/* Reserved index 16 and 17 */
-> +	MOCS_ENTRY(16, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(17, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +
-> +	/* Reserved index 24 and 25 */
-> +	MOCS_ENTRY(24, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(25, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +
-> +	/* Unspecified indices 26 to 47 */
-> +	MOCS_ENTRY(26, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(27, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(28, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(29, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(30, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(31, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(32, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(33, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(34, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(35, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(36, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(37, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(38, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(39, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(40, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(41, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(42, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(43, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(44, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(45, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(46, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(47, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +
-> +	/* Unspecified indices 52 to 59 */
-> +	MOCS_ENTRY(52, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(53, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(54, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(55, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(56, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(57, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(58, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB),
-> +	MOCS_ENTRY(59, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-> +		   L3_3_WB)
->  };
->=20=20
->  static const struct drm_i915_mocs_entry icl_mocs_table[] =3D {
-> --=20
-> 2.26.2
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
 
---=-=-=--
+> > =
 
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> > Bspec: 49218
+> > Cc: Aditya Swarup <aditya.swarup@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 44 +++++++++++--------
+> >  drivers/gpu/drm/i915/i915_reg.h               | 14 ++++--
+> >  2 files changed, 35 insertions(+), 23 deletions(-)
+> > =
 
------BEGIN PGP SIGNATURE-----
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drive=
+rs/gpu/drm/i915/display/intel_display_power.c
+> > index 72312b67b57a..2c1ce50b572b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -5254,7 +5254,7 @@ static void tgl_bw_buddy_init(struct drm_i915_pri=
+vate *dev_priv)
+> >  	enum intel_dram_type type =3D dev_priv->dram_info.type;
+> >  	u8 num_channels =3D dev_priv->dram_info.num_channels;
+> >  	const struct buddy_page_mask *table;
+> > -	int i;
+> > +	int config, min_buddy, max_buddy, i;
+> >  =
 
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXtlpAQAKCRCDmTidfVK/
-W7ebAP944SlRnvgLNDfRbE/HHJ/MtSOvr5Ft7G3OlM7XypJGQQD/VHo740ab1xA9
-pI1hJbdyy58bDwXvbIZwr6oJWbALh6A=
-=43av
------END PGP SIGNATURE-----
---==-=-=--
+> >  	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+> >  		/* Wa_1409767108: tgl */
+> > @@ -5262,29 +5262,35 @@ static void tgl_bw_buddy_init(struct drm_i915_p=
+rivate *dev_priv)
+> >  	else
+> >  		table =3D tgl_buddy_page_masks;
+> >  =
 
---===============1321833672==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > -	for (i =3D 0; table[i].page_mask !=3D 0; i++)
+> > -		if (table[i].num_channels =3D=3D num_channels &&
+> > -		    table[i].type =3D=3D type)
+> > +	if (IS_ROCKETLAKE(dev_priv)) {
+> > +		min_buddy =3D max_buddy =3D 0;
+> > +	} else {
+> > +		min_buddy =3D 1;
+> > +		max_buddy =3D 2;
+> > +	}
+> > +
+> > +	for (config =3D 0; table[config].page_mask !=3D 0; config++)
+> > +		if (table[config].num_channels =3D=3D num_channels &&
+> > +		    table[config].type =3D=3D type)
+> >  			break;
+> >  =
 
+> > -	if (table[i].page_mask =3D=3D 0) {
+> > +	if (table[config].page_mask =3D=3D 0) {
+> >  		drm_dbg(&dev_priv->drm,
+> >  			"Unknown memory configuration; disabling address buddy logic.\n");
+> > -		intel_de_write(dev_priv, BW_BUDDY1_CTL, BW_BUDDY_DISABLE);
+> > -		intel_de_write(dev_priv, BW_BUDDY2_CTL, BW_BUDDY_DISABLE);
+> > +		for (i =3D min_buddy; i <=3D max_buddy; i++)
+> > +			intel_de_write(dev_priv, BW_BUDDY_CTL(i),
+> > +				       BW_BUDDY_DISABLE);
+> >  	} else {
+> > -		intel_de_write(dev_priv, BW_BUDDY1_PAGE_MASK,
+> > -			       table[i].page_mask);
+> > -		intel_de_write(dev_priv, BW_BUDDY2_PAGE_MASK,
+> > -			       table[i].page_mask);
+> > -
+> > -		/* Wa_22010178259:tgl */
+> > -		intel_de_rmw(dev_priv, BW_BUDDY1_CTL,
+> > -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
+> > -		intel_de_rmw(dev_priv, BW_BUDDY2_CTL,
+> > -			     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > -			     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK, 0x8));
+> > +		for (i =3D min_buddy; i <=3D max_buddy; i++) {
+> > +			intel_de_write(dev_priv, BW_BUDDY_PAGE_MASK(i),
+> > +				       table[config].page_mask);
+> > +
+> > +			/* Wa_22010178259:tgl,rkl */
+> > +			intel_de_rmw(dev_priv, BW_BUDDY_CTL(i),
+> > +				     BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > +				     REG_FIELD_PREP(BW_BUDDY_TLB_REQ_TIMER_MASK,
+> > +						    0x8));
+> > +		}
+> >  	}
+> >  }
+> >  =
+
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
+5_reg.h
+> > index 578cfe11cbb9..3e79cefc510a 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -7837,13 +7837,19 @@ enum {
+> >  #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
+> >  #define  WAIT_FOR_PCH_FLR_ACK		(1 << 0)
+> >  =
+
+> > -#define BW_BUDDY1_CTL			_MMIO(0x45140)
+> > -#define BW_BUDDY2_CTL			_MMIO(0x45150)
+> > +#define _BW_BUDDY0_CTL			0x45130
+> > +#define _BW_BUDDY1_CTL			0x45140
+> > +#define BW_BUDDY_CTL(x)			_MMIO(_PICK_EVEN(x, \
+> > +							 _BW_BUDDY0_CTL, \
+> > +							 _BW_BUDDY1_CTL))
+> >  #define   BW_BUDDY_DISABLE		REG_BIT(31)
+> >  #define   BW_BUDDY_TLB_REQ_TIMER_MASK	REG_GENMASK(21, 16)
+> >  =
+
+> > -#define BW_BUDDY1_PAGE_MASK		_MMIO(0x45144)
+> > -#define BW_BUDDY2_PAGE_MASK		_MMIO(0x45154)
+> > +#define _BW_BUDDY0_PAGE_MASK		0x45134
+> > +#define _BW_BUDDY1_PAGE_MASK		0x45144
+> > +#define BW_BUDDY_PAGE_MASK(x)		_MMIO(_PICK_EVEN(x, \
+> > +							 _BW_BUDDY0_PAGE_MASK, \
+> > +							 _BW_BUDDY1_PAGE_MASK))
+> >  =
+
+> >  #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
+> >  #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
+> > -- =
+
+> > 2.24.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1321833672==--
