@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC391EEB0B
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 21:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7EF1EEB3C
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 21:36:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABB9E6E58E;
-	Thu,  4 Jun 2020 19:23:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC5C36E593;
+	Thu,  4 Jun 2020 19:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592206E58E
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 19:23:46 +0000 (UTC)
-IronPort-SDR: MOMWY0oxFBSjnynqlkkN3hZOFCUQB4piPQeSoOqzJBhWPzcB0tVNwIBgHY/uQFWUIrGl8t+FVq
- qbp+y43wfJPw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 12:23:45 -0700
-IronPort-SDR: m/BEF+mRgSozELhf+PwfVrVjNsOHufB2EYNoXmyKXz8ASCWnq3rLstRr82pk5iA3/QlcXKB8Cc
- jecIedmFJmLA==
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="445613533"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 12:23:44 -0700
-Date: Thu, 4 Jun 2020 22:23:40 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Manasi D Navare <manasi.d.navare@intel.com>
-Message-ID: <20200604192340.GF15427@ideak-desk.fi.intel.com>
-References: <20200604002359.17128-1-manasi.d.navare@intel.com>
- <20200604152543.GU6112@intel.com> <20200604183530.GB3922@intel.com>
- <20200604183819.GD6112@intel.com> <20200604185223.GC3922@intel.com>
- <20200604185824.GG6112@intel.com> <20200604190140.GH6112@intel.com>
- <20200604190858.GE15427@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4CDEA6E0CA;
+ Thu,  4 Jun 2020 19:36:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 450D4A47E6;
+ Thu,  4 Jun 2020 19:36:04 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200604190858.GE15427@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Reset link params on connector
- disconnect
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Eugeniy Paltsev" <Eugeniy.Paltsev@synopsys.com>
+Date: Thu, 04 Jun 2020 19:36:04 -0000
+Message-ID: <159129936425.14555.12402909729104470952@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?evm=5Fdrm=5Fdev=5Falloc=2C_v2_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,57 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2020 at 10:08:58PM +0300, Imre Deak wrote:
-> On Thu, Jun 04, 2020 at 10:01:40PM +0300, Ville Syrj=E4l=E4 wrote:
-> > [...]
-> > > > Then we get this hpd, in this case if we dont reset the param to ma=
-x values, prev triggered modeset continues
-> > > > with fallback values but since connector probe doesnt happen again =
-through IGT, it tries the same mode
-> > > > with fallback values and return encoder config failure.
-> > > =
+== Series Details ==
 
-> > > If the link training failed then clearly the sink didn't like us anym=
-ore
-> > > anyway. So feels like resetting these here is just shifting some race
-> > > window around a bit, but it could still fail if the sink still doesn't
-> > > like us.
-> > > =
+Series: devm_drm_dev_alloc, v2 (rev3)
+URL   : https://patchwork.freedesktop.org/series/75956/
+State : failure
 
-> > > Would be good if someone was able to figure out why the sink goes bad=
- in
-> > > the first place.
-> > =
+== Summary ==
 
-> > Oh, and don't we now have Imre's "weird hpd happened in the middle of
-> > the test, don't trust the results" thing in igt?
-> =
+Applying: drm: Add devm_drm_dev_alloc macro
+error: sha1 information is lacking or useless (drivers/gpu/drm/drm_drv.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm: Add devm_drm_dev_alloc macro
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-> An LG and IIyama monitor this happens on disconnect and reconnect after
-> waking from an idle state when modesetting them, not sure if it's the
-> same case.
-
-Manasi, could you try if a modeset on the monitor after it has been
-disabled for a while always results in a long HPD pulse a few seconds
-after the modeset? If so does this also happen when you just modeset in
-a sequence from one mode to the other not letting the monitor idle? The
-same monitor should be also tested then with the above sequences on
-older platforms if it behaves the same on those too.
-
-> =
-
-> --Imre
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
