@@ -1,55 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1251EE15E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 11:36:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DC91EE254
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 12:22:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8766E2EC;
-	Thu,  4 Jun 2020 09:36:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD0B6E2F2;
+	Thu,  4 Jun 2020 10:22:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com
- [IPv6:2607:f8b0:4864:20::c42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B306E2E3
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 09:36:37 +0000 (UTC)
-Received: by mail-oo1-xc42.google.com with SMTP id i9so1119405ool.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 02:36:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Z9Gmt7c5N9Wuf1xRRCeQ6LGP+x2nsJ1lC3QXqc/8Dhc=;
- b=VXb0tquWgjUAVrjUQvBFkjElO+us0sp63/gsGT4muxVdIPXG+oOFyRdt5aJn92ZJCE
- JEx8kDimDYdhzsWhF2WmVH5MN3MfzCxv74ky6abUFQGxx1keKlESVewu1Qc/kd4r6C/w
- DTSeetaURTCVMFTRo+qfVX0P6p2YnA4RabcrA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Z9Gmt7c5N9Wuf1xRRCeQ6LGP+x2nsJ1lC3QXqc/8Dhc=;
- b=sIFLiHawA2+/cJtR7EmEUMQy2ZrmDeXPjTW931bE6Cy5iF3ijWziUuIFrBO31S6Lw+
- t+SbXemw3mn5dWIl4dnyb4Dz5t4DUWKUXnxdBb8rkrnoqPmrnhQnNEKcp3TlGpBcfjrW
- vGf412pctepoeU94PD/FrXaD/SHlJmfNp2cchjTpy33Qu98SLVWNGYA0ItWYDwrR2LjT
- qeNdch0A0S1kW5bVbDgmdYKS1C57ILMlxlB83A5CsNECXM2qin5hT16vhEZf3hHm8Hpr
- 8MnWhTCmhCiRcl/gZQQDO2MsLCHio8aPYlHjQ4agrczv3GnS5epRgJVTasbm9ysFtlZt
- M4Eg==
-X-Gm-Message-State: AOAM533rhT5Vu91cri17BvK59QhDcaBWXETjFjDYYie1H+dVV7lbzKJy
- RTOXWnaO4Oe9M4/LgGTvKFmzaQBCn2D9sDEGZvECvA==
-X-Google-Smtp-Source: ABdhPJxAG9oiM1c1QpEnWLT/EWRbfMWy2gQklxD/IkomQ4LgpvxeJOMC+BW+nd+79+C1K6VQUmsFQCXuYgbPlpehCRs=
-X-Received: by 2002:a4a:311d:: with SMTP id k29mr3016059ooa.89.1591263396299; 
- Thu, 04 Jun 2020 02:36:36 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC1B6E2F2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 10:22:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21393545-1500050 
+ for multiple; Thu, 04 Jun 2020 11:21:44 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Jun 2020 11:21:40 +0100
+Message-Id: <20200604102140.8845-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-4-daniel.vetter@ffwll.ch>
- <edbfc1aa-9297-8202-cef8-1facafaa0dfe@shipmail.org>
- <CAKMK7uGLAPvvgHCCZhg0cea3Fz=Zqhf-GKS2OC3mZudYe3mKhw@mail.gmail.com>
- <159126281827.25109.3992161193069793005@build.alporthouse.com>
-In-Reply-To: <159126281827.25109.3992161193069793005@build.alporthouse.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 4 Jun 2020 11:36:24 +0200
-Message-ID: <CAKMK7uHOcH+rWhor7zzqqcjCUtxz_-5stLAOVD=4_ED+QjN8oQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Exercise all copy engines
+ with the blt routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,78 +37,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdW4gNCwgMjAyMCBhdCAxMToyNyBBTSBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4gd3JvdGU6Cj4KPiBRdW90aW5nIERhbmllbCBWZXR0ZXIgKDIwMjAtMDYt
-MDQgMTA6MjE6NDYpCj4gPiBPbiBUaHUsIEp1biA0LCAyMDIwIGF0IDEwOjU3IEFNIFRob21hcyBI
-ZWxsc3Ryw7ZtIChJbnRlbCkKPiA+IDx0aG9tYXNfb3NAc2hpcG1haWwub3JnPiB3cm90ZToKPiA+
-ID4KPiA+ID4KPiA+ID4gT24gNi80LzIwIDEwOjEyIEFNLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+
-ID4gPiAuLi4KPiA+ID4gPiBUaHJlYWQgQToKPiA+ID4gPgo+ID4gPiA+ICAgICAgIG11dGV4X2xv
-Y2soQSk7Cj4gPiA+ID4gICAgICAgbXV0ZXhfdW5sb2NrKEEpOwo+ID4gPiA+Cj4gPiA+ID4gICAg
-ICAgZG1hX2ZlbmNlX3NpZ25hbCgpOwo+ID4gPiA+Cj4gPiA+ID4gVGhyZWFkIEI6Cj4gPiA+ID4K
-PiA+ID4gPiAgICAgICBtdXRleF9sb2NrKEEpOwo+ID4gPiA+ICAgICAgIGRtYV9mZW5jZV93YWl0
-KCk7Cj4gPiA+ID4gICAgICAgbXV0ZXhfdW5sb2NrKEEpOwo+ID4gPiA+Cj4gPiA+ID4gVGhyZWFk
-IEIgaXMgYmxvY2tlZCBvbiBBIHNpZ25hbGxpbmcgdGhlIGZlbmNlLCBidXQgQSBuZXZlciBnZXRz
-IGFyb3VuZAo+ID4gPiA+IHRvIHRoYXQgYmVjYXVzZSBpdCBjYW5ub3QgYWNxdWlyZSB0aGUgbG9j
-ayBBLgo+ID4gPiA+Cj4gPiA+ID4gTm90ZSB0aGF0IGRtYV9mZW5jZV93YWl0KCkgaXMgYWxsb3dl
-ZCB0byBiZSBuZXN0ZWQgd2l0aGluCj4gPiA+ID4gZG1hX2ZlbmNlX2JlZ2luL2VuZF9zaWduYWxs
-aW5nIHNlY3Rpb25zLiBUbyBhbGxvdyB0aGlzIHRvIGhhcHBlbiB0aGUKPiA+ID4gPiByZWFkIGxv
-Y2sgbmVlZHMgdG8gYmUgdXBncmFkZWQgdG8gYSB3cml0ZSBsb2NrLCB3aGljaCBtZWFucyB0aGF0
-IGFueQo+ID4gPiA+IG90aGVyIGxvY2sgaXMgYWNxdWlyZWQgYmV0d2VlbiB0aGUgZG1hX2ZlbmNl
-X2JlZ2luX3NpZ25hbGxpbmcoKSBjYWxsIGFuZAo+ID4gPiA+IHRoZSBjYWxsIHRvIGRtYV9mZW5j
-ZV93YWl0KCksIGFuZCBzdGlsbCBoZWxkLCB0aGlzIHdpbGwgcmVzdWx0IGluIGFuCj4gPiA+ID4g
-aW1tZWRpYXRlIGxvY2tkZXAgY29tcGxhaW50LiBUaGUgb25seSBvdGhlciBvcHRpb24gd291bGQg
-YmUgdG8gbm90Cj4gPiA+ID4gYW5ub3RhdGUgc3VjaCBjYWxscywgZGVmZWF0aW5nIHRoZSBwb2lu
-dC4gVGhlcmVmb3JlIHRoZXNlIGFubm90YXRpb25zCj4gPiA+ID4gY2Fubm90IGJlIHNwcmlua2xl
-ZCBvdmVyIHRoZSBjb2RlIGVudGlyZWx5IG1pbmRsZXNzIHRvIGF2b2lkIGZhbHNlCj4gPiA+ID4g
-cG9zaXRpdmVzLgo+ID4gPgo+ID4gPiBKdXN0IHJlYWxpemVkLCBpc24ndCB0aGF0IGV4YW1wbGUg
-YWN0dWFsbHkgYSB0cnVlIHBvc2l0aXZlLCBvciBhdCBsZWFzdAo+ID4gPiBhIGdyZWF0IGNhbmRp
-ZGF0ZSBmb3IgYSB0cnVlIHBvc2l0aXZlLCBzaW5jZSBpZiBhbm90aGVyIHRocmVhZCByZWVudGVy
-cwo+ID4gPiB0aGF0IHNpZ25hbGluZyBwYXRoLCBpdCB3aWxsIGJsb2NrIG9uIHRoYXQgbXV0ZXgs
-IGFuZCB0aGUgZmVuY2Ugd291bGQKPiA+ID4gbmV2ZXIgYmUgc2lnbmFsZWQgdW5sZXNzIHRoZXJl
-IGlzIGFub3RoZXIgc2lnbmFsaW5nIHBhdGg/Cj4gPgo+ID4gTm90IHN1cmUgSSB1bmRlcnN0YW5k
-IGZ1bGx5LCBidXQgSSB0aGluayB0aGUgYW5zd2VyIGlzICJpdCdzIGNvbXBsaWNhdGVkIi4KPgo+
-IFNlZSBjZDgwODRmOTFjMDIgKCJsb2NraW5nL2xvY2tkZXA6IEFwcGx5IGNyb3NzcmVsZWFzZSB0
-byBjb21wbGV0aW9ucyIpCj4KPiBkbWFfZmVuY2UgdXNhZ2UgaGVyZSBpcyBub3RoaW5nIGJ1dCBh
-bm90aGVyIG5hbWUgZm9yIGEgY29tcGxldGlvbi4KClF1b3RpbmcgZnJvbSBteSBwcmV2aW91cyBj
-b3ZlciBsZXR0ZXI6CgoiSSd2ZSBkcmFnZ2VkIG15IGZlZXQgZm9yIHllYXJzIG9uIHRoaXMsIGhv
-cGluZyB0aGF0IGNyb3NzLXJlbGVhc2UgbG9ja2RlcAp3b3VsZCBkbyB0aGlzIGZvciB1cywgYnV0
-IHdlbGwgdGhhdCBuZXZlciByZWFsbHkgaGFwcGVuZWQgdW5mb3J0dW5hdGVseS4KU28gaGVyZSB3
-ZSBhcmUuIgoKSSBkaXNjdXNzZWQgdGhpcyB3aXRoIFBldGVyLCBjcm9zcy1yZWxlYXNlIG5vdCBn
-ZXR0aW5nIGluIGlzIHByZXR0eQpmaW5hbCBpdCBzZWVtcy4gVGhlIHRyb3VibGUgaXMgZmFsc2Ug
-cG9zaXRpdmVzIHdpdGhvdXQgZXhwbGljaXQKYmVnaW4vZW5kIGFubm90YXRpb25zIHJldmlld2Vk
-IGJ5IGh1bWFucyAtIGltZSBmcm9tIGp1c3QgdGhlc2UgZmV3CmV4YW1wbGVzIHlvdSBqdXN0IGNh
-bid0IGd1ZXNzIHRoaXMgc3R1ZmYgYnkgY29tcHV0ZXJlcywgeW91IG5lZWQgcmVhbApicmFpbnMg
-dGhpbmtpbmcgYWJvdXQgYWxsIHRoZSBlZGdlIGNhc2VzLCBhbmQgd2hlcmUgZXhhY3RseSB0aGUK
-Y3JpdGljYWwgc2VjdGlvbiBzdGFydHMgYW5kIGVuZHMuIFdpdGhvdXQgdGhhdCB5b3UncmUganVz
-dCBnb2luZyB0bwpkcm93biBpbiBhIHNlYSBvZiBmYWxzZSBwb3NpdGl2ZXMgYW5kIHl1Y2suCgpT
-byB5ZWFoIEkgaGFkIGhvcGVzIGZvciBjcm9zcy1yZWxlYXNlIHRvbywgdW5mb3J0dW5hdGVseSB0
-aGF0IHdhcwplbnRpcmVseSBpbiB2YWluIGFuZCBhIGRpc3RyYWN0aW9uLgoKTm93IEkgZ3Vlc3Mg
-aXQgd291bGQgYmUgbmljZSBpZiB0aGVyZSdzIGEgcGVyLWNsYXNzCmNvbXBsZXRpb25fYmVnaW4v
-ZW5kIGFubm90YXRpb24gZm9yIHRoZSBtb3JlIGdlbmVyaWMgcHJvYmxlbS4gQnV0IHRoZW4KYWxz
-byBtb3N0IHBlb3BsZSBkb24ndCBoYXZlIGEgY3Jvc3MtZHJpdmVyIGNvbXBsZXRpb24gYXBpIGNv
-bnRyYWN0Cmxpa2UgZG1hX2ZlbmNlIGlzLCB3aXRoIHNvbWUgb2YgdGhlIG1vc3QgcmlkaWN1bG91
-cyBvdmVyIHRoZSB0b3AKY29uc3RyYWludHMgb2Ygd2hhdCdzIHBvc3NpYmxlIGFuZCB3aGF0J3Mg
-bm90IHBvc3NpYmxlIG9uIGVhY2ggc2lkZSBvZgp0aGUgY3Jvc3MtcmVsZWFzZS4gV2UgZG8gaGF2
-ZSBhIGJpdCBhbiBvdXRzaXplZCBiZW5lZml0IChpbiBwYWluCnJlZHVjdGlvbikgdnMgY29zdCBy
-YXRpbyBoZXJlLgotRGFuaWVsCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJ
-bnRlbCBDb3Jwb3JhdGlvbgorNDEgKDApIDc5IDM2NSA1NyA0OCAtIGh0dHA6Ly9ibG9nLmZmd2xs
-LmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Just to remove an obnoxious HAS_ENGINES(), and in the process make the
+code agnostic to the available of any particular engine by making it
+exercise any and all such engines declared on the system.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ .../i915/gem/selftests/i915_gem_client_blt.c  |  3 -
+ .../i915/gem/selftests/i915_gem_object_blt.c  | 55 ++++++++++++-------
+ .../gpu/drm/i915/gem/selftests/mock_context.c | 34 ++++++++++++
+ .../gpu/drm/i915/gem/selftests/mock_context.h |  4 ++
+ drivers/gpu/drm/i915/i915_drv.h               |  5 ++
+ 5 files changed, 77 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+index 8fe3ad2ee34e..299c29e9ad86 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+@@ -702,8 +702,5 @@ int i915_gem_client_blt_live_selftests(struct drm_i915_private *i915)
+ 	if (intel_gt_is_wedged(&i915->gt))
+ 		return 0;
+ 
+-	if (!HAS_ENGINE(i915, BCS0))
+-		return 0;
+-
+ 	return i915_live_subtests(tests, i915);
+ }
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+index 31549ad83fa6..23b6e11bbc3e 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+@@ -193,7 +193,7 @@ static int perf_copy_blt(void *arg)
+ }
+ 
+ struct igt_thread_arg {
+-	struct drm_i915_private *i915;
++	struct intel_engine_cs *engine;
+ 	struct i915_gem_context *ctx;
+ 	struct file *file;
+ 	struct rnd_state prng;
+@@ -203,7 +203,7 @@ struct igt_thread_arg {
+ static int igt_fill_blt_thread(void *arg)
+ {
+ 	struct igt_thread_arg *thread = arg;
+-	struct drm_i915_private *i915 = thread->i915;
++	struct intel_engine_cs *engine = thread->engine;
+ 	struct rnd_state *prng = &thread->prng;
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_gem_context *ctx;
+@@ -215,7 +215,7 @@ static int igt_fill_blt_thread(void *arg)
+ 
+ 	ctx = thread->ctx;
+ 	if (!ctx) {
+-		ctx = live_context(i915, thread->file);
++		ctx = live_context_for_engine(engine, thread->file);
+ 		if (IS_ERR(ctx))
+ 			return PTR_ERR(ctx);
+ 
+@@ -223,7 +223,7 @@ static int igt_fill_blt_thread(void *arg)
+ 		ctx->sched.priority = I915_USER_PRIORITY(prio);
+ 	}
+ 
+-	ce = i915_gem_context_get_engine(ctx, BCS0);
++	ce = i915_gem_context_get_engine(ctx, 0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
+ 	/*
+@@ -256,7 +256,7 @@ static int igt_fill_blt_thread(void *arg)
+ 		pr_debug("%s with phys_sz= %x, sz=%x, val=%x\n", __func__,
+ 			 phys_sz, sz, val);
+ 
+-		obj = huge_gem_object(i915, phys_sz, sz);
++		obj = huge_gem_object(engine->i915, phys_sz, sz);
+ 		if (IS_ERR(obj)) {
+ 			err = PTR_ERR(obj);
+ 			goto err_flush;
+@@ -321,7 +321,7 @@ static int igt_fill_blt_thread(void *arg)
+ static int igt_copy_blt_thread(void *arg)
+ {
+ 	struct igt_thread_arg *thread = arg;
+-	struct drm_i915_private *i915 = thread->i915;
++	struct intel_engine_cs *engine = thread->engine;
+ 	struct rnd_state *prng = &thread->prng;
+ 	struct drm_i915_gem_object *src, *dst;
+ 	struct i915_gem_context *ctx;
+@@ -333,7 +333,7 @@ static int igt_copy_blt_thread(void *arg)
+ 
+ 	ctx = thread->ctx;
+ 	if (!ctx) {
+-		ctx = live_context(i915, thread->file);
++		ctx = live_context_for_engine(engine, thread->file);
+ 		if (IS_ERR(ctx))
+ 			return PTR_ERR(ctx);
+ 
+@@ -341,7 +341,7 @@ static int igt_copy_blt_thread(void *arg)
+ 		ctx->sched.priority = I915_USER_PRIORITY(prio);
+ 	}
+ 
+-	ce = i915_gem_context_get_engine(ctx, BCS0);
++	ce = i915_gem_context_get_engine(ctx, 0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
+ 	/*
+@@ -374,7 +374,7 @@ static int igt_copy_blt_thread(void *arg)
+ 		pr_debug("%s with phys_sz= %x, sz=%x, val=%x\n", __func__,
+ 			 phys_sz, sz, val);
+ 
+-		src = huge_gem_object(i915, phys_sz, sz);
++		src = huge_gem_object(engine->i915, phys_sz, sz);
+ 		if (IS_ERR(src)) {
+ 			err = PTR_ERR(src);
+ 			goto err_flush;
+@@ -394,7 +394,7 @@ static int igt_copy_blt_thread(void *arg)
+ 		if (!(src->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ))
+ 			src->cache_dirty = true;
+ 
+-		dst = huge_gem_object(i915, phys_sz, sz);
++		dst = huge_gem_object(engine->i915, phys_sz, sz);
+ 		if (IS_ERR(dst)) {
+ 			err = PTR_ERR(dst);
+ 			goto err_put_src;
+@@ -456,7 +456,7 @@ static int igt_copy_blt_thread(void *arg)
+ 	return err;
+ }
+ 
+-static int igt_threaded_blt(struct drm_i915_private *i915,
++static int igt_threaded_blt(struct intel_engine_cs *engine,
+ 			    int (*blt_fn)(void *arg),
+ 			    unsigned int flags)
+ #define SINGLE_CTX BIT(0)
+@@ -477,14 +477,14 @@ static int igt_threaded_blt(struct drm_i915_private *i915,
+ 	if (!thread)
+ 		goto out_tsk;
+ 
+-	thread[0].file = mock_file(i915);
++	thread[0].file = mock_file(engine->i915);
+ 	if (IS_ERR(thread[0].file)) {
+ 		err = PTR_ERR(thread[0].file);
+ 		goto out_thread;
+ 	}
+ 
+ 	if (flags & SINGLE_CTX) {
+-		thread[0].ctx = live_context(i915, thread[0].file);
++		thread[0].ctx = live_context_for_engine(engine, thread[0].file);
+ 		if (IS_ERR(thread[0].ctx)) {
+ 			err = PTR_ERR(thread[0].ctx);
+ 			goto out_file;
+@@ -492,7 +492,7 @@ static int igt_threaded_blt(struct drm_i915_private *i915,
+ 	}
+ 
+ 	for (i = 0; i < n_cpus; ++i) {
+-		thread[i].i915 = i915;
++		thread[i].engine = engine;
+ 		thread[i].file = thread[0].file;
+ 		thread[i].ctx = thread[0].ctx;
+ 		thread[i].n_cpus = n_cpus;
+@@ -532,24 +532,40 @@ static int igt_threaded_blt(struct drm_i915_private *i915,
+ 	return err;
+ }
+ 
++static int test_copy_engines(struct drm_i915_private *i915,
++			     int (*fn)(void *arg),
++			     unsigned int flags)
++{
++	struct intel_engine_cs *engine;
++	int ret;
++
++	for_each_uabi_class_engine(engine, I915_ENGINE_CLASS_COPY, i915) {
++		ret = igt_threaded_blt(engine, fn, flags);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ static int igt_fill_blt(void *arg)
+ {
+-	return igt_threaded_blt(arg, igt_fill_blt_thread, 0);
++	return test_copy_engines(arg, igt_fill_blt_thread, 0);
+ }
+ 
+ static int igt_fill_blt_ctx0(void *arg)
+ {
+-	return igt_threaded_blt(arg, igt_fill_blt_thread, SINGLE_CTX);
++	return test_copy_engines(arg, igt_fill_blt_thread, SINGLE_CTX);
+ }
+ 
+ static int igt_copy_blt(void *arg)
+ {
+-	return igt_threaded_blt(arg, igt_copy_blt_thread, 0);
++	return test_copy_engines(arg, igt_copy_blt_thread, 0);
+ }
+ 
+ static int igt_copy_blt_ctx0(void *arg)
+ {
+-	return igt_threaded_blt(arg, igt_copy_blt_thread, SINGLE_CTX);
++	return test_copy_engines(arg, igt_copy_blt_thread, SINGLE_CTX);
+ }
+ 
+ int i915_gem_object_blt_live_selftests(struct drm_i915_private *i915)
+@@ -564,9 +580,6 @@ int i915_gem_object_blt_live_selftests(struct drm_i915_private *i915)
+ 	if (intel_gt_is_wedged(&i915->gt))
+ 		return 0;
+ 
+-	if (!HAS_ENGINE(i915, BCS0))
+-		return 0;
+-
+ 	return i915_live_subtests(tests, i915);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+index e7e3c620f542..987918ca35ef 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+@@ -99,6 +99,40 @@ live_context(struct drm_i915_private *i915, struct file *file)
+ 	return ERR_PTR(err);
+ }
+ 
++struct i915_gem_context *
++live_context_for_engine(struct intel_engine_cs *engine, struct file *file)
++{
++	struct i915_gem_engines *engines;
++	struct i915_gem_context *ctx;
++	struct intel_context *ce;
++
++	engines = alloc_engines(1);
++	if (!engines)
++		return ERR_PTR(-ENOMEM);
++
++	ctx = live_context(engine->i915, file);
++	if (IS_ERR(ctx))
++		return ctx;
++
++	ce = intel_context_create(engine);
++	if (IS_ERR(ce)) {
++		__free_engines(engines, 0);
++		return ERR_CAST(ce);
++	}
++
++	intel_context_set_gem(ce, ctx);
++	engines->engines[0] = ce;
++
++	mutex_lock(&ctx->engines_mutex);
++	i915_gem_context_set_user_engines(ctx);
++	engines = rcu_replace_pointer(ctx->engines, engines, 1);
++	mutex_unlock(&ctx->engines_mutex);
++
++	engines_idle_release(ctx, engines);
++
++	return ctx;
++}
++
+ struct i915_gem_context *
+ kernel_context(struct drm_i915_private *i915)
+ {
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.h b/drivers/gpu/drm/i915/gem/selftests/mock_context.h
+index fb83d2f09212..2a6121d33352 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.h
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.h
+@@ -9,6 +9,7 @@
+ 
+ struct file;
+ struct drm_i915_private;
++struct intel_engine_cs;
+ 
+ void mock_init_contexts(struct drm_i915_private *i915);
+ 
+@@ -21,6 +22,9 @@ void mock_context_close(struct i915_gem_context *ctx);
+ struct i915_gem_context *
+ live_context(struct drm_i915_private *i915, struct file *file);
+ 
++struct i915_gem_context *
++live_context_for_engine(struct intel_engine_cs *engine, struct file *file);
++
+ struct i915_gem_context *kernel_context(struct drm_i915_private *i915);
+ void kernel_context_close(struct i915_gem_context *ctx);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e99255e17eb7..1e49abc5a342 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1264,6 +1264,11 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+ 	     (engine__); \
+ 	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+ 
++#define for_each_uabi_class_engine(engine__, class__, i915__) \
++	for ((engine__) = intel_engine_lookup_user((i915__), (class__), 0); \
++	     (engine__) && (engine__)->uabi_class == (class__); \
++	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
++
+ #define I915_GTT_OFFSET_NONE ((u32)-1)
+ 
+ /*
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
