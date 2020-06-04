@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702E51EE13E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 11:27:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEF31EE155
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 11:31:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7643E6E0D8;
-	Thu,  4 Jun 2020 09:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815576E13A;
+	Thu,  4 Jun 2020 09:31:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4545C6E0D8;
- Thu,  4 Jun 2020 09:27:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21392771-1500050 for multiple; Thu, 04 Jun 2020 10:27:01 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9E2B6E13A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 09:31:53 +0000 (UTC)
+IronPort-SDR: 6KdZsA9Er13F+qX7tkrB4EdfuN/HlfXYq0bpX8CgJ8p7QzJOSxl20D1aM2m0Vmm886w1JgKII6
+ RKHN/rSFSqcg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 02:31:53 -0700
+IronPort-SDR: +b/Q3OsD9u7bR6RZxmKkJYvSSYRX5xP1SqvDH9I/xwpyTDG+9qkRRJobAOQxhgQbR1Wdi6kAma
+ a3GwiH2SRnhw==
+X-IronPort-AV: E=Sophos;i="5.73,471,1583222400"; d="scan'208";a="445445053"
+Received: from bsochack-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.109])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 02:31:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <159111100381.29407.10499392760570265777@build.alporthouse.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200602151126.25626-1-jani.nikula@intel.com>
+ <159111100381.29407.10499392760570265777@build.alporthouse.com>
+Date: Thu, 04 Jun 2020 12:31:48 +0300
+Message-ID: <871rmvyy63.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uGLAPvvgHCCZhg0cea3Fz=Zqhf-GKS2OC3mZudYe3mKhw@mail.gmail.com>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-4-daniel.vetter@ffwll.ch>
- <edbfc1aa-9297-8202-cef8-1facafaa0dfe@shipmail.org>
- <CAKMK7uGLAPvvgHCCZhg0cea3Fz=Zqhf-GKS2OC3mZudYe3mKhw@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Thomas Hellström (Intel) <thomas_os@shipmail.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <159126281827.25109.3992161193069793005@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 04 Jun 2020 10:26:58 +0100
-Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/params: fix i915.reset module
+ param type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,42 +49,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, amd-gfx list <amd-gfx@lists.freedesktop.org>, "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>, Thomas Hellstrom <thomas.hellstrom@intel.com>, DRI Development <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Mika Kuoppala <mika.kuoppala@intel.com>, Christian König <christian.koenig@amd.com>, "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYW5pZWwgVmV0dGVyICgyMDIwLTA2LTA0IDEwOjIxOjQ2KQo+IE9uIFRodSwgSnVu
-IDQsIDIwMjAgYXQgMTA6NTcgQU0gVGhvbWFzIEhlbGxzdHLDtm0gKEludGVsKQo+IDx0aG9tYXNf
-b3NAc2hpcG1haWwub3JnPiB3cm90ZToKPiA+Cj4gPgo+ID4gT24gNi80LzIwIDEwOjEyIEFNLCBE
-YW5pZWwgVmV0dGVyIHdyb3RlOgo+ID4gLi4uCj4gPiA+IFRocmVhZCBBOgo+ID4gPgo+ID4gPiAg
-ICAgICBtdXRleF9sb2NrKEEpOwo+ID4gPiAgICAgICBtdXRleF91bmxvY2soQSk7Cj4gPiA+Cj4g
-PiA+ICAgICAgIGRtYV9mZW5jZV9zaWduYWwoKTsKPiA+ID4KPiA+ID4gVGhyZWFkIEI6Cj4gPiA+
-Cj4gPiA+ICAgICAgIG11dGV4X2xvY2soQSk7Cj4gPiA+ICAgICAgIGRtYV9mZW5jZV93YWl0KCk7
-Cj4gPiA+ICAgICAgIG11dGV4X3VubG9jayhBKTsKPiA+ID4KPiA+ID4gVGhyZWFkIEIgaXMgYmxv
-Y2tlZCBvbiBBIHNpZ25hbGxpbmcgdGhlIGZlbmNlLCBidXQgQSBuZXZlciBnZXRzIGFyb3VuZAo+
-ID4gPiB0byB0aGF0IGJlY2F1c2UgaXQgY2Fubm90IGFjcXVpcmUgdGhlIGxvY2sgQS4KPiA+ID4K
-PiA+ID4gTm90ZSB0aGF0IGRtYV9mZW5jZV93YWl0KCkgaXMgYWxsb3dlZCB0byBiZSBuZXN0ZWQg
-d2l0aGluCj4gPiA+IGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGluZyBzZWN0aW9ucy4gVG8g
-YWxsb3cgdGhpcyB0byBoYXBwZW4gdGhlCj4gPiA+IHJlYWQgbG9jayBuZWVkcyB0byBiZSB1cGdy
-YWRlZCB0byBhIHdyaXRlIGxvY2ssIHdoaWNoIG1lYW5zIHRoYXQgYW55Cj4gPiA+IG90aGVyIGxv
-Y2sgaXMgYWNxdWlyZWQgYmV0d2VlbiB0aGUgZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmcoKSBj
-YWxsIGFuZAo+ID4gPiB0aGUgY2FsbCB0byBkbWFfZmVuY2Vfd2FpdCgpLCBhbmQgc3RpbGwgaGVs
-ZCwgdGhpcyB3aWxsIHJlc3VsdCBpbiBhbgo+ID4gPiBpbW1lZGlhdGUgbG9ja2RlcCBjb21wbGFp
-bnQuIFRoZSBvbmx5IG90aGVyIG9wdGlvbiB3b3VsZCBiZSB0byBub3QKPiA+ID4gYW5ub3RhdGUg
-c3VjaCBjYWxscywgZGVmZWF0aW5nIHRoZSBwb2ludC4gVGhlcmVmb3JlIHRoZXNlIGFubm90YXRp
-b25zCj4gPiA+IGNhbm5vdCBiZSBzcHJpbmtsZWQgb3ZlciB0aGUgY29kZSBlbnRpcmVseSBtaW5k
-bGVzcyB0byBhdm9pZCBmYWxzZQo+ID4gPiBwb3NpdGl2ZXMuCj4gPgo+ID4gSnVzdCByZWFsaXpl
-ZCwgaXNuJ3QgdGhhdCBleGFtcGxlIGFjdHVhbGx5IGEgdHJ1ZSBwb3NpdGl2ZSwgb3IgYXQgbGVh
-c3QKPiA+IGEgZ3JlYXQgY2FuZGlkYXRlIGZvciBhIHRydWUgcG9zaXRpdmUsIHNpbmNlIGlmIGFu
-b3RoZXIgdGhyZWFkIHJlZW50ZXJzCj4gPiB0aGF0IHNpZ25hbGluZyBwYXRoLCBpdCB3aWxsIGJs
-b2NrIG9uIHRoYXQgbXV0ZXgsIGFuZCB0aGUgZmVuY2Ugd291bGQKPiA+IG5ldmVyIGJlIHNpZ25h
-bGVkIHVubGVzcyB0aGVyZSBpcyBhbm90aGVyIHNpZ25hbGluZyBwYXRoPwo+IAo+IE5vdCBzdXJl
-IEkgdW5kZXJzdGFuZCBmdWxseSwgYnV0IEkgdGhpbmsgdGhlIGFuc3dlciBpcyAiaXQncyBjb21w
-bGljYXRlZCIuCgpTZWUgY2Q4MDg0ZjkxYzAyICgibG9ja2luZy9sb2NrZGVwOiBBcHBseSBjcm9z
-c3JlbGVhc2UgdG8gY29tcGxldGlvbnMiKQoKZG1hX2ZlbmNlIHVzYWdlIGhlcmUgaXMgbm90aGlu
-ZyBidXQgYW5vdGhlciBuYW1lIGZvciBhIGNvbXBsZXRpb24uCi1DaHJpcwpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, 02 Jun 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Quoting Jani Nikula (2020-06-02 16:11:26)
+>> The reset member in i915_params was previously changed to unsigned, but
+>> this failed to change the actual module parameter.
+>> 
+>> Fixes: aae970d8454b ("drm/i915: Mark i915.reset as unsigned")
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Thanks, pushed.
+
+BR,
+Jani.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
