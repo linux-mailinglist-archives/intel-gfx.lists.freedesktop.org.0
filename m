@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56B21EEA9C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 20:55:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 029321EEAB9
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 20:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B41F96E0D0;
-	Thu,  4 Jun 2020 18:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5D16E56D;
+	Thu,  4 Jun 2020 18:58:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF6D6E0D0;
- Thu,  4 Jun 2020 18:55:01 +0000 (UTC)
-IronPort-SDR: 4sOVpBvZxXyIv/FC4f+DiaIFEY5qqXrAMOVZQzjDwTyGlGXWesdr5XyYBudzvmmi6145aj5Z3K
- 3ev9Zq+/vkpg==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA446E56A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 18:58:28 +0000 (UTC)
+IronPort-SDR: 3UeIRYUjcKRPAMQi+f6iIlfNstR8SfKSJ8AK8gj7mzrp54hh3Mu0cJiOkq/SLF85sOLaBquVOB
+ EY9YknuJ8SiA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 11:55:00 -0700
-IronPort-SDR: 5a3YwZsZpuTIA+e5BWYBvIhg/M1BHRGvNKpNspV6FHNw3/8dun7631LcobOOQOIbGwKVmJK8nS
- Gh9qEb2ntkGg==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 11:58:27 -0700
+IronPort-SDR: pjrrbAcKvSvvf6vMkywDmIWXKX5hMQ/muHw0C3Snlu7nVWKNQQI6UmZ1mbOrwrbZc50CggkOzo
+ R0EJd/C50+ZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="304806638"
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="348190655"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 04 Jun 2020 11:54:58 -0700
+ by orsmga001.jf.intel.com with SMTP; 04 Jun 2020 11:58:25 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Jun 2020 21:54:57 +0300
-Date: Thu, 4 Jun 2020 21:54:57 +0300
+ Thu, 04 Jun 2020 21:58:24 +0300
+Date: Thu, 4 Jun 2020 21:58:24 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200604185457.GF6112@intel.com>
-References: <20200603211040.8190-3-imre.deak@intel.com>
- <20200604184500.23730-2-imre.deak@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200604185824.GG6112@intel.com>
+References: <20200604002359.17128-1-manasi.d.navare@intel.com>
+ <20200604152543.GU6112@intel.com> <20200604183530.GB3922@intel.com>
+ <20200604183819.GD6112@intel.com> <20200604185223.GC3922@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200604184500.23730-2-imre.deak@intel.com>
+In-Reply-To: <20200604185223.GC3922@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/dp_mst: Work around
- out-of-spec adapters filtering short pulses
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Reset link params on connector
+ disconnect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,236 +53,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2020 at 09:45:00PM +0300, Imre Deak wrote:
-> Some TypeC -> native DP adapters, at least the Club 3D CAC-1557 adapter,
-> incorrectly filter out HPD short pulses with a duration less than
-> ~540 usec, leading to MST probe failures.
+On Thu, Jun 04, 2020 at 11:52:24AM -0700, Manasi Navare wrote:
+> On Thu, Jun 04, 2020 at 09:38:19PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Jun 04, 2020 at 11:35:30AM -0700, Manasi Navare wrote:
+> > > On Thu, Jun 04, 2020 at 06:25:43PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Wed, Jun 03, 2020 at 05:23:59PM -0700, Manasi Navare wrote:
+> > > > > We have noticed that when link training fails the panel
+> > > > > sends a long pulse indicating connector disconnect. In this case
+> > > > > we need to reset the link parameters instead of continuing
+> > > > > to use the fallback parameters since else this long pulse
+> > > > > by the panel followed by a modeset request which was triggered by=
+ the userspace
+> > > > > before getting the connector status as disconnected, will
+> > > > > result into a modeset now using lower link rate/lane count values.
+> > > > > =
+
+> > > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1385
+> > > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++++--=
+------
+> > > > >  1 file changed, 19 insertions(+), 9 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gp=
+u/drm/i915/display/intel_dp.c
+> > > > > index 55fda074c0ad..f7af372647dd 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > @@ -6111,6 +6111,18 @@ intel_dp_unset_edid(struct intel_dp *intel=
+_dp)
+> > > > >  	intel_dp->edid_quirks =3D 0;
+> > > > >  }
+> > > > >  =
+
+> > > > > +static void
+> > > > > +intel_dp_reset_link_params(struct intel_dp *intel_dp)
+> > > > > +{
+> > > > > +	/* Initial max link lane count */
+> > > > > +	intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_coun=
+t(intel_dp);
+> > > > > +
+> > > > > +	/* Initial max link rate */
+> > > > > +	intel_dp->max_link_rate =3D intel_dp_max_common_rate(intel_dp);
+> > > > > +
+> > > > > +	intel_dp->reset_link_params =3D false;
+> > > > > +}
+> > > > > +
+> > > > >  static int
+> > > > >  intel_dp_detect(struct drm_connector *connector,
+> > > > >  		struct drm_modeset_acquire_ctx *ctx,
+> > > > > @@ -6139,6 +6151,11 @@ intel_dp_detect(struct drm_connector *conn=
+ector,
+> > > > >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+> > > > >  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+> > > > >  =
+
+> > > > > +		/*Reset the immutable VRR Capable property */
+> > > > > +		drm_connector_set_vrr_capable_property(connector,
+> > > > > +						       false);
+> > > > > +		intel_dp_reset_link_params(intel_dp);
+> > > > > +
+> > > > =
+
+> > > > Why would we care what those are when the sink is disconnected?
+> > > =
+
+> > > We are noticing this happen in case the panel send this long pulse in=
+dicating
+> > > status change to disconnected, while the modeset was already triggere=
+d by userspace
+> > > in this case IGT, so the modeset continues right after i915_hotplug_w=
+ork_fn
+> > > so we need to reset all params which fixes the bug mentioned.
+> > =
+
+> > Why did the link params get out of whack before hpd in the first place?
+> >
 > =
 
-> According to the DP Standard 2.0 section 5.1.4:
-> - DP sinks should generate short pulses in the 500 usec -> 1 msec range
-> - DP sources should detect short pulses in the 250 usec -> 2 msec range
+> Most of the failures, we see the link training fails due to AUX timeouts =
+and then link params fallback to lower values
+> Then we get this hpd, in this case if we dont reset the param to max valu=
+es, prev triggered modeset continues
+> with fallback values but since connector probe doesnt happen again throug=
+h IGT, it tries the same mode
+> with fallback values and return encoder config failure.
+
+If the link training failed then clearly the sink didn't like us anymore
+anyway. So feels like resetting these here is just shifting some race
+window around a bit, but it could still fail if the sink still doesn't
+like us.
+
+Would be good if someone was able to figure out why the sink goes bad in
+the first place.
+
 > =
 
-> According to the DP Alt Mode on TypeC Standard section 3.9.2, adapters
-> should detect and forward short pulses according to how sources should
-> detect them as specified in the DP Standard (250 usec -> 2 msec).
+> So after reseting the params, the modeset happens with original values an=
+d that time link training passes.
+> This is seen in all kms_atomic_transitions IGT tests
 > =
 
-> Based on the above filtering out short pulses with a duration less than
-> 540 usec is incorrect.
-> =
-
-> To make such adapters work add support for a driver polling on MST
-> inerrupt flags, and wire this up in the i915 driver. The sink can clear
-> an interrupt it raised after 110 msec if the source doesn't respond, so
-> use a 50 msec poll period to avoid missing an interrupt. Polling of the
-> MST interrupt flags is explicitly allowed by the DP Standard.
-> =
-
-> This fixes MST probe failures I saw using this adapter and a DELL U2515H
-> monitor.
-> =
-
-> v2:
-> - Fix the wait event timeout for the no-poll case.
-> v3 (Ville):
-> - Fix the short pulse duration limits in the commit log prescribed by the
->   DP Standard.
-> - Add code comment explaining why/how polling is used.
-> - Factor out a helper to schedule the port's hpd irq handler and move it
->   to the rest of hotplug handlers.
-> - Document the new MST callback.
-> - s/update_hpd_irq_state/poll_hpd_irq/
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-lgtm
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c        | 32 ++++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 10 ++++++
->  drivers/gpu/drm/i915/display/intel_hotplug.c | 18 +++++++++++
->  drivers/gpu/drm/i915/display/intel_hotplug.h |  2 ++
->  include/drm/drm_dp_mst_helper.h              |  9 ++++++
->  5 files changed, 68 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_=
-dp_mst_topology.c
-> index 5bc72e800b85..2a309fb2c4cc 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -1178,11 +1178,37 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp=
-_mst_branch *mstb,
->  				    struct drm_dp_sideband_msg_tx *txmsg)
->  {
->  	struct drm_dp_mst_topology_mgr *mgr =3D mstb->mgr;
-> +	unsigned long wait_timeout =3D msecs_to_jiffies(4000);
-> +	unsigned long wait_expires =3D jiffies + wait_timeout;
->  	int ret;
+> Manasi
 >  =
 
-> -	ret =3D wait_event_timeout(mgr->tx_waitq,
-> -				 check_txmsg_state(mgr, txmsg),
-> -				 (4 * HZ));
-> +	for (;;) {
-> +		/*
-> +		 * If the driver provides a way for this, change to
-> +		 * poll-waiting for the MST reply interrupt if we didn't receive
-> +		 * it for 50 msec. This would cater for cases where the HPD
-> +		 * pulse signal got lost somewhere, even though the sink raised
-> +		 * the corresponding MST interrupt correctly. One example is the
-> +		 * Club 3D CAC-1557 TypeC -> DP adapter which for some reason
-> +		 * filters out short pulses with a duration less than ~540 usec.
-> +		 *
-> +		 * The poll period is 50 msec to avoid missing an interrupt
-> +		 * after the sink has cleared it (after a 110msec timeout
-> +		 * since it raised the interrupt).
-> +		 */
-> +		ret =3D wait_event_timeout(mgr->tx_waitq,
-> +					 check_txmsg_state(mgr, txmsg),
-> +					 mgr->cbs->poll_hpd_irq ?
-> +						msecs_to_jiffies(50) :
-> +						wait_timeout);
-> +
-> +		if (ret || !mgr->cbs->poll_hpd_irq ||
-> +		    time_after(jiffies, wait_expires))
-> +			break;
-> +
-> +		mgr->cbs->poll_hpd_irq(mgr);
-> +	}
-> +
->  	mutex_lock(&mgr->qlock);
->  	if (ret > 0) {
->  		if (txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_TIMEOUT) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index d18b406f2a7d..9be52643205d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -33,6 +33,7 @@
->  #include "intel_connector.h"
->  #include "intel_ddi.h"
->  #include "intel_display_types.h"
-> +#include "intel_hotplug.h"
->  #include "intel_dp.h"
->  #include "intel_dp_mst.h"
->  #include "intel_dpio_phy.h"
-> @@ -765,8 +766,17 @@ static struct drm_connector *intel_dp_add_mst_connec=
-tor(struct drm_dp_mst_topolo
->  	return NULL;
->  }
->  =
+> > > =
 
-> +static void
-> +intel_dp_mst_poll_hpd_irq(struct drm_dp_mst_topology_mgr *mgr)
-> +{
-> +	struct intel_dp *intel_dp =3D container_of(mgr, struct intel_dp, mst_mg=
-r);
-> +
-> +	intel_hpd_trigger_irq(dp_to_dig_port(intel_dp));
-> +}
-> +
->  static const struct drm_dp_mst_topology_cbs mst_cbs =3D {
->  	.add_connector =3D intel_dp_add_mst_connector,
-> +	.poll_hpd_irq =3D intel_dp_mst_poll_hpd_irq,
->  };
->  =
+> > > Manasi
+> > > =
 
->  static struct intel_dp_mst_encoder *
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.c
-> index 4f6f560e093e..664f88354101 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -347,6 +347,24 @@ static void i915_digport_work_func(struct work_struc=
-t *work)
->  	}
->  }
->  =
+> > > > =
 
-> +/**
-> + * intel_hpd_trigger_irq - trigger an hpd irq event for a port
-> + * @dig_port: digital port
-> + *
-> + * Trigger an HPD interrupt event for the given port, emulating a short =
-pulse
-> + * generated by the sink, and schedule the dig port work to handle it.
-> + */
-> +void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +
-> +	spin_lock_irq(&i915->irq_lock);
-> +	i915->hotplug.short_port_mask |=3D BIT(dig_port->base.port);
-> +	spin_unlock_irq(&i915->irq_lock);
-> +
-> +	queue_work(i915->hotplug.dp_wq, &i915->hotplug.dig_port_work);
-> +}
-> +
->  /*
->   * Handle hotplug events outside the interrupt handler proper.
->   */
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.h
-> index 777b0743257e..a704d7c94d16 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-> @@ -10,6 +10,7 @@
->  =
+> > > > >  		if (intel_dp->is_mst) {
+> > > > >  			drm_dbg_kms(&dev_priv->drm,
+> > > > >  				    "MST device may have disappeared %d vs %d\n",
+> > > > > @@ -6152,15 +6169,8 @@ intel_dp_detect(struct drm_connector *conn=
+ector,
+> > > > >  		goto out;
+> > > > >  	}
+> > > > >  =
 
->  struct drm_i915_private;
->  struct intel_connector;
-> +struct intel_digital_port;
->  struct intel_encoder;
->  enum port;
->  =
+> > > > > -	if (intel_dp->reset_link_params) {
+> > > > > -		/* Initial max link lane count */
+> > > > > -		intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_cou=
+nt(intel_dp);
+> > > > > -
+> > > > > -		/* Initial max link rate */
+> > > > > -		intel_dp->max_link_rate =3D intel_dp_max_common_rate(intel_dp);
+> > > > > -
+> > > > > -		intel_dp->reset_link_params =3D false;
+> > > > > -	}
+> > > > > +	if (intel_dp->reset_link_params)
+> > > > > +		intel_dp_reset_link_params(intel_dp);
+> > > > >  =
 
-> @@ -18,6 +19,7 @@ enum intel_hotplug_state intel_encoder_hotplug(struct i=
-ntel_encoder *encoder,
->  					       struct intel_connector *connector);
->  void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
->  			   u32 pin_mask, u32 long_mask);
-> +void intel_hpd_trigger_irq(struct intel_digital_port *dig_port);
->  void intel_hpd_init(struct drm_i915_private *dev_priv);
->  void intel_hpd_init_work(struct drm_i915_private *dev_priv);
->  void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_hel=
-per.h
-> index 9e1ffcd7cb68..b230ff6f7081 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -475,6 +475,15 @@ struct drm_dp_mst_topology_mgr;
->  struct drm_dp_mst_topology_cbs {
->  	/* create a connector for a port */
->  	struct drm_connector *(*add_connector)(struct drm_dp_mst_topology_mgr *=
-mgr, struct drm_dp_mst_port *port, const char *path);
-> +	/*
-> +	 * Checks for any pending MST interrupts, passing them to MST core for
-> +	 * processing, the same way an HPD IRQ pulse handler would do this.
-> +	 * If provided MST core calls this callback from a poll-waiting loop
-> +	 * when waiting for MST down message replies. The driver is expected
-> +	 * to guard against a race between this callback and the driver's HPD
-> +	 * IRQ pulse handler.
-> +	 */
-> +	void (*poll_hpd_irq)(struct drm_dp_mst_topology_mgr *mgr);
->  };
->  =
+> > > > >  	intel_dp_print_rates(intel_dp);
+> > > > >  =
 
->  #define DP_MAX_PAYLOAD (sizeof(unsigned long) * 8)
-> -- =
+> > > > > -- =
 
-> 2.23.1
+> > > > > 2.19.1
+> > > > =
+
+> > > > -- =
+
+> > > > Ville Syrj=E4l=E4
+> > > > Intel
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
 
 -- =
 
