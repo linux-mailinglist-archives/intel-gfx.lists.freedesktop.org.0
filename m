@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C891EE7F5
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:41:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B351EE807
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:49:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3F96E483;
-	Thu,  4 Jun 2020 15:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9396E455;
+	Thu,  4 Jun 2020 15:49:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B917C6E46E;
- Thu,  4 Jun 2020 15:41:39 +0000 (UTC)
-IronPort-SDR: BVYdldu+kVJ6UYt2IZWH+2GpTnK0zM1izXA7CR7GhagYVtyf5AifFwsLKl1+Cz/ZNuXpHvnxyp
- Nbf6tnv7UfZg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 08:41:39 -0700
-IronPort-SDR: yc6J04bwExOCnGjLpYa/DkS0Z1EteBVRMClgLy+LRZb9/4uYeIHH0YpDb6N2pfTboEeHgkaHqY
- WRLSCH5cjOWQ==
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="258388765"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 08:41:37 -0700
-Date: Thu, 4 Jun 2020 18:41:34 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200604154134.GD15427@ideak-desk.fi.intel.com>
-References: <20200603211040.8190-3-imre.deak@intel.com>
- <20200603221859.9600-1-imre.deak@intel.com>
- <20200604151227.GT6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 666A56E50E;
+ Thu,  4 Jun 2020 15:49:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5BE16A47E0;
+ Thu,  4 Jun 2020 15:49:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200604151227.GT6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/dp_mst: Work around
- out-of-spec adapters filtering short pulses
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 04 Jun 2020 15:49:09 -0000
+Message-ID: <159128574934.14555.5243811314207063969@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200604150503.17199-1-jani.nikula@intel.com>
+In-Reply-To: <20200604150503.17199-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/params=3A_switch_to_device_specific_parameters?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,191 +38,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2020 at 06:12:27PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Jun 04, 2020 at 01:18:59AM +0300, Imre Deak wrote:
-> > Some TypeC -> native DP adapters, at least the Club CAC-1557 adapter,
-> > incorrectly filter out HPD short pulses with a duration less than ~540
-> > usec, leading to MST probe failures.
-> > =
+== Series Details ==
 
-> > According to the DP alt mode specification adapters should forward short
-> > pulses with a duration greater than 250 usec. According to the DP
-> > specificatin DP sources should detect short pulses in the
-> > 500 usec -> 2 ms range. =
+Series: drm/i915/params: switch to device specific parameters
+URL   : https://patchwork.freedesktop.org/series/78004/
+State : failure
 
-> =
+== Summary ==
 
-> IIRC it was 250 usec -> 2 ms as well in the DP spec.
-> =
+CI Bug Log - changes from CI_DRM_8583 -> Patchwork_17872
+====================================================
 
-> 500 usec -> 1 ms is the duration of the short hpd
-> the signalling side should use.
+Summary
+-------
 
-Ah, correct (and this is what makes actually sense). For reference it's
-described under "5.1.4 Source Device Behavior upon HPD Pulse Detection"
+  **FAILURE**
 
-> > Based on this filtering out short pulses with a
-> > duration less than 540 usec is incorrect.
-> > =
+  Serious unknown changes coming with Patchwork_17872 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17872, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > To make such adapters work add support for a driver polling on MST
-> > inerrupt flags, and wire this up in the i915 driver. The sink can clear
-> > an interrupt it raised after 110 ms if the source doesn't respond, so
-> > use a 50 ms poll period to avoid missing an interrupt. Polling of the
-> > MST interrupt flags is explicitly allowed by the DP specification.
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/index.html
 
-> > This fixes MST probe failures I saw using this adapter and a DELL U2515H
-> > monitor.
-> > =
+Possible new issues
+-------------------
 
-> > v2:
-> > - Fix the wait event timeout for the no-poll case.
-> > =
+  Here are the unknown changes that may have been introduced in Patchwork_17872:
 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_dp_mst_topology.c       | 19 ++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 15 +++++++++++++++
-> >  include/drm/drm_dp_mst_helper.h             |  1 +
-> >  3 files changed, 32 insertions(+), 3 deletions(-)
-> > =
+### CI changes ###
 
-> > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/dr=
-m_dp_mst_topology.c
-> > index 5bc72e800b85..4e987a513df8 100644
-> > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > @@ -1178,11 +1178,24 @@ static int drm_dp_mst_wait_tx_reply(struct drm_=
-dp_mst_branch *mstb,
-> >  				    struct drm_dp_sideband_msg_tx *txmsg)
-> >  {
-> >  	struct drm_dp_mst_topology_mgr *mgr =3D mstb->mgr;
-> > +	unsigned long wait_timeout =3D msecs_to_jiffies(4000);
-> > +	unsigned long wait_expires =3D jiffies + wait_timeout;
-> >  	int ret;
-> >  =
+#### Possible regressions ####
 
-> > -	ret =3D wait_event_timeout(mgr->tx_waitq,
-> > -				 check_txmsg_state(mgr, txmsg),
-> > -				 (4 * HZ));
-> > +	for (;;) {
-> > +		ret =3D wait_event_timeout(mgr->tx_waitq,
-> > +					 check_txmsg_state(mgr, txmsg),
-> > +					 mgr->cbs->update_hpd_irq_state ?
-> > +						msecs_to_jiffies(50) :
-> > +						wait_timeout);
-> > +
-> > +		if (ret || !mgr->cbs->update_hpd_irq_state ||
-> > +		    time_after(jiffies, wait_expires))
-> > +			break;
-> =
+  * boot:
+    - fi-kbl-8809g:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-8809g/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-8809g/boot.html
+    - fi-icl-y:           [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-y/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-icl-y/boot.html
+    - fi-icl-u2:          [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-u2/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-icl-u2/boot.html
+    - fi-cfl-8109u:       [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-cfl-8109u/boot.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-cfl-8109u/boot.html
+    - fi-skl-6600u:       [PASS][9] -> [FAIL][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-skl-6600u/boot.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-skl-6600u/boot.html
+    - fi-cfl-8700k:       [PASS][11] -> [FAIL][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-cfl-8700k/boot.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-cfl-8700k/boot.html
+    - fi-bxt-dsi:         [PASS][13] -> [FAIL][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-bxt-dsi/boot.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-bxt-dsi/boot.html
+    - fi-icl-dsi:         [PASS][15] -> [FAIL][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-dsi/boot.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-icl-dsi/boot.html
+    - fi-whl-u:           [PASS][17] -> [FAIL][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-whl-u/boot.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-whl-u/boot.html
+    - fi-cml-u2:          [PASS][19] -> [FAIL][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-cml-u2/boot.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-cml-u2/boot.html
+    - fi-skl-6700k2:      [PASS][21] -> [FAIL][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-skl-6700k2/boot.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-skl-6700k2/boot.html
+    - fi-cfl-guc:         [PASS][23] -> [FAIL][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-cfl-guc/boot.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-cfl-guc/boot.html
+    - fi-kbl-soraka:      [PASS][25] -> [FAIL][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-soraka/boot.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-soraka/boot.html
+    - fi-icl-guc:         [PASS][27] -> [FAIL][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-guc/boot.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-icl-guc/boot.html
+    - fi-cml-s:           [PASS][29] -> [FAIL][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-cml-s/boot.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-cml-s/boot.html
+    - fi-skl-lmem:        [PASS][31] -> [FAIL][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-skl-lmem/boot.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-skl-lmem/boot.html
+    - fi-glk-dsi:         [PASS][33] -> [FAIL][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-glk-dsi/boot.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-glk-dsi/boot.html
+    - fi-tgl-y:           [PASS][35] -> [FAIL][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-tgl-y/boot.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-tgl-y/boot.html
+    - fi-kbl-guc:         [PASS][37] -> [FAIL][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-guc/boot.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-guc/boot.html
+    - fi-kbl-x1275:       [PASS][39] -> [FAIL][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-x1275/boot.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-x1275/boot.html
+    - fi-kbl-7500u:       [PASS][41] -> [FAIL][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-7500u/boot.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-7500u/boot.html
+    - fi-skl-guc:         [PASS][43] -> [FAIL][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-skl-guc/boot.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-skl-guc/boot.html
+    - fi-kbl-r:           [PASS][45] -> [FAIL][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-r/boot.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-r/boot.html
 
-> First I thought this was changing the behaviour when the callback
-> isn't provided, but then I noticed the ?: stuff for the timeout.
->
-> I think this stuff deserves a comment to explain why we would
-> ever do such a thing instead of simply waiting like we did before.
+  
+#### Suppressed ####
 
-Ok, will add a compact form of the commit log explanation.
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-> =
+  * boot:
+    - {fi-tgl-dsi}:       [PASS][47] -> [FAIL][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-tgl-dsi/boot.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-tgl-dsi/boot.html
+    - {fi-tgl-u}:         [PASS][49] -> [FAIL][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-tgl-u/boot.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-tgl-u/boot.html
+    - {fi-kbl-7560u}:     NOTRUN -> [FAIL][51]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-kbl-7560u/boot.html
+    - {fi-ehl-1}:         [PASS][52] -> [FAIL][53]
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-ehl-1/boot.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-ehl-1/boot.html
 
-> > +
-> > +		mgr->cbs->update_hpd_irq_state(mgr);
-> > +	}
-> > +
-> >  	mutex_lock(&mgr->qlock);
-> >  	if (ret > 0) {
-> >  		if (txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_TIMEOUT) {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/=
-drm/i915/display/intel_dp_mst.c
-> > index d18b406f2a7d..1ff7d0096262 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -765,8 +765,23 @@ static struct drm_connector *intel_dp_add_mst_conn=
-ector(struct drm_dp_mst_topolo
-> >  	return NULL;
-> >  }
-> >  =
+  
+Known issues
+------------
 
-> > +static void
-> > +intel_dp_mst_update_hpd_irq_state(struct drm_dp_mst_topology_mgr *mgr)
-> > +{
-> > +	struct intel_dp *intel_dp =3D container_of(mgr, struct intel_dp, mst_=
-mgr);
-> > +	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> > +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> > +
-> > +	spin_lock_irq(&i915->irq_lock);
-> > +	i915->hotplug.short_port_mask |=3D BIT(dig_port->base.port);
-> > +	spin_unlock_irq(&i915->irq_lock);
-> > +
-> > +	queue_work(i915->hotplug.dp_wq, &i915->hotplug.dig_port_work);
-> =
+  Here are the changes found in Patchwork_17872 that come from known issues:
 
-> I might suggest putting this code right next to intel_hpd_irq_handler()
-> so that people can actually see it when working on the hotplug code.
+### CI changes ###
 
-Ok.
+#### Issues hit ####
 
-> =
+  * boot:
+    - fi-apl-guc:         [PASS][54] -> [FAIL][55] ([i915#348])
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-apl-guc/boot.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-apl-guc/boot.html
 
-> > +}
-> > +
-> >  static const struct drm_dp_mst_topology_cbs mst_cbs =3D {
-> >  	.add_connector =3D intel_dp_add_mst_connector,
-> > +	.update_hpd_irq_state =3D intel_dp_mst_update_hpd_irq_state,
-> >  };
-> >  =
+  
 
-> >  static struct intel_dp_mst_encoder *
-> > diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_h=
-elper.h
-> > index 9e1ffcd7cb68..c902f4380200 100644
-> > --- a/include/drm/drm_dp_mst_helper.h
-> > +++ b/include/drm/drm_dp_mst_helper.h
-> > @@ -475,6 +475,7 @@ struct drm_dp_mst_topology_mgr;
-> >  struct drm_dp_mst_topology_cbs {
-> >  	/* create a connector for a port */
-> >  	struct drm_connector *(*add_connector)(struct drm_dp_mst_topology_mgr=
- *mgr, struct drm_dp_mst_port *port, const char *path);
-> > +	void (*update_hpd_irq_state)(struct drm_dp_mst_topology_mgr *mgr);
-> =
+### IGT changes ###
 
-> I guess a bit of docs for this might be nice. Maybe s/update/poll/
-> might make the intention more clear? Not sure.
+#### Issues hit ####
 
-Ok.
+  * igt@i915_module_load@reload:
+    - fi-bsw-n3050:       [PASS][56] -> [DMESG-WARN][57] ([i915#1982])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-bsw-n3050/igt@i915_module_load@reload.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-bsw-n3050/igt@i915_module_load@reload.html
 
-> =
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][58] -> [DMESG-WARN][59] ([i915#1982])
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-> >  };
-> >  =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> >  #define DP_MAX_PAYLOAD (sizeof(unsigned long) * 8)
-> > -- =
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#348]: https://gitlab.freedesktop.org/drm/intel/issues/348
 
-> > 2.23.1
-> > =
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
+Participating hosts (50 -> 44)
+------------------------------
 
-> -- =
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-> Ville Syrj=E4l=E4
-> Intel
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8583 -> Patchwork_17872
+
+  CI-20190529: 20190529
+  CI_DRM_8583: e147ef9bced964b97283851a519aea132a5613e6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17872: 121db1e864d600a3de364f26a4df211cadc0f7c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+121db1e864d6 drm/i915/params: switch to device specific parameters
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17872/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
