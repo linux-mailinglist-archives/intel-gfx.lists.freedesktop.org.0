@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4951EE7C0
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:28:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECEB11EE7CA
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:31:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219DA6E44C;
-	Thu,  4 Jun 2020 15:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38EB46E44B;
+	Thu,  4 Jun 2020 15:31:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA3216E44B;
- Thu,  4 Jun 2020 15:28:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D3AA5A47EA;
- Thu,  4 Jun 2020 15:28:30 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 981DA6E44B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 15:31:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21397070-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 16:31:47 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Jun 2020 16:31:45 +0100
+Message-Id: <20200604153145.21068-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 04 Jun 2020 15:28:30 -0000
-Message-ID: <159128451083.14555.13011380529138973532@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200604135938.3975-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200604135938.3975-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Trim_set=5Ftimer=5Fms=28=29_intervals?=
+Subject: [Intel-gfx] [CI] drm/i915/gt: Track if an engine requires forcewake
+ w/a
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,103 +37,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Sometimes an engine might need to keep forcewake active while it is busy
+submitting requests for a particular workaround. Track such nuisance
+with engine->fw_domain.
 
-Series: drm/i915: Trim set_timer_ms() intervals
-URL   : https://patchwork.freedesktop.org/series/78002/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 11 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 ++++
+ 2 files changed, 15 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 2b6cdf47d428..073c3769e8cc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -24,6 +24,7 @@
+ #include "i915_selftest.h"
+ #include "intel_sseu.h"
+ #include "intel_timeline_types.h"
++#include "intel_uncore.h"
+ #include "intel_wakeref.h"
+ #include "intel_workarounds_types.h"
+ 
+@@ -313,6 +314,16 @@ struct intel_engine_cs {
+ 	u32 context_size;
+ 	u32 mmio_base;
+ 
++	/*
++	 * Some w/a require forcewake to be held (which prevents RC6) while
++	 * a particular engine is active. If so, we set fw_domain to which
++	 * domains need to be held for the duration of request activity,
++	 * and 0 if none. We try to limit the duration of the hold as much
++	 * as possible.
++	 */
++	enum forcewake_domains fw_domain;
++	atomic_t fw_active;
++
+ 	unsigned long context_tag;
+ 
+ 	struct rb_node uabi_node;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index aac8da18694f..33b7173b7195 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1373,6 +1373,8 @@ __execlists_schedule_in(struct i915_request *rq)
+ 	ce->lrc.ccid |= engine->execlists.ccid;
+ 
+ 	__intel_gt_pm_get(engine->gt);
++	if (engine->fw_domain && !atomic_fetch_inc(&engine->fw_active))
++		intel_uncore_forcewake_get(engine->uncore, engine->fw_domain);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
+ 	intel_engine_context_in(engine);
+ 
+@@ -1441,6 +1443,8 @@ __execlists_schedule_out(struct i915_request *rq,
+ 	intel_context_update_runtime(ce);
+ 	intel_engine_context_out(engine);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
++	if (engine->fw_domain && !atomic_dec_return(&engine->fw_active))
++		intel_uncore_forcewake_put(engine->uncore, engine->fw_domain);
+ 	intel_gt_pm_put_async(engine->gt);
+ 
+ 	/*
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8583 -> Patchwork_17871
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17871 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-tgl-y/igt@i915_pm_rpm@basic-rte.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/fi-tgl-y/igt@i915_pm_rpm@basic-rte.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][3] ([i915#95]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][5] ([i915#62] / [i915#92]) -> [DMESG-WARN][6] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8583 -> Patchwork_17871
-
-  CI-20190529: 20190529
-  CI_DRM_8583: e147ef9bced964b97283851a519aea132a5613e6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17871: 5e06d688ea6b95e0bbeaf12390351a259dfb391c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5e06d688ea6b drm/i915: Trim set_timer_ms() intervals
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17871/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
