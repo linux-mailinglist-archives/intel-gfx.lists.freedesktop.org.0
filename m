@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AE871EE704
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 16:55:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F41E1EE735
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:02:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F7996E3F5;
-	Thu,  4 Jun 2020 14:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D57AB6E406;
+	Thu,  4 Jun 2020 15:02:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 033016E3F5;
- Thu,  4 Jun 2020 14:55:34 +0000 (UTC)
-IronPort-SDR: 4HBdms3GUN/pLkDLG8J7pR3JDr7UF4mE8at5kByUn+O8yJWPlAJauzhFy7xX+2o3AwQzm4GOt4
- N+4GnRFsna8w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 07:55:33 -0700
-IronPort-SDR: 9D6McQmtEWxZTsD+bEvopTN2/gKqL2xfPcJqxGeUukzBQ7QdeHpYG1tNkMbU+gP5wayOr/+IrX
- fdOcUJYOnEvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="312917337"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 04 Jun 2020 07:55:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Jun 2020 17:55:30 +0300
-Date: Thu, 4 Jun 2020 17:55:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200604145530.GS6112@intel.com>
-References: <20200603211040.8190-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C4436E408;
+ Thu,  4 Jun 2020 15:02:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36A3FA47E8;
+ Thu,  4 Jun 2020 15:02:35 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp_mst: Fix disabling MST on a
- port
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 04 Jun 2020 15:02:35 -0000
+Message-ID: <159128295519.14554.13111082927383132306@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200604132305.22089-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200604132305.22089-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Trace_HWSP_cachelines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,114 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2020 at 12:10:38AM +0300, Imre Deak wrote:
-> Currently MST on a port can get enabled/disabled from the hotplug work
-> and get disabled from the short pulse work in a racy way. Fix this by
-> relying on the MST state checking in the hotplug work and just schedule
-> a hotplug work from the short pulse handler if some problem happened
-> during the MST interrupt handling.
-> =
+== Series Details ==
 
-> This removes the explicit MST disabling in case of an AUX failure, but
-> if AUX fails, then probably the detection will also fail during the
-> scheduled hotplug work and it's not guaranteed that we'll see
-> intermittent errors anyway.
-> =
+Series: drm/i915/gt: Trace HWSP cachelines
+URL   : https://patchwork.freedesktop.org/series/78000/
+State : success
 
-> While at it also simplify the error checking of the MST interrupt
-> handler.
-> =
+== Summary ==
 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 33 +++----------------------
->  1 file changed, 4 insertions(+), 29 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_8583 -> Patchwork_17870
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 55fda074c0ad..befbcacddaa1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5604,7 +5604,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
->  		}
->  	}
->  =
+Summary
+-------
 
-> -	return need_retrain;
-> +	return need_retrain ? -EINVAL : 0;
->  }
->  =
+  **SUCCESS**
 
->  static bool
-> @@ -7255,35 +7255,10 @@ intel_dp_hpd_pulse(struct intel_digital_port *int=
-el_dig_port, bool long_hpd)
->  	}
->  =
+  No regressions found.
 
->  	if (intel_dp->is_mst) {
-> -		switch (intel_dp_check_mst_status(intel_dp)) {
-> -		case -EINVAL:
-> -			/*
-> -			 * If we were in MST mode, and device is not
-> -			 * there, get out of MST mode
-> -			 */
-> -			drm_dbg_kms(&i915->drm,
-> -				    "MST device may have disappeared %d vs %d\n",
-> -				    intel_dp->is_mst,
-> -				    intel_dp->mst_mgr.mst_state);
-> -			intel_dp->is_mst =3D false;
-> -			drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
-> -							intel_dp->is_mst);
-> -
-> -			return IRQ_NONE;
-> -		case 1:
-> -			return IRQ_NONE;
-> -		default:
-> -			break;
-> -		}
-> -	}
-> -
-> -	if (!intel_dp->is_mst) {
-> -		bool handled;
-> -
-> -		handled =3D intel_dp_short_pulse(intel_dp);
-> -
-> -		if (!handled)
-> +		if (intel_dp_check_mst_status(intel_dp) < 0)
->  			return IRQ_NONE;
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/index.html
 
-Since we no longer need the tristate return, can you follow up
-with a conversion to bool return? I'd vote to make it match the
-semantics of intel_dp_short_pulse() so we get one step
-closer to unifying the hpd_irq handling across the board.
+Known issues
+------------
 
-> +	} else if (!intel_dp_short_pulse(intel_dp)) {
-> +		return IRQ_NONE;
->  	}
->  =
+  Here are the changes found in Patchwork_17870 that come from known issues:
 
->  	return IRQ_HANDLED;
-> -- =
+### IGT changes ###
 
-> 2.23.1
-> =
+#### Issues hit ####
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][1] -> [SKIP][2] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
 
--- =
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
 
-Ville Syrj=E4l=E4
-Intel
+  
+#### Possible fixes ####
+
+  * {igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1}:
+    - fi-icl-u2:          [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8583/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8583 -> Patchwork_17870
+
+  CI-20190529: 20190529
+  CI_DRM_8583: e147ef9bced964b97283851a519aea132a5613e6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17870: bb11ec0255995d1b00b7e3b7d4fad4f375d49c6b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bb11ec025599 drm/i915/gt: Trace HWSP cachelines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17870/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
