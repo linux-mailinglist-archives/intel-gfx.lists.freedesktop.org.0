@@ -2,29 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECEB11EE7CA
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C6F1EE7D6
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 17:34:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38EB46E44B;
-	Thu,  4 Jun 2020 15:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD026E44E;
+	Thu,  4 Jun 2020 15:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 981DA6E44B
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 15:31:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21397070-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 16:31:47 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Jun 2020 16:31:45 +0100
-Message-Id: <20200604153145.21068-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0166E44E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 15:34:21 +0000 (UTC)
+IronPort-SDR: nATkz9I1SrWNA4wz47j5zp8KoS3qEwS6Kw2kUkI3wYkbrKNg3vRI/nitKiZhGydT5PD9tn+Hgt
+ vyPD1vok3BMQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 08:34:08 -0700
+IronPort-SDR: K8SVl+iqBfj6VPqLStT2OsyNb/dubt6WBe24Yj/ZVBf6trQkydAkUFYPMAoSHal2vJOkPZtOHD
+ 43XJew74/qgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="304745290"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 04 Jun 2020 08:34:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 04 Jun 2020 18:34:05 +0300
+Date: Thu, 4 Jun 2020 18:34:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20200604153405.GV6112@intel.com>
+References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+ <20200603211529.3005059-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Track if an engine requires forcewake
- w/a
+Content-Disposition: inline
+In-Reply-To: <20200603211529.3005059-2-matthew.d.roper@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 01/15] drm/i915/rkl: Set transcoder mask
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,77 +52,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sometimes an engine might need to keep forcewake active while it is busy
-submitting requests for a particular workaround. Track such nuisance
-with engine->fw_domain.
+On Wed, Jun 03, 2020 at 02:15:15PM -0700, Matt Roper wrote:
+> Although we properly captured RKL's three pipes in the device info
+> structure, we forgot to make the corresponding update to the transcoder
+> mask.  Set this field so that our transcoder loops will operate
+> properly.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 11 +++++++++++
- drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 ++++
- 2 files changed, 15 insertions(+)
+> Fixes: 123f62de419f ("drm/i915/rkl: Add RKL platform info and PCI ids")
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 2b6cdf47d428..073c3769e8cc 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -24,6 +24,7 @@
- #include "i915_selftest.h"
- #include "intel_sseu.h"
- #include "intel_timeline_types.h"
-+#include "intel_uncore.h"
- #include "intel_wakeref.h"
- #include "intel_workarounds_types.h"
- 
-@@ -313,6 +314,16 @@ struct intel_engine_cs {
- 	u32 context_size;
- 	u32 mmio_base;
- 
-+	/*
-+	 * Some w/a require forcewake to be held (which prevents RC6) while
-+	 * a particular engine is active. If so, we set fw_domain to which
-+	 * domains need to be held for the duration of request activity,
-+	 * and 0 if none. We try to limit the duration of the hold as much
-+	 * as possible.
-+	 */
-+	enum forcewake_domains fw_domain;
-+	atomic_t fw_active;
-+
- 	unsigned long context_tag;
- 
- 	struct rb_node uabi_node;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index aac8da18694f..33b7173b7195 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1373,6 +1373,8 @@ __execlists_schedule_in(struct i915_request *rq)
- 	ce->lrc.ccid |= engine->execlists.ccid;
- 
- 	__intel_gt_pm_get(engine->gt);
-+	if (engine->fw_domain && !atomic_fetch_inc(&engine->fw_active))
-+		intel_uncore_forcewake_get(engine->uncore, engine->fw_domain);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
- 	intel_engine_context_in(engine);
- 
-@@ -1441,6 +1443,8 @@ __execlists_schedule_out(struct i915_request *rq,
- 	intel_context_update_runtime(ce);
- 	intel_engine_context_out(engine);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
-+	if (engine->fw_domain && !atomic_dec_return(&engine->fw_active))
-+		intel_uncore_forcewake_put(engine->uncore, engine->fw_domain);
- 	intel_gt_pm_put_async(engine->gt);
- 
- 	/*
--- 
-2.20.1
+Matches what I see in the spec.
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/i915_pci.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 07b09af3a9c3..0ed586ee2047 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -881,6 +881,8 @@ static const struct intel_device_info rkl_info =3D {
+>  	GEN12_FEATURES,
+>  	PLATFORM(INTEL_ROCKETLAKE),
+>  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> +	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+> +		BIT(TRANSCODER_C),
+>  	.require_force_probe =3D 1,
+>  	.engine_mask =3D
+>  		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
