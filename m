@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC311EE2A0
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 12:38:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F127A1EE292
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 12:38:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A86C66E321;
-	Thu,  4 Jun 2020 10:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCE108999C;
+	Thu,  4 Jun 2020 10:38:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 412DF6E320
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 10:38:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73CF58999E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 10:38:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21393745-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21393746-1500050 
  for multiple; Thu, 04 Jun 2020 11:37:54 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Jun 2020 11:37:30 +0100
-Message-Id: <20200604103751.18816-1-chris@chris-wilson.co.uk>
+Date: Thu,  4 Jun 2020 11:37:31 +0100
+Message-Id: <20200604103751.18816-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200604103751.18816-1-chris@chris-wilson.co.uk>
+References: <20200604103751.18816-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/22] drm/i915/gem: Mark the buffer pool as
- active for the cmdparser
+Subject: [Intel-gfx] [PATCH 02/22] drm/i915: Trim set_timer_ms() intervals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,138 +44,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the execbuf is interrupted after building the cmdparser pipeline, and
-before we commit to submitting the request to HW, we would attempt to
-clean up the cmdparser early. While we held active references to the vma
-being parsed and constructed, we did not hold an active reference for
-the buffer pool itself. The result was that an interrupted execbuf could
-still have run the cmdparser pipeline, but since the buffer pool was
-idle, its target vma could have been recycled.
+Use the plain msec_to_jiffies() rather than the _timeout variant so we
+round down and do not add an extra jiffy to our interval. For example,
+with timeslicing we do not want to err on the longer side as any
+fairness depends on catching hogging contexts on the GPU. Bring on
+CFS.
 
-Note this problem only occurs if the cmdparser is running async due to
-pipelined waits on busy fences, and the execbuf is interrupted.
-
-Fixes: 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser")
-Fixes: 16e87459673a ("drm/i915/gt: Move the batch buffer pool from the engine to the gt")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 56 ++++++++++++++++---
- 1 file changed, 48 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 02a5c0ce39ca..3e87deb35626 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1987,6 +1987,38 @@ static const struct dma_fence_work_ops eb_parse_ops = {
- 	.release = __eb_parse_release,
- };
- 
-+static inline int
-+__parser_mark_active(struct i915_vma *vma,
-+		     struct intel_timeline *tl,
-+		     struct dma_fence *fence)
-+{
-+	struct intel_gt_buffer_pool_node *node = vma->private;
-+
-+	return i915_active_ref(&node->active, tl, fence);
-+}
-+
-+static int
-+parser_mark_active(struct eb_parse_work *pw, struct intel_timeline *tl)
-+{
-+	int err;
-+
-+	mutex_lock(&tl->mutex);
-+
-+	err = __parser_mark_active(pw->shadow, tl, &pw->base.dma);
-+	if (err)
-+		goto unlock;
-+
-+	if (pw->trampoline) {
-+		err = __parser_mark_active(pw->trampoline, tl, &pw->base.dma);
-+		if (err)
-+			goto unlock;
-+	}
-+
-+unlock:
-+	mutex_unlock(&tl->mutex);
-+	return err;
-+}
-+
- static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 			     struct i915_vma *shadow,
- 			     struct i915_vma *trampoline)
-@@ -2021,20 +2053,25 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	pw->shadow = shadow;
- 	pw->trampoline = trampoline;
- 
-+	/* Mark active refs for this worker, in case we get interrupted */
-+	err = parser_mark_active(pw, eb->context->timeline);
-+	if (err)
-+		goto err_commit;
-+
- 	err = dma_resv_lock_interruptible(pw->batch->resv, NULL);
- 	if (err)
--		goto err_trampoline;
-+		goto err_commit;
- 
- 	err = dma_resv_reserve_shared(pw->batch->resv, 1);
- 	if (err)
--		goto err_batch_unlock;
-+		goto err_commit_unlock;
- 
- 	/* Wait for all writes (and relocs) into the batch to complete */
- 	err = i915_sw_fence_await_reservation(&pw->base.chain,
- 					      pw->batch->resv, NULL, false,
- 					      0, I915_FENCE_GFP);
- 	if (err < 0)
--		goto err_batch_unlock;
-+		goto err_commit_unlock;
- 
- 	/* Keep the batch alive and unwritten as we parse */
- 	dma_resv_add_shared_fence(pw->batch->resv, &pw->base.dma);
-@@ -2049,11 +2086,13 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	dma_fence_work_commit_imm(&pw->base);
- 	return 0;
- 
--err_batch_unlock:
-+err_commit_unlock:
- 	dma_resv_unlock(pw->batch->resv);
--err_trampoline:
--	if (trampoline)
--		i915_active_release(&trampoline->active);
-+err_commit:
-+	i915_sw_fence_set_error_once(&pw->base.chain, err);
-+	dma_fence_work_commit_imm(&pw->base);
-+	return err;
-+
- err_shadow:
- 	i915_active_release(&shadow->active);
- err_batch:
-@@ -2099,6 +2138,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 		goto err;
+diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+index e28eae4a8f70..f42a9e9a0b4f 100644
+--- a/drivers/gpu/drm/i915/i915_utils.c
++++ b/drivers/gpu/drm/i915/i915_utils.c
+@@ -91,7 +91,7 @@ void set_timer_ms(struct timer_list *t, unsigned long timeout)
+ 		return;
  	}
- 	i915_gem_object_set_readonly(shadow->obj);
-+	shadow->private = pool;
  
- 	trampoline = NULL;
- 	if (CMDPARSER_USES_GGTT(eb->i915)) {
-@@ -2112,6 +2152,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 			shadow = trampoline;
- 			goto err_shadow;
- 		}
-+		shadow->private = pool;
+-	timeout = msecs_to_jiffies_timeout(timeout);
++	timeout = msecs_to_jiffies(timeout);
  
- 		eb->batch_flags |= I915_DISPATCH_SECURE;
- 	}
-@@ -2128,7 +2169,6 @@ static int eb_parse(struct i915_execbuffer *eb)
- 	eb->trampoline = trampoline;
- 	eb->batch_start_offset = 0;
- 
--	shadow->private = pool;
- 	return 0;
- 
- err_trampoline:
+ 	/*
+ 	 * Paranoia to make sure the compiler computes the timeout before
 -- 
 2.20.1
 
