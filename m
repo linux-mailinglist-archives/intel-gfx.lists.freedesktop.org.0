@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BEC1EE999
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 19:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0429C1EE996
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 19:42:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F626E527;
-	Thu,  4 Jun 2020 17:43:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16EDC6E528;
+	Thu,  4 Jun 2020 17:42:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05B7C6E527
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 17:43:27 +0000 (UTC)
-IronPort-SDR: O0Gb0WUsS7BqhkkUEFbmA4tRxAQ88Li/oE5P02pOieTJFF19rsMO6MBh/h6JRSwCEiXnlzbjRj
- PxL2DY+FyDLg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 10:43:26 -0700
-IronPort-SDR: SpCNFRFjEq+O9LhcPPufgiIM86lHDs+BUFGppaAa3m41j7rF8PSDSnvexaJTTmyRlOeBvQIdqG
- idZENolZ6tgg==
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="287452901"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 10:43:26 -0700
-Date: Thu, 4 Jun 2020 10:41:38 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200604174138.GF3190340@intel.com>
-References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
- <20200603211529.3005059-15-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B6586E527;
+ Thu,  4 Jun 2020 17:42:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05519A47EB;
+ Thu,  4 Jun 2020 17:42:34 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200603211529.3005059-15-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 14/15] drm/i915/rkl: Disable PSR2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 04 Jun 2020 17:42:33 -0000
+Message-ID: <159129255399.14554.16009622065809505658@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200604163836.7514-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200604163836.7514-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Extract_busy-stats_for_use_in_other_schedulers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,144 +38,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 03, 2020 at 02:15:28PM -0700, Matt Roper wrote:
-> From: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> =
+== Series Details ==
 
-> RKL doesn't have PSR2 HW tracking, it was replaced by software/manual
-> tracking.  The driver is required to track the areas that needs update
-> and program hardware to send selective updates.
-> =
+Series: drm/i915/gt: Extract busy-stats for use in other schedulers
+URL   : https://patchwork.freedesktop.org/series/78007/
+State : failure
 
-> So until the software tracking is implemented, PSR2 needs to be disabled
-> for platforms without PSR2 HW tracking.
-> =
+== Summary ==
 
-> BSpec: 50422
-> BSpec: 50424
-> =
+CI Bug Log - changes from CI_DRM_8584 -> Patchwork_17874
+====================================================
 
-> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Summary
+-------
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+  **FAILURE**
 
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 15 +++++++++++++++
->  drivers/gpu/drm/i915/i915_drv.h          |  2 ++
->  drivers/gpu/drm/i915/i915_pci.c          |  3 +++
->  drivers/gpu/drm/i915/intel_device_info.h |  1 +
->  4 files changed, 21 insertions(+)
-> =
+  Serious unknown changes coming with Patchwork_17874 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17874, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index b7a2c102648a..714c590b39f5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -646,6 +646,21 @@ static bool intel_psr2_config_valid(struct intel_dp =
-*intel_dp,
->  		return false;
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/index.html
 
-> +	/*
-> +	 * Some platforms lack PSR2 HW tracking and instead require manual
-> +	 * tracking by software.  In this case, the driver is required to track
-> +	 * the areas that need updates and program hardware to send selective
-> +	 * updates.
-> +	 *
-> +	 * So until the software tracking is implemented, PSR2 needs to be
-> +	 * disabled for platforms without PSR2 HW tracking.
-> +	 */
-> +	if (!HAS_PSR_HW_TRACKING(dev_priv)) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "No PSR2 HW tracking in the platform\n");
-> +		return false;
-> +	}
-> +
->  	/*
->  	 * DSC and PSR2 cannot be enabled simultaneously. If a requested
->  	 * resolution requires DSC to be enabled, priority is given to DSC
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 668b3c9cf3ae..87f4000413f1 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1644,6 +1644,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
->  #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->has_fpga=
-_dbg)
->  #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
-> +#define HAS_PSR_HW_TRACKING(dev_priv) \
-> +	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
->  #define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->cpu_tra=
-nscoder_mask & BIT(trans)) !=3D 0)
->  =
+Possible new issues
+-------------------
 
->  #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
-pci.c
-> index 0ed586ee2047..ef4a457a6c4f 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -536,6 +536,7 @@ static const struct intel_device_info vlv_info =3D {
->  	.display.has_ddi =3D 1, \
->  	.has_fpga_dbg =3D 1, \
->  	.display.has_psr =3D 1, \
-> +	.display.has_psr_hw_tracking =3D 1, \
->  	.display.has_dp_mst =3D 1, \
->  	.has_rc6p =3D 0 /* RC6p removed-by HSW */, \
->  	HSW_PIPE_OFFSETS, \
-> @@ -690,6 +691,7 @@ static const struct intel_device_info skl_gt4_info =
-=3D {
->  	.display.has_fbc =3D 1, \
->  	.display.has_hdcp =3D 1, \
->  	.display.has_psr =3D 1, \
-> +	.display.has_psr_hw_tracking =3D 1, \
->  	.has_runtime_pm =3D 1, \
->  	.display.has_csr =3D 1, \
->  	.has_rc6 =3D 1, \
-> @@ -884,6 +886,7 @@ static const struct intel_device_info rkl_info =3D {
->  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
->  		BIT(TRANSCODER_C),
->  	.require_force_probe =3D 1,
-> +	.display.has_psr_hw_tracking =3D 0,
->  	.engine_mask =3D
->  		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
->  };
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
-915/intel_device_info.h
-> index 3613c04904e0..34dbffd65bad 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -148,6 +148,7 @@ enum intel_ppgtt_type {
->  	func(has_modular_fia); \
->  	func(has_overlay); \
->  	func(has_psr); \
-> +	func(has_psr_hw_tracking); \
->  	func(overlay_needs_physical); \
->  	func(supports_tv);
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_17874:
 
-> -- =
+### IGT changes ###
 
-> 2.24.1
-> =
+#### Possible regressions ####
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@i915_selftest@live@gt_engines:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-icl-y/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-icl-y/igt@i915_selftest@live@gt_engines.html
+    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-tgl-y/igt@i915_selftest@live@gt_engines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-tgl-y/igt@i915_selftest@live@gt_engines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17874 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - {fi-tgl-dsi}:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (47 -> 44)
+------------------------------
+
+  Additional (4): fi-bsw-kefka fi-skl-lmem fi-cml-s fi-bsw-n3050 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8584 -> Patchwork_17874
+
+  CI-20190529: 20190529
+  CI_DRM_8584: 2219a8bbaa3c87f07656725f4d2ea6623d1fd09a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17874: ffa4cc633b498c858ed7646f2c040e0f9f6ee394 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ffa4cc633b49 drm/i915/gt: Extract busy-stats for use in other schedulers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17874/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
