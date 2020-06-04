@@ -1,38 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1701EEA4B
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 20:30:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7BB1EEA4C
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 20:31:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F9F6E53E;
-	Thu,  4 Jun 2020 18:30:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C226E546;
+	Thu,  4 Jun 2020 18:31:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 464846E53E
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 18:30:40 +0000 (UTC)
-IronPort-SDR: VQ5/29T8ob45lBh7R335Mz2vh3c5W1hbYTZD5k4/Op0qgtDx71wSzS7jK4Ri+RNJ3W03j1XM5e
- ePnvpJFdzAeQ==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 764AE6E546
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 18:31:43 +0000 (UTC)
+IronPort-SDR: hBGeVQY2C/ogqLz6l9IdjVnNRx0F5PuhOeyldvS35SWpoTrOBCMoLUzIhd+H+kZA1tdO1tXX7q
+ lVe1W+ybVTJg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 11:29:25 -0700
-IronPort-SDR: cznbuxKQ4/4mLhFSZhTYAh2z+gOee2YAorsAI1/m2KLr1F58sKwt9lg3Bz9fZ4eMF9rHItRCS+
- p6uHnDcnljJA==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 11:31:42 -0700
+IronPort-SDR: 4GD/7+5HmDEX01R1LXDC5NYwh2S4s1nMGxcEE9/wNLB+y/a/POe72gW/24/l+UlCO+0eO7fqcv
+ 50Rca2pGfiTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="378496328"
-Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by fmsmga001.fm.intel.com with ESMTP; 04 Jun 2020 11:29:23 -0700
-From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Jun 2020 23:56:58 +0530
-Message-Id: <20200604182658.878417-1-ayaz.siddiqui@intel.com>
-X-Mailer: git-send-email 2.26.2
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="258437928"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 04 Jun 2020 11:31:40 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 04 Jun 2020 21:31:39 +0300
+Date: Thu, 4 Jun 2020 21:31:39 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20200604183139.GC6112@intel.com>
+References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+ <20200603211529.3005059-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Initialize reserved and
- unspecified MOCS indices
+Content-Disposition: inline
+In-Reply-To: <20200603211529.3005059-4-matthew.d.roper@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 03/15] drm/i915/rkl: RKL has no
+ MBUS_ABOX_CTL{1, 2}
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,140 +52,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to avoid functional breakage of mis-programmed applications that
-have grown to depend on unused MOCS entries, we are programming
-those entries to be equal to fully cached ("L3 + LLC") entry as per the
-recommendation from architecture team.
+On Wed, Jun 03, 2020 at 02:15:17PM -0700, Matt Roper wrote:
+> Although RKL is a gen12 platform, it doesn't have the two extra
+> instances of the ABOX control register; we should only program
+> the single MBUS_ABOX_CTL on this platform.
+> =
 
-These reserved and unspecified entries should not be used as they may be
-changed to less performant variants with better coherency in the future
-if more entries are needed.
+> Bspec: 50096
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> =
 
-Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_mocs.c | 93 ++++++++++++++++++++++++++--
- 1 file changed, 89 insertions(+), 4 deletions(-)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 2c1ce50b572b..37847b3d733c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4772,7 +4772,7 @@ static void icl_mbus_init(struct drm_i915_private *=
+dev_priv)
+>  		MBUS_ABOX_BW_CREDIT(1);
+>  =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-index 632e08a4592b..1089bd5fdba2 100644
---- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-@@ -234,10 +234,6 @@ static const struct drm_i915_mocs_entry broxton_mocs_table[] = {
- 		   L3_1_UC)
- 
- static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
--	/* Base - Error (Reserved for Non-Use) */
--	MOCS_ENTRY(0, 0x0, 0x0),
--	/* Base - Reserved */
--	MOCS_ENTRY(1, 0x0, 0x0),
- 
- 	GEN11_MOCS_ENTRIES,
- 
-@@ -265,6 +261,95 @@ static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
- 	MOCS_ENTRY(61,
- 		   LE_1_UC | LE_TC_1_LLC,
- 		   L3_3_WB),
-+
-+	/* NOTE:
-+	 * Reserved and unspecified MOCS indices have been set to (L3 + LCC).
-+	 * These reserved entry should never be used, they may be chanaged
-+	 * to low performant variants with better coherency in the future if
-+	 * more entries are needed.
-+	 */
-+
-+	/* Reserved index 0 and 1 */
-+	MOCS_ENTRY(0, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(1, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+
-+	/* Reserved index 16 and 17 */
-+	MOCS_ENTRY(16, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(17, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+
-+	/* Reserved index 24 and 25 */
-+	MOCS_ENTRY(24, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(25, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+
-+	/* Unspecified indices 26 to 47 */
-+	MOCS_ENTRY(26, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(27, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(28, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(29, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(30, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(31, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(32, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(33, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(34, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(35, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(36, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(37, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(38, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(39, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(40, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(41, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(42, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(43, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(44, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(45, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(46, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(47, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+
-+	/* Unspecified indices 52 to 59 */
-+	MOCS_ENTRY(52, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(53, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(54, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(55, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(56, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(57, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(58, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
-+	MOCS_ENTRY(59, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB)
- };
- 
- static const struct drm_i915_mocs_entry icl_mocs_table[] = {
--- 
-2.26.2
+>  	intel_de_rmw(dev_priv, MBUS_ABOX_CTL, mask, val);
+> -	if (INTEL_GEN(dev_priv) >=3D 12) {
+> +	if (INTEL_GEN(dev_priv) >=3D 12 && !IS_ROCKETLAKE(dev_priv)) {
+>  		intel_de_rmw(dev_priv, MBUS_ABOX1_CTL, mask, val);
+>  		intel_de_rmw(dev_priv, MBUS_ABOX2_CTL, mask, val);
+>  	}
 
+Can't find anyting definitive in bspec, so not 100% sure but
+since you say it gives unclaim reg errors it seems correct.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Though I think I'd like to see that HAS_ABOX() thing I suggested
+and use it here as well.
+
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
