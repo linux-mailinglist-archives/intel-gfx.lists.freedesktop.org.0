@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A6E1EE2D9
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 12:55:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84AB1EE2F3
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 13:08:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A3D76E326;
-	Thu,  4 Jun 2020 10:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6C08993B;
+	Thu,  4 Jun 2020 11:08:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0B856E326
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 10:55:36 +0000 (UTC)
-IronPort-SDR: CNbpEltzoH2xA85/4WbhsEDn16a4q7F+NvhtDL0VFl2BO8VvrUJRvMHFT2kvANf4P9SAJ7Af8A
- rXfL0Tpcgnog==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 03:55:36 -0700
-IronPort-SDR: 5vbDb2wSzjNvPTprTiB5MlgiEdVgT/34OEPOUu3gINBy/OmKEu8oynfA9lq47xHyg6+nLFQELw
- hwKemom30qcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="445466679"
-Received: from unknown (HELO [10.249.46.66]) ([10.249.46.66])
- by orsmga005.jf.intel.com with ESMTP; 04 Jun 2020 03:55:34 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200604102140.8845-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <c86b06e8-6402-ef90-03d9-03642aa9fb52@intel.com>
-Date: Thu, 4 Jun 2020 11:55:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 78A9F89935;
+ Thu,  4 Jun 2020 11:08:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72BD8A47E6;
+ Thu,  4 Jun 2020 11:08:12 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 04 Jun 2020 11:08:12 -0000
+Message-ID: <159126889246.14554.292823011637408147@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200604102140.8845-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200604102140.8845-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Exercise all copy
- engines with the blt routines
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/selftests=3A_Exercise_all_copy_engines_with_the_bl?=
+ =?utf-8?q?t_routines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,20 +39,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04/06/2020 11:21, Chris Wilson wrote:
-> Just to remove an obnoxious HAS_ENGINES(), and in the process make the
-> code agnostic to the available of any particular engine by making it
-> exercise any and all such engines declared on the system.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: drm/i915/selftests: Exercise all copy engines with the blt routines
+URL   : https://patchwork.freedesktop.org/series/77994/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+dbd180308199 drm/i915/selftests: Exercise all copy engines with the blt routines
+-:288: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'engine__' - possible side-effects?
+#288: FILE: drivers/gpu/drm/i915/i915_drv.h:1267:
++#define for_each_uabi_class_engine(engine__, class__, i915__) \
++	for ((engine__) = intel_engine_lookup_user((i915__), (class__), 0); \
++	     (engine__) && (engine__)->uabi_class == (class__); \
++	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+
+-:288: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'class__' - possible side-effects?
+#288: FILE: drivers/gpu/drm/i915/i915_drv.h:1267:
++#define for_each_uabi_class_engine(engine__, class__, i915__) \
++	for ((engine__) = intel_engine_lookup_user((i915__), (class__), 0); \
++	     (engine__) && (engine__)->uabi_class == (class__); \
++	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+
+total: 0 errors, 0 warnings, 2 checks, 240 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
