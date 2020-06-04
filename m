@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0782C1EEB02
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 21:19:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC391EEB0B
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 21:23:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5DAC6E584;
-	Thu,  4 Jun 2020 19:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABB9E6E58E;
+	Thu,  4 Jun 2020 19:23:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A129B6E584
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 19:19:52 +0000 (UTC)
-IronPort-SDR: cvF0iSU+q7jj2IeLbvYdGoT42Dcl9Jr5i1YMyA8BBTM9eY9pA6uHSVzIHChZs4Or/OpN7+cfTQ
- XFmFsZuqdGZw==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592206E58E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 19:23:46 +0000 (UTC)
+IronPort-SDR: MOMWY0oxFBSjnynqlkkN3hZOFCUQB4piPQeSoOqzJBhWPzcB0tVNwIBgHY/uQFWUIrGl8t+FVq
+ qbp+y43wfJPw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2020 12:19:51 -0700
-IronPort-SDR: Ght3SC44ZWgvgBRTkZMenJW27KTJDLFQHFYl1+k5pg0HQSd36n6ikQsh2pyoAgxj4kCtU8azxL
- 0wWb8eN+2CbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="294439578"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga004.fm.intel.com with ESMTP; 04 Jun 2020 12:19:51 -0700
-Date: Thu, 4 Jun 2020 12:20:39 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200604192039.GD3922@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 12:23:45 -0700
+IronPort-SDR: m/BEF+mRgSozELhf+PwfVrVjNsOHufB2EYNoXmyKXz8ASCWnq3rLstRr82pk5iA3/QlcXKB8Cc
+ jecIedmFJmLA==
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="445613533"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 12:23:44 -0700
+Date: Thu, 4 Jun 2020 22:23:40 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Manasi D Navare <manasi.d.navare@intel.com>
+Message-ID: <20200604192340.GF15427@ideak-desk.fi.intel.com>
 References: <20200604002359.17128-1-manasi.d.navare@intel.com>
  <20200604152543.GU6112@intel.com> <20200604183530.GB3922@intel.com>
  <20200604183819.GD6112@intel.com> <20200604185223.GC3922@intel.com>
@@ -38,7 +38,7 @@ References: <20200604002359.17128-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20200604190858.GE15427@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Reset link params on connector
  disconnect
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,6 +53,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
@@ -89,31 +90,20 @@ ore
 > waking from an idle state when modesetting them, not sure if it's the
 > same case.
 
-Well in this case, it happens just after link training failure due to some =
-AUX timeouts
-then looks like the panel detects that the link was not enabled and sends t=
-his HPD
-which puts us into connector status changing from connected to disconnected.
-
-But in IGT, we dont get any uevent so we dont reprobe and continue with the=
- next
-igt_display_commit. =
-
-So should we in IGT in kms_atomic_transitions, plane-all-modeset-transition=
-s subtest,
-should we check the connector status everytime before back to back commit c=
-alls?
-
-Like I think in real use case, after a link failure the userspace would get=
- a uevent and
-respond to it by reprobing a connector, but we dont do that in IGT so these
-random link failures cause issues like in here.
-
-Manasi
+Manasi, could you try if a modeset on the monitor after it has been
+disabled for a while always results in a long HPD pulse a few seconds
+after the modeset? If so does this also happen when you just modeset in
+a sequence from one mode to the other not letting the monitor idle? The
+same monitor should be also tested then with the above sequences on
+older platforms if it behaves the same on those too.
 
 > =
 
 > --Imre
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
