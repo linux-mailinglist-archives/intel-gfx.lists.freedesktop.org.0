@@ -2,28 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A001EE62D
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 15:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AE871EE704
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jun 2020 16:55:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0CF56E06E;
-	Thu,  4 Jun 2020 13:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F7996E3F5;
+	Thu,  4 Jun 2020 14:55:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BBAB6E06E
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 13:59:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21396028-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 14:59:41 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Jun 2020 14:59:38 +0100
-Message-Id: <20200604135938.3975-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 033016E3F5;
+ Thu,  4 Jun 2020 14:55:34 +0000 (UTC)
+IronPort-SDR: 4HBdms3GUN/pLkDLG8J7pR3JDr7UF4mE8at5kByUn+O8yJWPlAJauzhFy7xX+2o3AwQzm4GOt4
+ N+4GnRFsna8w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 07:55:33 -0700
+IronPort-SDR: 9D6McQmtEWxZTsD+bEvopTN2/gKqL2xfPcJqxGeUukzBQ7QdeHpYG1tNkMbU+gP5wayOr/+IrX
+ fdOcUJYOnEvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,472,1583222400"; d="scan'208";a="312917337"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 04 Jun 2020 07:55:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 04 Jun 2020 17:55:30 +0300
+Date: Thu, 4 Jun 2020 17:55:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200604145530.GS6112@intel.com>
+References: <20200603211040.8190-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Trim set_timer_ms() intervals
+Content-Disposition: inline
+In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp_mst: Fix disabling MST on a
+ port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,102 +51,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the plain msec_to_jiffies() rather than the _timeout variant so we
-round down and do not add an extra jiffy to our interval. For example,
-with timeslicing we do not want to err on the longer side as any
-fairness depends on catching hogging contexts on the GPU. Bring on
-CFS.
+On Thu, Jun 04, 2020 at 12:10:38AM +0300, Imre Deak wrote:
+> Currently MST on a port can get enabled/disabled from the hotplug work
+> and get disabled from the short pulse work in a racy way. Fix this by
+> relying on the MST state checking in the hotplug work and just schedule
+> a hotplug work from the short pulse handler if some problem happened
+> during the MST interrupt handling.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 29 +++++++++++---------------
- drivers/gpu/drm/i915/i915_utils.c      |  2 +-
- 2 files changed, 13 insertions(+), 18 deletions(-)
+> This removes the explicit MST disabling in case of an AUX failure, but
+> if AUX fails, then probably the detection will also fail during the
+> scheduled hotplug work and it's not guaranteed that we'll see
+> intermittent errors anyway.
+> =
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 3e35a45d6218..67d74e6432a8 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1140,9 +1140,17 @@ static struct i915_request *nop_request(struct intel_engine_cs *engine)
- 	return rq;
- }
- 
--static long timeslice_threshold(const struct intel_engine_cs *engine)
-+static long slice_timeout(struct intel_engine_cs *engine)
- {
--	return 2 * msecs_to_jiffies_timeout(timeslice(engine)) + 1;
-+	long timeout;
-+
-+	/* Enough time for a timeslice to kick in, and kick out */
-+	timeout = 2 * msecs_to_jiffies_timeout(timeslice(engine));
-+
-+	/* Enough time for the nop request to complete */
-+	timeout += HZ / 5;
-+
-+	return timeout + 1;
- }
- 
- static int live_timeslice_queue(void *arg)
-@@ -1260,7 +1268,7 @@ static int live_timeslice_queue(void *arg)
- 		}
- 
- 		/* Timeslice every jiffy, so within 2 we should signal */
--		if (i915_request_wait(rq, 0, timeslice_threshold(engine)) < 0) {
-+		if (i915_request_wait(rq, 0, slice_timeout(engine)) < 0) {
- 			struct drm_printer p =
- 				drm_info_printer(gt->i915->drm.dev);
- 
-@@ -1379,7 +1387,7 @@ static int live_timeslice_nopreempt(void *arg)
- 		 * allow the maximum priority barrier through. Wait long
- 		 * enough to see if it is timesliced in by mistake.
- 		 */
--		if (i915_request_wait(rq, 0, timeslice_threshold(engine)) >= 0) {
-+		if (i915_request_wait(rq, 0, slice_timeout(engine)) >= 0) {
- 			pr_err("%s: I915_PRIORITY_BARRIER request completed, bypassing no-preempt request\n",
- 			       engine->name);
- 			err = -EINVAL;
-@@ -3890,19 +3898,6 @@ static int live_virtual_mask(void *arg)
- 	return 0;
- }
- 
--static long slice_timeout(struct intel_engine_cs *engine)
--{
--	long timeout;
--
--	/* Enough time for a timeslice to kick in, and kick out */
--	timeout = 2 * msecs_to_jiffies_timeout(timeslice(engine));
--
--	/* Enough time for the nop request to complete */
--	timeout += HZ / 5;
--
--	return timeout;
--}
--
- static int slicein_virtual_engine(struct intel_gt *gt,
- 				  struct intel_engine_cs **siblings,
- 				  unsigned int nsibling)
-diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
-index e28eae4a8f70..f42a9e9a0b4f 100644
---- a/drivers/gpu/drm/i915/i915_utils.c
-+++ b/drivers/gpu/drm/i915/i915_utils.c
-@@ -91,7 +91,7 @@ void set_timer_ms(struct timer_list *t, unsigned long timeout)
- 		return;
- 	}
- 
--	timeout = msecs_to_jiffies_timeout(timeout);
-+	timeout = msecs_to_jiffies(timeout);
- 
- 	/*
- 	 * Paranoia to make sure the compiler computes the timeout before
--- 
-2.20.1
+> While at it also simplify the error checking of the MST interrupt
+> handler.
+> =
 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 33 +++----------------------
+>  1 file changed, 4 insertions(+), 29 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 55fda074c0ad..befbcacddaa1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5604,7 +5604,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>  		}
+>  	}
+>  =
+
+> -	return need_retrain;
+> +	return need_retrain ? -EINVAL : 0;
+>  }
+>  =
+
+>  static bool
+> @@ -7255,35 +7255,10 @@ intel_dp_hpd_pulse(struct intel_digital_port *int=
+el_dig_port, bool long_hpd)
+>  	}
+>  =
+
+>  	if (intel_dp->is_mst) {
+> -		switch (intel_dp_check_mst_status(intel_dp)) {
+> -		case -EINVAL:
+> -			/*
+> -			 * If we were in MST mode, and device is not
+> -			 * there, get out of MST mode
+> -			 */
+> -			drm_dbg_kms(&i915->drm,
+> -				    "MST device may have disappeared %d vs %d\n",
+> -				    intel_dp->is_mst,
+> -				    intel_dp->mst_mgr.mst_state);
+> -			intel_dp->is_mst =3D false;
+> -			drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
+> -							intel_dp->is_mst);
+> -
+> -			return IRQ_NONE;
+> -		case 1:
+> -			return IRQ_NONE;
+> -		default:
+> -			break;
+> -		}
+> -	}
+> -
+> -	if (!intel_dp->is_mst) {
+> -		bool handled;
+> -
+> -		handled =3D intel_dp_short_pulse(intel_dp);
+> -
+> -		if (!handled)
+> +		if (intel_dp_check_mst_status(intel_dp) < 0)
+>  			return IRQ_NONE;
+
+Since we no longer need the tristate return, can you follow up
+with a conversion to bool return? I'd vote to make it match the
+semantics of intel_dp_short_pulse() so we get one step
+closer to unifying the hpd_irq handling across the board.
+
+> +	} else if (!intel_dp_short_pulse(intel_dp)) {
+> +		return IRQ_NONE;
+>  	}
+>  =
+
+>  	return IRQ_HANDLED;
+> -- =
+
+> 2.23.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
