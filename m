@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7931EF736
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:23:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209341EF738
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:23:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4B66E85D;
-	Fri,  5 Jun 2020 12:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99B7A6E8A0;
+	Fri,  5 Jun 2020 12:23:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 202516E119
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 12:23:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18AE96E859
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 12:23:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21406190-1500050 
- for multiple; Fri, 05 Jun 2020 13:23:37 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21406191-1500050 
+ for multiple; Fri, 05 Jun 2020 13:23:38 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Jun 2020 13:23:26 +0100
-Message-Id: <20200605122334.2798-2-chris@chris-wilson.co.uk>
+Date: Fri,  5 Jun 2020 13:23:27 +0100
+Message-Id: <20200605122334.2798-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200605122334.2798-1-chris@chris-wilson.co.uk>
 References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/10] drm/i915/gt: Always check to enable
- timeslicing if not submitting
+Subject: [Intel-gfx] [PATCH 03/10] Restore "drm/i915: drop
+ engine_pin/unpin_breadcrumbs_irq"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,40 +45,63 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We may choose not to submit for a number of reasons, yet not fill both
-ELSP. In which case we must start timeslicing (there will be no ACK
-event on which to hook the start) if the queue would benefit from the
-currently active context being evicted.
+This was removed in commit 478ffad6d690 ("drm/i915: drop
+engine_pin/unpin_breadcrumbs_irq") as the last user had been removed,
+but now there is a promise of a new user in the next patch.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 22 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine.h      |  3 +++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 92c3368ffcbd..d55a5e0466e5 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2362,10 +2362,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				if (last->context == rq->context)
- 					goto done;
- 
--				if (i915_request_has_sentinel(last)) {
--					start_timeslice(engine, rq_prio(rq));
-+				if (i915_request_has_sentinel(last))
- 					goto done;
--				}
- 
- 				/*
- 				 * If GVT overrides us we only ever submit
-@@ -2446,6 +2444,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		set_preempt_timeout(engine, *active);
- 		execlists_submit_ports(engine);
- 	} else {
-+		start_timeslice(engine, execlists->queue_priority_hint);
- skip_submit:
- 		ring_set_paused(engine, 0);
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index d907d538176e..03c14ab86d95 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -220,6 +220,28 @@ static void signal_irq_work(struct irq_work *work)
  	}
+ }
+ 
++void intel_engine_pin_breadcrumbs_irq(struct intel_engine_cs *engine)
++{
++	struct intel_breadcrumbs *b = &engine->breadcrumbs;
++
++	spin_lock_irq(&b->irq_lock);
++	if (!b->irq_enabled++)
++		irq_enable(engine);
++	GEM_BUG_ON(!b->irq_enabled); /* no overflow! */
++	spin_unlock_irq(&b->irq_lock);
++}
++
++void intel_engine_unpin_breadcrumbs_irq(struct intel_engine_cs *engine)
++{
++	struct intel_breadcrumbs *b = &engine->breadcrumbs;
++
++	spin_lock_irq(&b->irq_lock);
++	GEM_BUG_ON(!b->irq_enabled); /* no underflow! */
++	if (!--b->irq_enabled)
++		irq_disable(engine);
++	spin_unlock_irq(&b->irq_lock);
++}
++
+ static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ {
+ 	struct intel_engine_cs *engine =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index 791897f8d847..043462b6ce1f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -226,6 +226,9 @@ void intel_engine_init_execlists(struct intel_engine_cs *engine);
+ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine);
+ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+ 
++void intel_engine_pin_breadcrumbs_irq(struct intel_engine_cs *engine);
++void intel_engine_unpin_breadcrumbs_irq(struct intel_engine_cs *engine);
++
+ void intel_engine_disarm_breadcrumbs(struct intel_engine_cs *engine);
+ 
+ static inline void
 -- 
 2.20.1
 
