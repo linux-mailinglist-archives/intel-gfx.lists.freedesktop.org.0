@@ -2,64 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3FA31EFB9D
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 16:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F04351EFB7B
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 16:33:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1D16E91A;
-	Fri,  5 Jun 2020 14:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57F2B6E912;
+	Fri,  5 Jun 2020 14:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 589 seconds by postgrey-1.36 at gabe;
- Fri, 05 Jun 2020 14:40:54 UTC
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 690E86E917;
- Fri,  5 Jun 2020 14:40:54 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id DD4433F6A7;
- Fri,  5 Jun 2020 16:31:03 +0200 (CEST)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=P1NrJ9Ks; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ZzJm3QusKM0P; Fri,  5 Jun 2020 16:30:59 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 750183F628;
- Fri,  5 Jun 2020 16:30:57 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.139.76])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 7F8493601AD;
- Fri,  5 Jun 2020 16:30:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1591367457; bh=WmmKpNHpyNnLQkrBY2MHybJLK6DanaIpP6iniTFoQGE=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=P1NrJ9Ksaz/Mu6lOw3BCKxoGnXwlsK564hqTfU32mVfedyJmsS5c4seF5zeSaZ46q
- FuEfibE+fHQnpa/x39VHqeB3JqC21BmEctstREEAZPA7snFzoBcA/MTtT9uxkwoKDG
- yaqYCBUWv+y/aIgYJaCH0q5RNYvlG+HbUYplB8yE=
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200604081224.863494-4-daniel.vetter@ffwll.ch>
- <20200605132953.899664-1-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <83805409-ad4a-65a3-d9cf-21878308dc92@shipmail.org>
-Date: Fri, 5 Jun 2020 16:30:39 +0200
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EF2A6E913
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 14:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591367632;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UnXpqpJmhsoGN5vwHlR9MCzTruzIUpnFGVXn1tVsFuM=;
+ b=Mxnr9w42gdtZZTOYLApVKTrKQb2nOmPpSPYPD0KDhV+7WqLnghdoRHpgvMlloEj8GnRNqj
+ yVS1JlGtZ/enEJsMmgLRMS20JLqOFO1FwS4CDHDZ3OOmjJPMgwY7TAHkdNGkEs+eOS6aTN
+ KRB9572/hD9ZhikSVB4Nr6Og+u2lHdw=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-198-aLIShmlNML-GXJF4Eb-MLg-1; Fri, 05 Jun 2020 10:33:50 -0400
+X-MC-Unique: aLIShmlNML-GXJF4Eb-MLg-1
+Received: by mail-ej1-f72.google.com with SMTP id m19so3665611ejd.21
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Jun 2020 07:33:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=UnXpqpJmhsoGN5vwHlR9MCzTruzIUpnFGVXn1tVsFuM=;
+ b=UrgHerzvv3yXoVSFeoHiDnswl0rNL/I7H/0y/J3341vwZ07uOYyrPS2JwDGSfKDhTR
+ S6pyX/++z5T2G7O41C63inpQELltyps1cgbWEVMeDA0ubRuZ3bC5Zr37YwWbcZf/LtJV
+ 6w8fRCoU6L1CZKSYnqc+AemssWkR1qyUey4ngzARd+ky3tWVoVKJDLmvwqspYDTMFqux
+ 3dv7ZX7QXMnBJusIPu/sGVvXYl4HQnVU7GluYeS+DctzwS+O2mi2uq6yoUI2fiJ61oIM
+ KsvxogWSndhRC73e4dlPp2BnuBM7LjnzTNfE9iGIaYfp2qMW8pM57uzOO/i+VpuF6SsJ
+ CdkA==
+X-Gm-Message-State: AOAM532Um5Uoc3m3f1JZcoMfAq36uVuHihjmGUaDnnknl1nYGZ6qkLRo
+ 4zlV5sOyQ+Vhql6bPgJPQ+RrtmRDO7+H3mgDk7L9iItuRtuImXTrXq3XylM5oG84Ue8YfmVoUlO
+ t8B9n2mAXdQP9A8dS3kyrmh0QoiGL
+X-Received: by 2002:a17:906:4554:: with SMTP id
+ s20mr8783719ejq.241.1591367629244; 
+ Fri, 05 Jun 2020 07:33:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxPmTQAV1XuXHtuL/qMSpWO2BScpZajU1f7rMoqZ9XHo3qWMvt1jv1U5k9HlA8ZVtwsZNScZA==
+X-Received: by 2002:a17:906:4554:: with SMTP id
+ s20mr8783698ejq.241.1591367628950; 
+ Fri, 05 Jun 2020 07:33:48 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id o7sm230792edj.52.2020.06.05.07.33.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 Jun 2020 07:33:48 -0700 (PDT)
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20200602122130.45630-1-hdegoede@redhat.com>
+ <20200602152317.GI2428291@smile.fi.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <ba931618-9259-aca0-142c-c1dfb67e737e@redhat.com>
+Date: Fri, 5 Jun 2020 16:33:47 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200605132953.899664-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200602152317.GI2428291@smile.fi.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] dma-fence: basic lockdep annotations
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH] pinctrl: baytrail: Fix pin being driven low
+ for a while on gpiod_get(..., GPIOD_OUT_HIGH)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,138 +84,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-gpio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDYvNS8yMCAzOjI5IFBNLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+IERlc2lnbiBpcyBzaW1p
-bGFyIHRvIHRoZSBsb2NrZGVwIGFubm90YXRpb25zIGZvciB3b3JrZXJzLCBidXQgd2l0aAo+IHNv
-bWUgdHdpc3RzOgo+Cj4gLSBXZSB1c2UgYSByZWFkLWxvY2sgZm9yIHRoZSBleGVjdXRpb24vd29y
-a2VyL2NvbXBsZXRpb24gc2lkZSwgc28gdGhhdAo+ICAgIHRoaXMgZXhwbGljaXQgYW5ub3RhdGlv
-biBjYW4gYmUgbW9yZSBsaWJlcmFsbHkgc3ByaW5rbGVkIGFyb3VuZC4KPiAgICBXaXRoIHJlYWQg
-bG9ja3MgbG9ja2RlcCBpc24ndCBnb2luZyB0byBjb21wbGFpbiBpZiB0aGUgcmVhZC1zaWRlCj4g
-ICAgaXNuJ3QgbmVzdGVkIHRoZSBzYW1lIHdheSB1bmRlciBhbGwgY2lyY3Vtc3RhbmNlcywgc28g
-QUJCQSBkZWFkbG9ja3MKPiAgICBhcmUgb2suIFdoaWNoIHRoZXkgYXJlLCBzaW5jZSB0aGlzIGlz
-IGFuIGFubm90YXRpb24gb25seS4KPgo+IC0gV2UncmUgdXNpbmcgbm9uLXJlY3Vyc2l2ZSBsb2Nr
-ZGVwIHJlYWQgbG9jayBtb2RlLCBzaW5jZSBpbiByZWN1cnNpdmUKPiAgICByZWFkIGxvY2sgbW9k
-ZSBsb2NrZGVwIGRvZXMgbm90IGNhdGNoIHJlYWQgc2lkZSBoYXphcmRzLiBBbmQgd2UKPiAgICBf
-dmVyeV8gbXVjaCB3YW50IHJlYWQgc2lkZSBoYXphcmRzIHRvIGJlIGNhdWdodC4gRm9yIGZ1bGwg
-ZGV0YWlscyBvZgo+ICAgIHRoaXMgbGltaXRhdGlvbiBzZWUKPgo+ICAgIGNvbW1pdCBlOTE0OTg1
-ODk3NDYwNjVlM2FlOTVkOWEwMGIwNjhlNTI1ZWVjMzRmCj4gICAgQXV0aG9yOiBQZXRlciBaaWps
-c3RyYSA8cGV0ZXJ6QGluZnJhZGVhZC5vcmc+Cj4gICAgRGF0ZTogICBXZWQgQXVnIDIzIDEzOjEz
-OjExIDIwMTcgKzAyMDAKPgo+ICAgICAgICBsb2NraW5nL2xvY2tkZXAvc2VsZnRlc3RzOiBBZGQg
-bWl4ZWQgcmVhZC13cml0ZSBBQkJBIHRlc3RzCj4KPiAtIFRvIGFsbG93IG5lc3Rpbmcgb2YgdGhl
-IHJlYWQtc2lkZSBleHBsaWNpdCBhbm5vdGF0aW9ucyB3ZSBleHBsaWNpdGx5Cj4gICAga2VlcCB0
-cmFjayBvZiB0aGUgbmVzdGluZy4gbG9ja19pc19oZWxkKCkgYWxsb3dzIHVzIHRvIGRvIHRoYXQu
-Cj4KPiAtIFRoZSB3YWl0LXNpZGUgYW5ub3RhdGlvbiBpcyBhIHdyaXRlIGxvY2ssIGFuZCBlbnRp
-cmVseSBkb25lIHdpdGhpbgo+ICAgIGRtYV9mZW5jZV93YWl0KCkgZm9yIGV2ZXJ5b25lIGJ5IGRl
-ZmF1bHQuCj4KPiAtIFRvIGJlIGFibGUgdG8gZnJlZWx5IGFubm90YXRlIGhlbHBlciBmdW5jdGlv
-bnMgSSB3YW50IHRvIG1ha2UgaXQgb2sKPiAgICB0byBjYWxsIGRtYV9mZW5jZV9iZWdpbi9lbmRf
-c2lnbmFsbGluZyBmcm9tIHNvZnQvaGFyZGlycSBjb250ZXh0Lgo+ICAgIEZpcnN0IGF0dGVtcHQg
-d2FzIHVzaW5nIHRoZSBoYXJkaXJxIGxvY2tpbmcgY29udGV4dCBmb3IgdGhlIHdyaXRlCj4gICAg
-c2lkZSBpbiBsb2NrZGVwLCBidXQgdGhpcyBmb3JjZXMgYWxsIG5vcm1hbCBzcGlubG9ja3MgbmVz
-dGVkIHdpdGhpbgo+ICAgIGRtYV9mZW5jZV9iZWdpbi9lbmRfc2lnbmFsbGluZyB0byBiZSBzcGlu
-bG9ja3MuIFRoYXQgYm9sbG9ja3MuCj4KPiAgICBUaGUgYXBwcm9hY2ggbm93IGlzIHRvIHNpbXBs
-ZSBjaGVjayBpbl9hdG9taWMoKSwgYW5kIGZvciB0aGVzZSBjYXNlcwo+ICAgIGVudGlyZWx5IHJl
-bHkgb24gdGhlIG1pZ2h0X3NsZWVwKCkgY2hlY2sgaW4gZG1hX2ZlbmNlX3dhaXQoKS4gVGhhdAo+
-ICAgIHdpbGwgY2F0Y2ggYW55IHdyb25nIG5lc3RpbmcgYWdhaW5zdCBzcGlubG9ja3MgZnJvbSBz
-b2Z0L2hhcmRpcnEKPiAgICBjb250ZXh0cy4KPgo+IFRoZSBpZGVhIGhlcmUgaXMgdGhhdCBldmVy
-eSBjb2RlIHBhdGggdGhhdCdzIGNyaXRpY2FsIGZvciBldmVudHVhbGx5Cj4gc2lnbmFsbGluZyBh
-IGRtYV9mZW5jZSBzaG91bGQgYmUgYW5ub3RhdGVkIHdpdGgKPiBkbWFfZmVuY2VfYmVnaW4vZW5k
-X3NpZ25hbGxpbmcuIFRoZSBhbm5vdGF0aW9uIGlkZWFsbHkgc3RhcnRzIHJpZ2h0Cj4gYWZ0ZXIg
-YSBkbWFfZmVuY2UgaXMgcHVibGlzaGVkIChhZGRlZCB0byBhIGRtYV9yZXN2LCBleHBvc2VkIGFz
-IGEKPiBzeW5jX2ZpbGUgZmQsIGF0dGFjaGVkIHRvIGEgZHJtX3N5bmNvYmogZmQsIG9yIGFueXRo
-aW5nIGVsc2UgdGhhdAo+IG1ha2VzIHRoZSBkbWFfZmVuY2UgdmlzaWJsZSB0byBvdGhlciBrZXJu
-ZWwgdGhyZWFkcyksIHVwIHRvIGFuZAo+IGluY2x1ZGluZyB0aGUgZG1hX2ZlbmNlX3dhaXQoKS4g
-RXhhbXBsZXMgYXJlIGlycSBoYW5kbGVycywgdGhlCj4gc2NoZWR1bGVyIHJ0IHRocmVhZHMsIHRo
-ZSB0YWlsIG9mIGV4ZWNidWYgKGFmdGVyIHRoZSBjb3JyZXNwb25kaW5nCj4gZmVuY2VzIGFyZSB2
-aXNpYmxlKSwgYW55IHdvcmtlcnMgdGhhdCBlbmQgdXAgc2lnbmFsbGluZyBkbWFfZmVuY2VzIGFu
-ZAo+IHJlYWxseSBhbnl0aGluZyBlbHNlLiBOb3QgYW5ub3RhdGVkIHNob3VsZCBiZSBjb2RlIHBh
-dGhzIHRoYXQgb25seQo+IGNvbXBsZXRlIGZlbmNlcyBvcHBvcnR1bmlzdGljYWxseSBhcyB0aGUg
-Z3B1IHByb2dyZXNzZXMsIGxpa2UgZS5nLgo+IHNocmlua2VyL2V2aWN0aW9uIGNvZGUuCj4KPiBU
-aGUgbWFpbiBjbGFzcyBvZiBkZWFkbG9ja3MgdGhpcyBpcyBzdXBwb3NlZCB0byBjYXRjaCBhcmU6
-Cj4KPiBUaHJlYWQgQToKPgo+IAltdXRleF9sb2NrKEEpOwo+IAltdXRleF91bmxvY2soQSk7Cj4K
-PiAJZG1hX2ZlbmNlX3NpZ25hbCgpOwo+Cj4gVGhyZWFkIEI6Cj4KPiAJbXV0ZXhfbG9jayhBKTsK
-PiAJZG1hX2ZlbmNlX3dhaXQoKTsKPiAJbXV0ZXhfdW5sb2NrKEEpOwo+Cj4gVGhyZWFkIEIgaXMg
-YmxvY2tlZCBvbiBBIHNpZ25hbGxpbmcgdGhlIGZlbmNlLCBidXQgQSBuZXZlciBnZXRzIGFyb3Vu
-ZAo+IHRvIHRoYXQgYmVjYXVzZSBpdCBjYW5ub3QgYWNxdWlyZSB0aGUgbG9jayBBLgo+Cj4gTm90
-ZSB0aGF0IGRtYV9mZW5jZV93YWl0KCkgaXMgYWxsb3dlZCB0byBiZSBuZXN0ZWQgd2l0aGluCj4g
-ZG1hX2ZlbmNlX2JlZ2luL2VuZF9zaWduYWxsaW5nIHNlY3Rpb25zLiBUbyBhbGxvdyB0aGlzIHRv
-IGhhcHBlbiB0aGUKPiByZWFkIGxvY2sgbmVlZHMgdG8gYmUgdXBncmFkZWQgdG8gYSB3cml0ZSBs
-b2NrLCB3aGljaCBtZWFucyB0aGF0IGFueQo+IG90aGVyIGxvY2sgaXMgYWNxdWlyZWQgYmV0d2Vl
-biB0aGUgZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmcoKSBjYWxsIGFuZAo+IHRoZSBjYWxsIHRv
-IGRtYV9mZW5jZV93YWl0KCksIGFuZCBzdGlsbCBoZWxkLCB0aGlzIHdpbGwgcmVzdWx0IGluIGFu
-Cj4gaW1tZWRpYXRlIGxvY2tkZXAgY29tcGxhaW50LiBUaGUgb25seSBvdGhlciBvcHRpb24gd291
-bGQgYmUgdG8gbm90Cj4gYW5ub3RhdGUgc3VjaCBjYWxscywgZGVmZWF0aW5nIHRoZSBwb2ludC4g
-VGhlcmVmb3JlIHRoZXNlIGFubm90YXRpb25zCj4gY2Fubm90IGJlIHNwcmlua2xlZCBvdmVyIHRo
-ZSBjb2RlIGVudGlyZWx5IG1pbmRsZXNzIHRvIGF2b2lkIGZhbHNlCj4gcG9zaXRpdmVzLgo+Cj4g
-T3JpZ2luYWxseSBJIGhvcGUgdGhhdCB0aGUgY3Jvc3MtcmVsZWFzZSBsb2NrZGVwIGV4dGVuc2lv
-bnMgd291bGQKPiBhbGxldmlhdGUgdGhlIG5lZWQgZm9yIGV4cGxpY2l0IGFubm90YXRpb25zOgo+
-Cj4gaHR0cHM6Ly9sd24ubmV0L0FydGljbGVzLzcwOTg0OS8KPgo+IEJ1dCB0aGVyZSdzIGEgZmV3
-IHJlYXNvbnMgd2h5IHRoYXQncyBub3QgYW4gb3B0aW9uOgo+Cj4gLSBJdCdzIG5vdCBoYXBwZW5p
-bmcgaW4gdXBzdHJlYW0sIHNpbmNlIGl0IGdvdCByZXZlcnRlZCBkdWUgdG8gdG9vCj4gICAgbWFu
-eSBmYWxzZSBwb3NpdGl2ZXM6Cj4KPiAJY29tbWl0IGU5NjZlYWVlYjYyM2YwOTk3NWVmMzYyYzI4
-NjZmYWU2Zjg2ODQ0ZjkKPiAJQXV0aG9yOiBJbmdvIE1vbG5hciA8bWluZ29Aa2VybmVsLm9yZz4K
-PiAJRGF0ZTogICBUdWUgRGVjIDEyIDEyOjMxOjE2IDIwMTcgKzAxMDAKPgo+IAkgICAgbG9ja2lu
-Zy9sb2NrZGVwOiBSZW1vdmUgdGhlIGNyb3NzLXJlbGVhc2UgbG9ja2luZyBjaGVja3MKPgo+IAkg
-ICAgVGhpcyBjb2RlIChDT05GSUdfTE9DS0RFUF9DUk9TU1JFTEVBU0U9eSBhbmQgQ09ORklHX0xP
-Q0tERVBfQ09NUExFVElPTlM9eSksCj4gCSAgICB3aGlsZSBpdCBmb3VuZCBhIG51bWJlciBvZiBv
-bGQgYnVncyBpbml0aWFsbHksIHdhcyBhbHNvIGNhdXNpbmcgdG9vIG1hbnkKPiAJICAgIGZhbHNl
-IHBvc2l0aXZlcyB0aGF0IGNhdXNlZCBwZW9wbGUgdG8gZGlzYWJsZSBsb2NrZGVwIC0gd2hpY2gg
-aXMgYXJndWFibHkKPiAJICAgIGEgd29yc2Ugb3ZlcmFsbCBvdXRjb21lLgo+Cj4gLSBjcm9zcy1y
-ZWxlYXNlIHVzZXMgdGhlIGNvbXBsZXRlKCkgY2FsbCB0byBhbm5vdGF0ZSB0aGUgZW5kIG9mCj4g
-ICAgY3JpdGljYWwgc2VjdGlvbnMsIGZvciBkbWFfZmVuY2UgdGhhdCB3b3VsZCBiZSBkbWFfZmVu
-Y2Vfc2lnbmFsKCkuCj4gICAgQnV0IHdlIGRvIG5vdCB3YW50IGFsbCBkbWFfZmVuY2Vfc2lnbmFs
-KCkgY2FsbHMgdG8gYmUgdHJlYXRlZCBhcwo+ICAgIGNyaXRpY2FsLCBzaW5jZSBtYW55IGFyZSBv
-cHBvcnR1bmlzdGljIGNsZWFudXAgb2YgZ3B1IHJlcXVlc3RzLiBJZgo+ICAgIHRoZXNlIGdldCBz
-dHVjayB0aGVyZSdzIHN0aWxsIHRoZSBtYWluIGNvbXBsZXRpb24gaW50ZXJydXB0IGFuZAo+ICAg
-IHdvcmtlcnMgd2hvIGNhbiB1bmJsb2NrIGV2ZXJ5b25lLiBBdXRvbWF0aWNhbGx5IGFubm90YXRp
-bmcgYWxsCj4gICAgZG1hX2ZlbmNlX3NpZ25hbCgpIGNhbGxzIHdvdWxkIGhlbmNlIGNhdXNlIGZh
-bHNlIHBvc2l0aXZlcy4KPgo+IC0gY3Jvc3MtcmVsZWFzZSBoYWQgc29tZSBlZHVjYXRlZCBndWVz
-c2VzIGZvciB3aGVuIGEgY3JpdGljYWwgc2VjdGlvbgo+ICAgIHN0YXJ0cywgbGlrZSBmcmVzaCBz
-eXNjYWxsIG9yIGZyZXNoIHdvcmsgY2FsbGJhY2suIFRoaXMgd291bGQgYWdhaW4KPiAgICBjYXVz
-ZSBmYWxzZSBwb3NpdGl2ZXMgd2l0aG91dCBleHBsaWNpdCBhbm5vdGF0aW9ucywgc2luY2UgZm9y
-Cj4gICAgZG1hX2ZlbmNlIHRoZSBjcml0aWNhbCBzZWN0aW9ucyBvbmx5IHN0YXJ0cyB3aGVuIHdl
-IHB1Ymxpc2ggYSBmZW5jZS4KPgo+IC0gRnVydGhlcm1vcmUgdGhlcmUgY2FuIGJlIGNhc2VzIHdo
-ZXJlIGEgdGhyZWFkIG5ldmVyIGRvZXMgYQo+ICAgIGRtYV9mZW5jZV9zaWduYWwsIGJ1dCBpcyBz
-dGlsbCBjcml0aWNhbCBmb3IgcmVhY2hpbmcgY29tcGxldGlvbiBvZgo+ICAgIGZlbmNlcy4gT25l
-IGV4YW1wbGUgd291bGQgYmUgYSBzY2hlZHVsZXIga3RocmVhZCB3aGljaCBwaWNrcyB1cCBqb2Jz
-Cj4gICAgYW5kIHB1c2hlcyB0aGVtIGludG8gaGFyZHdhcmUsIHdoZXJlIHRoZSBpbnRlcnJ1cHQg
-aGFuZGxlciBvcgo+ICAgIGFub3RoZXIgY29tcGxldGlvbiB0aHJlYWQgY2FsbHMgZG1hX2ZlbmNl
-X3NpZ25hbCgpLiBCdXQgaWYgdGhlCj4gICAgc2NoZWR1bGVyIHRocmVhZCBoYW5ncywgdGhlbiBh
-bGwgdGhlIGZlbmNlcyBoYW5nLCBoZW5jZSB3ZSBuZWVkIHRvCj4gICAgbWFudWFsbHkgYW5ub3Rh
-dGUgaXQuIGNyb3NzLXJlbGVhc2UgYWltZWQgdG8gc29sdmUgdGhpcyBieSBjaGFpbmluZwo+ICAg
-IGNyb3NzLXJlbGVhc2UgZGVwZW5kZW5jaWVzLCBidXQgdGhlIGRlcGVuZGVuY3kgZnJvbSBzY2hl
-ZHVsZXIgdGhyZWFkCj4gICAgdG8gdGhlIGNvbXBsZXRpb24gaW50ZXJydXB0IGhhbmRsZXIgZ29l
-cyB0aHJvdWdoIGh3IHdoZXJlCj4gICAgY3Jvc3MtcmVsZWFzZSBjb2RlIGNhbid0IG9ic2VydmUg
-aXQuCj4KPiBJbiBzaG9ydCwgd2l0aG91dCBtYW51YWwgYW5ub3RhdGlvbnMgYW5kIGNhcmVmdWwg
-cmV2aWV3IG9mIHRoZSBzdGFydAo+IGFuZCBlbmQgb2YgY3JpdGljYWwgc2VjdGlvbnMsIGNyb3Nz
-LXJlbGVzZSBkZXBlbmRlbmN5IHRyYWNraW5nIGRvZXNuJ3QKPiB3b3JrLiBXZSBuZWVkIGV4cGxp
-Y2l0IGFubm90YXRpb25zLgo+Cj4gdjI6IGhhbmRsZSBzb2Z0L2hhcmRpcnEgY3R4IGJldHRlciBh
-Z2FpbnN0IHdyaXRlIHNpZGUgYW5kIGRvbnQgZm9yZ2V0Cj4gRVhQT1JUX1NZTUJPTCwgZHJpdmVy
-cyBjYW4ndCB1c2UgdGhpcyBvdGhlcndpc2UuCj4KPiB2MzogS2VybmVsZG9jLgo+Cj4gdjQ6IFNv
-bWUgc3BlbGxpbmcgZml4ZXMgZnJvbSBNaWthCj4KPiB2NTogQW1lbmQgY29tbWl0IG1lc3NhZ2Ug
-dG8gZXhwbGFpbiBpbiBkZXRhaWwgd2h5IGNyb3NzLXJlbGVhc2UgaXNuJ3QKPiB0aGUgc29sdXRp
-b24uCj4KPiBDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBpbnRlbC5jb20+Cj4gQ2M6
-IFRob21hcyBIZWxsc3Ryb20gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+IENjOiBsaW51
-eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8u
-b3JnCj4gQ2M6IGxpbnV4LXJkbWFAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGFtZC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBD
-YzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1hYXJ0ZW4g
-TGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IENocmlz
-dGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBE
-YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiAtLS0KClJldmlld2VkLWJ5
-OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5jb20+CgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Hi,
+
+On 6/2/20 5:23 PM, Andy Shevchenko wrote:
+> On Tue, Jun 02, 2020 at 02:21:30PM +0200, Hans de Goede wrote:
+>> The pins on the Bay Trail SoC have separate input-buffer and output-buffer
+>> enable bits and a read of the level bit of the value register will always
+>> return the value from the input-buffer.
+>>
+>> The BIOS of a device may configure a pin in output-only mode, only enabling
+>> the output buffer, and write 1 to the level bit to drive the pin high.
+>> This 1 written to the level bit will be stored inside the data-latch of the
+>> output buffer.
+>>
+>> But a subsequent read of the value register will return 0 for the level bit
+>> because the input-buffer is disabled. This causes a read-modify-write as
+>> done by byt_gpio_set_direction() to write 0 to the level bit, driving the
+>> pin low!
+>>
+>> Before this commit byt_gpio_direction_output() relied on
+>> pinctrl_gpio_direction_output() to set the direction, followed by a call
+>> to byt_gpio_set() to apply the selected value. This causes the pin to
+>> go low between the pinctrl_gpio_direction_output() and byt_gpio_set()
+>> calls.
+>>
+>> Change byt_gpio_direction_output() to directly make the register
+>> modifications itself instead. Replacing the 2 subsequent writes to the
+>> value register with a single write.
+>>
+>> Note that the pinctrl code does not keep track internally of the direction,
+>> so not going through pinctrl_gpio_direction_output() is not an issue.
+>>
+>> This issue was noticed on a Trekstor SurfTab Twin 10.1. When the panel is
+>> already on at boot (no external monitor connected), then the i915 driver
+>> does a gpiod_get(..., GPIOD_OUT_HIGH) for the panel-enable GPIO. The
+>> temporarily going low of that GPIO was causing the panel to reset itself
+>> after which it would not show an image until it was turned off and back on
+>> again (until a full modeset was done on it). This commit fixes this.
+> 
+> No Fixes tag?
+
+It is sort of hard to pin the introduction of this down to a single
+commit. If I were to guess, I guess the commit introducing the driver?
+
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> 
+> ...
+> 
+>> +static void byt_gpio_direct_irq_check(struct intel_pinctrl *vg,
+>> +				      unsigned int offset)
+>> +{
+>> +	void __iomem *conf_reg = byt_gpio_reg(vg, offset, BYT_CONF0_REG);
+>> +
+>> +	/*
+>> +	 * Before making any direction modifications, do a check if gpio is set
+> 
+>> +	 * for direct IRQ.  On baytrail, setting GPIO to output does not make
+> 
+> Since we change this, perhaps
+> 
+> 'IRQ.  On baytrail' -> 'IRQ. On Baytrail' (one space and capital 'B').
+
+Sure, not sure if that is worth respinning the patch for though,
+either way let me know.
+
+>> +	 * sense, so let's at least inform the caller before they shoot
+>> +	 * themselves in the foot.
+>> +	 */
+>> +	if (readl(conf_reg) & BYT_DIRECT_IRQ_EN)
+>> +		dev_info_once(vg->dev, "Potential Error: Setting GPIO with direct_irq_en to output");
+>> +}
+> 
+> ...
+> 
+>>   static int byt_gpio_direction_output(struct gpio_chip *chip,
+>>   				     unsigned int offset, int value)
+>>   {
+>> -	int ret = pinctrl_gpio_direction_output(chip->base + offset);
+>> +	struct intel_pinctrl *vg = gpiochip_get_data(chip);
+>> +	void __iomem *val_reg = byt_gpio_reg(vg, offset, BYT_VAL_REG);
+>> +	unsigned long flags;
+>> +	u32 reg;
+>>   
+>> -	if (ret)
+>> -		return ret;
+>> +	raw_spin_lock_irqsave(&byt_lock, flags);
+>>   
+>> -	byt_gpio_set(chip, offset, value);
+>> +	byt_gpio_direct_irq_check(vg, offset);
+>>   
+>> +	reg = readl(val_reg);
+>> +	reg &= ~BYT_DIR_MASK;
+>> +	if (value)
+>> +		reg |= BYT_LEVEL;
+>> +	else
+>> +		reg &= ~BYT_LEVEL;
+>> +
+>> +	writel(reg, val_reg);
+>> +
+>> +	raw_spin_unlock_irqrestore(&byt_lock, flags);
+>>   	return 0;
+>>   }
+> 
+> Wouldn't be simple below fix the issue?
+> 
+> @@ -1171,14 +1171,10 @@ static int byt_gpio_direction_input(struct gpio_chip *chip, unsigned int offset)
+>   static int byt_gpio_direction_output(struct gpio_chip *chip,
+>                                       unsigned int offset, int value)
+>   {
+> -       int ret = pinctrl_gpio_direction_output(chip->base + offset);
+> -
+> -       if (ret)
+> -               return ret;
+> -
+> +       /* Set value first to avoid a glitch */
+>          byt_gpio_set(chip, offset, value);
+>   
+> -       return 0;
+> +       return pinctrl_gpio_direction_output(chip->base + offset);
+>   }
+
+No that will not help the pin is already high, but any reads
+of the register will return the BYT_LEVEL bit as being low, so
+the read-write-modify done when setting the direction reads BYT_LEVEL
+as 0 and writes it back as such.
+
+So your proposal would actually make the problem much worse (and more
+obvious) if we do the byt_gpio_set() first then for pins which have
+there input-buffer initially disabled, the value passed to
+byt_gpio_direction_output will be completely ignored and they will
+always end up as being driven low.
+
+Regards,
+
+Hans
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
