@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 577D21EF737
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:23:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E6D1EF812
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:38:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7DE6E849;
-	Fri,  5 Jun 2020 12:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC7EA6E891;
+	Fri,  5 Jun 2020 12:38:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE4C16E0A5
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 12:23:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21406198-1500050 
- for multiple; Fri, 05 Jun 2020 13:23:39 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Jun 2020 13:23:34 +0100
-Message-Id: <20200605122334.2798-10-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200605122334.2798-1-chris@chris-wilson.co.uk>
-References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 13B556E10E;
+ Fri,  5 Jun 2020 12:38:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BCA8A47E6;
+ Fri,  5 Jun 2020 12:38:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/10] drm/i915/gt: Enable ring scheduling for
- gen6/7
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 05 Jun 2020 12:38:47 -0000
+Message-ID: <159136072701.18507.4090522909912855456@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200605122334.2798-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/10=5D_drm/i915/gt=3A_Set_timesli?=
+ =?utf-8?q?cing_priority_from_queue?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +39,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch over from FIFO global submission to the priority-sorted
-topographical scheduler. At the cost of more busy work on the CPU to
-keep the GPU supplied with the next packet of requests, this allows us
-to reorder requests around submission stalls.
+== Series Details ==
 
-This also enables the timer based RPS, with the exception of Valleyview
-who's PCU doesn't take kindly to our interference.
+Series: series starting with [01/10] drm/i915/gt: Set timeslicing priority from queue
+URL   : https://patchwork.freedesktop.org/series/78037/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c             | 2 ++
- drivers/gpu/drm/i915/gt/intel_rps.c                   | 6 ++----
- 3 files changed, 5 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index b81978890641..bb57687aea99 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -94,7 +94,7 @@ static int live_nop_switch(void *arg)
- 			rq = i915_request_get(this);
- 			i915_request_add(this);
- 		}
--		if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		if (i915_request_wait(rq, 0, HZ) < 0) {
- 			pr_err("Failed to populated %d contexts\n", nctx);
- 			intel_gt_set_wedged(&i915->gt);
- 			i915_request_put(rq);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 4b36378af119..2312e8313325 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -790,6 +790,8 @@ int intel_engines_init(struct intel_gt *gt)
- 
- 	if (HAS_EXECLISTS(gt->i915))
- 		setup = intel_execlists_submission_setup;
-+	else if (INTEL_GEN(gt->i915) >= 6)
-+		setup = intel_ring_scheduler_setup;
- 	else
- 		setup = intel_ring_submission_setup;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 2e4ddc9ca09d..22882c2953da 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1053,9 +1053,7 @@ static bool gen6_rps_enable(struct intel_rps *rps)
- 	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT, 50000);
- 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
- 
--	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
--			  GEN6_PM_RP_DOWN_THRESHOLD |
--			  GEN6_PM_RP_DOWN_TIMEOUT);
-+	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
- 
- 	return rps_reset(rps);
- }
-@@ -1362,7 +1360,7 @@ void intel_rps_enable(struct intel_rps *rps)
- 	GEM_BUG_ON(rps->efficient_freq < rps->min_freq);
- 	GEM_BUG_ON(rps->efficient_freq > rps->max_freq);
- 
--	if (has_busy_stats(rps))
-+	if (has_busy_stats(rps) && !IS_VALLEYVIEW(i915))
- 		intel_rps_set_timer(rps);
- 	else if (INTEL_GEN(i915) >= 6)
- 		intel_rps_set_interrupts(rps);
--- 
-2.20.1
+$ dim checkpatch origin/drm-tip
+3a69666621c1 drm/i915/gt: Set timeslicing priority from queue
+5e2b5f7efc76 drm/i915/gt: Always check to enable timeslicing if not submitting
+2555bb3785f7 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
+b5285725cfc7 drm/i915/gt: Couple tasklet scheduling for all CS interrupts
+4834051a2ae5 drm/i915/gt: Support creation of 'internal' rings
+ea2e5e762bd4 drm/i915/gt: Use client timeline address for seqno writes
+01def7b10c3d drm/i915/gt: Infrastructure for ring scheduling
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 842 lines checked
+77d4a18ad122 drm/i915/gt: Enable busy-stats for ring-scheduler
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+new file mode 100644
+
+-:200: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#200: FILE: drivers/gpu/drm/i915/gt/selftest_engine_pm.c:47:
++		udelay(100);
+
+-:230: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#230: FILE: drivers/gpu/drm/i915/gt/selftest_engine_pm.c:77:
++		udelay(100);
+
+total: 0 errors, 1 warnings, 2 checks, 236 lines checked
+af2eaeac159b drm/i915/gt: Implement ring scheduler for gen6/7
+-:68: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#68: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:320:
++				*cs++ = i915_mmio_reg_offset(
+
+-:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#70: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:322:
++				*cs++ = _MASKED_BIT_ENABLE(
+
+-:105: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#105: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:357:
++				*cs++ = _MASKED_BIT_DISABLE(
+
+total: 0 errors, 0 warnings, 3 checks, 506 lines checked
+49e963cbf709 drm/i915/gt: Enable ring scheduling for gen6/7
 
 _______________________________________________
 Intel-gfx mailing list
