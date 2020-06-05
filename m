@@ -2,93 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF9B1F0044
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D03A11F0045
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A066E96F;
-	Fri,  5 Jun 2020 19:07:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C73856E970;
+	Fri,  5 Jun 2020 19:07:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700044.outbound.protection.outlook.com [40.107.70.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06FB96E8B2;
- Fri,  5 Jun 2020 08:17:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kqTy/CS94qJ0bHK+rQGtx4T6cB7tvN7BMM0tKGyKooJtFIkt3oPZXOg2kpl2kHJAvhSZRCYqTthCt0JJlNBh5gWEPlQGGLu8aIhZvqzD+axmT7QK36Xzas0Iu/bQi1AyRlCMwGaBQmDx8NRCFdCxEWsVqosRelkc9MVsrYJJtoB6HcbiLO2I9hllKCQeuK9G5rIG81y7HolGeyoJvnCsSfvHZKxcffWiMskSSi4/tKMyG0H8Ew540ozNBDOAh+RifR8de0NOoNlawjM0nAcmMCxLdUoi55AxxPbzewBEaiBR83B7mvoNs2mIz1qikwdwIVU1/isc4w4vZbaOlllOBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HLJ6iYBn3Hntr2Y2b13btuX59xtEinn7fRLlkt8BFEU=;
- b=gbqG+qKmI9u0pLmsreXvbGTtXdUAyCdagiUXiEsTa/isi6ccJLV9DDA58M7PlihjlZBVFA4+Eh1ijoLGlIcD4+WpB8CGOXoLHKO1fBKaCxB2U2gz7iYqgvijPZhR90mTvVpWv31iLKwFeVQX1X6+BUZzgvqM9iuiFCWH0BjhjBy2DgDIsGyLwHBYjCGfeKxjFgIXvAaZKIQT3llMi0jHGX+W5ujn5HjTC3Ijm5+s2BLIeb2gjHJJcwMveJj+TrtmfXUz477n1ADYTRycnCYCPYWUcBUDAAuvBaEjdcKDRgst7+zTCEotIGX92BaEotk9cEpbpP7kfu61mWl0was6Bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HLJ6iYBn3Hntr2Y2b13btuX59xtEinn7fRLlkt8BFEU=;
- b=VmJI6N1mXHotdxs5Nu18S/NroqECIzR5dOmTID0AKCtlIau4NOYaaWNTxixRr2ybMliqdTEkCWS3hb2OQ346fAAtg7fpK20vV9ok8kNhPjoz0cBTKpF0lKhsQL7l41RadAjix8pc6hPLIcfyg3fRRpk7uTOLampWQDfNQ9EX2Xw=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3872.namprd12.prod.outlook.com (2603:10b6:208:168::17)
- by MN2PR12MB4013.namprd12.prod.outlook.com (2603:10b6:208:163::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Fri, 5 Jun
- 2020 08:17:23 +0000
-Received: from MN2PR12MB3872.namprd12.prod.outlook.com
- ([fe80::8843:c094:fb2a:d60a]) by MN2PR12MB3872.namprd12.prod.outlook.com
- ([fe80::8843:c094:fb2a:d60a%7]) with mapi id 15.20.3045.022; Fri, 5 Jun 2020
- 08:17:23 +0000
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-References: <20200603103223.10443-1-nirmoy.das@amd.com>
- <d11d0f7b-6273-e1be-65db-1698e9c31228@amd.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <f4368a5f-083c-9718-ad3d-95d45e89f107@amd.com>
-Date: Fri, 5 Jun 2020 10:18:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C7F76E8B6;
+ Fri,  5 Jun 2020 08:17:46 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id j10so8773648wrw.8;
+ Fri, 05 Jun 2020 01:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=oWoBXyI0xOBjf+sRY5eTXM2E2pXrkjavsP11CXARebk=;
+ b=sIHIh+EHv7kJQY/tz4CVjrt0wRZEbo9uIN+kyUW/fZCg4AKzWrIAKi6MmngRiRaDao
+ Sd/K2pcspp2Yd6IHmEfB88hEKnzMUOl1SMJMDW4f2fv4I8o4M/t5CUxwh/eKcoLyfNfG
+ f6HcoPzUNupi0iB/+pAWlkFY+NvpTMETGnHTyXKFG16dYmNqrubrLcm/BAmMF30kyZp/
+ qoidkx4KYL61pu6DfQGRtAoQxohz1c0jyjvWLXoHyfnq4rzdN8XdU0v9o1S8Wvg3yYGO
+ aqOCy+Uhkv6rM2ypCo5A09dY5/vkD0BPCEYOnBBROFPiRxm7BTCG4XtdO7SwB++djUYf
+ kPBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=oWoBXyI0xOBjf+sRY5eTXM2E2pXrkjavsP11CXARebk=;
+ b=uQw0XsA6f8v9ezJHFVL0EVmwa8Fb1LenUbA2CYJtbKfo0BaCKQO7reL7MhYR7E9hKp
+ oMpC223hEdLoOxUPwStmxuV/xs16RE724+3yRJx8U2lJjECwYImYUwmmHOXCMYAxit4x
+ x0po3caqeQmruvojW/Q7gn7zvZXxOK3E87Kot/LNCMPJRElDKcU7Xfm0O1UJ72hJKt7Y
+ 7JtttUF81x5m9YGtf/VbjqdUb8JGZB+pcs4uNsovpSg27dezitewtaIWHM3KgEYcPHv/
+ +JIZGgnUMn8Gj1lFrtJP5ToPbyMGxkNRRx7qNQKRCTV2shOh8FVfHzV29hD2lxlOyCnV
+ r0ow==
+X-Gm-Message-State: AOAM531GRFgZRTdp6JbeIII09VPUpkiXHNd3XDUf0oaFsV/GMoR0cKy0
+ jbaSOC7pmwmAxw6cMZcnaix2s7ww+pE=
+X-Google-Smtp-Source: ABdhPJw8UNT1h5QteIKcWaU7kFdfigLgvFJS8aiIf7QnZoXrPLzaNYz0VFPGzS7SxcE61k5AgGMLyg==
+X-Received: by 2002:adf:9b9e:: with SMTP id d30mr8557449wrc.345.1591345064588; 
+ Fri, 05 Jun 2020 01:17:44 -0700 (PDT)
+Received: from localhost.localdomain (pd9566764.dip0.t-ipconnect.de.
+ [217.86.103.100])
+ by smtp.gmail.com with ESMTPSA id t8sm10881252wro.56.2020.06.05.01.17.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Jun 2020 01:17:43 -0700 (PDT)
+From: Nirmoy Das <nirmoy.aiemd@gmail.com>
+X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
+To: dri-devel@lists.freedesktop.org
+Date: Fri,  5 Jun 2020 11:14:02 +0200
+Message-Id: <20200605091402.4408-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.26.2
 In-Reply-To: <d11d0f7b-6273-e1be-65db-1698e9c31228@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM3PR05CA0147.eurprd05.prod.outlook.com
- (2603:10a6:207:3::25) To MN2PR12MB3872.namprd12.prod.outlook.com
- (2603:10b6:208:168::17)
+References: <d11d0f7b-6273-e1be-65db-1698e9c31228@amd.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2003:c5:8f2b:1000:c281:bfdb:5843:3acd)
- by AM3PR05CA0147.eurprd05.prod.outlook.com (2603:10a6:207:3::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend
- Transport; Fri, 5 Jun 2020 08:17:22 +0000
-X-Originating-IP: [2003:c5:8f2b:1000:c281:bfdb:5843:3acd]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 8939630c-b4d2-4540-8f6d-08d80928df98
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4013:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB40130776FF3CA2858210A8F18B860@MN2PR12MB4013.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:257;
-X-Forefront-PRVS: 0425A67DEF
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Simr8Fup5kipfTj79XBx8VghWF2LbN9mXyCw708Ow+UVbC42pEGNkX+3GFQ5W4CW4eSLzy8kwCBYyvqtkpE4xNnoIjiqmt0zf3NQh/CxcgkKUSKDBId6SRe0EslZxZxIklIt5cfBBYL/G1qwY4hN46suAjO6h9UaEGwPguCQrxj1v8mDZc50u4EhfFNhcu0cqwubHsdHOt7nZjRRrgUq97FqxeQ4C3CzqvrzD5rpRej2klSJ+UBIWXrIveyoD8MASZBIVWthgyiYirEkRb3DuDu7iMWqSll8+BmSJoos59NwfaExm9Fl4MkE5E47dB2voVNYOiwoP7BQr6dmMHhHxP0Ix2tpngbEbtf1H+Y+4pJoLnCfrFh5MuplAPlqk3ly
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3872.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(4326008)(53546011)(5660300002)(6666004)(186003)(6506007)(8936002)(52116002)(478600001)(316002)(36756003)(16526019)(2616005)(31696002)(66556008)(66574014)(6486002)(2906002)(6512007)(31686004)(66476007)(8676002)(66946007)(83380400001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: J+SL034Qsh7oByxwu/OjpRh+Hc2kfZwUOPw+S8izlDI/aozRFbdkpPiVMGildxc2g2hyD3irxKOEXbY1rwQ/JiKDqMrfrmFTnDDpExX4Bv7zcy1QODkULgqpiaBkmI2D9hYdbMTD7TMtGBb2uAovy994m7g/u7KyH7mqCv5MMC4aVMp916/b3QcV4n6eOC3yk4NsSxzae3eudrf1BHu4ENqW8bDRS6WhoWGcRq8YiuBfMAkpstWJipSLJJAMa9M6+peCyKKmrRaGgTyay1fYpdqBSQ598w+fRRUm9v0NtwoAqAVNT2OCHRFz5klkkPpi4NTE+dnjbP403w7zY/sIR5XV0Df2hikZhUUPTgdYbAB0oxdo1JqOi8x5wQZ2600D3+qUPntXrx2uiG6iDjxEkwJCrwzvAPJ2sKSXmQ6YudIpsJ4osdjOEWjdoD51ca8Box38169qEnIaBLCZgBoiRhpb1gTjLGP3OUxm+3/80wv7GCCNA24y36o3uenXHsQgFcGRJStv8uqkcMjgUmKmD/hmBWkdPTIu0kfeHCn5RY8=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8939630c-b4d2-4540-8f6d-08d80928df98
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2020 08:17:22.9453 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HH4JVrqoUAmCiaNmJPyAoxEEWJ/VYopf10nFrDzcGGJNugGWdGPdOIG4H6CR1Bd5Jr/EVG1fT2O2/1fPVyFM9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4013
 X-Mailman-Approved-At: Fri, 05 Jun 2020 19:07:25 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/mm: add ig_frag selftest
+Subject: [Intel-gfx] [PATCH v3 1/1] drm/mm: add ig_frag selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,130 +69,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@amd.com>,
+ christian.koenig@amd.com, chris@chris-wilson.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDYvNS8yMCA5OjQ1IEFNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+IEFtIDAzLjA2LjIw
-IHVtIDEyOjMyIHNjaHJpZWIgTmlybW95IERhczoKPj4gVGhpcyBwYXRjaCBpbnRyb2R1Y2VzIGZy
-YWdtZW50YXRpb24gaW4gdGhlIGFkZHJlc3MgcmFuZ2UKPj4gYW5kIG1lYXN1cmVzIHRpbWUgdGFr
-ZW4gYnkgMTBrIGFuZCAyMGsgaW5zZXJ0aW9ucy4gaWdfZnJhZygpCj4+IHdpbGwgZmFpbCBpZiB0
-aGUgdGltZSB0YWtlbiBieSAyMGsgaW5zZXJ0aW9ucyB0YWtlcyBtb3JlIHRoYW4KPj4gNCB0aW1l
-cyBvZiAxMGsgaW5zZXJ0aW9ucyBhcyB3ZSBrbm93IHRoYXQgaW5zZXJ0aW9ucyBzaG91bGQgYXQK
-Pj4gbW9zdCBzY2FsZSBxdWFkcmF0aWNhbGx5Lgo+Pgo+PiB2MjoKPj4gaW50cm9kdWNlIGZyYWdt
-ZW50YXRpb24gYnkgZnJlZWluZyBldmVyeSBvdGhlciBub2RlLgo+PiBvbmx5IHRlc3QgYm90dG9t
-LXVwIGFuZCB0b3AtZG93biBmb3Igbm93Lgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBOaXJtb3kgRGFz
-IDxuaXJtb3kuZGFzQGFtZC5jb20+Cj4+IC0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vc2VsZnRl
-c3RzL2RybV9tbV9zZWxmdGVzdHMuaCB8wqDCoCAxICsKPj4gwqAgZHJpdmVycy9ncHUvZHJtL3Nl
-bGZ0ZXN0cy90ZXN0LWRybV9tbS5jwqDCoMKgwqDCoCB8IDEyNCArKysrKysrKysrKysrKysrKysr
-Cj4+IMKgIDIgZmlsZXMgY2hhbmdlZCwgMTI1IGluc2VydGlvbnMoKykKPj4KPj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9zZWxmdGVzdHMvZHJtX21tX3NlbGZ0ZXN0cy5oIAo+PiBiL2Ry
-aXZlcnMvZ3B1L2RybS9zZWxmdGVzdHMvZHJtX21tX3NlbGZ0ZXN0cy5oCj4+IGluZGV4IDZiOTQz
-ZWExYzU3ZC4uOGM4N2M5NjQxNzZiIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vc2Vs
-ZnRlc3RzL2RybV9tbV9zZWxmdGVzdHMuaAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vc2VsZnRl
-c3RzL2RybV9tbV9zZWxmdGVzdHMuaAo+PiBAQCAtMTQsNiArMTQsNyBAQCBzZWxmdGVzdChpbnNl
-cnQsIGlndF9pbnNlcnQpCj4+IMKgIHNlbGZ0ZXN0KHJlcGxhY2UsIGlndF9yZXBsYWNlKQo+PiDC
-oCBzZWxmdGVzdChpbnNlcnRfcmFuZ2UsIGlndF9pbnNlcnRfcmFuZ2UpCj4+IMKgIHNlbGZ0ZXN0
-KGFsaWduLCBpZ3RfYWxpZ24pCj4+ICtzZWxmdGVzdChmcmFnLCBpZ3RfZnJhZykKPj4gwqAgc2Vs
-ZnRlc3QoYWxpZ24zMiwgaWd0X2FsaWduMzIpCj4+IMKgIHNlbGZ0ZXN0KGFsaWduNjQsIGlndF9h
-bGlnbjY0KQo+PiDCoCBzZWxmdGVzdChldmljdCwgaWd0X2V2aWN0KQo+PiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL3NlbGZ0ZXN0cy90ZXN0LWRybV9tbS5jIAo+PiBiL2RyaXZlcnMvZ3B1
-L2RybS9zZWxmdGVzdHMvdGVzdC1kcm1fbW0uYwo+PiBpbmRleCA5YWFiZTgyZGNkM2EuLjM0MjMx
-YmFhY2Q4NyAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3NlbGZ0ZXN0cy90ZXN0LWRy
-bV9tbS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9zZWxmdGVzdHMvdGVzdC1kcm1fbW0uYwo+
-PiBAQCAtMTAsNiArMTAsNyBAQAo+PiDCoCAjaW5jbHVkZSA8bGludXgvc2xhYi5oPgo+PiDCoCAj
-aW5jbHVkZSA8bGludXgvcmFuZG9tLmg+Cj4+IMKgICNpbmNsdWRlIDxsaW51eC92bWFsbG9jLmg+
-Cj4+ICsjaW5jbHVkZSA8bGludXgva3RpbWUuaD4KPj4gwqAgwqAgI2luY2x1ZGUgPGRybS9kcm1f
-bW0uaD4KPj4gwqAgQEAgLTEwMzMsNiArMTAzNCwxMjkgQEAgc3RhdGljIGludCBpZ3RfaW5zZXJ0
-X3JhbmdlKHZvaWQgKmlnbm9yZWQpCj4+IMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+IMKgIH0KPj4g
-wqAgK3N0YXRpYyBpbnQgcHJlcGFyZV9pZ3RfZnJhZyhzdHJ1Y3QgZHJtX21tICptbSwKPj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX21tX25vZGUgKm5vZGVzLAo+
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2lnbmVkIGludCBudW1faW5zZXJ0
-LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0IHN0cnVjdCBpbnNlcnRf
-bW9kZSAqbW9kZSkKPj4gK3sKPj4gK8KgwqDCoCB1bnNpZ25lZCBpbnQgc2l6ZSA9IDQwOTY7Cj4+
-ICvCoMKgwqAgdW5zaWduZWQgaW50IGk7Cj4+ICvCoMKgwqAgdTY0IHJldCA9IC1FSU5WQUw7Cj4+
-ICsKPj4gK8KgwqDCoCBmb3IgKGkgPSAwOyBpIDwgbnVtX2luc2VydDsgaSsrKSB7Cj4+ICvCoMKg
-wqDCoMKgwqDCoCBpZiAoIWV4cGVjdF9pbnNlcnQobW0sICZub2Rlc1tpXSwgc2l6ZSwgMCwgaSwK
-Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtb2RlKSAhPSAwKSB7Cj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHByX2VycigiJXMgaW5zZXJ0IGZhaWxlZFxuIiwgbW9k
-ZS0+bmFtZSk7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+PiArwqDCoMKg
-wqDCoMKgwqAgfQo+PiArwqDCoMKgIH0KPj4gKwo+PiArwqDCoMKgIC8qIGludHJvZHVjZSBmcmFn
-bWVudGF0aW9uIGJ5IGZyZWVpbmcgZXZlcnkgb3RoZXIgbm9kZSAqLwo+PiArwqDCoMKgIGZvciAo
-aSA9IDA7IGkgPCBudW1faW5zZXJ0OyBpKyspIHsKPj4gK8KgwqDCoMKgwqDCoMKgIGlmIChpICUg
-MiA9PSAwKQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkcm1fbW1fcmVtb3ZlX25vZGUoJm5v
-ZGVzW2ldKTsKPj4gK8KgwqDCoCB9Cj4+ICsKPj4gK291dDoKPj4gK8KgwqDCoCByZXR1cm4gcmV0
-Owo+PiArCj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyB1NjQgZ2V0X2luc2VydF90aW1lKHN0cnVjdCBk
-cm1fbW0gKm1tLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1bnNpZ25lZCBpbnQg
-bnVtX2luc2VydCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9t
-bV9ub2RlICpub2RlcywKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3Ry
-dWN0IGluc2VydF9tb2RlICptb2RlKQo+PiArewo+PiArwqDCoMKgIHVuc2lnbmVkIGludCBzaXpl
-ID0gODE5MjsKPj4gK8KgwqDCoCBrdGltZV90IHN0YXJ0Owo+PiArwqDCoMKgIHVuc2lnbmVkIGlu
-dCBpOwo+PiArwqDCoMKgIHU2NCByZXQgPSAtRUlOVkFMOwo+PiArCj4+ICvCoMKgwqAgc3RhcnQg
-PSBrdGltZV9nZXQoKTsKPj4gK8KgwqDCoCBmb3IgKGkgPSAwOyBpIDwgbnVtX2luc2VydDsgaSsr
-KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoIWV4cGVjdF9pbnNlcnQobW0sICZub2Rlc1tpXSwg
-c2l6ZSwgMCwgaSwgbW9kZSkgIT0gMCkgewo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcl9l
-cnIoIiVzIGluc2VydCBmYWlsZWRcbiIsIG1vZGUtPm5hbWUpOwo+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBnb3RvIG91dDsKPj4gK8KgwqDCoMKgwqDCoMKgIH0KPj4gK8KgwqDCoCB9Cj4+ICsK
-Pj4gK8KgwqDCoCByZXQgPSBrdGltZV90b19ucyhrdGltZV9zdWIoa3RpbWVfZ2V0KCksIHN0YXJ0
-KSk7Cj4+ICsKPj4gK291dDoKPj4gK8KgwqDCoCByZXR1cm4gcmV0Owo+PiArCj4+ICt9Cj4+ICsK
-Pj4gK3N0YXRpYyBpbnQgaWd0X2ZyYWcodm9pZCAqaWdub3JlZCkKPj4gK3sKPj4gK8KgwqDCoCBz
-dHJ1Y3QgZHJtX21tIG1tOwo+PiArwqDCoMKgIGNvbnN0IHN0cnVjdCBpbnNlcnRfbW9kZSAqbW9k
-ZTsKPj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX21tX25vZGUgKm5vZGVzLCAqbm9kZSwgKm5leHQ7Cj4+
-ICvCoMKgwqAgdW5zaWduZWQgaW50IGluc2VydF9zaXplID0gMTAwMDA7Cj4+ICvCoMKgwqAgdW5z
-aWduZWQgaW50IHNjYWxlX2ZhY3RvciA9IDQ7Cj4+ICvCoMKgwqAgaW50IHJldCA9IC1FSU5WQUw7
-Cj4+ICsKPj4gK8KgwqDCoCAvKiBXZSBuZWVkIDQgKiBpbnNlcnRfc2l6ZSBub2RlcyB0byBob2xk
-IGludGVybWVkaWF0ZSBhbGxvY2F0ZWQKPj4gK8KgwqDCoMKgICogZHJtX21tIG5vZGVzLgo+PiAr
-wqDCoMKgwqAgKiAxIHRpbWVzIGZvciBwcmVwYXJlX2lndF9mcmFnKCkKPj4gK8KgwqDCoMKgICog
-MSB0aW1lcyBmb3IgZ2V0X2luc2VydF90aW1lKCkKPj4gK8KgwqDCoMKgICogMiB0aW1lcyBmb3LC
-oCBnZXRfaW5zZXJ0X3RpbWUoKQo+PiArwqDCoMKgwqAgKi8KPj4gK8KgwqDCoCBub2RlcyA9IHZ6
-YWxsb2MoYXJyYXlfc2l6ZShpbnNlcnRfc2l6ZSAqIDQsIHNpemVvZigqbm9kZXMpKSk7Cj4+ICvC
-oMKgwqAgaWYgKCFub2RlcykKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PTUVNOwo+PiAr
-Cj4+ICvCoMKgwqAgLyogRm9yIEJPVFRPTVVQIGFuZCBUT1BET1dOLCB3ZSBmaXJzdCBmcmFnbWVu
-dCB0aGUKPj4gK8KgwqDCoMKgICogYWRkcmVzcyBzcGFjZSB1c2luZyBwcmVwYXJlX2lndF9mcmFn
-KCkgYW5kIHRoZW4gdHJ5IHRvIHZlcmlmeQo+PiArwqDCoMKgwqAgKiB0aGF0IHRoYXQgaW5zZXJ0
-aW9ucyBzY2FsZSBxdWFkcmF0aWNhbGx5IGZyb20gMTBrIHRvIDIwayAKPj4gaW5zZXJ0aW9ucwo+
-PiArwqDCoMKgwqAgKi8KPj4gK8KgwqDCoCBkcm1fbW1faW5pdCgmbW0sIDEsIFU2NF9NQVggLSAy
-KTsKPj4gK8KgwqDCoCBmb3IgKG1vZGUgPSBpbnNlcnRfbW9kZXM7IG1vZGUtPm5hbWU7IG1vZGUr
-Kykgewo+PiArwqDCoMKgwqDCoMKgwqAgdTY0IGluc2VydF90aW1lMSwgaW5zZXJ0X3RpbWUyOwo+
-PiArCj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAobW9kZS0+bW9kZSAhPSBEUk1fTU1fSU5TRVJUX0xP
-VyB8fAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtb2RlLT5tb2RlICE9IERSTV9NTV9JTlNF
-UlRfSElHSCkKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29udGludWU7Cj4KPiBUaGlzIGNo
-ZWNrIGhlcmUgaXMgd3JvbmcsIHRoYXQgbmVlZHMgdG8gYmUgJiYgaW5zdGVhZCBvZiB8fCBvciB0
-aGUgCj4gdGVzdCB3b3VsZG4ndCBleGVjdXRlIGF0IGFsbC4KCgpJIGRpZG4ndCBib3RoZXIgdG8g
-Y2hlY2sgZG1lc2cgYWZ0ZXIgYWRkaW5nIHRoYXQgInNpbXBsZSIgY2hlY2sgYW5kIHRoZSAKdGVz
-dCByYW4gZmluZS4gOi8KClNlbmRpbmcgYWdhaW4uCgpOaXJtb3kKCgo+Cj4gQ2hyaXN0aWFuLgo+
-Cj4+ICsKPj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IHByZXBhcmVfaWd0X2ZyYWcoJm1tLCBub2Rl
-cywgaW5zZXJ0X3NpemUsIG1vZGUpOwo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKCFyZXQpCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gZXJyOwo+PiArCj4+ICvCoMKgwqDCoMKgwqDCoCBp
-bnNlcnRfdGltZTEgPSBnZXRfaW5zZXJ0X3RpbWUoJm1tLCBpbnNlcnRfc2l6ZSwKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbm9kZXMgKyBp
-bnNlcnRfc2l6ZSwgbW9kZSk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoaW5zZXJ0X3RpbWUxIDwg
-MCkKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBlcnI7Cj4+ICsKPj4gK8KgwqDCoMKg
-wqDCoMKgIGluc2VydF90aW1lMiA9IGdldF9pbnNlcnRfdGltZSgmbW0sIChpbnNlcnRfc2l6ZSAq
-IDIpLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBub2RlcyArIGluc2VydF9zaXplICogMiwgbW9kZSk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBp
-ZiAoaW5zZXJ0X3RpbWUyIDwgMCkKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBlcnI7
-Cj4+ICsKPj4gK8KgwqDCoMKgwqDCoMKgIHByX2luZm8oIiVzIGZyYWdtZW50ZWQgaW5zZXJ0IG9m
-ICV1IGFuZCAldSBpbnNlcnRpb25zIHRvb2sgCj4+ICVsbHUgYW5kICVsbHUgbnNlY3NcbiIsCj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1vZGUtPm5hbWUsIGluc2VydF9zaXplLCBpbnNlcnRf
-c2l6ZSAqIDIsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGluc2VydF90aW1lMSwgaW5zZXJ0
-X3RpbWUyKTsKPj4gKwo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKGluc2VydF90aW1lMiA+IChzY2Fs
-ZV9mYWN0b3IgKiBpbnNlcnRfdGltZTEpKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBy
-X2VycigiJXMgZnJhZ21lbnRlZCBpbnNlcnQgdG9vayAlbGx1IG5zZWNzIG1vcmVcbiIsCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbW9kZS0+bmFtZSwKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnNlcnRfdGltZTIgLSAoc2NhbGVfZmFj
-dG9yICogaW5zZXJ0X3RpbWUxKSk7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gZXJy
-Owo+PiArwqDCoMKgwqDCoMKgwqAgfQo+PiArCj4+ICvCoMKgwqDCoMKgwqDCoCBkcm1fbW1fZm9y
-X2VhY2hfbm9kZV9zYWZlKG5vZGUsIG5leHQsICZtbSkKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgZHJtX21tX3JlbW92ZV9ub2RlKG5vZGUpOwo+PiArwqDCoMKgIH0KPj4gKwo+PiArwqDCoMKg
-IHJldCA9IDA7Cj4+ICtlcnI6Cj4+ICvCoMKgwqAgZHJtX21tX2Zvcl9lYWNoX25vZGVfc2FmZShu
-b2RlLCBuZXh0LCAmbW0pCj4+ICvCoMKgwqDCoMKgwqDCoCBkcm1fbW1fcmVtb3ZlX25vZGUobm9k
-ZSk7Cj4+ICvCoMKgwqAgZHJtX21tX3Rha2Vkb3duKCZtbSk7Cj4+ICvCoMKgwqAgdmZyZWUobm9k
-ZXMpOwo+PiArCj4+ICvCoMKgwqAgcmV0dXJuIHJldDsKPj4gK30KPj4gKwo+PiDCoCBzdGF0aWMg
-aW50IGlndF9hbGlnbih2b2lkICppZ25vcmVkKQo+PiDCoCB7Cj4+IMKgwqDCoMKgwqAgY29uc3Qg
-c3RydWN0IGluc2VydF9tb2RlICptb2RlOwo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+This patch introduces fragmentation in the address range
+and measures time taken by 10k and 20k insertions. ig_frag()
+will fail if the time taken by 20k insertions takes more than
+4 times of 10k insertions as we know that insertions should at
+most scale quadratically.
+
+v2:
+introduce fragmentation by freeing every other node.
+only test bottom-up and top-down for now.
+
+v3:
+fix incorrect mode check
+
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/selftests/drm_mm_selftests.h |   1 +
+ drivers/gpu/drm/selftests/test-drm_mm.c      | 124 +++++++++++++++++++
+ 2 files changed, 125 insertions(+)
+
+diff --git a/drivers/gpu/drm/selftests/drm_mm_selftests.h b/drivers/gpu/drm/selftests/drm_mm_selftests.h
+index 6b943ea1c57d..8c87c964176b 100644
+--- a/drivers/gpu/drm/selftests/drm_mm_selftests.h
++++ b/drivers/gpu/drm/selftests/drm_mm_selftests.h
+@@ -14,6 +14,7 @@ selftest(insert, igt_insert)
+ selftest(replace, igt_replace)
+ selftest(insert_range, igt_insert_range)
+ selftest(align, igt_align)
++selftest(frag, igt_frag)
+ selftest(align32, igt_align32)
+ selftest(align64, igt_align64)
+ selftest(evict, igt_evict)
+diff --git a/drivers/gpu/drm/selftests/test-drm_mm.c b/drivers/gpu/drm/selftests/test-drm_mm.c
+index 9aabe82dcd3a..ca5f35def905 100644
+--- a/drivers/gpu/drm/selftests/test-drm_mm.c
++++ b/drivers/gpu/drm/selftests/test-drm_mm.c
+@@ -10,6 +10,7 @@
+ #include <linux/slab.h>
+ #include <linux/random.h>
+ #include <linux/vmalloc.h>
++#include <linux/ktime.h>
+ 
+ #include <drm/drm_mm.h>
+ 
+@@ -1033,6 +1034,129 @@ static int igt_insert_range(void *ignored)
+ 	return 0;
+ }
+ 
++static int prepare_igt_frag(struct drm_mm *mm,
++			    struct drm_mm_node *nodes,
++			    unsigned int num_insert,
++			    const struct insert_mode *mode)
++{
++	unsigned int size = 4096;
++	unsigned int i;
++	u64 ret = -EINVAL;
++
++	for (i = 0; i < num_insert; i++) {
++		if (!expect_insert(mm, &nodes[i], size, 0, i,
++				   mode) != 0) {
++			pr_err("%s insert failed\n", mode->name);
++			goto out;
++		}
++	}
++
++	/* introduce fragmentation by freeing every other node */
++	for (i = 0; i < num_insert; i++) {
++		if (i % 2 == 0)
++			drm_mm_remove_node(&nodes[i]);
++	}
++
++out:
++	return ret;
++
++}
++
++static u64 get_insert_time(struct drm_mm *mm,
++			   unsigned int num_insert,
++			   struct drm_mm_node *nodes,
++			   const struct insert_mode *mode)
++{
++	unsigned int size = 8192;
++	ktime_t start;
++	unsigned int i;
++	u64 ret = -EINVAL;
++
++	start = ktime_get();
++	for (i = 0; i < num_insert; i++) {
++		if (!expect_insert(mm, &nodes[i], size, 0, i, mode) != 0) {
++			pr_err("%s insert failed\n", mode->name);
++			goto out;
++		}
++	}
++
++	ret = ktime_to_ns(ktime_sub(ktime_get(), start));
++
++out:
++	return ret;
++
++}
++
++static int igt_frag(void *ignored)
++{
++	struct drm_mm mm;
++	const struct insert_mode *mode;
++	struct drm_mm_node *nodes, *node, *next;
++	unsigned int insert_size = 10000;
++	unsigned int scale_factor = 4;
++	int ret = -EINVAL;
++
++	/* We need 4 * insert_size nodes to hold intermediate allocated
++	 * drm_mm nodes.
++	 * 1 times for prepare_igt_frag()
++	 * 1 times for get_insert_time()
++	 * 2 times for get_insert_time()
++	 */
++	nodes = vzalloc(array_size(insert_size * 4, sizeof(*nodes)));
++	if (!nodes)
++		return -ENOMEM;
++
++	/* For BOTTOMUP and TOPDOWN, we first fragment the
++	 * address space using prepare_igt_frag() and then try to verify
++	 * that that insertions scale quadratically from 10k to 20k insertions
++	 */
++	drm_mm_init(&mm, 1, U64_MAX - 2);
++	for (mode = insert_modes; mode->name; mode++) {
++		u64 insert_time1, insert_time2;
++
++		if (mode->mode != DRM_MM_INSERT_LOW &&
++		    mode->mode != DRM_MM_INSERT_HIGH)
++			continue;
++
++		ret = prepare_igt_frag(&mm, nodes, insert_size, mode);
++		if (!ret)
++			goto err;
++
++		insert_time1 = get_insert_time(&mm, insert_size,
++					       nodes + insert_size, mode);
++		if (insert_time1 < 0)
++			goto err;
++
++		insert_time2 = get_insert_time(&mm, (insert_size * 2),
++					       nodes + insert_size * 2, mode);
++		if (insert_time2 < 0)
++			goto err;
++
++		pr_info("%s fragmented insert of %u and %u insertions took %llu and %llu nsecs\n",
++			mode->name, insert_size, insert_size * 2,
++			insert_time1, insert_time2);
++
++		if (insert_time2 > (scale_factor * insert_time1)) {
++			pr_err("%s fragmented insert took %llu nsecs more\n",
++			       mode->name,
++			       insert_time2 - (scale_factor * insert_time1));
++			goto err;
++		}
++
++		drm_mm_for_each_node_safe(node, next, &mm)
++			drm_mm_remove_node(node);
++	}
++
++	ret = 0;
++err:
++	drm_mm_for_each_node_safe(node, next, &mm)
++		drm_mm_remove_node(node);
++	drm_mm_takedown(&mm);
++	vfree(nodes);
++
++	return ret;
++}
++
+ static int igt_align(void *ignored)
+ {
+ 	const struct insert_mode *mode;
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
