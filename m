@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F8D1EF739
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C901EF731
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 14:23:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A58D76E8AA;
-	Fri,  5 Jun 2020 12:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5496E0A5;
+	Fri,  5 Jun 2020 12:23:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 018526E119
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 12:23:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17E666E0A5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 12:23:46 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21406196-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21406197-1500050 
  for multiple; Fri, 05 Jun 2020 13:23:39 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Jun 2020 13:23:32 +0100
-Message-Id: <20200605122334.2798-8-chris@chris-wilson.co.uk>
+Date: Fri,  5 Jun 2020 13:23:33 +0100
+Message-Id: <20200605122334.2798-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200605122334.2798-1-chris@chris-wilson.co.uk>
 References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/10] drm/i915/gt: Enable busy-stats for
- ring-scheduler
+Subject: [Intel-gfx] [PATCH 09/10] drm/i915/gt: Implement ring scheduler for
+ gen6/7
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,156 +40,551 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q291cGxlIHVwIHRoZSBjb250ZXh0IGluL291dCBhY2NvdW50aW5nIHRvIHJlY29yZCBob3cgbG9u
-ZyBlYWNoIGVuZ2luZQppcyBidXN5IGhhbmRsaW5nIHJlcXVlc3RzLiBUaGlzIGlzIGV4cG9zZWQg
-dG8gdXNlcnNwYWNlIGZvciBtb3JlIGFjY3VyYXRlCm1lYXN1cmVtZW50cywgYW5kIGFsc28gZW5h
-YmxlcyBvdXIgc29mdC1ycHMgdGltZXIuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNo
-cmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
-bF9lbmdpbmVfc3RhdHMuaCAgfCA0OSArKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9scmMuYyAgICAgICAgICAgfCAzNCArLS0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3Jpbmdfc2NoZWR1bGVyLmMgICAgfCAgNCArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9zZWxmdGVzdF9lbmdpbmVfcG0uYyAgfCA5MCArKysrKysrKysrKysrKysrKysrCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9ycHMuYyAgICAgICAgfCAgNSArKwogNSBmaWxlcyBj
-aGFuZ2VkLCAxNDkgaW5zZXJ0aW9ucygrKSwgMzMgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAx
-MDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3N0YXRzLmgKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfc3RhdHMuaCBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9zdGF0cy5oCm5ldyBmaWxlIG1vZGUg
-MTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uNTg0OTFlYWUzNDgyCi0tLSAvZGV2L251bGwKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3N0YXRzLmgKQEAgLTAsMCAr
-MSw0OSBAQAorLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVCAqLworLyoKKyAqIENvcHly
-aWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCisgKi8KKworI2lmbmRlZiBfX0lOVEVMX0VO
-R0lORV9TVEFUU19IX18KKyNkZWZpbmUgX19JTlRFTF9FTkdJTkVfU1RBVFNfSF9fCisKKyNpbmNs
-dWRlIDxsaW51eC9hdG9taWMuaD4KKyNpbmNsdWRlIDxsaW51eC9rdGltZS5oPgorI2luY2x1ZGUg
-PGxpbnV4L3NlcWxvY2suaD4KKworI2luY2x1ZGUgImk5MTVfZ2VtLmgiIC8qIEdFTV9CVUdfT04g
-Ki8KKyNpbmNsdWRlICJpbnRlbF9lbmdpbmUuaCIKKworc3RhdGljIGlubGluZSB2b2lkIGludGVs
-X2VuZ2luZV9jb250ZXh0X2luKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKK3sKKwl1
-bnNpZ25lZCBsb25nIGZsYWdzOworCisJaWYgKGF0b21pY19hZGRfdW5sZXNzKCZlbmdpbmUtPnN0
-YXRzLmFjdGl2ZSwgMSwgMCkpCisJCXJldHVybjsKKworCXdyaXRlX3NlcWxvY2tfaXJxc2F2ZSgm
-ZW5naW5lLT5zdGF0cy5sb2NrLCBmbGFncyk7CisJaWYgKCFhdG9taWNfYWRkX3VubGVzcygmZW5n
-aW5lLT5zdGF0cy5hY3RpdmUsIDEsIDApKSB7CisJCWVuZ2luZS0+c3RhdHMuc3RhcnQgPSBrdGlt
-ZV9nZXQoKTsKKwkJYXRvbWljX2luYygmZW5naW5lLT5zdGF0cy5hY3RpdmUpOworCX0KKwl3cml0
-ZV9zZXF1bmxvY2tfaXJxcmVzdG9yZSgmZW5naW5lLT5zdGF0cy5sb2NrLCBmbGFncyk7Cit9CisK
-K3N0YXRpYyBpbmxpbmUgdm9pZCBpbnRlbF9lbmdpbmVfY29udGV4dF9vdXQoc3RydWN0IGludGVs
-X2VuZ2luZV9jcyAqZW5naW5lKQoreworCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CisKKwlHRU1fQlVH
-X09OKCFhdG9taWNfcmVhZCgmZW5naW5lLT5zdGF0cy5hY3RpdmUpKTsKKworCWlmIChhdG9taWNf
-YWRkX3VubGVzcygmZW5naW5lLT5zdGF0cy5hY3RpdmUsIC0xLCAxKSkKKwkJcmV0dXJuOworCisJ
-d3JpdGVfc2VxbG9ja19pcnFzYXZlKCZlbmdpbmUtPnN0YXRzLmxvY2ssIGZsYWdzKTsKKwlpZiAo
-YXRvbWljX2RlY19hbmRfdGVzdCgmZW5naW5lLT5zdGF0cy5hY3RpdmUpKSB7CisJCWVuZ2luZS0+
-c3RhdHMudG90YWwgPQorCQkJa3RpbWVfYWRkKGVuZ2luZS0+c3RhdHMudG90YWwsCisJCQkJICBr
-dGltZV9zdWIoa3RpbWVfZ2V0KCksIGVuZ2luZS0+c3RhdHMuc3RhcnQpKTsKKwl9CisJd3JpdGVf
-c2VxdW5sb2NrX2lycXJlc3RvcmUoJmVuZ2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOworfQorCisj
-ZW5kaWYgLyogX19JTlRFTF9FTkdJTkVfU1RBVFNfSF9fICovCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2xyYy5jCmluZGV4IGQ1NWE1ZTA0NjZlNS4uMzZlMmNlNGFjMmZhIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9scmMuYwpAQCAtMTM5LDYgKzEzOSw3IEBACiAjaW5jbHVkZSAiaTkxNV92
-Z3B1LmgiCiAjaW5jbHVkZSAiaW50ZWxfY29udGV4dC5oIgogI2luY2x1ZGUgImludGVsX2VuZ2lu
-ZV9wbS5oIgorI2luY2x1ZGUgImludGVsX2VuZ2luZV9zdGF0cy5oIgogI2luY2x1ZGUgImludGVs
-X2d0LmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9ndF9yZXF1
-ZXN0cy5oIgpAQCAtMTE4NywzOSArMTE4OCw2IEBAIGV4ZWNsaXN0c19jb250ZXh0X3N0YXR1c19j
-aGFuZ2Uoc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEsIHVuc2lnbmVkIGxvbmcgc3RhdHVzKQogCQkJ
-CSAgIHN0YXR1cywgcnEpOwogfQogCi1zdGF0aWMgdm9pZCBpbnRlbF9lbmdpbmVfY29udGV4dF9p
-bihzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCi17Ci0JdW5zaWduZWQgbG9uZyBmbGFn
-czsKLQotCWlmIChhdG9taWNfYWRkX3VubGVzcygmZW5naW5lLT5zdGF0cy5hY3RpdmUsIDEsIDAp
-KQotCQlyZXR1cm47Ci0KLQl3cml0ZV9zZXFsb2NrX2lycXNhdmUoJmVuZ2luZS0+c3RhdHMubG9j
-aywgZmxhZ3MpOwotCWlmICghYXRvbWljX2FkZF91bmxlc3MoJmVuZ2luZS0+c3RhdHMuYWN0aXZl
-LCAxLCAwKSkgewotCQllbmdpbmUtPnN0YXRzLnN0YXJ0ID0ga3RpbWVfZ2V0KCk7Ci0JCWF0b21p
-Y19pbmMoJmVuZ2luZS0+c3RhdHMuYWN0aXZlKTsKLQl9Ci0Jd3JpdGVfc2VxdW5sb2NrX2lycXJl
-c3RvcmUoJmVuZ2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOwotfQotCi1zdGF0aWMgdm9pZCBpbnRl
-bF9lbmdpbmVfY29udGV4dF9vdXQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQotewot
-CXVuc2lnbmVkIGxvbmcgZmxhZ3M7Ci0KLQlHRU1fQlVHX09OKCFhdG9taWNfcmVhZCgmZW5naW5l
-LT5zdGF0cy5hY3RpdmUpKTsKLQotCWlmIChhdG9taWNfYWRkX3VubGVzcygmZW5naW5lLT5zdGF0
-cy5hY3RpdmUsIC0xLCAxKSkKLQkJcmV0dXJuOwotCi0Jd3JpdGVfc2VxbG9ja19pcnFzYXZlKCZl
-bmdpbmUtPnN0YXRzLmxvY2ssIGZsYWdzKTsKLQlpZiAoYXRvbWljX2RlY19hbmRfdGVzdCgmZW5n
-aW5lLT5zdGF0cy5hY3RpdmUpKSB7Ci0JCWVuZ2luZS0+c3RhdHMudG90YWwgPQotCQkJa3RpbWVf
-YWRkKGVuZ2luZS0+c3RhdHMudG90YWwsCi0JCQkJICBrdGltZV9zdWIoa3RpbWVfZ2V0KCksIGVu
-Z2luZS0+c3RhdHMuc3RhcnQpKTsKLQl9Ci0Jd3JpdGVfc2VxdW5sb2NrX2lycXJlc3RvcmUoJmVu
-Z2luZS0+c3RhdHMubG9jaywgZmxhZ3MpOwotfQotCiBzdGF0aWMgdm9pZAogZXhlY2xpc3RzX2No
-ZWNrX2NvbnRleHQoY29uc3Qgc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAogCQkJY29uc3Qgc3Ry
-dWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ3QvaW50ZWxfcmluZ19zY2hlZHVsZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3Jpbmdfc2NoZWR1bGVyLmMKaW5kZXggYzhjZDQzNWQxYzUxLi5hYWZmNTU0ODY1YjEg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmdfc2NoZWR1bGVy
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZ19zY2hlZHVsZXIuYwpA
-QCAtOSw2ICs5LDcgQEAKIAogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCiAjaW5jbHVkZSAiaW50ZWxf
-Y29udGV4dC5oIgorI2luY2x1ZGUgImludGVsX2VuZ2luZV9zdGF0cy5oIgogI2luY2x1ZGUgImlu
-dGVsX2d0LmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKICNpbmNsdWRlICJpbnRlbF9ndF9y
-ZXF1ZXN0cy5oIgpAQCAtNTksNiArNjAsNyBAQCBzdGF0aWMgc3RydWN0IGk5MTVfcmVxdWVzdCAq
-CiBzY2hlZHVsZV9pbihzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsIHN0cnVjdCBpOTE1
-X3JlcXVlc3QgKnJxKQogewogCV9faW50ZWxfZ3RfcG1fZ2V0KGVuZ2luZS0+Z3QpOworCWludGVs
-X2VuZ2luZV9jb250ZXh0X2luKGVuZ2luZSk7CiAJcmV0dXJuIGk5MTVfcmVxdWVzdF9nZXQocnEp
-OwogfQogCkBAIC03MSw2ICs3Myw3IEBAIHNjaGVkdWxlX291dChzdHJ1Y3QgaW50ZWxfZW5naW5l
-X2NzICplbmdpbmUsIHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKQogCQlpbnRlbF9lbmdpbmVfYWRk
-X3JldGlyZShlbmdpbmUsIGNlLT50aW1lbGluZSk7CiAKIAlpOTE1X3JlcXVlc3RfcHV0KHJxKTsK
-KwlpbnRlbF9lbmdpbmVfY29udGV4dF9vdXQoZW5naW5lKTsKIAlpbnRlbF9ndF9wbV9wdXRfYXN5
-bmMoZW5naW5lLT5ndCk7CiB9CiAKQEAgLTc0Nyw2ICs3NTAsNyBAQCBpbnQgaW50ZWxfcmluZ19z
-Y2hlZHVsZXJfc2V0dXAoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQogCWVuZ2luZS0+
-bGVnYWN5LnJpbmcgPSByaW5nOwogCiAJZW5naW5lLT5mbGFncyB8PSBJOTE1X0VOR0lORV9ORUVE
-U19CUkVBRENSVU1CX1RBU0tMRVQ7CisJZW5naW5lLT5mbGFncyB8PSBJOTE1X0VOR0lORV9TVVBQ
-T1JUU19TVEFUUzsKIAogCS8qIEZpbmFsbHksIHRha2Ugb3duZXJzaGlwIGFuZCByZXNwb25zaWJp
-bGl0eSBmb3IgY2xlYW51cCEgKi8KIAllbmdpbmUtPnJlbGVhc2UgPSByaW5nX3JlbGVhc2U7CmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9lbmdpbmVfcG0uYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2VuZ2luZV9wbS5jCmluZGV4IGNiZjZi
-MDczNTI3Mi4uZmVmOTcwOWI3Y2ZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9zZWxmdGVzdF9lbmdpbmVfcG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxm
-dGVzdF9lbmdpbmVfcG0uYwpAQCAtNyw2ICs3LDk1IEBACiAjaW5jbHVkZSAiaTkxNV9zZWxmdGVz
-dC5oIgogI2luY2x1ZGUgInNlbGZ0ZXN0X2VuZ2luZS5oIgogI2luY2x1ZGUgInNlbGZ0ZXN0cy9p
-Z3RfYXRvbWljLmgiCisjaW5jbHVkZSAic2VsZnRlc3RzL2lndF9mbHVzaF90ZXN0LmgiCisjaW5j
-bHVkZSAic2VsZnRlc3RzL2lndF9zcGlubmVyLmgiCisKK3N0YXRpYyBpbnQgbGl2ZV9lbmdpbmVf
-YnVzeV9zdGF0cyh2b2lkICphcmcpCit7CisJc3RydWN0IGludGVsX2d0ICpndCA9IGFyZzsKKwlz
-dHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7CisJZW51bSBpbnRlbF9lbmdpbmVfaWQgaWQ7
-CisJc3RydWN0IGlndF9zcGlubmVyIHNwaW47CisJaW50IGVyciA9IDA7CisKKwkvKgorCSAqIENo
-ZWNrIHRoYXQgaWYgYW4gZW5naW5lIHN1cHBvcnRzIGJ1c3ktc3RhdHMsIHRoZXkgdGVsbCB0aGUg
-dHJ1dGguCisJICovCisKKwlpZiAoaWd0X3NwaW5uZXJfaW5pdCgmc3BpbiwgZ3QpKQorCQlyZXR1
-cm4gLUVOT01FTTsKKworCUdFTV9CVUdfT04oaW50ZWxfZ3RfcG1faXNfYXdha2UoZ3QpKTsKKwlm
-b3JfZWFjaF9lbmdpbmUoZW5naW5lLCBndCwgaWQpIHsKKwkJc3RydWN0IGk5MTVfcmVxdWVzdCAq
-cnE7CisJCWt0aW1lX3QgZHQsIGRlOworCisJCWlmICghaW50ZWxfZW5naW5lX3N1cHBvcnRzX3N0
-YXRzKGVuZ2luZSkpCisJCQljb250aW51ZTsKKworCQlpZiAoIWludGVsX2VuZ2luZV9jYW5fc3Rv
-cmVfZHdvcmQoZW5naW5lKSkKKwkJCWNvbnRpbnVlOworCisJCWlmIChpbnRlbF9ndF9wbV93YWl0
-X2Zvcl9pZGxlKGd0KSkgeworCQkJZXJyID0gLUVCVVNZOworCQkJYnJlYWs7CisJCX0KKworCQlw
-cmVlbXB0X2Rpc2FibGUoKTsKKwkJZHQgPSBrdGltZV9nZXQoKTsKKwkJZGUgPSBpbnRlbF9lbmdp
-bmVfZ2V0X2J1c3lfdGltZShlbmdpbmUpOworCQl1ZGVsYXkoMTAwKTsKKwkJZHQgPSBrdGltZV9z
-dWIoa3RpbWVfZ2V0KCksIGR0KTsKKwkJZGUgPSBrdGltZV9zdWIoaW50ZWxfZW5naW5lX2dldF9i
-dXN5X3RpbWUoZW5naW5lKSwgZGUpOworCQlwcmVlbXB0X2VuYWJsZSgpOworCQlpZiAoZGUgPiAx
-MCkgeworCQkJcHJfZXJyKCIlczogcmVwb3J0ZWQgJWxsZG5zIFslZCUlXSBidXN5bmVzcyB3aGls
-ZSBzbGVlcGluZyBbZm9yICVsbGRuc11cbiIsCisJCQkgICAgICAgZW5naW5lLT5uYW1lLAorCQkJ
-ICAgICAgIGRlLCAoaW50KWRpdjY0X3U2NCgxMDAgKiBkZSwgZHQpLCBkdCk7CisJCQllcnIgPSAt
-RUlOVkFMOworCQkJYnJlYWs7CisJCX0KKworCQlycSA9IGlndF9zcGlubmVyX2NyZWF0ZV9yZXF1
-ZXN0KCZzcGluLAorCQkJCQkJZW5naW5lLT5rZXJuZWxfY29udGV4dCwKKwkJCQkJCU1JX05PT1Ap
-OworCQlpZiAoSVNfRVJSKHJxKSkgeworCQkJZXJyID0gUFRSX0VSUihycSk7CisJCQlicmVhazsK
-KwkJfQorCQlpOTE1X3JlcXVlc3RfYWRkKHJxKTsKKworCQlpZiAoIWlndF93YWl0X2Zvcl9zcGlu
-bmVyKCZzcGluLCBycSkpIHsKKwkJCWludGVsX2d0X3NldF93ZWRnZWQoZW5naW5lLT5ndCk7CisJ
-CQllcnIgPSAtRVRJTUU7CisJCQlicmVhazsKKwkJfQorCisJCXByZWVtcHRfZGlzYWJsZSgpOwor
-CQlkdCA9IGt0aW1lX2dldCgpOworCQlkZSA9IGludGVsX2VuZ2luZV9nZXRfYnVzeV90aW1lKGVu
-Z2luZSk7CisJCXVkZWxheSgxMDApOworCQlkdCA9IGt0aW1lX3N1YihrdGltZV9nZXQoKSwgZHQp
-OworCQlkZSA9IGt0aW1lX3N1YihpbnRlbF9lbmdpbmVfZ2V0X2J1c3lfdGltZShlbmdpbmUpLCBk
-ZSk7CisJCXByZWVtcHRfZW5hYmxlKCk7CisJCWlmICgxMDAgKiBkZSA8IDk1ICogZHQpIHsKKwkJ
-CXByX2VycigiJXM6IHJlcG9ydGVkIG9ubHkgJWxsZG5zIFslZCUlXSBidXN5bmVzcyB3aGlsZSBz
-cGlubmluZyBbZm9yICVsbGRuc11cbiIsCisJCQkgICAgICAgZW5naW5lLT5uYW1lLAorCQkJICAg
-ICAgIGRlLCAoaW50KWRpdjY0X3U2NCgxMDAgKiBkZSwgZHQpLCBkdCk7CisJCQllcnIgPSAtRUlO
-VkFMOworCQkJYnJlYWs7CisJCX0KKworCQlpZ3Rfc3Bpbm5lcl9lbmQoJnNwaW4pOworCQlpZiAo
-aWd0X2ZsdXNoX3Rlc3QoZ3QtPmk5MTUpKSB7CisJCQllcnIgPSAtRUlPOworCQkJYnJlYWs7CisJ
-CX0KKwl9CisKKwlpZ3Rfc3Bpbm5lcl9maW5pKCZzcGluKTsKKwlyZXR1cm4gZXJyOworfQogCiBz
-dGF0aWMgaW50IGxpdmVfZW5naW5lX3BtKHZvaWQgKmFyZykKIHsKQEAgLTc3LDYgKzE2Niw3IEBA
-IHN0YXRpYyBpbnQgbGl2ZV9lbmdpbmVfcG0odm9pZCAqYXJnKQogaW50IGxpdmVfZW5naW5lX3Bt
-X3NlbGZ0ZXN0cyhzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQogewogCXN0YXRpYyBjb25zdCBzdHJ1Y3Qg
-aTkxNV9zdWJ0ZXN0IHRlc3RzW10gPSB7CisJCVNVQlRFU1QobGl2ZV9lbmdpbmVfYnVzeV9zdGF0
-cyksCiAJCVNVQlRFU1QobGl2ZV9lbmdpbmVfcG0pLAogCX07CiAKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3Qvc2VsZnRlc3RfcnBzLmMKaW5kZXggNTA0OWMzZGQwOGE2Li41ZTM2NGZiMzFhZWEgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jCkBAIC0xMjUyLDYgKzEyNTIsMTEgQEAg
-aW50IGxpdmVfcnBzX2R5bmFtaWModm9pZCAqYXJnKQogCWlmIChpZ3Rfc3Bpbm5lcl9pbml0KCZz
-cGluLCBndCkpCiAJCXJldHVybiAtRU5PTUVNOwogCisJaWYgKGludGVsX3Jwc19oYXNfaW50ZXJy
-dXB0cyhycHMpKQorCQlwcl9pbmZvKCJSUFMgaGFzIGludGVycnVwdCBzdXBwb3J0XG4iKTsKKwlp
-ZiAoaW50ZWxfcnBzX3VzZXNfdGltZXIocnBzKSkKKwkJcHJfaW5mbygiUlBTIGhhcyB0aW1lciBz
-dXBwb3J0XG4iKTsKKwogCWZvcl9lYWNoX2VuZ2luZShlbmdpbmUsIGd0LCBpZCkgewogCQlzdHJ1
-Y3QgaTkxNV9yZXF1ZXN0ICpycTsKIAkJc3RydWN0IHsKLS0gCjIuMjAuMQoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+A key prolem with legacy ring buffer submission is that it is an inheret
+FIFO queue across all clients; if one blocks, they all block. A
+scheduler allows us to avoid that limitation, and ensures that all
+clients can submit in parallel, removing the resource contention of the
+global ringbuffer.
+
+Having built the ring scheduler infrastructure over top of the global
+ringbuffer submission, we now need to provide the HW knowledge required
+to build command packets and implement context switching.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_ring_scheduler.c    | 412 +++++++++++++++++-
+ 1 file changed, 410 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_scheduler.c b/drivers/gpu/drm/i915/gt/intel_ring_scheduler.c
+index aaff554865b1..463c836cbde2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_scheduler.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_scheduler.c
+@@ -7,6 +7,10 @@
+ 
+ #include <drm/i915_drm.h>
+ 
++#include "gen2_engine_cs.h"
++#include "gen6_engine_cs.h"
++#include "gen6_ppgtt.h"
++#include "gen7_renderclear.h"
+ #include "i915_drv.h"
+ #include "intel_context.h"
+ #include "intel_engine_stats.h"
+@@ -282,8 +286,258 @@ static void ring_copy(struct intel_ring *dst,
+ 	memcpy(out, src->vaddr + start, end - start);
+ }
+ 
++static void mi_set_context(struct intel_ring *ring,
++			   struct intel_engine_cs *engine,
++			   struct intel_context *ce,
++			   u32 flags)
++{
++	struct drm_i915_private *i915 = engine->i915;
++	enum intel_engine_id id;
++	const int num_engines =
++		IS_HASWELL(i915) ? RUNTIME_INFO(i915)->num_engines - 1 : 0;
++	int len;
++	u32 *cs;
++
++	len = 4;
++	if (IS_GEN(i915, 7))
++		len += 2 + (num_engines ? 4 * num_engines + 6 : 0);
++	else if (IS_GEN(i915, 5))
++		len += 2;
++
++	cs = ring_map_dw(ring, len);
++
++	/* WaProgramMiArbOnOffAroundMiSetContext:ivb,vlv,hsw,bdw,chv */
++	if (IS_GEN(i915, 7)) {
++		*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++		if (num_engines) {
++			struct intel_engine_cs *signaller;
++
++			*cs++ = MI_LOAD_REGISTER_IMM(num_engines);
++			for_each_engine(signaller, engine->gt, id) {
++				if (signaller == engine)
++					continue;
++
++				*cs++ = i915_mmio_reg_offset(
++					   RING_PSMI_CTL(signaller->mmio_base));
++				*cs++ = _MASKED_BIT_ENABLE(
++						GEN6_PSMI_SLEEP_MSG_DISABLE);
++			}
++		}
++	} else if (IS_GEN(i915, 5)) {
++		/*
++		 * This w/a is only listed for pre-production ilk a/b steppings,
++		 * but is also mentioned for programming the powerctx. To be
++		 * safe, just apply the workaround; we do not use SyncFlush so
++		 * this should never take effect and so be a no-op!
++		 */
++		*cs++ = MI_SUSPEND_FLUSH | MI_SUSPEND_FLUSH_EN;
++	}
++
++	*cs++ = MI_NOOP;
++	*cs++ = MI_SET_CONTEXT;
++	*cs++ = i915_ggtt_offset(ce->state) | flags;
++	/*
++	 * w/a: MI_SET_CONTEXT must always be followed by MI_NOOP
++	 * WaMiSetContext_Hang:snb,ivb,vlv
++	 */
++	*cs++ = MI_NOOP;
++
++	if (IS_GEN(i915, 7)) {
++		if (num_engines) {
++			struct intel_engine_cs *signaller;
++			i915_reg_t last_reg = {}; /* keep gcc quiet */
++
++			*cs++ = MI_LOAD_REGISTER_IMM(num_engines);
++			for_each_engine(signaller, engine->gt, id) {
++				if (signaller == engine)
++					continue;
++
++				last_reg = RING_PSMI_CTL(signaller->mmio_base);
++				*cs++ = i915_mmio_reg_offset(last_reg);
++				*cs++ = _MASKED_BIT_DISABLE(
++						GEN6_PSMI_SLEEP_MSG_DISABLE);
++			}
++
++			/* Insert a delay before the next switch! */
++			*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
++			*cs++ = i915_mmio_reg_offset(last_reg);
++			*cs++ = intel_gt_scratch_offset(engine->gt,
++							INTEL_GT_SCRATCH_FIELD_DEFAULT);
++			*cs++ = MI_NOOP;
++		}
++		*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++	} else if (IS_GEN(i915, 5)) {
++		*cs++ = MI_SUSPEND_FLUSH;
++	}
++}
++
++static struct i915_address_space *vm_alias(struct i915_address_space *vm)
++{
++	if (i915_is_ggtt(vm))
++		vm = &i915_vm_to_ggtt(vm)->alias->vm;
++
++	return vm;
++}
++
++static void load_pd_dir(struct intel_ring *ring,
++			struct intel_engine_cs *engine,
++			const struct i915_ppgtt *ppgtt)
++{
++	u32 *cs = ring_map_dw(ring, 10);
++
++	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
++	*cs++ = PP_DIR_DCLV_2G;
++
++	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
++	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
++
++	/* Stall until the page table load is complete? */
++	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
++	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
++	*cs++ = intel_gt_scratch_offset(engine->gt,
++					INTEL_GT_SCRATCH_FIELD_DEFAULT);
++	*cs++ = MI_NOOP;
++}
++
++static struct i915_address_space *current_vm(struct intel_engine_cs *engine)
++{
++	struct intel_context *old = engine->legacy.context;
++
++	return old ? vm_alias(old->vm) : NULL;
++}
++
++static void gen6_emit_invalidate_rcs(struct intel_ring *ring,
++				     struct intel_engine_cs *engine)
++{
++	u32 addr, flags;
++	u32 *cs;
++
++	addr = intel_gt_scratch_offset(engine->gt,
++				       INTEL_GT_SCRATCH_FIELD_RENDER_FLUSH);
++
++	flags = PIPE_CONTROL_QW_WRITE | PIPE_CONTROL_CS_STALL;
++	flags |= PIPE_CONTROL_TLB_INVALIDATE;
++
++	if (INTEL_GEN(engine->i915) >= 7)
++		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++	else
++		addr |= PIPE_CONTROL_GLOBAL_GTT;
++
++	cs = ring_map_dw(ring, 4);
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = flags;
++	*cs++ = addr;
++	*cs++ = 0;
++}
++
++static struct i915_address_space *
++clear_residuals(struct intel_ring *ring, struct intel_engine_cs *engine)
++{
++	struct intel_context *ce = engine->kernel_context;
++	struct i915_address_space *vm = vm_alias(engine->gt->vm);
++	u32 flags;
++
++	if (vm != current_vm(engine))
++		load_pd_dir(ring, engine, i915_vm_to_ppgtt(vm));
++
++	if (ce->state)
++		mi_set_context(ring, engine, ce,
++			       MI_MM_SPACE_GTT | MI_RESTORE_INHIBIT);
++
++	if (IS_HASWELL(engine->i915))
++		flags = MI_BATCH_PPGTT_HSW | MI_BATCH_NON_SECURE_HSW;
++	else
++		flags = MI_BATCH_NON_SECURE_I965;
++
++	__gen6_emit_bb_start(ring_map_dw(ring, 2),
++			     engine->wa_ctx.vma->node.start, flags);
++
++	return vm;
++}
++
++static void remap_l3_slice(struct intel_ring *ring,
++			   struct intel_engine_cs *engine,
++			   int slice)
++{
++	u32 *cs, *remap_info = engine->i915->l3_parity.remap_info[slice];
++	int i;
++
++	if (!remap_info)
++		return;
++
++	/*
++	 * Note: We do not worry about the concurrent register cacheline hang
++	 * here because no other code should access these registers other than
++	 * at initialization time.
++	 */
++	cs = ring_map_dw(ring, GEN7_L3LOG_SIZE / 4 * 2 + 2);
++	*cs++ = MI_LOAD_REGISTER_IMM(GEN7_L3LOG_SIZE / 4);
++	for (i = 0; i < GEN7_L3LOG_SIZE / 4; i++) {
++		*cs++ = i915_mmio_reg_offset(GEN7_L3LOG(slice, i));
++		*cs++ = remap_info[i];
++	}
++	*cs++ = MI_NOOP;
++}
++
++static void remap_l3(struct intel_ring *ring,
++		     struct intel_engine_cs *engine,
++		     struct intel_context *ce)
++{
++	struct i915_gem_context *ctx =
++		rcu_dereference_protected(ce->gem_context, true);
++	int bit, idx = -1;
++
++	if (!ctx || !ctx->remap_slice)
++		return;
++
++	do {
++		bit = ffs(ctx->remap_slice);
++		remap_l3_slice(ring, engine, idx += bit);
++	} while (ctx->remap_slice >>= bit);
++}
++
+ static void switch_context(struct intel_ring *ring, struct i915_request *rq)
+ {
++	struct intel_engine_cs *engine = rq->engine;
++	struct i915_address_space *cvm = current_vm(engine);
++	struct intel_context *ce = rq->context;
++	struct i915_address_space *vm;
++
++	if (engine->wa_ctx.vma && ce != engine->kernel_context) {
++		if (engine->wa_ctx.vma->private != ce) {
++			cvm = clear_residuals(ring, engine);
++			intel_context_put(engine->wa_ctx.vma->private);
++			engine->wa_ctx.vma->private = intel_context_get(ce);
++		}
++	}
++
++	vm = vm_alias(ce->vm);
++	if (vm != cvm)
++		load_pd_dir(ring, engine, i915_vm_to_ppgtt(vm));
++
++	if (ce->state) {
++		u32 flags;
++
++		GEM_BUG_ON(engine->id != RCS0);
++
++		/* For resource streamer on HSW+ and power context elsewhere */
++		BUILD_BUG_ON(HSW_MI_RS_SAVE_STATE_EN != MI_SAVE_EXT_STATE_EN);
++		BUILD_BUG_ON(HSW_MI_RS_RESTORE_STATE_EN != MI_RESTORE_EXT_STATE_EN);
++
++		flags = MI_SAVE_EXT_STATE_EN | MI_MM_SPACE_GTT;
++		if (test_bit(CONTEXT_VALID_BIT, &ce->flags)) {
++			gen6_emit_invalidate_rcs(ring, engine);
++			flags |= MI_RESTORE_EXT_STATE_EN;
++		} else {
++			flags |= MI_RESTORE_INHIBIT;
++		}
++
++		mi_set_context(ring, engine, ce, flags);
++	}
++
++	remap_l3(ring, engine, ce);
+ }
+ 
+ static struct i915_request *ring_submit(struct i915_request *rq)
+@@ -449,6 +703,33 @@ static void submission_unpark(struct intel_engine_cs *engine)
+ 	intel_engine_pin_breadcrumbs_irq(engine);
+ }
+ 
++static int gen6_emit_init_breadcrumb(struct i915_request *rq)
++{
++	struct intel_timeline *tl = i915_request_timeline(rq);
++	u32 *cs;
++
++	GEM_BUG_ON(i915_request_has_initial_breadcrumb(rq));
++	if (!tl->has_initial_breadcrumb)
++		return 0;
++
++	cs = intel_ring_begin(rq, 4);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++	*cs++ = 0;
++	*cs++ = tl->hwsp_offset;
++	*cs++ = rq->fence.seqno - 1;
++
++	intel_ring_advance(rq, cs);
++
++	/* Record the updated position of the request's payload */
++	rq->infix = intel_ring_offset(rq, cs);
++
++	__set_bit(I915_FENCE_FLAG_INITIAL_BREADCRUMB, &rq->fence.flags);
++	return 0;
++}
++
+ static void ring_context_destroy(struct kref *ref)
+ {
+ 	struct intel_context *ce = container_of(ref, typeof(*ce), ref);
+@@ -464,8 +745,30 @@ static void ring_context_destroy(struct kref *ref)
+ 	intel_context_free(ce);
+ }
+ 
++static int __context_pin_ppgtt(struct intel_context *ce)
++{
++	struct i915_address_space *vm;
++	int err = 0;
++
++	vm = vm_alias(ce->vm);
++	if (vm)
++		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)));
++
++	return err;
++}
++
++static void __context_unpin_ppgtt(struct intel_context *ce)
++{
++	struct i915_address_space *vm;
++
++	vm = vm_alias(ce->vm);
++	if (vm)
++		gen6_ppgtt_unpin(i915_vm_to_ppgtt(vm));
++}
++
+ static void ring_context_unpin(struct intel_context *ce)
+ {
++	__context_unpin_ppgtt(ce);
+ }
+ 
+ static int alloc_context_vma(struct intel_context *ce)
+@@ -593,7 +896,7 @@ static int ring_context_alloc(struct intel_context *ce)
+ 
+ static int ring_context_pin(struct intel_context *ce)
+ {
+-	return 0;
++	return __context_pin_ppgtt(ce);
+ }
+ 
+ static void ring_context_reset(struct intel_context *ce)
+@@ -649,12 +952,19 @@ static void ring_release(struct intel_engine_cs *engine)
+ 
+ 	set_current_context(&engine->legacy.context, NULL);
+ 
++	if (engine->wa_ctx.vma) {
++		intel_context_put(engine->wa_ctx.vma->private);
++		i915_vma_unpin_and_release(&engine->wa_ctx.vma, 0);
++	}
++
+ 	intel_ring_unpin(engine->legacy.ring);
+ 	intel_ring_put(engine->legacy.ring);
+ }
+ 
+ static void setup_irq(struct intel_engine_cs *engine)
+ {
++	engine->irq_enable = gen6_irq_enable;
++	engine->irq_disable = gen6_irq_disable;
+ }
+ 
+ static void setup_common(struct intel_engine_cs *engine)
+@@ -663,7 +973,7 @@ static void setup_common(struct intel_engine_cs *engine)
+ 
+ 	/* gen8+ are only supported with execlists */
+ 	GEM_BUG_ON(INTEL_GEN(i915) >= 8);
+-	GEM_BUG_ON(INTEL_GEN(i915) < 8);
++	GEM_BUG_ON(INTEL_GEN(i915) < 6);
+ 
+ 	setup_irq(engine);
+ 
+@@ -680,24 +990,62 @@ static void setup_common(struct intel_engine_cs *engine)
+ 	engine->cops = &ring_context_ops;
+ 	engine->request_alloc = ring_request_alloc;
+ 
++	engine->emit_init_breadcrumb = gen6_emit_init_breadcrumb;
++	if (INTEL_GEN(i915) >= 7)
++		engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_xcs;
++	else if (INTEL_GEN(i915) >= 6)
++		engine->emit_fini_breadcrumb = gen6_emit_breadcrumb_xcs;
++	else
++		engine->emit_fini_breadcrumb = gen3_emit_breadcrumb;
++
+ 	engine->set_default_submission = set_default_submission;
++
++	engine->emit_bb_start = gen6_emit_bb_start;
+ }
+ 
+ static void setup_rcs(struct intel_engine_cs *engine)
+ {
++	struct drm_i915_private *i915 = engine->i915;
++
++	if (HAS_L3_DPF(i915))
++		engine->irq_keep_mask = GT_RENDER_L3_PARITY_ERROR_INTERRUPT;
++
++	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT;
++
++	if (INTEL_GEN(i915) >= 7) {
++		engine->emit_flush = gen7_emit_flush_rcs;
++		engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_rcs;
++		if (IS_HASWELL(i915))
++			engine->emit_bb_start = hsw_emit_bb_start;
++	} else {
++		engine->emit_flush = gen6_emit_flush_rcs;
++		engine->emit_fini_breadcrumb = gen6_emit_breadcrumb_rcs;
++	}
+ }
+ 
+ static void setup_vcs(struct intel_engine_cs *engine)
+ {
++	engine->emit_flush = gen6_emit_flush_vcs;
++	engine->irq_enable_mask = GT_BSD_USER_INTERRUPT;
++
++	if (IS_GEN(engine->i915, 6))
++		engine->fw_domain = FORCEWAKE_ALL;
+ }
+ 
+ static void setup_bcs(struct intel_engine_cs *engine)
+ {
++	engine->emit_flush = gen6_emit_flush_xcs;
++	engine->irq_enable_mask = GT_BLT_USER_INTERRUPT;
+ }
+ 
+ static void setup_vecs(struct intel_engine_cs *engine)
+ {
+ 	GEM_BUG_ON(!IS_HASWELL(engine->i915));
++
++	engine->emit_flush = gen6_emit_flush_xcs;
++	engine->irq_enable_mask = PM_VEBOX_USER_INTERRUPT;
++	engine->irq_enable = hsw_irq_enable_vecs;
++	engine->irq_disable = hsw_irq_disable_vecs;
+ }
+ 
+ static unsigned int global_ring_size(void)
+@@ -706,6 +1054,58 @@ static unsigned int global_ring_size(void)
+ 	return roundup_pow_of_two(EXECLIST_MAX_PORTS * SZ_16K + SZ_4K);
+ }
+ 
++static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
++{
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++	int size;
++	int err;
++
++	size = gen7_setup_clear_gpr_bb(engine, NULL /* probe size */);
++	if (size <= 0)
++		return size;
++
++	size = ALIGN(size, PAGE_SIZE);
++	obj = i915_gem_object_create_internal(engine->i915, size);
++	if (IS_ERR(obj))
++		return PTR_ERR(obj);
++
++	vma = i915_vma_instance(obj, engine->gt->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto err_obj;
++	}
++
++	vma->private = intel_context_create(engine); /* dummy residuals */
++	if (IS_ERR(vma->private)) {
++		err = PTR_ERR(vma->private);
++		goto err_obj;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
++	if (err)
++		goto err_private;
++
++	err = i915_vma_sync(vma);
++	if (err)
++		goto err_unpin;
++
++	size = gen7_setup_clear_gpr_bb(engine, vma);
++	if (err)
++		goto err_unpin;
++
++	engine->wa_ctx.vma = vma;
++	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++err_private:
++	intel_context_put(vma->private);
++err_obj:
++	i915_gem_object_put(obj);
++	return err;
++}
++
+ int intel_ring_scheduler_setup(struct intel_engine_cs *engine)
+ {
+ 	struct intel_ring *ring;
+@@ -749,6 +1149,12 @@ int intel_ring_scheduler_setup(struct intel_engine_cs *engine)
+ 	GEM_BUG_ON(engine->legacy.ring);
+ 	engine->legacy.ring = ring;
+ 
++	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
++		err = gen7_ctx_switch_bb_init(engine);
++		if (err)
++			goto err_ring_unpin;
++	}
++
+ 	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+ 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+ 
+@@ -756,6 +1162,8 @@ int intel_ring_scheduler_setup(struct intel_engine_cs *engine)
+ 	engine->release = ring_release;
+ 	return 0;
+ 
++err_ring_unpin:
++	intel_ring_unpin(ring);
+ err_ring:
+ 	intel_ring_put(ring);
+ err:
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
