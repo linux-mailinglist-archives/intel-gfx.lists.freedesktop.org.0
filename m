@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96001EFE47
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 18:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B97BA1EFE59
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 18:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79EE66E3EF;
-	Fri,  5 Jun 2020 16:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67FA6E94B;
+	Fri,  5 Jun 2020 16:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2086E3EF
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 16:53:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21409662-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Jun 2020 17:52:59 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Jun 2020 17:52:58 +0100
-Message-Id: <20200605165258.1483-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DE80F6E949;
+ Fri,  5 Jun 2020 16:58:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8395A47E6;
+ Fri,  5 Jun 2020 16:58:17 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Discard a misplaced GGTT vma
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 05 Jun 2020 16:58:17 -0000
+Message-ID: <159137629785.18509.513731909955759287@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200605095858.28455-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200605095858.28455-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/5=5D_drm/i915=3A_Add_list=5Ffor=5Feach?=
+ =?utf-8?q?=5Fentry=5Fsafe=5Fcontinue=5Freverse_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,100 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Across the many users of the GGTT vma (internal objects, mmapings,
-display etc), we may end up with conflicting requirements for the
-placement. Currently, we try to resolve the conflict by unbinding the
-vma and rebinding it to match the new constraints; over time we will end
-up with a GGTT that matches the most strict constraints over all
-concurrent users. However, this causes a problem if the vma is currently
-in use as we must wait until it is idle before moving it. But there is
-no restriction on the number of views we may use (apart from the limited
-size of the GGTT itself), and so if the active vma does not meet our
-requirements, try and build a new one!
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/i915_gem.c | 45 +++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+Series: series starting with [1/5] drm/i915: Add list_for_each_entry_safe_continue_reverse (rev2)
+URL   : https://patchwork.freedesktop.org/series/78031/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 0cbcb9f54e7d..f1acd1889d37 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -933,6 +933,45 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
- 	}
- }
- 
-+static bool
-+discard_ggtt_vma(struct i915_vma *vma, const struct i915_ggtt_view *view)
-+{
-+	const struct i915_ggtt_view discard = {
-+		.type = I915_GGTT_VIEW_PARTIAL,
-+	};
-+	struct drm_i915_gem_object *obj = vma->obj;
-+
-+	spin_lock(&obj->vma.lock);
-+	if (i915_vma_compare(vma, vma->vm, &discard)) {
-+		struct rb_node *rb, **p;
-+
-+		rb_erase(&vma->obj_node, &obj->vma.tree);
-+		vma->ggtt_view = discard;
-+		GEM_BUG_ON(i915_vma_compare(vma, vma->vm, view));
-+
-+		rb = NULL;
-+		p = &obj->vma.tree.rb_node;
-+		while (*p) {
-+			struct i915_vma *pos;
-+			long cmp;
-+
-+			rb = *p;
-+			pos = rb_entry(rb, struct i915_vma, obj_node);
-+
-+			cmp = i915_vma_compare(pos, vma->vm, &discard);
-+			if (cmp < 0)
-+				p = &rb->rb_right;
-+			else
-+				p = &rb->rb_left;
-+		}
-+		rb_link_node(&vma->obj_node, rb, p);
-+		rb_insert_color(&vma->obj_node, &obj->vma.tree);
-+	}
-+	spin_unlock(&obj->vma.lock);
-+
-+	return i915_vma_compare(vma, vma->vm, view);
-+}
-+
- struct i915_vma *
- i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 			 const struct i915_ggtt_view *view,
-@@ -979,6 +1018,7 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 			return ERR_PTR(-ENOSPC);
- 	}
- 
-+new_vma:
- 	vma = i915_vma_instance(obj, &ggtt->vm, view);
- 	if (IS_ERR(vma))
- 		return vma;
-@@ -993,6 +1033,11 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 				return ERR_PTR(-ENOSPC);
- 		}
- 
-+		if (i915_vma_is_pinned(vma) || i915_vma_is_active(vma)) {
-+			if (discard_ggtt_vma(vma, view))
-+				goto new_vma;
-+		}
-+
- 		ret = i915_vma_unbind(vma);
- 		if (ret)
- 			return ERR_PTR(ret);
--- 
-2.20.1
+== Summary ==
+
+Applying: drm/i915: Add list_for_each_entry_safe_continue_reverse
+Applying: drm/i915/gem: Separate reloc validation into an earlier step
+Applying: drm/i915/gem: Lift GPU relocation allocation
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0003 drm/i915/gem: Lift GPU relocation allocation
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
