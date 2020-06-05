@@ -2,43 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA41A1EFC9B
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 17:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A39FD1EFCA0
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 17:38:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED7D56E936;
-	Fri,  5 Jun 2020 15:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C36F6E93B;
+	Fri,  5 Jun 2020 15:38:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5331B6E936
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 15:37:24 +0000 (UTC)
-IronPort-SDR: MrSsPi34AG0xgdlRDxzbw2ZyU/myANUT0RAL7rgYFOv9NzS5yoJTHK78Iv0pJHbVFb+I7hyi3W
- dn5bXsqFbY7A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2020 08:37:23 -0700
-IronPort-SDR: ECeZZFW9F6jvVhru/1huRBoX+qOlKrgr5F2zlr/d8sbyk2Ei2zn2xB+EFwax976jk9MJbaRA+H
- 76UcsjHUvGFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,476,1583222400"; d="scan'208";a="273505260"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 05 Jun 2020 08:37:22 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 1E8F05C2C59; Fri,  5 Jun 2020 18:34:52 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <159137114732.22562.14510475315266373484@build.alporthouse.com>
-References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
- <20200605122334.2798-2-chris@chris-wilson.co.uk>
- <87wo4la69p.fsf@gaia.fi.intel.com>
- <159137114732.22562.14510475315266373484@build.alporthouse.com>
-Date: Fri, 05 Jun 2020 18:34:52 +0300
-Message-ID: <87lfl1a5lv.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE8F06E93B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 15:38:29 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21408764-1500050 for multiple; Fri, 05 Jun 2020 16:38:28 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915/gt: Always check to enable
- timeslicing if not submitting
+In-Reply-To: <8c33c119-0d7f-6897-c697-c0e95a7e0bc5@linux.intel.com>
+References: <20200605095858.28455-1-chris@chris-wilson.co.uk>
+ <20200605095858.28455-2-chris@chris-wilson.co.uk>
+ <8c33c119-0d7f-6897-c697-c0e95a7e0bc5@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <159137150578.22562.7904269772462642978@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 05 Jun 2020 16:38:25 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/gem: Separate reloc validation
+ into an earlier step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,59 +47,174 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Quoting Tvrtko Ursulin (2020-06-05 16:27:26)
+> 
+> On 05/06/2020 10:58, Chris Wilson wrote:
+> > Over the next couple of patches, we will want to lock all the modified
+> > vma for relocation processing under a single ww_mutex. We neither want
+> > to have to include the vma that are skipped (due to no modifications
+> > required) nor do we want those to be marked as written too. So separate
+> > out the reloc validation into an early step, which we can use both to
+> > reject the execbuf before committing to making our changes, and to
+> > filter out the unmodified vma.
+> > 
+> > This does introduce a second pass through the reloc[], but only if we
+> > need to emit relocations.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 178 +++++++++++++-----
+> >   1 file changed, 133 insertions(+), 45 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > index cfe6d2cdbef1..7d4464fddca8 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > @@ -1331,6 +1331,117 @@ static u64
+> >   eb_relocate_entry(struct i915_execbuffer *eb,
+> >                 struct eb_vma *ev,
+> >                 const struct drm_i915_gem_relocation_entry *reloc)
+> > +{
+> > +     struct eb_vma *target;
+> > +
+> > +     /* we've already hold a reference to all valid objects */
+> > +     target = eb_get_vma(eb, reloc->target_handle);
+> > +     if (unlikely(!target))
+> > +             return -ENOENT;
+> > +
+> > +     /*
+> > +      * If the relocation already has the right value in it, no
+> > +      * more work needs to be done.
+> > +      */
+> > +     if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
+> > +             return 0;
+> 
+> These have been filtered out, no?
 
-> Quoting Mika Kuoppala (2020-06-05 16:20:34)
->> Chris Wilson <chris@chris-wilson.co.uk> writes:
->> 
->> > We may choose not to submit for a number of reasons, yet not fill both
->> > ELSP. In which case we must start timeslicing (there will be no ACK
->> > event on which to hook the start) if the queue would benefit from the
->> > currently active context being evicted.
->> >
->> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> > ---
->> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 5 ++---
->> >  1 file changed, 2 insertions(+), 3 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> > index 92c3368ffcbd..d55a5e0466e5 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> > @@ -2362,10 +2362,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->> >                               if (last->context == rq->context)
->> >                                       goto done;
->> >  
->> > -                             if (i915_request_has_sentinel(last)) {
->> > -                                     start_timeslice(engine, rq_prio(rq));
->> > +                             if (i915_request_has_sentinel(last))
->> >                                       goto done;
->> > -                             }
->> >  
->> >                               /*
->> >                                * If GVT overrides us we only ever submit
->> > @@ -2446,6 +2444,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->> >               set_preempt_timeout(engine, *active);
->> >               execlists_submit_ports(engine);
->> >       } else {
->> > +             start_timeslice(engine, execlists->queue_priority_hint);
->> 
->> If we ended up with same set of request, we want to skip submitting.
->> But why would we want to skip timeslicing?
->
-> Because we have already submitted the exact same pair of requests
-> and so there will a be a set_timeslice() either pending or have taken
-> place. In particular, we wanted to stop timeslicing if after a timeslice
-> expiry we submitted exactly the same requests as before the timelice --
-> we know that until the arrival of a new request that there is no need
-> for a new timeslice, that will just result in the same pair being
-> submitted in order each time.
+Only if the entire execobj->reloc[] was skipped. If some skipped and
+some did not, we may end up here.
 
-Makes sense. I managed look over the set_timeslice.
+> 
+> > +
+> > +     /*
+> > +      * If we write into the object, we need to force the synchronisation
+> > +      * barrier, either with an asynchronous clflush or if we executed the
+> > +      * patching using the GPU (though that should be serialised by the
+> > +      * timeline). To be completely sure, and since we are required to
+> > +      * do relocations we are already stalling, disable the user's opt
+> > +      * out of our synchronisation.
+> > +      */
+> > +     ev->flags &= ~EXEC_OBJECT_ASYNC;
+> > +
+> > +     /* and update the user's relocation entry */
+> > +     return relocate_entry(eb, ev->vma, reloc, target->vma);
+> > +}
+> > +
+> > +static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+> > +{
+> > +#define N_RELOC(x) ((x) / sizeof(struct drm_i915_gem_relocation_entry))
+> > +     struct drm_i915_gem_relocation_entry stack[N_RELOC(512)];
+> > +     const struct drm_i915_gem_exec_object2 *entry = ev->exec;
+> > +     struct drm_i915_gem_relocation_entry __user *urelocs =
+> > +             u64_to_user_ptr(entry->relocs_ptr);
+> > +     unsigned long remain = entry->relocation_count;
+> > +
+> > +     if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> > +             return -EINVAL;
+> 
+> This has been checked already in eb_reloca_vma_validate.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Ok. It didn't even register.
 
-> -Chris
+> 
+> > +
+> > +     /*
+> > +      * We must check that the entire relocation array is safe
+> > +      * to read. However, if the array is not writable the user loses
+> > +      * the updated relocation values.
+> > +      */
+> > +     if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
+> > +             return -EFAULT;
+> > +
+> > +     do {
+> > +             struct drm_i915_gem_relocation_entry *r = stack;
+> > +             unsigned int count =
+> > +                     min_t(unsigned long, remain, ARRAY_SIZE(stack));
+> > +             unsigned int copied;
+> > +
+> > +             /*
+> > +              * This is the fast path and we cannot handle a pagefault
+> > +              * whilst holding the struct mutex lest the user pass in the
+> > +              * relocations contained within a mmaped bo. For in such a case
+> > +              * we, the page fault handler would call i915_gem_fault() and
+> > +              * we would try to acquire the struct mutex again. Obviously
+> > +              * this is bad and so lockdep complains vehemently.
+> > +              */
+> > +             copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
+> > +             if (unlikely(copied))
+> > +                     return -EFAULT;
+> > +
+> > +             remain -= count;
+> 
+> The above two comments end up duplicated which is kind of ugly. Not sure 
+> how a common "runner/looper" would look with just the per-reloc body 
+> being a passed in function.
+
+I looked and thought it would just be the outer pair of loops being saved.
+Still probably worth it, but it felt like more work than cut'n'paste!
+
+> 
+> > +             do {
+> > +                     u64 offset = eb_relocate_entry(eb, ev, r);
+> > +
+> > +                     if (likely(offset == 0)) {
+> > +                     } else if ((s64)offset < 0) {
+> > +                             return (int)offset;
+> > +                     } else {
+> > +                             /*
+> > +                              * Note that reporting an error now
+> > +                              * leaves everything in an inconsistent
+> > +                              * state as we have *already* changed
+> > +                              * the relocation value inside the
+> > +                              * object. As we have not changed the
+> > +                              * reloc.presumed_offset or will not
+> > +                              * change the execobject.offset, on the
+> > +                              * call we may not rewrite the value
+> > +                              * inside the object, leaving it
+> > +                              * dangling and causing a GPU hang. Unless
+> > +                              * userspace dynamically rebuilds the
+> > +                              * relocations on each execbuf rather than
+> > +                              * presume a static tree.
+> > +                              *
+> > +                              * We did previously check if the relocations
+> > +                              * were writable (access_ok), an error now
+> > +                              * would be a strange race with mprotect,
+> > +                              * having already demonstrated that we
+> > +                              * can read from this userspace address.
+> > +                              */
+> > +                             offset = gen8_canonical_addr(offset & ~UPDATE);
+> > +                             __put_user(offset,
+> > +                                        &urelocs[r - stack].presumed_offset);
+> > +                     }
+> > +             } while (r++, --count);
+> > +             urelocs += ARRAY_SIZE(stack);
+> > +     } while (remain);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int
+> > +eb_reloc_valid(struct i915_execbuffer *eb,
+> > +            struct eb_vma *ev,
+> > +            const struct drm_i915_gem_relocation_entry *reloc)
+> 
+> It does a bit more than check for validity so if you agree maybe 
+> eb_reloc_prepare(_entry)?
+
+You mean the deeply buried gen6 w/a
+
+eb_reloc_prepare doesn't sound too bad.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
