@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC021F0067
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:26:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA661F006A
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:28:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388A76E972;
-	Fri,  5 Jun 2020 19:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 818226E971;
+	Fri,  5 Jun 2020 19:28:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE13E6E975;
- Fri,  5 Jun 2020 19:25:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AD7A1A0BC6;
- Fri,  5 Jun 2020 19:25:59 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6228D6E971
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 19:28:00 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21411080-1500050 for multiple; Fri, 05 Jun 2020 20:27:37 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.aiemd@gmail.com>
-Date: Fri, 05 Jun 2020 19:25:59 -0000
-Message-ID: <159138515967.18508.12936367917148900811@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200603103223.10443-1-nirmoy.das@amd.com>
-In-Reply-To: <20200603103223.10443-1-nirmoy.das@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv3=2C1/1=5D_drm/mm=3A_add_ig=5Ffrag?=
- =?utf-8?q?_selftest_=28rev2=29?=
+In-Reply-To: <CAM0jSHMk1PxtXcXkqZknTtw24tBP+Xv2LCMaZc1teKYAj9ehxg@mail.gmail.com>
+References: <20200605184844.24644-1-chris@chris-wilson.co.uk>
+ <CAM0jSHMk1PxtXcXkqZknTtw24tBP+Xv2LCMaZc1teKYAj9ehxg@mail.gmail.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <159138525558.22562.15325070153859665526@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 05 Jun 2020 20:27:35 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Correct discard i915_vma_compare
+ assertion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,37 +40,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Matthew Auld (2020-06-05 20:05:03)
+> On Fri, 5 Jun 2020 at 19:49, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >
+> > As a last minute addition, I added an assertion to make sure that the
+> > new i915_vma view would be equal to the discard. However, the positive
+> > encouragement from CI only goes to show that we rarely take this path,
+> > and it wasn't until the post-merge run did we hit the assert.
+> >
+> > Fixes: 9bdcaa5e3a2f ("drm/i915: Discard a misplaced GGTT vma")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: series starting with [v3,1/1] drm/mm: add ig_frag selftest (rev2)
-URL   : https://patchwork.freedesktop.org/series/77964/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-375207a3bd0b drm/mm: add ig_frag selftest
--:75: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#75: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1063:
-+
-+}
-
--:100: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#100: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1088:
-+
-+}
-
--:174: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Nirmoy Das <nirmoy.aiemd@gmail.com>'
-
-total: 0 errors, 1 warnings, 2 checks, 143 lines checked
-
+Ta, and apologies for the silly typo.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
