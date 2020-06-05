@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE42B1EFC77
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 17:27:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682551EFC88
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 17:32:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B486E935;
-	Fri,  5 Jun 2020 15:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 163526E92F;
+	Fri,  5 Jun 2020 15:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C60F6E935
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 15:27:36 +0000 (UTC)
-IronPort-SDR: TGoymDJ0KF7O9do3HolceMLlFwy+SWnj4PRKNbO/ok5u53vDRRHL/P3EgjdExTtR1lPrvtaWma
- pd5JGah5VsxA==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5CF89862
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 15:32:54 +0000 (UTC)
+IronPort-SDR: 24Tam9t9dLFRA1zXjcKmcRgZWwJX8MYUS22hXyCm+2ur3VbQnZ2MVynrHAT1iwkp/2Sc1hCtIU
+ KZXJ5O/0lshA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2020 08:27:35 -0700
-IronPort-SDR: pzD0FiaMr//L6kt3ccrcnBaRTh/D7rXdJCXPz+DjbgoRGhKNuk3sL/1T4IM0bkyWbvZQ2SoMP+
- cAgwYmoGshLA==
-X-IronPort-AV: E=Sophos;i="5.73,476,1583222400"; d="scan'208";a="445924819"
-Received: from ogabay-mobl1.ger.corp.intel.com (HELO [10.214.202.54])
- ([10.214.202.54])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2020 08:27:32 -0700
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2020 08:32:53 -0700
+IronPort-SDR: ZGKjI1eIA6bbqY1cawXDRZ1eKzk5dLMZjEuYOp0Jo7MGEmC5ea+xGrZgHbwahN8Mw/Jrs6YlrR
+ 2T2ryG3rh0ZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,476,1583222400"; d="scan'208";a="445926289"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga005.jf.intel.com with ESMTP; 05 Jun 2020 08:32:53 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 33A015C2C59; Fri,  5 Jun 2020 18:30:22 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200605095858.28455-1-chris@chris-wilson.co.uk>
- <20200605095858.28455-2-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <8c33c119-0d7f-6897-c697-c0e95a7e0bc5@linux.intel.com>
-Date: Fri, 5 Jun 2020 16:27:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+In-Reply-To: <20200605122334.2798-3-chris@chris-wilson.co.uk>
+References: <20200605122334.2798-1-chris@chris-wilson.co.uk>
+ <20200605122334.2798-3-chris@chris-wilson.co.uk>
+Date: Fri, 05 Jun 2020 18:30:22 +0300
+Message-ID: <87r1uta5td.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200605095858.28455-2-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/gem: Separate reloc validation
- into an earlier step
+Subject: Re: [Intel-gfx] [PATCH 03/10] Restore "drm/i915: drop
+ engine_pin/unpin_breadcrumbs_irq"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,275 +49,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-On 05/06/2020 10:58, Chris Wilson wrote:
-> Over the next couple of patches, we will want to lock all the modified
-> vma for relocation processing under a single ww_mutex. We neither want
-> to have to include the vma that are skipped (due to no modifications
-> required) nor do we want those to be marked as written too. So separate
-> out the reloc validation into an early step, which we can use both to
-> reject the execbuf before committing to making our changes, and to
-> filter out the unmodified vma.
-> 
-> This does introduce a second pass through the reloc[], but only if we
-> need to emit relocations.
-> 
+> This was removed in commit 478ffad6d690 ("drm/i915: drop
+> engine_pin/unpin_breadcrumbs_irq") as the last user had been removed,
+> but now there is a promise of a new user in the next patch.
+>
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
 > ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 178 +++++++++++++-----
->   1 file changed, 133 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index cfe6d2cdbef1..7d4464fddca8 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1331,6 +1331,117 @@ static u64
->   eb_relocate_entry(struct i915_execbuffer *eb,
->   		  struct eb_vma *ev,
->   		  const struct drm_i915_gem_relocation_entry *reloc)
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 22 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_engine.h      |  3 +++
+>  2 files changed, 25 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index d907d538176e..03c14ab86d95 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -220,6 +220,28 @@ static void signal_irq_work(struct irq_work *work)
+>  	}
+>  }
+>  
+> +void intel_engine_pin_breadcrumbs_irq(struct intel_engine_cs *engine)
 > +{
-> +	struct eb_vma *target;
+> +	struct intel_breadcrumbs *b = &engine->breadcrumbs;
 > +
-> +	/* we've already hold a reference to all valid objects */
-> +	target = eb_get_vma(eb, reloc->target_handle);
-> +	if (unlikely(!target))
-> +		return -ENOENT;
-> +
-> +	/*
-> +	 * If the relocation already has the right value in it, no
-> +	 * more work needs to be done.
-> +	 */
-> +	if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
-> +		return 0;
-
-These have been filtered out, no?
-
-> +
-> +	/*
-> +	 * If we write into the object, we need to force the synchronisation
-> +	 * barrier, either with an asynchronous clflush or if we executed the
-> +	 * patching using the GPU (though that should be serialised by the
-> +	 * timeline). To be completely sure, and since we are required to
-> +	 * do relocations we are already stalling, disable the user's opt
-> +	 * out of our synchronisation.
-> +	 */
-> +	ev->flags &= ~EXEC_OBJECT_ASYNC;
-> +
-> +	/* and update the user's relocation entry */
-> +	return relocate_entry(eb, ev->vma, reloc, target->vma);
+> +	spin_lock_irq(&b->irq_lock);
+> +	if (!b->irq_enabled++)
+> +		irq_enable(engine);
+> +	GEM_BUG_ON(!b->irq_enabled); /* no overflow! */
+> +	spin_unlock_irq(&b->irq_lock);
 > +}
 > +
-> +static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+> +void intel_engine_unpin_breadcrumbs_irq(struct intel_engine_cs *engine)
 > +{
-> +#define N_RELOC(x) ((x) / sizeof(struct drm_i915_gem_relocation_entry))
-> +	struct drm_i915_gem_relocation_entry stack[N_RELOC(512)];
-> +	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
-> +	struct drm_i915_gem_relocation_entry __user *urelocs =
-> +		u64_to_user_ptr(entry->relocs_ptr);
-> +	unsigned long remain = entry->relocation_count;
+> +	struct intel_breadcrumbs *b = &engine->breadcrumbs;
 > +
-> +	if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> +		return -EINVAL;
-
-This has been checked already in eb_reloca_vma_validate.
-
-> +
-> +	/*
-> +	 * We must check that the entire relocation array is safe
-> +	 * to read. However, if the array is not writable the user loses
-> +	 * the updated relocation values.
-> +	 */
-> +	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
-> +		return -EFAULT;
-> +
-> +	do {
-> +		struct drm_i915_gem_relocation_entry *r = stack;
-> +		unsigned int count =
-> +			min_t(unsigned long, remain, ARRAY_SIZE(stack));
-> +		unsigned int copied;
-> +
-> +		/*
-> +		 * This is the fast path and we cannot handle a pagefault
-> +		 * whilst holding the struct mutex lest the user pass in the
-> +		 * relocations contained within a mmaped bo. For in such a case
-> +		 * we, the page fault handler would call i915_gem_fault() and
-> +		 * we would try to acquire the struct mutex again. Obviously
-> +		 * this is bad and so lockdep complains vehemently.
-> +		 */
-> +		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
-> +		if (unlikely(copied))
-> +			return -EFAULT;
-> +
-> +		remain -= count;
-
-The above two comments end up duplicated which is kind of ugly. Not sure 
-how a common "runner/looper" would look with just the per-reloc body 
-being a passed in function.
-
-> +		do {
-> +			u64 offset = eb_relocate_entry(eb, ev, r);
-> +
-> +			if (likely(offset == 0)) {
-> +			} else if ((s64)offset < 0) {
-> +				return (int)offset;
-> +			} else {
-> +				/*
-> +				 * Note that reporting an error now
-> +				 * leaves everything in an inconsistent
-> +				 * state as we have *already* changed
-> +				 * the relocation value inside the
-> +				 * object. As we have not changed the
-> +				 * reloc.presumed_offset or will not
-> +				 * change the execobject.offset, on the
-> +				 * call we may not rewrite the value
-> +				 * inside the object, leaving it
-> +				 * dangling and causing a GPU hang. Unless
-> +				 * userspace dynamically rebuilds the
-> +				 * relocations on each execbuf rather than
-> +				 * presume a static tree.
-> +				 *
-> +				 * We did previously check if the relocations
-> +				 * were writable (access_ok), an error now
-> +				 * would be a strange race with mprotect,
-> +				 * having already demonstrated that we
-> +				 * can read from this userspace address.
-> +				 */
-> +				offset = gen8_canonical_addr(offset & ~UPDATE);
-> +				__put_user(offset,
-> +					   &urelocs[r - stack].presumed_offset);
-> +			}
-> +		} while (r++, --count);
-> +		urelocs += ARRAY_SIZE(stack);
-> +	} while (remain);
-> +
-> +	return 0;
+> +	spin_lock_irq(&b->irq_lock);
+> +	GEM_BUG_ON(!b->irq_enabled); /* no underflow! */
+> +	if (!--b->irq_enabled)
+> +		irq_disable(engine);
+> +	spin_unlock_irq(&b->irq_lock);
 > +}
 > +
-> +static int
-> +eb_reloc_valid(struct i915_execbuffer *eb,
-> +	       struct eb_vma *ev,
-> +	       const struct drm_i915_gem_relocation_entry *reloc)
-
-It does a bit more than check for validity so if you agree maybe 
-eb_reloc_prepare(_entry)?
-
->   {
->   	struct drm_i915_private *i915 = eb->i915;
->   	struct eb_vma *target;
-> @@ -1408,21 +1519,10 @@ eb_relocate_entry(struct i915_execbuffer *eb,
->   		return -EINVAL;
->   	}
->   
-> -	/*
-> -	 * If we write into the object, we need to force the synchronisation
-> -	 * barrier, either with an asynchronous clflush or if we executed the
-> -	 * patching using the GPU (though that should be serialised by the
-> -	 * timeline). To be completely sure, and since we are required to
-> -	 * do relocations we are already stalling, disable the user's opt
-> -	 * out of our synchronisation.
-> -	 */
-> -	ev->flags &= ~EXEC_OBJECT_ASYNC;
-> -
-> -	/* and update the user's relocation entry */
-> -	return relocate_entry(eb, ev->vma, reloc, target->vma);
-> +	return 1;
->   }
->   
-> -static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
-> +static long eb_reloc_vma_validate(struct i915_execbuffer *eb, struct eb_vma *ev)
->   {
->   #define N_RELOC(x) ((x) / sizeof(struct drm_i915_gem_relocation_entry))
->   	struct drm_i915_gem_relocation_entry stack[N_RELOC(512)];
-> @@ -1430,6 +1530,7 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->   	struct drm_i915_gem_relocation_entry __user *urelocs =
->   		u64_to_user_ptr(entry->relocs_ptr);
->   	unsigned long remain = entry->relocation_count;
-> +	long required = 0;
->   
->   	if (unlikely(remain > N_RELOC(ULONG_MAX)))
->   		return -EINVAL;
-> @@ -1462,42 +1563,18 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->   
->   		remain -= count;
->   		do {
-> -			u64 offset = eb_relocate_entry(eb, ev, r);
-> +			int ret;
->   
-> -			if (likely(offset == 0)) {
-> -			} else if ((s64)offset < 0) {
-> -				return (int)offset;
-> -			} else {
-> -				/*
-> -				 * Note that reporting an error now
-> -				 * leaves everything in an inconsistent
-> -				 * state as we have *already* changed
-> -				 * the relocation value inside the
-> -				 * object. As we have not changed the
-> -				 * reloc.presumed_offset or will not
-> -				 * change the execobject.offset, on the
-> -				 * call we may not rewrite the value
-> -				 * inside the object, leaving it
-> -				 * dangling and causing a GPU hang. Unless
-> -				 * userspace dynamically rebuilds the
-> -				 * relocations on each execbuf rather than
-> -				 * presume a static tree.
-> -				 *
-> -				 * We did previously check if the relocations
-> -				 * were writable (access_ok), an error now
-> -				 * would be a strange race with mprotect,
-> -				 * having already demonstrated that we
-> -				 * can read from this userspace address.
-> -				 */
-> -				offset = gen8_canonical_addr(offset & ~UPDATE);
-> -				__put_user(offset,
-> -					   &urelocs[r - stack].presumed_offset);
-> -			}
-> +			ret = eb_reloc_valid(eb, ev, r);
-> +			if (ret < 0)
-> +				return ret;
+>  static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>  {
+>  	struct intel_engine_cs *engine =
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 791897f8d847..043462b6ce1f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -226,6 +226,9 @@ void intel_engine_init_execlists(struct intel_engine_cs *engine);
+>  void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine);
+>  void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
+>  
+> +void intel_engine_pin_breadcrumbs_irq(struct intel_engine_cs *engine);
+> +void intel_engine_unpin_breadcrumbs_irq(struct intel_engine_cs *engine);
 > +
-> +			required += ret;
->   		} while (r++, --count);
->   		urelocs += ARRAY_SIZE(stack);
->   	} while (remain);
->   
-> -	return 0;
-> +	return required;
->   }
->   
->   static int eb_relocate(struct i915_execbuffer *eb)
-> @@ -1516,9 +1593,20 @@ static int eb_relocate(struct i915_execbuffer *eb)
->   
->   	/* The objects are in their final locations, apply the relocations. */
->   	if (eb->args->flags & __EXEC_HAS_RELOC) {
-> -		struct eb_vma *ev;
-> +		struct eb_vma *ev, *en;
->   		int flush;
->   
-> +		list_for_each_entry_safe(ev, en, &eb->relocs, reloc_link) {
-> +			long count;
-> +
-> +			count = eb_reloc_vma_validate(eb, ev);
-> +			if (count < 0)
-> +				return count;
-> +
-> +			if (count == 0)
-> +				list_del_init(&ev->reloc_link);
-> +		}
-> +
->   		list_for_each_entry(ev, &eb->relocs, reloc_link) {
->   			err = eb_relocate_vma(eb, ev);
->   			if (err)
-> 
-
-Regards,
-
-Tvrtko
+>  void intel_engine_disarm_breadcrumbs(struct intel_engine_cs *engine);
+>  
+>  static inline void
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
