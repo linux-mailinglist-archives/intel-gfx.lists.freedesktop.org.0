@@ -2,47 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CB91F0006
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 20:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 726B41F0019
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 20:49:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B3666E966;
-	Fri,  5 Jun 2020 18:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C55186E969;
+	Fri,  5 Jun 2020 18:49:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 016B26E966
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 18:45:40 +0000 (UTC)
-IronPort-SDR: yR2sFipVMJ3bqIuNtJg4PgMGK4Hoyca29O5U7RdjbUGMGdvOn5EHgQ9x96snU1S4n5cvaFbiXm
- WEqgga0WOyNA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2020 11:45:40 -0700
-IronPort-SDR: Em2SwIApaOChD8ivBSlj6BODCCRiddGWah0O4ySqgGsb0gCpqtOSQm38t0f2Hd2aZIN7CrVwp3
- Hr5AkR6fJpOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,477,1583222400"; d="scan'208";a="273556712"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga006.jf.intel.com with ESMTP; 05 Jun 2020 11:45:38 -0700
-Received: from andy by smile with local (Exim 4.93)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1jhHLZ-00B5tA-GI; Fri, 05 Jun 2020 21:45:41 +0300
-Date: Fri, 5 Jun 2020 21:45:41 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200605184541.GU2428291@smile.fi.intel.com>
-References: <20200602122130.45630-1-hdegoede@redhat.com>
- <20200602152317.GI2428291@smile.fi.intel.com>
- <ba931618-9259-aca0-142c-c1dfb67e737e@redhat.com>
- <20200605170931.GR2428291@smile.fi.intel.com>
- <1cf9b188-1e59-b321-6909-bf6afa93685d@redhat.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5036E969
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 18:49:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21410775-1500050 
+ for multiple; Fri, 05 Jun 2020 19:48:46 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Jun 2020 19:48:44 +0100
+Message-Id: <20200605184844.24644-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1cf9b188-1e59-b321-6909-bf6afa93685d@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH] pinctrl: baytrail: Fix pin being driven low
- for a while on gpiod_get(..., GPIOD_OUT_HIGH)
+Subject: [Intel-gfx] [PATCH] drm/i915: Correct discard i915_vma_compare
+ assertion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,48 +37,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-gpio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2020 at 07:31:35PM +0200, Hans de Goede wrote:
-> On 6/5/20 7:09 PM, Andy Shevchenko wrote:
-> > On Fri, Jun 05, 2020 at 04:33:47PM +0200, Hans de Goede wrote:
-> > > On 6/2/20 5:23 PM, Andy Shevchenko wrote:
-> > > > On Tue, Jun 02, 2020 at 02:21:30PM +0200, Hans de Goede wrote:
+As a last minute addition, I added an assertion to make sure that the
+new i915_vma view would be equal to the discard. However, the positive
+encouragement from CI only goes to show that we rarely take this path,
+and it wasn't until the post-merge run did we hit the assert.
 
-...
+Fixes: 9bdcaa5e3a2f ("drm/i915: Discard a misplaced GGTT vma")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/i915_gem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> > > Sure, not sure if that is worth respinning the patch for though,
-> > > either way let me know.
-> > 
-> > I think makes sense to respin. We still have time.
-> 
-> I wasn't talking about timing, more just that it creates extra
-> work (for me) and if that was just for the capital 'B' thingie it
-> would not be worth the extra work IMHO, but since we need a v2 for
-> the fixes tag anyways I'll fix this as well.
-
-I got your point, no problem, I would fix myself, if it is only the comment
-to address.
-
-...
-
-> > Btw, can we for sake of consistency update direction_input() as well?
-> 
-> Sure, the change for that will be quite small, so shall I out it
-> in this patch, or do you want a second patch for that?
-
-I think we can do in one.
-
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index f1acd1889d37..41553e9e57a9 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -947,7 +947,8 @@ discard_ggtt_vma(struct i915_vma *vma, const struct i915_ggtt_view *view)
+ 
+ 		rb_erase(&vma->obj_node, &obj->vma.tree);
+ 		vma->ggtt_view = discard;
+-		GEM_BUG_ON(i915_vma_compare(vma, vma->vm, view));
++		GEM_BUG_ON(i915_vma_compare(vma, vma->vm, &discard));
++		GEM_BUG_ON(i915_vma_compare(vma, vma->vm, view) == 0);
+ 
+ 		rb = NULL;
+ 		p = &obj->vma.tree.rb_node;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
