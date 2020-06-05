@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAA51F005D
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:21:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC021F0067
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 21:26:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC0946E973;
-	Fri,  5 Jun 2020 19:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 388A76E972;
+	Fri,  5 Jun 2020 19:26:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A579A6E972;
- Fri,  5 Jun 2020 19:21:24 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE13E6E975;
+ Fri,  5 Jun 2020 19:25:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9E7C6A47E8;
- Fri,  5 Jun 2020 19:21:24 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD7A1A0BC6;
+ Fri,  5 Jun 2020 19:25:59 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 05 Jun 2020 19:21:24 -0000
-Message-ID: <159138488461.18508.3296549350844878225@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.aiemd@gmail.com>
+Date: Fri, 05 Jun 2020 19:25:59 -0000
+Message-ID: <159138515967.18508.12936367917148900811@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200605184844.24644-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200605184844.24644-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Correct_discard_i915=5Fvma=5Fcompare_assertion?=
+References: <20200603103223.10443-1-nirmoy.das@amd.com>
+In-Reply-To: <20200603103223.10443-1-nirmoy.das@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv3=2C1/1=5D_drm/mm=3A_add_ig=5Ffrag?=
+ =?utf-8?q?_selftest_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,129 +48,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Correct discard i915_vma_compare assertion
-URL   : https://patchwork.freedesktop.org/series/78053/
-State : success
+Series: series starting with [v3,1/1] drm/mm: add ig_frag selftest (rev2)
+URL   : https://patchwork.freedesktop.org/series/77964/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8593 -> Patchwork_17892
-====================================================
+$ dim checkpatch origin/drm-tip
+375207a3bd0b drm/mm: add ig_frag selftest
+-:75: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#75: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1063:
++
++}
 
-Summary
--------
+-:100: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#100: FILE: drivers/gpu/drm/selftests/test-drm_mm.c:1088:
++
++}
 
-  **SUCCESS**
+-:174: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Nirmoy Das <nirmoy.aiemd@gmail.com>'
 
-  No regressions found.
+total: 0 errors, 1 warnings, 2 checks, 143 lines checked
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17892 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-byt-j1900/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-bxt-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-bxt-dsi/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][7] -> [DMESG-FAIL][8] ([i915#1993])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-n2820:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-byt-n2820/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-byt-n2820/igt@i915_module_load@reload.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][17] ([fdo#109271]) -> [DMESG-FAIL][18] ([i915#62] / [i915#95])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +4 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8593/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8593 -> Patchwork_17892
-
-  CI-20190529: 20190529
-  CI_DRM_8593: 11c8af407947d7e9f56a99419f3867972d6c138d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17892: 954be4018799277620ca00c171ccbb02d1a14691 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-954be4018799 drm/i915: Correct discard i915_vma_compare assertion
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17892/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
