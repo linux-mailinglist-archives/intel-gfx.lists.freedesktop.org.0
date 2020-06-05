@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4CE51EF9AF
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 15:53:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA091EF9CB
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jun 2020 15:59:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2514C6E8EB;
-	Fri,  5 Jun 2020 13:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA9106E8ED;
+	Fri,  5 Jun 2020 13:59:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB71D6E8EB;
- Fri,  5 Jun 2020 13:53:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 39F326E8ED;
+ Fri,  5 Jun 2020 13:59:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E542BA0003;
- Fri,  5 Jun 2020 13:53:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 34533A66C7;
+ Fri,  5 Jun 2020 13:59:33 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Fri, 05 Jun 2020 13:53:52 -0000
-Message-ID: <159136523293.18507.17008252253062518394@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 05 Jun 2020 13:59:33 -0000
+Message-ID: <159136557321.18507.11509095777198532203@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200603211040.8190-1-imre.deak@intel.com>
-In-Reply-To: <20200603211040.8190-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BRESEND=2Cv3=2C1/3=5D_drm/i915/dp=5Fmst=3A_?=
- =?utf-8?q?Fix_disabling_MST_on_a_port_=28rev6=29?=
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_dma-fence_lockdep_annotations=2C_round_2_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,301 +47,142 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [RESEND,v3,1/3] drm/i915/dp_mst: Fix disabling MST on a port (rev6)
-URL   : https://patchwork.freedesktop.org/series/77969/
-State : success
+Series: dma-fence lockdep annotations, round 2 (rev2)
+URL   : https://patchwork.freedesktop.org/series/77986/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8590_full -> Patchwork_17882_full
-====================================================
+$ dim checkpatch origin/drm-tip
+e78a321ad3b9 mm: Track mmu notifiers in fs_reclaim_acquire/release
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 23b68395c7c7 ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/end")'
+#12: 
+recursions we do have lockdep annotations since 23b68395c7c7
 
-Summary
--------
+-:41: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 66204f1d2d1b ("mm/mmu_notifiers: prime lockdep")'
+#41: 
+With this we can also remove the lockdep priming added in 66204f1d2d1b
 
-  **SUCCESS**
+-:116: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#116: FILE: mm/page_alloc.c:4165:
++
++	}
 
-  No regressions found.
+-:130: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  
+total: 2 errors, 1 warnings, 1 checks, 65 lines checked
+7e972dd54c14 dma-buf: minor doc touch-ups
+-:32: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+83bbee724172 dma-fence: basic lockdep annotations
+-:23: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e91498589746 ("locking/lockdep/selftests: Add mixed read-write ABBA tests")'
+#23: 
+  commit e91498589746065e3ae95d9a00b068e525eec34f
 
-  Here are the changes found in Patchwork_17882_full that come from known issues:
+-:97: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e966eaeeb623 ("locking/lockdep: Remove the cross-release locking checks")'
+#97: 
+	commit e966eaeeb623f09975ef362c2866fae6f86844f9
 
-### IGT changes ###
+-:103: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#103: 
+	    This code (CONFIG_LOCKDEP_CROSSRELEASE=y and CONFIG_LOCKDEP_COMPLETIONS=y),
 
-#### Issues hit ####
+-:313: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#313: FILE: drivers/dma-buf/dma-fence.c:228:
++	if (in_atomic())
 
-  * igt@gem_exec_whisper@basic-forked-all:
-    - shard-glk:          [PASS][1] -> [DMESG-WARN][2] ([i915#118] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-glk7/igt@gem_exec_whisper@basic-forked-all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-glk2/igt@gem_exec_whisper@basic-forked-all.html
+-:351: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#351: FILE: drivers/dma-buf/dma-fence.c:266:
++
++
 
-  * igt@gem_mmap_gtt@cpuset-big-copy-odd:
-    - shard-iclb:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-iclb6/igt@gem_mmap_gtt@cpuset-big-copy-odd.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-iclb2/igt@gem_mmap_gtt@cpuset-big-copy-odd.html
+-:400: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#400: FILE: include/linux/dma-fence.h:368:
++}
++static inline void dma_fence_end_signalling(bool cookie) {}
 
-  * igt@gem_workarounds@suspend-resume:
-    - shard-apl:          [PASS][5] -> [DMESG-WARN][6] ([i915#180])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl2/igt@gem_workarounds@suspend-resume.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl1/igt@gem_workarounds@suspend-resume.html
+-:406: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_big_fb@linear-32bpp-rotate-180:
-    - shard-skl:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +9 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl6/igt@kms_big_fb@linear-32bpp-rotate-180.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl5/igt@kms_big_fb@linear-32bpp-rotate-180.html
+total: 3 errors, 2 warnings, 2 checks, 231 lines checked
+24dfd7c2f31d dma-fence: prime lockdep annotations
+-:31: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 23b68395c7c7 ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/end")'
+#31: 
+commit 23b68395c7c78a764e8963fc15a7cfd318bf187f
 
-  * igt@kms_big_fb@linear-64bpp-rotate-180:
-    - shard-glk:          [PASS][9] -> [DMESG-FAIL][10] ([i915#118] / [i915#95]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-glk2/igt@kms_big_fb@linear-64bpp-rotate-180.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-glk8/igt@kms_big_fb@linear-64bpp-rotate-180.html
+-:169: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_big_fb@x-tiled-16bpp-rotate-0:
-    - shard-glk:          [PASS][11] -> [DMESG-WARN][12] ([i915#1982])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-glk5/igt@kms_big_fb@x-tiled-16bpp-rotate-0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-glk4/igt@kms_big_fb@x-tiled-16bpp-rotate-0.html
+total: 1 errors, 1 warnings, 0 checks, 82 lines checked
+f0ab547cc6c5 drm/vkms: Annotate vblank timer
+-:59: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen:
-    - shard-apl:          [PASS][13] -> [DMESG-WARN][14] ([i915#95]) +17 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl4/igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl8/igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen.html
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+5594f77b32e6 drm/vblank: Annotate with dma-fence signalling section
+-:71: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-kbl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +4 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl4/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+46b7c2fd5ffd drm/atomic-helper: Add dma-fence annotations
+-:119: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled:
-    - shard-snb:          [PASS][17] -> [TIMEOUT][18] ([i915#1958])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-snb6/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-snb1/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled.html
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+ac0b1f52d0fe drm/amdgpu: add dma-fence annotations to atomic commit path
+-:52: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move:
-    - shard-kbl:          [PASS][19] -> [DMESG-WARN][20] ([i915#93] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+c0009c21b60f drm/scheduler: use dma-fence annotations in main thread
+-:53: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu:
-    - shard-skl:          [PASS][21] -> [FAIL][22] ([i915#49])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl9/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl9/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu.html
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+0e0f7023514c drm/amdgpu: use dma-fence annotations in cs_submit()
+-:65: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][23] -> [FAIL][24] ([fdo#108145] / [i915#265]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+47de02c44f96 drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in scheduler code
+-:82: WARNING:ALLOC_ARRAY_ARGS: kmalloc_array uses number as first arg, sizeof is generally wrong
+#82: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c:211:
++	fences = kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_ATOMIC);
 
-  * igt@kms_plane_lowres@pipe-a-tiling-x:
-    - shard-snb:          [PASS][25] -> [SKIP][26] ([fdo#109271]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-snb2/igt@kms_plane_lowres@pipe-a-tiling-x.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-snb1/igt@kms_plane_lowres@pipe-a-tiling-x.html
+-:98: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_psr@psr2_cursor_blt:
-    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#109441]) +3 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-iclb4/igt@kms_psr@psr2_cursor_blt.html
+total: 0 errors, 2 warnings, 0 checks, 24 lines checked
+4c8281f15785 drm/amdgpu: DC also loves to allocate stuff where it shouldn't
+-:70: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#70: FILE: drivers/gpu/drm/amd/display/dc/core/dc.c:1420:
++	 * atomic_commit_tail. */
 
-  * igt@kms_universal_plane@universal-plane-gen9-features-pipe-c:
-    - shard-kbl:          [PASS][29] -> [DMESG-WARN][30] ([i915#1982])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl3/igt@kms_universal_plane@universal-plane-gen9-features-pipe-c.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl4/igt@kms_universal_plane@universal-plane-gen9-features-pipe-c.html
+-:76: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@syncobj_wait@invalid-multi-wait-unsubmitted-submitted:
-    - shard-tglb:         [PASS][31] -> [DMESG-WARN][32] ([i915#402])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-tglb6/igt@syncobj_wait@invalid-multi-wait-unsubmitted-submitted.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-tglb7/igt@syncobj_wait@invalid-multi-wait-unsubmitted-submitted.html
+total: 0 errors, 2 warnings, 0 checks, 27 lines checked
+2a75b848a16e drm/amdgpu/dc: Stop dma_resv_lock inversion in commit_tail
+-:39: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#39: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6917:
++#if 0
 
-  
-#### Possible fixes ####
+-:55: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * {igt@gem_ctx_isolation@preservation-s3@rcs0}:
-    - shard-apl:          [DMESG-WARN][33] ([i915#180]) -> [PASS][34] +2 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl2/igt@gem_ctx_isolation@preservation-s3@rcs0.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl1/igt@gem_ctx_isolation@preservation-s3@rcs0.html
+total: 0 errors, 2 warnings, 0 checks, 23 lines checked
+428021cf6ac1 drm/scheduler: use dma-fence annotations in tdr work
+-:28: WARNING:TYPO_SPELLING: 'seperate' may be misspelled - perhaps 'separate'?
+#28: 
+Hence split out as a seperate patch.
 
-  * igt@gem_exec_whisper@basic-queues-forked-all:
-    - shard-glk:          [DMESG-WARN][35] ([i915#118] / [i915#95]) -> [PASS][36] +1 similar issue
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-glk9/igt@gem_exec_whisper@basic-queues-forked-all.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-glk9/igt@gem_exec_whisper@basic-queues-forked-all.html
+-:114: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [DMESG-WARN][37] ([i915#1436] / [i915#716]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl1/igt@gen9_exec_parse@allowed-all.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl3/igt@gen9_exec_parse@allowed-all.html
+total: 0 errors, 2 warnings, 0 checks, 20 lines checked
+edb53cc8cdcc drm/amdgpu: use dma-fence annotations for gpu reset code
+ca71ae15991e Revert "drm/amdgpu: add fbdev suspend/resume on gpu reset"
+-:145: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@i915_suspend@debugfs-reader:
-    - shard-kbl:          [INCOMPLETE][39] ([i915#155]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl2/igt@i915_suspend@debugfs-reader.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl6/igt@i915_suspend@debugfs-reader.html
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+92582d6b872d drm/amdgpu: gpu recovery does full modesets
+-:186: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_color@pipe-c-ctm-red-to-blue:
-    - shard-kbl:          [DMESG-WARN][41] ([i915#93] / [i915#95]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl7/igt@kms_color@pipe-c-ctm-red-to-blue.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl7/igt@kms_color@pipe-c-ctm-red-to-blue.html
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+edc7511baed1 drm/i915: Annotate dma_fence_work
+-:53: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  * igt@kms_color@pipe-d-ctm-0-5:
-    - shard-tglb:         [DMESG-WARN][43] ([i915#1149] / [i915#402]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-tglb2/igt@kms_color@pipe-d-ctm-0-5.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-tglb1/igt@kms_color@pipe-d-ctm-0-5.html
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
 
-  * igt@kms_cursor_legacy@all-pipes-torture-move:
-    - shard-skl:          [DMESG-WARN][45] ([i915#128]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl10/igt@kms_cursor_legacy@all-pipes-torture-move.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl3/igt@kms_cursor_legacy@all-pipes-torture-move.html
-
-  * {igt@kms_flip@2x-flip-vs-suspend@ab-hdmi-a1-hdmi-a2}:
-    - shard-glk:          [DMESG-WARN][47] ([i915#1982]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-glk6/igt@kms_flip@2x-flip-vs-suspend@ab-hdmi-a1-hdmi-a2.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-glk8/igt@kms_flip@2x-flip-vs-suspend@ab-hdmi-a1-hdmi-a2.html
-
-  * igt@kms_flip_tiling@flip-x-tiled:
-    - shard-apl:          [DMESG-WARN][49] ([i915#95]) -> [PASS][50] +26 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl7/igt@kms_flip_tiling@flip-x-tiled.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl3/igt@kms_flip_tiling@flip-x-tiled.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][51] ([i915#1188]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [DMESG-WARN][53] ([i915#180]) -> [PASS][54] +3 similar issues
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane@plane-panning-bottom-right-pipe-c-planes:
-    - shard-skl:          [DMESG-WARN][55] ([i915#1982]) -> [PASS][56] +2 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl6/igt@kms_plane@plane-panning-bottom-right-pipe-c-planes.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl5/igt@kms_plane@plane-panning-bottom-right-pipe-c-planes.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [SKIP][57] ([fdo#109441]) -> [PASS][58] +2 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-iclb6/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][59] ([i915#31]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl6/igt@kms_setmode@basic.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl3/igt@kms_setmode@basic.html
-    - shard-kbl:          [FAIL][61] ([i915#31]) -> [PASS][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl6/igt@kms_setmode@basic.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl3/igt@kms_setmode@basic.html
-
-  * {igt@perf@polling-parameterized}:
-    - shard-hsw:          [FAIL][63] ([i915#1542]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-hsw6/igt@perf@polling-parameterized.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-hsw5/igt@perf@polling-parameterized.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_dc@dc3co-vpb-simulation:
-    - shard-snb:          [SKIP][65] ([fdo#109271]) -> [INCOMPLETE][66] ([i915#82]) +1 similar issue
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-snb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-snb5/igt@i915_pm_dc@dc3co-vpb-simulation.html
-    - shard-iclb:         [SKIP][67] ([i915#658]) -> [SKIP][68] ([i915#588])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-iclb6/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
-
-  * igt@kms_content_protection@atomic:
-    - shard-apl:          [FAIL][69] ([fdo#110321] / [fdo#110336]) -> [TIMEOUT][70] ([i915#1319] / [i915#1635])
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl6/igt@kms_content_protection@atomic.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl3/igt@kms_content_protection@atomic.html
-
-  * igt@kms_content_protection@legacy:
-    - shard-kbl:          [DMESG-FAIL][71] ([fdo#110321]) -> [TIMEOUT][72] ([i915#1319] / [i915#1958])
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl3/igt@kms_content_protection@legacy.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl4/igt@kms_content_protection@legacy.html
-
-  * igt@kms_content_protection@lic:
-    - shard-apl:          [DMESG-FAIL][73] ([fdo#110321] / [i915#95]) -> [TIMEOUT][74] ([i915#1319] / [i915#1635]) +1 similar issue
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl2/igt@kms_content_protection@lic.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl1/igt@kms_content_protection@lic.html
-
-  * igt@kms_content_protection@srm:
-    - shard-kbl:          [DMESG-FAIL][75] ([fdo#110321] / [i915#95]) -> [TIMEOUT][76] ([i915#1319])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl2/igt@kms_content_protection@srm.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl3/igt@kms_content_protection@srm.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [DMESG-WARN][77] ([i915#180] / [i915#93] / [i915#95]) -> [DMESG-WARN][78] ([i915#93] / [i915#95])
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
-    - shard-apl:          [DMESG-WARN][79] ([i915#180] / [i915#95]) -> [DMESG-WARN][80] ([i915#95])
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-apl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-apl8/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [DMESG-WARN][81] ([i915#1982]) -> [DMESG-FAIL][82] ([fdo#108145] / [i915#1982])
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_plane_scaling@pipe-b-scaler-with-clipping-clamping:
-    - shard-snb:          [SKIP][83] ([fdo#109271]) -> [TIMEOUT][84] ([i915#1958]) +1 similar issue
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8590/shard-snb6/igt@kms_plane_scaling@pipe-b-scaler-with-clipping-clamping.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/shard-snb1/igt@kms_plane_scaling@pipe-b-scaler-with-clipping-clamping.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110321]: https://bugs.freedesktop.org/show_bug.cgi?id=110321
-  [fdo#110336]: https://bugs.freedesktop.org/show_bug.cgi?id=110336
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1149]: https://gitlab.freedesktop.org/drm/intel/issues/1149
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#128]: https://gitlab.freedesktop.org/drm/intel/issues/128
-  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1928]: https://gitlab.freedesktop.org/drm/intel/issues/1928
-  [i915#1930]: https://gitlab.freedesktop.org/drm/intel/issues/1930
-  [i915#1958]: https://gitlab.freedesktop.org/drm/intel/issues/1958
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#46]: https://gitlab.freedesktop.org/drm/intel/issues/46
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8590 -> Patchwork_17882
-
-  CI-20190529: 20190529
-  CI_DRM_8590: 91c6f0274b54c89679cd23f6fc65e9fe5922971f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5695: 53e8c878a6fb5708e63c99403691e8960b86ea9c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17882: 23fe5e3ae83585e3d4ad9ecdfea368dd42ff6dfb @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17882/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
