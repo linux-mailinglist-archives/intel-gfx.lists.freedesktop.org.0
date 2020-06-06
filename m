@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64AC71F05DD
-	for <lists+intel-gfx@lfdr.de>; Sat,  6 Jun 2020 10:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 864111F05E0
+	for <lists+intel-gfx@lfdr.de>; Sat,  6 Jun 2020 11:01:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C79396E05C;
-	Sat,  6 Jun 2020 08:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2A36E060;
+	Sat,  6 Jun 2020 09:01:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12F876E05C
- for <intel-gfx@lists.freedesktop.org>; Sat,  6 Jun 2020 08:58:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D01306E060
+ for <intel-gfx@lists.freedesktop.org>; Sat,  6 Jun 2020 09:01:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21414343-1500050 for multiple; Sat, 06 Jun 2020 09:58:41 +0100
+ 21414407-1500050 for multiple; Sat, 06 Jun 2020 10:01:19 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200606031803.3309624-1-matthew.d.roper@intel.com>
-References: <20200606031803.3309624-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200606032137.GA3210209@mdroper-desk1.amr.corp.intel.com>
+References: <20200603211529.3005059-1-matthew.d.roper@intel.com>
+ <159125964432.14555.14975271091238919132@emeril.freedesktop.org>
+ <20200604163916.GA3023929@mdroper-desk1.amr.corp.intel.com>
+ <159139508324.22562.3240839281624363557@build.alporthouse.com>
+ <20200606032137.GA3210209@mdroper-desk1.amr.corp.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <159143391956.22562.4532580926711902889@build.alporthouse.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx]  ✓ Fi.CI.IGT:  success for Remaining RKL patches
+Message-ID: <159143407710.22562.14616951365539550947@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Sat, 06 Jun 2020 09:58:39 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Restore DP-E to VBT mapping table
+Date: Sat, 06 Jun 2020 10:01:17 +0100
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,39 +42,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNYXR0IFJvcGVyICgyMDIwLTA2LTA2IDA0OjE4OjAzKQo+IFdlIGFjY2lkZW50YWxs
-eSBkcm9wcGVkIG1hdGNoaW5nIGZvciBEVk9fUE9SVF9EUEUgZnJvbSB0aGUgVkJUIG1hcHBpbmcK
-PiB0YWJsZSB3aGVuIHdlIHJlZmFjdG9yZWQgdGhlIGZ1bmN0aW9uLiAgUmVzdG9yZSBpdC4KPiAK
-PiBGaXhlczogNDYyODE0MmFlY2NjICgiZHJtL2k5MTUvcmtsOiBwcm92aWRlIHBvcnQvcGh5IG1h
-cHBpbmcgZm9yIHZidCIpCj4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50
-ZWwuY29tPgo+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+IENj
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IENjOiBD
-aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBTaWduZWQtb2ZmLWJ5OiBN
-YXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9iaW9zLmMKPiBpbmRleCA0ZjFhNzJhOTBiOGYuLmM5NzRjNzE2Zjg1OSAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jCj4gQEAgLTE2
-NTAsNyArMTY1MCw3IEBAIHN0YXRpYyBlbnVtIHBvcnQgZHZvX3BvcnRfdG9fcG9ydChzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAgICAgICAgICAgICAgIFtQT1JUX0JdID0g
-eyBEVk9fUE9SVF9IRE1JQiwgRFZPX1BPUlRfRFBCLCAtMSB9LAo+ICAgICAgICAgICAgICAgICBb
-UE9SVF9DXSA9IHsgRFZPX1BPUlRfSERNSUMsIERWT19QT1JUX0RQQywgLTEgfSwKPiAgICAgICAg
-ICAgICAgICAgW1BPUlRfRF0gPSB7IERWT19QT1JUX0hETUlELCBEVk9fUE9SVF9EUEQsIC0xIH0s
-Cj4gLSAgICAgICAgICAgICAgIFtQT1JUX0VdID0geyBEVk9fUE9SVF9DUlQsIERWT19QT1JUX0hE
-TUlFLCAtMSB9LAo+ICsgICAgICAgICAgICAgICBbUE9SVF9FXSA9IHsgRFZPX1BPUlRfSERNSUUs
-IERWT19QT1JUX0RQRSwgRFZPX1BPUlRfQ1JUIH0sCgpBaCwgeWVzLiBUaGF0IHdhcyBhbiBlYXN5
-IHRvIG92ZXJsb29rIGNoYW5nZSBpbiB0aGUgdGFibGUsClJldmlld2VkLWJ5OiBDaHJpcyBXaWxz
-b24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KCklzIHRoZXJlIGEgd2F5IHdlIGNhbiBjb21w
-dXRlIGEgSFcgY292ZXJhZ2UgbWF0cml4IGZvciB0aGlzIHRhYmxlPyBBbmQKc2VlIGlmIHdlIG5l
-ZWQgdG8gZ2V0IG1vcmUgbWFjaGluZXMvY29ubmVjdG9ycyBmb3IgQ0k/Ci1DaHJpcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Matt Roper (2020-06-06 04:21:37)
+> On Fri, Jun 05, 2020 at 11:11:23PM +0100, Chris Wilson wrote:
+> > Quoting Matt Roper (2020-06-04 17:39:16)
+> > > On Thu, Jun 04, 2020 at 08:34:04AM +0000, Patchwork wrote:
+> > > > == Series Details ==
+> > > > 
+> > > > Series: Remaining RKL patches
+> > > > URL   : https://patchwork.freedesktop.org/series/77971/
+> > > > State : success
+> > > > 
+> > > > == Summary ==
+> > > > 
+> > > > CI Bug Log - changes from CI_DRM_8579_full -> Patchwork_17859_full
+> > > > ====================================================
+> > > > 
+> > > > Summary
+> > > > -------
+> > > > 
+> > > >   **SUCCESS**
+> > > > 
+> > > >   No regressions found.
+> > > 
+> > > Patches #1, 6, 8, and 11 from this series applied to dinq since they have r-b's.
+> > 
+> > This seems to have introduced
+> > https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8584/fi-skl-guc/igt@runner@aborted.html
+> 
+> Thanks for pointing that out.  I think it's because we lost DP-E
+> matching in the VBT mapping table during the refactor.  If so,
+> 
+>         https://patchwork.freedesktop.org/patch/368948/?series=78060&rev=1
+> 
+> should fix it.
+
+It did indeed.
+
+> Was there a gitlab bug for this failure?
+
+Not yet.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
