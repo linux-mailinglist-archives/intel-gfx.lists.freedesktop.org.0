@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D7D1F102A
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA51B1F102B
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:21:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2FE86E3EB;
-	Sun,  7 Jun 2020 22:21:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F91A6E42A;
+	Sun,  7 Jun 2020 22:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 222236E439
- for <intel-gfx@lists.freedesktop.org>; Sun,  7 Jun 2020 22:21:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6336E420
+ for <intel-gfx@lists.freedesktop.org>; Sun,  7 Jun 2020 22:21:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21425604-1500050 
- for multiple; Sun, 07 Jun 2020 23:21:12 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21425605-1500050 
+ for multiple; Sun, 07 Jun 2020 23:21:13 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  7 Jun 2020 23:20:56 +0100
-Message-Id: <20200607222108.14401-16-chris@chris-wilson.co.uk>
+Date: Sun,  7 Jun 2020 23:20:57 +0100
+Message-Id: <20200607222108.14401-17-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200607222108.14401-1-chris@chris-wilson.co.uk>
 References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/28] drm/i915: Unpeel awaits on a proxy fence
+Subject: [Intel-gfx] [PATCH 17/28] drm/i915/gem: Make relocations atomic
+ within execbuf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,286 +45,284 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the real target for a proxy fence is known at the time we are
-attaching our awaits, use the real target in preference to hooking up to
-the proxy. If use the real target instead, we can optimize the awaits,
-e.g. if it along the same engine, we can order the submission and avoid
-the wait-for-completion.
+Although we may chide userspace for reusing the same batches
+concurrently from multiple threads, at the same time we must be very
+careful to only execute the batch and its relocations as supplied by the
+user. If we are not careful, we may allow another thread to rewrite the
+current batch with its own relocations. We must order the relocations
+and their batch such that they are an atomic pair on the GPU, and that
+the ioctl itself appears atomic to userspace. The order of execution may
+be undetermined, but it will not be subverted.
 
+We could do this by moving the relocations into the main request, if it
+were not for the situation where we need a second engine to perform the
+relocations for us. Instead, we use the dependency tracking to only
+publish the write fence on the main request and not on the relocation
+request, so that concurrent updates are queued after the batch has
+consumed its relocations.
+
+Testcase: igt/gem_exec_reloc/basic-concurrent
+Fixes: ef398881d27d ("drm/i915/gem: Limit struct_mutex to eb_reserve")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_request.c   | 155 ++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_scheduler.c |  41 +++++++
- drivers/gpu/drm/i915/i915_scheduler.h |   3 +
- 3 files changed, 199 insertions(+)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 92 ++++++++++++++-----
+ .../i915/gem/selftests/i915_gem_execbuffer.c  | 11 ++-
+ 2 files changed, 73 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 3bb7320249ae..f04f91b4d879 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -24,6 +24,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 8f3c1cf5af31..4a50371fe6e5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -5,6 +5,7 @@
+  */
  
- #include <linux/dma-fence-array.h>
- #include <linux/dma-fence-chain.h>
+ #include <linux/intel-iommu.h>
 +#include <linux/dma-fence-proxy.h>
- #include <linux/irq_work.h>
- #include <linux/prefetch.h>
- #include <linux/sched.h>
-@@ -461,6 +462,7 @@ static bool fatal_error(int error)
- 	case 0: /* not an error! */
- 	case -EAGAIN: /* innocent victim of a GT reset (__i915_request_reset) */
- 	case -ETIMEDOUT: /* waiting for Godot (timer_i915_sw_fence_wake) */
-+	case -EDEADLK: /* cyclic fence lockup (await_proxy)  */
- 		return false;
- 	default:
- 		return true;
-@@ -1241,6 +1243,136 @@ i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
- 	return err;
+ #include <linux/dma-resv.h>
+ #include <linux/sync_file.h>
+ #include <linux/uaccess.h>
+@@ -259,6 +260,8 @@ struct i915_execbuffer {
+ 		bool has_fence : 1;
+ 		bool needs_unfenced : 1;
+ 
++		struct dma_fence *fence;
++
+ 		struct i915_request *rq;
+ 		struct i915_vma *rq_vma;
+ 		u32 *rq_cmd;
+@@ -555,16 +558,6 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 	ev->exec = entry;
+ 	ev->flags = entry->flags;
+ 
+-	if (eb->lut_size > 0) {
+-		ev->handle = entry->handle;
+-		hlist_add_head(&ev->node,
+-			       &eb->buckets[hash_32(entry->handle,
+-						    eb->lut_size)]);
+-	}
+-
+-	if (entry->relocation_count)
+-		list_add_tail(&ev->reloc_link, &eb->relocs);
+-
+ 	/*
+ 	 * SNA is doing fancy tricks with compressing batch buffers, which leads
+ 	 * to negative relocation deltas. Usually that works out ok since the
+@@ -581,9 +574,21 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 		if (eb->reloc_cache.has_fence)
+ 			ev->flags |= EXEC_OBJECT_NEEDS_FENCE;
+ 
++		INIT_LIST_HEAD(&ev->reloc_link);
++
+ 		eb->batch = ev;
+ 	}
+ 
++	if (entry->relocation_count)
++		list_add_tail(&ev->reloc_link, &eb->relocs);
++
++	if (eb->lut_size > 0) {
++		ev->handle = entry->handle;
++		hlist_add_head(&ev->node,
++			       &eb->buckets[hash_32(entry->handle,
++						    eb->lut_size)]);
++	}
++
+ 	if (eb_pin_vma(eb, entry, ev)) {
+ 		if (entry->offset != vma->node.start) {
+ 			entry->offset = vma->node.start | UPDATE;
+@@ -923,6 +928,7 @@ static void reloc_cache_init(struct reloc_cache *cache,
+ 	cache->has_fence = cache->gen < 4;
+ 	cache->needs_unfenced = INTEL_INFO(i915)->unfenced_needs_alignment;
+ 	cache->node.flags = 0;
++	cache->fence = NULL;
  }
  
-+struct await_proxy {
-+	struct wait_queue_entry base;
-+	struct i915_request *request;
-+	struct dma_fence *fence;
-+	struct timer_list timer;
-+	struct work_struct work;
-+	int (*attach)(struct await_proxy *ap);
-+	void *data;
-+};
+ #define RELOC_TAIL 4
+@@ -1033,6 +1039,7 @@ static void reloc_gpu_flush(struct reloc_cache *cache)
+ 	}
+ 
+ 	intel_gt_chipset_flush(rq->engine->gt);
++	i915_request_get(rq);
+ 	i915_request_add(rq);
+ }
+ 
+@@ -1338,16 +1345,6 @@ eb_reloc_entry(struct i915_execbuffer *eb,
+ 	if (offset == reloc->presumed_offset)
+ 		return 0;
+ 
+-	/*
+-	 * If we write into the object, we need to force the synchronisation
+-	 * barrier, either with an asynchronous clflush or if we executed the
+-	 * patching using the GPU (though that should be serialised by the
+-	 * timeline). To be completely sure, and since we are required to
+-	 * do relocations we are already stalling, disable the user's opt
+-	 * out of our synchronisation.
+-	 */
+-	ev->flags &= ~EXEC_OBJECT_ASYNC;
+-
+ 	err = __reloc_entry_gpu(eb, ev->vma, reloc->offset,
+ 				relocation_target(reloc, offset));
+ 	if (err)
+@@ -1449,6 +1446,11 @@ static int reloc_move_to_gpu(struct reloc_cache *cache, struct eb_vma *ev)
+ 
+ 	obj->write_domain = I915_GEM_DOMAIN_RENDER;
+ 	obj->read_domains = I915_GEM_DOMAIN_RENDER;
++	ev->flags |= EXEC_OBJECT_ASYNC;
 +
-+static void await_proxy_work(struct work_struct *work)
++	err = dma_resv_reserve_shared(vma->resv, 1);
++	if (err)
++		return err;
+ 
+ 	err = i915_request_await_object(rq, obj, true);
+ 	if (err)
+@@ -1459,6 +1461,7 @@ static int reloc_move_to_gpu(struct reloc_cache *cache, struct eb_vma *ev)
+ 		return err;
+ 
+ 	dma_resv_add_excl_fence(vma->resv, &rq->fence);
++	dma_resv_add_shared_fence(vma->resv, cache->fence);
+ 
+ 	return 0;
+ }
+@@ -1527,14 +1530,28 @@ static int reloc_gpu_alloc(struct i915_execbuffer *eb)
+ 	return __reloc_gpu_alloc(eb, engine);
+ }
+ 
++static void free_reloc_fence(struct i915_execbuffer *eb)
 +{
-+	struct await_proxy *ap = container_of(work, typeof(*ap), work);
-+	struct i915_request *rq = ap->request;
++	struct dma_fence *f = fetch_and_zero(&eb->reloc_cache.fence);
 +
-+	del_timer_sync(&ap->timer);
-+
-+	if (ap->fence) {
-+		int err = 0;
-+
-+		/*
-+		 * If the fence is external, we impose a 10s timeout.
-+		 * However, if the fence is internal, we skip a timeout in
-+		 * the belief that all fences are in-order (DAG, no cycles)
-+		 * and we can enforce forward progress by reset the GPU if
-+		 * necessary. A future fence, provided userspace, can trivially
-+		 * generate a cycle in the dependency graph, and so cause
-+		 * that entire cycle to become deadlocked and for no forward
-+		 * progress to either be made, and the driver being kept
-+		 * eternally awake.
-+		 */
-+		if (dma_fence_is_i915(ap->fence) &&
-+		    !i915_sched_node_verify_dag(&rq->sched,
-+						&to_request(ap->fence)->sched))
-+			err = -EDEADLK;
-+
-+		if (!err) {
-+			mutex_lock(&rq->context->timeline->mutex);
-+			err = ap->attach(ap);
-+			mutex_unlock(&rq->context->timeline->mutex);
-+		}
-+
-+		/* Don't flag an error for co-dependent scheduling */
-+		if (err == -EDEADLK) {
-+			struct i915_sched_node *waiter =
-+				&to_request(ap->fence)->sched;
-+			struct i915_dependency *p;
-+
-+			for_each_waiter(p, rq) {
-+				if (p->waiter == waiter &&
-+				    p->flags & I915_DEPENDENCY_WEAK) {
-+					err = 0;
-+					break;
-+				}
-+			}
-+		}
-+
-+		if (err < 0)
-+			i915_sw_fence_set_error_once(&rq->submit, err);
-+	}
-+
-+	i915_sw_fence_complete(&rq->submit);
-+
-+	dma_fence_put(ap->fence);
-+	kfree(ap);
++	dma_fence_signal(f);
++	dma_fence_put(f);
 +}
 +
-+static int
-+await_proxy_wake(struct wait_queue_entry *entry,
-+		 unsigned int mode,
-+		 int flags,
-+		 void *fence)
-+{
-+	struct await_proxy *ap = container_of(entry, typeof(*ap), base);
-+
-+	ap->fence = dma_fence_get(fence);
-+	schedule_work(&ap->work);
-+
-+	return 0;
-+}
-+
-+static void
-+await_proxy_timer(struct timer_list *t)
-+{
-+	struct await_proxy *ap = container_of(t, typeof(*ap), timer);
-+
-+	if (dma_fence_remove_proxy_listener(ap->base.private, &ap->base)) {
-+		struct i915_request *rq = ap->request;
-+
-+		pr_notice("Asynchronous wait on unset proxy fence by %s:%s:%llx timed out\n",
-+			  rq->fence.ops->get_driver_name(&rq->fence),
-+			  rq->fence.ops->get_timeline_name(&rq->fence),
-+			  rq->fence.seqno);
-+		i915_sw_fence_set_error_once(&rq->submit, -ETIMEDOUT);
-+
-+		schedule_work(&ap->work);
-+	}
-+}
-+
-+static int
-+__i915_request_await_proxy(struct i915_request *rq,
-+			   struct dma_fence *fence,
-+			   unsigned long timeout,
-+			   int (*attach)(struct await_proxy *ap),
-+			   void *data)
-+{
-+	struct await_proxy *ap;
-+
-+	ap = kzalloc(sizeof(*ap), I915_FENCE_GFP);
-+	if (!ap)
+ static int reloc_gpu(struct i915_execbuffer *eb)
+ {
+ 	struct eb_vma *ev;
+ 	int err;
+ 
++	eb->reloc_cache.fence = __dma_fence_create_proxy(0, 0);
++	if (!eb->reloc_cache.fence)
 +		return -ENOMEM;
 +
-+	i915_sw_fence_await(&rq->submit);
-+	mark_external(rq);
-+
-+	ap->base.private = fence;
-+	ap->base.func = await_proxy_wake;
-+	ap->request = rq;
-+	INIT_WORK(&ap->work, await_proxy_work);
-+	ap->attach = attach;
-+	ap->data = data;
-+
-+	timer_setup(&ap->timer, await_proxy_timer, 0);
-+	if (timeout)
-+		mod_timer(&ap->timer, round_jiffies_up(jiffies + timeout));
-+
-+	dma_fence_add_proxy_listener(fence, &ap->base);
-+	return 0;
-+}
-+
- int
- i915_request_await_execution(struct i915_request *rq,
- 			     struct dma_fence *fence,
-@@ -1339,6 +1471,24 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 	err = reloc_gpu_alloc(eb);
+-	if (err)
++	if (err) {
++		free_reloc_fence(eb);
+ 		return err;
++	}
+ 	GEM_BUG_ON(!eb->reloc_cache.rq);
+ 
+ 	err = lock_relocs(eb);
+@@ -1593,6 +1610,15 @@ static int eb_relocate(struct i915_execbuffer *eb)
  	return 0;
  }
  
-+static int await_proxy(struct await_proxy *ap)
++static void eb_reloc_signal(struct i915_execbuffer *eb, struct i915_request *rq)
 +{
-+	return i915_request_await_dma_fence(ap->request, ap->fence);
++	dma_fence_proxy_set_real(eb->reloc_cache.fence, &rq->fence);
++	i915_request_put(eb->reloc_cache.rq);
++
++	dma_fence_put(eb->reloc_cache.fence);
++	eb->reloc_cache.fence = NULL;
 +}
 +
-+static int
-+i915_request_await_proxy(struct i915_request *rq, struct dma_fence *fence)
-+{
-+	/*
-+	 * Wait until we know the real fence so that can optimise the
-+	 * inter-fence synchronisation.
-+	 */
-+	return __i915_request_await_proxy(rq, fence,
-+					  i915_fence_context_timeout(rq->engine->i915,
-+								     fence->context),
-+					  await_proxy, NULL);
-+}
-+
- int
- i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+ static int eb_move_to_gpu(struct i915_execbuffer *eb)
  {
-@@ -1346,6 +1496,9 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
- 	unsigned int nchild = 1;
- 	int ret;
+ 	const unsigned int count = eb->buffer_count;
+@@ -1873,10 +1899,15 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	if (err)
+ 		goto err_commit_unlock;
  
-+	/* Unpeel the proxy fence if the real target is already known */
-+	fence = dma_fence_proxy_get_real(fence);
-+
- 	/*
- 	 * Note that if the fence-array was created in signal-on-any mode,
- 	 * we should *not* decompose it into its individual fences. However,
-@@ -1385,6 +1538,8 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+-	/* Wait for all writes (and relocs) into the batch to complete */
+-	err = i915_sw_fence_await_reservation(&pw->base.chain,
+-					      pw->batch->resv, NULL, false,
+-					      0, I915_FENCE_GFP);
++	/* Wait for all writes (or relocs) into the batch to complete */
++	if (!eb->reloc_cache.fence || list_empty(&eb->batch->reloc_link))
++		err = i915_sw_fence_await_reservation(&pw->base.chain,
++						      pw->batch->resv, NULL,
++						      false, 0, I915_FENCE_GFP);
++	else
++		err = i915_sw_fence_await_dma_fence(&pw->base.chain,
++						    &eb->reloc_cache.rq->fence,
++						    0, I915_FENCE_GFP);
+ 	if (err < 0)
+ 		goto err_commit_unlock;
  
- 		if (dma_fence_is_i915(fence))
- 			ret = i915_request_await_request(rq, to_request(fence));
-+		else if (dma_fence_is_proxy(fence))
-+			ret = i915_request_await_proxy(rq, fence);
- 		else
- 			ret = i915_request_await_external(rq, fence);
- 		if (ret < 0)
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index cbb880b10c65..250832768279 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -469,6 +469,47 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
- 	return 0;
- }
+@@ -2004,6 +2035,15 @@ static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
+ {
+ 	int err;
  
-+bool i915_sched_node_verify_dag(struct i915_sched_node *waiter,
-+				struct i915_sched_node *signaler)
-+{
-+	struct i915_dependency *dep, *p;
-+	struct i915_dependency stack;
-+	bool result = false;
-+	LIST_HEAD(dfs);
++	if (eb->reloc_cache.fence) {
++		err = i915_request_await_dma_fence(eb->request,
++						   &eb->reloc_cache.rq->fence);
++		if (err)
++			return err;
 +
-+	if (list_empty(&waiter->waiters_list))
-+		return true;
-+
-+	spin_lock_irq(&schedule_lock);
-+
-+	stack.signaler = signaler;
-+	list_add(&stack.dfs_link, &dfs);
-+
-+	list_for_each_entry(dep, &dfs, dfs_link) {
-+		struct i915_sched_node *node = dep->signaler;
-+
-+		if (node_signaled(node))
-+			continue;
-+
-+		list_for_each_entry(p, &node->signalers_list, signal_link) {
-+			if (p->signaler == waiter)
-+				goto out;
-+
-+			if (list_empty(&p->dfs_link))
-+				list_add_tail(&p->dfs_link, &dfs);
-+		}
++		eb_reloc_signal(eb, eb->request);
 +	}
 +
-+	result = true;
-+out:
-+	list_for_each_entry_safe(dep, p, &dfs, dfs_link)
-+		INIT_LIST_HEAD(&dep->dfs_link);
-+
-+	spin_unlock_irq(&schedule_lock);
-+
-+	return result;
-+}
-+
- void i915_sched_node_fini(struct i915_sched_node *node)
- {
- 	struct i915_dependency *dep, *tmp;
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-index 6f0bf00fc569..13432add8929 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler.h
-@@ -28,6 +28,9 @@
- void i915_sched_node_init(struct i915_sched_node *node);
- void i915_sched_node_reinit(struct i915_sched_node *node);
+ 	err = eb_move_to_gpu(eb);
+ 	if (err)
+ 		return err;
+@@ -2663,6 +2703,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	if (batch->private)
+ 		intel_gt_buffer_pool_put(batch->private);
+ err_vma:
++	if (eb.reloc_cache.fence)
++		eb_reloc_signal(&eb, eb.reloc_cache.rq);
+ 	if (eb.trampoline)
+ 		i915_vma_unpin(eb.trampoline);
+ 	eb_unpin_engine(&eb);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+index 4f10b51f9a7e..62bba179b455 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+@@ -23,7 +23,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 	const u64 mask =
+ 		GENMASK_ULL(eb->reloc_cache.use_64bit_reloc ? 63 : 31, 0);
+ 	const u32 *map = page_mask_bits(obj->mm.mapping);
+-	struct i915_request *rq;
+ 	struct eb_vma ev;
+ 	int err;
+ 	int i;
+@@ -40,6 +39,9 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 	if (err)
+ 		goto unpin_vma;
  
-+bool i915_sched_node_verify_dag(struct i915_sched_node *waiter,
-+				struct i915_sched_node *signal);
++	/* Single stage pipeline in the selftest */
++	eb->reloc_cache.fence = &eb->reloc_cache.rq->fence;
 +
- bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
- 				      struct i915_sched_node *signal,
- 				      struct i915_dependency *dep,
+ 	list_add(&ev.reloc_link, &eb->relocs);
+ 	err = lock_relocs(eb);
+ 	if (err)
+@@ -71,8 +73,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 	if (err)
+ 		goto unpin_vma;
+ 
+-	GEM_BUG_ON(!eb->reloc_cache.rq);
+-	rq = i915_request_get(eb->reloc_cache.rq);
+ 	reloc_gpu_flush(&eb->reloc_cache);
+ 
+ 	err = i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2);
+@@ -81,7 +81,7 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 		goto put_rq;
+ 	}
+ 
+-	if (!i915_request_completed(rq)) {
++	if (!i915_request_completed(eb->reloc_cache.rq)) {
+ 		pr_err("%s: did not wait for relocations!\n", eb->engine->name);
+ 		err = -EINVAL;
+ 		goto put_rq;
+@@ -100,7 +100,8 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 		igt_hexdump(map, 4096);
+ 
+ put_rq:
+-	i915_request_put(rq);
++	i915_request_put(eb->reloc_cache.rq);
++	eb->reloc_cache.rq = NULL;
+ unpin_vma:
+ 	i915_vma_unpin(ev.vma);
+ 	return err;
 -- 
 2.20.1
 
