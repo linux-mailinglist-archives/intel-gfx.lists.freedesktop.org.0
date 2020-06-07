@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817771F102C
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:21:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F331F1040
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:22:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F04D06E420;
-	Sun,  7 Jun 2020 22:21:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03D3F6E43D;
+	Sun,  7 Jun 2020 22:22:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2473C6E432
- for <intel-gfx@lists.freedesktop.org>; Sun,  7 Jun 2020 22:21:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21425616-1500050 
- for multiple; Sun, 07 Jun 2020 23:21:14 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun,  7 Jun 2020 23:21:08 +0100
-Message-Id: <20200607222108.14401-28-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200607222108.14401-1-chris@chris-wilson.co.uk>
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C5EF6E439;
+ Sun,  7 Jun 2020 22:22:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06CA2A47E8;
+ Sun,  7 Jun 2020 22:22:02 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 28/28] drm/i915: Replace the priority boosting
- for the display with a deadline
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Sun, 07 Jun 2020 22:22:02 -0000
+Message-ID: <159156852202.15986.9222281965180343483@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200607212522.16935-1-imre.deak@intel.com>
+In-Reply-To: <20200607212522.16935-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/dp=5Fmst=3A_Fix_the_DDC_I2C_dev?=
+ =?utf-8?q?ice_unregistration_of_an_MST_port?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,142 +39,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For a modeset/pageflip, there is a very precise deadline by which the
-frame must be completed in order to hit the vblank and be shown. While
-we don't pass along that exact information, we can at least inform the
-scheduler that this request-chain needs to be completed asap.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h   |  4 ++--
- drivers/gpu/drm/i915/gem/i915_gem_wait.c     | 21 ++++++++++----------
- drivers/gpu/drm/i915/i915_priolist_types.h   |  3 ---
- 4 files changed, 14 insertions(+), 16 deletions(-)
+Series: series starting with [1/3] drm/dp_mst: Fix the DDC I2C device unregistration of an MST port
+URL   : https://patchwork.freedesktop.org/series/78100/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 797e3573d392..5bb20f701a44 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -15964,7 +15964,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (ret)
- 		return ret;
- 
--	i915_gem_object_wait_priority(obj, 0, I915_PRIORITY_DISPLAY);
-+	i915_gem_object_wait_deadline(obj, 0, ktime_get() /* next vblank? */);
- 	i915_gem_object_flush_frontbuffer(obj, ORIGIN_DIRTYFB);
- 
- 	if (!new_plane_state->uapi.fence) { /* implicit fencing */
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 876c34982555..7bcd2661de4c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -474,9 +474,9 @@ static inline void __start_cpu_write(struct drm_i915_gem_object *obj)
- int i915_gem_object_wait(struct drm_i915_gem_object *obj,
- 			 unsigned int flags,
- 			 long timeout);
--int i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
-+int i915_gem_object_wait_deadline(struct drm_i915_gem_object *obj,
- 				  unsigned int flags,
--				  int prio);
-+				  ktime_t deadline);
- 
- void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
- 					 enum fb_op_origin origin);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-index cefbbb3d9b52..5224d4363ea3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-@@ -93,17 +93,18 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
- 	return timeout;
- }
- 
--static void __fence_set_priority(struct dma_fence *fence, int prio)
-+static void __fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
- {
- 	if (dma_fence_is_signaled(fence) || !dma_fence_is_i915(fence))
- 		return;
- 
- 	local_bh_disable();
--	i915_request_set_priority(to_request(fence), prio);
-+	i915_request_set_deadline(to_request(fence),
-+				  i915_sched_to_ticks(deadline));
- 	local_bh_enable(); /* kick the tasklets if queues were reprioritised */
- }
- 
--static void fence_set_priority(struct dma_fence *fence, int prio)
-+static void fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
- {
- 	/* Recurse once into a fence-array */
- 	if (dma_fence_is_array(fence)) {
-@@ -111,16 +112,16 @@ static void fence_set_priority(struct dma_fence *fence, int prio)
- 		int i;
- 
- 		for (i = 0; i < array->num_fences; i++)
--			__fence_set_priority(array->fences[i], prio);
-+			__fence_set_deadline(array->fences[i], deadline);
- 	} else {
--		__fence_set_priority(fence, prio);
-+		__fence_set_deadline(fence, deadline);
- 	}
- }
- 
- int
--i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
-+i915_gem_object_wait_deadline(struct drm_i915_gem_object *obj,
- 			      unsigned int flags,
--			      int prio)
-+			      ktime_t deadline)
- {
- 	struct dma_fence *excl;
- 
-@@ -130,12 +131,12 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
- 		int ret;
- 
- 		ret = dma_resv_get_fences_rcu(obj->base.resv,
--							&excl, &count, &shared);
-+					      &excl, &count, &shared);
- 		if (ret)
- 			return ret;
- 
- 		for (i = 0; i < count; i++) {
--			fence_set_priority(shared[i], prio);
-+			fence_set_deadline(shared[i], deadline);
- 			dma_fence_put(shared[i]);
- 		}
- 
-@@ -145,7 +146,7 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
- 	}
- 
- 	if (excl) {
--		fence_set_priority(excl, prio);
-+		fence_set_deadline(excl, deadline);
- 		dma_fence_put(excl);
- 	}
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
-index 43a0ac45295f..ac6d9614ea23 100644
---- a/drivers/gpu/drm/i915/i915_priolist_types.h
-+++ b/drivers/gpu/drm/i915/i915_priolist_types.h
-@@ -20,9 +20,6 @@ enum {
- 	/* A preemptive pulse used to monitor the health of each engine */
- 	I915_PRIORITY_HEARTBEAT,
- 
--	/* Interactive workload, scheduled for immediate pageflipping */
--	I915_PRIORITY_DISPLAY,
--
- 	__I915_PRIORITY_KERNEL__
- };
- 
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8597 -> Patchwork_17901
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17901 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - {fi-tgl-dsi}:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-tgl-dsi/igt@i915_module_load@reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-tgl-dsi/igt@i915_module_load@reload.html
+    - fi-icl-y:           [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-y/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-icl-y/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-guc:         [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8597 -> Patchwork_17901
+
+  CI-20190529: 20190529
+  CI_DRM_8597: aadd3cf12a7c515bca8752da797ded56a003617b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5696: 8d1744239f4300eb12d5bab14a30b79d9c8dd364 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17901: c3019da98129f263800477ae0cd767c2179fc034 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c3019da98129 drm/dp_mst: Fix flushing the delayed port/mstb destroy work
+f183ac475a8b drm/dp_mst: Fix the DDC I2C device registration of an MST port
+be4cb6213842 drm/dp_mst: Fix the DDC I2C device unregistration of an MST port
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17901/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
