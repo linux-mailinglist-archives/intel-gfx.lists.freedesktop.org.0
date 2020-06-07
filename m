@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA51B1F102B
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DDDF1F1039
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 00:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F91A6E42A;
-	Sun,  7 Jun 2020 22:21:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 843786E44A;
+	Sun,  7 Jun 2020 22:21:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6336E420
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66D316E41D
  for <intel-gfx@lists.freedesktop.org>; Sun,  7 Jun 2020 22:21:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21425605-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21425606-1500050 
  for multiple; Sun, 07 Jun 2020 23:21:13 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  7 Jun 2020 23:20:57 +0100
-Message-Id: <20200607222108.14401-17-chris@chris-wilson.co.uk>
+Date: Sun,  7 Jun 2020 23:20:58 +0100
+Message-Id: <20200607222108.14401-18-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200607222108.14401-1-chris@chris-wilson.co.uk>
 References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 17/28] drm/i915/gem: Make relocations atomic
- within execbuf
+Subject: [Intel-gfx] [PATCH 18/28] drm/i915: Strip out internal priorities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,284 +44,325 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although we may chide userspace for reusing the same batches
-concurrently from multiple threads, at the same time we must be very
-careful to only execute the batch and its relocations as supplied by the
-user. If we are not careful, we may allow another thread to rewrite the
-current batch with its own relocations. We must order the relocations
-and their batch such that they are an atomic pair on the GPU, and that
-the ioctl itself appears atomic to userspace. The order of execution may
-be undetermined, but it will not be subverted.
+Since we are not using any internal priority levels, and in the next few
+patches will introduce a new index for which the optimisation is not so
+lear cut, discard the small table within the priolist.
 
-We could do this by moving the relocations into the main request, if it
-were not for the situation where we need a second engine to perform the
-relocations for us. Instead, we use the dependency tracking to only
-publish the write fence on the main request and not on the relocation
-request, so that concurrent updates are queued after the batch has
-consumed its relocations.
-
-Testcase: igt/gem_exec_reloc/basic-concurrent
-Fixes: ef398881d27d ("drm/i915/gem: Limit struct_mutex to eb_reserve")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 92 ++++++++++++++-----
- .../i915/gem/selftests/i915_gem_execbuffer.c  | 11 ++-
- 2 files changed, 73 insertions(+), 30 deletions(-)
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 22 ++------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 -
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +--
+ drivers/gpu/drm/i915/i915_priolist_types.h    |  8 +--
+ drivers/gpu/drm/i915/i915_scheduler.c         | 51 +++----------------
+ drivers/gpu/drm/i915/i915_scheduler.h         | 18 ++-----
+ 7 files changed, 21 insertions(+), 88 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 8f3c1cf5af31..4a50371fe6e5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -5,6 +5,7 @@
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index f67ad937eefb..eecf666c772d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -97,7 +97,7 @@ static void heartbeat(struct work_struct *wrk)
+ 			 * low latency and no jitter] the chance to naturally
+ 			 * complete before being preempted.
+ 			 */
+-			attr.priority = I915_PRIORITY_MASK;
++			attr.priority = 0;
+ 			if (rq->sched.attr.priority >= attr.priority)
+ 				attr.priority |= I915_USER_PRIORITY(I915_PRIORITY_HEARTBEAT);
+ 			if (rq->sched.attr.priority >= attr.priority)
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 5f5ac05ccbe4..0ca3604ab846 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -434,22 +434,13 @@ static int effective_prio(const struct i915_request *rq)
  
- #include <linux/intel-iommu.h>
-+#include <linux/dma-fence-proxy.h>
- #include <linux/dma-resv.h>
- #include <linux/sync_file.h>
- #include <linux/uaccess.h>
-@@ -259,6 +260,8 @@ struct i915_execbuffer {
- 		bool has_fence : 1;
- 		bool needs_unfenced : 1;
+ static int queue_prio(const struct intel_engine_execlists *execlists)
+ {
+-	struct i915_priolist *p;
+ 	struct rb_node *rb;
  
-+		struct dma_fence *fence;
-+
- 		struct i915_request *rq;
- 		struct i915_vma *rq_vma;
- 		u32 *rq_cmd;
-@@ -555,16 +558,6 @@ eb_add_vma(struct i915_execbuffer *eb,
- 	ev->exec = entry;
- 	ev->flags = entry->flags;
- 
--	if (eb->lut_size > 0) {
--		ev->handle = entry->handle;
--		hlist_add_head(&ev->node,
--			       &eb->buckets[hash_32(entry->handle,
--						    eb->lut_size)]);
--	}
--
--	if (entry->relocation_count)
--		list_add_tail(&ev->reloc_link, &eb->relocs);
--
- 	/*
- 	 * SNA is doing fancy tricks with compressing batch buffers, which leads
- 	 * to negative relocation deltas. Usually that works out ok since the
-@@ -581,9 +574,21 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		if (eb->reloc_cache.has_fence)
- 			ev->flags |= EXEC_OBJECT_NEEDS_FENCE;
- 
-+		INIT_LIST_HEAD(&ev->reloc_link);
-+
- 		eb->batch = ev;
- 	}
- 
-+	if (entry->relocation_count)
-+		list_add_tail(&ev->reloc_link, &eb->relocs);
-+
-+	if (eb->lut_size > 0) {
-+		ev->handle = entry->handle;
-+		hlist_add_head(&ev->node,
-+			       &eb->buckets[hash_32(entry->handle,
-+						    eb->lut_size)]);
-+	}
-+
- 	if (eb_pin_vma(eb, entry, ev)) {
- 		if (entry->offset != vma->node.start) {
- 			entry->offset = vma->node.start | UPDATE;
-@@ -923,6 +928,7 @@ static void reloc_cache_init(struct reloc_cache *cache,
- 	cache->has_fence = cache->gen < 4;
- 	cache->needs_unfenced = INTEL_INFO(i915)->unfenced_needs_alignment;
- 	cache->node.flags = 0;
-+	cache->fence = NULL;
- }
- 
- #define RELOC_TAIL 4
-@@ -1033,6 +1039,7 @@ static void reloc_gpu_flush(struct reloc_cache *cache)
- 	}
- 
- 	intel_gt_chipset_flush(rq->engine->gt);
-+	i915_request_get(rq);
- 	i915_request_add(rq);
- }
- 
-@@ -1338,16 +1345,6 @@ eb_reloc_entry(struct i915_execbuffer *eb,
- 	if (offset == reloc->presumed_offset)
- 		return 0;
+ 	rb = rb_first_cached(&execlists->queue);
+ 	if (!rb)
+ 		return INT_MIN;
  
 -	/*
--	 * If we write into the object, we need to force the synchronisation
--	 * barrier, either with an asynchronous clflush or if we executed the
--	 * patching using the GPU (though that should be serialised by the
--	 * timeline). To be completely sure, and since we are required to
--	 * do relocations we are already stalling, disable the user's opt
--	 * out of our synchronisation.
+-	 * As the priolist[] are inverted, with the highest priority in [0],
+-	 * we have to flip the index value to become priority.
 -	 */
--	ev->flags &= ~EXEC_OBJECT_ASYNC;
+-	p = to_priolist(rb);
+-	if (!I915_USER_PRIORITY_SHIFT)
+-		return p->priority;
 -
- 	err = __reloc_entry_gpu(eb, ev->vma, reloc->offset,
- 				relocation_target(reloc, offset));
- 	if (err)
-@@ -1449,6 +1446,11 @@ static int reloc_move_to_gpu(struct reloc_cache *cache, struct eb_vma *ev)
- 
- 	obj->write_domain = I915_GEM_DOMAIN_RENDER;
- 	obj->read_domains = I915_GEM_DOMAIN_RENDER;
-+	ev->flags |= EXEC_OBJECT_ASYNC;
-+
-+	err = dma_resv_reserve_shared(vma->resv, 1);
-+	if (err)
-+		return err;
- 
- 	err = i915_request_await_object(rq, obj, true);
- 	if (err)
-@@ -1459,6 +1461,7 @@ static int reloc_move_to_gpu(struct reloc_cache *cache, struct eb_vma *ev)
- 		return err;
- 
- 	dma_resv_add_excl_fence(vma->resv, &rq->fence);
-+	dma_resv_add_shared_fence(vma->resv, cache->fence);
- 
- 	return 0;
- }
-@@ -1527,14 +1530,28 @@ static int reloc_gpu_alloc(struct i915_execbuffer *eb)
- 	return __reloc_gpu_alloc(eb, engine);
+-	return ((p->priority + 1) << I915_USER_PRIORITY_SHIFT) - ffs(p->used);
++	return to_priolist(rb)->priority;
  }
  
-+static void free_reloc_fence(struct i915_execbuffer *eb)
-+{
-+	struct dma_fence *f = fetch_and_zero(&eb->reloc_cache.fence);
-+
-+	dma_fence_signal(f);
-+	dma_fence_put(f);
-+}
-+
- static int reloc_gpu(struct i915_execbuffer *eb)
+ static inline bool need_preempt(const struct intel_engine_cs *engine,
+@@ -2324,9 +2315,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+ 		struct i915_request *rq, *rn;
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			bool merge = true;
+ 
+ 			/*
+@@ -4323,9 +4313,8 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
+ 	/* Flush the queued requests to the timeline list (for retiring). */
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			mark_eio(rq);
+ 			__i915_request_submit(rq);
+ 		}
+@@ -5337,7 +5326,7 @@ static int __execlists_context_alloc(struct intel_context *ce,
+ 
+ static struct list_head *virtual_queue(struct virtual_engine *ve)
  {
- 	struct eb_vma *ev;
- 	int err;
- 
-+	eb->reloc_cache.fence = __dma_fence_create_proxy(0, 0);
-+	if (!eb->reloc_cache.fence)
-+		return -ENOMEM;
-+
- 	err = reloc_gpu_alloc(eb);
--	if (err)
-+	if (err) {
-+		free_reloc_fence(eb);
- 		return err;
-+	}
- 	GEM_BUG_ON(!eb->reloc_cache.rq);
- 
- 	err = lock_relocs(eb);
-@@ -1593,6 +1610,15 @@ static int eb_relocate(struct i915_execbuffer *eb)
- 	return 0;
+-	return &ve->base.execlists.default_priolist.requests[0];
++	return &ve->base.execlists.default_priolist.requests;
  }
  
-+static void eb_reloc_signal(struct i915_execbuffer *eb, struct i915_request *rq)
-+{
-+	dma_fence_proxy_set_real(eb->reloc_cache.fence, &rq->fence);
-+	i915_request_put(eb->reloc_cache.rq);
-+
-+	dma_fence_put(eb->reloc_cache.fence);
-+	eb->reloc_cache.fence = NULL;
-+}
-+
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
+ static void virtual_context_destroy(struct kref *kref)
+@@ -5896,9 +5885,8 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 	count = 0;
+ 	for (rb = rb_first_cached(&execlists->queue); rb; rb = rb_next(rb)) {
+ 		struct i915_priolist *p = rb_entry(rb, typeof(*p), node);
+-		int i;
+ 
+-		priolist_for_each_request(rq, p, i) {
++		priolist_for_each_request(rq, p) {
+ 			if (count++ < max - 1)
+ 				show_request(m, rq, "\t\tQ ");
+ 			else
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index a8bcea8aa1b4..a0248c47d7bd 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -964,7 +964,6 @@ create_rewinder(struct intel_context *ce,
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	rq->sched.attr.priority = I915_PRIORITY_MASK;
+ 	err = 0;
+ err:
+ 	i915_request_get(rq);
+@@ -5059,7 +5058,6 @@ create_timestamp(struct intel_context *ce, void *slot, int idx)
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	rq->sched.attr.priority = I915_PRIORITY_MASK;
+ 	err = 0;
+ err:
+ 	i915_request_get(rq);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 94eb63f309ce..0c42e8b0c211 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -312,9 +312,8 @@ static void __guc_dequeue(struct intel_engine_cs *engine)
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+ 		struct i915_request *rq, *rn;
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			if (last && rq->context != last->context) {
+ 				if (port == last_port)
+ 					goto done;
+@@ -463,9 +462,8 @@ static void guc_reset_cancel(struct intel_engine_cs *engine)
+ 	/* Flush the queued requests to the timeline list (for retiring). */
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			list_del_init(&rq->sched.link);
+ 			__i915_request_submit(rq);
+ 			dma_fence_set_error(&rq->fence, -EIO);
+diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
+index 8aa7866ec6b6..9a7657bb002e 100644
+--- a/drivers/gpu/drm/i915/i915_priolist_types.h
++++ b/drivers/gpu/drm/i915/i915_priolist_types.h
+@@ -27,11 +27,8 @@ enum {
+ #define I915_USER_PRIORITY_SHIFT 0
+ #define I915_USER_PRIORITY(x) ((x) << I915_USER_PRIORITY_SHIFT)
+ 
+-#define I915_PRIORITY_COUNT BIT(I915_USER_PRIORITY_SHIFT)
+-#define I915_PRIORITY_MASK (I915_PRIORITY_COUNT - 1)
+-
+ /* Smallest priority value that cannot be bumped. */
+-#define I915_PRIORITY_INVALID (INT_MIN | (u8)I915_PRIORITY_MASK)
++#define I915_PRIORITY_INVALID (INT_MIN)
+ 
+ /*
+  * Requests containing performance queries must not be preempted by
+@@ -45,9 +42,8 @@ enum {
+ #define I915_PRIORITY_BARRIER (I915_PRIORITY_UNPREEMPTABLE - 1)
+ 
+ struct i915_priolist {
+-	struct list_head requests[I915_PRIORITY_COUNT];
++	struct list_head requests;
+ 	struct rb_node node;
+-	unsigned long used;
+ 	int priority;
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 250832768279..7945cc161a12 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -43,7 +43,7 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+ static void assert_priolists(struct intel_engine_execlists * const execlists)
  {
- 	const unsigned int count = eb->buffer_count;
-@@ -1873,10 +1899,15 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	if (err)
- 		goto err_commit_unlock;
+ 	struct rb_node *rb;
+-	long last_prio, i;
++	long last_prio;
  
--	/* Wait for all writes (and relocs) into the batch to complete */
--	err = i915_sw_fence_await_reservation(&pw->base.chain,
--					      pw->batch->resv, NULL, false,
--					      0, I915_FENCE_GFP);
-+	/* Wait for all writes (or relocs) into the batch to complete */
-+	if (!eb->reloc_cache.fence || list_empty(&eb->batch->reloc_link))
-+		err = i915_sw_fence_await_reservation(&pw->base.chain,
-+						      pw->batch->resv, NULL,
-+						      false, 0, I915_FENCE_GFP);
-+	else
-+		err = i915_sw_fence_await_dma_fence(&pw->base.chain,
-+						    &eb->reloc_cache.rq->fence,
-+						    0, I915_FENCE_GFP);
- 	if (err < 0)
- 		goto err_commit_unlock;
+ 	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+ 		return;
+@@ -57,14 +57,6 @@ static void assert_priolists(struct intel_engine_execlists * const execlists)
  
-@@ -2004,6 +2035,15 @@ static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
- {
- 	int err;
+ 		GEM_BUG_ON(p->priority > last_prio);
+ 		last_prio = p->priority;
+-
+-		GEM_BUG_ON(!p->used);
+-		for (i = 0; i < ARRAY_SIZE(p->requests); i++) {
+-			if (list_empty(&p->requests[i]))
+-				continue;
+-
+-			GEM_BUG_ON(!(p->used & BIT(i)));
+-		}
+ 	}
+ }
  
-+	if (eb->reloc_cache.fence) {
-+		err = i915_request_await_dma_fence(eb->request,
-+						   &eb->reloc_cache.rq->fence);
-+		if (err)
-+			return err;
-+
-+		eb_reloc_signal(eb, eb->request);
-+	}
-+
- 	err = eb_move_to_gpu(eb);
- 	if (err)
- 		return err;
-@@ -2663,6 +2703,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (batch->private)
- 		intel_gt_buffer_pool_put(batch->private);
- err_vma:
-+	if (eb.reloc_cache.fence)
-+		eb_reloc_signal(&eb, eb.reloc_cache.rq);
- 	if (eb.trampoline)
- 		i915_vma_unpin(eb.trampoline);
- 	eb_unpin_engine(&eb);
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-index 4f10b51f9a7e..62bba179b455 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-@@ -23,7 +23,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	const u64 mask =
- 		GENMASK_ULL(eb->reloc_cache.use_64bit_reloc ? 63 : 31, 0);
- 	const u32 *map = page_mask_bits(obj->mm.mapping);
--	struct i915_request *rq;
- 	struct eb_vma ev;
- 	int err;
- 	int i;
-@@ -40,6 +39,9 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto unpin_vma;
+@@ -75,13 +67,10 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 	struct i915_priolist *p;
+ 	struct rb_node **parent, *rb;
+ 	bool first = true;
+-	int idx, i;
  
-+	/* Single stage pipeline in the selftest */
-+	eb->reloc_cache.fence = &eb->reloc_cache.rq->fence;
-+
- 	list_add(&ev.reloc_link, &eb->relocs);
- 	err = lock_relocs(eb);
- 	if (err)
-@@ -71,8 +73,6 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto unpin_vma;
+ 	lockdep_assert_held(&engine->active.lock);
+ 	assert_priolists(execlists);
  
--	GEM_BUG_ON(!eb->reloc_cache.rq);
--	rq = i915_request_get(eb->reloc_cache.rq);
- 	reloc_gpu_flush(&eb->reloc_cache);
- 
- 	err = i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2);
-@@ -81,7 +81,7 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 		goto put_rq;
+-	/* buckets sorted from highest [in slot 0] to lowest priority */
+-	idx = I915_PRIORITY_COUNT - (prio & I915_PRIORITY_MASK) - 1;
+ 	prio >>= I915_USER_PRIORITY_SHIFT;
+ 	if (unlikely(execlists->no_priolist))
+ 		prio = I915_PRIORITY_NORMAL;
+@@ -99,7 +88,7 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 			parent = &rb->rb_right;
+ 			first = false;
+ 		} else {
+-			goto out;
++			return &p->requests;
+ 		}
  	}
  
--	if (!i915_request_completed(rq)) {
-+	if (!i915_request_completed(eb->reloc_cache.rq)) {
- 		pr_err("%s: did not wait for relocations!\n", eb->engine->name);
- 		err = -EINVAL;
- 		goto put_rq;
-@@ -100,7 +100,8 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 		igt_hexdump(map, 4096);
+@@ -125,15 +114,12 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 	}
  
- put_rq:
--	i915_request_put(rq);
-+	i915_request_put(eb->reloc_cache.rq);
-+	eb->reloc_cache.rq = NULL;
- unpin_vma:
- 	i915_vma_unpin(ev.vma);
- 	return err;
+ 	p->priority = prio;
+-	for (i = 0; i < ARRAY_SIZE(p->requests); i++)
+-		INIT_LIST_HEAD(&p->requests[i]);
++	INIT_LIST_HEAD(&p->requests);
++
+ 	rb_link_node(&p->node, rb, parent);
+ 	rb_insert_color_cached(&p->node, &execlists->queue, first);
+-	p->used = 0;
+ 
+-out:
+-	p->used |= BIT(idx);
+-	return &p->requests[idx];
++	return &p->requests;
+ }
+ 
+ void __i915_priolist_free(struct i915_priolist *p)
+@@ -363,30 +349,6 @@ void i915_schedule(struct i915_request *rq, const struct i915_sched_attr *attr)
+ 	spin_unlock_irq(&schedule_lock);
+ }
+ 
+-static void __bump_priority(struct i915_sched_node *node, unsigned int bump)
+-{
+-	struct i915_sched_attr attr = node->attr;
+-
+-	if (attr.priority & bump)
+-		return;
+-
+-	attr.priority |= bump;
+-	__i915_schedule(node, &attr);
+-}
+-
+-void i915_schedule_bump_priority(struct i915_request *rq, unsigned int bump)
+-{
+-	unsigned long flags;
+-
+-	GEM_BUG_ON(bump & ~I915_PRIORITY_MASK);
+-	if (READ_ONCE(rq->sched.attr.priority) & bump)
+-		return;
+-
+-	spin_lock_irqsave(&schedule_lock, flags);
+-	__bump_priority(&rq->sched, bump);
+-	spin_unlock_irqrestore(&schedule_lock, flags);
+-}
+-
+ void i915_sched_node_init(struct i915_sched_node *node)
+ {
+ 	INIT_LIST_HEAD(&node->signalers_list);
+@@ -570,8 +532,7 @@ int __init i915_global_scheduler_init(void)
+ 	if (!global.slab_dependencies)
+ 		return -ENOMEM;
+ 
+-	global.slab_priorities = KMEM_CACHE(i915_priolist,
+-					    SLAB_HWCACHE_ALIGN);
++	global.slab_priorities = KMEM_CACHE(i915_priolist, 0);
+ 	if (!global.slab_priorities)
+ 		goto err_priorities;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index 13432add8929..1b3c1e1a6ec5 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -13,17 +13,11 @@
+ 
+ #include "i915_scheduler_types.h"
+ 
+-#define priolist_for_each_request(it, plist, idx) \
+-	for (idx = 0; idx < ARRAY_SIZE((plist)->requests); idx++) \
+-		list_for_each_entry(it, &(plist)->requests[idx], sched.link)
+-
+-#define priolist_for_each_request_consume(it, n, plist, idx) \
+-	for (; \
+-	     (plist)->used ? (idx = __ffs((plist)->used)), 1 : 0; \
+-	     (plist)->used &= ~BIT(idx)) \
+-		list_for_each_entry_safe(it, n, \
+-					 &(plist)->requests[idx], \
+-					 sched.link)
++#define priolist_for_each_request(it, plist) \
++	list_for_each_entry(it, &(plist)->requests, sched.link)
++
++#define priolist_for_each_request_consume(it, n, plist) \
++	list_for_each_entry_safe(it, n, &(plist)->requests, sched.link)
+ 
+ void i915_sched_node_init(struct i915_sched_node *node);
+ void i915_sched_node_reinit(struct i915_sched_node *node);
+@@ -45,8 +39,6 @@ void i915_sched_node_fini(struct i915_sched_node *node);
+ void i915_schedule(struct i915_request *request,
+ 		   const struct i915_sched_attr *attr);
+ 
+-void i915_schedule_bump_priority(struct i915_request *rq, unsigned int bump);
+-
+ struct list_head *
+ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio);
+ 
 -- 
 2.20.1
 
