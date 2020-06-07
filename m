@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91B861F1058
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 01:12:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA261F105C
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 01:15:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26BFB6E209;
-	Sun,  7 Jun 2020 23:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD9C6E151;
+	Sun,  7 Jun 2020 23:15:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C2506E151;
- Sun,  7 Jun 2020 23:12:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33F5BA363D;
- Sun,  7 Jun 2020 23:12:07 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E7F66E151
+ for <intel-gfx@lists.freedesktop.org>; Sun,  7 Jun 2020 23:15:15 +0000 (UTC)
+IronPort-SDR: qPevNJCuTYWLOhW2a10SGmWcyXxRn1DGt1v+LQpvQQlhVmzD1YnRNWlEZ96+/+eN7VS5pVWnWo
+ 5MekoJM9geWA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2020 16:15:13 -0700
+IronPort-SDR: Wh0xc1bNbNyirbPcB1sALlzDBxTPHx8dtStLDSqwYxdfZyHBZq590J/QqRzGHhxujI5/R2MeyG
+ x/Oz3IeWG85w==
+X-IronPort-AV: E=Sophos;i="5.73,485,1583222400"; d="scan'208";a="446539223"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2020 16:15:12 -0700
+Date: Mon, 8 Jun 2020 02:15:05 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200607231505.GA18231@ideak-desk.fi.intel.com>
+References: <20200604184500.23730-1-imre.deak@intel.com>
+ <20200605094801.17709-1-imre.deak@intel.com>
+ <854f3594de3a7531eb4e4fa1cf4449bcd7b02dea.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 07 Jun 2020 23:12:07 -0000
-Message-ID: <159157152718.15987.7294706311004882491@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200607222108.14401-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/28=5D_drm/i915=3A_Adjust_the_sentinel_a?=
- =?utf-8?q?ssert_to_match_implementation?=
+Content-Disposition: inline
+In-Reply-To: <854f3594de3a7531eb4e4fa1cf4449bcd7b02dea.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH RESEND v3 1/3] drm/i915/dp_mst: Fix
+ disabling MST on a port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,166 +50,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 08, 2020 at 01:11:44AM +0300, Souza, Jose wrote:
+> On Fri, 2020-06-05 at 12:48 +0300, Imre Deak wrote:
+> > Currently MST on a port can get enabled/disabled from the hotplug work
+> > and get disabled from the short pulse work in a racy way. Fix this by
+> > relying on the MST state checking in the hotplug work and just schedule
+> > a hotplug work from the short pulse handler if some problem happened
+> > during the MST interrupt handling.
+> > =
 
-Series: series starting with [01/28] drm/i915: Adjust the sentinel assert to match implementation
-URL   : https://patchwork.freedesktop.org/series/78103/
-State : success
+> > This removes the explicit MST disabling in case of an AUX failure, but
+> > if AUX fails, then probably the detection will also fail during the
+> > scheduled hotplug work and it's not guaranteed that we'll see
+> > intermittent errors anyway.
+> > =
 
-== Summary ==
+> > While at it also simplify the error checking of the MST interrupt
+> > handler.
+> > =
 
-CI Bug Log - changes from CI_DRM_8597 -> Patchwork_17902
-====================================================
+> > v2:
+> > - Convert intel_dp_check_mst_status() to return bool. (Ville)
+> > - Change the intel_dp->is_mst check to an assert, since after this patch
+> >   the condition can't change after we checked it previously.
+> > - Document the return value from intel_dp_check_mst_status().
+> > v3:
+> > - Remove the intel_dp->is_mst check from intel_dp_check_mst_status().
+> >   There is no point in checking the same condition twice, even though
+> >   there is a chance that the hotplug work running concurrently changes
+> >   it.
+> > =
 
-Summary
--------
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com> (v1)
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 66 ++++++++++---------------
+> >  1 file changed, 26 insertions(+), 40 deletions(-)
+> > =
 
-  **SUCCESS**
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index 55fda074c0ad..42589cae766d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -5556,35 +5556,46 @@ static void intel_dp_handle_test_request(struct=
+ intel_dp *intel_dp)
+> >  			    "Could not write test response to sink\n");
+> >  }
+> >  =
 
-  No regressions found.
+> > -static int
+> > +/**
+> > + * intel_dp_check_mst_status - service any pending MST interrupts, che=
+ck link status
+> > + * @intel_dp: Intel DP struct
+> > + *
+> > + * Read any pending MST interrupts, call MST core to handle these and =
+ack the
+> > + * interrupts. Check if the main and AUX link state is ok.
+> > + *
+> > + * Returns:
+> > + * - %true if pending interrupts were serviced (or no interrupts were
+> > + *   pending) w/o detecting an error condition.
+> > + * - %false if an error condition - like AUX failure or a loss of link=
+ - is
+> > + *   detected, which needs servicing from the hotplug work.
+> > + */
+> > +static bool
+> >  intel_dp_check_mst_status(struct intel_dp *intel_dp)
+> >  {
+> >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > -	bool need_retrain =3D false;
+> > -
+> > -	if (!intel_dp->is_mst)
+> > -		return -EINVAL;
+> > +	bool link_ok =3D true;
+> >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/index.html
+> >  	drm_WARN_ON_ONCE(&i915->drm, intel_dp->active_mst_links < 0);
+> >  =
 
-New tests
----------
+> >  	for (;;) {
+> >  		u8 esi[DP_DPRX_ESI_LEN] =3D {};
+> > -		bool bret, handled;
+> > +		bool handled;
+> >  		int retry;
+> >  =
 
-  New tests have been introduced between CI_DRM_8597 and Patchwork_17902:
+> > -		bret =3D intel_dp_get_sink_irq_esi(intel_dp, esi);
+> > -		if (!bret) {
+> > +		if (!intel_dp_get_sink_irq_esi(intel_dp, esi)) {
+> >  			drm_dbg_kms(&i915->drm,
+> >  				    "failed to get ESI - device may have failed\n");
+> > -			return -EINVAL;
+> > +			link_ok =3D false;
+> > +
+> > +			break;
+> >  		}
+> >  =
 
-### New IGT tests (1) ###
+> >  		/* check link status - esi[10] =3D 0x200c */
+> > -		if (intel_dp->active_mst_links > 0 && !need_retrain &&
+> > +		if (intel_dp->active_mst_links > 0 && link_ok &&
+> >  		    !drm_dp_channel_eq_ok(&esi[10], intel_dp->lane_count)) {
+> >  			drm_dbg_kms(&i915->drm,
+> >  				    "channel EQ not ok, retraining\n");
+> > -			need_retrain =3D true;
+> > +			link_ok =3D false;
+> >  		}
+> >  =
 
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 40 pass(s)
-    - Exec time: [0.03, 0.11] s
+> >  		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
+> > @@ -5604,7 +5615,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_=
+dp)
+> >  		}
+> >  	}
+> >  =
 
-  
+> > -	return need_retrain;
+> > +	return link_ok;
+> >  }
+> >  =
 
-Known issues
-------------
+> >  static bool
+> > @@ -7255,35 +7266,10 @@ intel_dp_hpd_pulse(struct intel_digital_port *i=
+ntel_dig_port, bool long_hpd)
+> >  	}
+> >  =
 
-  Here are the changes found in Patchwork_17902 that come from known issues:
+> >  	if (intel_dp->is_mst) {
+> > -		switch (intel_dp_check_mst_status(intel_dp)) {
+> > -		case -EINVAL:
+> > -			/*
+> > -			 * If we were in MST mode, and device is not
+> > -			 * there, get out of MST mode
+> > -			 */
+> > -			drm_dbg_kms(&i915->drm,
+> > -				    "MST device may have disappeared %d vs %d\n",
+> > -				    intel_dp->is_mst,
+> > -				    intel_dp->mst_mgr.mst_state);
+> > -			intel_dp->is_mst =3D false;
+> > -			drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
+> > -							intel_dp->is_mst);
+> > -
+> > -			return IRQ_NONE;
+> > -		case 1:
+> > -			return IRQ_NONE;
+> > -		default:
+> > -			break;
+> > -		}
+> > -	}
+> > -
+> > -	if (!intel_dp->is_mst) {
+> > -		bool handled;
+> > -
+> > -		handled =3D intel_dp_short_pulse(intel_dp);
+> > -
+> > -		if (!handled)
+> > +		if (!intel_dp_check_mst_status(intel_dp))
+> >  			return IRQ_NONE;
+> > +	} else if (!intel_dp_short_pulse(intel_dp)) {
+> > +		return IRQ_NONE;
+> >  	}
+> >  =
 
-### IGT changes ###
+> =
 
-#### Issues hit ####
+> Now it don't need the braces but this is minor.
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-WARN][2] ([i915#62] / [i915#92] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+Without the braces it wouldn't be correct.
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
 
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-tgl-dsi/igt@i915_module_load@reload.html
-    - fi-icl-y:           [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-y/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-icl-y/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-guc:         [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][15] ([fdo#109271]) -> [DMESG-FAIL][16] ([i915#62])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +6 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8597/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8597 -> Patchwork_17902
-
-  CI-20190529: 20190529
-  CI_DRM_8597: aadd3cf12a7c515bca8752da797ded56a003617b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5696: 8d1744239f4300eb12d5bab14a30b79d9c8dd364 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17902: 1dad2fcca4f707aa870be1a45bb28bfb4c2b0f73 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1dad2fcca4f7 drm/i915: Replace the priority boosting for the display with a deadline
-29754bd08fd1 drm/i915/gt: Specify a deadline for the heartbeat
-62d3790caaf1 drm/i915: Fair low-latency scheduling
-956673f1ee95 drm/i915/gt: Check for a completed last request once
-36de84a8bd2b ipi-dag
-2084c4ff504b drm/i915: Restructure priority inheritance
-f9a12aff6156 drm/i915: Teach the i915_dependency to use a double-lock
-95ddc88b38ef drm/i915/gt: Do not suspend bonded requests if one hangs
-e82c48f763c2 drm/i915: Replace engine->schedule() with a known request operation
-40a48b3a4cd5 drm/i915: Remove I915_USER_PRIORITY_SHIFT
-50d452bcc3eb drm/i915: Strip out internal priorities
-097cde1f158a drm/i915/gem: Make relocations atomic within execbuf
-54c54ac54e10 drm/i915: Unpeel awaits on a proxy fence
-0cf43f808ad7 drm/i915: Lift waiter/signaler iterators
-78cb8746679e dma-buf: Proxy fence, an unsignaled fence placeholder
-b03d9c429a48 drm/i915/gem: Add all GPU reloc awaits/signals en masse
-06166bdaf5a2 drm/i915/gem: Build the reloc request first
-6e281d4c956c drm/i915/gem: Lift GPU relocation allocation
-3fa210c03e00 drm/i915/gem: Separate reloc validation into an earlier step
-85be36e07c69 drm/i915: Add list_for_each_entry_safe_continue_reverse
-7e90a16cc7ce drm/i915/gt: Resubmit the virtual engine on schedule-out
-61f3b28c89b9 drm/i915/gt: Decouple inflight virtual engines
-7253a1d1220b drm/i915/gt: Use virtual_engine during execlists_dequeue
-a4fea0425495 drm/i915/selftests: Trim execlists runtime
-f2f769eafd3d drm/i915/selftests: Remove live_suppress_wait_preempt
-854873908649 drm/i915/selftests: Teach hang-self to target only itself
-b94a954251d4 drm/i915/selftests: Make the hanging request non-preemptible
-f23f25433228 drm/i915: Adjust the sentinel assert to match implementation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17902/index.html
+> >  	return IRQ_HANDLED;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
