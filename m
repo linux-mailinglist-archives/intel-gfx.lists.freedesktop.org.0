@@ -1,42 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27121F2118
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 23:01:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDB31F212E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 23:05:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D60F76E598;
-	Mon,  8 Jun 2020 21:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33C656E59B;
+	Mon,  8 Jun 2020 21:05:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 442FB6E598
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 21:01:19 +0000 (UTC)
-IronPort-SDR: ic4Zijm1HtBrfg3jSEDHDcdrvySfUk2TsXGC97oXqYCbMLVVKHKr8/Kliaq3iTTSSMpfHTIs2y
- JabPKaWOvxwg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2020 14:01:18 -0700
-IronPort-SDR: 7ei2J3d/5dnTqHSSx68yUXaNzCy16Mbbq7YnpVheW4IGPsUbNnfw8k8nYsZGuMM1jd5fBOjZad
- S5ytH/NiShtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,489,1583222400"; d="scan'208";a="305958123"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga002.fm.intel.com with ESMTP; 08 Jun 2020 14:01:17 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D18FA5C2C42; Mon,  8 Jun 2020 23:58:43 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200607222108.14401-2-chris@chris-wilson.co.uk>
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
- <20200607222108.14401-2-chris@chris-wilson.co.uk>
-Date: Mon, 08 Jun 2020 23:58:43 +0300
-Message-ID: <87d0699svw.fsf@gaia.fi.intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/28] drm/i915/selftests: Make the hanging
- request non-preemptible
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770D16E59B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 21:05:37 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id w9so15957856qtv.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 14:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=EzthTjcENHrX3tITbBxwAqNbU6Xj4UipKRWTfNqnL+o=;
+ b=bgc6BHvCUoJE1qdmgXsto7Z68feJbJp13cEXK0earcTUj+yjG6mWNGFv4eWC9f5rme
+ gh6CIZHNFRuEC4BkJn1gYZRp9ltYcFiJxWyNqUDe44dZTFWcUtwXrXSWd7RG0VFken1R
+ ahHX3yMVwTYYAr2lMlVbnaAeUvT8WBeTDpdOuBac1dEHikZCklphUDS4Iqz/4hvY3QYh
+ BRrw+IYABTPGnY+s/JN6+qIexxlNPJWD8CC1k6YTRXH+6y9v+h2ytgTcZ1g6+oX1ne9O
+ 0Z06Od9CauPVYFn+m2kA6SyDitLDb6VPpPj+c6/HemAanMCSn2n/EG0T62D6H6cV4qos
+ DQqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=EzthTjcENHrX3tITbBxwAqNbU6Xj4UipKRWTfNqnL+o=;
+ b=nJnIceOqeH9pwAhWxuRn2G4k5JrbLaIEAupigZm6okrZ3Upkem9XgXqawlvAdFIQh2
+ WjtHi/Fb2WTA4uFuDc16jZBS1oYyJICBBVLupinDcAaij4tv54cWQczNNa7qRG9tzWN5
+ aJ6yccBS9QvrSoTL60odj9wZ/c3IOapD+tWyBXqvz2T1ZMTileQPZaL0D9AprqoCTD+D
+ Cea367KqMcdyDZJOAXS7jkpuuOeC3rnZTucVKmNjBdm1A3ATL3TBsATr4HSfgEv4Jcm6
+ a5gJguaPs9QlrbKWGIW7FzPpEPpyQI5EJm4flDRq6bGXOzrMMJlMOtyvI0hwOfftG+aG
+ S9jA==
+X-Gm-Message-State: AOAM531DhPNZ2Tt2T4HeCXGWPSv6+ee6uvHFrMHojJCgMFEU5MXGlvO2
+ H4bYKeedkw89qcURvJMUwZy1eQ==
+X-Google-Smtp-Source: ABdhPJz7OFpjGtNLCnywlgTFICvYLryTMF7ZufFlXArk5WTY8GEQ6QiPri1R0M/FCn4jm9pwFeQ1nw==
+X-Received: by 2002:aed:30cf:: with SMTP id 73mr7419561qtf.81.1591650335170;
+ Mon, 08 Jun 2020 14:05:35 -0700 (PDT)
+Received: from localhost (mobile-166-173-249-24.mycingular.net.
+ [166.173.249.24])
+ by smtp.gmail.com with ESMTPSA id h202sm1934074qke.69.2020.06.08.14.05.34
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 08 Jun 2020 14:05:34 -0700 (PDT)
+From: Sean Paul <sean@poorly.run>
+To: dri-devel@lists.freedesktop.org
+Date: Mon,  8 Jun 2020 17:04:53 -0400
+Message-Id: <20200608210505.48519-4-sean@poorly.run>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200608210505.48519-1-sean@poorly.run>
+References: <20200608210505.48519-1-sean@poorly.run>
+Subject: [Intel-gfx] [PATCH v5 03/13] drm/i915/utils: Replace dev_printk
+ with drm helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,129 +66,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: David Airlie <airlied@linux.ie>, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, mripard@kernel.org, ppaalanen@gmail.com,
+ Sean Paul <seanpaul@chromium.org>, tzimmermann@suse.de
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+From: Sean Paul <seanpaul@chromium.org>
 
-> In some of our hangtests, we try to reset an active engine while it is
-> spinning inside the recursive spinner. However, we also try to flood the
-> engine with requests that preempt the hang, and so should disable the
-> preemption to be sure that we reset the right request.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Use drm logging helpers to add support for the upcoming tracefs
+implementation.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
 
-> ---
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 36 ++++++++++++++------
->  1 file changed, 26 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 4aa4cc917d8b..035f363fb0f8 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -203,12 +203,12 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->  		*batch++ = lower_32_bits(hws_address(hws, rq));
->  		*batch++ = upper_32_bits(hws_address(hws, rq));
->  		*batch++ = rq->fence.seqno;
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  
->  		memset(batch, 0, 1024);
->  		batch += 1024 / sizeof(*batch);
->  
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  		*batch++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
->  		*batch++ = lower_32_bits(vma->node.start);
->  		*batch++ = upper_32_bits(vma->node.start);
-> @@ -217,12 +217,12 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->  		*batch++ = 0;
->  		*batch++ = lower_32_bits(hws_address(hws, rq));
->  		*batch++ = rq->fence.seqno;
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  
->  		memset(batch, 0, 1024);
->  		batch += 1024 / sizeof(*batch);
->  
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  		*batch++ = MI_BATCH_BUFFER_START | 1 << 8;
->  		*batch++ = lower_32_bits(vma->node.start);
->  	} else if (INTEL_GEN(gt->i915) >= 4) {
-> @@ -230,24 +230,24 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->  		*batch++ = 0;
->  		*batch++ = lower_32_bits(hws_address(hws, rq));
->  		*batch++ = rq->fence.seqno;
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  
->  		memset(batch, 0, 1024);
->  		batch += 1024 / sizeof(*batch);
->  
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  		*batch++ = MI_BATCH_BUFFER_START | 2 << 6;
->  		*batch++ = lower_32_bits(vma->node.start);
->  	} else {
->  		*batch++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
->  		*batch++ = lower_32_bits(hws_address(hws, rq));
->  		*batch++ = rq->fence.seqno;
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  
->  		memset(batch, 0, 1024);
->  		batch += 1024 / sizeof(*batch);
->  
-> -		*batch++ = MI_ARB_CHECK;
-> +		*batch++ = MI_NOOP;
->  		*batch++ = MI_BATCH_BUFFER_START | 2 << 6;
->  		*batch++ = lower_32_bits(vma->node.start);
->  	}
-> @@ -866,13 +866,29 @@ static int __igt_reset_engines(struct intel_gt *gt,
->  			count++;
->  
->  			if (rq) {
-> +				if (rq->fence.error != -EIO) {
-> +					pr_err("i915_reset_engine(%s:%s):"
-> +					       " failed to reset request %llx:%lld\n",
-> +					       engine->name, test_name,
-> +					       rq->fence.context,
-> +					       rq->fence.seqno);
-> +					i915_request_put(rq);
-> +
-> +					GEM_TRACE_DUMP();
-> +					intel_gt_set_wedged(gt);
-> +					err = -EIO;
-> +					break;
-> +				}
-> +
->  				if (i915_request_wait(rq, 0, HZ / 5) < 0) {
->  					struct drm_printer p =
->  						drm_info_printer(gt->i915->drm.dev);
->  
->  					pr_err("i915_reset_engine(%s:%s):"
-> -					       " failed to complete request after reset\n",
-> -					       engine->name, test_name);
-> +					       " failed to complete request %llx:%lld after reset\n",
-> +					       engine->name, test_name,
-> +					       rq->fence.context,
-> +					       rq->fence.seqno);
->  					intel_engine_dump(engine, &p,
->  							  "%s\n", engine->name);
->  					i915_request_put(rq);
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Changes in v5:
+-Added to the set
+---
+ drivers/gpu/drm/i915/i915_utils.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+index f42a9e9a0b4f..99499c0885cf 100644
+--- a/drivers/gpu/drm/i915/i915_utils.c
++++ b/drivers/gpu/drm/i915/i915_utils.c
+@@ -30,10 +30,9 @@ __i915_printk(struct drm_i915_private *dev_priv, const char *level,
+ 	vaf.va = &args;
+ 
+ 	if (is_error)
+-		dev_printk(level, kdev, "%pV", &vaf);
++		drm_dev_printk(kdev, level, "%pV", &vaf);
+ 	else
+-		dev_printk(level, kdev, "[" DRM_NAME ":%ps] %pV",
+-			   __builtin_return_address(0), &vaf);
++		drm_err(&dev_priv->drm, "%pV", &vaf);
+ 
+ 	va_end(args);
+ 
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
