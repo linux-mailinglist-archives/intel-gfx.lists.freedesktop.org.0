@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7892B1F22DC
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 01:12:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0581F22EF
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 01:12:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF9F26E077;
-	Mon,  8 Jun 2020 23:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCB7D6E0CE;
+	Mon,  8 Jun 2020 23:12:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B9A6E077;
- Mon,  8 Jun 2020 23:12:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 225A06E0CE;
+ Mon,  8 Jun 2020 23:12:48 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C4D32208C7;
- Mon,  8 Jun 2020 23:12:14 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 29D172100A;
+ Mon,  8 Jun 2020 23:12:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1591657935;
- bh=fte2bte/XDzfHp7/FRDNEq/bGVrJTW18C2qlNPGHEh0=;
+ s=default; t=1591657968;
+ bh=InbbZyHlNhJSYEISo854k5UHc9Jio+d9wJTFioivsbo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cY6LrFwYfKFe3lIK5ORGDXUFpdGQIqth1Ok8c/B8t8PpFbj95B9ESJLmy8FBZLGg1
- m+ahLIGkrlMYawTYBCwtFWdHt0cZwjbHhewXe1Lk3FHs7R0FHdHBejKkTdTl0lOiKD
- 9iBJdPKtEfBVdZYIfqje0CXShpvyrlfibVqGgX64=
+ b=tMpzpoAxFhcz1PCY0BtB7coGBL0RNKVM0EsCv8cBj97UzgLQh+wH4juXOsS8arkXH
+ DJgJ7lAUbDO8MO3hM+qde4SqBnRaahdhBgV7LP7dTZhXKS5Eb/XXECCI7hFgh6vzWq
+ rVaEABGRfh9X4DKNopIfP6IZBLC1HNTsvCwDE878=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon,  8 Jun 2020 19:02:08 -0400
-Message-Id: <20200608231211.3363633-3-sashal@kernel.org>
+Date: Mon,  8 Jun 2020 19:02:36 -0400
+Message-Id: <20200608231211.3363633-31-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200608231211.3363633-1-sashal@kernel.org>
 References: <20200608231211.3363633-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-Subject: [Intel-gfx] [PATCH AUTOSEL 5.6 003/606] drm/i915: Handle idling
- during i915_gem_evict_something busy loops
+Subject: [Intel-gfx] [PATCH AUTOSEL 5.6 031/606] Make the "Reducing
+ compressed framebufer size" message be DRM_INFO_ONCE()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,89 +50,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Peter Jones <pjones@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
-
-[ Upstream commit 955da9d77435acac066139e9d7f7723ce7204a1d ]
-
-i915_gem_evict_something() is charged with finding a slot within the GTT
-that we may reuse. Since our goal is not to stall, we first look for a
-slot that only overlaps idle vma. To this end, on the first pass we move
-any active vma to the end of the search list. However, we only stopped
-moving active vma after we see the first active vma twice. If during the
-search, that first active vma completed, we would not notice and keep on
-extending the search list.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1746
-Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
-Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: <stable@vger.kernel.org> # v5.5+
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20200509115217.26853-1-chris@chris-wilson.co.uk
-(cherry picked from commit 73e28cc40bf00b5d168cb8f5cff1ae63e9097446)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/i915/i915_gem_evict.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index 0697bedebeef..d99df9c33708 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -130,6 +130,13 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 	active = NULL;
- 	INIT_LIST_HEAD(&eviction_list);
- 	list_for_each_entry_safe(vma, next, &vm->bound_list, vm_link) {
-+		if (vma == active) { /* now seen this vma twice */
-+			if (flags & PIN_NONBLOCK)
-+				break;
-+
-+			active = ERR_PTR(-EAGAIN);
-+		}
-+
- 		/*
- 		 * We keep this list in a rough least-recently scanned order
- 		 * of active elements (inactive elements are cheap to reap).
-@@ -145,21 +152,12 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 		 * To notice when we complete one full cycle, we record the
- 		 * first active element seen, before moving it to the tail.
- 		 */
--		if (i915_vma_is_active(vma)) {
--			if (vma == active) {
--				if (flags & PIN_NONBLOCK)
--					break;
--
--				active = ERR_PTR(-EAGAIN);
--			}
--
--			if (active != ERR_PTR(-EAGAIN)) {
--				if (!active)
--					active = vma;
-+		if (active != ERR_PTR(-EAGAIN) && i915_vma_is_active(vma)) {
-+			if (!active)
-+				active = vma;
- 
--				list_move_tail(&vma->vm_link, &vm->bound_list);
--				continue;
--			}
-+			list_move_tail(&vma->vm_link, &vm->bound_list);
-+			continue;
- 		}
- 
- 		if (mark_free(&scan, vma, flags, &eviction_list))
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogUGV0ZXIgSm9uZXMgPHBqb25lc0ByZWRoYXQuY29tPgoKY29tbWl0IDgyMTUyZDQyNGI2
+Y2I2ZmMxZWRlN2QwM2Q2OWMwNGU3ODY2ODg3NDAgdXBzdHJlYW0uCgpUaGlzIHdhcyBzb3J0IG9m
+IGFubm95aW5nIG1lOgoKcmFuZG9tOn4kIGRtZXNnIHwgdGFpbCAtMQpbNTIzODg0LjAzOTIyN10g
+W2RybV0gUmVkdWNpbmcgdGhlIGNvbXByZXNzZWQgZnJhbWVidWZmZXIgc2l6ZS4gVGhpcyBtYXkg
+bGVhZCB0byBsZXNzIHBvd2VyIHNhdmluZ3MgdGhhbiBhIG5vbi1yZWR1Y2VkLXNpemUuIFRyeSB0
+byBpbmNyZWFzZSBzdG9sZW4gbWVtb3J5IHNpemUgaWYgYXZhaWxhYmxlIGluIEJJT1MuCnJhbmRv
+bTp+JCBkbWVzZyB8IGdyZXAgLWMgIlJlZHVjaW5nIHRoZSBjb21wcmVzc2VkIgo0NwoKVGhpcyBw
+YXRjaCBtYWtlcyBpdCBEUk1fSU5GT19PTkNFKCkganVzdCBsaWtlIHRoZSBzaW1pbGFyIG1lc3Nh
+Z2UKZmFydGhlciBkb3duIGluIHRoYXQgZnVuY3Rpb24gaXMgcHJfaW5mb19vbmNlKCkuCgpDYzog
+c3RhYmxlQHZnZXIua2VybmVsLm9yZwpTaWduZWQtb2ZmLWJ5OiBQZXRlciBKb25lcyA8cGpvbmVz
+QHJlZGhhdC5jb20+CkFja2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5j
+b20+CkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lz
+c3Vlcy8xNzQ1Ckxpbms6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9t
+c2dpZC8yMDE4MDcwNjE5MDQyNC4yOTE5NC0xLXBqb25lc0ByZWRoYXQuY29tClt2c3lyamFsYTog
+UmViYXNlIGR1ZSB0byBwZXItZGV2aWNlIGxvZ2dpbmddClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5
+cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CihjaGVycnkgcGlja2VkIGZy
+b20gY29tbWl0IDZiN2ZjNmEzZTZhZjRmZjU3NzM5NDlkMGZlZDcwZDhlN2Y2OGQ1Y2UpCltSb2Ry
+aWdvOiBwb3J0IGJhY2sgdG8gRFJNX0lORk9fT05DRV0KU2lnbmVkLW9mZi1ieTogUm9kcmlnbyBW
+aXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBHcmVnIEtyb2FoLUhh
+cnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCAzICstLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
+aW9uKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZmJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2ZiYy5jCmluZGV4IGExMDQ4ZWNlNTQxZS4uYjZkNWU3ZGVmYTViIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKQEAgLTQ3OCw4ICs0NzgsNyBAQCBzdGF0aWMgaW50
+IGludGVsX2ZiY19hbGxvY19jZmIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAog
+CWlmICghcmV0KQogCQlnb3RvIGVycl9sbGI7CiAJZWxzZSBpZiAocmV0ID4gMSkgewotCQlEUk1f
+SU5GTygiUmVkdWNpbmcgdGhlIGNvbXByZXNzZWQgZnJhbWVidWZmZXIgc2l6ZS4gVGhpcyBtYXkg
+bGVhZCB0byBsZXNzIHBvd2VyIHNhdmluZ3MgdGhhbiBhIG5vbi1yZWR1Y2VkLXNpemUuIFRyeSB0
+byBpbmNyZWFzZSBzdG9sZW4gbWVtb3J5IHNpemUgaWYgYXZhaWxhYmxlIGluIEJJT1MuXG4iKTsK
+LQorCQlEUk1fSU5GT19PTkNFKCJSZWR1Y2luZyB0aGUgY29tcHJlc3NlZCBmcmFtZWJ1ZmZlciBz
+aXplLiBUaGlzIG1heSBsZWFkIHRvIGxlc3MgcG93ZXIgc2F2aW5ncyB0aGFuIGEgbm9uLXJlZHVj
+ZWQtc2l6ZS4gVHJ5IHRvIGluY3JlYXNlIHN0b2xlbiBtZW1vcnkgc2l6ZSBpZiBhdmFpbGFibGUg
+aW4gQklPUy5cbiIpOwogCX0KIAogCWZiYy0+dGhyZXNob2xkID0gcmV0OwotLSAKMi4yNS4xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
