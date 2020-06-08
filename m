@@ -2,46 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D1D51F194E
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 14:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 975041F1A12
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 15:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 775306E4E6;
-	Mon,  8 Jun 2020 12:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D08776E51A;
+	Mon,  8 Jun 2020 13:29:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA256E51A;
- Mon,  8 Jun 2020 12:55:58 +0000 (UTC)
-IronPort-SDR: I1GjdPEjxOBaKN4g3+Rkc8amQcjepfwpoBk3BKGjtuLidvLBuh2nVSLF7DHUfDoV1ThBI218AY
- 9dBmvysdbnCA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2020 05:55:42 -0700
-IronPort-SDR: YMTtf9LtzCA+Fx3BKfkswyKevs/R7Wz3cr4ojWM5YYlDjeaaQoGG8r6F+hMyE9psqP81iWftVT
- fB06DdDIq6dA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; d="scan'208";a="295440241"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by fmsmga004.fm.intel.com with ESMTP; 08 Jun 2020 05:55:40 -0700
-Received: from andy by smile with local (Exim 4.93)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1jiHJW-00BgLB-PO; Mon, 08 Jun 2020 15:55:42 +0300
-Date: Mon, 8 Jun 2020 15:55:42 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200608125542.GM2428291@smile.fi.intel.com>
-References: <20200607181840.13536-1-hdegoede@redhat.com>
- <20200607181840.13536-5-hdegoede@redhat.com>
- <20200608035512.GA2428291@smile.fi.intel.com>
- <c8a8d466-9b4a-9021-ca74-01d315e99117@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E9846E504;
+ Mon,  8 Jun 2020 13:29:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77382A00E7;
+ Mon,  8 Jun 2020 13:29:38 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <c8a8d466-9b4a-9021-ca74-01d315e99117@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v2 04/15] pwm: lpss: Fix off by one error in
- base_unit math in pwm_lpss_prepare()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 08 Jun 2020 13:29:38 -0000
+Message-ID: <159162297846.14463.11147241051382851777@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200608102845.26194-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200608102845.26194-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Prevent_enabling_breadcrumbs_on_the_virtual_engine_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,59 +39,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 08, 2020 at 01:13:01PM +0200, Hans de Goede wrote:
-> On 6/8/20 5:55 AM, Andy Shevchenko wrote:
-> > On Sun, Jun 07, 2020 at 08:18:29PM +0200, Hans de Goede wrote:
-> > > According to the data-sheet the way the PWM controller works is that
-> > > each input clock-cycle the base_unit gets added to a N bit counter and
-> > > that counter overflowing determines the PWM output frequency.
-> > > 
-> > > So assuming e.g. a 16 bit counter this means that if base_unit is set to 1,
-> > > after 65535 input clock-cycles the counter has been increased from 0 to
-> > > 65535 and it will overflow on the next cycle, so it will overflow after
-> > > every 65536 clock cycles and thus the calculations done in
-> > > pwm_lpss_prepare() should use 65536 and not 65535.
-> > > 
-> > > This commit fixes this. Note this also aligns the calculations in
-> > > pwm_lpss_prepare() with those in pwm_lpss_get_state().
-> > 
-> > This one sounds like a bug which I have noticed on Broxton (but thought as a
-> > hardware issue). In any case it has to be tested on various platforms to see
-> > how it affects on them.
-> 
-> If you like at the datasheet / read my commit description then it
-> becomes obvious that because of the way the PWM controller works that
-> it takes the full 2^(base-unit-bits) for the counter to overflow,
-> not 2^(base-unit-bits) - 1. This will make a difference of a factor
-> 65535/65536 in the output frequency which will be tricky to measure.
-> 
-> IOW I'm not sure we can really test if this helps, but it is
-> obviously the right thing to do and it aligns the pwm_apply code
-> with the pwm_get_state code which already does not have the - 1.
+== Series Details ==
 
-Yes. It seems I did a mistake in the commit
-684309e5043e ("pwm: lpss: Avoid potential overflow of base_unit")
-when missed multiplication.
+Series: drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine (rev2)
+URL   : https://patchwork.freedesktop.org/series/78117/
+State : success
 
-For this one
+== Summary ==
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CI Bug Log - changes from CI_DRM_8600 -> Patchwork_17908
+====================================================
 
--- 
-With Best Regards,
-Andy Shevchenko
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17908 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-byt-j1900/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-byt-j1900/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-glk-dsi:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +4 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
+Participating hosts (49 -> 43)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8600 -> Patchwork_17908
+
+  CI-20190529: 20190529
+  CI_DRM_8600: 9232911f67be3d072e5bd6ff0eb4d8e8281f5c5f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5699: 201da47cb57b8fadd9bc45be16b82617b32a2c01 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17908: 0ed9d466630faf01b7a04c422587332f71fc9615 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0ed9d466630f drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
