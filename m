@@ -1,31 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E471F3FFA
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 17:58:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181BD1F408B
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 18:19:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA4E6E2C4;
-	Tue,  9 Jun 2020 15:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B006E2C8;
+	Tue,  9 Jun 2020 16:19:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AD73B6E079;
- Tue,  9 Jun 2020 15:58:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A8CC0A00CC;
- Tue,  9 Jun 2020 15:58:41 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2040.outbound.protection.outlook.com [40.107.244.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D206C6E0C9;
+ Mon,  8 Jun 2020 16:41:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QLgMR+2P1W7PLAULVNueOo4y4I7Z4UbOeFGET2BIELgImtOOufw7zLUZO2PIZCAweP8PHcQ4rT+7EI7NPADsqAmbMWpkkyMKWrNT5aWXnpeEc/RJ1+GJYIVwgNtRljtOoiQ8CWhfiyeN7awhbiNRrH/Wpb0r/OuPgINU7uP8wvXyqChNc8Qt1IKoL8YUcUEc7h66bIqcwvFIT+0q8I6eDhxVxF5VfDdubfhC3rnx0PQA4H79qvlNiQWOgORwdVI6QNLwp7pTMjYO+vLeJZ+td0j3cJqfz81SrBNT5btcCvKER8vVOWoLOCJ5Jf4ohfkkZ2vxC+i4IkINiiZPeVrYaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zO05e3QzB9UT6710ov808rEMEuuB5NsH36MNGg/Qjng=;
+ b=Gwly3nKd9qNHDvBzF+zrKuM1JxEZ7pjA5kng+0M6FpxKPsaeuVap9/fQEhaqOMdoFpK1wYf6cmOAdEALpfJSV8UIm3NfmJg/HDfB7CpgxRz5ebHkt9UtASmXi0kE3bDSq2k9EhFf2XC5IHtMLhD2jcybPMRxw900bnTAcfXW1iEeWwk9TUKPBATHCTYRXSaVlxd12oZXNtYM7Tsj2asFMUxudVufIRxc5WuyMfSwefH18OKtTuS2DhHpEjfWdeV3NByquQye/MQk0ZnKxbLrG5ZiGnQFKTdom3kNT0s0r+XVD0Zxy2Ur+MJa6eRuQDBT+cI1TLdxPa9Khqm259OzWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zO05e3QzB9UT6710ov808rEMEuuB5NsH36MNGg/Qjng=;
+ b=M8VnTabfNoccEIe9rQndxFHeHcf239qHqWEyNDYYeUnodt309TZnFlnmFS/RZXtiD2cshV8smxa2U1aJyqLNf261gaBTb8dvv9zk2hkE1JVVuvFLD4/UV69xVwqwWiok/hlSQBM23OKOOqdIu51Y81N7eV/dQJnReWLj8JmOsKI=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3872.namprd12.prod.outlook.com (2603:10b6:208:168::17)
+ by MN2PR12MB3294.namprd12.prod.outlook.com (2603:10b6:208:af::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Mon, 8 Jun
+ 2020 16:41:07 +0000
+Received: from MN2PR12MB3872.namprd12.prod.outlook.com
+ ([fe80::8843:c094:fb2a:d60a]) by MN2PR12MB3872.namprd12.prod.outlook.com
+ ([fe80::8843:c094:fb2a:d60a%7]) with mapi id 15.20.3066.023; Mon, 8 Jun 2020
+ 16:41:07 +0000
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ nirmoy.das@amd.com, intel-gfx@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, dri-devel@lists.freedesktop.org
+References: <20200608151550.1315-1-christian.koenig@amd.com>
+From: Nirmoy <nirmodas@amd.com>
+Message-ID: <58d0d2cf-5365-d5e5-3338-dcd6c7b3a786@amd.com>
+Date: Mon, 8 Jun 2020 18:42:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
+In-Reply-To: <20200608151550.1315-1-christian.koenig@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR10CA0102.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:e6::19) To MN2PR12MB3872.namprd12.prod.outlook.com
+ (2603:10b6:208:168::17)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 09 Jun 2020 15:58:41 -0000
-Message-ID: <159171832168.17061.13972587822906054794@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Incrementally_check_for_rewinding_=28rev2=29?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (2003:c5:8f20:5d00:7fc6:50c7:b826:f4e) by
+ AM0PR10CA0102.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:e6::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 16:41:06 +0000
+X-Originating-IP: [2003:c5:8f20:5d00:7fc6:50c7:b826:f4e]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 281cc572-6fb0-4c87-27d4-08d80bcabe12
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3294:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB329465B2953CE70A124160E28B850@MN2PR12MB3294.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 042857DBB5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uC4hIpvV5857K4XFNfUBSmlDGHFXdw7PSxigFqwpWXMcKlJo2jfA0yTnx5koyCjTUxq0zXmcB7BU6niosrNQYoVWsLaqRE0ufBQ5w0XfqNmdBKY8oLor3Lk56DKQ0D92nFAbX3c2wLpoVAXqdH9oZcKdCpauhiMWUI+DstJA8bK3TI1clsWKjukqkNsXmdLo5swscIa7QPelCWmiWQattImTLMXo46ZVhtriAus3R8ZktWyQCArSGTcn2eBG4OCSHye2cSoMSI63yNdKzzFO/DaUyX/0KXvqsELmVZNL6ocPQy1SX7bK5dFCwzsvz7WSmoArNIY2BXy0kKmCX2yYY5geZE6aa3jEygzGm8IZ7lDqbpR6W4Io/JLx8QBz5c8H
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3872.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(366004)(376002)(136003)(346002)(39860400002)(396003)(31686004)(83380400001)(5660300002)(2616005)(31696002)(66946007)(66556008)(66476007)(6506007)(53546011)(36756003)(16526019)(186003)(2906002)(8936002)(8676002)(478600001)(6486002)(52116002)(6512007)(316002)(6666004)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: YwhGgSL5+5lgoz7cas1j29UnUJ+PIWDeULDHAY078gTw+tHsUM+2qg03oUsj37VHh9qgP/DgKp6Q/Z2DuqZGKG8biQQy2v3ElEXg9KJ5+9CP329NEI4re83/Ec/cRZOAVIOgTs0yIQXwVsnxTkZJoVl+ux9yhUMQODjh8KwHXncf7aNc2YgM+Ak255Wohtqdvf2rocKglkwoRS9fFNWR9mpzVUw7zj4zvnwUOoD1+l+UPgbxCObXbLMaiPAPajyTOlm1orO6pahwJv79RIl2PKKtnEoV3Frh72XRq2tN6IstsRVJdXwPzIXkT4WIB0vDTt2GQrD2AxC0vwm0Gy+SdP3YBJH5lW+YGPz/dQ7loqx44oD2Achas5rAnHNNfuyR3k7Ek446KgvgJVGc716UVpn+z7nrz/IEZjPsDHuRTyHfVWRmcRsydDTScYvEvaJUpEOYKOmEkDsTYXsWasPridGinqhBRkWJ8a64zZwctXH62IE95ID0qxqP/qUp30T7Clf3dhQWTen7fZCbmES9CouWgEn7R7BIx8Qa75aSrJ0=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 281cc572-6fb0-4c87-27d4-08d80bcabe12
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 16:41:07.4374 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3pFhtYJ2NVFYWIBmeMd/yNbN87A+ClR9GrDU9IZJ9GdRf0sfBCIkwqzsYTZS6QuDsUp3MiWyLSl2+MCxPS0GPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3294
+X-Mailman-Approved-At: Tue, 09 Jun 2020 16:19:36 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/mm: remove invalid entry based
+ optimization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,119 +101,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Incrementally check for rewinding (rev2)
-URL   : https://patchwork.freedesktop.org/series/78163/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8603 -> Patchwork_17915
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17915 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-icl-guc/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-icl-guc/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][5] -> [DMESG-WARN][6] ([i915#62] / [i915#92] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@d-dsi1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@d-dsi1.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8603/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8603 -> Patchwork_17915
-
-  CI-20190529: 20190529
-  CI_DRM_8603: 03f5a3d90ccfb2f1bb13e293a83d48a0b7da8af0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5699: 201da47cb57b8fadd9bc45be16b82617b32a2c01 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17915: 729184acbb949babd103b9a1ae59de9a6c4918b1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-729184acbb94 drm/i915/gt: Incrementally check for rewinding
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17915/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDYvOC8yMCA1OjE1IFBNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+IFdoZW4gdGhlIGN1
+cnJlbnQgZW50cnkgaXMgcmVqZWN0ZWQgYXMgY2FuZGlkYXRlIGZvciB0aGUgc2VhcmNoCj4gaXQg
+ZG9lcyBub3QgbWVhbiB0aGF0IHdlIGNhbiBhYm9ydCB0aGUgc3VidHJlZSBzZWFyY2guCj4KPiBJ
+dCBpcyBwZXJmZWN0bHkgcG9zc2libGUgdGhhdCBvbmx5IHRoZSBhbGlnbm1lbnQsIGJ1dCBub3Qg
+dGhlCj4gc2l6ZSBpcyB0aGUgcmVhc29uIGZvciB0aGUgcmVqZWN0aW9uLgoKCkkga25vdyB3aHkg
+ScKgIGRpZCB0aGF0LCBJIHdhcyB0ZXN0aW5nIHdpdGggOGsgYWxpZ25tZW50LiBTbyB0aGlzIHdh
+cyAKYmlhc2VkIHRvIG9wdGltaXplIG15IHRlc3QgY2FzZS4KCgo+Cj4gU2lnbmVkLW9mZi1ieTog
+Q2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKClJldmlld2VkLWJ5
+OiBOaXJtb3kgRGFzIDxuaXJtb3kuZGFzQGFtZC5jb20+CgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1
+L2RybS9kcm1fbW0uYyB8IDYgKystLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25z
+KCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1f
+bW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+IGluZGV4IDYwZTlhOWM5MWU5ZC4uODJk
+Mjg4OGViN2ZlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+IEBAIC00MDYsOCArNDA2LDcgQEAgbmV4dF9ob2xl
+X2hpZ2hfYWRkcihzdHJ1Y3QgZHJtX21tX25vZGUgKmVudHJ5LCB1NjQgc2l6ZSkKPiAgIAkJcGFy
+ZW50X3JiX25vZGUgPSByYl9wYXJlbnQocmJfbm9kZSk7Cj4gICAJCWxlZnRfbm9kZSA9IHJiX2Vu
+dHJ5KGxlZnRfcmJfbm9kZSwKPiAgIAkJCQkgICAgIHN0cnVjdCBkcm1fbW1fbm9kZSwgcmJfaG9s
+ZV9hZGRyKTsKPiAtCQlpZiAoKGxlZnRfbm9kZS0+c3VidHJlZV9tYXhfaG9sZSA8IHNpemUgfHwK
+PiAtCQkgICAgIEhPTEVfU0laRShlbnRyeSkgPT0gZW50cnktPnN1YnRyZWVfbWF4X2hvbGUpICYm
+Cj4gKwkJaWYgKGxlZnRfbm9kZS0+c3VidHJlZV9tYXhfaG9sZSA8IHNpemUgJiYKPiAgIAkJICAg
+IHBhcmVudF9yYl9ub2RlICYmIHBhcmVudF9yYl9ub2RlLT5yYl9sZWZ0ICE9IHJiX25vZGUpCj4g
+ICAJCQlyZXR1cm4gcmJfaG9sZV9hZGRyX3RvX25vZGUocGFyZW50X3JiX25vZGUpOwo+ICAgCX0K
+PiBAQCAtNDQ2LDggKzQ0NSw3IEBAIG5leHRfaG9sZV9sb3dfYWRkcihzdHJ1Y3QgZHJtX21tX25v
+ZGUgKmVudHJ5LCB1NjQgc2l6ZSkKPiAgIAkJcGFyZW50X3JiX25vZGUgPSByYl9wYXJlbnQocmJf
+bm9kZSk7Cj4gICAJCXJpZ2h0X25vZGUgPSByYl9lbnRyeShyaWdodF9yYl9ub2RlLAo+ICAgCQkJ
+CSAgICAgIHN0cnVjdCBkcm1fbW1fbm9kZSwgcmJfaG9sZV9hZGRyKTsKPiAtCQlpZiAoKHJpZ2h0
+X25vZGUtPnN1YnRyZWVfbWF4X2hvbGUgPCBzaXplIHx8Cj4gLQkJICAgICBIT0xFX1NJWkUoZW50
+cnkpID09IGVudHJ5LT5zdWJ0cmVlX21heF9ob2xlKSAmJgo+ICsJCWlmIChyaWdodF9ub2RlLT5z
+dWJ0cmVlX21heF9ob2xlIDwgc2l6ZSAmJgo+ICAgCQkgICAgcGFyZW50X3JiX25vZGUgJiYgcGFy
+ZW50X3JiX25vZGUtPnJiX3JpZ2h0ICE9IHJiX25vZGUpCj4gICAJCQlyZXR1cm4gcmJfaG9sZV9h
+ZGRyX3RvX25vZGUocGFyZW50X3JiX25vZGUpOwo+ICAgCX0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
