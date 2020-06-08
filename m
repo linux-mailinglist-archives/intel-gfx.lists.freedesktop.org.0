@@ -1,78 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F41DD1F1AD5
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 16:19:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C45AE1F1B13
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 16:35:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 271C06E7F5;
-	Mon,  8 Jun 2020 14:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58046E09E;
+	Mon,  8 Jun 2020 14:35:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 797CC6E7F5
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 14:19:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1591625954;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=gmWs5xiKNyhpgW0opzKEta80LNVnO/dXhPhvbslqD2U=;
- b=YCo0Ct1PhzfS5DU+7zLmAaNquRLuZs41Os8J5EaNlG1Mmw7OJ4wB2PaZjfUkpIWeuqeOM9
- qccJ/iUkzvGubZ/MfMAks0qRDThm+uOEGfv6+SHun/etFHwxnWaas96oW16G0M9FRsv5s6
- N7jo4GUXTZgyDK9uF6nBSyuoTnGVQpQ=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-329-nlc8wtFQMwCmSsHWdBSQcw-1; Mon, 08 Jun 2020 10:19:12 -0400
-X-MC-Unique: nlc8wtFQMwCmSsHWdBSQcw-1
-Received: by mail-wr1-f69.google.com with SMTP id n6so7242394wrv.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 07:19:12 -0700 (PDT)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5BFD6E09E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 14:35:05 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id r15so16758388wmh.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 07:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=ThWG7PLkTZsxbTGQI2QqS4ypuKcTM21qeWcb7Pqf2u0=;
+ b=Wtu/IESN641sfnMFWfEgg6CJ6ybv0wkD6kDu6juOnd3HKmOlTwyYjpki6wx8lMkCZr
+ II15j+zzfLYA2plLL6z1MfJ+VuPSoediq9yVINYJr3B9b++h/3U8OGqCoLCdI+I4QWXF
+ DbwpgHLw1JchAiihgET+gCGvuI5T/DtkVVb2g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=gmWs5xiKNyhpgW0opzKEta80LNVnO/dXhPhvbslqD2U=;
- b=hSGMbhtwL4MFUnUx4TnIFsSJe1HprwvXF67hWSh4pPI2PvNa9Jo34akpPrFjCO0tB0
- 8cu98k5QDeSJMqLtzF1W4HON42ncu0cjwzQMdTyov6iVSsK8hIhLR7kMx0bqAO7RZeif
- y8pqoMIUOjS92VD/dsTiVVrK4LzmDlMDRFu0IFDcsqx2P55yI5FRThcb0IodWLb/aqHm
- UetXMJxS0TfIkN1jI4+oPpPORf0PWRqzeVLq4e283um4zCqnmJ1mYmDAiZGiXlWWX0ek
- TlaQgt45N5SNTnM1IRWan9r5P1noC9d4xPBnfYjY+zsXJzuIDnSAYwsmxpqgcCY2vY4A
- 5APw==
-X-Gm-Message-State: AOAM533dQjmbzuB4C3sempR3ZuQJKdpgeeeuwlxhxzQaSlsLL5/OrGfa
- lB+KfpCby/EgUwvdlYCQvVyJNju4vq2hYPpNavfmZy2DxK+5wAcbbMK0509upFcVxGATMM6sjAp
- tE55rkvSTnOTP2upNaCzIoIz+frFV
-X-Received: by 2002:a5d:684d:: with SMTP id o13mr23663878wrw.364.1591625950522; 
- Mon, 08 Jun 2020 07:19:10 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzjPaCr/8TnJQQDekq/pLvjYLG6035xMzBgU5hUdaugwjW4iDPp5TeNz9CgVwCa8rpiGmFfHQ==
-X-Received: by 2002:a5d:684d:: with SMTP id o13mr23663857wrw.364.1591625950241; 
- Mon, 08 Jun 2020 07:19:10 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id c206sm24041161wmf.36.2020.06.08.07.19.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 08 Jun 2020 07:19:09 -0700 (PDT)
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20200607181840.13536-1-hdegoede@redhat.com>
- <20200607181840.13536-4-hdegoede@redhat.com>
- <20200608035023.GZ2428291@smile.fi.intel.com>
- <90769dc0-3174-195b-34e0-ef4bb9d9b982@redhat.com>
- <20200608125156.GL2428291@smile.fi.intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <ecb5ca16-91eb-d7b9-dbaf-ee18cb85d9f3@redhat.com>
-Date: Mon, 8 Jun 2020 16:19:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ThWG7PLkTZsxbTGQI2QqS4ypuKcTM21qeWcb7Pqf2u0=;
+ b=hpFojPMRQk0N3kcU5C/s1vjtkycEmwSn+4rOKUlTYnhsuGbCqIsXJ9z5MDCnZcvode
+ H3soNhaJg1Xi359X2gSXhL36j8IF3SrdQ5bmfoy4+BnxR7V0++2XjrpSsUMOIbqIq2q1
+ SxswahDTVD3Px9Lw2l1mjPy6OCXLBbhWQmOavJXPD0do8egZXU1UfndoqOCgaMNLr/1e
+ 5U8cMYPHTJ2DjXnSS+x3VDkyRmRnQV/r+gB+FKLzvCh6zCuEShZw6xgh/JAX7PoEVvzu
+ /+RgNPjq8R9JOSxxccrX7OvcrWvJVnK0kIDUW7/PahpYQkV2CRqaqN+dSWQfGLk73Mgb
+ M0cA==
+X-Gm-Message-State: AOAM533cgJ8+kdkpMvV+THHV0oQnCg1gt+pe2vHhJ2MMRPbOKBtScOCf
+ cIYm2uGz2/Iqmd8kFuI/5E9A1w==
+X-Google-Smtp-Source: ABdhPJyXoO9cmG2YWT7CRaiLUKnDXmJGp9wEivXhk6yC+ifOrjoJSPuglGOvD7hufAunPazgABGmJg==
+X-Received: by 2002:a1c:9acf:: with SMTP id
+ c198mr16847442wme.172.1591626904265; 
+ Mon, 08 Jun 2020 07:35:04 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id b8sm23308626wrm.35.2020.06.08.07.35.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Jun 2020 07:35:03 -0700 (PDT)
+Date: Mon, 8 Jun 2020 16:35:00 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200608143500.GX20149@phenom.ffwll.local>
+References: <20200606202601.48410-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20200608125156.GL2428291@smile.fi.intel.com>
-Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v2 03/15] pwm: lpss: Add range limit check
- for the base_unit register value
+Content-Disposition: inline
+In-Reply-To: <20200606202601.48410-1-hdegoede@redhat.com>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] pwm/i915: Convert pwm-crc and i915 driver's PWM
+ code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,114 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
  dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 6/8/20 2:51 PM, Andy Shevchenko wrote:
-> On Mon, Jun 08, 2020 at 01:07:12PM +0200, Hans de Goede wrote:
->> On 6/8/20 5:50 AM, Andy Shevchenko wrote:
->>> On Sun, Jun 07, 2020 at 08:18:28PM +0200, Hans de Goede wrote:
->>>> When the user requests a high enough period ns value, then the
->>>> calculations in pwm_lpss_prepare() might result in a base_unit value of 0.
->>>>
->>>> But according to the data-sheet the way the PWM controller works is that
->>>> each input clock-cycle the base_unit gets added to a N bit counter and
->>>> that counter overflowing determines the PWM output frequency. Adding 0
->>>> to the counter is a no-op. The data-sheet even explicitly states that
->>>> writing 0 to the base_unit bits will result in the PWM outputting a
->>>> continuous 0 signal.
->>>
->>> So, and why it's a problem?
->>
->> Lets sya the user requests a PWM output frequency of 100Hz on Cherry Trail
->> which has a 19200000 Hz clock this will result in 100 * 65536 / 19200000 =
->> 0.3 -> 0 as base-unit value. So instead of getting 100 Hz the user will
->> now get a pin which is always outputting low.
->>
->> OTOH if we clamp to 1 as lowest value, the user will get 192000000 / 65536
->> = 292 Hz as output frequency which is as close to the requested value as
->> we can get while actually still working as a PWM controller.
+On Sat, Jun 06, 2020 at 10:25:45PM +0200, Hans de Goede wrote:
+> Hi All,
 > 
-> So, we should basically divide and round up, no?
-
-Yes, that will work for the low limit of base_unit but it will make
-all the other requested period values less accurate.
-
-> At least for 0 we will get 0.
-
-We're dealing with frequency here, but the API is dealing with period,
-so to get 0 HZ the API user would have to request a period of > 1s e.g.
-request 2s / 0.5 Hz but then the user is still not really requesting 0Hz
-(that would correspond with a period of infinity which integers cannot
-represent.
-
->>>> base_unit values > (base_unit_range / 256), or iow base_unit values using
->>>> the 8 most significant bits, cause loss of resolution of the duty-cycle.
->>>> E.g. assuming a base_unit_range of 65536 steps, then a base_unit value of
->>>> 768 (256 * 3), limits the duty-cycle resolution to 65536 / 768 = 85 steps.
->>>> Clamp the max base_unit value to base_unit_range / 32 to ensure a
->>>> duty-cycle resolution of at least 32 steps. This limits the maximum
->>>> output frequency to 600 KHz / 780 KHz depending on the base clock.
->>>
->>> This part I don't understand. Why we limiting base unit? I seems like a
->>> deliberate regression.
->>
->> The way the PWM controller works is that the base-unit gets added to
->> say a 16 bit (on CHT) counter each input clock and then the highest 8
->> bits of that counter get compared to the value programmed into the
->> ON_TIME_DIV bits.
->>
->> Lets say we do not clamp and allow any value and lets say the user
->> selects an output frequency of half the input clock, so base-unit
->> value is 32768, then the counter will only have 2 values:
->> 0 and 32768 after that it will wrap around again. So any on time-div
->> value < 128 will result in the output being always high and any
->> value > 128 will result in the output being high/low 50% of the time
->> and a value of 255 will make the output always low.
->>
->> So in essence we now only have 3 duty cycle levels, which seems like
->> a bad idea to me / not what a pwm controller is supposed to do.
+> This patch series converts the i915 driver's cpde for controlling the
+> panel's backlight with an external PWM controller to use the atomic PWM API.
 > 
-> It's exactly what is written in the documentation. I can't buy base unit clamp.
-> Though, I can buy, perhaps, on time divisor granularity, i.e.
->    1/	0% - 25%-1 (0%)
->    2/	25% - 50% - 75% (50%)
->    3/	75%+1 - 100% (100%)
-> And so on till we got a maximum resolution (8 bits).
+> Initially the plan was for this series to consist of 2 parts:
+> 1. convert the pwm-crc driver to support the atomic PWM API and
+> 2. convert the i915 driver's PWM code to use the atomic PWM API.
+> 
+> But during testing I've found a number of bugs in the pwm-lpss and I
+> found that the acpi_lpss code needs some special handling because of
+> some ugliness found in most Cherry Trail DSDTs.
+> 
+> So now this series has grown somewhat large and consists of 4 parts:
+> 
+> 1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
+> 2. various fixes to the pwm-lpss driver
+> 3. convert the pwm-crc driver to support the atomic PWM API and
+> 4. convert the i915 driver's PWM code to use the atomic PWM API
+> 
+> So we need to discuss how to merge this (once it passes review).
+> Although the inter-dependencies are only runtime I still think we should
+> make sure that 1-3 are in the drm-intel-next-queued (dinq) tree before
+> merging the i915 changes. Both to make sure that the intel-gfx CI system
+> does not become unhappy and for bisecting reasons.
 
-Note that the PWM API does not expose the granularity to the API user,
-which is why I went with just putting a minimum on it of 32 steps.
+Simplest is if acpi acks the acpi patches for merging through
+drm-intel.git. Second simplest is topic branch (drm-intel maintainers can
+do that) with the entire pile, which then acpi and drm-intel can both pull
+in.
 
-Anyways I don't have a strong opinion on this, so I'm fine with not clamping
-the base-unit to preserve granularity. We should still clamp it to avoid
-overflow if the user us requesting a really high frequency though!
+Up to the two maintainer teams to figure this one out.
 
-The old code had:
+/me out
 
-	base_unit &= base_unit_range;
+Cheers, Daniel
 
-Which means that if the user requests a too high value, then we first
-overflow base_unit and then truncate it to fit leading to a random
-frequency.
+> 
+> The involved acpi_lpss and pwm drivers do not see a whole lot of churn,
+> so we could just merge everything through dinq, or we could use immutable
+> branch and merge those into dinq.
+> 
+> So Rafael and Thierry, can I either get your Acked-by for directly merging
+> this into dinq, or can you provide an immutable branch with these patches?
+> 
+> This series has been tested (and re-tested after adding various bug-fixes)
+> extensively. It has been tested on the following devices:
+> 
+> -Asus T100TA		BYT + CRC-PMIC PWM
+> -Toshiba WT8-A		BYT + CRC-PMIC PWM
+> -Thundersoft TS178	BYT + CRC-PMIC PWM, inverse PWM
+> -Asus T100HA		CHT + CRC-PMIC PWM
+> -Terra Pad 1061		BYT + LPSS PWM
+> -Trekstor Twin 10.1	BYT + LPSS PWM
+> -Asus T101HA		CHT + CRC-PMIC PWM
+> -GPD Pocket		CHT + CRC-PMIC PWM
+> 
+> Regards,
+> 
+> Hans
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-So if we forget my minimal granularity argument, then at a minimum
-we need to replace the above line with:
-
-	base_unit = clamp_t(unsigned long long, base_unit, 1, base_unit_range - 1);
-
-And since we need the clamp anyways we can then keep the current round-closest
-behavior.
-
-Regards,
-
-Hans
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
