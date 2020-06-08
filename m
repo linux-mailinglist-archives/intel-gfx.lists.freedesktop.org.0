@@ -2,31 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975041F1A12
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 15:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F41DD1F1AD5
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 16:19:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D08776E51A;
-	Mon,  8 Jun 2020 13:29:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 271C06E7F5;
+	Mon,  8 Jun 2020 14:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7E9846E504;
- Mon,  8 Jun 2020 13:29:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77382A00E7;
- Mon,  8 Jun 2020 13:29:38 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 797CC6E7F5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 14:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591625954;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gmWs5xiKNyhpgW0opzKEta80LNVnO/dXhPhvbslqD2U=;
+ b=YCo0Ct1PhzfS5DU+7zLmAaNquRLuZs41Os8J5EaNlG1Mmw7OJ4wB2PaZjfUkpIWeuqeOM9
+ qccJ/iUkzvGubZ/MfMAks0qRDThm+uOEGfv6+SHun/etFHwxnWaas96oW16G0M9FRsv5s6
+ N7jo4GUXTZgyDK9uF6nBSyuoTnGVQpQ=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-329-nlc8wtFQMwCmSsHWdBSQcw-1; Mon, 08 Jun 2020 10:19:12 -0400
+X-MC-Unique: nlc8wtFQMwCmSsHWdBSQcw-1
+Received: by mail-wr1-f69.google.com with SMTP id n6so7242394wrv.6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 07:19:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=gmWs5xiKNyhpgW0opzKEta80LNVnO/dXhPhvbslqD2U=;
+ b=hSGMbhtwL4MFUnUx4TnIFsSJe1HprwvXF67hWSh4pPI2PvNa9Jo34akpPrFjCO0tB0
+ 8cu98k5QDeSJMqLtzF1W4HON42ncu0cjwzQMdTyov6iVSsK8hIhLR7kMx0bqAO7RZeif
+ y8pqoMIUOjS92VD/dsTiVVrK4LzmDlMDRFu0IFDcsqx2P55yI5FRThcb0IodWLb/aqHm
+ UetXMJxS0TfIkN1jI4+oPpPORf0PWRqzeVLq4e283um4zCqnmJ1mYmDAiZGiXlWWX0ek
+ TlaQgt45N5SNTnM1IRWan9r5P1noC9d4xPBnfYjY+zsXJzuIDnSAYwsmxpqgcCY2vY4A
+ 5APw==
+X-Gm-Message-State: AOAM533dQjmbzuB4C3sempR3ZuQJKdpgeeeuwlxhxzQaSlsLL5/OrGfa
+ lB+KfpCby/EgUwvdlYCQvVyJNju4vq2hYPpNavfmZy2DxK+5wAcbbMK0509upFcVxGATMM6sjAp
+ tE55rkvSTnOTP2upNaCzIoIz+frFV
+X-Received: by 2002:a5d:684d:: with SMTP id o13mr23663878wrw.364.1591625950522; 
+ Mon, 08 Jun 2020 07:19:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzjPaCr/8TnJQQDekq/pLvjYLG6035xMzBgU5hUdaugwjW4iDPp5TeNz9CgVwCa8rpiGmFfHQ==
+X-Received: by 2002:a5d:684d:: with SMTP id o13mr23663857wrw.364.1591625950241; 
+ Mon, 08 Jun 2020 07:19:10 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id c206sm24041161wmf.36.2020.06.08.07.19.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 08 Jun 2020 07:19:09 -0700 (PDT)
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-4-hdegoede@redhat.com>
+ <20200608035023.GZ2428291@smile.fi.intel.com>
+ <90769dc0-3174-195b-34e0-ef4bb9d9b982@redhat.com>
+ <20200608125156.GL2428291@smile.fi.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <ecb5ca16-91eb-d7b9-dbaf-ee18cb85d9f3@redhat.com>
+Date: Mon, 8 Jun 2020 16:19:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 08 Jun 2020 13:29:38 -0000
-Message-ID: <159162297846.14463.11147241051382851777@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200608102845.26194-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200608102845.26194-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Prevent_enabling_breadcrumbs_on_the_virtual_engine_?=
- =?utf-8?b?KHJldjIp?=
+In-Reply-To: <20200608125156.GL2428291@smile.fi.intel.com>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v2 03/15] pwm: lpss: Add range limit check
+ for the base_unit register value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,114 +85,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine (rev2)
-URL   : https://patchwork.freedesktop.org/series/78117/
-State : success
+On 6/8/20 2:51 PM, Andy Shevchenko wrote:
+> On Mon, Jun 08, 2020 at 01:07:12PM +0200, Hans de Goede wrote:
+>> On 6/8/20 5:50 AM, Andy Shevchenko wrote:
+>>> On Sun, Jun 07, 2020 at 08:18:28PM +0200, Hans de Goede wrote:
+>>>> When the user requests a high enough period ns value, then the
+>>>> calculations in pwm_lpss_prepare() might result in a base_unit value of 0.
+>>>>
+>>>> But according to the data-sheet the way the PWM controller works is that
+>>>> each input clock-cycle the base_unit gets added to a N bit counter and
+>>>> that counter overflowing determines the PWM output frequency. Adding 0
+>>>> to the counter is a no-op. The data-sheet even explicitly states that
+>>>> writing 0 to the base_unit bits will result in the PWM outputting a
+>>>> continuous 0 signal.
+>>>
+>>> So, and why it's a problem?
+>>
+>> Lets sya the user requests a PWM output frequency of 100Hz on Cherry Trail
+>> which has a 19200000 Hz clock this will result in 100 * 65536 / 19200000 =
+>> 0.3 -> 0 as base-unit value. So instead of getting 100 Hz the user will
+>> now get a pin which is always outputting low.
+>>
+>> OTOH if we clamp to 1 as lowest value, the user will get 192000000 / 65536
+>> = 292 Hz as output frequency which is as close to the requested value as
+>> we can get while actually still working as a PWM controller.
+> 
+> So, we should basically divide and round up, no?
 
-== Summary ==
+Yes, that will work for the low limit of base_unit but it will make
+all the other requested period values less accurate.
 
-CI Bug Log - changes from CI_DRM_8600 -> Patchwork_17908
-====================================================
+> At least for 0 we will get 0.
 
-Summary
--------
+We're dealing with frequency here, but the API is dealing with period,
+so to get 0 HZ the API user would have to request a period of > 1s e.g.
+request 2s / 0.5 Hz but then the user is still not really requesting 0Hz
+(that would correspond with a period of infinity which integers cannot
+represent.
 
-  **SUCCESS**
+>>>> base_unit values > (base_unit_range / 256), or iow base_unit values using
+>>>> the 8 most significant bits, cause loss of resolution of the duty-cycle.
+>>>> E.g. assuming a base_unit_range of 65536 steps, then a base_unit value of
+>>>> 768 (256 * 3), limits the duty-cycle resolution to 65536 / 768 = 85 steps.
+>>>> Clamp the max base_unit value to base_unit_range / 32 to ensure a
+>>>> duty-cycle resolution of at least 32 steps. This limits the maximum
+>>>> output frequency to 600 KHz / 780 KHz depending on the base clock.
+>>>
+>>> This part I don't understand. Why we limiting base unit? I seems like a
+>>> deliberate regression.
+>>
+>> The way the PWM controller works is that the base-unit gets added to
+>> say a 16 bit (on CHT) counter each input clock and then the highest 8
+>> bits of that counter get compared to the value programmed into the
+>> ON_TIME_DIV bits.
+>>
+>> Lets say we do not clamp and allow any value and lets say the user
+>> selects an output frequency of half the input clock, so base-unit
+>> value is 32768, then the counter will only have 2 values:
+>> 0 and 32768 after that it will wrap around again. So any on time-div
+>> value < 128 will result in the output being always high and any
+>> value > 128 will result in the output being high/low 50% of the time
+>> and a value of 255 will make the output always low.
+>>
+>> So in essence we now only have 3 duty cycle levels, which seems like
+>> a bad idea to me / not what a pwm controller is supposed to do.
+> 
+> It's exactly what is written in the documentation. I can't buy base unit clamp.
+> Though, I can buy, perhaps, on time divisor granularity, i.e.
+>    1/	0% - 25%-1 (0%)
+>    2/	25% - 50% - 75% (50%)
+>    3/	75%+1 - 100% (100%)
+> And so on till we got a maximum resolution (8 bits).
 
-  No regressions found.
+Note that the PWM API does not expose the granularity to the API user,
+which is why I went with just putting a minimum on it of 32 steps.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/index.html
+Anyways I don't have a strong opinion on this, so I'm fine with not clamping
+the base-unit to preserve granularity. We should still clamp it to avoid
+overflow if the user us requesting a really high frequency though!
 
-Known issues
-------------
+The old code had:
 
-  Here are the changes found in Patchwork_17908 that come from known issues:
+	base_unit &= base_unit_range;
 
-### IGT changes ###
+Which means that if the user requests a too high value, then we first
+overflow base_unit and then truncate it to fit leading to a random
+frequency.
 
-#### Issues hit ####
+So if we forget my minimal granularity argument, then at a minimum
+we need to replace the above line with:
 
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-byt-j1900/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-byt-j1900/igt@i915_module_load@reload.html
+	base_unit = clamp_t(unsigned long long, base_unit, 1, base_unit_range - 1);
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+And since we need the clamp anyways we can then keep the current round-closest
+behavior.
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+Regards,
 
-  
-#### Possible fixes ####
+Hans
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +4 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8600 -> Patchwork_17908
-
-  CI-20190529: 20190529
-  CI_DRM_8600: 9232911f67be3d072e5bd6ff0eb4d8e8281f5c5f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5699: 201da47cb57b8fadd9bc45be16b82617b32a2c01 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17908: 0ed9d466630faf01b7a04c422587332f71fc9615 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0ed9d466630f drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17908/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
