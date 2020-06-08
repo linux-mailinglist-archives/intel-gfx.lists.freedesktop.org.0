@@ -1,31 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360941F18EA
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 14:41:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC9E1F191E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 14:52:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE99A6E15D;
-	Mon,  8 Jun 2020 12:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8057B6E4D7;
+	Mon,  8 Jun 2020 12:51:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4EB9A89E8C;
- Mon,  8 Jun 2020 12:41:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 47EE9A3C0D;
- Mon,  8 Jun 2020 12:41:11 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3FB6E4DD;
+ Mon,  8 Jun 2020 12:51:57 +0000 (UTC)
+IronPort-SDR: wA1XNY1eFPjaO7CJrfubaw7R/pBd6iqsrDcy08CFxGSCuFiG818dn0+Kw98pqFv0oy3FqLc3fP
+ ihxfSgD0kzJw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2020 05:51:56 -0700
+IronPort-SDR: yBMVSPyyp7lz0e2u3NNEyiCyUCcmELNVK23rmt80Ry4FPMW/Q3yAeFobu+TT7OB9V/fzwh7jXO
+ bZhjfoouSrcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; d="scan'208";a="313869498"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by FMSMGA003.fm.intel.com with ESMTP; 08 Jun 2020 05:51:53 -0700
+Received: from andy by smile with local (Exim 4.93)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1jiHFs-00BgIc-6t; Mon, 08 Jun 2020 15:51:56 +0300
+Date: Mon, 8 Jun 2020 15:51:56 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200608125156.GL2428291@smile.fi.intel.com>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-4-hdegoede@redhat.com>
+ <20200608035023.GZ2428291@smile.fi.intel.com>
+ <90769dc0-3174-195b-34e0-ef4bb9d9b982@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 08 Jun 2020 12:41:11 -0000
-Message-ID: <159162007126.14461.10250252616496160406@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200608102845.26194-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200608102845.26194-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Prevent_enabling_breadcrumbs_on_the_virtual_engine?=
+Content-Disposition: inline
+In-Reply-To: <90769dc0-3174-195b-34e0-ef4bb9d9b982@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v2 03/15] pwm: lpss: Add range limit check
+ for the base_unit register value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,176 +54,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 08, 2020 at 01:07:12PM +0200, Hans de Goede wrote:
+> On 6/8/20 5:50 AM, Andy Shevchenko wrote:
+> > On Sun, Jun 07, 2020 at 08:18:28PM +0200, Hans de Goede wrote:
+> > > When the user requests a high enough period ns value, then the
+> > > calculations in pwm_lpss_prepare() might result in a base_unit value of 0.
+> > > 
+> > > But according to the data-sheet the way the PWM controller works is that
+> > > each input clock-cycle the base_unit gets added to a N bit counter and
+> > > that counter overflowing determines the PWM output frequency. Adding 0
+> > > to the counter is a no-op. The data-sheet even explicitly states that
+> > > writing 0 to the base_unit bits will result in the PWM outputting a
+> > > continuous 0 signal.
+> > 
+> > So, and why it's a problem?
+> 
+> Lets sya the user requests a PWM output frequency of 100Hz on Cherry Trail
+> which has a 19200000 Hz clock this will result in 100 * 65536 / 19200000 =
+> 0.3 -> 0 as base-unit value. So instead of getting 100 Hz the user will
+> now get a pin which is always outputting low.
+> 
+> OTOH if we clamp to 1 as lowest value, the user will get 192000000 / 65536
+> = 292 Hz as output frequency which is as close to the requested value as
+> we can get while actually still working as a PWM controller.
 
-Series: drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine
-URL   : https://patchwork.freedesktop.org/series/78117/
-State : failure
+So, we should basically divide and round up, no?
 
-== Summary ==
+At least for 0 we will get 0.
 
-CI Bug Log - changes from CI_DRM_8600 -> Patchwork_17907
-====================================================
+> > > base_unit values > (base_unit_range / 256), or iow base_unit values using
+> > > the 8 most significant bits, cause loss of resolution of the duty-cycle.
+> > > E.g. assuming a base_unit_range of 65536 steps, then a base_unit value of
+> > > 768 (256 * 3), limits the duty-cycle resolution to 65536 / 768 = 85 steps.
+> > > Clamp the max base_unit value to base_unit_range / 32 to ensure a
+> > > duty-cycle resolution of at least 32 steps. This limits the maximum
+> > > output frequency to 600 KHz / 780 KHz depending on the base clock.
+> > 
+> > This part I don't understand. Why we limiting base unit? I seems like a
+> > deliberate regression.
+> 
+> The way the PWM controller works is that the base-unit gets added to
+> say a 16 bit (on CHT) counter each input clock and then the highest 8
+> bits of that counter get compared to the value programmed into the
+> ON_TIME_DIV bits.
+> 
+> Lets say we do not clamp and allow any value and lets say the user
+> selects an output frequency of half the input clock, so base-unit
+> value is 32768, then the counter will only have 2 values:
+> 0 and 32768 after that it will wrap around again. So any on time-div
+> value < 128 will result in the output being always high and any
+> value > 128 will result in the output being high/low 50% of the time
+> and a value of 255 will make the output always low.
+> 
+> So in essence we now only have 3 duty cycle levels, which seems like
+> a bad idea to me / not what a pwm controller is supposed to do.
 
-Summary
--------
+It's exactly what is written in the documentation. I can't buy base unit clamp.
+Though, I can buy, perhaps, on time divisor granularity, i.e.
+  1/	0% - 25%-1 (0%)
+  2/	25% - 50% - 75% (50%)
+  3/	75%+1 - 100% (100%)
+And so on till we got a maximum resolution (8 bits).
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17907 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17907, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17907:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-    - fi-icl-u2:          [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-u2/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-icl-u2/igt@i915_selftest@live@execlists.html
-    - fi-icl-y:           [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-icl-y/igt@i915_selftest@live@execlists.html
-    - fi-bdw-5557u:       [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-    - fi-icl-guc:         [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-guc/igt@i915_selftest@live@execlists.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-icl-guc/igt@i915_selftest@live@execlists.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-u}:         [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-tgl-u/igt@i915_selftest@live@execlists.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-tgl-u/igt@i915_selftest@live@execlists.html
-    - {fi-kbl-7560u}:     [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-7560u/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-kbl-7560u/igt@i915_selftest@live@execlists.html
-    - {fi-tgl-dsi}:       [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-tgl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17907 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@active:
-    - fi-cfl-8109u:       [PASS][19] -> [DMESG-FAIL][20] ([i915#666])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-cfl-8109u/igt@i915_selftest@live@active.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-cfl-8109u/igt@i915_selftest@live@active.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][21] -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [PASS][23] -> [DMESG-WARN][24] ([i915#1982])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [PASS][25] -> [DMESG-WARN][26] ([i915#1982])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [DMESG-WARN][27] ([i915#1982]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][29] ([i915#1982]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-icl-u2:          [DMESG-WARN][31] ([i915#1982]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][33] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][34] ([i915#62] / [i915#92]) +3 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][35] ([i915#62] / [i915#92]) -> [DMESG-WARN][36] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8600/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8600 -> Patchwork_17907
-
-  CI-20190529: 20190529
-  CI_DRM_8600: 9232911f67be3d072e5bd6ff0eb4d8e8281f5c5f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5699: 201da47cb57b8fadd9bc45be16b82617b32a2c01 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17907: 8ff9f0d4f8c57c785111e79dfa298255fcae0b0b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8ff9f0d4f8c5 drm/i915/gt: Prevent enabling breadcrumbs on the virtual engine
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17907/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
