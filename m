@@ -2,40 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08FD61F2106
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 22:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 045761F20F4
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 22:45:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7684B89D84;
-	Mon,  8 Jun 2020 20:46:29 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A22489D84
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 20:46:28 +0000 (UTC)
-IronPort-SDR: tVo/cQ9gxMXZ+TsZtgXWEh44wnKSXcAdMkAja20TmteGb81icyjhD4j3nApDtW3Gat0wOspsas
- Gk11In+doUaw==
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22F889D83;
+	Mon,  8 Jun 2020 20:45:40 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0DC89D83
+ for <Intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 20:45:39 +0000 (UTC)
+IronPort-SDR: 8dLXeA1PSPoSYWfNArSkg9gdWv/2uPCpQ8jWW5hmfqnU1OrYyRjZ7rmTT6wvfYx4Dt0PjtaJZB
+ pfd9deXXMpXA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2020 13:46:27 -0700
-IronPort-SDR: zqeJu/fmcPFMo0BNWg/SHhEsf7VO6IgP4WxJU5TmxpjzNbpBvsqeaYHch6HAR+tCagaS/e9YsA
- Px+whYpsaofA==
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2020 13:45:38 -0700
+IronPort-SDR: Jmn8WZl4PZC+sJm+ZaG5oqiuy+EGv3XNSdifiKevcjnNg2w+0WR6rrifOud/l6K1rqf7zqA1kH
+ /LnYKSC9pXYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,489,1583222400"; d="scan'208";a="295599010"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga004.fm.intel.com with ESMTP; 08 Jun 2020 13:46:27 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 6BC505C2C42; Mon,  8 Jun 2020 23:43:53 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200607222108.14401-1-chris@chris-wilson.co.uk>
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
-Date: Mon, 08 Jun 2020 23:43:53 +0300
-Message-ID: <87ftb59tkm.fsf@gaia.fi.intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/28] drm/i915: Adjust the sentinel assert
- to match implementation
+X-IronPort-AV: E=Sophos;i="5.73,489,1583222400"; d="scan'208";a="379533769"
+Received: from kialmah1-desk.jf.intel.com ([134.134.156.178])
+ by fmsmga001.fm.intel.com with ESMTP; 08 Jun 2020 13:45:38 -0700
+From: Khaled Almahallawy <khaled.almahallawy@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Mon,  8 Jun 2020 13:45:37 -0700
+Message-Id: <20200608204537.28468-1-khaled.almahallawy@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/tc: fix the reset of ln0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,71 +43,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Setting ln0 similar to ln1
 
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Sentinels are supposed to be last reqeusts in the elsp queue, not the
-> only one, so adjust the assert accordingly.
+Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-s/reqeusts/requests
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 96eaa4b39c68..1c0c369573e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3025,7 +3025,7 @@ icl_program_mg_dp_mode(struct intel_digital_port *intel_dig_port,
+ 		ln1 = intel_de_read(dev_priv, MG_DP_MODE(1, tc_port));
+ 	}
+ 
+-	ln0 &= ~(MG_DP_MODE_CFG_DP_X1_MODE | MG_DP_MODE_CFG_DP_X1_MODE);
++	ln0 &= ~(MG_DP_MODE_CFG_DP_X1_MODE | MG_DP_MODE_CFG_DP_X2_MODE);
+ 	ln1 &= ~(MG_DP_MODE_CFG_DP_X1_MODE | MG_DP_MODE_CFG_DP_X2_MODE);
+ 
+ 	/* DPPATC */
+-- 
+2.17.1
 
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index d55a5e0466e5..db8a170b0e5c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1635,9 +1635,9 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
->  		ccid = ce->lrc.ccid;
->  
->  		/*
-> -		 * Sentinels are supposed to be lonely so they flush the
-> -		 * current exection off the HW. Check that they are the
-> -		 * only request in the pending submission.
-> +		 * Sentinels are supposed to be the last request so they flush
-> +		 * the current exection off the HW. Check that they are the only
-
-s/exection/exeqution
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> +		 * request in the pending submission.
->  		 */
->  		if (sentinel) {
->  			GEM_TRACE_ERR("%s: context:%llx after sentinel in pending[%zd]\n",
-> @@ -1646,15 +1646,7 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
->  				      port - execlists->pending);
->  			return false;
->  		}
-> -
->  		sentinel = i915_request_has_sentinel(rq);
-> -		if (sentinel && port != execlists->pending) {
-> -			GEM_TRACE_ERR("%s: sentinel context:%llx not in prime position[%zd]\n",
-> -				      engine->name,
-> -				      ce->timeline->fence_context,
-> -				      port - execlists->pending);
-> -			return false;
-> -		}
->  
->  		/* Hold tightly onto the lock to prevent concurrent retires! */
->  		if (!spin_trylock_irqsave(&rq->lock, flags))
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
