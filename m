@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A801F1406
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 09:56:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50291F1468
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 10:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 341186E49A;
-	Mon,  8 Jun 2020 07:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B36AC6E4A2;
+	Mon,  8 Jun 2020 08:21:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2A3A56E49A;
- Mon,  8 Jun 2020 07:56:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 23102A011B;
- Mon,  8 Jun 2020 07:56:33 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5F956E4A2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 08:21:19 +0000 (UTC)
+IronPort-SDR: z+FSG1zy4abRzEv1HdNiGhfUlcIjM4R2u9XxAyCPKi7vr31k5cHum52MPBUDdRE20jrhAMSQZg
+ YqgBBkLGaMpQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2020 01:21:18 -0700
+IronPort-SDR: 187ownCadyVLoYhS+NPue+4g3MHyc6QQZ5cuMP5Xvss5l35X1nLAXSJQ3m69HouTwzsdtXFbMX
+ NH5/F2qrx5sg==
+X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; d="scan'208";a="446652494"
+Received: from bklaps-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.45.178])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2020 01:21:17 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200608065552.21728-1-stanislav.lisovskiy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200608065552.21728-1-stanislav.lisovskiy@intel.com>
+Date: Mon, 08 Jun 2020 11:21:14 +0300
+Message-ID: <87img2x91h.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Le" <jason.v.le@intel.com>
-Date: Mon, 08 Jun 2020 07:56:33 -0000
-Message-ID: <159160299313.14461.3561681849537142533@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200608065635.11652-1-jason.v.le@intel.com>
-In-Reply-To: <20200608065635.11652-1-jason.v.le@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Avoid_PSR_and_FBC_features_concurently=2E?=
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915: Remove unneeded hack now
+ for CDCLK"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,132 +49,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 08 Jun 2020, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> This reverts commit 82ea174dc5425d4e85e25d0c4ba961a2e494392a.
+>
 
-Series: drm/i915/display: Avoid PSR and FBC features concurently.
-URL   : https://patchwork.freedesktop.org/series/78107/
-State : success
+Please explain why. What's going on, why we need the revert.
 
-== Summary ==
+It's fine to reply here, the commit message can be amended by whoever
+applies the patch.
 
-CI Bug Log - changes from CI_DRM_8599 -> Patchwork_17904
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17904 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-n2820:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-byt-n2820/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-byt-n2820/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +5 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+BR,
+Jani.
 
 
-Participating hosts (46 -> 41)
-------------------------------
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Fixes: cd1915460861 ("drm/i915: Adjust CDCLK accordingly to our DBuf bw needs")
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 08468b121d02..45f7f33d1144 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2071,6 +2071,18 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  	/* Account for additional needs from the planes */
+>  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
+>  
+> +	/*
+> +	 * HACK. Currently for TGL platforms we calculate
+> +	 * min_cdclk initially based on pixel_rate divided
+> +	 * by 2, accounting for also plane requirements,
+> +	 * however in some cases the lowest possible CDCLK
+> +	 * doesn't work and causing the underruns.
+> +	 * Explicitly stating here that this seems to be currently
+> +	 * rather a Hack, than final solution.
+> +	 */
+> +	if (IS_TIGERLAKE(dev_priv))
+> +		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+> +
+>  	if (min_cdclk > dev_priv->max_cdclk_freq) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
 
-  Missing    (5): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8599 -> Patchwork_17904
-
-  CI-20190529: 20190529
-  CI_DRM_8599: 41ca9ea98b74c926c923e84931b9b4a4c3955e08 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5697: 5b8be04285ded1201fac5a2c2b50a7d70fa332d8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17904: dee7c897c6ed8262b5655c110352e85c7e13e8c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dee7c897c6ed drm/i915/display: Avoid PSR and FBC features concurently.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17904/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
