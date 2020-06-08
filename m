@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788461F1325
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 08:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8EE1F1397
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 09:30:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB14F6E46F;
-	Mon,  8 Jun 2020 06:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF766E05A;
+	Mon,  8 Jun 2020 07:30:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6696E46F
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 06:59:32 +0000 (UTC)
-IronPort-SDR: hIAN/VwNNf7he2r4hyyfri3oTTqAHQ3x6it8BOaPIERxxGCm6aodFBMja1Roj7skAdRgrVKxW1
- mHV9c0OAhe6A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2020 23:59:32 -0700
-IronPort-SDR: F5JuewcPAFnzzjawWZHM8jlKzCWAE9yaSZ28MMdo6IhqhDxixKAP6tePTUoZR2H1Xe3IWHk3xH
- JXmFIEWOHpWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; d="scan'208";a="305726538"
-Received: from jvle-desk2.sc.intel.com ([10.3.62.164])
- by fmsmga002.fm.intel.com with ESMTP; 07 Jun 2020 23:59:32 -0700
-From: Jason Le <jason.v.le@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun,  7 Jun 2020 23:56:35 -0700
-Message-Id: <20200608065635.11652-1-jason.v.le@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Avoid PSR and FBC features
- concurently.
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2FCFE6E05A;
+ Mon,  8 Jun 2020 07:30:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 29171A0091;
+ Mon,  8 Jun 2020 07:30:29 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 08 Jun 2020 07:30:29 -0000
+Message-ID: <159160142913.14460.3636329240717288605@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200608065552.21728-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200608065552.21728-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmV2?=
+ =?utf-8?q?ert_=22drm/i915=3A_Remove_unneeded_hack_now_for_CDCLK=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,68 +38,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jason Le <jason.v.le@intel.com>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Issue: Enble both PSR and FBC caused some fickers on some eDP panels (eg. Panel GIS
-13.5" QHD Glare NE135FBM-N41/NC135GFL02).  Disbling either PSR or FBC
-will solve this flicker issue.
+== Series Details ==
 
-Both PSR and FBC features save power when render is not busy. When PSR is
-active, saving power achieved  by source turning off source transmitter and main link,
-putting memory on self-refresh mode. Therefore with PSR enabled,
-FBC role is minimized since PSR power saving already covers most what
-FBC does.  Disabling FBC in case to avoid conflict between PSR and FBC
-which causes display anomaly in some scenarios.
+Series: Revert "drm/i915: Remove unneeded hack now for CDCLK"
+URL   : https://patchwork.freedesktop.org/series/78106/
+State : success
 
-Tests:
-Booted system with PSR enabled, verified FBC disabled.
-Disabled PSR with disabled (i915.enable_psr=0), verified FBC enabled.
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_psr.c | 4 +++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 1c26673acb2d..52bc7483adb5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1419,6 +1419,12 @@ void intel_fbc_init(struct drm_i915_private *dev_priv)
- 	drm_dbg_kms(&dev_priv->drm, "Sanitized enable_fbc value: %d\n",
- 		    i915_modparams.enable_fbc);
- 
-+	if (i915_modparams.enable_psr) {
-+               i915_modparams.enable_fbc = 0;
-+                DRM_DEBUG_KMS("PSR enabled. FBC no longer needed.  Disable FBC. \n");
-+	}
-+
-+
- 	if (!HAS_FBC(dev_priv)) {
- 		fbc->no_fbc_reason = "unsupported by this chipset";
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b7a2c102648a..25accfdd5ad3 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1439,8 +1439,10 @@ void intel_psr_init(struct drm_i915_private *dev_priv)
- 	if (!HAS_PSR(dev_priv))
- 		return;
- 
--	if (!dev_priv->psr.sink_support)
-+	if (!dev_priv->psr.sink_support) {
-+		i915_modparams.enable_psr = 0;
- 		return;
-+	}
- 
- 	if (IS_HASWELL(dev_priv))
- 		/*
--- 
-2.17.1
+CI Bug Log - changes from CI_DRM_8599 -> Patchwork_17903
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17903 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][5] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +5 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8599/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (46 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (6): fi-ilk-m540 fi-skl-guc fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8599 -> Patchwork_17903
+
+  CI-20190529: 20190529
+  CI_DRM_8599: 41ca9ea98b74c926c923e84931b9b4a4c3955e08 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5697: 5b8be04285ded1201fac5a2c2b50a7d70fa332d8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17903: c2441c67163365c1e27cf62805b377392b66feb6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c2441c671633 Revert "drm/i915: Remove unneeded hack now for CDCLK"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17903/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
