@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23C61F194D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 14:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D1D51F194E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 14:56:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1A396E4DD;
-	Mon,  8 Jun 2020 12:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 775306E4E6;
+	Mon,  8 Jun 2020 12:55:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7EE46E4DD
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 12:55:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21431026-1500050 
- for multiple; Mon, 08 Jun 2020 13:54:39 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Jun 2020 13:54:38 +0100
-Message-Id: <20200608125438.28700-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200608102845.26194-1-chris@chris-wilson.co.uk>
-References: <20200608102845.26194-1-chris@chris-wilson.co.uk>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA256E51A;
+ Mon,  8 Jun 2020 12:55:58 +0000 (UTC)
+IronPort-SDR: I1GjdPEjxOBaKN4g3+Rkc8amQcjepfwpoBk3BKGjtuLidvLBuh2nVSLF7DHUfDoV1ThBI218AY
+ 9dBmvysdbnCA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2020 05:55:42 -0700
+IronPort-SDR: YMTtf9LtzCA+Fx3BKfkswyKevs/R7Wz3cr4ojWM5YYlDjeaaQoGG8r6F+hMyE9psqP81iWftVT
+ fB06DdDIq6dA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,487,1583222400"; d="scan'208";a="295440241"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by fmsmga004.fm.intel.com with ESMTP; 08 Jun 2020 05:55:40 -0700
+Received: from andy by smile with local (Exim 4.93)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1jiHJW-00BgLB-PO; Mon, 08 Jun 2020 15:55:42 +0300
+Date: Mon, 8 Jun 2020 15:55:42 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200608125542.GM2428291@smile.fi.intel.com>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-5-hdegoede@redhat.com>
+ <20200608035512.GA2428291@smile.fi.intel.com>
+ <c8a8d466-9b4a-9021-ca74-01d315e99117@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Prevent enabling breadcrumbs on
- the virtual engine
+Content-Disposition: inline
+In-Reply-To: <c8a8d466-9b4a-9021-ca74-01d315e99117@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v2 04/15] pwm: lpss: Fix off by one error in
+ base_unit math in pwm_lpss_prepare()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,88 +54,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The virtual engines are not connected directly to hardware, so do not
-generate interrupts themselves, nor do we expect to enable breadcrumb
-tracking on them. However, if we clear out a stale virtual request, we
-will process the breadcrumbs on the current virtual engine. Here, we
-only need to add the delayed signal onto the stale signal queue, and
-send the signal once clear of the engine locks. In the meantime, this
-may be transferred onto the next sibling if we execute the next virtual
-request before the work is completed.
+On Mon, Jun 08, 2020 at 01:13:01PM +0200, Hans de Goede wrote:
+> On 6/8/20 5:55 AM, Andy Shevchenko wrote:
+> > On Sun, Jun 07, 2020 at 08:18:29PM +0200, Hans de Goede wrote:
+> > > According to the data-sheet the way the PWM controller works is that
+> > > each input clock-cycle the base_unit gets added to a N bit counter and
+> > > that counter overflowing determines the PWM output frequency.
+> > > 
+> > > So assuming e.g. a 16 bit counter this means that if base_unit is set to 1,
+> > > after 65535 input clock-cycles the counter has been increased from 0 to
+> > > 65535 and it will overflow on the next cycle, so it will overflow after
+> > > every 65536 clock cycles and thus the calculations done in
+> > > pwm_lpss_prepare() should use 65536 and not 65535.
+> > > 
+> > > This commit fixes this. Note this also aligns the calculations in
+> > > pwm_lpss_prepare() with those in pwm_lpss_get_state().
+> > 
+> > This one sounds like a bug which I have noticed on Broxton (but thought as a
+> > hardware issue). In any case it has to be tested on various platforms to see
+> > how it affects on them.
+> 
+> If you like at the datasheet / read my commit description then it
+> becomes obvious that because of the way the PWM controller works that
+> it takes the full 2^(base-unit-bits) for the counter to overflow,
+> not 2^(base-unit-bits) - 1. This will make a difference of a factor
+> 65535/65536 in the output frequency which will be tricky to measure.
+> 
+> IOW I'm not sure we can really test if this helps, but it is
+> obviously the right thing to do and it aligns the pwm_apply code
+> with the pwm_get_state code which already does not have the - 1.
 
-The effect of losing tracking of the virtual breadcrumb interrupt is
-that we leak the GT wakeref, keeping the device awake.
+Yes. It seems I did a mistake in the commit
+684309e5043e ("pwm: lpss: Avoid potential overflow of base_unit")
+when missed multiplication.
 
-Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: b647c7df01b7 ("drm/i915: Fixup preempt-to-busy vs resubmission of a virtual request")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: <stable@vger.kernel.org> # v5.5+
----
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 6 ++++++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 3 +++
- drivers/gpu/drm/i915/gt/intel_lrc.c         | 2 ++
- 3 files changed, 11 insertions(+)
+For this one
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index d907d538176e..9eaf3dc17c99 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -225,6 +225,9 @@ static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
- 	struct intel_engine_cs *engine =
- 		container_of(b, struct intel_engine_cs, breadcrumbs);
- 
-+	if (intel_engine_is_virtual(engine))
-+		return true;
-+
- 	lockdep_assert_held(&b->irq_lock);
- 	if (b->irq_armed)
- 		return true;
-@@ -308,6 +311,9 @@ void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
- 
- void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
- {
-+	struct intel_breadcrumbs *b = &engine->breadcrumbs;
-+
-+	GEM_BUG_ON(atomic_read(&b->irq_work.flags));
- }
- 
- bool i915_request_enable_breadcrumb(struct i915_request *rq)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index e5141a897786..4f2c348aa32c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1515,6 +1515,9 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 		drm_printf(m, "*** WEDGED ***\n");
- 
- 	drm_printf(m, "\tAwake? %d\n", atomic_read(&engine->wakeref.count));
-+	drm_printf(m, "\tBreadcrumbs? armed:%s, signalers:%s\n",
-+		   yesno(engine->breadcrumbs.irq_armed),
-+		   yesno(!list_empty(&engine->breadcrumbs.signalers)));
- 	drm_printf(m, "\tBarriers?: %s\n",
- 		   yesno(!llist_empty(&engine->barrier_tasks)));
- 	drm_printf(m, "\tLatency: %luus\n",
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index d55a5e0466e5..9d932e985d96 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -5339,6 +5339,8 @@ static void virtual_context_destroy(struct kref *kref)
- 	GEM_BUG_ON(ve->request);
- 	GEM_BUG_ON(ve->context.inflight);
- 
-+	intel_engine_fini_breadcrumbs(&ve->base);
-+
- 	for (n = 0; n < ve->num_siblings; n++) {
- 		struct intel_engine_cs *sibling = ve->siblings[n];
- 		struct rb_node *node = &ve->nodes[sibling->id].rb;
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
 -- 
-2.20.1
+With Best Regards,
+Andy Shevchenko
+
 
 _______________________________________________
 Intel-gfx mailing list
