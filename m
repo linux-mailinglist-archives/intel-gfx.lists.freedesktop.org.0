@@ -1,62 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5259D1F1D7D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 18:36:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651041F1DD0
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jun 2020 18:52:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 359B46E0A8;
-	Mon,  8 Jun 2020 16:36:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78DAB6E964;
+	Mon,  8 Jun 2020 16:52:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
- [IPv6:2a00:1450:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B72136E95F;
- Mon,  8 Jun 2020 15:15:53 +0000 (UTC)
-Received: by mail-ej1-x642.google.com with SMTP id mb16so18752966ejb.4;
- Mon, 08 Jun 2020 08:15:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=jAc4+hPYb1yY730wa2bXInss6UylBdL9J1Kdgm1oOfk=;
- b=hjTuyL/PgSoZK2Url0WaKnYb6GmbIn2RIhgSS7jvChha9QNWnnXoJ0oFwSiV7NUMnx
- p5mjOdbHGGI/nDWLdAU0WVo0e3fH7gycwuWL3RRImSVchYPL9d6TSbAum2hkiX8k4Vyh
- XLIl3z4old+lLGVwzYDqZXlT4qKVolO1ua2m014BbeA0kI50gnZdmpP57zNAMc8/X3WB
- tdrHVl75c3xoWUgN79meoAcEPKkEXWDdGFy/aWKRwKe+tVLT/QmW+5Hn+ngPIXNGKjpt
- 1DGN44+UVS6OS8VOXM0P3hBDTdczSbJ3Qduc2cyaJuK/ucK+a8dJUu0wDurt0ZoU5Kjn
- VZdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=jAc4+hPYb1yY730wa2bXInss6UylBdL9J1Kdgm1oOfk=;
- b=rE8zFOvGGxt8QRVB8kR+ftIvqbKKPENFSx4Vg6/CnELKdHT1SRqChI9KftJeYNMAGz
- FcJcdQT8bV02tkQjatklqZUTM5achubYnZWEah37l/6nVlKatnPg4X3nkne46lBwB4r+
- gZDIe3bYe0qPihxVINjUnrgvBh0f26d6L0+DVWKM+un+pEOAlifAL/86O7LzPoZ5cxKT
- xR/peROA+X5RGnnBAuobGgbQ2gHlaySxQLDorDFpdFvL772nL4sb1T60lHIadCzX3GK+
- 3cb0qhQrqoClosKHGufBgfx2Mg1IX73IfwusEkecgZtoVteGN3CbWzypRiMhcl/AtZLv
- AKDg==
-X-Gm-Message-State: AOAM533d8H+SqzaUMnCdw8Iurdk8+cNbKXqQdx/8GtltP+3zPwYyYAcE
- P8z+U/F2SKBN46mDzr38E7reHHd5
-X-Google-Smtp-Source: ABdhPJyMgbpLKlGyZhUI8z/ZAW3nkU1ZZ8mPJQBF2TtWEoNOt4SJ9ZnPmL4KRhcwAvfx4miWcR8ccw==
-X-Received: by 2002:a17:906:1088:: with SMTP id
- u8mr14841998eju.428.1591629352330; 
- Mon, 08 Jun 2020 08:15:52 -0700 (PDT)
-Received: from abel.fritz.box ([2a02:908:1252:fb60:4c1d:b395:5a4b:a43d])
- by smtp.gmail.com with ESMTPSA id cb6sm12713347edb.18.2020.06.08.08.15.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Jun 2020 08:15:51 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: nirmoy.das@amd.com, intel-gfx@lists.freedesktop.org,
- chris@chris-wilson.co.uk, dri-devel@lists.freedesktop.org
-Date: Mon,  8 Jun 2020 17:15:50 +0200
-Message-Id: <20200608151550.1315-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF8B86E964
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 16:52:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591635136;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CPoX45gxmjOqLoIv20XcIEcYRq/YssF2EgI5KSAc3xY=;
+ b=S+9xfNqN5EnFMcA5DYY9SpPWlHudUByG/QWwg+oGIaNbTmDWAPJCRTZHxJlKeHrHXG7WHY
+ h5STjA26XJSzXKCoLYnP8XxszSVjn7dMqiViS0d/IY5XxspQJADJ7tv7tjA1fRIGKcoOX+
+ k6vpEmWChOo2qKgi805jQAkIEz4z8/A=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-282-svhNfv0uPqysAzmo1_b8Nw-1; Mon, 08 Jun 2020 12:52:10 -0400
+X-MC-Unique: svhNfv0uPqysAzmo1_b8Nw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9F4EB8014D4;
+ Mon,  8 Jun 2020 16:52:08 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-114-66.rdu2.redhat.com
+ [10.10.114.66])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 11E88648DB;
+ Mon,  8 Jun 2020 16:52:06 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <87ftb6x7em.fsf@intel.com>
+References: <87ftb6x7em.fsf@intel.com>
+ <2136072.1591491984@warthog.procyon.org.uk> <87o8puxak1.fsf@intel.com>
+ <4ff2445aff8d44c5961a6d194a8f4663@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 08 Jun 2020 16:36:42 +0000
-Subject: [Intel-gfx] [PATCH] drm/mm: remove invalid entry based optimization
+Content-ID: <2715544.1591635126.1@warthog.procyon.org.uk>
+Date: Mon, 08 Jun 2020 17:52:06 +0100
+Message-ID: <2715545.1591635126@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] A panic and a hang in the i915 drm driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,37 +64,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ dhowells@redhat.com, "airlied@redhat.com" <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2hlbiB0aGUgY3VycmVudCBlbnRyeSBpcyByZWplY3RlZCBhcyBjYW5kaWRhdGUgZm9yIHRoZSBz
-ZWFyY2gKaXQgZG9lcyBub3QgbWVhbiB0aGF0IHdlIGNhbiBhYm9ydCB0aGUgc3VidHJlZSBzZWFy
-Y2guCgpJdCBpcyBwZXJmZWN0bHkgcG9zc2libGUgdGhhdCBvbmx5IHRoZSBhbGlnbm1lbnQsIGJ1
-dCBub3QgdGhlCnNpemUgaXMgdGhlIHJlYXNvbiBmb3IgdGhlIHJlamVjdGlvbi4KClNpZ25lZC1v
-ZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vZHJtX21tLmMgfCA2ICsrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5z
-ZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX21tLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX21tLmMKaW5kZXggNjBlOWE5YzkxZTlkLi44
-MmQyODg4ZWI3ZmUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vZHJtX21tLmMKQEAgLTQwNiw4ICs0MDYsNyBAQCBuZXh0X2hvbGVfaGln
-aF9hZGRyKHN0cnVjdCBkcm1fbW1fbm9kZSAqZW50cnksIHU2NCBzaXplKQogCQlwYXJlbnRfcmJf
-bm9kZSA9IHJiX3BhcmVudChyYl9ub2RlKTsKIAkJbGVmdF9ub2RlID0gcmJfZW50cnkobGVmdF9y
-Yl9ub2RlLAogCQkJCSAgICAgc3RydWN0IGRybV9tbV9ub2RlLCByYl9ob2xlX2FkZHIpOwotCQlp
-ZiAoKGxlZnRfbm9kZS0+c3VidHJlZV9tYXhfaG9sZSA8IHNpemUgfHwKLQkJICAgICBIT0xFX1NJ
-WkUoZW50cnkpID09IGVudHJ5LT5zdWJ0cmVlX21heF9ob2xlKSAmJgorCQlpZiAobGVmdF9ub2Rl
-LT5zdWJ0cmVlX21heF9ob2xlIDwgc2l6ZSAmJgogCQkgICAgcGFyZW50X3JiX25vZGUgJiYgcGFy
-ZW50X3JiX25vZGUtPnJiX2xlZnQgIT0gcmJfbm9kZSkKIAkJCXJldHVybiByYl9ob2xlX2FkZHJf
-dG9fbm9kZShwYXJlbnRfcmJfbm9kZSk7CiAJfQpAQCAtNDQ2LDggKzQ0NSw3IEBAIG5leHRfaG9s
-ZV9sb3dfYWRkcihzdHJ1Y3QgZHJtX21tX25vZGUgKmVudHJ5LCB1NjQgc2l6ZSkKIAkJcGFyZW50
-X3JiX25vZGUgPSByYl9wYXJlbnQocmJfbm9kZSk7CiAJCXJpZ2h0X25vZGUgPSByYl9lbnRyeShy
-aWdodF9yYl9ub2RlLAogCQkJCSAgICAgIHN0cnVjdCBkcm1fbW1fbm9kZSwgcmJfaG9sZV9hZGRy
-KTsKLQkJaWYgKChyaWdodF9ub2RlLT5zdWJ0cmVlX21heF9ob2xlIDwgc2l6ZSB8fAotCQkgICAg
-IEhPTEVfU0laRShlbnRyeSkgPT0gZW50cnktPnN1YnRyZWVfbWF4X2hvbGUpICYmCisJCWlmIChy
-aWdodF9ub2RlLT5zdWJ0cmVlX21heF9ob2xlIDwgc2l6ZSAmJgogCQkgICAgcGFyZW50X3JiX25v
-ZGUgJiYgcGFyZW50X3JiX25vZGUtPnJiX3JpZ2h0ICE9IHJiX25vZGUpCiAJCQlyZXR1cm4gcmJf
-aG9sZV9hZGRyX3RvX25vZGUocGFyZW50X3JiX25vZGUpOwogCX0KLS0gCjIuMTcuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Jani Nikula <jani.nikula@linux.intel.com> wrote:
+
+> David, please try [1].
+
+Assuming you mean this:
+
+    https://patchwork.freedesktop.org/patch/366958/?series=77635&rev=1
+
+yes, that works.
+
+Tested-by: David Howells <dhowells@redhat.com>
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
