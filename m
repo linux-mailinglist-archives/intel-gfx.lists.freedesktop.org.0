@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B1D1F46E8
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 21:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB5A1F484A
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 22:48:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B334189E9B;
-	Tue,  9 Jun 2020 19:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6826E0D1;
+	Tue,  9 Jun 2020 20:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D9B2689E9B;
- Tue,  9 Jun 2020 19:17:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D0D2DA47DA;
- Tue,  9 Jun 2020 19:17:32 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B93866E0D1;
+ Tue,  9 Jun 2020 20:48:56 +0000 (UTC)
+IronPort-SDR: XeUC+yREaCi0vByzT37U87mGAF3hQbL5WTFlMS0/tuWC0Cd/xJ0W092mSF0UIv4cIx/qL9iD1/
+ 84QTefBeSN+g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2020 13:48:56 -0700
+IronPort-SDR: 3EAs6KNKunMWH0UyHrl37CHTw/c/ZpEycpGBCnkzoQXTb7f2v232T2z0VDeVwe6Wv0ILNVIPiy
+ TPd3ty1ZqC8g==
+X-IronPort-AV: E=Sophos;i="5.73,493,1583222400"; d="scan'208";a="314303010"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2020 13:48:55 -0700
+Date: Tue, 9 Jun 2020 23:45:12 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200609204512.GA8525@intel.com>
+References: <20200607212522.16935-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 09 Jun 2020 19:17:32 -0000
-Message-ID: <159173025282.17060.8043804600924297267@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200608181023.11503-1-imre.deak@intel.com>
-In-Reply-To: <20200608181023.11503-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_the_i915=5Fdsc=5Ffec=5Fsupport_debugfs_file_for_DP?=
- =?utf-8?q?_MST_connectors_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200607212522.16935-1-imre.deak@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/dp_mst: Fix the DDC I2C device
+ unregistration of an MST port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,128 +48,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 08, 2020 at 12:25:20AM +0300, Imre Deak wrote:
+> The WARN below triggers during the removal of an MST port. The problem
+> is that the parent device's (the connector's kdev) sysfs directory is
+> removed recursively when the connector is unregistered (even though the
+> I2C device holds a reference on the parent device). To fix this set
+> first the Peer Device Type to none which will remove the I2C device.
+> 
+> Note that atm, inconsistently, the parent of the I2C device is initially set to
+> the DRM kdev and after a Connection Status Notification the parent may be reset
+> to be the connector's kdev. This problem is addressed by the next patch.
 
-Series: drm/i915: Fix the i915_dsc_fec_support debugfs file for DP MST connectors (rev3)
-URL   : https://patchwork.freedesktop.org/series/78128/
-State : success
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8604 -> Patchwork_17916
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17916 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-j1900/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-byt-n2820:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-n2820/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-byt-n2820/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [FAIL][11] ([i915#262]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 42)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8604 -> Patchwork_17916
-
-  CI-20190529: 20190529
-  CI_DRM_8604: 24c6364ec0e3c895ec4237d7a8f3516316a761ff @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5700: 88e379cef970db3dab020966d5dd117de7cc03ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17916: b4af214db886283d6bc416bb70d95623c8c47ff6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b4af214db886 drm/i915: Fix the i915_dsc_fec_support debugfs file for DP MST connectors
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/index.html
+> 
+> [ 4462.989299] ------------[ cut here ]------------
+> [ 4463.014940] sysfs group 'power' not found for kobject 'i2c-24'
+> [ 4463.034664] WARNING: CPU: 0 PID: 970 at fs/sysfs/group.c:281 sysfs_remove_group+0x71/0x80
+> [ 4463.044357] Modules linked in: snd_hda_intel i915 drm_kms_helper(O) drm netconsole snd_hda_codec_hdmi mei_hdcp x86_pkg_temp_thermal coretemp crct10dif_pclmul snd_intel_dspcf
+> g crc32_pclmul snd_hda_codec snd_hwdep ghash_clmulni_intel snd_hda_core asix usbnet kvm_intel mii i2c_algo_bit snd_pcm syscopyarea sysfillrect e1000e sysimgblt fb_sys_fops prim
+> e_numbers ptp pps_core i2c_i801 r8169 mei_me realtek mei [last unloaded: drm]
+> [ 4463.044399] CPU: 0 PID: 970 Comm: kworker/0:2 Tainted: G           O      5.7.0+ #172
+> [ 4463.044402] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP
+> [ 4463.044423] Workqueue: events drm_dp_delayed_destroy_work [drm_kms_helper]
+> [ 4463.044428] RIP: 0010:sysfs_remove_group+0x71/0x80
+> [ 4463.044431] Code: 48 89 df 5b 5d 41 5c e9 cd b6 ff ff 48 89 df e8 95 b4 ff ff eb cb 49 8b 14 24 48 8b 75 00 48 c7 c7 20 0f 3f 82 e8 9f c5 d7 ff <0f> 0b 5b 5d 41 5c c3 0f 1f
+> 84 00 00 00 00 00 48 85 f6 74 31 41 54
+> [ 4463.044433] RSP: 0018:ffffc900018bfbf0 EFLAGS: 00010282
+> [ 4463.044436] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000001
+> [ 4463.044439] RDX: 0000000080000001 RSI: ffff88849e828f38 RDI: 00000000ffffffff
+> [ 4463.052970] [drm:drm_atomic_get_plane_state [drm]] Added [PLANE:100:plane 2B] 00000000c2160caa state to 00000000d172564a
+> [ 4463.070533] RBP: ffffffff820cea20 R08: ffff88847f4b8958 R09: 0000000000000000
+> [ 4463.070535] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88848a725018
+> [ 4463.070537] R13: 0000000000000000 R14: ffffffff827090e0 R15: 0000000000000002
+> [ 4463.070539] FS:  0000000000000000(0000) GS:ffff88849e800000(0000) knlGS:0000000000000000
+> [ 4463.070541] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 4463.070543] CR2: 00007fdf8a756538 CR3: 0000000489684001 CR4: 0000000000760ef0
+> [ 4463.070545] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> [ 4463.070547] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> [ 4463.070549] PKRU: 55555554
+> [ 4463.070551] Call Trace:
+> [ 4463.070560]  device_del+0x84/0x400
+> [ 4463.070571]  cdev_device_del+0x10/0x30
+> [ 4463.070578]  put_i2c_dev+0x69/0x80
+> [ 4463.070584]  i2cdev_detach_adapter+0x2e/0x60
+> [ 4463.070591]  notifier_call_chain+0x34/0x90
+> [ 4463.070599]  blocking_notifier_call_chain+0x3f/0x60
+> [ 4463.070606]  device_del+0x7c/0x400
+> [ 4463.087817]  ? lockdep_init_map_waits+0x57/0x210
+> [ 4463.087825]  device_unregister+0x11/0x60
+> [ 4463.087829]  i2c_del_adapter+0x249/0x310
+> [ 4463.087846]  drm_dp_port_set_pdt+0x6b/0x2c0 [drm_kms_helper]
+> [ 4463.087862]  drm_dp_delayed_destroy_work+0x2af/0x350 [drm_kms_helper]
+> [ 4463.087876]  process_one_work+0x268/0x600
+> [ 4463.105438]  ? __schedule+0x30c/0x920
+> [ 4463.105451]  worker_thread+0x37/0x380
+> [ 4463.105457]  ? process_one_work+0x600/0x600
+> [ 4463.105462]  kthread+0x140/0x160
+> [ 4463.105466]  ? kthread_park+0x80/0x80
+> [ 4463.105474]  ret_from_fork+0x24/0x50
+> 
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/drm_dp_mst_topology.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+> index 2a309fb2c4cc..02c800b8199f 100644
+> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> @@ -4669,12 +4669,13 @@ static void drm_dp_tx_work(struct work_struct *work)
+>  static inline void
+>  drm_dp_delayed_destroy_port(struct drm_dp_mst_port *port)
+>  {
+> +	drm_dp_port_set_pdt(port, DP_PEER_DEVICE_NONE, port->mcs);
+> +
+>  	if (port->connector) {
+>  		drm_connector_unregister(port->connector);
+>  		drm_connector_put(port->connector);
+>  	}
+>  
+> -	drm_dp_port_set_pdt(port, DP_PEER_DEVICE_NONE, port->mcs);
+>  	drm_dp_mst_put_port_malloc(port);
+>  }
+>  
+> -- 
+> 2.23.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
