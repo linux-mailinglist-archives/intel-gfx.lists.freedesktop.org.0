@@ -1,38 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DC11F3868
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 12:47:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A61F3872
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 12:48:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8D616E1C4;
-	Tue,  9 Jun 2020 10:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 203DA89CE3;
+	Tue,  9 Jun 2020 10:48:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 005136E1C4
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 10:47:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D993C89CE3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 10:48:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21441206-1500050 for multiple; Tue, 09 Jun 2020 11:47:06 +0100
+ 21441226-1500050 for multiple; Tue, 09 Jun 2020 11:48:16 +0100
 MIME-Version: 1.0
-In-Reply-To: <195aefb1-128e-cfdb-cdeb-3a4e2c0248f8@linux.intel.com>
+In-Reply-To: <ae303541-7df8-6966-95ea-ed46942acb06@linux.intel.com>
 References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
- <9f995ee6-5f93-088d-47d6-5431076de596@linux.intel.com>
- <159160880517.15126.3134918011284478228@build.alporthouse.com>
- <77acd2e3-86cc-7c78-22a0-8d8263510aa2@linux.intel.com>
- <159169855088.24308.3785883777038202508@build.alporthouse.com>
- <195aefb1-128e-cfdb-cdeb-3a4e2c0248f8@linux.intel.com>
+ <20200607222108.14401-10-chris@chris-wilson.co.uk>
+ <ae303541-7df8-6966-95ea-ed46942acb06@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159169962594.24308.17590896872287208474@build.alporthouse.com>
+Message-ID: <159169969604.24308.16289911444825302624@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Tue, 09 Jun 2020 11:47:05 +0100
-Subject: Re: [Intel-gfx] [PATCH 01/28] drm/i915: Adjust the sentinel assert
- to match implementation
+Date: Tue, 09 Jun 2020 11:48:16 +0100
+Subject: Re: [Intel-gfx] [PATCH 10/28] drm/i915/gem: Separate reloc
+ validation into an earlier step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,72 +47,109 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-06-09 11:39:11)
+Quoting Tvrtko Ursulin (2020-06-09 08:47:00)
 > 
-> On 09/06/2020 11:29, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-06-09 07:59:27)
-> >> 666
-> >> On 08/06/2020 10:33, Chris Wilson wrote:
-> >>> Quoting Tvrtko Ursulin (2020-06-08 08:44:01)
-> >>>>
-> >>>> On 07/06/2020 23:20, Chris Wilson wrote:
-> >>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>>>>
-> >>>>> Sentinels are supposed to be last reqeusts in the elsp queue, not the
-> >>>>> only one, so adjust the assert accordingly.
-> >>>>>
-> >>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>>>> ---
-> >>>>>     drivers/gpu/drm/i915/gt/intel_lrc.c | 14 +++-----------
-> >>>>>     1 file changed, 3 insertions(+), 11 deletions(-)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> index d55a5e0466e5..db8a170b0e5c 100644
-> >>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> @@ -1635,9 +1635,9 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
-> >>>>>                 ccid = ce->lrc.ccid;
-> >>>>>     
-> >>>>>                 /*
-> >>>>> -              * Sentinels are supposed to be lonely so they flush the
-> >>>>> -              * current exection off the HW. Check that they are the
-> >>>>> -              * only request in the pending submission.
-> >>>>> +              * Sentinels are supposed to be the last request so they flush
-> >>>>> +              * the current exection off the HW. Check that they are the only
-> >>>>> +              * request in the pending submission.
-> >>>>>                  */
-> >>>>>                 if (sentinel) {
-> >>>>>                         GEM_TRACE_ERR("%s: context:%llx after sentinel in pending[%zd]\n",
-> >>>>> @@ -1646,15 +1646,7 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
-> >>>>>                                       port - execlists->pending);
-> >>>>>                         return false;
-> >>>>>                 }
-> >>>>> -
-> >>>>>                 sentinel = i915_request_has_sentinel(rq);
-> >>>>
-> >>>> FWIW I was changing it to "sentinel |= ..." so it keeps working if we
-> >>>> decide to use more than 2 elsp ports on Icelake one day.
-> >>>
-> >>> But it will always fail on the next port...
-> >>
-> >> I don't follow. Sentinel has to be last so if it fails on the next port
-> >> it is correct to do so, no?
+> On 07/06/2020 23:20, Chris Wilson wrote:
+> > Over the next couple of patches, we will want to lock all the modified
+> > vma for relocation processing under a single ww_mutex. We neither want
+> > to have to include the vma that are skipped (due to no modifications
+> > required) nor do we want those to be marked as written too. So separate
+> > out the reloc validation into an early step, which we can use both to
+> > reject the execbuf before committing to making our changes, and to
+> > filter out the unmodified vma.
 > > 
-> > Exactly. We only check the first port after setting sentinel, if that
-> > port is occupied we fail. Hence why we don't need |=, since there is no
-> > continuation.
+> > This does introduce a second pass through the reloc[], but only if we
+> > need to emit relocations.
+> > 
+> > v2: reuse the outer loop, not cut'n'paste.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 145 +++++++++++-------
+> >   1 file changed, 86 insertions(+), 59 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > index 23db79b806db..01ab1e15a142 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > @@ -911,9 +911,9 @@ static void eb_destroy(const struct i915_execbuffer *eb)
+> >   
+> >   static inline u64
+> >   relocation_target(const struct drm_i915_gem_relocation_entry *reloc,
+> > -               const struct i915_vma *target)
+> > +               u64 target)
+> >   {
+> > -     return gen8_canonical_addr((int)reloc->delta + target->node.start);
+> > +     return gen8_canonical_addr((int)reloc->delta + target);
+> >   }
+> >   
+> >   static void reloc_cache_init(struct reloc_cache *cache,
+> > @@ -1292,26 +1292,11 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+> >       return 0;
+> >   }
+> >   
+> > -static u64
+> > -relocate_entry(struct i915_execbuffer *eb,
+> > -            struct i915_vma *vma,
+> > -            const struct drm_i915_gem_relocation_entry *reloc,
+> > -            const struct i915_vma *target)
+> > -{
+> > -     u64 target_addr = relocation_target(reloc, target);
+> > -     int err;
+> > -
+> > -     err = __reloc_entry_gpu(eb, vma, reloc->offset, target_addr);
+> > -     if (err)
+> > -             return err;
+> > -
+> > -     return target->node.start | UPDATE;
+> > -}
+> > -
+> > -static u64
+> > -eb_relocate_entry(struct i915_execbuffer *eb,
+> > -               struct eb_vma *ev,
+> > -               const struct drm_i915_gem_relocation_entry *reloc)
+> > +static int
+> > +eb_reloc_prepare(struct i915_execbuffer *eb,
+> > +              struct eb_vma *ev,
+> > +              const struct drm_i915_gem_relocation_entry *reloc,
+> > +              struct drm_i915_gem_relocation_entry __user *user)
+> >   {
+> >       struct drm_i915_private *i915 = eb->i915;
+> >       struct eb_vma *target;
+> > @@ -1389,6 +1374,32 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+> >               return -EINVAL;
+> >       }
+> >   
+> > +     return 1;
+> > +}
+> > +
+> > +static int
+> > +eb_reloc_entry(struct i915_execbuffer *eb,
+> > +            struct eb_vma *ev,
+> > +            const struct drm_i915_gem_relocation_entry *reloc,
+> > +            struct drm_i915_gem_relocation_entry __user *user)
+> > +{
+> > +     struct eb_vma *target;
+> > +     u64 offset;
+> > +     int err;
+> > +
+> > +     /* we've already hold a reference to all valid objects */
+> > +     target = eb_get_vma(eb, reloc->target_handle);
+> > +     if (unlikely(!target))
+> > +             return -ENOENT;
+> > +
+> > +     /*
+> > +      * If the relocation already has the right value in it, no
+> > +      * more work needs to be done.
+> > +      */
+> > +     offset = gen8_canonical_addr(target->vma->node.start);
+> > +     if (offset == reloc->presumed_offset) > +               return 0;
+> > +
 > 
-> But if more than two ports we also overwrite the bools so: sentinel, 
-> non-sentinel, sentinel would not catch. I was just future proofing it. :)
+> Haven't these reloc entries been removed from the list in the prepare phase?
 
-[0] -> sentinel
-[1] != NULL -> ERROR
-
-[0] -> not sentinel
-[1] -> sentinel
-[2] != NULL -> ERROR
-
-We fail if anything comes after a sentinel.
+No, we don't adjust the user reloc arrays, we only skip entire objects
+that do not require relocs.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
