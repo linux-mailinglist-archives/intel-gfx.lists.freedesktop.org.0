@@ -2,93 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181BD1F408B
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 18:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89D151F428E
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 19:40:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B006E2C8;
-	Tue,  9 Jun 2020 16:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F736E2E6;
+	Tue,  9 Jun 2020 17:40:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2040.outbound.protection.outlook.com [40.107.244.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D206C6E0C9;
- Mon,  8 Jun 2020 16:41:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QLgMR+2P1W7PLAULVNueOo4y4I7Z4UbOeFGET2BIELgImtOOufw7zLUZO2PIZCAweP8PHcQ4rT+7EI7NPADsqAmbMWpkkyMKWrNT5aWXnpeEc/RJ1+GJYIVwgNtRljtOoiQ8CWhfiyeN7awhbiNRrH/Wpb0r/OuPgINU7uP8wvXyqChNc8Qt1IKoL8YUcUEc7h66bIqcwvFIT+0q8I6eDhxVxF5VfDdubfhC3rnx0PQA4H79qvlNiQWOgORwdVI6QNLwp7pTMjYO+vLeJZ+td0j3cJqfz81SrBNT5btcCvKER8vVOWoLOCJ5Jf4ohfkkZ2vxC+i4IkINiiZPeVrYaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zO05e3QzB9UT6710ov808rEMEuuB5NsH36MNGg/Qjng=;
- b=Gwly3nKd9qNHDvBzF+zrKuM1JxEZ7pjA5kng+0M6FpxKPsaeuVap9/fQEhaqOMdoFpK1wYf6cmOAdEALpfJSV8UIm3NfmJg/HDfB7CpgxRz5ebHkt9UtASmXi0kE3bDSq2k9EhFf2XC5IHtMLhD2jcybPMRxw900bnTAcfXW1iEeWwk9TUKPBATHCTYRXSaVlxd12oZXNtYM7Tsj2asFMUxudVufIRxc5WuyMfSwefH18OKtTuS2DhHpEjfWdeV3NByquQye/MQk0ZnKxbLrG5ZiGnQFKTdom3kNT0s0r+XVD0Zxy2Ur+MJa6eRuQDBT+cI1TLdxPa9Khqm259OzWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zO05e3QzB9UT6710ov808rEMEuuB5NsH36MNGg/Qjng=;
- b=M8VnTabfNoccEIe9rQndxFHeHcf239qHqWEyNDYYeUnodt309TZnFlnmFS/RZXtiD2cshV8smxa2U1aJyqLNf261gaBTb8dvv9zk2hkE1JVVuvFLD4/UV69xVwqwWiok/hlSQBM23OKOOqdIu51Y81N7eV/dQJnReWLj8JmOsKI=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3872.namprd12.prod.outlook.com (2603:10b6:208:168::17)
- by MN2PR12MB3294.namprd12.prod.outlook.com (2603:10b6:208:af::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Mon, 8 Jun
- 2020 16:41:07 +0000
-Received: from MN2PR12MB3872.namprd12.prod.outlook.com
- ([fe80::8843:c094:fb2a:d60a]) by MN2PR12MB3872.namprd12.prod.outlook.com
- ([fe80::8843:c094:fb2a:d60a%7]) with mapi id 15.20.3066.023; Mon, 8 Jun 2020
- 16:41:07 +0000
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- nirmoy.das@amd.com, intel-gfx@lists.freedesktop.org,
- chris@chris-wilson.co.uk, dri-devel@lists.freedesktop.org
-References: <20200608151550.1315-1-christian.koenig@amd.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <58d0d2cf-5365-d5e5-3338-dcd6c7b3a786@amd.com>
-Date: Mon, 8 Jun 2020 18:42:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
-In-Reply-To: <20200608151550.1315-1-christian.koenig@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR10CA0102.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:e6::19) To MN2PR12MB3872.namprd12.prod.outlook.com
- (2603:10b6:208:168::17)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBB606E2E6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 17:40:54 +0000 (UTC)
+IronPort-SDR: oIKbnSAq18yZt/YNI/If61W+DPf9HBJM8iw43UKvTOC6pstRIuNC58g8Ek4UdBSkIiFFp7n5+H
+ ZyQ9CrihrJIw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2020 10:40:54 -0700
+IronPort-SDR: Y5GhJgA29O1IjauPKjYO1cGY5rGvDyFgd6Pz6xFE2VEPh5Desvxsli2zxVPHmTzGaHvUFUkZlg
+ NLw2ihOwHTCQ==
+X-IronPort-AV: E=Sophos;i="5.73,492,1583222400"; d="scan'208";a="306266940"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2020 10:40:48 -0700
+Date: Tue, 9 Jun 2020 20:40:35 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200609174035.GG22647@ideak-desk.fi.intel.com>
+References: <20200608181023.11503-1-imre.deak@intel.com>
+ <20200609150525.GP6112@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2003:c5:8f20:5d00:7fc6:50c7:b826:f4e) by
- AM0PR10CA0102.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:e6::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 16:41:06 +0000
-X-Originating-IP: [2003:c5:8f20:5d00:7fc6:50c7:b826:f4e]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 281cc572-6fb0-4c87-27d4-08d80bcabe12
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3294:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB329465B2953CE70A124160E28B850@MN2PR12MB3294.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 042857DBB5
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uC4hIpvV5857K4XFNfUBSmlDGHFXdw7PSxigFqwpWXMcKlJo2jfA0yTnx5koyCjTUxq0zXmcB7BU6niosrNQYoVWsLaqRE0ufBQ5w0XfqNmdBKY8oLor3Lk56DKQ0D92nFAbX3c2wLpoVAXqdH9oZcKdCpauhiMWUI+DstJA8bK3TI1clsWKjukqkNsXmdLo5swscIa7QPelCWmiWQattImTLMXo46ZVhtriAus3R8ZktWyQCArSGTcn2eBG4OCSHye2cSoMSI63yNdKzzFO/DaUyX/0KXvqsELmVZNL6ocPQy1SX7bK5dFCwzsvz7WSmoArNIY2BXy0kKmCX2yYY5geZE6aa3jEygzGm8IZ7lDqbpR6W4Io/JLx8QBz5c8H
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3872.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(366004)(376002)(136003)(346002)(39860400002)(396003)(31686004)(83380400001)(5660300002)(2616005)(31696002)(66946007)(66556008)(66476007)(6506007)(53546011)(36756003)(16526019)(186003)(2906002)(8936002)(8676002)(478600001)(6486002)(52116002)(6512007)(316002)(6666004)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: YwhGgSL5+5lgoz7cas1j29UnUJ+PIWDeULDHAY078gTw+tHsUM+2qg03oUsj37VHh9qgP/DgKp6Q/Z2DuqZGKG8biQQy2v3ElEXg9KJ5+9CP329NEI4re83/Ec/cRZOAVIOgTs0yIQXwVsnxTkZJoVl+ux9yhUMQODjh8KwHXncf7aNc2YgM+Ak255Wohtqdvf2rocKglkwoRS9fFNWR9mpzVUw7zj4zvnwUOoD1+l+UPgbxCObXbLMaiPAPajyTOlm1orO6pahwJv79RIl2PKKtnEoV3Frh72XRq2tN6IstsRVJdXwPzIXkT4WIB0vDTt2GQrD2AxC0vwm0Gy+SdP3YBJH5lW+YGPz/dQ7loqx44oD2Achas5rAnHNNfuyR3k7Ek446KgvgJVGc716UVpn+z7nrz/IEZjPsDHuRTyHfVWRmcRsydDTScYvEvaJUpEOYKOmEkDsTYXsWasPridGinqhBRkWJ8a64zZwctXH62IE95ID0qxqP/qUp30T7Clf3dhQWTen7fZCbmES9CouWgEn7R7BIx8Qa75aSrJ0=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 281cc572-6fb0-4c87-27d4-08d80bcabe12
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 16:41:07.4374 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3pFhtYJ2NVFYWIBmeMd/yNbN87A+ClR9GrDU9IZJ9GdRf0sfBCIkwqzsYTZS6QuDsUp3MiWyLSl2+MCxPS0GPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3294
-X-Mailman-Approved-At: Tue, 09 Jun 2020 16:19:36 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/mm: remove invalid entry based
- optimization
+Content-Disposition: inline
+In-Reply-To: <20200609150525.GP6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the i915_dsc_fec_support
+ debugfs file for DP MST connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,42 +49,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDYvOC8yMCA1OjE1IFBNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+IFdoZW4gdGhlIGN1
-cnJlbnQgZW50cnkgaXMgcmVqZWN0ZWQgYXMgY2FuZGlkYXRlIGZvciB0aGUgc2VhcmNoCj4gaXQg
-ZG9lcyBub3QgbWVhbiB0aGF0IHdlIGNhbiBhYm9ydCB0aGUgc3VidHJlZSBzZWFyY2guCj4KPiBJ
-dCBpcyBwZXJmZWN0bHkgcG9zc2libGUgdGhhdCBvbmx5IHRoZSBhbGlnbm1lbnQsIGJ1dCBub3Qg
-dGhlCj4gc2l6ZSBpcyB0aGUgcmVhc29uIGZvciB0aGUgcmVqZWN0aW9uLgoKCkkga25vdyB3aHkg
-ScKgIGRpZCB0aGF0LCBJIHdhcyB0ZXN0aW5nIHdpdGggOGsgYWxpZ25tZW50LiBTbyB0aGlzIHdh
-cyAKYmlhc2VkIHRvIG9wdGltaXplIG15IHRlc3QgY2FzZS4KCgo+Cj4gU2lnbmVkLW9mZi1ieTog
-Q2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKClJldmlld2VkLWJ5
-OiBOaXJtb3kgRGFzIDxuaXJtb3kuZGFzQGFtZC5jb20+CgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1
-L2RybS9kcm1fbW0uYyB8IDYgKystLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25z
-KCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1f
-bW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+IGluZGV4IDYwZTlhOWM5MWU5ZC4uODJk
-Mjg4OGViN2ZlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwo+IEBAIC00MDYsOCArNDA2LDcgQEAgbmV4dF9ob2xl
-X2hpZ2hfYWRkcihzdHJ1Y3QgZHJtX21tX25vZGUgKmVudHJ5LCB1NjQgc2l6ZSkKPiAgIAkJcGFy
-ZW50X3JiX25vZGUgPSByYl9wYXJlbnQocmJfbm9kZSk7Cj4gICAJCWxlZnRfbm9kZSA9IHJiX2Vu
-dHJ5KGxlZnRfcmJfbm9kZSwKPiAgIAkJCQkgICAgIHN0cnVjdCBkcm1fbW1fbm9kZSwgcmJfaG9s
-ZV9hZGRyKTsKPiAtCQlpZiAoKGxlZnRfbm9kZS0+c3VidHJlZV9tYXhfaG9sZSA8IHNpemUgfHwK
-PiAtCQkgICAgIEhPTEVfU0laRShlbnRyeSkgPT0gZW50cnktPnN1YnRyZWVfbWF4X2hvbGUpICYm
-Cj4gKwkJaWYgKGxlZnRfbm9kZS0+c3VidHJlZV9tYXhfaG9sZSA8IHNpemUgJiYKPiAgIAkJICAg
-IHBhcmVudF9yYl9ub2RlICYmIHBhcmVudF9yYl9ub2RlLT5yYl9sZWZ0ICE9IHJiX25vZGUpCj4g
-ICAJCQlyZXR1cm4gcmJfaG9sZV9hZGRyX3RvX25vZGUocGFyZW50X3JiX25vZGUpOwo+ICAgCX0K
-PiBAQCAtNDQ2LDggKzQ0NSw3IEBAIG5leHRfaG9sZV9sb3dfYWRkcihzdHJ1Y3QgZHJtX21tX25v
-ZGUgKmVudHJ5LCB1NjQgc2l6ZSkKPiAgIAkJcGFyZW50X3JiX25vZGUgPSByYl9wYXJlbnQocmJf
-bm9kZSk7Cj4gICAJCXJpZ2h0X25vZGUgPSByYl9lbnRyeShyaWdodF9yYl9ub2RlLAo+ICAgCQkJ
-CSAgICAgIHN0cnVjdCBkcm1fbW1fbm9kZSwgcmJfaG9sZV9hZGRyKTsKPiAtCQlpZiAoKHJpZ2h0
-X25vZGUtPnN1YnRyZWVfbWF4X2hvbGUgPCBzaXplIHx8Cj4gLQkJICAgICBIT0xFX1NJWkUoZW50
-cnkpID09IGVudHJ5LT5zdWJ0cmVlX21heF9ob2xlKSAmJgo+ICsJCWlmIChyaWdodF9ub2RlLT5z
-dWJ0cmVlX21heF9ob2xlIDwgc2l6ZSAmJgo+ICAgCQkgICAgcGFyZW50X3JiX25vZGUgJiYgcGFy
-ZW50X3JiX25vZGUtPnJiX3JpZ2h0ICE9IHJiX25vZGUpCj4gICAJCQlyZXR1cm4gcmJfaG9sZV9h
-ZGRyX3RvX25vZGUocGFyZW50X3JiX25vZGUpOwo+ICAgCX0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Tue, Jun 09, 2020 at 06:05:25PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Mon, Jun 08, 2020 at 09:10:23PM +0300, Imre Deak wrote:
+> > DSC is not supported on DP MST streams so just return -EINVAL when
+> > reading/writing the i915_dsc_fec_support debugfs file for such
+> > connectors.
+> > =
+
+> > This also fixes an OOPS, caused by the encoder->digport cast, which is
+> > not valid for MST encoders.
+> > =
+
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  | 36 +++++++++++++++----
+> >  1 file changed, 29 insertions(+), 7 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/dri=
+vers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index 2b640d8ab9d2..ebca8e488d03 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -2094,6 +2094,8 @@ static int i915_dsc_fec_support_show(struct seq_f=
+ile *m, void *data)
+> >  	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
+> >  =
+
+> >  	do {
+> > +		struct intel_encoder *encoder;
+> > +
+> >  		try_again =3D false;
+> >  		ret =3D drm_modeset_lock(&dev->mode_config.connection_mutex,
+> >  				       &ctx);
+> > @@ -2120,8 +2122,17 @@ static int i915_dsc_fec_support_show(struct seq_=
+file *m, void *data)
+> >  		} else if (ret) {
+> >  			break;
+> >  		}
+> > -		intel_dp =3D intel_attached_dp(to_intel_connector(connector));
+> > +
+> > +		encoder =3D intel_attached_encoder(to_intel_connector(connector));
+> > +		/* TODO: Add DSC support for MST streams */
+> > +		if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST) {
+> > +			ret =3D -EINVAL;
+> > +			break;
+> > +		}
+> > +
+> > +		intel_dp =3D &enc_to_dig_port(encoder)->dp;
+> >  		crtc_state =3D to_intel_crtc_state(crtc->state);
+> > +
+> >  		seq_printf(m, "DSC_Enabled: %s\n",
+> >  			   yesno(crtc_state->dsc.compression_enable));
+> >  		seq_printf(m, "DSC_Sink_Support: %s\n",
+> > @@ -2147,9 +2158,8 @@ static ssize_t i915_dsc_fec_support_write(struct =
+file *file,
+> >  	int ret;
+> >  	struct drm_connector *connector =3D
+> >  		((struct seq_file *)file->private_data)->private;
+> > -	struct intel_encoder *encoder =3D intel_attached_encoder(to_intel_con=
+nector(connector));
+> > -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> > -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > +	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> > +	struct intel_encoder *encoder;
+> >  =
+
+> >  	if (len =3D=3D 0)
+> >  		return 0;
+> > @@ -2163,10 +2173,22 @@ static ssize_t i915_dsc_fec_support_write(struc=
+t file *file,
+> >  =
+
+> >  	drm_dbg(&i915->drm, "Got %s for DSC Enable\n",
+> >  		(dsc_enable) ? "true" : "false");
+> > -	intel_dp->force_dsc_en =3D dsc_enable;
+> >  =
+
+> > -	*offp +=3D len;
+> > -	return len;
+> > +	drm_modeset_lock(&i915->drm.mode_config.connection_mutex, NULL);
+> > +
+> > +	encoder =3D intel_attached_encoder(to_intel_connector(connector));
+> > +	/* TODO: Add DSC support for MST streams */
+> > +	if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST) {
+> =
+
+> The attached encoder can be NULL for MST.
+
+Yes, I also sent v2 with that fixed.
+
+> Can't we just not add this debugfs file for MST connectors?
+
+Won't we have per MST connector DSC at one point? In that case we'd need
+something like this anyway. If this is never needed then yes, better not
+to add it. I can't use connector_type which is the same for MST and SST
+connectors so is it ok to differentiate based on a
+intel_attached_encoder() =3D=3D NULL check?
+
+> =
+
+> > +		ret =3D -EINVAL;
+> > +	} else {
+> > +		enc_to_intel_dp(encoder)->force_dsc_en =3D dsc_enable;
+> > +		*offp +=3D len;
+> > +		ret =3D len;
+> > +	}
+> > +
+> > +	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
+> > +
+> > +	return ret;
+> >  }
+> >  =
+
+> >  static int i915_dsc_fec_support_open(struct inode *inode,
+> > -- =
+
+> > 2.23.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
