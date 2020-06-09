@@ -2,34 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A61F3872
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 12:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E69251F39AB
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 13:29:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 203DA89CE3;
-	Tue,  9 Jun 2020 10:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FCBF6E03F;
+	Tue,  9 Jun 2020 11:29:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D993C89CE3
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 10:48:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21441226-1500050 for multiple; Tue, 09 Jun 2020 11:48:16 +0100
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 653906E03F;
+ Tue,  9 Jun 2020 11:29:06 +0000 (UTC)
+IronPort-SDR: z3uNnNs1u3hjdesULGWj4DZCg16qtuSLXBhOwLTxq0Ozw8n+OFIseh88QnKw5mUPGbMuUpP8Nx
+ 6fABO3eonGEA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2020 04:29:05 -0700
+IronPort-SDR: I9ZI5hVQJ8gIbUCnBOMI/UzhZ+Gbu7ciNfFaR4ypZ3pNkt8/JldgZKH6f5wcN4DYB5hfT0N6q7
+ Q1OEIaoCb5DA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,491,1583222400"; d="scan'208";a="270862142"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga003.jf.intel.com with ESMTP; 09 Jun 2020 04:29:02 -0700
+Received: from andy by smile with local (Exim 4.93)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1jicRF-00Bt4F-B4; Tue, 09 Jun 2020 14:29:05 +0300
+Date: Tue, 9 Jun 2020 14:29:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200609112905.GK2428291@smile.fi.intel.com>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-7-hdegoede@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <ae303541-7df8-6966-95ea-ed46942acb06@linux.intel.com>
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
- <20200607222108.14401-10-chris@chris-wilson.co.uk>
- <ae303541-7df8-6966-95ea-ed46942acb06@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159169969604.24308.16289911444825302624@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 09 Jun 2020 11:48:16 +0100
-Subject: Re: [Intel-gfx] [PATCH 10/28] drm/i915/gem: Separate reloc
- validation into an earlier step
+Content-Disposition: inline
+In-Reply-To: <20200607181840.13536-7-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v2 06/15] pwm: crc: Fix period / duty_cycle
+ times being off by a factor of 256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,115 +52,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-06-09 08:47:00)
+On Sun, Jun 07, 2020 at 08:18:31PM +0200, Hans de Goede wrote:
+> While looking into adding atomic-pwm support to the pwm-crc driver I
+> noticed something odd, there is a PWM_BASE_CLK define of 6 MHz and
+> there is a clock-divider which divides this with a value between 1-128,
+> and there are 256 duty-cycle steps.
 > 
-> On 07/06/2020 23:20, Chris Wilson wrote:
-> > Over the next couple of patches, we will want to lock all the modified
-> > vma for relocation processing under a single ww_mutex. We neither want
-> > to have to include the vma that are skipped (due to no modifications
-> > required) nor do we want those to be marked as written too. So separate
-> > out the reloc validation into an early step, which we can use both to
-> > reject the execbuf before committing to making our changes, and to
-> > filter out the unmodified vma.
-> > 
-> > This does introduce a second pass through the reloc[], but only if we
-> > need to emit relocations.
-> > 
-> > v2: reuse the outer loop, not cut'n'paste.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 145 +++++++++++-------
-> >   1 file changed, 86 insertions(+), 59 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > index 23db79b806db..01ab1e15a142 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > @@ -911,9 +911,9 @@ static void eb_destroy(const struct i915_execbuffer *eb)
-> >   
-> >   static inline u64
-> >   relocation_target(const struct drm_i915_gem_relocation_entry *reloc,
-> > -               const struct i915_vma *target)
-> > +               u64 target)
-> >   {
-> > -     return gen8_canonical_addr((int)reloc->delta + target->node.start);
-> > +     return gen8_canonical_addr((int)reloc->delta + target);
-> >   }
-> >   
-> >   static void reloc_cache_init(struct reloc_cache *cache,
-> > @@ -1292,26 +1292,11 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
-> >       return 0;
-> >   }
-> >   
-> > -static u64
-> > -relocate_entry(struct i915_execbuffer *eb,
-> > -            struct i915_vma *vma,
-> > -            const struct drm_i915_gem_relocation_entry *reloc,
-> > -            const struct i915_vma *target)
-> > -{
-> > -     u64 target_addr = relocation_target(reloc, target);
-> > -     int err;
-> > -
-> > -     err = __reloc_entry_gpu(eb, vma, reloc->offset, target_addr);
-> > -     if (err)
-> > -             return err;
-> > -
-> > -     return target->node.start | UPDATE;
-> > -}
-> > -
-> > -static u64
-> > -eb_relocate_entry(struct i915_execbuffer *eb,
-> > -               struct eb_vma *ev,
-> > -               const struct drm_i915_gem_relocation_entry *reloc)
-> > +static int
-> > +eb_reloc_prepare(struct i915_execbuffer *eb,
-> > +              struct eb_vma *ev,
-> > +              const struct drm_i915_gem_relocation_entry *reloc,
-> > +              struct drm_i915_gem_relocation_entry __user *user)
-> >   {
-> >       struct drm_i915_private *i915 = eb->i915;
-> >       struct eb_vma *target;
-> > @@ -1389,6 +1374,32 @@ eb_relocate_entry(struct i915_execbuffer *eb,
-> >               return -EINVAL;
-> >       }
-> >   
-> > +     return 1;
-> > +}
-> > +
-> > +static int
-> > +eb_reloc_entry(struct i915_execbuffer *eb,
-> > +            struct eb_vma *ev,
-> > +            const struct drm_i915_gem_relocation_entry *reloc,
-> > +            struct drm_i915_gem_relocation_entry __user *user)
-> > +{
-> > +     struct eb_vma *target;
-> > +     u64 offset;
-> > +     int err;
-> > +
-> > +     /* we've already hold a reference to all valid objects */
-> > +     target = eb_get_vma(eb, reloc->target_handle);
-> > +     if (unlikely(!target))
-> > +             return -ENOENT;
-> > +
-> > +     /*
-> > +      * If the relocation already has the right value in it, no
-> > +      * more work needs to be done.
-> > +      */
-> > +     offset = gen8_canonical_addr(target->vma->node.start);
-> > +     if (offset == reloc->presumed_offset) > +               return 0;
-> > +
+> The pwm-crc code before this commit assumed that a clock-divider
+> setting of 1 means that the PWM output is running at 6 MHZ, if that
+> is true, where do these 256 duty-cycle steps come from?
 > 
-> Haven't these reloc entries been removed from the list in the prepare phase?
+> This would require an internal frequency of 256 * 6 MHz = 1.5 GHz, that
+> seems unlikely for a PMIC which is using a silicon process optimized for
+> power-switching transistors. It is way more likely that there is an 8
+> bit counter for the duty cycle which acts as an extra fixed divider
+> wrt the PWM output frequency.
+> 
+> The main user of the pwm-crc driver is the i915 GPU driver which uses it
+> for backlight control. Lets compare the PWM register values set by the
+> video-BIOS (the GOP), assuming the extra fixed divider is present versus
+> the PWM frequency specified in the Video-BIOS-Tables:
+> 
+> Device:		PWM Hz set by BIOS	PWM Hz specified in VBT
+> Asus T100TA 	200			200
+> Asus T100HA 	200			200
+> Lenovo Miix 2 8	23437			20000
+> Toshiba WT8-A	23437			20000
+> 
+> So as we can see if we assume the extra division by 256 then the register
+> values set by the GOP are an exact match for the VBT values, where as
+> otherwise the values would be of by a factor of 256.
+> 
+> This commit fixes the period / duty_cycle calculations to take the
+> extra division by 256 into account.
 
-No, we don't adjust the user reloc arrays, we only skip entire objects
-that do not require relocs.
--Chris
+...
+
+> +#define NSEC_PER_MHZ		1000
+
+This is against physics. What this cryptic name means actually?
+Existing NSEC_PER_USEC ?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
