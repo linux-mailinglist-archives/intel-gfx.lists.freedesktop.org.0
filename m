@@ -2,45 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A0F1F46DF
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 21:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B1D1F46E8
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 21:17:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202076E0C4;
-	Tue,  9 Jun 2020 19:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B334189E9B;
+	Tue,  9 Jun 2020 19:17:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC696E0C4
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 19:14:04 +0000 (UTC)
-IronPort-SDR: xXHZiqnKN7FnHuoaKdNNYMecYm9w8jT+kEA0UO6ldxlwUVsl5qDb49oBKpVuVuyMGLw9yzCQhR
- cBVZ47l1348A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2020 12:14:04 -0700
-IronPort-SDR: 8cVZxMan6KpVLLp5I6ggae9XLDe1wG0A+BMA4LKynngsqkhX7sOwQGXA2Rgh8QqR7Rf0d/uAt8
- E/Wfd6kZV4RQ==
-X-IronPort-AV: E=Sophos;i="5.73,493,1583222400"; d="scan'208";a="447230378"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2020 12:14:02 -0700
-Date: Tue, 9 Jun 2020 22:13:54 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200609191354.GJ22647@ideak-desk.fi.intel.com>
-References: <20200608181023.11503-1-imre.deak@intel.com>
- <20200609150525.GP6112@intel.com>
- <20200609174035.GG22647@ideak-desk.fi.intel.com>
- <20200609175923.GU6112@intel.com>
- <20200609180852.GI22647@ideak-desk.fi.intel.com>
- <20200609185656.GA26705@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9B2689E9B;
+ Tue,  9 Jun 2020 19:17:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0D2DA47DA;
+ Tue,  9 Jun 2020 19:17:32 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200609185656.GA26705@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the i915_dsc_fec_support
- debugfs file for DP MST connectors
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 09 Jun 2020 19:17:32 -0000
+Message-ID: <159173025282.17060.8043804600924297267@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200608181023.11503-1-imre.deak@intel.com>
+In-Reply-To: <20200608181023.11503-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_the_i915=5Fdsc=5Ffec=5Fsupport_debugfs_file_for_DP?=
+ =?utf-8?q?_MST_connectors_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,217 +39,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 09, 2020 at 11:56:56AM -0700, Manasi Navare wrote:
-> On Tue, Jun 09, 2020 at 09:08:52PM +0300, Imre Deak wrote:
-> > On Tue, Jun 09, 2020 at 08:59:23PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, Jun 09, 2020 at 08:40:35PM +0300, Imre Deak wrote:
-> > > > On Tue, Jun 09, 2020 at 06:05:25PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Mon, Jun 08, 2020 at 09:10:23PM +0300, Imre Deak wrote:
-> > > > > > DSC is not supported on DP MST streams so just return -EINVAL w=
-hen
-> > > > > > reading/writing the i915_dsc_fec_support debugfs file for such
-> > > > > > connectors.
-> > > > > > =
+== Series Details ==
 
-> > > > > > This also fixes an OOPS, caused by the encoder->digport cast, w=
-hich is
-> > > > > > not valid for MST encoders.
-> > > > > > =
+Series: drm/i915: Fix the i915_dsc_fec_support debugfs file for DP MST connectors (rev3)
+URL   : https://patchwork.freedesktop.org/series/78128/
+State : success
 
-> > > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > > > ---
-> > > > > >  .../drm/i915/display/intel_display_debugfs.c  | 36 +++++++++++=
-++++----
-> > > > > >  1 file changed, 29 insertions(+), 7 deletions(-)
-> > > > > > =
+== Summary ==
 
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs=
-.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > > > > index 2b640d8ab9d2..ebca8e488d03 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > > > > @@ -2094,6 +2094,8 @@ static int i915_dsc_fec_support_show(stru=
-ct seq_file *m, void *data)
-> > > > > >  	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTI=
-BLE);
-> > > > > >  =
+CI Bug Log - changes from CI_DRM_8604 -> Patchwork_17916
+====================================================
 
-> > > > > >  	do {
-> > > > > > +		struct intel_encoder *encoder;
-> > > > > > +
-> > > > > >  		try_again =3D false;
-> > > > > >  		ret =3D drm_modeset_lock(&dev->mode_config.connection_mutex,
-> > > > > >  				       &ctx);
-> > > > > > @@ -2120,8 +2122,17 @@ static int i915_dsc_fec_support_show(str=
-uct seq_file *m, void *data)
-> > > > > >  		} else if (ret) {
-> > > > > >  			break;
-> > > > > >  		}
-> > > > > > -		intel_dp =3D intel_attached_dp(to_intel_connector(connector)=
-);
-> > > > > > +
-> > > > > > +		encoder =3D intel_attached_encoder(to_intel_connector(connec=
-tor));
-> > > > > > +		/* TODO: Add DSC support for MST streams */
-> > > > > > +		if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST) {
-> > > > > > +			ret =3D -EINVAL;
-> > > > > > +			break;
-> > > > > > +		}
-> > > > > > +
-> > > > > > +		intel_dp =3D &enc_to_dig_port(encoder)->dp;
-> > > > > >  		crtc_state =3D to_intel_crtc_state(crtc->state);
-> > > > > > +
-> > > > > >  		seq_printf(m, "DSC_Enabled: %s\n",
-> > > > > >  			   yesno(crtc_state->dsc.compression_enable));
-> > > > > >  		seq_printf(m, "DSC_Sink_Support: %s\n",
-> > > > > > @@ -2147,9 +2158,8 @@ static ssize_t i915_dsc_fec_support_write=
-(struct file *file,
-> > > > > >  	int ret;
-> > > > > >  	struct drm_connector *connector =3D
-> > > > > >  		((struct seq_file *)file->private_data)->private;
-> > > > > > -	struct intel_encoder *encoder =3D intel_attached_encoder(to_i=
-ntel_connector(connector));
-> > > > > > -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> > > > > > -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > > > > +	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> > > > > > +	struct intel_encoder *encoder;
-> > > > > >  =
+Summary
+-------
 
-> > > > > >  	if (len =3D=3D 0)
-> > > > > >  		return 0;
-> > > > > > @@ -2163,10 +2173,22 @@ static ssize_t i915_dsc_fec_support_wri=
-te(struct file *file,
-> > > > > >  =
+  **SUCCESS**
 
-> > > > > >  	drm_dbg(&i915->drm, "Got %s for DSC Enable\n",
-> > > > > >  		(dsc_enable) ? "true" : "false");
-> > > > > > -	intel_dp->force_dsc_en =3D dsc_enable;
-> > > > > >  =
+  No regressions found.
 
-> > > > > > -	*offp +=3D len;
-> > > > > > -	return len;
-> > > > > > +	drm_modeset_lock(&i915->drm.mode_config.connection_mutex, NUL=
-L);
-> > > > > > +
-> > > > > > +	encoder =3D intel_attached_encoder(to_intel_connector(connect=
-or));
-> > > > > > +	/* TODO: Add DSC support for MST streams */
-> > > > > > +	if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST) {
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/index.html
 
-> even after we force dsc en from IGT through this debugfs node, the
-> actual enabling checks if dsc supported, so may be since we currently
-> dont support on MST, can we add some condition in this function:
-> intel_dsc_source_support() to not support on MST encoders?
+Known issues
+------------
 
-I think the final API is not yeat clear for MST, so since it's not used
-either I agree that it's better to remove it.
+  Here are the changes found in Patchwork_17916 that come from known issues:
 
-> Also, currently since we dont even call intel_dp_dsc_compute_config in
-> MST codepath, how does it even make a difference if we set
-> force_dsc_en through this debugfs or not for MST?
+### IGT changes ###
 
-The difference is that intel_attached_dp() can't be used on MST
-connectors.
+#### Issues hit ####
 
-> =
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
 
-> Manasi
-> =
+  
+#### Possible fixes ####
 
-> > > > > =
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-j1900/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-byt-j1900/igt@i915_module_load@reload.html
+    - fi-byt-n2820:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-n2820/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-byt-n2820/igt@i915_module_load@reload.html
 
-> > > > > The attached encoder can be NULL for MST.
-> > > > =
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
 
-> > > > Yes, I also sent v2 with that fixed.
-> > > > =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
 
-> > > > > Can't we just not add this debugfs file for MST connectors?
-> > > > =
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [FAIL][11] ([i915#262]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
 
-> > > > Won't we have per MST connector DSC at one point? In that case we'd=
- need
-> > > > something like this anyway.
-> > > =
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
 
-> > > The problem is that it doesn't work until the encoder has been attach=
-ed.
-> > > So the behaviour of the interface would be rather inconsistent when
-> > > applied to MST connectors. No idea what current tests are doing with
-> > > this stuff so can't say whether it would be a problem in practice.
-> > =
+  
+#### Warnings ####
 
-> > It's used to force DSC by writing to it before commit, so yes then it
-> > wouldn't work anyway.
-> > =
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
 
-> > > > If this is never needed then yes, better not
-> > > > to add it. I can't use connector_type which is the same for MST and=
- SST
-> > > > connectors so is it ok to differentiate based on a
-> > > > intel_attached_encoder() =3D=3D NULL check?
-> > > =
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
-> > > IIRC some other places use connector.mst_port to tell the two
-> > > apart.
-> > =
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
 
-> > Ok, will use that.
-> > =
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
-> > > =
 
-> > > > =
+Participating hosts (49 -> 42)
+------------------------------
 
-> > > > > =
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-> > > > > > +		ret =3D -EINVAL;
-> > > > > > +	} else {
-> > > > > > +		enc_to_intel_dp(encoder)->force_dsc_en =3D dsc_enable;
-> > > > > > +		*offp +=3D len;
-> > > > > > +		ret =3D len;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-> > > > > > +
-> > > > > > +	return ret;
-> > > > > >  }
-> > > > > >  =
 
-> > > > > >  static int i915_dsc_fec_support_open(struct inode *inode,
-> > > > > > -- =
+Build changes
+-------------
 
-> > > > > > 2.23.1
-> > > > > > =
+  * Linux: CI_DRM_8604 -> Patchwork_17916
 
-> > > > > > _______________________________________________
-> > > > > > Intel-gfx mailing list
-> > > > > > Intel-gfx@lists.freedesktop.org
-> > > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > > > =
+  CI-20190529: 20190529
+  CI_DRM_8604: 24c6364ec0e3c895ec4237d7a8f3516316a761ff @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5700: 88e379cef970db3dab020966d5dd117de7cc03ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17916: b4af214db886283d6bc416bb70d95623c8c47ff6 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> > > > > -- =
 
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > =
+== Linux commits ==
 
-> > > -- =
+b4af214db886 drm/i915: Fix the i915_dsc_fec_support debugfs file for DP MST connectors
 
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17916/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
