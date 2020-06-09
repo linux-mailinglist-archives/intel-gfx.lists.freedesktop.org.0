@@ -1,31 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E221F3B09
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 14:47:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92E371F3B4B
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 15:02:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3AE6E2A3;
-	Tue,  9 Jun 2020 12:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 239FC6E29E;
+	Tue,  9 Jun 2020 13:02:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8661B6E29E;
- Tue,  9 Jun 2020 12:47:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 80551A3C0D;
- Tue,  9 Jun 2020 12:47:46 +0000 (UTC)
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
+ [IPv6:2607:f8b0:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 656A96E29E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 13:02:26 +0000 (UTC)
+Received: by mail-oi1-x242.google.com with SMTP id i74so18643175oib.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Jun 2020 06:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=z3RXu55VZIYDjszom+vDkGSJEcdyt+INKagJd6+0MEQ=;
+ b=R+F/VTo0Ejl5k9gKU9VinlPaDh7R/lAdiTIbKQpW6aZgCVW+eeXtpCtxAhJC+YAXvA
+ M2aeu2S2r0l60MT1fKGdhs5bRQyYyqIzaynBxu4WhpkZDHIg1qrOyrwAZsnVksuohfHY
+ NTUguuSq0VCzouoYWF8yWZ0q7dN5b91CfOQKY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=z3RXu55VZIYDjszom+vDkGSJEcdyt+INKagJd6+0MEQ=;
+ b=QpO3hUysVxc5Mf/F3ljj408DcfMd7YwI7ItG0y80hKUqHBAd1NgvRqmJeUp7wKy54H
+ t0PhJSIlojvthA0z6Y44OaPQS5W70pzNcK3ySQJdMPtuWz7hlBgHCK/duIBHRYC9C8BT
+ geSrC5r21ChcD2aUH36qp1eno+sKNq3UNBdrpHWtFYtFfJcuqeP+Tg5llmBtgUuOvwAV
+ WiikHb8k5pMyeYPsARoFKE70fHhpQuaN6BsRwnD1J4yUO/nSm9b5l48NIHDuzTgICbIX
+ dgcXV7zivORg0Lhp2+GAOJDW12VTM8hZXAlHPM4YrUqax4Abr3bpSWpPSAh8ZuMt1VDF
+ j5WA==
+X-Gm-Message-State: AOAM530YdA4wki4HceG3UfsAJYKP5d5Qt6+vgjixW+w7UIq4/0cTXefZ
+ eKO6U5GG5PPlWPp9uhN4IomQKdxX2qL+KXaHebT9+g==
+X-Google-Smtp-Source: ABdhPJz/sCpxAngdu3gaTOehDJIdDfez1EQOZaqrtY6fQs7i7sMX+CUFhCAWcY+P7kq0nmhm0Lo0jI39cEs5WMxBDA8=
+X-Received: by 2002:aca:4b91:: with SMTP id y139mr3209291oia.128.1591707745503; 
+ Tue, 09 Jun 2020 06:02:25 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 09 Jun 2020 12:47:46 -0000
-Message-ID: <159170686652.17060.18319086847110725343@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Incrementally_check_for_rewinding?=
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-54-daniel.vetter@ffwll.ch>
+ <20200415094512.GA30444@ravnborg.org>
+ <MWHPR12MB14532DA5713E3B579ABFE1F4A1DB0@MWHPR12MB1453.namprd12.prod.outlook.com>
+ <CAKMK7uGDGgt8Cm_bFoyzeoP2CWyiUNdUwb7GL6Ohu3k0rP0p1w@mail.gmail.com>
+ <20200428140842.GL3456981@phenom.ffwll.local>
+ <CH2PR12MB3894B40C6D71435D3E759A34A1A20@CH2PR12MB3894.namprd12.prod.outlook.com>
+ <CAKMK7uFRt14m24ajYygdRZz=fUMhA9u6=590R2jjhXGq=VtwNA@mail.gmail.com>
+ <20200604080507.GT20149@phenom.ffwll.local>
+ <CY4PR1201MB01363EB95985A2C64ADA6841DE890@CY4PR1201MB0136.namprd12.prod.outlook.com>
+ <CAKMK7uFLvV3=uhfnf=MreKBM==-gzXqx3NrV8KDA2D5sTAn2SQ@mail.gmail.com>
+ <CY4PR1201MB013642EB94E07AED91813A5FDE890@CY4PR1201MB0136.namprd12.prod.outlook.com>
+ <CAKMK7uESUnLR1N07T513RjGUAp8FA6oHaO1Y+uvTKpFuM_8+gQ@mail.gmail.com>
+ <CY4PR1201MB013654230A216EE7EB3C0E9BDE820@CY4PR1201MB0136.namprd12.prod.outlook.com>
+In-Reply-To: <CY4PR1201MB013654230A216EE7EB3C0E9BDE820@CY4PR1201MB0136.namprd12.prod.outlook.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 9 Jun 2020 15:02:14 +0200
+Message-ID: <CAKMK7uFHCTkqoMGBW3QMjhJZaaakC_zYxxVW_C-LYRj0Yjt2gg@mail.gmail.com>
+To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Subject: Re: [Intel-gfx] [PATCH 53/59] drm/arc: Move to drm/tiny
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +70,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ "snps-arc@lists.infradead.org" <snps-arc@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Eugeniy,
 
-Series: drm/i915/gt: Incrementally check for rewinding
-URL   : https://patchwork.freedesktop.org/series/78163/
-State : warning
+Very much appreciated, and kinda expected. That 2nd backtrace really
+confuses me, so "something strange is going on" and the bisect looks
+funny is within expectations. Hopefully we can track down what's going
+on.
 
-== Summary ==
+Thanks, Daniel
 
-$ dim checkpatch origin/drm-tip
-e9fc78f4bfec drm/i915/gt: Incrementally check for rewinding
--:165: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#165: 
-new file mode 100644
+On Tue, Jun 9, 2020 at 2:08 PM Eugeniy Paltsev
+<Eugeniy.Paltsev@synopsys.com> wrote:
+>
+> Hi Daniel,
+>
+> I've got pretty strange results so I need some time to investigate it and probably retest.
+> I'll send you update in a few days.
+>
+> ---
+>  Eugeniy Paltsev
+>
+>
+> ________________________________________
+> From: Daniel Vetter <daniel@ffwll.ch>
+> Sent: Friday, June 5, 2020 22:55
+> To: Eugeniy Paltsev
+> Cc: Intel Graphics Development; DRI Development; Daniel Vetter; Sam Ravnborg; Alexey Brodkin; snps-arc@lists.infradead.org
+> Subject: Re: [PATCH 53/59] drm/arc: Move to drm/tiny
+>
+> Hi Eugeniy,
+>
+> Thanks for testing. I looked at the second one (I hoped it would just
+> magically disappear) and I still don't understand what's going on
+> there. My patch series isn't touching that area at all, so really
+> confused.
+>
+> I squashed in the bugfix from the previous round into the right
+> patches, and pushed a branch with just the arcpgu changes here:
+> https://urldefense.com/v3/__https://cgit.freedesktop.org/*danvet/drm/log/?h=for-eugeniy__;fg!!A4F2R9G_pg!IJ1o4XiXVdStPu--Q-SCTUpRbsbqrjX255R34nuD7L7ptPywOy4SKr21dwSpfOkXIVqH5pM$
+>
+> Maybe it's something in my pile of not-so-tested stuff :-)
+>
+> Can you pls test this? And if it still fails, try to bisect where it breaks?
+>
+> Thanks, Daniel
+>
+> On Thu, Jun 4, 2020 at 9:00 PM Eugeniy Paltsev
+> <Eugeniy.Paltsev@synopsys.com> wrote:
+> >
+> > I've tested your change and one issue gone.
+> >
+> > However I still see kernel crash (due to invalid read in kernel mode by 0x0 address) on weston stop:
+> > ----------------------------------->8-------------------------------------------
+> > Oops
+> > Path: (null)
+> > CPU: 0 PID: 12 Comm: kworker/0:1 Not tainted 5.7.0-rc6-01594-g4ceda91a4176-dirty #6
+> > Workqueue: events drm_mode_rmfb_work_fn
+> > Invalid Read @ 0x00000000 by insn @ drm_gem_fb_destroy+0x32/0x130
+> > ECR: 0x00050100 EFA: 0x00000000 ERET: 0x813b9a76
+> > STAT32: 0x80080602 [IE K     ]  BTA: 0x813b9a72
+> > BLK: drm_gem_fb_destroy+0xc0/0x130
+> >  SP: 0x9f055ea4  FP: 0x00000000
+> > LPS: 0x813560ec LPE: 0x813560f0 LPC: 0x00000000
+> > r00: 0x00000000 r01: 0x9f6a6100 r02: 0x00000001
+> > r03: 0x9fd5dde8 r04: 0x810f5de8 r05: 0x00000000
+> > r06: 0x00000000 r07: 0x00000000 r08: 0x000000e1
+> > r09: 0x00000000 r10: 0x00000000 r11: 0x000000e1
+> > r12: 0x813b9b04
+> >
+> > Stack Trace:
+> >   drm_gem_fb_destroy+0x32/0x130
+> >   drm_framebuffer_remove+0x1d2/0x358
+> >   drm_mode_rmfb_work_fn+0x28/0x38
+> >   process_one_work+0x19a/0x358
+> >   worker_thread+0x2c4/0x494
+> >   kthread+0xec/0x100
+> >   ret_from_fork+0x18/0x1c
+> > ----------------------------------->8-------------------------------------------
+> >
+> >
+> > The stack traces may vary but always end in drm_gem_fb_destroy:
+> > ----------------------------------->8-------------------------------------------
+> > Stack Trace:
+> >   drm_gem_fb_destroy+0x32/0x130
+> >   drm_mode_rmfb+0x10e/0x148
+> >   drm_ioctl_kernel+0x70/0xa0
+> >   drm_ioctl+0x284/0x410
+> >   ksys_ioctl+0xea/0xa3c
+> >   EV_Trap+0xcc/0xd0
+> > ----------------------------------->8-------------------------------------------
+> > Stack Trace:
+> >   drm_gem_fb_destroy+0x32/0x130
+> >   drm_fb_release+0x66/0xb0
+> >   drm_file_free.part.11+0x112/0x1bc
+> >   drm_release+0x80/0x120
+> >   __fput+0x98/0x1bc
+> >   task_work_run+0x6e/0xa8
+> >   do_exit+0x2b4/0x7fc
+> >   do_group_exit+0x2a/0x8c
+> >   get_signal+0x9a/0x5f0
+> >   do_signal+0x86/0x23c
+> >   resume_user_mode_begin+0x88/0xd0
+> > ----------------------------------->8-------------------------------------------
+> >
+> >
+> > ---
+> >  Eugeniy Paltsev
+> >
+> >
+> > ________________________________________
+> > From: Daniel Vetter <daniel@ffwll.ch>
+> > Sent: Thursday, June 4, 2020 14:19
+> > To: Eugeniy Paltsev
+> > Cc: Intel Graphics Development; DRI Development; Daniel Vetter; Sam Ravnborg; Alexey Brodkin
+> > Subject: Re: [PATCH 53/59] drm/arc: Move to drm/tiny
+> >
+> > Hi Eugeniy,
+> >
+> > Apologies, somehow I missed your mail. I looked at the code again, and I
+> > think I fumbled something. Does the below diff help to prevent the issues?
+> >
+> > Thanks, Daniel
+> >
+> >
+> > diff --git a/drivers/gpu/drm/tiny/arcpgu.c b/drivers/gpu/drm/tiny/arcpgu.c
+> > index 857812f25bec..33d812a5ad7f 100644
+> > --- a/drivers/gpu/drm/tiny/arcpgu.c
+> > +++ b/drivers/gpu/drm/tiny/arcpgu.c
+> > @@ -228,6 +228,9 @@ static void arc_pgu_update(struct drm_simple_display_pipe *pipe,
+> >         struct arcpgu_drm_private *arcpgu;
+> >         struct drm_gem_cma_object *gem;
+> >
+> > +       if (!pipe->plane.state->fb)
+> > +               return;
+> > +
+> >         arcpgu = pipe_to_arcpgu_priv(pipe);
+> >         gem = drm_fb_cma_get_gem_obj(pipe->plane.state->fb, 0);
+> >         arc_pgu_write(arcpgu, ARCPGU_REG_BUF0_ADDR, gem->paddr);
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > +41 (0) 79 365 57 48 - https://urldefense.com/v3/__http://blog.ffwll.ch__;!!A4F2R9G_pg!P0EvyJfMuDwqbeZmHZM5S9po30QWr4KgGrggRirNfgo7wrRXfnUO-8iq0AA4fQCW2WGPlDc$
+>
+>
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - https://urldefense.com/v3/__http://blog.ffwll.ch__;!!A4F2R9G_pg!IJ1o4XiXVdStPu--Q-SCTUpRbsbqrjX255R34nuD7L7ptPywOy4SKr21dwSpfOkXpn86Q20$
 
-total: 0 errors, 1 warnings, 0 checks, 222 lines checked
 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
