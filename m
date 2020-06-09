@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2843B1F498E
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 00:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8651F49F8
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 01:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE356E34E;
-	Tue,  9 Jun 2020 22:48:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7BA6E358;
+	Tue,  9 Jun 2020 23:07:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4616A6E34E;
- Tue,  9 Jun 2020 22:48:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F8F2A47E1;
- Tue,  9 Jun 2020 22:48:45 +0000 (UTC)
+X-Greylist: delayed 442 seconds by postgrey-1.36 at gabe;
+ Tue, 09 Jun 2020 22:26:08 UTC
+Received: from fsfla.org (fsfla.org [217.69.89.142])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E9FAE6E34A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 22:26:08 +0000 (UTC)
+Received: from free.home (179.178.72.90.dynamic.adsl.gvt.net.br
+ [179.178.72.90])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by fsfla.org (Postfix) with ESMTPSA id 33F39A275E;
+ Tue,  9 Jun 2020 22:18:26 +0000 (UTC)
+Received: from livre.home (livre.home [172.31.160.2])
+ by free.home (8.15.2/8.15.2) with ESMTPS id 059MI6tu910930
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 9 Jun 2020 19:18:06 -0300
+From: Alexandre Oliva <lxoliva@fsfla.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Organization: Free thinker, not speaking for FSF Latin America
+References: <20200608174654.1400710-1-rodrigo.vivi@intel.com>
+ <159163988890.30073.8976615673203599761@build.alporthouse.com>
+Date: Tue, 09 Jun 2020 19:18:06 -0300
+In-Reply-To: <159163988890.30073.8976615673203599761@build.alporthouse.com>
+ (Chris Wilson's message of "Mon, 08 Jun 2020 19:11:28 +0100")
+Message-ID: <ortuzjx4rl.fsf@livre.home>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 09 Jun 2020 22:48:45 -0000
-Message-ID: <159174292522.17062.18274486842907684637@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200609220616.6015-1-imre.deak@intel.com>
-In-Reply-To: <20200609220616.6015-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/icl=3A_Disable_DIP_on_MST_ports_with_the_transcoder_clock?=
- =?utf-8?q?_still_on?=
+X-Scanned-By: MIMEDefang 2.84
+X-Mailman-Approved-At: Tue, 09 Jun 2020 23:07:01 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Include asm sources for {ivb,
+ hsw}_clear_kernel.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,127 +51,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Jun  8, 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 
-Series: drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
-URL   : https://patchwork.freedesktop.org/series/78172/
-State : success
+> Quoting Rodrigo Vivi (2020-06-08 18:46:53)
+>> Alexandre Oliva has recently removed these files from Linux Libre
+>> with concerns that the sources weren't available.
+>> 
+>> The sources are available on IGT repository, and only open source
+>> tools are used to generate the {ivb,hsw}_clear_kernel.c files.
+>> 
+>> However, the remaining concern from Alexandre Oliva was around
+>> GPL license and the source not been present when distributing
+>> the code.
 
-== Summary ==
+Thanks for looking into this, and for addressing the potential issues so
+promptly.
 
-CI Bug Log - changes from CI_DRM_8604 -> Patchwork_17917
-====================================================
+>> let's make sure that we do include the asm sources here in our tree.
 
-Summary
--------
++1  having sources handy is good!
 
-  **SUCCESS**
+>> Btw, I tried to have some diligence here and make sure that the
+>> asms that these commits are adding are truly the source for
+>> the mentioned files:
 
-  No regressions found.
+Excellent!
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/index.html
+> Should there not be instructions on how to generate the object code?
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17917 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-j1900/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-byt-n2820:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-n2820/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-byt-n2820/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [FAIL][11] ([i915#262]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Considering that a script is used to generate it, to the point of adding
+some of the comments in the output, it might be a good idea to include
+it too, especially considering that scripts that control compilation are
+part of the complete corresponding source code under the GNU GPL.
 
 
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8604 -> Patchwork_17917
-
-  CI-20190529: 20190529
-  CI_DRM_8604: 24c6364ec0e3c895ec4237d7a8f3516316a761ff @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5700: 88e379cef970db3dab020966d5dd117de7cc03ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17917: 28cda6a9ac5e59753727007e79807876b33d43ac @ git://anongit.freedesktop.org/gfx-ci/linux
+IMHO, a link to help users locate the assembler, as comments in the
+script, would be welcome, though not mandatory IIUC.  Even though such
+links tend to rot over time, they at least offer encouragement to start
+or carry on a search ;-)
 
 
-== Linux commits ==
+Thanks again,
 
-28cda6a9ac5e drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/index.html
+-- 
+Alexandre Oliva, freedom fighter    he/him    https://FSFLA.org/blogs/lxo/
+Free Software Evangelist              Stallman was right, but he's left :(
+GNU Toolchain Engineer           Live long and free, and prosper ethically
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
