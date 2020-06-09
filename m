@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DDC1F4938
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 00:06:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2843B1F498E
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 00:48:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 783CD89124;
-	Tue,  9 Jun 2020 22:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE356E34E;
+	Tue,  9 Jun 2020 22:48:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB7A89124
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 22:06:23 +0000 (UTC)
-IronPort-SDR: MToGNJsHjpfYNCXa2/OP56Ap61JyXKf8yos63ltiLiYd8Eix9iTuFkn9ARaQm+uOyV0pKcVVqD
- /hkpAaTRpD5Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2020 15:06:23 -0700
-IronPort-SDR: CTkdF2taw1QtIeuSj19R+9oHkdPkc71XrFT5Rvz9Nz7ql0UKfKMrvEKd6OgrA6qYTJxk3R59VW
- n/FZMZxXz8/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,493,1583222400"; d="scan'208";a="271027312"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 09 Jun 2020 15:06:22 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Jun 2020 01:06:16 +0300
-Message-Id: <20200609220616.6015-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4616A6E34E;
+ Tue,  9 Jun 2020 22:48:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F8F2A47E1;
+ Tue,  9 Jun 2020 22:48:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/icl: Disable DIP on MST ports with the
- transcoder clock still on
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 09 Jun 2020 22:48:45 -0000
+Message-ID: <159174292522.17062.18274486842907684637@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200609220616.6015-1-imre.deak@intel.com>
+In-Reply-To: <20200609220616.6015-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/icl=3A_Disable_DIP_on_MST_ports_with_the_transcoder_clock?=
+ =?utf-8?q?_still_on?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,73 +39,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to BSpec the Data Island Packet should be disabled after
-disabling the transcoder, but before the transcoder clock select is set
-to none. On an ICL RVP, daisy-chained MST config not following this
-leads to a hang with the following MCE when disabling the output:
+== Series Details ==
 
-[  870.948739] mce: [Hardware Error]: CPU 0: Machine Check Exception: 5 Bank 6: ba00000011000402
-[  871.019212] mce: [Hardware Error]: RIP !INEXACT! 10:<ffffffff81aca652> {poll_idle+0x92/0xb0}
-[  871.019212] mce: [Hardware Error]: TSC 135a261fe61
-[  871.019212] mce: [Hardware Error]: PROCESSOR 0:706e5 TIME 1591739604 SOCKET 0 APIC 0 microcode 20
-[  871.019212] mce: [Hardware Error]: Run the above through 'mcelog --ascii'
-[  871.019212] mce: [Hardware Error]: Machine check: Processor context corrupt
-[  871.019212] Kernel panic - not syncing: Fatal machine check
-[  871.019212] Kernel Offset: disabled
+Series: drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
+URL   : https://patchwork.freedesktop.org/series/78172/
+State : success
 
-Bspec: 4287
+== Summary ==
 
-Fixes: fa37a213275c ("drm/i915: Stop sending DP SDPs on ddi disable")
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c    | 4 +++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 8 ++++++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+CI Bug Log - changes from CI_DRM_8604 -> Patchwork_17917
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 96eaa4b39c68..50ccc6e30dc1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3510,7 +3510,9 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 					  INTEL_OUTPUT_DP_MST);
- 	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 
--	intel_dp_set_infoframes(encoder, false, old_crtc_state, old_conn_state);
-+	if (!is_mst)
-+		intel_dp_set_infoframes(encoder, false,
-+					old_crtc_state, old_conn_state);
- 
- 	/*
- 	 * Power down sink before disabling the port, otherwise we end
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index d18b406f2a7d..f29e51ce489c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -397,6 +397,14 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
- 	 */
- 	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port,
- 				     false);
-+
-+	/*
-+	 * BSpec 4287: disable DIP after the transcoder is disabled and before
-+	 * the transcoder clock select is set to none.
-+	 */
-+	if (last_mst_stream)
-+		intel_dp_set_infoframes(&intel_dig_port->base, false,
-+					old_crtc_state, NULL);
- 	/*
- 	 * From TGL spec: "If multi-stream slave transcoder: Configure
- 	 * Transcoder Clock Select to direct no clock to the transcoder"
--- 
-2.23.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17917 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-j1900/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-byt-j1900/igt@i915_module_load@reload.html
+    - fi-byt-n2820:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-byt-n2820/igt@i915_module_load@reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-byt-n2820/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [FAIL][11] ([i915#262]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8604/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8604 -> Patchwork_17917
+
+  CI-20190529: 20190529
+  CI_DRM_8604: 24c6364ec0e3c895ec4237d7a8f3516316a761ff @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5700: 88e379cef970db3dab020966d5dd117de7cc03ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17917: 28cda6a9ac5e59753727007e79807876b33d43ac @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+28cda6a9ac5e drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17917/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
