@@ -2,30 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A371F3B6D
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 15:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB061F3CF3
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jun 2020 15:44:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D55F6E2B4;
-	Tue,  9 Jun 2020 13:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F233B6E0ED;
+	Tue,  9 Jun 2020 13:44:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 914516E2B2;
- Tue,  9 Jun 2020 13:08:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A048A00CC;
- Tue,  9 Jun 2020 13:08:59 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0596E0ED
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2020 13:44:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591710262;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ciM2j9nevs9rj7f3kAoWqHnY0nARQeatB2ntlMR/UQk=;
+ b=OcnNoqIzeLLbl4kL5KfiQkPLu65hqWlRhRaoT5YcRDlzmTaKZbA6B0oTRYqaFDi0SJuw+p
+ WM9rMb/NIJLFSSORoJ3JHDGCN0oN6XCKNvE84+wQhPQuJ3PTK/ZYkk0/EXy254Zph3w+T7
+ gNnrbOV2K5/aqYRT4tLQaYQ1e/WkEwo=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-367-lUppwKtzNNm5ckv-SbCgyQ-1; Tue, 09 Jun 2020 09:44:20 -0400
+X-MC-Unique: lUppwKtzNNm5ckv-SbCgyQ-1
+Received: by mail-ed1-f69.google.com with SMTP id y5so8222411edw.19
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Jun 2020 06:44:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ciM2j9nevs9rj7f3kAoWqHnY0nARQeatB2ntlMR/UQk=;
+ b=TqDFODmrHKCBWw0pVT/Yh6ZaUz98UZqJJYr6oUisIo/JUHPlLKOniukOjKNbelqd8a
+ 07SbBE2ZsWM8qTgCyPrwa/iwOitKroILAkLXfX9a9NoFM1zxDBYMnZ4op6hENj0MFyEM
+ 2z6W3ub+Hb4esSm+1Ue+fqt18hN9D7705t6PN24J4O83loHuAkDAC7+gZxUT/2VW2eJj
+ 3ee5TboahFLs6wjnWXG2yL3UNoESIcC9d3qkFC8hPTuT+v4Sk3vCabovXbNH66S7AXiT
+ yKceS8AZ12Zn6+epmnGmpAXl5rsyyaPV0XlHWtARK8ocqULxlRRSe4hQB2ORhZux4vC4
+ y12g==
+X-Gm-Message-State: AOAM533IubxbyHTpfKcegteqpFvvWqafUFAjfu++3NucpfzOu6lJC9Sj
+ wnXwNErQJC8GaLVNVDLU8x55VXJ3iZ+vOhbznz4d/CF27JXE2jkXqoWrvtiqgJ09z5qhx3SLIkw
+ 2dT7KX4cXiMqc+tc0hrqMjCdktmTh
+X-Received: by 2002:a17:906:aec5:: with SMTP id
+ me5mr26966117ejb.54.1591710259682; 
+ Tue, 09 Jun 2020 06:44:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwKA4dtsW1lefAvu07pIsZYL8eurJ7KGixlwM3PoADUunSCQ5qYiEPYeJz/bkLkGnOdTBQrmg==
+X-Received: by 2002:a17:906:aec5:: with SMTP id
+ me5mr26966096ejb.54.1591710259476; 
+ Tue, 09 Jun 2020 06:44:19 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id gj10sm13143604ejb.61.2020.06.09.06.44.18
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 09 Jun 2020 06:44:18 -0700 (PDT)
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-11-hdegoede@redhat.com>
+ <20200609113220.GM2428291@smile.fi.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <93c7843d-1225-c8c6-9eb7-1f11b44bec34@redhat.com>
+Date: Tue, 9 Jun 2020 15:44:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 09 Jun 2020 13:08:59 -0000
-Message-ID: <159170813953.17061.9710110462093972296@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200609122856.10207-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Incrementally_check_for_rewinding?=
+In-Reply-To: <20200609113220.GM2428291@smile.fi.intel.com>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v2 10/15] pwm: crc: Implement apply() method
+ to support the new atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,129 +85,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: drm/i915/gt: Incrementally check for rewinding
-URL   : https://patchwork.freedesktop.org/series/78163/
-State : success
+On 6/9/20 1:32 PM, Andy Shevchenko wrote:
+> On Sun, Jun 07, 2020 at 08:18:35PM +0200, Hans de Goede wrote:
+>> Replace the enable, disable and config pwm_ops with an apply op,
+>> to support the new atomic PWM API.
+> 
+> ...
+> 
+>> -static int crc_pwm_calc_clk_div(int period_ns)
+>> +static int crc_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>> +			 const struct pwm_state *state)
+>>   {
+>> -	int clk_div;
+>> -
+>> -	clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_MHZ);
+>> -	/* clk_div 1 - 128, maps to register values 0-127 */
+>> -	if (clk_div > 0)
+>> -		clk_div--;
+>> -
+>> -	return clk_div;
+>> -}
+> 
+> ...
+> 
+>> +		clk_div = PWM_BASE_CLK_MHZ * state->period /
+>> +			  (256 * NSEC_PER_MHZ);
+>> +		/* clk_div 1 - 128, maps to register values 0-127 */
+>> +		if (clk_div > 0)
+>> +			clk_div--;
+> 
+> And again... :-(
 
-== Summary ==
+Well yes I cannot help it that the original code, as submitted by Intel,
+was of very questionable quality, so instead of just converting it to the
+atomic PWM API I had to do a ton of bugfixes first...   I tried to do
+this all in small bits rather then in a single big rewrite the buggy
+<beep> commit to make life easier for reviewers.
 
-CI Bug Log - changes from CI_DRM_8602 -> Patchwork_17914
-====================================================
+I can introduce the crc_pwm_calc_clk_div helper earlier as you suggested
+in an earlier mail. I guess I could also keep the helper here, and then
+fold it into the function in a later commit (*).
 
-Summary
--------
+Would that work for you ?
 
-  **SUCCESS**
+Regards,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17914 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][3] -> [DMESG-WARN][4] ([i915#62] / [i915#92] / [i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * {igt@kms_flip@basic-flip-vs-modeset@b-dsi1}:
-    - {fi-tgl-dsi}:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@b-dsi1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@b-dsi1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][13] ([i915#62]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8602/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Hans
 
 
-Participating hosts (48 -> 43)
-------------------------------
 
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+*) Because having a helper for 3 lines of code when it is used only
+once is not helpful IMHO, it only makes it harder to figure out what
+the code is exactly doing when readin the code.
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8602 -> Patchwork_17914
-
-  CI-20190529: 20190529
-  CI_DRM_8602: 8b5dcdfb116246ecc8e676961bb1cf82ec75e33f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5699: 201da47cb57b8fadd9bc45be16b82617b32a2c01 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17914: e9fc78f4bfec134476a0eed02ee2b2241c4f206b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e9fc78f4bfec drm/i915/gt: Incrementally check for rewinding
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17914/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
