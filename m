@@ -2,61 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235801F555C
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 15:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B531F55AD
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 15:23:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8292E6E57A;
-	Wed, 10 Jun 2020 13:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79CD06E144;
+	Wed, 10 Jun 2020 13:23:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8C1A89EB7;
- Wed, 10 Jun 2020 13:07:34 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id E6AD13F683;
- Wed, 10 Jun 2020 15:07:32 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=CSFaq2l8; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8se4flHNtQaz; Wed, 10 Jun 2020 15:07:31 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id D09623F613;
- Wed, 10 Jun 2020 15:07:30 +0200 (CEST)
-Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 22F47360060;
- Wed, 10 Jun 2020 15:07:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1591794450; bh=IJ9u1GxVx+qsu6oG3TX7HWi7e9bnoSgVQXnBCxCvSrY=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=CSFaq2l8gV0H1uLMlTxTWB5ilfeWzJiad7o1Ei9DoLShaL8QaUdeDbLjt/qe+wgW+
- yn9NNJyKa56gDfDoXcFsVFJOkyVObxJPuPLYh/ula+z3sWXes4cnYncQPYbX5b9KQo
- gwWz7YCRYCYJTRPWHwedVmdLbCPwaFtmSfRgiIQw=
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-3-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <f5ffe0bf-e050-90c1-b83b-1f11fcf55012@shipmail.org>
-Date: Wed, 10 Jun 2020 15:07:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA316E144
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 13:23:49 +0000 (UTC)
+IronPort-SDR: rNXv9WqB53SHFdrbyBzTj9HaXiur4A4GRZ5MdN59ucNpTGZaewDpgrFNGQABn0TeZ1SSTjX1gt
+ hghDXkqln2zQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2020 06:23:48 -0700
+IronPort-SDR: k4Zu3lwiG/OojFeRgx3Lc8EdtQxt0/dlTadY5MFtD++Fv6xDC88Pe3MrsDY2ZpS22u8P34ztPy
+ 8f8VA05V5guA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,496,1583222400"; d="scan'208";a="418743885"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 10 Jun 2020 06:23:47 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 8EAAC5C2C9E; Wed, 10 Jun 2020 16:21:12 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200607222108.14401-3-chris@chris-wilson.co.uk>
+References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
+ <20200607222108.14401-3-chris@chris-wilson.co.uk>
+Date: Wed, 10 Jun 2020 16:21:12 +0300
+Message-ID: <877dwf9hvb.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200604081224.863494-3-daniel.vetter@ffwll.ch>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/18] dma-buf: minor doc touch-ups
+Subject: Re: [Intel-gfx] [PATCH 03/28] drm/i915/selftests: Teach hang-self
+ to target only itself
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,27 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-On 6/4/20 10:12 AM, Daniel Vetter wrote:
-> Just some tiny edits:
-> - fix link to struct dma_fence
-> - give slightly more meaningful title - the polling here is about
->    implicit fences, explicit fences (in sync_file or drm_syncobj) also
->    have their own polling
+> We have a test case to exercise resetting an engine while the other
+> engines are busy, all the TEST_SELF adds on top is that the target
+> engine also has background activity. In this case it is useful to first
+> test resetting the engine while there is background activity, as a
+> separate flag from exercising all others.
 >
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@intel.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
 
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> index 035f363fb0f8..2af66f8ffbd2 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> @@ -805,10 +805,10 @@ static int __igt_reset_engines(struct intel_gt *gt,
+>  			threads[tmp].resets =
+>  				i915_reset_engine_count(global, other);
+>  
+> -			if (!(flags & TEST_OTHERS))
+> +			if (other == engine && !(flags & TEST_SELF))
+>  				continue;
+>  
+> -			if (other == engine && !(flags & TEST_SELF))
+> +			if (other != engine && !(flags & TEST_OTHERS))
+>  				continue;
+>  
+>  			threads[tmp].engine = other;
+> @@ -999,7 +999,7 @@ static int igt_reset_engines(void *arg)
+>  		},
+>  		{
+>  			"self-priority",
+> -			TEST_OTHERS | TEST_ACTIVE | TEST_PRIORITY | TEST_SELF,
+> +			TEST_ACTIVE | TEST_PRIORITY | TEST_SELF,
+>  		},
+>  		{ }
+>  	};
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
