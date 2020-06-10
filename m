@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B92C1F5C18
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 21:41:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 184171F5C29
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 21:45:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D30F6E851;
-	Wed, 10 Jun 2020 19:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78FF66E855;
+	Wed, 10 Jun 2020 19:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82FE76E850
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 19:41:09 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id l26so2921119wme.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 12:41:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=gxGiZ/VHfKf+6Jo1ghbbgRFFU0Zpi0zAhXpkfpvcMXw=;
- b=QO43K+f+PF/xLiTpv5fDsVtVSydeT7uPLF+Enxz5VFclJnaOck+rXYyRTUj445JJoQ
- iY+mTtt4R940gyiSI9j99dCM9ig3G8TLgGy9L/b9UxDNKcMsNLWt1U1TTSV5dEL6MpeU
- DJtYNjXJdn5mo7Ineqcws0gBkdQPEIswb0e00=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=gxGiZ/VHfKf+6Jo1ghbbgRFFU0Zpi0zAhXpkfpvcMXw=;
- b=nkkeoyTam5UA4Qzd5r36fbSGwSNoU1S5dxneEnRJOEV6iRYGisUFkxuq5fIDnhBEM1
- +xQBGbCUpE2E8E8xTPQVAQn3zeEbrUv3kJzs4/ft8eMes+ZaXIeo96JWK08trEQ4n6fa
- 8EmIw7W0aCj+iYUl8rcc3ZVKarEKdP95XRnSow0vJASpYnbbqg8dfYgNmCu+cxoS6kVb
- roCRowwaliv3+xN6X/qPj0cNW3umWVUHPb67ngOwg7SB7ueeELS3aiRvEj8puhPq1hLP
- OikBFkus8F+g8PBPG4YSo7dFCL8ysd++fpSJPXzT34nuJlzMtPfGvVED+QFSTgm5ogPS
- woaQ==
-X-Gm-Message-State: AOAM533asZThvJcbh/wCyZzH2lWIQM3MOZgG0U1KM7LE1xt6GtEiv900
- E40zcM93w8vfuyHazr/eugtesLDZnOA=
-X-Google-Smtp-Source: ABdhPJxKthaR5TwT0o9vsCRPCbSs/REQdSbjo9kmrGkxY4OSEangZEFENs5GwyD2RFirbsf1gQB4qQ==
-X-Received: by 2002:a1c:a403:: with SMTP id n3mr4536352wme.2.1591818067664;
- Wed, 10 Jun 2020 12:41:07 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 138sm963623wma.23.2020.06.10.12.41.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Jun 2020 12:41:06 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 10 Jun 2020 21:41:01 +0200
-Message-Id: <20200610194101.1668038-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
-References: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B156E855
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 19:45:40 +0000 (UTC)
+IronPort-SDR: WvSRBCYG3nGOjP35gCt4yEid58WLHluKoTHWMbMT2JZ6HvigxWcBwafkOnIc7xejbxnkNiDUEb
+ gIEG017EQFnQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2020 12:45:39 -0700
+IronPort-SDR: D3P926pz2LMoAwBxS6HhB/RJUD6MgkvA+mdPYXSNqsRNPqfpq8zKNouYERCxkKgsVil92qRBJG
+ PYhxBxXVgMng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,497,1583222400"; d="scan'208";a="447654856"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga005.jf.intel.com with ESMTP; 10 Jun 2020 12:45:39 -0700
+Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 10 Jun 2020 12:45:38 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.115]) by
+ BGSMSX153.gar.corp.intel.com ([169.254.2.94]) with mapi id 14.03.0439.000;
+ Thu, 11 Jun 2020 01:15:36 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/icl: Disable DIP on MST ports with the
+ transcoder clock still on
+Thread-Index: AQHWPqo45lDH0djm60eJlVLUfIJqN6jSQJhg
+Date: Wed, 10 Jun 2020 19:45:35 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F82521F76@BGSMSX104.gar.corp.intel.com>
+References: <20200609220616.6015-1-imre.deak@intel.com>
+In-Reply-To: <20200609220616.6015-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] mm: Track mmu notifiers in
- fs_reclaim_acquire/release
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Disable DIP on MST ports with
+ the transcoder clock still on
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,111 +64,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, Jason Gunthorpe <jgg@mellanox.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ZnNfcmVjbGFpbV9hY3F1aXJlL3JlbGVhc2UgbmljZWx5IGNhdGNoIHJlY3Vyc2lvbiBpc3N1ZXMg
-d2hlbgphbGxvY2F0aW5nIEdGUF9LRVJORUwgbWVtb3J5IGFnYWluc3Qgc2hyaW5rZXJzICh3aGlj
-aCBncHUgZHJpdmVycyB0ZW5kCnRvIHVzZSB0byBrZWVwIHRoZSBleGNlc3NpdmUgY2FjaGVzIGlu
-IGNoZWNrKS4gRm9yIG1tdSBub3RpZmllcgpyZWN1cnNpb25zIHdlIGRvIGhhdmUgbG9ja2RlcCBh
-bm5vdGF0aW9ucyBzaW5jZSAyM2I2ODM5NWM3YzcKKCJtbS9tbXVfbm90aWZpZXJzOiBhZGQgYSBs
-b2NrZGVwIG1hcCBmb3IgaW52YWxpZGF0ZV9yYW5nZV9zdGFydC9lbmQiKS4KCkJ1dCB0aGVzZSBv
-bmx5IGZpcmUgaWYgYSBwYXRoIGFjdHVhbGx5IHJlc3VsdHMgaW4gc29tZSBwdGUKaW52YWxpZGF0
-aW9uIC0gZm9yIG1vc3Qgc21hbGwgYWxsb2NhdGlvbnMgdGhhdCdzIHZlcnkgcmFyZWx5IHRoZSBj
-YXNlLgpUaGUgb3RoZXIgdHJvdWJsZSBpcyB0aGF0IHB0ZSBpbnZhbGlkYXRpb24gY2FuIGhhcHBl
-biBhbnkgdGltZSB3aGVuCl9fR0ZQX1JFQ0xBSU0gaXMgc2V0LiBXaGljaCBtZWFucyBvbmx5IHJl
-YWxseSBHRlBfQVRPTUlDIGlzIGEgc2FmZQpjaG9pY2UsIEdGUF9OT0lPIGlzbid0IGdvb2QgZW5v
-dWdoIHRvIGF2b2lkIHBvdGVudGlhbCBtbXUgbm90aWZpZXIKcmVjdXJzaW9uLgoKSSB3YXMgcG9u
-ZGVyaW5nIHdoZXRoZXIgd2Ugc2hvdWxkIGp1c3QgZG8gdGhlIGdlbmVyYWwgYW5ub3RhdGlvbiwg
-YnV0CnRoZXJlJ3MgYWx3YXlzIHRoZSByaXNrIGZvciBmYWxzZSBwb3NpdGl2ZXMuIFBsdXMgSSdt
-IGFzc3VtaW5nIHRoYXQKdGhlIGNvcmUgZnMgYW5kIGlvIGNvZGUgaXMgYSBsb3QgYmV0dGVyIHJl
-dmlld2VkIGFuZCB0ZXN0ZWQgdGhhbgpyYW5kb20gbW11IG5vdGlmaWVyIGNvZGUgaW4gZHJpdmVy
-cy4gSGVuY2Ugd2h5IEkgZGVjaWRlIHRvIG9ubHkKYW5ub3RhdGUgZm9yIHRoYXQgc3BlY2lmaWMg
-Y2FzZS4KCkZ1cnRoZXJtb3JlIGV2ZW4gaWYgd2UnZCBjcmVhdGUgYSBsb2NrZGVwIG1hcCBmb3Ig
-ZGlyZWN0IHJlY2xhaW0sIHdlJ2QKc3RpbGwgbmVlZCB0byBleHBsaWNpdCBwdWxsIGluIHRoZSBt
-bXUgbm90aWZpZXIgbWFwIC0gdGhlcmUncyBhIGxvdAptb3JlIHBsYWNlcyB0aGF0IGRvIHB0ZSBp
-bnZhbGlkYXRpb24gdGhhbiBqdXN0IGRpcmVjdCByZWNsYWltLCB0aGVzZQp0d28gY29udGV4dHMg
-YXJlbnQgdGhlIHNhbWUuCgpOb3RlIHRoYXQgdGhlIG1tdSBub3RpZmllcnMgbmVlZGluZyB0aGVp
-ciBvd24gaW5kZXBlbmRlbnQgbG9ja2RlcCBtYXAKaXMgYWxzbyB0aGUgcmVhc29uIHdlIGNhbid0
-IGhvbGQgdGhlbSBmcm9tIGZzX3JlY2xhaW1fYWNxdWlyZSB0bwpmc19yZWNsYWltX3JlbGVhc2Ug
-LSBpdCB3b3VsZCBuZXN0IHdpdGggdGhlIGFjcXVpc3Rpb24gaW4gdGhlIHB0ZQppbnZhbGlkYXRp
-b24gY29kZSwgY2F1c2luZyBhIGxvY2tkZXAgc3BsYXQuIEFuZCB3ZSBjYW4ndCByZW1vdmUgdGhl
-CmFubm90YXRpb25zIGZyb20gcHRlIGludmFsaWRhdGlvbiBhbmQgYWxsIHRoZSBvdGhlciBwbGFj
-ZXMgc2luY2UKdGhleSdyZSBjYWxsZWQgZnJvbSBtYW55IG90aGVyIHBsYWNlcyB0aGFuIHBhZ2Ug
-cmVjbGFpbS4gSGVuY2Ugd2UgY2FuCm9ubHkgZG8gdGhlIGVxdWl2YWxlbnQgb2YgbWlnaHRfbG9j
-aywgYnV0IG9uIHRoZSByYXcgbG9ja2RlcCBtYXAuCgpXaXRoIHRoaXMgd2UgY2FuIGFsc28gcmVt
-b3ZlIHRoZSBsb2NrZGVwIHByaW1pbmcgYWRkZWQgaW4gNjYyMDRmMWQyZDFiCigibW0vbW11X25v
-dGlmaWVyczogcHJpbWUgbG9ja2RlcCIpIHNpbmNlIHRoZSBuZXcgYW5ub3RhdGlvbnMgYXJlCnN0
-cmljdGx5IG1vcmUgcG93ZXJmdWwuCgp2MjogUmV2aWV3IGZyb20gVGhvbWFzIEhlbGxzdHJvbToK
-LSB1bmJvdGNoIHRoZSBmc19yZWNsYWltIGNvbnRleHQgY2hlY2ssIEkgYWNjaWRlbnRhbGx5IGlu
-dmVydGVkIGl0LAogIGJ1dCBpdCBkaWRuJ3QgYmxvdyB1cCBiZWNhdXNlIEkgaW52ZXJ0ZWQgaXQg
-aW1tZWRpYXRlbHkKLSBmaXggY29tcGlsaW5nIGZvciAhQ09ORklHX01NVV9OT1RJRklFUgoKQ2M6
-IFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkgPHRob21hc19vc0BzaGlwbWFpbC5vcmc+CkNjOiBB
-bmRyZXcgTW9ydG9uIDxha3BtQGxpbnV4LWZvdW5kYXRpb24ub3JnPgpDYzogSmFzb24gR3VudGhv
-cnBlIDxqZ2dAbWVsbGFub3guY29tPgpDYzogbGludXgtbW1Aa3ZhY2sub3JnCkNjOiBsaW51eC1y
-ZG1hQHZnZXIua2VybmVsLm9yZwpDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hv
-cnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
-aWdAYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBp
-bnRlbC5jb20+Ci0tLQpUaGlzIGlzIHBhcnQgb2YgYSBncHUgbG9ja2RlcCBhbm5vdGF0aW9uIHNl
-cmllcyBzaW1wbHkgYmVjYXVzZSBpdApyZWFsbHkgaGVscHMgdG8gY2F0Y2ggaXNzdWVzIHdoZXJl
-IGdwdSBzdWJzeXN0ZW0gbG9ja3MgYW5kIHByaW1pdGl2ZXMKY2FuIGRlYWRsb2NrIHdpdGggdGhl
-bXNlbHZlcyB0aHJvdWdoIGFsbG9jYXRpb25zIGFuZCBtbXUgbm90aWZpZXJzLgpCdXQgYXNpZGUg
-ZnJvbSB0aGF0IG1vdGl2YXRpb24gaXQgc2hvdWxkIGJlIGNvbXBsZXRlbHkgZnJlZS1zdGFuZGlu
-ZywKYW5kIGNhbiBsYW5kIHRocm91Z2ggLW1tLy1yZG1hLy1obW0gb3IgYW55IG90aGVyIHRyZWUg
-cmVhbGx5IHdoZW5ldmVyLgotRGFuaWVsCi0tLQogbW0vbW11X25vdGlmaWVyLmMgfCAgNyAtLS0t
-LS0tCiBtbS9wYWdlX2FsbG9jLmMgICB8IDI1ICsrKysrKysrKysrKysrKystLS0tLS0tLS0KIDIg
-ZmlsZXMgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvbW0vbW11X25vdGlmaWVyLmMgYi9tbS9tbXVfbm90aWZpZXIuYwppbmRleCAwNjg1MmI4
-OTZmYTYuLjVkNTc4YjkxMjJmOCAxMDA2NDQKLS0tIGEvbW0vbW11X25vdGlmaWVyLmMKKysrIGIv
-bW0vbW11X25vdGlmaWVyLmMKQEAgLTYxMiwxMyArNjEyLDYgQEAgaW50IF9fbW11X25vdGlmaWVy
-X3JlZ2lzdGVyKHN0cnVjdCBtbXVfbm90aWZpZXIgKnN1YnNjcmlwdGlvbiwKIAlsb2NrZGVwX2Fz
-c2VydF9oZWxkX3dyaXRlKCZtbS0+bW1hcF9zZW0pOwogCUJVR19PTihhdG9taWNfcmVhZCgmbW0t
-Pm1tX3VzZXJzKSA8PSAwKTsKIAotCWlmIChJU19FTkFCTEVEKENPTkZJR19MT0NLREVQKSkgewot
-CQlmc19yZWNsYWltX2FjcXVpcmUoR0ZQX0tFUk5FTCk7Ci0JCWxvY2tfbWFwX2FjcXVpcmUoJl9f
-bW11X25vdGlmaWVyX2ludmFsaWRhdGVfcmFuZ2Vfc3RhcnRfbWFwKTsKLQkJbG9ja19tYXBfcmVs
-ZWFzZSgmX19tbXVfbm90aWZpZXJfaW52YWxpZGF0ZV9yYW5nZV9zdGFydF9tYXApOwotCQlmc19y
-ZWNsYWltX3JlbGVhc2UoR0ZQX0tFUk5FTCk7Ci0JfQotCiAJaWYgKCFtbS0+bm90aWZpZXJfc3Vi
-c2NyaXB0aW9ucykgewogCQkvKgogCQkgKiBrbWFsbG9jIGNhbm5vdCBiZSBjYWxsZWQgdW5kZXIg
-bW1fdGFrZV9hbGxfbG9ja3MoKSwgYnV0IHdlCmRpZmYgLS1naXQgYS9tbS9wYWdlX2FsbG9jLmMg
-Yi9tbS9wYWdlX2FsbG9jLmMKaW5kZXggMTNjYzY1MzEyMmI3Li43NTM2ZmFhYWEwZmQgMTAwNjQ0
-Ci0tLSBhL21tL3BhZ2VfYWxsb2MuYworKysgYi9tbS9wYWdlX2FsbG9jLmMKQEAgLTU3LDYgKzU3
-LDcgQEAKICNpbmNsdWRlIDx0cmFjZS9ldmVudHMvb29tLmg+CiAjaW5jbHVkZSA8bGludXgvcHJl
-ZmV0Y2guaD4KICNpbmNsdWRlIDxsaW51eC9tbV9pbmxpbmUuaD4KKyNpbmNsdWRlIDxsaW51eC9t
-bXVfbm90aWZpZXIuaD4KICNpbmNsdWRlIDxsaW51eC9taWdyYXRlLmg+CiAjaW5jbHVkZSA8bGlu
-dXgvaHVnZXRsYi5oPgogI2luY2x1ZGUgPGxpbnV4L3NjaGVkL3J0Lmg+CkBAIC00MTI0LDcgKzQx
-MjUsNyBAQCBzaG91bGRfY29tcGFjdF9yZXRyeShzdHJ1Y3QgYWxsb2NfY29udGV4dCAqYWMsIHVu
-c2lnbmVkIGludCBvcmRlciwgaW50IGFsbG9jX2ZsYQogc3RhdGljIHN0cnVjdCBsb2NrZGVwX21h
-cCBfX2ZzX3JlY2xhaW1fbWFwID0KIAlTVEFUSUNfTE9DS0RFUF9NQVBfSU5JVCgiZnNfcmVjbGFp
-bSIsICZfX2ZzX3JlY2xhaW1fbWFwKTsKIAotc3RhdGljIGJvb2wgX19uZWVkX2ZzX3JlY2xhaW0o
-Z2ZwX3QgZ2ZwX21hc2spCitzdGF0aWMgYm9vbCBfX25lZWRfcmVjbGFpbShnZnBfdCBnZnBfbWFz
-aykKIHsKIAlnZnBfbWFzayA9IGN1cnJlbnRfZ2ZwX2NvbnRleHQoZ2ZwX21hc2spOwogCkBAIC00
-MTM2LDEwICs0MTM3LDYgQEAgc3RhdGljIGJvb2wgX19uZWVkX2ZzX3JlY2xhaW0oZ2ZwX3QgZ2Zw
-X21hc2spCiAJaWYgKGN1cnJlbnQtPmZsYWdzICYgUEZfTUVNQUxMT0MpCiAJCXJldHVybiBmYWxz
-ZTsKIAotCS8qIFdlJ3JlIG9ubHkgaW50ZXJlc3RlZCBfX0dGUF9GUyBhbGxvY2F0aW9ucyBmb3Ig
-bm93ICovCi0JaWYgKCEoZ2ZwX21hc2sgJiBfX0dGUF9GUykpCi0JCXJldHVybiBmYWxzZTsKLQog
-CWlmIChnZnBfbWFzayAmIF9fR0ZQX05PTE9DS0RFUCkKIAkJcmV0dXJuIGZhbHNlOwogCkBAIC00
-MTU4LDE1ICs0MTU1LDI1IEBAIHZvaWQgX19mc19yZWNsYWltX3JlbGVhc2Uodm9pZCkKIAogdm9p
-ZCBmc19yZWNsYWltX2FjcXVpcmUoZ2ZwX3QgZ2ZwX21hc2spCiB7Ci0JaWYgKF9fbmVlZF9mc19y
-ZWNsYWltKGdmcF9tYXNrKSkKLQkJX19mc19yZWNsYWltX2FjcXVpcmUoKTsKKwlpZiAoX19uZWVk
-X3JlY2xhaW0oZ2ZwX21hc2spKSB7CisJCWlmIChnZnBfbWFzayAmIF9fR0ZQX0ZTKQorCQkJX19m
-c19yZWNsYWltX2FjcXVpcmUoKTsKKworI2lmZGVmIENPTkZJR19NTVVfTk9USUZJRVIKKwkJbG9j
-a19tYXBfYWNxdWlyZSgmX19tbXVfbm90aWZpZXJfaW52YWxpZGF0ZV9yYW5nZV9zdGFydF9tYXAp
-OworCQlsb2NrX21hcF9yZWxlYXNlKCZfX21tdV9ub3RpZmllcl9pbnZhbGlkYXRlX3JhbmdlX3N0
-YXJ0X21hcCk7CisjZW5kaWYKKworCX0KIH0KIEVYUE9SVF9TWU1CT0xfR1BMKGZzX3JlY2xhaW1f
-YWNxdWlyZSk7CiAKIHZvaWQgZnNfcmVjbGFpbV9yZWxlYXNlKGdmcF90IGdmcF9tYXNrKQogewot
-CWlmIChfX25lZWRfZnNfcmVjbGFpbShnZnBfbWFzaykpCi0JCV9fZnNfcmVjbGFpbV9yZWxlYXNl
-KCk7CisJaWYgKF9fbmVlZF9yZWNsYWltKGdmcF9tYXNrKSkgeworCQlpZiAoZ2ZwX21hc2sgJiBf
-X0dGUF9GUykKKwkJCV9fZnNfcmVjbGFpbV9yZWxlYXNlKCk7CisJfQogfQogRVhQT1JUX1NZTUJP
-TF9HUEwoZnNfcmVjbGFpbV9yZWxlYXNlKTsKICNlbmRpZgotLSAKMi4yNi4yCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Wednesday, June 10, 2020 3:36 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Mun, Gwan-gyeong <gwan-gyeong.mun@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>
+> Subject: [PATCH] drm/i915/icl: Disable DIP on MST ports with the transcoder
+> clock still on
+> 
+> According to BSpec the Data Island Packet should be disabled after disabling the
+> transcoder, but before the transcoder clock select is set to none. On an ICL RVP,
+> daisy-chained MST config not following this leads to a hang with the following
+> MCE when disabling the output:
+> 
+> [  870.948739] mce: [Hardware Error]: CPU 0: Machine Check Exception: 5 Bank 6:
+> ba00000011000402 [  871.019212] mce: [Hardware Error]: RIP !INEXACT!
+> 10:<ffffffff81aca652> {poll_idle+0x92/0xb0} [  871.019212] mce: [Hardware Error]:
+> TSC 135a261fe61 [  871.019212] mce: [Hardware Error]: PROCESSOR 0:706e5 TIME
+> 1591739604 SOCKET 0 APIC 0 microcode 20 [  871.019212] mce: [Hardware Error]:
+> Run the above through 'mcelog --ascii'
+> [  871.019212] mce: [Hardware Error]: Machine check: Processor context corrupt [
+> 871.019212] Kernel panic - not syncing: Fatal machine check [  871.019212] Kernel
+> Offset: disabled
+> 
+> Bspec: 4287
+> 
+> Fixes: fa37a213275c ("drm/i915: Stop sending DP SDPs on ddi disable")
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+
+This is a good catch Imre. Would be good to know how you suspected this.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+>  drivers/gpu/drm/i915/display/intel_ddi.c    | 4 +++-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 8 ++++++++
+>  2 files changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 96eaa4b39c68..50ccc6e30dc1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3510,7 +3510,9 @@ static void intel_ddi_post_disable_dp(struct
+> intel_atomic_state *state,
+>  					  INTEL_OUTPUT_DP_MST);
+>  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+> 
+> -	intel_dp_set_infoframes(encoder, false, old_crtc_state, old_conn_state);
+> +	if (!is_mst)
+> +		intel_dp_set_infoframes(encoder, false,
+> +					old_crtc_state, old_conn_state);
+> 
+>  	/*
+>  	 * Power down sink before disabling the port, otherwise we end diff --git
+> a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index d18b406f2a7d..f29e51ce489c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -397,6 +397,14 @@ static void intel_mst_post_disable_dp(struct
+> intel_atomic_state *state,
+>  	 */
+>  	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector-
+> >port,
+>  				     false);
+> +
+> +	/*
+> +	 * BSpec 4287: disable DIP after the transcoder is disabled and before
+> +	 * the transcoder clock select is set to none.
+> +	 */
+> +	if (last_mst_stream)
+> +		intel_dp_set_infoframes(&intel_dig_port->base, false,
+> +					old_crtc_state, NULL);
+>  	/*
+>  	 * From TGL spec: "If multi-stream slave transcoder: Configure
+>  	 * Transcoder Clock Select to direct no clock to the transcoder"
+> --
+> 2.23.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
