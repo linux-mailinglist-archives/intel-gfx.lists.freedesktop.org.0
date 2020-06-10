@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50B11F5B6A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 20:42:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE8F1F5BED
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2020 21:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3812B6E83B;
-	Wed, 10 Jun 2020 18:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1961D6E842;
+	Wed, 10 Jun 2020 19:22:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BABE96E83A
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 18:42:47 +0000 (UTC)
-IronPort-SDR: PtZdQVX7KfvTc7pdbVVmu2JvjilcXjltgzimpX6f0nt/vaQNwzy8Py1GfknqTHJ3KX8KRqZOOL
- tSAikzmKQRRw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2020 11:42:47 -0700
-IronPort-SDR: XsHJcvq5B0+SuOrN6lAtXSl07f3rjFeIRVdWA9CgsUBulIFI3xKLV/ppaQmk9FhtdJhkIRqu6m
- S37TSEGPP6yA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,496,1583222400"; d="scan'208";a="473530206"
-Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
- ([10.223.74.152])
- by fmsmga005.fm.intel.com with ESMTP; 10 Jun 2020 11:42:45 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Jun 2020 00:42:32 +0530
-Message-Id: <20200610191232.11620-9-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200610191232.11620-1-uma.shankar@intel.com>
-References: <20200610191232.11620-1-uma.shankar@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BFEBC6E841;
+ Wed, 10 Jun 2020 19:22:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BD369A47DA;
+ Wed, 10 Jun 2020 19:22:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v3 8/8] drm/i915/display: [NOT FOR MERGE] Reduce
- blanking to support 4k60@10bpp for LSPCON
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Wed, 10 Jun 2020 19:22:29 -0000
+Message-ID: <159181694977.20176.15295093639042527592@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200610183132.13341-1-imre.deak@intel.com>
+In-Reply-To: <20200610183132.13341-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/tgl+=3A_Fix_DP_MST_ACT_sta?=
+ =?utf-8?q?tus_handling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,70 +39,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Blanking needs to be reduced to incorporate DP and HDMI timing/link
-bandwidth limitations for CEA modes (4k@60 at 10 bpp). DP can drive
-17.28Gbs while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps.
-This will cause mode to blank out. Reduced Htotal by shortening the
-back porch and front porch within permissible limits.
+== Series Details ==
 
-Note: This is for reference for userspace, not to be merged in kernel.
+Series: series starting with [1/2] drm/i915/tgl+: Fix DP MST ACT status handling
+URL   : https://patchwork.freedesktop.org/series/78193/
+State : success
 
-v2: This is marked as Not for merge and the responsibilty to program
-these custom timings will be on userspace. This patch is just for
-reference purposes. This is based on Ville's recommendation.
+== Summary ==
 
-v3: updated commit message.
+CI Bug Log - changes from CI_DRM_8611 -> Patchwork_17921
+====================================================
 
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 55fda074c0ad..45dbe4388742 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -632,8 +632,10 @@ intel_dp_mode_valid(struct drm_connector *connector,
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
-+	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
- 	struct drm_display_mode *fixed_mode = intel_connector->panel.fixed_mode;
- 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-+	struct intel_lspcon *lspcon = enc_to_intel_lspcon(intel_encoder);
- 	int target_clock = mode->clock;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int max_dotclk;
-@@ -655,6 +657,21 @@ intel_dp_mode_valid(struct drm_connector *connector,
- 		target_clock = fixed_mode->clock;
- 	}
- 
-+	/*
-+	 * Reducing Blanking to incorporate DP and HDMI timing/link bandwidth
-+	 * limitations for CEA modes (4k@60 at 10 bpp). DP can drive 17.28Gbs
-+	 * while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps. This will
-+	 * cause mode to blank out. Reduced Htotal by shortening the back porch
-+	 * and front porch within permissible limits.
-+	 */
-+	if (lspcon->active && lspcon->hdr_supported &&
-+	    mode->clock > 570000) {
-+		mode->clock = 570000;
-+		mode->htotal -= 180;
-+		mode->hsync_start -= 72;
-+		mode->hsync_end -= 72;
-+	}
-+
- 	max_link_clock = intel_dp_max_link_rate(intel_dp);
- 	max_lanes = intel_dp_max_lane_count(intel_dp);
- 
--- 
-2.22.0
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17921 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#227])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cml-s:           [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-cml-s/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-cml-s/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +7 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +5 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8611/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-tgl-u2 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8611 -> Patchwork_17921
+
+  CI-20190529: 20190529
+  CI_DRM_8611: b87354483fa40fef86da19ade9bfe9349f0cf6d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5702: d16ad07e7f2a028e14d61f570931c87fa5ce404c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17921: 77a732d46697f75e67997a7b5f8a94b21ab8e556 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+77a732d46697 drm/i915/dp_mst: Clear ACT sent flag before waiting for it
+34a2e794d60b drm/i915/tgl+: Fix DP MST ACT status handling
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17921/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
