@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC0E1F6B32
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 17:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C891F6B79
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 17:47:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE456E2EF;
-	Thu, 11 Jun 2020 15:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9711A6E82C;
+	Thu, 11 Jun 2020 15:47:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 029EF6E2EF
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 15:39:58 +0000 (UTC)
-IronPort-SDR: y/OL264YxA9K05ByJXv43TExZmPBNLh7yyAMG6D8FPatBcX8EfTBvkNpiAyh4+ZGY//zllyljF
- NSE4mWO6TQhQ==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E48726E82C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 15:47:11 +0000 (UTC)
+IronPort-SDR: yhOjEtvB0sucXHkigiM7MwERaK30vMSPxYwWfzP9Yj7lZtTcpUgWzvpIGI2505+MGfel5kclvO
+ xS5I3vvA4nMw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 08:39:58 -0700
-IronPort-SDR: jcrKcsnSFxz5N50vmJfHbUqSq2SgsVX5NeUslfAwOm9c6w3BC3DrhdHWQLH4CTBSfTqwS8tFFw
- vjFRYGVWjIqQ==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2020 08:46:54 -0700
+IronPort-SDR: SA+uYlW4DbdDgCK/C2KJpMkUXXmerDqhTVqeWzBMsSFaF+bIpByHdeR5Sa4ye4lZEZY+X9rMhi
+ mGL2h3ODSV7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="314845301"
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="260543007"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 11 Jun 2020 08:39:56 -0700
+ by orsmga007.jf.intel.com with SMTP; 11 Jun 2020 08:46:51 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Jun 2020 18:39:55 +0300
-Date: Thu, 11 Jun 2020 18:39:55 +0300
+ Thu, 11 Jun 2020 18:46:50 +0300
+Date: Thu, 11 Jun 2020 18:46:50 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200611153955.GA6112@intel.com>
-References: <20200610183132.13341-1-imre.deak@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20200611154650.GB6112@intel.com>
+References: <20200610191232.11620-1-uma.shankar@intel.com>
+ <20200610191232.11620-7-uma.shankar@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200610183132.13341-1-imre.deak@intel.com>
+In-Reply-To: <20200610191232.11620-7-uma.shankar@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl+: Fix DP MST ACT status
- handling
+Subject: Re: [Intel-gfx] [v3 6/8] drm/i915/display: Implement infoframes
+ readback for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,149 +58,116 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 10, 2020 at 09:31:31PM +0300, Imre Deak wrote:
-> On TGL+ the master transcoder's DP_TP_STATUS register should be used for
-> the MST ACT status handling, so make sure we do that even in case of
-> mulitple streams.
+On Thu, Jun 11, 2020 at 12:42:30AM +0530, Uma Shankar wrote:
+> Implemented Infoframes enabled readback for LSPCON devices.
+> This will help align the implementation with state readback
+> infrastructure.
 > =
 
-> This fixes an ACT timeout problem during disabling when using multiple
-> streams. Not sure why this was not a problem during enabling (even the
-> slave's DP_TP_STATUS signaled ACT correctly), but following the spec
-> works in that case too, so let's do that.
-> =
-
-> There is one more place using DP_TP_STATUS, FEC enabling, but I haven't
-> found in BSpec which register to use in that case, so I leave the
-> clarification of that for later.
-> =
-
-> BSpec: 49190
-> =
-
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 47 +++++++++++++++++----
->  1 file changed, 39 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 63 ++++++++++++++++++++-
+>  1 file changed, 61 insertions(+), 2 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index d18b406f2a7d..1c3654a117a9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -316,6 +316,40 @@ intel_dp_mst_atomic_check(struct drm_connector *conn=
-ector,
->  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
+m/i915/display/intel_lspcon.c
+> index 9034ce6f20b9..0ebe9a700291 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -576,11 +576,70 @@ void lspcon_set_infoframes(struct intel_encoder *en=
+coder,
+>  				  buf, ret);
 >  }
 >  =
 
-> +static i915_reg_t
-> +master_dp_tp_status_reg(const struct intel_crtc_state *crtc_state,
-> +			const struct intel_dp *intel_dp)
+> +static bool _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *au=
+x)
 > +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
+> +	int ret;
+> +	u32 val =3D 0;
+> +	u16 reg =3D LSPCON_MCA_AVI_IF_CTRL;
 > +
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		return TGL_DP_TP_STATUS(crtc_state->mst_master_transcoder);
+> +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> +	if (ret < 0) {
+> +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> +		return false;
+> +	}
 > +
-> +	return intel_dp->regs.dp_tp_status;
-> +}
+> +	if (val & LSPCON_MCA_AVI_IF_KICKOFF)
+> +		return true;
 > +
-> +static void clear_act_sent(const struct intel_crtc_state *crtc_state,
-> +			   const struct intel_dp *intel_dp)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> +	i915_reg_t dp_tp_status_reg =3D
-> +		master_dp_tp_status_reg(crtc_state, intel_dp);
-> +
-> +	intel_de_write(i915, dp_tp_status_reg,
-> +		       intel_de_read(i915, dp_tp_status_reg));
+> +	return false;
 
-Followup material:
-Should we actually just clear the bit(s) we care about? No idea what
-other stuff is in there.
+return val & ...;
 
 > +}
 > +
-> +static bool wait_for_act_sent(const struct intel_crtc_state *crtc_state,
-> +			      const struct intel_dp *intel_dp)
+> +static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux =
+*aux)
 > +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> +	i915_reg_t dp_tp_status_reg =3D
-> +		master_dp_tp_status_reg(crtc_state, intel_dp);
+> +	int ret;
+> +	u32 val =3D 0;
+> +	u16 reg =3D LSPCON_PARADE_AVI_IF_CTRL;
 > +
-> +	return intel_de_wait_for_set(i915, dp_tp_status_reg,
-> +				     DP_TP_STATUS_ACT_SENT, 1) =3D=3D 0;
+> +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> +	if (ret < 0) {
+> +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> +		return false;
+> +	}
+> +
+> +	if (val & LSPCON_PARADE_AVI_IF_KICKOFF)
+> +		return true;
+> +
+> +	return false;
 > +}
 > +
->  static void intel_mst_disable_dp(struct intel_atomic_state *state,
->  				 struct intel_encoder *encoder,
->  				 const struct intel_crtc_state *old_crtc_state,
-> @@ -376,8 +410,7 @@ static void intel_mst_post_disable_dp(struct intel_at=
-omic_state *state,
->  		       TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
->  		       val);
->  =
-
-> -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
-> -				  DP_TP_STATUS_ACT_SENT, 1))
-> +	if (!wait_for_act_sent(old_crtc_state, intel_dp))
->  		drm_err(&dev_priv->drm,
->  			"Timed out waiting for ACT sent when disabling\n");
->  	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> @@ -443,7 +476,6 @@ static void intel_mst_pre_enable_dp(struct intel_atom=
-ic_state *state,
->  	struct intel_connector *connector =3D
->  		to_intel_connector(conn_state->connector);
->  	int ret;
-> -	u32 temp;
->  	bool first_mst_stream;
->  =
-
->  	/* MST encoders are bound to a crtc, not to a connector,
-> @@ -476,8 +508,8 @@ static void intel_mst_pre_enable_dp(struct intel_atom=
-ic_state *state,
->  		drm_err(&dev_priv->drm, "failed to allocate vcpi\n");
->  =
-
->  	intel_dp->active_mst_links++;
-> -	temp =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_status);
-> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_status, temp);
+>  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *pipe_config)
+>  {
+> -	/* FIXME actually read this from the hw */
+> -	return 0;
+> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +	struct intel_lspcon *lspcon =3D enc_to_intel_lspcon(encoder);
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	bool infoframes_enabled;
+> +	u32 mask =3D 0;
+> +	u32 val;
 > +
-> +	clear_act_sent(pipe_config, intel_dp);
+> +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
+> +		infoframes_enabled =3D _lspcon_read_avi_infoframe_enabled_mca(&intel_d=
+p->aux);
+> +	else
+> +		infoframes_enabled =3D _lspcon_read_avi_infoframe_enabled_parade(&inte=
+l_dp->aux);
+> +
+> +	if (infoframes_enabled)
+> +		return true;
+
+This is supposed to return a bitmask of all enabled infoframes.
+
+Also my question "how do we turn off infoframes once enabled?"
+from https://patchwork.freedesktop.org/patch/351719/?series=3D72928&rev=3D1
+still remains unanswered...
+
+> +
+> +	if (lspcon->hdr_supported) {
+> +		val =3D intel_de_read(dev_priv,
+> +				    HSW_TVIDEO_DIP_CTL(pipe_config->cpu_transcoder));
+> +		mask |=3D VIDEO_DIP_ENABLE_GMP_HSW;
+> +
+> +		if (val & mask)
+> +			return val & mask;
+> +	}
+> +
+> +	return false;
+>  }
 >  =
 
->  	ret =3D drm_dp_update_payload_part1(&intel_dp->mst_mgr);
->  =
-
-> @@ -513,9 +545,8 @@ static void intel_mst_enable_dp(struct intel_atomic_s=
-tate *state,
->  	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
->  		    intel_dp->active_mst_links);
->  =
-
-> -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
-> -				  DP_TP_STATUS_ACT_SENT, 1))
-> -		drm_err(&dev_priv->drm, "Timed out waiting for ACT sent\n");
-> +	if (!wait_for_act_sent(pipe_config, intel_dp))
-> +		drm_err(&dev_priv->drm, "Timed out waiting for ACT sent when enabling\=
-n");
->  =
-
->  	drm_dp_check_act_status(&intel_dp->mst_mgr);
->  =
-
+>  void lspcon_resume(struct intel_lspcon *lspcon)
 > -- =
 
-> 2.23.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 2.22.0
 
 -- =
 
