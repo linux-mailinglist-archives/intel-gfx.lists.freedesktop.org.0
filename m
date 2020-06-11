@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37791F67E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 14:35:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D011F67EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 14:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E4C6E158;
-	Thu, 11 Jun 2020 12:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22DFA6E15C;
+	Thu, 11 Jun 2020 12:36:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D146E158
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 12:34:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1926E15C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 12:36:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21464495-1500050 
- for multiple; Thu, 11 Jun 2020 13:34:49 +0100
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21464518-1500050 for multiple; Thu, 11 Jun 2020 13:36:35 +0100
+MIME-Version: 1.0
+In-Reply-To: <20200611123038.91855-2-chris@chris-wilson.co.uk>
+References: <20200611123038.91855-1-chris@chris-wilson.co.uk>
+ <20200611123038.91855-2-chris@chris-wilson.co.uk>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Jun 2020 13:34:47 +0100
-Message-Id: <20200611123447.92171-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200611123038.91855-1-chris@chris-wilson.co.uk>
-References: <20200611123038.91855-1-chris@chris-wilson.co.uk>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/vblank: Estimate sample time
+Message-ID: <159187899353.1506.17977517184833304797@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 11 Jun 2020 13:36:33 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Tighten timestamp around
+ vblank sampling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,51 +40,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we have a precise start/end time for the sample, the actual time
-the HW was read back is within that interval, and more likely closer to
-the mean of the interval. Use the mean sample time when estimating the
-vblank time.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/drm_vblank.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index da7b0b0c1090..a7043d268cca 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -710,15 +710,18 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	delta_ns = div_s64(1000000LL * (vpos * mode->crtc_htotal + hpos),
- 			   mode->crtc_clock);
- 
-+	/* Estimate when the sample was taken */
-+	stime += (etime - stime) >> 1;
-+
- 	/* Subtract time delta from raw timestamp to get final
- 	 * vblank_time timestamp for end of vblank.
- 	 */
--	*vblank_time = ktime_sub_ns(etime, delta_ns);
-+	*vblank_time = ktime_sub_ns(stime, delta_ns);
- 
- 	if (!drm_debug_enabled(DRM_UT_VBL))
- 		return true;
- 
--	ts_etime = ktime_to_timespec64(etime);
-+	ts_etime = ktime_to_timespec64(stime);
- 	ts_vblank_time = ktime_to_timespec64(*vblank_time);
- 
- 	DRM_DEBUG_VBL("crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
--- 
-2.27.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMjAtMDYtMTEgMTM6MzA6MzgpCj4gVGlnaHRlbiB0aGUg
+dGltZXN0YW1wIHF1ZXJpZXMgYmVmb3JlL2FmdGVyIHRoZSByZWdpc3RlciByZWFkIHNvIHRoYXQg
+d2UKPiBoYXZlIGxlc3MgdW5jZXJ0YWluaXR5IGZvciB3aGVuIHRoZSByZWFkIGFjdHVhbGx5IHRv
+b2sgcGxhY2UuIFRoaXMgaXMKPiBtb3JlIGFwdCBmb3IgdGhlIG9sZGVyIGdlbmVyYXRpb25zIHdo
+ZXJlIGl0IGlzIG5vdCBhIHNpbXBsZSBzaW5nbGUKPiByZWdpc3RlciByZWFkLiBXaGV0aGVyIHdl
+IGFyZSBhYmxlIHRvIGRpc2Nlcm4gYW4gaW1wcm92ZW1lbnQgaW4gb3VyCj4gc2FtcGxpbmcgYWNj
+dXJhY3kgcmVtYWlucyB0byBiZSBzZWVuLgo+IAo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2lycS5jIHwgNTcgKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tCj4gIDEgZmls
+ZSBjaGFuZ2VkLCA0MiBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfaXJxLmMKPiBpbmRleCA4ZTgyM2JhMjVmNWYuLjljNDRkZjhlY2NlNyAxMDA2NDQK
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IEBAIC03MTMsNyArNzEzLDkgQEAgdTMyIGc0eF9nZXRf
+dmJsYW5rX2NvdW50ZXIoc3RydWN0IGRybV9jcnRjICpjcnRjKQo+ICAgKiBUaGlzIGZ1bmN0aW9u
+IHdpbGwgdXNlIEZyYW1lc3RhbXAgYW5kIGN1cnJlbnQKPiAgICogdGltZXN0YW1wIHJlZ2lzdGVy
+cyB0byBjYWxjdWxhdGUgdGhlIHNjYW5saW5lLgo+ICAgKi8KPiAtc3RhdGljIHUzMiBfX2ludGVs
+X2dldF9jcnRjX3NjYW5saW5lX2Zyb21fdGltZXN0YW1wKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
+KQo+ICtzdGF0aWMgdTMyCj4gK19faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmVfZnJvbV90aW1lc3Rh
+bXAoc3RydWN0IGludGVsX2NydGMgKmNydGMsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBrdGltZV90ICpzdGltZSwga3RpbWVfdCAqZXRpbWUpCj4gIHsKPiAgICAg
+ICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFz
+ZS5kZXYpOwo+ICAgICAgICAgc3RydWN0IGRybV92YmxhbmtfY3J0YyAqdmJsYW5rID0KPiBAQCAt
+NzM3LDYgKzczOSw5IEBAIHN0YXRpYyB1MzIgX19pbnRlbF9nZXRfY3J0Y19zY2FubGluZV9mcm9t
+X3RpbWVzdGFtcChzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKPiAgICAgICAgICAgICAgICAgICog
+cGlwZSBmcmFtZSB0aW1lIHN0YW1wLiBUaGUgdGltZSBzdGFtcCB2YWx1ZQo+ICAgICAgICAgICAg
+ICAgICAgKiBpcyBzYW1wbGVkIGF0IGV2ZXJ5IHN0YXJ0IG9mIHZlcnRpY2FsIGJsYW5rLgo+ICAg
+ICAgICAgICAgICAgICAgKi8KPiArICAgICAgICAgICAgICAgaWYgKHN0aW1lKQo+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICpzdGltZSA9IGt0aW1lX2dldCgpOwo+ICsKPiAgICAgICAgICAgICAg
+ICAgc2Nhbl9wcmV2X3RpbWUgPSBpbnRlbF9kZV9yZWFkX2Z3KGRldl9wcml2LAo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgUElQRV9GUk1UTVNUTVAo
+Y3J0Yy0+cGlwZSkpOwo+ICAKPiBAQCAtNzQ2LDYgKzc1MSw5IEBAIHN0YXRpYyB1MzIgX19pbnRl
+bF9nZXRfY3J0Y19zY2FubGluZV9mcm9tX3RpbWVzdGFtcChzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
+YykKPiAgICAgICAgICAgICAgICAgICovCj4gICAgICAgICAgICAgICAgIHNjYW5fY3Vycl90aW1l
+ID0gaW50ZWxfZGVfcmVhZF9mdyhkZXZfcHJpdiwgSVZCX1RJTUVTVEFNUF9DVFIpOwo+ICAKPiAr
+ICAgICAgICAgICAgICAgaWYgKGV0aW1lKQo+ICsgICAgICAgICAgICAgICAgICAgICAgICpldGlt
+ZSA9IGt0aW1lX2dldCgpOwoKSSBndWVzcyB3aXRoIFBSRUVNUFRfUlQgYW5kIHNsZWVwaW5nIHNw
+aW5sb2NrcywgdGhlc2UgdGltZXN0YW1wcyArCmludGVsX2RlX3JlYWRfZncgZGVzZXJ2ZSB0byBi
+ZSB3aXRoaW4gcHJlZW1wdF9kaXNhYmxlKCkuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
