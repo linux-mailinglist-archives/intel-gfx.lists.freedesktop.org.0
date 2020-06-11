@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71C21F6C34
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 18:32:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A68701F6C45
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 18:38:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1D676E84C;
-	Thu, 11 Jun 2020 16:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D96A6898C8;
+	Thu, 11 Jun 2020 16:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451EB6E84C
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 16:32:12 +0000 (UTC)
-IronPort-SDR: qO1iK7hZqH2Wf35GNuU4x0ClpPjlkqkuKpDeudlw8551VARAZx7WTnPWee8Oq7zanyxm4FtpbQ
- B/XtWQaWkr4Q==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B83B089206
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 16:37:57 +0000 (UTC)
+IronPort-SDR: db7LoFgX82lw/GwSI5HzJzLjzdR7HX9jemqs32rF7TM/mky9WynCAM1KuuUuhmx2RDG+ErdCvt
+ M6fD5M6Ne6Fg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 09:32:11 -0700
-IronPort-SDR: oBMTYEJyrf5BzhT6lyNrYY6BQNk7JoMqQkW5m30GgzwOa1+MzyUzkbvpLIUcIeJgjp33Fd0qzU
- ut+ZdUO7a0Lw==
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="350238191"
+ 11 Jun 2020 09:37:57 -0700
+IronPort-SDR: jNd3BOquXSRKy/vQ3hSJONlEbKb+sYjILOTFZSJwBMzGt98yF7x1c87LI/EbvyEsvO63ffJr81
+ acOizpGFDayQ==
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="306976600"
 Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 09:32:08 -0700
-Date: Thu, 11 Jun 2020 19:31:57 +0300
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2020 09:37:56 -0700
+Date: Thu, 11 Jun 2020 19:37:45 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200611163157.GJ17512@ideak-desk.fi.intel.com>
+Message-ID: <20200611163745.GK17512@ideak-desk.fi.intel.com>
 References: <20200610183132.13341-1-imre.deak@intel.com>
- <20200611153811.GZ6112@intel.com>
+ <20200611153955.GA6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200611153811.GZ6112@intel.com>
+In-Reply-To: <20200611153955.GA6112@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl+: Fix DP MST ACT status
  handling
@@ -56,7 +56,7 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2020 at 06:38:11PM +0300, Ville Syrj=E4l=E4 wrote:
+On Thu, Jun 11, 2020 at 06:39:55PM +0300, Ville Syrj=E4l=E4 wrote:
 > On Wed, Jun 10, 2020 at 09:31:31PM +0300, Imre Deak wrote:
 > > On TGL+ the master transcoder's DP_TP_STATUS register should be used for
 > > the MST ACT status handling, so make sure we do that even in case of
@@ -103,34 +103,6 @@ dev);
 > > +
 > > +	if (INTEL_GEN(dev_priv) >=3D 12)
 > > +		return TGL_DP_TP_STATUS(crtc_state->mst_master_transcoder);
-> =
-
-> Was going to say this needs a mst check, but then I noticed you're only
-> changing the mst paths. So this looks like a partial take on
-> https://patchwork.freedesktop.org/patch/364549/?series=3D76993&rev=3D2
-> Granted, my patch would require the crtc_state plumbing everywhere
-> so not really bug fix material.
-
-Yes, this would fix the problem.
-
-> The main question I have is why are regs.dp_tp* not being populated
-> correctly? Pretty sure they were supposed to be.
-
-Yea, the real problem is in intel_ddi_get_config() corrupting those
-regs. So an alternative would be to fix that instead..
-
-> Also there are a bunch of places where we poke DP_TP_CTL in
-> intel_ddi.c. Why aren't those a problem?
-
-Those happened to be correct for the actual port enabling/disabling.
-Only the non-primary streams were screwed up after a get_config() call.
-I was also a bit confused about which places need the master transcoder
-version of the dp_tp regs, since the spec requires this explicitly only
-for the ACT sent status check.  But I guess we need to use the master
-version in all cases.
-
-> =
-
 > > +
 > > +	return intel_dp->regs.dp_tp_status;
 > > +}
@@ -144,6 +116,19 @@ version in all cases.
 > > +
 > > +	intel_de_write(i915, dp_tp_status_reg,
 > > +		       intel_de_read(i915, dp_tp_status_reg));
+> =
+
+> Followup material:
+> Should we actually just clear the bit(s) we care about? No idea what
+> other stuff is in there.
+
+Yes, was thinking about that, but thought to leave it as-is for now,
+since enabling may depend on something that we clear there. Though
+clearing all the bits may break disabling, so probably better to have
+this change already now.
+
+> =
+
 > > +}
 > > +
 > > +static bool wait_for_act_sent(const struct intel_crtc_state *crtc_stat=
