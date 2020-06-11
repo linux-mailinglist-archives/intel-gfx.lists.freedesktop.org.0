@@ -2,32 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900571F6327
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 10:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2978C1F632F
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 10:02:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79D7B6E8AB;
-	Thu, 11 Jun 2020 08:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A898F6E8AE;
+	Thu, 11 Jun 2020 08:02:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09FFF6E8A7;
- Thu, 11 Jun 2020 08:01:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 761686E8AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 08:02:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21460947-1500050 for multiple; Thu, 11 Jun 2020 09:00:38 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200604081224.863494-4-daniel.vetter@ffwll.ch>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-4-daniel.vetter@ffwll.ch>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21460981-1500050 
+ for multiple; Thu, 11 Jun 2020 09:01:43 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <159186243606.1506.4437341616828968890@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 11 Jun 2020 09:00:36 +0100
-Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Jun 2020 09:01:35 +0100
+Message-Id: <20200611080140.30228-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/6] drm/i915/gt: Move hsw GT workarounds from
+ init_clock_gating to workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,88 +37,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, Thomas Hellstrom <thomas.hellstrom@intel.com>, Daniel Vetter <daniel.vetter@intel.com>, linux-media@vger.kernel.org, Christian König <christian.koenig@amd.com>, Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYW5pZWwgVmV0dGVyICgyMDIwLTA2LTA0IDA5OjEyOjA5KQo+IERlc2lnbiBpcyBz
-aW1pbGFyIHRvIHRoZSBsb2NrZGVwIGFubm90YXRpb25zIGZvciB3b3JrZXJzLCBidXQgd2l0aAo+
-IHNvbWUgdHdpc3RzOgo+IAo+IC0gV2UgdXNlIGEgcmVhZC1sb2NrIGZvciB0aGUgZXhlY3V0aW9u
-L3dvcmtlci9jb21wbGV0aW9uIHNpZGUsIHNvIHRoYXQKPiAgIHRoaXMgZXhwbGljaXQgYW5ub3Rh
-dGlvbiBjYW4gYmUgbW9yZSBsaWJlcmFsbHkgc3ByaW5rbGVkIGFyb3VuZC4KPiAgIFdpdGggcmVh
-ZCBsb2NrcyBsb2NrZGVwIGlzbid0IGdvaW5nIHRvIGNvbXBsYWluIGlmIHRoZSByZWFkLXNpZGUK
-PiAgIGlzbid0IG5lc3RlZCB0aGUgc2FtZSB3YXkgdW5kZXIgYWxsIGNpcmN1bXN0YW5jZXMsIHNv
-IEFCQkEgZGVhZGxvY2tzCj4gICBhcmUgb2suIFdoaWNoIHRoZXkgYXJlLCBzaW5jZSB0aGlzIGlz
-IGFuIGFubm90YXRpb24gb25seS4KPiAKPiAtIFdlJ3JlIHVzaW5nIG5vbi1yZWN1cnNpdmUgbG9j
-a2RlcCByZWFkIGxvY2sgbW9kZSwgc2luY2UgaW4gcmVjdXJzaXZlCj4gICByZWFkIGxvY2sgbW9k
-ZSBsb2NrZGVwIGRvZXMgbm90IGNhdGNoIHJlYWQgc2lkZSBoYXphcmRzLiBBbmQgd2UKPiAgIF92
-ZXJ5XyBtdWNoIHdhbnQgcmVhZCBzaWRlIGhhemFyZHMgdG8gYmUgY2F1Z2h0LiBGb3IgZnVsbCBk
-ZXRhaWxzIG9mCj4gICB0aGlzIGxpbWl0YXRpb24gc2VlCj4gCj4gICBjb21taXQgZTkxNDk4NTg5
-NzQ2MDY1ZTNhZTk1ZDlhMDBiMDY4ZTUyNWVlYzM0Zgo+ICAgQXV0aG9yOiBQZXRlciBaaWpsc3Ry
-YSA8cGV0ZXJ6QGluZnJhZGVhZC5vcmc+Cj4gICBEYXRlOiAgIFdlZCBBdWcgMjMgMTM6MTM6MTEg
-MjAxNyArMDIwMAo+IAo+ICAgICAgIGxvY2tpbmcvbG9ja2RlcC9zZWxmdGVzdHM6IEFkZCBtaXhl
-ZCByZWFkLXdyaXRlIEFCQkEgdGVzdHMKPiAKPiAtIFRvIGFsbG93IG5lc3Rpbmcgb2YgdGhlIHJl
-YWQtc2lkZSBleHBsaWNpdCBhbm5vdGF0aW9ucyB3ZSBleHBsaWNpdGx5Cj4gICBrZWVwIHRyYWNr
-IG9mIHRoZSBuZXN0aW5nLiBsb2NrX2lzX2hlbGQoKSBhbGxvd3MgdXMgdG8gZG8gdGhhdC4KPiAK
-PiAtIFRoZSB3YWl0LXNpZGUgYW5ub3RhdGlvbiBpcyBhIHdyaXRlIGxvY2ssIGFuZCBlbnRpcmVs
-eSBkb25lIHdpdGhpbgo+ICAgZG1hX2ZlbmNlX3dhaXQoKSBmb3IgZXZlcnlvbmUgYnkgZGVmYXVs
-dC4KPiAKPiAtIFRvIGJlIGFibGUgdG8gZnJlZWx5IGFubm90YXRlIGhlbHBlciBmdW5jdGlvbnMg
-SSB3YW50IHRvIG1ha2UgaXQgb2sKPiAgIHRvIGNhbGwgZG1hX2ZlbmNlX2JlZ2luL2VuZF9zaWdu
-YWxsaW5nIGZyb20gc29mdC9oYXJkaXJxIGNvbnRleHQuCj4gICBGaXJzdCBhdHRlbXB0IHdhcyB1
-c2luZyB0aGUgaGFyZGlycSBsb2NraW5nIGNvbnRleHQgZm9yIHRoZSB3cml0ZQo+ICAgc2lkZSBp
-biBsb2NrZGVwLCBidXQgdGhpcyBmb3JjZXMgYWxsIG5vcm1hbCBzcGlubG9ja3MgbmVzdGVkIHdp
-dGhpbgo+ICAgZG1hX2ZlbmNlX2JlZ2luL2VuZF9zaWduYWxsaW5nIHRvIGJlIHNwaW5sb2Nrcy4g
-VGhhdCBib2xsb2Nrcy4KPiAKPiAgIFRoZSBhcHByb2FjaCBub3cgaXMgdG8gc2ltcGxlIGNoZWNr
-IGluX2F0b21pYygpLCBhbmQgZm9yIHRoZXNlIGNhc2VzCj4gICBlbnRpcmVseSByZWx5IG9uIHRo
-ZSBtaWdodF9zbGVlcCgpIGNoZWNrIGluIGRtYV9mZW5jZV93YWl0KCkuIFRoYXQKPiAgIHdpbGwg
-Y2F0Y2ggYW55IHdyb25nIG5lc3RpbmcgYWdhaW5zdCBzcGlubG9ja3MgZnJvbSBzb2Z0L2hhcmRp
-cnEKPiAgIGNvbnRleHRzLgo+IAo+IFRoZSBpZGVhIGhlcmUgaXMgdGhhdCBldmVyeSBjb2RlIHBh
-dGggdGhhdCdzIGNyaXRpY2FsIGZvciBldmVudHVhbGx5Cj4gc2lnbmFsbGluZyBhIGRtYV9mZW5j
-ZSBzaG91bGQgYmUgYW5ub3RhdGVkIHdpdGgKPiBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxp
-bmcuIFRoZSBhbm5vdGF0aW9uIGlkZWFsbHkgc3RhcnRzIHJpZ2h0Cj4gYWZ0ZXIgYSBkbWFfZmVu
-Y2UgaXMgcHVibGlzaGVkIChhZGRlZCB0byBhIGRtYV9yZXN2LCBleHBvc2VkIGFzIGEKPiBzeW5j
-X2ZpbGUgZmQsIGF0dGFjaGVkIHRvIGEgZHJtX3N5bmNvYmogZmQsIG9yIGFueXRoaW5nIGVsc2Ug
-dGhhdAo+IG1ha2VzIHRoZSBkbWFfZmVuY2UgdmlzaWJsZSB0byBvdGhlciBrZXJuZWwgdGhyZWFk
-cyksIHVwIHRvIGFuZAo+IGluY2x1ZGluZyB0aGUgZG1hX2ZlbmNlX3dhaXQoKS4gRXhhbXBsZXMg
-YXJlIGlycSBoYW5kbGVycywgdGhlCj4gc2NoZWR1bGVyIHJ0IHRocmVhZHMsIHRoZSB0YWlsIG9m
-IGV4ZWNidWYgKGFmdGVyIHRoZSBjb3JyZXNwb25kaW5nCj4gZmVuY2VzIGFyZSB2aXNpYmxlKSwg
-YW55IHdvcmtlcnMgdGhhdCBlbmQgdXAgc2lnbmFsbGluZyBkbWFfZmVuY2VzIGFuZAo+IHJlYWxs
-eSBhbnl0aGluZyBlbHNlLiBOb3QgYW5ub3RhdGVkIHNob3VsZCBiZSBjb2RlIHBhdGhzIHRoYXQg
-b25seQo+IGNvbXBsZXRlIGZlbmNlcyBvcHBvcnR1bmlzdGljYWxseSBhcyB0aGUgZ3B1IHByb2dy
-ZXNzZXMsIGxpa2UgZS5nLgo+IHNocmlua2VyL2V2aWN0aW9uIGNvZGUuCj4gCj4gVGhlIG1haW4g
-Y2xhc3Mgb2YgZGVhZGxvY2tzIHRoaXMgaXMgc3VwcG9zZWQgdG8gY2F0Y2ggYXJlOgo+IAo+IFRo
-cmVhZCBBOgo+IAo+ICAgICAgICAgbXV0ZXhfbG9jayhBKTsKPiAgICAgICAgIG11dGV4X3VubG9j
-ayhBKTsKPiAKPiAgICAgICAgIGRtYV9mZW5jZV9zaWduYWwoKTsKPiAKPiBUaHJlYWQgQjoKPiAK
-PiAgICAgICAgIG11dGV4X2xvY2soQSk7Cj4gICAgICAgICBkbWFfZmVuY2Vfd2FpdCgpOwo+ICAg
-ICAgICAgbXV0ZXhfdW5sb2NrKEEpOwo+IAo+IFRocmVhZCBCIGlzIGJsb2NrZWQgb24gQSBzaWdu
-YWxsaW5nIHRoZSBmZW5jZSwgYnV0IEEgbmV2ZXIgZ2V0cyBhcm91bmQKPiB0byB0aGF0IGJlY2F1
-c2UgaXQgY2Fubm90IGFjcXVpcmUgdGhlIGxvY2sgQS4KPiAKPiBOb3RlIHRoYXQgZG1hX2ZlbmNl
-X3dhaXQoKSBpcyBhbGxvd2VkIHRvIGJlIG5lc3RlZCB3aXRoaW4KPiBkbWFfZmVuY2VfYmVnaW4v
-ZW5kX3NpZ25hbGxpbmcgc2VjdGlvbnMuIFRvIGFsbG93IHRoaXMgdG8gaGFwcGVuIHRoZQo+IHJl
-YWQgbG9jayBuZWVkcyB0byBiZSB1cGdyYWRlZCB0byBhIHdyaXRlIGxvY2ssIHdoaWNoIG1lYW5z
-IHRoYXQgYW55Cj4gb3RoZXIgbG9jayBpcyBhY3F1aXJlZCBiZXR3ZWVuIHRoZSBkbWFfZmVuY2Vf
-YmVnaW5fc2lnbmFsbGluZygpIGNhbGwgYW5kCj4gdGhlIGNhbGwgdG8gZG1hX2ZlbmNlX3dhaXQo
-KSwgYW5kIHN0aWxsIGhlbGQsIHRoaXMgd2lsbCByZXN1bHQgaW4gYW4KPiBpbW1lZGlhdGUgbG9j
-a2RlcCBjb21wbGFpbnQuIFRoZSBvbmx5IG90aGVyIG9wdGlvbiB3b3VsZCBiZSB0byBub3QKPiBh
-bm5vdGF0ZSBzdWNoIGNhbGxzLCBkZWZlYXRpbmcgdGhlIHBvaW50LiBUaGVyZWZvcmUgdGhlc2Ug
-YW5ub3RhdGlvbnMKPiBjYW5ub3QgYmUgc3ByaW5rbGVkIG92ZXIgdGhlIGNvZGUgZW50aXJlbHkg
-bWluZGxlc3MgdG8gYXZvaWQgZmFsc2UKPiBwb3NpdGl2ZXMuCj4gCj4gdjI6IGhhbmRsZSBzb2Z0
-L2hhcmRpcnEgY3R4IGJldHRlciBhZ2FpbnN0IHdyaXRlIHNpZGUgYW5kIGRvbnQgZm9yZ2V0Cj4g
-RVhQT1JUX1NZTUJPTCwgZHJpdmVycyBjYW4ndCB1c2UgdGhpcyBvdGhlcndpc2UuCj4gCj4gdjM6
-IEtlcm5lbGRvYy4KPiAKPiB2NDogU29tZSBzcGVsbGluZyBmaXhlcyBmcm9tIE1pa2EKPiAKPiBD
-YzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBpbnRlbC5jb20+Cj4gQ2M6IFRob21hcyBI
-ZWxsc3Ryb20gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+IENjOiBsaW51eC1tZWRpYUB2
-Z2VyLmtlcm5lbC5vcmcKPiBDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnCj4gQ2M6
-IGxpbnV4LXJkbWFAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogQ2hyaXMg
-V2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0
-IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IENocmlzdGlhbiBLw7Zu
-aWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0
-dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KCkludHJvZHVjaW5nIGEgZ2xvYmFsIGxvY2tt
-YXAgdGhhdCBjYW5ub3QgY2FwdHVyZSB0aGUgcnVsZXMgY29ycmVjdGx5LApOYWNrZWQtYnk6IENo
-cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Rescue the GT workarounds from being buried inside init_clock_gating so
+that we remember to apply them after a GT reset, and that they are
+included in our verification that the workarounds are applied.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2011
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 48 +++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_pm.c             | 39 +----------------
+ 2 files changed, 50 insertions(+), 37 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3eec31c5a714..39f070bff09d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -178,6 +178,12 @@ wa_write_or(struct i915_wa_list *wal, i915_reg_t reg, u32 set)
+ 	wa_write_masked_or(wal, reg, set, set);
+ }
+ 
++static void
++wa_write_clr(struct i915_wa_list *wal, i915_reg_t reg, u32 clr)
++{
++	wa_write_masked_or(wal, reg, clr, 0);
++}
++
+ static void
+ wa_masked_en(struct i915_wa_list *wal, i915_reg_t reg, u32 val)
+ {
+@@ -708,6 +714,46 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
+ 	return 0;
+ }
+ 
++static void
++hsw_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
++{
++	/* L3 caching of data atomics doesn't work -- disable it. */
++	wa_write_or(wal, HSW_SCRATCH1, HSW_SCRATCH1_L3_DATA_ATOMICS_DISABLE);
++
++	wa_add(wal,
++	       HSW_ROW_CHICKEN3, 0,
++	       _MASKED_BIT_ENABLE(HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE),
++		0 /* XXX does this reg exist? */);
++
++	/* WaVSRefCountFullforceMissDisable:hsw */
++	wa_write_clr(wal, GEN7_FF_THREAD_MODE, GEN7_FF_VS_REF_CNT_FFME);
++
++	wa_masked_dis(wal,
++		      CACHE_MODE_0_GEN7,
++		      /* WaDisable_RenderCache_OperationalFlush:hsw */
++		      RC_OP_FLUSH_ENABLE |
++		      /* enable HiZ Raw Stall Optimization */
++		      HIZ_RAW_STALL_OPT_DISABLE);
++
++	/* WaDisable4x2SubspanOptimization:hsw */
++	wa_masked_en(wal, CACHE_MODE_1, PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
++
++	/*
++	 * BSpec recommends 8x4 when MSAA is used,
++	 * however in practice 16x4 seems fastest.
++	 *
++	 * Note that PS/WM thread counts depend on the WIZ hashing
++	 * disable bit, which we don't touch here, but it's good
++	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
++	 */
++	wa_add(wal, GEN7_GT_MODE, 0,
++	       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
++	       GEN6_WIZ_HASHING_16x4);
++
++	/* WaSampleCChickenBitEnable:hsw */
++	wa_masked_en(wal, HALF_SLICE_CHICKEN3, HSW_SAMPLE_C_PERFORMANCE);
++}
++
+ static void
+ gen9_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+@@ -985,6 +1031,8 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 		bxt_gt_workarounds_init(i915, wal);
+ 	else if (IS_SKYLAKE(i915))
+ 		skl_gt_workarounds_init(i915, wal);
++	else if (IS_HASWELL(i915))
++		hsw_gt_workarounds_init(i915, wal);
+ 	else if (INTEL_GEN(i915) <= 8)
+ 		return;
+ 	else
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 26b670fa3f88..249ee720874c 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -7321,45 +7321,10 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+ 
+ static void hsw_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	/* L3 caching of data atomics doesn't work -- disable it. */
+-	I915_WRITE(HSW_SCRATCH1, HSW_SCRATCH1_L3_DATA_ATOMICS_DISABLE);
+-	I915_WRITE(HSW_ROW_CHICKEN3,
+-		   _MASKED_BIT_ENABLE(HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE));
+-
+ 	/* This is required by WaCatErrorRejectionIssue:hsw */
+ 	I915_WRITE(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+-			I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+-			GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+-
+-	/* WaVSRefCountFullforceMissDisable:hsw */
+-	I915_WRITE(GEN7_FF_THREAD_MODE,
+-		   I915_READ(GEN7_FF_THREAD_MODE) & ~GEN7_FF_VS_REF_CNT_FFME);
+-
+-	/* WaDisable_RenderCache_OperationalFlush:hsw */
+-	I915_WRITE(CACHE_MODE_0_GEN7, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
+-
+-	/* enable HiZ Raw Stall Optimization */
+-	I915_WRITE(CACHE_MODE_0_GEN7,
+-		   _MASKED_BIT_DISABLE(HIZ_RAW_STALL_OPT_DISABLE));
+-
+-	/* WaDisable4x2SubspanOptimization:hsw */
+-	I915_WRITE(CACHE_MODE_1,
+-		   _MASKED_BIT_ENABLE(PIXEL_SUBSPAN_COLLECT_OPT_DISABLE));
+-
+-	/*
+-	 * BSpec recommends 8x4 when MSAA is used,
+-	 * however in practice 16x4 seems fastest.
+-	 *
+-	 * Note that PS/WM thread counts depend on the WIZ hashing
+-	 * disable bit, which we don't touch here, but it's good
+-	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+-	 */
+-	I915_WRITE(GEN7_GT_MODE,
+-		   _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4));
+-
+-	/* WaSampleCChickenBitEnable:hsw */
+-	I915_WRITE(HALF_SLICE_CHICKEN3,
+-		   _MASKED_BIT_ENABLE(HSW_SAMPLE_C_PERFORMANCE));
++		   I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
++		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+ 
+ 	/* WaSwitchSolVfFArbitrationPriority:hsw */
+ 	I915_WRITE(GAM_ECOCHK, I915_READ(GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
