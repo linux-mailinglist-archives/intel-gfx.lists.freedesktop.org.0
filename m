@@ -1,45 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768151F66EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 13:38:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0981F676B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 14:04:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC446E02E;
-	Thu, 11 Jun 2020 11:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06A926E14A;
+	Thu, 11 Jun 2020 12:04:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE076E02E
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 11:38:26 +0000 (UTC)
-IronPort-SDR: 7qF3HhhQANAydRY3Czzy5BCfWWAbACQUA5wdY7wvF+PB7nabURpNfJxtenZ1BCAyoD3T/nCray
- d9aieviZx3zw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 04:38:26 -0700
-IronPort-SDR: iKEJRTsVSD0rqX6/3UN3KBcmep50LW09+rH16TStwD4Fhwu2kFpDRriWk2j8ouAg3R1yj9uace
- W1+1HisUoiLQ==
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="419075734"
-Received: from osides-mobl1.ger.corp.intel.com (HELO [10.214.204.82])
- ([10.214.204.82])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 04:38:24 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
- <20200607222108.14401-4-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <716a37f5-544e-c871-ec31-21b7288337b7@linux.intel.com>
-Date: Thu, 11 Jun 2020 12:38:22 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB10A6E14A;
+ Thu, 11 Jun 2020 12:04:11 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 04B02AD35;
+ Thu, 11 Jun 2020 12:04:13 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-58-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <b14b78e4-556d-9e52-bdfd-7c4229392ed9@suse.de>
+Date: Thu, 11 Jun 2020 14:04:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-In-Reply-To: <20200607222108.14401-4-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 04/28] drm/i915/selftests: Remove
- live_suppress_wait_preempt
+In-Reply-To: <20200415074034.175360-58-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 57/59] drm/ast: Use managed pci functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,227 +65,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Emil Velikov <emil.velikov@collabora.com>
+Content-Type: multipart/mixed; boundary="===============0627662322=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0627662322==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="uoAxM33dMVkCKbcmfTM6FDINVsXgj0Hhd"
 
-On 07/06/2020 23:20, Chris Wilson wrote:
-> With the removal of the internal wait-priority boosting, we can also
-> remove the selftest to ensure that those waits were being suppressed
-> from causing preemptions.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--uoAxM33dMVkCKbcmfTM6FDINVsXgj0Hhd
+Content-Type: multipart/mixed; boundary="ZstktO1jONv1T8oOFG4XI4WNd2GbG0B3g";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Sam Ravnborg <sam@ravnborg.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Emil Velikov <emil.velikov@collabora.com>
+Message-ID: <b14b78e4-556d-9e52-bdfd-7c4229392ed9@suse.de>
+Subject: Re: [PATCH 57/59] drm/ast: Use managed pci functions
+References: <20200415074034.175360-1-daniel.vetter@ffwll.ch>
+ <20200415074034.175360-58-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200415074034.175360-58-daniel.vetter@ffwll.ch>
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--ZstktO1jONv1T8oOFG4XI4WNd2GbG0B3g
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
+Hi
 
-Tvrtko
+Am 15.04.20 um 09:40 schrieb Daniel Vetter:
+> Allows us to remove a bit of cleanup code.
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Emil Velikov <emil.velikov@collabora.com>
+> Cc: "Noralf Tr=C3=B8nnes" <noralf@tronnes.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: "Y.C. Chen" <yc_chen@aspeedtech.com>
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Thanks for answering my questions. Sorry for never getting back to it.
+
+Best regards
+Thomas
 
 > ---
->   drivers/gpu/drm/i915/gt/selftest_lrc.c | 178 -------------------------
->   1 file changed, 178 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index 67d74e6432a8..e838e38a262c 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -2379,183 +2379,6 @@ static int live_suppress_self_preempt(void *arg)
->   	goto err_client_b;
->   }
->   
-> -static int __i915_sw_fence_call
-> -dummy_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
-> -{
-> -	return NOTIFY_DONE;
-> -}
-> -
-> -static struct i915_request *dummy_request(struct intel_engine_cs *engine)
-> -{
-> -	struct i915_request *rq;
-> -
-> -	rq = kzalloc(sizeof(*rq), GFP_KERNEL);
-> -	if (!rq)
-> -		return NULL;
-> -
-> -	rq->engine = engine;
-> -
-> -	spin_lock_init(&rq->lock);
-> -	INIT_LIST_HEAD(&rq->fence.cb_list);
-> -	rq->fence.lock = &rq->lock;
-> -	rq->fence.ops = &i915_fence_ops;
-> -
-> -	i915_sched_node_init(&rq->sched);
-> -
-> -	/* mark this request as permanently incomplete */
-> -	rq->fence.seqno = 1;
-> -	BUILD_BUG_ON(sizeof(rq->fence.seqno) != 8); /* upper 32b == 0 */
-> -	rq->hwsp_seqno = (u32 *)&rq->fence.seqno + 1;
-> -	GEM_BUG_ON(i915_request_completed(rq));
-> -
-> -	i915_sw_fence_init(&rq->submit, dummy_notify);
-> -	set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
-> -
-> -	spin_lock_init(&rq->lock);
-> -	rq->fence.lock = &rq->lock;
-> -	INIT_LIST_HEAD(&rq->fence.cb_list);
-> -
-> -	return rq;
-> -}
-> -
-> -static void dummy_request_free(struct i915_request *dummy)
-> -{
-> -	/* We have to fake the CS interrupt to kick the next request */
-> -	i915_sw_fence_commit(&dummy->submit);
-> -
-> -	i915_request_mark_complete(dummy);
-> -	dma_fence_signal(&dummy->fence);
-> -
-> -	i915_sched_node_fini(&dummy->sched);
-> -	i915_sw_fence_fini(&dummy->submit);
-> -
-> -	dma_fence_free(&dummy->fence);
-> -}
-> -
-> -static int live_suppress_wait_preempt(void *arg)
-> -{
-> -	struct intel_gt *gt = arg;
-> -	struct preempt_client client[4];
-> -	struct i915_request *rq[ARRAY_SIZE(client)] = {};
-> -	struct intel_engine_cs *engine;
-> -	enum intel_engine_id id;
-> -	int err = -ENOMEM;
-> -	int i;
-> -
-> -	/*
-> -	 * Waiters are given a little priority nudge, but not enough
-> -	 * to actually cause any preemption. Double check that we do
-> -	 * not needlessly generate preempt-to-idle cycles.
-> -	 */
-> -
-> -	if (!HAS_LOGICAL_RING_PREEMPTION(gt->i915))
-> -		return 0;
-> -
-> -	if (preempt_client_init(gt, &client[0])) /* ELSP[0] */
-> -		return -ENOMEM;
-> -	if (preempt_client_init(gt, &client[1])) /* ELSP[1] */
-> -		goto err_client_0;
-> -	if (preempt_client_init(gt, &client[2])) /* head of queue */
-> -		goto err_client_1;
-> -	if (preempt_client_init(gt, &client[3])) /* bystander */
-> -		goto err_client_2;
-> -
-> -	for_each_engine(engine, gt, id) {
-> -		int depth;
-> -
-> -		if (!intel_engine_has_preemption(engine))
-> -			continue;
-> -
-> -		if (!engine->emit_init_breadcrumb)
-> -			continue;
-> -
-> -		for (depth = 0; depth < ARRAY_SIZE(client); depth++) {
-> -			struct i915_request *dummy;
-> -
-> -			engine->execlists.preempt_hang.count = 0;
-> -
-> -			dummy = dummy_request(engine);
-> -			if (!dummy)
-> -				goto err_client_3;
-> -
-> -			for (i = 0; i < ARRAY_SIZE(client); i++) {
-> -				struct i915_request *this;
-> -
-> -				this = spinner_create_request(&client[i].spin,
-> -							      client[i].ctx, engine,
-> -							      MI_NOOP);
-> -				if (IS_ERR(this)) {
-> -					err = PTR_ERR(this);
-> -					goto err_wedged;
-> -				}
-> -
-> -				/* Disable NEWCLIENT promotion */
-> -				__i915_active_fence_set(&i915_request_timeline(this)->last_request,
-> -							&dummy->fence);
-> -
-> -				rq[i] = i915_request_get(this);
-> -				i915_request_add(this);
-> -			}
-> -
-> -			dummy_request_free(dummy);
-> -
-> -			GEM_BUG_ON(i915_request_completed(rq[0]));
-> -			if (!igt_wait_for_spinner(&client[0].spin, rq[0])) {
-> -				pr_err("%s: First client failed to start\n",
-> -				       engine->name);
-> -				goto err_wedged;
-> -			}
-> -			GEM_BUG_ON(!i915_request_started(rq[0]));
-> -
-> -			if (i915_request_wait(rq[depth],
-> -					      I915_WAIT_PRIORITY,
-> -					      1) != -ETIME) {
-> -				pr_err("%s: Waiter depth:%d completed!\n",
-> -				       engine->name, depth);
-> -				goto err_wedged;
-> -			}
-> -
-> -			for (i = 0; i < ARRAY_SIZE(client); i++) {
-> -				igt_spinner_end(&client[i].spin);
-> -				i915_request_put(rq[i]);
-> -				rq[i] = NULL;
-> -			}
-> -
-> -			if (igt_flush_test(gt->i915))
-> -				goto err_wedged;
-> -
-> -			if (engine->execlists.preempt_hang.count) {
-> -				pr_err("%s: Preemption recorded x%d, depth %d; should have been suppressed!\n",
-> -				       engine->name,
-> -				       engine->execlists.preempt_hang.count,
-> -				       depth);
-> -				err = -EINVAL;
-> -				goto err_client_3;
-> -			}
-> -		}
+>  drivers/gpu/drm/ast/ast_drv.c  | 10 +++-------
+>  drivers/gpu/drm/ast/ast_main.c |  3 ---
+>  2 files changed, 3 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_dr=
+v.c
+> index b7ba22dddcad..48a9cc4e080a 100644
+> --- a/drivers/gpu/drm/ast/ast_drv.c
+> +++ b/drivers/gpu/drm/ast/ast_drv.c
+> @@ -91,15 +91,13 @@ static int ast_pci_probe(struct pci_dev *pdev, cons=
+t struct pci_device_id *ent)
+> =20
+>  	ast_kick_out_firmware_fb(pdev);
+> =20
+> -	ret =3D pci_enable_device(pdev);
+> +	ret =3D pcim_enable_device(pdev);
+>  	if (ret)
+>  		return ret;
+> =20
+>  	dev =3D drm_dev_alloc(&driver, &pdev->dev);
+> -	if (IS_ERR(dev)) {
+> -		ret =3D PTR_ERR(dev);
+> -		goto err_pci_disable_device;
 > -	}
-> -
-> -	err = 0;
-> -err_client_3:
-> -	preempt_client_fini(&client[3]);
-> -err_client_2:
-> -	preempt_client_fini(&client[2]);
-> -err_client_1:
-> -	preempt_client_fini(&client[1]);
-> -err_client_0:
-> -	preempt_client_fini(&client[0]);
-> -	return err;
-> -
-> -err_wedged:
-> -	for (i = 0; i < ARRAY_SIZE(client); i++) {
-> -		igt_spinner_end(&client[i].spin);
-> -		i915_request_put(rq[i]);
-> -	}
-> -	intel_gt_set_wedged(gt);
-> -	err = -EIO;
-> -	goto err_client_3;
-> -}
-> -
->   static int live_chain_preempt(void *arg)
->   {
->   	struct intel_gt *gt = arg;
-> @@ -4592,7 +4415,6 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
->   		SUBTEST(live_nopreempt),
->   		SUBTEST(live_preempt_cancel),
->   		SUBTEST(live_suppress_self_preempt),
-> -		SUBTEST(live_suppress_wait_preempt),
->   		SUBTEST(live_chain_preempt),
->   		SUBTEST(live_preempt_gang),
->   		SUBTEST(live_preempt_timeout),
-> 
+> +	if (IS_ERR(dev))
+> +		return  PTR_ERR(dev);
+> =20
+>  	dev->pdev =3D pdev;
+>  	pci_set_drvdata(pdev, dev);
+> @@ -120,8 +118,6 @@ static int ast_pci_probe(struct pci_dev *pdev, cons=
+t struct pci_device_id *ent)
+>  	ast_driver_unload(dev);
+>  err_drm_dev_put:
+>  	drm_dev_put(dev);
+> -err_pci_disable_device:
+> -	pci_disable_device(pdev);
+>  	return ret;
+> =20
+>  }
+> diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_m=
+ain.c
+> index e5398e3dabe7..1b35728ad871 100644
+> --- a/drivers/gpu/drm/ast/ast_main.c
+> +++ b/drivers/gpu/drm/ast/ast_main.c
+> @@ -531,8 +531,5 @@ void ast_driver_unload(struct drm_device *dev)
+>  	drm_mode_config_cleanup(dev);
+> =20
+>  	ast_mm_fini(ast);
+> -	if (ast->ioregs !=3D ast->regs + AST_IO_MM_OFFSET)
+> -		pci_iounmap(dev->pdev, ast->ioregs);
+> -	pci_iounmap(dev->pdev, ast->regs);
+>  	kfree(ast);
+>  }
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--ZstktO1jONv1T8oOFG4XI4WNd2GbG0B3g--
+
+--uoAxM33dMVkCKbcmfTM6FDINVsXgj0Hhd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl7iHbkACgkQaA3BHVML
+eiMPAAf/b29grQfSneivr8NgJ1e+1YFkiO/l9upZX5aV56un6u+wRJtb1VkhBbEU
+2RhdnQF5u7QdeP/ax9wDSUBksWPk9aGnXHM+LZPHv/am+GMEYpt76GAGkoqyzlvl
+FQgo0P7H+v2EpV7Gv7qUAmq7tY/fbmGYWrMRjlypAjXjLq/VLW3p7y6ock3WGNUc
+nDB9r/Rn+Ay6lh57MPjU2ZPc95eBXO1qcZiypTvAkcXjWVEwzxT4pXIlNIME8fqw
+BmLgitGku2mLjKSfbxO4gK2YtAyR2XGxsmJDSThEIAtlAOIFfRUBCIDxjwAbNet8
+dvDVJHg2NguqDTEzoHsNg/xHlNL1qQ==
+=tqC8
+-----END PGP SIGNATURE-----
+
+--uoAxM33dMVkCKbcmfTM6FDINVsXgj0Hhd--
+
+--===============0627662322==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0627662322==--
