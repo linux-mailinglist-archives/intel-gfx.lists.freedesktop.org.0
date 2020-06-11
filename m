@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8C81F6DCD
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 21:15:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2E11F6EE7
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 22:41:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C056E92B;
-	Thu, 11 Jun 2020 19:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 877BF6E94C;
+	Thu, 11 Jun 2020 20:41:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 209176E1DE;
- Thu, 11 Jun 2020 19:15:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1A160A363D;
- Thu, 11 Jun 2020 19:15:51 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 781586E20C;
+ Thu, 11 Jun 2020 20:41:27 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21469439-1500050 
+ for multiple; Thu, 11 Jun 2020 21:40:50 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Jun 2020 21:40:48 +0100
+Message-Id: <20200611204048.318778-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 11 Jun 2020 19:15:51 -0000
-Message-ID: <159190295107.22714.5418667046922351301@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200611180421.23262-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200611180421.23262-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Leave_vma_intact_as_they_are_discarded?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_isolation: Verify BB_OFFSET
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,129 +37,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+BB_OFFSET is used for relative batch buffer jumps, so prime the register
+and do a jump, but only after a context switch or two.
 
-Series: drm/i915: Leave vma intact as they are discarded
-URL   : https://patchwork.freedesktop.org/series/78233/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ tests/i915/gem_ctx_isolation.c | 139 +++++++++++++++++++++++++++++++++
+ 1 file changed, 139 insertions(+)
 
-== Summary ==
+diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+index 9fdf78bb8..b689d37dd 100644
+--- a/tests/i915/gem_ctx_isolation.c
++++ b/tests/i915/gem_ctx_isolation.c
+@@ -24,6 +24,7 @@
+ #include "i915/gem.h"
+ #include "igt.h"
+ #include "igt_dummyload.h"
++#include "sw_sync.h"
+ 
+ #define MAX_REG 0x200000
+ #define NUM_REGS (MAX_REG / sizeof(uint32_t))
+@@ -874,6 +875,124 @@ static void preservation(int fd,
+ 	gem_context_destroy(fd, ctx[num_values]);
+ }
+ 
++static int sync_fence_wait_status(int fence, int timeout)
++{
++	int err;
++
++	err = sync_fence_wait(fence, timeout);
++	if (err)
++		return err;
++
++	return sync_fence_status(fence);
++}
++
++static int write_register(int i915, uint32_t ctx, unsigned int engine,
++			  uint32_t reg, uint32_t value)
++{
++	struct drm_i915_gem_exec_object2 obj = {
++		.handle = gem_create(i915, 4096),
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.rsvd1 = ctx,
++		.flags = engine | I915_EXEC_FENCE_OUT,
++	};
++	uint32_t *cs, *map;
++
++	map = gem_mmap__device_coherent(i915, obj.handle, 0, 4096, PROT_WRITE);
++
++	cs = map;
++	*cs++ = MI_LOAD_REGISTER_IMM;
++	*cs++ = reg;
++	*cs++ = value;
++	*cs++ = MI_BATCH_BUFFER_END;
++	munmap(map, 4096);
++
++	gem_execbuf_wr(i915, &execbuf);
++	gem_close(i915, obj.handle);
++
++	return execbuf.rsvd2 >> 32;
++}
++
++static void bb_offset(int i915,
++		      const struct intel_execution_engine2 *e,
++		      unsigned int flags)
++{
++	struct drm_i915_gem_exec_object2 obj = {
++		.handle = gem_create(i915, 4096 * 3),
++		.flags = EXEC_OBJECT_PINNED
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.rsvd1 = gem_context_create_for_engine(i915, e->class, e->instance),
++	};
++	const uint32_t mmio_base = gem_engine_mmio_base(i915, e->name);
++	uint32_t *cs, *map;
++	igt_spin_t *spin;
++
++	igt_require(gem_class_has_mutable_submission(i915, e->class)); /* XXX */
++	igt_require(mmio_base);
++
++	gem_quiescent_gpu(i915);
++
++	map = gem_mmap__device_coherent(i915, obj.handle, 0, 4096 * 3, PROT_WRITE);
++	memset(map, 0xff, 4096 * 3);
++
++	cs = map + 2 * 1024 + 256;
++	*cs++ = MI_LOAD_REGISTER_IMM;
++	*cs++ = mmio_base + 0x158; /* BB_OFFSET */
++	*cs++ = 4096;
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	cs = map + 2 * 1024 + 128;
++	*cs++ = MI_BATCH_BUFFER_START | 1 << 16 | 1 << 8 | 1; /* reljmp */
++	*cs++ = 0; /* + BB_OFFSET */
++	*cs++ = 0;
++
++	cs = map + 1024;
++	*cs++ = MI_BATCH_BUFFER_END;
++	munmap(map, 3 * 4096);
++
++	execbuf.batch_start_offset = 2 * 4096 + 1024;
++	gem_execbuf(i915, &execbuf); /* prime BB_OFFSET */
++
++	spin = igt_spin_new(i915,
++			    .ctx = execbuf.rsvd1,
++			    .flags = IGT_SPIN_POLL_RUN);
++	igt_spin_busywait_until_started(spin);
++
++	if (flags & DIRTY1) {
++		uint32_t ctx;
++		int fence;
++
++		ctx = gem_context_create_for_engine(i915, e->class, e->instance);
++		gem_context_set_priority(i915, ctx, 1023);
++
++		fence = write_register(i915, ctx, 0,
++				       mmio_base + 0x158, 0xdeadbeef);
++
++		gem_context_destroy(i915, ctx);
++
++		igt_assert_eq(sync_fence_wait_status(fence, 500), 1);
++		close(fence);
++	}
++
++	if (flags & RESET)
++		inject_reset_context(i915, e);
++
++	execbuf.batch_start_offset = 2 * 4096 + 512;
++	execbuf.flags |= I915_EXEC_FENCE_OUT;
++	gem_execbuf_wr(i915, &execbuf); /* relative jump */
++
++	igt_spin_free(i915, spin);
++	igt_assert_eq(sync_fence_wait_status(execbuf.rsvd2 >> 32, 500), 1);
++	close(execbuf.rsvd2);
++
++	gem_context_destroy(i915, execbuf.rsvd1);
++}
++
+ static unsigned int __has_context_isolation(int fd)
+ {
+ 	struct drm_i915_getparam gp;
+@@ -963,6 +1082,16 @@ igt_main
+ 			preservation(i915, e, S4);
+ 	}
+ 
++	igt_subtest_with_dynamic("bb-offset-clean") {
++		test_each_engine(e, i915, has_context_isolation)
++			bb_offset(i915, e, 0);
++	}
++	igt_subtest_with_dynamic("bb-offset-switch") {
++		igt_require(gem_scheduler_has_preemption(i915));
++		test_each_engine(e, i915, has_context_isolation)
++			bb_offset(i915, e, DIRTY1);
++	}
++
+ 	igt_fixture {
+ 		igt_stop_hang_detector();
+ 	}
+@@ -975,4 +1104,14 @@ igt_main
+ 
+ 		igt_disallow_hang(i915, hang);
+ 	}
++
++	igt_subtest_with_dynamic("bb-offset-reset") {
++		igt_hang_t hang = igt_allow_hang(i915, 0, 0);
++
++		igt_require(gem_scheduler_has_preemption(i915));
++		test_each_engine(e, i915, has_context_isolation)
++			bb_offset(i915, e, RESET);
++
++		igt_disallow_hang(i915, hang);
++	}
+ }
+-- 
+2.27.0
 
-CI Bug Log - changes from CI_DRM_8618 -> Patchwork_17930
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17930 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-tgl-u2/igt@i915_module_load@reload.html
-    - fi-byt-n2820:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-byt-n2820/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-byt-n2820/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-apl-guc:         [PASS][7] -> [INCOMPLETE][8] ([i915#337])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-apl-guc/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-apl-guc/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-tgl-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#337]: https://gitlab.freedesktop.org/drm/intel/issues/337
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (50 -> 42)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8618 -> Patchwork_17930
-
-  CI-20190529: 20190529
-  CI_DRM_8618: 88841e30e7f8c60ff464be277e5b8fef49ebaea0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5703: c33471b4aa0a0ae9dd42202048e7037a661e0574 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17930: e229d0849fb77a86f00729119a1fb18ae59778b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e229d0849fb7 drm/i915: Leave vma intact as they are discarded
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17930/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
