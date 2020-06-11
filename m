@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3311F655A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 12:07:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 810131F655B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 12:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A88E86E8D5;
-	Thu, 11 Jun 2020 10:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10D26E8D7;
+	Thu, 11 Jun 2020 10:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 708426E8D5
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 10:06:59 +0000 (UTC)
-IronPort-SDR: GJhybsZJ0h9Bor4qgwNkPq8Ppb3TBoTAls80QO9UqoJVSwY2uYtIRD8A1p1c4r5ahALqgqoqTo
- YrDZAqS/y90w==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 822506E8D7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 10:07:41 +0000 (UTC)
+IronPort-SDR: vt2eZ99LMW3HERMz7TZCkHyzDULqoe6dbewJb/7nLwP4E1QhoT6Sk8zt6cGCxlsi3sOcRNAvnN
+ rgpDqCUTPUMw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 03:06:59 -0700
-IronPort-SDR: irTX4u3bkqb8AW08UBeAu7sR/ZRoD8S6Sgw1un9XdMtJnxV24XoqWd3SXUoIk6DYlD8awUsYEt
- YM4y57qizHBQ==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2020 03:07:41 -0700
+IronPort-SDR: 13TJM188qBYp7jK4vaQ0PfasfG7ygHWAercJ1sZ6XL9dY5kADlW2na4Y7GLYZFkaWbW8y7/wz+
+ 9zljMM7c7jZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="259569232"
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="350141823"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 11 Jun 2020 03:06:57 -0700
+ by orsmga001.jf.intel.com with ESMTP; 11 Jun 2020 03:07:39 -0700
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 8021F5C2CA7; Thu, 11 Jun 2020 13:04:22 +0300 (EEST)
+ id C11185C2CA7; Thu, 11 Jun 2020 13:05:03 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200611080140.30228-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20200611080140.30228-5-chris@chris-wilson.co.uk>
 References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
- <20200611080140.30228-4-chris@chris-wilson.co.uk>
-Date: Thu, 11 Jun 2020 13:04:22 +0300
-Message-ID: <87mu599avt.fsf@gaia.fi.intel.com>
+ <20200611080140.30228-5-chris@chris-wilson.co.uk>
+Date: Thu, 11 Jun 2020 13:05:03 +0300
+Message-ID: <87k10d9auo.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/gt: Move snb GT workarounds
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/gt: Move ilk GT workarounds
  from init_clock_gating to workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,126 +62,67 @@ Chris Wilson <chris@chris-wilson.co.uk> writes:
 > included in our verification that the workarounds are applied.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 41 +++++++++++++++++++++
->  drivers/gpu/drm/i915/intel_pm.c             | 33 -----------------
->  2 files changed, 41 insertions(+), 33 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 14 ++++++++++++++
+>  drivers/gpu/drm/i915/intel_pm.c             | 10 ----------
+>  2 files changed, 14 insertions(+), 10 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 688ca25d79d0..7b4f3434eb6b 100644
+> index 7b4f3434eb6b..f8b9e104378e 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -714,6 +714,45 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
+> @@ -714,6 +714,18 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
 >  	return 0;
 >  }
 >  
 > +static void
-> +snb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+> +ilk_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
 > +{
-> +	/* WaDisableHiZPlanesWhenMSAAEnabled:snb */
-> +	wa_masked_en(wal,
-> +		     _3D_CHICKEN,
-> +		     _3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB);
+> +	wa_masked_en(wal,_3D_CHICKEN2, _3D_CHICKEN2_WM_READ_PIPELINED);
 > +
-> +	/* WaDisable_RenderCache_OperationalFlush:snb */
+> +	/* WaDisableRenderCachePipelinedFlush:ilk */
+> +	wa_masked_en(wal, CACHE_MODE_0, CM0_PIPELINED_RENDER_FLUSH_DISABLE);
+> +
+> +	/* WaDisable_RenderCache_OperationalFlush:ilk */
 > +	wa_masked_dis(wal, CACHE_MODE_0, RC_OP_FLUSH_ENABLE);
-> +
-> +	/*
-> +	 * BSpec recoomends 8x4 when MSAA is used,
-
-recommends.
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> +	 * however in practice 16x4 seems fastest.
-> +	 *
-> +	 * Note that PS/WM thread counts depend on the WIZ hashing
-> +	 * disable bit, which we don't touch here, but it's good
-> +	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
-> +	 */
-> +	wa_add(wal,
-> +	       GEN6_GT_MODE, 0,
-> +	       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
-> +	       GEN6_WIZ_HASHING_16x4);
-> +
-> +	wa_masked_dis(wal, CACHE_MODE_0, CM0_STC_EVICT_DISABLE_LRA_SNB);
-> +
-> +	wa_masked_en(wal,
-> +		     _3D_CHICKEN3,
-> +		     /* WaStripsFansDisableFastClipPerformanceFix:snb */
-> +		     _3D_CHICKEN3_SF_DISABLE_FASTCLIP_CULL |
-> +		     /*
-> +		      * Bspec says:
-> +		      * "This bit must be set if 3DSTATE_CLIP clip mode is set
-> +		      * to normal and 3DSTATE_SF number of SF output attributes
-> +		      * is more than 16."
-> +		      */
-> +		   _3D_CHICKEN3_SF_DISABLE_PIPELINED_ATTR_FETCH);
 > +}
 > +
 >  static void
->  ivb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>  snb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
 >  {
-> @@ -1154,6 +1193,8 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
->  		vlv_gt_workarounds_init(i915, wal);
->  	else if (IS_IVYBRIDGE(i915))
+> @@ -1195,6 +1207,8 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
 >  		ivb_gt_workarounds_init(i915, wal);
-> +	else if (IS_GEN(i915, 6))
-> +		snb_gt_workarounds_init(i915, wal);
+>  	else if (IS_GEN(i915, 6))
+>  		snb_gt_workarounds_init(i915, wal);
+> +	else if (IS_GEN(i915, 5))
+> +		ilk_gt_workarounds_init(i915, wal);
 >  	else if (INTEL_GEN(i915) <= 8)
 >  		return;
 >  	else
 > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 29abde47e987..b4bea6451418 100644
+> index b4bea6451418..7d82a7144a13 100644
 > --- a/drivers/gpu/drm/i915/intel_pm.c
 > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -6993,27 +6993,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -6921,16 +6921,6 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	I915_WRITE(ILK_DISPLAY_CHICKEN2,
 >  		   I915_READ(ILK_DISPLAY_CHICKEN2) |
 >  		   ILK_ELPIN_409_SELECT);
->  
-> -	/* WaDisableHiZPlanesWhenMSAAEnabled:snb */
-> -	I915_WRITE(_3D_CHICKEN,
-> -		   _MASKED_BIT_ENABLE(_3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB));
+> -	I915_WRITE(_3D_CHICKEN2,
+> -		   _3D_CHICKEN2_WM_READ_PIPELINED << 16 |
+> -		   _3D_CHICKEN2_WM_READ_PIPELINED);
 > -
-> -	/* WaDisable_RenderCache_OperationalFlush:snb */
-> -	I915_WRITE(CACHE_MODE_0, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
-> -
-> -	/*
-> -	 * BSpec recoomends 8x4 when MSAA is used,
-> -	 * however in practice 16x4 seems fastest.
-> -	 *
-> -	 * Note that PS/WM thread counts depend on the WIZ hashing
-> -	 * disable bit, which we don't touch here, but it's good
-> -	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
-> -	 */
-> -	I915_WRITE(GEN6_GT_MODE,
-> -		   _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4));
-> -
+> -	/* WaDisableRenderCachePipelinedFlush:ilk */
 > -	I915_WRITE(CACHE_MODE_0,
-> -		   _MASKED_BIT_DISABLE(CM0_STC_EVICT_DISABLE_LRA_SNB));
+> -		   _MASKED_BIT_ENABLE(CM0_PIPELINED_RENDER_FLUSH_DISABLE));
 > -
->  	I915_WRITE(GEN6_UCGCTL1,
->  		   I915_READ(GEN6_UCGCTL1) |
->  		   GEN6_BLBUNIT_CLOCK_GATE_DISABLE |
-> @@ -7036,18 +7015,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
->  		   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
->  		   GEN6_RCCUNIT_CLOCK_GATE_DISABLE);
+> -	/* WaDisable_RenderCache_OperationalFlush:ilk */
+> -	I915_WRITE(CACHE_MODE_0, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
 >  
-> -	/* WaStripsFansDisableFastClipPerformanceFix:snb */
-> -	I915_WRITE(_3D_CHICKEN3,
-> -		   _MASKED_BIT_ENABLE(_3D_CHICKEN3_SF_DISABLE_FASTCLIP_CULL));
-> -
-> -	/*
-> -	 * Bspec says:
-> -	 * "This bit must be set if 3DSTATE_CLIP clip mode is set to normal and
-> -	 * 3DSTATE_SF number of SF output attributes is more than 16."
-> -	 */
-> -	I915_WRITE(_3D_CHICKEN3,
-> -		   _MASKED_BIT_ENABLE(_3D_CHICKEN3_SF_DISABLE_PIPELINED_ATTR_FETCH));
-> -
->  	/*
->  	 * According to the spec the following bits should be
->  	 * set in order to enable memory self-refresh and fbc:
+>  	g4x_disable_trickle_feed(dev_priv);
+>  
 > -- 
 > 2.20.1
 >
