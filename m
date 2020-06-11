@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69BAE1F656A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 12:10:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D9C1F6585
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 12:21:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EED86E8DA;
-	Thu, 11 Jun 2020 10:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC4D6E8E6;
+	Thu, 11 Jun 2020 10:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 996916E8DA
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 10:10:07 +0000 (UTC)
-IronPort-SDR: nJWkXYrJLhT38EnB2aR3z7lKfjZKgeQgRx0tp+AD0p8L0HTDuw8nSqk9oNY0cW6leaka+PsrQz
- RVLIWppmnqyA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 03:10:07 -0700
-IronPort-SDR: 6BKAy9xMIvWnnIUIXhcwxfSEC0Lh5Q7vs7TJkrIaLg1JCQCUqvVGoDrWwrgwgI6unlKH5x7jfI
- xT98++qTUJkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="259569820"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 11 Jun 2020 03:10:06 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id DB88F5C2CA7; Thu, 11 Jun 2020 13:07:30 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200611080140.30228-6-chris@chris-wilson.co.uk>
-References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
- <20200611080140.30228-6-chris@chris-wilson.co.uk>
-Date: Thu, 11 Jun 2020 13:07:30 +0300
-Message-ID: <87h7vh9aql.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 19AB26E8E3;
+ Thu, 11 Jun 2020 10:21:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1331AA0BD0;
+ Thu, 11 Jun 2020 10:21:28 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Move gen4 GT workarounds
- from init_clock_gating to workarounds
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 11 Jun 2020 10:21:28 -0000
+Message-ID: <159187088804.22713.17597018796328773559@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200611080140.30228-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_drm/i915/gt=3A_Move_hsw_GT_workarounds_from_i?=
+ =?utf-8?q?nit=5Fclock=5Fgating_to_workarounds_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,123 +39,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Rescue the GT workarounds from being buried inside init_clock_gating so
-> that we remember to apply them after a GT reset, and that they are
-> included in our verification that the workarounds are applied.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Series: series starting with drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds (rev2)
+URL   : https://patchwork.freedesktop.org/series/78214/
+State : success
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 27 +++++++++++++++++----
->  drivers/gpu/drm/i915/intel_pm.c             | 15 ------------
->  2 files changed, 22 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index f8b9e104378e..7b4be64585c3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -715,15 +715,28 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
->  }
->  
->  static void
-> -ilk_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-> +gen4_gt_workarounds_init(struct drm_i915_private *i915,
-> +			 struct i915_wa_list *wal)
->  {
-> -	wa_masked_en(wal,_3D_CHICKEN2, _3D_CHICKEN2_WM_READ_PIPELINED);
-> +	/* WaDisable_RenderCache_OperationalFlush:gen4,ilk */
-> +	wa_masked_dis(wal, CACHE_MODE_0, RC_OP_FLUSH_ENABLE);
-> +}
-> +
-> +static void
-> +g4x_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-> +{
-> +	gen4_gt_workarounds_init(i915, wal);
->  
-> -	/* WaDisableRenderCachePipelinedFlush:ilk */
-> +	/* WaDisableRenderCachePipelinedFlush:g4x,ilk */
->  	wa_masked_en(wal, CACHE_MODE_0, CM0_PIPELINED_RENDER_FLUSH_DISABLE);
-> +}
->  
-> -	/* WaDisable_RenderCache_OperationalFlush:ilk */
-> -	wa_masked_dis(wal, CACHE_MODE_0, RC_OP_FLUSH_ENABLE);
-> +static void
-> +ilk_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-> +{
-> +	g4x_gt_workarounds_init(i915, wal);
-> +
-> +	wa_masked_en(wal,_3D_CHICKEN2, _3D_CHICKEN2_WM_READ_PIPELINED);
->  }
->  
->  static void
-> @@ -1209,6 +1222,10 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
->  		snb_gt_workarounds_init(i915, wal);
->  	else if (IS_GEN(i915, 5))
->  		ilk_gt_workarounds_init(i915, wal);
-> +	else if (IS_G4X(i915))
-> +		g4x_gt_workarounds_init(i915, wal);
-> +	else if (IS_GEN(i915, 4))
-> +		gen4_gt_workarounds_init(i915, wal);
->  	else if (INTEL_GEN(i915) <= 8)
->  		return;
->  	else
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 7d82a7144a13..2a32d6230795 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -7399,13 +7399,6 @@ static void g4x_init_clock_gating(struct drm_i915_private *dev_priv)
->  		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
->  	I915_WRITE(DSPCLK_GATE_D, dspclk_gate);
->  
-> -	/* WaDisableRenderCachePipelinedFlush */
-> -	I915_WRITE(CACHE_MODE_0,
-> -		   _MASKED_BIT_ENABLE(CM0_PIPELINED_RENDER_FLUSH_DISABLE));
-> -
-> -	/* WaDisable_RenderCache_OperationalFlush:g4x */
-> -	I915_WRITE(CACHE_MODE_0, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
-> -
->  	g4x_disable_trickle_feed(dev_priv);
->  }
->  
-> @@ -7421,11 +7414,6 @@ static void i965gm_init_clock_gating(struct drm_i915_private *dev_priv)
->  	intel_uncore_write(uncore,
->  			   MI_ARB_STATE,
->  			   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-> -
-> -	/* WaDisable_RenderCache_OperationalFlush:gen4 */
-> -	intel_uncore_write(uncore,
-> -			   CACHE_MODE_0,
-> -			   _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
->  }
->  
->  static void i965g_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7438,9 +7426,6 @@ static void i965g_init_clock_gating(struct drm_i915_private *dev_priv)
->  	I915_WRITE(RENCLK_GATE_D2, 0);
->  	I915_WRITE(MI_ARB_STATE,
->  		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-> -
-> -	/* WaDisable_RenderCache_OperationalFlush:gen4 */
-> -	I915_WRITE(CACHE_MODE_0, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
->  }
->  
->  static void gen3_init_clock_gating(struct drm_i915_private *dev_priv)
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_8614 -> Patchwork_17926
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17926:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-kbl-7560u}:     NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-kbl-7560u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17926 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][4] -> [DMESG-WARN][5] ([i915#1982])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-u2:          [PASS][6] -> [INCOMPLETE][7] ([i915#1932])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-guc:         [PASS][8] -> [DMESG-WARN][9] ([i915#1982])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-apl-guc:         [DMESG-WARN][10] ([i915#1982]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-apl-guc/igt@i915_module_load@reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-apl-guc/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - {fi-tgl-dsi}:       [DMESG-WARN][12] ([i915#1982]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [DMESG-WARN][14] ([i915#1982]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-u2:          [DMESG-FAIL][16] ([i915#1233]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [DMESG-WARN][20] ([i915#1982]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-bsw-kefka:       [DMESG-WARN][22] ([i915#1982]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [DMESG-WARN][24] ([i915#1982]) -> [PASS][25] +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][26] ([i915#62] / [i915#92]) -> [DMESG-WARN][27] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][29] ([i915#62] / [i915#92]) +5 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-7560u 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8614 -> Patchwork_17926
+
+  CI-20190529: 20190529
+  CI_DRM_8614: 207862f18909166ffcf9e288ff796b756ae82d1c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5702: d16ad07e7f2a028e14d61f570931c87fa5ce404c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17926: 66c89c81b8144175aa4d9682e650323658fddcce @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+66c89c81b814 drm/i915/gt: Move gen4 GT workarounds from init_clock_gating to workarounds
+3dde510c6178 drm/i915/gt: Move ilk GT workarounds from init_clock_gating to workarounds
+79f6193f4ff2 drm/i915/gt: Move snb GT workarounds from init_clock_gating to workarounds
+68e40d9f98c3 drm/i915/gt: Move vlv GT workarounds from init_clock_gating to workarounds
+961e1996e0a8 drm/i915/gt: Move ivb GT workarounds from init_clock_gating to workarounds
+a9a19ef20e69 drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17926/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
