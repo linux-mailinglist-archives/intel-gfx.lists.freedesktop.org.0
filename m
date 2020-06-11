@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D0A1F6519
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 11:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 041BE1F653B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 12:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8566E8CA;
-	Thu, 11 Jun 2020 09:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 443F16E8CD;
+	Thu, 11 Jun 2020 10:01:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4620B6E8C7;
- Thu, 11 Jun 2020 09:58:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43D1EA00C7;
- Thu, 11 Jun 2020 09:58:04 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 11 Jun 2020 09:58:04 -0000
-Message-ID: <159186948427.22713.13407466973206111969@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DD56E8CD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 10:01:57 +0000 (UTC)
+IronPort-SDR: CpVzL2UrOYWDs3HjJEluUuajX7W/eET4eK1ZJFQ2IDr1j0Q80GRVuXsJYveioTwUZRXAo9fcSB
+ DebCvzmM9C2g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2020 03:01:56 -0700
+IronPort-SDR: sB+Kx8eIwEuok3GFy5DzW0l1b/mOjrrTyAOj90iTmdBEI91wiO/+GPmyaUWNTbqlOd63+xX7f1
+ PLj1kHmJTafw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="473749177"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga005.fm.intel.com with ESMTP; 11 Jun 2020 03:01:55 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 1984A5C2CA7; Thu, 11 Jun 2020 12:59:19 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200611080140.30228-2-chris@chris-wilson.co.uk>
 References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200611080140.30228-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_drm/i915/gt=3A_Move_hsw_GT_workarounds_fro?=
- =?utf-8?q?m_init=5Fclock=5Fgating_to_workarounds_=28rev2=29?=
+ <20200611080140.30228-2-chris@chris-wilson.co.uk>
+Date: Thu, 11 Jun 2020 12:59:19 +0300
+Message-ID: <87v9jx9b48.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/gt: Move ivb GT workarounds
+ from init_clock_gating to workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,74 +49,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: series starting with drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds (rev2)
-URL   : https://patchwork.freedesktop.org/series/78214/
-State : warning
+> Rescue the GT workarounds from being buried inside init_clock_gating so
+> that we remember to apply them after a GT reset, and that they are
+> included in our verification that the workarounds are applied.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 62 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h             |  2 +-
+>  drivers/gpu/drm/i915/intel_pm.c             | 48 ----------------
+>  3 files changed, 63 insertions(+), 49 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 39f070bff09d..a5ba3ea8d45a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -714,6 +714,66 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
+>  	return 0;
+>  }
+>  
+> +static void
+> +ivb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+> +{
+> +	/* WaDisableEarlyCull:ivb */
+> +	wa_masked_en(wal,_3D_CHICKEN3, _3D_CHICKEN_SF_DISABLE_OBJEND_CULL);
+> +
+> +	/* WaDisablePSDDualDispatchEnable:ivb */
+> +	if (IS_IVB_GT1(i915))
+> +		wa_masked_en(wal,
+> +			     GEN7_HALF_SLICE_CHICKEN1,
+> +			     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
+> +
+> +	/* WaDisable_RenderCache_OperationalFlush:ivb */
+> +	wa_masked_dis(wal, CACHE_MODE_0_GEN7, RC_OP_FLUSH_ENABLE);
+> +
+> +	/* Apply the WaDisableRHWOOptimizationForRenderHang:ivb workaround. */
+> +	wa_masked_dis(wal,
+> +		      GEN7_COMMON_SLICE_CHICKEN1,
+> +		      GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC);
+> +
+> +	/* WaApplyL3ControlAndL3ChickenMode:ivb */
+> +	wa_write(wal, GEN7_L3CNTLREG1, GEN7_WA_FOR_GEN7_L3_CONTROL);
+> +	wa_write(wal, GEN7_L3_CHICKEN_MODE_REGISTER, GEN7_WA_L3_CHICKEN_MODE);
+> +
+> +	/* WaForceL3Serialization:ivb */
+> +	wa_write_clr(wal, GEN7_L3SQCREG4, L3SQ_URB_READ_CAM_MATCH_DISABLE);
+> +
+> +	/*
+> +	 * WaVSThreadDispatchOverride:ivb,vlv
+> +	 *
+> +	 * This actually overrides the dispatch
+> +	 * mode for all thread types.
+> +	 */
+> +	wa_write_masked_or(wal, GEN7_FF_THREAD_MODE,
+> +			   GEN7_FF_SCHED_MASK,
+> +			   GEN7_FF_TS_SCHED_HW |
+> +			   GEN7_FF_VS_SCHED_HW |
+> +			   GEN7_FF_DS_SCHED_HW);
+> +
+> +	if (0) { /* causes HiZ corruption on ivb:gt1 */
+> +		/* enable HiZ Raw Stall Optimization */
+> +		wa_masked_dis(wal, CACHE_MODE_0_GEN7, HIZ_RAW_STALL_OPT_DISABLE);
+> +	}
+> +
+> +	/* WaDisable4x2SubspanOptimization:ivb */
+> +	wa_masked_en(wal, CACHE_MODE_1, PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
+> +
+> +	/*
+> +	 * BSpec recommends 8x4 when MSAA is used,
+> +	 * however in practice 16x4 seems fastest.
+> +	 *
+> +	 * Note that PS/WM thread counts depend on the WIZ hashing
+> +	 * disable bit, which we don't touch here, but it's good
+> +	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+> +	 */
+> +	wa_add(wal, GEN7_GT_MODE, 0,
+> +	       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
+> +	       GEN6_WIZ_HASHING_16x4);
+> +}
+> +
+>  static void
+>  hsw_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>  {
+> @@ -1033,6 +1093,8 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>  		skl_gt_workarounds_init(i915, wal);
+>  	else if (IS_HASWELL(i915))
+>  		hsw_gt_workarounds_init(i915, wal);
+> +	else if (IS_IVYBRIDGE(i915))
+> +		ivb_gt_workarounds_init(i915, wal);
+>  	else if (INTEL_GEN(i915) <= 8)
+>  		return;
+>  	else
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 9aca6d778220..19e1fed198c3 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7924,7 +7924,7 @@ enum {
+>  
+>  /* GEN7 chicken */
+>  #define GEN7_COMMON_SLICE_CHICKEN1		_MMIO(0x7010)
+> -  #define GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC	((1 << 10) | (1 << 26))
+> +  #define GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC	(1 << 10)
 
-== Summary ==
+I dont have bspec but evidence is overwhelming that this is masked reg.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+>    #define GEN9_RHWO_OPTIMIZATION_DISABLE	(1 << 14)
+>  
+>  #define COMMON_SLICE_CHICKEN2					_MMIO(0x7014)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 249ee720874c..b835e5e97515 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -7338,32 +7338,11 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+>  
+>  	I915_WRITE(ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
+>  
+> -	/* WaDisableEarlyCull:ivb */
+> -	I915_WRITE(_3D_CHICKEN3,
+> -		   _MASKED_BIT_ENABLE(_3D_CHICKEN_SF_DISABLE_OBJEND_CULL));
+> -
+>  	/* WaDisableBackToBackFlipFix:ivb */
+>  	I915_WRITE(IVB_CHICKEN3,
+>  		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
+>  		   CHICKEN3_DGMG_DONE_FIX_DISABLE);
+>  
+> -	/* WaDisablePSDDualDispatchEnable:ivb */
+> -	if (IS_IVB_GT1(dev_priv))
+> -		I915_WRITE(GEN7_HALF_SLICE_CHICKEN1,
+> -			   _MASKED_BIT_ENABLE(GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE));
+> -
+> -	/* WaDisable_RenderCache_OperationalFlush:ivb */
+> -	I915_WRITE(CACHE_MODE_0_GEN7, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
+> -
+> -	/* Apply the WaDisableRHWOOptimizationForRenderHang:ivb workaround. */
+> -	I915_WRITE(GEN7_COMMON_SLICE_CHICKEN1,
+> -		   GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC);
+> -
+> -	/* WaApplyL3ControlAndL3ChickenMode:ivb */
+> -	I915_WRITE(GEN7_L3CNTLREG1,
+> -			GEN7_WA_FOR_GEN7_L3_CONTROL);
+> -	I915_WRITE(GEN7_L3_CHICKEN_MODE_REGISTER,
+> -		   GEN7_WA_L3_CHICKEN_MODE);
+>  	if (IS_IVB_GT1(dev_priv))
+>  		I915_WRITE(GEN7_ROW_CHICKEN2,
+>  			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+> @@ -7375,10 +7354,6 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+>  			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+>  	}
+>  
+> -	/* WaForceL3Serialization:ivb */
+> -	I915_WRITE(GEN7_L3SQCREG4, I915_READ(GEN7_L3SQCREG4) &
+> -		   ~L3SQ_URB_READ_CAM_MATCH_DISABLE);
+> -
+>  	/*
+>  	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
+>  	 * This implements the WaDisableRCZUnitClockGating:ivb workaround.
+> @@ -7393,29 +7368,6 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+>  
+>  	g4x_disable_trickle_feed(dev_priv);
+>  
+> -	gen7_setup_fixed_func_scheduler(dev_priv);
 
+This just disappears without explanation.
+-Mika
+
+> -
+> -	if (0) { /* causes HiZ corruption on ivb:gt1 */
+> -		/* enable HiZ Raw Stall Optimization */
+> -		I915_WRITE(CACHE_MODE_0_GEN7,
+> -			   _MASKED_BIT_DISABLE(HIZ_RAW_STALL_OPT_DISABLE));
+> -	}
+> -
+> -	/* WaDisable4x2SubspanOptimization:ivb */
+> -	I915_WRITE(CACHE_MODE_1,
+> -		   _MASKED_BIT_ENABLE(PIXEL_SUBSPAN_COLLECT_OPT_DISABLE));
+> -
+> -	/*
+> -	 * BSpec recommends 8x4 when MSAA is used,
+> -	 * however in practice 16x4 seems fastest.
+> -	 *
+> -	 * Note that PS/WM thread counts depend on the WIZ hashing
+> -	 * disable bit, which we don't touch here, but it's good
+> -	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+> -	 */
+> -	I915_WRITE(GEN7_GT_MODE,
+> -		   _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4));
+> -
+>  	snpcr = I915_READ(GEN6_MBCUNIT_SNPCR);
+>  	snpcr &= ~GEN6_MBC_SNPCR_MASK;
+>  	snpcr |= GEN6_MBC_SNPCR_MED;
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
