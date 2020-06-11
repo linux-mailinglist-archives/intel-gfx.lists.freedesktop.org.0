@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F4C1F67DF
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 14:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D86A1F67E7
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 14:34:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1D36E15A;
-	Thu, 11 Jun 2020 12:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 828EF6E157;
+	Thu, 11 Jun 2020 12:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96CD56E158
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 12:31:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8AAF6E157
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 12:34:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21464432-1500050 
- for multiple; Thu, 11 Jun 2020 13:30:43 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Jun 2020 13:30:38 +0100
-Message-Id: <20200611123038.91855-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21464490-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 13:34:30 +0100
+MIME-Version: 1.0
 In-Reply-To: <20200611123038.91855-1-chris@chris-wilson.co.uk>
 References: <20200611123038.91855-1-chris@chris-wilson.co.uk>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Tighten timestamp around vblank
- sampling
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <159187886883.1506.13319708113042548833@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 11 Jun 2020 13:34:28 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/vblank: Estimate sample time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,115 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGlnaHRlbiB0aGUgdGltZXN0YW1wIHF1ZXJpZXMgYmVmb3JlL2FmdGVyIHRoZSByZWdpc3RlciBy
-ZWFkIHNvIHRoYXQgd2UKaGF2ZSBsZXNzIHVuY2VydGFpbml0eSBmb3Igd2hlbiB0aGUgcmVhZCBh
-Y3R1YWxseSB0b29rIHBsYWNlLiBUaGlzIGlzCm1vcmUgYXB0IGZvciB0aGUgb2xkZXIgZ2VuZXJh
-dGlvbnMgd2hlcmUgaXQgaXMgbm90IGEgc2ltcGxlIHNpbmdsZQpyZWdpc3RlciByZWFkLiBXaGV0
-aGVyIHdlIGFyZSBhYmxlIHRvIGRpc2Nlcm4gYW4gaW1wcm92ZW1lbnQgaW4gb3VyCnNhbXBsaW5n
-IGFjY3VyYWN5IHJlbWFpbnMgdG8gYmUgc2Vlbi4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNv
-biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2ly
-cS5jIHwgNTcgKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdl
-ZCwgNDIgaW5zZXJ0aW9ucygrKSwgMTUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJx
-LmMKaW5kZXggOGU4MjNiYTI1ZjVmLi45YzQ0ZGY4ZWNjZTcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9p
-cnEuYwpAQCAtNzEzLDcgKzcxMyw5IEBAIHUzMiBnNHhfZ2V0X3ZibGFua19jb3VudGVyKHN0cnVj
-dCBkcm1fY3J0YyAqY3J0YykKICAqIFRoaXMgZnVuY3Rpb24gd2lsbCB1c2UgRnJhbWVzdGFtcCBh
-bmQgY3VycmVudAogICogdGltZXN0YW1wIHJlZ2lzdGVycyB0byBjYWxjdWxhdGUgdGhlIHNjYW5s
-aW5lLgogICovCi1zdGF0aWMgdTMyIF9faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmVfZnJvbV90aW1l
-c3RhbXAoc3RydWN0IGludGVsX2NydGMgKmNydGMpCitzdGF0aWMgdTMyCitfX2ludGVsX2dldF9j
-cnRjX3NjYW5saW5lX2Zyb21fdGltZXN0YW1wKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAorCQkJ
-CQkga3RpbWVfdCAqc3RpbWUsIGt0aW1lX3QgKmV0aW1lKQogewogCXN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwogCXN0cnVjdCBkcm1f
-dmJsYW5rX2NydGMgKnZibGFuayA9CkBAIC03MzcsNiArNzM5LDkgQEAgc3RhdGljIHUzMiBfX2lu
-dGVsX2dldF9jcnRjX3NjYW5saW5lX2Zyb21fdGltZXN0YW1wKHN0cnVjdCBpbnRlbF9jcnRjICpj
-cnRjKQogCQkgKiBwaXBlIGZyYW1lIHRpbWUgc3RhbXAuIFRoZSB0aW1lIHN0YW1wIHZhbHVlCiAJ
-CSAqIGlzIHNhbXBsZWQgYXQgZXZlcnkgc3RhcnQgb2YgdmVydGljYWwgYmxhbmsuCiAJCSAqLwor
-CQlpZiAoc3RpbWUpCisJCQkqc3RpbWUgPSBrdGltZV9nZXQoKTsKKwogCQlzY2FuX3ByZXZfdGlt
-ZSA9IGludGVsX2RlX3JlYWRfZncoZGV2X3ByaXYsCiAJCQkJCQkgIFBJUEVfRlJNVE1TVE1QKGNy
-dGMtPnBpcGUpKTsKIApAQCAtNzQ2LDYgKzc1MSw5IEBAIHN0YXRpYyB1MzIgX19pbnRlbF9nZXRf
-Y3J0Y19zY2FubGluZV9mcm9tX3RpbWVzdGFtcChzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKIAkJ
-ICovCiAJCXNjYW5fY3Vycl90aW1lID0gaW50ZWxfZGVfcmVhZF9mdyhkZXZfcHJpdiwgSVZCX1RJ
-TUVTVEFNUF9DVFIpOwogCisJCWlmIChldGltZSkKKwkJCSpldGltZSA9IGt0aW1lX2dldCgpOwor
-CiAJCXNjYW5fcG9zdF90aW1lID0gaW50ZWxfZGVfcmVhZF9mdyhkZXZfcHJpdiwKIAkJCQkJCSAg
-UElQRV9GUk1UTVNUTVAoY3J0Yy0+cGlwZSkpOwogCX0gd2hpbGUgKHNjYW5fcG9zdF90aW1lICE9
-IHNjYW5fcHJldl90aW1lKTsKQEAgLTc2Miw3ICs3NzAsOCBAQCBzdGF0aWMgdTMyIF9faW50ZWxf
-Z2V0X2NydGNfc2NhbmxpbmVfZnJvbV90aW1lc3RhbXAoc3RydWN0IGludGVsX2NydGMgKmNydGMp
-CiAgKiBpbnRlbF9kZV9yZWFkX2Z3KCksIG9ubHkgZm9yIGZhc3QgcmVhZHMgb2YgZGlzcGxheSBi
-bG9jaywgbm8gbmVlZCBmb3IKICAqIGZvcmNld2FrZSBldGMuCiAgKi8KLXN0YXRpYyBpbnQgX19p
-bnRlbF9nZXRfY3J0Y19zY2FubGluZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKK3N0YXRpYyBp
-bnQgX19pbnRlbF9nZXRfY3J0Y19zY2FubGluZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKKwkJ
-CQkgICAgIGt0aW1lX3QgKnN0aW1lLCBrdGltZV90ICpldGltZSkKIHsKIAlzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2ID0gY3J0Yy0+YmFzZS5kZXY7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2ID0gdG9faTkxNShkZXYpOwpAQCAtNzcxLDIzICs3ODAsMzQgQEAgc3RhdGljIGludCBf
-X2ludGVsX2dldF9jcnRjX3NjYW5saW5lKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQogCWVudW0g
-cGlwZSBwaXBlID0gY3J0Yy0+cGlwZTsKIAlpbnQgcG9zaXRpb24sIHZ0b3RhbDsKIAotCWlmICgh
-Y3J0Yy0+YWN0aXZlKQorCWlmICghY3J0Yy0+YWN0aXZlKSB7CisJCWlmIChzdGltZSkKKwkJCSpz
-dGltZSA9IDA7CisJCWlmIChldGltZSkKKwkJCSpldGltZSA9IDA7CiAJCXJldHVybiAtMTsKKwl9
-CiAKIAl2YmxhbmsgPSAmY3J0Yy0+YmFzZS5kZXYtPnZibGFua1tkcm1fY3J0Y19pbmRleCgmY3J0
-Yy0+YmFzZSldOwogCW1vZGUgPSAmdmJsYW5rLT5od21vZGU7CiAKIAlpZiAoY3J0Yy0+bW9kZV9m
-bGFncyAmIEk5MTVfTU9ERV9GTEFHX0dFVF9TQ0FOTElORV9GUk9NX1RJTUVTVEFNUCkKLQkJcmV0
-dXJuIF9faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmVfZnJvbV90aW1lc3RhbXAoY3J0Yyk7CisJCXJl
-dHVybiBfX2ludGVsX2dldF9jcnRjX3NjYW5saW5lX2Zyb21fdGltZXN0YW1wKGNydGMsCisJCQkJ
-CQkJCXN0aW1lLAorCQkJCQkJCQlldGltZSk7CiAKIAl2dG90YWwgPSBtb2RlLT5jcnRjX3Z0b3Rh
-bDsKIAlpZiAobW9kZS0+ZmxhZ3MgJiBEUk1fTU9ERV9GTEFHX0lOVEVSTEFDRSkKIAkJdnRvdGFs
-IC89IDI7CiAKKwlpZiAoc3RpbWUpCisJCSpzdGltZSA9IGt0aW1lX2dldCgpOwogCWlmIChJU19H
-RU4oZGV2X3ByaXYsIDIpKQogCQlwb3NpdGlvbiA9IGludGVsX2RlX3JlYWRfZncoZGV2X3ByaXYs
-IFBJUEVEU0wocGlwZSkpICYgRFNMX0xJTkVNQVNLX0dFTjI7CiAJZWxzZQogCQlwb3NpdGlvbiA9
-IGludGVsX2RlX3JlYWRfZncoZGV2X3ByaXYsIFBJUEVEU0wocGlwZSkpICYgRFNMX0xJTkVNQVNL
-X0dFTjM7CisJaWYgKGV0aW1lKQorCQkqZXRpbWUgPSBrdGltZV9nZXQoKTsKIAogCS8qCiAJICog
-T24gSFNXLCB0aGUgRFNMIHJlZyAoMHg3MDAwMCkgYXBwZWFycyB0byByZXR1cm4gMCBpZiB3ZQpA
-QCAtODA2LDcgKzgyNiwxMyBAQCBzdGF0aWMgaW50IF9faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmUo
-c3RydWN0IGludGVsX2NydGMgKmNydGMpCiAKIAkJZm9yIChpID0gMDsgaSA8IDEwMDsgaSsrKSB7
-CiAJCQl1ZGVsYXkoMSk7CisKKwkJCWlmIChzdGltZSkKKwkJCQkqc3RpbWUgPSBrdGltZV9nZXQo
-KTsKIAkJCXRlbXAgPSBpbnRlbF9kZV9yZWFkX2Z3KGRldl9wcml2LCBQSVBFRFNMKHBpcGUpKSAm
-IERTTF9MSU5FTUFTS19HRU4zOworCQkJaWYgKGV0aW1lKQorCQkJCSpldGltZSA9IGt0aW1lX2dl
-dCgpOworCiAJCQlpZiAodGVtcCAhPSBwb3NpdGlvbikgewogCQkJCXBvc2l0aW9uID0gdGVtcDsK
-IAkJCQlicmVhazsKQEAgLTg2NiwyMSArODkyLDI1IEBAIHN0YXRpYyBib29sIGk5MTVfZ2V0X2Ny
-dGNfc2Nhbm91dHBvcyhzdHJ1Y3QgZHJtX2NydGMgKl9jcnRjLAogCiAJLyogcHJlZW1wdF9kaXNh
-YmxlX3J0KCkgc2hvdWxkIGdvIHJpZ2h0IGhlcmUgaW4gUFJFRU1QVF9SVCBwYXRjaHNldC4gKi8K
-IAotCS8qIEdldCBvcHRpb25hbCBzeXN0ZW0gdGltZXN0YW1wIGJlZm9yZSBxdWVyeS4gKi8KLQlp
-ZiAoc3RpbWUpCi0JCSpzdGltZSA9IGt0aW1lX2dldCgpOwotCiAJaWYgKHVzZV9zY2FubGluZV9j
-b3VudGVyKSB7CiAJCS8qIE5vIG9idmlvdXMgcGl4ZWxjb3VudCByZWdpc3Rlci4gT25seSBxdWVy
-eSB2ZXJ0aWNhbAogCQkgKiBzY2Fub3V0IHBvc2l0aW9uIGZyb20gRGlzcGxheSBzY2FuIGxpbmUg
-cmVnaXN0ZXIuCiAJCSAqLwotCQlwb3NpdGlvbiA9IF9faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmUo
-Y3J0Yyk7CisJCXBvc2l0aW9uID0gX19pbnRlbF9nZXRfY3J0Y19zY2FubGluZShjcnRjLCBzdGlt
-ZSwgZXRpbWUpOwogCX0gZWxzZSB7CisJCS8qIEdldCBvcHRpb25hbCBzeXN0ZW0gdGltZXN0YW1w
-IGJlZm9yZSBxdWVyeS4gKi8KKwkJaWYgKHN0aW1lKQorCQkJKnN0aW1lID0ga3RpbWVfZ2V0KCk7
-CisKIAkJLyogSGF2ZSBhY2Nlc3MgdG8gcGl4ZWxjb3VudCBzaW5jZSBzdGFydCBvZiBmcmFtZS4K
-IAkJICogV2UgY2FuIHNwbGl0IHRoaXMgaW50byB2ZXJ0aWNhbCBhbmQgaG9yaXpvbnRhbAogCQkg
-KiBzY2Fub3V0IHBvc2l0aW9uLgogCQkgKi8KLQkJcG9zaXRpb24gPSAoaW50ZWxfZGVfcmVhZF9m
-dyhkZXZfcHJpdiwgUElQRUZSQU1FUElYRUwocGlwZSkpICYgUElQRV9QSVhFTF9NQVNLKSA+PiBQ
-SVBFX1BJWEVMX1NISUZUOworCQlwb3NpdGlvbiA9IGludGVsX2RlX3JlYWRfZncoZGV2X3ByaXYs
-IFBJUEVGUkFNRVBJWEVMKHBpcGUpKTsKKworCQkvKiBHZXQgb3B0aW9uYWwgc3lzdGVtIHRpbWVz
-dGFtcCBhZnRlciBxdWVyeS4gKi8KKwkJaWYgKGV0aW1lKQorCQkJKmV0aW1lID0ga3RpbWVfZ2V0
-KCk7CiAKIAkJLyogY29udmVydCB0byBwaXhlbCBjb3VudHMgKi8KIAkJdmJsX3N0YXJ0ICo9IGh0
-b3RhbDsKQEAgLTg5Niw2ICs5MjYsNyBAQCBzdGF0aWMgYm9vbCBpOTE1X2dldF9jcnRjX3NjYW5v
-dXRwb3Moc3RydWN0IGRybV9jcnRjICpfY3J0YywKIAkJICogbWF0Y2hlcyBob3cgdGhlIHNjYW5s
-aW5lIGNvdW50ZXIgYmFzZWQgcG9zaXRpb24gd29ya3Mgc2luY2UKIAkJICogdGhlIHNjYW5saW5l
-IGNvdW50ZXIgZG9lc24ndCBjb3VudCB0aGUgdHdvIGhhbGYgbGluZXMuCiAJCSAqLworCQlwb3Np
-dGlvbiA9IChwb3NpdGlvbiAmIFBJUEVfUElYRUxfTUFTSykgPj4gUElQRV9QSVhFTF9TSElGVDsK
-IAkJaWYgKHBvc2l0aW9uID49IHZ0b3RhbCkKIAkJCXBvc2l0aW9uID0gdnRvdGFsIC0gMTsKIApA
-QCAtOTExLDEwICs5NDIsNiBAQCBzdGF0aWMgYm9vbCBpOTE1X2dldF9jcnRjX3NjYW5vdXRwb3Mo
-c3RydWN0IGRybV9jcnRjICpfY3J0YywKIAkJcG9zaXRpb24gPSAocG9zaXRpb24gKyBodG90YWwg
-LSBoc3luY19zdGFydCkgJSB2dG90YWw7CiAJfQogCi0JLyogR2V0IG9wdGlvbmFsIHN5c3RlbSB0
-aW1lc3RhbXAgYWZ0ZXIgcXVlcnkuICovCi0JaWYgKGV0aW1lKQotCQkqZXRpbWUgPSBrdGltZV9n
-ZXQoKTsKLQogCS8qIHByZWVtcHRfZW5hYmxlX3J0KCkgc2hvdWxkIGdvIHJpZ2h0IGhlcmUgaW4g
-UFJFRU1QVF9SVCBwYXRjaHNldC4gKi8KIAogCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmRldl9w
-cml2LT51bmNvcmUubG9jaywgaXJxZmxhZ3MpOwpAQCAtOTU2LDcgKzk4Myw3IEBAIGludCBpbnRl
-bF9nZXRfY3J0Y19zY2FubGluZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKIAlpbnQgcG9zaXRp
-b247CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmZGV2X3ByaXYtPnVuY29yZS5sb2NrLCBpcnFmbGFn
-cyk7Ci0JcG9zaXRpb24gPSBfX2ludGVsX2dldF9jcnRjX3NjYW5saW5lKGNydGMpOworCXBvc2l0
-aW9uID0gX19pbnRlbF9nZXRfY3J0Y19zY2FubGluZShjcnRjLCBOVUxMLCBOVUxMKTsKIAlzcGlu
-X3VubG9ja19pcnFyZXN0b3JlKCZkZXZfcHJpdi0+dW5jb3JlLmxvY2ssIGlycWZsYWdzKTsKIAog
-CXJldHVybiBwb3NpdGlvbjsKLS0gCjIuMjcuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Chris Wilson (2020-06-11 13:30:37)
+> Since we have a precise start/end time for the sample, the actual time
+> the HW was read back is within that interval, and more likely closer to
+> the mean of the interval. Use the mean sample time when estimating the
+> vblank time.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/drm_vblank.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index da7b0b0c1090..79a5461d3773 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -710,15 +710,18 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+>         delta_ns = div_s64(1000000LL * (vpos * mode->crtc_htotal + hpos),
+>                            mode->crtc_clock);
+>  
+> +       /* Estimate when the sample was taken */
+> +       stime += (etime - stime) >> 2;
+
+/2 != >>2
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
