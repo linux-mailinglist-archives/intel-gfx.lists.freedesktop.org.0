@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D828B1F6B2C
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 17:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC0E1F6B32
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 17:40:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6341588065;
-	Thu, 11 Jun 2020 15:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE456E2EF;
+	Thu, 11 Jun 2020 15:39:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04AB6E0A1
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 15:38:15 +0000 (UTC)
-IronPort-SDR: EEzLs3zHFDHr72LIKqkMAQtyxSQK+oAntMw4MzVvSGdFW2hOOJQrtUfbFsiTE+m1j7kEm9aHXw
- FJJlJmeNBbvg==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 029EF6E2EF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 15:39:58 +0000 (UTC)
+IronPort-SDR: y/OL264YxA9K05ByJXv43TExZmPBNLh7yyAMG6D8FPatBcX8EfTBvkNpiAyh4+ZGY//zllyljF
+ NSE4mWO6TQhQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 08:38:15 -0700
-IronPort-SDR: /rzwyrUb/EdYgZtyoLkJYX1hZF6uT+LWJBQ8NDfqWykJNlY24u8+nm/yMeqs5gFDp7zApIKdiF
- +gSohk90U9IA==
+ 11 Jun 2020 08:39:58 -0700
+IronPort-SDR: jcrKcsnSFxz5N50vmJfHbUqSq2SgsVX5NeUslfAwOm9c6w3BC3DrhdHWQLH4CTBSfTqwS8tFFw
+ vjFRYGVWjIqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="275369601"
+X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="314845301"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 11 Jun 2020 08:38:12 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 11 Jun 2020 08:39:56 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Jun 2020 18:38:11 +0300
-Date: Thu, 11 Jun 2020 18:38:11 +0300
+ Thu, 11 Jun 2020 18:39:55 +0300
+Date: Thu, 11 Jun 2020 18:39:55 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200611153811.GZ6112@intel.com>
+Message-ID: <20200611153955.GA6112@intel.com>
 References: <20200610183132.13341-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
@@ -103,19 +103,6 @@ v);
 > +
 > +	if (INTEL_GEN(dev_priv) >=3D 12)
 > +		return TGL_DP_TP_STATUS(crtc_state->mst_master_transcoder);
-
-Was going to say this needs a mst check, but then I noticed you're only
-changing the mst paths. So this looks like a partial take on
-https://patchwork.freedesktop.org/patch/364549/?series=3D76993&rev=3D2
-Granted, my patch would require the crtc_state plumbing everywhere
-so not really bug fix material.
-
-The main question I have is why are regs.dp_tp* not being populated
-correctly? Pretty sure they were supposed to be.
-
-Also there are a bunch of places where we poke DP_TP_CTL in
-intel_ddi.c. Why aren't those a problem?
-
 > +
 > +	return intel_dp->regs.dp_tp_status;
 > +}
@@ -129,6 +116,11 @@ intel_ddi.c. Why aren't those a problem?
 > +
 > +	intel_de_write(i915, dp_tp_status_reg,
 > +		       intel_de_read(i915, dp_tp_status_reg));
+
+Followup material:
+Should we actually just clear the bit(s) we care about? No idea what
+other stuff is in there.
+
 > +}
 > +
 > +static bool wait_for_act_sent(const struct intel_crtc_state *crtc_state,
