@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68701F6C45
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 18:38:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F0E1F6C67
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 18:50:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D96A6898C8;
-	Thu, 11 Jun 2020 16:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D0E6E8E1;
+	Thu, 11 Jun 2020 16:50:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83B089206
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 16:37:57 +0000 (UTC)
-IronPort-SDR: db7LoFgX82lw/GwSI5HzJzLjzdR7HX9jemqs32rF7TM/mky9WynCAM1KuuUuhmx2RDG+ErdCvt
- M6fD5M6Ne6Fg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 09:37:57 -0700
-IronPort-SDR: jNd3BOquXSRKy/vQ3hSJONlEbKb+sYjILOTFZSJwBMzGt98yF7x1c87LI/EbvyEsvO63ffJr81
- acOizpGFDayQ==
-X-IronPort-AV: E=Sophos;i="5.73,499,1583222400"; d="scan'208";a="306976600"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2020 09:37:56 -0700
-Date: Thu, 11 Jun 2020 19:37:45 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200611163745.GK17512@ideak-desk.fi.intel.com>
-References: <20200610183132.13341-1-imre.deak@intel.com>
- <20200611153955.GA6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F39C6E8DD;
+ Thu, 11 Jun 2020 16:50:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 792F8A47EB;
+ Thu, 11 Jun 2020 16:50:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200611153955.GA6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl+: Fix DP MST ACT status
- handling
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 11 Jun 2020 16:50:50 -0000
+Message-ID: <159189425046.22714.10395217085568860311@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200611160529.9558-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200611160529.9558-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Flush_gen3_relocs_harder=2C_again?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,172 +38,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2020 at 06:39:55PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Jun 10, 2020 at 09:31:31PM +0300, Imre Deak wrote:
-> > On TGL+ the master transcoder's DP_TP_STATUS register should be used for
-> > the MST ACT status handling, so make sure we do that even in case of
-> > mulitple streams.
-> > =
+== Series Details ==
 
-> > This fixes an ACT timeout problem during disabling when using multiple
-> > streams. Not sure why this was not a problem during enabling (even the
-> > slave's DP_TP_STATUS signaled ACT correctly), but following the spec
-> > works in that case too, so let's do that.
-> > =
+Series: drm/i915/gt: Flush gen3 relocs harder, again
+URL   : https://patchwork.freedesktop.org/series/78230/
+State : success
 
-> > There is one more place using DP_TP_STATUS, FEC enabling, but I haven't
-> > found in BSpec which register to use in that case, so I leave the
-> > clarification of that for later.
-> > =
+== Summary ==
 
-> > BSpec: 49190
-> > =
+CI Bug Log - changes from CI_DRM_8618 -> Patchwork_17928
+====================================================
 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 47 +++++++++++++++++----
-> >  1 file changed, 39 insertions(+), 8 deletions(-)
-> > =
+Summary
+-------
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/=
-drm/i915/display/intel_dp_mst.c
-> > index d18b406f2a7d..1c3654a117a9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -316,6 +316,40 @@ intel_dp_mst_atomic_check(struct drm_connector *co=
-nnector,
-> >  	return ret;
-> >  }
-> >  =
+  **SUCCESS**
 
-> > +static i915_reg_t
-> > +master_dp_tp_status_reg(const struct intel_crtc_state *crtc_state,
-> > +			const struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> > +
-> > +	if (INTEL_GEN(dev_priv) >=3D 12)
-> > +		return TGL_DP_TP_STATUS(crtc_state->mst_master_transcoder);
-> > +
-> > +	return intel_dp->regs.dp_tp_status;
-> > +}
-> > +
-> > +static void clear_act_sent(const struct intel_crtc_state *crtc_state,
-> > +			   const struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> > +	i915_reg_t dp_tp_status_reg =3D
-> > +		master_dp_tp_status_reg(crtc_state, intel_dp);
-> > +
-> > +	intel_de_write(i915, dp_tp_status_reg,
-> > +		       intel_de_read(i915, dp_tp_status_reg));
-> =
+  No regressions found.
 
-> Followup material:
-> Should we actually just clear the bit(s) we care about? No idea what
-> other stuff is in there.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/index.html
 
-Yes, was thinking about that, but thought to leave it as-is for now,
-since enabling may depend on something that we clear there. Though
-clearing all the bits may break disabling, so probably better to have
-this change already now.
+Known issues
+------------
 
-> =
+  Here are the changes found in Patchwork_17928 that come from known issues:
 
-> > +}
-> > +
-> > +static bool wait_for_act_sent(const struct intel_crtc_state *crtc_stat=
-e,
-> > +			      const struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> > +	i915_reg_t dp_tp_status_reg =3D
-> > +		master_dp_tp_status_reg(crtc_state, intel_dp);
-> > +
-> > +	return intel_de_wait_for_set(i915, dp_tp_status_reg,
-> > +				     DP_TP_STATUS_ACT_SENT, 1) =3D=3D 0;
-> > +}
-> > +
-> >  static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> >  				 struct intel_encoder *encoder,
-> >  				 const struct intel_crtc_state *old_crtc_state,
-> > @@ -376,8 +410,7 @@ static void intel_mst_post_disable_dp(struct intel_=
-atomic_state *state,
-> >  		       TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
-> >  		       val);
-> >  =
+### IGT changes ###
 
-> > -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
-> > -				  DP_TP_STATUS_ACT_SENT, 1))
-> > +	if (!wait_for_act_sent(old_crtc_state, intel_dp))
-> >  		drm_err(&dev_priv->drm,
-> >  			"Timed out waiting for ACT sent when disabling\n");
-> >  	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> > @@ -443,7 +476,6 @@ static void intel_mst_pre_enable_dp(struct intel_at=
-omic_state *state,
-> >  	struct intel_connector *connector =3D
-> >  		to_intel_connector(conn_state->connector);
-> >  	int ret;
-> > -	u32 temp;
-> >  	bool first_mst_stream;
-> >  =
+#### Issues hit ####
 
-> >  	/* MST encoders are bound to a crtc, not to a connector,
-> > @@ -476,8 +508,8 @@ static void intel_mst_pre_enable_dp(struct intel_at=
-omic_state *state,
-> >  		drm_err(&dev_priv->drm, "failed to allocate vcpi\n");
-> >  =
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-> >  	intel_dp->active_mst_links++;
-> > -	temp =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_status);
-> > -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_status, temp);
-> > +
-> > +	clear_act_sent(pipe_config, intel_dp);
-> >  =
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
 
-> >  	ret =3D drm_dp_update_payload_part1(&intel_dp->mst_mgr);
-> >  =
+  
+#### Possible fixes ####
 
-> > @@ -513,9 +545,8 @@ static void intel_mst_enable_dp(struct intel_atomic=
-_state *state,
-> >  	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
-> >  		    intel_dp->active_mst_links);
-> >  =
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
-> > -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
-> > -				  DP_TP_STATUS_ACT_SENT, 1))
-> > -		drm_err(&dev_priv->drm, "Timed out waiting for ACT sent\n");
-> > +	if (!wait_for_act_sent(pipe_config, intel_dp))
-> > +		drm_err(&dev_priv->drm, "Timed out waiting for ACT sent when enablin=
-g\n");
-> >  =
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-tgl-u2:          [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
 
-> >  	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> >  =
+  
+#### Warnings ####
 
-> > -- =
+  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
 
-> > 2.23.1
-> > =
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +5 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> -- =
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
-> Ville Syrj=E4l=E4
-> Intel
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8618 -> Patchwork_17928
+
+  CI-20190529: 20190529
+  CI_DRM_8618: 88841e30e7f8c60ff464be277e5b8fef49ebaea0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5703: c33471b4aa0a0ae9dd42202048e7037a661e0574 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17928: c941a56c4805f053450c96e0c4366f90289b14d3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c941a56c4805 drm/i915/gt: Flush gen3 relocs harder, again
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17928/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
