@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737DF1F64BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 11:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB3E1F64C2
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2020 11:30:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD7256E8C3;
-	Thu, 11 Jun 2020 09:28:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE46B6E8C1;
+	Thu, 11 Jun 2020 09:30:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AD3F6E8C1;
- Thu, 11 Jun 2020 09:28:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6441DA00E7;
- Thu, 11 Jun 2020 09:28:53 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 11 Jun 2020 09:28:53 -0000
-Message-ID: <159186773340.22713.3308931494480360805@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A4B6E8C1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2020 09:30:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21462118-1500050 
+ for multiple; Thu, 11 Jun 2020 10:30:17 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Jun 2020 10:30:15 +0100
+Message-Id: <20200611093015.11370-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200611080140.30228-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/gt=3A_Move_hsw_GT_workarou?=
- =?utf-8?q?nds_from_init=5Fclock=5Fgating_to_workarounds?=
+References: <20200611080140.30228-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Move hsw GT workarounds from
+ init_clock_gating to workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,168 +39,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Rescue the GT workarounds from being buried inside init_clock_gating so
+that we remember to apply them after a GT reset, and that they are
+included in our verification that the workarounds are applied.
 
-Series: series starting with [1/6] drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds
-URL   : https://patchwork.freedesktop.org/series/78214/
-State : success
+v2: Leave HSW_SCRATCH to set an explicit value, not or in our disable
+bit.
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2011
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 48 +++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_pm.c             | 39 +----------------
+ 2 files changed, 50 insertions(+), 37 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8614 -> Patchwork_17925
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3eec31c5a714..fb337e2d8a27 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -178,6 +178,12 @@ wa_write_or(struct i915_wa_list *wal, i915_reg_t reg, u32 set)
+ 	wa_write_masked_or(wal, reg, set, set);
+ }
+ 
++static void
++wa_write_clr(struct i915_wa_list *wal, i915_reg_t reg, u32 clr)
++{
++	wa_write_masked_or(wal, reg, clr, 0);
++}
++
+ static void
+ wa_masked_en(struct i915_wa_list *wal, i915_reg_t reg, u32 val)
+ {
+@@ -708,6 +714,46 @@ int intel_engine_emit_ctx_wa(struct i915_request *rq)
+ 	return 0;
+ }
+ 
++static void
++hsw_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
++{
++	/* L3 caching of data atomics doesn't work -- disable it. */
++	wa_write(wal, HSW_SCRATCH1, HSW_SCRATCH1_L3_DATA_ATOMICS_DISABLE);
++
++	wa_add(wal,
++	       HSW_ROW_CHICKEN3, 0,
++	       _MASKED_BIT_ENABLE(HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE),
++		0 /* XXX does this reg exist? */);
++
++	/* WaVSRefCountFullforceMissDisable:hsw */
++	wa_write_clr(wal, GEN7_FF_THREAD_MODE, GEN7_FF_VS_REF_CNT_FFME);
++
++	wa_masked_dis(wal,
++		      CACHE_MODE_0_GEN7,
++		      /* WaDisable_RenderCache_OperationalFlush:hsw */
++		      RC_OP_FLUSH_ENABLE |
++		      /* enable HiZ Raw Stall Optimization */
++		      HIZ_RAW_STALL_OPT_DISABLE);
++
++	/* WaDisable4x2SubspanOptimization:hsw */
++	wa_masked_en(wal, CACHE_MODE_1, PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
++
++	/*
++	 * BSpec recommends 8x4 when MSAA is used,
++	 * however in practice 16x4 seems fastest.
++	 *
++	 * Note that PS/WM thread counts depend on the WIZ hashing
++	 * disable bit, which we don't touch here, but it's good
++	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
++	 */
++	wa_add(wal, GEN7_GT_MODE, 0,
++	       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
++	       GEN6_WIZ_HASHING_16x4);
++
++	/* WaSampleCChickenBitEnable:hsw */
++	wa_masked_en(wal, HALF_SLICE_CHICKEN3, HSW_SAMPLE_C_PERFORMANCE);
++}
++
+ static void
+ gen9_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+@@ -985,6 +1031,8 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 		bxt_gt_workarounds_init(i915, wal);
+ 	else if (IS_SKYLAKE(i915))
+ 		skl_gt_workarounds_init(i915, wal);
++	else if (IS_HASWELL(i915))
++		hsw_gt_workarounds_init(i915, wal);
+ 	else if (INTEL_GEN(i915) <= 8)
+ 		return;
+ 	else
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 26b670fa3f88..249ee720874c 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -7321,45 +7321,10 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+ 
+ static void hsw_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	/* L3 caching of data atomics doesn't work -- disable it. */
+-	I915_WRITE(HSW_SCRATCH1, HSW_SCRATCH1_L3_DATA_ATOMICS_DISABLE);
+-	I915_WRITE(HSW_ROW_CHICKEN3,
+-		   _MASKED_BIT_ENABLE(HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE));
+-
+ 	/* This is required by WaCatErrorRejectionIssue:hsw */
+ 	I915_WRITE(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+-			I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+-			GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+-
+-	/* WaVSRefCountFullforceMissDisable:hsw */
+-	I915_WRITE(GEN7_FF_THREAD_MODE,
+-		   I915_READ(GEN7_FF_THREAD_MODE) & ~GEN7_FF_VS_REF_CNT_FFME);
+-
+-	/* WaDisable_RenderCache_OperationalFlush:hsw */
+-	I915_WRITE(CACHE_MODE_0_GEN7, _MASKED_BIT_DISABLE(RC_OP_FLUSH_ENABLE));
+-
+-	/* enable HiZ Raw Stall Optimization */
+-	I915_WRITE(CACHE_MODE_0_GEN7,
+-		   _MASKED_BIT_DISABLE(HIZ_RAW_STALL_OPT_DISABLE));
+-
+-	/* WaDisable4x2SubspanOptimization:hsw */
+-	I915_WRITE(CACHE_MODE_1,
+-		   _MASKED_BIT_ENABLE(PIXEL_SUBSPAN_COLLECT_OPT_DISABLE));
+-
+-	/*
+-	 * BSpec recommends 8x4 when MSAA is used,
+-	 * however in practice 16x4 seems fastest.
+-	 *
+-	 * Note that PS/WM thread counts depend on the WIZ hashing
+-	 * disable bit, which we don't touch here, but it's good
+-	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+-	 */
+-	I915_WRITE(GEN7_GT_MODE,
+-		   _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4));
+-
+-	/* WaSampleCChickenBitEnable:hsw */
+-	I915_WRITE(HALF_SLICE_CHICKEN3,
+-		   _MASKED_BIT_ENABLE(HSW_SAMPLE_C_PERFORMANCE));
++		   I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
++		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+ 
+ 	/* WaSwitchSolVfFArbitrationPriority:hsw */
+ 	I915_WRITE(GAM_ECOCHK, I915_READ(GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17925:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-kbl-7560u}:     NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-kbl-7560u/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17925 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][4] -> [DMESG-WARN][5] ([i915#1982]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-byt-j1900/igt@i915_module_load@reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-icl-guc:         [PASS][6] -> [DMESG-WARN][7] ([i915#1982])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-icl-guc/igt@i915_module_load@reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-icl-guc/igt@i915_module_load@reload.html
-    - fi-icl-y:           [PASS][8] -> [DMESG-WARN][9] ([i915#1982])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-icl-y/igt@i915_module_load@reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-icl-y/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][10] -> [DMESG-WARN][11] ([i915#1982])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][12] -> [DMESG-WARN][13] ([i915#1982])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][14] -> [DMESG-WARN][15] ([i915#402])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [DMESG-WARN][16] ([i915#1982]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-apl-guc/igt@i915_module_load@reload.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-apl-guc/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [DMESG-WARN][18] ([i915#1982]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][22] ([i915#1982]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][25] ([i915#62] / [i915#92]) +4 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][26] ([i915#62] / [i915#92]) -> [DMESG-WARN][27] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8614/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8614 -> Patchwork_17925
-
-  CI-20190529: 20190529
-  CI_DRM_8614: 207862f18909166ffcf9e288ff796b756ae82d1c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5702: d16ad07e7f2a028e14d61f570931c87fa5ce404c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17925: bb704549ca1937377b3595b79d74f18f875942c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bb704549ca19 drm/i915/gt: Move gen4 GT workarounds from init_clock_gating to workarounds
-04d5cd5657aa drm/i915/gt: Move ilk GT workarounds from init_clock_gating to workarounds
-2bb63f1a6887 drm/i915/gt: Move snb GT workarounds from init_clock_gating to workarounds
-a5568a200839 drm/i915/gt: Move vlv GT workarounds from init_clock_gating to workarounds
-e66a89d1b959 drm/i915/gt: Move ivb GT workarounds from init_clock_gating to workarounds
-d733ff00e147 drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17925/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
