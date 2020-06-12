@@ -2,46 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 318491F7DB3
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 21:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BB6A1F7DF5
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 22:07:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A71B26E18F;
-	Fri, 12 Jun 2020 19:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B92F6E1B1;
+	Fri, 12 Jun 2020 20:07:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A9A089A6D;
- Fri, 12 Jun 2020 19:38:00 +0000 (UTC)
-IronPort-SDR: iS/uLNUNbhskj09J7ppzdE7VMgdnKscXEeaRAfHOCQfGZASh9BN+1GZvcjODTk8qGP3BlfsXv/
- IbRcdSqWejjw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 12:37:59 -0700
-IronPort-SDR: N5wz9nSWiFW0+XMMHpsVhjTj3J3sQtbCH1Kv4UyL9TeZzoFoxjZvTeOuRazTXGCqwF3y8hqK70
- QWR9e6/t8KbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,504,1583222400"; d="scan'208";a="260928239"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga007.jf.intel.com with ESMTP; 12 Jun 2020 12:37:57 -0700
-Date: Fri, 12 Jun 2020 12:38:59 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200612193859.GB7611@intel.com>
-References: <1591247028-5868-1-git-send-email-vidya.srinivas@intel.com>
- <20200604190612.GI6112@intel.com>
- <fea323968324ceefe813d34d80fdd9779614aa01.camel@intel.com>
- <20200604210319.GJ6112@intel.com> <20200612182542.GA7458@intel.com>
- <20200612183637.GL6112@intel.com> <20200612184413.GC7458@intel.com>
- <20200612190119.GN6112@intel.com> <20200612191224.GA7611@intel.com>
- <20200612192131.GO6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DE34D6E1B1;
+ Fri, 12 Jun 2020 20:07:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8271A3C0D;
+ Fri, 12 Jun 2020 20:07:17 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200612192131.GO6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: DP PHY compliance for JSL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Fri, 12 Jun 2020 20:07:17 -0000
+Message-ID: <159199243785.21335.9177201955553895472@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200612121731.19596-1-imre.deak@intel.com>
+In-Reply-To: <20200612121731.19596-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/icl+=3A_Fix_hotplug_interrupt_disabling_after_storm_detec?=
+ =?utf-8?q?tion?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,259 +39,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 12, 2020 at 10:21:31PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Fri, Jun 12, 2020 at 12:12:25PM -0700, Manasi Navare wrote:
-> > On Fri, Jun 12, 2020 at 10:01:19PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Fri, Jun 12, 2020 at 11:44:13AM -0700, Manasi Navare wrote:
-> > > > On Fri, Jun 12, 2020 at 09:36:37PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Fri, Jun 12, 2020 at 11:25:42AM -0700, Manasi Navare wrote:
-> > > > > > On Fri, Jun 05, 2020 at 12:03:19AM +0300, Ville Syrj=E4l=E4 wro=
-te:
-> > > > > > > On Thu, Jun 04, 2020 at 08:01:03PM +0000, Almahallawy, Khaled=
- wrote:
-> > > > > > > > On Thu, 2020-06-04 at 22:06 +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > > > > > On Thu, Jun 04, 2020 at 10:33:48AM +0530, Vidya Srinivas =
-wrote:
-> > > > > > > > > > Signed-off-by: Khaled Almahallawy <khaled.almahallawy@i=
-ntel.com>
-> > > > > > > > > > Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> > > > > > > > > > ---
-> > > > > > > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 40
-> > > > > > > > > > ++++++++++++++++++++++++++-------
-> > > > > > > > > >  1 file changed, 32 insertions(+), 8 deletions(-)
-> > > > > > > > > > =
+== Series Details ==
 
-> > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > > > > index 7223367171d1..44663e8ac9a1 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > > > > > @@ -5470,22 +5470,32 @@ intel_dp_autotest_phy_ddi_disab=
-le(struct
-> > > > > > > > > > intel_dp *intel_dp)
-> > > > > > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> > > > > > > > > >  	struct intel_crtc *crtc =3D to_intel_crtc(intel_dig_p=
-ort-
-> > > > > > > > > > >base.base.crtc);
-> > > > > > > > > >  	enum pipe pipe =3D crtc->pipe;
-> > > > > > > > > > -	u32 trans_ddi_func_ctl_value, trans_conf_value,
-> > > > > > > > > > dp_tp_ctl_value;
-> > > > > > > > > > +	u32 trans_ddi_func_ctl_value, trans_conf_value,
-> > > > > > > > > > dp_tp_ctl_value, trans_ddi_port_mask;
-> > > > > > > > > > +	enum port port =3D intel_dig_port->base.port;
-> > > > > > > > > > +	i915_reg_t dp_tp_reg;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (IS_ELKHARTLAKE(dev_priv)) {
-> > > > > > > > > > +		dp_tp_reg =3D DP_TP_CTL(port);
-> > > > > > > > > > +		trans_ddi_port_mask =3D TRANS_DDI_PORT_MASK;
-> > > > > > > > > > +	} else if (IS_TIGERLAKE(dev_priv)) {
-> > > > > > > > > > +		dp_tp_reg =3D TGL_DP_TP_CTL(pipe);
-> > > > > > > > > > +		trans_ddi_port_mask =3D TGL_TRANS_DDI_PORT_MASK;
-> > > > > > > > > > +	}
-> > > > > > > > > >  =
+Series: drm/i915/icl+: Fix hotplug interrupt disabling after storm detection
+URL   : https://patchwork.freedesktop.org/series/78258/
+State : success
 
-> > > > > > > > > >  	trans_ddi_func_ctl_value =3D intel_de_read(dev_priv,
-> > > > > > > > > >  						 TRANS_DDI_FUNC_CTL(pip
-> > > > > > > > > > e));
-> > > > > > > > > >  	trans_conf_value =3D intel_de_read(dev_priv, PIPECONF=
-(pipe));
-> > > > > > > > > > -	dp_tp_ctl_value =3D intel_de_read(dev_priv, TGL_DP_TP=
-_CTL(pipe));
-> > > > > > > > > >  =
+== Summary ==
 
-> > > > > > > > > > +	dp_tp_ctl_value =3D intel_de_read(dev_priv, dp_tp_reg=
-);
-> > > > > > > > > >  	trans_ddi_func_ctl_value &=3D ~(TRANS_DDI_FUNC_ENABLE=
- |
-> > > > > > > > > > -				      TGL_TRANS_DDI_PORT_MASK);
-> > > > > > > > > > +					trans_ddi_port_mask);
-> > > > > > > > > >  	trans_conf_value &=3D ~PIPECONF_ENABLE;
-> > > > > > > > > >  	dp_tp_ctl_value &=3D ~DP_TP_CTL_ENABLE;
-> > > > > > > > > >  =
+CI Bug Log - changes from CI_DRM_8621 -> Patchwork_17937
+====================================================
 
-> > > > > > > > > >  	intel_de_write(dev_priv, PIPECONF(pipe), trans_conf_v=
-alue);
-> > > > > > > > > >  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(pipe),
-> > > > > > > > > >  		       trans_ddi_func_ctl_value);
-> > > > > > > > > > -	intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_c=
-tl_value);
-> > > > > > > > > > +	intel_de_write(dev_priv, dp_tp_reg, dp_tp_ctl_value);
-> > > > > > > > > =
+Summary
+-------
 
-> > > > > > > > > All this ad-hoc modeset code really should not exist. It'=
-s going to
-> > > > > > > > > have different bugs than the norma modeset paths, so comp=
-liance
-> > > > > > > > > testing
-> > > > > > > > > this special code proves absolutely nothing about the nor=
-mal modeset
-> > > > > > > > > code. IMO someone needs to take up the task of rewrtiting=
- all this to
-> > > > > > > > > just perform normal modesets.
-> > > > > > > > =
+  **SUCCESS**
 
-> > > > > > > > Agree. I've just found that we get kernel NULL pointer dere=
-ference and
-> > > > > > > > panic when we try to access to_intel_crtc(intel_dig_port-
-> > > > > > > > >base.base.crtc).
-> > > > > > > =
+  No regressions found.
 
-> > > > > > > Yeah, that's a legacy pointer which should no longer be used =
-at all
-> > > > > > > with atomic drivers. I'm slowly trying to clear out all this =
-legacy
-> > > > > > > cruft. The next step I had hoped to take was
-> > > > > > > https://patchwork.freedesktop.org/series/76993/ but then this
-> > > > > > > compliacnce stuff landed and threw another wrench into the wo=
-rks.
-> > > > > > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/index.html
 
-> > > > > > We had several discussions on design of DP PHY compliance and t=
-he patches were on the M-L
-> > > > > > for quite some time without anyone giving feedback on the actua=
-l design of whether they should
-> > > > > > happen through modeset or directly from the PHY comp request sh=
-ort pulse.
-> > > > > > My first feedback was also that this should happen through a co=
-mplete modeset where after we get
-> > > > > > PHY comp request we send a uevent like we do for link layer com=
-pliance and then trigger a full modeset.
-> > > > > > But honestly that was just a lot of overhead and =
+Known issues
+------------
 
-> > > > > > The reason we decided to go with this ad hoc approach was that =
-with PHY compliance request,
-> > > > > > nothing really changes in terms of link parameters so we do not=
- need to go through
-> > > > > > a complete modeset request unlike link layer compliance where w=
-e need to do compute config
-> > > > > > all over again to do the link params computation.
-> > > > > > =
+  Here are the changes found in Patchwork_17937 that come from known issues:
 
-> > > > > > Every PHY comp request first sends a link layer comp request th=
-at does a full modeset
-> > > > > > and sets up the desired link rate/lane count.
-> > > > > > Then with PHY request, all we need to do is disable pipe conf, =
-dp_tp_ctl, set the PHY patterns
-> > > > > > and renable the pipe conf and dp_tp_ctl without interfering and=
- doing anything with a full modeset.
-> > > > > > =
+### IGT changes ###
 
-> > > > > > Now i think if we need to scale this to other platforms, can we=
- add a per platform hook
-> > > > > > for handle_phy_request that gets the correct DP_TP_CTL etc and =
-sets up the PHY patterns and
-> > > > > > reenables the already set link?
-> > > > > > =
+#### Issues hit ####
 
-> > > > > > We have thoroughly tested this using the scopes and DPR 100 and=
- it has been working correctly
-> > > > > > with the existing IGT compliance tool so IMO no need to rewrite=
- the entire set of patches.
-> > > > > > =
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
-> > > > > > Ville, Khaled ?
-> > > > > =
+  
+#### Possible fixes ####
 
-> > > > > You're just multiplying the amount of work and bugs we have
-> > > > > for every platform.
-> > > > > =
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [DMESG-WARN][3] ([i915#95]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
 
-> > > > > And as said testing some special compliance paths proves
-> > > > > pretty much nothing about the real code paths. So the only
-> > > > > point of that code AFAICS it to tick some "we haz
-> > > > > compliance code?" checkbox in some random spreadsheet instead
-> > > > > of actually providing evidence that our real code works
-> > > > > correctly.
-> > > > >
-> > > > =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
 
-> > > > I thougt the whole point of PHY compliance is not to be able to see=
- if the
-> > > > driver can do a modeset but just to confirm that driver is able to =
-send
-> > > > the requested patterns out on already enabled link. So shouldnt doi=
-ng this
-> > > > directly through the phy request handling on short pulse suffice?
-> > > =
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [DMESG-FAIL][7] ([i915#1993]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-icl-y/igt@i915_selftest@live@execlists.html
 
-> > > You're not proving the driver proper can transmit the requested stuff,
-> > > you're only proving the special compliance code can do that. I could
-> > > easily break the normal codepaths and yet this magic compliance thing
-> > > could still indicate that everything is hunky dory.
-> > >
-> >  =
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-kbl-x1275/igt@kms_busy@basic@flip.html
 
-> > > > =
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
-> > > > But if we want to insert this in the modeset what should be the flo=
-w:
-> > > > - AFter getting PHY request, store the requested PHY patterns, send=
- a uevent
-> > > =
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-guc:         [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
-> > > You don't really need any uevent. We coukd do the stuff directly from =
+  
+#### Warnings ####
 
-> > > the hotplug work.
-> > > =
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +4 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
 
-> > > > - This will trigger a complete modeset, in this path for atomic che=
-ck, see
-> > > > if PHY compliance test active then ignore recomputing the parameter=
-s and
-> > > > also in the commit tail, only disable the Pipeconf, dp_tp_ctl and s=
-end these patterns
-> > > > and then reenable?
-> > > =
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
 
-> > > We should just do a full modeset if possible. Randomly turning the
-> > > pipe/etc. on/off without following the proper modeset sequence is
-> > > dubious at best.
-> > =
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
-> > how do we trigger a full modeset directly from the hotplug work just fr=
-om
-> > within the kernel? We faced the same problem with link layer compliance
-> > and hence we decided to send the uevent there to trigger a ful modeset.
-> =
 
-> The full modeset via userspace route is only needed if the resolution
-> needs to be changed since that's something userspace gets to decide.
-> If the current mode is still OK we can directly trigger the modeset
-> from the kernel. Not sure if we do or not.
-> =
+Participating hosts (49 -> 43)
+------------------------------
 
-> We do a full modeset for HDMI when the sink forgets that scrambling
-> was supposed to be on, and I'm a bit tempted to do the same for
-> plain old DP retraining to get rid of the special case code for
-> that (and to actually follow the modeset seqeunce properly when
-> doing retraining).
->
+  Additional (1): fi-tgl-u2 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-For retraining we dont have any special case code right, we just fallback a=
-nd then send uevent.
-Oh but do you mean like getting rid of setting the link status and forcing =
-a full modeset etc?
 
-So for PHY compliance, we do something similar to calling modeset_pipe() fr=
-om
-intel_hdmi_reset_link()? So call this modeset_pipe from  intel_dp_autotest_=
-phy_pattern() after
-storing the requested phy patterns in a compliance struct?
+Build changes
+-------------
 
-Manasi
- =
+  * Linux: CI_DRM_8621 -> Patchwork_17937
 
-> -- =
+  CI-20190529: 20190529
+  CI_DRM_8621: acd803311fbd1e6adc38d10ca382a60c6c190be9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5708: f66c71e29de50bae880bc81ceb0517d4e3e2dfd8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17937: a09f4bc8ddb9cfad0f18bdaccada93f9e98d5c54 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> Ville Syrj=E4l=E4
-> Intel
+
+== Linux commits ==
+
+a09f4bc8ddb9 drm/i915/icl+: Fix hotplug interrupt disabling after storm detection
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17937/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
