@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985DB1F7698
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 12:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C0C1F76B0
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 12:24:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CE46E916;
-	Fri, 12 Jun 2020 10:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADDF36E91A;
+	Fri, 12 Jun 2020 10:24:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E036E916
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 10:16:52 +0000 (UTC)
-IronPort-SDR: 399PdTPVytPt/qR2udFaeG9iEYoKDrAdxMItNKOT8G2Df3crCWViOuUyPKRs+UMjF8Gj0i94Fc
- p+v0YyW4fgLw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 03:16:51 -0700
-IronPort-SDR: DtCL3RKwrCdY1A3VnbCAChRBmx3DKc/QFfpxd0KzN+anZpGTzSoU2/jvcE+iIvlVmkG37afiLb
- A7Otm6p95jqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,502,1583222400"; d="scan'208";a="380662337"
-Received: from sai-ubutu.iind.intel.com ([10.145.162.88])
- by fmsmga001.fm.intel.com with ESMTP; 12 Jun 2020 03:16:49 -0700
-From: ramadevi.gandi@intel.com
-To: ashutosh.dixit@intel.com, saurabhg.gupta@intel.com,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Jun 2020 15:33:53 +0530
-Message-Id: <20200612100353.14461-1-ramadevi.gandi@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98DBE6E91A;
+ Fri, 12 Jun 2020 10:24:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 90A14A00EF;
+ Fri, 12 Jun 2020 10:24:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] intel: sync i915_pciids.h with kernel
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Date: Fri, 12 Jun 2020 10:24:07 -0000
+Message-ID: <159195744756.21337.11998121159699157318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200612082237.11886-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20200612082237.11886-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Fix_the_encoder_type_check_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,35 +38,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Gandi Ramadevi <ramadevi.gandi@intel.com>
+== Series Details ==
 
-Add DG1 PCI ID
+Series: drm/i915/display: Fix the encoder type check (rev2)
+URL   : https://patchwork.freedesktop.org/series/76891/
+State : failure
 
-Signed-off-by: Gandi Ramadevi <ramadevi.gandi@intel.com>
----
- intel/i915_pciids.h | 4 ++++
- 1 file changed, 4 insertions(+)
+== Summary ==
 
-diff --git a/intel/i915_pciids.h b/intel/i915_pciids.h
-index 662d8351..3de6e574 100644
---- a/intel/i915_pciids.h
-+++ b/intel/i915_pciids.h
-@@ -605,4 +605,8 @@
- 	INTEL_VGA_DEVICE(0x9AD9, info), \
- 	INTEL_VGA_DEVICE(0x9AF8, info)
- 
-+/* DG1 */
-+#define INTEL_DG1_IDS(info) \
-+        INTEL_VGA_DEVICE(0x4905, info)
-+
- #endif /* _I915_PCIIDS_H */
--- 
-2.25.1
+Applying: drm/i915/display: Fix the encoder type check
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_ddi.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
 
 _______________________________________________
 Intel-gfx mailing list
