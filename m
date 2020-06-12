@@ -2,31 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA241F7BC9
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 18:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49A2D1F7BE2
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 19:00:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDDCC6EA18;
-	Fri, 12 Jun 2020 16:48:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A9B6EA11;
+	Fri, 12 Jun 2020 17:00:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A1E36EA0A;
- Fri, 12 Jun 2020 16:48:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 14AA6A011B;
- Fri, 12 Jun 2020 16:48:05 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 796E16EA0E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 17:00:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591981205;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RSxETv919iNwwn2Qchkd484q2EDMbODrI/YRurJgmf8=;
+ b=CG/YwHZVWf5RRtpYDdia92aJT10c5ZxWM2n2A5dBlsrAl2eUV54SrP/ZBEitJoRPVa8XSh
+ hnCkPDIxeF5knHuzVKkpMB0C0buQPjkmRKfACqsF15eGAzNFTOkQ3PDsnIDzkDQn4us18V
+ +vseseLdWK0mJyizD9XXjfmQRZSE7Tk=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-143-7NagFxMJN6epHA2JVnuyfw-1; Fri, 12 Jun 2020 13:00:01 -0400
+X-MC-Unique: 7NagFxMJN6epHA2JVnuyfw-1
+Received: by mail-ej1-f69.google.com with SMTP id ca6so4409867ejb.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 10:00:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=YZefpytQS9Nuutazh9XOblfbRG+wXV9orLCiC5J8cHs=;
+ b=cYQXNY7BdSfjsffEqydYB5ipI3kJ9SZnx/t1IO0K+PUIqYsMXOl84MuJ//ksvMRZlX
+ SPAVeA/dnEJ3xw5GwtFRF/UNilo85Jt2bk9V4Jy7rqUpYzwwG4PqC8oJdrdASJDDRE9u
+ hjLoXPvCkLsnE9EQtxkZzS5/Gu7YptU+XwVQbayw8MCX5mJQkFV+WG5M+7QjAA/vUmF/
+ NNNip9TopCGB/X57TjghxaFd/84+eYYeOUqXz1XCHTaZqLjRYo7f70dBsEM/8iJ0K04Z
+ OoNRNHnm+nhFbRVU815M36Hu5ADRfv5q4rnAZpBdHW15ys3ajbLSgGfEuc5DioEaH4qM
+ M8nA==
+X-Gm-Message-State: AOAM531rj+OivuPejrKncPE9ctkKC+b3IveSGNxVCmodyHww1KG0/p6w
+ Z5z0lKB9A+C3x/3uCt3xl5JHY7ybtQeGOnwTclpyHin+Q4NVXBvtwe/XTuwnwT6p8sTK3B5OXYh
+ DnSFqMOnK+VjB4vXGJ+e9Z2UZ5yqI
+X-Received: by 2002:a17:906:a387:: with SMTP id
+ k7mr14926622ejz.408.1591981200751; 
+ Fri, 12 Jun 2020 10:00:00 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzbjRA0DxcpKz6XFn10/ujz+AwaKQghqUPzhohiLhOX8HiLCbiRGn+Y5AlGw1zWUhaDAf5BGg==
+X-Received: by 2002:a17:906:a387:: with SMTP id
+ k7mr14926611ejz.408.1591981200562; 
+ Fri, 12 Jun 2020 10:00:00 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id h16sm3865328ejq.62.2020.06.12.09.59.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 12 Jun 2020 09:59:59 -0700 (PDT)
+To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-10-hdegoede@redhat.com>
+ <20200611222029.csyo2wxof7nuhjws@taurus.defre.kleine-koenig.org>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <1af668ef-7b42-340a-8aa2-f66c266ac6ef@redhat.com>
+Date: Fri, 12 Jun 2020 18:59:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 12 Jun 2020 16:48:05 -0000
-Message-ID: <159198048506.21336.2224248953824410616@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/8=5D_drm/atomic-helper=3A_reset_vblank_o?=
- =?utf-8?q?n_crtc_reset?=
+In-Reply-To: <20200611222029.csyo2wxof7nuhjws@taurus.defre.kleine-koenig.org>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v2 09/15] pwm: crc: Enable/disable PWM
+ output on enable/disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,128 +85,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: series starting with [1/8] drm/atomic-helper: reset vblank on crtc reset
-URL   : https://patchwork.freedesktop.org/series/78268/
-State : success
+On 6/12/20 12:20 AM, Uwe Kleine-K=C3=B6nig wrote:
+> On Sun, Jun 07, 2020 at 08:18:34PM +0200, Hans de Goede wrote:
+>> The pwm-crc code is using 2 different enable bits:
+>> 1. bit 7 of the PWM0_CLK_DIV (PWM_OUTPUT_ENABLE)
+>> 2. bit 0 of the BACKLIGHT_EN register
+>>
+>> So far we've kept the PWM_OUTPUT_ENABLE bit set when disabling the PWM,
+>> this commit makes crc_pwm_disable() clear it on disable and makes
+>> crc_pwm_enable() set it again on re-enable.
+>>
+>> This should disable the internal (divided) PWM clock and tri-state the
+>> PWM output pin when disabled, saving some power.
+> =
 
-== Summary ==
+> It would be great if you could also document that disabling the PWM
+> makes the output tri-state. There are a few drivers that have a
+> "Limitations" section at their top. Describing that there (in the same
+> format) would be the right place.
+> =
 
-CI Bug Log - changes from CI_DRM_8621 -> Patchwork_17941
-====================================================
+> Also note that according to Thierry's conception getting a (driven)
+> inactive output is the right thing for a disabled PWM.
 
-Summary
--------
+Hmm, the tri-state thing is an assumption from my side and we
+don't have any docs for this PWM controller, so I'm not sure at
+all if that is true. So I think it will be better to just drop
+the tri-state bit from the commit msg for the next version.
 
-  **SUCCESS**
+Regards,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17941 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#337])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [DMESG-FAIL][5] ([i915#1993]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-guc:         [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
-  [i915#337]: https://gitlab.freedesktop.org/drm/intel/issues/337
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Hans
 
 
-Participating hosts (49 -> 42)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8621 -> Patchwork_17941
-
-  CI-20190529: 20190529
-  CI_DRM_8621: acd803311fbd1e6adc38d10ca382a60c6c190be9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5708: f66c71e29de50bae880bc81ceb0517d4e3e2dfd8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17941: e5322455e5a4c5c50f4d2aebd49b76b46e3153b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e5322455e5a4 drm/tiny/repaper: Drop edp->enabled
-7484cee23943 drm/mipi-dbi: Remove ->enabled
-21eabe3e1ff5 drm/vmwgfx: Use __drm_atomic_helper_crtc_reset
-fe4a8b62c4cc drm/vc4: Use __drm_atomic_helper_crtc_reset
-e4d4b48f9eb2 drm/mtk: Use __drm_atomic_helper_crtc_reset
-28631d9a3c40 drm/imx: Use __drm_atomic_helper_crtc_reset
-6b3eb4b7c982 drm/amdgpu: Use __drm_atomic_helper_crtc_reset
-8594ab0d8772 drm/atomic-helper: reset vblank on crtc reset
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17941/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
