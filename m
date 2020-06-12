@@ -2,56 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4B61F7A83
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C60161F7AD7
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:25:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA8C56E0CB;
-	Fri, 12 Jun 2020 15:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 276AF6E98D;
+	Fri, 12 Jun 2020 15:25:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998876E0CB
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 15:15:10 +0000 (UTC)
-IronPort-SDR: YikV6wqATkSJST+o2M2G88uHiMPUUQGnuCoExXUS6vMk7JrxnSzZT/r5RPo057mA4ZGmwdAUKx
- Fq94nMAnWtEA==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D88196E98D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 15:25:34 +0000 (UTC)
+IronPort-SDR: +xSJYiKxOcNbfOnrCC1u3RjWCqbGQp8mdnL14/C00umLPvMWFM+VDXQIhsB5p5F5cOTCizdKme
+ KNd+Iw5zoC1g==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 08:15:09 -0700
-IronPort-SDR: 1wEBVzgjtkHvz3ys3V4g4bdtkt/Uf9Ol8DhI4PCjr3j+nUgVbYjMhHFuQgGDkqbsrVPiVkKgLJ
- hxN7fAbr9EEw==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2020 08:25:34 -0700
+IronPort-SDR: Avq1B9JyAdhBlji+9zMFZfqZ58NxQFJ5ZrEfkGrNNTR+bjW7SjdI6zG8vdQyrswupILMboTr9R
+ ToGG966m2Xrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,503,1583222400"; d="scan'208";a="315153902"
-Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Jun 2020 08:15:09 -0700
-Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
- IRSMSX151.ger.corp.intel.com (163.33.192.59) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 12 Jun 2020 16:15:08 +0100
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 12 Jun 2020 16:15:08 +0100
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
- Fri, 12 Jun 2020 16:15:08 +0100
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 2/6] drm/i915: Add plane damage clips property
-Thread-Index: AQHWM6rSQ9vvySr8FUuDk3F5hMfkXqjVIGYA
-Date: Fri, 12 Jun 2020 15:15:07 +0000
-Message-ID: <34d9a217f77904894a06bceb9fc4de6925b9c7ee.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,503,1583222400"; d="scan'208";a="260857212"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 12 Jun 2020 08:25:32 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Jun 2020 18:25:31 +0300
+Date: Fri, 12 Jun 2020 18:25:31 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200612152531.GI6112@intel.com>
 References: <20200526221447.64110-1-jose.souza@intel.com>
  <20200526221447.64110-2-jose.souza@intel.com>
-In-Reply-To: <20200526221447.64110-2-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.66.162]
-Content-ID: <9ACB7957B1F8FD408264F5B6D022FD40@intel.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200526221447.64110-2-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Add plane damage clips
  property
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,53 +52,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmZWF0dXJlIGlzIHN1cHBvcnRlZCBmcm9tIEdFTjkrLCBidXQgdGhpcyB0aW1lIGl0IGZv
-Y3VzZXMgb24NCnN1cHBvcnRpbmcgb2YgUFNSMiBzb2Z0d2FyZSB0cmFja2luZyBmb3IgR0VOMTIr
-Lg0KTG9va3MgZ29vZCB0byBtZS4NCg0KUmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dh
-bi1neWVvbmcubXVuQGludGVsLmNvbT4NCg0KT24gVHVlLCAyMDIwLTA1LTI2IGF0IDE1OjE0IC0w
-NzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOg0KPiBUaGlzIHByb3BlcnR5IHdpbGwg
-YmUgdXNlZCBieSBQU1IyIHNvZnR3YXJlIHRyYWNraW5nLCBhZGRpbmcgaXQgdG8NCj4gR0VOMTIr
-Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6
-YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMgfCA0ICsrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfc3ByaXRlLmMgIHwgNCArKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygr
-KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMNCj4gaW5kZXggZjQwYjkwOTk1MmNjLi5iNjk4NzgzMzQwNDAgMTAwNjQ0DQo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC0zNSw2ICszNSw3
-IEBADQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJt
-X2F0b21pY19oZWxwZXIuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY191YXBpLmg+DQo+
-ICsjaW5jbHVkZSA8ZHJtL2RybV9kYW1hZ2VfaGVscGVyLmg+DQo+ICAjaW5jbHVkZSA8ZHJtL2Ry
-bV9kcF9oZWxwZXIuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX2VkaWQuaD4NCj4gICNpbmNsdWRl
-IDxkcm0vZHJtX2ZvdXJjYy5oPg0KPiBAQCAtMTY0NzYsNiArMTY0NzcsOSBAQCBpbnRlbF9jdXJz
-b3JfcGxhbmVfY3JlYXRlKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4g
-IAl6cG9zID0gUlVOVElNRV9JTkZPKGRldl9wcml2KS0+bnVtX3Nwcml0ZXNbcGlwZV0gKyAxOw0K
-PiAgCWRybV9wbGFuZV9jcmVhdGVfenBvc19pbW11dGFibGVfcHJvcGVydHkoJmN1cnNvci0+YmFz
-ZSwgenBvcyk7DQo+ICANCj4gKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikNCj4gKwkJ
-ZHJtX3BsYW5lX2VuYWJsZV9mYl9kYW1hZ2VfY2xpcHMoJmN1cnNvci0+YmFzZSk7DQo+ICsNCj4g
-IAlkcm1fcGxhbmVfaGVscGVyX2FkZCgmY3Vyc29yLT5iYXNlLCAmaW50ZWxfcGxhbmVfaGVscGVy
-X2Z1bmNzKTsNCj4gIA0KPiAgCXJldHVybiBjdXJzb3I7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiBpbmRleCA1NzFjMzZmOTI5YmQuLjhiZTA2
-Y2IyNTk5OSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9zcHJpdGUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nw
-cml0ZS5jDQo+IEBAIC0zNCw2ICszNCw3IEBADQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWNf
-aGVscGVyLmg+DQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9jb2xvcl9tZ210Lmg+DQo+ICAjaW5jbHVk
-ZSA8ZHJtL2RybV9jcnRjLmg+DQo+ICsjaW5jbHVkZSA8ZHJtL2RybV9kYW1hZ2VfaGVscGVyLmg+
-DQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX3Bs
-YW5lX2hlbHBlci5oPg0KPiAgI2luY2x1ZGUgPGRybS9kcm1fcmVjdC5oPg0KPiBAQCAtMzE1MSw2
-ICszMTUyLDkgQEAgc2tsX3VuaXZlcnNhbF9wbGFuZV9jcmVhdGUoc3RydWN0DQo+IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2LA0KPiAgDQo+ICAJZHJtX3BsYW5lX2NyZWF0ZV96cG9zX2ltbXV0
-YWJsZV9wcm9wZXJ0eSgmcGxhbmUtPmJhc2UsDQo+IHBsYW5lX2lkKTsNCj4gIA0KPiArCWlmIChJ
-TlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQ0KPiArCQlkcm1fcGxhbmVfZW5hYmxlX2ZiX2RhbWFn
-ZV9jbGlwcygmcGxhbmUtPmJhc2UpOw0KPiArDQo+ICAJZHJtX3BsYW5lX2hlbHBlcl9hZGQoJnBs
-YW5lLT5iYXNlLCAmaW50ZWxfcGxhbmVfaGVscGVyX2Z1bmNzKTsNCj4gIA0KPiAgCXJldHVybiBw
-bGFuZTsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, May 26, 2020 at 03:14:43PM -0700, Jos=E9 Roberto de Souza wrote:
+> This property will be used by PSR2 software tracking, adding it to
+> GEN12+.
+
+Is there actual userspace that uses this?
+
+> =
+
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_sprite.c  | 4 ++++
+>  2 files changed, 8 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index f40b909952cc..b69878334040 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -35,6 +35,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_atomic_uapi.h>
+> +#include <drm/drm_damage_helper.h>
+>  #include <drm/drm_dp_helper.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_fourcc.h>
+> @@ -16476,6 +16477,9 @@ intel_cursor_plane_create(struct drm_i915_private=
+ *dev_priv,
+>  	zpos =3D RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
+>  	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
+>  =
+
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		drm_plane_enable_fb_damage_clips(&cursor->base);
+> +
+>  	drm_plane_helper_add(&cursor->base, &intel_plane_helper_funcs);
+>  =
+
+>  	return cursor;
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 571c36f929bd..8be06cb25999 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -34,6 +34,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_color_mgmt.h>
+>  #include <drm/drm_crtc.h>
+> +#include <drm/drm_damage_helper.h>
+>  #include <drm/drm_fourcc.h>
+>  #include <drm/drm_plane_helper.h>
+>  #include <drm/drm_rect.h>
+> @@ -3151,6 +3152,9 @@ skl_universal_plane_create(struct drm_i915_private =
+*dev_priv,
+>  =
+
+>  	drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
+>  =
+
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		drm_plane_enable_fb_damage_clips(&plane->base);
+> +
+>  	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+>  =
+
+>  	return plane;
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
