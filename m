@@ -2,34 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC6E1F7A75
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4B61F7A83
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:15:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E177A6E98B;
-	Fri, 12 Jun 2020 15:12:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC1B16E98B
- for <Intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 15:12:21 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21477520-1500050 for multiple; Fri, 12 Jun 2020 16:11:56 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA8C56E0CB;
+	Fri, 12 Jun 2020 15:15:11 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998876E0CB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 15:15:10 +0000 (UTC)
+IronPort-SDR: YikV6wqATkSJST+o2M2G88uHiMPUUQGnuCoExXUS6vMk7JrxnSzZT/r5RPo057mA4ZGmwdAUKx
+ Fq94nMAnWtEA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2020 08:15:09 -0700
+IronPort-SDR: 1wEBVzgjtkHvz3ys3V4g4bdtkt/Uf9Ol8DhI4PCjr3j+nUgVbYjMhHFuQgGDkqbsrVPiVkKgLJ
+ hxN7fAbr9EEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,503,1583222400"; d="scan'208";a="315153902"
+Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
+ by FMSMGA003.fm.intel.com with ESMTP; 12 Jun 2020 08:15:09 -0700
+Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
+ IRSMSX151.ger.corp.intel.com (163.33.192.59) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 12 Jun 2020 16:15:08 +0100
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 12 Jun 2020 16:15:08 +0100
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Fri, 12 Jun 2020 16:15:08 +0100
+From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Souza, Jose" <jose.souza@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 2/6] drm/i915: Add plane damage clips property
+Thread-Index: AQHWM6rSQ9vvySr8FUuDk3F5hMfkXqjVIGYA
+Date: Fri, 12 Jun 2020 15:15:07 +0000
+Message-ID: <34d9a217f77904894a06bceb9fc4de6925b9c7ee.camel@intel.com>
+References: <20200526221447.64110-1-jose.souza@intel.com>
+ <20200526221447.64110-2-jose.souza@intel.com>
+In-Reply-To: <20200526221447.64110-2-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.66.162]
+Content-ID: <9ACB7957B1F8FD408264F5B6D022FD40@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <01688915-2e53-5fc2-54df-b8a1411fcc99@linux.intel.com>
-References: <20200612144451.9081-1-tvrtko.ursulin@linux.intel.com>
- <159197375511.30615.9988513440576782142@build.alporthouse.com>
- <01688915-2e53-5fc2-54df-b8a1411fcc99@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159197471578.30615.16927267874017676385@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 12 Jun 2020 16:11:55 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Move test flush to
- outside vm->mutex
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Add plane damage clips
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,83 +66,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-06-12 16:04:15)
-> 
-> On 12/06/2020 15:55, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-06-12 15:44:51)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> As per our locking rules it is not allowed to wait on requests while
-> >> holding locks. In this case we were trying to idle the GPU while holding
-> >> the vm->mutex.
-> > 
-> > Synchronous eviction would like to have a word.
-> > 
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/selftests/i915_gem_evict.c | 5 +++--
-> >>   1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> >> index 028baae9631f..67f4497c8224 100644
-> >> --- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> >> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> >> @@ -498,8 +498,6 @@ static int igt_evict_contexts(void *arg)
-> >>   
-> >>          mutex_lock(&ggtt->vm.mutex);
-> >>   out_locked:
-> >> -       if (igt_flush_test(i915))
-> >> -               err = -EIO;
-> >>          while (reserved) {
-> >>                  struct reserved *next = reserved->next;
-> >>   
-> >> @@ -513,6 +511,9 @@ static int igt_evict_contexts(void *arg)
-> >>          mutex_unlock(&ggtt->vm.mutex);
-> >>          intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> >>   
-> >> +       if (igt_flush_test(i915))
-> >> +               err = -EIO;
-> > 
-> > The patch is ok, since the manual drm_mm_node reservations are not used
-> > by the GTT, but the reason is a bit specious.
-> 
-> We have a comment in i915_request_wait which says:
-> 
->         /*
->          * We must never wait on the GPU while holding a lock as we
->          * may need to perform a GPU reset. So while we don't need to
->          * serialise wait/reset with an explicit lock, we do want
->          * lockdep to detect potential dependency cycles.
->          */
-
-That's for a lock used by reset.
-
-> And then there was a lockdep splat here 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_6595/fi-skl-6700k2/igt@i915_selftest@live@evict.html, 
-> which although uses some extra lockdep annotation patches, seemed to 
-> connect the two:
-> 
-> <4> [258.014638] Chain exists of:
->    &gt->reset.mutex --> fs_reclaim --> &vm->mutex
-> <4> [258.014640]  Possible unsafe locking scenario:
-> <4> [258.014641]        CPU0                    CPU1
-> <4> [258.014641]        ----                    ----
-> <4> [258.014642]   lock(&vm->mutex);
-> <4> [258.014642]                                lock(fs_reclaim);
-> <4> [258.014643]                                lock(&vm->mutex);
-> <4> [258.014644]   lock(&gt->reset.mutex);
-> <4> [258.014645]
->   *** DEADLOCK ***
-> <4> [258.014646] 2 locks held by i915_selftest/5153:
-
-is false.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBmZWF0dXJlIGlzIHN1cHBvcnRlZCBmcm9tIEdFTjkrLCBidXQgdGhpcyB0aW1lIGl0IGZv
+Y3VzZXMgb24NCnN1cHBvcnRpbmcgb2YgUFNSMiBzb2Z0d2FyZSB0cmFja2luZyBmb3IgR0VOMTIr
+Lg0KTG9va3MgZ29vZCB0byBtZS4NCg0KUmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dh
+bi1neWVvbmcubXVuQGludGVsLmNvbT4NCg0KT24gVHVlLCAyMDIwLTA1LTI2IGF0IDE1OjE0IC0w
+NzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOg0KPiBUaGlzIHByb3BlcnR5IHdpbGwg
+YmUgdXNlZCBieSBQU1IyIHNvZnR3YXJlIHRyYWNraW5nLCBhZGRpbmcgaXQgdG8NCj4gR0VOMTIr
+Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6
+YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMgfCA0ICsrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfc3ByaXRlLmMgIHwgNCArKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygr
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmMNCj4gaW5kZXggZjQwYjkwOTk1MmNjLi5iNjk4NzgzMzQwNDAgMTAwNjQ0DQo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC0zNSw2ICszNSw3
+IEBADQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJt
+X2F0b21pY19oZWxwZXIuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY191YXBpLmg+DQo+
+ICsjaW5jbHVkZSA8ZHJtL2RybV9kYW1hZ2VfaGVscGVyLmg+DQo+ICAjaW5jbHVkZSA8ZHJtL2Ry
+bV9kcF9oZWxwZXIuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX2VkaWQuaD4NCj4gICNpbmNsdWRl
+IDxkcm0vZHJtX2ZvdXJjYy5oPg0KPiBAQCAtMTY0NzYsNiArMTY0NzcsOSBAQCBpbnRlbF9jdXJz
+b3JfcGxhbmVfY3JlYXRlKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4g
+IAl6cG9zID0gUlVOVElNRV9JTkZPKGRldl9wcml2KS0+bnVtX3Nwcml0ZXNbcGlwZV0gKyAxOw0K
+PiAgCWRybV9wbGFuZV9jcmVhdGVfenBvc19pbW11dGFibGVfcHJvcGVydHkoJmN1cnNvci0+YmFz
+ZSwgenBvcyk7DQo+ICANCj4gKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikNCj4gKwkJ
+ZHJtX3BsYW5lX2VuYWJsZV9mYl9kYW1hZ2VfY2xpcHMoJmN1cnNvci0+YmFzZSk7DQo+ICsNCj4g
+IAlkcm1fcGxhbmVfaGVscGVyX2FkZCgmY3Vyc29yLT5iYXNlLCAmaW50ZWxfcGxhbmVfaGVscGVy
+X2Z1bmNzKTsNCj4gIA0KPiAgCXJldHVybiBjdXJzb3I7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiBpbmRleCA1NzFjMzZmOTI5YmQuLjhiZTA2
+Y2IyNTk5OSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9zcHJpdGUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nw
+cml0ZS5jDQo+IEBAIC0zNCw2ICszNCw3IEBADQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWNf
+aGVscGVyLmg+DQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9jb2xvcl9tZ210Lmg+DQo+ICAjaW5jbHVk
+ZSA8ZHJtL2RybV9jcnRjLmg+DQo+ICsjaW5jbHVkZSA8ZHJtL2RybV9kYW1hZ2VfaGVscGVyLmg+
+DQo+ICAjaW5jbHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4NCj4gICNpbmNsdWRlIDxkcm0vZHJtX3Bs
+YW5lX2hlbHBlci5oPg0KPiAgI2luY2x1ZGUgPGRybS9kcm1fcmVjdC5oPg0KPiBAQCAtMzE1MSw2
+ICszMTUyLDkgQEAgc2tsX3VuaXZlcnNhbF9wbGFuZV9jcmVhdGUoc3RydWN0DQo+IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LA0KPiAgDQo+ICAJZHJtX3BsYW5lX2NyZWF0ZV96cG9zX2ltbXV0
+YWJsZV9wcm9wZXJ0eSgmcGxhbmUtPmJhc2UsDQo+IHBsYW5lX2lkKTsNCj4gIA0KPiArCWlmIChJ
+TlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQ0KPiArCQlkcm1fcGxhbmVfZW5hYmxlX2ZiX2RhbWFn
+ZV9jbGlwcygmcGxhbmUtPmJhc2UpOw0KPiArDQo+ICAJZHJtX3BsYW5lX2hlbHBlcl9hZGQoJnBs
+YW5lLT5iYXNlLCAmaW50ZWxfcGxhbmVfaGVscGVyX2Z1bmNzKTsNCj4gIA0KPiAgCXJldHVybiBw
+bGFuZTsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
