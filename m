@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DEE41F7FD1
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Jun 2020 01:55:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A01681F7FE5
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Jun 2020 02:23:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AED6E6E378;
-	Fri, 12 Jun 2020 23:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05CD46E217;
+	Sat, 13 Jun 2020 00:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E72B6E2ED;
- Fri, 12 Jun 2020 23:55:14 +0000 (UTC)
-IronPort-SDR: vt5RSWaiF3OvvPVxrH/eXj7OxsPpBfOF5H6RtwRVVFPdAS/Ke2TVQTvEn0/y1xhlSorCuvPkeb
- t3Z72siYBPHA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 16:55:13 -0700
-IronPort-SDR: UXB/DzfZ1YU+L+Xm2natGjt4mKNSv2ogncYSAnzpZW4oIKTlSatZjuOqCqe8XGcSNL7PugpJdC
- SgH7/8dAedYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,505,1583222400"; d="scan'208";a="260993674"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by orsmga007.jf.intel.com with ESMTP; 12 Jun 2020 16:55:09 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 12 Jun 2020 16:56:06 -0700
-Message-Id: <20200612235606.25120-1-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20200612230444.10121-4-manasi.d.navare@intel.com>
-References: <20200612230444.10121-4-manasi.d.navare@intel.com>
+X-Greylist: delayed 4200 seconds by postgrey-1.36 at gabe;
+ Sat, 13 Jun 2020 00:23:34 UTC
+Received: from 6.mo68.mail-out.ovh.net (6.mo68.mail-out.ovh.net
+ [46.105.63.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF566E217
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 00:23:34 +0000 (UTC)
+Received: from player797.ha.ovh.net (unknown [10.108.42.174])
+ by mo68.mail-out.ovh.net (Postfix) with ESMTP id 294A816FCD2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 01:05:10 +0200 (CEST)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player797.ha.ovh.net (Postfix) with ESMTPSA id 249BEF46448A;
+ Fri, 12 Jun 2020 23:05:08 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-100R003567308aa-1e6d-4970-ad8f-a4c93deb17de,F515B8970FD380A3A4FEF15C3BD6B0261C6BE9D1)
+ smtp.auth=andi@etezian.org
+Date: Sat, 13 Jun 2020 02:05:07 +0300
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200612230507.GA35541@jack.zhora.eu>
+References: <20200607222108.14401-1-chris@chris-wilson.co.uk>
+ <20200607222108.14401-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 3/3] drm/i915/dp: Expose connector VRR
- monitor range via debugfs
+Content-Disposition: inline
+In-Reply-To: <20200607222108.14401-5-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 731271991932404233
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrudeivddgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejleejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH 05/28] drm/i915/selftests: Trim execlists
+ runtime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,63 +52,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQmhhbnVwcmFrYXNoIE1vZGVtIDxiaGFudXByYWthc2gubW9kZW1AaW50ZWwuY29tPgoK
-W1doeV0KSXQncyB1c2VmdWwgdG8ga25vdyB0aGUgbWluIGFuZCBtYXggdnJyIHJhbmdlIGZvciBJ
-R1QgdGVzdGluZy4KCltIb3ddCkV4cG9zZSB0aGUgbWluIGFuZCBtYXggdmZyZXEgZm9yIHRoZSBj
-b25uZWN0b3IgdmlhIGEgZGVidWdmcyBmaWxlCm9uIHRoZSBjb25uZWN0b3IsICJ2cnJfcmFuZ2Ui
-LgoKRXhhbXBsZSB1c2FnZTogY2F0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8wL0RQLTEvdnJyX3Jh
-bmdlCgp2NzoKKiBGaXggY21waWxhdGlvbiBkdWUgdG8gcmViYXNlCnY2OgoqIFJlYmFzZSAobWFu
-YXNpKQp2NToKKiBSZW5hbWUgdG8gdnJyX3JhbmdlIHRvIG1hdGNoIEFNRCBkZWJ1Z2ZzCnY0Ogoq
-IFJlYmFzZQp2MzoKKiBSZW1vdmUgdGhlIHVubmVjZXNzYXJ5IGRlYnVnIHByaW50IChNYW5hc2kp
-CnYyOgoqIEZpeCB0aGUgdHlwbyBpbiBtYXhfdmZyZXEgKE1hbmFzaSkKKiBDaGFuZ2UgdGhlIG5h
-bWUgb2Ygbm9kZSB0byBpOTE1X3Zycl9pbmZvIHNvIHdlIGNhbiBhZGQKb3RoZXIgdnJyIGluZm8g
-Zm9yIG1vcmUgZGVidWcgaW5mbyAoTWFuYXNpKQoqIENoYW5nZSB0aGUgVlJSIGNhcGFibGUgdG8g
-ZGlzcGxheSBZZXMgb3IgTm8gKE1hbmFzaSkKKiBGaXggaW5kZW50YXRpb24gY2hlY2twYXRjaCBl
-cnJvcnMgKE1hbmFzaSkKClNpZ25lZC1vZmYtYnk6IEJoYW51cHJha2FzaCBNb2RlbSA8YmhhbnVw
-cmFrYXNoLm1vZGVtQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFu
-YXNpLmQubmF2YXJlQGludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51
-eC5pbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgpUZXN0ZWQtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5j
-b20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgIHwg
-MjIgKysrKysrKysrKysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyks
-IDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5X2RlYnVnZnMuYwppbmRleCAyOGRkNzE3ZTk0M2EuLjI5MjFmN2QyYTI2ZSAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2Rl
-YnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-ZGVidWdmcy5jCkBAIC0yMTg1LDYgKzIxODUsMjEgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBmaWxl
-X29wZXJhdGlvbnMgaTkxNV9kc2NfZmVjX3N1cHBvcnRfZm9wcyA9IHsKIAkud3JpdGUgPSBpOTE1
-X2RzY19mZWNfc3VwcG9ydF93cml0ZQogfTsKIAorc3RhdGljIGludCB2cnJfcmFuZ2Vfc2hvdyhz
-dHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpCit7CisJc3RydWN0IGRybV9jb25uZWN0b3Ig
-KmNvbm5lY3RvciA9IG0tPnByaXZhdGU7CisKKwlpZiAoY29ubmVjdG9yLT5zdGF0dXMgIT0gY29u
-bmVjdG9yX3N0YXR1c19jb25uZWN0ZWQpCisJCXJldHVybiAtRU5PREVWOworCisJc2VxX3ByaW50
-ZihtLCAiVnJyX2NhcGFibGU6ICVzXG4iLCB5ZXNubyhpbnRlbF9kcF9pc192cnJfY2FwYWJsZShj
-b25uZWN0b3IpKSk7CisJc2VxX3ByaW50ZihtLCAiTWluOiAldVxuIiwgKHU4KWNvbm5lY3Rvci0+
-ZGlzcGxheV9pbmZvLm1vbml0b3JfcmFuZ2UubWluX3ZmcmVxKTsKKwlzZXFfcHJpbnRmKG0sICJN
-YXg6ICV1XG4iLCAodTgpY29ubmVjdG9yLT5kaXNwbGF5X2luZm8ubW9uaXRvcl9yYW5nZS5tYXhf
-dmZyZXEpOworCisJcmV0dXJuIDA7Cit9CitERUZJTkVfU0hPV19BVFRSSUJVVEUodnJyX3Jhbmdl
-KTsKKwogLyoqCiAgKiBpbnRlbF9jb25uZWN0b3JfZGVidWdmc19hZGQgLSBhZGQgaTkxNSBzcGVj
-aWZpYyBjb25uZWN0b3IgZGVidWdmcyBmaWxlcwogICogQGNvbm5lY3RvcjogcG9pbnRlciB0byBh
-IHJlZ2lzdGVyZWQgZHJtX2Nvbm5lY3RvcgpAQCAtMjIyMCwxMCArMjIzNSwxNSBAQCBpbnQgaW50
-ZWxfY29ubmVjdG9yX2RlYnVnZnNfYWRkKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
-CiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTAgJiYKIAkgICAgKChjb25uZWN0b3ItPmNv
-bm5lY3Rvcl90eXBlID09IERSTV9NT0RFX0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCAmJgogCSAgICAg
-ICF0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9yKS0+bXN0X3BvcnQpIHx8Ci0JICAgICBjb25u
-ZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9NT0RFX0NPTk5FQ1RPUl9lRFApKQorCSAgICAg
-Y29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9DT05ORUNUT1JfZURQKSkgewog
-CQlkZWJ1Z2ZzX2NyZWF0ZV9maWxlKCJpOTE1X2RzY19mZWNfc3VwcG9ydCIsIFNfSVJVR08sIHJv
-b3QsCiAJCQkJICAgIGNvbm5lY3RvciwgJmk5MTVfZHNjX2ZlY19zdXBwb3J0X2ZvcHMpOwogCisJ
-CWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQorCQkJZGVidWdmc19jcmVhdGVfZmlsZSgi
-dnJyX3JhbmdlIiwgU19JUlVHTywKKwkJCQkJICAgIHJvb3QsIGNvbm5lY3RvciwgJnZycl9yYW5n
-ZV9mb3BzKTsKKwl9CisKIAkvKiBMZWdhY3kgcGFuZWxzIGRvZXNuJ3QgbHBzcCBvbiBhbnkgcGxh
-dGZvcm0gKi8KIAlpZiAoKElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSB8fCBJU19IQVNXRUxMKGRl
-dl9wcml2KSB8fAogCSAgICAgSVNfQlJPQURXRUxMKGRldl9wcml2KSkgJiYKLS0gCjIuMTkuMQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Hi Chris,
+
+On Sun, Jun 07, 2020 at 11:20:45PM +0100, Chris Wilson wrote:
+> Reduce the smoke depth by trimming the number of contexts, repetitions
+> and wait times. This is in preparation for a less greedy scheduler that
+> tries to be fair across contexts, resulting in a great many more context
+> switches. A thousand context switches may be 50-100ms, causing us to
+> timeout as the HW is not fast enough to complete the deep smoketests.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+looks all right to me:
+
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
