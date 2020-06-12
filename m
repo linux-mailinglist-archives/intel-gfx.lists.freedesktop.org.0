@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600C91F7A46
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:01:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9823C1F7A4C
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 17:04:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC6056E983;
-	Fri, 12 Jun 2020 15:01:57 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 544816E12E;
- Fri, 12 Jun 2020 15:01:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4D2BDA47E0;
- Fri, 12 Jun 2020 15:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0D9F6E124;
+	Fri, 12 Jun 2020 15:04:19 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB3A6E12E
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 15:04:19 +0000 (UTC)
+IronPort-SDR: xpV4D7W4cRhYiaO0JnhdpjIWKgk65Dt7lRolUHQ80uXR7/m2Xp6ChjAimWTYtdYsgiFmIplBEI
+ hil6r6G1sDPw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2020 08:04:19 -0700
+IronPort-SDR: MyjwuGDKg6HVJZrwQcZoLhvSTtFVxxkVcKRrFiic1utBkfXhO3Lm6k7VmXQLCYMZsW0BNy/cGU
+ dE2ZVhzxUuQQ==
+X-IronPort-AV: E=Sophos;i="5.73,503,1583222400"; d="scan'208";a="350545863"
+Received: from yravenna-mobl1.ger.corp.intel.com (HELO [10.214.202.53])
+ ([10.214.202.53])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2020 08:04:17 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200612144451.9081-1-tvrtko.ursulin@linux.intel.com>
+ <159197375511.30615.9988513440576782142@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <01688915-2e53-5fc2-54df-b8a1411fcc99@linux.intel.com>
+Date: Fri, 12 Jun 2020 16:04:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 12 Jun 2020 15:01:56 -0000
-Message-ID: <159197411631.21335.16225008769485665348@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200612142551.30956-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200612142551.30956-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/execlists=3A_Lift_opportun?=
- =?utf-8?q?istic_process=5Fcsb_to_before_engine_lock?=
+In-Reply-To: <159197375511.30615.9988513440576782142@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Move test flush to
+ outside vm->mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,146 +52,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/3] drm/i915/execlists: Lift opportunistic process_csb to before engine lock
-URL   : https://patchwork.freedesktop.org/series/78262/
-State : failure
+On 12/06/2020 15:55, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-06-12 15:44:51)
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> As per our locking rules it is not allowed to wait on requests while
+>> holding locks. In this case we were trying to idle the GPU while holding
+>> the vm->mutex.
+> 
+> Synchronous eviction would like to have a word.
+> 
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/selftests/i915_gem_evict.c | 5 +++--
+>>   1 file changed, 3 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+>> index 028baae9631f..67f4497c8224 100644
+>> --- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+>> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+>> @@ -498,8 +498,6 @@ static int igt_evict_contexts(void *arg)
+>>   
+>>          mutex_lock(&ggtt->vm.mutex);
+>>   out_locked:
+>> -       if (igt_flush_test(i915))
+>> -               err = -EIO;
+>>          while (reserved) {
+>>                  struct reserved *next = reserved->next;
+>>   
+>> @@ -513,6 +511,9 @@ static int igt_evict_contexts(void *arg)
+>>          mutex_unlock(&ggtt->vm.mutex);
+>>          intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>>   
+>> +       if (igt_flush_test(i915))
+>> +               err = -EIO;
+> 
+> The patch is ok, since the manual drm_mm_node reservations are not used
+> by the GTT, but the reason is a bit specious.
 
-== Summary ==
+We have a comment in i915_request_wait which says:
 
-CI Bug Log - changes from CI_DRM_8621 -> Patchwork_17939
-====================================================
+	/*
+	 * We must never wait on the GPU while holding a lock as we
+	 * may need to perform a GPU reset. So while we don't need to
+	 * serialise wait/reset with an explicit lock, we do want
+	 * lockdep to detect potential dependency cycles.
+	 */
 
-Summary
--------
+And then there was a lockdep splat here 
+https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_6595/fi-skl-6700k2/igt@i915_selftest@live@evict.html, 
+which although uses some extra lockdep annotation patches, seemed to 
+connect the two:
 
-  **FAILURE**
+<4> [258.014638] Chain exists of:
+   &gt->reset.mutex --> fs_reclaim --> &vm->mutex
+<4> [258.014640]  Possible unsafe locking scenario:
+<4> [258.014641]        CPU0                    CPU1
+<4> [258.014641]        ----                    ----
+<4> [258.014642]   lock(&vm->mutex);
+<4> [258.014642]                                lock(fs_reclaim);
+<4> [258.014643]                                lock(&vm->mutex);
+<4> [258.014644]   lock(&gt->reset.mutex);
+<4> [258.014645]
+  *** DEADLOCK ***
+<4> [258.014646] 2 locks held by i915_selftest/5153:
 
-  Serious unknown changes coming with Patchwork_17939 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17939, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Why despite the comment in request wait it does not otherwise see this I 
+don't know.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/index.html
+Regards,
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17939:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-cml-s/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-cml-s/igt@i915_selftest@live@hangcheck.html
-    - fi-tgl-u2:          NOTRUN -> [INCOMPLETE][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-tgl-u2/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17939 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-guc:         [PASS][4] -> [DMESG-WARN][5] ([i915#1982])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][6] ([i915#1982]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [DMESG-FAIL][8] ([i915#1993]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][10] ([i915#1982]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [DMESG-WARN][12] ([i915#1982]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-guc:         [DMESG-WARN][14] ([i915#1982]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-x1275:       [DMESG-WARN][16] ([i915#62] / [i915#92]) -> [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][19] ([i915#62] / [i915#92]) +6 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Tvrtko
 
 
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (1): fi-tgl-u2 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8621 -> Patchwork_17939
-
-  CI-20190529: 20190529
-  CI_DRM_8621: acd803311fbd1e6adc38d10ca382a60c6c190be9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5708: f66c71e29de50bae880bc81ceb0517d4e3e2dfd8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17939: 40f4da6c47fe80933138e9f62c37a698cf8a0478 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-40f4da6c47fe drm/i915/execlists: Defer schedule_out until after the next dequeue
-af00d3a11ae9 drm/i915/execlists: Replace direct submit with direct call to tasklet
-2fb91b1dcbe9 drm/i915/execlists: Lift opportunistic process_csb to before engine lock
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17939/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
