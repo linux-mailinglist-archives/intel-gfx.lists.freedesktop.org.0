@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8BFC1F7E98
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 23:57:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3DD61F7EAF
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Jun 2020 00:02:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BF16E1C0;
-	Fri, 12 Jun 2020 21:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 385DA6E1F2;
+	Fri, 12 Jun 2020 22:02:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AD8196E185;
- Fri, 12 Jun 2020 21:57:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6FD586E1F2;
+ Fri, 12 Jun 2020 22:02:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A6BC1A00E6;
- Fri, 12 Jun 2020 21:57:26 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60D54A0091;
+ Fri, 12 Jun 2020 22:02:13 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 12 Jun 2020 21:57:26 -0000
-Message-ID: <159199904665.21337.1490902512564828842@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 12 Jun 2020 22:02:13 -0000
+Message-ID: <159199933336.21335.16072973506375514396@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200612204734.3674650-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200612204734.3674650-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Update_bw=5Fbuddy_pagemask_table?=
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/8=5D_drm/atomic-helper=3A_reset_v?=
+ =?utf-8?q?blank_on_crtc_reset_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,140 +48,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Update bw_buddy pagemask table
-URL   : https://patchwork.freedesktop.org/series/78276/
-State : success
+Series: series starting with [1/8] drm/atomic-helper: reset vblank on crtc reset (rev2)
+URL   : https://patchwork.freedesktop.org/series/78268/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8621 -> Patchwork_17942
-====================================================
+$ dim checkpatch origin/drm-tip
+459d02ce47b5 drm/atomic-helper: reset vblank on crtc reset
+-:295: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+c266a8cbabc7 drm/amdgpu: Use __drm_atomic_helper_crtc_reset
+-:35: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+d584e2e79995 drm/imx: Use __drm_atomic_helper_crtc_reset
+-:51: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+580e961d16f9 drm/mtk: Use __drm_atomic_helper_crtc_reset
+-:46: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/index.html
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+43fa3b7935a5 drm/vc4: Use __drm_atomic_helper_crtc_reset
+-:28: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+484591c27864 drm/vmwgfx: Use __drm_atomic_helper_crtc_reset
+-:29: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  Here are the changes found in Patchwork_17942 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+a5fd563899ea drm/mipi-dbi: Remove ->enabled
+-:191: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 136 lines checked
+923b9ca5f747 drm/tiny/repaper: Drop edp->enabled
+-:68: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([i915#1372])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-cml-s:           [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-cml-s/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-cml-s/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [DMESG-FAIL][13] ([i915#1993]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-guc:         [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +4 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8621/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 42)
-------------------------------
-
-  Additional (1): fi-tgl-u2 
-  Missing    (8): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8621 -> Patchwork_17942
-
-  CI-20190529: 20190529
-  CI_DRM_8621: acd803311fbd1e6adc38d10ca382a60c6c190be9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5708: f66c71e29de50bae880bc81ceb0517d4e3e2dfd8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17942: d2b1478a5a609fd6f1ee0711cad56b2a67d4708d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d2b1478a5a60 drm/i915: Update bw_buddy pagemask table
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17942/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
