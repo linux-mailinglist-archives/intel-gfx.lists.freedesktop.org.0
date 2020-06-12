@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07571F7B48
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 18:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0431F7B4A
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 18:01:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FD16E9FB;
-	Fri, 12 Jun 2020 16:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBF16E9FE;
+	Fri, 12 Jun 2020 16:01:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
  [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9114C6E9F7
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 16:01:08 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id f185so8768911wmf.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 09:01:08 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0AA56E9FA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 16:01:09 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id l17so8662564wmj.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 09:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=9edpO/0nDjw8MbHtkOLQlTMXtNF/bFvFcs1wCzvqaNE=;
- b=RmdKYYVAB0MwG5SuaGWDL0n378xqj0UKR2ugbyV34AEb89kM51e9b9HRJZ0ikKdBuc
- B9C0JTVT88c3OToaO0mWw/TXYqK9UBckZWDC7aOkCwPdotyoZMBd4oZwoZrBkUuGnZOS
- JYbrXB49RsrMh7/PlWYkJBxYIQzV0K9XbCg+4=
+ bh=pn56G4iAxisvD6U7wjR2uNhTGqn/jGSOsTr1HNhqABU=;
+ b=XTWQU2de5rAOucOiWvsPhfnP5VwVuTBZUKzCS2N3jH6RmctUhv7u943icI4DG98zWn
+ +KdAKXo2ity/gUyO93o5x/3gMnNTvu6cRTRwmgL+6UQORzWKRdkivwQpsK4i4hSx8vTI
+ aIp5iv4O8a1uKESb83DFyA6hZTnpUtNWmuAkE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=9edpO/0nDjw8MbHtkOLQlTMXtNF/bFvFcs1wCzvqaNE=;
- b=T4DGR8TlZChxrzrIUtDhhqdRR72vHij1ewQyN5Si98CIhy6H1wVO8SJNaWtPbBAanb
- xgFtsHE+kybGoWhF/flmHADClnh1S9MahqoLuU0vu7na7UxCZEpmEan3PfCKJ4xieX+L
- j5HoNa0quLV9h9Zt2tbKUz7UoB9o/yNBj5SI4Va53kxxdvAi0r6j+7V6pab5XnmJZo8d
- Wf7J5PmLuH6cbTL4wW/FNDiuvNhzIhlBd1ssRa/hZhEnEmHBuxRe03PLZ+Mye0DUWZIN
- 4hivzlIgNxBBf6SZjz0ZtGWRtNOXgGelrf/3MZIOftq3kOlyMZfm8Ea+11p0zy6igPyh
- L6EA==
-X-Gm-Message-State: AOAM533DqWT6t/1wMp2Z9qcqK12OhrEB9o/wSrdyz7hR70NBfam+Wftw
- 3nHoPBBgRNWJkMgpnj3rBFjOQA==
-X-Google-Smtp-Source: ABdhPJyRA5JCt10uM462WYchlysJDh14QJpSPAUPgz+E7dH/E3C15TB4JYTTvqcYM2l4Duif233pBw==
-X-Received: by 2002:a1c:1f85:: with SMTP id
- f127mr13454795wmf.163.1591977667256; 
- Fri, 12 Jun 2020 09:01:07 -0700 (PDT)
+ bh=pn56G4iAxisvD6U7wjR2uNhTGqn/jGSOsTr1HNhqABU=;
+ b=FfezQdBhxyJRd+ub4+ju7FGVpUTOdHt0GhCLPGdsn9P+Uez9Q7XRfe1EHH797IE4E5
+ Vm7SLjErbTAE/CzOt641NDN9DRVtdjY6beI09aZ6H3tNBZjNvKG9xJ9cPpEoNXpLUGL+
+ O1f6X+RwESwfKaBF74gyZkW5O8RA+dLa1nUbJ9qYo8SyundM++KjUQgNO3WdldCI74Ta
+ 8ui7OPOob6rNQI/tgAZDV8GKHhXggixc2TBiWEkzu5TG4y6Tnt1DhoNwocAB70rz8nAQ
+ h88dnkkvYejt/r19YC8Lh8XqW2k1zSjB0KCIs9/ozv06ossjt6iksKDJEcfl/Sp2yRSB
+ 7eBg==
+X-Gm-Message-State: AOAM530rZo345IgUkFDs4VFr/VqAgtmslNr76bn8w7dLw5eQd40AXAQ4
+ li897Pn3dizv9r2f16Hqi6G61LvhaC8=
+X-Google-Smtp-Source: ABdhPJyZzSczjW7Bq2lQ0uzd3oHCsukXcf8Tuz+WZjmGRePnFqkJFl2jr+r4pUKucQTTsTIRu3SkeA==
+X-Received: by 2002:a1c:5541:: with SMTP id j62mr13316964wmb.64.1591977668363; 
+ Fri, 12 Jun 2020 09:01:08 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j5sm10801566wrq.39.2020.06.12.09.01.06
+ by smtp.gmail.com with ESMTPSA id j5sm10801566wrq.39.2020.06.12.09.01.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Jun 2020 09:01:06 -0700 (PDT)
+ Fri, 12 Jun 2020 09:01:07 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 12 Jun 2020 18:00:52 +0200
-Message-Id: <20200612160056.2082681-4-daniel.vetter@ffwll.ch>
+Date: Fri, 12 Jun 2020 18:00:53 +0200
+Message-Id: <20200612160056.2082681-5-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
 References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/8] drm/mtk: Use __drm_atomic_helper_crtc_reset
+Subject: [Intel-gfx] [PATCH 5/8] drm/vc4: Use __drm_atomic_helper_crtc_reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,12 +63,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Eric Anholt <eric@anholt.net>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- linux-mediatek@lists.infradead.org, Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>, linux-arm-kernel@lists.infradead.org
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -80,45 +76,27 @@ which means vblank state isn't ill-defined and fail-y at driver load
 before the first modeset on each crtc.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mediatek@lists.infradead.org
+Cc: Eric Anholt <eric@anholt.net>
 ---
- drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/vc4/vc4_crtc.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-index a7dba4ced902..d654c7d514bd 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-@@ -112,19 +112,15 @@ static void mtk_drm_crtc_reset(struct drm_crtc *crtc)
+diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4_crtc.c
+index 29131409a4de..5371e63cf6e2 100644
+--- a/drivers/gpu/drm/vc4/vc4_crtc.c
++++ b/drivers/gpu/drm/vc4/vc4_crtc.c
+@@ -993,10 +993,9 @@ vc4_crtc_reset(struct drm_crtc *crtc)
  {
- 	struct mtk_crtc_state *state;
- 
--	if (crtc->state) {
-+	if (crtc->state)
- 		__drm_atomic_helper_crtc_destroy_state(crtc->state);
- 
--		state = to_mtk_crtc_state(crtc->state);
--		memset(state, 0, sizeof(*state));
--	} else {
--		state = kzalloc(sizeof(*state), GFP_KERNEL);
--		if (!state)
--			return;
--		crtc->state = &state->base;
--	}
-+	kfree(to_mtk_crtc_state(crtc->state));
-+	crtc->state = NULL;
- 
--	state->base.crtc = crtc;
-+	state = kzalloc(sizeof(*state), GFP_KERNEL);
-+	if (state)
-+		__drm_atomic_helper_crtc_reset(crtc, &state->base);
+ 	if (crtc->state)
+ 		vc4_crtc_destroy_state(crtc, crtc->state);
+-
+ 	crtc->state = kzalloc(sizeof(struct vc4_crtc_state), GFP_KERNEL);
+ 	if (crtc->state)
+-		crtc->state->crtc = crtc;
++		__drm_atomic_helper_crtc_reset(crtc, crtc->state);
  }
  
- static struct drm_crtc_state *mtk_drm_crtc_duplicate_state(struct drm_crtc *crtc)
+ static const struct drm_crtc_funcs vc4_crtc_funcs = {
 -- 
 2.26.2
 
