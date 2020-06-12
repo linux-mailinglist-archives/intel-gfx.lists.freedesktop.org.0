@@ -2,77 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A2D1F7BE2
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 19:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB7C1F7BEA
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 19:00:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2A9B6EA11;
-	Fri, 12 Jun 2020 17:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD0A6EA15;
+	Fri, 12 Jun 2020 17:00:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 796E16EA0E
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 17:00:06 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2361B6EA16
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 17:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1591981205;
+ s=mimecast20190719; t=1591981252;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=RSxETv919iNwwn2Qchkd484q2EDMbODrI/YRurJgmf8=;
- b=CG/YwHZVWf5RRtpYDdia92aJT10c5ZxWM2n2A5dBlsrAl2eUV54SrP/ZBEitJoRPVa8XSh
- hnCkPDIxeF5knHuzVKkpMB0C0buQPjkmRKfACqsF15eGAzNFTOkQ3PDsnIDzkDQn4us18V
- +vseseLdWK0mJyizD9XXjfmQRZSE7Tk=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-143-7NagFxMJN6epHA2JVnuyfw-1; Fri, 12 Jun 2020 13:00:01 -0400
-X-MC-Unique: 7NagFxMJN6epHA2JVnuyfw-1
-Received: by mail-ej1-f69.google.com with SMTP id ca6so4409867ejb.7
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 10:00:01 -0700 (PDT)
+ bh=kq1FsuME6m+ciAh6optHE6JOSPQf6LnlX48GlVHF/W0=;
+ b=bHZPIgA+kL5wragPf1epfO4PPBp98EgTSYgeEl61xVYUoHQwr51WKIVlfHozcacE+SNdUO
+ G2ayFXvhDUhtM62sn/QkxTjl57FzlLN6/8B22LkaZamtsMXlN+P+N5X0j+B0OL1HE5Emxs
+ QZZEqY6MXEpSWPg0FAqtHFoMccb2Wb4=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-293-zNj6nUE_MZundyLJnQGxmw-1; Fri, 12 Jun 2020 13:00:45 -0400
+X-MC-Unique: zNj6nUE_MZundyLJnQGxmw-1
+Received: by mail-ed1-f69.google.com with SMTP id a21so3181416edy.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 10:00:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=YZefpytQS9Nuutazh9XOblfbRG+wXV9orLCiC5J8cHs=;
- b=cYQXNY7BdSfjsffEqydYB5ipI3kJ9SZnx/t1IO0K+PUIqYsMXOl84MuJ//ksvMRZlX
- SPAVeA/dnEJ3xw5GwtFRF/UNilo85Jt2bk9V4Jy7rqUpYzwwG4PqC8oJdrdASJDDRE9u
- hjLoXPvCkLsnE9EQtxkZzS5/Gu7YptU+XwVQbayw8MCX5mJQkFV+WG5M+7QjAA/vUmF/
- NNNip9TopCGB/X57TjghxaFd/84+eYYeOUqXz1XCHTaZqLjRYo7f70dBsEM/8iJ0K04Z
- OoNRNHnm+nhFbRVU815M36Hu5ADRfv5q4rnAZpBdHW15ys3ajbLSgGfEuc5DioEaH4qM
- M8nA==
-X-Gm-Message-State: AOAM531rj+OivuPejrKncPE9ctkKC+b3IveSGNxVCmodyHww1KG0/p6w
- Z5z0lKB9A+C3x/3uCt3xl5JHY7ybtQeGOnwTclpyHin+Q4NVXBvtwe/XTuwnwT6p8sTK3B5OXYh
- DnSFqMOnK+VjB4vXGJ+e9Z2UZ5yqI
-X-Received: by 2002:a17:906:a387:: with SMTP id
- k7mr14926622ejz.408.1591981200751; 
- Fri, 12 Jun 2020 10:00:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzbjRA0DxcpKz6XFn10/ujz+AwaKQghqUPzhohiLhOX8HiLCbiRGn+Y5AlGw1zWUhaDAf5BGg==
-X-Received: by 2002:a17:906:a387:: with SMTP id
- k7mr14926611ejz.408.1591981200562; 
- Fri, 12 Jun 2020 10:00:00 -0700 (PDT)
+ bh=YTihYUKXSrTnrV1cw1wXoVKUqiDmvG+bRKMsuvDOElI=;
+ b=glLNZcvOmspRlMq5DoZXAh3wv/bFjpUyqWy0givJKTuP7mELrIQtsFJYavGhQP32Qf
+ C2IonLWpdsTnPck0F0QWuOEwQN4l/VVR0UEENx6icJmAm9uyHhj6/yJypl2tmSiKhAE3
+ IlgczmeuAGFhOFEtb5PdLP0ahkrC61SUgHNxppD28qzDBQJrxF+vAmq0Ggnoyu+G63UB
+ UhL+WAXpCApOzTHC42F01fYTklAZVQGia0s5vsVhZHPUx/o3qS+sANMp/M6huFmM/nZv
+ RoQWYmsqqhBZOTlA3BzA4beNvvbGu4O+5zYVKz9SmQ7Bp6iibu/31KjnycalJCFSbemQ
+ fJog==
+X-Gm-Message-State: AOAM531VNSMTvRLeVa8rF0FYL3NssiIBMFo90Ntu8nG/+1j0jAx2n5iv
+ g5ALu/sfKBB+jss5d7ouNqQXYOEQsEwoiB6/DxxxF2DV37L5VlYsIU6Qta+yNBmS8QMWzf2496G
+ 5t66A5xN7bwByTb74SGqRo352i2qV
+X-Received: by 2002:a50:af25:: with SMTP id g34mr12664939edd.85.1591981244303; 
+ Fri, 12 Jun 2020 10:00:44 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx1ZL1hLqchv/eFpUYGZFQqouDUrpcBFi1A1KbkRuhgNPPw1kwQ6gTpxpqVqI+lMaYQMqCDKg==
+X-Received: by 2002:a50:af25:: with SMTP id g34mr12664913edd.85.1591981244074; 
+ Fri, 12 Jun 2020 10:00:44 -0700 (PDT)
 Received: from x1.localdomain
  (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id h16sm3865328ejq.62.2020.06.12.09.59.59
+ by smtp.gmail.com with ESMTPSA id x11sm3852082ejv.81.2020.06.12.10.00.43
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 12 Jun 2020 09:59:59 -0700 (PDT)
+ Fri, 12 Jun 2020 10:00:43 -0700 (PDT)
 To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
 References: <20200607181840.13536-1-hdegoede@redhat.com>
- <20200607181840.13536-10-hdegoede@redhat.com>
- <20200611222029.csyo2wxof7nuhjws@taurus.defre.kleine-koenig.org>
+ <20200607181840.13536-12-hdegoede@redhat.com>
+ <20200611213744.6gg2oy45cende6ba@taurus.defre.kleine-koenig.org>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <1af668ef-7b42-340a-8aa2-f66c266ac6ef@redhat.com>
-Date: Fri, 12 Jun 2020 18:59:58 +0200
+Message-ID: <f2a268ef-2b65-d027-0b0c-b83e12a04f20@redhat.com>
+Date: Fri, 12 Jun 2020 19:00:42 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200611222029.csyo2wxof7nuhjws@taurus.defre.kleine-koenig.org>
+In-Reply-To: <20200611213744.6gg2oy45cende6ba@taurus.defre.kleine-koenig.org>
 Content-Language: en-US
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v2 09/15] pwm: crc: Enable/disable PWM
- output on enable/disable
+Subject: Re: [Intel-gfx] [PATCH v2 11/15] pwm: crc: Implement get_state()
+ method
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,38 +95,72 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 6/12/20 12:20 AM, Uwe Kleine-K=C3=B6nig wrote:
-> On Sun, Jun 07, 2020 at 08:18:34PM +0200, Hans de Goede wrote:
->> The pwm-crc code is using 2 different enable bits:
->> 1. bit 7 of the PWM0_CLK_DIV (PWM_OUTPUT_ENABLE)
->> 2. bit 0 of the BACKLIGHT_EN register
->>
->> So far we've kept the PWM_OUTPUT_ENABLE bit set when disabling the PWM,
->> this commit makes crc_pwm_disable() clear it on disable and makes
->> crc_pwm_enable() set it again on re-enable.
->>
->> This should disable the internal (divided) PWM clock and tri-state the
->> PWM output pin when disabled, saving some power.
+On 6/11/20 11:37 PM, Uwe Kleine-K=C3=B6nig wrote:
+> Hello,
 > =
 
-> It would be great if you could also document that disabling the PWM
-> makes the output tri-state. There are a few drivers that have a
-> "Limitations" section at their top. Describing that there (in the same
-> format) would be the right place.
+> On Sun, Jun 07, 2020 at 08:18:36PM +0200, Hans de Goede wrote:
+>> Implement the pwm_ops.get_state() method to complete the support for the
+>> new atomic PWM API.
+>>
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>>   drivers/pwm/pwm-crc.c | 29 +++++++++++++++++++++++++++++
+>>   1 file changed, 29 insertions(+)
+>>
+>> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
+>> index 58c7e9ef7278..6c75a3470bc8 100644
+>> --- a/drivers/pwm/pwm-crc.c
+>> +++ b/drivers/pwm/pwm-crc.c
+>> @@ -114,8 +114,37 @@ static int crc_pwm_apply(struct pwm_chip *chip, str=
+uct pwm_device *pwm,
+>>   	return 0;
+>>   }
+>>   =
+
+>> +static void crc_pwm_get_state(struct pwm_chip *chip, struct pwm_device =
+*pwm,
+>> +			       struct pwm_state *state)
+>> +{
+>> +	struct crystalcove_pwm *crc_pwm =3D to_crc_pwm(chip);
+>> +	struct device *dev =3D crc_pwm->chip.dev;
+>> +	unsigned int clk_div, clk_div_reg, duty_cycle_reg;
+>> +	int error;
+>> +
+>> +	error =3D regmap_read(crc_pwm->regmap, PWM0_CLK_DIV, &clk_div_reg);
+>> +	if (error) {
+>> +		dev_err(dev, "Error reading PWM0_CLK_DIV %d\n", error);
+>> +		return;
+>> +	}
+>> +
+>> +	error =3D regmap_read(crc_pwm->regmap, PWM0_DUTY_CYCLE, &duty_cycle_re=
+g);
+>> +	if (error) {
+>> +		dev_err(dev, "Error reading PWM0_DUTY_CYCLE %d\n", error);
+>> +		return;
+>> +	}
 > =
 
-> Also note that according to Thierry's conception getting a (driven)
-> inactive output is the right thing for a disabled PWM.
+> I assume that duty_cycle_reg cannot be bigger than 0xff? Would it make
+> sense to mask the value accordingly to get more robust code?
+> =
 
-Hmm, the tri-state thing is an assumption from my side and we
-don't have any docs for this PWM controller, so I'm not sure at
-all if that is true. So I think it will be better to just drop
-the tri-state bit from the commit msg for the next version.
+>> +	clk_div =3D (clk_div_reg & ~PWM_OUTPUT_ENABLE) + 1;
+>> +
+>> +	state->period     =3D clk_div * NSEC_PER_MHZ * 256 / PWM_BASE_CLK_MHZ;
+>> +	state->duty_cycle =3D duty_cycle_reg * state->period / PWM_MAX_LEVEL;
+>> +	state->polarity   =3D PWM_POLARITY_NORMAL;
+>> +	state->enabled    =3D !!(clk_div_reg & PWM_OUTPUT_ENABLE);
+> =
+
+> These aligned =3D look strange (IMHO). If you don't feel strong here I'd
+> like to see a single space before a =3D.
+
+Ok, will change for the next version.
 
 Regards,
 
 Hans
-
 
 _______________________________________________
 Intel-gfx mailing list
