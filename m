@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A5C1F7878
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 15:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AA5D1F78A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 15:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B71D46E0F8;
-	Fri, 12 Jun 2020 13:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E130B6E111;
+	Fri, 12 Jun 2020 13:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 903F26E111;
- Fri, 12 Jun 2020 13:07:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89A2FA47E1;
- Fri, 12 Jun 2020 13:07:49 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AEDB6E111
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 13:18:51 +0000 (UTC)
+IronPort-SDR: V2lfdu20hvKD0OyDBNitBFb0va1nc2TCVpKt9+ZqL9eRv9wjMJ9oEazZmZc35twaoiN/iiqRgG
+ uJp9GzWIC6MA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2020 06:18:51 -0700
+IronPort-SDR: qETB9wsTG2QDem+fXPVyRz5ckcGm36fR/YJhjv0zbtrjKUe5jpGoqdTBqvdZOiBZzN6OkrOvul
+ 5GpZ1cUWwUUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,503,1583222400"; d="scan'208";a="315129349"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 12 Jun 2020 06:18:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Jun 2020 16:18:48 +0300
+Date: Fri, 12 Jun 2020 16:18:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200612131848.GH6112@intel.com>
+References: <20200612121731.19596-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 12 Jun 2020 13:07:49 -0000
-Message-ID: <159196726953.21338.2041406522726074941@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200611160529.9558-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200611160529.9558-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Flush_gen3_relocs_harder=2C_again_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200612121731.19596-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl+: Fix hotplug interrupt
+ disabling after storm detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +51,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Kunal Joshi <kunal1.joshi@intel.com>,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jun 12, 2020 at 03:17:31PM +0300, Imre Deak wrote:
+> Atm, hotplug interrupts on TypeC ports are left enabled after detecting
+> an interrupt storm, fix this.
+> =
 
-Series: drm/i915/gt: Flush gen3 relocs harder, again (rev2)
-URL   : https://patchwork.freedesktop.org/series/78230/
-State : warning
+> Reported-by: Kunal Joshi <kunal1.joshi@intel.com>
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/351
+> Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/1964
+> Cc: Kunal Joshi <kunal1.joshi@intel.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 1 +
+>  1 file changed, 1 insertion(+)
+> =
 
-== Summary ==
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 8e823ba25f5f..710224d930c5 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -3132,6 +3132,7 @@ static void gen11_hpd_irq_setup(struct drm_i915_pri=
+vate *dev_priv)
+>  =
 
-$ dim checkpatch origin/drm-tip
-e754040f8747 drm/i915/gt: Flush gen3 relocs harder, again
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a889580c087a ("drm/i915: Flush GPU relocs harder for gen3")'
-#22: 
-References: a889580c087a ("drm/i915: Flush GPU relocs harder for gen3")
+>  	val =3D I915_READ(GEN11_DE_HPD_IMR);
+>  	val &=3D ~hotplug_irqs;
+> +	val |=3D ~enabled_irqs & hotplug_irqs;
+>  	I915_WRITE(GEN11_DE_HPD_IMR, val);
+>  	POSTING_READ(GEN11_DE_HPD_IMR);
 
-total: 1 errors, 0 warnings, 0 checks, 98 lines checked
+Wondering if we should add a function for this just
+for consistency with all the other platforms. Alhthough
+we don't strictly need one since we have no other users
+of this register. So maybe not.
 
+Anyways, patch is
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+>  =
+
+> -- =
+
+> 2.23.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
