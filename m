@@ -1,37 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4105D1F7E2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 22:47:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED781F7E3C
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2020 22:49:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291DF6E19A;
-	Fri, 12 Jun 2020 20:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC04D6E1D5;
+	Fri, 12 Jun 2020 20:49:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3186E19A
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 20:47:39 +0000 (UTC)
-IronPort-SDR: IAr5Szlbbv12h+En18Doalrt8XHhf6FZlHjT1AEwTEogSqO6aRAN3uxm41PiqsWX6BbeFnkiDB
- /kdRuyRMf1lw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 13:47:38 -0700
-IronPort-SDR: pFDzPkkcFblhdlE94iBrk05AIEw+8rvxpd8accr7CeD4s/hczD3qDfBgW4fUTWQHJbMFRNninX
- lUiCjmqWdWaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,504,1583222400"; d="scan'208";a="272024375"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by orsmga003.jf.intel.com with ESMTP; 12 Jun 2020 13:47:36 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Jun 2020 13:47:34 -0700
-Message-Id: <20200612204734.3674650-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEF46E1D5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 20:49:47 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id l11so11308415wru.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jun 2020 13:49:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=XIgjIzPFIgBI4EmyoK38np1WAjTN8clhgllj8ppmN0o=;
+ b=bknKxuRZkahxMHOgE9ynpDquNqp6yw7USyhNiDp1nm0tVtAVJ7+8dSuU9K13Md8846
+ Q0aWKqLm1+Cl8/2Vw6wjjsWhVxBMHtUt1PzZHRx4eDmx6g+QUn7nnAL3NcVs9vSrlYdy
+ oInRDbFKGlgIVhFVpvdfG+FjCYzR7W98P8yV8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=XIgjIzPFIgBI4EmyoK38np1WAjTN8clhgllj8ppmN0o=;
+ b=HLFro5OX1t4rt1aR+PbAoDQJGSI6BGSRrkPaVWRcA3hNAj2R2AyzX4mlGgYeNYM2lB
+ fcEtVQGj2YRzbn438Q2MAeEjpFHsNsK+y0qEz67CGX681oZ/Id91JxfYwrBpPwRiO5QK
+ 7OvsFUKMqCy6n9h+3qtKqvQelHY9pIt9/WOaIz82dO0qHufJFtgdP4PkzX3h2dozdBQo
+ lj/4HuEasJg9/noMP6KIj38Wbpp9ol1AFwQ3OehzLZ2oLzUO2GtY9tTBakjrK8sqInEA
+ bEHCRAowA4GwJVwjJ57Zm1myjpiMa+O5kM8WGFCYHYUNNr4jVZ4b6JM12xhrziLzj47p
+ TycA==
+X-Gm-Message-State: AOAM5326srKOc/HlifxJ7V+Yb+iMVKOsAFPpEHTHYiSTU9tX4Cf+7Rpy
+ h2Pbre9vwJ1exIJLf32hPgBxaw==
+X-Google-Smtp-Source: ABdhPJzCs81BOXZQABnrH6PiF+mNU4ln7OpSkG0b0FLaXNTTrsuHx3nfSdG8xpcXE91hBXJljqvFEg==
+X-Received: by 2002:adf:e604:: with SMTP id p4mr16403880wrm.212.1591994985834; 
+ Fri, 12 Jun 2020 13:49:45 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id a7sm10811284wmh.14.2020.06.12.13.49.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Jun 2020 13:49:45 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Fri, 12 Jun 2020 22:49:40 +0200
+Message-Id: <20200612204940.2134653-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200612160056.2082681-6-daniel.vetter@ffwll.ch>
+References: <20200612160056.2082681-6-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Update bw_buddy pagemask table
+Subject: [Intel-gfx] [PATCH] drm/vmwgfx: Use __drm_atomic_helper_crtc_reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,43 +63,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Roland Scheidegger <sroland@vmware.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A recent bspec update removed the LPDDR4 single channel entry from the
-buddy register table, but added a new four-channel entry.
+Now also comes with the added benefit of doing a drm_crtc_vblank_off(),
+which means vblank state isn't ill-defined and fail-y at driver load
+before the first modeset on each crtc.
 
-Workaround 1409767108 hasn't been updated with any guidance for four
-channel configurations, so we leave that alternate table unchanged for
-now.
+v2: Compile fix. Oops.
 
-Bspec 49218
-Fixes: 3fa01d642fa7 ("drm/i915/tgl: Program BW_BUDDY registers during display init")
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: VMware Graphics <linux-graphics-maintainer@vmware.com>
+Cc: Roland Scheidegger <sroland@vmware.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 24a2aa1fdc9c..a592a7dd71a3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -5240,10 +5240,10 @@ struct buddy_page_mask {
- };
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+index 3c97654b5a43..bbce45d142aa 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+@@ -629,8 +629,7 @@ void vmw_du_crtc_reset(struct drm_crtc *crtc)
+ 		return;
+ 	}
  
- static const struct buddy_page_mask tgl_buddy_page_masks[] = {
--	{ .num_channels = 1, .type = INTEL_DRAM_LPDDR4, .page_mask = 0xE },
- 	{ .num_channels = 1, .type = INTEL_DRAM_DDR4,   .page_mask = 0xF },
- 	{ .num_channels = 2, .type = INTEL_DRAM_LPDDR4, .page_mask = 0x1C },
- 	{ .num_channels = 2, .type = INTEL_DRAM_DDR4,   .page_mask = 0x1F },
-+	{ .num_channels = 4, .type = INTEL_DRAM_LPDDR4, .page_mask = 0x38 },
- 	{}
- };
+-	crtc->state = &vcs->base;
+-	crtc->state->crtc = crtc;
++	__drm_atomic_helper_crtc_reset(crtc, &vcs->base);
+ }
+ 
  
 -- 
-2.24.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
