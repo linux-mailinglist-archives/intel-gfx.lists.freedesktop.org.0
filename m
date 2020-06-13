@@ -2,35 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC651F823A
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Jun 2020 11:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FC21F838C
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Jun 2020 15:48:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A78B6E0EF;
-	Sat, 13 Jun 2020 09:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8488946E;
+	Sat, 13 Jun 2020 13:48:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27BF86E0EF
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 09:17:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21483736-1500050 for multiple; Sat, 13 Jun 2020 10:17:10 +0100
+X-Greylist: delayed 330 seconds by postgrey-1.36 at gabe;
+ Sat, 13 Jun 2020 13:48:05 UTC
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 630D38972B
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 13:48:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds201912;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=alUWCuWnEc8Wz6AzBP1vJ1Rc9LzbWZybI/nGQwJlRI8=; b=KtTPlQBbNv4I9aO/Ez1Q9xiQyj
+ Jd0chBq5bpouh7YOKP10zo6yNRA4HQV7UB1pGgFyA+Jk1jQWl3cJB4hE/60bd6ypbQSHCJBvmYGOU
+ TwRlKCVJ0MVj2XYVRMw6kdkB+ZcsVEiIB3vzkApvvvnMhZCItWDnx4Tk+dorWl3Doy+k+zVpeXwOd
+ g2Kcqm3WamVQdSaku9IwRmDOPNTyv3drrkkS+frpBJvLKKBykaCmWipM+P1L6OY6V6WBAKapXc071
+ fxxI+BFD0eajrEilhbLU8kfgfm/clL/++y6DKxoSvjmTDt2Hq5EixslN676vDdoGmoNRC04EKIqFq
+ xVcmEAgQ==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:52684
+ helo=[192.168.10.61])
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1jk6Qa-0004RS-NN; Sat, 13 Jun 2020 15:42:32 +0200
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+ <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+Message-ID: <b95e1fa9-36b0-f240-424b-69bb48d5ccb7@tronnes.org>
+Date: Sat, 13 Jun 2020 15:42:29 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <87d063s6bs.fsf@gaia.fi.intel.com>
-References: <20200611160529.9558-1-chris@chris-wilson.co.uk>
- <20200612123949.7093-1-chris@chris-wilson.co.uk>
- <87ftb0rlcx.fsf@gaia.fi.intel.com>
- <159199981892.2981.2735577690762279899@build.alporthouse.com>
- <87d063s6bs.fsf@gaia.fi.intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159203982908.2981.13254194538799867604@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Sat, 13 Jun 2020 10:17:09 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Flush gen3 relocs harder, again
+In-Reply-To: <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/mipi-dbi: Remove ->enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,112 +57,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ David Lechner <david@lechnology.com>, Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-06-13 09:44:39)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > Quoting Mika Kuoppala (2020-06-12 23:05:18)
-> >> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> >> 
-> >> > gen3 does not fully flush MI stores to memory on MI_FLUSH, such that a
-> >> > subsequent read from e.g. the sampler can bypass the store and read the
-> >> > stale value from memory. This is a serious issue when we are using MI
-> >> > stores to rewrite the batches for relocation, as it means that the batch
-> >> > is reading from random user/kernel memory. While it is particularly
-> >> > sensitive [and detectable] for relocations, reading stale data at any
-> >> > time is a worry.
-> >> >
-> >> > Having started with a small number of delaying stores and doubling until
-> >> > no more incoherency was seen over a few hours (with and without
-> >> > background memory pressure), 32 was the magic number.
-> >> >
-> >> > v2: Follow more closer with the gen5 w/a and include some
-> >> > post-invalidate flushes as well.
-> >> >
-> >> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2018
-> >> > References: a889580c087a ("drm/i915: Flush GPU relocs harder for gen3")
-> >> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> >> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/gt/gen2_engine_cs.c | 61 ++++++++++--------------
-> >> >  1 file changed, 25 insertions(+), 36 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-> >> > index 3fb0dc1fb910..5400d657f334 100644
-> >> > --- a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-> >> > +++ b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-> >> > @@ -13,28 +13,25 @@
-> >> >  
-> >> >  int gen2_emit_flush(struct i915_request *rq, u32 mode)
-> >> >  {
-> >> > -     unsigned int num_store_dw;
-> >> > +     unsigned int num_store_dw = 12;
-> >> >       u32 cmd, *cs;
-> >> >  
-> >> >       cmd = MI_FLUSH;
-> >> > -     num_store_dw = 0;
-> >> >       if (mode & EMIT_INVALIDATE)
-> >> >               cmd |= MI_READ_FLUSH;
-> >> > -     if (mode & EMIT_FLUSH)
-> >> > -             num_store_dw = 4;
-> >> >  
-> >> > -     cs = intel_ring_begin(rq, 2 + 3 * num_store_dw);
-> >> > +     cs = intel_ring_begin(rq, 2 + 4 * num_store_dw);
-> >> >       if (IS_ERR(cs))
-> >> >               return PTR_ERR(cs);
-> >> >  
-> >> >       *cs++ = cmd;
-> >> >       while (num_store_dw--) {
-> >> > -             *cs++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
-> >> > -             *cs++ = intel_gt_scratch_offset(rq->engine->gt,
-> >> > -                                             INTEL_GT_SCRATCH_FIELD_DEFAULT);
-> >> > -             *cs++ = 0;
-> >> > +             *cs++ = MI_STORE_DWORD_INDEX;
-> >> > +             *cs++ = I915_GEM_HWS_SCRATCH * sizeof(u32);
-> >> > +             *cs++ = rq->fence.seqno - 1;
-> >> > +             *cs++ = MI_FLUSH | MI_NO_WRITE_FLUSH;
-> >> >       }
-> >> > -     *cs++ = MI_FLUSH | MI_NO_WRITE_FLUSH;
-> >> > +     *cs++ = cmd;
-> >> >  
-> >> >       intel_ring_advance(rq, cs);
-> >> >  
-> >> > @@ -142,38 +139,21 @@ int gen4_emit_flush_vcs(struct i915_request *rq, u32 mode)
-> >> >       return 0;
-> >> >  }
-> >> >  
-> >> > -u32 *gen3_emit_breadcrumb(struct i915_request *rq, u32 *cs)
-> >> > +static u32 *__gen2_emit_breadcrumb(struct i915_request *rq, u32 *cs,
-> >> > +                                int flush, int post)
-> >> >  {
-> >> >       GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
-> >> >       GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
-> >> >  
-> >> >       *cs++ = MI_FLUSH;
-> >> >  
-> >> > -     *cs++ = MI_STORE_DWORD_INDEX;
-> >> > -     *cs++ = I915_GEM_HWS_SEQNO_ADDR;
-> >> > -     *cs++ = rq->fence.seqno;
-> >> > -
-> >> > -     *cs++ = MI_USER_INTERRUPT;
-> >> 
-> >> How can you throw the interrupt part out?
-> >
-> > Diff being confusing. gen3_emit_breadcrumb and gen5_emit_breadcrumb
-> > merged together.
-> 
-> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-It failed eventually, so unfortunately it's still just paper. However
-increasing the MTBF by a few orders of magnitude should be enough to
-stop CI complaining on every idle run.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpEZW4gMTIuMDYuMjAyMCAxOC4wMCwgc2tyZXYgRGFuaWVsIFZldHRlcjoKPiBUaGUgYXRvbWlj
+IGhlbHBlcnMgdHJ5IHJlYWxseSBoYXJkIHRvIG5vdCBsb3NlIHRyYWNrIG9mIHRoaW5ncywKPiBk
+dXBsaWNhdGluZyBlbmFibGVkIHRyYWNraW5nIGluIHRoZSBkcml2ZXIgaXMgYXQgYmVzdCBjb25m
+dXNpbmcuCj4gRG91YmxlLWVuYWJsaW5nIG9yIGRpc2FibGluZyBpcyBhIGJ1ZyBpbiBhdG9taWMg
+aGVscGVycy4KPiAKPiBJbiB0aGUgZmJfZGlydHkgZnVuY3Rpb24gd2UgY2FuIGp1c3QgYXNzdW1l
+IHRoYXQgdGhlIGZiIGFsd2F5cyBleGlzdHMsCj4gc2ltcGxlIGRpc3BsYXkgcGlwZSBoZWxwZXJz
+IGd1YXJhbnRlZSB0aGF0IHRoZSBjcnRjIGlzIG9ubHkgZW5hYmxlZAo+IHRvZ2V0aGVyIHdpdGgg
+dGhlIG91dHB1dCwgc28gd2UgYWx3YXlzIGhhdmUgYSBwcmltYXJ5IHBsYW5lIGFyb3VuZC4KPiAK
+PiBOb3cgaW4gdGhlIHVwZGF0ZSBmdW5jdGlvbiB3ZSBuZWVkIHRvIGJlIGEgbm90Y2ggbW9yZSBj
+YXJlZnVsLCBzaW5jZQo+IHRoYXQgY2FuIGFsc28gZ2V0IGNhbGxlZCB3aGVuIHRoZSBjcnRjIGlz
+IG9mZi4gQW5kIHdlIGRvbid0IHdhbnQgdG8KPiB1cGxvYWQgZnJhbWVzIHdoZW4gdGhhdCdzIHRo
+ZSBjYXNlLCBzbyBmaWx0ZXIgdGhhdCBvdXQgdG9vLgo+IAo+IFNpZ25lZC1vZmYtYnk6IERhbmll
+bCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+IENjOiBNYWFydGVuIExhbmtob3Jz
+dCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+IENjOiBNYXhpbWUgUmlwYXJk
+IDxtcmlwYXJkQGtlcm5lbC5vcmc+Cj4gQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFu
+bkBzdXNlLmRlPgo+IENjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+Cj4gQ2M6IERh
+bmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiBDYzogRGF2aWQgTGVjaG5lciA8ZGF2aWRA
+bGVjaG5vbG9neS5jb20+Cj4gLS0tCgpUaGFua3MgZm9yIGZpeGluZyB0aGlzLgoKUmV2aWV3ZWQt
+Ynk6IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
