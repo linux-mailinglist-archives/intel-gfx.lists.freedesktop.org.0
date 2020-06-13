@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334FA1F9477
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 12:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D64A1F9723
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 14:54:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC0989DFE;
-	Mon, 15 Jun 2020 10:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC1189D73;
+	Mon, 15 Jun 2020 12:54:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C16689D73
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 10:18:29 +0000 (UTC)
-IronPort-SDR: VKMz5rbPiU8ohgucEzkbO6+fPB1ov06TubIbrBhr/INHVHMyABUYSmmMt5kjMB+SWNfz/hftmM
- lKppjqa/3EAg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2020 03:18:28 -0700
-IronPort-SDR: OcHatYtNF18mgzX6rwPmIPT1+Bg18PBTaPYN1wpDyDZh5Ck741HGWzXXO/jlGPWwUo/t391c3X
- 26iDc+8FmmRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,514,1583222400"; d="scan'208";a="475981789"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.213.83.65])
- ([10.213.83.65])
- by fmsmga005.fm.intel.com with ESMTP; 15 Jun 2020 03:18:26 -0700
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-References: <20200608100103.19472-1-ankit.k.nautiyal@intel.com>
- <20200608100103.19472-3-ankit.k.nautiyal@intel.com>
- <20200615044542.GD14085@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <88727f19-0c36-39cd-8422-22aca5ad3cff@intel.com>
-Date: Mon, 15 Jun 2020 15:48:25 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
- Thunderbird/45.3.0
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D47F6E448
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 20:50:20 +0000 (UTC)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jkD6S-0007ba-LW; Sat, 13 Jun 2020 22:50:12 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jkD6R-0001u5-Ib; Sat, 13 Jun 2020 22:50:11 +0200
+Date: Sat, 13 Jun 2020 22:50:08 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Message-ID: <20200613205008.l2gxw6pm2ywmj3gz@taurus.defre.kleine-koenig.org>
+References: <20200607181840.13536-1-hdegoede@redhat.com>
+ <20200607181840.13536-4-hdegoede@redhat.com>
+ <20200608035023.GZ2428291@smile.fi.intel.com>
+ <90769dc0-3174-195b-34e0-ef4bb9d9b982@redhat.com>
+ <20200611221242.3bjqvnhcwwxaocxy@taurus.defre.kleine-koenig.org>
+ <20200612115732.GC2428291@smile.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200615044542.GD14085@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Add a new debugfs to
- request HDCP version
+In-Reply-To: <20200612115732.GC2428291@smile.fi.intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+X-Mailman-Approved-At: Mon, 15 Jun 2020 12:54:07 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 03/15] pwm: lpss: Add range limit check
+ for the base_unit register value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,159 +53,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- martin.peres@intel.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, dri-devel@lists.freedesktop.org,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: multipart/mixed; boundary="===============0978255290=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Anshuman,
 
-Thanks for the review comments and suggestions.
+--===============0978255290==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="d3zhknjlycgiygbu"
+Content-Disposition: inline
 
-Please find my response inline:
 
-On 6/15/2020 10:15 AM, Anshuman Gupta wrote:
-> On 2020-06-08 at 15:31:03 +0530, Ankit Nautiyal wrote:
->> As per the current HDCP design, the driver selects the highest
->> version of HDCP that can be used to satisfy the content-protection
->> requirements of the user. Due to this, the content-protection
->> tests cannot test a lower version of HDCP, if the platform and the
->> display panel, both support higher HDCP version.
->>
->> To provide some support for testing and debugging, a per-connector
->> debugfs is required to set the HDCP version via debugfs that the
->> kernel can consider, while enabling HDCP.
->>
->> This patch adds a new debugfs entry for each connector that supports
->> HDCP. For enforcing a particular HDCP version for a connector, the user
->> can write into the debugfs for that connector.
-> IMHO this doesn't feel like a debugfs per connector, even if it is a
-> global singleton resource for all connectors, i don't see any problem in
-> that, may be a global debugfs would make sense here ?
-The current solution was inline with the comments in the IGT patch, 
-where the approach for a connector level debugfs was discussed by the 
-community members.
-But I agree we don't necessarily require per connector debugfs for our 
-use-case here.
-We can use a global resource for storing the request for HDCP version 
-and use it if it is set, while enabling HDCP.
-Perhaps will store it in dev_priv, instead of connector->hdcp.
+--d3zhknjlycgiygbu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I will try that out and send next version.
+Hello Andy,
 
->> v2: As suggested by Jani Nikula:
->> -used kstrtouint_from_user() to directly read as uint from user buffer.
->> -used 32 bit flag instead of 64 bit for hdcp_ver flag.
->> -removed unnecessary prints and fixed other minor formatting issues.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   .../drm/i915/display/intel_display_debugfs.c  | 68 +++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 70525623bcdf..c01653d412e7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -2185,6 +2185,72 @@ static const struct file_operations i915_dsc_fec_support_fops = {
->>   	.write = i915_dsc_fec_support_write
->>   };
->>   
->> +static int i915_hdcp_ver_request_show(struct seq_file *m, void *data)
->> +{
->> +	struct drm_connector *connector = m->private;
->> +	struct intel_connector *intel_connector = to_intel_connector(connector);
->> +	u32 hdcp_ver_flag;
->> +
->> +	if (connector->status != connector_status_connected)
->> +		return -ENODEV;
->> +
->> +	/* HDCP is supported by connector */
->> +	if (!intel_connector->hdcp.shim)
->> +		return -EINVAL;
->> +
->> +	hdcp_ver_flag = intel_connector->hdcp.debugfs_ver_request;
->> +	seq_printf(m, "HDCP_VER_FLAGS: %u\n", hdcp_ver_flag);
->> +
->> +	return 0;
->> +}
->> +
->> +static int i915_hdcp_ver_request_open(struct inode *inode,
->> +				      struct file *file)
->> +{
->> +	return single_open(file, i915_hdcp_ver_request_show,
->> +			   inode->i_private);
->> +}
->> +
->> +static ssize_t i915_hdcp_ver_request_write(struct file *file,
->> +					   const char __user *ubuf,
->> +					   size_t len, loff_t *offp)
->> +{
->> +	unsigned int hdcp_ver = 0;
->> +	int ret;
->> +	struct drm_connector *connector =
->> +		((struct seq_file *)file->private_data)->private;
->> +	struct intel_connector *intel_connector = to_intel_connector(connector);
->> +	struct intel_hdcp *hdcp = &intel_connector->hdcp;
->> +
->> +	if (!hdcp->shim)
->> +		return -EINVAL;
->> +
->> +	if (len == 0)
->> +		return 0;
->> +
->> +	ret = kstrtouint_from_user(ubuf, len, 0, &hdcp_ver);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	if (hdcp_ver > HDCP_VERSION_MASK)
->> +		return -EINVAL;
->> +
->> +	hdcp->debugfs_ver_request = hdcp_ver;
-> A lockless assignment, this would probably not scale.
-> Could u please add some comment here for current IGT need this is ok,
-> but for any concurrent usgaes proper locking is required.
-> Thanks,
-> Anshuman
+On Fri, Jun 12, 2020 at 02:57:32PM +0300, Andy Shevchenko wrote:
+> On Fri, Jun 12, 2020 at 12:12:42AM +0200, Uwe Kleine-K=F6nig wrote:
+> > I didn't follow the complete discussion but note that the general rule
+> > is:
+> >=20
+> > 	round period down to the next possible implementable period
+> > 	round duty_cycle down to the next possible implementable duty_cycle
+> >=20
+> > so if a small enough period (and so a small duty_cycle) is requested it
+> > is expected that duty_cycle will be zero.
+>=20
+> ...which brings me an idea that PWM framework should expose API to get a
+> capabilities, like DMA Engine has.
+>=20
+> In such capabilities, in particular, caller can get ranges of the correct
+> frequencies of the underneath hardware.
 
-Agreed. I will add this as a note in comments in next version.
+my idea is to introduce a function pwm_round_state() that has a similar
+semantic to clk_round_rate(). But this is only one of several thoughts I
+have for the pwm framework. And as there is (AFAIK) no user who would
+benefit from pwm_round_state() this is further down on my todo list.
 
-Thanks & Regards,
-Ankit
->> +
->> +	*offp += len;
->> +
->> +	return len;
->> +}
->> +
->> +static const struct file_operations i915_hdcp_ver_request_fops = {
->> +	.owner = THIS_MODULE,
->> +	.open = i915_hdcp_ver_request_open,
->> +	.read = seq_read,
->> +	.llseek = seq_lseek,
->> +	.release = single_release,
->> +	.write = i915_hdcp_ver_request_write
->> +};
->> +
->>   /**
->>    * intel_connector_debugfs_add - add i915 specific connector debugfs files
->>    * @connector: pointer to a registered drm_connector
->> @@ -2215,6 +2281,8 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
->>   	    connector->connector_type == DRM_MODE_CONNECTOR_HDMIB) {
->>   		debugfs_create_file("i915_hdcp_sink_capability", S_IRUGO, root,
->>   				    connector, &i915_hdcp_sink_capability_fops);
->> +		debugfs_create_file("i915_hdcp_version_request", 0444, root,
->> +				    connector, &i915_hdcp_ver_request_fops);
->>   	}
->>   
->>   	if (INTEL_GEN(dev_priv) >= 10 &&
->> -- 
->> 2.17.1
->>
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--d3zhknjlycgiygbu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl7lO/0ACgkQwfwUeK3K
+7AmcWAf+NJKiXM9OZNgwpiVJ90hrVSpaBnIzIyOD9JrkPpA//Wpzt6+DP3jIW4gh
+awT8Pn1q+S/BywtKGkspRruxRPMB+/xhcbFixZkhwnVHtDrTsNBmWa6tmNgJn5ay
+2kksDM69380g/qndu8N1BIkziJ0M04IThxt4Rem7qETymFUIttJP/urLfPEbCNz5
+agQVK0L/G6AktL5F/I68w6dwUkfOnt7bN+sQ3B6H6F38YY3boQJICjKLcHnN7nq8
+mgmaF/jnGuuv3uPrPhm9K9zGy8W+XBmGZjdHQH1aU94+TMhK8AFQOR7N42Aj2VwA
+/pNKs5SAoPGvfcEAUPd6w4sE4pKgTA==
+=dz1/
+-----END PGP SIGNATURE-----
+
+--d3zhknjlycgiygbu--
+
+--===============0978255290==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0978255290==--
