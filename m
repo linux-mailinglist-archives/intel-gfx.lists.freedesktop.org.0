@@ -1,35 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EA61F9B44
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 17:01:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1205A1F9B9E
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 17:10:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45EB46E330;
-	Mon, 15 Jun 2020 15:01:42 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC076E330
- for <Intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 15:01:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21502840-1500050 for multiple; Mon, 15 Jun 2020 16:01:20 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1EC6E347;
+	Mon, 15 Jun 2020 15:10:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A8DF6E342
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 15:10:33 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id c71so14990514wmd.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 08:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=x8EY5DrwIqYCISh22w/ZjbbsN1OT/NHPAQzEZAe1lHA=;
+ b=OxtyBVrTV+qRGlT+fPFx7bRibi/txYJQipLHc/Mvz49GaQ3L0w6ta7OUeGAG1dS2Xc
+ EbmgylBwj3z0BREKrK25CZFALyxz/nzBNZoRAKl+RVocHEfX17F2BTIvQg1OFuaLzB5w
+ sV6zjjQinP65G9lITxNhbE6lMjx3kESlgtGW0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=x8EY5DrwIqYCISh22w/ZjbbsN1OT/NHPAQzEZAe1lHA=;
+ b=H05mh2EEh/FbZ4y6IBxQ/4Wo2s/YDtSz3XFzQ64Ei279qT0S4lxhG3lzVOT74Hu/kj
+ i0Ea3bXJjW7spf8OPE7uU6izeEmyi2vmHistiail10jgdG9noZlRW85TjzthNHGIJWuF
+ m4Utt8SPvP7IlPvCybK99o+Tu1OZfxkhMX4sFSsrzLIcyglm3QilqI3/QMnMBm1c8Mdw
+ 11xqYye+X2nvSXRo0ux5m3yOhfEsMku0Gfoqti+g9LQL16dlEItGd5etCU+530kM8ePD
+ GSExluqGWyV+DarGhFRSHCJk221bgSJVokllhI5TAc1W8SokM1XskEauYV0bOnmVEIDw
+ zCfA==
+X-Gm-Message-State: AOAM533sMngQAq1bKCThQMz7Jxej7nmCk0d+niy5JN4LzuhFeu3CG04s
+ AdlLQ6fD56LD+ZggF0yw0zDZZg==
+X-Google-Smtp-Source: ABdhPJwjB3ZYz9R27zwG4SdPTcvEvD5BFuWKcak59WiEumHRIBCHUyZUT4AWRBT4ymjUKuMC0Hs2VQ==
+X-Received: by 2002:a1c:3b43:: with SMTP id i64mr14109088wma.112.1592233832197; 
+ Mon, 15 Jun 2020 08:10:32 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 50sm26874935wra.1.2020.06.15.08.10.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Jun 2020 08:10:31 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Mon, 15 Jun 2020 17:10:26 +0200
+Message-Id: <20200615151026.2339113-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <1264692d-8fa6-7731-548a-923c6279d537@linux.intel.com>
-References: <20200615140928.27336-1-tvrtko.ursulin@linux.intel.com>
- <159223143519.2981.2404611553306232536@build.alporthouse.com>
- <1264692d-8fa6-7731-548a-923c6279d537@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159223327959.2981.13152363683001575042@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 15 Jun 2020 16:01:19 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove redundant
- i915_request_await_object in blit clears
+Subject: [Intel-gfx] [PATCH] drm/shmem-helper: Fix obj->filp derefence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,103 +61,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Rob Herring <robh@kernel.org>,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-06-15 15:54:56)
-> 
-> On 15/06/2020 15:30, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-06-15 15:09:28)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> One i915_request_await_object is enough and we keep the one under the
-> >> object lock so it is final.
-> >>
-> >> At the same time move async clflushing setup under the same locked
-> >> section and consolidate common code into a helper function.
-> >>
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> Cc: Matthew Auld <matthew.auld@intel.com>
-> >> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> >> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> >> ---
-> >>   .../gpu/drm/i915/gem/i915_gem_object_blt.c    | 35 +++++++------------
-> >>   1 file changed, 13 insertions(+), 22 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> index f457d7130491..7d8b396e265a 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> @@ -126,6 +126,17 @@ void intel_emit_vma_release(struct intel_context *ce, struct i915_vma *vma)
-> >>          intel_engine_pm_put(ce->engine);
-> >>   }
-> >>   
-> >> +static int
-> >> +move_obj_to_gpu(struct drm_i915_gem_object *obj,
-> >> +               struct i915_request *rq,
-> >> +               bool write)
-> >> +{
-> >> +       if (obj->cache_dirty & ~obj->cache_coherent)
-> >> +               i915_gem_clflush_object(obj, 0);
-> >> +
-> >> +       return i915_request_await_object(rq, obj, write);
-> >> +}
-> >> +
-> >>   int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
-> >>                               struct intel_context *ce,
-> >>                               u32 value)
-> >> @@ -143,12 +154,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
-> >>          if (unlikely(err))
-> >>                  return err;
-> >>   
-> >> -       if (obj->cache_dirty & ~obj->cache_coherent) {
-> >> -               i915_gem_object_lock(obj);
-> >> -               i915_gem_clflush_object(obj, 0);
-> >> -               i915_gem_object_unlock(obj);
-> >> -       }
-> >> -
-> >>          batch = intel_emit_vma_fill_blt(ce, vma, value);
-> >>          if (IS_ERR(batch)) {
-> >>                  err = PTR_ERR(batch);
-> >> @@ -165,10 +170,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
-> >>          if (unlikely(err))
-> >>                  goto out_request;
-> >>   
-> >> -       err = i915_request_await_object(rq, obj, true);
-> >> -       if (unlikely(err))
-> >> -               goto out_request;
-> >> -
-> >>          if (ce->engine->emit_init_breadcrumb) {
-> >>                  err = ce->engine->emit_init_breadcrumb(rq);
-> >>                  if (unlikely(err))
-> >> @@ -176,7 +177,7 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
-> >>          }
-> >>   
-> >>          i915_vma_lock(vma);
-> >> -       err = i915_request_await_object(rq, vma->obj, true);
-> >> +       err = move_obj_to_gpu(vma->obj, rq, true);
-> >>          if (err == 0)
-> >>                  err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> >>          i915_vma_unlock(vma);
-> > 
-> > Ah, but here it's also the wrong side of init_breadcrumb.
-> 
-> Why it is important to mark the object as active on the failure path? We 
-> skip the payload, no?
-
-It's important that all the async waits are before the breadcrumb. Up
-until recently we would emit the semaphore after the init, and so believe
-the payload was running and all waits were completed even though it was
-still waiting on another request to complete. If this blt request was
-subsequently relied upon to indicate the other fence completions we
-would then start other requests early. [It's less important now as we
-look at a flag saying that the init_breadcrumb has been emitted and
-avoid adding more semaphores.]
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SSBicm9rZSB0aGF0IGluIG15IHJlZmFjdG9yaW5nOgoKY29tbWl0IDdkMmNkNzJhOWFhM2RmMzYw
+NGNhZmQxNjlhMmQ0YTUyNWFmYjY4Y2EKQXV0aG9yOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
+dGVyQGZmd2xsLmNoPgpEYXRlOiAgIEZyaSBNYXkgMjkgMTY6MDU6NDIgMjAyMCArMDIwMAoKICAg
+IGRybS9zaG1lbS1oZWxwZXJzOiBTaW1wbGlmeSBkbWEtYnVmIGltcG9ydGluZwoKUmVwb3J0ZWQt
+Ynk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgpGaXhlczogN2QyY2Q3
+MmE5YWEzICgiZHJtL3NobWVtLWhlbHBlcnM6IFNpbXBsaWZ5IGRtYS1idWYgaW1wb3J0aW5nIikK
+Q2M6IEJvcmlzIEJyZXppbGxvbiA8Ym9yaXMuYnJlemlsbG9uQGNvbGxhYm9yYS5jb20+CkNjOiBU
+aG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6IEdlcmQgSG9mZm1hbm4g
+PGtyYXhlbEByZWRoYXQuY29tPgpDYzogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4KQ2M6
+IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgpTaWduZWQtb2ZmLWJ5OiBEYW5p
+ZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+ZHJtX2dlbV9zaG1lbV9oZWxwZXIuYyB8IDIwICsrKysrKysrKysrLS0tLS0tLS0tCiAxIGZpbGUg
+Y2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vZHJtX2dlbV9zaG1lbV9oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9k
+cm1fZ2VtX3NobWVtX2hlbHBlci5jCmluZGV4IDBhN2UzYjY2NGJjMi4uM2U3ZWU0MDdhMTdjIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2dlbV9zaG1lbV9oZWxwZXIuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vZHJtX2dlbV9zaG1lbV9oZWxwZXIuYwpAQCAtNzAsMTUgKzcwLDE3IEBA
+IF9fZHJtX2dlbV9zaG1lbV9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc2l6ZV90IHNp
+emUsIGJvb2wgcHJpdmF0ZSkKIAltdXRleF9pbml0KCZzaG1lbS0+dm1hcF9sb2NrKTsKIAlJTklU
+X0xJU1RfSEVBRCgmc2htZW0tPm1hZHZfbGlzdCk7CiAKLQkvKgotCSAqIE91ciBidWZmZXJzIGFy
+ZSBrZXB0IHBpbm5lZCwgc28gYWxsb2NhdGluZyB0aGVtCi0JICogZnJvbSB0aGUgTU9WQUJMRSB6
+b25lIGlzIGEgcmVhbGx5IGJhZCBpZGVhLCBhbmQKLQkgKiBjb25mbGljdHMgd2l0aCBDTUEuIFNl
+ZSBjb21tZW50cyBhYm92ZSBuZXdfaW5vZGUoKQotCSAqIHdoeSB0aGlzIGlzIHJlcXVpcmVkIF9h
+bmRfIGV4cGVjdGVkIGlmIHlvdSdyZQotCSAqIGdvaW5nIHRvIHBpbiB0aGVzZSBwYWdlcy4KLQkg
+Ki8KLQltYXBwaW5nX3NldF9nZnBfbWFzayhvYmotPmZpbHAtPmZfbWFwcGluZywgR0ZQX0hJR0hV
+U0VSIHwKLQkJCSAgICAgX19HRlBfUkVUUllfTUFZRkFJTCB8IF9fR0ZQX05PV0FSTik7CisJaWYg
+KCFwcml2YXRlKSB7CisJCS8qCisJCSAqIE91ciBidWZmZXJzIGFyZSBrZXB0IHBpbm5lZCwgc28g
+YWxsb2NhdGluZyB0aGVtCisJCSAqIGZyb20gdGhlIE1PVkFCTEUgem9uZSBpcyBhIHJlYWxseSBi
+YWQgaWRlYSwgYW5kCisJCSAqIGNvbmZsaWN0cyB3aXRoIENNQS4gU2VlIGNvbW1lbnRzIGFib3Zl
+IG5ld19pbm9kZSgpCisJCSAqIHdoeSB0aGlzIGlzIHJlcXVpcmVkIF9hbmRfIGV4cGVjdGVkIGlm
+IHlvdSdyZQorCQkgKiBnb2luZyB0byBwaW4gdGhlc2UgcGFnZXMuCisJCSAqLworCQltYXBwaW5n
+X3NldF9nZnBfbWFzayhvYmotPmZpbHAtPmZfbWFwcGluZywgR0ZQX0hJR0hVU0VSIHwKKwkJCQkg
+ICAgIF9fR0ZQX1JFVFJZX01BWUZBSUwgfCBfX0dGUF9OT1dBUk4pOworCX0KIAogCXJldHVybiBz
+aG1lbTsKIAotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
