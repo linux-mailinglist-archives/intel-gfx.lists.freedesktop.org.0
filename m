@@ -2,31 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF2E71FA2CB
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 23:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E5E1FA2E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 23:35:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA0D46E514;
-	Mon, 15 Jun 2020 21:30:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A6196E516;
+	Mon, 15 Jun 2020 21:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24B636E513;
- Mon, 15 Jun 2020 21:30:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1EA06A47E8;
- Mon, 15 Jun 2020 21:30:07 +0000 (UTC)
+Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
+ [IPv6:2607:f8b0:4864:20::944])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E9C6E513;
+ Mon, 15 Jun 2020 21:35:32 +0000 (UTC)
+Received: by mail-ua1-x944.google.com with SMTP id v6so6191564uam.10;
+ Mon, 15 Jun 2020 14:35:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9QwVVY3tdJKh9dRxGnHRaOKopt/UtRa3GpwxCJ/Y+F0=;
+ b=k6/CpZEruyooMN64TIe/UJmnFxw/yHrAjJKHYcUN+/cpmQGNZ6IkYYo94InyjN1OaD
+ Q96ix8oRUrursor+4/j6odK3XkIXlY9UO9TjCCMNg6EBfHITEOOJaRogw+ipR1AmbfZD
+ eg4hnpIxeRakqtYn4rUOyqw67+ujDJZxgeNcOHtAE3WOyNvlWyMAzpG9mBeVmmIdSlZO
+ AC37U1SW26OIX06/HFJtMxsT7rSd24mT6DPWQZSeqEq/OtOFxEVbh/0D/HjP8h58Rbx6
+ zdRI8xTs/UD0mfAnwSGNg6SeN4GTkfz6QcDzCbmZGQ5J2hek7cZXFl8qPiPorEZ0B81T
+ P/IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9QwVVY3tdJKh9dRxGnHRaOKopt/UtRa3GpwxCJ/Y+F0=;
+ b=cjKgR6EUk773eC5Ciiypl2gED3NT6kv3UaIXDhRDLy6YYrWTAb7j0bs0UFCfVeM6H1
+ wPs+oJniwVPgM856Te/PkCzx0kqQqOFaBPQNJYJw48ixMdNKIvFpmgw8dIp19cVr9FpE
+ DjCPX6kMlm9Ba/N5xAgPVvJc6GHzxGWoi047emIVHlbCtYSUdTNL5wr75856oTAUIfax
+ ME/qmfa+p/uxjCmNO3VmfG6znQRxEjPg4uUNjnPDmImVcKVmJGBxV6EL+UY8MEgI+mEo
+ SI2+UNzV3aQ2pe1XZ8xrY8h8vprWOJ037+GVBZOP+o1HRFhgKYX+ca7A4KJ+Uak5W1UH
+ 2jSQ==
+X-Gm-Message-State: AOAM53204Hpqo6YXbRNtUVpL7z8+UQeLv9JMRiJ6+2nMDgvmCIHVU3YH
+ K6ch9zQeZ9IqPdgTFpvwKDs2NAoyjILqHNLLf9Td2g==
+X-Google-Smtp-Source: ABdhPJwT5jYc/IIYrGzUDVmiMlPc57eJBM1NXCklPo9e+Vvncdu/UdFDse9TC2bOP3FbgnecAO9Ttn7g8gaEE87A/fI=
+X-Received: by 2002:ab0:2758:: with SMTP id c24mr20774112uap.64.1592256931213; 
+ Mon, 15 Jun 2020 14:35:31 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 15 Jun 2020 21:30:07 -0000
-Message-ID: <159225660709.16139.12618997987343984501@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200615200603.18827-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200615200603.18827-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Exercise_far_preemption_rollbacks_=28?=
- =?utf-8?q?rev2=29?=
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+ <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Mon, 15 Jun 2020 22:31:50 +0100
+Message-ID: <CACvgo51AVVOxhGK2Uin=ZLgPpihJiEsnc6pvAyKqFKPvLdOzLA@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/mipi-dbi: Remove ->enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +61,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Lechner <david@lechnology.com>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel,
 
-Series: drm/i915/selftests: Exercise far preemption rollbacks (rev2)
-URL   : https://patchwork.freedesktop.org/series/78384/
-State : warning
+On Fri, 12 Jun 2020 at 17:01, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> The atomic helpers try really hard to not lose track of things,
+> duplicating enabled tracking in the driver is at best confusing.
+> Double-enabling or disabling is a bug in atomic helpers.
+>
+> In the fb_dirty function we can just assume that the fb always exists,
+> simple display pipe helpers guarantee that the crtc is only enabled
+> together with the output, so we always have a primary plane around.
+>
+> Now in the update function we need to be a notch more careful, since
+> that can also get called when the crtc is off. And we don't want to
+> upload frames when that's the case, so filter that out too.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Lechner <david@lechnology.com>
+> ---
+>  drivers/gpu/drm/drm_mipi_dbi.c | 16 ++++++----------
+>  drivers/gpu/drm/tiny/ili9225.c | 12 +++---------
+>  drivers/gpu/drm/tiny/st7586.c  | 11 +++--------
+>  include/drm/drm_mipi_dbi.h     |  5 -----
+>  4 files changed, 12 insertions(+), 32 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+> index fd8d672972a9..79532b9a324a 100644
+> --- a/drivers/gpu/drm/drm_mipi_dbi.c
+> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
+> @@ -268,7 +268,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+>         bool full;
+>         void *tr;
+>
+> -       if (!dbidev->enabled)
+> +       if (WARN_ON(!fb))
+>                 return;
+>
+AFAICT no other driver has such WARN_ON. Let's drop that - it is
+pretty confusing and misleading as-is.
 
-== Summary ==
+With that, patches 7/8 and 8/8 are:
+Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
 
-$ dim checkpatch origin/drm-tip
-39ae8f5dde72 drm/i915/selftests: Exercise far preemption rollbacks
--:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")'
-#19: 
-References: e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")
-
-total: 1 errors, 0 warnings, 0 checks, 162 lines checked
-
+-Emil
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
