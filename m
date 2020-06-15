@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BACC11F8D23
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 06:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 657361F8D2E
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 06:56:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C8D89E52;
-	Mon, 15 Jun 2020 04:40:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3050189E5B;
+	Mon, 15 Jun 2020 04:56:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FCBA89E52
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 04:40:11 +0000 (UTC)
-IronPort-SDR: ar+AcA7Dtub4CiXWNI6FYTIYMnZ3LuYPUgt/PTchQMoMHSBuA/t+QlnysVPTdEaZPB8DPFKpC6
- as6dkCvwwu4Q==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0FD589E5B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 04:56:24 +0000 (UTC)
+IronPort-SDR: Q5MO57b1ewI4rg7NQqYnChYhk8QRgWUM0130tMMSv11tFDhas7FlRHdDdYarOB2Tf0RHe2N32Y
+ 1u0eAhDyeXMA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2020 21:40:09 -0700
-IronPort-SDR: 73rTrG1NHuv/4HBhuugkC0wS7ejWxrTKaSMfhUQZGywcpMRNf+irq6Yfk3T3q4CTBDN3omcQ8B
- mCTUrHhfLeQg==
+ 14 Jun 2020 21:56:23 -0700
+IronPort-SDR: lz3hv8igYO9LE8yy3fb9kdtQJa6szYGNtqs54IOWrfpWsWHGlY3/DOa/hZW4ArBzK1Pmc4GKJk
+ 9KWXdqs9pthQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,513,1583222400"; d="scan'208";a="420234674"
+X-IronPort-AV: E=Sophos;i="5.73,513,1583222400"; d="scan'208";a="308600019"
 Received: from unknown (HELO intel.com) ([10.223.74.178])
- by orsmga004.jf.intel.com with ESMTP; 14 Jun 2020 21:40:06 -0700
-Date: Mon, 15 Jun 2020 09:59:27 +0530
+ by fmsmga002.fm.intel.com with ESMTP; 14 Jun 2020 21:56:21 -0700
+Date: Mon, 15 Jun 2020 10:15:43 +0530
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <20200615042926.GC14085@intel.com>
+Message-ID: <20200615044542.GD14085@intel.com>
 References: <20200608100103.19472-1-ankit.k.nautiyal@intel.com>
- <20200608100103.19472-2-ankit.k.nautiyal@intel.com>
+ <20200608100103.19472-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200608100103.19472-2-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20200608100103.19472-3-ankit.k.nautiyal@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: Add support for
- considering HDCP ver requested via debugfs
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Add a new debugfs to
+ request HDCP version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,103 +56,125 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-06-08 at 15:31:02 +0530, Ankit Nautiyal wrote:
-> For testing and debugging each HDCP version separately, a debugfs
-> entry for requesting a specific version is required. The version
-> requested via debugfs needs to be stored in hdcp structure. This can
-> then be considered while enabling HDCP, provided the platform and the
-> display supports the requested version.
+On 2020-06-08 at 15:31:03 +0530, Ankit Nautiyal wrote:
+> As per the current HDCP design, the driver selects the highest
+> version of HDCP that can be used to satisfy the content-protection
+> requirements of the user. Due to this, the content-protection
+> tests cannot test a lower version of HDCP, if the platform and the
+> display panel, both support higher HDCP version.
 > 
-> This patch adds the support for storing the version requested as a 32bit
-> flag. It also adds a helper function to check if a version is requested.
+> To provide some support for testing and debugging, a per-connector
+> debugfs is required to set the HDCP version via debugfs that the
+> kernel can consider, while enabling HDCP.
 > 
-> If a specific HDCP version is requested through the debugfs, the driver
-> chooses that version, instead of policy of choosing the highest HDCP
-> version supported.
+> This patch adds a new debugfs entry for each connector that supports
+> HDCP. For enforcing a particular HDCP version for a connector, the user
+> can write into the debugfs for that connector.
+IMHO this doesn't feel like a debugfs per connector, even if it is a
+global singleton resource for all connectors, i don't see any problem in
+that, may be a global debugfs would make sense here ?
 > 
-> v2: Initialize debugfs_ver_request flag with 0. (Jani Nikula)
+> v2: As suggested by Jani Nikula:
+> -used kstrtouint_from_user() to directly read as uint from user buffer.
+> -used 32 bit flag instead of 64 bit for hdcp_ver flag.
+> -removed unnecessary prints and fixed other minor formatting issues.
 > 
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_display_types.h   | 10 ++++++++++
->  drivers/gpu/drm/i915/display/intel_hdcp.c        | 16 ++++++++++++++--
->  2 files changed, 24 insertions(+), 2 deletions(-)
+>  .../drm/i915/display/intel_display_debugfs.c  | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 9488449e4b94..cfa641c70717 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -408,6 +408,16 @@ struct intel_hdcp {
->  	 * Hence caching the transcoder here.
->  	 */
->  	enum transcoder cpu_transcoder;
-> +
-> +	/*
-> +	 * HDCP version requested from debugfs i915_hdcp_ver_request.
-> +	 * Kernel will read these bits and entertain the request, as per
-> +	 * the HDCP capability of the panel and platform.
-> +	 */
-> +#define HDCP_VERSION_1_4	0x01
-> +#define HDCP_VERSION_2_2	0x02
-> +#define HDCP_VERSION_MASK	0x03
-> +	u32 debugfs_ver_request;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 70525623bcdf..c01653d412e7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -2185,6 +2185,72 @@ static const struct file_operations i915_dsc_fec_support_fops = {
+>  	.write = i915_dsc_fec_support_write
 >  };
 >  
->  struct intel_connector {
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 2cbc4619b4ce..a21ea9c2e9a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1977,6 +1977,8 @@ int intel_hdcp_init(struct intel_connector *connector,
->  	if (!shim)
->  		return -EINVAL;
->  
-> +	hdcp->debugfs_ver_request = 0;
-> +
->  	if (is_hdcp2_supported(dev_priv))
->  		intel_hdcp2_init(connector, shim);
->  
-> @@ -1998,6 +2000,14 @@ int intel_hdcp_init(struct intel_connector *connector,
->  	return 0;
->  }
->  
-> +static bool hdcp_debugfs_requested(struct intel_hdcp *hdcp, u32 hdcp_version)
+> +static int i915_hdcp_ver_request_show(struct seq_file *m, void *data)
 > +{
-> +	if (!hdcp->debugfs_ver_request)
-> +		return true;
+> +	struct drm_connector *connector = m->private;
+> +	struct intel_connector *intel_connector = to_intel_connector(connector);
+> +	u32 hdcp_ver_flag;
 > +
-> +	return hdcp->debugfs_ver_request & hdcp_version ? true : false;
+> +	if (connector->status != connector_status_connected)
+> +		return -ENODEV;
+> +
+> +	/* HDCP is supported by connector */
+> +	if (!intel_connector->hdcp.shim)
+> +		return -EINVAL;
+> +
+> +	hdcp_ver_flag = intel_connector->hdcp.debugfs_ver_request;
+> +	seq_printf(m, "HDCP_VER_FLAGS: %u\n", hdcp_ver_flag);
+> +
+> +	return 0;
 > +}
 > +
->  int intel_hdcp_enable(struct intel_connector *connector,
->  		      enum transcoder cpu_transcoder, u8 content_type)
->  {
-> @@ -2023,7 +2033,8 @@ int intel_hdcp_enable(struct intel_connector *connector,
->  	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
->  	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
->  	 */
-> -	if (intel_hdcp2_capable(connector)) {
-> +	if (hdcp_debugfs_requested(hdcp, HDCP_VERSION_2_2) &&
-> +	    intel_hdcp2_capable(connector)) {
->  		ret = _intel_hdcp2_enable(connector);
->  		if (!ret)
->  			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-> @@ -2033,7 +2044,8 @@ int intel_hdcp_enable(struct intel_connector *connector,
->  	 * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
->  	 * be attempted.
->  	 */
-> -	if (ret && intel_hdcp_capable(connector) &&
-> +	if (ret && hdcp_debugfs_requested(hdcp, HDCP_VERSION_1_4) &&
-IMHO there is no case when both version HDCP 2.2 and HDCP 1.4 version
-will be set, i believe for IGT if HDCP 2.2 fails and version is HDCP 2.2
-it should have returen from above, no  need to check a ret value and
-HDCP 1.4 version. Could we simplify conditions here.
+> +static int i915_hdcp_ver_request_open(struct inode *inode,
+> +				      struct file *file)
+> +{
+> +	return single_open(file, i915_hdcp_ver_request_show,
+> +			   inode->i_private);
+> +}
+> +
+> +static ssize_t i915_hdcp_ver_request_write(struct file *file,
+> +					   const char __user *ubuf,
+> +					   size_t len, loff_t *offp)
+> +{
+> +	unsigned int hdcp_ver = 0;
+> +	int ret;
+> +	struct drm_connector *connector =
+> +		((struct seq_file *)file->private_data)->private;
+> +	struct intel_connector *intel_connector = to_intel_connector(connector);
+> +	struct intel_hdcp *hdcp = &intel_connector->hdcp;
+> +
+> +	if (!hdcp->shim)
+> +		return -EINVAL;
+> +
+> +	if (len == 0)
+> +		return 0;
+> +
+> +	ret = kstrtouint_from_user(ubuf, len, 0, &hdcp_ver);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (hdcp_ver > HDCP_VERSION_MASK)
+> +		return -EINVAL;
+> +
+> +	hdcp->debugfs_ver_request = hdcp_ver;
+A lockless assignment, this would probably not scale.
+Could u please add some comment here for current IGT need this is ok,
+but for any concurrent usgaes proper locking is required.
 Thanks,
-Anshuman Gupta.
-> +	    intel_hdcp_capable(connector) &&
->  	    hdcp->content_type != DRM_MODE_HDCP_CONTENT_TYPE1) {
->  		ret = _intel_hdcp_enable(connector);
+Anshuman
+> +
+> +	*offp += len;
+> +
+> +	return len;
+> +}
+> +
+> +static const struct file_operations i915_hdcp_ver_request_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = i915_hdcp_ver_request_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = i915_hdcp_ver_request_write
+> +};
+> +
+>  /**
+>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
+>   * @connector: pointer to a registered drm_connector
+> @@ -2215,6 +2281,8 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+>  	    connector->connector_type == DRM_MODE_CONNECTOR_HDMIB) {
+>  		debugfs_create_file("i915_hdcp_sink_capability", S_IRUGO, root,
+>  				    connector, &i915_hdcp_sink_capability_fops);
+> +		debugfs_create_file("i915_hdcp_version_request", 0444, root,
+> +				    connector, &i915_hdcp_ver_request_fops);
 >  	}
+>  
+>  	if (INTEL_GEN(dev_priv) >= 10 &&
 > -- 
 > 2.17.1
 > 
