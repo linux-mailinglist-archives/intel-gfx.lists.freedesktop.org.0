@@ -1,54 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56BA1FA2FD
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 23:40:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BFE1FA305
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 23:47:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C34B86E51C;
-	Mon, 15 Jun 2020 21:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2F506E51B;
+	Mon, 15 Jun 2020 21:47:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com
- [IPv6:2607:f8b0:4864:20::a42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D60586E519;
- Mon, 15 Jun 2020 21:40:09 +0000 (UTC)
-Received: by mail-vk1-xa42.google.com with SMTP id p187so4320668vkf.0;
- Mon, 15 Jun 2020 14:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Q3V9qLca5bFwDTwdI0R2PkJG/x+EGIesoeRcKiOrW2U=;
- b=tTrS8kMsaT888jkMLWcMuOVca8Su0PHYX9jlops5GCpQk112deqqr/CJXhPOmpL91Y
- W0BuYCFt4eHj6h4tuPIoLE54mgirMq8omPVGfoBlWTXP4iC6t3e1Vhg8wxKXX5DCYguq
- fr30TVupXqYSBrH2F6YqsAUZm0hilwyLN28iYjmfqGJOr13NlRzVESA217lNZgfJhEvY
- 9UQZytz+vzti4yT4HDsoJcYxOmBxW7GC3ts01X4CEi8pE+IzVRpMGYvKjnOUQTS2sYxc
- ral8rD/qUdk/B3x0Pe4rEF0f6tY4S9xi5nAF4CBHn/2Y5QQfwcleHZZKFUJFdtv/nu1F
- VPNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Q3V9qLca5bFwDTwdI0R2PkJG/x+EGIesoeRcKiOrW2U=;
- b=Bt0TluUrQ4j9F/FxLQJKlS82xOCmFv0RtyB4hpPepo8Zd5PRZ92NtPWeoPE+wzjvUl
- kbEWt62mLeKOOCdUy+tAV5x+0cQc52HqbqdSxWeje3MGkRnbCO6cMCQXtGhu3qDrV9/h
- mw3yXflDrQCVpFF3LO/MptlwLYw6jS8GSjsqBZcQ0WybJDKqPWsoPBhNgY5lebyGzpVt
- aNvUMjamSYg/kPFHOmGxfaFkeqZGOBdQMsnQDZ3EE5LjUjpYF5GtcP21kht+5LbLXfgU
- vb9GAmoPdJ6wT7BYsF8bgaHIoHgvuk1LVaROfY1rXEqIqXyt800UehdX0NphX6ImH32h
- n9EA==
-X-Gm-Message-State: AOAM530kZDRSmokHht89FLab32OSH73qx3U/0RlaDiUDdbz1QtZ2dUjH
- Oq0u3cNBQAKhZJC+YR3s5LcX8epmY4Bt1tidkHhaUm42
-X-Google-Smtp-Source: ABdhPJwxjEXB3xFTxy3esCI8RY2VlOeuvDL8fcF9L6jQLlsaLFmIIu1t34jMu8XOlHN+GGpPiBkR4T0HxWNvgqeqHak=
-X-Received: by 2002:a1f:8f13:: with SMTP id r19mr20428095vkd.38.1592257208928; 
- Mon, 15 Jun 2020 14:40:08 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77DCD6E51A;
+ Mon, 15 Jun 2020 21:47:02 +0000 (UTC)
+IronPort-SDR: jZajlAkGIIaKPjb3uIW9PjBCRZS2bF/HVGNrcdUndnqIr3o1fM2QcOmW+ytmxDgdE2UgzdE8iW
+ saYRcee3yyLA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2020 14:47:01 -0700
+IronPort-SDR: vrLN12SKSKdHKRJMFTF72BJlpnJwYW/OfP+90ZgqAnKl/MpRtdoajlpvb3BzbeLcQD9AY7onJk
+ VZOMWuDRKRjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,516,1583222400"; d="scan'208";a="476177176"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga006.fm.intel.com with ESMTP; 15 Jun 2020 14:47:01 -0700
+Date: Mon, 15 Jun 2020 14:48:09 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Message-ID: <20200615214809.GA4334@intel.com>
 References: <20200612230444.10121-4-manasi.d.navare@intel.com>
  <20200612235606.25120-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200612235606.25120-1-manasi.d.navare@intel.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 15 Jun 2020 22:36:28 +0100
-Message-ID: <CACvgo522mYhCRkNXuwJDCt2fh4-Piq9ZOH9rNbO+HrcbrytJgQ@mail.gmail.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
+ <CACvgo522mYhCRkNXuwJDCt2fh4-Piq9ZOH9rNbO+HrcbrytJgQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CACvgo522mYhCRkNXuwJDCt2fh4-Piq9ZOH9rNbO+HrcbrytJgQ@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Subject: Re: [Intel-gfx] [PATCH v7 3/3] drm/i915/dp: Expose connector VRR
  monitor range via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,71 +54,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  ML dri-devel <dri-devel@lists.freedesktop.org>,
  Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgTWFuYXNpLAoKT24gU2F0LCAxMyBKdW4gMjAyMCBhdCAwMDo1NSwgTWFuYXNpIE5hdmFyZSA8
-bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4gd3JvdGU6Cj4KPiBGcm9tOiBCaGFudXByYWthc2gg
-TW9kZW0gPGJoYW51cHJha2FzaC5tb2RlbUBpbnRlbC5jb20+Cj4KPiBbV2h5XQo+IEl0J3MgdXNl
-ZnVsIHRvIGtub3cgdGhlIG1pbiBhbmQgbWF4IHZyciByYW5nZSBmb3IgSUdUIHRlc3RpbmcuCj4K
-PiBbSG93XQo+IEV4cG9zZSB0aGUgbWluIGFuZCBtYXggdmZyZXEgZm9yIHRoZSBjb25uZWN0b3Ig
-dmlhIGEgZGVidWdmcyBmaWxlCj4gb24gdGhlIGNvbm5lY3RvciwgInZycl9yYW5nZSIuCj4KPiBF
-eGFtcGxlIHVzYWdlOiBjYXQgL3N5cy9rZXJuZWwvZGVidWcvZHJpLzAvRFAtMS92cnJfcmFuZ2UK
-Pgo+IHY3Ogo+ICogRml4IGNtcGlsYXRpb24gZHVlIHRvIHJlYmFzZQo+IHY2Ogo+ICogUmViYXNl
-IChtYW5hc2kpCj4gdjU6Cj4gKiBSZW5hbWUgdG8gdnJyX3JhbmdlIHRvIG1hdGNoIEFNRCBkZWJ1
-Z2ZzCj4gdjQ6Cj4gKiBSZWJhc2UKPiB2MzoKPiAqIFJlbW92ZSB0aGUgdW5uZWNlc3NhcnkgZGVi
-dWcgcHJpbnQgKE1hbmFzaSkKPiB2MjoKPiAqIEZpeCB0aGUgdHlwbyBpbiBtYXhfdmZyZXEgKE1h
-bmFzaSkKPiAqIENoYW5nZSB0aGUgbmFtZSBvZiBub2RlIHRvIGk5MTVfdnJyX2luZm8gc28gd2Ug
-Y2FuIGFkZAo+IG90aGVyIHZyciBpbmZvIGZvciBtb3JlIGRlYnVnIGluZm8gKE1hbmFzaSkKPiAq
-IENoYW5nZSB0aGUgVlJSIGNhcGFibGUgdG8gZGlzcGxheSBZZXMgb3IgTm8gKE1hbmFzaSkKPiAq
-IEZpeCBpbmRlbnRhdGlvbiBjaGVja3BhdGNoIGVycm9ycyAoTWFuYXNpKQo+Ck5pdDogZ2VuZXJh
-bGx5IHJldmlzaW9uIGxvZyBpcyBsaXN0ZWQgaW4gdjIgLT4gdjYgb3JkZXIuCgo+IFNpZ25lZC1v
-ZmYtYnk6IEJoYW51cHJha2FzaCBNb2RlbSA8YmhhbnVwcmFrYXNoLm1vZGVtQGludGVsLmNvbT4K
-PiBTaWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29t
-Pgo+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgo+IENjOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IFRlc3RlZC1i
-eTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KPiAtLS0KPiAgLi4u
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgIHwgMjIgKysrKysrKysr
-KysrKysrKysrLQo+ICAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
-bigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfZGVidWdmcy5jCj4gaW5kZXggMjhkZDcxN2U5NDNhLi4yOTIxZjdkMmEyNmUgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVn
-ZnMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9k
-ZWJ1Z2ZzLmMKPiBAQCAtMjE4NSw2ICsyMTg1LDIxIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZmls
-ZV9vcGVyYXRpb25zIGk5MTVfZHNjX2ZlY19zdXBwb3J0X2ZvcHMgPSB7Cj4gICAgICAgICAud3Jp
-dGUgPSBpOTE1X2RzY19mZWNfc3VwcG9ydF93cml0ZQo+ICB9Owo+Cj4gK3N0YXRpYyBpbnQgdnJy
-X3JhbmdlX3Nob3coc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQo+ICt7Cj4gKyAgICAg
-ICBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gbS0+cHJpdmF0ZTsKPiArCj4gKyAg
-ICAgICBpZiAoY29ubmVjdG9yLT5zdGF0dXMgIT0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQp
-Cj4gKyAgICAgICAgICAgICAgIHJldHVybiAtRU5PREVWOwo+ICsKPiArICAgICAgIHNlcV9wcmlu
-dGYobSwgIlZycl9jYXBhYmxlOiAlc1xuIiwgeWVzbm8oaW50ZWxfZHBfaXNfdnJyX2NhcGFibGUo
-Y29ubmVjdG9yKSkpOwo+ICsgICAgICAgc2VxX3ByaW50ZihtLCAiTWluOiAldVxuIiwgKHU4KWNv
-bm5lY3Rvci0+ZGlzcGxheV9pbmZvLm1vbml0b3JfcmFuZ2UubWluX3ZmcmVxKTsKPiArICAgICAg
-IHNlcV9wcmludGYobSwgIk1heDogJXVcbiIsICh1OCljb25uZWN0b3ItPmRpc3BsYXlfaW5mby5t
-b25pdG9yX3JhbmdlLm1heF92ZnJlcSk7Cj4gKwo+ICsgICAgICAgcmV0dXJuIDA7Cj4gK30KPiAr
-REVGSU5FX1NIT1dfQVRUUklCVVRFKHZycl9yYW5nZSk7Cj4gKwo+ICAvKioKPiAgICogaW50ZWxf
-Y29ubmVjdG9yX2RlYnVnZnNfYWRkIC0gYWRkIGk5MTUgc3BlY2lmaWMgY29ubmVjdG9yIGRlYnVn
-ZnMgZmlsZXMKPiAgICogQGNvbm5lY3RvcjogcG9pbnRlciB0byBhIHJlZ2lzdGVyZWQgZHJtX2Nv
-bm5lY3Rvcgo+IEBAIC0yMjIwLDEwICsyMjM1LDE1IEBAIGludCBpbnRlbF9jb25uZWN0b3JfZGVi
-dWdmc19hZGQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiAgICAgICAgIGlmIChJ
-TlRFTF9HRU4oZGV2X3ByaXYpID49IDEwICYmCj4gICAgICAgICAgICAgKChjb25uZWN0b3ItPmNv
-bm5lY3Rvcl90eXBlID09IERSTV9NT0RFX0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCAmJgo+ICAgICAg
-ICAgICAgICAgIXRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0b3IpLT5tc3RfcG9ydCkgfHwKPiAt
-ICAgICAgICAgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9DT05ORUNU
-T1JfZURQKSkKPiArICAgICAgICAgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1f
-TU9ERV9DT05ORUNUT1JfZURQKSkgewo+ICAgICAgICAgICAgICAgICBkZWJ1Z2ZzX2NyZWF0ZV9m
-aWxlKCJpOTE1X2RzY19mZWNfc3VwcG9ydCIsIFNfSVJVR08sIHJvb3QsCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgY29ubmVjdG9yLCAmaTkxNV9kc2NfZmVjX3N1cHBvcnRf
-Zm9wcyk7Cj4KPiArICAgICAgICAgICAgICAgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIp
-Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgZGVidWdmc19jcmVhdGVfZmlsZSgidnJyX3Jhbmdl
-IiwgU19JUlVHTywKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IHJvb3QsIGNvbm5lY3RvciwgJnZycl9yYW5nZV9mb3BzKTsKPiArICAgICAgIH0KPiArCgpJIHRo
-aW5rIHRoaXMgc2hvdWxkIGJlIGFkZGVkIGJ5IGNvcmUgZHJtLiBJZGVhbGx5IGRybSB3aWxsIGFk
-ZCBpdAphdXRvbWF0aWNhbGx5IGZvciBlYWNoIGNvbm5lY3RvciB0aGF0IHRoZSBkcml2ZXIgaGFz
-IGNhbGxlZApkcm1fY29ubmVjdG9yX2F0dGFjaF92cnJfY2FwYWJsZV9wcm9wZXJ0eSgpIHVwb24u
-CgotRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Mon, Jun 15, 2020 at 10:36:28PM +0100, Emil Velikov wrote:
+> Hi Manasi,
+> =
+
+> On Sat, 13 Jun 2020 at 00:55, Manasi Navare <manasi.d.navare@intel.com> w=
+rote:
+> >
+> > From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> >
+> > [Why]
+> > It's useful to know the min and max vrr range for IGT testing.
+> >
+> > [How]
+> > Expose the min and max vfreq for the connector via a debugfs file
+> > on the connector, "vrr_range".
+> >
+> > Example usage: cat /sys/kernel/debug/dri/0/DP-1/vrr_range
+> >
+> > v7:
+> > * Fix cmpilation due to rebase
+> > v6:
+> > * Rebase (manasi)
+> > v5:
+> > * Rename to vrr_range to match AMD debugfs
+> > v4:
+> > * Rebase
+> > v3:
+> > * Remove the unnecessary debug print (Manasi)
+> > v2:
+> > * Fix the typo in max_vfreq (Manasi)
+> > * Change the name of node to i915_vrr_info so we can add
+> > other vrr info for more debug info (Manasi)
+> > * Change the VRR capable to display Yes or No (Manasi)
+> > * Fix indentation checkpatch errors (Manasi)
+> >
+> Nit: generally revision log is listed in v2 -> v6 order.
+
+Okay point noted. Will update this in the next rev
+
+> =
+
+> > Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Tested-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  | 22 ++++++++++++++++++-
+> >  1 file changed, 21 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/dri=
+vers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index 28dd717e943a..2921f7d2a26e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -2185,6 +2185,21 @@ static const struct file_operations i915_dsc_fec=
+_support_fops =3D {
+> >         .write =3D i915_dsc_fec_support_write
+> >  };
+> >
+> > +static int vrr_range_show(struct seq_file *m, void *data)
+> > +{
+> > +       struct drm_connector *connector =3D m->private;
+> > +
+> > +       if (connector->status !=3D connector_status_connected)
+> > +               return -ENODEV;
+> > +
+> > +       seq_printf(m, "Vrr_capable: %s\n", yesno(intel_dp_is_vrr_capabl=
+e(connector)));
+> > +       seq_printf(m, "Min: %u\n", (u8)connector->display_info.monitor_=
+range.min_vfreq);
+> > +       seq_printf(m, "Max: %u\n", (u8)connector->display_info.monitor_=
+range.max_vfreq);
+> > +
+> > +       return 0;
+> > +}
+> > +DEFINE_SHOW_ATTRIBUTE(vrr_range);
+> > +
+> >  /**
+> >   * intel_connector_debugfs_add - add i915 specific connector debugfs f=
+iles
+> >   * @connector: pointer to a registered drm_connector
+> > @@ -2220,10 +2235,15 @@ int intel_connector_debugfs_add(struct drm_conn=
+ector *connector)
+> >         if (INTEL_GEN(dev_priv) >=3D 10 &&
+> >             ((connector->connector_type =3D=3D DRM_MODE_CONNECTOR_Displ=
+ayPort &&
+> >               !to_intel_connector(connector)->mst_port) ||
+> > -            connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP))
+> > +            connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP)) {
+> >                 debugfs_create_file("i915_dsc_fec_support", S_IRUGO, ro=
+ot,
+> >                                     connector, &i915_dsc_fec_support_fo=
+ps);
+> >
+> > +               if (INTEL_GEN(dev_priv) >=3D 12)
+> > +                       debugfs_create_file("vrr_range", S_IRUGO,
+> > +                                           root, connector, &vrr_range=
+_fops);
+> > +       }
+> > +
+> =
+
+> I think this should be added by core drm. Ideally drm will add it
+> automatically for each connector that the driver has called
+> drm_connector_attach_vrr_capable_property() upon.
+>
+
+But in this case drm_connector_attach_vrr_capable_property() is called by i=
+ndividual
+driver since its an optional connector property. So we call this inside i91=
+5.
+Also currently AMD sets this debugfs inside AMD IMO, so setting this here f=
+or now.
+But I agree that can be moved to drm core may be when drm_display_info gets=
+ populated
+with min and max, thats where drm can add this?
+
+Manasi
+  =
+
+> -Emil
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
